@@ -1,6 +1,3 @@
 [submodule "HelloInterfaceImplementationPair"]
 	path = HelloInterfaceImplementationPair
 	url = https://github.com/daydreamboy/HelloInterfaceImplementationPair.git
-[submodule "AppTestTemplate"]
-	path = AppTestTemplate
-	url = https://github.com/daydreamboy/AppTestTemplate.git
