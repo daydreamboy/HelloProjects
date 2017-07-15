@@ -1,0 +1,16 @@
+PODS:
+  - MyTinySDK (0.1.0)
+
+DEPENDENCIES:
+  - MyTinySDK (from `../`)
+
+EXTERNAL SOURCES:
+  MyTinySDK:
+    :path: ../
+
+SPEC CHECKSUMS:
+  MyTinySDK: a3175526f8cff815f975858b2a30975ef03af4c2
+
+PODFILE CHECKSUM: cef646977df1bf5a1b5b5c8b2a378a2c5fc0e0c0
+
+COCOAPODS: 1.2.1
