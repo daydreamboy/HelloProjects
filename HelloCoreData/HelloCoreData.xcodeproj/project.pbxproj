@@ -22,6 +22,30 @@
 		4F3CF6F31F55121F00E14CB7 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3CF6F21F55121F00E14CB7 /* CoreDataStack.m */; };
 		4F3CF7441F558B3600E14CB7 /* BubbleTeaFinder_seed.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F3CF7431F558B3600E14CB7 /* BubbleTeaFinder_seed.json */; };
 		4F3CF7471F56B3CA00E14CB7 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3CF7461F56B3CA00E14CB7 /* BaseViewController.m */; };
+		4F9E6A631F6136F300DB315D /* EmployeeDirectory1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6A611F6136F300DB315D /* EmployeeDirectory1.xcdatamodeld */; };
+		4F9E6A661F61370100DB315D /* EmployeeDirectory2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6A641F61370100DB315D /* EmployeeDirectory2.xcdatamodeld */; };
+		4F9E6A771F613BA900DB315D /* Employee1ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6A761F613BA900DB315D /* Employee1ListViewController.m */; };
+		4F9E6A7C1F61486B00DB315D /* EmployeeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F9E6A7B1F61486B00DB315D /* EmployeeTableViewCell.xib */; };
+		4F9E6A7F1F614FAC00DB315D /* EmployeeDirectory1_seed.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F9E6A7D1F614FAC00DB315D /* EmployeeDirectory1_seed.json */; };
+		4F9E6A801F614FAC00DB315D /* EmployeeDirectory2_seed.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F9E6A7E1F614FAC00DB315D /* EmployeeDirectory2_seed.json */; };
+		4F9E6A8C1F61516500DB315D /* face01.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F9E6A821F61516500DB315D /* face01.jpg */; };
+		4F9E6A8D1F61516500DB315D /* face02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F9E6A831F61516500DB315D /* face02.jpg */; };
+		4F9E6A8E1F61516500DB315D /* face03.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F9E6A841F61516500DB315D /* face03.jpg */; };
+		4F9E6A8F1F61516500DB315D /* face04.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F9E6A851F61516500DB315D /* face04.jpg */; };
+		4F9E6A901F61516500DB315D /* face05.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F9E6A861F61516500DB315D /* face05.jpg */; };
+		4F9E6A911F61516500DB315D /* face06.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F9E6A871F61516500DB315D /* face06.jpg */; };
+		4F9E6A921F61516500DB315D /* face07.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F9E6A881F61516500DB315D /* face07.jpg */; };
+		4F9E6A931F61516500DB315D /* face08.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F9E6A891F61516500DB315D /* face08.jpg */; };
+		4F9E6A941F61516500DB315D /* face09.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F9E6A8A1F61516500DB315D /* face09.jpg */; };
+		4F9E6A951F61516500DB315D /* face10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F9E6A8B1F61516500DB315D /* face10.jpg */; };
+		4F9E6A981F61606300DB315D /* EmployeeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6A971F61606300DB315D /* EmployeeTableViewCell.m */; };
+		4F9E6A9B1F61777C00DB315D /* Employee1TabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6A9A1F61777C00DB315D /* Employee1TabController.m */; };
+		4F9E6A9E1F6178D800DB315D /* Department1ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6A9D1F6178D800DB315D /* Department1ListViewController.m */; };
+		4F9E6AA41F639D8200DB315D /* Employee1DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6AA21F639D8200DB315D /* Employee1DetailViewController.m */; };
+		4F9E6AA51F639D8200DB315D /* Employee1DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F9E6AA31F639D8200DB315D /* Employee1DetailViewController.xib */; };
+		4F9E6AA81F63D1D200DB315D /* EmployeePictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6AA71F63D1D200DB315D /* EmployeePictureViewController.m */; };
+		4F9E6AAC1F63D56000DB315D /* DepartmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6AAA1F63D56000DB315D /* DepartmentDetailViewController.m */; };
+		4F9E6AAD1F63D56000DB315D /* DepartmentDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F9E6AAB1F63D56000DB315D /* DepartmentDetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +106,45 @@
 		4F3CF7431F558B3600E14CB7 /* BubbleTeaFinder_seed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BubbleTeaFinder_seed.json; sourceTree = "<group>"; };
 		4F3CF7451F56B3CA00E14CB7 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		4F3CF7461F56B3CA00E14CB7 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		4F9E6A621F6136F300DB315D /* EmployeeDirectory1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EmployeeDirectory1.xcdatamodel; sourceTree = "<group>"; };
+		4F9E6A651F61370100DB315D /* EmployeeDirectory2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EmployeeDirectory2.xcdatamodel; sourceTree = "<group>"; };
+		4F9E6A691F613B2A00DB315D /* Sale1+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Sale1+CoreDataClass.h"; sourceTree = "<group>"; };
+		4F9E6A6A1F613B2A00DB315D /* Sale1+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Sale1+CoreDataClass.m"; sourceTree = "<group>"; };
+		4F9E6A6B1F613B2A00DB315D /* Sale1+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Sale1+CoreDataProperties.h"; sourceTree = "<group>"; };
+		4F9E6A6C1F613B2A00DB315D /* Sale1+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Sale1+CoreDataProperties.m"; sourceTree = "<group>"; };
+		4F9E6A6D1F613B2A00DB315D /* Employee1+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Employee1+CoreDataClass.h"; sourceTree = "<group>"; };
+		4F9E6A6E1F613B2A00DB315D /* Employee1+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Employee1+CoreDataClass.m"; sourceTree = "<group>"; };
+		4F9E6A751F613BA900DB315D /* Employee1ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee1ListViewController.h; sourceTree = "<group>"; };
+		4F9E6A761F613BA900DB315D /* Employee1ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee1ListViewController.m; sourceTree = "<group>"; };
+		4F9E6A781F6144AB00DB315D /* Employee1+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Employee1+CoreDataProperties.h"; sourceTree = "<group>"; };
+		4F9E6A791F6144AB00DB315D /* Employee1+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Employee1+CoreDataProperties.m"; sourceTree = "<group>"; };
+		4F9E6A7B1F61486B00DB315D /* EmployeeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmployeeTableViewCell.xib; sourceTree = "<group>"; };
+		4F9E6A7D1F614FAC00DB315D /* EmployeeDirectory1_seed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EmployeeDirectory1_seed.json; sourceTree = "<group>"; };
+		4F9E6A7E1F614FAC00DB315D /* EmployeeDirectory2_seed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EmployeeDirectory2_seed.json; sourceTree = "<group>"; };
+		4F9E6A821F61516500DB315D /* face01.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = face01.jpg; sourceTree = "<group>"; };
+		4F9E6A831F61516500DB315D /* face02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = face02.jpg; sourceTree = "<group>"; };
+		4F9E6A841F61516500DB315D /* face03.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = face03.jpg; sourceTree = "<group>"; };
+		4F9E6A851F61516500DB315D /* face04.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = face04.jpg; sourceTree = "<group>"; };
+		4F9E6A861F61516500DB315D /* face05.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = face05.jpg; sourceTree = "<group>"; };
+		4F9E6A871F61516500DB315D /* face06.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = face06.jpg; sourceTree = "<group>"; };
+		4F9E6A881F61516500DB315D /* face07.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = face07.jpg; sourceTree = "<group>"; };
+		4F9E6A891F61516500DB315D /* face08.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = face08.jpg; sourceTree = "<group>"; };
+		4F9E6A8A1F61516500DB315D /* face09.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = face09.jpg; sourceTree = "<group>"; };
+		4F9E6A8B1F61516500DB315D /* face10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = face10.jpg; sourceTree = "<group>"; };
+		4F9E6A961F61606300DB315D /* EmployeeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeeTableViewCell.h; sourceTree = "<group>"; };
+		4F9E6A971F61606300DB315D /* EmployeeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeeTableViewCell.m; sourceTree = "<group>"; };
+		4F9E6A991F61777C00DB315D /* Employee1TabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee1TabController.h; sourceTree = "<group>"; };
+		4F9E6A9A1F61777C00DB315D /* Employee1TabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee1TabController.m; sourceTree = "<group>"; };
+		4F9E6A9C1F6178D800DB315D /* Department1ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Department1ListViewController.h; sourceTree = "<group>"; };
+		4F9E6A9D1F6178D800DB315D /* Department1ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Department1ListViewController.m; sourceTree = "<group>"; };
+		4F9E6AA11F639D8200DB315D /* Employee1DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee1DetailViewController.h; sourceTree = "<group>"; };
+		4F9E6AA21F639D8200DB315D /* Employee1DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee1DetailViewController.m; sourceTree = "<group>"; };
+		4F9E6AA31F639D8200DB315D /* Employee1DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Employee1DetailViewController.xib; sourceTree = "<group>"; };
+		4F9E6AA61F63D1D200DB315D /* EmployeePictureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeePictureViewController.h; sourceTree = "<group>"; };
+		4F9E6AA71F63D1D200DB315D /* EmployeePictureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeePictureViewController.m; sourceTree = "<group>"; };
+		4F9E6AA91F63D56000DB315D /* DepartmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DepartmentDetailViewController.h; sourceTree = "<group>"; };
+		4F9E6AAA1F63D56000DB315D /* DepartmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DepartmentDetailViewController.m; sourceTree = "<group>"; };
+		4F9E6AAB1F63D56000DB315D /* DepartmentDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DepartmentDetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +243,8 @@
 		4F3CF6EA1F55073500E14CB7 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F9E6A5F1F61369B00DB315D /* EmployeeDirectory1 */,
+				4F9E6A601F61369B00DB315D /* EmployeeDirectory2 */,
 				4F1812CD1F5F9538007E17C1 /* WorldCup */,
 				4F1812C61F5F950C007E17C1 /* DogWalk */,
 				4F1812BC1F5F9504007E17C1 /* BubbleTeaFinder */,
@@ -189,6 +254,8 @@
 				4F1812D11F5F9662007E17C1 /* ManagedObjects_WorldCup */,
 				4F3CF71D1F55898F00E14CB7 /* ManagedObjects_BubbleTeaFinder */,
 				4F3CF7141F5588EE00E14CB7 /* ManagedObjects_DogWalk */,
+				4F9E6A671F61397D00DB315D /* ManagedObjects_EmployeeDirectory1 */,
+				4F9E6A681F61397D00DB315D /* ManagedObjects_EmployeeDirectory2 */,
 				4F3CF6F11F55121F00E14CB7 /* CoreDataStack.h */,
 				4F3CF6F21F55121F00E14CB7 /* CoreDataStack.m */,
 			);
@@ -240,12 +307,89 @@
 		4F3CF7421F558B3600E14CB7 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F9E6A7D1F614FAC00DB315D /* EmployeeDirectory1_seed.json */,
+				4F9E6A7E1F614FAC00DB315D /* EmployeeDirectory2_seed.json */,
 				4F1812D21F5F966B007E17C1 /* WorldCup_seed.json */,
 				4F3CF7431F558B3600E14CB7 /* BubbleTeaFinder_seed.json */,
 			);
 			name = Resources;
 			path = HelloCoreData/Resources;
 			sourceTree = SOURCE_ROOT;
+		};
+		4F9E6A5F1F61369B00DB315D /* EmployeeDirectory1 */ = {
+			isa = PBXGroup;
+			children = (
+				4F9E6A811F61516500DB315D /* faces */,
+				4F9E6A611F6136F300DB315D /* EmployeeDirectory1.xcdatamodeld */,
+				4F9E6A751F613BA900DB315D /* Employee1ListViewController.h */,
+				4F9E6A761F613BA900DB315D /* Employee1ListViewController.m */,
+				4F9E6A9C1F6178D800DB315D /* Department1ListViewController.h */,
+				4F9E6A9D1F6178D800DB315D /* Department1ListViewController.m */,
+				4F9E6A7B1F61486B00DB315D /* EmployeeTableViewCell.xib */,
+				4F9E6A961F61606300DB315D /* EmployeeTableViewCell.h */,
+				4F9E6A971F61606300DB315D /* EmployeeTableViewCell.m */,
+				4F9E6A991F61777C00DB315D /* Employee1TabController.h */,
+				4F9E6A9A1F61777C00DB315D /* Employee1TabController.m */,
+				4F9E6AA11F639D8200DB315D /* Employee1DetailViewController.h */,
+				4F9E6AA21F639D8200DB315D /* Employee1DetailViewController.m */,
+				4F9E6AA31F639D8200DB315D /* Employee1DetailViewController.xib */,
+				4F9E6AA61F63D1D200DB315D /* EmployeePictureViewController.h */,
+				4F9E6AA71F63D1D200DB315D /* EmployeePictureViewController.m */,
+				4F9E6AA91F63D56000DB315D /* DepartmentDetailViewController.h */,
+				4F9E6AAA1F63D56000DB315D /* DepartmentDetailViewController.m */,
+				4F9E6AAB1F63D56000DB315D /* DepartmentDetailViewController.xib */,
+			);
+			path = EmployeeDirectory1;
+			sourceTree = "<group>";
+		};
+		4F9E6A601F61369B00DB315D /* EmployeeDirectory2 */ = {
+			isa = PBXGroup;
+			children = (
+				4F9E6A641F61370100DB315D /* EmployeeDirectory2.xcdatamodeld */,
+			);
+			path = EmployeeDirectory2;
+			sourceTree = "<group>";
+		};
+		4F9E6A671F61397D00DB315D /* ManagedObjects_EmployeeDirectory1 */ = {
+			isa = PBXGroup;
+			children = (
+				4F9E6A781F6144AB00DB315D /* Employee1+CoreDataProperties.h */,
+				4F9E6A791F6144AB00DB315D /* Employee1+CoreDataProperties.m */,
+				4F9E6A691F613B2A00DB315D /* Sale1+CoreDataClass.h */,
+				4F9E6A6A1F613B2A00DB315D /* Sale1+CoreDataClass.m */,
+				4F9E6A6B1F613B2A00DB315D /* Sale1+CoreDataProperties.h */,
+				4F9E6A6C1F613B2A00DB315D /* Sale1+CoreDataProperties.m */,
+				4F9E6A6D1F613B2A00DB315D /* Employee1+CoreDataClass.h */,
+				4F9E6A6E1F613B2A00DB315D /* Employee1+CoreDataClass.m */,
+			);
+			name = ManagedObjects_EmployeeDirectory1;
+			path = HelloCoreData/AppTestDemos/ManagedObjects_EmployeeDirectory1;
+			sourceTree = SOURCE_ROOT;
+		};
+		4F9E6A681F61397D00DB315D /* ManagedObjects_EmployeeDirectory2 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ManagedObjects_EmployeeDirectory2;
+			path = HelloCoreData/AppTestDemos/ManagedObjects_EmployeeDirectory2;
+			sourceTree = SOURCE_ROOT;
+		};
+		4F9E6A811F61516500DB315D /* faces */ = {
+			isa = PBXGroup;
+			children = (
+				4F9E6A821F61516500DB315D /* face01.jpg */,
+				4F9E6A831F61516500DB315D /* face02.jpg */,
+				4F9E6A841F61516500DB315D /* face03.jpg */,
+				4F9E6A851F61516500DB315D /* face04.jpg */,
+				4F9E6A861F61516500DB315D /* face05.jpg */,
+				4F9E6A871F61516500DB315D /* face06.jpg */,
+				4F9E6A881F61516500DB315D /* face07.jpg */,
+				4F9E6A891F61516500DB315D /* face08.jpg */,
+				4F9E6A8A1F61516500DB315D /* face09.jpg */,
+				4F9E6A8B1F61516500DB315D /* face10.jpg */,
+			);
+			path = faces;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -307,8 +451,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F3CF7441F558B3600E14CB7 /* BubbleTeaFinder_seed.json in Resources */,
+				4F9E6A7F1F614FAC00DB315D /* EmployeeDirectory1_seed.json in Resources */,
+				4F9E6A931F61516500DB315D /* face08.jpg in Resources */,
+				4F9E6AAD1F63D56000DB315D /* DepartmentDetailViewController.xib in Resources */,
+				4F9E6A941F61516500DB315D /* face09.jpg in Resources */,
+				4F9E6AA51F639D8200DB315D /* Employee1DetailViewController.xib in Resources */,
+				4F9E6A8D1F61516500DB315D /* face02.jpg in Resources */,
+				4F9E6A901F61516500DB315D /* face05.jpg in Resources */,
+				4F9E6A8C1F61516500DB315D /* face01.jpg in Resources */,
+				4F9E6A7C1F61486B00DB315D /* EmployeeTableViewCell.xib in Resources */,
+				4F9E6A911F61516500DB315D /* face06.jpg in Resources */,
+				4F9E6A951F61516500DB315D /* face10.jpg in Resources */,
 				4F1812D31F5F966B007E17C1 /* WorldCup_seed.json in Resources */,
+				4F9E6A921F61516500DB315D /* face07.jpg in Resources */,
+				4F9E6A8E1F61516500DB315D /* face03.jpg in Resources */,
 				4F3CF6E01F5506D200E14CB7 /* Assets.xcassets in Resources */,
+				4F9E6A8F1F61516500DB315D /* face04.jpg in Resources */,
+				4F9E6A801F614FAC00DB315D /* EmployeeDirectory2_seed.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,10 +478,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F9E6A631F6136F300DB315D /* EmployeeDirectory1.xcdatamodeld in Sources */,
+				4F9E6AA81F63D1D200DB315D /* EmployeePictureViewController.m in Sources */,
 				4F3CF6F31F55121F00E14CB7 /* CoreDataStack.m in Sources */,
 				4F1812C41F5F9504007E17C1 /* FetchResultViewController.m in Sources */,
+				4F9E6A771F613BA900DB315D /* Employee1ListViewController.m in Sources */,
 				4F3CF7471F56B3CA00E14CB7 /* BaseViewController.m in Sources */,
+				4F9E6AAC1F63D56000DB315D /* DepartmentDetailViewController.m in Sources */,
+				4F9E6A981F61606300DB315D /* EmployeeTableViewCell.m in Sources */,
+				4F9E6A661F61370100DB315D /* EmployeeDirectory2.xcdatamodeld in Sources */,
 				4F1812CB1F5F950C007E17C1 /* BuildCoreDataStackViewController.m in Sources */,
+				4F9E6A9E1F6178D800DB315D /* Department1ListViewController.m in Sources */,
 				4F1812CC1F5F950C007E17C1 /* Dog Walk.xcdatamodeld in Sources */,
 				4F1812DC1F5F970E007E17C1 /* FetchResultControllerViewController.m in Sources */,
 				4F1812C31F5F9504007E17C1 /* Bubble_Tea_Finder.xcdatamodeld in Sources */,
@@ -330,7 +496,9 @@
 				4F1812D01F5F9565007E17C1 /* WorldCup.xcdatamodeld in Sources */,
 				4F3CF6D51F5506D200E14CB7 /* main.m in Sources */,
 				4F1812C51F5F9504007E17C1 /* FilterViewController.m in Sources */,
+				4F9E6AA41F639D8200DB315D /* Employee1DetailViewController.m in Sources */,
 				4F3CF6F01F55073E00E14CB7 /* RootViewController.m in Sources */,
+				4F9E6A9B1F61777C00DB315D /* Employee1TabController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,6 +670,26 @@
 			);
 			currentVersion = 4F1812CF1F5F9565007E17C1 /* WorldCup.xcdatamodel */;
 			path = WorldCup.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		4F9E6A611F6136F300DB315D /* EmployeeDirectory1.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4F9E6A621F6136F300DB315D /* EmployeeDirectory1.xcdatamodel */,
+			);
+			currentVersion = 4F9E6A621F6136F300DB315D /* EmployeeDirectory1.xcdatamodel */;
+			path = EmployeeDirectory1.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		4F9E6A641F61370100DB315D /* EmployeeDirectory2.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4F9E6A651F61370100DB315D /* EmployeeDirectory2.xcdatamodel */,
+			);
+			currentVersion = 4F9E6A651F61370100DB315D /* EmployeeDirectory2.xcdatamodel */;
+			path = EmployeeDirectory2.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

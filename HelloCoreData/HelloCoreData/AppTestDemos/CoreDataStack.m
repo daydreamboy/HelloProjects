@@ -63,7 +63,7 @@
 - (NSManagedObjectContext *)context {
     if (!_context) {
         // Note: create a NSManagedObjectContext and configure its @persistentStoreCoordinator
-        NSManagedObjectContext *c = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+        NSManagedObjectContext *c = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
         c.persistentStoreCoordinator = self.persistentStoreCoordinator;
         _context = c;
     }

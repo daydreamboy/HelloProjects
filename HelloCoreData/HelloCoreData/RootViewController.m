@@ -11,6 +11,8 @@
 #import "BuildCoreDataStackViewController.h"
 #import "FetchResultViewController.h"
 #import "FetchResultControllerViewController.h"
+#import "Employee1ListViewController.h"
+#import "Employee1TabController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -36,12 +38,14 @@
         @"Build CoreData Stack (4 classes)",
         @"Use NSFetchResult",
         @"Use NSFetchResultController",
+        @"EmployeeDirectory (original)",
         @"call a test method",
     ];
     _classes = @[
         @"BuildCoreDataStackViewController",
         @"FetchResultViewController",
         @"FetchResultControllerViewController",
+        @"Employee1TabController",
         @"testMethod",
     ];
 }
