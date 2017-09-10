@@ -1,5 +1,5 @@
 # HelloProjects
-A `Hello` series of learning iOS projects. The directories sored by alphabet.
+A `Hello` series of learning iOS projects. The directories sorted by alphabet.
 
 ### AppTestTemplate
 * The template project for HelloXXX project
