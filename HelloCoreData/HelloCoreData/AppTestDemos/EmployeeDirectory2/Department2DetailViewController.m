@@ -6,11 +6,11 @@
 //  Copyright © 2017 wesley_chen. All rights reserved.
 //
 
-#import "DepartmentDetailViewController.h"
+#import "Department2DetailViewController.h"
 #import <CoreData/CoreData.h>
 #import "CoreDataStack.h"
 
-@interface DepartmentDetailViewController ()
+@interface Department2DetailViewController ()
 @property (nonatomic, strong) NSManagedObjectContext *context;
 @property (nonatomic, strong) NSString *department;
 
@@ -24,7 +24,7 @@
 
 @end
 
-@implementation DepartmentDetailViewController
+@implementation Department2DetailViewController
 
 - (instancetype)initWithCoreDataStack:(CoreDataStack *)coreDataStack department:(NSString *)department {
     self = [super init];
@@ -42,17 +42,21 @@
 }
 
 - (void)setup {
-    self.tabBarController.tabBarItem.title = self.department;
+    self.tabBarController.navigationItem.title = self.department;
     
     self.totalEmployeesLabel.text = [self totalEmployees];
     self.activeEmployeesLabel.text = [self activeEmployees];
     self.greaterThanFifteenVacationDaysLabel.text = [self greaterThanVacationDays:15];
+    self.greaterThanTenVacationDaysLabel.text = [self greaterThanVacationDays:10];
+    self.greaterThanFiveVacationDaysLabel.text = [self greaterThanVacationDays:5];
+    self.greaterThanZeroVacationDaysLabel.text = [self greaterThanVacationDays:0];
+    self.zeroVacationDaysLabel.text = [self zeroVacationDays];
 }
 
 #pragma mark - Calculation
 
 - (NSString *)totalEmployees {
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Employee1"];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Employee2"];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"department == %@", self.department];
     
     NSString *retVal = @"0";
@@ -77,7 +81,7 @@
 }
 
 - (NSString *)activeEmployees {
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Employee1"];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Employee2"];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(department == %@) AND (active == YES)", self.department];
     
     NSString *retVal = @"0";
@@ -102,8 +106,34 @@
 }
 
 - (NSString *)greaterThanVacationDays:(NSInteger)vacationDays {
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Employee1"];
-    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(department == %@) AND (vacationDays > %i)", self.department];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Employee2"];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(department == %@) AND (vacationDays > %i)", self.department, vacationDays];
+    
+    NSString *retVal = @"0";
+    
+    @try {
+        NSError *error = nil;
+        
+        NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
+        if (!error) {
+            retVal = [NSString stringWithFormat:@"%ld", (long)result.count];
+        }
+        else {
+            NSLog(@"error: %@", error);
+        }
+    }
+    @catch (NSException *exception) {
+        NSLog(@"exception: %@", exception);
+    }
+    @finally {
+    }
+    
+    return retVal;
+}
+
+- (NSString *)zeroVacationDays {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Employee2"];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(department == %@) AND (vacationDays == 0)", self.department];
     
     NSString *retVal = @"0";
     
@@ -125,6 +155,5 @@
     
     return retVal;
 }
-
 
 @end

@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DepartmentDetailViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Department1DetailViewController">
             <connections>
                 <outlet property="activeEmployeesLabel" destination="GFe-j1-Nzl" id="k75-n4-FJQ"/>
                 <outlet property="greaterThanFifteenVacationDaysLabel" destination="P7L-dL-XYa" id="Ozd-AT-MAP"/>

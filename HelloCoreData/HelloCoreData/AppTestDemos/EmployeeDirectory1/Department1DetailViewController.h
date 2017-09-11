@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BaseViewController.h"
 
-@interface DepartmentDetailViewController : BaseViewController
+@interface Department1DetailViewController : BaseViewController
 - (instancetype)initWithCoreDataStack:(CoreDataStack *)coreDataStack department:(NSString *)department;
 @end

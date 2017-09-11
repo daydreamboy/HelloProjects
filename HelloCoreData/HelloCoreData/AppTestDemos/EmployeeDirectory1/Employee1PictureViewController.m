@@ -6,14 +6,14 @@
 //  Copyright © 2017 wesley_chen. All rights reserved.
 //
 
-#import "EmployeePictureViewController.h"
+#import "Employee1PictureViewController.h"
 
-@interface EmployeePictureViewController ()
+@interface Employee1PictureViewController ()
 @property (nonatomic, strong) Employee1 *employee;
 @property (nonatomic, strong) UIImageView *imageView;
 @end
 
-@implementation EmployeePictureViewController
+@implementation Employee1PictureViewController
 
 - (instancetype)initWithEmployee:(Employee1 *)employee {
     self = [super init];

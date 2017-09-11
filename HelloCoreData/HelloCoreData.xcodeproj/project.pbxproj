@@ -22,6 +22,14 @@
 		4F3CF6F31F55121F00E14CB7 /* CoreDataStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3CF6F21F55121F00E14CB7 /* CoreDataStack.m */; };
 		4F3CF7441F558B3600E14CB7 /* BubbleTeaFinder_seed.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F3CF7431F558B3600E14CB7 /* BubbleTeaFinder_seed.json */; };
 		4F3CF7471F56B3CA00E14CB7 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3CF7461F56B3CA00E14CB7 /* BaseViewController.m */; };
+		4F60353B1F662C2400FCBC32 /* Employee2ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60353A1F662C2400FCBC32 /* Employee2ListViewController.m */; };
+		4F6035431F662D8300FCBC32 /* Department2ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60353D1F662D8300FCBC32 /* Department2ListViewController.m */; };
+		4F6035441F662D8300FCBC32 /* Employee2DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60353F1F662D8300FCBC32 /* Employee2DetailViewController.m */; };
+		4F6035451F662D8300FCBC32 /* Employee2DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F6035401F662D8300FCBC32 /* Employee2DetailViewController.xib */; };
+		4F6035461F662D8300FCBC32 /* Employee2TabController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6035421F662D8300FCBC32 /* Employee2TabController.m */; };
+		4F6035491F662F6000FCBC32 /* Employee2PictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6035481F662F6000FCBC32 /* Employee2PictureViewController.m */; };
+		4F60354D1F66317600FCBC32 /* Department2DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60354B1F66317600FCBC32 /* Department2DetailViewController.m */; };
+		4F60354E1F66317600FCBC32 /* Department2DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F60354C1F66317600FCBC32 /* Department2DetailViewController.xib */; };
 		4F9E6A631F6136F300DB315D /* EmployeeDirectory1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6A611F6136F300DB315D /* EmployeeDirectory1.xcdatamodeld */; };
 		4F9E6A661F61370100DB315D /* EmployeeDirectory2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6A641F61370100DB315D /* EmployeeDirectory2.xcdatamodeld */; };
 		4F9E6A771F613BA900DB315D /* Employee1ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6A761F613BA900DB315D /* Employee1ListViewController.m */; };
@@ -43,9 +51,9 @@
 		4F9E6A9E1F6178D800DB315D /* Department1ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6A9D1F6178D800DB315D /* Department1ListViewController.m */; };
 		4F9E6AA41F639D8200DB315D /* Employee1DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6AA21F639D8200DB315D /* Employee1DetailViewController.m */; };
 		4F9E6AA51F639D8200DB315D /* Employee1DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F9E6AA31F639D8200DB315D /* Employee1DetailViewController.xib */; };
-		4F9E6AA81F63D1D200DB315D /* EmployeePictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6AA71F63D1D200DB315D /* EmployeePictureViewController.m */; };
-		4F9E6AAC1F63D56000DB315D /* DepartmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6AAA1F63D56000DB315D /* DepartmentDetailViewController.m */; };
-		4F9E6AAD1F63D56000DB315D /* DepartmentDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F9E6AAB1F63D56000DB315D /* DepartmentDetailViewController.xib */; };
+		4F9E6AA81F63D1D200DB315D /* Employee1PictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6AA71F63D1D200DB315D /* Employee1PictureViewController.m */; };
+		4F9E6AAC1F63D56000DB315D /* Department1DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6AAA1F63D56000DB315D /* Department1DetailViewController.m */; };
+		4F9E6AAD1F63D56000DB315D /* Department1DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F9E6AAB1F63D56000DB315D /* Department1DetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -106,6 +114,20 @@
 		4F3CF7431F558B3600E14CB7 /* BubbleTeaFinder_seed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BubbleTeaFinder_seed.json; sourceTree = "<group>"; };
 		4F3CF7451F56B3CA00E14CB7 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		4F3CF7461F56B3CA00E14CB7 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		4F6035391F662C2400FCBC32 /* Employee2ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee2ListViewController.h; sourceTree = "<group>"; };
+		4F60353A1F662C2400FCBC32 /* Employee2ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee2ListViewController.m; sourceTree = "<group>"; };
+		4F60353C1F662D8300FCBC32 /* Department2ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Department2ListViewController.h; sourceTree = "<group>"; };
+		4F60353D1F662D8300FCBC32 /* Department2ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Department2ListViewController.m; sourceTree = "<group>"; };
+		4F60353E1F662D8300FCBC32 /* Employee2DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee2DetailViewController.h; sourceTree = "<group>"; };
+		4F60353F1F662D8300FCBC32 /* Employee2DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee2DetailViewController.m; sourceTree = "<group>"; };
+		4F6035401F662D8300FCBC32 /* Employee2DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Employee2DetailViewController.xib; sourceTree = "<group>"; };
+		4F6035411F662D8300FCBC32 /* Employee2TabController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee2TabController.h; sourceTree = "<group>"; };
+		4F6035421F662D8300FCBC32 /* Employee2TabController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee2TabController.m; sourceTree = "<group>"; };
+		4F6035471F662F6000FCBC32 /* Employee2PictureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee2PictureViewController.h; sourceTree = "<group>"; };
+		4F6035481F662F6000FCBC32 /* Employee2PictureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee2PictureViewController.m; sourceTree = "<group>"; };
+		4F60354A1F66317600FCBC32 /* Department2DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Department2DetailViewController.h; sourceTree = "<group>"; };
+		4F60354B1F66317600FCBC32 /* Department2DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Department2DetailViewController.m; sourceTree = "<group>"; };
+		4F60354C1F66317600FCBC32 /* Department2DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Department2DetailViewController.xib; sourceTree = "<group>"; };
 		4F9E6A621F6136F300DB315D /* EmployeeDirectory1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EmployeeDirectory1.xcdatamodel; sourceTree = "<group>"; };
 		4F9E6A651F61370100DB315D /* EmployeeDirectory2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EmployeeDirectory2.xcdatamodel; sourceTree = "<group>"; };
 		4F9E6A691F613B2A00DB315D /* Sale1+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Sale1+CoreDataClass.h"; sourceTree = "<group>"; };
@@ -140,11 +162,11 @@
 		4F9E6AA11F639D8200DB315D /* Employee1DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee1DetailViewController.h; sourceTree = "<group>"; };
 		4F9E6AA21F639D8200DB315D /* Employee1DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee1DetailViewController.m; sourceTree = "<group>"; };
 		4F9E6AA31F639D8200DB315D /* Employee1DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Employee1DetailViewController.xib; sourceTree = "<group>"; };
-		4F9E6AA61F63D1D200DB315D /* EmployeePictureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmployeePictureViewController.h; sourceTree = "<group>"; };
-		4F9E6AA71F63D1D200DB315D /* EmployeePictureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmployeePictureViewController.m; sourceTree = "<group>"; };
-		4F9E6AA91F63D56000DB315D /* DepartmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DepartmentDetailViewController.h; sourceTree = "<group>"; };
-		4F9E6AAA1F63D56000DB315D /* DepartmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DepartmentDetailViewController.m; sourceTree = "<group>"; };
-		4F9E6AAB1F63D56000DB315D /* DepartmentDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DepartmentDetailViewController.xib; sourceTree = "<group>"; };
+		4F9E6AA61F63D1D200DB315D /* Employee1PictureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee1PictureViewController.h; sourceTree = "<group>"; };
+		4F9E6AA71F63D1D200DB315D /* Employee1PictureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee1PictureViewController.m; sourceTree = "<group>"; };
+		4F9E6AA91F63D56000DB315D /* Department1DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Department1DetailViewController.h; sourceTree = "<group>"; };
+		4F9E6AAA1F63D56000DB315D /* Department1DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Department1DetailViewController.m; sourceTree = "<group>"; };
+		4F9E6AAB1F63D56000DB315D /* Department1DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Department1DetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -333,11 +355,11 @@
 				4F9E6AA11F639D8200DB315D /* Employee1DetailViewController.h */,
 				4F9E6AA21F639D8200DB315D /* Employee1DetailViewController.m */,
 				4F9E6AA31F639D8200DB315D /* Employee1DetailViewController.xib */,
-				4F9E6AA61F63D1D200DB315D /* EmployeePictureViewController.h */,
-				4F9E6AA71F63D1D200DB315D /* EmployeePictureViewController.m */,
-				4F9E6AA91F63D56000DB315D /* DepartmentDetailViewController.h */,
-				4F9E6AAA1F63D56000DB315D /* DepartmentDetailViewController.m */,
-				4F9E6AAB1F63D56000DB315D /* DepartmentDetailViewController.xib */,
+				4F9E6AA61F63D1D200DB315D /* Employee1PictureViewController.h */,
+				4F9E6AA71F63D1D200DB315D /* Employee1PictureViewController.m */,
+				4F9E6AA91F63D56000DB315D /* Department1DetailViewController.h */,
+				4F9E6AAA1F63D56000DB315D /* Department1DetailViewController.m */,
+				4F9E6AAB1F63D56000DB315D /* Department1DetailViewController.xib */,
 			);
 			path = EmployeeDirectory1;
 			sourceTree = "<group>";
@@ -346,6 +368,20 @@
 			isa = PBXGroup;
 			children = (
 				4F9E6A641F61370100DB315D /* EmployeeDirectory2.xcdatamodeld */,
+				4F60354A1F66317600FCBC32 /* Department2DetailViewController.h */,
+				4F60354B1F66317600FCBC32 /* Department2DetailViewController.m */,
+				4F60354C1F66317600FCBC32 /* Department2DetailViewController.xib */,
+				4F6035391F662C2400FCBC32 /* Employee2ListViewController.h */,
+				4F60353A1F662C2400FCBC32 /* Employee2ListViewController.m */,
+				4F60353C1F662D8300FCBC32 /* Department2ListViewController.h */,
+				4F60353D1F662D8300FCBC32 /* Department2ListViewController.m */,
+				4F60353E1F662D8300FCBC32 /* Employee2DetailViewController.h */,
+				4F60353F1F662D8300FCBC32 /* Employee2DetailViewController.m */,
+				4F6035401F662D8300FCBC32 /* Employee2DetailViewController.xib */,
+				4F6035411F662D8300FCBC32 /* Employee2TabController.h */,
+				4F6035421F662D8300FCBC32 /* Employee2TabController.m */,
+				4F6035471F662F6000FCBC32 /* Employee2PictureViewController.h */,
+				4F6035481F662F6000FCBC32 /* Employee2PictureViewController.m */,
 			);
 			path = EmployeeDirectory2;
 			sourceTree = "<group>";
@@ -451,9 +487,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F3CF7441F558B3600E14CB7 /* BubbleTeaFinder_seed.json in Resources */,
+				4F6035451F662D8300FCBC32 /* Employee2DetailViewController.xib in Resources */,
 				4F9E6A7F1F614FAC00DB315D /* EmployeeDirectory1_seed.json in Resources */,
 				4F9E6A931F61516500DB315D /* face08.jpg in Resources */,
-				4F9E6AAD1F63D56000DB315D /* DepartmentDetailViewController.xib in Resources */,
+				4F9E6AAD1F63D56000DB315D /* Department1DetailViewController.xib in Resources */,
 				4F9E6A941F61516500DB315D /* face09.jpg in Resources */,
 				4F9E6AA51F639D8200DB315D /* Employee1DetailViewController.xib in Resources */,
 				4F9E6A8D1F61516500DB315D /* face02.jpg in Resources */,
@@ -461,6 +498,7 @@
 				4F9E6A8C1F61516500DB315D /* face01.jpg in Resources */,
 				4F9E6A7C1F61486B00DB315D /* EmployeeTableViewCell.xib in Resources */,
 				4F9E6A911F61516500DB315D /* face06.jpg in Resources */,
+				4F60354E1F66317600FCBC32 /* Department2DetailViewController.xib in Resources */,
 				4F9E6A951F61516500DB315D /* face10.jpg in Resources */,
 				4F1812D31F5F966B007E17C1 /* WorldCup_seed.json in Resources */,
 				4F9E6A921F61516500DB315D /* face07.jpg in Resources */,
@@ -479,16 +517,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F9E6A631F6136F300DB315D /* EmployeeDirectory1.xcdatamodeld in Sources */,
-				4F9E6AA81F63D1D200DB315D /* EmployeePictureViewController.m in Sources */,
+				4F9E6AA81F63D1D200DB315D /* Employee1PictureViewController.m in Sources */,
 				4F3CF6F31F55121F00E14CB7 /* CoreDataStack.m in Sources */,
+				4F6035431F662D8300FCBC32 /* Department2ListViewController.m in Sources */,
+				4F60353B1F662C2400FCBC32 /* Employee2ListViewController.m in Sources */,
 				4F1812C41F5F9504007E17C1 /* FetchResultViewController.m in Sources */,
 				4F9E6A771F613BA900DB315D /* Employee1ListViewController.m in Sources */,
 				4F3CF7471F56B3CA00E14CB7 /* BaseViewController.m in Sources */,
-				4F9E6AAC1F63D56000DB315D /* DepartmentDetailViewController.m in Sources */,
+				4F9E6AAC1F63D56000DB315D /* Department1DetailViewController.m in Sources */,
 				4F9E6A981F61606300DB315D /* EmployeeTableViewCell.m in Sources */,
 				4F9E6A661F61370100DB315D /* EmployeeDirectory2.xcdatamodeld in Sources */,
 				4F1812CB1F5F950C007E17C1 /* BuildCoreDataStackViewController.m in Sources */,
 				4F9E6A9E1F6178D800DB315D /* Department1ListViewController.m in Sources */,
+				4F60354D1F66317600FCBC32 /* Department2DetailViewController.m in Sources */,
+				4F6035461F662D8300FCBC32 /* Employee2TabController.m in Sources */,
 				4F1812CC1F5F950C007E17C1 /* Dog Walk.xcdatamodeld in Sources */,
 				4F1812DC1F5F970E007E17C1 /* FetchResultControllerViewController.m in Sources */,
 				4F1812C31F5F9504007E17C1 /* Bubble_Tea_Finder.xcdatamodeld in Sources */,
@@ -498,6 +540,8 @@
 				4F1812C51F5F9504007E17C1 /* FilterViewController.m in Sources */,
 				4F9E6AA41F639D8200DB315D /* Employee1DetailViewController.m in Sources */,
 				4F3CF6F01F55073E00E14CB7 /* RootViewController.m in Sources */,
+				4F6035441F662D8300FCBC32 /* Employee2DetailViewController.m in Sources */,
+				4F6035491F662F6000FCBC32 /* Employee2PictureViewController.m in Sources */,
 				4F9E6A9B1F61777C00DB315D /* Employee1TabController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

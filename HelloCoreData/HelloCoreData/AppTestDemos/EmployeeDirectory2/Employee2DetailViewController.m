@@ -1,22 +1,22 @@
 //
-//  Employee1DetailViewController.m
+//  Employee2DetailViewController.m
 //  HelloCoreData
 //
 //  Created by wesley_chen on 09/09/2017.
 //  Copyright © 2017 wesley_chen. All rights reserved.
 //
 
-#import "Employee1DetailViewController.h"
-#import "Employee1PictureViewController.h"
+#import "Employee2DetailViewController.h"
+#import "Employee2PictureViewController.h"
 
-@interface Employee1DetailViewController ()
-@property (nonatomic, strong) Employee1 *employee;
+@interface Employee2DetailViewController ()
+@property (nonatomic, strong) Employee2 *employee;
 @property (nonatomic, strong) NSDateFormatter *formatter;
 @end
 
-@implementation Employee1DetailViewController
+@implementation Employee2DetailViewController
 
-- (instancetype)initWithEmployee:(Employee1 *)employee {
+- (instancetype)initWithEmployee:(Employee2 *)employee {
     self = [super init];
     if (self) {
         _employee = employee;
@@ -45,8 +45,8 @@
     self.salesCountLabel.text = [self salesCountForEmployee:self.employee];
 }
 
-- (NSString *)salesCountForEmployee:(Employee1 *)employee {
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Sale1"];
+- (NSString *)salesCountForEmployee:(Employee2 *)employee {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Sale2"];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"employee == %@", employee];
     NSString *retVal = @"0";
     
@@ -73,7 +73,7 @@
 #pragma mark - Actions
 
 - (IBAction)headShotImageViewTapped:(id)sender {
-    Employee1PictureViewController *viewController = [[Employee1PictureViewController alloc] initWithEmployee:self.employee];
+    Employee2PictureViewController *viewController = [[Employee2PictureViewController alloc] initWithEmployee:self.employee];
     [self presentViewController:viewController animated:YES completion:nil];
 }
 

@@ -6,20 +6,20 @@
 //  Copyright © 2017 wesley_chen. All rights reserved.
 //
 
-#import "Department1ListViewController.h"
+#import "Department2ListViewController.h"
 #import "CoreDataStack.h"
-#import "Employee1+CoreDataClass.h"
-#import "Employee1ListViewController.h"
-#import "Department1DetailViewController.h"
+#import "Employee2+CoreDataClass.h"
+#import "Employee2ListViewController.h"
+#import "Department2DetailViewController.h"
 
-@interface Department1ListViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface Department2ListViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) NSManagedObjectContext *context;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray<NSDictionary<NSString *, NSString *> *> *items;
 @property (nonatomic, copy) NSString *department;
 @end
 
-@implementation Department1ListViewController
+@implementation Department2ListViewController
 
 - (instancetype)initWithCoreDataStack:(CoreDataStack *)coreDataStack {
     self = [super init];
@@ -46,8 +46,8 @@
 }
 
 - (NSArray<NSDictionary<NSString *, NSString *> *> *)totalEmployeesPerDepartment {
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Employee1"];
-    NSArray<Employee1 *> *results = nil;
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Employee2"];
+    NSArray<Employee2 *> *results = nil;
     @try {
         results = [self.context executeFetchRequest:fetchRequest error:nil];
     }
@@ -58,7 +58,7 @@
     }
     
     NSMutableDictionary *uniqueDepartment = [NSMutableDictionary dictionary];
-    for (Employee1 *employee in results) {
+    for (Employee2 *employee in results) {
         NSInteger employeeCountInDepartment = [uniqueDepartment[employee.department] integerValue];
         if (employeeCountInDepartment) {
             uniqueDepartment[employee.department] = @(employeeCountInDepartment + 1);
@@ -108,7 +108,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     NSString *department = self.items[indexPath.row][@"department"];
-    Employee1ListViewController *viewController = [[Employee1ListViewController alloc] initWithDepartment:department];
+    Employee2ListViewController *viewController = [[Employee2ListViewController alloc] initWithDepartment:department];
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
@@ -118,14 +118,14 @@
     NSDictionary *dict = self.items[indexPath.row];
     NSString *department = dict[@"department"];
     
-    Department1DetailViewController *viewController = [[Department1DetailViewController alloc] initWithCoreDataStack:self.coreDataStack department:department];
+    Department2DetailViewController *viewController = [[Department2DetailViewController alloc] initWithCoreDataStack:self.coreDataStack department:department];
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
 #pragma mark - UITableViewDataSource
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *sCellIdentifier = @"Department1ListViewController_sCellIdentifier";
+    static NSString *sCellIdentifier = @"Department2ListViewController_sCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:sCellIdentifier];
