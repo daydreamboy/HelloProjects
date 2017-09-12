@@ -29,4 +29,8 @@
     return YES;
 }
 
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application {
+    NSLog(@"applicationDidReceiveMemoryWarning");
+}
+
 @end

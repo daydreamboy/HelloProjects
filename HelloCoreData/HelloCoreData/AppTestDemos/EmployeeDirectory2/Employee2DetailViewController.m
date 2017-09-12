@@ -34,7 +34,7 @@
 - (void)setup {
     self.tabBarController.navigationItem.title = self.employee.name;
     
-    self.headShotImageView.image = [UIImage imageWithData:self.employee.picture];
+    self.headShotImageView.image = [UIImage imageWithData:self.employee.pictureThumbnail];
     self.nameLabel.text = self.employee.name;
     self.departmentLabel.text = self.employee.department;
     self.emailLabel.text = self.employee.email;

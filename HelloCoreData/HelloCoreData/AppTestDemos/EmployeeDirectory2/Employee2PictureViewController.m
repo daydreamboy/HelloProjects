@@ -33,7 +33,7 @@
 - (UIImageView *)imageView {
     if (!_imageView) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
-        imageView.image = [UIImage imageWithData:self.employee.picture];
+        imageView.image = [UIImage imageWithData:self.employee.pictureThumbnail];
         imageView.userInteractionEnabled = YES;
         
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewTapped:)];

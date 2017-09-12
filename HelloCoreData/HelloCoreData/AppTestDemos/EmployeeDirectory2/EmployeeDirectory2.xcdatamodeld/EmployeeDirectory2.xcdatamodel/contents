@@ -9,10 +9,15 @@
         <attribute name="guid" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="picture" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="pictureThumbnail" optional="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="vacationDays" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="picture" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Employee2Picture" inverseName="employee" inverseEntity="Employee2Picture" syncable="YES"/>
         <relationship name="sales" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Sale2" inverseName="employee" inverseEntity="Sale2" syncable="YES"/>
+    </entity>
+    <entity name="Employee2Picture" representedClassName="Employee2Picture" syncable="YES" codeGenerationType="class">
+        <attribute name="picture" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <relationship name="employee" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Employee2" inverseName="picture" inverseEntity="Employee2" syncable="YES"/>
     </entity>
     <entity name="Sale2" representedClassName="Sale2" syncable="YES" codeGenerationType="class">
         <attribute name="amount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -20,7 +25,8 @@
         <relationship name="employee" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Employee2" inverseName="sales" inverseEntity="Employee2" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Employee2" positionX="-45" positionY="0" width="128" height="225"/>
+        <element name="Employee2" positionX="-45" positionY="0" width="128" height="240"/>
         <element name="Sale2" positionX="-18" positionY="27" width="128" height="90"/>
+        <element name="Employee2Picture" positionX="-27" positionY="99" width="128" height="75"/>
     </elements>
 </model>

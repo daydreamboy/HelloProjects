@@ -10,6 +10,7 @@
 #import "CoreDataStack.h"
 #import "Employee2+CoreDataClass.h"
 #import "Sale2+CoreDataClass.h"
+#import "Employee2Picture+CoreDataClass.h"
 #import "EmployeeTableViewCell.h"
 #import "Employee2DetailViewController.h"
 
@@ -101,6 +102,7 @@
         
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Employee2"];
         fetchRequest.sortDescriptors = @[sort];
+        //fetchRequest.fetchBatchSize = 10;
         
         if (self.deparment.length) {
             fetchRequest.predicate = [NSPredicate predicateWithFormat:@"department == %@", self.deparment];
@@ -110,7 +112,9 @@
         controller.delegate = self;
         
         @try {
+            NSLog(@"start: %f", CACurrentMediaTime());
             [controller performFetch:nil];
+            NSLog(@"end: %f", CACurrentMediaTime());
         }
         @catch (NSException *exception) {
             
@@ -159,7 +163,7 @@
     cell.departmentLabel.text = employee.department;
     cell.emailLabel.text = employee.email;
     cell.phoneNumberLabel.text = employee.phone;
-    cell.pictureImageView.image = [UIImage imageWithData:employee.picture];
+    cell.pictureImageView.image = [UIImage imageWithData:employee.pictureThumbnail];
     
     return cell;
 }
@@ -221,6 +225,7 @@
     formatter.dateFormat = @"yyyy-MM-dd";
     
     NSEntityDescription *Employee2Entity = [NSEntityDescription entityForName:@"Employee2" inManagedObjectContext:self.context];
+    NSEntityDescription *employeePictureEntity = [NSEntityDescription entityForName:@"Employee2Picture" inManagedObjectContext:self.context];
     
     @try {
         NSArray *arr = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:nil];
@@ -257,7 +262,12 @@
             employee.phone = phone;
             employee.address = address;
             employee.about = about;
-            employee.picture = pictureData;
+            employee.pictureThumbnail = [self imageDataWithData:pictureData scaledToHeight:120];
+            
+            Employee2Picture *pictureObject = [[Employee2Picture alloc] initWithEntity:employeePictureEntity insertIntoManagedObjectContext:self.context];
+            pictureObject.picture = pictureData;
+            
+            employee.picture = pictureObject;
             
             if (self.addSalesRecords) {
                 [self addSalesRecordsToEmployee:employee];
@@ -276,7 +286,7 @@
         
         [self saveContext];
         [self.context reset];
-        NSLog(@"Imported %ld employees", counter);
+        NSLog(@"Imported %ld employees", (long)counter);
     }
     @catch (NSException *exception) {
         NSLog(@"exception: %@", exception);
@@ -297,6 +307,22 @@
         sale.amount = 3000 + arc4random_uniform(20000);
     }
     NSLog(@"added %ld sales", (long)employee.sales.count);
+}
+
+- (NSData *)imageDataWithData:(NSData *)data scaledToHeight:(CGFloat)height {
+    UIImage *image = [UIImage imageWithData:data];
+    CGFloat oldHeight = image.size.height;
+    CGFloat scaleFactor = height / oldHeight;
+    CGFloat newWidth = image.size.width * scaleFactor;
+    CGSize newSize = CGSizeMake(newWidth, height);
+    CGRect newRect = CGRectMake(0, 0, newWidth, height);
+    
+    UIGraphicsBeginImageContext(newSize);
+    [image drawInRect:newRect];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return UIImageJPEGRepresentation(newImage, 0.8);
 }
 
 @end

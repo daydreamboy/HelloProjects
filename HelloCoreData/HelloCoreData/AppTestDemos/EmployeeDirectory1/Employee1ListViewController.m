@@ -276,7 +276,7 @@
         
         [self saveContext];
         [self.context reset];
-        NSLog(@"Imported %ld employees", counter);
+        NSLog(@"Imported %ld employees", (long)counter);
     }
     @catch (NSException *exception) {
         NSLog(@"exception: %@", exception);
