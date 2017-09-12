@@ -21,4 +21,9 @@
 @property (weak, nonatomic) IBOutlet UITextView *bioTextView;
 
 - (instancetype)initWithEmployee:(Employee2 *)employee;
+
+// For Testing
+- (NSString *)salesCountForEmployee:(Employee2 *)employee;
+- (NSString *)salesCountForEmployeeFast:(Employee2 *)employee;
+- (NSString *)salesCountForEmployeeSimple:(Employee2 *)employee;
 @end

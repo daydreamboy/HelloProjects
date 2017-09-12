@@ -25,7 +25,6 @@
     self = [super init];
     if (self) {
         self.coreDataStack = coreDataStack;
-        _context = coreDataStack.context;
     }
     return self;
 }
@@ -33,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.items = [self totalEmployeesPerDepartment];
+    self.items = [self totalEmployeesPerDepartmentFast];
     
     [self.view addSubview:self.tableView];
 }
@@ -80,6 +79,28 @@
     return arrM;
 }
 
+- (NSArray<NSDictionary<NSString *, NSString *> *> *)totalEmployeesPerDepartmentFast {
+    NSExpressionDescription *expressionDescription = [NSExpressionDescription new];
+    expressionDescription.name = @"headCount";
+    expressionDescription.expression = [NSExpression expressionForFunction:@"count:" arguments:@[[NSExpression expressionForKeyPath:@"department"]]];
+    
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Employee2"];
+    fetchRequest.propertiesToFetch = @[@"department", expressionDescription];
+    fetchRequest.propertiesToGroupBy = @[@"department"];
+    fetchRequest.resultType = NSDictionaryResultType;
+    
+    NSArray *arrM = [NSArray array];
+    @try {
+        arrM = [self.context executeFetchRequest:fetchRequest error:nil];
+    }
+    @catch (NSException *exception) {    
+    }
+    @finally {
+    }
+    
+    return arrM;
+}
+
 #pragma mark - Getter
 
 - (UITableView *)tableView {
@@ -92,6 +113,14 @@
     }
     
     return _tableView;
+}
+
+- (NSManagedObjectContext *)context {
+    if (!_context) {
+        _context = self.coreDataStack.context;
+    }
+    
+    return _context;
 }
 
 #pragma mark - UITableViewDelegate

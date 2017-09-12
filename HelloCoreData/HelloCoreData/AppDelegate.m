@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 
 #import "RootViewController.h"
+#import "FPSLabel.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) RootViewController *rootViewController;
@@ -25,6 +26,12 @@
     self.window.rootViewController = self.navController;
     
     [self.window makeKeyAndVisible];
+    
+    FPSLabel *fpsLabel = [FPSLabel new];
+    [self.window addSubview:fpsLabel];
+    
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    fpsLabel.center = CGPointMake(60, screenSize.height - 40);
     
     return YES;
 }

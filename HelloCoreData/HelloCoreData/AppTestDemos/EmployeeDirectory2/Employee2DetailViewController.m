@@ -42,7 +42,7 @@
     self.startDateLabel.text = [self.formatter stringFromDate:self.employee.startDate];
     self.vacationDaysLabel.text = [NSString stringWithFormat:@"%ld", (long)self.employee.vacationDays];
     self.bioTextView.text = self.employee.about;
-    self.salesCountLabel.text = [self salesCountForEmployee:self.employee];
+    self.salesCountLabel.text = [self salesCountForEmployeeFast:self.employee];
 }
 
 - (NSString *)salesCountForEmployee:(Employee2 *)employee {
@@ -57,6 +57,53 @@
         NSArray *result = [context executeFetchRequest:fetchRequest error:&error];
         if (!error) {
             retVal = [NSString stringWithFormat:@"%ld", (long)result.count];
+        }
+        else {
+            NSLog(@"error: %@", error);
+        }
+    }
+    @catch (NSException *exception) {
+    }
+    @finally {
+    }
+    
+    return retVal;
+}
+
+- (NSString *)salesCountForEmployeeFast:(Employee2 *)employee {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Sale2"];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"employee == %@", employee];
+    NSString *retVal = @"0";
+    
+    @try {
+        NSError *error = nil;
+        
+        NSManagedObjectContext *context = employee.managedObjectContext;
+        NSUInteger result = [context countForFetchRequest:fetchRequest error:&error];
+        if (!error) {
+            retVal = [NSString stringWithFormat:@"%ld", (long)result];
+        }
+        else {
+            NSLog(@"error: %@", error);
+        }
+    }
+    @catch (NSException *exception) {
+    }
+    @finally {
+    }
+    
+    return retVal;
+}
+
+- (NSString *)salesCountForEmployeeSimple:(Employee2 *)employee {
+    NSString *retVal = @"0";
+    
+    @try {
+        NSError *error = nil;
+        
+        NSUInteger result = employee.sales.count;
+        if (!error) {
+            retVal = [NSString stringWithFormat:@"%ld", (long)result];
         }
         else {
             NSLog(@"error: %@", error);

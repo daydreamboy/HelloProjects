@@ -12,4 +12,8 @@
 
 @interface Department2ListViewController : BaseViewController
 - (instancetype)initWithCoreDataStack:(CoreDataStack *)coreDataStack;
+
+// For Testing
+- (NSArray<NSDictionary<NSString *, NSString *> *> *)totalEmployeesPerDepartment;
+- (NSArray<NSDictionary<NSString *, NSString *> *> *)totalEmployeesPerDepartmentFast;
 @end
