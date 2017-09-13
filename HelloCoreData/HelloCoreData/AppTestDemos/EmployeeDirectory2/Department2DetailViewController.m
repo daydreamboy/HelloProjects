@@ -44,8 +44,8 @@
 - (void)setup {
     self.tabBarController.navigationItem.title = self.department;
     
-    self.totalEmployeesLabel.text = [self totalEmployees];
-    self.activeEmployeesLabel.text = [self activeEmployees];
+    self.totalEmployeesLabel.text = [self totalEmployeesFast];
+    self.activeEmployeesLabel.text = [self activeEmployeesFast];
     self.greaterThanFifteenVacationDaysLabel.text = [self greaterThanVacationDays:15];
     self.greaterThanTenVacationDaysLabel.text = [self greaterThanVacationDays:10];
     self.greaterThanFiveVacationDaysLabel.text = [self greaterThanVacationDays:5];
@@ -80,6 +80,31 @@
     return retVal;
 }
 
+- (NSString *)totalEmployeesFast {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Employee2"];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"department == %@", self.department];
+    
+    NSString *retVal = @"0";
+    
+    @try {
+        NSError *error = nil;
+        
+        NSUInteger result = [self.context countForFetchRequest:fetchRequest error:&error];
+        if (!error) {
+            retVal = [NSString stringWithFormat:@"%ld", (long)result];
+        }
+        else {
+            NSLog(@"error: %@", error);
+        }
+    }
+    @catch (NSException *exception) {
+    }
+    @finally {
+    }
+    
+    return retVal;
+}
+
 - (NSString *)activeEmployees {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Employee2"];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(department == %@) AND (active == YES)", self.department];
@@ -92,6 +117,31 @@
         NSArray *result = [self.context executeFetchRequest:fetchRequest error:&error];
         if (!error) {
             retVal = [NSString stringWithFormat:@"%ld", (long)result.count];
+        }
+        else {
+            NSLog(@"error: %@", error);
+        }
+    }
+    @catch (NSException *exception) {
+    }
+    @finally {
+    }
+    
+    return retVal;
+}
+
+- (NSString *)activeEmployeesFast {
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Employee2"];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(active == YES) AND (department == %@)", self.department];
+    
+    NSString *retVal = @"0";
+    
+    @try {
+        NSError *error = nil;
+        
+        NSUInteger result = [self.context countForFetchRequest:fetchRequest error:&error];
+        if (!error) {
+            retVal = [NSString stringWithFormat:@"%ld", (long)result];
         }
         else {
             NSLog(@"error: %@", error);

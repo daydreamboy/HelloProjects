@@ -10,11 +10,11 @@
 #import "Department2ListViewController.h"
 #import "CoreDataStack.h"
 
-@interface Tests_DepartmentListViewController : XCTestCase
+@interface Tests_Department2ListViewController : XCTestCase
 
 @end
 
-@implementation Tests_DepartmentListViewController
+@implementation Tests_Department2ListViewController
 
 - (void)setUp {
     [super setUp];

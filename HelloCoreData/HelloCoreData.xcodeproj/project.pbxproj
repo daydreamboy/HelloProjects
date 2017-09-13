@@ -30,10 +30,11 @@
 		4F6035491F662F6000FCBC32 /* Employee2PictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6035481F662F6000FCBC32 /* Employee2PictureViewController.m */; };
 		4F60354D1F66317600FCBC32 /* Department2DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60354B1F66317600FCBC32 /* Department2DetailViewController.m */; };
 		4F60354E1F66317600FCBC32 /* Department2DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F60354C1F66317600FCBC32 /* Department2DetailViewController.xib */; };
-		4F9DE4301F67DE0B002CDB70 /* Tests_DepartmentListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9DE42F1F67DE0B002CDB70 /* Tests_DepartmentListViewController.m */; };
+		4F9DE4301F67DE0B002CDB70 /* Tests_Department2ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9DE42F1F67DE0B002CDB70 /* Tests_Department2ListViewController.m */; };
 		4F9DE4381F67FA59002CDB70 /* Tests_Employee2DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9DE4371F67FA59002CDB70 /* Tests_Employee2DetailViewController.m */; };
 		4F9DE4391F67FDC8002CDB70 /* EmployeeDirectory2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6A641F61370100DB315D /* EmployeeDirectory2.xcdatamodeld */; };
 		4F9DE46A1F6807E1002CDB70 /* FPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9DE4691F6807E1002CDB70 /* FPSLabel.m */; };
+		4F9DE46C1F68C73B002CDB70 /* Tests_Department2DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9DE46B1F68C73B002CDB70 /* Tests_Department2DetailViewController.m */; };
 		4F9E6A631F6136F300DB315D /* EmployeeDirectory1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6A611F6136F300DB315D /* EmployeeDirectory1.xcdatamodeld */; };
 		4F9E6A661F61370100DB315D /* EmployeeDirectory2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6A641F61370100DB315D /* EmployeeDirectory2.xcdatamodeld */; };
 		4F9E6A771F613BA900DB315D /* Employee1ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6A761F613BA900DB315D /* Employee1ListViewController.m */; };
@@ -143,11 +144,12 @@
 		4F60354B1F66317600FCBC32 /* Department2DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Department2DetailViewController.m; sourceTree = "<group>"; };
 		4F60354C1F66317600FCBC32 /* Department2DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Department2DetailViewController.xib; sourceTree = "<group>"; };
 		4F9DE42D1F67DE0B002CDB70 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F9DE42F1F67DE0B002CDB70 /* Tests_DepartmentListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_DepartmentListViewController.m; sourceTree = "<group>"; };
+		4F9DE42F1F67DE0B002CDB70 /* Tests_Department2ListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_Department2ListViewController.m; sourceTree = "<group>"; };
 		4F9DE4311F67DE0B002CDB70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F9DE4371F67FA59002CDB70 /* Tests_Employee2DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tests_Employee2DetailViewController.m; sourceTree = "<group>"; };
 		4F9DE4681F6807E1002CDB70 /* FPSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPSLabel.h; sourceTree = "<group>"; };
 		4F9DE4691F6807E1002CDB70 /* FPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPSLabel.m; sourceTree = "<group>"; };
+		4F9DE46B1F68C73B002CDB70 /* Tests_Department2DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tests_Department2DetailViewController.m; sourceTree = "<group>"; };
 		4F9E6A621F6136F300DB315D /* EmployeeDirectory1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EmployeeDirectory1.xcdatamodel; sourceTree = "<group>"; };
 		4F9E6A651F61370100DB315D /* EmployeeDirectory2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EmployeeDirectory2.xcdatamodel; sourceTree = "<group>"; };
 		4F9E6A691F613B2A00DB315D /* Sale1+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Sale1+CoreDataClass.h"; sourceTree = "<group>"; };
@@ -372,8 +374,9 @@
 		4F9DE42E1F67DE0B002CDB70 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				4F9DE42F1F67DE0B002CDB70 /* Tests_DepartmentListViewController.m */,
+				4F9DE42F1F67DE0B002CDB70 /* Tests_Department2ListViewController.m */,
 				4F9DE4371F67FA59002CDB70 /* Tests_Employee2DetailViewController.m */,
+				4F9DE46B1F68C73B002CDB70 /* Tests_Department2DetailViewController.m */,
 				4F9DE4311F67DE0B002CDB70 /* Info.plist */,
 			);
 			path = Tests;
@@ -623,9 +626,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F9DE46C1F68C73B002CDB70 /* Tests_Department2DetailViewController.m in Sources */,
 				4F9DE4391F67FDC8002CDB70 /* EmployeeDirectory2.xcdatamodeld in Sources */,
 				4F9DE4381F67FA59002CDB70 /* Tests_Employee2DetailViewController.m in Sources */,
-				4F9DE4301F67DE0B002CDB70 /* Tests_DepartmentListViewController.m in Sources */,
+				4F9DE4301F67DE0B002CDB70 /* Tests_Department2ListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

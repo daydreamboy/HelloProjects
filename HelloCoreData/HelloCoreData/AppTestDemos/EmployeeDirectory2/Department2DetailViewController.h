@@ -11,4 +11,11 @@
 
 @interface Department2DetailViewController : BaseViewController
 - (instancetype)initWithCoreDataStack:(CoreDataStack *)coreDataStack department:(NSString *)department;
+
+// For Testing
+- (NSString *)totalEmployees;
+- (NSString *)totalEmployeesFast;
+- (NSString *)activeEmployees;
+- (NSString *)activeEmployeesFast;
+
 @end

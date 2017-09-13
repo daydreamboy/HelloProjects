@@ -1,0 +1,543 @@
+Sep 11 11:24:09 iPod-touch HelloCoreData[1966] <Warning>: Removed 0 objects
+Sep 11 11:24:10 iPod-touch HelloCoreData[1966] <Warning>: added 3256 sales
+Sep 11 11:24:10 iPod-touch HelloCoreData[1966] <Warning>: added 3129 sales
+Sep 11 11:24:10 iPod-touch HelloCoreData[1966] <Warning>: added 2219 sales
+Sep 11 11:24:11 iPod-touch HelloCoreData[1966] <Warning>: added 3530 sales
+Sep 11 11:24:11 iPod-touch HelloCoreData[1966] <Warning>: added 3203 sales
+Sep 11 11:24:12 iPod-touch HelloCoreData[1966] <Warning>: added 5197 sales
+Sep 11 11:24:12 iPod-touch HelloCoreData[1966] <Warning>: added 2233 sales
+Sep 11 11:24:13 iPod-touch HelloCoreData[1966] <Warning>: added 2752 sales
+Sep 11 11:24:13 iPod-touch HelloCoreData[1966] <Warning>: added 1936 sales
+Sep 11 11:24:13 iPod-touch HelloCoreData[1966] <Warning>: added 2527 sales
+Sep 11 11:24:14 iPod-touch HelloCoreData[1966] <Warning>: added 1412 sales
+Sep 11 11:24:14 iPod-touch HelloCoreData[1966] <Warning>: added 3963 sales
+Sep 11 11:24:14 iPod-touch HelloCoreData[1966] <Warning>: added 1310 sales
+Sep 11 11:24:15 iPod-touch HelloCoreData[1966] <Warning>: added 5686 sales
+Sep 11 11:24:16 iPod-touch HelloCoreData[1966] <Warning>: added 4255 sales
+Sep 11 11:24:16 iPod-touch HelloCoreData[1966] <Warning>: added 3941 sales
+Sep 11 11:24:17 iPod-touch HelloCoreData[1966] <Warning>: added 4783 sales
+Sep 11 11:24:17 iPod-touch HelloCoreData[1966] <Warning>: added 2374 sales
+Sep 11 11:24:18 iPod-touch HelloCoreData[1966] <Warning>: added 3207 sales
+Sep 11 11:24:18 iPod-touch HelloCoreData[1966] <Warning>: added 3029 sales
+Sep 11 11:24:36 iPod-touch HelloCoreData[1966] <Warning>: added 5253 sales
+Sep 11 11:24:36 iPod-touch HelloCoreData[1966] <Warning>: added 1852 sales
+Sep 11 11:24:37 iPod-touch HelloCoreData[1966] <Warning>: added 5452 sales
+Sep 11 11:24:37 iPod-touch HelloCoreData[1966] <Warning>: added 1786 sales
+Sep 11 11:24:38 iPod-touch HelloCoreData[1966] <Warning>: added 3210 sales
+Sep 11 11:24:38 iPod-touch HelloCoreData[1966] <Warning>: added 1937 sales
+Sep 11 11:24:39 iPod-touch HelloCoreData[1966] <Warning>: added 4227 sales
+Sep 11 11:24:39 iPod-touch HelloCoreData[1966] <Warning>: added 2969 sales
+Sep 11 11:24:39 iPod-touch HelloCoreData[1966] <Warning>: added 1549 sales
+Sep 11 11:24:40 iPod-touch HelloCoreData[1966] <Warning>: added 5147 sales
+Sep 11 11:24:41 iPod-touch HelloCoreData[1966] <Warning>: added 4538 sales
+Sep 11 11:24:42 iPod-touch HelloCoreData[1966] <Warning>: added 5772 sales
+Sep 11 11:24:42 iPod-touch HelloCoreData[1966] <Warning>: added 2811 sales
+Sep 11 11:24:43 iPod-touch HelloCoreData[1966] <Warning>: added 3304 sales
+Sep 11 11:24:43 iPod-touch HelloCoreData[1966] <Warning>: added 5940 sales
+Sep 11 11:24:44 iPod-touch HelloCoreData[1966] <Warning>: added 3459 sales
+Sep 11 11:24:44 iPod-touch HelloCoreData[1966] <Warning>: added 1189 sales
+Sep 11 11:24:44 iPod-touch HelloCoreData[1966] <Warning>: added 1084 sales
+Sep 11 11:24:45 iPod-touch HelloCoreData[1966] <Warning>: added 4683 sales
+Sep 11 11:24:45 iPod-touch HelloCoreData[1966] <Warning>: added 4315 sales
+Sep 11 11:24:52 iPod-touch mediaserverd[64] <Notice>: '' com.alibaba.alilang(pid = 1858) setting DiscoveryMode = DiscoveryMode_None, currentDiscoveryMode = DiscoveryMode_DetailedDiscovery
+Sep 11 11:24:52 iPod-touch mediaserverd[64] <Notice>: '' com.alibaba.alilang(pid = 1858) setting DiscoveryMode = DiscoveryMode_None, currentDiscoveryMode = DiscoveryMode_DetailedDiscovery
+Sep 11 11:24:52 iPod-touch kernel[0] <Notice>: 009686.352751 wlan0.A[7238] AppleBCMWLANProximityInterface::doSetSyncState(): Cancelled fAWDLOffTimer
+Sep 11 11:24:52 iPod-touch SpringBoard[74] <Warning>: Application 'UIKitApplication:com.alibaba.alilang[0xd941]' was killed by jetsam.
+Sep 11 11:24:52 iPod-touch SpringBoard[74] <Warning>: Memory level is not normal or this app was killed by jetsam. Pending auto-relaunch of '<FBApplicationProcess: 0x1835c7d0; Alilang; pid: -1>'.
+Sep 11 11:24:55 iPod-touch mediaserverd[64] <Notice>: 'FigPlayer - 1914' (pid = 1914) setting DiscoveryMode = DiscoveryMode_None, currentDiscoveryMode = DiscoveryMode_DetailedDiscovery
+Sep 11 11:24:55 iPod-touch mediaserverd[64] <Notice>: 2017-09-11 11:24:55.286924 AM [AirPlay] BTLE client stopping to browse for AirPlay Solo Target Presence.
+Sep 11 11:24:55 iPod-touch mediaserverd[64] <Notice>: 2017-09-11 11:24:55.292519 AM [AirPlay] BTLE discovery removing all devices
+Sep 11 11:24:55 iPod-touch mediaserverd[64] <Notice>: 2017-09-11 11:24:55.304411 AM [AirPlay] BTLE discovery stopped
+Sep 11 11:24:55 iPod-touch SpringBoard[74] <Warning>: [MPUSystemMediaControls] Updating supported commands for now playing application.
+Sep 11 11:24:55 iPod-touch SpringBoard[74] <Warning>: [MPUSystemMediaControls] Updating supported commands for now playing application.
+Sep 11 11:24:55 iPod-touch SpringBoard[74] <Warning>: [MPUSystemMediaControls] Updating supported commands for now playing application.
+Sep 11 11:24:55 iPod-touch SpringBoard[74] <Warning>: [MPUSystemMediaControls] Updating supported commands for now playing application.
+Sep 11 11:24:58 iPod-touch kernel[0] <Notice>: 009692.615758 wlan0.W[7239] IO80211AWDLPeerManager::doMonitorTimer(): Disabling AWDL due to no services and idle link.
+Sep 11 11:25:06 iPod-touch HelloCoreData[1966] <Warning>: added 4959 sales
+Sep 11 11:25:06 iPod-touch HelloCoreData[1966] <Warning>: added 4821 sales
+Sep 11 11:25:07 iPod-touch HelloCoreData[1966] <Warning>: added 2764 sales
+Sep 11 11:25:07 iPod-touch kernel[0] <Notice>: xpcproxy[1977] Container: /private/var/mobile/Containers/Data/Application/2C307895-48B9-4014-A176-1DA62C5FDF91 (sandbox)
+Sep 11 11:25:08 iPod-touch HelloCoreData[1966] <Warning>: added 5788 sales
+Sep 11 11:25:09 iPod-touch Alilang[1977] <Notice>: MS:Notice: Injecting: com.alibaba.alilang [Alilang] (1145.15)
+Sep 11 11:25:09 iPod-touch HelloCoreData[1966] <Warning>: added 5968 sales
+Sep 11 11:25:09 iPod-touch Alilang[1977] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/GPSTravellerTweakPro.dylib
+Sep 11 11:25:09 iPod-touch Alilang[1977] <Warning>: MS:Warning: nil class argument for selector applicationDidFinishLaunching:
+Sep 11 11:25:09 iPod-touch Alilang[1977] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/SSFLEXLoader.dylib
+Sep 11 11:25:09 iPod-touch Alilang[1977] <Warning>: SSFLEXLoader before loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:25:09 iPod-touch Alilang[1977] <Warning>: SSFLEXLoader not enabled /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:25:09 iPod-touch Alilang[1977] <Warning>: SSFLEXLoader after loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:25:10 iPod-touch HelloCoreData[1966] <Warning>: added 4854 sales
+Sep 11 11:25:10 iPod-touch Alilang[1977] <Error>: Could not successfully update network info during initialization.
+Sep 11 11:25:10 iPod-touch Alilang[1977] <Error>: assertion failed: 12H143: libxpc.dylib + 51923 [7FF71721-5624-3DDE-9615-146A4D8B7197]: 0x7d
+Sep 11 11:25:10 iPod-touch Unknown[1977] <Error>: 
+Sep 11 11:25:11 iPod-touch HelloCoreData[1966] <Warning>: added 4454 sales
+Sep 11 11:25:11 iPod-touch HelloCoreData[1966] <Warning>: added 1053 sales
+Sep 11 11:25:11 iPod-touch HelloCoreData[1966] <Warning>: added 1946 sales
+Sep 11 11:25:11 iPod-touch Alilang[1977] <Error>: Could not successfully update network info during initialization.
+Sep 11 11:25:11 iPod-touch Alilang[1977] <Warning>: Bundle [CTHotpatchModule] properties => (
+	    "hotpatch.pathGroupName",
+	    "hotpatch.configGroupName",
+	    "hotpatch.AESEncryptKey",
+	    "hotpatch.RSAPublicKey"
+	)
+Sep 11 11:25:11 iPod-touch Alilang[1977] <Warning>: 
+	--------------------------INIT-GRAPH-START---------------------------
+	PRIORITY[SYSTEM]: 	CTUIModule , CTHotpatchModule , ALFrameworkUpdateModule
+	PRIORITY[SYSTEM]: 	CTOTPModule , ALAppIntroModule , CTSkeletonModule
+	PRIORITY[SYSTEM]: 	CTConfigCenterModule , ALAuthModule
+	PRIORITY[SYSTEM]: 	ALTokenModule , ALITServiceModule , ALSmartServiceModule , ALARModule , ALAppCenterModule , ALCalendarModule
+	PRIORITY[SYSTEM]: 	ALEntryModule
+	PRIORITY[SYSTEM]: 	ALPatternLockModule
+	PRIORITY[HIGH]: 	CTPermissionModule
+	PRIORITY[DEFAULT]: 	ALPersistentConnectionModule , ALConferenceModule , ALNotificationModule , ALScreenProjectionModule , CTDashboardModule , ALSpyModule , ALHybridModule , CTMobileVPNModule , CTCacheModule , ALLiveModule , ALQRAuthModule , ALPCVPNModule , ALPhoneModule , ALProfileModule , ALMeModule , ALContactBundle , ALDeviceModule
+	--------------------------INIT-GRAPH-END-----------------------------
+Sep 11 11:25:11 iPod-touch Alilang[1977] <Warning>: Configuration: {
+	    "bundle_list" =     (
+	        "CTUIService.plist",
+	        "Hotpatch.plist",
+	        "ALFrameworkUpdate.plist",
+	        "CTOTP.plist",
+	        "ALAppIntro.plist",
+	        "CTSkeleton.plist",
+	        "ConfigCenter.plist",
+	        "Auth.plist",
+	        "GatewayAPIService.plist",
+	        "CTBucGatewayService.plist",
+	        "Token.plist",
+	        "ITService.plist",
+	        "SmartService.plist",
+	        "AR.plist",
+	        "Calendar.plist",
+	        "Entry.plist",
+	        "ALPatternLock.plist",
+	        "Permission.plist",
+	        "ALPersistentConnection.plist",
+	        "Conference.plist",
+	        "APNS.plist",
+	        "ScreenProjection.plist",
+	        "Dashboard.plist",
+	        "ALSpy.plist",
+	        "AliPayH5Manager.plist",
+	        "ScanManager.plist",
+	        "CTMobileVPN.plist",
+	        "CacheManager.plist",
+	        "Live.plist",
+	        "ALQRAuth.plist",
+	        "ALPCVPN.plist",
+	        "Phone.plist",
+	        "Profile.plist",
+	        "Me.plist",
+	        "Contact.plist",
+	        "ALDevice.plist"
+	    );
+	}
+Sep 11 11:25:11 iPod-touch Alilang[1977] <Warning>: CTHotpatchModule Sync initialization
+Sep 11 11:25:11 iPod-touch Alilang[1977] <Warning>: Bundle initialization cost: CTHotpatchModule 59.083939ms
+Sep 11 11:25:11 iPod-touch Alilang[1977] <Warning>: ALFrameworkUpdateModule Sync initialization
+Sep 11 11:25:11 iPod-touch Alilang[1977] <Warning>: Bundle initialization cost: ALFrameworkUpdateModule 0.055075ms
+Sep 11 11:25:11 iPod-touch Alilang[1977] <Warning>: ALAuthModule Sync initialization
+Sep 11 11:25:11 iPod-touch Alilang[1977] <Warning>: CTConfigCenterModule ASync initialization
+Sep 11 11:25:11 iPod-touch Alilang[1977] <Warning>: Bundle initialization cost: CTConfigCenterModule 0.286102ms
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Error>: Could not successfully update network info during initialization.
+Sep 11 11:25:12 iPod-touch HelloCoreData[1966] <Warning>: added 3626 sales
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: Bundle initialization cost: ALAuthModule 548.640013ms
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: ALTokenModule Sync initialization
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: Bundle initialization cost: ALTokenModule 1.295805ms
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: ALITServiceModule Sync initialization
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: Bundle initialization cost: ALITServiceModule 0.362873ms
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: ALSmartServiceModule Sync initialization
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: Bundle initialization cost: ALSmartServiceModule 5.188942ms
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: ALARModule Sync initialization
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: Bundle initialization cost: ALARModule 0.299931ms
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: ALAppCenterModule Sync initialization
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: Bundle initialization cost: ALAppCenterModule 4.236937ms
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: ALCalendarModule Sync initialization
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: Bundle initialization cost: ALCalendarModule 2.044201ms
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: ALEntryModule Sync initialization
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: --AliPerformanceUtils: -- {
+	    cpuSampleDisable = 1;
+	    fpsSampleDisable = 0;
+	    logDisable = 1;
+	    memSampleDisable = 1;
+	    netSampleDisable = 1;
+	    pageLoadSampleDisable = 0;
+	    renderSampleDisable = 1;
+	}
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: URL: alilang://main/root ViewController: <ALMainNavigationController: 0x15755e00>
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: Bundle initialization cost: ALEntryModule 225.762844ms
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: ALPersistentConnectionModule Sync initialization
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: Bundle initialization cost: ALPersistentConnectionModule 55.649042ms
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: ALConferenceModule Sync initialization
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: Bundle initialization cost: ALConferenceModule 11.712074ms
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: ALHybridModule Sync initialization
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: ...finished
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: Bundle initialization cost: ALHybridModule 122.484922ms
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: ALLiveModule Sync initialization
+Sep 11 11:25:12 iPod-touch Alilang[1977] <Warning>: Bundle initialization cost: ALLiveModule 0.088215ms
+Sep 11 11:25:13 iPod-touch Alilang[1977] <Error>: Could not successfully update network info during initialization.
+Sep 11 11:25:14 iPod-touch SpringBoard[74] <Warning>: RocketBootstrap: rocketd terminated: 1882, relaunching
+Sep 11 11:25:14 iPod-touch MobileMail[354] <Warning>: Received memory warning.
+Sep 11 11:25:14 iPod-touch mediaserverd[64] <Notice>: 'FigPlayer - 1914' (pid = 1914) setting DiscoveryMode = DiscoveryMode_DetailedDiscovery, currentDiscoveryMode = DiscoveryMode_None
+Sep 11 11:25:14 iPod-touch kernel[0] <Notice>: 009709.095574 wlan0.W[7240] IO80211AWDLPeerManager::getInfrastructureState(): Infrastructure state changed: BSSID(bc:30:7e:c3:07:d9), Channel(149)
+Sep 11 11:25:14 iPod-touch mediaserverd[64] <Notice>: 2017-09-11 11:25:14.931538 AM [AirPlay] BTLE client stopping to browse for AirPlay Solo Target Presence.
+Sep 11 11:25:14 iPod-touch mediaserverd[64] <Notice>: 2017-09-11 11:25:14.932421 AM [AirPlay] BTLE client starting to browse for AirPlay Solo Target Presence.
+Sep 11 11:25:14 iPod-touch mediaserverd[64] <Notice>: 2017-09-11 11:25:14.936608 AM [AirPlay] BTLE client stopped to browse for AirPlay Solo Target Presence.
+Sep 11 11:25:14 iPod-touch mediaserverd[64] <Notice>: 2017-09-11 11:25:14.940167 AM [AirPlay] BTLE client started to browse for AirPlay Solo Target Presence.
+Sep 11 11:25:14 iPod-touch kernel[0] <Notice>: 009709.128785 wlan0.A[7241] AppleBCMWLANProximityInterface::doSetSyncState(): Cancelled fAWDLOffTimer
+Sep 11 11:25:15 iPod-touch mediaserverd[64] <Notice>: '' com.alibaba.aliwork(pid = 1941) setting DiscoveryMode = DiscoveryMode_None, currentDiscoveryMode = DiscoveryMode_DetailedDiscovery
+Sep 11 11:25:15 iPod-touch locationd[118] <Notice>: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Sep 11 11:25:15 iPod-touch SpringBoard[74] <Warning>: Application 'UIKitApplication:com.alibaba.aliwork[0xe6f7]' was killed by jetsam.
+Sep 11 11:25:15 iPod-touch SpringBoard[74] <Warning>: Memory level is not normal or this app was killed by jetsam. Pending auto-relaunch of '<FBApplicationProcess: 0x16f23270; Aliwork; pid: -1>'.
+Sep 11 11:25:15 iPod-touch nehelper[1984] <Notice>: MS:Notice: Injecting: (null) [nehelper] (1145.15)
+Sep 11 11:25:17 iPod-touch PPHelperLaunchd[1982] <Notice>: MS:Notice: Injecting: (null) [PPHelperLaunchd] (1145.15)
+Sep 11 11:25:17 iPod-touch PPHelperLaunchd[1982] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/SSFLEXLoader.dylib
+Sep 11 11:25:17 iPod-touch PPHelperLaunchd[1982] <Warning>: SSFLEXLoader before loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:25:17 iPod-touch PPHelperLaunchd[1982] <Warning>: SSFLEXLoader not enabled /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:25:17 iPod-touch PPHelperLaunchd[1982] <Warning>: SSFLEXLoader after loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:25:19 iPod-touch SpringBoard[74] <Warning>: Application 'UIKitApplication:com.laiwang.DingTalk[0x9ac9]' was killed by jetsam.
+Sep 11 11:25:19 iPod-touch SpringBoard[74] <Warning>: Memory level is not normal or this app was killed by jetsam. Pending auto-relaunch of '<FBApplicationProcess: 0x180b0140; DingTalk; pid: -1>'.
+Sep 11 11:25:23 iPod-touch HelloCoreData[1966] <Warning>: Imported 50 employees
+Sep 11 11:25:26 iPod-touch PPHelperLaunchd[1982] <Warning>: systemVersion:8.4
+Sep 11 11:25:32 iPod-touch kernel[0] <Notice>: xpcproxy[1988] Container: /private/var/mobile/Containers/Data/Application/33A16206-5184-4C2F-B4BC-F7D2C6B4CB15 (sandbox)
+Sep 11 11:25:32 iPod-touch Aliwork[1988] <Notice>: MS:Notice: Injecting: com.alibaba.aliwork [Aliwork] (1145.15)
+Sep 11 11:25:33 iPod-touch Aliwork[1988] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/GPSTravellerTweakPro.dylib
+Sep 11 11:25:33 iPod-touch Aliwork[1988] <Warning>: MS:Warning: nil class argument for selector applicationDidFinishLaunching:
+Sep 11 11:25:33 iPod-touch Aliwork[1988] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/SSFLEXLoader.dylib
+Sep 11 11:25:33 iPod-touch Aliwork[1988] <Warning>: SSFLEXLoader before loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:25:33 iPod-touch Aliwork[1988] <Warning>: SSFLEXLoader not enabled /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:25:33 iPod-touch Aliwork[1988] <Warning>: SSFLEXLoader after loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:25:33 iPod-touch Aliwork[1988] <Error>: assertion failed: 12H143: libxpc.dylib + 51923 [7FF71721-5624-3DDE-9615-146A4D8B7197]: 0x7d
+Sep 11 11:25:33 iPod-touch Unknown[1988] <Error>: 
+Sep 11 11:25:33 iPod-touch Aliwork[1988] <Error>: Could not successfully update network info during initialization.
+Sep 11 11:25:34 iPod-touch Aliwork[1988] <Error>: Could not successfully update network info during initialization.
+Sep 11 11:25:35 iPod-touch Aliwork[1988] <Error>: Could not successfully update network info during initialization.
+Sep 11 11:25:36 iPod-touch PPHelperLaunchd[1982] <Warning>: LaunchServices: Uninstalling app <LSApplicationProxy: 0x14ebbc10> aaa
+Sep 11 11:25:36 iPod-touch Aliwork[1988] <Error>: Could not successfully update network info during initialization.
+Sep 11 11:25:37 iPod-touch coreauthd[1990] <Notice>: MS:Notice: Injecting: com.apple.coreauthd [coreauthd] (1145.15)
+Sep 11 11:25:38 iPod-touch securityd[1908] <Critical>:  SecDbItemCopyEncryptedData ks_encrypt_data (db): failed: The operation couldn’t be completed. (OSStatus error -26275 - ks_crypt: e00002bc failed to wrap item (class 12, bag: 0) Item can't be decrypted on this device, ever, so drop the item.)
+Sep 11 11:25:38 iPod-touch securityd[1908] <Error>:  securityd_xpc_dictionary_handler Aliwork[1988] add The operation couldn’t be completed. (OSStatus error -26275 - ks_crypt: e00002bc failed to wrap item (class 12, bag: 0) Item can't be decrypted on this device, ever, so drop the item.)
+Sep 11 11:25:38 iPod-touch Aliwork[1988] <Error>:  SecOSStatusWith error:[-26275] 未能完成该操作。（OSStatus 错误 -26275 - Remote error : The operation couldn‚Äôt be completed. (OSStatus error -26275 - ks_crypt: e00002bc failed to wrap item (class 12, bag: 0) Item can't be decrypted on this device, ever, so drop the item.)）
+Sep 11 11:25:38 iPod-touch mediaserverd[64] <Notice>: '' (pid = 1914) setting DiscoveryMode = DiscoveryMode_None, currentDiscoveryMode = DiscoveryMode_DetailedDiscovery
+Sep 11 11:25:38 iPod-touch MobileMail[354] <Warning>: Received memory warning.
+Sep 11 11:25:38 iPod-touch mediaserverd[64] <Notice>: 2017-09-11 11:25:38.423604 AM [AirPlay] BTLE client stopping to browse for AirPlay Solo Target Presence.
+Sep 11 11:25:38 iPod-touch mediaserverd[64] <Notice>: 2017-09-11 11:25:38.470105 AM [AirPlay] BTLE discovery removing all devices
+Sep 11 11:25:38 iPod-touch mediaserverd[64] <Notice>: 2017-09-11 11:25:38.472792 AM [AirPlay] BTLE discovery stopped
+Sep 11 11:25:38 iPod-touch Aliwork[1988] <Critical>: Ignored coz empty payload
+Sep 11 11:25:39 iPod-touch discoveryd[126] <Notice>: Basic DeviceInformation Memory Pressure Warning sent: pressure
+Sep 11 11:25:39 iPod-touch SpringBoard[74] <Warning>: Received memory warning.
+Sep 11 11:25:40 iPod-touch mediaserverd[64] <Notice>: '' com.alibaba.alilang(pid = 1977) setting DiscoveryMode = DiscoveryMode_None, currentDiscoveryMode = DiscoveryMode_None
+Sep 11 11:25:40 iPod-touch mediaserverd[64] <Notice>: '' com.alibaba.alilang(pid = 1977) setting DiscoveryMode = DiscoveryMode_None, currentDiscoveryMode = DiscoveryMode_None
+Sep 11 11:25:41 iPod-touch SpringBoard[74] <Warning>: Application 'UIKitApplication:com.alibaba.alilang[0x299e]' was killed by jetsam.
+Sep 11 11:25:41 iPod-touch SpringBoard[74] <Warning>: Application 'com.alibaba.alilang' has failed to launch too many times. Not relaunching.
+Sep 11 11:25:41 iPod-touch kernel[0] <Notice>: 009735.789793 wlan0.W[7242] IO80211AWDLPeerManager::doMonitorTimer(): Disabling AWDL due to no services and idle link.
+Sep 11 11:25:45 iPod-touch SpringBoard[74] <Warning>: RocketBootstrap: rocketd terminated: 1979, relaunching
+Sep 11 11:25:45 iPod-touch mediaserverd[64] <Notice>: '' com.alibaba.aliwork(pid = 1988) setting DiscoveryMode = DiscoveryMode_None, currentDiscoveryMode = DiscoveryMode_None
+Sep 11 11:25:45 iPod-touch SpringBoard[74] <Warning>: Application 'UIKitApplication:com.alibaba.aliwork[0x471f]' was killed by jetsam.
+Sep 11 11:25:45 iPod-touch SpringBoard[74] <Warning>: Application 'com.alibaba.aliwork' has failed to launch too many times. Not relaunching.
+Sep 11 11:25:45 iPod-touch kernel[0] <Notice>: xpcproxy[2002] Container: /private/var/mobile/Containers/Data/Application/35D29FC4-547E-487D-BDEB-92454ED1FF8F (sandbox)
+Sep 11 11:25:46 iPod-touch CommCenterClassic[1998] <Notice>: MS:Notice: Injecting: (null) [CommCenterClassic] (1145.15)
+Sep 11 11:25:46 iPod-touch CommCenterClassic[1998] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/GPSTravellerTweakPro.dylib
+Sep 11 11:25:47 iPod-touch CommCenterClassic[1998] <Warning>: MS:Warning: nil class argument for selector applicationDidFinishLaunching:
+Sep 11 11:25:47 iPod-touch CommCenterClassic[1998] <Warning>: MS:Warning: nil class argument for selector setCoordinate:
+Sep 11 11:25:47 iPod-touch CommCenterClassic[1998] <Warning>: MS:Warning: nil class argument for selector location
+Sep 11 11:25:47 iPod-touch CommCenterClassic[1998] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/SSFLEXLoader.dylib
+Sep 11 11:25:47 iPod-touch CommCenterClassic[1998] <Warning>: SSFLEXLoader before loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:25:47 iPod-touch CommCenterClassic[1998] <Warning>: SSFLEXLoader not enabled /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:25:47 iPod-touch CommCenterClassic[1998] <Warning>: SSFLEXLoader after loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:25:48 iPod-touch awdd[2004] <Notice>: MS:Notice: Injecting: (null) [awdd] (1145.15)
+Sep 11 11:25:48 iPod-touch CommCenterRootHelper[2007] <Notice>: MS:Notice: Injecting: (null) [CommCenterRootHelper] (1145.15)
+Sep 11 11:25:48 iPod-touch awdd[2004] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/GPSTravellerTweakPro.dylib
+Sep 11 11:25:48 iPod-touch awdd[2004] <Warning>: MS:Warning: nil class argument for selector applicationDidFinishLaunching:
+Sep 11 11:25:48 iPod-touch CommCenter[1998] <Error>: ERROR: Can't open IPTelephony framework!
+Sep 11 11:25:48 iPod-touch awdd[2004] <Warning>: MS:Warning: nil class argument for selector setCoordinate:
+Sep 11 11:25:48 iPod-touch awdd[2004] <Warning>: MS:Warning: nil class argument for selector location
+Sep 11 11:25:48 iPod-touch CommCenter[1998] <Notice>: Communications Center Started.
+Sep 11 11:25:50 iPod-touch DingTalk[2002] <Notice>: MS:Notice: Injecting: com.laiwang.DingTalk [DingTalk] (1145.15)
+Sep 11 11:25:50 iPod-touch awdd[2004] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/SSFLEXLoader.dylib
+Sep 11 11:25:51 iPod-touch DingTalk[2002] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/GPSTravellerTweakPro.dylib
+Sep 11 11:25:51 iPod-touch DingTalk[2002] <Warning>: MS:Warning: nil class argument for selector applicationDidFinishLaunching:
+Sep 11 11:25:51 iPod-touch DingTalk[2002] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/SSFLEXLoader.dylib
+Sep 11 11:25:51 iPod-touch DingTalk[2002] <Warning>: SSFLEXLoader before loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:25:52 iPod-touch DingTalk[2002] <Warning>: ======================= libFlex dylib initialize ========================
+Sep 11 11:25:52 iPod-touch DingTalk[2002] <Warning>: SSFLEXLoader loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:25:52 iPod-touch DingTalk[2002] <Warning>: SSFLEXLoader after loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:25:52 iPod-touch awdd[2004] <Warning>: SSFLEXLoader before loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:25:52 iPod-touch awdd[2004] <Warning>: SSFLEXLoader not enabled /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:25:52 iPod-touch awdd[2004] <Warning>: SSFLEXLoader after loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:25:53 iPod-touch DingTalk[2002] <Error>: assertion failed: 12H143: libxpc.dylib + 51923 [7FF71721-5624-3DDE-9615-146A4D8B7197]: 0x7d
+Sep 11 11:25:53 iPod-touch Unknown[2002] <Error>: 
+Sep 11 11:25:54 iPod-touch DingTalk[2002] <Error>: Could not successfully update network info during initialization.
+Sep 11 11:25:55 iPod-touch nsurlstoraged[2010] <Notice>: MS:Notice: Injecting: (null) [nsurlstoraged] (1145.15)
+Sep 11 11:25:56 iPod-touch SpringBoard[74] <Warning>: RocketBootstrap: rocketd terminated: 1996, relaunching
+Sep 11 11:25:56 iPod-touch SpringBoard[74] <Warning>: RocketBootstrap: rocketd terminated: 2013, relaunching
+Sep 11 11:25:57 iPod-touch DingTalk[2002] <Warning>: -[DTUTInit application:didFinishLaunchingWithOptions:] #86 [INFO] UT deviceId=WH9MKzEBOq4DALWKMmrlPywi
+Sep 11 11:25:57 iPod-touch DingTalk[2002] <Error>: Could not successfully update network info during initialization.
+Sep 11 11:25:57 iPod-touch MobileMail[354] <Warning>: Received memory warning.
+Sep 11 11:25:58 iPod-touch DingTalk[2002] <Warning>: <L_LWP> -[LWPClient start] #194 [Info] LWPClient start
+Sep 11 11:25:58 iPod-touch DingTalk[2002] <Warning>: -[DTCSConfInfoManager init] #69 [INFO] csconf init
+Sep 11 11:25:59 iPod-touch DingTalk[2002] <Warning>: <L_DB> __43+[OpenConnection checkMultithreadAvailable]_block_invoke #55 [INFO] Can now use sqlite on multiple threads, using the same connection.
+Sep 11 11:25:59 iPod-touch DingTalk[2002] <Warning>: <L_DB> __43+[OpenConnection checkMultithreadAvailable]_block_invoke #70 [INFO] SQLITE_CONFIG_MMAP_SIZE config succeed.
+Sep 11 11:25:59 iPod-touch DingTalk[2002] <Warning>: +[WKURLProxy handleRequest:path:] #34 [INFO] handleRequest host=server.Safeding.com, path=(null)
+Sep 11 11:25:59 iPod-touch DingTalk[2002] <Warning>: -[DTHPMInfoManager shouldUseLwpDownload] #344 [INFO] Hpm download channel lwp enable is 0
+Sep 11 11:25:59 iPod-touch DingTalk[2002] <Warning>: -[DTHPMInfoManager shouldUseLwpDownload] #344 [INFO] Hpm download channel lwp enable is 0
+Sep 11 11:25:59 iPod-touch DingTalk[2002] <Warning>: -[LWURLInterceptorManager addInterceptor:forceFront:] #603 [INFO] Add Interceptor = <LWURLCacheInterceptor: 0x14e249b0>, index = 0, retainCount(1)
+Sep 11 11:25:59 iPod-touch DingTalk[2002] <Error>: Could not successfully update network info during initialization.
+Sep 11 11:25:59 iPod-touch DingTalk[2002] <Warning>: Warning: sync SCNetworkReachability (by-name) query on main thread
+Sep 11 11:25:59 iPod-touch DingTalk[2002] <Warning>: Warning: sync SCNetworkReachability (by-name) query on main thread
+Sep 11 11:25:59 iPod-touch DingTalk[2002] <Warning>: -[LWURLInterceptorManager addInterceptor:forceFront:] #603 [INFO] Add Interceptor = <LWHttpDNSInterceptor: 0x14e2ac20>, index = 0, retainCount(1)
+Sep 11 11:25:59 iPod-touch DingTalk[2002] <Warning>: <L_LWP> -[LWPMessenger _startSlowConnNetDetectTimerIfNeed:] #1269 [Info] start slow connect timer
+Sep 11 11:25:59 iPod-touch DingTalk[2002] <Warning>: <L_LWP> -[LWPStream connect:context:] #282 [Info] Connecting [1][sid=nil] <lws://140.205.36.80:443?sni=default&lwsver=2>...
+Sep 11 11:25:59 iPod-touch DingTalk[2002] <Warning>: -[OpenConnection openDatabase:passphrase:readOnly:] #269 [INFO] db_alloc_sqlite3_exec:571
+Sep 11 11:25:59 iPod-touch DingTalk[2002] <Warning>: -[OpenDatabase initWithPath:passphrase:delegate:needMultiConn:] #154 [INFO] db_alloc:770。
+	path:/var/mobile/Containers/Data/Application/35D29FC4-547E-487D-BDEB-92454ED1FF8F/Documents/db/a9065075f63179c7ea3a8848b94a7e2b/db.sqlite
+Sep 11 11:25:59 iPod-touch DingTalk[2002] <Warning>: -[DTApnsInit registerApnsFormApple:] #174 [INFO] Begin to register apn from apple.
+Sep 11 11:25:59 iPod-touch DingTalk[2002] <Warning>: -[DTApnsInit registerPushKitFromApple:] #118 [INFO] Begin to register pushKit from apple.
+Sep 11 11:25:59 iPod-touch DingTalk[2002] <Warning>: <L_LWP> -[LWPTransactionService enqueue:] #154 [Info] enqueue uri=/r/Aladdin/lookup [mid:162a0200]
+Sep 11 11:25:59 iPod-touch DingTalk[2002] <Warning>: <L_LWP> -[LWPTransactionService enqueue:] #154 [Info] enqueue uri=/r/Adaptor/CookiesI/getCookies [mid:f38d0300]
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: <L_LWP> -[LWPStream wtlsocketDidConnected:] #451 [Info] stream connected to <local=30.5.108.121:49966>:<LWPVia:0x14d0e770>(lws://140.205.36.80:443)
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: <L_LWP> -[LWPStream wtlsocketDidSending:tag:bytes:isHandshake:] #603 [Info] send handshake = 87
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: <L_LWP> -[LWPStream wtlsocketDidHandshaked:sessionContext:sessionReuse:] #468 [Info] stream handshaked to :<LWPVia:0x14d0e770>(lws://140.205.36.80:443) ((null))reuse:0
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: <L_LWP> -[LWPConnection recordConnectTime:error:connectType:] #547 [Info] [Connect] Master connected [LWS 0x14d0e800 /30.5.108.121:49966 >>> 140.205.36.80:443] [error=(null)]
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: 0RTT handshake return 200
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: <L_LWP> -[LWPTransactionService enqueue:] #154 [Info] enqueue uri=/r/Aladdin/lookup [mid:162a0200]
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: __50-[DTExceptionHandler checkCurrentFreeDiskCapacity]_block_invoke_6 #155 [INFO] Current free disk capacity: 12890 MB.
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: -[DTAppLaunchManager initAlimeiSDK] #529 [INFO] init AlimeiSDK is use open db 0
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: <L_LWP> -[LWPMessenger lwpConnection:willSendMessage:isFirstMessage:] #1075 [Info] willSend [1][[id:4a170100(addr:0x14d15130, idx:0) - Master]]: 162a0200 0
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: <L_LWP> -[LWPTransactionService enqueue:] #154 [Info] enqueue uri=/r/Adaptor/CookiesI/getCookies [mid:f38d0300]
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: <L_LWP> -[LWPMessenger _endNetDetectTimer] #1317 [Info] end slow connect timer
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: <L_LWP> -[LWPMessenger lwpConnection:didUpdateSessionContext:reuse:] #973 [Info] sid update:[[id:4a170100(addr:0x14d15130, idx:0) - Master]]((null) -> [sid:3435383830616237353430326236353932623862 isAuthed:0]) reuse:0
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: ERROR: No file data for key SYSTEM_CONFIG
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: ERROR: No file data for key OrangeUploadInterval
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Error>: Could not successfully update network info during initialization.
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: <L_LWP> __57-[LWPAladdinV3ServerLocator lwpFetchServers:finishBlock:]_block_invoke #617 [Info] tmRsq=974.9509692192078 {
+	    domainList =     (
+	                {
+	            expire = 86400;
+	            ipList =             (
+	                "lws://140.205.36.80:443",
+	                "lws://140.205.252.93:443"
+	            );
+	            name = "lws.laiwang.com";
+	            shortList =             (
+	                "lws://140.205.61.57:443",
+	                "lws://140.205.33.172:443"
+	            );
+	        }
+	    );
+	}
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: <L_LWP> -[LWPTransactionService destoryV2:withError:withResponse:] #258 [Info] destory: mid:162a0200 200 
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: <L_LWP> __67-[LWPAladdinV3ServerLocator _updateServerList:delCache:serverData:]_block_invoke #531 [Info] async update server infos
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: Migrate成功，1.0.11 -> 1.0.11
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: -[DTCSConfInfoManager checkAndRefreshTopic] #322 [INFO] checkTopic = user_rights. localVersion = 1466278877128, CloudSettingVersion = (null)
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: -[DTCSConfInfoManager checkAndRefreshTopic] #322 [INFO] checkTopic = oa_activity. localVersion = 0, CloudSettingVersion = (null)
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: -[DTCSConfInfoManager checkAndRefreshTopic] #322 [INFO] checkTopic = org_screen. localVersion = 1484578385996, CloudSettingVersion = (null)
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: -[DTCSConfInfoManager checkAndRefreshTopic] #322 [INFO] checkTopic = org_team. localVersion = 1465734087956, CloudSettingVersion = (null)
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: -[DTCSConfInfoManager checkAndRefreshTopic] #322 [INFO] checkTopic = ch_user. localVersion = 0, CloudSettingVersion = (null)
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: -[DTCSConfInfoManager checkAndRefreshTopic] #322 [INFO] checkTopic = mail. localVersion = 1459255290899, CloudSettingVersion = (null)
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: -[DTCSConfInfoManager checkAndRefreshTopic] #322 [INFO] checkTopic = oa_jsapi. localVersion = 1483693784318, CloudSettingVersion = (null)
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: -[DTCSConfInfoManager checkAndRefreshTopic] #322 [INFO] checkTopic = hpm_user. localVersion = 1484659047447, CloudSettingVersion = (null)
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: -[DTCSConfInfoManager checkAndRefreshTopic] #322 [INFO] checkTopic = fun_control_ios. localVersion = 1431946001767, CloudSettingVersion = (null)
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: -[DTCSConfInfoManager checkAndRefreshTopic] #322 [INFO] checkTopic = pdp_user. localVersion = 0, CloudSettingVersion = (null)
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: -[DTCSConfInfoManager checkAndRefreshTopic] #322 [INFO] checkTopic = oa_user. localVersion = 1485069432559, CloudSettingVersion = (null)
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: -[DTCSConfInfoManager refreshConfigurationsWithTopics:] #416 [INFO] Get Conf, topic = oa_activity
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: -[DTCSConfInfoManager refreshConfigurationsWithTopics:] #416 [INFO] Get Conf, topic = ch_user
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: -[DTCSConfInfoManager refreshConfigurationsWithTopics:] #416 [INFO] Get Conf, topic = pdp_user
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: <AlimeiSDK.performance> AlimeiSDKDBSetup createDB cost 93.56201171875
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: <L_LWP> -[LWPTransactionService enqueue:] #154 [Info] enqueue uri=/r/Adaptor/CsConfigI/getConf [mid:d6f00500]
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: <AlimeiSDK.performance> AlimeiSDKDBSetup registerBLAccount cost 203.1708984375
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: <AlimeiSDK.performance> AlimeiSDKDBSetup registerBLBaseTask cost 30.177978515625
+Sep 11 11:26:00 iPod-touch DingTalk[2002] <Warning>: <AlimeiSDK.performance> AlimeiSDKDBSetup registerRelationShip cost 36.620849609375
+Sep 11 11:26:01 iPod-touch CommCenterClassic[2024] <Notice>: MS:Notice: Injecting: (null) [CommCenterClassic] (1145.15)
+Sep 11 11:26:01 iPod-touch DingTalk[2002] <Warning>: -[OpenConnection openDatabase:passphrase:readOnly:] #269 [INFO] db_alloc_sqlite3_exec:653
+Sep 11 11:26:01 iPod-touch SpringBoard[74] <Warning>: Received memory warning.
+Sep 11 11:26:01 iPod-touch UserEventAgent[122] <Warning>: low memory session log
+Sep 11 11:26:01 iPod-touch discoveryd[126] <Notice>: Basic DeviceInformation Memory Pressure Warning sent: pressure
+Sep 11 11:26:01 iPod-touch UserEventAgent[122] <Warning>: Filtering only beta sessions
+Sep 11 11:26:01 iPod-touch UserEventAgent[122] <Warning>: Session log: no events recorded
+Sep 11 11:26:01 iPod-touch CommCenterClassic[2024] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/GPSTravellerTweakPro.dylib
+Sep 11 11:26:02 iPod-touch DingTalk[2002] <Warning>: -[OpenConnection openDatabase:passphrase:readOnly:] #269 [INFO] db_alloc_sqlite3_exec:460
+Sep 11 11:26:02 iPod-touch SpringBoard[74] <Warning>: Received memory warning.
+Sep 11 11:26:02 iPod-touch MobileMail[354] <Warning>: Received memory warning.
+Sep 11 11:26:02 iPod-touch discoveryd[126] <Notice>: Basic DeviceInformation Memory Pressure Warning sent: pressure
+Sep 11 11:26:02 iPod-touch SpringBoard[74] <Warning>: RocketBootstrap: rocketd terminated: 2016, relaunching
+Sep 11 11:26:02 iPod-touch UserEventAgent[122] <Notice>: jetsam: kernel termination snapshot being created
+Sep 11 11:26:02 iPod-touch SpringBoard[74] <Warning>: BSXPCMessage received error for message: Connection invalid
+Sep 11 11:26:02 iPod-touch assertiond[106] <Warning>: pid_suspend failed for <BKNewProcess: 0x16d4bf90; com.laiwang.DingTalk; pid: 2002; hostpid: -1>: Unknown error: -1, Unknown error: -1
+Sep 11 11:26:02 iPod-touch assertiond[106] <Warning>: Could not set priority of <BKNewProcess: 0x16d4bf90; com.laiwang.DingTalk; pid: 2002; hostpid: -1> to 2, priority: No such process
+Sep 11 11:26:02 iPod-touch assertiond[106] <Warning>: Could not set priority of <BKNewProcess: 0x16d4bf90; com.laiwang.DingTalk; pid: 2002; hostpid: -1> to 4096, priority: No such process
+Sep 11 11:26:03 iPod-touch SpringBoard[74] <Warning>: Application 'UIKitApplication:com.laiwang.DingTalk[0x9d05]' was killed by jetsam.
+Sep 11 11:26:03 iPod-touch SpringBoard[74] <Warning>: Application 'UIKitApplication:com.apple.mobilemail[0x2e3c]' was killed by jetsam.
+Sep 11 11:26:03 iPod-touch assertiond[106] <Warning>: pid_suspend failed for <BKNewProcess: 0x16d43730; com.apple.mobilemail; pid: 354; hostpid: -1>: Unknown error: -1, Unknown error: -1
+Sep 11 11:26:03 iPod-touch assertiond[106] <Warning>: Could not set priority of <BKNewProcess: 0x16d43730; com.apple.mobilemail; pid: 354; hostpid: -1> to 2, priority: No such process
+Sep 11 11:26:03 iPod-touch assertiond[106] <Warning>: Could not set priority of <BKNewProcess: 0x16d43730; com.apple.mobilemail; pid: 354; hostpid: -1> to 4096, priority: No such process
+Sep 11 11:26:03 iPod-touch assertiond[106] <Error>: assertion failed: 12H143: assertiond + 61463 [9C6267FA-27DE-3B2E-9DE6-BA1A6CC463AF]: 0x3
+Sep 11 11:26:03 iPod-touch Unknown[106] <Error>: 
+Sep 11 11:26:03 iPod-touch SpringBoard[74] <Warning>: Application 'UIKitApplication:com.wc.HelloCoreData[0x1a69]' was killed by jetsam.
+Sep 11 11:26:03 iPod-touch assertiond[106] <Warning>: pid_suspend failed for <BKNewProcess: 0x16d4c770; com.wc.HelloCoreData; pid: 1966; hostpid: -1>: Unknown error: -1, Unknown error: -1
+Sep 11 11:26:03 iPod-touch assertiond[106] <Warning>: Could not set priority of <BKNewProcess: 0x16d4c770; com.wc.HelloCoreData; pid: 1966; hostpid: -1> to 2, priority: No such process
+Sep 11 11:26:03 iPod-touch assertiond[106] <Warning>: Could not set priority of <BKNewProcess: 0x16d4c770; com.wc.HelloCoreData; pid: 1966; hostpid: -1> to 4096, priority: No such process
+Sep 11 11:26:03 iPod-touch SpringBoard[74] <Warning>: Application 'com.laiwang.DingTalk' has failed to launch too many times. Not relaunching.
+Sep 11 11:26:03 iPod-touch SpringBoard[74] <Warning>: Memory level is not normal or this app was killed by jetsam. Pending auto-relaunch of '<FBApplicationProcess: 0x18084170; MobileMail; pid: -1>'.
+Sep 11 11:26:03 iPod-touch lsd[2037] <Notice>: MS:Notice: Injecting: (null) [lsd] (1145.15)
+Sep 11 11:26:03 iPod-touch CommCenterClassic[2024] <Warning>: MS:Warning: nil class argument for selector applicationDidFinishLaunching:
+Sep 11 11:26:03 iPod-touch CommCenterClassic[2024] <Warning>: MS:Warning: nil class argument for selector setCoordinate:
+Sep 11 11:26:03 iPod-touch CommCenterClassic[2024] <Warning>: MS:Warning: nil class argument for selector location
+Sep 11 11:26:03 iPod-touch ReportCrash[2039] <Notice>: MS:Notice: Injecting: (null) [ReportCrash] (1145.15)
+Sep 11 11:26:04 iPod-touch ReportCrash[2039] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/RocketBootstrap.dylib
+Sep 11 11:26:04 iPod-touch SpringBoard[74] <Warning>: RocketBootstrap: rocketd terminated: 2042, relaunching
+Sep 11 11:26:04 iPod-touch ReportCrash[2039] <Error>: task_set_exception_ports(B07, 400, F03, 0, 0) failed with error (4: (os/kern) invalid argument)
+Sep 11 11:26:04 iPod-touch CommCenterClassic[2024] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/SSFLEXLoader.dylib
+Sep 11 11:26:04 iPod-touch CommCenterClassic[2024] <Warning>: SSFLEXLoader before loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:26:04 iPod-touch CommCenterClassic[2024] <Warning>: SSFLEXLoader not enabled /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:26:04 iPod-touch CommCenterClassic[2024] <Warning>: SSFLEXLoader after loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:26:04 iPod-touch UserEventAgent[122] <Warning>: Tracking com.apple.mobilemail (via activity)
+Sep 11 11:26:04 iPod-touch sandboxd[2044] <Notice>: MS:Notice: Injecting: (null) [sandboxd] (1145.15)
+Sep 11 11:26:04 iPod-touch ReportCrash[2039] <Error>: Failed to save memory report to /Library/Logs/CrashReporter/JetsamEvent-2017-09-11-112604.ips using uid: 0 gid: 0, euid: 0 egid: 0. 100 logs already present.
+Sep 11 11:26:04 iPod-touch ReportCrash[2039] <Error>: Error: 2 No such file or directory
+Sep 11 11:26:04 iPod-touch UserEventAgent[122] <Notice>: jetsam: kernel termination snapshot being created
+Sep 11 11:26:04 iPod-touch awdd[2029] <Notice>: MS:Notice: Injecting: (null) [awdd] (1145.15)
+Sep 11 11:26:04 iPod-touch CommCenterRootHelper[2048] <Notice>: MS:Notice: Injecting: (null) [CommCenterRootHelper] (1145.15)
+Sep 11 11:26:04 iPod-touch CommCenter[2024] <Error>: ERROR: Can't open IPTelephony framework!
+Sep 11 11:26:04 iPod-touch CommCenter[2024] <Notice>: Communications Center Started.
+Sep 11 11:26:04 iPod-touch awdd[2029] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/GPSTravellerTweakPro.dylib
+Sep 11 11:26:05 iPod-touch awdd[2029] <Warning>: MS:Warning: nil class argument for selector applicationDidFinishLaunching:
+Sep 11 11:26:05 iPod-touch awdd[2029] <Warning>: MS:Warning: nil class argument for selector setCoordinate:
+Sep 11 11:26:05 iPod-touch awdd[2029] <Warning>: MS:Warning: nil class argument for selector location
+Sep 11 11:26:05 iPod-touch installd[1993] <Notice>: MS:Notice: Injecting: (null) [installd] (1145.15)
+Sep 11 11:26:05 iPod-touch swcd[2031] <Notice>: MS:Notice: Injecting: (null) [swcd] (1145.15)
+Sep 11 11:26:05 iPod-touch installd[1993] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/AppSyncUnified.dylib
+Sep 11 11:26:05 iPod-touch awdd[2029] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/SSFLEXLoader.dylib
+Sep 11 11:26:05 iPod-touch awdd[2029] <Warning>: SSFLEXLoader before loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:26:05 iPod-touch awdd[2029] <Warning>: SSFLEXLoader not enabled /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:26:05 iPod-touch awdd[2029] <Warning>: SSFLEXLoader after loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:26:05 iPod-touch nsurlsessiond[2033] <Notice>: MS:Notice: Injecting: com.apple.nsurlsessiond [nsurlsessiond] (1145.15)
+Sep 11 11:26:06 iPod-touch PPHelperLaunchd[2027] <Notice>: MS:Notice: Injecting: (null) [PPHelperLaunchd] (1145.15)
+Sep 11 11:26:06 iPod-touch installd[1993] <Warning>: *** -[NSXPCConnection valueForEntitlement:]: Error getting value for entitlement 'com.apple.private.mobileinstall.allowedSPI': Error Domain=NSPOSIXErrorDomain Code=-1 "The operation couldn’t be completed. (POSIX error -1 - Unknown error: -1)"
+Sep 11 11:26:06 iPod-touch installd[1993] <Error>: 0x3e01000 _ValidateEntitlement: Process Unknown Process Name (pid 1982) is required to have an entitlement named "com.apple.private.mobileinstall.allowedSPI" with an array containing "UninstallForLaunchServices" to call the MobileInstallation SPI.
+Sep 11 11:26:06 iPod-touch PPHelperLaunchd[2027] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/SSFLEXLoader.dylib
+Sep 11 11:26:06 iPod-touch PPHelperLaunchd[2027] <Warning>: SSFLEXLoader before loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:26:06 iPod-touch PPHelperLaunchd[2027] <Warning>: SSFLEXLoader not enabled /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:26:06 iPod-touch PPHelperLaunchd[2027] <Warning>: SSFLEXLoader after loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:26:07 iPod-touch nsurlsessiond[2033] <Notice>: Creating shared tcp connection work queue!
+Sep 11 11:26:09 iPod-touch locationd[118] <Notice>: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Sep 11 11:26:12 iPod-touch PPHelperLaunchd[2027] <Warning>: systemVersion:8.4
+Sep 11 11:26:12 iPod-touch kernel[0] <Debug>: 
+Sep 11 11:26:14 iPod-touch ReportCrash[2057] <Notice>: MS:Notice: Injecting: (null) [ReportCrash] (1145.15)
+Sep 11 11:26:14 iPod-touch ReportCrash[2057] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/RocketBootstrap.dylib
+Sep 11 11:26:14 iPod-touch ReportCrash[2057] <Error>: task_set_exception_ports(B07, 400, F03, 0, 0) failed with error (4: (os/kern) invalid argument)
+Sep 11 11:26:14 iPod-touch ReportCrash[2057] <Notice>: Not saving Jetsam log because no data from the kernel.
+Sep 11 11:26:14 iPod-touch UserEventAgent[122] <Notice>: jetsam: kernel termination snapshot being created
+Sep 11 11:26:16 iPod-touch PPHelperLaunchd[2027] <Warning>: state 12 ---> 0
+Sep 11 11:26:16 iPod-touch PPHelperLaunchd[2027] <Warning>: start:0x15eba410
+Sep 11 11:26:16 iPod-touch PPHelperLaunchd[2027] <Warning>: 切换到wifi网络
+Sep 11 11:26:16 iPod-touch nsurlstoraged[2010] <Error>: realpath() returned NULL for /var/root/Library/Caches/PPHelperLaunchd
+Sep 11 11:26:16 iPod-touch nsurlstoraged[2010] <Error>: The read-connection to the DB=/var/root/Library/Caches/PPHelperLaunchd/Cache.db is NOT valid.  Unable to determine schema version.
+Sep 11 11:26:16 iPod-touch nsurlstoraged[2010] <Error>: realpath() returned NULL for /var/root/Library/Caches/PPHelperLaunchd
+Sep 11 11:26:16 iPod-touch nsurlstoraged[2010] <Error>: realpath() returned NULL for /var/root/Library/Caches/PPHelperLaunchd
+Sep 11 11:26:16 iPod-touch nsurlstoraged[2010] <Error>: ERROR: unable to determine file-system usage for FS-backed cache at /var/root/Library/Caches/PPHelperLaunchd/fsCachedData. Errno=13
+Sep 11 11:26:16 iPod-touch PPHelperLaunchd[2027] <Warning>: state 12 ---> 0
+Sep 11 11:26:16 iPod-touch PPHelperLaunchd[2027] <Warning>: complete: 0x15eba410
+Sep 11 11:26:16 iPod-touch PPHelperLaunchd[2027] <Warning>: -[TRHttpRequestOperation dealloc]
+Sep 11 11:26:17 iPod-touch locationd[118] <Notice>: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Sep 11 11:26:22 iPod-touch PPHelperLaunchd[2027] <Warning>: start:0x15dc5080
+Sep 11 11:26:22 iPod-touch PPHelperLaunchd[2027] <Warning>: complete: 0x15dc5080
+Sep 11 11:26:22 iPod-touch PPHelperLaunchd[2027] <Warning>: -[TRHttpRequestOperation dealloc]
+Sep 11 11:26:24 iPod-touch ReportCrash[2060] <Notice>: MS:Notice: Injecting: (null) [ReportCrash] (1145.15)
+Sep 11 11:26:24 iPod-touch ReportCrash[2060] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/RocketBootstrap.dylib
+Sep 11 11:26:24 iPod-touch ReportCrash[2060] <Error>: task_set_exception_ports(B07, 400, F03, 0, 0) failed with error (4: (os/kern) invalid argument)
+Sep 11 11:26:24 iPod-touch ReportCrash[2060] <Notice>: Not saving Jetsam log because no data from the kernel.
+Sep 11 11:26:24 iPod-touch UserEventAgent[122] <Notice>: jetsam: kernel termination snapshot being created
+Sep 11 11:26:25 iPod-touch kernel[0] <Notice>: xpcproxy[2063] Container: /private/var/mobile/Containers/Data/Application/4BC43031-BA60-4A63-828D-71689E38039A (sandbox)
+Sep 11 11:26:25 iPod-touch MobileMail[2063] <Notice>: MS:Notice: Injecting: com.apple.mobilemail [MobileMail] (1145.15)
+Sep 11 11:26:26 iPod-touch MobileMail[2063] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/GPSTravellerTweakPro.dylib
+Sep 11 11:26:26 iPod-touch MobileMail[2063] <Warning>: MS:Warning: nil class argument for selector applicationDidFinishLaunching:
+Sep 11 11:26:26 iPod-touch MobileMail[2063] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/SSFLEXLoader.dylib
+Sep 11 11:26:26 iPod-touch MobileMail[2063] <Warning>: SSFLEXLoader before loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:26:26 iPod-touch MobileMail[2063] <Warning>: SSFLEXLoader not enabled /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:26:26 iPod-touch MobileMail[2063] <Warning>: SSFLEXLoader after loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:26:26 iPod-touch MobileMail[2063] <Error>: assertion failed: 12H143: libxpc.dylib + 51923 [7FF71721-5624-3DDE-9615-146A4D8B7197]: 0x7d
+Sep 11 11:26:26 iPod-touch Unknown[2063] <Error>: 
+Sep 11 11:26:26 iPod-touch wifid[132] <Error>: WiFi:[526793186.650681]: Disable WoW requested by "MobileMail"
+Sep 11 11:26:26 iPod-touch MobileMail[2063] <Warning>: WiFi is associated YES
+Sep 11 11:26:26 iPod-touch accountsd[2065] <Notice>: MS:Notice: Injecting: com.apple.Accounts [accountsd] (1145.15)
+Sep 11 11:26:26 iPod-touch accountsd[2065] <Warning>: [Warning] Services all disappeared, removing all dependent devices
+Sep 11 11:26:27 iPod-touch MobileMail[2063] <Warning>: WiFi is associated YES
+Sep 11 11:26:27 iPod-touch MobileGestaltHelper[2068] <Notice>: MS:Notice: Injecting: (null) [MobileGestaltHelper] (1145.15)
+Sep 11 11:26:27 iPod-touch tccd[2071] <Notice>: MS:Notice: Injecting: (null) [tccd] (1145.15)
+Sep 11 11:26:28 iPod-touch MobileMail[2063] <Notice>: LogAPSManager <t:0x155f0e00> account <IMAPAccount:0x156c7ac0 (path=/var/mobile/Library/Mail/IMAP-daydreamboy@appleimap.163.com, active)> rejected XAPPLEPUSHSERVICE request: 4 NO  XAPPLEPUSHSERVICE Folder Sent Messages doesn't exist
+Sep 11 11:26:28 iPod-touch cplogd[2074] <Notice>: MS:Notice: Injecting: com.apple.appsupport.cplogd [cplogd] (1145.15)
+Sep 11 11:26:29 iPod-touch syncdefaultsd[2077] <Notice>: MS:Notice: Injecting: com.apple.syncdefaultsd [syncdefaultsd] (1145.15)
+Sep 11 11:26:29 iPod-touch syncdefaultsd[2077] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/GPSTravellerTweakPro.dylib
+Sep 11 11:26:29 iPod-touch syncdefaultsd[2077] <Warning>: MS:Warning: nil class argument for selector applicationDidFinishLaunching:
+Sep 11 11:26:29 iPod-touch syncdefaultsd[2077] <Warning>: MS:Warning: nil class argument for selector setCoordinate:
+Sep 11 11:26:29 iPod-touch syncdefaultsd[2077] <Warning>: MS:Warning: nil class argument for selector location
+Sep 11 11:26:29 iPod-touch syncdefaultsd[2077] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/SSFLEXLoader.dylib
+Sep 11 11:26:29 iPod-touch syncdefaultsd[2077] <Warning>: SSFLEXLoader before loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:26:29 iPod-touch syncdefaultsd[2077] <Warning>: SSFLEXLoader not enabled /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:26:29 iPod-touch syncdefaultsd[2077] <Warning>: SSFLEXLoader after loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:26:29 iPod-touch syncdefaultsd[2077] <Notice>: (Note ) SYDAccount: no account
+Sep 11 11:26:29 iPod-touch syncdefaultsd[2077] <Notice>: (Note ) SYDPIMAccount: no account (null)
+Sep 11 11:26:29 iPod-touch syncdefaultsd[2077] <Notice>: (Note ) SYDAlwaysOnAccount: no account (null)
+Sep 11 11:26:29 iPod-touch syncdefaultsd[2077] <Notice>: (Note ) marked "com.me.keyvalueservice" topic as "ignored" on (null)
+Sep 11 11:26:34 iPod-touch DuetHeuristic-BM[2080] <Notice>: MS:Notice: Injecting: (null) [DuetHeuristic-BM] (1145.15)
+Sep 11 11:26:34 iPod-touch ReportCrash[2083] <Notice>: MS:Notice: Injecting: (null) [ReportCrash] (1145.15)
+Sep 11 11:26:34 iPod-touch ReportCrash[2083] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/RocketBootstrap.dylib
+Sep 11 11:26:34 iPod-touch ReportCrash[2083] <Error>: task_set_exception_ports(B07, 400, F03, 0, 0) failed with error (4: (os/kern) invalid argument)
+Sep 11 11:26:34 iPod-touch ReportCrash[2083] <Notice>: Not saving Jetsam log because no data from the kernel.
+Sep 11 11:26:34 iPod-touch UserEventAgent[122] <Notice>: jetsam: kernel termination snapshot being created
+Sep 11 11:26:34 iPod-touch coreduetd[2086] <Notice>: MS:Notice: Injecting: (null) [coreduetd] (1145.15)
+Sep 11 11:26:35 iPod-touch recentsd[2089] <Notice>: MS:Notice: Injecting: com.apple.corerecents.recentsd [recentsd] (1145.15)
+Sep 11 11:26:35 iPod-touch recentsd[2089] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/GPSTravellerTweakPro.dylib
+Sep 11 11:26:35 iPod-touch recentsd[2089] <Warning>: MS:Warning: nil class argument for selector applicationDidFinishLaunching:
+Sep 11 11:26:35 iPod-touch recentsd[2089] <Warning>: MS:Warning: nil class argument for selector setCoordinate:
+Sep 11 11:26:35 iPod-touch recentsd[2089] <Warning>: MS:Warning: nil class argument for selector location
+Sep 11 11:26:35 iPod-touch recentsd[2089] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/SSFLEXLoader.dylib
+Sep 11 11:26:35 iPod-touch recentsd[2089] <Warning>: SSFLEXLoader before loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:26:35 iPod-touch recentsd[2089] <Warning>: SSFLEXLoader not enabled /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:26:35 iPod-touch recentsd[2089] <Warning>: SSFLEXLoader after loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:26:35 iPod-touch calaccessd[2092] <Notice>: MS:Notice: Injecting: com.apple.calaccessd [calaccessd] (1145.15)
+Sep 11 11:26:35 iPod-touch calaccessd[2092] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/GPSTravellerTweakPro.dylib
+Sep 11 11:26:35 iPod-touch calaccessd[2092] <Warning>: MS:Warning: nil class argument for selector applicationDidFinishLaunching:
+Sep 11 11:26:35 iPod-touch calaccessd[2092] <Warning>: MS:Warning: nil class argument for selector setCoordinate:
+Sep 11 11:26:35 iPod-touch calaccessd[2092] <Warning>: MS:Warning: nil class argument for selector location
+Sep 11 11:26:35 iPod-touch calaccessd[2092] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/SSFLEXLoader.dylib
+Sep 11 11:26:35 iPod-touch calaccessd[2092] <Warning>: SSFLEXLoader before loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:26:35 iPod-touch calaccessd[2092] <Warning>: SSFLEXLoader not enabled /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:26:35 iPod-touch calaccessd[2092] <Warning>: SSFLEXLoader after loaded /Library/Application Support/FLEXLoader/FLEXDylib.dylib
+Sep 11 11:26:36 iPod-touch coreduetd[2086] <Warning>: [Warning] Services all disappeared, removing all dependent devices
+Sep 11 11:26:36 iPod-touch lsd[2037] <Warning>: LaunchServices: Currently 0 installed placeholders: (
+	)
+Sep 11 11:26:44 iPod-touch ReportCrash[2095] <Notice>: MS:Notice: Injecting: (null) [ReportCrash] (1145.15)
+Sep 11 11:26:44 iPod-touch ReportCrash[2095] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/RocketBootstrap.dylib
+Sep 11 11:26:44 iPod-touch ReportCrash[2095] <Error>: task_set_exception_ports(B07, 400, F03, 0, 0) failed with error (4: (os/kern) invalid argument)
+Sep 11 11:26:44 iPod-touch ReportCrash[2095] <Notice>: Not saving Jetsam log because no data from the kernel.
+Sep 11 11:26:44 iPod-touch UserEventAgent[122] <Notice>: jetsam: kernel termination snapshot being created
+Sep 11 11:26:54 iPod-touch ReportCrash[2098] <Notice>: MS:Notice: Injecting: (null) [ReportCrash] (1145.15)
+Sep 11 11:26:54 iPod-touch ReportCrash[2098] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/RocketBootstrap.dylib
+Sep 11 11:26:54 iPod-touch ReportCrash[2098] <Error>: task_set_exception_ports(B07, 400, F03, 0, 0) failed with error (4: (os/kern) invalid argument)
+Sep 11 11:26:54 iPod-touch ReportCrash[2098] <Notice>: Not saving Jetsam log because no data from the kernel.
+Sep 11 11:26:54 iPod-touch UserEventAgent[122] <Notice>: jetsam: kernel termination snapshot being created
+Sep 11 11:27:04 iPod-touch ReportCrash[2101] <Notice>: MS:Notice: Injecting: (null) [ReportCrash] (1145.15)
+Sep 11 11:27:04 iPod-touch ReportCrash[2101] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/RocketBootstrap.dylib
+Sep 11 11:27:04 iPod-touch ReportCrash[2101] <Error>: task_set_exception_ports(B07, 400, F03, 0, 0) failed with error (4: (os/kern) invalid argument)
+Sep 11 11:27:04 iPod-touch ReportCrash[2101] <Notice>: Not saving Jetsam log because no data from the kernel.
+Sep 11 11:27:04 iPod-touch UserEventAgent[122] <Notice>: jetsam: kernel termination snapshot being created
+Sep 11 11:27:14 iPod-touch ReportCrash[2104] <Notice>: MS:Notice: Injecting: (null) [ReportCrash] (1145.15)
+Sep 11 11:27:14 iPod-touch ReportCrash[2104] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/RocketBootstrap.dylib
+Sep 11 11:27:14 iPod-touch ReportCrash[2104] <Error>: task_set_exception_ports(B07, 400, F03, 0, 0) failed with error (4: (os/kern) invalid argument)
+Sep 11 11:27:15 iPod-touch ReportCrash[2104] <Notice>: Not saving Jetsam log because no data from the kernel.
+Sep 11 11:27:15 iPod-touch UserEventAgent[122] <Notice>: jetsam: kernel termination snapshot being created
+Sep 11 11:27:15 iPod-touch locationd[118] <Notice>: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Sep 11 11:27:25 iPod-touch ReportCrash[2107] <Notice>: MS:Notice: Injecting: (null) [ReportCrash] (1145.15)
+Sep 11 11:27:25 iPod-touch ReportCrash[2107] <Notice>: MS:Notice: Loading: /Library/MobileSubstrate/DynamicLibraries/RocketBootstrap.dylib
+Sep 11 11:27:25 iPod-touch ReportCrash[2107] <Error>: task_set_exception_ports(B07, 400, F03, 0, 0) failed with error (4: (os/kern) invalid argument)
+Sep 11 11:27:25 iPod-touch ReportCrash[2107] <Notice>: Not saving Jetsam log because no data from the kernel.
+Sep 11 11:27:42 iPod-touch locationd[118] <Notice>: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Sep 11 11:28:05 iPod-touch locationd[118] <Notice>: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Sep 11 11:28:26 iPod-touch locationd[118] <Notice>: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Sep 11 11:28:38 iPod-touch syncdefaultsd[2077] <Notice>: (Note ) marked "com.me.keyvalueservice" topic as "ignored" on (null)
+Sep 11 11:28:38 iPod-touch syncdefaultsd[2077] <Notice>: (Note ) marked "com.me.keyvalueservice" topic as "ignored" on (null)
+Sep 11 11:28:44 iPod-touch locationd[118] <Notice>: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Sep 11 11:29:16 iPod-touch locationd[118] <Notice>: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Sep 11 11:29:25 iPod-touch locationd[118] <Notice>: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
+Sep 11 11:29:43 iPod-touch locationd[118] <Notice>: Gesture EnabledForTopCLient: 0, EnabledInDaemonSettings: 0
