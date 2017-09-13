@@ -102,7 +102,7 @@
         
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Employee2"];
         fetchRequest.sortDescriptors = @[sort];
-        //fetchRequest.fetchBatchSize = 10;
+        fetchRequest.fetchBatchSize = 10;
         
         if (self.deparment.length) {
             fetchRequest.predicate = [NSPredicate predicateWithFormat:@"department == %@", self.deparment];
