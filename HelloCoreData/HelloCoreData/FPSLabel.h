@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface FPSLabel : UILabel
-
++ (void)attachToWindow:(UIWindow *)window;
 @end

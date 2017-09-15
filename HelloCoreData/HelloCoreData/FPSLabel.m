@@ -137,6 +137,18 @@ NS_ASSUME_NONNULL_END
     NSUInteger _count;
 }
 
+#pragma mark - Public Methods
+
++ (void)attachToWindow:(UIWindow *)window {
+    FPSLabel *fpsLabel = [FPSLabel new];
+    [window addSubview:fpsLabel];
+    
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    fpsLabel.center = CGPointMake(60, screenSize.height - 40);
+}
+
+#pragma mark -
+
 - (instancetype)initWithFrame:(CGRect)frame {
     if (CGSizeEqualToSize(frame.size, CGSizeZero)) {
         frame.size = DefaultSize;

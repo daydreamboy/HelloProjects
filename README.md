@@ -6,6 +6,8 @@ A `Hello` series of learning iOS projects. The directories sorted by alphabet.
 
 ### HelloCoreData
 * An Objective-C implementation for `Core Data by Tutorials v2.0 pdf` (<mark>in progress</mark>)
+* [-com.apple.CoreData.SQLDebug [1-3]](http://nshipster.com/launch-arguments-and-environment-variables/), number more high more detail
+* -com.apple.CoreData.ConcurrencyDebug 1
 
 ### HelloCustomizedUIActionSheet
 * A customized UIActionSheet using private API
@@ -15,8 +17,8 @@ A `Hello` series of learning iOS projects. The directories sorted by alphabet.
 
 ### HelloNSPredicate
 * `NSPredicate` usage (Substitution, Arithmetical Comparison, String Comparison, Aggregation, NSCompoundPredicate, NSComparisonPredicate, block for NSPredicate)
-* NSPredicate tutorial, [http://nshipster.com/nspredicate/](http://nshipster.com/nspredicate/)
-* NSPredicate cheatsheet, [https://academy.realm.io/posts/nspredicate-cheatsheet/](https://academy.realm.io/posts/nspredicate-cheatsheet/)
+* [NSPredicate tutorial](http://nshipster.com/nspredicate/)
+* [NSPredicate cheatsheet](https://academy.realm.io/posts/nspredicate-cheatsheet/)
 
 ### HelloUIWebView
 * A demo for loading local html using UIWebView
