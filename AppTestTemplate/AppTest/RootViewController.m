@@ -8,7 +8,8 @@
 
 #import "RootViewController.h"
 
-#import "Demo1ViewController.h"
+#import "UseClassByHeaderViewController.h"
+#import "UseClassByRuntimeViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -31,12 +32,12 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"Demo1ViewController's title",
-        @"call a test method",
+        @"Access class by runtime",
+        @"Access class by import headers",
     ];
     _classes = @[
-        @"Demo1ViewController",
-        @"testMethod",
+        @"UseClassByRuntimeViewController",
+        @"UseClassByHeaderViewController",
     ];
 }
 
