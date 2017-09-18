@@ -10,4 +10,5 @@
 
 @interface MFManager : NSObject
 + (void)hello;
+- (void)helloWithName:(NSString *)name;
 @end

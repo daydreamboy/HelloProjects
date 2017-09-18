@@ -18,4 +18,8 @@
     NSLog(@"Hello from MyFramework1");
 }
 
+- (void)helloWithName:(NSString *)name {
+    NSLog(@"Hello `%@` from MyFramework1", name);
+}
+
 @end
