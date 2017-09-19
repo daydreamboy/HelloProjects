@@ -22,6 +22,9 @@
 		4F71EF131F6ED50F00246E6F /* UseClassByRuntimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F71EF121F6ED50F00246E6F /* UseClassByRuntimeViewController.m */; };
 		4F71EF161F6ED56E00246E6F /* UseClassByHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F71EF151F6ED56E00246E6F /* UseClassByHeaderViewController.m */; };
 		4F71EF191F6ED57F00246E6F /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F71EF181F6ED57F00246E6F /* RootViewController.m */; };
+		4F71EF3F1F6F776700246E6F /* UseDelegateByHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F71EF3E1F6F776700246E6F /* UseDelegateByHeaderViewController.m */; };
+		4F71EF411F6F77AD00246E6F /* ManagerBehavior.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F71EF401F6F77AD00246E6F /* ManagerBehavior.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4F71EF431F6F77BE00246E6F /* ManagerBehavior.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F71EF421F6F77BE00246E6F /* ManagerBehavior.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +82,10 @@
 		4F71EF151F6ED56E00246E6F /* UseClassByHeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseClassByHeaderViewController.m; sourceTree = "<group>"; };
 		4F71EF171F6ED57F00246E6F /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RootViewController.h; path = ../../../AppTestTemplate/AppTest/RootViewController.h; sourceTree = "<group>"; };
 		4F71EF181F6ED57F00246E6F /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RootViewController.m; path = ../../../AppTestTemplate/AppTest/RootViewController.m; sourceTree = "<group>"; };
+		4F71EF3D1F6F776700246E6F /* UseDelegateByHeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseDelegateByHeaderViewController.h; sourceTree = "<group>"; };
+		4F71EF3E1F6F776700246E6F /* UseDelegateByHeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseDelegateByHeaderViewController.m; sourceTree = "<group>"; };
+		4F71EF401F6F77AD00246E6F /* ManagerBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerBehavior.h; sourceTree = "<group>"; };
+		4F71EF421F6F77BE00246E6F /* ManagerBehavior.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ManagerBehavior.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +164,7 @@
 				4F71EEEB1F6ED03D00246E6F /* Info.plist */,
 				4F71EEFD1F6ED0AA00246E6F /* MFManager.h */,
 				4F71EEFE1F6ED0AA00246E6F /* MFManager.m */,
+				4F71EF401F6F77AD00246E6F /* ManagerBehavior.h */,
 			);
 			path = MyFramework1;
 			sourceTree = "<group>";
@@ -168,6 +176,7 @@
 				4F71EEF81F6ED05700246E6F /* Info.plist */,
 				4F71EF011F6ED0B900246E6F /* MFManager.h */,
 				4F71EF021F6ED0B900246E6F /* MFManager.m */,
+				4F71EF421F6F77BE00246E6F /* ManagerBehavior.h */,
 			);
 			path = MyFramework2;
 			sourceTree = "<group>";
@@ -179,6 +188,8 @@
 				4F71EF121F6ED50F00246E6F /* UseClassByRuntimeViewController.m */,
 				4F71EF141F6ED56E00246E6F /* UseClassByHeaderViewController.h */,
 				4F71EF151F6ED56E00246E6F /* UseClassByHeaderViewController.m */,
+				4F71EF3D1F6F776700246E6F /* UseDelegateByHeaderViewController.h */,
+				4F71EF3E1F6F776700246E6F /* UseDelegateByHeaderViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -192,6 +203,7 @@
 			files = (
 				4F71EEEC1F6ED03D00246E6F /* MyFramework1.h in Headers */,
 				4F71EEFF1F6ED0AA00246E6F /* MFManager.h in Headers */,
+				4F71EF411F6F77AD00246E6F /* ManagerBehavior.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -201,6 +213,7 @@
 			files = (
 				4F71EEF91F6ED05700246E6F /* MyFramework2.h in Headers */,
 				4F71EF031F6ED0B900246E6F /* MFManager.h in Headers */,
+				4F71EF431F6F77BE00246E6F /* ManagerBehavior.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +287,7 @@
 				TargetAttributes = {
 					4F71EEC81F6ECF5900246E6F = {
 						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = QVRKK2EEDF;
 						ProvisioningStyle = Automatic;
 					};
 					4F71EEE71F6ED03C00246E6F = {
@@ -340,6 +354,7 @@
 				4F71EF131F6ED50F00246E6F /* UseClassByRuntimeViewController.m in Sources */,
 				4F71EED11F6ECF5900246E6F /* AppDelegate.m in Sources */,
 				4F71EF161F6ED56E00246E6F /* UseClassByHeaderViewController.m in Sources */,
+				4F71EF3F1F6F776700246E6F /* UseDelegateByHeaderViewController.m in Sources */,
 				4F71EECE1F6ECF5900246E6F /* main.m in Sources */,
 				4F71EF191F6ED57F00246E6F /* RootViewController.m in Sources */,
 			);
@@ -482,8 +497,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = QVRKK2EEDF;
 				INFOPLIST_FILE = "HelloLazyLoadFramework-Manual/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wc.HelloLazyLoadFramework-Manual";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -493,8 +510,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = QVRKK2EEDF;
 				INFOPLIST_FILE = "HelloLazyLoadFramework-Manual/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wc.HelloLazyLoadFramework-Manual";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -603,6 +622,7 @@
 				4F71EEE21F6ECF5900246E6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4F71EEED1F6ED03D00246E6F /* Build configuration list for PBXNativeTarget "MyFramework1" */ = {
 			isa = XCConfigurationList;
@@ -611,6 +631,7 @@
 				4F71EEEF1F6ED03D00246E6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4F71EEFA1F6ED05700246E6F /* Build configuration list for PBXNativeTarget "MyFramework2" */ = {
 			isa = XCConfigurationList;
@@ -619,6 +640,7 @@
 				4F71EEFC1F6ED05700246E6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

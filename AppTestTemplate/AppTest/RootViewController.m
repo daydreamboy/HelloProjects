@@ -10,6 +10,7 @@
 
 #import "UseClassByHeaderViewController.h"
 #import "UseClassByRuntimeViewController.h"
+#import "UseDelegateByHeaderViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -34,10 +35,12 @@
     _titles = @[
         @"Access class by runtime",
         @"Access class by import headers",
+        @"Access delegate by import headers",
     ];
     _classes = @[
         @"UseClassByRuntimeViewController",
         @"UseClassByHeaderViewController",
+        @"UseDelegateByHeaderViewController",
     ];
 }
 

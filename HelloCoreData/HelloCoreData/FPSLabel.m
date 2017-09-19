@@ -159,18 +159,16 @@ NS_ASSUME_NONNULL_END
     self.clipsToBounds = YES;
     self.textAlignment = NSTextAlignmentCenter;
     self.backgroundColor = [UIColor colorWithWhite:0.000 alpha:0.700];
+    self.userInteractionEnabled = YES;
     
     _font = [UIFont fontWithName:@"Menlo" size:14];
-    if (_font) {
-        _subFont = [UIFont fontWithName:@"Menlo" size:14];
-    }
-    else {
-        _font = [UIFont fontWithName:@"Courier" size:14];
-        _subFont = [UIFont fontWithName:@"Courier" size:14];
-    }
+    _subFont = [UIFont fontWithName:@"Menlo" size:14];
     
     _link = [CADisplayLink displayLinkWithTarget:[YYWeakProxy proxyWithTarget:self] selector:@selector(tick:)];
     [_link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+    
+    UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(viewPanned:)];
+    [self addGestureRecognizer:panGesture];
     
     return self;
 }
@@ -205,6 +203,21 @@ NS_ASSUME_NONNULL_END
     [attrString addAttributes:@{ NSFontAttributeName: _subFont } range:NSMakeRange(0, attrString.length - 4)];
     
     self.attributedText = attrString;
+}
+
+#pragma mark - Actions
+
+- (void)viewPanned:(UIPanGestureRecognizer *)recognizer {
+    // @see https://stackoverflow.com/a/4489848
+    if (recognizer.state == UIGestureRecognizerStateChanged) {
+        CGPoint center = recognizer.view.center;
+        CGPoint translation = [recognizer translationInView:recognizer.view];
+        center = CGPointMake(center.x + translation.x, center.y + translation.y);
+        recognizer.view.center = center;
+        
+        // reset translation
+        [recognizer setTranslation:CGPointZero inView:recognizer.view];
+    }
 }
 
 @end

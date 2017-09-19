@@ -7,6 +7,17 @@
 //
 
 #import "MFManager.h"
+#import <Contacts/Contacts.h>
+
+@interface Manager2 : NSObject <ManagerBehavior>
+
+@end
+
+@implementation Manager2
+- (NSString *)defaultName {
+    return @"Manager2 (MyFramework2)";
+}
+@end
 
 @implementation MFManager
 
@@ -15,7 +26,17 @@
 }
 
 + (void)hello {
+    CNMutableContact *contact = [CNMutableContact new];
+    BOOL output = NO;
+    if (output) {
+        NSLog(@"%@", contact);
+    }
+    
     NSLog(@"Hello from MyFramework2");
+}
+
++ (id<ManagerBehavior>)defaultManager {
+    return [Manager2 new];
 }
 
 @end

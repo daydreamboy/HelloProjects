@@ -11,6 +11,8 @@
 7. \#import "dlfcn.h"
 8. Use dlload ex. `dlload("MyFramework1.framework/MyFramework1", RTLD_LAZY)` to load a framework at runtime.
 
+credit to [it](https://github.com/patriknyblad/ios-runtime-loading-dynamic-framework)
+
 ### Tips
 
 1\. Same symbols in different frameworks, loaded in runtime, will cause `Which one is undefined` error. Afterward loaded same symbols will not work.
@@ -28,5 +30,11 @@ objc[24903]: Class MFManager is implemented in both /Users/wesley_chen/Library/D
 * Class methods, will link, e.g. `MFManager *manager = [MFManager new]`
 * Instance methods, will not link, e.g. `[manager helloWithName:@"Lucy"];`
 
-4\. Class type can call any method, e.g. `[NSClassFromString(@"XXXClass") anyMethod]`
+4\. Class type can call any method, e.g. `[NSClassFromString(@"XXXClass") anyMethod]`, but still need to import header files
+
+5\. `otool -L xxx.app/xxx`, check app executable needed frameworks
+
+6\. `xxx.app/Frameworks`, private frameworks folder
+
+7\. Dynamic Linker (dyld) [environment variables](https://developer.apple.com/library/content/technotes/tn2239/_index.html#//apple_ref/doc/uid/DTS40010638-CH1-SUBSECTION21), e.g. `DYLD_PRINT_LIBRARIES `
 

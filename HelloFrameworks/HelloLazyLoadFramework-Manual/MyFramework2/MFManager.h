@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ManagerBehavior.h"
 
 @interface MFManager : NSObject
 + (void)hello;
++ (id<ManagerBehavior>)defaultManager;
 @end

@@ -26,5 +26,5 @@ A `Hello` series of learning iOS projects. The directories sorted by alphabet.
 ### HelloFrameworks
 
 * [pod spec create XXX](https://macteo.it/xcode/2016/10/18/dynamic-framework-with-cocoapods-support.html)
-* DYLD_PRINT_LIBRARIES
+* `DYLD_PRINT_LIBRARIES`
 * 

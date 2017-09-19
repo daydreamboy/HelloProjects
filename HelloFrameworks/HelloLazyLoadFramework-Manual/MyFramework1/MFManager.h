@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ManagerBehavior.h"
 
 @interface MFManager : NSObject
 + (void)hello;
 - (void)helloWithName:(NSString *)name;
++ (id<ManagerBehavior>)defaultManager;
 @end

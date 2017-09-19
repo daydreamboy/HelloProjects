@@ -8,6 +8,16 @@
 
 #import "MFManager.h"
 
+@interface Manager1 : NSObject <ManagerBehavior>
+
+@end
+
+@implementation Manager1
+- (NSString *)defaultName {
+    return @"Manager1 (MyFramework1)";
+}
+@end
+
 @implementation MFManager
 
 + (void)load {
@@ -20,6 +30,10 @@
 
 - (void)helloWithName:(NSString *)name {
     NSLog(@"Hello `%@` from MyFramework1", name);
+}
+
++ (id<ManagerBehavior>)defaultManager {
+    return [Manager1 new];
 }
 
 @end
