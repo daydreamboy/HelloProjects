@@ -10,6 +10,8 @@
 
 @interface MyManager : NSObject
 
++ (void)hello;
 - (instancetype)initWithName:(NSString *)name;
+- (void)sayHello;
 
 @end

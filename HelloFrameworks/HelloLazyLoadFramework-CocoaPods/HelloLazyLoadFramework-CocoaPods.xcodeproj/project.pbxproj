@@ -10,10 +10,12 @@
 		2ADA018DDB309F6FB2C3951A /* libPods-HelloLazyLoadFramework-CocoaPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CC32A4D687B701CAD8AD003 /* libPods-HelloLazyLoadFramework-CocoaPods.a */; };
 		4F71EF281F6F749500246E6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F71EF271F6F749500246E6F /* main.m */; };
 		4F71EF2B1F6F749500246E6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F71EF2A1F6F749500246E6F /* AppDelegate.m */; };
-		4F71EF2E1F6F749500246E6F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F71EF2D1F6F749500246E6F /* ViewController.m */; };
-		4F71EF311F6F749500246E6F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F71EF2F1F6F749500246E6F /* Main.storyboard */; };
 		4F71EF331F6F749500246E6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F71EF321F6F749500246E6F /* Assets.xcassets */; };
 		4F71EF361F6F749500246E6F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F71EF341F6F749500246E6F /* LaunchScreen.storyboard */; };
+		4F71EF7B1F70BB0900246E6F /* UseClassByHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F71EF741F70BB0900246E6F /* UseClassByHeaderViewController.m */; };
+		4F71EF7C1F70BB0900246E6F /* UseClassByRuntimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F71EF761F70BB0900246E6F /* UseClassByRuntimeViewController.m */; };
+		4F71EF7D1F70BB0900246E6F /* UseDelegateByHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F71EF781F70BB0900246E6F /* UseDelegateByHeaderViewController.m */; };
+		4F71EF7E1F70BB0900246E6F /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F71EF7A1F70BB0900246E6F /* RootViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,12 +24,17 @@
 		4F71EF271F6F749500246E6F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F71EF291F6F749500246E6F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F71EF2A1F6F749500246E6F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4F71EF2C1F6F749500246E6F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		4F71EF2D1F6F749500246E6F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		4F71EF301F6F749500246E6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4F71EF321F6F749500246E6F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F71EF351F6F749500246E6F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F71EF371F6F749500246E6F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F71EF731F70BB0900246E6F /* UseClassByHeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseClassByHeaderViewController.h; sourceTree = "<group>"; };
+		4F71EF741F70BB0900246E6F /* UseClassByHeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseClassByHeaderViewController.m; sourceTree = "<group>"; };
+		4F71EF751F70BB0900246E6F /* UseClassByRuntimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseClassByRuntimeViewController.h; sourceTree = "<group>"; };
+		4F71EF761F70BB0900246E6F /* UseClassByRuntimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseClassByRuntimeViewController.m; sourceTree = "<group>"; };
+		4F71EF771F70BB0900246E6F /* UseDelegateByHeaderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseDelegateByHeaderViewController.h; sourceTree = "<group>"; };
+		4F71EF781F70BB0900246E6F /* UseDelegateByHeaderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseDelegateByHeaderViewController.m; sourceTree = "<group>"; };
+		4F71EF791F70BB0900246E6F /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		4F71EF7A1F70BB0900246E6F /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		9CC32A4D687B701CAD8AD003 /* libPods-HelloLazyLoadFramework-CocoaPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HelloLazyLoadFramework-CocoaPods.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C86D0E497DFE4F6821698ED9 /* Pods-HelloLazyLoadFramework-CocoaPods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloLazyLoadFramework-CocoaPods.release.xcconfig"; path = "Pods/Target Support Files/Pods-HelloLazyLoadFramework-CocoaPods/Pods-HelloLazyLoadFramework-CocoaPods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,11 +72,11 @@
 		4F71EF251F6F749500246E6F /* HelloLazyLoadFramework-CocoaPods */ = {
 			isa = PBXGroup;
 			children = (
+				4F71EF721F70BB0900246E6F /* AppTestDemos */,
+				4F71EF791F70BB0900246E6F /* RootViewController.h */,
+				4F71EF7A1F70BB0900246E6F /* RootViewController.m */,
 				4F71EF291F6F749500246E6F /* AppDelegate.h */,
 				4F71EF2A1F6F749500246E6F /* AppDelegate.m */,
-				4F71EF2C1F6F749500246E6F /* ViewController.h */,
-				4F71EF2D1F6F749500246E6F /* ViewController.m */,
-				4F71EF2F1F6F749500246E6F /* Main.storyboard */,
 				4F71EF321F6F749500246E6F /* Assets.xcassets */,
 				4F71EF341F6F749500246E6F /* LaunchScreen.storyboard */,
 				4F71EF371F6F749500246E6F /* Info.plist */,
@@ -84,6 +91,19 @@
 				4F71EF271F6F749500246E6F /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4F71EF721F70BB0900246E6F /* AppTestDemos */ = {
+			isa = PBXGroup;
+			children = (
+				4F71EF731F70BB0900246E6F /* UseClassByHeaderViewController.h */,
+				4F71EF741F70BB0900246E6F /* UseClassByHeaderViewController.m */,
+				4F71EF751F70BB0900246E6F /* UseClassByRuntimeViewController.h */,
+				4F71EF761F70BB0900246E6F /* UseClassByRuntimeViewController.m */,
+				4F71EF771F70BB0900246E6F /* UseDelegateByHeaderViewController.h */,
+				4F71EF781F70BB0900246E6F /* UseDelegateByHeaderViewController.m */,
+			);
+			path = AppTestDemos;
 			sourceTree = "<group>";
 		};
 		67DE051AA13CC18684D7DA70 /* Frameworks */ = {
@@ -167,7 +187,6 @@
 			files = (
 				4F71EF361F6F749500246E6F /* LaunchScreen.storyboard in Resources */,
 				4F71EF331F6F749500246E6F /* Assets.xcassets in Resources */,
-				4F71EF311F6F749500246E6F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -241,8 +260,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F71EF2E1F6F749500246E6F /* ViewController.m in Sources */,
+				4F71EF7E1F70BB0900246E6F /* RootViewController.m in Sources */,
 				4F71EF2B1F6F749500246E6F /* AppDelegate.m in Sources */,
+				4F71EF7C1F70BB0900246E6F /* UseClassByRuntimeViewController.m in Sources */,
+				4F71EF7D1F70BB0900246E6F /* UseDelegateByHeaderViewController.m in Sources */,
+				4F71EF7B1F70BB0900246E6F /* UseClassByHeaderViewController.m in Sources */,
 				4F71EF281F6F749500246E6F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -250,14 +272,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4F71EF2F1F6F749500246E6F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4F71EF301F6F749500246E6F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4F71EF341F6F749500246E6F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -402,6 +416,7 @@
 				4F71EF3C1F6F749500246E6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

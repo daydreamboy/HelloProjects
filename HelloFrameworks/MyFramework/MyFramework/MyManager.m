@@ -8,14 +8,26 @@
 
 #import "MyManager.h"
 
+@interface MyManager ()
+@property (nonatomic, copy) NSString *name;
+@end
+
 @implementation MyManager
 
 - (instancetype)initWithName:(NSString *)name {
     self = [super init];
     if (self) {
-        
+        _name = name;
     }
     return self;
+}
+
++ (void)hello {
+    NSLog(@"hello MyManager from MyFramework.framework");
+}
+
+- (void)sayHello {
+    NSLog(@"hello %@", self.name);
 }
 
 @end
