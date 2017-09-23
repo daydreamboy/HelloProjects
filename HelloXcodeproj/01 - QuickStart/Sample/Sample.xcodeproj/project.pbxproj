@@ -457,6 +457,8 @@
 				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
 				<key>LD_RUNPATH_SEARCH_PATHS</key>
 				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>OTHER_LDFLAGS</key>
+				<string>-ObjC</string>
 				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
 				<string>com.wc.Framework</string>
 				<key>PRODUCT_NAME</key>
@@ -497,6 +499,8 @@
 				<string>$(LOCAL_LIBRARY_DIR)/Frameworks</string>
 				<key>LD_RUNPATH_SEARCH_PATHS</key>
 				<string>$(inherited) @executable_path/Frameworks @loader_path/Frameworks</string>
+				<key>OTHER_LDFLAGS</key>
+				<string>-ObjC</string>
 				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
 				<string>com.wc.Framework</string>
 				<key>PRODUCT_NAME</key>
@@ -826,6 +830,8 @@
 				<string>App/Info.plist</string>
 				<key>LD_RUNPATH_SEARCH_PATHS</key>
 				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>OTHER_LDFLAGS</key>
+				<string>-ObjC</string>
 				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
 				<string>com.wc.App</string>
 				<key>PRODUCT_NAME</key>
@@ -846,6 +852,8 @@
 				<string>App/Info.plist</string>
 				<key>LD_RUNPATH_SEARCH_PATHS</key>
 				<string>$(inherited) @executable_path/Frameworks</string>
+				<key>OTHER_LDFLAGS</key>
+				<string>-ObjC</string>
 				<key>PRODUCT_BUNDLE_IDENTIFIER</key>
 				<string>com.wc.App</string>
 				<key>PRODUCT_NAME</key>

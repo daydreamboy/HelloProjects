@@ -50,3 +50,38 @@ XXX.xcodeproj
 ![Method List](images/Method List.png)
 
 Note: #method是实例方法，method是类方法
+
+### 4. 修改pbxproj文件
+
+基本步骤，如下
+
+* 打开xcodeproj文件
+
+`project = Xcodeproj::Project.open(<path/to/XXX.xcodeproj>)`
+
+* 对`project`对象进行修改，例如设置Other Linker Flags为-ObjC，如下
+
+```ruby
+require 'xcodeproj'
+
+project_path = './Sample/Sample.xcodeproj'
+project = Xcodeproj::Project.open(project_path)
+
+# loop all targets
+project.targets.each do |target|
+  # loop Debug/Release/...
+  target.build_configurations.each do |config|
+    # Output all modified key/values
+    puts config.name + ': '
+    puts config.build_settings
+    # overwrite 'Other Linker Flags'
+    config.build_settings['OTHER_LDFLAGS'] = '-ObjC'
+  end
+  puts '------------'
+end
+
+# if not save, modification won't work
+project.save()
+```
+
+* 对`project`对象进行保存，调用`project.save()`。Note：xcodeproj保存采用xml格式，和Xcode保存NSDictionary打印格式不一样。
