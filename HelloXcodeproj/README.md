@@ -5,7 +5,7 @@
 * GitHub Home, [https://github.com/CocoaPods/Xcodeproj](https://github.com/CocoaPods/Xcodeproj)
 * gem documentation, [http://www.rubydoc.info/gems/xcodeproj](http://www.rubydoc.info/gems/xcodeproj)
 * Dash安装xcodeproj文档
-![xcodeproj for Dash](HelloProjects/HelloXcodeproj/images/xcodeproj for Dash.png)
+![xcodeproj for Dash](https://github.com/daydreamboy/HelloProjects/raw/master/HelloXcodeproj/images/xcodeproj%20for%20Dash.png)
 
 ### 2. 安装xcodeproj
 
