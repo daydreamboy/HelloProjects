@@ -10,6 +10,35 @@
 	<string>46</string>
 	<key>objects</key>
 	<dict>
+		<key>1B11A385A4C6F6D583E33D47</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.h</string>
+			<key>name</key>
+			<string>AutomaticCreated.h</string>
+			<key>path</key>
+			<string>./SourceFileToAdd/AutomaticCreated.h</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>2FBE32516C7D47B882D0A43E</key>
+		<dict>
+			<key>children</key>
+			<array>
+				<string>1B11A385A4C6F6D583E33D47</string>
+				<string>69DEA78D9D23570198B6BC07</string>
+			</array>
+			<key>isa</key>
+			<string>PBXGroup</string>
+			<key>name</key>
+			<string>SourceFileToAdd</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
 		<key>4F0FF5A11F75328900A03821</key>
 		<dict>
 			<key>children</key>
@@ -17,6 +46,7 @@
 				<string>4F0FF5CA1F75329600A03821</string>
 				<string>4F0FF5DB1F7532B000A03821</string>
 				<string>4F0FF5AB1F75328900A03821</string>
+				<string>2FBE32516C7D47B882D0A43E</string>
 			</array>
 			<key>isa</key>
 			<string>PBXGroup</string>
@@ -528,6 +558,7 @@
 				<string>4F0FF5E41F7532B000A03821</string>
 				<string>4F0FF5E11F7532B000A03821</string>
 				<string>4F0FF5DE1F7532B000A03821</string>
+				<string>A3BACC02ECDD3DF260C72DB7</string>
 			</array>
 			<key>isa</key>
 			<string>PBXSourcesBuildPhase</string>
@@ -941,6 +972,28 @@
 			<string>/bin/sh</string>
 			<key>shellScript</key>
 			<string></string>
+		</dict>
+		<key>69DEA78D9D23570198B6BC07</key>
+		<dict>
+			<key>includeInIndex</key>
+			<string>1</string>
+			<key>isa</key>
+			<string>PBXFileReference</string>
+			<key>lastKnownFileType</key>
+			<string>sourcecode.c.objc</string>
+			<key>name</key>
+			<string>AutomaticCreated.m</string>
+			<key>path</key>
+			<string>./SourceFileToAdd/AutomaticCreated.m</string>
+			<key>sourceTree</key>
+			<string>&lt;group&gt;</string>
+		</dict>
+		<key>A3BACC02ECDD3DF260C72DB7</key>
+		<dict>
+			<key>fileRef</key>
+			<string>69DEA78D9D23570198B6BC07</string>
+			<key>isa</key>
+			<string>PBXBuildFile</string>
 		</dict>
 		<key>D26B76E020BA861695D2D6BD</key>
 		<dict>

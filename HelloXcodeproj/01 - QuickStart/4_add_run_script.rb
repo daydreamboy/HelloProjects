@@ -27,7 +27,8 @@ project.targets.each do |target|
       # https://stackoverflow.com/questions/20072937/add-run-script-build-phase-to-xcode-project-from-podspec
       new_phase = target.new_shell_script_build_phase(run_script_name)
       new_phase.shell_script = 'echo "hello, world"'
-      project.save()
     end
   end
 end
+
+project.save()
