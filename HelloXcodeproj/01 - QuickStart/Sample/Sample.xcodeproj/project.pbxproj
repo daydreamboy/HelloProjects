@@ -16,6 +16,7 @@
 		4F0FF5EC1F7532B000A03821 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F0FF5EA1F7532B000A03821 /* LaunchScreen.storyboard */; };
 		4F0FF5F31F7644BE00A03821 /* SubClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F0FF5F11F7644BE00A03821 /* SubClass.h */; };
 		4F0FF5F41F7644BE00A03821 /* SubClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0FF5F21F7644BE00A03821 /* SubClass.m */; };
+		988FB819F0C49A0B74ECA0D3 /* AutomaticCreated.m in Sources */ = {isa = PBXBuildFile; fileRef = 8233DAFE99D4E4C87CA28D44 /* AutomaticCreated.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,6 +48,8 @@
 		4F0FF5ED1F7532B000A03821 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F0FF5F11F7644BE00A03821 /* SubClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubClass.h; sourceTree = "<group>"; };
 		4F0FF5F21F7644BE00A03821 /* SubClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubClass.m; sourceTree = "<group>"; };
+		6E6D6AC3D0E945DE6E97271F /* AutomaticCreated.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AutomaticCreated.h; path = ./SourceFileToAdd/AutomaticCreated.h; sourceTree = "<group>"; };
+		8233DAFE99D4E4C87CA28D44 /* AutomaticCreated.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AutomaticCreated.m; path = ./SourceFileToAdd/AutomaticCreated.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +76,7 @@
 				4F0FF5CA1F75329600A03821 /* Framework */,
 				4F0FF5DB1F7532B000A03821 /* App */,
 				4F0FF5AB1F75328900A03821 /* Products */,
+				6FC9F2F192866D948691EA0E /* SourceFileToAdd */,
 			);
 			sourceTree = "<group>";
 		};
@@ -118,6 +122,15 @@
 				4F0FF5DD1F7532B000A03821 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6FC9F2F192866D948691EA0E /* SourceFileToAdd */ = {
+			isa = PBXGroup;
+			children = (
+				6E6D6AC3D0E945DE6E97271F /* AutomaticCreated.h */,
+				8233DAFE99D4E4C87CA28D44 /* AutomaticCreated.m */,
+			);
+			name = SourceFileToAdd;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,6 +291,7 @@
 				4F0FF5E41F7532B000A03821 /* ViewController.m in Sources */,
 				4F0FF5E11F7532B000A03821 /* AppDelegate.m in Sources */,
 				4F0FF5DE1F7532B000A03821 /* main.m in Sources */,
+				988FB819F0C49A0B74ECA0D3 /* AutomaticCreated.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
