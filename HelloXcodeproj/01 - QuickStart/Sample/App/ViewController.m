@@ -7,7 +7,12 @@
 //
 
 #import "ViewController.h"
+#if __has_include("AutomaticCreated.h")
 #import "AutomaticCreated.h"
+
+#define CONFIGURATION_AVAILABLE 1
+
+#endif
 
 @interface ViewController ()
 
@@ -17,7 +22,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+#if CONFIGURATION_AVAILABLE
     [Configuration hello];
+#endif
 }
 
 @end
