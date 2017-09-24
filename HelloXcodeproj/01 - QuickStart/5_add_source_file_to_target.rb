@@ -77,4 +77,4 @@ source_file_to_add_paths.each do |path|
 end
 
 # 5. Save .pbxproj
-project.save
+project.save(project.path)

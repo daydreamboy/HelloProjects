@@ -55,11 +55,9 @@ Note: #method是实例方法，method是类方法
 
 基本步骤，如下
 
-* 打开xcodeproj文件
+1\. 打开xcodeproj文件，`project = Xcodeproj::Project.open(<path/to/XXX.xcodeproj>)`
 
-`project = Xcodeproj::Project.open(<path/to/XXX.xcodeproj>)`
-
-* 对`project`对象进行修改，例如设置Other Linker Flags为-ObjC，如下
+2\. 对`project`对象进行修改，例如设置Other Linker Flags为-ObjC，如下
 
 ```ruby
 require 'xcodeproj'
@@ -81,7 +79,9 @@ project.targets.each do |target|
 end
 
 # if not save, modification won't work
-project.save()
+project.save(project.path)
 ```
 
-* 对`project`对象进行保存，调用`project.save()`。Note：xcodeproj保存采用xml格式，和Xcode保存NSDictionary打印格式不一样。
+3\. 对`project`对象进行保存，调用`project.save(project.path)`。
+
+Note：如果直接使用`project.save`不带参数，xcodeproj保存采用xml格式，和Xcode保存的格式不一样，但不影响Xcode读取文件。
