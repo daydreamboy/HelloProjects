@@ -22,7 +22,7 @@ project.targets.each do |target|
     if copy_to_pods_phase_exists
       puts '[Error] Run Script: [IM] Copy To Pods exists. Abort.'
     else
-      puts '[INFO] Creating Run Script: ' + run_script_name
+      puts '[INFO] Adding Run Script: ' + run_script_name
 
       # https://stackoverflow.com/questions/20072937/add-run-script-build-phase-to-xcode-project-from-podspec
       new_phase = target.new_shell_script_build_phase(run_script_name)

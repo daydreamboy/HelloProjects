@@ -175,6 +175,7 @@
 				4F0FF5D81F7532B000A03821 /* Resources */,
 				4F0FF5F51F765CC100A03821 /* My Copy Files */,
 				4F0FF5F61F765CC900A03821 /* [IM] Copy To Pods2 */,
+				D72A96F52C191E24269474DD /* [IM] Copy To Pods */,
 			);
 			buildRules = (
 			);
@@ -257,6 +258,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "";
+		};
+		D72A96F52C191E24269474DD /* [IM] Copy To Pods */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[IM] Copy To Pods";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"hello, world\"";
+			showEnvVarsInLog = 1;
 		};
 /* End PBXShellScriptBuildPhase section */
 
