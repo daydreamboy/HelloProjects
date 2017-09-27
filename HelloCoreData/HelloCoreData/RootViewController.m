@@ -13,6 +13,7 @@
 #import "FetchResultControllerViewController.h"
 #import "Employee1TabController.h"
 #import "Employee2TabController.h"
+#import "PagingFetchResultViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -40,6 +41,7 @@
         @"Use NSFetchResultController",
         @"EmployeeDirectory (original)",
         @"EmployeeDirectory (optimizied)",
+        @"Pagable List",
         @"call a test method",
     ];
     _classes = @[
@@ -48,6 +50,7 @@
         @"FetchResultControllerViewController",
         @"Employee1TabController",
         @"Employee2TabController",
+        @"PagingFetchResultViewController",
         @"testMethod",
     ];
 }

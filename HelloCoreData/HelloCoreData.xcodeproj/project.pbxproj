@@ -30,6 +30,8 @@
 		4F6035491F662F6000FCBC32 /* Employee2PictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6035481F662F6000FCBC32 /* Employee2PictureViewController.m */; };
 		4F60354D1F66317600FCBC32 /* Department2DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60354B1F66317600FCBC32 /* Department2DetailViewController.m */; };
 		4F60354E1F66317600FCBC32 /* Department2DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F60354C1F66317600FCBC32 /* Department2DetailViewController.xib */; };
+		4F6723491F7BAC550043C384 /* PagingFetchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6723451F7BAC550043C384 /* PagingFetchResultViewController.m */; };
+		4F67234A1F7BAC550043C384 /* PagingFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6723471F7BAC550043C384 /* PagingFilterViewController.m */; };
 		4F9DE4301F67DE0B002CDB70 /* Tests_Department2ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9DE42F1F67DE0B002CDB70 /* Tests_Department2ListViewController.m */; };
 		4F9DE4381F67FA59002CDB70 /* Tests_Employee2DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9DE4371F67FA59002CDB70 /* Tests_Employee2DetailViewController.m */; };
 		4F9DE4391F67FDC8002CDB70 /* EmployeeDirectory2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6A641F61370100DB315D /* EmployeeDirectory2.xcdatamodeld */; };
@@ -143,6 +145,10 @@
 		4F60354A1F66317600FCBC32 /* Department2DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Department2DetailViewController.h; sourceTree = "<group>"; };
 		4F60354B1F66317600FCBC32 /* Department2DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Department2DetailViewController.m; sourceTree = "<group>"; };
 		4F60354C1F66317600FCBC32 /* Department2DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Department2DetailViewController.xib; sourceTree = "<group>"; };
+		4F6723441F7BAC550043C384 /* PagingFetchResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagingFetchResultViewController.h; sourceTree = "<group>"; };
+		4F6723451F7BAC550043C384 /* PagingFetchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagingFetchResultViewController.m; sourceTree = "<group>"; };
+		4F6723461F7BAC550043C384 /* PagingFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagingFilterViewController.h; sourceTree = "<group>"; };
+		4F6723471F7BAC550043C384 /* PagingFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagingFilterViewController.m; sourceTree = "<group>"; };
 		4F9DE42D1F67DE0B002CDB70 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F9DE42F1F67DE0B002CDB70 /* Tests_Department2ListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_Department2ListViewController.m; sourceTree = "<group>"; };
 		4F9DE4311F67DE0B002CDB70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -298,6 +304,7 @@
 		4F3CF6EA1F55073500E14CB7 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F6723411F7BAC550043C384 /* BubbleTeaFinder_Paging */,
 				4F9E6A5F1F61369B00DB315D /* EmployeeDirectory1 */,
 				4F9E6A601F61369B00DB315D /* EmployeeDirectory2 */,
 				4F1812CD1F5F9538007E17C1 /* WorldCup */,
@@ -370,6 +377,17 @@
 			name = Resources;
 			path = HelloCoreData/Resources;
 			sourceTree = SOURCE_ROOT;
+		};
+		4F6723411F7BAC550043C384 /* BubbleTeaFinder_Paging */ = {
+			isa = PBXGroup;
+			children = (
+				4F6723441F7BAC550043C384 /* PagingFetchResultViewController.h */,
+				4F6723451F7BAC550043C384 /* PagingFetchResultViewController.m */,
+				4F6723461F7BAC550043C384 /* PagingFilterViewController.h */,
+				4F6723471F7BAC550043C384 /* PagingFilterViewController.m */,
+			);
+			path = BubbleTeaFinder_Paging;
+			sourceTree = "<group>";
 		};
 		4F9DE42E1F67DE0B002CDB70 /* Tests */ = {
 			isa = PBXGroup;
@@ -602,6 +620,7 @@
 				4F9E6AAC1F63D56000DB315D /* Department1DetailViewController.m in Sources */,
 				4F9E6A981F61606300DB315D /* EmployeeTableViewCell.m in Sources */,
 				4F9E6A661F61370100DB315D /* EmployeeDirectory2.xcdatamodeld in Sources */,
+				4F6723491F7BAC550043C384 /* PagingFetchResultViewController.m in Sources */,
 				4F1812CB1F5F950C007E17C1 /* BuildCoreDataStackViewController.m in Sources */,
 				4F9E6A9E1F6178D800DB315D /* Department1ListViewController.m in Sources */,
 				4F60354D1F66317600FCBC32 /* Department2DetailViewController.m in Sources */,
@@ -611,6 +630,7 @@
 				4F1812C31F5F9504007E17C1 /* Bubble_Tea_Finder.xcdatamodeld in Sources */,
 				4F3CF6D81F5506D200E14CB7 /* AppDelegate.m in Sources */,
 				4F1812D01F5F9565007E17C1 /* WorldCup.xcdatamodeld in Sources */,
+				4F67234A1F7BAC550043C384 /* PagingFilterViewController.m in Sources */,
 				4F3CF6D51F5506D200E14CB7 /* main.m in Sources */,
 				4F1812C51F5F9504007E17C1 /* FilterViewController.m in Sources */,
 				4F9E6AA41F639D8200DB315D /* Employee1DetailViewController.m in Sources */,
@@ -812,6 +832,7 @@
 				4F9DE4351F67DE0B002CDB70 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
