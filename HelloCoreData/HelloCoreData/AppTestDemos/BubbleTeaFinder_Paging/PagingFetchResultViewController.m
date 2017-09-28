@@ -29,6 +29,7 @@
 @implementation LoadingMoreCell
 
 - (void)startSpinning {
+    self.label.hidden = YES;
     [self.spinner startAnimating];
 }
 
@@ -78,6 +79,8 @@
 @property (nonatomic, assign) NSUInteger totalSize;
 @property (nonatomic, assign) NSUInteger currentOffset;
 @property (nonatomic, assign) NSUInteger stepSize;
+@property (nonatomic, assign) BOOL isLoadingMore;
+@property (nonatomic, assign) BOOL isLoadingToEnd;
 
 @end
 
@@ -95,39 +98,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    /*
-    self.batchUpdateRequest = [NSBatchUpdateRequest batchUpdateRequestWithEntityName:@"Venue"];
-    self.batchUpdateRequest.propertiesToUpdate = @{ @"favorite": @(YES) };
-    self.batchUpdateRequest.affectedStores = self.context.persistentStoreCoordinator.persistentStores;
-    self.batchUpdateRequest.resultType = NSUpdatedObjectsCountResultType;
-    
-    @try {
-        [self.context performBlockAndWait:^{
-            NSBatchUpdateResult *result = [self.context executeRequest:self.batchUpdateRequest error:nil];
-            NSLog(@"Records updated %@", result.result);
-        }];
-    }
-    @catch (NSException *exception) {
-        
-    }
-    @finally {
-        
-    }
-     */
-    
     [self.view addSubview:self.tableView];
     UIBarButtonItem *filterItem = [[UIBarButtonItem alloc] initWithTitle:@"Filter" style:UIBarButtonItemStylePlain target:self action:@selector(filterItemClicked:)];
     self.navigationItem.rightBarButtonItem = filterItem;
     
     [self importJSONSeedDataIfNeeded];
     
-    [self queryDataWithOffset:self.currentOffset limit:self.stepSize];
+    [self queryDataWithOffset:self.currentOffset limit:self.stepSize predicate:nil sortDescriptors:nil completion:nil];
 }
 
-- (void)queryDataWithOffset:(NSUInteger)offset limit:(NSUInteger)limit {
-    self.fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Venue"];
+// reset: YES, reset to initial status with specific predicate and sorts
+- (void)queryDataWithOffset:(NSUInteger)offset limit:(NSUInteger)limit predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors reset:(BOOL)reset completion:(void (^)(BOOL isEnd))completion {
+    
     self.fetchRequest.fetchOffset = offset;
     self.fetchRequest.fetchLimit = limit;
+    self.fetchRequest.predicate = predicate;
+    self.fetchRequest.sortDescriptors = sortDescriptors;
     
     __weak typeof(self) weak_self = self;
     self.asyncFetchRequest = [[NSAsynchronousFetchRequest alloc] initWithFetchRequest:self.fetchRequest completionBlock:^(NSAsynchronousFetchResult * _Nonnull result) {
@@ -139,7 +125,7 @@
             }
             
             NSMutableArray *arrM = [NSMutableArray array];
-            if (weak_self.venues.count) {
+            if (weak_self.venues.count && !reset) {
                 [arrM addObjectsFromArray:weak_self.venues];
             }
             [arrM addObjectsFromArray:result.finalResult];
@@ -149,6 +135,20 @@
             // @see https://stackoverflow.com/questions/25958282/uitableview-reloaddata-does-not-refresh-displayed-cells
             dispatch_async(dispatch_get_main_queue(), ^{
                 [weak_self.tableView reloadData];
+                weak_self.isLoadingMore = NO;
+                !completion ?: completion(NO);
+            });
+        }
+        else {
+            // no more data to load
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (reset) {
+                    [weak_self.venues removeAllObjects];
+                    [weak_self.tableView reloadData];
+                }
+                else {
+                    !completion ?: completion(YES);
+                }
             });
         }
     }];
@@ -169,6 +169,11 @@
     @finally {
         
     }
+}
+
+- (void)queryDataWithOffset:(NSUInteger)offset limit:(NSUInteger)limit predicate:(NSPredicate *)predicate sortDescriptors:(NSArray *)sortDescriptors completion:(void (^)(BOOL isEnd))completion {
+    
+    [self queryDataWithOffset:offset limit:limit predicate:predicate sortDescriptors:sortDescriptors reset:NO completion:completion];
 }
 
 #pragma mark - Getters
@@ -194,6 +199,14 @@
     }
     
     return _tableView;
+}
+
+- (NSFetchRequest *)fetchRequest {
+    if (!_fetchRequest) {
+        _fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Venue"];
+    }
+    
+    return _fetchRequest;
 }
 
 #pragma mark - Actions
@@ -335,15 +348,21 @@
         }
         
         LoadingMoreCell *loadingMoreCell = (LoadingMoreCell *)cell;
-        [loadingMoreCell startSpinning];
-        
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [self doLoadingMoreWithCompletion:^(BOOL isEnd) {
-                if (isEnd) {
-                    [loadingMoreCell stopSpinning];
-                }
-            }];
-        });
+        if (!self.isLoadingToEnd) {
+            [loadingMoreCell startSpinning];
+            
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self doLoadingMoreWithCompletion:^(BOOL isEnd) {
+                    if (isEnd) {
+                        self.isLoadingToEnd = YES;
+                        [loadingMoreCell stopSpinning];
+                    }
+                }];
+            });
+        }
+        else {
+            [loadingMoreCell stopSpinning];
+        }
     }
 
     return cell;
@@ -352,32 +371,35 @@
 #pragma mark - FilterViewControllerDelegate
 
 - (void)filterViewController:(FilterViewController *)viewController didSelectPredicate:(NSPredicate *)predicate sortDescriptor:(NSSortDescriptor *)sortDescriptor {
-    self.fetchRequest.predicate = nil;
-    self.fetchRequest.sortDescriptors = nil;
     
-    if (predicate) {
-        self.fetchRequest.predicate = predicate;
-    }
-    
+    NSArray *sorts = nil;
     if (sortDescriptor) {
-        self.fetchRequest.sortDescriptors = @[sortDescriptor];
+        sorts = @[sortDescriptor];
     }
     
+    // Reset venues
     self.currentOffset = 0;
     self.stepSize = 12;
-    [self queryDataWithOffset:self.currentOffset limit:self.stepSize];
+    self.isLoadingToEnd = NO;
+    [self queryDataWithOffset:self.currentOffset limit:self.stepSize predicate:predicate sortDescriptors:sorts reset:YES completion:nil];
 }
 
 #pragma mark - 
 
 - (void)doLoadingMoreWithCompletion:(void (^)(BOOL isEnd))completion {
-    if (self.currentOffset + self.stepSize < self.totalSize) {
-        self.currentOffset = self.currentOffset + self.stepSize;
-        
-        [self queryDataWithOffset:self.currentOffset limit:self.stepSize];
-    }
-    else {
-        !completion ?: completion(YES);
+    // Note: avoid to load more twice when it's on loading
+    if (!self.isLoadingMore) {
+        if (self.currentOffset + self.stepSize < self.totalSize) {
+            self.currentOffset = self.currentOffset + self.stepSize;
+            
+            self.isLoadingMore = YES;
+            NSLog(@"query more");
+            [self queryDataWithOffset:self.currentOffset limit:self.stepSize predicate:self.fetchRequest.predicate sortDescriptors:self.fetchRequest.sortDescriptors completion:completion];
+        }
+        else {
+            // Note: if no more to load, just callback directly
+            !completion ?: completion(YES);
+        }
     }
 }
 
