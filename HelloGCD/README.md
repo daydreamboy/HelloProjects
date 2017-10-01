@@ -68,5 +68,23 @@ Note: manage context data's life by caller
     });
 ```
 
-9\. 
+9\. Suspend and resume queue
+
+10\. Dispatch semaphore
+
+* use for finite resource pool
+* use for completion block
+
+11\. Dispatch group
+
+* `dispatch_group_async` with `dispatch_group_wait`
+* `dispatch_group_async` with `dispatch_group_notify`
+* use `dispatch_group_enter` and `dispatch_group_leave` instead of `dispatch_group_async `
+
+12\. Create inactive queue
+
+* use `DISPATCH_QUEUE_SERIAL_INACTIVE` or `DISPATCH_QUEUE_CONCURRENT_INACTIVE`
+
+### dispatch source
+
 
