@@ -34,6 +34,12 @@ A `Hello` series of learning iOS projects. The directories sorted by alphabet.
 * [NSPredicate tutorial](http://nshipster.com/nspredicate/)
 * [NSPredicate cheatsheet](https://academy.realm.io/posts/nspredicate-cheatsheet/)
 
+### HelloThread
+
+* `NSThread`
+* `NSObject (NSThreadPerformAdditions)`
+* `pthread`
+
 ### HelloUIWebView
 * A demo for loading local html using UIWebView
 
