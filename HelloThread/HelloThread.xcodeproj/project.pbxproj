@@ -15,6 +15,7 @@
 		2BA4F85A1F83D30200AE2BAD /* CreateThreadByNSThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4F8591F83D30200AE2BAD /* CreateThreadByNSThreadViewController.m */; };
 		2BA4F85D1F83D31C00AE2BAD /* CreateThreadByNSObjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4F85C1F83D31C00AE2BAD /* CreateThreadByNSObjectViewController.m */; };
 		2BA4F8601F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4F85F1F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m */; };
+		2BF7F44A1F83DB3500B27A0F /* UseOSAtomicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7F4491F83DB3500B27A0F /* UseOSAtomicViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,8 @@
 		2BA4F85C1F83D31C00AE2BAD /* CreateThreadByNSObjectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateThreadByNSObjectViewController.m; sourceTree = "<group>"; };
 		2BA4F85E1F83D34600AE2BAD /* CreateThreadByPOSIXViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateThreadByPOSIXViewController.h; sourceTree = "<group>"; };
 		2BA4F85F1F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateThreadByPOSIXViewController.m; sourceTree = "<group>"; };
+		2BF7F4481F83DB3500B27A0F /* UseOSAtomicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseOSAtomicViewController.h; sourceTree = "<group>"; };
+		2BF7F4491F83DB3500B27A0F /* UseOSAtomicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseOSAtomicViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +93,8 @@
 		2BA4F8551F83D27F00AE2BAD /* lock */ = {
 			isa = PBXGroup;
 			children = (
+				2BF7F4481F83DB3500B27A0F /* UseOSAtomicViewController.h */,
+				2BF7F4491F83DB3500B27A0F /* UseOSAtomicViewController.m */,
 			);
 			path = lock;
 			sourceTree = "<group>";
@@ -179,6 +184,7 @@
 			files = (
 				2BA4F85D1F83D31C00AE2BAD /* CreateThreadByNSObjectViewController.m in Sources */,
 				2BA4F8601F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m in Sources */,
+				2BF7F44A1F83DB3500B27A0F /* UseOSAtomicViewController.m in Sources */,
 				2BA4F85A1F83D30200AE2BAD /* CreateThreadByNSThreadViewController.m in Sources */,
 				2B37F3211F83C4A500809F00 /* main.m in Sources */,
 				2B37F3131F83C4A500809F00 /* AppDelegate.m in Sources */,
