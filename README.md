@@ -12,6 +12,20 @@ A `Hello` series of learning iOS projects. The directories sorted by alphabet.
 ### HelloCustomizedUIActionSheet
 * A customized UIActionSheet using private API
 
+### HelloGCD
+
+* dispatch queue
+* dispatch group
+* dispatch source
+* dispatch data
+* dispatch benchmark
+* operation queue
+
+### HelloFrameworks
+
+* [pod spec create XXX](https://macteo.it/xcode/2016/10/18/dynamic-framework-with-cocoapods-support.html)
+* `DYLD_PRINT_LIBRARIES` environment variable
+
 ### HelloInterfaceImplementationPair
 * A pod demonstrates show how to use Protocol-Oriented programming
 
@@ -23,8 +37,6 @@ A `Hello` series of learning iOS projects. The directories sorted by alphabet.
 ### HelloUIWebView
 * A demo for loading local html using UIWebView
 
-### HelloFrameworks
+### HelloXcodeproj
 
-* [pod spec create XXX](https://macteo.it/xcode/2016/10/18/dynamic-framework-with-cocoapods-support.html)
-* `DYLD_PRINT_LIBRARIES`
-* 
+* usage of xcodeproj ruby module
