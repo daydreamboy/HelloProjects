@@ -12,6 +12,7 @@
 		2B2390B31DE053E000E5E107 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B2390B21DE053E000E5E107 /* Assets.xcassets */; };
 		2B2390B61DE053E000E5E107 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B2390B41DE053E000E5E107 /* LaunchScreen.storyboard */; };
 		2B2390C31DE0541800E5E107 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2390C11DE0541800E5E107 /* RootViewController.m */; };
+		2B37F3011F83B1DE00809F00 /* UseDispatchBenchmarkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B37F3001F83B1DE00809F00 /* UseDispatchBenchmarkViewController.m */; };
 		2B401FF31E06E9A500D998FA /* AddBarrierTaskToConcurrentQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B401FDB1E06E9A500D998FA /* AddBarrierTaskToConcurrentQueueViewController.m */; };
 		2B401FF41E06E9A500D998FA /* AddCompletionBlockToQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B401FDD1E06E9A500D998FA /* AddCompletionBlockToQueueViewController.m */; };
 		2B401FF51E06E9A500D998FA /* AddTaskToQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B401FDF1E06E9A500D998FA /* AddTaskToQueueViewController.m */; };
@@ -49,6 +50,8 @@
 		2B2390B71DE053E000E5E107 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B2390C01DE0541800E5E107 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		2B2390C11DE0541800E5E107 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		2B37F2FF1F83B1DE00809F00 /* UseDispatchBenchmarkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseDispatchBenchmarkViewController.h; sourceTree = "<group>"; };
+		2B37F3001F83B1DE00809F00 /* UseDispatchBenchmarkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseDispatchBenchmarkViewController.m; sourceTree = "<group>"; };
 		2B401FDA1E06E9A500D998FA /* AddBarrierTaskToConcurrentQueueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddBarrierTaskToConcurrentQueueViewController.h; sourceTree = "<group>"; };
 		2B401FDB1E06E9A500D998FA /* AddBarrierTaskToConcurrentQueueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddBarrierTaskToConcurrentQueueViewController.m; sourceTree = "<group>"; };
 		2B401FDC1E06E9A500D998FA /* AddCompletionBlockToQueueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCompletionBlockToQueueViewController.h; sourceTree = "<group>"; };
@@ -219,6 +222,8 @@
 				2BB1E8ED1E194BA600059446 /* CreateSignalDispatchSourceViewController.m */,
 				2BE3503B1F837497008C3B4F /* CreateDataBufferDispatchSourceViewController.h */,
 				2BE3503C1F837497008C3B4F /* CreateDataBufferDispatchSourceViewController.m */,
+				2B37F2FF1F83B1DE00809F00 /* UseDispatchBenchmarkViewController.h */,
+				2B37F3001F83B1DE00809F00 /* UseDispatchBenchmarkViewController.m */,
 			);
 			path = "dispatch source";
 			sourceTree = "<group>";
@@ -370,6 +375,7 @@
 				2B401FF41E06E9A500D998FA /* AddCompletionBlockToQueueViewController.m in Sources */,
 				2B401FFC1E06E9A500D998FA /* SuspendAndResumeQueueViewController.m in Sources */,
 				2BC0E0491E09114100B195BC /* ExampleOfBatchDownloadImagesViewController.m in Sources */,
+				2B37F3011F83B1DE00809F00 /* UseDispatchBenchmarkViewController.m in Sources */,
 				2B401FF31E06E9A500D998FA /* AddBarrierTaskToConcurrentQueueViewController.m in Sources */,
 				2B401FF61E06E9A500D998FA /* ConcurrentLoopViewController.m in Sources */,
 			);

@@ -25,6 +25,7 @@
 #import "CreateWriteDispatchSourceViewController.h"
 #import "CreateVNodeDispatchSourceViewController.h"
 #import "CreateDataBufferDispatchSourceViewController.h"
+#import "UseDispatchBenchmarkViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -85,6 +86,7 @@
           @{ kTitle: @"Create Write Dispatch Source", kClass: @"CreateWriteDispatchSourceViewController" },
           @{ kTitle: @"Create VNODE Dispatch Source", kClass: @"CreateVNodeDispatchSourceViewController" },
           @{ kTitle: @"Usage of Dispatch Data", kClass: @"CreateDataBufferDispatchSourceViewController" },
+          @{ kTitle: @"Usage of Dispatch Benchmark", kClass: @"UseDispatchBenchmarkViewController" },
     ];
     
     NSArray<NSDictionary *> *section3 = @[
