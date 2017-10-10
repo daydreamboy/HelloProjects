@@ -1,0 +1,65 @@
+//
+//  HelloCustomXCConfig.common.xcconfig
+//  HelloCustomXCConfig
+//
+//  Created by wesley chen on 16/11/25.
+//  Copyright © 2016年 wesley chen. All rights reserved.
+//
+
+// Build Number
+XXX_CFBundleVersion = 1149
+// Version
+XXX_CFBundleShortVersionString = 5.0.2
+
+// App's keys (defined in Info.plist)
+TWITTER_CONSUMER_KEY = 1234567890
+
+// App's keys (defined in pre-marco)
+APP_STORE_ID = @"id123 (default)"
+APP_PUB_KEY = @"pub-key (default)"
+
+
+//// 主应用 Bundle ID
+//XXX_CFBundleIdentifierOneTravel = com.xiaojukeji.didi.inhouse
+//// Watch Bundle ID
+//XXX_CFBundleIdentifierWatch = com.xiaojukeji.didi.inhouse.iwatchkitapp
+//// WatchExtension Bundle ID
+//XXX_CFBundleIdentifierWatchExtension = com.xiaojukeji.didi.inhouse.iwatchkitapp.watchkitextension
+//// Intents Bundle ID
+//XXX_CFBundleIdentifierIntents = com.xiaojukeji.didi.inhouse.XXXIntents
+//// IntentsUI Bundle ID
+//XXX_CFBundleIdentifierIntentsUI = com.xiaojukeji.didi.inhouse.XXXIntentsUI
+//// AppExtensionCore Bundle ID
+//XXX_CFBundleIdentifierONEAppExtensionKitCore = com.xiaojukeji.didi.inhouse.XXXAppExtensionKitCore
+//
+//// Intents App Group ID
+//XXX_IntentsAppGroupID = group.com.xiaojukeji.didi.inhouse.extension
+//
+//
+//// Development Team
+//XXX_DevelopmentTeam = HCTZ8VKJ47
+//
+//// 主应用 Provioning Profile
+//XXX_ProvioningProfileOneTravel = c2c0ca9d-5918-4311-8b1d-ce5347464492
+//// 主应用 Provioning Profile Specifier
+//XXX_ProvioningProfileSpecifierOneTravel = didi_inhouse
+//
+//// Watch Provioning Profile
+//XXX_ProvioningProfileWatch = 65f3a75e-6d45-4b4f-b1bd-92e047a7f3f6
+//// Watch Provioning Profile Specifier
+//XXX_ProvioningProfileSpecifierWatch = inhouse_iwatchkitapp
+//
+//// WatchExtension Provioning Profile
+//XXX_ProvioningProfileWatchExtension = 8dd2ac5d-9090-457c-bb27-d24e766cf281
+//// WatchExtension Provioning Profile Specifier
+//XXX_ProvioningProfileSpecifierWatchExtension = inhouse_watchkitextension
+//
+//// Intents Provioning Profile
+//XXX_ProvioningProfileIntents = 00c803ad-8e17-43d6-81bf-e9a0a6715003
+//// Intents Provioning Profile Specifier
+//XXX_ProvioningProfileSpecifierIntents = inhouseONEIntents
+//
+//// IntentsUI Provioning Profile
+//XXX_ProvioningProfileIntentsUI = 79b2a64d-f729-43d2-9747-d01d004ed825
+//// IntentsUI Provioning Profile Specifier
+//XXX_ProvioningProfileSpecifierIntentsUI = inhouseONEIntentsUI

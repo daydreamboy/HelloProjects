@@ -1,0 +1,18 @@
+//
+//  HelloCustomXCConfig.debug.xcconfig
+//  HelloCustomXCConfig
+//
+//  Created by wesley chen on 16/11/25.
+//  Copyright © 2016年 wesley chen. All rights reserved.
+//
+
+
+#include "HelloCustomXCConfig.common.xcconfig"
+//#include "../../Pods/Target Support Files/Pods-HelloCustomXCConfig/Pods-HelloCustomXCConfig.debug.xcconfig"
+
+XXX_CFBundleName = App(Debug)
+
+// override
+// use common
+
+#include "compiler_macro_generator.xcconfig"

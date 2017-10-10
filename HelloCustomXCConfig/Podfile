@@ -1,0 +1,3 @@
+
+target 'HelloCustomXCConfig' do
+end
