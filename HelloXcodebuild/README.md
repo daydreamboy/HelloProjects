@@ -1,5 +1,62 @@
 ## xcodebuild命令
 
+### 1. 基本使用
+
+xcodebuild是Xcode使用的命令行工具。如果想自动化完成xcode支持GUI操作，则需要使用这个命令。
+
+xcodebuild在当前目录找xcodeproj文件，根据这个文件的配置输出相应的产物。
+
+xcodebuild在当前文件夹下生成，它的结构和Xcode的DerivedData中结构是对应的。
+
+
+
+### 2. 常用选项
+
+* 选项为空    
+默认在当前目录下生成build文件夹，存放编译产物，采用Release build configuration。
+
+以HelloXcodebuildForApp工程为例，build文件夹结构如下
+
+```
+build  
+ |- HelloXcodebuildForApp.build
+ |   |- Debug-iphoneos
+ |   |   |- HelloXcodebuildForApp.build (存放编译中间产物)
+ |   |- Release-iphones
+ |       |- HelloXcodebuildForApp.build (存放编译中间产物)
+ |- Debug-iphoneos
+ |   |- HelloXcodebuildForApp.app (单架构)
+ |- Release-iphones
+     |- HelloXcodebuildForApp.app (多结构)
+     |- HelloXcodebuildForApp.app.dSYM
+```
+
+* -scheme \<scheme name\>    
+指定scheme后，build文件夹生成在DerivedData路径下，结构如下
+
+```
+build  
+ |- Intermediates
+ |   |- HelloXcodebuildForApp.build
+ |       |- Debug-iphoneos
+ |       |   |- HelloXcodebuildForApp.build (存放编译中间产物)
+ |       |- Release-iphones
+ |           |- HelloXcodebuildForApp.build (存放编译中间产物)
+ |- Products
+     |- Debug-iphoneos
+     |   |- HelloXcodebuildForApp.app (单架构)
+     |- Release-iphones
+         |- HelloXcodebuildForApp.app (多结构)
+         |- HelloXcodebuildForApp.app.dSYM
+```
+
+scheme描述
+
+* -target \<target name\>    
+指定project下面需要编译哪个target，如果不指定，默认编译targets列表中的第一个target。
+
+* -configuration \<build configuration\>    
+指定采用哪种build configuration（一般是Debug或者Release）编译target。
 
 * -showBuildSettings
 
