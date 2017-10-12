@@ -10,6 +10,8 @@
 		4F5519FC1F6B9A3A00A4AA32 /* MyFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F5519FA1F6B9A3A00A4AA32 /* MyFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4F551A041F6B9A4C00A4AA32 /* MyManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F551A021F6B9A4C00A4AA32 /* MyManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4F551A051F6B9A4C00A4AA32 /* MyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F551A031F6B9A4C00A4AA32 /* MyManager.m */; };
+		4FDCA4B81F8E6FFC00F375F7 /* configurations.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4FDCA4B61F8E6FFC00F375F7 /* configurations.plist */; };
+		4FDCA4B91F8E6FFC00F375F7 /* Xcode.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FDCA4B71F8E6FFC00F375F7 /* Xcode.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -18,6 +20,8 @@
 		4F5519FB1F6B9A3A00A4AA32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F551A021F6B9A4C00A4AA32 /* MyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyManager.h; sourceTree = "<group>"; };
 		4F551A031F6B9A4C00A4AA32 /* MyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyManager.m; sourceTree = "<group>"; };
+		4FDCA4B61F8E6FFC00F375F7 /* configurations.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = configurations.plist; sourceTree = "<group>"; };
+		4FDCA4B71F8E6FFC00F375F7 /* Xcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Xcode.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,12 +54,22 @@
 		4F5519F91F6B9A3A00A4AA32 /* MyFramework */ = {
 			isa = PBXGroup;
 			children = (
+				4FDCA4B51F8E6FFC00F375F7 /* Resources */,
 				4F5519FA1F6B9A3A00A4AA32 /* MyFramework.h */,
 				4F551A021F6B9A4C00A4AA32 /* MyManager.h */,
 				4F551A031F6B9A4C00A4AA32 /* MyManager.m */,
 				4F5519FB1F6B9A3A00A4AA32 /* Info.plist */,
 			);
 			path = MyFramework;
+			sourceTree = "<group>";
+		};
+		4FDCA4B51F8E6FFC00F375F7 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4FDCA4B61F8E6FFC00F375F7 /* configurations.plist */,
+				4FDCA4B71F8E6FFC00F375F7 /* Xcode.png */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -128,6 +142,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FDCA4B81F8E6FFC00F375F7 /* configurations.plist in Resources */,
+				4FDCA4B91F8E6FFC00F375F7 /* Xcode.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
