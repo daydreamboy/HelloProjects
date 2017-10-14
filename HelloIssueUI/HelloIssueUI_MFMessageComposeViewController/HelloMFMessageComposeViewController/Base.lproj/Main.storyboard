@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I6w-ia-lH5">
+                                <rect key="frame" x="152" y="318" width="71" height="30"/>
+                                <state key="normal" title="Send SMS"/>
+                                <connections>
+                                    <action selector="buttonSendSMSClicked:" destination="BYZ-38-t0r" eventType="touchUpInside" id="2ZI-9g-mqQ"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type here..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Whn-C2-PoO">
+                                <rect key="frame" x="36" y="64" width="303" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Whn-C2-PoO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="41E-1B-TsU"/>
+                            <constraint firstItem="Whn-C2-PoO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="Db0-HX-Pxb"/>
+                            <constraint firstItem="I6w-ia-lH5" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="OTW-GG-wG4"/>
+                            <constraint firstItem="Whn-C2-PoO" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="64" id="bdj-G5-J55"/>
+                            <constraint firstItem="I6w-ia-lH5" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gyF-07-9Ur"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Whn-C2-PoO" secondAttribute="trailing" constant="20" id="ik5-AA-5Yw"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="90.404797601199405"/>
+        </scene>
+    </scenes>
+</document>
