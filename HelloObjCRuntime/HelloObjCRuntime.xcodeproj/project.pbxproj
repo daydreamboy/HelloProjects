@@ -1,0 +1,485 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2B2EAA9A1E97CB7A00DBCC0D /* ModelProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2EAA991E97CB7A00DBCC0D /* ModelProtocol.m */; };
+		2B2EAA9E1E97CC2700DBCC0D /* CreateDynamicDelegateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2EAA9C1E97CC2700DBCC0D /* CreateDynamicDelegateViewController.m */; };
+		2B2EAA9F1E97CC2700DBCC0D /* CreateDynamicDelegateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B2EAA9D1E97CC2700DBCC0D /* CreateDynamicDelegateViewController.xib */; };
+		2B2ED6AE1E23A0D0006319E2 /* SwizzleMethodByBlockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2ED6AD1E23A0D0006319E2 /* SwizzleMethodByBlockViewController.m */; };
+		2B2ED6B11E24DCEF006319E2 /* CheckNSObjectIsaVariableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2ED6B01E24DCEF006319E2 /* CheckNSObjectIsaVariableViewController.m */; };
+		2B2ED6B41E2509CA006319E2 /* WCKeyboardShortcutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B2ED6B31E2509CA006319E2 /* WCKeyboardShortcutManager.m */; };
+		2B6E6B951DF91DD10045BD98 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6E6B941DF91DD10045BD98 /* main.m */; };
+		2B6E6B981DF91DD10045BD98 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6E6B971DF91DD10045BD98 /* AppDelegate.m */; };
+		2B6E6BA01DF91DD10045BD98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B6E6B9F1DF91DD10045BD98 /* Assets.xcassets */; };
+		2B6E6BA31DF91DD10045BD98 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B6E6BA11DF91DD10045BD98 /* LaunchScreen.storyboard */; };
+		2B6E6BAD1DF91E850045BD98 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6E6BAC1DF91E850045BD98 /* RootViewController.m */; };
+		2B6E6BB01DF91F720045BD98 /* GetPropertiesOfClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6E6BAF1DF91F720045BD98 /* GetPropertiesOfClassViewController.m */; };
+		2B6E6BB31DF9240C0045BD98 /* WCObjCRuntimeUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6E6BB21DF9240C0045BD98 /* WCObjCRuntimeUtility.m */; };
+		2BA23B6A1E72FDD8000DBE48 /* CreateClassAtRuntimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA23B691E72FDD8000DBE48 /* CreateClassAtRuntimeViewController.m */; };
+		2BA23BD31E73E3F1000DBE48 /* SimpleDynamicSubclassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA23BD21E73E3F1000DBE48 /* SimpleDynamicSubclassViewController.m */; };
+		2BA23BD61E7530C7000DBE48 /* InterceptCallByDynamicSubclassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA23BD51E7530C7000DBE48 /* InterceptCallByDynamicSubclassViewController.m */; };
+		2BBE76B71E8E751300FDB6B9 /* InterceptDoesNotRecognizeSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BBE76B51E8E751300FDB6B9 /* InterceptDoesNotRecognizeSelectorViewController.m */; };
+		2BBE76B81E8E751300FDB6B9 /* InterceptDoesNotRecognizeSelectorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2BBE76B61E8E751300FDB6B9 /* InterceptDoesNotRecognizeSelectorViewController.xib */; };
+		2BE8BEBF1E6D7235004CD034 /* SwizzleMethodByMethodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE8BEBE1E6D7235004CD034 /* SwizzleMethodByMethodViewController.m */; };
+		2BE8BEC21E6F000A004CD034 /* IsaSwizzlingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE8BEC11E6F000A004CD034 /* IsaSwizzlingViewController.m */; };
+		2BE8BEC51E705549004CD034 /* IsaSwizzlingIssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE8BEC41E705549004CD034 /* IsaSwizzlingIssueViewController.m */; };
+		548142558DFCD2B9A09D63BB /* libPods-HelloObjCRuntime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09C0BF0F088AFD6DE5B6BCA9 /* libPods-HelloObjCRuntime.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		09C0BF0F088AFD6DE5B6BCA9 /* libPods-HelloObjCRuntime.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HelloObjCRuntime.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B2EAA981E97CB7A00DBCC0D /* ModelProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelProtocol.h; sourceTree = "<group>"; };
+		2B2EAA991E97CB7A00DBCC0D /* ModelProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModelProtocol.m; sourceTree = "<group>"; };
+		2B2EAA9B1E97CC2700DBCC0D /* CreateDynamicDelegateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateDynamicDelegateViewController.h; sourceTree = "<group>"; };
+		2B2EAA9C1E97CC2700DBCC0D /* CreateDynamicDelegateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateDynamicDelegateViewController.m; sourceTree = "<group>"; };
+		2B2EAA9D1E97CC2700DBCC0D /* CreateDynamicDelegateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateDynamicDelegateViewController.xib; sourceTree = "<group>"; };
+		2B2EAAA01E97E4EB00DBCC0D /* AllModelsProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AllModelsProtocol.h; sourceTree = "<group>"; };
+		2B2ED6AC1E23A0D0006319E2 /* SwizzleMethodByBlockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwizzleMethodByBlockViewController.h; sourceTree = "<group>"; };
+		2B2ED6AD1E23A0D0006319E2 /* SwizzleMethodByBlockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwizzleMethodByBlockViewController.m; sourceTree = "<group>"; };
+		2B2ED6AF1E24DCEF006319E2 /* CheckNSObjectIsaVariableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckNSObjectIsaVariableViewController.h; sourceTree = "<group>"; };
+		2B2ED6B01E24DCEF006319E2 /* CheckNSObjectIsaVariableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckNSObjectIsaVariableViewController.m; sourceTree = "<group>"; };
+		2B2ED6B21E2509CA006319E2 /* WCKeyboardShortcutManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCKeyboardShortcutManager.h; sourceTree = "<group>"; };
+		2B2ED6B31E2509CA006319E2 /* WCKeyboardShortcutManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCKeyboardShortcutManager.m; sourceTree = "<group>"; };
+		2B6E6B901DF91DD10045BD98 /* HelloObjCRuntime.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloObjCRuntime.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B6E6B941DF91DD10045BD98 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		2B6E6B961DF91DD10045BD98 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		2B6E6B971DF91DD10045BD98 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2B6E6B9F1DF91DD10045BD98 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2B6E6BA21DF91DD10045BD98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2B6E6BA41DF91DD10045BD98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B6E6BAB1DF91E850045BD98 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		2B6E6BAC1DF91E850045BD98 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		2B6E6BAE1DF91F720045BD98 /* GetPropertiesOfClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetPropertiesOfClassViewController.h; sourceTree = "<group>"; };
+		2B6E6BAF1DF91F720045BD98 /* GetPropertiesOfClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetPropertiesOfClassViewController.m; sourceTree = "<group>"; };
+		2B6E6BB11DF9240C0045BD98 /* WCObjCRuntimeUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCObjCRuntimeUtility.h; sourceTree = "<group>"; };
+		2B6E6BB21DF9240C0045BD98 /* WCObjCRuntimeUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCObjCRuntimeUtility.m; sourceTree = "<group>"; };
+		2BA23B681E72FDD8000DBE48 /* CreateClassAtRuntimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateClassAtRuntimeViewController.h; sourceTree = "<group>"; };
+		2BA23B691E72FDD8000DBE48 /* CreateClassAtRuntimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateClassAtRuntimeViewController.m; sourceTree = "<group>"; };
+		2BA23BD11E73E3F1000DBE48 /* SimpleDynamicSubclassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleDynamicSubclassViewController.h; sourceTree = "<group>"; };
+		2BA23BD21E73E3F1000DBE48 /* SimpleDynamicSubclassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleDynamicSubclassViewController.m; sourceTree = "<group>"; };
+		2BA23BD41E7530C7000DBE48 /* InterceptCallByDynamicSubclassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterceptCallByDynamicSubclassViewController.h; sourceTree = "<group>"; };
+		2BA23BD51E7530C7000DBE48 /* InterceptCallByDynamicSubclassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterceptCallByDynamicSubclassViewController.m; sourceTree = "<group>"; };
+		2BBE76B41E8E751300FDB6B9 /* InterceptDoesNotRecognizeSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterceptDoesNotRecognizeSelectorViewController.h; sourceTree = "<group>"; };
+		2BBE76B51E8E751300FDB6B9 /* InterceptDoesNotRecognizeSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterceptDoesNotRecognizeSelectorViewController.m; sourceTree = "<group>"; };
+		2BBE76B61E8E751300FDB6B9 /* InterceptDoesNotRecognizeSelectorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InterceptDoesNotRecognizeSelectorViewController.xib; sourceTree = "<group>"; };
+		2BE8BEBD1E6D7235004CD034 /* SwizzleMethodByMethodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwizzleMethodByMethodViewController.h; sourceTree = "<group>"; };
+		2BE8BEBE1E6D7235004CD034 /* SwizzleMethodByMethodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwizzleMethodByMethodViewController.m; sourceTree = "<group>"; };
+		2BE8BEC01E6F000A004CD034 /* IsaSwizzlingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsaSwizzlingViewController.h; sourceTree = "<group>"; };
+		2BE8BEC11E6F000A004CD034 /* IsaSwizzlingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IsaSwizzlingViewController.m; sourceTree = "<group>"; };
+		2BE8BEC31E705549004CD034 /* IsaSwizzlingIssueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsaSwizzlingIssueViewController.h; sourceTree = "<group>"; };
+		2BE8BEC41E705549004CD034 /* IsaSwizzlingIssueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IsaSwizzlingIssueViewController.m; sourceTree = "<group>"; };
+		8B9D5D6444325E0389771D70 /* Pods-HelloObjCRuntime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloObjCRuntime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HelloObjCRuntime/Pods-HelloObjCRuntime.debug.xcconfig"; sourceTree = "<group>"; };
+		D95B2864436DD7CA5BA2048F /* Pods-HelloObjCRuntime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloObjCRuntime.release.xcconfig"; path = "Pods/Target Support Files/Pods-HelloObjCRuntime/Pods-HelloObjCRuntime.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2B6E6B8D1DF91DD10045BD98 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				548142558DFCD2B9A09D63BB /* libPods-HelloObjCRuntime.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2B6E6B871DF91DD10045BD98 = {
+			isa = PBXGroup;
+			children = (
+				2B6E6B921DF91DD10045BD98 /* HelloObjCRuntime */,
+				2B6E6B911DF91DD10045BD98 /* Products */,
+				B6F8AC82E0FD04C260D18855 /* Pods */,
+				93D2D61EABD895BEFF8066BA /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2B6E6B911DF91DD10045BD98 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2B6E6B901DF91DD10045BD98 /* HelloObjCRuntime.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2B6E6B921DF91DD10045BD98 /* HelloObjCRuntime */ = {
+			isa = PBXGroup;
+			children = (
+				2B6E6B961DF91DD10045BD98 /* AppDelegate.h */,
+				2B6E6B971DF91DD10045BD98 /* AppDelegate.m */,
+				2B6E6BAB1DF91E850045BD98 /* RootViewController.h */,
+				2B6E6BAC1DF91E850045BD98 /* RootViewController.m */,
+				2B6E6B9F1DF91DD10045BD98 /* Assets.xcassets */,
+				2B6E6BA11DF91DD10045BD98 /* LaunchScreen.storyboard */,
+				2B6E6BA41DF91DD10045BD98 /* Info.plist */,
+				2B6E6BB11DF9240C0045BD98 /* WCObjCRuntimeUtility.h */,
+				2B6E6BB21DF9240C0045BD98 /* WCObjCRuntimeUtility.m */,
+				2B2ED6B21E2509CA006319E2 /* WCKeyboardShortcutManager.h */,
+				2B2ED6B31E2509CA006319E2 /* WCKeyboardShortcutManager.m */,
+				2B6E6BAA1DF91E7E0045BD98 /* AppTestDemos */,
+				2B6E6B931DF91DD10045BD98 /* Supporting Files */,
+			);
+			path = HelloObjCRuntime;
+			sourceTree = "<group>";
+		};
+		2B6E6B931DF91DD10045BD98 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				2B6E6B941DF91DD10045BD98 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		2B6E6BAA1DF91E7E0045BD98 /* AppTestDemos */ = {
+			isa = PBXGroup;
+			children = (
+				2B6E6BAE1DF91F720045BD98 /* GetPropertiesOfClassViewController.h */,
+				2B6E6BAF1DF91F720045BD98 /* GetPropertiesOfClassViewController.m */,
+				2B2ED6AC1E23A0D0006319E2 /* SwizzleMethodByBlockViewController.h */,
+				2B2ED6AD1E23A0D0006319E2 /* SwizzleMethodByBlockViewController.m */,
+				2BE8BEBD1E6D7235004CD034 /* SwizzleMethodByMethodViewController.h */,
+				2BE8BEBE1E6D7235004CD034 /* SwizzleMethodByMethodViewController.m */,
+				2B2ED6AF1E24DCEF006319E2 /* CheckNSObjectIsaVariableViewController.h */,
+				2B2ED6B01E24DCEF006319E2 /* CheckNSObjectIsaVariableViewController.m */,
+				2BE8BEC01E6F000A004CD034 /* IsaSwizzlingViewController.h */,
+				2BE8BEC11E6F000A004CD034 /* IsaSwizzlingViewController.m */,
+				2BE8BEC31E705549004CD034 /* IsaSwizzlingIssueViewController.h */,
+				2BE8BEC41E705549004CD034 /* IsaSwizzlingIssueViewController.m */,
+				2BA23B681E72FDD8000DBE48 /* CreateClassAtRuntimeViewController.h */,
+				2BA23B691E72FDD8000DBE48 /* CreateClassAtRuntimeViewController.m */,
+				2BA23BD11E73E3F1000DBE48 /* SimpleDynamicSubclassViewController.h */,
+				2BA23BD21E73E3F1000DBE48 /* SimpleDynamicSubclassViewController.m */,
+				2BA23BD41E7530C7000DBE48 /* InterceptCallByDynamicSubclassViewController.h */,
+				2BA23BD51E7530C7000DBE48 /* InterceptCallByDynamicSubclassViewController.m */,
+				2BBE76B41E8E751300FDB6B9 /* InterceptDoesNotRecognizeSelectorViewController.h */,
+				2BBE76B51E8E751300FDB6B9 /* InterceptDoesNotRecognizeSelectorViewController.m */,
+				2BBE76B61E8E751300FDB6B9 /* InterceptDoesNotRecognizeSelectorViewController.xib */,
+				2B2EAA981E97CB7A00DBCC0D /* ModelProtocol.h */,
+				2B2EAA991E97CB7A00DBCC0D /* ModelProtocol.m */,
+				2B2EAA9B1E97CC2700DBCC0D /* CreateDynamicDelegateViewController.h */,
+				2B2EAA9C1E97CC2700DBCC0D /* CreateDynamicDelegateViewController.m */,
+				2B2EAA9D1E97CC2700DBCC0D /* CreateDynamicDelegateViewController.xib */,
+				2B2EAAA01E97E4EB00DBCC0D /* AllModelsProtocol.h */,
+			);
+			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		93D2D61EABD895BEFF8066BA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				09C0BF0F088AFD6DE5B6BCA9 /* libPods-HelloObjCRuntime.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B6F8AC82E0FD04C260D18855 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8B9D5D6444325E0389771D70 /* Pods-HelloObjCRuntime.debug.xcconfig */,
+				D95B2864436DD7CA5BA2048F /* Pods-HelloObjCRuntime.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2B6E6B8F1DF91DD10045BD98 /* HelloObjCRuntime */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2B6E6BA71DF91DD10045BD98 /* Build configuration list for PBXNativeTarget "HelloObjCRuntime" */;
+			buildPhases = (
+				A1274FFE59084E1AAD003A4E /* [CP] Check Pods Manifest.lock */,
+				2B6E6B8C1DF91DD10045BD98 /* Sources */,
+				2B6E6B8D1DF91DD10045BD98 /* Frameworks */,
+				2B6E6B8E1DF91DD10045BD98 /* Resources */,
+				662F4512BDAFFB82053CAC33 /* [CP] Embed Pods Frameworks */,
+				E194206651ADFD9CC5C00834 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HelloObjCRuntime;
+			productName = HelloObjCRuntime;
+			productReference = 2B6E6B901DF91DD10045BD98 /* HelloObjCRuntime.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2B6E6B881DF91DD10045BD98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "wesley chen";
+				TargetAttributes = {
+					2B6E6B8F1DF91DD10045BD98 = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 7ZASD48W58;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 2B6E6B8B1DF91DD10045BD98 /* Build configuration list for PBXProject "HelloObjCRuntime" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2B6E6B871DF91DD10045BD98;
+			productRefGroup = 2B6E6B911DF91DD10045BD98 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2B6E6B8F1DF91DD10045BD98 /* HelloObjCRuntime */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2B6E6B8E1DF91DD10045BD98 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BBE76B81E8E751300FDB6B9 /* InterceptDoesNotRecognizeSelectorViewController.xib in Resources */,
+				2B6E6BA31DF91DD10045BD98 /* LaunchScreen.storyboard in Resources */,
+				2B6E6BA01DF91DD10045BD98 /* Assets.xcassets in Resources */,
+				2B2EAA9F1E97CC2700DBCC0D /* CreateDynamicDelegateViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		662F4512BDAFFB82053CAC33 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HelloObjCRuntime/Pods-HelloObjCRuntime-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A1274FFE59084E1AAD003A4E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E194206651ADFD9CC5C00834 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HelloObjCRuntime/Pods-HelloObjCRuntime-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2B6E6B8C1DF91DD10045BD98 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BE8BEC51E705549004CD034 /* IsaSwizzlingIssueViewController.m in Sources */,
+				2BE8BEBF1E6D7235004CD034 /* SwizzleMethodByMethodViewController.m in Sources */,
+				2B2ED6B41E2509CA006319E2 /* WCKeyboardShortcutManager.m in Sources */,
+				2B6E6B981DF91DD10045BD98 /* AppDelegate.m in Sources */,
+				2B6E6BB31DF9240C0045BD98 /* WCObjCRuntimeUtility.m in Sources */,
+				2B6E6BAD1DF91E850045BD98 /* RootViewController.m in Sources */,
+				2B2ED6AE1E23A0D0006319E2 /* SwizzleMethodByBlockViewController.m in Sources */,
+				2BBE76B71E8E751300FDB6B9 /* InterceptDoesNotRecognizeSelectorViewController.m in Sources */,
+				2B2ED6B11E24DCEF006319E2 /* CheckNSObjectIsaVariableViewController.m in Sources */,
+				2B6E6BB01DF91F720045BD98 /* GetPropertiesOfClassViewController.m in Sources */,
+				2BA23B6A1E72FDD8000DBE48 /* CreateClassAtRuntimeViewController.m in Sources */,
+				2BA23BD61E7530C7000DBE48 /* InterceptCallByDynamicSubclassViewController.m in Sources */,
+				2BE8BEC21E6F000A004CD034 /* IsaSwizzlingViewController.m in Sources */,
+				2B2EAA9A1E97CB7A00DBCC0D /* ModelProtocol.m in Sources */,
+				2B6E6B951DF91DD10045BD98 /* main.m in Sources */,
+				2B2EAA9E1E97CC2700DBCC0D /* CreateDynamicDelegateViewController.m in Sources */,
+				2BA23BD31E73E3F1000DBE48 /* SimpleDynamicSubclassViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		2B6E6BA11DF91DD10045BD98 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2B6E6BA21DF91DD10045BD98 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2B6E6BA51DF91DD10045BD98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		2B6E6BA61DF91DD10045BD98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2B6E6BA81DF91DD10045BD98 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8B9D5D6444325E0389771D70 /* Pods-HelloObjCRuntime.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7ZASD48W58;
+				INFOPLIST_FILE = HelloObjCRuntime/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloObjCRuntime.cl;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2B6E6BA91DF91DD10045BD98 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D95B2864436DD7CA5BA2048F /* Pods-HelloObjCRuntime.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 7ZASD48W58;
+				INFOPLIST_FILE = HelloObjCRuntime/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloObjCRuntime.cl;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2B6E6B8B1DF91DD10045BD98 /* Build configuration list for PBXProject "HelloObjCRuntime" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B6E6BA51DF91DD10045BD98 /* Debug */,
+				2B6E6BA61DF91DD10045BD98 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2B6E6BA71DF91DD10045BD98 /* Build configuration list for PBXNativeTarget "HelloObjCRuntime" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2B6E6BA81DF91DD10045BD98 /* Debug */,
+				2B6E6BA91DF91DD10045BD98 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2B6E6B881DF91DD10045BD98 /* Project object */;
+}

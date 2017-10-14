@@ -1,0 +1,3 @@
+target 'HelloObjCRuntime' do
+    pod 'WCObjCRuntime', :git => "https://github.com/daydreamboy/WCObjCRuntime.git"
+end

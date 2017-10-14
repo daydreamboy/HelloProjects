@@ -1,0 +1,21 @@
+PODS:
+  - WCObjCRuntime (0.1.0)
+
+DEPENDENCIES:
+  - WCObjCRuntime (from `https://github.com/daydreamboy/WCObjCRuntime.git`)
+
+EXTERNAL SOURCES:
+  WCObjCRuntime:
+    :git: https://github.com/daydreamboy/WCObjCRuntime.git
+
+CHECKOUT OPTIONS:
+  WCObjCRuntime:
+    :commit: f8c2aa68ba119f3c60302cd14a0028037ba015d7
+    :git: https://github.com/daydreamboy/WCObjCRuntime.git
+
+SPEC CHECKSUMS:
+  WCObjCRuntime: 7415cb914d8283eb94cff882c4d9b5d0ee34547f
+
+PODFILE CHECKSUM: 49567689141900e4d920c28612c618479fb6c53b
+
+COCOAPODS: 1.1.1
