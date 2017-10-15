@@ -1,0 +1,36 @@
+/**
+* @description WP Code Highlight can also load wp-code-highlight.css from current wordpress theme directory
+* @author BoLiQuan
+* @plugin name WP Code Highlight
+* @plugin url http://boliquan.com/wp-code-highlight/
+*/
+pre .pln{color:#000;}
+pre .str{color:#080;}
+pre .kwd{color:#008;}
+pre .com{color:#800;}
+pre .typ{color:#606;}
+pre .lit{color:#066;}
+pre .pun,
+pre .opn,
+pre .clo{color:#660;}
+pre .tag{color:#008;}
+pre .atn{color:#606;}
+pre .atv{color:#080;}
+pre .dec,
+pre .var{color:#606;}
+pre .fun{color:#F00;}
+
+pre.prettyprint{
+	border:1px solid #ccc;
+	font-size:12px;line-height:16px;margin:6px 0px;padding:2px 7px;word-wrap:normal;overflow:auto;width:98%;
+}
+ol.linenums li{line-height:16px;margin:0px;padding:0px;list-style:none;}
+ol.linenums li:before,ol.linenums li:after{content:none;}
+ol.linenums{margin:0;padding-left:27px;}
+ol.linenums li.L0,ol.linenums li.L1,ol.linenums li.L2,ol.linenums li.L3,ol.linenums li.L4,ol.linenums li.L5,ol.linenums li.L6,ol.linenums li.L7,ol.linenums li.L8,ol.linenums li.L9{
+	list-style-type:decimal;
+}
+ol.linenums li.L1,ol.linenums li.L3,ol.linenums li.L5,ol.linenums li.L7,ol.linenums li.L9{
+	list-style-type:decimal;
+	background:#eee;
+}
