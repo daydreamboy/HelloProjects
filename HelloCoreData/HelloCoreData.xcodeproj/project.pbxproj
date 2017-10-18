@@ -32,6 +32,9 @@
 		4F60354E1F66317600FCBC32 /* Department2DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F60354C1F66317600FCBC32 /* Department2DetailViewController.xib */; };
 		4F6723491F7BAC550043C384 /* PagingFetchResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6723451F7BAC550043C384 /* PagingFetchResultViewController.m */; };
 		4F67234A1F7BAC550043C384 /* PagingFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6723471F7BAC550043C384 /* PagingFilterViewController.m */; };
+		4F91D9B41F973D590054F8A8 /* SurfEntryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F91D9B31F973D590054F8A8 /* SurfEntryTableViewCell.m */; };
+		4F91D9B61F973D930054F8A8 /* SurfEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F91D9B51F973D930054F8A8 /* SurfEntryTableViewCell.xib */; };
+		4F91D9CD1F9748470054F8A8 /* JournalEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD18AC1F972CE000BA3837 /* JournalEntry.m */; };
 		4F9DE4301F67DE0B002CDB70 /* Tests_Department2ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9DE42F1F67DE0B002CDB70 /* Tests_Department2ListViewController.m */; };
 		4F9DE4381F67FA59002CDB70 /* Tests_Employee2DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9DE4371F67FA59002CDB70 /* Tests_Employee2DetailViewController.m */; };
 		4F9DE4391F67FDC8002CDB70 /* EmployeeDirectory2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6A641F61370100DB315D /* EmployeeDirectory2.xcdatamodeld */; };
@@ -61,6 +64,8 @@
 		4F9E6AA81F63D1D200DB315D /* Employee1PictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6AA71F63D1D200DB315D /* Employee1PictureViewController.m */; };
 		4F9E6AAC1F63D56000DB315D /* Department1DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6AAA1F63D56000DB315D /* Department1DetailViewController.m */; };
 		4F9E6AAD1F63D56000DB315D /* Department1DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F9E6AAB1F63D56000DB315D /* Department1DetailViewController.xib */; };
+		4FCD18A31F972A0400BA3837 /* SurfJournalModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD18A11F9729FB00BA3837 /* SurfJournalModel.xcdatamodeld */; };
+		4FCD18B11F97348800BA3837 /* JournalListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD18B01F97348800BA3837 /* JournalListViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,10 +89,6 @@
 		4F1812CA1F5F950C007E17C1 /* Dog Walk.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Dog Walk.xcdatamodel"; sourceTree = "<group>"; };
 		4F1812CF1F5F9565007E17C1 /* WorldCup.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WorldCup.xcdatamodel; sourceTree = "<group>"; };
 		4F1812D21F5F966B007E17C1 /* WorldCup_seed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WorldCup_seed.json; sourceTree = "<group>"; };
-		4F1812D41F5F969B007E17C1 /* Team+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Team+CoreDataClass.h"; sourceTree = "<group>"; };
-		4F1812D51F5F969B007E17C1 /* Team+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Team+CoreDataClass.m"; sourceTree = "<group>"; };
-		4F1812D61F5F969B007E17C1 /* Team+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Team+CoreDataProperties.h"; sourceTree = "<group>"; };
-		4F1812D71F5F969B007E17C1 /* Team+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Team+CoreDataProperties.m"; sourceTree = "<group>"; };
 		4F1812DA1F5F970E007E17C1 /* FetchResultControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchResultControllerViewController.h; sourceTree = "<group>"; };
 		4F1812DB1F5F970E007E17C1 /* FetchResultControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchResultControllerViewController.m; sourceTree = "<group>"; };
 		4F3CF6D01F5506D200E14CB7 /* HelloCoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloCoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -100,34 +101,6 @@
 		4F3CF6EF1F55073E00E14CB7 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F3CF6F11F55121F00E14CB7 /* CoreDataStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataStack.h; sourceTree = "<group>"; };
 		4F3CF6F21F55121F00E14CB7 /* CoreDataStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataStack.m; sourceTree = "<group>"; };
-		4F3CF7151F5588EE00E14CB7 /* Dog+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dog+CoreDataClass.h"; sourceTree = "<group>"; };
-		4F3CF7161F5588EE00E14CB7 /* Dog+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Dog+CoreDataClass.m"; sourceTree = "<group>"; };
-		4F3CF7171F5588EE00E14CB7 /* Dog+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Dog+CoreDataProperties.h"; sourceTree = "<group>"; };
-		4F3CF7181F5588EE00E14CB7 /* Dog+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Dog+CoreDataProperties.m"; sourceTree = "<group>"; };
-		4F3CF7191F5588EE00E14CB7 /* Walk+CoreDataClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Walk+CoreDataClass.h"; sourceTree = "<group>"; };
-		4F3CF71A1F5588EE00E14CB7 /* Walk+CoreDataClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Walk+CoreDataClass.m"; sourceTree = "<group>"; };
-		4F3CF71B1F5588EE00E14CB7 /* Walk+CoreDataProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Walk+CoreDataProperties.h"; sourceTree = "<group>"; };
-		4F3CF71C1F5588EE00E14CB7 /* Walk+CoreDataProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "Walk+CoreDataProperties.m"; sourceTree = "<group>"; };
-		4F3CF71E1F5589B900E14CB7 /* PriceInfo+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PriceInfo+CoreDataClass.h"; sourceTree = "<group>"; };
-		4F3CF71F1F5589B900E14CB7 /* PriceInfo+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PriceInfo+CoreDataClass.m"; sourceTree = "<group>"; };
-		4F3CF7201F5589B900E14CB7 /* PriceInfo+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PriceInfo+CoreDataProperties.h"; sourceTree = "<group>"; };
-		4F3CF7211F5589B900E14CB7 /* PriceInfo+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PriceInfo+CoreDataProperties.m"; sourceTree = "<group>"; };
-		4F3CF7221F5589B900E14CB7 /* Venue+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Venue+CoreDataClass.h"; sourceTree = "<group>"; };
-		4F3CF7231F5589B900E14CB7 /* Venue+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Venue+CoreDataClass.m"; sourceTree = "<group>"; };
-		4F3CF7241F5589B900E14CB7 /* Venue+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Venue+CoreDataProperties.h"; sourceTree = "<group>"; };
-		4F3CF7251F5589B900E14CB7 /* Venue+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Venue+CoreDataProperties.m"; sourceTree = "<group>"; };
-		4F3CF7261F5589B900E14CB7 /* Category+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Category+CoreDataClass.h"; sourceTree = "<group>"; };
-		4F3CF7271F5589B900E14CB7 /* Category+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Category+CoreDataClass.m"; sourceTree = "<group>"; };
-		4F3CF7281F5589B900E14CB7 /* Category+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Category+CoreDataProperties.h"; sourceTree = "<group>"; };
-		4F3CF7291F5589B900E14CB7 /* Category+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Category+CoreDataProperties.m"; sourceTree = "<group>"; };
-		4F3CF72A1F5589B900E14CB7 /* Location+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Location+CoreDataClass.h"; sourceTree = "<group>"; };
-		4F3CF72B1F5589B900E14CB7 /* Location+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Location+CoreDataClass.m"; sourceTree = "<group>"; };
-		4F3CF72C1F5589B900E14CB7 /* Location+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Location+CoreDataProperties.h"; sourceTree = "<group>"; };
-		4F3CF72D1F5589B900E14CB7 /* Location+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Location+CoreDataProperties.m"; sourceTree = "<group>"; };
-		4F3CF72E1F5589B900E14CB7 /* Stats+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Stats+CoreDataClass.h"; sourceTree = "<group>"; };
-		4F3CF72F1F5589B900E14CB7 /* Stats+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Stats+CoreDataClass.m"; sourceTree = "<group>"; };
-		4F3CF7301F5589B900E14CB7 /* Stats+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Stats+CoreDataProperties.h"; sourceTree = "<group>"; };
-		4F3CF7311F5589B900E14CB7 /* Stats+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Stats+CoreDataProperties.m"; sourceTree = "<group>"; };
 		4F3CF7431F558B3600E14CB7 /* BubbleTeaFinder_seed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = BubbleTeaFinder_seed.json; sourceTree = "<group>"; };
 		4F3CF7451F56B3CA00E14CB7 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		4F3CF7461F56B3CA00E14CB7 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
@@ -149,6 +122,9 @@
 		4F6723451F7BAC550043C384 /* PagingFetchResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagingFetchResultViewController.m; sourceTree = "<group>"; };
 		4F6723461F7BAC550043C384 /* PagingFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagingFilterViewController.h; sourceTree = "<group>"; };
 		4F6723471F7BAC550043C384 /* PagingFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PagingFilterViewController.m; sourceTree = "<group>"; };
+		4F91D9B21F973D590054F8A8 /* SurfEntryTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SurfEntryTableViewCell.h; sourceTree = "<group>"; };
+		4F91D9B31F973D590054F8A8 /* SurfEntryTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SurfEntryTableViewCell.m; sourceTree = "<group>"; };
+		4F91D9B51F973D930054F8A8 /* SurfEntryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SurfEntryTableViewCell.xib; sourceTree = "<group>"; };
 		4F9DE42D1F67DE0B002CDB70 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F9DE42F1F67DE0B002CDB70 /* Tests_Department2ListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_Department2ListViewController.m; sourceTree = "<group>"; };
 		4F9DE4311F67DE0B002CDB70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -158,16 +134,8 @@
 		4F9DE46B1F68C73B002CDB70 /* Tests_Department2DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tests_Department2DetailViewController.m; sourceTree = "<group>"; };
 		4F9E6A621F6136F300DB315D /* EmployeeDirectory1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EmployeeDirectory1.xcdatamodel; sourceTree = "<group>"; };
 		4F9E6A651F61370100DB315D /* EmployeeDirectory2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EmployeeDirectory2.xcdatamodel; sourceTree = "<group>"; };
-		4F9E6A691F613B2A00DB315D /* Sale1+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Sale1+CoreDataClass.h"; sourceTree = "<group>"; };
-		4F9E6A6A1F613B2A00DB315D /* Sale1+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Sale1+CoreDataClass.m"; sourceTree = "<group>"; };
-		4F9E6A6B1F613B2A00DB315D /* Sale1+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Sale1+CoreDataProperties.h"; sourceTree = "<group>"; };
-		4F9E6A6C1F613B2A00DB315D /* Sale1+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Sale1+CoreDataProperties.m"; sourceTree = "<group>"; };
-		4F9E6A6D1F613B2A00DB315D /* Employee1+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Employee1+CoreDataClass.h"; sourceTree = "<group>"; };
-		4F9E6A6E1F613B2A00DB315D /* Employee1+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Employee1+CoreDataClass.m"; sourceTree = "<group>"; };
 		4F9E6A751F613BA900DB315D /* Employee1ListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Employee1ListViewController.h; sourceTree = "<group>"; };
 		4F9E6A761F613BA900DB315D /* Employee1ListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Employee1ListViewController.m; sourceTree = "<group>"; };
-		4F9E6A781F6144AB00DB315D /* Employee1+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Employee1+CoreDataProperties.h"; sourceTree = "<group>"; };
-		4F9E6A791F6144AB00DB315D /* Employee1+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Employee1+CoreDataProperties.m"; sourceTree = "<group>"; };
 		4F9E6A7B1F61486B00DB315D /* EmployeeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EmployeeTableViewCell.xib; sourceTree = "<group>"; };
 		4F9E6A7D1F614FAC00DB315D /* EmployeeDirectory1_seed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EmployeeDirectory1_seed.json; sourceTree = "<group>"; };
 		4F9E6A7E1F614FAC00DB315D /* EmployeeDirectory2_seed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = EmployeeDirectory2_seed.json; sourceTree = "<group>"; };
@@ -195,6 +163,11 @@
 		4F9E6AA91F63D56000DB315D /* Department1DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Department1DetailViewController.h; sourceTree = "<group>"; };
 		4F9E6AAA1F63D56000DB315D /* Department1DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Department1DetailViewController.m; sourceTree = "<group>"; };
 		4F9E6AAB1F63D56000DB315D /* Department1DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Department1DetailViewController.xib; sourceTree = "<group>"; };
+		4FCD18A21F9729FB00BA3837 /* SurfJournalModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SurfJournalModel.xcdatamodel; sourceTree = "<group>"; };
+		4FCD18AB1F972CE000BA3837 /* JournalEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JournalEntry.h; sourceTree = "<group>"; };
+		4FCD18AC1F972CE000BA3837 /* JournalEntry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JournalEntry.m; sourceTree = "<group>"; };
+		4FCD18AF1F97348800BA3837 /* JournalListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JournalListViewController.h; sourceTree = "<group>"; };
+		4FCD18B01F97348800BA3837 /* JournalListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JournalListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,17 +220,6 @@
 			path = WorldCup;
 			sourceTree = "<group>";
 		};
-		4F1812D11F5F9662007E17C1 /* ManagedObjects_WorldCup */ = {
-			isa = PBXGroup;
-			children = (
-				4F1812D41F5F969B007E17C1 /* Team+CoreDataClass.h */,
-				4F1812D51F5F969B007E17C1 /* Team+CoreDataClass.m */,
-				4F1812D61F5F969B007E17C1 /* Team+CoreDataProperties.h */,
-				4F1812D71F5F969B007E17C1 /* Team+CoreDataProperties.m */,
-			);
-			path = ManagedObjects_WorldCup;
-			sourceTree = "<group>";
-		};
 		4F3CF6C71F5506D200E14CB7 = {
 			isa = PBXGroup;
 			children = (
@@ -304,6 +266,7 @@
 		4F3CF6EA1F55073500E14CB7 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4FCD18A01F9727BE00BA3837 /* SurfJournal */,
 				4F6723411F7BAC550043C384 /* BubbleTeaFinder_Paging */,
 				4F9E6A5F1F61369B00DB315D /* EmployeeDirectory1 */,
 				4F9E6A601F61369B00DB315D /* EmployeeDirectory2 */,
@@ -313,57 +276,11 @@
 				4F3CF7451F56B3CA00E14CB7 /* BaseViewController.h */,
 				4F3CF7461F56B3CA00E14CB7 /* BaseViewController.m */,
 				4F3CF7421F558B3600E14CB7 /* Resources */,
-				4F1812D11F5F9662007E17C1 /* ManagedObjects_WorldCup */,
-				4F3CF71D1F55898F00E14CB7 /* ManagedObjects_BubbleTeaFinder */,
-				4F3CF7141F5588EE00E14CB7 /* ManagedObjects_DogWalk */,
-				4F9E6A671F61397D00DB315D /* ManagedObjects_EmployeeDirectory1 */,
-				4F9E6A681F61397D00DB315D /* ManagedObjects_EmployeeDirectory2 */,
+				4FCD18AA1F972CE000BA3837 /* ManagedObjects_SurfJournal */,
 				4F3CF6F11F55121F00E14CB7 /* CoreDataStack.h */,
 				4F3CF6F21F55121F00E14CB7 /* CoreDataStack.m */,
 			);
 			path = AppTestDemos;
-			sourceTree = "<group>";
-		};
-		4F3CF7141F5588EE00E14CB7 /* ManagedObjects_DogWalk */ = {
-			isa = PBXGroup;
-			children = (
-				4F3CF7151F5588EE00E14CB7 /* Dog+CoreDataClass.h */,
-				4F3CF7161F5588EE00E14CB7 /* Dog+CoreDataClass.m */,
-				4F3CF7171F5588EE00E14CB7 /* Dog+CoreDataProperties.h */,
-				4F3CF7181F5588EE00E14CB7 /* Dog+CoreDataProperties.m */,
-				4F3CF7191F5588EE00E14CB7 /* Walk+CoreDataClass.h */,
-				4F3CF71A1F5588EE00E14CB7 /* Walk+CoreDataClass.m */,
-				4F3CF71B1F5588EE00E14CB7 /* Walk+CoreDataProperties.h */,
-				4F3CF71C1F5588EE00E14CB7 /* Walk+CoreDataProperties.m */,
-			);
-			path = ManagedObjects_DogWalk;
-			sourceTree = "<group>";
-		};
-		4F3CF71D1F55898F00E14CB7 /* ManagedObjects_BubbleTeaFinder */ = {
-			isa = PBXGroup;
-			children = (
-				4F3CF71E1F5589B900E14CB7 /* PriceInfo+CoreDataClass.h */,
-				4F3CF71F1F5589B900E14CB7 /* PriceInfo+CoreDataClass.m */,
-				4F3CF7201F5589B900E14CB7 /* PriceInfo+CoreDataProperties.h */,
-				4F3CF7211F5589B900E14CB7 /* PriceInfo+CoreDataProperties.m */,
-				4F3CF7221F5589B900E14CB7 /* Venue+CoreDataClass.h */,
-				4F3CF7231F5589B900E14CB7 /* Venue+CoreDataClass.m */,
-				4F3CF7241F5589B900E14CB7 /* Venue+CoreDataProperties.h */,
-				4F3CF7251F5589B900E14CB7 /* Venue+CoreDataProperties.m */,
-				4F3CF7261F5589B900E14CB7 /* Category+CoreDataClass.h */,
-				4F3CF7271F5589B900E14CB7 /* Category+CoreDataClass.m */,
-				4F3CF7281F5589B900E14CB7 /* Category+CoreDataProperties.h */,
-				4F3CF7291F5589B900E14CB7 /* Category+CoreDataProperties.m */,
-				4F3CF72A1F5589B900E14CB7 /* Location+CoreDataClass.h */,
-				4F3CF72B1F5589B900E14CB7 /* Location+CoreDataClass.m */,
-				4F3CF72C1F5589B900E14CB7 /* Location+CoreDataProperties.h */,
-				4F3CF72D1F5589B900E14CB7 /* Location+CoreDataProperties.m */,
-				4F3CF72E1F5589B900E14CB7 /* Stats+CoreDataClass.h */,
-				4F3CF72F1F5589B900E14CB7 /* Stats+CoreDataClass.m */,
-				4F3CF7301F5589B900E14CB7 /* Stats+CoreDataProperties.h */,
-				4F3CF7311F5589B900E14CB7 /* Stats+CoreDataProperties.m */,
-			);
-			path = ManagedObjects_BubbleTeaFinder;
 			sourceTree = "<group>";
 		};
 		4F3CF7421F558B3600E14CB7 /* Resources */ = {
@@ -448,30 +365,6 @@
 			path = EmployeeDirectory2;
 			sourceTree = "<group>";
 		};
-		4F9E6A671F61397D00DB315D /* ManagedObjects_EmployeeDirectory1 */ = {
-			isa = PBXGroup;
-			children = (
-				4F9E6A781F6144AB00DB315D /* Employee1+CoreDataProperties.h */,
-				4F9E6A791F6144AB00DB315D /* Employee1+CoreDataProperties.m */,
-				4F9E6A691F613B2A00DB315D /* Sale1+CoreDataClass.h */,
-				4F9E6A6A1F613B2A00DB315D /* Sale1+CoreDataClass.m */,
-				4F9E6A6B1F613B2A00DB315D /* Sale1+CoreDataProperties.h */,
-				4F9E6A6C1F613B2A00DB315D /* Sale1+CoreDataProperties.m */,
-				4F9E6A6D1F613B2A00DB315D /* Employee1+CoreDataClass.h */,
-				4F9E6A6E1F613B2A00DB315D /* Employee1+CoreDataClass.m */,
-			);
-			name = ManagedObjects_EmployeeDirectory1;
-			path = HelloCoreData/AppTestDemos/ManagedObjects_EmployeeDirectory1;
-			sourceTree = SOURCE_ROOT;
-		};
-		4F9E6A681F61397D00DB315D /* ManagedObjects_EmployeeDirectory2 */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = ManagedObjects_EmployeeDirectory2;
-			path = HelloCoreData/AppTestDemos/ManagedObjects_EmployeeDirectory2;
-			sourceTree = SOURCE_ROOT;
-		};
 		4F9E6A811F61516500DB315D /* faces */ = {
 			isa = PBXGroup;
 			children = (
@@ -487,6 +380,28 @@
 				4F9E6A8B1F61516500DB315D /* face10.jpg */,
 			);
 			path = faces;
+			sourceTree = "<group>";
+		};
+		4FCD18A01F9727BE00BA3837 /* SurfJournal */ = {
+			isa = PBXGroup;
+			children = (
+				4FCD18A11F9729FB00BA3837 /* SurfJournalModel.xcdatamodeld */,
+				4FCD18AF1F97348800BA3837 /* JournalListViewController.h */,
+				4FCD18B01F97348800BA3837 /* JournalListViewController.m */,
+				4F91D9B21F973D590054F8A8 /* SurfEntryTableViewCell.h */,
+				4F91D9B31F973D590054F8A8 /* SurfEntryTableViewCell.m */,
+				4F91D9B51F973D930054F8A8 /* SurfEntryTableViewCell.xib */,
+			);
+			path = SurfJournal;
+			sourceTree = "<group>";
+		};
+		4FCD18AA1F972CE000BA3837 /* ManagedObjects_SurfJournal */ = {
+			isa = PBXGroup;
+			children = (
+				4FCD18AB1F972CE000BA3837 /* JournalEntry.h */,
+				4FCD18AC1F972CE000BA3837 /* JournalEntry.m */,
+			);
+			path = ManagedObjects_SurfJournal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -591,6 +506,7 @@
 				4F9E6A8E1F61516500DB315D /* face03.jpg in Resources */,
 				4F3CF6E01F5506D200E14CB7 /* Assets.xcassets in Resources */,
 				4F9E6A8F1F61516500DB315D /* face04.jpg in Resources */,
+				4F91D9B61F973D930054F8A8 /* SurfEntryTableViewCell.xib in Resources */,
 				4F9E6A801F614FAC00DB315D /* EmployeeDirectory2_seed.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -609,6 +525,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F91D9CD1F9748470054F8A8 /* JournalEntry.m in Sources */,
 				4F9E6A631F6136F300DB315D /* EmployeeDirectory1.xcdatamodeld in Sources */,
 				4F9E6AA81F63D1D200DB315D /* Employee1PictureViewController.m in Sources */,
 				4F3CF6F31F55121F00E14CB7 /* CoreDataStack.m in Sources */,
@@ -621,8 +538,10 @@
 				4F9E6A981F61606300DB315D /* EmployeeTableViewCell.m in Sources */,
 				4F9E6A661F61370100DB315D /* EmployeeDirectory2.xcdatamodeld in Sources */,
 				4F6723491F7BAC550043C384 /* PagingFetchResultViewController.m in Sources */,
+				4FCD18B11F97348800BA3837 /* JournalListViewController.m in Sources */,
 				4F1812CB1F5F950C007E17C1 /* BuildCoreDataStackViewController.m in Sources */,
 				4F9E6A9E1F6178D800DB315D /* Department1ListViewController.m in Sources */,
+				4FCD18A31F972A0400BA3837 /* SurfJournalModel.xcdatamodeld in Sources */,
 				4F60354D1F66317600FCBC32 /* Department2DetailViewController.m in Sources */,
 				4F6035461F662D8300FCBC32 /* Employee2TabController.m in Sources */,
 				4F1812CC1F5F950C007E17C1 /* Dog Walk.xcdatamodeld in Sources */,
@@ -630,6 +549,7 @@
 				4F1812C31F5F9504007E17C1 /* Bubble_Tea_Finder.xcdatamodeld in Sources */,
 				4F3CF6D81F5506D200E14CB7 /* AppDelegate.m in Sources */,
 				4F1812D01F5F9565007E17C1 /* WorldCup.xcdatamodeld in Sources */,
+				4F91D9B41F973D590054F8A8 /* SurfEntryTableViewCell.m in Sources */,
 				4F67234A1F7BAC550043C384 /* PagingFilterViewController.m in Sources */,
 				4F3CF6D51F5506D200E14CB7 /* main.m in Sources */,
 				4F1812C51F5F9504007E17C1 /* FilterViewController.m in Sources */,
@@ -884,6 +804,16 @@
 			);
 			currentVersion = 4F9E6A651F61370100DB315D /* EmployeeDirectory2.xcdatamodel */;
 			path = EmployeeDirectory2.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		4FCD18A11F9729FB00BA3837 /* SurfJournalModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4FCD18A21F9729FB00BA3837 /* SurfJournalModel.xcdatamodel */,
+			);
+			currentVersion = 4FCD18A21F9729FB00BA3837 /* SurfJournalModel.xcdatamodel */;
+			path = SurfJournalModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
