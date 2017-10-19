@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JournalEntry : NSManagedObject
 - (NSString *)stringForDate;
+- (NSString *)csv;
 @end
 
 NS_ASSUME_NONNULL_END

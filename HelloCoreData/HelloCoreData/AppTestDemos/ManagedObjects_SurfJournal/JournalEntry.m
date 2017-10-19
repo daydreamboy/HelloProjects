@@ -18,4 +18,16 @@
     return [dateFormater stringFromDate:self.date];
 }
 
+- (NSString *)csv {
+    NSString *string = [NSString stringWithFormat:@"%@,%@,%@,%@,%@,%@",
+                        [self stringForDate],
+                        self.height,
+                        self.period,
+                        self.wind,
+                        self.location,
+                        [self.rating stringValue]
+                        ];
+    return string;
+}
+
 @end

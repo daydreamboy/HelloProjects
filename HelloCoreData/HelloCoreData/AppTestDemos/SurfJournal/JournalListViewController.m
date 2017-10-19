@@ -11,12 +11,12 @@
 #import "SurfEntryTableViewCell.h"
 #import "JournalEntry.h"
 
-//#import "JournalEntry+CoreDataClass.h"
-//#import "JournalEntry+Methods.h"
+#define SEED_NAME   @"SurfJournalDatabase"
 
 @interface JournalListViewController () <NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) NSManagedObjectContext *context;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
+@property (nonatomic, strong) NSFetchRequest *fetchRequestSurfJournal;
 @property (nonatomic, strong) UITableView *tableView;
 @end
 
@@ -24,27 +24,111 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self importSeedDataIfNeeded];
     
     UINib *nib = [UINib nibWithNibName:@"SurfEntryTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"JournalListViewController_sCellIdentifier"];
     
     [self.view addSubview:self.tableView];
     
-    UIBarButtonItem *filterItem = [[UIBarButtonItem alloc] initWithTitle:@"Export" style:UIBarButtonItemStylePlain target:self action:@selector(filterItemClicked:)];
-    self.navigationItem.rightBarButtonItem = filterItem;
+    self.navigationItem.rightBarButtonItem = [self createExportItem];
+}
+
+#pragma mark -
+
+- (UIBarButtonItem *)createExportItem {
+    UIBarButtonItem *exportItem = [[UIBarButtonItem alloc] initWithTitle:@"Export" style:UIBarButtonItemStylePlain target:self action:@selector(exportItemClicked:)];
+    return exportItem;
+}
+
+- (UIBarButtonItem *)createActivityIndicatorItem {
+    UIActivityIndicatorView *loadingView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    UIBarButtonItem *activityIndicatorItem = [[UIBarButtonItem alloc] initWithCustomView:loadingView];
+    [loadingView startAnimating];
+    return activityIndicatorItem;
+}
+
+- (void)exportCSV {
+    self.navigationItem.rightBarButtonItem = [self createActivityIndicatorItem];
+    
+    NSError *error = nil;
+    NSArray *results = nil;
+    @try {
+        results = [self.context executeFetchRequest:self.fetchRequestSurfJournal error:&error];
+    }
+    @catch (NSException *exception) {
+        results = nil;
+    }
+    
+    if (results) {
+        NSString *exportFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"export.csv"];
+        [[NSFileManager defaultManager] createFileAtPath:exportFilePath contents:nil attributes:nil];
+        
+        NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:exportFilePath];
+        for (JournalEntry *journalEntry in results) {
+            [fileHandle seekToEndOfFile];
+            
+            NSData *data = [[journalEntry csv] dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
+            [fileHandle writeData:data];
+        }
+        
+        [fileHandle closeFile];
+        
+        NSLog(@"Export path: %@", exportFilePath);
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:exportFilePath message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+        
+        self.navigationItem.rightBarButtonItem = [self createExportItem];
+    }
+    else {
+        self.navigationItem.rightBarButtonItem = [self createExportItem];
+    }
+}
+
+- (void)importSeedDataIfNeeded {
+    NSString *extension = @"sqlite";
+    NSURL *sourceURL = [[NSBundle mainBundle] URLForResource:SEED_NAME withExtension:extension];
+    NSURL *destinationURL = [[self documentsDirectory] URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", SEED_NAME, extension]];
+    
+    NSURL *sqliteURL = [destinationURL copy];
+    
+    BOOL copied = [[NSFileManager defaultManager] copyItemAtURL:sourceURL toURL:destinationURL error:nil];
+    if (copied) {
+        extension = @"sqlite-shm";
+        sourceURL = [[NSBundle mainBundle] URLForResource:SEED_NAME withExtension:extension];
+        destinationURL = [[self documentsDirectory] URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", SEED_NAME, extension]];
+        
+        [[NSFileManager defaultManager] removeItemAtURL:destinationURL error:nil];
+        copied = [[NSFileManager defaultManager] copyItemAtURL:sourceURL toURL:destinationURL error:nil];
+        if (!copied) {
+            NSLog(@"copy %@ failed", extension);
+            abort();
+        }
+        
+        extension = @"sqlite-wal";
+        sourceURL = [[NSBundle mainBundle] URLForResource:SEED_NAME withExtension:extension];
+        destinationURL = [[self documentsDirectory] URLByAppendingPathComponent:[NSString stringWithFormat:@"%@.%@", SEED_NAME, extension]];
+        
+        [[NSFileManager defaultManager] removeItemAtURL:destinationURL error:nil];
+        copied = [[NSFileManager defaultManager] copyItemAtURL:sourceURL toURL:destinationURL error:nil];
+        if (!copied) {
+            NSLog(@"copy %@ failed", extension);
+            abort();
+        }
+    }
+    
+    CoreDataStack *coreDataStack = [[CoreDataStack alloc] initWithModelName:@"SurfJournalModel" databaseURL:sqliteURL];
+    self.coreDataStack = coreDataStack;
+    _context = coreDataStack.context;
+}
+
+- (NSURL *)documentsDirectory {
+    NSArray *URLs = [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
+    return URLs[URLs.count - 1];
 }
 
 #pragma mark - Getters
-
-- (NSManagedObjectContext *)context {
-    if (!_context) {
-        CoreDataStack *coreDataStack = [[CoreDataStack alloc] initWithModelName:@"SurfJournalModel"];
-        self.coreDataStack = coreDataStack;
-        _context = coreDataStack.context;
-    }
-    
-    return _context;
-}
 
 - (UITableView *)tableView {
     if (!_tableView) {
@@ -60,14 +144,8 @@
 
 - (NSFetchedResultsController *)fetchedResultsController {
     if (!_fetchedResultsController) {
-        
-        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
-        
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"JournalEntry"];
-        fetchRequest.fetchBatchSize = 20;
-        fetchRequest.sortDescriptors = @[sort];
-        
-        NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.context sectionNameKeyPath:nil cacheName:nil];
+        NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequestSurfJournal managedObjectContext:self.context sectionNameKeyPath:nil cacheName:nil];
+        controller.delegate = self;
         
         NSError *error = nil;
         @try {
@@ -83,14 +161,35 @@
     return _fetchedResultsController;
 }
 
+- (NSFetchRequest *)fetchRequestSurfJournal {
+    if (!_fetchRequestSurfJournal) {
+        
+        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
+        
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"JournalEntry"];
+        fetchRequest.fetchBatchSize = 20;
+        fetchRequest.sortDescriptors = @[sort];
+        
+        _fetchRequestSurfJournal = fetchRequest;
+    }
+    
+    return _fetchRequestSurfJournal;
+}
+
 #pragma mark - Actions
 
-- (void)filterItemClicked:(id)sender {
+- (void)exportItemClicked:(id)sender {
 //    FilterViewController *viewController = [[FilterViewController alloc] initWithContext:self.context];
 //    viewController.delegate = self;
 //    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
 //
 //    [self presentViewController:navController animated:YES completion:nil];
+}
+
+#pragma mark - NSFetchedResultsControllerDelegate
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView reloadData];
 }
 
 #pragma mark - UITableViewDataSource
@@ -113,53 +212,65 @@
     JournalEntry *journalEntry = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     cell.dateLabel.text = [journalEntry stringForDate];
-    
+    NSInteger rating = [journalEntry.rating integerValue];
+    [self configureRate:rating forCell:cell];
+
     return cell;
 }
 
+- (void)configureRate:(NSInteger)rating forCell:(SurfEntryTableViewCell *)cell {
+    switch (rating) {
+        case 1: {
+            cell.starOneFilledImageView.hidden = NO;
+            cell.starTwoFilledImageView.hidden = YES;
+            cell.starThreeFilledImageView.hidden = YES;
+            cell.starFourFilledImageView.hidden = YES;
+            cell.starFiveFilledImageView.hidden = YES;
+            break;
+        }
+        case 2: {
+            cell.starOneFilledImageView.hidden = NO;
+            cell.starTwoFilledImageView.hidden = NO;
+            cell.starThreeFilledImageView.hidden = YES;
+            cell.starFourFilledImageView.hidden = YES;
+            cell.starFiveFilledImageView.hidden = YES;
+            break;
+        }
+        case 3: {
+            cell.starOneFilledImageView.hidden = NO;
+            cell.starTwoFilledImageView.hidden = NO;
+            cell.starThreeFilledImageView.hidden = NO;
+            cell.starFourFilledImageView.hidden = YES;
+            cell.starFiveFilledImageView.hidden = YES;
+            break;
+        }
+        case 4: {
+            cell.starOneFilledImageView.hidden = NO;
+            cell.starTwoFilledImageView.hidden = NO;
+            cell.starThreeFilledImageView.hidden = NO;
+            cell.starFourFilledImageView.hidden = NO;
+            cell.starFiveFilledImageView.hidden = YES;
+            break;
+        }
+        case 5: {
+            cell.starOneFilledImageView.hidden = NO;
+            cell.starTwoFilledImageView.hidden = NO;
+            cell.starThreeFilledImageView.hidden = NO;
+            cell.starFourFilledImageView.hidden = NO;
+            cell.starFiveFilledImageView.hidden = NO;
+            break;
+        }
+        default: {
+            cell.starOneFilledImageView.hidden = YES;
+            cell.starTwoFilledImageView.hidden = YES;
+            cell.starThreeFilledImageView.hidden = YES;
+            cell.starFourFilledImageView.hidden = YES;
+            cell.starFiveFilledImageView.hidden = YES;
+            break;
+        }
+    }
+}
+
 #pragma mark - UITableViewDelegate
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

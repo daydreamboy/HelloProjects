@@ -1,4 +1,4 @@
-## CoreData 
+## TOC of CoreData
 
 TOC
 
@@ -70,7 +70,7 @@ Xcode 8+自动生成NSManagedObject子类文件的工具，`Editor -> Create NSM
   * 如果Codegen是`Class Definition` ，则不能添加任何文件。后续维护Entity属性，修改xcdatamodeld文件
   * 如果Codegen是`Category/Extension`，则只能添加EntityName+CoreDataClass{.h, .m}文件，而且文件名需要修改为EntityName{.h, .m}。后续维护Entity属性部分，修改xcdatamodeld文件；Entity其他部分，手动修改EntityName{.h, .m}文件
 
-
+Reference: https://useyourloaf.com/blog/core-data-code-generation/
 
 
 

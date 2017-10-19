@@ -14,7 +14,8 @@
 @property (nonatomic, strong) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 @property (nonatomic, strong) NSManagedObjectModel *managedObjectModel;
 
-@property (nonatomic, strong) NSString *modelName;
+@property (nonatomic, copy) NSString *modelName;
+@property (nonatomic, strong) NSURL *databaseURL;
 @end
 
 @implementation CoreDataStack
@@ -23,7 +24,15 @@
     self = [super init];
     if (self) {
         _modelName = modelName;
-        
+    }
+    return self;
+}
+
+- (instancetype)initWithModelName:(NSString *)modelName databaseURL:(NSURL *)databaseURL {
+    self = [super init];
+    if (self) {
+        _modelName = modelName;
+        _databaseURL = databaseURL;
     }
     return self;
 }
@@ -74,7 +83,8 @@
 - (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
     if (!_persistentStoreCoordinator) {
         NSPersistentStoreCoordinator *coordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
-        NSURL *url = [self.applicationDocumentsDirectory URLByAppendingPathComponent:self.modelName];
+        
+        NSURL *url = self.databaseURL ?: [self.applicationDocumentsDirectory URLByAppendingPathComponent:self.modelName];
         
         @try {
             // Note: let CoreData merge different versions of a managed object model

@@ -14,6 +14,7 @@
 #import "Employee1TabController.h"
 #import "Employee2TabController.h"
 #import "PagingFetchResultViewController.h"
+#import "JournalListViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -42,6 +43,7 @@
         @"EmployeeDirectory (original)",
         @"EmployeeDirectory (optimizied)",
         @"Pagable List",
+        @"Mutiple NSManagedObjectContext",
         @"call a test method",
     ];
     _classes = @[
@@ -51,6 +53,7 @@
         @"Employee1TabController",
         @"Employee2TabController",
         @"PagingFetchResultViewController",
+        @"JournalListViewController",
         @"testMethod",
     ];
 }
