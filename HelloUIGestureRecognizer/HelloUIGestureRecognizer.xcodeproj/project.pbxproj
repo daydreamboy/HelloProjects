@@ -1,0 +1,340 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4F4990261F9D987F00D313B5 /* DragViewDemo1UsingUIPanGestureRecognizerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4990251F9D987F00D313B5 /* DragViewDemo1UsingUIPanGestureRecognizerViewController.m */; };
+		4F49902B1F9D99C400D313B5 /* DragViewDemo2UsingUIPanGestureRecognizerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F49902A1F9D99C400D313B5 /* DragViewDemo2UsingUIPanGestureRecognizerViewController.m */; };
+		4F49902E1F9D9D6600D313B5 /* DragViewRestrictedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F49902D1F9D9D6600D313B5 /* DragViewRestrictedViewController.m */; };
+		4F4990311F9DB95400D313B5 /* DetectSwipeUsingUIPanGestureRecognizerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4990301F9DB95400D313B5 /* DetectSwipeUsingUIPanGestureRecognizerViewController.m */; };
+		4F671A2E1F944F5B0031E9C9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F671A2D1F944F5B0031E9C9 /* main.m */; };
+		4F671A311F944F5B0031E9C9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F671A301F944F5B0031E9C9 /* AppDelegate.m */; };
+		4F671A391F944F5B0031E9C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F671A381F944F5B0031E9C9 /* Assets.xcassets */; };
+		4F671A3C1F944F5B0031E9C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F671A3A1F944F5B0031E9C9 /* LaunchScreen.storyboard */; };
+		4F671A491F944FAD0031E9C9 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F671A481F944FAD0031E9C9 /* RootViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4F4990241F9D987F00D313B5 /* DragViewDemo1UsingUIPanGestureRecognizerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragViewDemo1UsingUIPanGestureRecognizerViewController.h; sourceTree = "<group>"; };
+		4F4990251F9D987F00D313B5 /* DragViewDemo1UsingUIPanGestureRecognizerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DragViewDemo1UsingUIPanGestureRecognizerViewController.m; sourceTree = "<group>"; };
+		4F4990291F9D99C400D313B5 /* DragViewDemo2UsingUIPanGestureRecognizerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragViewDemo2UsingUIPanGestureRecognizerViewController.h; sourceTree = "<group>"; };
+		4F49902A1F9D99C400D313B5 /* DragViewDemo2UsingUIPanGestureRecognizerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DragViewDemo2UsingUIPanGestureRecognizerViewController.m; sourceTree = "<group>"; };
+		4F49902C1F9D9D6600D313B5 /* DragViewRestrictedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragViewRestrictedViewController.h; sourceTree = "<group>"; };
+		4F49902D1F9D9D6600D313B5 /* DragViewRestrictedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DragViewRestrictedViewController.m; sourceTree = "<group>"; };
+		4F49902F1F9DB95400D313B5 /* DetectSwipeUsingUIPanGestureRecognizerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectSwipeUsingUIPanGestureRecognizerViewController.h; sourceTree = "<group>"; };
+		4F4990301F9DB95400D313B5 /* DetectSwipeUsingUIPanGestureRecognizerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetectSwipeUsingUIPanGestureRecognizerViewController.m; sourceTree = "<group>"; };
+		4F671A291F944F5B0031E9C9 /* HelloUIGestureRecognizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUIGestureRecognizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F671A2D1F944F5B0031E9C9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4F671A2F1F944F5B0031E9C9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4F671A301F944F5B0031E9C9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4F671A381F944F5B0031E9C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4F671A3B1F944F5B0031E9C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4F671A3D1F944F5B0031E9C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F671A471F944FAD0031E9C9 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		4F671A481F944FAD0031E9C9 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4F671A261F944F5B0031E9C9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4F671A201F944F5B0031E9C9 = {
+			isa = PBXGroup;
+			children = (
+				4F671A2B1F944F5B0031E9C9 /* HelloUIGestureRecognizer */,
+				4F671A2A1F944F5B0031E9C9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4F671A2A1F944F5B0031E9C9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4F671A291F944F5B0031E9C9 /* HelloUIGestureRecognizer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4F671A2B1F944F5B0031E9C9 /* HelloUIGestureRecognizer */ = {
+			isa = PBXGroup;
+			children = (
+				4F671A431F944F9E0031E9C9 /* AppTestDemos */,
+				4F671A2F1F944F5B0031E9C9 /* AppDelegate.h */,
+				4F671A301F944F5B0031E9C9 /* AppDelegate.m */,
+				4F671A471F944FAD0031E9C9 /* RootViewController.h */,
+				4F671A481F944FAD0031E9C9 /* RootViewController.m */,
+				4F671A381F944F5B0031E9C9 /* Assets.xcassets */,
+				4F671A3A1F944F5B0031E9C9 /* LaunchScreen.storyboard */,
+				4F671A3D1F944F5B0031E9C9 /* Info.plist */,
+				4F671A2C1F944F5B0031E9C9 /* Supporting Files */,
+			);
+			path = HelloUIGestureRecognizer;
+			sourceTree = "<group>";
+		};
+		4F671A2C1F944F5B0031E9C9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4F671A2D1F944F5B0031E9C9 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4F671A431F944F9E0031E9C9 /* AppTestDemos */ = {
+			isa = PBXGroup;
+			children = (
+				4F4990241F9D987F00D313B5 /* DragViewDemo1UsingUIPanGestureRecognizerViewController.h */,
+				4F4990251F9D987F00D313B5 /* DragViewDemo1UsingUIPanGestureRecognizerViewController.m */,
+				4F4990291F9D99C400D313B5 /* DragViewDemo2UsingUIPanGestureRecognizerViewController.h */,
+				4F49902A1F9D99C400D313B5 /* DragViewDemo2UsingUIPanGestureRecognizerViewController.m */,
+				4F49902C1F9D9D6600D313B5 /* DragViewRestrictedViewController.h */,
+				4F49902D1F9D9D6600D313B5 /* DragViewRestrictedViewController.m */,
+				4F49902F1F9DB95400D313B5 /* DetectSwipeUsingUIPanGestureRecognizerViewController.h */,
+				4F4990301F9DB95400D313B5 /* DetectSwipeUsingUIPanGestureRecognizerViewController.m */,
+			);
+			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4F671A281F944F5B0031E9C9 /* HelloUIGestureRecognizer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F671A401F944F5B0031E9C9 /* Build configuration list for PBXNativeTarget "HelloUIGestureRecognizer" */;
+			buildPhases = (
+				4F671A251F944F5B0031E9C9 /* Sources */,
+				4F671A261F944F5B0031E9C9 /* Frameworks */,
+				4F671A271F944F5B0031E9C9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HelloUIGestureRecognizer;
+			productName = HelloUIGestureRecognizer;
+			productReference = 4F671A291F944F5B0031E9C9 /* HelloUIGestureRecognizer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4F671A211F944F5B0031E9C9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = wesley_chen;
+				TargetAttributes = {
+					4F671A281F944F5B0031E9C9 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = U7337LU6F2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 4F671A241F944F5B0031E9C9 /* Build configuration list for PBXProject "HelloUIGestureRecognizer" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4F671A201F944F5B0031E9C9;
+			productRefGroup = 4F671A2A1F944F5B0031E9C9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4F671A281F944F5B0031E9C9 /* HelloUIGestureRecognizer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4F671A271F944F5B0031E9C9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F671A3C1F944F5B0031E9C9 /* LaunchScreen.storyboard in Resources */,
+				4F671A391F944F5B0031E9C9 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4F671A251F944F5B0031E9C9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F671A311F944F5B0031E9C9 /* AppDelegate.m in Sources */,
+				4F4990311F9DB95400D313B5 /* DetectSwipeUsingUIPanGestureRecognizerViewController.m in Sources */,
+				4F49902E1F9D9D6600D313B5 /* DragViewRestrictedViewController.m in Sources */,
+				4F4990261F9D987F00D313B5 /* DragViewDemo1UsingUIPanGestureRecognizerViewController.m in Sources */,
+				4F49902B1F9D99C400D313B5 /* DragViewDemo2UsingUIPanGestureRecognizerViewController.m in Sources */,
+				4F671A2E1F944F5B0031E9C9 /* main.m in Sources */,
+				4F671A491F944FAD0031E9C9 /* RootViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4F671A3A1F944F5B0031E9C9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F671A3B1F944F5B0031E9C9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4F671A3E1F944F5B0031E9C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4F671A3F1F944F5B0031E9C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4F671A411F944F5B0031E9C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = U7337LU6F2;
+				INFOPLIST_FILE = HelloUIGestureRecognizer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloUIGestureRecognizer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4F671A421F944F5B0031E9C9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = U7337LU6F2;
+				INFOPLIST_FILE = HelloUIGestureRecognizer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloUIGestureRecognizer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4F671A241F944F5B0031E9C9 /* Build configuration list for PBXProject "HelloUIGestureRecognizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F671A3E1F944F5B0031E9C9 /* Debug */,
+				4F671A3F1F944F5B0031E9C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F671A401F944F5B0031E9C9 /* Build configuration list for PBXNativeTarget "HelloUIGestureRecognizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F671A411F944F5B0031E9C9 /* Debug */,
+				4F671A421F944F5B0031E9C9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4F671A211F944F5B0031E9C9 /* Project object */;
+}
