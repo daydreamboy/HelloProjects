@@ -92,10 +92,15 @@ static id MySetBackgroundColor(id self, SEL _cmd, SEL selector) {
 
 #pragma mark - Test Methods
 
-- (IBAction)test_callNoneExistMethod2:(id)sender {
-//    UIView *obj = [[NSClassFromString(@"UIView") alloc] initWihtBounds:CGRectMake(0, 0, 100, 100)];
+- (IBAction)test_callNoneExistMethod:(id)sender {
+    [self performSelector:@selector(noneExistedMethod2:arg2:) withObject:self]; // will crash
+}
+
+- (IBAction)test_callNoneExistMethod3:(id)sender {
+    //    UIView *obj = [[NSClassFromString(@"UIView") alloc] initWihtBounds:CGRectMake(0, 0, 100, 100)];
     
     [self performSelector:@selector(noneExistedMethod2:arg2:) withObject:self]; // will crash
 }
+
 
 @end
