@@ -1,6 +1,6 @@
 //
-//  HelloLoadMethodTests.m
-//  HelloLoadMethodTests
+//  HelloInitializeMethodTests.m
+//  HelloInitializeMethodTests
 //
 //  Created by wesley_chen on 15/3/25.
 //  Copyright (c) 2015年 wesley_chen. All rights reserved.
@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 #import <XCTest/XCTest.h>
 
-@interface HelloLoadMethodTests : XCTestCase
+@interface HelloInitializeMethodTests : XCTestCase
 
 @end
 
-@implementation HelloLoadMethodTests
+@implementation HelloInitializeMethodTests
 
 - (void)setUp {
     [super setUp];
