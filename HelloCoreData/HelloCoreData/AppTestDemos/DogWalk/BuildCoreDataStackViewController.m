@@ -71,7 +71,7 @@
             self.currentDog = [[Dog alloc] initWithEntity:dogEntity insertIntoManagedObjectContext:self.context];
             self.currentDog.name = dogName;
             
-            [self saveContext];
+            [self.coreDataStack saveContext];
         }
     }
     @catch (NSException *exception) {
@@ -121,26 +121,8 @@
     
     self.currentDog.walks = [walks copy];
     
-    [self saveContext];
+    [self.coreDataStack saveContext];
     [self.tableView reloadData];
-}
-
-#pragma mark - 
-
-- (void)saveContext {
-    @try {
-        NSError *error = nil;
-        [self.context save:&error];
-        if (error) {
-            NSLog(@"error: %@", error);
-        }
-    }
-    @catch (NSException *exception) {
-        NSLog(@"exception: %@", exception);
-    }
-    @finally {
-        
-    }
 }
 
 #pragma mark - UITableViewDelegate
@@ -158,7 +140,7 @@
         Walk *walkToRemove = self.currentDog.walks[indexPath.row];
         
         [self.context deleteObject:walkToRemove];
-        [self saveContext];
+        [self.coreDataStack saveContext];
         
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
     }

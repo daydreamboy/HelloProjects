@@ -40,22 +40,24 @@
 #pragma mark - Public Methods
 
 - (void)saveContext {
-    if ([self.context hasChanges]) {
-        @try {
-            NSError *error = nil;
-            [self.context save:&error];
-            if (error) {
-                NSLog(@"save error: %@", error);
+    [self.context performBlockAndWait:^{
+        if ([self.context hasChanges]) {
+            @try {
+                NSError *error = nil;
+                [self.context save:&error];
+                if (error) {
+                    NSLog(@"save error: %@", error);
+                }
+            }
+            @catch (NSException *exception) {
+                NSLog(@"exception error: %@", exception);
+                abort();
+            }
+            @finally {
+                
             }
         }
-        @catch (NSException *exception) {
-            NSLog(@"exception error: %@", exception);
-            abort();
-        }
-        @finally {
-            
-        }
-    }
+    }];
 }
 
 #pragma mark - Getters
@@ -72,6 +74,9 @@
 - (NSManagedObjectContext *)context {
     if (!_context) {
         // Note: create a NSManagedObjectContext and configure its @persistentStoreCoordinator
+        // - NSMainQueueConcurrencyType
+        // - NSPrivateQueueConcurrencyType
+        // - NSConfinementConcurrencyType (deprecated iOS 9.0)
         NSManagedObjectContext *c = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
         c.persistentStoreCoordinator = self.persistentStoreCoordinator;
         _context = c;
