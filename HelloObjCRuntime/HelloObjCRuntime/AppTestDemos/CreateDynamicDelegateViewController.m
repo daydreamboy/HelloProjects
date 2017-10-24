@@ -48,9 +48,6 @@
 }
 
 - (void)requestWithParamBlock:(void (^)(id<Model_A> param))preparation completion:(void (^)(void))completion {
-    
-    id<Model_A> model222 = [[Model_A alloc] init];
-    
     id<Model_A> model = [self createDelegateWithProtocolName:@"Model_A"];
     [model setName:@"Default"];
     preparation(model);

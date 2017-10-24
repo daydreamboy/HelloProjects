@@ -8,6 +8,7 @@
 
 #import "InterceptDoesNotRecognizeSelectorViewController.h"
 #import "WCObjCRuntimeUtility.h"
+#import <objc/runtime.h>
 
 @interface GateKeeper : NSObject
 @property (nonatomic, assign) SEL unrecognizedSelector;
@@ -23,9 +24,11 @@
         [stringM appendFormat:@"%@\n", line];
     }
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSStringFromSelector(_unrecognizedSelector) message:stringM delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSStringFromSelector(_unrecognizedSelector) message:stringM delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:@"复制", nil];
+    
     [alert show];
 }
+
 @end
 
 @interface InterceptDoesNotRecognizeSelectorViewController ()
@@ -64,6 +67,17 @@ static id MySetBackgroundColor(id self, SEL _cmd, SEL selector) {
         NSLog(@"Class caller = %@", [array objectAtIndex:3]);
         NSLog(@"Function caller = %@", [array objectAtIndex:4]);
         
+        Method method = class_getInstanceMethod([GateKeeper class], @selector(noneExistedMethod:));
+        IMP imp = method_getImplementation(method);
+        
+        BOOL added = class_addMethod([GateKeeper class], selector, imp, NULL);
+        if (added) {
+            NSLog(@"added");
+        }
+        else {
+            NSLog(@"not added");
+        }
+        
         return handle;
     }
     
@@ -76,17 +90,12 @@ static id MySetBackgroundColor(id self, SEL _cmd, SEL selector) {
     [WCObjCRuntimeUtility exchangeIMPForSelector:@selector(forwardingTargetForSelector:) onClass:[NSObject class] swizzledIMP:(IMP)MySetBackgroundColor originalIMP:(IMP *)&SetBackgroundColorIMP];
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-}
+#pragma mark - Test Methods
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-}
-
-- (IBAction)test_callNoneExistMethod:(id)sender {
-    [self performSelector:@selector(noneExistedMethod:) withObject:self]; // will crash
+- (IBAction)test_callNoneExistMethod2:(id)sender {
+//    UIView *obj = [[NSClassFromString(@"UIView") alloc] initWihtBounds:CGRectMake(0, 0, 100, 100)];
+    
+    [self performSelector:@selector(noneExistedMethod2:arg2:) withObject:self]; // will crash
 }
 
 @end

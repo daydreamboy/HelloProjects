@@ -110,6 +110,7 @@
 		2B6E6B921DF91DD10045BD98 /* HelloObjCRuntime */ = {
 			isa = PBXGroup;
 			children = (
+				2B6E6BAA1DF91E7E0045BD98 /* AppTestDemos */,
 				2B6E6B961DF91DD10045BD98 /* AppDelegate.h */,
 				2B6E6B971DF91DD10045BD98 /* AppDelegate.m */,
 				2B6E6BAB1DF91E850045BD98 /* RootViewController.h */,
@@ -121,7 +122,6 @@
 				2B6E6BB21DF9240C0045BD98 /* WCObjCRuntimeUtility.m */,
 				2B2ED6B21E2509CA006319E2 /* WCKeyboardShortcutManager.h */,
 				2B2ED6B31E2509CA006319E2 /* WCKeyboardShortcutManager.m */,
-				2B6E6BAA1DF91E7E0045BD98 /* AppTestDemos */,
 				2B6E6B931DF91DD10045BD98 /* Supporting Files */,
 			);
 			path = HelloObjCRuntime;
@@ -279,13 +279,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HelloObjCRuntime-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		E194206651ADFD9CC5C00834 /* [CP] Copy Pods Resources */ = {

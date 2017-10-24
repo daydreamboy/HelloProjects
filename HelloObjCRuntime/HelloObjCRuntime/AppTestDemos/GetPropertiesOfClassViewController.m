@@ -35,8 +35,7 @@
     NSLog(@"%@", arr);
 }
 
-+ (NSArray *)propertiesForClass:(Class)class
-{
++ (NSArray *)propertiesForClass:(Class)class {
     NSMutableArray *boxedProperties = [NSMutableArray array];
     unsigned int propertyCount = 0;
     objc_property_t *propertyList = class_copyPropertyList(class, &propertyCount);
