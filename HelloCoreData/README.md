@@ -4,12 +4,28 @@ TOC
 
 ## CoreData Stack
 
-CoreData stack是一组CoreData基础设施类，包含四个类：NSManagedObjectModel、NSPersistentStore、NSPersistentStoreCoordinator、NSManagedObjectContext
+1\. CoreData stack是一组CoreData基础设施类，包含四个类：`NSManagedObjectModel`、`NSPersistentStore`、`NSPersistentStoreCoordinator`、`NSManagedObjectContext`
 
 * NSManagedObjectModel    
-NSManagedObjectModel
+>
+Mapping to the .momd folder which is compiled from .xcdatamodel file
 
-(TODO)
+* NSPersistentStoreCoordinator
+>
+NSManagedObjectContext holds it, and it has one or multiple NSPersistentStore and NSManagedObjectModel
+
+* NSManagedObjectContext
+>
+The public interface used for CRUD database
+
+* NSPersistentStore
+>
+Stand for sqlite, xml, memory store, and so on
+
+2\. NSManagedObjectModel、NSPersistentStore、NSPersistentStoreCoordinator、NSManagedObjectContext之间的关系图，如下
+
+![CoreDataStack](Diagrams/CoreDataStack.png)
+
 
 ## NSFetchedResultsController
 
