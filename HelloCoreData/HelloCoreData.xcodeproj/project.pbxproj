@@ -67,6 +67,7 @@
 		4F9E6AA81F63D1D200DB315D /* Employee1PictureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6AA71F63D1D200DB315D /* Employee1PictureViewController.m */; };
 		4F9E6AAC1F63D56000DB315D /* Department1DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6AAA1F63D56000DB315D /* Department1DetailViewController.m */; };
 		4F9E6AAD1F63D56000DB315D /* Department1DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F9E6AAB1F63D56000DB315D /* Department1DetailViewController.xib */; };
+		4FAAA5BE1FA4C2DB00A80328 /* JournalEntryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAA5BD1FA4C2DB00A80328 /* JournalEntryViewController.m */; };
 		4FCD18A31F972A0400BA3837 /* SurfJournalModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD18A11F9729FB00BA3837 /* SurfJournalModel.xcdatamodeld */; };
 		4FCD18B11F97348800BA3837 /* JournalListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD18B01F97348800BA3837 /* JournalListViewController.m */; };
 /* End PBXBuildFile section */
@@ -169,6 +170,8 @@
 		4F9E6AA91F63D56000DB315D /* Department1DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Department1DetailViewController.h; sourceTree = "<group>"; };
 		4F9E6AAA1F63D56000DB315D /* Department1DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Department1DetailViewController.m; sourceTree = "<group>"; };
 		4F9E6AAB1F63D56000DB315D /* Department1DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Department1DetailViewController.xib; sourceTree = "<group>"; };
+		4FAAA5BC1FA4C2DB00A80328 /* JournalEntryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JournalEntryViewController.h; sourceTree = "<group>"; };
+		4FAAA5BD1FA4C2DB00A80328 /* JournalEntryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JournalEntryViewController.m; sourceTree = "<group>"; };
 		4FCD18A21F9729FB00BA3837 /* SurfJournalModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SurfJournalModel.xcdatamodel; sourceTree = "<group>"; };
 		4FCD18AB1F972CE000BA3837 /* JournalEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JournalEntry.h; sourceTree = "<group>"; };
 		4FCD18AC1F972CE000BA3837 /* JournalEntry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JournalEntry.m; sourceTree = "<group>"; };
@@ -409,6 +412,8 @@
 				4F91D9B21F973D590054F8A8 /* SurfEntryTableViewCell.h */,
 				4F91D9B31F973D590054F8A8 /* SurfEntryTableViewCell.m */,
 				4F91D9B51F973D930054F8A8 /* SurfEntryTableViewCell.xib */,
+				4FAAA5BC1FA4C2DB00A80328 /* JournalEntryViewController.h */,
+				4FAAA5BD1FA4C2DB00A80328 /* JournalEntryViewController.m */,
 			);
 			path = SurfJournal;
 			sourceTree = "<group>";
@@ -563,6 +568,7 @@
 				4F1812CB1F5F950C007E17C1 /* BuildCoreDataStackViewController.m in Sources */,
 				4F9E6A9E1F6178D800DB315D /* Department1ListViewController.m in Sources */,
 				4FCD18A31F972A0400BA3837 /* SurfJournalModel.xcdatamodeld in Sources */,
+				4FAAA5BE1FA4C2DB00A80328 /* JournalEntryViewController.m in Sources */,
 				4F60354D1F66317600FCBC32 /* Department2DetailViewController.m in Sources */,
 				4F6035461F662D8300FCBC32 /* Employee2TabController.m in Sources */,
 				4F1812CC1F5F950C007E17C1 /* Dog Walk.xcdatamodeld in Sources */,

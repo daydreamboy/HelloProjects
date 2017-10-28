@@ -20,6 +20,6 @@
 @interface CoreDataStack : NSObject
 @property (nonatomic, strong, readonly) NSManagedObjectContext *context;
 - (instancetype)initWithModelName:(NSString *)modelName;
-- (instancetype)initWithModelName:(NSString *)modelName databaseURL:(NSURL *)databaseURL;
+- (instancetype)initWithModelName:(NSString *)modelName databaseURL:(NSURL *)databaseURL concurrentType:(NSManagedObjectContextConcurrencyType)concurrentType;
 - (void)saveContext;
 @end

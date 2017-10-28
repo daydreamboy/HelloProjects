@@ -10,6 +10,7 @@
 #import "CoreDataStack.h"
 #import "SurfEntryTableViewCell.h"
 #import "JournalEntry.h"
+#import "JournalEntryViewController.h"
 
 #define SEED_NAME   @"SurfJournalDatabase"
 
@@ -118,7 +119,7 @@
         }
     }
     
-    CoreDataStack *coreDataStack = [[CoreDataStack alloc] initWithModelName:@"SurfJournalModel" databaseURL:sqliteURL];
+    CoreDataStack *coreDataStack = [[CoreDataStack alloc] initWithModelName:@"SurfJournalModel" databaseURL:sqliteURL concurrentType:NSMainQueueConcurrencyType];
     self.coreDataStack = coreDataStack;
     _context = coreDataStack.context;
 }
@@ -126,96 +127,6 @@
 - (NSURL *)documentsDirectory {
     NSArray *URLs = [[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask];
     return URLs[URLs.count - 1];
-}
-
-#pragma mark - Getters
-
-- (UITableView *)tableView {
-    if (!_tableView) {
-        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height) style:UITableViewStylePlain];
-        tableView.delegate = self;
-        tableView.dataSource = self;
-        _tableView = tableView;
-    }
-    
-    return _tableView;
-}
-
-- (NSFetchedResultsController *)fetchedResultsController {
-    if (!_fetchedResultsController) {
-        NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequestSurfJournal managedObjectContext:self.context sectionNameKeyPath:nil cacheName:nil];
-        controller.delegate = self;
-        
-        NSError *error = nil;
-        @try {
-            [controller performFetch:&error];
-        }
-        @catch (NSException *exception) {
-            NSLog(@"exception: %@", exception);
-        }
-        
-        _fetchedResultsController = controller;
-    }
-    
-    return _fetchedResultsController;
-}
-
-- (NSFetchRequest *)fetchRequestSurfJournal {
-    if (!_fetchRequestSurfJournal) {
-        
-        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
-        
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"JournalEntry"];
-        fetchRequest.fetchBatchSize = 20;
-        fetchRequest.sortDescriptors = @[sort];
-        
-        _fetchRequestSurfJournal = fetchRequest;
-    }
-    
-    return _fetchRequestSurfJournal;
-}
-
-#pragma mark - Actions
-
-- (void)exportItemClicked:(id)sender {
-//    FilterViewController *viewController = [[FilterViewController alloc] initWithContext:self.context];
-//    viewController.delegate = self;
-//    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:viewController];
-//
-//    [self presentViewController:navController animated:YES completion:nil];
-}
-
-#pragma mark - NSFetchedResultsControllerDelegate
-
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    [self.tableView reloadData];
-}
-
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return self.fetchedResultsController.sections.count;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.fetchedResultsController.sections[section] numberOfObjects];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *sCellIdentifier = @"JournalListViewController_sCellIdentifier";
-    SurfEntryTableViewCell *cell = (SurfEntryTableViewCell *)[tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
-    if (!cell) {
-        cell = [[SurfEntryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
-    }
-    
-    JournalEntry *journalEntry = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    
-    cell.dateLabel.text = [journalEntry stringForDate];
-    NSInteger rating = [journalEntry.rating integerValue];
-    [self configureRate:rating forCell:cell];
-
-    return cell;
 }
 
 - (void)configureRate:(NSInteger)rating forCell:(SurfEntryTableViewCell *)cell {
@@ -271,6 +182,125 @@
     }
 }
 
+#pragma mark - Getters
+
+- (UITableView *)tableView {
+    if (!_tableView) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height) style:UITableViewStylePlain];
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        _tableView = tableView;
+    }
+    
+    return _tableView;
+}
+
+- (NSFetchedResultsController *)fetchedResultsController {
+    if (!_fetchedResultsController) {
+        NSFetchedResultsController *controller = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequestSurfJournal managedObjectContext:self.context sectionNameKeyPath:nil cacheName:nil];
+        controller.delegate = self;
+        
+        NSError *error = nil;
+        @try {
+            [controller performFetch:&error];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"exception: %@", exception);
+        }
+        
+        _fetchedResultsController = controller;
+    }
+    
+    return _fetchedResultsController;
+}
+
+- (NSFetchRequest *)fetchRequestSurfJournal {
+    if (!_fetchRequestSurfJournal) {
+        
+        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
+        
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"JournalEntry"];
+        fetchRequest.fetchBatchSize = 20;
+        fetchRequest.sortDescriptors = @[sort];
+        
+        _fetchRequestSurfJournal = fetchRequest;
+    }
+    
+    return _fetchRequestSurfJournal;
+}
+
+#pragma mark - Actions
+
+- (void)exportItemClicked:(id)sender {
+    NSError *error = nil;
+    NSTimeInterval start = CACurrentMediaTime();
+    NSArray *results = [self.coreDataStack.context executeFetchRequest:self.fetchRequestSurfJournal error:&error];
+    NSTimeInterval end = CACurrentMediaTime();
+    
+    NSLog(@"fetch all data time: %f", end - start);
+    
+    NSString *exportFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"export.csv"];
+    [[NSFileManager defaultManager] createFileAtPath:exportFilePath contents:[NSData data] attributes:nil];
+    
+    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:exportFilePath];
+    
+    for (JournalEntry *journalEntry in results) {
+        [fileHandle seekToEndOfFile];
+        
+        NSData *csvData = [[journalEntry csv] dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
+        [fileHandle writeData:csvData];
+    }
+    
+    [fileHandle closeFile];
+    
+    NSLog(@"exported to %@", exportFilePath);
+}
+
+#pragma mark - NSFetchedResultsControllerDelegate
+
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    [self.tableView reloadData];
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.fetchedResultsController.sections.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.fetchedResultsController.sections[section] numberOfObjects];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *sCellIdentifier = @"JournalListViewController_sCellIdentifier";
+    SurfEntryTableViewCell *cell = (SurfEntryTableViewCell *)[tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
+    if (!cell) {
+        cell = [[SurfEntryTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
+    }
+    
+    JournalEntry *journalEntry = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    
+    cell.dateLabel.text = [journalEntry stringForDate];
+    NSInteger rating = [journalEntry.rating integerValue];
+    [self configureRate:rating forCell:cell];
+
+    return cell;
+}
+
 #pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 60;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    JournalEntryViewController *vc = [JournalEntryViewController new];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:navController animated:YES completion:nil];
+}
 
 @end

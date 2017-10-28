@@ -16,6 +16,7 @@
 
 @property (nonatomic, copy) NSString *modelName;
 @property (nonatomic, strong) NSURL *databaseURL;
+@property (nonatomic, assign) NSManagedObjectContextConcurrencyType concurrentType;
 @end
 
 @implementation CoreDataStack
@@ -24,15 +25,17 @@
     self = [super init];
     if (self) {
         _modelName = modelName;
+        _concurrentType = NSPrivateQueueConcurrencyType;
     }
     return self;
 }
 
-- (instancetype)initWithModelName:(NSString *)modelName databaseURL:(NSURL *)databaseURL {
+- (instancetype)initWithModelName:(NSString *)modelName databaseURL:(NSURL *)databaseURL concurrentType:(NSManagedObjectContextConcurrencyType)concurrentType {
     self = [super init];
     if (self) {
         _modelName = modelName;
         _databaseURL = databaseURL;
+        _concurrentType = concurrentType;
     }
     return self;
 }
@@ -77,7 +80,7 @@
         // - NSMainQueueConcurrencyType
         // - NSPrivateQueueConcurrencyType
         // - NSConfinementConcurrencyType (deprecated iOS 9.0)
-        NSManagedObjectContext *c = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        NSManagedObjectContext *c = [[NSManagedObjectContext alloc] initWithConcurrencyType:self.concurrentType];
         c.persistentStoreCoordinator = self.persistentStoreCoordinator;
         _context = c;
     }

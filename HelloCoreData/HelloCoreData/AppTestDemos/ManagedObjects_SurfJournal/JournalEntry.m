@@ -19,7 +19,7 @@
 }
 
 - (NSString *)csv {
-    NSString *string = [NSString stringWithFormat:@"%@,%@,%@,%@,%@,%@",
+    NSString *string = [NSString stringWithFormat:@"%@,%@,%@,%@,%@,%@\n",
                         [self stringForDate],
                         self.height,
                         self.period,

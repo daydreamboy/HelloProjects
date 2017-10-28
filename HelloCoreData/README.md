@@ -89,5 +89,6 @@ Xcode 8+自动生成NSManagedObject子类文件的工具，`Editor -> Create NSM
 Reference: https://useyourloaf.com/blog/core-data-code-generation/
 
 
+## Multiple Managed Object Context
 
 
