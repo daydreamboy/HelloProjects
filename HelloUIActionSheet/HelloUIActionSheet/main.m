@@ -1,6 +1,6 @@
 //
 //  main.m
-//  HelloCustomizedUIActionSheet
+//  HelloUIActionSheet
 //
 //  Created by wesley_chen on 14/07/2017.
 //  Copyright © 2017 wesley_chen. All rights reserved.

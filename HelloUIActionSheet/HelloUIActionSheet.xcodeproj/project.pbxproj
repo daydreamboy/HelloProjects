@@ -7,13 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4FD286911F1A414A001B060D /* Demo1ViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 4FD2868D1F1A412E001B060D /* Demo1ViewController.h */; };
-		4FD286921F1A414A001B060D /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD2868E1F1A412E001B060D /* Demo1ViewController.m */; };
 		4FD286931F1A414A001B060D /* RootViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 4FD2868F1F1A4135001B060D /* RootViewController.h */; };
 		4FD286941F1A414A001B060D /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD286901F1A4135001B060D /* RootViewController.m */; };
 		4FD286971F1A41FF001B060D /* TableAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD286961F1A41FF001B060D /* TableAlertController.m */; };
 		4FECE9521F18BA8E00BEFA19 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FECE9511F18BA8E00BEFA19 /* AppDelegate.m */; };
-		4FECE9581F18BA8E00BEFA19 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FECE9561F18BA8E00BEFA19 /* Main.storyboard */; };
 		4FECE95A1F18BA8E00BEFA19 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FECE9591F18BA8E00BEFA19 /* Assets.xcassets */; };
 		4FECE95D1F18BA8E00BEFA19 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FECE95B1F18BA8E00BEFA19 /* LaunchScreen.storyboard */; };
 		4FECE9601F18BA8E00BEFA19 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FECE95F1F18BA8E00BEFA19 /* main.m */; };
@@ -21,16 +18,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4FD2868D1F1A412E001B060D /* Demo1ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
-		4FD2868E1F1A412E001B060D /* Demo1ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
 		4FD2868F1F1A4135001B060D /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4FD286901F1A4135001B060D /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4FD286951F1A41FF001B060D /* TableAlertController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableAlertController.h; sourceTree = "<group>"; };
 		4FD286961F1A41FF001B060D /* TableAlertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableAlertController.m; sourceTree = "<group>"; };
-		4FECE94D1F18BA8E00BEFA19 /* HelloCustomizedUIActionSheet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloCustomizedUIActionSheet.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FECE94D1F18BA8E00BEFA19 /* HelloUIActionSheet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUIActionSheet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FECE9501F18BA8E00BEFA19 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FECE9511F18BA8E00BEFA19 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4FECE9571F18BA8E00BEFA19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4FECE9591F18BA8E00BEFA19 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4FECE95C1F18BA8E00BEFA19 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4FECE95E1F18BA8E00BEFA19 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -53,8 +47,6 @@
 		4FD2868C1F1A412E001B060D /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4FD2868D1F1A412E001B060D /* Demo1ViewController.h */,
-				4FD2868E1F1A412E001B060D /* Demo1ViewController.m */,
 				4FD286951F1A41FF001B060D /* TableAlertController.h */,
 				4FD286961F1A41FF001B060D /* TableAlertController.m */,
 			);
@@ -64,7 +56,7 @@
 		4FECE9441F18BA8E00BEFA19 = {
 			isa = PBXGroup;
 			children = (
-				4FECE94F1F18BA8E00BEFA19 /* HelloCustomizedUIActionSheet */,
+				4FECE94F1F18BA8E00BEFA19 /* HelloUIActionSheet */,
 				4FECE94E1F18BA8E00BEFA19 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -72,35 +64,34 @@
 		4FECE94E1F18BA8E00BEFA19 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4FECE94D1F18BA8E00BEFA19 /* HelloCustomizedUIActionSheet.app */,
+				4FECE94D1F18BA8E00BEFA19 /* HelloUIActionSheet.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4FECE94F1F18BA8E00BEFA19 /* HelloCustomizedUIActionSheet */ = {
+		4FECE94F1F18BA8E00BEFA19 /* HelloUIActionSheet */ = {
 			isa = PBXGroup;
 			children = (
 				4FD2868C1F1A412E001B060D /* AppTestDemos */,
-				4FECE9661F18BD1500BEFA19 /* Reveal.framework */,
 				4FECE9501F18BA8E00BEFA19 /* AppDelegate.h */,
 				4FECE9511F18BA8E00BEFA19 /* AppDelegate.m */,
 				4FD2868F1F1A4135001B060D /* RootViewController.h */,
 				4FD286901F1A4135001B060D /* RootViewController.m */,
-				4FECE9561F18BA8E00BEFA19 /* Main.storyboard */,
 				4FECE9591F18BA8E00BEFA19 /* Assets.xcassets */,
 				4FECE95B1F18BA8E00BEFA19 /* LaunchScreen.storyboard */,
+				4FECE9661F18BD1500BEFA19 /* Reveal.framework */,
 				4FECE95E1F18BA8E00BEFA19 /* Info.plist */,
 				4FECE95F1F18BA8E00BEFA19 /* main.m */,
 			);
-			path = HelloCustomizedUIActionSheet;
+			path = HelloUIActionSheet;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4FECE94C1F18BA8E00BEFA19 /* HelloCustomizedUIActionSheet */ = {
+		4FECE94C1F18BA8E00BEFA19 /* HelloUIActionSheet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4FECE9631F18BA8E00BEFA19 /* Build configuration list for PBXNativeTarget "HelloCustomizedUIActionSheet" */;
+			buildConfigurationList = 4FECE9631F18BA8E00BEFA19 /* Build configuration list for PBXNativeTarget "HelloUIActionSheet" */;
 			buildPhases = (
 				4FECE9491F18BA8E00BEFA19 /* Sources */,
 				4FECE94A1F18BA8E00BEFA19 /* Frameworks */,
@@ -110,9 +101,9 @@
 			);
 			dependencies = (
 			);
-			name = HelloCustomizedUIActionSheet;
+			name = HelloUIActionSheet;
 			productName = HelloCustomizedUIActionSheet;
-			productReference = 4FECE94D1F18BA8E00BEFA19 /* HelloCustomizedUIActionSheet.app */;
+			productReference = 4FECE94D1F18BA8E00BEFA19 /* HelloUIActionSheet.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -129,7 +120,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4FECE9481F18BA8E00BEFA19 /* Build configuration list for PBXProject "HelloCustomizedUIActionSheet" */;
+			buildConfigurationList = 4FECE9481F18BA8E00BEFA19 /* Build configuration list for PBXProject "HelloUIActionSheet" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -142,7 +133,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4FECE94C1F18BA8E00BEFA19 /* HelloCustomizedUIActionSheet */,
+				4FECE94C1F18BA8E00BEFA19 /* HelloUIActionSheet */,
 			);
 		};
 /* End PBXProject section */
@@ -154,7 +145,6 @@
 			files = (
 				4FECE95D1F18BA8E00BEFA19 /* LaunchScreen.storyboard in Resources */,
 				4FECE95A1F18BA8E00BEFA19 /* Assets.xcassets in Resources */,
-				4FECE9581F18BA8E00BEFA19 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -165,8 +155,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4FD286911F1A414A001B060D /* Demo1ViewController.h in Sources */,
-				4FD286921F1A414A001B060D /* Demo1ViewController.m in Sources */,
 				4FD286931F1A414A001B060D /* RootViewController.h in Sources */,
 				4FD286971F1A41FF001B060D /* TableAlertController.m in Sources */,
 				4FD286941F1A414A001B060D /* RootViewController.m in Sources */,
@@ -178,14 +166,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4FECE9561F18BA8E00BEFA19 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4FECE9571F18BA8E00BEFA19 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4FECE95B1F18BA8E00BEFA19 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -307,9 +287,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/HelloCustomizedUIActionSheet",
+					"$(PROJECT_DIR)/HelloUIActionSheet",
 				);
-				INFOPLIST_FILE = HelloCustomizedUIActionSheet/Info.plist;
+				INFOPLIST_FILE = HelloUIActionSheet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -317,7 +297,7 @@
 					Reveal,
 					"-lz",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloCustomizedUIActionSheet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloUIActionSheet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -329,9 +309,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/HelloCustomizedUIActionSheet",
+					"$(PROJECT_DIR)/HelloUIActionSheet",
 				);
-				INFOPLIST_FILE = HelloCustomizedUIActionSheet/Info.plist;
+				INFOPLIST_FILE = HelloUIActionSheet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -339,7 +319,7 @@
 					Reveal,
 					"-lz",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloCustomizedUIActionSheet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloUIActionSheet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -348,7 +328,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4FECE9481F18BA8E00BEFA19 /* Build configuration list for PBXProject "HelloCustomizedUIActionSheet" */ = {
+		4FECE9481F18BA8E00BEFA19 /* Build configuration list for PBXProject "HelloUIActionSheet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FECE9611F18BA8E00BEFA19 /* Debug */,
@@ -357,7 +337,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4FECE9631F18BA8E00BEFA19 /* Build configuration list for PBXNativeTarget "HelloCustomizedUIActionSheet" */ = {
+		4FECE9631F18BA8E00BEFA19 /* Build configuration list for PBXNativeTarget "HelloUIActionSheet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4FECE9641F18BA8E00BEFA19 /* Debug */,
