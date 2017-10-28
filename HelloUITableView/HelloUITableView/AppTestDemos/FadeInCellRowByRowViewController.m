@@ -11,7 +11,7 @@
 @interface FadeInCellRowByRowViewController () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray<NSString *> *listData;
-@property (nonatomic, assign) BOOL cellFadeInEnabled;
+@property (nonatomic, strong) NSMutableSet<NSIndexPath *> *animatedIndexPaths;
 @end
 
 @implementation FadeInCellRowByRowViewController
@@ -48,7 +48,7 @@
                      @"listData",
                      ];
     self.listData = arr;
-    self.cellFadeInEnabled = YES;
+    self.animatedIndexPaths = [NSMutableSet set];
 }
 
 #pragma mark - Getters
@@ -56,7 +56,7 @@
 - (UITableView *)tableView {
     if (!_tableView) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height) style:UITableViewStylePlain];
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, screenSize.width, screenSize.height - 64) style:UITableViewStylePlain];
         tableView.delegate = self;
         tableView.dataSource = self;
         
@@ -70,14 +70,27 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
     // @see https://stackoverflow.com/questions/33274787/fade-in-uitableviewcell-row-by-row-in-swift
-
-    cell.contentView.alpha = 0;
-    CGFloat duration = 0.5;
-    [UIView animateWithDuration:duration delay:(duration / 2.0) * indexPath.row options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        cell.contentView.alpha = 1.0;
-    } completion:^(BOOL finished) {
-
-    }];
+    
+    if (![self.animatedIndexPaths containsObject:indexPath]) {
+        if (self.tableView.isDragging || self.tableView.isDecelerating) {
+            cell.contentView.alpha = 0;
+            CGFloat duration = 0.5;
+            [UIView animateWithDuration:duration delay:duration options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                cell.contentView.alpha = 1.0;
+            } completion:^(BOOL finished) {
+                [self.animatedIndexPaths addObject:indexPath];
+            }];
+        }
+        else {
+            cell.contentView.alpha = 0;
+            CGFloat duration = 0.2;
+            [UIView animateWithDuration:duration delay:(duration / 2.0) * indexPath.row options:UIViewAnimationOptionCurveEaseInOut animations:^{
+                cell.contentView.alpha = 1.0;
+            } completion:^(BOOL finished) {
+                [self.animatedIndexPaths addObject:indexPath];
+            }];
+        }
+    }
 }
 
 #pragma mark - UITableViewDataSource
