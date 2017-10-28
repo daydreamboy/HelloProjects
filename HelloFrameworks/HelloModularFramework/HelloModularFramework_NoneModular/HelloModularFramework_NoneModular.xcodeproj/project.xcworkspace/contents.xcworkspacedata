@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:HelloModularFramework_Default.xcodeproj">
+      location = "self:/Users/wesley_chen/GitHub_Projcets/HelloProjects/HelloFrameworks/HelloModularFramework/HelloModularFramework_NoneModular/HelloModularFramework_NoneModular.xcodeproj">
    </FileRef>
 </Workspace>
