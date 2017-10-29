@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 
 @class JournalEntryViewController;
+@class JournalEntry;
 
 @protocol JournalEntryViewControllerDelegate <NSObject>
 - (void)viewControllerDidFinish:(JournalEntryViewController *)viewController saved:(BOOL)saved;
 @end
 
 @interface JournalEntryViewController : UIViewController
+@property (nonatomic, strong) JournalEntry *journalEntry;
+@property (nonatomic, strong) NSManagedObjectContext *context;
 @property (nonatomic, weak) id<JournalEntryViewControllerDelegate> delegate;
 @end

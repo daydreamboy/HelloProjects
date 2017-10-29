@@ -11,10 +11,15 @@
 #import "SurfEntryTableViewCell.h"
 #import "JournalEntry.h"
 #import "JournalEntryViewController.h"
+#import <AvailabilityMacros.h>
+
+#ifndef IOS10_OR_LATER
+#define IOS10_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"10.0" options:NSNumericSearch] != NSOrderedAscending)
+#endif
 
 #define SEED_NAME   @"SurfJournalDatabase"
 
-@interface JournalListViewController () <NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface JournalListViewController () <NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource, JournalEntryViewControllerDelegate>
 @property (nonatomic, strong) NSManagedObjectContext *context;
 @property (nonatomic, strong) NSFetchedResultsController *fetchedResultsController;
 @property (nonatomic, strong) NSFetchRequest *fetchRequestSurfJournal;
@@ -32,7 +37,7 @@
     
     [self.view addSubview:self.tableView];
     
-    self.navigationItem.rightBarButtonItem = [self createExportItem];
+    self.navigationItem.rightBarButtonItems = [self normalRightBarItems];
 }
 
 #pragma mark -
@@ -49,13 +54,31 @@
     return activityIndicatorItem;
 }
 
-- (void)exportCSV {
+- (UIBarButtonItem *)createAddItem {
+    UIBarButtonItem *addItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addItemClicked:)];
+    return addItem;
+}
+
+- (UIBarButtonItem *)createScollToBottomItem {
+    UIBarButtonItem *scrollToBottomItem = [[UIBarButtonItem alloc] initWithTitle:@"⬇︎" style:UIBarButtonItemStylePlain target:self action:@selector(scrollToBottomItemClicked:)];
+    return scrollToBottomItem;
+}
+
+- (NSArray<UIBarButtonItem *> *)normalRightBarItems {
+    return @[[self createScollToBottomItem], [self createAddItem], [self createExportItem]];
+}
+
+- (void)exportCSVFile {
     self.navigationItem.rightBarButtonItem = [self createActivityIndicatorItem];
     
     NSError *error = nil;
     NSArray *results = nil;
     @try {
+        NSTimeInterval start = CACurrentMediaTime();
         results = [self.context executeFetchRequest:self.fetchRequestSurfJournal error:&error];
+        NSTimeInterval end = CACurrentMediaTime();
+        
+        NSLog(@"fetch all data time: %f", end - start);
     }
     @catch (NSException *exception) {
         results = nil;
@@ -80,11 +103,66 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:exportFilePath message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
         [alert show];
         
-        self.navigationItem.rightBarButtonItem = [self createExportItem];
+        self.navigationItem.rightBarButtonItems = [self normalRightBarItems];
     }
     else {
-        self.navigationItem.rightBarButtonItem = [self createExportItem];
+        self.navigationItem.rightBarButtonItems = [self normalRightBarItems];
     }
+}
+
+- (void)exportCSVFileUsingTemporaryManagedObjectContext {
+    self.navigationItem.rightBarButtonItem = [self createActivityIndicatorItem];
+    
+    // Note: 临时创建一个privateContext并指定使用private queue，这样privateContext执行performBlock在单独的线程不会阻塞主线程
+    NSManagedObjectContext *privateContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    // Note: 设置privateContext的persistentStoreCoordinator属性到现有的NSPersistentStoreCoordinator
+    privateContext.persistentStoreCoordinator = self.context.persistentStoreCoordinator;
+    
+    [privateContext performBlock:^{
+        NSError *error = nil;
+        NSArray *results = nil;
+        @try {
+            NSTimeInterval start = CACurrentMediaTime();
+            results = [self.context executeFetchRequest:self.fetchRequestSurfJournal error:&error];
+            NSTimeInterval end = CACurrentMediaTime();
+            
+            NSLog(@"fetch all data time: %f", end - start);
+        }
+        @catch (NSException *exception) {
+            results = nil;
+        }
+        
+        if (results) {
+            NSString *exportFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"export.csv"];
+            [[NSFileManager defaultManager] createFileAtPath:exportFilePath contents:nil attributes:nil];
+            
+            NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:exportFilePath];
+            for (JournalEntry *journalEntry in results) {
+                [fileHandle seekToEndOfFile];
+                
+                NSData *data = [[journalEntry csv] dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
+                [fileHandle writeData:data];
+            }
+            
+            [fileHandle closeFile];
+            
+            NSLog(@"Export path: %@", exportFilePath);
+            
+            // Note: 非主线程是不能操作UI
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:exportFilePath message:nil delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                [alert show];
+                
+                self.navigationItem.rightBarButtonItem = [self createExportItem];
+            });
+        }
+        else {
+            // Note: 非主线程是不能操作UI
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.navigationItem.rightBarButtonItem = [self createExportItem];
+            });
+        }
+    }];
 }
 
 - (void)importSeedDataIfNeeded {
@@ -182,6 +260,84 @@
     }
 }
 
+- (void)gotoJournalEntryViewControllerWithIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath) {
+        // view existing journal entry
+        JournalEntry *journalEntry = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        
+        JournalEntryViewController *vc = [JournalEntryViewController new];
+        vc.delegate = self;
+        vc.journalEntry = journalEntry;
+        vc.context = self.context;
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self presentViewController:navController animated:YES completion:nil];
+    }
+    else {
+        // create a new journal entry
+        JournalEntry *newJournalEntry;
+        if (IOS10_OR_LATER) {
+            newJournalEntry = [[JournalEntry alloc] initWithContext:self.context];
+        }
+        else {
+            NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"JournalEntry" inManagedObjectContext:self.context];
+            newJournalEntry = [[JournalEntry alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:self.context];
+        }
+        
+        // Note: 为了方便查看数据，这里设置时间戳
+        newJournalEntry.date = [NSDate date];
+        
+        JournalEntryViewController *vc = [JournalEntryViewController new];
+        vc.delegate = self;
+        vc.journalEntry = newJournalEntry;
+        vc.context = self.context;
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self presentViewController:navController animated:YES completion:nil];
+    }
+}
+
+- (void)gotoJournalEntryViewControllerUsingTemporaryManagedObjectContextWithIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath) {
+        // view existing journal entry
+        JournalEntry *journalEntry = [self.fetchedResultsController objectAtIndexPath:indexPath];
+        
+        NSManagedObjectContext *childContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        childContext.parentContext = self.context;
+        JournalEntry *childJournalEntry = [childContext objectWithID:journalEntry.objectID];
+        
+        JournalEntryViewController *vc = [JournalEntryViewController new];
+        vc.delegate = self;
+        vc.journalEntry = childJournalEntry;
+        vc.context = childContext;
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self presentViewController:navController animated:YES completion:nil];
+    }
+    else {
+        NSManagedObjectContext *childContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+        childContext.parentContext = self.context;
+        
+        JournalEntry *newJournalEntry;
+        if (IOS10_OR_LATER) {
+            newJournalEntry = [[JournalEntry alloc] initWithContext:childContext];
+        }
+        else {
+            NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"JournalEntry" inManagedObjectContext:childContext];
+            newJournalEntry = [[JournalEntry alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:childContext];
+        }
+        
+        // Note: 为了方便查看数据，这里设置时间戳
+        newJournalEntry.date = [NSDate date];
+        
+        JournalEntryViewController *vc = [JournalEntryViewController new];
+        vc.delegate = self;
+        vc.journalEntry = newJournalEntry;
+        vc.context = childContext;
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc];
+        [self presentViewController:navController animated:YES completion:nil];
+    }
+}
+
 #pragma mark - Getters
 
 - (UITableView *)tableView {
@@ -218,7 +374,7 @@
 - (NSFetchRequest *)fetchRequestSurfJournal {
     if (!_fetchRequestSurfJournal) {
         
-        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
+        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES];
         
         NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"JournalEntry"];
         fetchRequest.fetchBatchSize = 20;
@@ -233,28 +389,22 @@
 #pragma mark - Actions
 
 - (void)exportItemClicked:(id)sender {
-    NSError *error = nil;
-    NSTimeInterval start = CACurrentMediaTime();
-    NSArray *results = [self.coreDataStack.context executeFetchRequest:self.fetchRequestSurfJournal error:&error];
-    NSTimeInterval end = CACurrentMediaTime();
-    
-    NSLog(@"fetch all data time: %f", end - start);
-    
-    NSString *exportFilePath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"export.csv"];
-    [[NSFileManager defaultManager] createFileAtPath:exportFilePath contents:[NSData data] attributes:nil];
-    
-    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:exportFilePath];
-    
-    for (JournalEntry *journalEntry in results) {
-        [fileHandle seekToEndOfFile];
-        
-        NSData *csvData = [[journalEntry csv] dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:NO];
-        [fileHandle writeData:csvData];
-    }
-    
-    [fileHandle closeFile];
-    
-    NSLog(@"exported to %@", exportFilePath);
+    // REMARK: 切换代码
+    // Note: 切换下面两个方法，对比效果
+    //[self exportCSVFile];
+    [self exportCSVFileUsingTemporaryManagedObjectContext];
+}
+
+- (void)addItemClicked:(id)sender {
+    // REMARK: 切换代码
+    //[self gotoJournalEntryViewControllerWithIndexPath:nil];
+    [self gotoJournalEntryViewControllerUsingTemporaryManagedObjectContextWithIndexPath:nil];
+}
+
+- (void)scrollToBottomItemClicked:(id)sender {
+    NSUInteger numberOfRows =[self.fetchedResultsController.sections[0] numberOfObjects];
+    NSIndexPath *lastRow = [NSIndexPath indexPathForRow:numberOfRows - 1 inSection:0];
+    [self.tableView scrollToRowAtIndexPath:lastRow atScrollPosition:UITableViewScrollPositionBottom animated:YES];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
@@ -298,9 +448,32 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    JournalEntryViewController *vc = [JournalEntryViewController new];
-    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc];
-    [self presentViewController:navController animated:YES completion:nil];
+    // REMARK: 切换代码
+    //[self gotoJournalEntryViewControllerWithIndexPath:indexPath];
+    [self gotoJournalEntryViewControllerUsingTemporaryManagedObjectContextWithIndexPath:indexPath];
+}
+
+#pragma mark - JournalEntryViewControllerDelegate
+
+- (void)viewControllerDidFinish:(JournalEntryViewController *)viewController saved:(BOOL)saved {
+    if (saved) {
+        NSManagedObjectContext *context = viewController.context;
+        [context performBlock:^{
+            if (context.hasChanges) {
+                NSError *error = nil;
+                [context save:&error];
+                
+                if (error) {
+                    NSLog(@"error: %@", error);
+                    abort();
+                }
+                
+                [self.coreDataStack saveContext];
+            }
+        }];
+    }
+    
+    [viewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

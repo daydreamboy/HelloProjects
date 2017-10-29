@@ -13,7 +13,7 @@
 
 - (NSString *)stringForDate {
     NSDateFormatter *dateFormater = [NSDateFormatter new];
-    dateFormater.dateStyle = NSDateFormatterShortStyle;
+    dateFormater.dateFormat = @"dd HH:mm:ss";
     
     return [dateFormater stringFromDate:self.date];
 }

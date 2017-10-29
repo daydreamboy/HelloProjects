@@ -20,79 +20,79 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="w4U-AA-KZk">
-                        <rect key="frame" x="240" y="13.5" width="34" height="34"/>
+                        <rect key="frame" x="230" y="13.5" width="34" height="34"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="34" id="1ee-BH-C5K"/>
                             <constraint firstAttribute="height" constant="34" id="yiM-Rl-aFQ"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_filled" translatesAutoresizingMaskIntoConstraints="NO" id="4ke-vx-bTT">
-                        <rect key="frame" x="240" y="13.5" width="34" height="34"/>
+                        <rect key="frame" x="230" y="13.5" width="34" height="34"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="34" id="3CQ-UG-JvT"/>
                             <constraint firstAttribute="width" constant="34" id="x7l-ON-jPf"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="R7Y-8c-IS3">
-                        <rect key="frame" x="196" y="13.5" width="34" height="34"/>
+                        <rect key="frame" x="186" y="13.5" width="34" height="34"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="34" id="9Di-s6-5IU"/>
                             <constraint firstAttribute="width" constant="34" id="eQX-37-OlP"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_filled" translatesAutoresizingMaskIntoConstraints="NO" id="V7a-Lh-rSo">
-                        <rect key="frame" x="196" y="13.5" width="34" height="34"/>
+                        <rect key="frame" x="186" y="13.5" width="34" height="34"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="34" id="fc5-ko-3xR"/>
                             <constraint firstAttribute="height" constant="34" id="rZi-0H-zXa"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="DBj-Yy-Fs2">
-                        <rect key="frame" x="152" y="13.5" width="34" height="34"/>
+                        <rect key="frame" x="142" y="13.5" width="34" height="34"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="34" id="4kt-VT-Jmt"/>
                             <constraint firstAttribute="height" constant="34" id="yeG-IY-Ljq"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_filled" translatesAutoresizingMaskIntoConstraints="NO" id="5in-3R-AFz">
-                        <rect key="frame" x="152" y="13.5" width="34" height="34"/>
+                        <rect key="frame" x="142" y="13.5" width="34" height="34"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="34" id="er7-96-PKa"/>
                             <constraint firstAttribute="width" constant="34" id="ktX-KE-5yQ"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="7xU-hp-i0o">
-                        <rect key="frame" x="108" y="13.5" width="34" height="34"/>
+                        <rect key="frame" x="98" y="13.5" width="34" height="34"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="34" id="PAb-Jg-PDI"/>
                             <constraint firstAttribute="height" constant="34" id="yTI-No-psb"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_filled" translatesAutoresizingMaskIntoConstraints="NO" id="BAS-2D-MIg">
-                        <rect key="frame" x="108" y="13.5" width="34" height="34"/>
+                        <rect key="frame" x="98" y="13.5" width="34" height="34"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="34" id="5Js-Ey-yLK"/>
                             <constraint firstAttribute="height" constant="34" id="oMR-02-MYz"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="08/24/14" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="84V-Cu-c1g">
-                        <rect key="frame" x="18" y="20.5" width="80" height="18.5"/>
+                        <rect key="frame" x="8" y="20.5" width="80" height="18.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="4i2-hQ-A8K"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star" translatesAutoresizingMaskIntoConstraints="NO" id="pSW-WA-e8a">
-                        <rect key="frame" x="284" y="13.5" width="34" height="34"/>
+                        <rect key="frame" x="274" y="13.5" width="34" height="34"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="34" id="CzD-90-53Y"/>
                             <constraint firstAttribute="height" constant="34" id="MCE-dn-nYb"/>
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star_filled" translatesAutoresizingMaskIntoConstraints="NO" id="5st-N6-ooN">
-                        <rect key="frame" x="284" y="13.5" width="34" height="34"/>
+                        <rect key="frame" x="274" y="13.5" width="34" height="34"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="34" id="SXr-cE-itA"/>
                             <constraint firstAttribute="height" constant="34" id="maH-ky-KaJ"/>
@@ -117,7 +117,7 @@
                     <constraint firstItem="4ke-vx-bTT" firstAttribute="leading" secondItem="V7a-Lh-rSo" secondAttribute="trailing" constant="10" id="dFB-Bn-P3J"/>
                     <constraint firstItem="BAS-2D-MIg" firstAttribute="leading" secondItem="84V-Cu-c1g" secondAttribute="trailing" constant="10" id="kir-3R-Jgm"/>
                     <constraint firstItem="84V-Cu-c1g" firstAttribute="centerY" secondItem="ccY-LX-8vR" secondAttribute="centerY" id="lrC-QS-z4c"/>
-                    <constraint firstItem="84V-Cu-c1g" firstAttribute="leading" secondItem="ccY-LX-8vR" secondAttribute="leadingMargin" constant="10" id="m3q-ES-bBr"/>
+                    <constraint firstItem="84V-Cu-c1g" firstAttribute="leading" secondItem="ccY-LX-8vR" secondAttribute="leadingMargin" id="m3q-ES-bBr"/>
                     <constraint firstItem="R7Y-8c-IS3" firstAttribute="centerY" secondItem="ccY-LX-8vR" secondAttribute="centerY" id="ndF-Da-Vmq"/>
                     <constraint firstItem="w4U-AA-KZk" firstAttribute="centerY" secondItem="ccY-LX-8vR" secondAttribute="centerY" id="sQQ-Gt-97J"/>
                     <constraint firstItem="7xU-hp-i0o" firstAttribute="centerY" secondItem="ccY-LX-8vR" secondAttribute="centerY" id="uMS-pf-tS7"/>

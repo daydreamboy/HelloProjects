@@ -7,6 +7,7 @@
 //
 
 #import "JournalEntryViewController.h"
+#import "JournalEntry.h"
 #import <Foundation/Foundation.h>
 
 @interface JournalEntryViewController ()
@@ -67,19 +68,39 @@
             self.segmentedControl = segmentedControl;
         }
     }
+    
+    self.textFields = arrM;
+    
+    JournalEntry *journalEntry = self.journalEntry;
+    self.textFields[0].text =  journalEntry.height;
+    self.textFields[1].text = journalEntry.period;
+    self.textFields[2].text = journalEntry.wind;
+    self.textFields[3].text = journalEntry.location;
+    self.segmentedControl.selectedSegmentIndex = [journalEntry.rating integerValue] - 1;
+}
+
+- (void)updateJournalEntry {
+    JournalEntry *journalEntry = self.journalEntry;
+    journalEntry.date = [NSDate date];
+    journalEntry.height = self.textFields[0].text;
+    journalEntry.period = self.textFields[1].text;
+    journalEntry.wind = self.textFields[2].text;
+    journalEntry.location = self.textFields[3].text;
+    journalEntry.rating = @(self.segmentedControl.selectedSegmentIndex + 1);
 }
 
 #pragma mark - Actions
 
 - (void)itemCancelClicked:(id)sender {
     if ([self.delegate respondsToSelector:@selector(viewControllerDidFinish:saved:)]) {
-
+        [self.delegate viewControllerDidFinish:self saved:NO];
     }
 }
 
 - (void)itemSaveClicked:(id)sender {
     if ([self.delegate respondsToSelector:@selector(viewControllerDidFinish:saved:)]) {
-        
+        [self updateJournalEntry];
+        [self.delegate viewControllerDidFinish:self saved:YES];
     }
 }
 
