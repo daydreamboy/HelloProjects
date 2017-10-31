@@ -91,4 +91,54 @@ Reference: https://useyourloaf.com/blog/core-data-code-generation/
 
 ## Multiple Managed Object Context
 
+1\. NSPersistentStoreCoordinator可以对应多个NSManagedObjectContext
+
+例如导出CoreData数据，可以利用NSManagedObjectContext的队列执行导出操作。
+
+```
+NSManagedObjectContext *privateContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+privateContext.persistentStoreCoordinator = self.context.persistentStoreCoordinator;
+    
+[privateContext performBlock:^{
+    // do export data from database
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+    	// do UI operations
+    });
+}];
+```
+
+创建一个临时的NSManagedObjectContext，将它关联到现有的NSPersistentStoreCoordinator，这样这个临时的NSManagedObjectContext能访问到数据。
+
+2\. NSManagedObjectContext可以指定一个parentContext
+
+例如创建某个草稿，可以临时创建一个NSManagedObjectContext用于记录草稿当前的数据，如果草稿保存，则child context保存，并且通知parent context保存，这时child context中的所有数据和parentContext合并并保存下来。
+
+```
+// create a temporary context as child context
+NSManagedObjectContext *childContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+childContext.parentContext = self.context;
+
+// use child context to create a managed object
+NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"JournalEntry" inManagedObjectContext:childContext];
+JournalEntry *newJournalEntry = [[JournalEntry alloc] initWithEntity:entityDescription insertIntoManagedObjectContext:childContext];
+
+// use the managed object to store some data
+...
+
+// child context save the managed object or just discard the child context
+[childContext performBlock:^{
+    if (childContext.hasChanges) {
+        NSError *error = nil;
+        [childContext save:&error];
+        
+        if (error) {
+            NSLog(@"error: %@", error);
+            abort();
+        }
+        
+        [self.context save:nil];
+    }
+}];
+```
 
