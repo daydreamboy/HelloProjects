@@ -304,6 +304,7 @@
         
         NSManagedObjectContext *childContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
         childContext.parentContext = self.context;
+        // Note: NSManagedObject is specific to the context which created it, other contexts can't access it directly, it should use `objectWithID:` to get a reference to the NSManagedObject
         JournalEntry *childJournalEntry = [childContext objectWithID:journalEntry.objectID];
         
         JournalEntryViewController *vc = [JournalEntryViewController new];
