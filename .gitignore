@@ -34,3 +34,6 @@ Carthage
 Pods/
 
 .idea/
+
+# My Settings
+Frameworks/

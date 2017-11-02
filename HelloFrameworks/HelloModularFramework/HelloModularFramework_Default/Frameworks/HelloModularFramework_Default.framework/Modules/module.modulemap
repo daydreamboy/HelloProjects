@@ -1,6 +1,0 @@
-framework module HelloModularFramework_Default {
-  umbrella header "HelloModularFramework_Default.h"
-
-  export *
-  module * { export * }
-}

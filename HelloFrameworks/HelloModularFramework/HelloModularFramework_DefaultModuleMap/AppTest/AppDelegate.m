@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 
-#import <HelloModularFramework_Default/PublicClassA.h>
+#import <HelloModularFramework_DefaultModuleMap/PublicClassA.h>
 
 @interface AppDelegate ()
 

@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 
-@import HelloModularFramework_Default;
+@import HelloModularFramework_DefaultModuleMap;
 
 @interface ViewController ()
 
