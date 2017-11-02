@@ -1,0 +1,6 @@
+framework module HelloModularFramework_UmbrellaHeader {
+    umbrella header "HelloModularFramework_UmbrellaHeader.h"
+    // 如果PublicClassD.h没有引入在umbrella头文件，可以单独header声明
+    header "PublicClassD.h"
+}
+
