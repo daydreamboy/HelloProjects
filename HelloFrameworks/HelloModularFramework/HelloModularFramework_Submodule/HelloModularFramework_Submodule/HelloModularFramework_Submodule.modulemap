@@ -1,0 +1,22 @@
+framework module HelloModularFramework_Submodule {
+    module PublicClassA {
+        header "PublicClassA.h"
+        export PublicClassD
+    }
+    
+    explicit module PublicClassB {
+        header "PublicClassB.h"
+    }
+    
+    module PublicClassC {
+        // PublicClassC.h also import PublicClassB.h
+        header "PublicClassC.h"
+    }
+    
+    explicit module PublicClassD {
+        header "PublicClassD.h"
+    }
+    
+    export PublicClassD
+}
+
