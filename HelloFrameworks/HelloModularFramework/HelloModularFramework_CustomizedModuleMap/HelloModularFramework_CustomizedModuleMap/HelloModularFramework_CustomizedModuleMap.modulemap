@@ -1,0 +1,7 @@
+framework module HelloModularFramework_CustomizedModuleMap {
+    umbrella header "HelloModularFramework_CustomizedModuleMap.h"
+    
+    export *
+    module * { export * }
+}
+
