@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F55C4901FA9672800E6A893 /* HelloModularFramework_CustomizedModular.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F55C48E1FA966CE00E6A893 /* HelloModularFramework_CustomizedModular.framework */; };
-		4F55C4911FA9672800E6A893 /* HelloModularFramework_CustomizedModular.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F55C48E1FA966CE00E6A893 /* HelloModularFramework_CustomizedModular.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4F55C5AF1FAB121000E6A893 /* HelloModularFramework_Submodule.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F55C5AD1FAB120A00E6A893 /* HelloModularFramework_Submodule.framework */; };
+		4F55C5B01FAB121000E6A893 /* HelloModularFramework_Submodule.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F55C5AD1FAB120A00E6A893 /* HelloModularFramework_Submodule.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4F8C0C111FA0B955004383EE /* HelloModularFramework_Submodule.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F8C0C0F1FA0B955004383EE /* HelloModularFramework_Submodule.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4F8C0C191FA0B9AC004383EE /* PublicClassA.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F8C0C171FA0B9AC004383EE /* PublicClassA.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4F8C0C1A1FA0B9AC004383EE /* PublicClassA.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C0C181FA0B9AC004383EE /* PublicClassA.m */; };
@@ -31,7 +31,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4F55C4911FA9672800E6A893 /* HelloModularFramework_CustomizedModular.framework in Embed Frameworks */,
+				4F55C5B01FAB121000E6A893 /* HelloModularFramework_Submodule.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -39,8 +39,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4F55C48E1FA966CE00E6A893 /* HelloModularFramework_CustomizedModular.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HelloModularFramework_CustomizedModular.framework; sourceTree = "<group>"; };
 		4F55C4A41FA9F6D400E6A893 /* HelloModularFramework_Submodule.modulemap */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.module-map"; path = HelloModularFramework_Submodule.modulemap; sourceTree = "<group>"; };
+		4F55C5AD1FAB120A00E6A893 /* HelloModularFramework_Submodule.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = HelloModularFramework_Submodule.framework; sourceTree = "<group>"; };
 		4F8C0C0C1FA0B955004383EE /* HelloModularFramework_Submodule.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HelloModularFramework_Submodule.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F8C0C0F1FA0B955004383EE /* HelloModularFramework_Submodule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloModularFramework_Submodule.h; sourceTree = "<group>"; };
 		4F8C0C101FA0B955004383EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -74,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F55C4901FA9672800E6A893 /* HelloModularFramework_CustomizedModular.framework in Frameworks */,
+				4F55C5AF1FAB121000E6A893 /* HelloModularFramework_Submodule.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,7 +135,7 @@
 		4F8C0C3D1FA0BB03004383EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4F55C48E1FA966CE00E6A893 /* HelloModularFramework_CustomizedModular.framework */,
+				4F55C5AD1FAB120A00E6A893 /* HelloModularFramework_Submodule.framework */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";

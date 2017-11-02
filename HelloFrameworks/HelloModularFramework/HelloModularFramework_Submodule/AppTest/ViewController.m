@@ -10,6 +10,7 @@
 
 //#import <HelloModularFramework_Submodule/HelloModularFramework_Submodule.h>
 @import HelloModularFramework_Submodule;
+@import HelloModularFramework_Submodule.B;
 
 @interface ViewController ()
 

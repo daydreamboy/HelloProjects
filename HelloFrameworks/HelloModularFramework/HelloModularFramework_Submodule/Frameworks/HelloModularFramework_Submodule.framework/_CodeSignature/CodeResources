@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/HelloModularFramework_Submodule.h</key>
 		<data>
-		UYnM6lBZQ6cZRqzpAwaa2lzRmsY=
+		MfVP7bQDA2FP0pF6x+4OkEPWGHo=
 		</data>
 		<key>Headers/PublicClassA.h</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		0ZitQP6ebd3A8HXqTP7sbuxgxvQ=
+		p/YwNg9DCJVbHY4QYAZYFiDMaWg=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -31,11 +31,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			UYnM6lBZQ6cZRqzpAwaa2lzRmsY=
+			MfVP7bQDA2FP0pF6x+4OkEPWGHo=
 			</data>
 			<key>hash2</key>
 			<data>
-			RfuBv77QeJRGSDtCEaAQBepHXKJ6JQNxqUV6ASeLloU=
+			BY2cUnIGN87E24b0Zp14Cke5PXtoNII8XprVUFFJQfI=
 			</data>
 		</dict>
 		<key>Headers/PublicClassA.h</key>
@@ -64,11 +64,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			0ZitQP6ebd3A8HXqTP7sbuxgxvQ=
+			p/YwNg9DCJVbHY4QYAZYFiDMaWg=
 			</data>
 			<key>hash2</key>
 			<data>
-			dBTGDAXs59NTPws0/57zgInPo/gGMuz22OLVHvNyX3E=
+			/qp/RXIVoiYLTK+7DTjkGr/UJ6JUUw++zIOhLVLddzM=
 			</data>
 		</dict>
 	</dict>

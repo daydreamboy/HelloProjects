@@ -17,4 +17,5 @@ FOUNDATION_EXPORT const unsigned char HelloModularFramework_DefaultVersionString
 // In this header, you should import all the public headers of your framework using statements like #import <HelloModularFramework_Default/PublicHeader.h>
 
 #import <HelloModularFramework_Submodule/PublicClassA.h>
-//#import <HelloModularFramework_Submodule/PublicClassB.h>
+#import <HelloModularFramework_Submodule/PublicClassB.h>
+

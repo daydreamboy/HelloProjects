@@ -1,5 +1,14 @@
 framework module HelloModularFramework_Submodule {
     umbrella header "HelloModularFramework_Submodule.h"
-    header "PublicClassB.h"
+    
+    // define a submodule, also can import it by importing its parent module
+    module A {
+        header "PublicClassA.h"
+    }
+    
+    // use explicit to force declare `@import HelloModularFramework_Submodule.B;`
+    explicit module B {
+        header "PublicClassB.h"
+    }
 }
 
