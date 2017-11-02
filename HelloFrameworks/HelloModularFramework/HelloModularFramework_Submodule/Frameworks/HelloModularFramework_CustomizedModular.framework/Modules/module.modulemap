@@ -1,0 +1,5 @@
+framework module HelloModularFramework_CustomizedModular {
+    umbrella header "HelloModularFramework_CustomizedModular.h"
+    header "PublicClassB.h"
+}
+

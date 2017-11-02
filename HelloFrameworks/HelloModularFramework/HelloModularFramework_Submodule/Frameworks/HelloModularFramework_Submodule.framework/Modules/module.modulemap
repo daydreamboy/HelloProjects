@@ -1,0 +1,5 @@
+framework module HelloModularFramework_Submodule {
+    umbrella header "HelloModularFramework_Submodule.h"
+    header "PublicClassB.h"
+}
+
