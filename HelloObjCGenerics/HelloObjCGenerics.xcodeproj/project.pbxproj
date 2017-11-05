@@ -1,0 +1,397 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4F2FE16E1FAF06EB0074690D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FE16D1FAF06EB0074690D /* AppDelegate.m */; };
+		4F2FE1761FAF06EB0074690D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F2FE1751FAF06EB0074690D /* Assets.xcassets */; };
+		4F2FE1791FAF06EB0074690D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F2FE1771FAF06EB0074690D /* LaunchScreen.storyboard */; };
+		4F2FE17C1FAF06EB0074690D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FE17B1FAF06EB0074690D /* main.m */; };
+		4F2FE1851FAF07150074690D /* UseGenericCollectionClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FE1841FAF07150074690D /* UseGenericCollectionClassViewController.m */; };
+		4F2FE1881FAF07390074690D /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FE1871FAF07390074690D /* RootViewController.m */; };
+		4F2FE18B1FAF092B0074690D /* DefineGenericClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FE18A1FAF092B0074690D /* DefineGenericClassViewController.m */; };
+		4F2FE18E1FAF095B0074690D /* GenericPetHotel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FE18D1FAF095B0074690D /* GenericPetHotel.m */; };
+		4F2FE1911FAF0B990074690D /* Cat.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FE1901FAF0B990074690D /* Cat.m */; };
+		4F2FE1941FAF0D1E0074690D /* RestrictedGenericPetHotel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FE1931FAF0D1E0074690D /* RestrictedGenericPetHotel.m */; };
+		4F2FE1971FAF0D280074690D /* Animal.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FE1961FAF0D280074690D /* Animal.m */; };
+		4F2FE19A1FAF0E0A0074690D /* DefineRestrictedGenericClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FE1991FAF0E0A0074690D /* DefineRestrictedGenericClassViewController.m */; };
+		4F2FE19E1FAF10D10074690D /* UseProtocolRestrictGenericClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FE19D1FAF10D10074690D /* UseProtocolRestrictGenericClassViewController.m */; };
+		4F2FE1A11FAF110E0074690D /* RestrictedByProtocolGenericPetHotel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FE1A01FAF110E0074690D /* RestrictedByProtocolGenericPetHotel.m */; };
+		4F2FE1A41FAF11D40074690D /* Duck.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FE1A31FAF11D40074690D /* Duck.m */; };
+		4F2FE1A71FAF132C0074690D /* NSMutableArray+Cat.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FE1A61FAF132C0074690D /* NSMutableArray+Cat.m */; };
+		4F2FE1AA1FAF13A40074690D /* DefineGenericCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FE1A91FAF13A40074690D /* DefineGenericCategoryViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4F2FE1691FAF06EB0074690D /* HelloObjCGenerics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloObjCGenerics.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F2FE16C1FAF06EB0074690D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4F2FE16D1FAF06EB0074690D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4F2FE1751FAF06EB0074690D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4F2FE1781FAF06EB0074690D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4F2FE17A1FAF06EB0074690D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F2FE17B1FAF06EB0074690D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4F2FE1831FAF07150074690D /* UseGenericCollectionClassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseGenericCollectionClassViewController.h; sourceTree = "<group>"; };
+		4F2FE1841FAF07150074690D /* UseGenericCollectionClassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseGenericCollectionClassViewController.m; sourceTree = "<group>"; };
+		4F2FE1861FAF07390074690D /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		4F2FE1871FAF07390074690D /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		4F2FE1891FAF092B0074690D /* DefineGenericClassViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefineGenericClassViewController.h; sourceTree = "<group>"; };
+		4F2FE18A1FAF092B0074690D /* DefineGenericClassViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefineGenericClassViewController.m; sourceTree = "<group>"; };
+		4F2FE18C1FAF095B0074690D /* GenericPetHotel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenericPetHotel.h; sourceTree = "<group>"; };
+		4F2FE18D1FAF095B0074690D /* GenericPetHotel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenericPetHotel.m; sourceTree = "<group>"; };
+		4F2FE18F1FAF0B990074690D /* Cat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cat.h; sourceTree = "<group>"; };
+		4F2FE1901FAF0B990074690D /* Cat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Cat.m; sourceTree = "<group>"; };
+		4F2FE1921FAF0D1E0074690D /* RestrictedGenericPetHotel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestrictedGenericPetHotel.h; sourceTree = "<group>"; };
+		4F2FE1931FAF0D1E0074690D /* RestrictedGenericPetHotel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestrictedGenericPetHotel.m; sourceTree = "<group>"; };
+		4F2FE1951FAF0D280074690D /* Animal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Animal.h; sourceTree = "<group>"; };
+		4F2FE1961FAF0D280074690D /* Animal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Animal.m; sourceTree = "<group>"; };
+		4F2FE1981FAF0E0A0074690D /* DefineRestrictedGenericClassViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefineRestrictedGenericClassViewController.h; sourceTree = "<group>"; };
+		4F2FE1991FAF0E0A0074690D /* DefineRestrictedGenericClassViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefineRestrictedGenericClassViewController.m; sourceTree = "<group>"; };
+		4F2FE19B1FAF10660074690D /* Swim.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Swim.h; sourceTree = "<group>"; };
+		4F2FE19C1FAF10D10074690D /* UseProtocolRestrictGenericClassViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseProtocolRestrictGenericClassViewController.h; sourceTree = "<group>"; };
+		4F2FE19D1FAF10D10074690D /* UseProtocolRestrictGenericClassViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseProtocolRestrictGenericClassViewController.m; sourceTree = "<group>"; };
+		4F2FE19F1FAF110E0074690D /* RestrictedByProtocolGenericPetHotel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RestrictedByProtocolGenericPetHotel.h; sourceTree = "<group>"; };
+		4F2FE1A01FAF110E0074690D /* RestrictedByProtocolGenericPetHotel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestrictedByProtocolGenericPetHotel.m; sourceTree = "<group>"; };
+		4F2FE1A21FAF11D40074690D /* Duck.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Duck.h; sourceTree = "<group>"; };
+		4F2FE1A31FAF11D40074690D /* Duck.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Duck.m; sourceTree = "<group>"; };
+		4F2FE1A51FAF132C0074690D /* NSMutableArray+Cat.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Cat.h"; sourceTree = "<group>"; };
+		4F2FE1A61FAF132C0074690D /* NSMutableArray+Cat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Cat.m"; sourceTree = "<group>"; };
+		4F2FE1A81FAF13A40074690D /* DefineGenericCategoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefineGenericCategoryViewController.h; sourceTree = "<group>"; };
+		4F2FE1A91FAF13A40074690D /* DefineGenericCategoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefineGenericCategoryViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4F2FE1661FAF06EB0074690D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4F2FE1601FAF06EB0074690D = {
+			isa = PBXGroup;
+			children = (
+				4F2FE16B1FAF06EB0074690D /* HelloObjCGenerics */,
+				4F2FE16A1FAF06EB0074690D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4F2FE16A1FAF06EB0074690D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4F2FE1691FAF06EB0074690D /* HelloObjCGenerics.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4F2FE16B1FAF06EB0074690D /* HelloObjCGenerics */ = {
+			isa = PBXGroup;
+			children = (
+				4F2FE1821FAF07150074690D /* AppTestDemos */,
+				4F2FE16C1FAF06EB0074690D /* AppDelegate.h */,
+				4F2FE16D1FAF06EB0074690D /* AppDelegate.m */,
+				4F2FE1861FAF07390074690D /* RootViewController.h */,
+				4F2FE1871FAF07390074690D /* RootViewController.m */,
+				4F2FE1751FAF06EB0074690D /* Assets.xcassets */,
+				4F2FE1771FAF06EB0074690D /* LaunchScreen.storyboard */,
+				4F2FE17A1FAF06EB0074690D /* Info.plist */,
+				4F2FE17B1FAF06EB0074690D /* main.m */,
+			);
+			path = HelloObjCGenerics;
+			sourceTree = "<group>";
+		};
+		4F2FE1821FAF07150074690D /* AppTestDemos */ = {
+			isa = PBXGroup;
+			children = (
+				4F2FE1831FAF07150074690D /* UseGenericCollectionClassViewController.h */,
+				4F2FE1841FAF07150074690D /* UseGenericCollectionClassViewController.m */,
+				4F2FE1891FAF092B0074690D /* DefineGenericClassViewController.h */,
+				4F2FE18A1FAF092B0074690D /* DefineGenericClassViewController.m */,
+				4F2FE1981FAF0E0A0074690D /* DefineRestrictedGenericClassViewController.h */,
+				4F2FE1991FAF0E0A0074690D /* DefineRestrictedGenericClassViewController.m */,
+				4F2FE1A81FAF13A40074690D /* DefineGenericCategoryViewController.h */,
+				4F2FE1A91FAF13A40074690D /* DefineGenericCategoryViewController.m */,
+				4F2FE19C1FAF10D10074690D /* UseProtocolRestrictGenericClassViewController.h */,
+				4F2FE19D1FAF10D10074690D /* UseProtocolRestrictGenericClassViewController.m */,
+				4F2FE18C1FAF095B0074690D /* GenericPetHotel.h */,
+				4F2FE18D1FAF095B0074690D /* GenericPetHotel.m */,
+				4F2FE1921FAF0D1E0074690D /* RestrictedGenericPetHotel.h */,
+				4F2FE1931FAF0D1E0074690D /* RestrictedGenericPetHotel.m */,
+				4F2FE19F1FAF110E0074690D /* RestrictedByProtocolGenericPetHotel.h */,
+				4F2FE1A01FAF110E0074690D /* RestrictedByProtocolGenericPetHotel.m */,
+				4F2FE18F1FAF0B990074690D /* Cat.h */,
+				4F2FE1901FAF0B990074690D /* Cat.m */,
+				4F2FE1A21FAF11D40074690D /* Duck.h */,
+				4F2FE1A31FAF11D40074690D /* Duck.m */,
+				4F2FE1951FAF0D280074690D /* Animal.h */,
+				4F2FE1961FAF0D280074690D /* Animal.m */,
+				4F2FE19B1FAF10660074690D /* Swim.h */,
+				4F2FE1A51FAF132C0074690D /* NSMutableArray+Cat.h */,
+				4F2FE1A61FAF132C0074690D /* NSMutableArray+Cat.m */,
+			);
+			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4F2FE1681FAF06EB0074690D /* HelloObjCGenerics */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F2FE17F1FAF06EB0074690D /* Build configuration list for PBXNativeTarget "HelloObjCGenerics" */;
+			buildPhases = (
+				4F2FE1651FAF06EB0074690D /* Sources */,
+				4F2FE1661FAF06EB0074690D /* Frameworks */,
+				4F2FE1671FAF06EB0074690D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HelloObjCGenerics;
+			productName = HelloObjCGenerics;
+			productReference = 4F2FE1691FAF06EB0074690D /* HelloObjCGenerics.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4F2FE1611FAF06EB0074690D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = wesley_chen;
+				TargetAttributes = {
+					4F2FE1681FAF06EB0074690D = {
+						CreatedOnToolsVersion = 9.0.1;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 4F2FE1641FAF06EB0074690D /* Build configuration list for PBXProject "HelloObjCGenerics" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4F2FE1601FAF06EB0074690D;
+			productRefGroup = 4F2FE16A1FAF06EB0074690D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4F2FE1681FAF06EB0074690D /* HelloObjCGenerics */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4F2FE1671FAF06EB0074690D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F2FE1791FAF06EB0074690D /* LaunchScreen.storyboard in Resources */,
+				4F2FE1761FAF06EB0074690D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4F2FE1651FAF06EB0074690D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F2FE1AA1FAF13A40074690D /* DefineGenericCategoryViewController.m in Sources */,
+				4F2FE1A71FAF132C0074690D /* NSMutableArray+Cat.m in Sources */,
+				4F2FE1A41FAF11D40074690D /* Duck.m in Sources */,
+				4F2FE1A11FAF110E0074690D /* RestrictedByProtocolGenericPetHotel.m in Sources */,
+				4F2FE18B1FAF092B0074690D /* DefineGenericClassViewController.m in Sources */,
+				4F2FE1851FAF07150074690D /* UseGenericCollectionClassViewController.m in Sources */,
+				4F2FE1911FAF0B990074690D /* Cat.m in Sources */,
+				4F2FE18E1FAF095B0074690D /* GenericPetHotel.m in Sources */,
+				4F2FE17C1FAF06EB0074690D /* main.m in Sources */,
+				4F2FE1941FAF0D1E0074690D /* RestrictedGenericPetHotel.m in Sources */,
+				4F2FE1971FAF0D280074690D /* Animal.m in Sources */,
+				4F2FE19E1FAF10D10074690D /* UseProtocolRestrictGenericClassViewController.m in Sources */,
+				4F2FE19A1FAF0E0A0074690D /* DefineRestrictedGenericClassViewController.m in Sources */,
+				4F2FE1881FAF07390074690D /* RootViewController.m in Sources */,
+				4F2FE16E1FAF06EB0074690D /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4F2FE1771FAF06EB0074690D /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F2FE1781FAF06EB0074690D /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4F2FE17D1FAF06EB0074690D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4F2FE17E1FAF06EB0074690D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4F2FE1801FAF06EB0074690D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = HelloObjCGenerics/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloObjCGenerics;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4F2FE1811FAF06EB0074690D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = HelloObjCGenerics/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloObjCGenerics;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4F2FE1641FAF06EB0074690D /* Build configuration list for PBXProject "HelloObjCGenerics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F2FE17D1FAF06EB0074690D /* Debug */,
+				4F2FE17E1FAF06EB0074690D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F2FE17F1FAF06EB0074690D /* Build configuration list for PBXNativeTarget "HelloObjCGenerics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F2FE1801FAF06EB0074690D /* Debug */,
+				4F2FE1811FAF06EB0074690D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4F2FE1611FAF06EB0074690D /* Project object */;
+}
