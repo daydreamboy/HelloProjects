@@ -1,0 +1,17 @@
+framework module HelloModularFramework_Export {
+    
+    module Base {
+        header "Base.h"
+    }
+    
+    module Derived {
+        header "Derived.h"
+        // when Derived.h includes Base.h, so use export * instead of export Base
+        export *
+    }
+
+    module PublicClassA {
+        header "PublicClassA.h"
+    }
+}
+
