@@ -1,0 +1,8 @@
+framework module HelloModularFramework_InferredSubmodule {
+    umbrella header "HelloModularFramework_InferredSubmodule.h"
+    
+    // Note: module * must require a umbrella header
+    module * {
+    }
+}
+
