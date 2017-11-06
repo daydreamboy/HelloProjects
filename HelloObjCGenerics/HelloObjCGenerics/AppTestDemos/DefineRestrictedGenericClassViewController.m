@@ -28,9 +28,9 @@
     
     // Error: Can't use NSString as a generic type
     /*
-    StrictGenericPetHotel<NSString *> *catHotel2 = [StrictGenericPetHotel new];
-    [catHotel2 checkinPet:[NSString new] withName:@"a string"];
+    RestrictedGenericPetHotel<NSString *> *catHotel2 = [RestrictedGenericPetHotel new];
      */
+    //[catHotel2 checkinPet:[NSString new] withName:@"a string"];
     
     RestrictedGenericPetHotel<Cat *> *catHotel3 = [RestrictedGenericPetHotel new];
     [catHotel3 checkinPet:[NSString new] withName:@"a string"];

@@ -26,7 +26,7 @@
 #pragma mark - Test Methods
 
 - (void)test_use_generic_class {
-    GenericPetHotel<Cat *> *catHotel = [GenericPetHotel new];
+    GenericPetHotel<Cat *> *catHotel = [[GenericPetHotel<Cat *> alloc] init];
     // Note: this line will get a warning
     [catHotel checkinPet:[NSObject new] withName:@"NSObject"];
     [catHotel checkinPet:[Cat new] withName:@"a cat"];
