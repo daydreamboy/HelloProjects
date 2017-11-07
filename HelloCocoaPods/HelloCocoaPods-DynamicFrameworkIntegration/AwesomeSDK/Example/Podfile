@@ -3,9 +3,24 @@ use_frameworks!
 platform :ios, '8.0'
 
 target 'AwesomeSDK_Example' do
-  pod 'AwesomeSDK', :path => '../'
+  pod 'AwesomeSDK', :path => '../AwesomeSDK_development.podspec'
 
   target 'AwesomeSDK_Tests' do
     inherit! :search_paths
   end
+end
+
+# Configurations
+run_script_name = '[Podfile] Copy To Product Folder'
+script_content = 'rsync -arv "${CONFIGURATION_BUILD_DIR}" "${PROJECT_DIR}/../../Product/"'
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    if target.name == 'AwesomeSDK'
+      new_phase = target.new_shell_script_build_phase(run_script_name)
+      new_phase.shell_script = script_content
+    end
+  end
+
+  installer.pods_project.save(installer.pods_project.path)
 end

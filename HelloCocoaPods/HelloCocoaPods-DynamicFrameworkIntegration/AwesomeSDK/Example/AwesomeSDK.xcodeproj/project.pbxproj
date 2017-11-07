@@ -250,6 +250,9 @@
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = daydreamboy;
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						DevelopmentTeam = QVRKK2EEDF;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -533,6 +536,7 @@
 			baseConfigurationReference = 3121447C41801CB6A24FCDD8 /* Pods-AwesomeSDK_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = QVRKK2EEDF;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AwesomeSDK/AwesomeSDK-Prefix.pch";
 				INFOPLIST_FILE = "AwesomeSDK/AwesomeSDK-Info.plist";
@@ -548,6 +552,7 @@
 			baseConfigurationReference = B1842F45AC6A42ABFC0C90E6 /* Pods-AwesomeSDK_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = QVRKK2EEDF;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AwesomeSDK/AwesomeSDK-Prefix.pch";
 				INFOPLIST_FILE = "AwesomeSDK/AwesomeSDK-Info.plist";

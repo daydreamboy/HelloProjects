@@ -39,4 +39,13 @@ TODO: Add long description of the pod here.
   s.public_header_files = 'AwesomeSDK/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
+  
+  # Examples
+  # s.pod_target_xcconfig = ...
+  
+  # Note: this only apply to the Pod Target
+  #s.pod_target_xcconfig = { "CONFIGURATION_BUILD_DIR" => "$(PROJECT_DIR)/Product" }
+  
+  # Note: this will apply to App Target and all Pod Targets
+  #s.xcconfig = { "CONFIGURATION_BUILD_DIR" => "$(PROJECT_DIR)/Product/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)" }
 end
