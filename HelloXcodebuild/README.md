@@ -6,7 +6,7 @@ xcodebuild是Xcode使用的命令行工具。如果想自动化完成xcode支持
 
 xcodebuild在当前目录找xcodeproj文件，根据这个文件的配置输出相应的产物。
 
-xcodebuild在当前文件夹下生成，它的结构和Xcode的DerivedData中结构是对应的。
+xcodebuild在当前文件夹下生成build文件夹，它的结构和Xcode的DerivedData中结构是对应的。
 
 
 
@@ -455,3 +455,20 @@ Build settings for action build and target HelloXcodebuildForApp:
     diagnostic_message_length = 112
     variant = normal
 ```
+
+上面比较常用的环境变量有
+
+* CONFIGURATION，Debug或者Release
+* PROJECT_DIR，.xcodeproj文件所在的绝对路径
+* SRCROOT，和PROJECT_DIR一样的
+* PROJECT_NAME，和.xcodeproj文件名一致
+* TARGET\_TEMP\_DIR，编译时中间文件所在的文件夹路径
+* CURRENT\_ARCH，当前硬件架构，值有arm64、armv7、x86_64
+
+Xcode的环境变量，可以使用${var}或者$(var)取值。除了Xcode的<b>Build Settings</b>中使用上面的Xcode的环境变量，还可以使用inherited。
+
+
+References
+--
+
+1. https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW38
