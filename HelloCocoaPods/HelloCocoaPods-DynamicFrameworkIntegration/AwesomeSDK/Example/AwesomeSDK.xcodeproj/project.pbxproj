@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		476A617A5B8E05BB99C11D7D /* libPods-AwesomeSDK_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 432E36D509853FFB8B2B9272 /* libPods-AwesomeSDK_Example.a */; };
-		4FC82952D908024B096DA9E3 /* libPods-AwesomeSDK_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4CCD0A389F1FCAEFAB27832 /* libPods-AwesomeSDK_Tests.a */; };
+		1C9F239D4E58B27EDF0B452B /* Pods_AwesomeSDK_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FCB94C09AFD40DAE85EA12E7 /* Pods_AwesomeSDK_Example.framework */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -24,6 +23,7 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		ED42D52C65BB7C1A0FF58237 /* Pods_AwesomeSDK_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CE02CC391D36FE658C5F993 /* Pods_AwesomeSDK_Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +38,7 @@
 
 /* Begin PBXFileReference section */
 		3121447C41801CB6A24FCDD8 /* Pods-AwesomeSDK_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeSDK_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AwesomeSDK_Example/Pods-AwesomeSDK_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		432E36D509853FFB8B2B9272 /* libPods-AwesomeSDK_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AwesomeSDK_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CE02CC391D36FE658C5F993 /* Pods_AwesomeSDK_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwesomeSDK_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* AwesomeSDK_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwesomeSDK_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -66,7 +66,7 @@
 		B1842F45AC6A42ABFC0C90E6 /* Pods-AwesomeSDK_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeSDK_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-AwesomeSDK_Example/Pods-AwesomeSDK_Example.release.xcconfig"; sourceTree = "<group>"; };
 		C32982E7C762463AF2BD49C0 /* AwesomeSDK.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = AwesomeSDK.podspec; path = ../AwesomeSDK.podspec; sourceTree = "<group>"; };
 		EE0B15DC2D601A040C7D94F4 /* Pods-AwesomeSDK_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AwesomeSDK_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AwesomeSDK_Tests/Pods-AwesomeSDK_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		F4CCD0A389F1FCAEFAB27832 /* libPods-AwesomeSDK_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AwesomeSDK_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCB94C09AFD40DAE85EA12E7 /* Pods_AwesomeSDK_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AwesomeSDK_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,7 +77,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				476A617A5B8E05BB99C11D7D /* libPods-AwesomeSDK_Example.a in Frameworks */,
+				1C9F239D4E58B27EDF0B452B /* Pods_AwesomeSDK_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +88,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				4FC82952D908024B096DA9E3 /* libPods-AwesomeSDK_Tests.a in Frameworks */,
+				ED42D52C65BB7C1A0FF58237 /* Pods_AwesomeSDK_Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,8 +134,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				432E36D509853FFB8B2B9272 /* libPods-AwesomeSDK_Example.a */,
-				F4CCD0A389F1FCAEFAB27832 /* libPods-AwesomeSDK_Tests.a */,
+				FCB94C09AFD40DAE85EA12E7 /* Pods_AwesomeSDK_Example.framework */,
+				3CE02CC391D36FE658C5F993 /* Pods_AwesomeSDK_Tests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
