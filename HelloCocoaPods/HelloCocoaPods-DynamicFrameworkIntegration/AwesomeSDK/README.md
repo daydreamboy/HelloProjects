@@ -1,29 +1,30 @@
-# AwesomeSDK
+## AwesomeSDK
 
-[![CI Status](http://img.shields.io/travis/daydreamboy/AwesomeSDK.svg?style=flat)](https://travis-ci.org/daydreamboy/AwesomeSDK)
-[![Version](https://img.shields.io/cocoapods/v/AwesomeSDK.svg?style=flat)](http://cocoapods.org/pods/AwesomeSDK)
-[![License](https://img.shields.io/cocoapods/l/AwesomeSDK.svg?style=flat)](http://cocoapods.org/pods/AwesomeSDK)
-[![Platform](https://img.shields.io/cocoapods/p/AwesomeSDK.svg?style=flat)](http://cocoapods.org/pods/AwesomeSDK)
+### podspec
 
-## Example
+AwesomeSDK提供两种podspec
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+* AwesomeSDK_development.podspec，支持源码集成
+* AwesomeSDK_production.podspec，支持framework集成，framework放在Product文件夹下，使用Example工程来生成framework。
 
-## Requirements
+### 拷贝framework到Product文件夹
 
-## Installation
+Example/Podfile
 
-AwesomeSDK is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-```ruby
-pod 'AwesomeSDK'
 ```
+...
+# Configurations
+run_script_name = '[Podfile] Copy To Product Folder'
+script_content = 'rsync -arv "${CONFIGURATION_BUILD_DIR}" "${PROJECT_DIR}/../../Product/"'
 
-## Author
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    if target.name == 'AwesomeSDK'
+      new_phase = target.new_shell_script_build_phase(run_script_name)
+      new_phase.shell_script = script_content
+    end
+  end
 
-daydreamboy, wesleychen.cl@alibaba-inc.com
-
-## License
-
-AwesomeSDK is available under the MIT license. See the LICENSE file for more info.
+  installer.pods_project.save(installer.pods_project.path)
+end
+```
