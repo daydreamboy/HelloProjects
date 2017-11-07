@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		076851F91EC854CFC1C8E4F6 /* Pods_HelloCocoaPods_DynamicFrameworkIntegration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71131787283E0CCC27693020 /* Pods_HelloCocoaPods_DynamicFrameworkIntegration.framework */; };
 		4FB0759C1FB1579C0025F402 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0759B1FB1579C0025F402 /* AppDelegate.m */; };
 		4FB0759F1FB1579C0025F402 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0759E1FB1579C0025F402 /* ViewController.m */; };
 		4FB075A21FB1579C0025F402 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FB075A01FB1579C0025F402 /* Main.storyboard */; };
 		4FB075A41FB1579C0025F402 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FB075A31FB1579C0025F402 /* Assets.xcassets */; };
 		4FB075A71FB1579C0025F402 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FB075A51FB1579C0025F402 /* LaunchScreen.storyboard */; };
 		4FB075AA1FB1579C0025F402 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB075A91FB1579C0025F402 /* main.m */; };
-		D3FF447266E292C4D8CE72C8 /* libPods-HelloCocoaPods-DynamicFrameworkIntegration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E744CB44CD5098A8C6D5D9D9 /* libPods-HelloCocoaPods-DynamicFrameworkIntegration.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,9 +27,9 @@
 		4FB075A61FB1579C0025F402 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4FB075A81FB1579C0025F402 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FB075A91FB1579C0025F402 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		71131787283E0CCC27693020 /* Pods_HelloCocoaPods_DynamicFrameworkIntegration.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HelloCocoaPods_DynamicFrameworkIntegration.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A8B8B2A4933DD198AE23DB1 /* Pods-HelloCocoaPods-DynamicFrameworkIntegration.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloCocoaPods-DynamicFrameworkIntegration.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HelloCocoaPods-DynamicFrameworkIntegration/Pods-HelloCocoaPods-DynamicFrameworkIntegration.debug.xcconfig"; sourceTree = "<group>"; };
 		A6E125FD88889FF8F6034E59 /* Pods-HelloCocoaPods-DynamicFrameworkIntegration.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloCocoaPods-DynamicFrameworkIntegration.release.xcconfig"; path = "Pods/Target Support Files/Pods-HelloCocoaPods-DynamicFrameworkIntegration/Pods-HelloCocoaPods-DynamicFrameworkIntegration.release.xcconfig"; sourceTree = "<group>"; };
-		E744CB44CD5098A8C6D5D9D9 /* libPods-HelloCocoaPods-DynamicFrameworkIntegration.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HelloCocoaPods-DynamicFrameworkIntegration.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3FF447266E292C4D8CE72C8 /* libPods-HelloCocoaPods-DynamicFrameworkIntegration.a in Frameworks */,
+				076851F91EC854CFC1C8E4F6 /* Pods_HelloCocoaPods_DynamicFrameworkIntegration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,7 +56,7 @@
 		0D1415BB0FF331EDEFD0C740 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				E744CB44CD5098A8C6D5D9D9 /* libPods-HelloCocoaPods-DynamicFrameworkIntegration.a */,
+				71131787283E0CCC27693020 /* Pods_HelloCocoaPods_DynamicFrameworkIntegration.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -205,7 +205,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-HelloCocoaPods-DynamicFrameworkIntegration/Pods-HelloCocoaPods-DynamicFrameworkIntegration-frameworks.sh",
-				"${PODS_ROOT}/../../AwesomeSDK/Product/AwesomeSDK/AwesomeSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/AwesomeSDK/AwesomeSDK.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
