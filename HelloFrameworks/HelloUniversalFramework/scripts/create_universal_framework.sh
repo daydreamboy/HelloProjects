@@ -41,5 +41,8 @@ if [ "Debug" == ${CONFIGURATION} ]; then
 
         # Step 6. Convenience step to open the project's directory in Finder
         open "${PROJECT_DIR}"
+
+        # Step 7. Remove build folder
+        rm -rf build/
     fi
 fi

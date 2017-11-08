@@ -30,7 +30,9 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = 'AwesomeSDK/Classes/**/*'
+  s.source_files = [
+    'AwesomeSDK/Classes/**/*',
+  ]
   
   # s.resource_bundles = {
   #   'AwesomeSDK' => ['AwesomeSDK/Assets/*.png']
