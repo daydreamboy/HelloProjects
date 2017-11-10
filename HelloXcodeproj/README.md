@@ -85,3 +85,9 @@ project.save(project.path)
 3\. 对`project`对象进行保存，调用`project.save(project.path)`。
 
 Note：如果直接使用`project.save`不带参数，xcodeproj保存采用xml格式，和Xcode保存的格式不一样，但不影响Xcode读取文件。
+
+
+### 5. scheme
+
+Xcode中的scheme对应的是.xcscheme文件，分为私有和共享两种。私有的scheme放于xcuserdata文件夹下，而共享的scheme放于xcshareddata文件夹下
+
