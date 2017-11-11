@@ -29,9 +29,11 @@ Stand for sqlite, xml, memory store, and so on
 
 ## NSFetchedResultsController
 
-* 需要配置sortDescriptors
+* 必须配置sortDescriptors
 
-(TODO)
+```
+ *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: 'An instance of NSFetchedResultsController requires a fetch request with sort descriptors'
+```
 
 ## Xcode `Codegen`选项
 

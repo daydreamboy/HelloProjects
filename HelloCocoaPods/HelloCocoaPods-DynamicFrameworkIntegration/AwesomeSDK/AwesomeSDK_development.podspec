@@ -24,7 +24,7 @@ TODO: Add long description of the pod here.
   s.homepage         = 'https://github.com/daydreamboy/AwesomeSDK'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'daydreamboy' => 'wesleychen.cl@alibaba-inc.com' }
+  s.author           = { 'daydreamboy' => 'wesley4chen@gmail.com' }
   s.source           = { :git => 'https://github.com/daydreamboy/AwesomeSDK.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 

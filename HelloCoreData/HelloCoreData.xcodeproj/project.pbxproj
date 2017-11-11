@@ -15,6 +15,10 @@
 		4F1812D01F5F9565007E17C1 /* WorldCup.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F1812CE1F5F9565007E17C1 /* WorldCup.xcdatamodeld */; };
 		4F1812D31F5F966B007E17C1 /* WorldCup_seed.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F1812D21F5F966B007E17C1 /* WorldCup_seed.json */; };
 		4F1812DC1F5F970E007E17C1 /* FetchResultControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1812DB1F5F970E007E17C1 /* FetchResultControllerViewController.m */; };
+		4F33FC021FB6E4EA00DE9852 /* UnCloudNotesDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FC001FB6E4EA00DE9852 /* UnCloudNotesDataModel.xcdatamodeld */; };
+		4F33FC051FB6E88200DE9852 /* NotesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FC041FB6E88200DE9852 /* NotesListViewController.m */; };
+		4F33FC111FB6ED5200DE9852 /* Note+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FC0E1FB6ED5100DE9852 /* Note+CoreDataClass.m */; };
+		4F33FC121FB6ED5200DE9852 /* Note+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FC101FB6ED5100DE9852 /* Note+CoreDataProperties.m */; };
 		4F3CF6D51F5506D200E14CB7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3CF6D41F5506D200E14CB7 /* main.m */; };
 		4F3CF6D81F5506D200E14CB7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3CF6D71F5506D200E14CB7 /* AppDelegate.m */; };
 		4F3CF6E01F5506D200E14CB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3CF6DF1F5506D200E14CB7 /* Assets.xcassets */; };
@@ -95,6 +99,13 @@
 		4F1812D21F5F966B007E17C1 /* WorldCup_seed.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = WorldCup_seed.json; sourceTree = "<group>"; };
 		4F1812DA1F5F970E007E17C1 /* FetchResultControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FetchResultControllerViewController.h; sourceTree = "<group>"; };
 		4F1812DB1F5F970E007E17C1 /* FetchResultControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FetchResultControllerViewController.m; sourceTree = "<group>"; };
+		4F33FC011FB6E4EA00DE9852 /* UnCloudNotesDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = UnCloudNotesDataModel.xcdatamodel; sourceTree = "<group>"; };
+		4F33FC031FB6E88200DE9852 /* NotesListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotesListViewController.h; sourceTree = "<group>"; };
+		4F33FC041FB6E88200DE9852 /* NotesListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotesListViewController.m; sourceTree = "<group>"; };
+		4F33FC0D1FB6ED5100DE9852 /* Note+CoreDataClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Note+CoreDataClass.h"; sourceTree = "<group>"; };
+		4F33FC0E1FB6ED5100DE9852 /* Note+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Note+CoreDataClass.m"; sourceTree = "<group>"; };
+		4F33FC0F1FB6ED5100DE9852 /* Note+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Note+CoreDataProperties.h"; sourceTree = "<group>"; };
+		4F33FC101FB6ED5100DE9852 /* Note+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Note+CoreDataProperties.m"; sourceTree = "<group>"; };
 		4F3CF6D01F5506D200E14CB7 /* HelloCoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloCoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F3CF6D41F5506D200E14CB7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F3CF6D61F5506D200E14CB7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -229,6 +240,27 @@
 			path = WorldCup;
 			sourceTree = "<group>";
 		};
+		4F33FBFF1FB6E45900DE9852 /* UnCloudNotes */ = {
+			isa = PBXGroup;
+			children = (
+				4F33FC001FB6E4EA00DE9852 /* UnCloudNotesDataModel.xcdatamodeld */,
+				4F33FC031FB6E88200DE9852 /* NotesListViewController.h */,
+				4F33FC041FB6E88200DE9852 /* NotesListViewController.m */,
+			);
+			path = UnCloudNotes;
+			sourceTree = "<group>";
+		};
+		4F33FC0C1FB6ED5100DE9852 /* ManagedObjects_UnCloudNotes */ = {
+			isa = PBXGroup;
+			children = (
+				4F33FC0D1FB6ED5100DE9852 /* Note+CoreDataClass.h */,
+				4F33FC0E1FB6ED5100DE9852 /* Note+CoreDataClass.m */,
+				4F33FC0F1FB6ED5100DE9852 /* Note+CoreDataProperties.h */,
+				4F33FC101FB6ED5100DE9852 /* Note+CoreDataProperties.m */,
+			);
+			path = ManagedObjects_UnCloudNotes;
+			sourceTree = "<group>";
+		};
 		4F3CF6C71F5506D200E14CB7 = {
 			isa = PBXGroup;
 			children = (
@@ -275,19 +307,21 @@
 		4F3CF6EA1F55073500E14CB7 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F33FBFF1FB6E45900DE9852 /* UnCloudNotes */,
 				4FCD18A01F9727BE00BA3837 /* SurfJournal */,
 				4F6723411F7BAC550043C384 /* BubbleTeaFinder_Paging */,
+				4F1812BC1F5F9504007E17C1 /* BubbleTeaFinder */,
 				4F9E6A5F1F61369B00DB315D /* EmployeeDirectory1 */,
 				4F9E6A601F61369B00DB315D /* EmployeeDirectory2 */,
 				4F1812CD1F5F9538007E17C1 /* WorldCup */,
 				4F1812C61F5F950C007E17C1 /* DogWalk */,
-				4F1812BC1F5F9504007E17C1 /* BubbleTeaFinder */,
+				4FCD18AA1F972CE000BA3837 /* ManagedObjects_SurfJournal */,
+				4F33FC0C1FB6ED5100DE9852 /* ManagedObjects_UnCloudNotes */,
+				4F3CF6F11F55121F00E14CB7 /* CoreDataStack.h */,
+				4F3CF6F21F55121F00E14CB7 /* CoreDataStack.m */,
 				4F3CF7451F56B3CA00E14CB7 /* BaseViewController.h */,
 				4F3CF7461F56B3CA00E14CB7 /* BaseViewController.m */,
 				4F3CF7421F558B3600E14CB7 /* Resources */,
-				4FCD18AA1F972CE000BA3837 /* ManagedObjects_SurfJournal */,
-				4F3CF6F11F55121F00E14CB7 /* CoreDataStack.h */,
-				4F3CF6F21F55121F00E14CB7 /* CoreDataStack.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -551,6 +585,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F33FC051FB6E88200DE9852 /* NotesListViewController.m in Sources */,
 				4F91D9CD1F9748470054F8A8 /* JournalEntry.m in Sources */,
 				4F9E6A631F6136F300DB315D /* EmployeeDirectory1.xcdatamodeld in Sources */,
 				4F9E6AA81F63D1D200DB315D /* Employee1PictureViewController.m in Sources */,
@@ -567,13 +602,16 @@
 				4FCD18B11F97348800BA3837 /* JournalListViewController.m in Sources */,
 				4F1812CB1F5F950C007E17C1 /* BuildCoreDataStackViewController.m in Sources */,
 				4F9E6A9E1F6178D800DB315D /* Department1ListViewController.m in Sources */,
+				4F33FC021FB6E4EA00DE9852 /* UnCloudNotesDataModel.xcdatamodeld in Sources */,
 				4FCD18A31F972A0400BA3837 /* SurfJournalModel.xcdatamodeld in Sources */,
 				4FAAA5BE1FA4C2DB00A80328 /* JournalEntryViewController.m in Sources */,
 				4F60354D1F66317600FCBC32 /* Department2DetailViewController.m in Sources */,
+				4F33FC111FB6ED5200DE9852 /* Note+CoreDataClass.m in Sources */,
 				4F6035461F662D8300FCBC32 /* Employee2TabController.m in Sources */,
 				4F1812CC1F5F950C007E17C1 /* Dog Walk.xcdatamodeld in Sources */,
 				4F1812DC1F5F970E007E17C1 /* FetchResultControllerViewController.m in Sources */,
 				4F1812C31F5F9504007E17C1 /* Bubble_Tea_Finder.xcdatamodeld in Sources */,
+				4F33FC121FB6ED5200DE9852 /* Note+CoreDataProperties.m in Sources */,
 				4F3CF6D81F5506D200E14CB7 /* AppDelegate.m in Sources */,
 				4F1812D01F5F9565007E17C1 /* WorldCup.xcdatamodeld in Sources */,
 				4F91D9B41F973D590054F8A8 /* SurfEntryTableViewCell.m in Sources */,
@@ -811,6 +849,16 @@
 			);
 			currentVersion = 4F1812CF1F5F9565007E17C1 /* WorldCup.xcdatamodel */;
 			path = WorldCup.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+		4F33FC001FB6E4EA00DE9852 /* UnCloudNotesDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				4F33FC011FB6E4EA00DE9852 /* UnCloudNotesDataModel.xcdatamodel */,
+			);
+			currentVersion = 4F33FC011FB6E4EA00DE9852 /* UnCloudNotesDataModel.xcdatamodel */;
+			path = UnCloudNotesDataModel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
