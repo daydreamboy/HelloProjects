@@ -7,6 +7,7 @@
 //
 
 #import "CoreDataStack.h"
+#import "Log.h"
 
 @interface CoreDataStack ()
 @property (nonatomic, strong) NSURL *applicationDocumentsDirectory;
@@ -48,12 +49,10 @@
             @try {
                 NSError *error = nil;
                 [self.context save:&error];
-                if (error) {
-                    NSLog(@"save error: %@", error);
-                }
+                LogError(error);
             }
             @catch (NSException *exception) {
-                NSLog(@"exception error: %@", exception);
+                ELog(@"exception error: %@", exception);
                 abort();
             }
             @finally {
@@ -96,16 +95,19 @@
         
         @try {
             // Note: let CoreData merge different versions of a managed object model
-            NSDictionary *opts = @{ /*NSMigratePersistentStoresAutomaticallyOption: @YES*/ };
+            NSDictionary *opts = @{
+                                   NSMigratePersistentStoresAutomaticallyOption: @YES,
+                                   NSInferMappingModelAutomaticallyOption: @YES,
+                                   };
             NSError *error = nil;
             // Note: create NSPersistentStore and attach it to `coordinator`
             [coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:opts error:&error];
             if (error) {
-                NSLog(@"Error adding persistent store: %@", error);
+                ELog(@"Error adding persistent store: %@", error);
             }
         }
         @catch (NSException *exception) {
-            NSLog(@"Exception adding persistent store: %@", exception);
+            ELog(@"Exception adding persistent store: %@", exception);
         }
         @finally {
             _persistentStoreCoordinator = coordinator;

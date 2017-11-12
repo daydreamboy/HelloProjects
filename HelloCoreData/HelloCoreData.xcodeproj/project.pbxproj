@@ -121,6 +121,7 @@
 		4F33FC271FB8428500DE9852 /* SurfJournalDatabase.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SurfJournalDatabase.sqlite-wal"; sourceTree = "<group>"; };
 		4F33FC2C1FB8429900DE9852 /* JournalEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalEntry.h; sourceTree = "<group>"; };
 		4F33FC2D1FB8429900DE9852 /* JournalEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalEntry.m; sourceTree = "<group>"; };
+		4F33FC2F1FB8448100DE9852 /* Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Log.h; path = HelloCoreData/Log.h; sourceTree = SOURCE_ROOT; };
 		4F3CF6D01F5506D200E14CB7 /* HelloCoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloCoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F3CF6D41F5506D200E14CB7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F3CF6D61F5506D200E14CB7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -355,6 +356,7 @@
 				4F3CF6F21F55121F00E14CB7 /* CoreDataStack.m */,
 				4F3CF7451F56B3CA00E14CB7 /* BaseViewController.h */,
 				4F3CF7461F56B3CA00E14CB7 /* BaseViewController.m */,
+				4F33FC2F1FB8448100DE9852 /* Log.h */,
 				4F3CF7421F558B3600E14CB7 /* Resources */,
 			);
 			path = AppTestDemos;

@@ -11,4 +11,10 @@
 
 @implementation Note
 
+- (void)awakeFromInsert {
+    [super awakeFromInsert];
+    
+    self.dateCreated = [NSDate date];
+}
+
 @end
