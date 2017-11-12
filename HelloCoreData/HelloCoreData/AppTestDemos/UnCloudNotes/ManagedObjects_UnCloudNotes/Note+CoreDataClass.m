@@ -11,6 +11,7 @@
 
 @implementation Note
 
+// Note: called when entity inserted into context
 - (void)awakeFromInsert {
     [super awakeFromInsert];
     

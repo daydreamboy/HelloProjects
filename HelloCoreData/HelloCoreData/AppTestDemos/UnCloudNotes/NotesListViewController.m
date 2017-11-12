@@ -130,11 +130,13 @@
     static NSString *sCellIdentifier = @"NotesListViewController_sCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:sCellIdentifier];
     }
     
     Note *note = [self.notes objectAtIndexPath:indexPath];
     cell.textLabel.text = note.title;
+    cell.detailTextLabel.text = note.body;
+    cell.imageView.image = note.image;
     
     return cell;
 }

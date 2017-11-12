@@ -26,6 +26,7 @@
 		4F33FC291FB8428600DE9852 /* SurfJournalDatabase.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 4F33FC261FB8428500DE9852 /* SurfJournalDatabase.sqlite-shm */; };
 		4F33FC2A1FB8428600DE9852 /* SurfJournalDatabase.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 4F33FC271FB8428500DE9852 /* SurfJournalDatabase.sqlite-wal */; };
 		4F33FC2E1FB8429900DE9852 /* JournalEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FC2D1FB8429900DE9852 /* JournalEntry.m */; };
+		4F33FC321FB87F5200DE9852 /* AttachPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FC311FB87F5200DE9852 /* AttachPhotoViewController.m */; };
 		4F3CF6D51F5506D200E14CB7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3CF6D41F5506D200E14CB7 /* main.m */; };
 		4F3CF6D81F5506D200E14CB7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3CF6D71F5506D200E14CB7 /* AppDelegate.m */; };
 		4F3CF6E01F5506D200E14CB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3CF6DF1F5506D200E14CB7 /* Assets.xcassets */; };
@@ -122,6 +123,8 @@
 		4F33FC2C1FB8429900DE9852 /* JournalEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalEntry.h; sourceTree = "<group>"; };
 		4F33FC2D1FB8429900DE9852 /* JournalEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalEntry.m; sourceTree = "<group>"; };
 		4F33FC2F1FB8448100DE9852 /* Log.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Log.h; path = HelloCoreData/Log.h; sourceTree = SOURCE_ROOT; };
+		4F33FC301FB87F5200DE9852 /* AttachPhotoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttachPhotoViewController.h; sourceTree = "<group>"; };
+		4F33FC311FB87F5200DE9852 /* AttachPhotoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttachPhotoViewController.m; sourceTree = "<group>"; };
 		4F3CF6D01F5506D200E14CB7 /* HelloCoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloCoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F3CF6D41F5506D200E14CB7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F3CF6D61F5506D200E14CB7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -264,6 +267,8 @@
 				4F33FC171FB8335F00DE9852 /* NoteDetailViewController.m */,
 				4F33FC1A1FB83E8000DE9852 /* ImageTransformer.h */,
 				4F33FC1B1FB83E8000DE9852 /* ImageTransformer.m */,
+				4F33FC301FB87F5200DE9852 /* AttachPhotoViewController.h */,
+				4F33FC311FB87F5200DE9852 /* AttachPhotoViewController.m */,
 			);
 			path = UnCloudNotes;
 			sourceTree = "<group>";
@@ -643,6 +648,7 @@
 				4F6035441F662D8300FCBC32 /* Employee2DetailViewController.m in Sources */,
 				4F6035491F662F6000FCBC32 /* Employee2PictureViewController.m in Sources */,
 				4F9DE46A1F6807E1002CDB70 /* FPSLabel.m in Sources */,
+				4F33FC321FB87F5200DE9852 /* AttachPhotoViewController.m in Sources */,
 				4F9E6A9B1F61777C00DB315D /* Employee1TabController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
