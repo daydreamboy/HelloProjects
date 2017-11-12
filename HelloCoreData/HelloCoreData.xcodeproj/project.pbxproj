@@ -22,6 +22,10 @@
 		4F33FC1C1FB83E8000DE9852 /* ImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FC1B1FB83E8000DE9852 /* ImageTransformer.m */; };
 		4F33FC221FB8410100DE9852 /* Note+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FC1F1FB8410100DE9852 /* Note+CoreDataClass.m */; };
 		4F33FC231FB8410100DE9852 /* Note+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FC211FB8410100DE9852 /* Note+CoreDataProperties.m */; };
+		4F33FC281FB8428600DE9852 /* SurfJournalDatabase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4F33FC251FB8428500DE9852 /* SurfJournalDatabase.sqlite */; };
+		4F33FC291FB8428600DE9852 /* SurfJournalDatabase.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 4F33FC261FB8428500DE9852 /* SurfJournalDatabase.sqlite-shm */; };
+		4F33FC2A1FB8428600DE9852 /* SurfJournalDatabase.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 4F33FC271FB8428500DE9852 /* SurfJournalDatabase.sqlite-wal */; };
+		4F33FC2E1FB8429900DE9852 /* JournalEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FC2D1FB8429900DE9852 /* JournalEntry.m */; };
 		4F3CF6D51F5506D200E14CB7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3CF6D41F5506D200E14CB7 /* main.m */; };
 		4F3CF6D81F5506D200E14CB7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3CF6D71F5506D200E14CB7 /* AppDelegate.m */; };
 		4F3CF6E01F5506D200E14CB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3CF6DF1F5506D200E14CB7 /* Assets.xcassets */; };
@@ -41,10 +45,6 @@
 		4F67234A1F7BAC550043C384 /* PagingFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6723471F7BAC550043C384 /* PagingFilterViewController.m */; };
 		4F91D9B41F973D590054F8A8 /* SurfEntryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F91D9B31F973D590054F8A8 /* SurfEntryTableViewCell.m */; };
 		4F91D9B61F973D930054F8A8 /* SurfEntryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F91D9B51F973D930054F8A8 /* SurfEntryTableViewCell.xib */; };
-		4F91D9CD1F9748470054F8A8 /* JournalEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCD18AC1F972CE000BA3837 /* JournalEntry.m */; };
-		4F91D9D81F9782220054F8A8 /* SurfJournalDatabase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4F91D9D51F9776BA0054F8A8 /* SurfJournalDatabase.sqlite */; };
-		4F91D9D91F9782220054F8A8 /* SurfJournalDatabase.sqlite-shm in Resources */ = {isa = PBXBuildFile; fileRef = 4F91D9D61F9776BA0054F8A8 /* SurfJournalDatabase.sqlite-shm */; };
-		4F91D9DA1F9782220054F8A8 /* SurfJournalDatabase.sqlite-wal in Resources */ = {isa = PBXBuildFile; fileRef = 4F91D9D71F9776BA0054F8A8 /* SurfJournalDatabase.sqlite-wal */; };
 		4F9DE4301F67DE0B002CDB70 /* Tests_Department2ListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9DE42F1F67DE0B002CDB70 /* Tests_Department2ListViewController.m */; };
 		4F9DE4381F67FA59002CDB70 /* Tests_Employee2DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9DE4371F67FA59002CDB70 /* Tests_Employee2DetailViewController.m */; };
 		4F9DE4391F67FDC8002CDB70 /* EmployeeDirectory2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6A641F61370100DB315D /* EmployeeDirectory2.xcdatamodeld */; };
@@ -116,6 +116,11 @@
 		4F33FC1F1FB8410100DE9852 /* Note+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Note+CoreDataClass.m"; sourceTree = "<group>"; };
 		4F33FC201FB8410100DE9852 /* Note+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Note+CoreDataProperties.h"; sourceTree = "<group>"; };
 		4F33FC211FB8410100DE9852 /* Note+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Note+CoreDataProperties.m"; sourceTree = "<group>"; };
+		4F33FC251FB8428500DE9852 /* SurfJournalDatabase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = SurfJournalDatabase.sqlite; sourceTree = "<group>"; };
+		4F33FC261FB8428500DE9852 /* SurfJournalDatabase.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SurfJournalDatabase.sqlite-shm"; sourceTree = "<group>"; };
+		4F33FC271FB8428500DE9852 /* SurfJournalDatabase.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SurfJournalDatabase.sqlite-wal"; sourceTree = "<group>"; };
+		4F33FC2C1FB8429900DE9852 /* JournalEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JournalEntry.h; sourceTree = "<group>"; };
+		4F33FC2D1FB8429900DE9852 /* JournalEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalEntry.m; sourceTree = "<group>"; };
 		4F3CF6D01F5506D200E14CB7 /* HelloCoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloCoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F3CF6D41F5506D200E14CB7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F3CF6D61F5506D200E14CB7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -150,9 +155,6 @@
 		4F91D9B21F973D590054F8A8 /* SurfEntryTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SurfEntryTableViewCell.h; sourceTree = "<group>"; };
 		4F91D9B31F973D590054F8A8 /* SurfEntryTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SurfEntryTableViewCell.m; sourceTree = "<group>"; };
 		4F91D9B51F973D930054F8A8 /* SurfEntryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SurfEntryTableViewCell.xib; sourceTree = "<group>"; };
-		4F91D9D51F9776BA0054F8A8 /* SurfJournalDatabase.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = SurfJournalDatabase.sqlite; sourceTree = "<group>"; };
-		4F91D9D61F9776BA0054F8A8 /* SurfJournalDatabase.sqlite-shm */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SurfJournalDatabase.sqlite-shm"; sourceTree = "<group>"; };
-		4F91D9D71F9776BA0054F8A8 /* SurfJournalDatabase.sqlite-wal */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SurfJournalDatabase.sqlite-wal"; sourceTree = "<group>"; };
 		4F9DE42D1F67DE0B002CDB70 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F9DE42F1F67DE0B002CDB70 /* Tests_Department2ListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_Department2ListViewController.m; sourceTree = "<group>"; };
 		4F9DE4311F67DE0B002CDB70 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -194,8 +196,6 @@
 		4FAAA5BC1FA4C2DB00A80328 /* JournalEntryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JournalEntryViewController.h; sourceTree = "<group>"; };
 		4FAAA5BD1FA4C2DB00A80328 /* JournalEntryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JournalEntryViewController.m; sourceTree = "<group>"; };
 		4FCD18A21F9729FB00BA3837 /* SurfJournalModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SurfJournalModel.xcdatamodel; sourceTree = "<group>"; };
-		4FCD18AB1F972CE000BA3837 /* JournalEntry.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JournalEntry.h; sourceTree = "<group>"; };
-		4FCD18AC1F972CE000BA3837 /* JournalEntry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JournalEntry.m; sourceTree = "<group>"; };
 		4FCD18AF1F97348800BA3837 /* JournalListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JournalListViewController.h; sourceTree = "<group>"; };
 		4FCD18B01F97348800BA3837 /* JournalListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JournalListViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -278,6 +278,25 @@
 			path = ManagedObjects_UnCloudNotes;
 			sourceTree = "<group>";
 		};
+		4F33FC241FB8428500DE9852 /* CoreDataSeed */ = {
+			isa = PBXGroup;
+			children = (
+				4F33FC251FB8428500DE9852 /* SurfJournalDatabase.sqlite */,
+				4F33FC261FB8428500DE9852 /* SurfJournalDatabase.sqlite-shm */,
+				4F33FC271FB8428500DE9852 /* SurfJournalDatabase.sqlite-wal */,
+			);
+			path = CoreDataSeed;
+			sourceTree = "<group>";
+		};
+		4F33FC2B1FB8429900DE9852 /* ManagedObjects_SurfJournal */ = {
+			isa = PBXGroup;
+			children = (
+				4F33FC2C1FB8429900DE9852 /* JournalEntry.h */,
+				4F33FC2D1FB8429900DE9852 /* JournalEntry.m */,
+			);
+			path = ManagedObjects_SurfJournal;
+			sourceTree = "<group>";
+		};
 		4F3CF6C71F5506D200E14CB7 = {
 			isa = PBXGroup;
 			children = (
@@ -332,7 +351,6 @@
 				4F9E6A601F61369B00DB315D /* EmployeeDirectory2 */,
 				4F1812CD1F5F9538007E17C1 /* WorldCup */,
 				4F1812C61F5F950C007E17C1 /* DogWalk */,
-				4FCD18AA1F972CE000BA3837 /* ManagedObjects_SurfJournal */,
 				4F3CF6F11F55121F00E14CB7 /* CoreDataStack.h */,
 				4F3CF6F21F55121F00E14CB7 /* CoreDataStack.m */,
 				4F3CF7451F56B3CA00E14CB7 /* BaseViewController.h */,
@@ -364,17 +382,6 @@
 			);
 			path = BubbleTeaFinder_Paging;
 			sourceTree = "<group>";
-		};
-		4F91D9D41F9776BA0054F8A8 /* CoreDataSeed */ = {
-			isa = PBXGroup;
-			children = (
-				4F91D9D51F9776BA0054F8A8 /* SurfJournalDatabase.sqlite */,
-				4F91D9D61F9776BA0054F8A8 /* SurfJournalDatabase.sqlite-shm */,
-				4F91D9D71F9776BA0054F8A8 /* SurfJournalDatabase.sqlite-wal */,
-			);
-			name = CoreDataSeed;
-			path = HelloCoreData/AppTestDemos/ManagedObjects_SurfJournal/CoreDataSeed;
-			sourceTree = SOURCE_ROOT;
 		};
 		4F9DE42E1F67DE0B002CDB70 /* Tests */ = {
 			isa = PBXGroup;
@@ -455,7 +462,8 @@
 		4FCD18A01F9727BE00BA3837 /* SurfJournal */ = {
 			isa = PBXGroup;
 			children = (
-				4F91D9D41F9776BA0054F8A8 /* CoreDataSeed */,
+				4F33FC2B1FB8429900DE9852 /* ManagedObjects_SurfJournal */,
+				4F33FC241FB8428500DE9852 /* CoreDataSeed */,
 				4FCD18A11F9729FB00BA3837 /* SurfJournalModel.xcdatamodeld */,
 				4FCD18AF1F97348800BA3837 /* JournalListViewController.h */,
 				4FCD18B01F97348800BA3837 /* JournalListViewController.m */,
@@ -466,15 +474,6 @@
 				4FAAA5BD1FA4C2DB00A80328 /* JournalEntryViewController.m */,
 			);
 			path = SurfJournal;
-			sourceTree = "<group>";
-		};
-		4FCD18AA1F972CE000BA3837 /* ManagedObjects_SurfJournal */ = {
-			isa = PBXGroup;
-			children = (
-				4FCD18AB1F972CE000BA3837 /* JournalEntry.h */,
-				4FCD18AC1F972CE000BA3837 /* JournalEntry.m */,
-			);
-			path = ManagedObjects_SurfJournal;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -564,9 +563,9 @@
 				4F6035451F662D8300FCBC32 /* Employee2DetailViewController.xib in Resources */,
 				4F9E6A7F1F614FAC00DB315D /* EmployeeDirectory1_seed.json in Resources */,
 				4F9E6A931F61516500DB315D /* face08.jpg in Resources */,
+				4F33FC281FB8428600DE9852 /* SurfJournalDatabase.sqlite in Resources */,
 				4F9E6AAD1F63D56000DB315D /* Department1DetailViewController.xib in Resources */,
 				4F9E6A941F61516500DB315D /* face09.jpg in Resources */,
-				4F91D9D91F9782220054F8A8 /* SurfJournalDatabase.sqlite-shm in Resources */,
 				4F9E6AA51F639D8200DB315D /* Employee1DetailViewController.xib in Resources */,
 				4F9E6A8D1F61516500DB315D /* face02.jpg in Resources */,
 				4F9E6A901F61516500DB315D /* face05.jpg in Resources */,
@@ -575,13 +574,13 @@
 				4F9E6A911F61516500DB315D /* face06.jpg in Resources */,
 				4F60354E1F66317600FCBC32 /* Department2DetailViewController.xib in Resources */,
 				4F9E6A951F61516500DB315D /* face10.jpg in Resources */,
-				4F91D9DA1F9782220054F8A8 /* SurfJournalDatabase.sqlite-wal in Resources */,
 				4F1812D31F5F966B007E17C1 /* WorldCup_seed.json in Resources */,
 				4F9E6A921F61516500DB315D /* face07.jpg in Resources */,
 				4F9E6A8E1F61516500DB315D /* face03.jpg in Resources */,
 				4F3CF6E01F5506D200E14CB7 /* Assets.xcassets in Resources */,
-				4F91D9D81F9782220054F8A8 /* SurfJournalDatabase.sqlite in Resources */,
 				4F9E6A8F1F61516500DB315D /* face04.jpg in Resources */,
+				4F33FC291FB8428600DE9852 /* SurfJournalDatabase.sqlite-shm in Resources */,
+				4F33FC2A1FB8428600DE9852 /* SurfJournalDatabase.sqlite-wal in Resources */,
 				4F91D9B61F973D930054F8A8 /* SurfEntryTableViewCell.xib in Resources */,
 				4F9E6A801F614FAC00DB315D /* EmployeeDirectory2_seed.json in Resources */,
 			);
@@ -603,7 +602,6 @@
 			files = (
 				4F33FC051FB6E88200DE9852 /* NotesListViewController.m in Sources */,
 				4F33FC181FB8335F00DE9852 /* NoteDetailViewController.m in Sources */,
-				4F91D9CD1F9748470054F8A8 /* JournalEntry.m in Sources */,
 				4F9E6A631F6136F300DB315D /* EmployeeDirectory1.xcdatamodeld in Sources */,
 				4F9E6AA81F63D1D200DB315D /* Employee1PictureViewController.m in Sources */,
 				4F3CF6F31F55121F00E14CB7 /* CoreDataStack.m in Sources */,
@@ -628,6 +626,7 @@
 				4F33FC151FB8279B00DE9852 /* CreateNoteViewController.m in Sources */,
 				4F6035461F662D8300FCBC32 /* Employee2TabController.m in Sources */,
 				4F33FC1C1FB83E8000DE9852 /* ImageTransformer.m in Sources */,
+				4F33FC2E1FB8429900DE9852 /* JournalEntry.m in Sources */,
 				4F1812CC1F5F950C007E17C1 /* Dog Walk.xcdatamodeld in Sources */,
 				4F1812DC1F5F970E007E17C1 /* FetchResultControllerViewController.m in Sources */,
 				4F1812C31F5F9504007E17C1 /* Bubble_Tea_Finder.xcdatamodeld in Sources */,
