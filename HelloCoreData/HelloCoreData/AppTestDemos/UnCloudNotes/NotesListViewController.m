@@ -7,10 +7,12 @@
 //
 
 #import "NotesListViewController.h"
+#import "CreateNoteViewController.h"
+#import "NoteDetailViewController.h"
 #import "CoreDataStack.h"
 #import "Note+CoreDataClass.h"
 
-@interface NotesListViewController () <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate>
+@interface NotesListViewController () <UITableViewDelegate, UITableViewDataSource, NSFetchedResultsControllerDelegate, CreateNoteViewControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSFetchedResultsController *notes;
 @property (nonatomic, strong) NSManagedObjectContext *context;
@@ -96,7 +98,15 @@
 #pragma mark - Actions
 
 - (void)addItemClicked:(id)sender {
-    //
+    NSManagedObjectContext *context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSConfinementConcurrencyType];
+    context.parentContext = self.context;
+    
+    CreateNoteViewController *vc = [CreateNoteViewController new];
+    vc.delegate = self;
+    vc.context = context;
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 #pragma mark - UITableViewDelegate
@@ -104,7 +114,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    
+    Note *note = [self.notes objectAtIndexPath:indexPath];
+    NoteDetailViewController *vc = [NoteDetailViewController new];
+    vc.note = note;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - UITableViewDataSource
@@ -141,7 +154,7 @@
     
     switch (type) {
         case NSFetchedResultsChangeInsert: {
-            [self.tableView insertRowsAtIndexPaths:NSArrayFromIndexPath(indexPath) withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView insertRowsAtIndexPaths:NSArrayFromIndexPath(newIndexPath) withRowAnimation:UITableViewRowAnimationAutomatic];
             break;
         }
         case NSFetchedResultsChangeDelete: {
@@ -150,6 +163,18 @@
         }
         default:
             break;
+    }
+}
+
+#pragma mark - CreateNoteViewControllerDelegate
+
+- (void)viewControllerDidDismiss:(UIViewController *)viewController {
+    if ([self.context hasChanges]) {
+        NSError *error;
+        [self.context save:&error];
+        if (error) {
+            NSLog(@"error: %@", error);
+        }
     }
 }
 

@@ -19,6 +19,8 @@
 		4F33FC051FB6E88200DE9852 /* NotesListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FC041FB6E88200DE9852 /* NotesListViewController.m */; };
 		4F33FC111FB6ED5200DE9852 /* Note+CoreDataClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FC0E1FB6ED5100DE9852 /* Note+CoreDataClass.m */; };
 		4F33FC121FB6ED5200DE9852 /* Note+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FC101FB6ED5100DE9852 /* Note+CoreDataProperties.m */; };
+		4F33FC151FB8279B00DE9852 /* CreateNoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FC141FB8279B00DE9852 /* CreateNoteViewController.m */; };
+		4F33FC181FB8335F00DE9852 /* NoteDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FC171FB8335F00DE9852 /* NoteDetailViewController.m */; };
 		4F3CF6D51F5506D200E14CB7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3CF6D41F5506D200E14CB7 /* main.m */; };
 		4F3CF6D81F5506D200E14CB7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3CF6D71F5506D200E14CB7 /* AppDelegate.m */; };
 		4F3CF6E01F5506D200E14CB7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3CF6DF1F5506D200E14CB7 /* Assets.xcassets */; };
@@ -106,6 +108,10 @@
 		4F33FC0E1FB6ED5100DE9852 /* Note+CoreDataClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Note+CoreDataClass.m"; sourceTree = "<group>"; };
 		4F33FC0F1FB6ED5100DE9852 /* Note+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Note+CoreDataProperties.h"; sourceTree = "<group>"; };
 		4F33FC101FB6ED5100DE9852 /* Note+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Note+CoreDataProperties.m"; sourceTree = "<group>"; };
+		4F33FC131FB8279B00DE9852 /* CreateNoteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateNoteViewController.h; sourceTree = "<group>"; };
+		4F33FC141FB8279B00DE9852 /* CreateNoteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateNoteViewController.m; sourceTree = "<group>"; };
+		4F33FC161FB8335F00DE9852 /* NoteDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NoteDetailViewController.h; sourceTree = "<group>"; };
+		4F33FC171FB8335F00DE9852 /* NoteDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NoteDetailViewController.m; sourceTree = "<group>"; };
 		4F3CF6D01F5506D200E14CB7 /* HelloCoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloCoreData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F3CF6D41F5506D200E14CB7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F3CF6D61F5506D200E14CB7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -246,6 +252,10 @@
 				4F33FC001FB6E4EA00DE9852 /* UnCloudNotesDataModel.xcdatamodeld */,
 				4F33FC031FB6E88200DE9852 /* NotesListViewController.h */,
 				4F33FC041FB6E88200DE9852 /* NotesListViewController.m */,
+				4F33FC131FB8279B00DE9852 /* CreateNoteViewController.h */,
+				4F33FC141FB8279B00DE9852 /* CreateNoteViewController.m */,
+				4F33FC161FB8335F00DE9852 /* NoteDetailViewController.h */,
+				4F33FC171FB8335F00DE9852 /* NoteDetailViewController.m */,
 			);
 			path = UnCloudNotes;
 			sourceTree = "<group>";
@@ -586,6 +596,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F33FC051FB6E88200DE9852 /* NotesListViewController.m in Sources */,
+				4F33FC181FB8335F00DE9852 /* NoteDetailViewController.m in Sources */,
 				4F91D9CD1F9748470054F8A8 /* JournalEntry.m in Sources */,
 				4F9E6A631F6136F300DB315D /* EmployeeDirectory1.xcdatamodeld in Sources */,
 				4F9E6AA81F63D1D200DB315D /* Employee1PictureViewController.m in Sources */,
@@ -607,6 +618,7 @@
 				4FAAA5BE1FA4C2DB00A80328 /* JournalEntryViewController.m in Sources */,
 				4F60354D1F66317600FCBC32 /* Department2DetailViewController.m in Sources */,
 				4F33FC111FB6ED5200DE9852 /* Note+CoreDataClass.m in Sources */,
+				4F33FC151FB8279B00DE9852 /* CreateNoteViewController.m in Sources */,
 				4F6035461F662D8300FCBC32 /* Employee2TabController.m in Sources */,
 				4F1812CC1F5F950C007E17C1 /* Dog Walk.xcdatamodeld in Sources */,
 				4F1812DC1F5F970E007E17C1 /* FetchResultControllerViewController.m in Sources */,
