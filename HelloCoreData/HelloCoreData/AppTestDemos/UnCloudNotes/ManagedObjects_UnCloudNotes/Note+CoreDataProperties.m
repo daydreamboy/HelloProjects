@@ -19,5 +19,6 @@
 @dynamic dateCreated;
 @dynamic displayIndex;
 @dynamic title;
+@dynamic image;
 
 @end

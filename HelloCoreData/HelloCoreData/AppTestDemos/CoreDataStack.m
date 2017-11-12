@@ -96,7 +96,7 @@
         
         @try {
             // Note: let CoreData merge different versions of a managed object model
-            NSDictionary *opts = @{ NSMigratePersistentStoresAutomaticallyOption: @YES };
+            NSDictionary *opts = @{ /*NSMigratePersistentStoresAutomaticallyOption: @YES*/ };
             NSError *error = nil;
             // Note: create NSPersistentStore and attach it to `coordinator`
             [coordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:url options:opts error:&error];

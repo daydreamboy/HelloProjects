@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, copy) NSDate *dateCreated;
 @property (nonatomic) int64_t displayIndex;
 @property (nullable, nonatomic, copy) NSString *title;
+@property (nullable, nonatomic, copy) UIImage *image;
 
 @end
 
