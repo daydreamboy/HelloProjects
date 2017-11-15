@@ -7,8 +7,8 @@
 //
 
 #import "DrawStringWithSimpleLayoutV2ViewController.h"
-#import "CTViewV4.h"
-#import "MarkupParserV1.h"
+#import "CTViewV5.h"
+#import "MarkupParserV2SupportImage.h"
 
 @interface DrawStringWithSimpleLayoutV2ViewController ()
 
@@ -22,11 +22,11 @@
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"zombies" ofType:@"txt"];
     NSString *text = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-    MarkupParserV1 *parser = [MarkupParserV1 new];
+    MarkupParserV2SupportImage *parser = [MarkupParserV2SupportImage new];
     [parser parseMarkup:text];
     
     CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-    CTViewV4 *view = [[CTViewV4 alloc] initWithFrame:CGRectMake(0, 64, screenSize.width, screenSize.height - 64)];
+    CTViewV5 *view = [[CTViewV5 alloc] initWithFrame:CGRectMake(0, 64, screenSize.width, screenSize.height - 64)];
     view.backgroundColor = [UIColor whiteColor];
     
     [view buildFramesWithAttrString:parser.attrStringM images:parser.images];

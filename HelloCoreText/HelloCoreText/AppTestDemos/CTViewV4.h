@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CTViewV4 : UIScrollView
-- (void)buildFramesWithAttrString:(NSAttributedString *)attrString images:(NSDictionary<NSString *, id> *)images;
+- (void)buildFramesWithAttrString:(NSAttributedString *)attrString;
 @end

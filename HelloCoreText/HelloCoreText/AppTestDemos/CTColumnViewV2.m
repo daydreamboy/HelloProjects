@@ -10,7 +10,7 @@
 
 @interface CTColumnViewV2 ()
 @property (nonatomic, assign) CTFrameRef ctFrame;
-@property (nonatomic, strong) NSArray *images;
+@property (nonatomic, strong) NSMutableArray<NSArray *> *images;
 @end
 
 @implementation CTColumnViewV2
@@ -19,7 +19,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         _ctFrame = ctFrame;
-        _images = [NSArray array];
+        _images = [NSMutableArray array];
         self.backgroundColor = UIColor.whiteColor;
     }
     return self;

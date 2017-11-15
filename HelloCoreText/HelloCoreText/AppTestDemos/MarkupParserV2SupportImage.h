@@ -1,5 +1,5 @@
 //
-//  MarkupParserV2.h
+//  MarkupParserV2SupportImage.h
 //  HelloCoreText
 //
 //  Created by wesley_chen on 13/11/2017.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MarkupParserV2 : NSObject
+@interface MarkupParserV2SupportImage : NSObject
 @property (nonatomic, strong, readonly) NSMutableAttributedString *attrStringM;
 @property (nonatomic, strong, readonly) NSMutableArray<NSDictionary<NSString *, id> *> *images;
 

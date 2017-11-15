@@ -9,22 +9,14 @@
 #import "CTViewV4.h"
 #import <CoreText/CoreText.h>
 #import "CTSettings.h"
-#import "CTColumnViewV1.h"
+#import "CTColumnViewV2.h"
 
 @interface CTViewV4 ()
 @end
 
 @implementation CTViewV4
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
-
-- (void)buildFramesWithAttrString:(NSAttributedString *)attrString images:(NSDictionary<NSString *, id> *)images {
+- (void)buildFramesWithAttrString:(NSAttributedString *)attrString {
     self.pagingEnabled = YES;
     
     CTFramesetterRef framesetter = CTFramesetterCreateWithAttributedString((CFAttributedStringRef)attrString);
@@ -55,7 +47,7 @@
         
         CTFrameRef ctFrame = CTFramesetterCreateFrame(framesetter, CFRangeMake(textPos, 0), path, NULL);
         
-        CTColumnViewV1 *columnView = [[CTColumnViewV1 alloc] initWithFrame:columnFrame CTFrame:ctFrame];
+        CTColumnViewV2 *columnView = [[CTColumnViewV2 alloc] initWithFrame:columnFrame CTFrame:ctFrame];
         [pageView addSubview:columnView];
         
         CFRange frameRange = CTFrameGetVisibleStringRange(ctFrame);
@@ -66,5 +58,4 @@
     
     self.contentSize = CGSizeMake(pageIndex * self.bounds.size.width, self.bounds.size.height);
 }
-
 @end

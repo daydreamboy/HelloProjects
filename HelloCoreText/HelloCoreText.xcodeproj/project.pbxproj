@@ -30,8 +30,11 @@
 		4F33FCB51FB9936600DE9852 /* CTSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FCB41FB9936600DE9852 /* CTSettings.m */; };
 		4F33FCB81FB99C8400DE9852 /* DrawStringWithSimpleLayoutV1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FCB71FB99C8400DE9852 /* DrawStringWithSimpleLayoutV1ViewController.m */; };
 		4F33FCC41FB9F29A00DE9852 /* DrawStringWithSimpleLayoutV2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FCC31FB9F29A00DE9852 /* DrawStringWithSimpleLayoutV2ViewController.m */; };
-		4F33FCC71FB9F32200DE9852 /* MarkupParserV2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FCC61FB9F32200DE9852 /* MarkupParserV2.m */; };
+		4F33FCC71FB9F32200DE9852 /* MarkupParserV2SupportImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FCC61FB9F32200DE9852 /* MarkupParserV2SupportImage.m */; };
 		4F33FCCA1FB9FDE200DE9852 /* CTColumnViewV2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FCC91FB9FDE200DE9852 /* CTColumnViewV2.m */; };
+		4F33FCCE1FBA938A00DE9852 /* BorderedTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FCCD1FBA938A00DE9852 /* BorderedTextView.m */; };
+		4F33FCD11FBAC2EC00DE9852 /* CTViewV5.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FCD01FBAC2EC00DE9852 /* CTViewV5.m */; };
+		4F33FCD41FBAD08E00DE9852 /* BorderedTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FCD31FBAD08E00DE9852 /* BorderedTextViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -75,10 +78,16 @@
 		4F33FCB71FB99C8400DE9852 /* DrawStringWithSimpleLayoutV1ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = DrawStringWithSimpleLayoutV1ViewController.m; path = HelloCoreText/AppTestDemos/DrawStringWithSimpleLayoutV1ViewController.m; sourceTree = SOURCE_ROOT; };
 		4F33FCC21FB9F29A00DE9852 /* DrawStringWithSimpleLayoutV2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawStringWithSimpleLayoutV2ViewController.h; sourceTree = "<group>"; };
 		4F33FCC31FB9F29A00DE9852 /* DrawStringWithSimpleLayoutV2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawStringWithSimpleLayoutV2ViewController.m; sourceTree = "<group>"; };
-		4F33FCC51FB9F32200DE9852 /* MarkupParserV2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarkupParserV2.h; sourceTree = "<group>"; };
-		4F33FCC61FB9F32200DE9852 /* MarkupParserV2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarkupParserV2.m; sourceTree = "<group>"; };
+		4F33FCC51FB9F32200DE9852 /* MarkupParserV2SupportImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarkupParserV2SupportImage.h; sourceTree = "<group>"; };
+		4F33FCC61FB9F32200DE9852 /* MarkupParserV2SupportImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarkupParserV2SupportImage.m; sourceTree = "<group>"; };
 		4F33FCC81FB9FDE200DE9852 /* CTColumnViewV2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTColumnViewV2.h; sourceTree = "<group>"; };
 		4F33FCC91FB9FDE200DE9852 /* CTColumnViewV2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTColumnViewV2.m; sourceTree = "<group>"; };
+		4F33FCCC1FBA938A00DE9852 /* BorderedTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BorderedTextView.h; sourceTree = "<group>"; };
+		4F33FCCD1FBA938A00DE9852 /* BorderedTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BorderedTextView.m; sourceTree = "<group>"; };
+		4F33FCCF1FBAC2EC00DE9852 /* CTViewV5.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CTViewV5.h; sourceTree = "<group>"; };
+		4F33FCD01FBAC2EC00DE9852 /* CTViewV5.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CTViewV5.m; sourceTree = "<group>"; };
+		4F33FCD21FBAD08E00DE9852 /* BorderedTextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BorderedTextViewController.h; sourceTree = "<group>"; };
+		4F33FCD31FBAD08E00DE9852 /* BorderedTextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BorderedTextViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +138,7 @@
 		4F33FC871FB9420D00DE9852 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F33FCCB1FBA932C00DE9852 /* NSAttributedStringWithUIView */,
 				4F33FCA31FB98E5100DE9852 /* Resources */,
 				4F33FC881FB9420D00DE9852 /* SimpleDrawStringInViewV1ViewController.h */,
 				4F33FC891FB9420D00DE9852 /* SimpleDrawStringInViewV1ViewController.m */,
@@ -148,14 +158,16 @@
 				4F33FC9E1FB98CC000DE9852 /* CTViewV3.m */,
 				4F33FCAD1FB9907100DE9852 /* CTViewV4.h */,
 				4F33FCAE1FB9907100DE9852 /* CTViewV4.m */,
+				4F33FCCF1FBAC2EC00DE9852 /* CTViewV5.h */,
+				4F33FCD01FBAC2EC00DE9852 /* CTViewV5.m */,
 				4F33FCB01FB990B000DE9852 /* CTColumnViewV1.h */,
 				4F33FCB11FB990B000DE9852 /* CTColumnViewV1.m */,
 				4F33FCC81FB9FDE200DE9852 /* CTColumnViewV2.h */,
 				4F33FCC91FB9FDE200DE9852 /* CTColumnViewV2.m */,
 				4F33FC9A1FB97EA200DE9852 /* MarkupParserV1.h */,
 				4F33FC9B1FB97EA200DE9852 /* MarkupParserV1.m */,
-				4F33FCC51FB9F32200DE9852 /* MarkupParserV2.h */,
-				4F33FCC61FB9F32200DE9852 /* MarkupParserV2.m */,
+				4F33FCC51FB9F32200DE9852 /* MarkupParserV2SupportImage.h */,
+				4F33FCC61FB9F32200DE9852 /* MarkupParserV2SupportImage.m */,
 				4F33FCB31FB9936600DE9852 /* CTSettings.h */,
 				4F33FCB41FB9936600DE9852 /* CTSettings.m */,
 				4F33FC971FB97B3E00DE9852 /* BaseViewController.h */,
@@ -190,6 +202,17 @@
 				4F33FCA81FB98E5100DE9852 /* zombies.txt */,
 			);
 			path = zombieMagMaterials;
+			sourceTree = "<group>";
+		};
+		4F33FCCB1FBA932C00DE9852 /* NSAttributedStringWithUIView */ = {
+			isa = PBXGroup;
+			children = (
+				4F33FCCC1FBA938A00DE9852 /* BorderedTextView.h */,
+				4F33FCCD1FBA938A00DE9852 /* BorderedTextView.m */,
+				4F33FCD21FBAD08E00DE9852 /* BorderedTextViewController.h */,
+				4F33FCD31FBAD08E00DE9852 /* BorderedTextViewController.m */,
+			);
+			path = NSAttributedStringWithUIView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,10 +294,12 @@
 				4F33FC7E1FB941DD00DE9852 /* main.m in Sources */,
 				4F33FC991FB97B3E00DE9852 /* BaseViewController.m in Sources */,
 				4F33FC8A1FB9420D00DE9852 /* SimpleDrawStringInViewV1ViewController.m in Sources */,
+				4F33FCCE1FBA938A00DE9852 /* BorderedTextView.m in Sources */,
+				4F33FCD11FBAC2EC00DE9852 /* CTViewV5.m in Sources */,
 				4F33FC861FB9420900DE9852 /* RootViewController.m in Sources */,
 				4F33FCA21FB98D9300DE9852 /* DrawStringFromSimpleMarkupV1ViewController.m in Sources */,
 				4F33FCC41FB9F29A00DE9852 /* DrawStringWithSimpleLayoutV2ViewController.m in Sources */,
-				4F33FCC71FB9F32200DE9852 /* MarkupParserV2.m in Sources */,
+				4F33FCC71FB9F32200DE9852 /* MarkupParserV2SupportImage.m in Sources */,
 				4F33FCB21FB990B000DE9852 /* CTColumnViewV1.m in Sources */,
 				4F33FCB51FB9936600DE9852 /* CTSettings.m in Sources */,
 				4F33FCCA1FB9FDE200DE9852 /* CTColumnViewV2.m in Sources */,
@@ -283,6 +308,7 @@
 				4F33FC901FB946C900DE9852 /* CTViewV1.m in Sources */,
 				4F33FCAF1FB9907100DE9852 /* CTViewV4.m in Sources */,
 				4F33FC931FB970FA00DE9852 /* CTViewV2.m in Sources */,
+				4F33FCD41FBAD08E00DE9852 /* BorderedTextViewController.m in Sources */,
 				4F33FC961FB9744C00DE9852 /* SimpleDrawStringInViewV2ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

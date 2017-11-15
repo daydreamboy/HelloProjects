@@ -12,6 +12,8 @@
 #import "SimpleDrawStringInViewV2ViewController.h"
 #import "DrawStringFromSimpleMarkupV1ViewController.h"
 #import "DrawStringWithSimpleLayoutV1ViewController.h"
+#import "DrawStringWithSimpleLayoutV2ViewController.h"
+#import "BorderedTextViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -37,14 +39,18 @@
         @"Simple draw string in UIView (v1)",
         @"Simple draw string in UIView (v2)",
         @"Draw string from markup string",
-        @"Draw string with simple layout",
+        @"Draw string with simple layout (v1)",
+        @"Draw string & image with simple layout (v2)",
+        @"Bordered text",
         @"call a test method",
     ];
     _classes = @[
         @"SimpleDrawStringInViewV1ViewController",
-        @"SimpleDrarStringInViewV2ViewController",
+        @"SimpleDrawStringInViewV2ViewController",
         @"DrawStringFromSimpleMarkupV1ViewController",
         @"DrawStringWithSimpleLayoutV1ViewController",
+        @"DrawStringWithSimpleLayoutV2ViewController",
+        @"BorderedTextViewController",
         @"testMethod",
     ];
 }

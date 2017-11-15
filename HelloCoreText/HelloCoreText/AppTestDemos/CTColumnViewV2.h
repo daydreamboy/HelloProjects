@@ -10,5 +10,8 @@
 #import <CoreText/CoreText.h>
 
 @interface CTColumnViewV2 : UIView
+
+@property (nonatomic, strong, readonly) NSMutableArray<NSArray *> *images;
+
 - (instancetype)initWithFrame:(CGRect)frame CTFrame:(CTFrameRef)ctFrame;
 @end

@@ -29,7 +29,7 @@
     CTViewV4 *view = [[CTViewV4 alloc] initWithFrame:CGRectMake(0, 64, screenSize.width, screenSize.height - 64)];
     view.backgroundColor = [UIColor whiteColor];
     
-    [view buildFramesWithAttrString:parser.attrStringM images:parser.images];
+    [view buildFramesWithAttrString:parser.attrStringM];
     
     [self.view addSubview:view];
 }

@@ -1,17 +1,17 @@
 //
-//  MarkupParserV2.m
+//  MarkupParserV2SupportImage.m
 //  HelloCoreText
 //
 //  Created by wesley_chen on 13/11/2017.
 //  Copyright © 2017 wesley_chen. All rights reserved.
 //
 
-#import "MarkupParserV2.h"
+#import "MarkupParserV2SupportImage.h"
 #import <UIKit/UIKit.h>
 #import <CoreText/CoreText.h>
 #import "CTSettings.h"
 
-@interface MarkupParserV2 ()
+@interface MarkupParserV2SupportImage ()
 
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic, strong) NSString *fontName;
@@ -19,7 +19,7 @@
 @property (nonatomic, strong) NSMutableArray<NSDictionary<NSString *, id> *> *images;
 @end
 
-@implementation MarkupParserV2
+@implementation MarkupParserV2SupportImage
 
 - (instancetype)init {
     self = [super init];
