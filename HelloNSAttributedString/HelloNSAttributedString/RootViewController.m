@@ -10,6 +10,7 @@
 
 #import "AttributedStringWithFormatViewController.h"
 #import "NSParagraphStyleAttributeNameViewController.h"
+#import "AttributedStringWithImageViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -34,10 +35,12 @@
     _titles = @[
         @"NSAttributedString with format",
         @"Use NSParagraphStyleAttributeName",
+        @"NSAttributedString with image",
     ];
     _classes = @[
         @"AttributedStringWithFormatViewController",
         @"NSParagraphStyleAttributeNameViewController",
+        @"AttributedStringWithImageViewController",
     ];
 }
 
