@@ -1,0 +1,11 @@
+
+platform :ios, '8.0'
+
+target 'HelloWeex' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for HelloWeex
+  pod 'WeexSDK'
+  pod 'SDWebImage'
+end
