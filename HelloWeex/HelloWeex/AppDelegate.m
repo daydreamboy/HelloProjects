@@ -10,6 +10,7 @@
 #import <WeexSDK/WeexSDK.h>
 
 #import "RootViewController.h"
+#import "WeexImageDownloader.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) RootViewController *rootViewController;
@@ -42,6 +43,8 @@
         
         //init sdk environment
         [WXSDKEngine initSDKEnvironment];
+        
+        [WXSDKEngine registerHandler:[WeexImageDownloader new] withProtocol:@protocol(WXImgLoaderProtocol)];
         
         //set the log level
         [WXLog setLogLevel:WXLogLevelAll];

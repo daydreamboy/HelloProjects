@@ -7,5 +7,7 @@ target 'HelloWeex' do
 
   # Pods for HelloWeex
   pod 'WeexSDK'
+  pod 'SocketRocket'
+  pod 'WXDevtool'
   pod 'SDWebImage'
 end

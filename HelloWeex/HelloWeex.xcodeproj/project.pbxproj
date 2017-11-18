@@ -191,8 +191,8 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-HelloWeex/Pods-HelloWeex-resources.sh",
-				"${PODS_ROOT}/WeexSDK/WeexSDK.framework/native-bundle-main.js",
-				"${PODS_ROOT}/WeexSDK/WeexSDK.framework/wx_load_error@3x.png",
+				"${PODS_ROOT}/WeexSDK/pre-build/native-bundle-main.js",
+				"${PODS_ROOT}/WeexSDK/ios/sdk/WeexSDK/Resources/wx_load_error@3x.png",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (

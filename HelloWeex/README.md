@@ -131,6 +131,11 @@ $ weex helloweex.we
 3. npm install，安装依赖文件到node_modules文件夹
 4. npm run dev & npm run serve，开启web服务
 
+#### 5.2 Weex Playground
+
+[Weex Playground](https://weex.apache.org/cn/playground.html)是搭载WeexSDK的app（for iOS/Android），用于调试.we文件以及学习Weex支持的特性。
+
+
 References
 --
 
