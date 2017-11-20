@@ -1,0 +1,6 @@
+# HelloCoreDataWithCocoaPods
+--
+
+|  | Static Library | Framework |
+|-----|----------------|-----------|
+| 
