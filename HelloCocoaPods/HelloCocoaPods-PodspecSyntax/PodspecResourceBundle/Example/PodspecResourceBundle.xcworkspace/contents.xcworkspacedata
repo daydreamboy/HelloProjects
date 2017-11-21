@@ -2,12 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/wesley_chen/GitHub_Projcets/HelloProjects/HelloCocoaPods/HelloCocoaPods-PodspecSyntax/PodspecResourceBundle/Example/PodspecResourceBundle.xcodeproj">
+      location = "group:PodspecResourceBundle.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:PodspecResourceBundle.xcodeproj">
    </FileRef>
 </Workspace>

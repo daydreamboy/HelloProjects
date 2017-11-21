@@ -32,7 +32,9 @@ TODO: Add long description of the pod here.
   
   s.resource_bundles = {
     'PodspecResourceBundle' => [
+      # Note: 'Assets/**/*.png' vs 'Assets/*.png'
       'PodspecResourceBundle/Assets/*.png',
+      'PodspecResourceBundle/Assets/icons/*.png',
       'PodspecResourceBundle/Assets/internal_bundle.bundle',
     ]
   }
