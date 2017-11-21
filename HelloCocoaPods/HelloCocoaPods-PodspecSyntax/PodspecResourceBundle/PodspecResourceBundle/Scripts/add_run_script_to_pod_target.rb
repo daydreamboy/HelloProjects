@@ -1,6 +1,6 @@
 require 'xcodeproj'
 
-project_path = '../Example/Pods/Pods.xcodeproj'
+project_path = 'Pods/Pods.xcodeproj'
 project = Xcodeproj::Project.open(project_path)
 
 # Configurations
