@@ -36,8 +36,15 @@ TODO: Add long description of the pod here.
       'PodspecResourceBundle/Assets/*.png',
       'PodspecResourceBundle/Assets/icons/*.png',
       'PodspecResourceBundle/Assets/internal_bundle.bundle',
+    ],
+    'Placeholder' => [
+      # Note: Create 'empty' bundle
     ]
   }
+
+  s.preserve_paths = [
+    'PodspecResourceBundle/Scripts/**/*',
+  ]
 
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'

@@ -331,7 +331,8 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PodspecResourceBundle_Example/Pods-PodspecResourceBundle_Example-resources.sh",
-				$PODS_CONFIGURATION_BUILD_DIR/PodspecResourceBundle/PodspecResourceBundle.bundle,
+				"$PODS_CONFIGURATION_BUILD_DIR/PodspecResourceBundle/PodspecResourceBundle.bundle",
+				"$PODS_CONFIGURATION_BUILD_DIR/PodspecResourceBundle/Placeholder.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
