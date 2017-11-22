@@ -14,6 +14,7 @@
 #import "UseProtocolRestrictGenericClassViewController.h"
 #import "DefineGenericCategoryViewController.h"
 #import "DefineGenericCategoryViewController.h"
+#import "TestViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -41,6 +42,7 @@
         @"Define a restricted generic class",
         @"Define a restricted generic class by protocol",
         @"Define a generic category",
+        @"TestViewController",
         @"call a test method",
     ];
     _classes = @[
@@ -49,6 +51,7 @@
         @"DefineRestrictedGenericClassViewController",
         @"UseProtocolRestrictGenericClassViewController",
         @"DefineGenericCategoryViewController",
+        @"TestViewController",
         @"testMethod",
     ];
 }

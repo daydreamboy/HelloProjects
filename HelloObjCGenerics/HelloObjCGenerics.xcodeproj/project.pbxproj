@@ -24,6 +24,8 @@
 		4F2FE1A41FAF11D40074690D /* Duck.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FE1A31FAF11D40074690D /* Duck.m */; };
 		4F2FE1A71FAF132C0074690D /* NSMutableArray+Cat.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FE1A61FAF132C0074690D /* NSMutableArray+Cat.m */; };
 		4F2FE1AA1FAF13A40074690D /* DefineGenericCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FE1A91FAF13A40074690D /* DefineGenericCategoryViewController.m */; };
+		4F3782471FC43D58002BA02D /* ItemContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3782461FC43D58002BA02D /* ItemContainer.m */; };
+		4F37824A1FC43FBA002BA02D /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3782491FC43FBA002BA02D /* TestViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +63,10 @@
 		4F2FE1A61FAF132C0074690D /* NSMutableArray+Cat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Cat.m"; sourceTree = "<group>"; };
 		4F2FE1A81FAF13A40074690D /* DefineGenericCategoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefineGenericCategoryViewController.h; sourceTree = "<group>"; };
 		4F2FE1A91FAF13A40074690D /* DefineGenericCategoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefineGenericCategoryViewController.m; sourceTree = "<group>"; };
+		4F3782451FC43D58002BA02D /* ItemContainer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ItemContainer.h; sourceTree = "<group>"; };
+		4F3782461FC43D58002BA02D /* ItemContainer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ItemContainer.m; sourceTree = "<group>"; };
+		4F3782481FC43FBA002BA02D /* TestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		4F3782491FC43FBA002BA02D /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +125,8 @@
 				4F2FE1A91FAF13A40074690D /* DefineGenericCategoryViewController.m */,
 				4F2FE19C1FAF10D10074690D /* UseProtocolRestrictGenericClassViewController.h */,
 				4F2FE19D1FAF10D10074690D /* UseProtocolRestrictGenericClassViewController.m */,
+				4F3782481FC43FBA002BA02D /* TestViewController.h */,
+				4F3782491FC43FBA002BA02D /* TestViewController.m */,
 				4F2FE18C1FAF095B0074690D /* GenericPetHotel.h */,
 				4F2FE18D1FAF095B0074690D /* GenericPetHotel.m */,
 				4F2FE1921FAF0D1E0074690D /* RestrictedGenericPetHotel.h */,
@@ -132,6 +140,8 @@
 				4F2FE1951FAF0D280074690D /* Animal.h */,
 				4F2FE1961FAF0D280074690D /* Animal.m */,
 				4F2FE19B1FAF10660074690D /* Swim.h */,
+				4F3782451FC43D58002BA02D /* ItemContainer.h */,
+				4F3782461FC43D58002BA02D /* ItemContainer.m */,
 				4F2FE1A51FAF132C0074690D /* NSMutableArray+Cat.h */,
 				4F2FE1A61FAF132C0074690D /* NSMutableArray+Cat.m */,
 			);
@@ -220,6 +230,8 @@
 				4F2FE1941FAF0D1E0074690D /* RestrictedGenericPetHotel.m in Sources */,
 				4F2FE1971FAF0D280074690D /* Animal.m in Sources */,
 				4F2FE19E1FAF10D10074690D /* UseProtocolRestrictGenericClassViewController.m in Sources */,
+				4F37824A1FC43FBA002BA02D /* TestViewController.m in Sources */,
+				4F3782471FC43D58002BA02D /* ItemContainer.m in Sources */,
 				4F2FE19A1FAF0E0A0074690D /* DefineRestrictedGenericClassViewController.m in Sources */,
 				4F2FE1881FAF07390074690D /* RootViewController.m in Sources */,
 				4F2FE16E1FAF06EB0074690D /* AppDelegate.m in Sources */,
