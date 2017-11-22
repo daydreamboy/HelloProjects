@@ -19,6 +19,8 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
+    // @see http://tanqisen.github.io/blog/2013/04/19/gcd-block-cycle-retain/
+    
     // Note: __NSGlobalBlock__
     void (^blockA)(int a, int b) = ^(int a, int b){
         NSLog(@"a + b = %ld", (long)(a + b));
