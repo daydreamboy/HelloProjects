@@ -270,5 +270,12 @@ Fully manual migrations是最自定义的一种，例如完成版本检测逻辑
 
 ![数据迁移存在多个mom文件](Images/数据迁移存在多个mom文件.png)
 
+## 6 CoreData调试
+
+* [-com.apple.CoreData.SQLDebug [1-4]](http://nshipster.com/launch-arguments-and-environment-variables/), number more high more detail
+* -com.apple.CoreData.ConcurrencyDebug 1
+
+https://stackoverflow.com/questions/31391838/making-com-apple-coredata-concurrencydebug-1-work
+https://pawanpoudel.svbtle.com/fixing-core-data-concurrency-violations
 
 
