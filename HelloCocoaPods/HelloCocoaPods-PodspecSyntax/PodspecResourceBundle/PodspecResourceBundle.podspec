@@ -36,6 +36,7 @@ TODO: Add long description of the pod here.
       'PodspecResourceBundle/Assets/*.png',
       'PodspecResourceBundle/Assets/icons/*.png',
       'PodspecResourceBundle/Assets/internal_bundle.bundle',
+      'PodspecResourceBundle/Assets/*.xcassets',
     ],
     'Placeholder' => [
       # Note: Create 'empty' bundle

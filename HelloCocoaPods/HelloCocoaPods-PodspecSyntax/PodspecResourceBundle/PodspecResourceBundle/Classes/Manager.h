@@ -9,6 +9,6 @@
 
 @interface Manager : NSObject
 - (void)doSomething;
-- (UIImage *)image1;
-- (UIImage *)image2;
++ (UIImage *)image1;
++ (UIImage *)image2;
 @end

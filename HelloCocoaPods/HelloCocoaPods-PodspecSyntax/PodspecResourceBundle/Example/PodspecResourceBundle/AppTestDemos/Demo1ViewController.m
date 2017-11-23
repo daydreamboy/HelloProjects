@@ -19,11 +19,13 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    Manager *manager = [Manager new];
-    UIImage *image1 = [manager image1];
+    UIImage *image1 = [Manager image1];
     NSLog(@"image1: %@", image1);
-    UIImage *image2 = [manager image2];
+    [self addImage:image1];
+    
+    UIImage *image2 = [Manager image2];
     NSLog(@"image2: %@", image2);
+    [self addImage:image2];
 }
 
 @end

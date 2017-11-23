@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00894E2B7B00EFD7E8592AA9 /* libPods-PodspecResourceBundle_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FA3647EFA9845D55C26666B /* libPods-PodspecResourceBundle_Example.a */; };
+		4F0C45D41FC6A33B00E04471 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C45D31FC6A33B00E04471 /* BaseViewController.m */; };
 		4F84989F1FC3C8C800F4E51D /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F84989B1FC3C8C800F4E51D /* Demo1ViewController.m */; };
 		4F8498A01FC3C8C800F4E51D /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F84989E1FC3C8C800F4E51D /* RootViewController.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
@@ -41,6 +42,8 @@
 		338F5FA2E9E66495E6A3324F /* Pods-PodspecResourceBundle_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodspecResourceBundle_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-PodspecResourceBundle_Example/Pods-PodspecResourceBundle_Example.release.xcconfig"; sourceTree = "<group>"; };
 		4293E4A0D59B254E996E7819 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		469EA8D8B6F27BE112B868A9 /* Pods-PodspecResourceBundle_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodspecResourceBundle_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PodspecResourceBundle_Tests/Pods-PodspecResourceBundle_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		4F0C45D21FC6A33B00E04471 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		4F0C45D31FC6A33B00E04471 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		4F84989B1FC3C8C800F4E51D /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
 		4F84989C1FC3C8C800F4E51D /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
 		4F84989D1FC3C8C800F4E51D /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
@@ -110,8 +113,10 @@
 		4F84989A1FC3C8C800F4E51D /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F84989B1FC3C8C800F4E51D /* Demo1ViewController.m */,
 				4F84989C1FC3C8C800F4E51D /* Demo1ViewController.h */,
+				4F84989B1FC3C8C800F4E51D /* Demo1ViewController.m */,
+				4F0C45D21FC6A33B00E04471 /* BaseViewController.h */,
+				4F0C45D31FC6A33B00E04471 /* BaseViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -331,8 +336,8 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-PodspecResourceBundle_Example/Pods-PodspecResourceBundle_Example-resources.sh",
-				"$PODS_CONFIGURATION_BUILD_DIR/PodspecResourceBundle/PodspecResourceBundle.bundle",
-				"$PODS_CONFIGURATION_BUILD_DIR/PodspecResourceBundle/Placeholder.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/PodspecResourceBundle/PodspecResourceBundle.bundle,
+				$PODS_CONFIGURATION_BUILD_DIR/PodspecResourceBundle/Placeholder.bundle,
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -417,6 +422,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* AppDelegate.m in Sources */,
+				4F0C45D41FC6A33B00E04471 /* BaseViewController.m in Sources */,
 				4F84989F1FC3C8C800F4E51D /* Demo1ViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				4F8498A01FC3C8C800F4E51D /* RootViewController.m in Sources */,
