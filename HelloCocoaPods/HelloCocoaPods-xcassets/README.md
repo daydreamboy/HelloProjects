@@ -51,6 +51,16 @@ xxx.app
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;另外，resource_bundles名称和framework同名，对应的Info.plist文件有些字段会冲突，导致读取(3)和(4)只能加载一个。参见HelloXCAssets-Issues工程。
 
+## 4. Asset Catalog使用Tips
+
+
+https://krakendev.io/blog/4-xcode-asset-catalog-secrets-you-need-to-know
+
+* Template Image使用
+* PDF的使用，自动生成@1x/@2x/@3x图片
+* 更换Launch Screen.stroyboard
+* Image Slicing用法（拉伸图片）
+
 
 References
 --
