@@ -11,6 +11,16 @@
 
 @interface WCXCAssetsImageTool : NSObject
 
-+ (UIImage *)xcassetsImageNamed:(NSString *)name resourceBundleName:(NSString *)resourceBundleName podName:(NSString *)podName;
+/**
+ Get image in xcassets folder
+
+ @param name the image name in xcassets folder
+ @param resourceBundleName the resource bundel which contains xcassets folder
+ @param podName the Pod name (intergated as static libray or framework).
+        - @"" stands for main bundle
+        - nil statnd for current bundle which this code reside in
+ @return the UIImage object. return nil if not found
+ */
++ (UIImage *)xcassetsImageNamed:(NSString *)name resourceBundleName:(NSString *)resourceBundleName podName:(NSString *)podName NS_AVAILABLE_IOS(8_0);
 
 @end

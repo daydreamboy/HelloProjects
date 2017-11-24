@@ -8,11 +8,10 @@
 #import <Foundation/Foundation.h>
 
 @interface Manager : NSObject
-- (void)doSomething;
-- (UIImage *)image1;
-+ (UIImage *)image2;
-+ (UIImage *)image3;
 
-+ (UIImage *)xcassetsImageNamed:(NSString *)name inBundleName:(NSString *)bundleName;
++ (UIImage *)imageInPod;
++ (UIImage *)imageInResourceBundleOfPod;
++ (UIImage *)imageInMainBundle;
++ (UIImage *)imageInResourceBundleOfMainBundle;
 
 @end

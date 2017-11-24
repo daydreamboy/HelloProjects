@@ -1,5 +1,6 @@
 platform :ios, '8.0'
 
+# Note: toggle this line to test
 use_frameworks!
 
 target 'HelloXCAssets_Example' do

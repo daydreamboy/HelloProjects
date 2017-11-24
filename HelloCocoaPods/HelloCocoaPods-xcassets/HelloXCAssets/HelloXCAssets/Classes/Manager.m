@@ -9,63 +9,101 @@
 
 @implementation Manager
 
-+ (UIImage *)xcassetsImageNamed:(NSString *)name inBundleName:(NSString *)bundleName {
-    if (bundleName.length) {
-        // resource bundle
-        NSBundle *parentBundle = [NSBundle bundleForClass:self.class];
-        NSString *resourceBundlePath = [parentBundle pathForResource:bundleName ofType:@"bundle"];
++ (UIImage *)imageInPod {
+    UIImage *image = [self xcassetsImageNamed:@"shop" resourceBundleName:nil podName:nil];
+    
+    return image;
+}
+
++ (UIImage *)imageInResourceBundleOfPod {
+    UIImage *image = [self xcassetsImageNamed:@"myredpocket" resourceBundleName:@"MyXCAssets" podName:nil];
+    
+    return image;
+}
+
++ (UIImage *)imageInMainBundle {
+    UIImage *image = [self xcassetsImageNamed:@"picture_select" resourceBundleName:nil podName:@""];
+    
+    return image;
+}
+
++ (UIImage *)imageInResourceBundleOfMainBundle {
+    UIImage *image = [self xcassetsImageNamed:@"shopping" resourceBundleName:@"main" podName:@""];
+    
+    return image;
+}
+
+#pragma mark - Utility
+
++ (UIImage *)xcassetsImageNamed:(NSString *)name resourceBundleName:(NSString *)resourceBundleName podName:(NSString *)podName {
+#if DEBUG
+    if ([resourceBundleName isEqualToString:podName]) {
+        NSLog(@"<WCXCAssetsImageTool> [Warning] resource bundle name is same as Pod name: %@", podName);
+    }
+#endif
+    UIImage *image = nil;
+    if (podName) {
+        // Note: [NSBundle mainBundle] sharedFrameworksPath] -- /../HelloXCAssets_Example.app/SharedFrameworks
+        // Note: [NSBundle mainBundle] privateFrameworksPath] -- /../HelloXCAssets_Example.app/Frameworks
+        
+        // first check pod as framework
+        NSString *frameworkPath = [[[NSBundle mainBundle] privateFrameworksPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.framework", podName]];
+        NSBundle *frameworkBundle = [NSBundle bundleWithPath:frameworkPath];
+        if (frameworkBundle) {
+            // pod is framework
+            image = [self xcassetsImageInPodWithName:name resourceBundleName:resourceBundleName podBundle:frameworkBundle];
+        }
+        else {
+            // pod is static library so look up image in main bundle
+            image = [self xcassetsImageInMainBundleWithName:name resourceBundleName:resourceBundleName];
+        }
+    }
+    else if ([podName isEqualToString:@""]) {
+        // treat main bundle as pod
+        image = [self xcassetsImageInMainBundleWithName:name resourceBundleName:resourceBundleName];
+    }
+    else {
+        // get current pod which this code resides in
+        // for case, this method resides in Pod
+        NSBundle *podBundle = [NSBundle bundleForClass:self];
+        image = [self xcassetsImageInPodWithName:name resourceBundleName:resourceBundleName podBundle:podBundle];
+    }
+    
+    return image;
+}
+
++ (UIImage *)xcassetsImageInMainBundleWithName:(NSString *)name resourceBundleName:(NSString *)resourceBundleName {
+    UIImage *image = nil;
+    if (resourceBundleName) {
+        // resource bundle in main bundle
+        NSString *resourceBundlePath = [[NSBundle mainBundle] pathForResource:resourceBundleName ofType:@"bundle"];
         NSBundle *resourceBundle = [NSBundle bundleWithPath:resourceBundlePath];
         
-        UIImage *image = [UIImage imageNamed:name inBundle:resourceBundle compatibleWithTraitCollection:nil];
-        return image;
+        image = [UIImage imageNamed:name inBundle:resourceBundle compatibleWithTraitCollection:nil];
     }
     else {
         // main bundle
-        UIImage *image = [UIImage imageNamed:name];
-        return image;
+        image = [UIImage imageNamed:name];
     }
+    
+    return image;
 }
 
-- (void)doSomething {
-    NSLog(@"called %@: %@", NSStringFromClass(self.class), NSStringFromSelector(_cmd));
-}
-
-- (UIImage *)image1 {
-    NSBundle *bundle = [self.class resourceBundleWithName:@"PodspecResourceBundle" inBundle:nil];
-    NSBundle *internalBundle = [self.class resourceBundleWithName:@"internal_bundle" inBundle:bundle];
++ (UIImage *)xcassetsImageInPodWithName:(NSString *)name resourceBundleName:(NSString *)resourceBundleName podBundle:(NSBundle *)podBundle {
+    UIImage *image = nil;
+    if (resourceBundleName) {
+        // resource bundle in pod bundle (static library or framework)
+        NSString *resourceBundlePath = [podBundle pathForResource:resourceBundleName ofType:@"bundle"];
+        NSBundle *resourceBundle = [NSBundle bundleWithPath:resourceBundlePath];
+        
+        image = [UIImage imageNamed:name inBundle:resourceBundle compatibleWithTraitCollection:nil];
+    }
+    else {
+        // pod bundle (static library or framework)
+        image = [UIImage imageNamed:name inBundle:podBundle compatibleWithTraitCollection:nil];
+    }
     
-    NSString *imagePath = [internalBundle pathForResource:@"AppIcon" ofType:@"png"];
-    
-    return [UIImage imageNamed:imagePath];
-}
-
-+ (UIImage *)image2 {
-    NSBundle *bundle = [NSBundle bundleForClass:self];
-    
-    NSString *imagePath = [bundle pathForResource:@"Shop" ofType:@"png"];
-    UIImage *image1 = [UIImage imageNamed:@"Shop" inBundle:bundle compatibleWithTraitCollection:nil];
-    UIImage *image2 = [UIImage imageNamed:imagePath];
-    
-    return [UIImage imageNamed:imagePath];
-}
-
-+ (UIImage *)image3 {
-    NSBundle *bundle = [self resourceBundleWithName:@"HelloXCAssets" inBundle:nil];
-    
-//    NSString *imagePath = [bundle pathForResource:@"myredpocket" ofType:@"png"];
-//
-//    return [UIImage imageNamed:imagePath];
-    // @see https://stackoverflow.com/questions/33063233/cant-load-images-from-xcasset-in-cocoapods
-    return [UIImage imageNamed:@"myredpocket" inBundle:bundle compatibleWithTraitCollection:nil];
-}
-
-+ (NSBundle *)resourceBundleWithName:(NSString *)name inBundle:(NSBundle *)bundle {
-    
-    NSBundle *parentBundle = bundle ?: [NSBundle bundleForClass:self.class];
-    NSString *resourceBundlePath = [parentBundle pathForResource:name ofType:@"bundle"];
-    NSBundle *resourceBundle = [NSBundle bundleWithPath:resourceBundlePath];
-    
-    return resourceBundle;
+    return image;
 }
 
 @end

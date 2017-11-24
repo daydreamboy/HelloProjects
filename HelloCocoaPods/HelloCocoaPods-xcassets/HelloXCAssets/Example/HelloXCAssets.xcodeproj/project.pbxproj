@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		28D5415B0FAFF22A7820CE15 /* libPods-HelloXCAssets_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A25D7B51DCC1CD61D96EA99D /* libPods-HelloXCAssets_Tests.a */; };
 		4F0C45451FC5CE7200E04471 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C45441FC5CE7200E04471 /* RootViewController.m */; };
 		4F0C45491FC5CE7800E04471 /* AccessXCAssetsImageInMainBundleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C45471FC5CE7800E04471 /* AccessXCAssetsImageInMainBundleViewController.m */; };
 		4F0C454D1FC5D68300E04471 /* WCXCAssetsImageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C454C1FC5D68300E04471 /* WCXCAssetsImageTool.m */; };
@@ -15,6 +16,10 @@
 		4F0C45561FC5DDAB00E04471 /* AccessXCAssetsImageInResourceBundleOfPodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C45551FC5DDAB00E04471 /* AccessXCAssetsImageInResourceBundleOfPodViewController.m */; };
 		4F0C45591FC6682E00E04471 /* main.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 4F0C45581FC6682E00E04471 /* main.bundle */; };
 		4F0C455C1FC66D0600E04471 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C455B1FC66D0600E04471 /* BaseViewController.m */; };
+		4F0C46141FC7FD5200E04471 /* PodProvideImageInPodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C46131FC7FD5200E04471 /* PodProvideImageInPodViewController.m */; };
+		4F0C46171FC7FD7100E04471 /* PodProvideImageInResourceBundleofPodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C46161FC7FD7100E04471 /* PodProvideImageInResourceBundleofPodViewController.m */; };
+		4F0C461A1FC7FD8A00E04471 /* PodAccessImageInMainBundleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C46191FC7FD8A00E04471 /* PodAccessImageInMainBundleViewController.m */; };
+		4F0C461D1FC7FDE600E04471 /* PodAccessImageInResourceBundleOfMainBundleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C461C1FC7FDE600E04471 /* PodAccessImageInResourceBundleOfMainBundleViewController.m */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -27,9 +32,8 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
-		62A2E68CF809FED6234754C4 /* Pods_HelloXCAssets_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA4D9A24EADF60E8C4F5BEE7 /* Pods_HelloXCAssets_Tests.framework */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
-		F6BA858303043DE26773ABEF /* Pods_HelloXCAssets_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3224B02928AFF69014094BA0 /* Pods_HelloXCAssets_Example.framework */; };
+		C592D78F8DECC947D7B3914E /* libPods-HelloXCAssets_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B0651FA1A1118A751D8B7AC4 /* libPods-HelloXCAssets_Example.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +48,6 @@
 
 /* Begin PBXFileReference section */
 		307D4C899FACA8D7FC1F81A7 /* Pods-HelloXCAssets_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloXCAssets_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-HelloXCAssets_Example/Pods-HelloXCAssets_Example.release.xcconfig"; sourceTree = "<group>"; };
-		3224B02928AFF69014094BA0 /* Pods_HelloXCAssets_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HelloXCAssets_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EFC3F596713CE7F174CBF1E /* Pods-HelloXCAssets_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloXCAssets_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HelloXCAssets_Tests/Pods-HelloXCAssets_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		4BAF1054D3E9F09B7AA6F4A5 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		4F0C45431FC5CE7200E04471 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
@@ -62,6 +65,14 @@
 		4F0C45581FC6682E00E04471 /* main.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = main.bundle; sourceTree = "<group>"; };
 		4F0C455A1FC66D0600E04471 /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		4F0C455B1FC66D0600E04471 /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		4F0C46121FC7FD5200E04471 /* PodProvideImageInPodViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PodProvideImageInPodViewController.h; sourceTree = "<group>"; };
+		4F0C46131FC7FD5200E04471 /* PodProvideImageInPodViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PodProvideImageInPodViewController.m; sourceTree = "<group>"; };
+		4F0C46151FC7FD7100E04471 /* PodProvideImageInResourceBundleofPodViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PodProvideImageInResourceBundleofPodViewController.h; sourceTree = "<group>"; };
+		4F0C46161FC7FD7100E04471 /* PodProvideImageInResourceBundleofPodViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PodProvideImageInResourceBundleofPodViewController.m; sourceTree = "<group>"; };
+		4F0C46181FC7FD8A00E04471 /* PodAccessImageInMainBundleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PodAccessImageInMainBundleViewController.h; sourceTree = "<group>"; };
+		4F0C46191FC7FD8A00E04471 /* PodAccessImageInMainBundleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PodAccessImageInMainBundleViewController.m; sourceTree = "<group>"; };
+		4F0C461B1FC7FDE600E04471 /* PodAccessImageInResourceBundleOfMainBundleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PodAccessImageInResourceBundleOfMainBundleViewController.h; sourceTree = "<group>"; };
+		4F0C461C1FC7FDE600E04471 /* PodAccessImageInResourceBundleOfMainBundleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PodAccessImageInResourceBundleOfMainBundleViewController.m; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* HelloXCAssets_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloXCAssets_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -83,7 +94,8 @@
 		785E3AEBE795A8EA55E5FD6A /* Pods-HelloXCAssets_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloXCAssets_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HelloXCAssets_Tests/Pods-HelloXCAssets_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9086B513F5057DF90BD2B49E /* HelloXCAssets.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = HelloXCAssets.podspec; path = ../HelloXCAssets.podspec; sourceTree = "<group>"; };
 		94EF3AB1A9FB43BAABD990E1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		AA4D9A24EADF60E8C4F5BEE7 /* Pods_HelloXCAssets_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HelloXCAssets_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A25D7B51DCC1CD61D96EA99D /* libPods-HelloXCAssets_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HelloXCAssets_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		B0651FA1A1118A751D8B7AC4 /* libPods-HelloXCAssets_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HelloXCAssets_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8741E46CF198256C3D4CD9B /* Pods-HelloXCAssets_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloXCAssets_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HelloXCAssets_Example/Pods-HelloXCAssets_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -95,7 +107,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				F6BA858303043DE26773ABEF /* Pods_HelloXCAssets_Example.framework in Frameworks */,
+				C592D78F8DECC947D7B3914E /* libPods-HelloXCAssets_Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,7 +118,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				62A2E68CF809FED6234754C4 /* Pods_HelloXCAssets_Tests.framework in Frameworks */,
+				28D5415B0FAFF22A7820CE15 /* libPods-HelloXCAssets_Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +136,14 @@
 				4F0C45521FC5DD9200E04471 /* AccessXCAssetsImageInPodViewController.m */,
 				4F0C45541FC5DDAB00E04471 /* AccessXCAssetsImageInResourceBundleOfPodViewController.h */,
 				4F0C45551FC5DDAB00E04471 /* AccessXCAssetsImageInResourceBundleOfPodViewController.m */,
+				4F0C46121FC7FD5200E04471 /* PodProvideImageInPodViewController.h */,
+				4F0C46131FC7FD5200E04471 /* PodProvideImageInPodViewController.m */,
+				4F0C46151FC7FD7100E04471 /* PodProvideImageInResourceBundleofPodViewController.h */,
+				4F0C46161FC7FD7100E04471 /* PodProvideImageInResourceBundleofPodViewController.m */,
+				4F0C46181FC7FD8A00E04471 /* PodAccessImageInMainBundleViewController.h */,
+				4F0C46191FC7FD8A00E04471 /* PodAccessImageInMainBundleViewController.m */,
+				4F0C461B1FC7FDE600E04471 /* PodAccessImageInResourceBundleOfMainBundleViewController.h */,
+				4F0C461C1FC7FDE600E04471 /* PodAccessImageInResourceBundleOfMainBundleViewController.m */,
 				4F0C455A1FC66D0600E04471 /* BaseViewController.h */,
 				4F0C455B1FC66D0600E04471 /* BaseViewController.m */,
 			);
@@ -175,8 +195,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				3224B02928AFF69014094BA0 /* Pods_HelloXCAssets_Example.framework */,
-				AA4D9A24EADF60E8C4F5BEE7 /* Pods_HelloXCAssets_Tests.framework */,
+				B0651FA1A1118A751D8B7AC4 /* libPods-HelloXCAssets_Example.a */,
+				A25D7B51DCC1CD61D96EA99D /* libPods-HelloXCAssets_Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -426,9 +446,15 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-HelloXCAssets_Example/Pods-HelloXCAssets_Example-resources.sh",
+				"${PODS_ROOT}/../../HelloXCAssets/Assets/xcasstsInResourceAttribute1.xcassets",
+				"${PODS_ROOT}/../../HelloXCAssets/Assets/xcasstsInResourceAttribute2.xcassets",
+				"${PODS_ROOT}/../../HelloXCAssets/Assets/icons",
+				$PODS_CONFIGURATION_BUILD_DIR/HelloXCAssets/MyXCAssets.bundle,
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -463,9 +489,13 @@
 				4F0C45491FC5CE7800E04471 /* AccessXCAssetsImageInMainBundleViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				4F0C454D1FC5D68300E04471 /* WCXCAssetsImageTool.m in Sources */,
+				4F0C461A1FC7FD8A00E04471 /* PodAccessImageInMainBundleViewController.m in Sources */,
 				4F0C45451FC5CE7200E04471 /* RootViewController.m in Sources */,
 				4F0C45561FC5DDAB00E04471 /* AccessXCAssetsImageInResourceBundleOfPodViewController.m in Sources */,
+				4F0C46171FC7FD7100E04471 /* PodProvideImageInResourceBundleofPodViewController.m in Sources */,
 				4F0C45501FC5DD6A00E04471 /* AccessXCAssetsImageInResourceBundleOfMainBundleViewController.m in Sources */,
+				4F0C46141FC7FD5200E04471 /* PodProvideImageInPodViewController.m in Sources */,
+				4F0C461D1FC7FDE600E04471 /* PodAccessImageInResourceBundleOfMainBundleViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

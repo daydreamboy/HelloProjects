@@ -12,6 +12,10 @@
 #import "AccessXCAssetsImageInResourceBundleOfMainBundleViewController.h"
 #import "AccessXCAssetsImageInPodViewController.h"
 #import "AccessXCAssetsImageInResourceBundleOfPodViewController.h"
+#import "PodProvideImageInPodViewController.h"
+#import "PodProvideImageInResourceBundleofPodViewController.h"
+#import "PodAccessImageInMainBundleViewController.h"
+#import "PodAccessImageInResourceBundleOfMainBundleViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -38,6 +42,10 @@
         @"access xcassets images in resource bundle of main bundle",
         @"access xcassets images in Pod (as static library or framework)",
         @"access xcassets images in resource bundle of Pod (as static library or framework)",
+        @"pod provide xcassets image in pod",
+        @"pod provide xcassets image in resource bundle of pod",
+        @"pod access xcassets image in main bundle",
+        @"pod access xcassets image in resource bundle of main bundle",
         @"call a test method",
     ];
     _classes = @[
@@ -45,6 +53,10 @@
         @"AccessXCAssetsImageInResourceBundleOfMainBundleViewController",
         @"AccessXCAssetsImageInPodViewController",
         @"AccessXCAssetsImageInResourceBundleOfPodViewController",
+        @"PodProvideImageInPodViewController",
+        @"PodProvideImageInResourceBundleofPodViewController",
+        @"PodAccessImageInMainBundleViewController",
+        @"PodAccessImageInResourceBundleOfMainBundleViewController",
         @"testMethod",
     ];
 }

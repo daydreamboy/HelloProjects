@@ -10,16 +10,12 @@
 
 @implementation WCXCAssetsImageTool
 
-
-/**
- <#Description#>
-
- @param name the name of image
- @param resourceBundleName the name of resource bundle (.bundle)
- @param podName the pod (static library or framework) name
- @return the image if found
- */
 + (UIImage *)xcassetsImageNamed:(NSString *)name resourceBundleName:(NSString *)resourceBundleName podName:(NSString *)podName {
+#if DEBUG
+    if ([resourceBundleName isEqualToString:podName]) {
+        NSLog(@"<WCXCAssetsImageTool> [Warning] resource bundle name is same as Pod name: %@", podName);
+    }
+#endif
     UIImage *image = nil;
     if (podName) {
         // Note: [NSBundle mainBundle] sharedFrameworksPath] -- /../HelloXCAssets_Example.app/SharedFrameworks
