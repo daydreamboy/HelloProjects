@@ -1,0 +1,12 @@
+platform :ios, '8.0'
+use_frameworks!
+
+target 'FileNameConflict_Example' do
+  pod 'FileNameConflict', :path => '../'
+
+  target 'FileNameConflict_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
