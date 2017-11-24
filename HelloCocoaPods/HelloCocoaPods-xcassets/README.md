@@ -61,6 +61,14 @@ https://krakendev.io/blog/4-xcode-asset-catalog-secrets-you-need-to-know
 * 更换Launch Screen.stroyboard
 * Image Slicing用法（拉伸图片）
 
+## 5. xcasset图片访问工具类
+
+WCXCAssetsImageTool支持car文件在4种位置的情况，支持代码在main bundle或者CocoaPods（静态库或者动态库）编译。
+
+##### TODO
+iOS系统兼容性测试
+
+
 
 References
 --
