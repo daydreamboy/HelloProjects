@@ -10,6 +10,8 @@
 
 #import "CreatePDFGraphicsContext1ViewController.h"
 #import "CreatePDFGraphicsContext2ViewController.h"
+#import "CreateBitmapGraphicsContext1ViewController.h"
+#import "CreateBitmapGraphicsContext2ViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -34,11 +36,15 @@
     _titles = @[
         @"Create PDF graphics context by CGPDFContextCreateWithURL",
         @"Create PDF graphics context by CGPDFContextCreate",
+        @"Create Bitmap graphics context by CGBitmapContextCreate",
+        @"Create Bitmap graphics context by UIGraphicsBeginImageContextWithOptions",
         @"call a test method",
     ];
     _classes = @[
         @"CreatePDFGraphicsContext1ViewController",
         @"CreatePDFGraphicsContext2ViewController",
+        @"CreateBitmapGraphicsContext1ViewController",
+        @"CreateBitmapGraphicsContext2ViewController",
         @"testMethod",
     ];
 }

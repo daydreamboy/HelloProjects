@@ -20,17 +20,17 @@
     [super viewDidLoad];
     
     NSString *directory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
-    NSString *PDFFilePath = [directory stringByAppendingPathComponent:@"test.pdf"];
+    NSString *PDFFilePath = [directory stringByAppendingPathComponent:@"test1.pdf"];
     NSLog(@"directory: %@", directory);
     
     CGSize pageSizeOfPDF = CGSizeMake(400, 400);
     // Note: specify CGSizeZero to use default page size
     //pageSizeOfPDF = CGSizeZero;
     
-    [self drawGraphicsInPDFWithFilePath:PDFFilePath pageSize:pageSizeOfPDF];
+    [self drawGraphicsInPDFContextWithFilePath:PDFFilePath pageSize:pageSizeOfPDF];
 }
 
-CGContextRef MyPDFContextCreate(const CGRect *inMediaBox, CFStringRef path)
+CGContextRef MyPDFContextCreate1(const CGRect *inMediaBox, CFStringRef path)
 {
     CGContextRef myOutContext = NULL;
     CFURLRef url;
@@ -44,7 +44,7 @@ CGContextRef MyPDFContextCreate(const CGRect *inMediaBox, CFStringRef path)
     return myOutContext;
 }
 
-- (void)drawGraphicsInPDFWithFilePath:(NSString *)filePath pageSize:(CGSize)pageSize {
+- (void)drawGraphicsInPDFContextWithFilePath:(NSString *)filePath pageSize:(CGSize)pageSize {
     
     // Note: page size
     CGRect *pageRectPtr = NULL;
@@ -65,7 +65,7 @@ CGContextRef MyPDFContextCreate(const CGRect *inMediaBox, CFStringRef path)
         pageDict = CFDictionaryCreate(NULL, (const void **)keysOfPageDict, (const void **)valuesOfPageDict, 1, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
     }
     
-    CGContextRef context = MyPDFContextCreate(pageRectPtr, (__bridge CFStringRef)(filePath));
+    CGContextRef context = MyPDFContextCreate1(pageRectPtr, (__bridge CFStringRef)(filePath));
     
     // Note: start to draw the first page of PDF
     CGPDFContextBeginPage(context, pageDict);

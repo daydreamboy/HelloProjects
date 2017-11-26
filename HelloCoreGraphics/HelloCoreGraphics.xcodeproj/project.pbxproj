@@ -14,6 +14,8 @@
 		2B0FD6091FC99E1E0022E59D /* CreatePDFGraphicsContext1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FD6071FC99E1E0022E59D /* CreatePDFGraphicsContext1ViewController.m */; };
 		2B0FD60C1FC99E280022E59D /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FD60A1FC99E280022E59D /* RootViewController.m */; };
 		2B0FD60F1FC99F0E0022E59D /* CreatePDFGraphicsContext2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FD60E1FC99F0E0022E59D /* CreatePDFGraphicsContext2ViewController.m */; };
+		2B7B0B951FCAA60400CB7388 /* CreateBitmapGraphicsContext1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7B0B941FCAA60400CB7388 /* CreateBitmapGraphicsContext1ViewController.m */; };
+		2B7B0B981FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7B0B971FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,10 @@
 		2B0FD60B1FC99E280022E59D /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		2B0FD60D1FC99F0E0022E59D /* CreatePDFGraphicsContext2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreatePDFGraphicsContext2ViewController.h; sourceTree = "<group>"; };
 		2B0FD60E1FC99F0E0022E59D /* CreatePDFGraphicsContext2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreatePDFGraphicsContext2ViewController.m; sourceTree = "<group>"; };
+		2B7B0B931FCAA60400CB7388 /* CreateBitmapGraphicsContext1ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateBitmapGraphicsContext1ViewController.h; sourceTree = "<group>"; };
+		2B7B0B941FCAA60400CB7388 /* CreateBitmapGraphicsContext1ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateBitmapGraphicsContext1ViewController.m; sourceTree = "<group>"; };
+		2B7B0B961FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateBitmapGraphicsContext2ViewController.h; sourceTree = "<group>"; };
+		2B7B0B971FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateBitmapGraphicsContext2ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +88,10 @@
 				2B0FD6071FC99E1E0022E59D /* CreatePDFGraphicsContext1ViewController.m */,
 				2B0FD60D1FC99F0E0022E59D /* CreatePDFGraphicsContext2ViewController.h */,
 				2B0FD60E1FC99F0E0022E59D /* CreatePDFGraphicsContext2ViewController.m */,
+				2B7B0B931FCAA60400CB7388 /* CreateBitmapGraphicsContext1ViewController.h */,
+				2B7B0B941FCAA60400CB7388 /* CreateBitmapGraphicsContext1ViewController.m */,
+				2B7B0B961FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.h */,
+				2B7B0B971FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -158,6 +168,8 @@
 			files = (
 				2B0FD6091FC99E1E0022E59D /* CreatePDFGraphicsContext1ViewController.m in Sources */,
 				2B0FD60F1FC99F0E0022E59D /* CreatePDFGraphicsContext2ViewController.m in Sources */,
+				2B7B0B981FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.m in Sources */,
+				2B7B0B951FCAA60400CB7388 /* CreateBitmapGraphicsContext1ViewController.m in Sources */,
 				2B0FD6001FC99DFC0022E59D /* main.m in Sources */,
 				2B0FD5F21FC99DFC0022E59D /* AppDelegate.m in Sources */,
 				2B0FD60C1FC99E280022E59D /* RootViewController.m in Sources */,
