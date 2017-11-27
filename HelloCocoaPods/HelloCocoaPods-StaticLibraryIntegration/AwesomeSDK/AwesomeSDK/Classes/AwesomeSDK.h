@@ -10,7 +10,9 @@
 
 // @see https://github.com/CocoaPods/CocoaPods/issues/3767
 #if __has_include("AwesomeSDK-umbrella.h")
-#import "AwesomeSDK-umbrella.h"
+    #import "AwesomeSDK-umbrella.h"
+#else
+    #import "AwesomeSDKManager.h"
 #endif
 
 #endif /* AwesomeSDK_h */
