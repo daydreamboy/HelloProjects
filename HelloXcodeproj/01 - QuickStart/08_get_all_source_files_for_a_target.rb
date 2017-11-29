@@ -3,8 +3,16 @@ require 'pathname'
 require_relative '../02 - Ruby Helper/rubyscript_helper'
 
 # project_path = './Sample/Sample.xcodeproj'
-project_path = '/Users/wesley_chen/Ali-Projects/Integration_CocoaPods_New/wxopenimsdk/WXOpenIMSDK/WXOpenIMSDK.xcodeproj'
-dest_target = 'WXOpenIMSDK'
+# project_path = '/Users/wesley_chen/Ali-Projects/Integration_CocoaPods_New/wxopenimsdk/WXOpenIMSDK/WXOpenIMSDK.xcodeproj'
+project_path = '/Users/wesley_chen/Ali-Projects/Integration_CocoaPods_New/wxopenimsdk/WXSDK/project/WXMessengerKit.xcodeproj'
+# project_path = '/Users/wesley_chen/Ali-Projects/Integration_CocoaPods_New/wxopenimsdk/WXSDK/project/INet/INet.xcodeproj'
+# project_path = '/Users/wesley_chen/Ali-Projects/Integration_CocoaPods_New/wxopenimsdk/WXSDK/project/IConfig/IConfig.xcodeproj'
+# project_path = '/Users/wesley_chen/Ali-Projects/Integration_CocoaPods_New/wxopenimsdk/WXSDK/project/IRoaming/IRoaming.xcodeproj'
+# project_path = '/Users/wesley_chen/Ali-Projects/Integration_CocoaPods_New/wxopenimsdk/WXSDK/project/IHttp/IHttp.xcodeproj'
+# project_path = '/Users/wesley_chen/Ali-Projects/Integration_CocoaPods_New/wxopenimsdk/WXSDK/project/ICoreData/ICoreData.xcodeproj'
+# project_path = '/Users/wesley_chen/Ali-Projects/Integration_CocoaPods_New/wxopenimsdk/WXSDK/project/WXModule/WXModule.xcodeproj'
+
+dest_target = 'WXMessengerKit_DelayLoaded'
 root_dir = '/Users/wesley_chen/Ali-Projects/Integration_CocoaPods_New/wxopenimsdk'
 
 rootDirPath = Pathname.new(root_dir)

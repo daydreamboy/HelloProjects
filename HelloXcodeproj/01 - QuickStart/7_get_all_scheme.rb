@@ -1,7 +1,8 @@
 require 'xcodeproj'
 
 # Note: get xcuserdata folder
-project_path = './Sample/Sample.xcodeproj'
+# project_path = './Sample/Sample.xcodeproj'
+project_path = '/Users/wesley_chen/GitHub_Projcets/HelloProjects/HelloCocoaPods/HelloCocoaPods-StaticLibraryIntegration/AwesomeSDK/Example/Pods/Pods.xcodeproj'
 xcuserdata = Xcodeproj::XCScheme.user_data_dir(project_path).to_path
 
 extension = ".xcscheme"
