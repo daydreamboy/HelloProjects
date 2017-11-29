@@ -1,0 +1,53 @@
+#include "../../Example/Pods/Target Support Files/AwesomeSDK/AwesomeSDK.xcconfig"
+
+// Installation Directory
+INSTALL_PATH = "/Library/Frameworks"
+
+// Link/Compatibility Version
+DYLIB_COMPATIBILITY_VERSION = 1
+
+// Link/Current Library Version
+DYLIB_CURRENT_VERSION = 1
+
+// Dynamic Library Install Name
+LD_DYLIB_INSTALL_NAME = @rpath/AwesomeSDK.framework/AwesomeSDK
+
+// Dynamic Library Install Name Base
+DYLIB_INSTALL_NAME_BASE = @rpath
+
+// Mach-O Type
+MACH_O_TYPE = mh_dylib
+
+// Runpath Search Paths
+LD_RUNPATH_SEARCH_PATHS = @executable_path/Frameworks @loaderp_path/Frameworks
+
+// Defines Module
+DEFINES_MODULE = YES
+
+// Executable Extension
+EXECUTABLE_EXTENSION = 
+
+// Executable Prefix
+EXECUTABLE_PREFIX = 
+
+// Info.plist File (Note: Info.plist Filealways base on Pods.xcodeproj and path should not be quoted)
+INFOPLIST_FILE = Target Framework Files/Info.plist
+
+// Module Map File (Note: Module Map File always base on Pods.xcodeproj and path should not be quoted)
+MODULEMAP_FILE = Target Framework Files/AwesomeSDK.modulemap
+
+// Product Bundle Identifer
+PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.AwesomeSDK
+
+// Warpper Extension
+WRAPPER_EXTENSION = framework
+
+// Header Search Paths
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Public"
+
+// Current Project Version
+CURRENT_PROJECT_VERSION = 1
+
+// Versioning System
+VERSIONING_SYSTEM = apple-generic
+

@@ -27,6 +27,8 @@ Pods
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;举个例子，在集成工程的<b>Link Binary With Libraries</b> phase中，CocoaPods添加Pods.xcodeproj中一个target，Pods\_AwesomeSDK\_Example.framework。这样编译App Target之前，首先会编译这个桥接Target。
 
+> 注意：Pods\_AwesomeSDK\_Example.framework的可执行文件是静态库，实际属于static framework
+
 ![Pod集成工程](images/Pod集成工程.png)
 
 在上面集成工程中，CocoaPods对Build Phases添加了三个phase

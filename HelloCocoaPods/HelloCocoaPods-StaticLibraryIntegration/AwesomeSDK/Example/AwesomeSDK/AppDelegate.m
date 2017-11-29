@@ -13,7 +13,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [AwesomeSDKManager doSomething];
+    NSString *frameworkPath = [[[NSBundle mainBundle] privateFrameworksPath] stringByAppendingPathComponent:@"AwesomeSDK.framework"];
+    NSBundle *frameworkBundle = [NSBundle bundleWithPath:frameworkPath];
+    NSError *error;
+    [frameworkBundle loadAndReturnError:&error];
+    if (error) {
+        NSLog(@"load framwork failed: %@", error);
+    }
+//    [AwesomeSDKManager doSomething];
+    [NSClassFromString(@"AwesomeSDKManager") doSomething];
     return YES;
 }
 

@@ -1,0 +1,21 @@
+PODS:
+  - AwesomeSDK (0.1.0)
+  - ThisAStaticLibrary (0.1.0)
+
+DEPENDENCIES:
+  - AwesomeSDK (from `../`)
+  - ThisAStaticLibrary (from `../ThisAStaticLibrary/`)
+
+EXTERNAL SOURCES:
+  AwesomeSDK:
+    :path: ../
+  ThisAStaticLibrary:
+    :path: ../ThisAStaticLibrary/
+
+SPEC CHECKSUMS:
+  AwesomeSDK: a8323264afb1e7a0262fcf19f1ed40da614ec4eb
+  ThisAStaticLibrary: 2646f42c5e6d8ac6279e275eeb292505dbe6ea02
+
+PODFILE CHECKSUM: 8ae8236fe90285b7f52791f803647960347618a3
+
+COCOAPODS: 1.3.1

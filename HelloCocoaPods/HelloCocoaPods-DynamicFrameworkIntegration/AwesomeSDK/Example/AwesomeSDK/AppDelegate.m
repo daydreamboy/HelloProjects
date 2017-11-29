@@ -14,6 +14,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     [AwesomeSDKManager doSomething];
+//    [NSClassFromString(@"AwesomeSDKManager") doSomething];
+    
     return YES;
 }
 

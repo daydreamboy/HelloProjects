@@ -4,6 +4,7 @@ platform :ios, '8.0'
 
 target 'AwesomeSDK_Example' do
   pod 'AwesomeSDK', :path => '../'
+  pod 'ThisAStaticLibrary', :path => '../ThisAStaticLibrary/'
 
   target 'AwesomeSDK_Tests' do
     inherit! :search_paths
