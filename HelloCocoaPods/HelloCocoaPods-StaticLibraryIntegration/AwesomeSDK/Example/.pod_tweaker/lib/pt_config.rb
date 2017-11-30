@@ -1,0 +1,4 @@
+
+
+POD_TARGET_SUPPORT_SRC_FOLDER_NAME = 'Target Framework Files'
+POD_TARGET_SUPPORT_DEST_FOLDER_NAME = 'Target Framework Files'

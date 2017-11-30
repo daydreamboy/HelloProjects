@@ -2,12 +2,22 @@
 
 platform :ios, '8.0'
 
+load "pod_tweaker.rb"
+
 target 'AwesomeSDK_Example' do
-  pod 'AwesomeSDK_dynamic_framework', :path => '../'
-  pod 'AwesomeSDK_static_framework', :path => '../'
-  pod 'ThisAStaticLibrary', :path => '../ThisAStaticLibrary/'
+  # pod 'AwesomeSDK_dynamic_framework', :path => '../'
+  # pod 'AwesomeSDK_static_framework', :path => '../'
+  # pod 'ThisAStaticLibrary', :path => '../ThisAStaticLibrary/'
+
+  pod_im 'AwesomeSDK_dynamic_framework', :path => '../', :use_framework => true
+  pod_im 'AwesomeSDK_static_framework', :path => '../', :use_framework => true, :is_dynamic => false
+  pod_im 'ThisAStaticLibrary', :path => '../ThisAStaticLibrary/'
 
   target 'AwesomeSDK_Tests' do
     inherit! :search_paths
   end
+end
+
+post_install do |installer|
+  puts 'post_install'
 end
