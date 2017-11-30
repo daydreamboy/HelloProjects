@@ -23,6 +23,8 @@ TOC
 
 ![](images/Generated duplicated UUIDs.png)
 
+Pod中有相同命名的源文件，可能报此警告。不同Pod有相同文件名的文件，则不会有此警告。
+
 问题2：有可能少编译的源文件
 
 podspec文件

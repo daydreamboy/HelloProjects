@@ -7,9 +7,9 @@
 #
 
 Pod::Spec.new do |s|
-  s.name             = 'AwesomeSDK'
+  s.name             = 'AwesomeSDK_dynamic_framework'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of AwesomeSDK.'
+  s.summary          = 'A short description of AwesomeSDK_dynamic_framework.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -21,24 +21,24 @@ Pod::Spec.new do |s|
 TODO: Add long description of the pod here.
                        DESC
 
-  s.homepage         = 'https://github.com/daydreamboy/AwesomeSDK'
+  s.homepage         = 'https://github.com/daydreamboy/AwesomeSDK_dynamic_framework'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'daydreamboy' => 'wesley4chen@gmail.com' }
-  s.source           = { :git => 'https://github.com/daydreamboy/AwesomeSDK.git', :tag => s.version.to_s }
+  s.source           = { :git => 'https://github.com/daydreamboy/AwesomeSDK_dynamic_framework.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
   s.ios.deployment_target = '8.0'
 
   s.source_files = [
-    'AwesomeSDK/Classes/**/*',
+    'AwesomeSDK_dynamic_framework/Classes/**/*',
   ]
   
   # s.resource_bundles = {
-  #   'AwesomeSDK' => ['AwesomeSDK/Assets/*.png']
+  #   'AwesomeSDK_dynamic_framework' => ['AwesomeSDK_dynamic_framework/Assets/*.png']
   # }
 
-  s.public_header_files = 'AwesomeSDK/Classes/**/*.h'
+  s.public_header_files = 'AwesomeSDK_dynamic_framework/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
 end

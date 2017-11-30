@@ -1,7 +1,7 @@
-#include "../../Example/Pods/Target Support Files/AwesomeSDK/AwesomeSDK.xcconfig"
+#include "../../Example/Pods/Target Support Files/AwesomeSDK_static_framework/AwesomeSDK_static_framework.xcconfig"
 
 // Installation Directory
-INSTALL_PATH = "/Library/Frameworks"
+INSTALL_PATH = /Library/Frameworks
 
 // Link/Compatibility Version
 DYLIB_COMPATIBILITY_VERSION = 1
@@ -10,13 +10,13 @@ DYLIB_COMPATIBILITY_VERSION = 1
 DYLIB_CURRENT_VERSION = 1
 
 // Dynamic Library Install Name
-LD_DYLIB_INSTALL_NAME = @rpath/AwesomeSDK.framework/AwesomeSDK
+LD_DYLIB_INSTALL_NAME = @rpath/AwesomeSDK_static_framework.framework/AwesomeSDK_static_framework
 
 // Dynamic Library Install Name Base
 DYLIB_INSTALL_NAME_BASE = @rpath
 
 // Mach-O Type
-MACH_O_TYPE = mh_dylib
+MACH_O_TYPE = staticlib
 
 // Runpath Search Paths
 LD_RUNPATH_SEARCH_PATHS = @executable_path/Frameworks @loaderp_path/Frameworks

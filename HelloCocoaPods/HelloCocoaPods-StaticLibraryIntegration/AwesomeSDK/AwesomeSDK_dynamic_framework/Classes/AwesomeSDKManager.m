@@ -12,10 +12,21 @@
 
 @implementation AwesomeSDKManager
 + (void)doSomething {
-    NSLog(@"test");
+    NSLog(@"test dynamic framework");
     CNContact *contact = [CNContact new];
     NSLog(@"%@", contact);
 
+    StaticClass *obj = [[StaticClass alloc] initWithName:@"Jack"];
+    [obj printName];
+    
+    NSLog(@"%@", NSStringFromClass([obj class]));
+}
+
++ (void)doSomething2 {
+    NSLog(@"test dynamic framework");
+    CNContact *contact = [CNContact new];
+    NSLog(@"%@", contact);
+    
     StaticClass *obj = [[StaticClass alloc] initWithName:@"Jack"];
     [obj printName];
     

@@ -1,7 +1,7 @@
 require_relative '../02 - Ruby Helper/rubyscript_helper'
 
 # Configurations
-pod_name = 'AwesomeSDK'
+pod_name = 'AwesomeSDK_dynamic_framework'
 main_target_name = 'AwesomeSDK_Example'
 pods_dir = '/Users/wesley_chen/GitHub_Projcets/HelloProjects/HelloCocoaPods/HelloCocoaPods-StaticLibraryIntegration/AwesomeSDK/Example/Pods'
 

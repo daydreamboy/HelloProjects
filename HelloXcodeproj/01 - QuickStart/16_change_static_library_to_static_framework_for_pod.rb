@@ -5,12 +5,12 @@ require_relative '../02 - Ruby Helper/rubyscript_helper'
 
 # project_path = './Sample/Sample.xcodeproj'
 project_path = '/Users/wesley_chen/GitHub_Projcets/HelloProjects/HelloCocoaPods/HelloCocoaPods-StaticLibraryIntegration/AwesomeSDK/Example/Pods/Pods.xcodeproj'
-dest_target_name = 'AwesomeSDK'
+dest_target_name = 'AwesomeSDK_static_framework'
 
-support_file_source_folder = '/Users/wesley_chen/GitHub_Projcets/HelloProjects/HelloCocoaPods/HelloCocoaPods-StaticLibraryIntegration/AwesomeSDK/AwesomeSDK/Target Framework Files'
+support_file_source_folder = '/Users/wesley_chen/GitHub_Projcets/HelloProjects/HelloCocoaPods/HelloCocoaPods-StaticLibraryIntegration/AwesomeSDK/AwesomeSDK_static_framework/Target Framework Files'
 support_file_dest_folder = '/Users/wesley_chen/GitHub_Projcets/HelloProjects/HelloCocoaPods/HelloCocoaPods-StaticLibraryIntegration/AwesomeSDK/Example/Pods'
-pod_name = 'AwesomeSDK'
-xcconfig_name = 'AwesomeSDK_framework.xcconfig'
+pod_name = 'AwesomeSDK_static_framework'
+xcconfig_name = 'AwesomeSDK_static_framework.xcconfig'
 
 new_group_name = File.basename(support_file_source_folder)
 support_file_folder_path = File.join(support_file_dest_folder, new_group_name)
@@ -21,6 +21,8 @@ def change_static_library_to_framework(project, dest_target_name)
   project.targets.each do |target|
 
     if target.name == dest_target_name
+      #
+      # 'com.apple.product-type.library.static'
       target.product_type = 'com.apple.product-type.framework'
 
       fileReference = target.product_reference
@@ -92,7 +94,7 @@ if dest_target && xcconfig_fileReference
     config.base_configuration_reference = xcconfig_fileReference
     config.build_settings['PRIVATE_HEADERS_FOLDER_PATH'] = '$(CONTENTS_FOLDER_PATH)/PrivateHeaders'
     config.build_settings['PUBLIC_HEADERS_FOLDER_PATH'] = '$(CONTENTS_FOLDER_PATH)/Headers'
-    config.build_settings['OTHER_LDFLAGS'] = '-ObjC -undefined dynamic_lookup'
+    # config.build_settings['OTHER_LDFLAGS'] = '-ObjC -undefined dynamic_lookup'
   end
 end
 

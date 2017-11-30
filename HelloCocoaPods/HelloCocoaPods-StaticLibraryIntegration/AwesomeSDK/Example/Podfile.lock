@@ -1,21 +1,26 @@
 PODS:
-  - AwesomeSDK (0.1.0)
+  - AwesomeSDK_dynamic_framework (0.1.0)
+  - AwesomeSDK_static_framework (0.1.0)
   - ThisAStaticLibrary (0.1.0)
 
 DEPENDENCIES:
-  - AwesomeSDK (from `../`)
+  - AwesomeSDK_dynamic_framework (from `../`)
+  - AwesomeSDK_static_framework (from `../`)
   - ThisAStaticLibrary (from `../ThisAStaticLibrary/`)
 
 EXTERNAL SOURCES:
-  AwesomeSDK:
+  AwesomeSDK_dynamic_framework:
+    :path: ../
+  AwesomeSDK_static_framework:
     :path: ../
   ThisAStaticLibrary:
     :path: ../ThisAStaticLibrary/
 
 SPEC CHECKSUMS:
-  AwesomeSDK: a8323264afb1e7a0262fcf19f1ed40da614ec4eb
+  AwesomeSDK_dynamic_framework: 4a8dc34aaf30f550e8c0d6fdd276d92daaf61b18
+  AwesomeSDK_static_framework: 2583067dc0643803e3f5770afe516d73a6093e43
   ThisAStaticLibrary: 2646f42c5e6d8ac6279e275eeb292505dbe6ea02
 
-PODFILE CHECKSUM: 8ae8236fe90285b7f52791f803647960347618a3
+PODFILE CHECKSUM: 5085b4d404ac8cfcb3b0c3f791ca917e5efcc1dc
 
 COCOAPODS: 1.3.1
