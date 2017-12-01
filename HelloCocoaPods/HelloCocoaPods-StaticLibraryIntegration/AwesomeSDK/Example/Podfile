@@ -2,7 +2,7 @@
 
 platform :ios, '8.0'
 
-load "pod_tweaker.rb"
+load '/Users/wesley_chen/GitHub_Projcets/pod_tweaker/lib/pod_tweaker.rb'
 
 target 'AwesomeSDK_Example' do
   # pod 'AwesomeSDK_dynamic_framework', :path => '../'
