@@ -10,3 +10,4 @@ gem_list.each do |gem_name|
   end
 end
 
+dump_object(ARGV)
