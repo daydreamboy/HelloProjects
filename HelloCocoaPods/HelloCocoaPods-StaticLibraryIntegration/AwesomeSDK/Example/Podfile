@@ -2,16 +2,29 @@
 
 platform :ios, '8.0'
 
-load '/Users/wesley_chen/GitHub_Projcets/pod_tweaker/lib/pod_tweaker.rb'
+# require 'pod_tweaker'
+
+load '/Users/wesley_chen/Ali-Projects/Integration_CocoaPods_New/WXOpenIMSDK_FrameworkPackager/cocoapods-pod_tweaker/lib/pod_tweaker.rb'
+
+Log.level Logger::DEBUG
 
 target 'AwesomeSDK_Example' do
-  # pod 'AwesomeSDK_dynamic_framework', :path => '../'
-  # pod 'AwesomeSDK_static_framework', :path => '../'
-  # pod 'ThisAStaticLibrary', :path => '../ThisAStaticLibrary/'
 
-  pod_im 'AwesomeSDK_dynamic_framework', :path => '../', :use_framework => true
-  pod_im 'AwesomeSDK_static_framework', :path => '../', :use_framework => true, :is_dynamic => false
-  pod_im 'ThisAStaticLibrary', :path => '../ThisAStaticLibrary/'
+  puts caller
+
+  if !ENV['develop_pod_mode'].nil?
+    # pod developing mode
+    puts 'In pod developing mode...'
+    pod_im 'AwesomeSDK_dynamic_framework', :path => '../', :use_framework => true
+    pod_im 'AwesomeSDK_static_framework', :path => '../', :use_framework => true, :is_dynamic => false
+    pod_im 'ThisAStaticLibrary', :path => '../ThisAStaticLibrary/'
+  else
+    # pod integrating mode
+    puts 'In pod integrating mode...'
+    pod 'AwesomeSDK_dynamic_framework', :path => '../'
+    pod 'AwesomeSDK_static_framework', :path => '../'
+    pod 'ThisAStaticLibrary', :path => '../ThisAStaticLibrary/'
+  end
 
   target 'AwesomeSDK_Tests' do
     inherit! :search_paths
@@ -19,5 +32,5 @@ target 'AwesomeSDK_Example' do
 end
 
 post_install do |installer|
-  puts 'post_install'
+  pod_im_target_on_post_install(installer, 'AwesomeSDK_Example')
 end

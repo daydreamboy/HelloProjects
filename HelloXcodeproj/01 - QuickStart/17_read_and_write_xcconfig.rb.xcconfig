@@ -1,5 +1,5 @@
 ENABLE_BITCODE = NO
-FRAMEWORK_SEARCH_PATHS = $(inherited) '$(PODS_ROOT)/TestLibrary' '$(PODS_ROOT)/XXX'
+FRAMEWORK_SEARCH_PATHS = "$(PODS_ROOT)/TestLibrary" "$(PODS_ROOT)/XXX" "$(PODS_ROOT)/YYY" "$(PODS_ROOT)/aaa" "$(PODS_ROOT)/zzz" $(inherited)
 OTHER_LDFLAGS = $(inherited) -framework "TestLibrary" -framework "YYY"
 OTHER_LDFLAGS[sdk=iphoneos*] = $(inherited) -weak_framework "MetalPerformanceShaders"
 OTHER_LINK_FLAG = $(inherited) -ObjC

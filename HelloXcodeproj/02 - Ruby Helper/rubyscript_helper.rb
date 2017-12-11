@@ -24,15 +24,21 @@ require 'colored2'
 # @see https://stackoverflow.com/questions/15769739/determining-type-of-an-object-in-ruby
 # @see https://stackoverflow.com/questions/41032717/get-original-variable-name-from-function-in-ruby
 # @see https://stackoverflow.com/questions/3453262/how-to-strip-leading-and-trailing-quote-from-string-in-ruby
+# @see http://ruby-doc.org/core-2.1.0/Regexp.html
+#
+# /<.+>/.match("<a><b>")  #=> #<MatchData "<a><b>">
+# /<.+?>/.match("<a><b>") #=> #<MatchData "<a>">
+#
 def dump_object(arg)
   loc = caller_locations.first
   line = File.read(loc.path).lines[loc.lineno - 1]
 
   # get string started by `dump_object`
-  callerString = line[/#{__method__}\(.*?\)/].to_s
+  callerString = line[/#{__method__}\(.+\)/].to_s
 
   # get parameter name of `dump_object`
-  argName = callerString[/\(.*?\)/]
+  argName = callerString[/\(.+\)/]
+
   # get content of parenthesis
   argNameStr = argName.gsub!(/^\(|\)?$/, '')
 

@@ -31,7 +31,6 @@
 		2BB1E8E81E179FEA00059446 /* CreateWriteDispatchSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1E8E71E179FEA00059446 /* CreateWriteDispatchSourceViewController.m */; };
 		2BB1E8EB1E17A78900059446 /* CreateVNodeDispatchSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1E8EA1E17A78900059446 /* CreateVNodeDispatchSourceViewController.m */; };
 		2BB1E8EE1E194BA600059446 /* CreateSignalDispatchSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BB1E8ED1E194BA600059446 /* CreateSignalDispatchSourceViewController.m */; };
-		2BC0E0491E09114100B195BC /* ExampleOfBatchDownloadImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC0E0481E09114100B195BC /* ExampleOfBatchDownloadImagesViewController.m */; };
 		2BC0E0501E0AD9A200B195BC /* CreateTimerDispatchSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC0E04F1E0AD9A200B195BC /* CreateTimerDispatchSourceViewController.m */; };
 		2BE3502B1F811684008C3B4F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE3502A1F811684008C3B4F /* AppDelegate.m */; };
 		2BE3502E1F811684008C3B4F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE3502D1F811684008C3B4F /* main.m */; };
@@ -39,6 +38,8 @@
 		2BE350331F811684008C3B4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BE350321F811684008C3B4F /* Assets.xcassets */; };
 		2BE350361F811684008C3B4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BE350341F811684008C3B4F /* Main.storyboard */; };
 		2BE3503D1F837497008C3B4F /* CreateDataBufferDispatchSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE3503C1F837497008C3B4F /* CreateDataBufferDispatchSourceViewController.m */; };
+		4F01E3471FDE22C500E290BD /* DispatchQueueIssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F01E3461FDE22C500E290BD /* DispatchQueueIssueViewController.m */; };
+		4F01E34B1FDE238700E290BD /* ExampleOfBatchDownloadImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F01E3491FDE238700E290BD /* ExampleOfBatchDownloadImagesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,8 +90,6 @@
 		2BB1E8EA1E17A78900059446 /* CreateVNodeDispatchSourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateVNodeDispatchSourceViewController.m; sourceTree = "<group>"; };
 		2BB1E8EC1E194BA600059446 /* CreateSignalDispatchSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateSignalDispatchSourceViewController.h; sourceTree = "<group>"; };
 		2BB1E8ED1E194BA600059446 /* CreateSignalDispatchSourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateSignalDispatchSourceViewController.m; sourceTree = "<group>"; };
-		2BC0E0471E09114100B195BC /* ExampleOfBatchDownloadImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleOfBatchDownloadImagesViewController.h; sourceTree = "<group>"; };
-		2BC0E0481E09114100B195BC /* ExampleOfBatchDownloadImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleOfBatchDownloadImagesViewController.m; sourceTree = "<group>"; };
 		2BC0E04E1E0AD9A200B195BC /* CreateTimerDispatchSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTimerDispatchSourceViewController.h; sourceTree = "<group>"; };
 		2BC0E04F1E0AD9A200B195BC /* CreateTimerDispatchSourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTimerDispatchSourceViewController.m; sourceTree = "<group>"; };
 		2BE350271F811684008C3B4F /* HelloGCDForMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloGCDForMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +103,10 @@
 		2BE350371F811684008C3B4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BE3503B1F837497008C3B4F /* CreateDataBufferDispatchSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateDataBufferDispatchSourceViewController.h; sourceTree = "<group>"; };
 		2BE3503C1F837497008C3B4F /* CreateDataBufferDispatchSourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateDataBufferDispatchSourceViewController.m; sourceTree = "<group>"; };
+		4F01E3451FDE22C500E290BD /* DispatchQueueIssueViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DispatchQueueIssueViewController.h; sourceTree = "<group>"; };
+		4F01E3461FDE22C500E290BD /* DispatchQueueIssueViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DispatchQueueIssueViewController.m; sourceTree = "<group>"; };
+		4F01E3491FDE238700E290BD /* ExampleOfBatchDownloadImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleOfBatchDownloadImagesViewController.m; sourceTree = "<group>"; };
+		4F01E34A1FDE238700E290BD /* ExampleOfBatchDownloadImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleOfBatchDownloadImagesViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,6 +174,7 @@
 			children = (
 				2B401FD91E06E9A500D998FA /* dispatch queue */,
 				2B401FF21E06E9A500D998FA /* dispatch source */,
+				4F01E3481FDE238700E290BD /* operation queue */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -202,8 +206,8 @@
 				2B401FEF1E06E9A500D998FA /* UseDispatchGroupViewController.m */,
 				2B401FF01E06E9A500D998FA /* UseDispatchSemaphoreViewController.h */,
 				2B401FF11E06E9A500D998FA /* UseDispatchSemaphoreViewController.m */,
-				2BC0E0471E09114100B195BC /* ExampleOfBatchDownloadImagesViewController.h */,
-				2BC0E0481E09114100B195BC /* ExampleOfBatchDownloadImagesViewController.m */,
+				4F01E3451FDE22C500E290BD /* DispatchQueueIssueViewController.h */,
+				4F01E3461FDE22C500E290BD /* DispatchQueueIssueViewController.m */,
 			);
 			path = "dispatch queue";
 			sourceTree = "<group>";
@@ -254,6 +258,15 @@
 				2BE3502D1F811684008C3B4F /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4F01E3481FDE238700E290BD /* operation queue */ = {
+			isa = PBXGroup;
+			children = (
+				4F01E3491FDE238700E290BD /* ExampleOfBatchDownloadImagesViewController.m */,
+				4F01E34A1FDE238700E290BD /* ExampleOfBatchDownloadImagesViewController.h */,
+			);
+			path = "operation queue";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -370,7 +383,9 @@
 				2BB1E8E81E179FEA00059446 /* CreateWriteDispatchSourceViewController.m in Sources */,
 				2B37F3041F83C09900809F00 /* UseDispatchIOViewController.m in Sources */,
 				2B401FF71E06E9A500D998FA /* CreateDispatchQueuesViewController.m in Sources */,
+				4F01E34B1FDE238700E290BD /* ExampleOfBatchDownloadImagesViewController.m in Sources */,
 				2B2390A81DE053E000E5E107 /* main.m in Sources */,
+				4F01E3471FDE22C500E290BD /* DispatchQueueIssueViewController.m in Sources */,
 				2B401FF91E06E9A500D998FA /* GetCommonQueuesViewController.m in Sources */,
 				2BE3503D1F837497008C3B4F /* CreateDataBufferDispatchSourceViewController.m in Sources */,
 				2B2390C31DE0541800E5E107 /* RootViewController.m in Sources */,
@@ -380,7 +395,6 @@
 				2B401FFA1E06E9A500D998FA /* GlobalConcurrentQueueViewController.m in Sources */,
 				2B401FF41E06E9A500D998FA /* AddCompletionBlockToQueueViewController.m in Sources */,
 				2B401FFC1E06E9A500D998FA /* SuspendAndResumeQueueViewController.m in Sources */,
-				2BC0E0491E09114100B195BC /* ExampleOfBatchDownloadImagesViewController.m in Sources */,
 				2B37F3011F83B1DE00809F00 /* UseDispatchBenchmarkViewController.m in Sources */,
 				2B401FF31E06E9A500D998FA /* AddBarrierTaskToConcurrentQueueViewController.m in Sources */,
 				2B401FF61E06E9A500D998FA /* ConcurrentLoopViewController.m in Sources */,
@@ -514,6 +528,7 @@
 				DEVELOPMENT_TEAM = QVRKK2EEDF;
 				INFOPLIST_FILE = HelloGCD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloGCD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -526,6 +541,7 @@
 				DEVELOPMENT_TEAM = QVRKK2EEDF;
 				INFOPLIST_FILE = HelloGCD/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloGCD;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

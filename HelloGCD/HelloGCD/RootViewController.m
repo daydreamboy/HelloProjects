@@ -66,6 +66,7 @@
           @{ kTitle: @"Use dispatch semaphore", kClass: @"UseDispatchSemaphoreViewController" },
           @{ kTitle: @"Use dispatch group", kClass: @"UseDispatchGroupViewController" },
           @{ kTitle: @"Create queue inactive", kClass: @"CreateQueueInactiveViewController" },
+          @{ kTitle: @"queue issue", kClass: @"DispatchQueueIssueViewController" },
     ];
    
     /*
@@ -98,7 +99,7 @@
     _sectionTitles = @[
         @"dispatch queue",
         @"dispatch source",
-        @"opertion queue"
+        @"operation queue"
     ];
     
     _classes = @[

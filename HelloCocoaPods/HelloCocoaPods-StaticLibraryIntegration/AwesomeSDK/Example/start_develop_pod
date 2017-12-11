@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+
+ENV['develop_pod_mode']='YES'
+system(ARGV.join(' '))
