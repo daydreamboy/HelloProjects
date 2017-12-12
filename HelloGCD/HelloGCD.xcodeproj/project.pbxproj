@@ -22,7 +22,7 @@
 		2B401FF81E06E9A500D998FA /* CreateQueueInactiveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B401FE51E06E9A500D998FA /* CreateQueueInactiveViewController.m */; };
 		2B401FF91E06E9A500D998FA /* GetCommonQueuesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B401FE71E06E9A500D998FA /* GetCommonQueuesViewController.m */; };
 		2B401FFA1E06E9A500D998FA /* GlobalConcurrentQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B401FE91E06E9A500D998FA /* GlobalConcurrentQueueViewController.m */; };
-		2B401FFB1E06E9A500D998FA /* SetCustomContextDataWithQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B401FEB1E06E9A500D998FA /* SetCustomContextDataWithQueueViewController.m */; };
+		2B401FFB1E06E9A500D998FA /* SetSingleContextDataToQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B401FEB1E06E9A500D998FA /* SetSingleContextDataToQueueViewController.m */; };
 		2B401FFC1E06E9A500D998FA /* SuspendAndResumeQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B401FED1E06E9A500D998FA /* SuspendAndResumeQueueViewController.m */; };
 		2B401FFD1E06E9A500D998FA /* UseDispatchGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B401FEF1E06E9A500D998FA /* UseDispatchGroupViewController.m */; };
 		2B401FFE1E06E9A500D998FA /* UseDispatchSemaphoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B401FF11E06E9A500D998FA /* UseDispatchSemaphoreViewController.m */; };
@@ -38,8 +38,10 @@
 		2BE350331F811684008C3B4F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BE350321F811684008C3B4F /* Assets.xcassets */; };
 		2BE350361F811684008C3B4F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BE350341F811684008C3B4F /* Main.storyboard */; };
 		2BE3503D1F837497008C3B4F /* CreateDataBufferDispatchSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE3503C1F837497008C3B4F /* CreateDataBufferDispatchSourceViewController.m */; };
-		4F01E3471FDE22C500E290BD /* DispatchQueueIssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F01E3461FDE22C500E290BD /* DispatchQueueIssueViewController.m */; };
 		4F01E34B1FDE238700E290BD /* ExampleOfBatchDownloadImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F01E3491FDE238700E290BD /* ExampleOfBatchDownloadImagesViewController.m */; };
+		4F9578E81FDF8CC2009693CF /* GetCurrentQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578E71FDF8CC2009693CF /* GetCurrentQueueViewController.m */; };
+		4F9578EC1FDF8D11009693CF /* WCGCDTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578EB1FDF8D11009693CF /* WCGCDTool.m */; };
+		4F9578EF1FDFC37F009693CF /* SetMultipleContextDataToQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578EE1FDFC37F009693CF /* SetMultipleContextDataToQueueViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,8 +74,8 @@
 		2B401FE71E06E9A500D998FA /* GetCommonQueuesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetCommonQueuesViewController.m; sourceTree = "<group>"; };
 		2B401FE81E06E9A500D998FA /* GlobalConcurrentQueueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalConcurrentQueueViewController.h; sourceTree = "<group>"; };
 		2B401FE91E06E9A500D998FA /* GlobalConcurrentQueueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalConcurrentQueueViewController.m; sourceTree = "<group>"; };
-		2B401FEA1E06E9A500D998FA /* SetCustomContextDataWithQueueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetCustomContextDataWithQueueViewController.h; sourceTree = "<group>"; };
-		2B401FEB1E06E9A500D998FA /* SetCustomContextDataWithQueueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetCustomContextDataWithQueueViewController.m; sourceTree = "<group>"; };
+		2B401FEA1E06E9A500D998FA /* SetSingleContextDataToQueueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSingleContextDataToQueueViewController.h; sourceTree = "<group>"; };
+		2B401FEB1E06E9A500D998FA /* SetSingleContextDataToQueueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSingleContextDataToQueueViewController.m; sourceTree = "<group>"; };
 		2B401FEC1E06E9A500D998FA /* SuspendAndResumeQueueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuspendAndResumeQueueViewController.h; sourceTree = "<group>"; };
 		2B401FED1E06E9A500D998FA /* SuspendAndResumeQueueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuspendAndResumeQueueViewController.m; sourceTree = "<group>"; };
 		2B401FEE1E06E9A500D998FA /* UseDispatchGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseDispatchGroupViewController.h; sourceTree = "<group>"; };
@@ -103,10 +105,14 @@
 		2BE350371F811684008C3B4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BE3503B1F837497008C3B4F /* CreateDataBufferDispatchSourceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateDataBufferDispatchSourceViewController.h; sourceTree = "<group>"; };
 		2BE3503C1F837497008C3B4F /* CreateDataBufferDispatchSourceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateDataBufferDispatchSourceViewController.m; sourceTree = "<group>"; };
-		4F01E3451FDE22C500E290BD /* DispatchQueueIssueViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DispatchQueueIssueViewController.h; sourceTree = "<group>"; };
-		4F01E3461FDE22C500E290BD /* DispatchQueueIssueViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DispatchQueueIssueViewController.m; sourceTree = "<group>"; };
 		4F01E3491FDE238700E290BD /* ExampleOfBatchDownloadImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExampleOfBatchDownloadImagesViewController.m; sourceTree = "<group>"; };
 		4F01E34A1FDE238700E290BD /* ExampleOfBatchDownloadImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleOfBatchDownloadImagesViewController.h; sourceTree = "<group>"; };
+		4F9578E61FDF8CC2009693CF /* GetCurrentQueueViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetCurrentQueueViewController.h; sourceTree = "<group>"; };
+		4F9578E71FDF8CC2009693CF /* GetCurrentQueueViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetCurrentQueueViewController.m; sourceTree = "<group>"; };
+		4F9578EA1FDF8D11009693CF /* WCGCDTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCGCDTool.h; sourceTree = "<group>"; };
+		4F9578EB1FDF8D11009693CF /* WCGCDTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCGCDTool.m; sourceTree = "<group>"; };
+		4F9578ED1FDFC37F009693CF /* SetMultipleContextDataToQueueViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetMultipleContextDataToQueueViewController.h; sourceTree = "<group>"; };
+		4F9578EE1FDFC37F009693CF /* SetMultipleContextDataToQueueViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetMultipleContextDataToQueueViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +154,7 @@
 		2B2390A51DE053E000E5E107 /* HelloGCD */ = {
 			isa = PBXGroup;
 			children = (
+				4F9578E91FDF8CFF009693CF /* WCGCDTool */,
 				2B2390A91DE053E000E5E107 /* AppDelegate.h */,
 				2B2390AA1DE053E000E5E107 /* AppDelegate.m */,
 				2B2390B21DE053E000E5E107 /* Assets.xcassets */,
@@ -198,16 +205,18 @@
 				2B401FE71E06E9A500D998FA /* GetCommonQueuesViewController.m */,
 				2B401FE81E06E9A500D998FA /* GlobalConcurrentQueueViewController.h */,
 				2B401FE91E06E9A500D998FA /* GlobalConcurrentQueueViewController.m */,
-				2B401FEA1E06E9A500D998FA /* SetCustomContextDataWithQueueViewController.h */,
-				2B401FEB1E06E9A500D998FA /* SetCustomContextDataWithQueueViewController.m */,
+				2B401FEA1E06E9A500D998FA /* SetSingleContextDataToQueueViewController.h */,
+				2B401FEB1E06E9A500D998FA /* SetSingleContextDataToQueueViewController.m */,
+				4F9578ED1FDFC37F009693CF /* SetMultipleContextDataToQueueViewController.h */,
+				4F9578EE1FDFC37F009693CF /* SetMultipleContextDataToQueueViewController.m */,
 				2B401FEC1E06E9A500D998FA /* SuspendAndResumeQueueViewController.h */,
 				2B401FED1E06E9A500D998FA /* SuspendAndResumeQueueViewController.m */,
 				2B401FEE1E06E9A500D998FA /* UseDispatchGroupViewController.h */,
 				2B401FEF1E06E9A500D998FA /* UseDispatchGroupViewController.m */,
 				2B401FF01E06E9A500D998FA /* UseDispatchSemaphoreViewController.h */,
 				2B401FF11E06E9A500D998FA /* UseDispatchSemaphoreViewController.m */,
-				4F01E3451FDE22C500E290BD /* DispatchQueueIssueViewController.h */,
-				4F01E3461FDE22C500E290BD /* DispatchQueueIssueViewController.m */,
+				4F9578E61FDF8CC2009693CF /* GetCurrentQueueViewController.h */,
+				4F9578E71FDF8CC2009693CF /* GetCurrentQueueViewController.m */,
 			);
 			path = "dispatch queue";
 			sourceTree = "<group>";
@@ -267,6 +276,15 @@
 				4F01E34A1FDE238700E290BD /* ExampleOfBatchDownloadImagesViewController.h */,
 			);
 			path = "operation queue";
+			sourceTree = "<group>";
+		};
+		4F9578E91FDF8CFF009693CF /* WCGCDTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F9578EA1FDF8D11009693CF /* WCGCDTool.h */,
+				4F9578EB1FDF8D11009693CF /* WCGCDTool.m */,
+			);
+			path = WCGCDTool;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -375,17 +393,19 @@
 				2B401FF51E06E9A500D998FA /* AddTaskToQueueViewController.m in Sources */,
 				2B401FFE1E06E9A500D998FA /* UseDispatchSemaphoreViewController.m in Sources */,
 				2B2390AB1DE053E000E5E107 /* AppDelegate.m in Sources */,
+				4F9578E81FDF8CC2009693CF /* GetCurrentQueueViewController.m in Sources */,
 				2BB1E8EE1E194BA600059446 /* CreateSignalDispatchSourceViewController.m in Sources */,
 				2BC0E0501E0AD9A200B195BC /* CreateTimerDispatchSourceViewController.m in Sources */,
+				4F9578EC1FDF8D11009693CF /* WCGCDTool.m in Sources */,
 				2B401FFD1E06E9A500D998FA /* UseDispatchGroupViewController.m in Sources */,
-				2B401FFB1E06E9A500D998FA /* SetCustomContextDataWithQueueViewController.m in Sources */,
+				2B401FFB1E06E9A500D998FA /* SetSingleContextDataToQueueViewController.m in Sources */,
 				2B4020011E06E9E200D998FA /* CreateADispatchSourceViewController.m in Sources */,
 				2BB1E8E81E179FEA00059446 /* CreateWriteDispatchSourceViewController.m in Sources */,
 				2B37F3041F83C09900809F00 /* UseDispatchIOViewController.m in Sources */,
 				2B401FF71E06E9A500D998FA /* CreateDispatchQueuesViewController.m in Sources */,
 				4F01E34B1FDE238700E290BD /* ExampleOfBatchDownloadImagesViewController.m in Sources */,
+				4F9578EF1FDFC37F009693CF /* SetMultipleContextDataToQueueViewController.m in Sources */,
 				2B2390A81DE053E000E5E107 /* main.m in Sources */,
-				4F01E3471FDE22C500E290BD /* DispatchQueueIssueViewController.m in Sources */,
 				2B401FF91E06E9A500D998FA /* GetCommonQueuesViewController.m in Sources */,
 				2BE3503D1F837497008C3B4F /* CreateDataBufferDispatchSourceViewController.m in Sources */,
 				2B2390C31DE0541800E5E107 /* RootViewController.m in Sources */,
@@ -473,7 +493,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -514,7 +534,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

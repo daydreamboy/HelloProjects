@@ -11,7 +11,7 @@
 #import "GlobalConcurrentQueueViewController.h"
 #import "CreateDispatchQueuesViewController.h"
 #import "GetCommonQueuesViewController.h"
-#import "SetCustomContextDataWithQueueViewController.h"
+#import "SetSingleContextDataToQueueViewController.h"
 #import "AddTaskToQueueViewController.h"
 #import "AddCompletionBlockToQueueViewController.h"
 #import "ConcurrentLoopViewController.h"
@@ -35,7 +35,6 @@
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *sectionTitles;
 @property (nonatomic, strong) NSArray<NSArray<NSDictionary *> *> *classes;
-@property (nonatomic, strong) dispatch_queue_t queue;
 @end
 
 @implementation RootViewController
@@ -57,7 +56,7 @@
           @{ kTitle: @"Get Global Concurrent Queues", kClass: @"GlobalConcurrentQueueViewController" },
           @{ kTitle: @"Create Serial Dispatch Queues", kClass: @"CreateDispatchQueuesViewController" },
           @{ kTitle: @"Get Common Queues", kClass: @"GetCommonQueuesViewController" },
-          @{ kTitle: @"Set Custom Context Data of a Queue", kClass: @"SetCustomContextDataWithQueueViewController" },
+          @{ kTitle: @"Set Single Context Data to Queues", kClass: @"SetSingleContextDataToQueueViewController" },
           @{ kTitle: @"Add Task to Queue", kClass: @"AddTaskToQueueViewController" },
           @{ kTitle: @"Add barrier Task to Concurrent Queue", kClass: @"AddBarrierTaskToConcurrentQueueViewController" },
           @{ kTitle: @"Add Completion Block to Queue", kClass: @"AddCompletionBlockToQueueViewController" },
@@ -66,7 +65,7 @@
           @{ kTitle: @"Use dispatch semaphore", kClass: @"UseDispatchSemaphoreViewController" },
           @{ kTitle: @"Use dispatch group", kClass: @"UseDispatchGroupViewController" },
           @{ kTitle: @"Create queue inactive", kClass: @"CreateQueueInactiveViewController" },
-          @{ kTitle: @"queue issue", kClass: @"DispatchQueueIssueViewController" },
+          @{ kTitle: @"Get Current Queue", kClass: @"GetCurrentQueueViewController" },
     ];
    
     /*

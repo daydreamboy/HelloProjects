@@ -1,5 +1,5 @@
 //
-//  SetCustomContextDataWithQueueViewController.h
+//  SetSingleContextDataToQueueViewController.h
 //  HelloGCD
 //
 //  Created by wesley chen on 16/11/20.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SetCustomContextDataWithQueueViewController : UIViewController
+@interface SetSingleContextDataToQueueViewController : UIViewController
 
 @end

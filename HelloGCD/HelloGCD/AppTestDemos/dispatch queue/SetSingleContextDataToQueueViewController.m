@@ -1,12 +1,12 @@
 //
-//  SetCustomContextDataWithQueueViewController.m
+//  SetSingleContextDataToQueueViewController.m
 //  HelloGCD
 //
 //  Created by wesley chen on 16/11/20.
 //  Copyright © 2016年 wesley chen. All rights reserved.
 //
 
-#import "SetCustomContextDataWithQueueViewController.h"
+#import "SetSingleContextDataToQueueViewController.h"
 
 typedef struct {
     int i;
@@ -22,12 +22,12 @@ typedef struct {
 }
 @end
 
-@interface SetCustomContextDataWithQueueViewController ()
+@interface SetSingleContextDataToQueueViewController ()
 @property (nonatomic, strong) dispatch_queue_t queue;
 @property (nonatomic, strong) dispatch_queue_t anotherQueue;
 @end
 
-@implementation SetCustomContextDataWithQueueViewController
+@implementation SetSingleContextDataToQueueViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
