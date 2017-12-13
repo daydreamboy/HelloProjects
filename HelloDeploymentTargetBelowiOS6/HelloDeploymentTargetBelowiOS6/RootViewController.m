@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 #import "DispatchObjectLeakViewController.h"
+#import "DispatchGetCurrentQueueCrashIssueViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -31,10 +32,12 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"dispatch object maybe leak",
+        @"dispatch object maybe leak under iOS 6",
+        @"dispatch_get_current_queue crash on iOS 6+",
     ];
     _classes = @[
         @"DispatchObjectLeakViewController",
+        @"DispatchGetCurrentQueueCrashIssueViewController",
     ];
 }
 

@@ -11,7 +11,7 @@
 @interface DispatchObjectLeakViewController ()
 @property (nonatomic, strong) UIView *viewSquare;
 @property (nonatomic, assign) dispatch_queue_t queue;
-// Compile Error: when `iOS Deployment Target` is below iOS 6, dispatch_queue_t can use `strong` or `retain`
+// Compile Error: when `iOS Deployment Target` is below iOS 6, dispatch_queue_t can't use `strong` or `retain`
 //@property (nonatomic, strong) dispatch_queue_t queue2;
 @end
 
@@ -31,11 +31,17 @@
         NSLog(@"do something in queue");
     });
     NSLog(@"%@: %p", self.queue, self.queue);
+    
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < 60000
+    #warning "iOS Deployment Target < 6.0"
+#else
+    #warning "iOS Deployment Target >= 6.0"
+#endif
 }
 
 - (void)dealloc {
     // Note: forbidden by ARC
-    //[super dealloc];
+//    [super dealloc];
     
     // Note: should make it NULL, because its property is `assign`,
     // but for leak example, just comment it

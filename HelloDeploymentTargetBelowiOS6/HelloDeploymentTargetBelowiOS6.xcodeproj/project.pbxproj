@@ -12,6 +12,7 @@
 		4F3784551FC5562B002BA02D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3784541FC5562B002BA02D /* main.m */; };
 		4F3784641FC5566F002BA02D /* DispatchObjectLeakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F37845D1FC5566E002BA02D /* DispatchObjectLeakViewController.m */; };
 		4F3784671FC5566F002BA02D /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3784621FC5566E002BA02D /* RootViewController.m */; };
+		4F63EF851FE0C63A000AFD6F /* DispatchGetCurrentQueueCrashIssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63EF841FE0C63A000AFD6F /* DispatchGetCurrentQueueCrashIssueViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,8 @@
 		4F3784601FC5566E002BA02D /* DispatchObjectLeakViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DispatchObjectLeakViewController.h; sourceTree = "<group>"; };
 		4F3784621FC5566E002BA02D /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F3784631FC5566F002BA02D /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		4F63EF831FE0C63A000AFD6F /* DispatchGetCurrentQueueCrashIssueViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DispatchGetCurrentQueueCrashIssueViewController.h; sourceTree = "<group>"; };
+		4F63EF841FE0C63A000AFD6F /* DispatchGetCurrentQueueCrashIssueViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DispatchGetCurrentQueueCrashIssueViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,8 +75,10 @@
 		4F37845B1FC5566E002BA02D /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F37845D1FC5566E002BA02D /* DispatchObjectLeakViewController.m */,
 				4F3784601FC5566E002BA02D /* DispatchObjectLeakViewController.h */,
+				4F37845D1FC5566E002BA02D /* DispatchObjectLeakViewController.m */,
+				4F63EF831FE0C63A000AFD6F /* DispatchGetCurrentQueueCrashIssueViewController.h */,
+				4F63EF841FE0C63A000AFD6F /* DispatchGetCurrentQueueCrashIssueViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 				4F3784671FC5566F002BA02D /* RootViewController.m in Sources */,
 				4F3784641FC5566F002BA02D /* DispatchObjectLeakViewController.m in Sources */,
 				4F3784551FC5562B002BA02D /* main.m in Sources */,
+				4F63EF851FE0C63A000AFD6F /* DispatchGetCurrentQueueCrashIssueViewController.m in Sources */,
 				4F3784471FC5562B002BA02D /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,7 +211,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -254,7 +260,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
