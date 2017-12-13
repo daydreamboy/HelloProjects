@@ -8,6 +8,14 @@
 
 #import "WCViewTool.h"
 
+#define PauseOnThisLineWhenAddedExceptionBreakpoint(shouldPause) \
+@try { \
+    if (shouldPause) { \
+        [NSException raise:@"Assert Exception" format:@""]; \
+    } \
+} \
+@catch (NSException *exception) {}
+
 @interface ViewObserver : NSObject
 @property (nonatomic, weak) UIView *view;
 @end
@@ -17,7 +25,7 @@
     self = [super init];
     if (self) {
         _view = view;
-        
+        // @see https://stackoverflow.com/questions/4874288/how-can-i-do-key-value-observing-and-get-a-kvo-callback-on-a-uiviews-frame
         [view addObserver:self forKeyPath:@"frame" options:options context:NULL];
         [view.layer addObserver:self forKeyPath:@"bounds" options:options context:NULL];
         [view.layer addObserver:self forKeyPath:@"transform" options:options context:NULL];
@@ -31,7 +39,9 @@
     return self;
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {    
+    PauseOnThisLineWhenAddedExceptionBreakpoint(YES);
+    
     NSLog(@"object: %@", object);
     NSLog(@"change: %@", change);
 }
@@ -49,8 +59,8 @@
     [_view.layer removeObserver:self forKeyPath:@"transform"];
     NSLog(@"dealloc");
 }
-@end
 
+@end
 
 @implementation WCViewTool
 

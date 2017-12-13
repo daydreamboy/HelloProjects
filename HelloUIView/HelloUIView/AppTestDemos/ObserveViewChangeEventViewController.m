@@ -24,7 +24,9 @@
     view.backgroundColor = [UIColor blueColor];
     [self.view addSubview:view];
     
-    [WCViewTool registerGeometryChangedObserverForView:view];
+    // Note: register observer by code, or call it on lldb
+    //[WCViewTool registerGeometryChangedObserverForView:view];
+    
     [self doSomeRandomAlterationToViewRepeated:view];
     
     self.observedView = view;
@@ -35,6 +37,7 @@
 }
 
 - (void)dealloc {
+    // Note: should unregister observer
 //    [WCViewTool unregisterGeometryChangeObserverForView:self.observedView];
 }
 
