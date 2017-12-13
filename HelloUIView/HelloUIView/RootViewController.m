@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 #import "ViewWithTwoCornersViewController.h"
+#import "ObserveViewChangeEventViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -32,10 +33,12 @@
     // MARK: Configure titles and classes for table view
     _titles = @[
         @"UIView with two corners",
+        @"observer UIView change event",
         @"call a test method",
     ];
     _classes = @[
         @"ViewWithTwoCornersViewController",
+        @"ObserveViewChangeEventViewController",
         @"testMethod",
     ];
 }

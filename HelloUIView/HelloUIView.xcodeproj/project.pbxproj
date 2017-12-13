@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F63EFE41FE10068000AFD6F /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63EFE31FE10068000AFD6F /* WCViewTool.m */; };
+		4F63EFE71FE103DB000AFD6F /* ObserveViewChangeEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63EFE61FE103DB000AFD6F /* ObserveViewChangeEventViewController.m */; };
 		4FAAA5671FA45FE700A80328 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAA5661FA45FE700A80328 /* AppDelegate.m */; };
 		4FAAA56F1FA45FE700A80328 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FAAA56E1FA45FE700A80328 /* Assets.xcassets */; };
 		4FAAA5721FA45FE700A80328 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FAAA5701FA45FE700A80328 /* LaunchScreen.storyboard */; };
@@ -16,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F63EFE21FE10068000AFD6F /* WCViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCViewTool.h; sourceTree = "<group>"; };
+		4F63EFE31FE10068000AFD6F /* WCViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewTool.m; sourceTree = "<group>"; };
+		4F63EFE51FE103DB000AFD6F /* ObserveViewChangeEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObserveViewChangeEventViewController.h; sourceTree = "<group>"; };
+		4F63EFE61FE103DB000AFD6F /* ObserveViewChangeEventViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObserveViewChangeEventViewController.m; sourceTree = "<group>"; };
 		4FAAA5621FA45FE700A80328 /* HelloUIView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUIView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FAAA5651FA45FE700A80328 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FAAA5661FA45FE700A80328 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -40,6 +46,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F63EFE11FE10053000AFD6F /* WCViewTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F63EFE21FE10068000AFD6F /* WCViewTool.h */,
+				4F63EFE31FE10068000AFD6F /* WCViewTool.m */,
+			);
+			path = WCViewTool;
+			sourceTree = "<group>";
+		};
 		4FAAA5591FA45FE700A80328 = {
 			isa = PBXGroup;
 			children = (
@@ -59,6 +74,7 @@
 		4FAAA5641FA45FE700A80328 /* HelloUIView */ = {
 			isa = PBXGroup;
 			children = (
+				4F63EFE11FE10053000AFD6F /* WCViewTool */,
 				4FAAA57B1FA4601500A80328 /* AppTestDemos */,
 				4FAAA5651FA45FE700A80328 /* AppDelegate.h */,
 				4FAAA5661FA45FE700A80328 /* AppDelegate.m */,
@@ -77,6 +93,8 @@
 			children = (
 				4FAAA5821FA461E500A80328 /* ViewWithTwoCornersViewController.h */,
 				4FAAA5831FA461E500A80328 /* ViewWithTwoCornersViewController.m */,
+				4F63EFE51FE103DB000AFD6F /* ObserveViewChangeEventViewController.h */,
+				4F63EFE61FE103DB000AFD6F /* ObserveViewChangeEventViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -153,8 +171,10 @@
 			files = (
 				4FAAA5751FA45FE700A80328 /* main.m in Sources */,
 				4FAAA5841FA461E500A80328 /* ViewWithTwoCornersViewController.m in Sources */,
+				4F63EFE41FE10068000AFD6F /* WCViewTool.m in Sources */,
 				4FAAA5811FA4601E00A80328 /* RootViewController.m in Sources */,
 				4FAAA5671FA45FE700A80328 /* AppDelegate.m in Sources */,
+				4F63EFE71FE103DB000AFD6F /* ObserveViewChangeEventViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
