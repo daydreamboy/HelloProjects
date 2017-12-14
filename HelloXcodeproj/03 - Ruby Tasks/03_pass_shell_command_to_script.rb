@@ -2,11 +2,11 @@
 # 
 # 
 # Usage:
-#   ruby 03_pass_shell_command_to_script.rb ruby callee.rb
-#   ./03_pass_shell_command_to_script.rb ruby callee.rb
+#   ruby 03_pass_shell_command_to_script.rb ruby 03_callee.rb
+#   ./03_pass_shell_command_to_script.rb ruby 03_callee.rb
 #
 # Demo ouput:
-#   execute `ruby callee.rb` command
+#   execute `ruby 03_callee.rb` command
 # 
 # Reference:
 #   @see https://www.ruby-forum.com/topic/193088

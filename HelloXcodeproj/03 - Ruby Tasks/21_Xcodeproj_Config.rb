@@ -13,7 +13,7 @@ require_relative '../02 - Ruby Helper/rubyscript_helper'
 #   end
 # end
 
-xcconfig_path = './0_sample'
+xcconfig_path = './21_sample'
 #build_settings = Hash[*File.read(xcconfig_path).lines.map{|x| x.split(/\s*=\s*/, 2)}.flatten]
 
 
