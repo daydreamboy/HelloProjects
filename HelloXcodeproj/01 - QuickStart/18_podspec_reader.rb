@@ -137,7 +137,31 @@ class PodspecReader
     spec.attributes_hash.merge!(force_attributes)
     spec.subspecs = PodspecReader.merge_subspec(all_specs, force_attributes)
 
+    PodspecReader.remove_common_of_xcconfig!(spec)
     spec
+  end
+
+  def self.remove_common_of_xcconfig!(spec)
+
+    spec.attributes_hash['xcconfig'].each do |k, v|
+
+      if !spec.attributes_hash['pod_target_xcconfig'].nil? && spec.attributes_hash['pod_target_xcconfig'].has_key?(k)
+        if spec.attributes_hash['pod_target_xcconfig'][k] == v
+          spec.attributes_hash['pod_target_xcconfig'].delete(k)
+        else
+          Log.w "xcconfg and pod_target_xcconfig have same key `#{k}`, but values are different. Please check #{spec.attributes_hash['name']} podspec."
+        end
+      end
+
+      if !spec.attributes_hash['user_target_xcconfig'].nil? && spec.attributes_hash['user_target_xcconfig'].has_key?(k)
+        if spec.attributes_hash['user_target_xcconfig'][k] == v
+          spec.attributes_hash['user_target_xcconfig'].delete(k)
+        else
+          Log.w "xcconfg and pod_target_xcconfig have same key `#{k}`, but values are different. Please check #{spec.attributes_hash['name']} podspec."
+        end
+      end
+    end
+
   end
 
   def self.merge_subspec(podspecs, force_attributes)

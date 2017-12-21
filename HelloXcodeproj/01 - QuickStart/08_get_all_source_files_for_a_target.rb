@@ -12,8 +12,10 @@ project_path = '/Users/wesley_chen/Ali-Projects/Integration_CocoaPods_New/wxopen
 # project_path = '/Users/wesley_chen/Ali-Projects/Integration_CocoaPods_New/wxopenimsdk/WXSDK/project/ICoreData/ICoreData.xcodeproj'
 # project_path = '/Users/wesley_chen/Ali-Projects/Integration_CocoaPods_New/wxopenimsdk/WXSDK/project/WXModule/WXModule.xcodeproj'
 
-dest_target = 'WXMessengerKit_DelayLoaded'
-root_dir = '/Users/wesley_chen/Ali-Projects/Integration_CocoaPods_New/wxopenimsdk'
+project_path = '/Users/wesley_chen/Ali-Projects/Integration_CocoaPods/WXOpenIMSDK_FrameworkPackager/wxopenimsdk/WXOpenIMUIKit/WXOpenIMUIKit.xcodeproj'
+
+dest_target = 'WXOpenIMUIKit'
+root_dir = '/Users/wesley_chen/Ali-Projects/Integration_CocoaPods/WXOpenIMSDK_FrameworkPackager/wxopenimsdk'
 
 rootDirPath = Pathname.new(root_dir)
 

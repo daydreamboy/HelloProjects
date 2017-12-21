@@ -30,7 +30,7 @@ Pod::Spec.new do |s|
 
   s.homepage     = "http://gitlab.alibaba-inc.com/wx-ios/wxopenimsdk/"
   s.license      = "MIT"
-  s.author       = { "晨凉" => "wesleychen.cl@alibaba-inc.com" }
+  s.author       = { "daydreamboy" => "wesley4chen@gmail.com" }
   s.platform     = :ios, "5.0"
   s.source       = { :git => "http://gitlab.alibaba-inc.com/wx-ios/wxopenimsdk.git", :commit => "dadbb627d51f7138da47a683dd98d304c2b111f1" }
   s.requires_arc = true

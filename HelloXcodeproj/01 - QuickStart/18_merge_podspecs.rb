@@ -52,7 +52,7 @@ end
 
 def test_merge_podspecs
   arr = './18_simple_WangXinKit.podspec', './18_simple_WXOpenIMSDK_Dynamic.podspec'
-  arr = './18_WangXinKit.podspec', './18_WXOpenIMSDK_Dynamic.podspec'
+  # arr = './18_WangXinKit.podspec', './18_WXOpenIMSDK_Dynamic.podspec'
   current_dir = File.expand_path('..', __FILE__)
   podspec_name = 'WXOpenIMSDKStatic'
   force_attributes = {
