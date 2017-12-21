@@ -16,6 +16,7 @@
 		2BA4F85D1F83D31C00AE2BAD /* CreateThreadByNSObjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4F85C1F83D31C00AE2BAD /* CreateThreadByNSObjectViewController.m */; };
 		2BA4F8601F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4F85F1F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m */; };
 		2BF7F44A1F83DB3500B27A0F /* UseOSAtomicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7F4491F83DB3500B27A0F /* UseOSAtomicViewController.m */; };
+		4F9578E51FDF8A40009693CF /* WCThreadTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578E41FDF8A40009693CF /* WCThreadTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,8 @@
 		2BA4F85F1F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateThreadByPOSIXViewController.m; sourceTree = "<group>"; };
 		2BF7F4481F83DB3500B27A0F /* UseOSAtomicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseOSAtomicViewController.h; sourceTree = "<group>"; };
 		2BF7F4491F83DB3500B27A0F /* UseOSAtomicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseOSAtomicViewController.m; sourceTree = "<group>"; };
+		4F9578E31FDF8A3F009693CF /* WCThreadTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCThreadTool.h; sourceTree = "<group>"; };
+		4F9578E41FDF8A40009693CF /* WCThreadTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCThreadTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +71,7 @@
 		2B37F3101F83C4A500809F00 /* HelloThread */ = {
 			isa = PBXGroup;
 			children = (
+				4F9578E21FDF8A2D009693CF /* WCThreadTool */,
 				2BA4F8541F83D27F00AE2BAD /* AppTestDemos */,
 				2B37F3111F83C4A500809F00 /* AppDelegate.h */,
 				2B37F3121F83C4A500809F00 /* AppDelegate.m */,
@@ -110,6 +114,15 @@
 				2BA4F85F1F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m */,
 			);
 			path = thread;
+			sourceTree = "<group>";
+		};
+		4F9578E21FDF8A2D009693CF /* WCThreadTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F9578E31FDF8A3F009693CF /* WCThreadTool.h */,
+				4F9578E41FDF8A40009693CF /* WCThreadTool.m */,
+			);
+			path = WCThreadTool;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +196,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BA4F85D1F83D31C00AE2BAD /* CreateThreadByNSObjectViewController.m in Sources */,
+				4F9578E51FDF8A40009693CF /* WCThreadTool.m in Sources */,
 				2BA4F8601F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m in Sources */,
 				2BF7F44A1F83DB3500B27A0F /* UseOSAtomicViewController.m in Sources */,
 				2BA4F85A1F83D30200AE2BAD /* CreateThreadByNSThreadViewController.m in Sources */,

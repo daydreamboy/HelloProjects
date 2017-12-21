@@ -9,5 +9,4 @@
 #import "WCThreadTool.h"
 
 @implementation WCThreadTool
-
 @end
