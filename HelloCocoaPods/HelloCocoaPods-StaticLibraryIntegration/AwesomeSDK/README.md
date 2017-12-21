@@ -22,7 +22,7 @@ pod 'AwesomeSDK'
 
 ## Author
 
-daydreamboy, wesleychen.cl@alibaba-inc.com
+daydreamboy, wesley4chen@gmail.com
 
 ## License
 

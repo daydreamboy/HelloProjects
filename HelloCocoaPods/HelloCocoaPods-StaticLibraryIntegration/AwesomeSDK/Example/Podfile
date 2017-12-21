@@ -4,20 +4,23 @@ platform :ios, '8.0'
 
 # require 'pod_tweaker'
 
-load '/Users/wesley_chen/Ali-Projects/Integration_CocoaPods_New/WXOpenIMSDK_FrameworkPackager/cocoapods-pod_tweaker/lib/pod_tweaker.rb'
+load '/Users/wesley_chen/Ali-Projects/Integration_CocoaPods/WXOpenIMSDK_FrameworkPackager/cocoapods-pod_tweaker/lib/pod_tweaker.rb'
 
-Log.level Logger::DEBUG
+# For Developer
+Debug.setLogLevel(Logger::DEBUG)
+Debug.setKeepTemporaryPodspecJSONFile(true)
 
 target 'AwesomeSDK_Example' do
 
-  puts caller
+  # puts caller
 
   if !ENV['develop_pod_mode'].nil?
     # pod developing mode
     puts 'In pod developing mode...'
-    pod_im 'AwesomeSDK_dynamic_framework', :path => '../', :use_framework => true
-    pod_im 'AwesomeSDK_static_framework', :path => '../', :use_framework => true, :is_dynamic => false
-    pod_im 'ThisAStaticLibrary', :path => '../ThisAStaticLibrary/'
+    pod_tweak 'AwesomeSDK_dynamic_framework', :path => '../', :use_framework => true, :product_name => "AwesomeSDKDynamic"
+    # pod_tweak 'AwesomeSDK_static_framework', :path => '../', :use_framework => true, :is_dynamic => false, :product_name => "AwesomeSDKStatic"
+    pod_tweak 'AwesomeSDK_static_framework', :include_podspecs => '../AwesomeSDK_static_framework.podspec', :use_framework => true, :is_dynamic => false, :product_name => "AwesomeSDKStatic"
+    pod_tweak 'ThisAStaticLibrary', :path => '../ThisAStaticLibrary/'
   else
     # pod integrating mode
     puts 'In pod integrating mode...'
@@ -32,5 +35,5 @@ target 'AwesomeSDK_Example' do
 end
 
 post_install do |installer|
-  pod_im_target_on_post_install(installer, 'AwesomeSDK_Example')
+  pod_tweak_target_on_post_install(installer, 'AwesomeSDK_Example')
 end

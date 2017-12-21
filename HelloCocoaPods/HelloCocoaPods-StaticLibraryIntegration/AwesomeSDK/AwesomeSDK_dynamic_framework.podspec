@@ -38,6 +38,20 @@ TODO: Add long description of the pod here.
   #   'AwesomeSDK_dynamic_framework' => ['AwesomeSDK_dynamic_framework/Assets/*.png']
   # }
 
+  # s.pod_target_xcconfig = {
+  # 	"GCC_PREPROCESSOR_DEFINITIONS" => "DEBUG_FLAG=1 CHECK_UI",
+  # }
+  
+  s.xcconfig = {
+    "GCC_PREPROCESSOR_DEFINITIONS" => "USE_POD USER_DEF=2",
+    "FRAMEWORK_SEARCH_PATHS" => "$PODS_CONFIGURATION_BUILD_DIR/WXOpenIMSDK",
+  }
+
+  s.user_target_xcconfig = {
+    "GCC_PREPROCESSOR_DEFINITIONS" => "USE_POD USER_DEF=2",
+    "FRAMEWORK_SEARCH_PATHS" => '"${PODS_ROOT}/ALBBMediaService" "${PODS_ROOT}/YWAudioKit"',
+  }
+
   s.public_header_files = 'AwesomeSDK_dynamic_framework/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
