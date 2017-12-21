@@ -42,6 +42,7 @@
 		4F9578E81FDF8CC2009693CF /* GetCurrentQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578E71FDF8CC2009693CF /* GetCurrentQueueViewController.m */; };
 		4F9578EC1FDF8D11009693CF /* WCGCDTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578EB1FDF8D11009693CF /* WCGCDTool.m */; };
 		4F9578EF1FDFC37F009693CF /* SetMultipleContextDataToQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578EE1FDFC37F009693CF /* SetMultipleContextDataToQueueViewController.m */; };
+		4F9578F21FDFD94D009693CF /* NSValueWithDispatchQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578F11FDFD94D009693CF /* NSValueWithDispatchQueueViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -113,6 +114,8 @@
 		4F9578EB1FDF8D11009693CF /* WCGCDTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCGCDTool.m; sourceTree = "<group>"; };
 		4F9578ED1FDFC37F009693CF /* SetMultipleContextDataToQueueViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetMultipleContextDataToQueueViewController.h; sourceTree = "<group>"; };
 		4F9578EE1FDFC37F009693CF /* SetMultipleContextDataToQueueViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetMultipleContextDataToQueueViewController.m; sourceTree = "<group>"; };
+		4F9578F01FDFD94D009693CF /* NSValueWithDispatchQueueViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSValueWithDispatchQueueViewController.h; sourceTree = "<group>"; };
+		4F9578F11FDFD94D009693CF /* NSValueWithDispatchQueueViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSValueWithDispatchQueueViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +220,8 @@
 				2B401FF11E06E9A500D998FA /* UseDispatchSemaphoreViewController.m */,
 				4F9578E61FDF8CC2009693CF /* GetCurrentQueueViewController.h */,
 				4F9578E71FDF8CC2009693CF /* GetCurrentQueueViewController.m */,
+				4F9578F01FDFD94D009693CF /* NSValueWithDispatchQueueViewController.h */,
+				4F9578F11FDFD94D009693CF /* NSValueWithDispatchQueueViewController.m */,
 			);
 			path = "dispatch queue";
 			sourceTree = "<group>";
@@ -398,6 +403,7 @@
 				2BC0E0501E0AD9A200B195BC /* CreateTimerDispatchSourceViewController.m in Sources */,
 				4F9578EC1FDF8D11009693CF /* WCGCDTool.m in Sources */,
 				2B401FFD1E06E9A500D998FA /* UseDispatchGroupViewController.m in Sources */,
+				4F9578F21FDFD94D009693CF /* NSValueWithDispatchQueueViewController.m in Sources */,
 				2B401FFB1E06E9A500D998FA /* SetSingleContextDataToQueueViewController.m in Sources */,
 				2B4020011E06E9E200D998FA /* CreateADispatchSourceViewController.m in Sources */,
 				2BB1E8E81E179FEA00059446 /* CreateWriteDispatchSourceViewController.m in Sources */,
