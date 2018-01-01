@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F03E6041FF244DB0029102B /* GroupedTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F03E6031FF244DB0029102B /* GroupedTableViewViewController.m */; };
+		4F03E6081FF2492D0029102B /* PlainTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F03E6071FF2492D0029102B /* PlainTableViewViewController.m */; };
 		4FAAA5931FA4804600A80328 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAA5921FA4804600A80328 /* AppDelegate.m */; };
 		4FAAA59B1FA4804600A80328 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FAAA59A1FA4804600A80328 /* Assets.xcassets */; };
 		4FAAA59E1FA4804600A80328 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FAAA59C1FA4804600A80328 /* LaunchScreen.storyboard */; };
@@ -19,6 +21,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F03E6021FF244DB0029102B /* GroupedTableViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupedTableViewViewController.h; sourceTree = "<group>"; };
+		4F03E6031FF244DB0029102B /* GroupedTableViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupedTableViewViewController.m; sourceTree = "<group>"; };
+		4F03E6061FF2492D0029102B /* PlainTableViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlainTableViewViewController.h; sourceTree = "<group>"; };
+		4F03E6071FF2492D0029102B /* PlainTableViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlainTableViewViewController.m; sourceTree = "<group>"; };
 		4FAAA58E1FA4804600A80328 /* HelloUITableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUITableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FAAA5911FA4804600A80328 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FAAA5921FA4804600A80328 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -47,6 +53,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F03E6051FF248B70029102B /* WCTableView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = WCTableView;
+			sourceTree = "<group>";
+		};
 		4FAAA5851FA4804600A80328 = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +79,7 @@
 		4FAAA5901FA4804600A80328 /* HelloUITableView */ = {
 			isa = PBXGroup;
 			children = (
+				4F03E6051FF248B70029102B /* WCTableView */,
 				4FAAA5A71FA4806600A80328 /* AppTestDemos */,
 				4FAAA5911FA4804600A80328 /* AppDelegate.h */,
 				4FAAA5921FA4804600A80328 /* AppDelegate.m */,
@@ -87,6 +101,10 @@
 				4FAAA5AE1FA4833A00A80328 /* FadeInCellRowByRowViewController.m */,
 				4FAAA5B01FA4833A00A80328 /* ScrollTopBottomCellsToFadeInViewController.h */,
 				4FAAA5AF1FA4833A00A80328 /* ScrollTopBottomCellsToFadeInViewController.m */,
+				4F03E6021FF244DB0029102B /* GroupedTableViewViewController.h */,
+				4F03E6031FF244DB0029102B /* GroupedTableViewViewController.m */,
+				4F03E6061FF2492D0029102B /* PlainTableViewViewController.h */,
+				4F03E6071FF2492D0029102B /* PlainTableViewViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -172,9 +190,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F03E6041FF244DB0029102B /* GroupedTableViewViewController.m in Sources */,
 				4FAAA5B21FA4833A00A80328 /* FadeInCellRowByRowViewController.m in Sources */,
 				4FAAA5B31FA4833A00A80328 /* ScrollTopBottomCellsToFadeInViewController.m in Sources */,
 				4FAAA5A11FA4804600A80328 /* main.m in Sources */,
+				4F03E6081FF2492D0029102B /* PlainTableViewViewController.m in Sources */,
 				4FAAA5931FA4804600A80328 /* AppDelegate.m in Sources */,
 				4FAAA5AD1FA4806F00A80328 /* RootViewController.m in Sources */,
 			);
@@ -242,7 +262,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -291,7 +311,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

@@ -10,6 +10,8 @@
 
 #import "FadeInCellRowByRowViewController.h"
 #import "ScrollTopBottomCellsToFadeInViewController.h"
+#import "GroupedTableViewViewController.h"
+#import "PlainTableViewViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -34,11 +36,15 @@
     _titles = @[
         @"Fade in cell row by row",
         @"Scroll bottom cell to fade in",
+        @"Grouped UITableView",
+        @"Plain UITableView",
         @"call a test method",
     ];
     _classes = @[
         @"FadeInCellRowByRowViewController",
         @"ScrollTopBottomCellsToFadeInViewController",
+        @"GroupedTableViewViewController",
+        @"PlainTableViewViewController",
         @"testMethod",
     ];
 }
