@@ -7,14 +7,13 @@
 //
 
 #import "CreateDynamicDelegateViewController.h"
-#import "ModelProtocol.h"
 #import "NSObject+WCObjCRuntime.h"
 #import <WCObjCRuntime/WCRTProtocol.h>
 #import "AppDelegate.h"
 #import <objc/runtime.h>
 #import "AllModelsProtocol.h"
 
-@interface CreateDynamicDelegateViewController () <Model_B>
+@interface CreateDynamicDelegateViewController () <Model_B, Model_A>
 @property (nonatomic, weak) id<Model_B> delegate;
 @end
 
@@ -31,15 +30,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self test1];
+    [self test2];
+    [self test3];
+}
+
+- (void)test1 {
     id<Model_A> model1 = [self createDelegateWithProtocolName:@"Model_B"];
     model1.name = @"";
     [model1 setName:@""];
     
     NSLog(@"%@", model1.name);
     NSLog(@"%@", [model1 name]);
-    
-    [self test];
-    
+}
+
+- (void)test2 {
     [self requestWithParamBlock:^(id<Model_A> param) {
         [param setName:@"Changed"];
     } completion:^{
@@ -58,12 +63,19 @@
 - (id)createDelegateWithProtocolName:(NSString *)protocolName {
     WCRTProtocol *protocol = [WCRTProtocol protocolWithName:protocolName];
     NSString *name = [protocol name];
-    NSArray *array = [protocol methodsRequired:NO instance:NO];
+    NSLog(@"name: %@", name);
+    
+    NSArray *array = [protocol methodsRequired:NO instance:NO]; // nil
+    array = [protocol methodsRequired:NO instance:YES];
+    
+    array = [protocol methodsRequired:YES instance:NO];
+    array = [protocol methodsRequired:YES instance:YES];
+    NSLog(@"array: %@", array);
     
     return nil;
 }
 
-- (void)test {
+- (void)test3 {
     Protocol *p1 = objc_allocateProtocol("Model_A");
     objc_registerProtocol(p1);
     unsigned int count = 0;
@@ -75,12 +87,11 @@
         NSLog(@"%@: %@", NSStringFromSelector(selector), [NSString stringWithUTF8String:signature]);
     }
     
-    
     Protocol *aProtocol = objc_allocateProtocol("TestingRuntimeDelegate");
     AppDelegate *appInstance = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     NSLog(@"conformed Protocol ..%d", class_conformsToProtocol([self.delegate class], aProtocol));
     
-    protocol_addMethodDescription(aProtocol, @selector(itIsTestDelegate), "test", NO, NO);
+    protocol_addMethodDescription(aProtocol, @selector(itIsTestDelegate), "methodSignature", NO, NO);
     objc_registerProtocol(aProtocol);
     
     class_addProtocol([appInstance class], aProtocol);
@@ -94,7 +105,9 @@
     {
         NSLog(@"conformed Protocol ..%d",class_conformsToProtocol([appInstance class], aProtocol));
         class_conformsToProtocol([self.delegate class], aProtocol);
+        /*
         [appInstance performSelector:@selector(itIsTestDelegate)];
+         */
     }
 }
 

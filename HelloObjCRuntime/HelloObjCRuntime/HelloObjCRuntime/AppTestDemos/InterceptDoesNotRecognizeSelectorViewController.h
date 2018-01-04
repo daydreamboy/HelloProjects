@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InterceptDoesNotRecognizeSelectorViewController : UIViewController
+@interface InterceptDoesNotRecognizeSelectorViewController : UITableViewController
 
 @end

@@ -47,7 +47,7 @@
         @"isa swizzling for overwriting (maybe cause crash)",
         @"Create Class at runtime",
         @"Simple dynamic subclass",
-        @"Swizzle Usage 1 ()",
+        @"Swizzle Usage (Capture unrecognized methods)",
         @"Create dynamic delegates",
     ];
     _classes = @[
@@ -59,8 +59,9 @@
         @"IsaSwizzlingIssueViewController",
         @"CreateClassAtRuntimeViewController",
         @"SimpleDynamicSubclassViewController",
-        @"InterceptDoesNotRecognizeSelectorViewController.xib",  // use xib
-        @"CreateDynamicDelegateViewController.xib",
+        @"InterceptDoesNotRecognizeSelectorViewController",
+        @"CreateDynamicParamModelViewController",
+//        @"CreateDynamicDelegateViewController.xib",
     ];
 }
 
