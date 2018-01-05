@@ -1,6 +1,6 @@
 # UIView
 
----
+--
 
 ### 1. Transparent, Transluncent and Opaque 
 
@@ -50,6 +50,21 @@ mask属性决定如何将layer和mask layer进行合成
 2. mask layer中opaque部分（即上面的path区域），layer使用自己的backgroundColor填充；mask layer中translucent部分（即上面的非path区域），layer使用mask layer的alpha值，结合自己backgroundColor，进行填充。如果alpha值是0，则这部分是透明的
 
 参考代码：`ViewWithTwoCornersViewController`
+
+### 3. WCViewTool
+
+检测UIView的frame被修改的事件
+
+### 4. UIView处理是否处理touch事件
+
+UIView提供`- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event;`方法给子类实现。
+
+如果touch点落在view的父视图，而且父视图没有设置userInteractionEnabled为NO。touch事件会向子视图传递，子视图的pointInside:withEvent:方法会被调用（当然子视图的userInteractionEnabled为NO，则该方法也不会被调用）。如果touch点落在子视图上，则子视图的pointInside:withEvent:方法返回YES，否则返回NO。
+
+通过在pointInside:withEvent:方法中，进一步判断touch点是否落在特定区域，决定是否返回YES或者NO，让子视图的pointInside:withEvent:方法是否被调用。
+
+示例见，TouchThroughPartRegionViewController。黄色区域（overlay）在红色框按钮前面，蓝色框按钮在overlay中。overlay需要处理落在蓝色框的touch点让蓝色框按钮响应，而落在红色框的touch点让红色框按钮响应。
+
 
 
 

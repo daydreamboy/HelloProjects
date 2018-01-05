@@ -34,11 +34,13 @@
     _titles = @[
         @"UIView with two corners",
         @"observer UIView change event",
+        @"touch through part of view",
         @"call a test method",
     ];
     _classes = @[
         @"ViewWithTwoCornersViewController",
         @"ObserveViewChangeEventViewController",
+        @"TouchThroughPartRegionViewController",
         @"testMethod",
     ];
 }
