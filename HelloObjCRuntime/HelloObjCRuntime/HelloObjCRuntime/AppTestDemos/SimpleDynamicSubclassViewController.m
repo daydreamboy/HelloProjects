@@ -33,7 +33,8 @@ static void BarOverride(id self, SEL _cmd)
     superIMP(self, _cmd);
 }
 
-static Class CreateMyFoo(void)
+// Note: subclass MyFoo from NSFoo
+static Class CreateMyFooInheritFromNSFoo(void)
 {
     Class NSFoo = NSClassFromString(@"NSFoo");
     if (!NSFoo) {
@@ -42,6 +43,7 @@ static Class CreateMyFoo(void)
     
     Class MyFoo = [NSFoo rt_createSubclassNamed:@"MyFoo"];
     
+    // Note: add `bar` method to MyFoo class
     SEL sel = @selector(bar);
     WCRTMethod *nsBar = [NSFoo rt_methodForSelector:sel];
     WCRTMethod *myBar = [WCRTMethod methodWithSelector:sel implementation:(IMP)BarOverride signature:[nsBar signature]];
@@ -50,12 +52,13 @@ static Class CreateMyFoo(void)
     return MyFoo;
 }
 
+// Note: get MyFoo class
 static Class MyFoo(void)
 {
     static Class cls = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        cls = CreateMyFoo();
+        cls = CreateMyFooInheritFromNSFoo();
     });
     
     return cls;
