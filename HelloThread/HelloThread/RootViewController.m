@@ -40,6 +40,8 @@
           @{ kTitle: @"Create thread using NSThread", kClass: @"CreateThreadByNSThreadViewController" },
           @{ kTitle: @"Create thread using NSObject category", kClass: @"CreateThreadByNSObjectViewController" },
           @{ kTitle: @"Create thread using pthread", kClass: @"CreateThreadByPOSIXViewController" },
+          @{ kTitle: @"Keep thread long alive", kClass: @"KeepThreadLongAliveViewController" },
+          @{ kTitle: @"Call block on thread", kClass: @"PerformDispatchBlockOnThreadViewController" },
     ];
 
     NSArray<NSDictionary *> *section2 = @[

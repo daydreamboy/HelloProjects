@@ -9,4 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface WCThreadTool : NSObject
+
++ (void)performBlock:(dispatch_block_t)block onThread:(NSThread *)thread;
++ (void)performBlock:(void (^)(id))block onThread:(NSThread *)thread withObject:(id)object;
 @end
