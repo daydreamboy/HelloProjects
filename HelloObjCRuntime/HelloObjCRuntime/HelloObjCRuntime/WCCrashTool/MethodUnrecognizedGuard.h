@@ -1,5 +1,5 @@
 //
-//  MethodUnrecognizedCapturer.h
+//  MethodUnrecognizedGuard.h
 //  HelloObjCRuntime
 //
 //  Created by wesley_chen on 04/01/2018.
@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@interface MethodUnrecognizedCapturer : NSObject
+@interface MethodUnrecognizedGuard : NSObject
 @property (nonatomic, copy) NSString *className;
 @property (nonatomic, assign) SEL unrecognizedSelector;
 @property (nonatomic, strong) NSArray<NSString *> *callStackSymbols;
 @property (nonatomic, strong) NSArray<NSNumber *> *callStackReturnAddresses;
+
++ (void)inject;
+
 @end

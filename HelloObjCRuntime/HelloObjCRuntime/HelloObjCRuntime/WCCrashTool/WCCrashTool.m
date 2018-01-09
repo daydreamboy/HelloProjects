@@ -10,4 +10,8 @@
 
 @implementation WCCrashTool
 
++ (void)load {
+    [MethodUnrecognizedGuard inject];
+}
+
 @end

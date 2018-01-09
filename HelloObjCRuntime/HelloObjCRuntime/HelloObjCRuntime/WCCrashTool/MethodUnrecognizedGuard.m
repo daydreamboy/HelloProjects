@@ -1,17 +1,17 @@
 //
-//  MethodUnrecognizedCapturer.m
+//  MethodUnrecognizedGuard.m
 //  HelloObjCRuntime
 //
 //  Created by wesley_chen on 04/01/2018.
 //  Copyright © 2018 wesley chen. All rights reserved.
 //
 
-#import "MethodUnrecognizedCapturer.h"
+#import "MethodUnrecognizedGuard.h"
 #import "WCObjCRuntimeUtility.h"
 #import <objc/runtime.h>
 #import <UIKit/UIKit.h>
 
-@implementation MethodUnrecognizedCapturer
+@implementation MethodUnrecognizedGuard
 
 static id MySetBackgroundColor(id self, SEL _cmd, SEL selector);
 static id (*SetBackgroundColorIMP)(id self, SEL _cmd, SEL selector);
@@ -31,7 +31,7 @@ static id MySetBackgroundColor(id self, SEL _cmd, SEL selector) {
     
     if ([whiteClassNameList containsObject:className]) {
         
-        MethodUnrecognizedCapturer *handler = [MethodUnrecognizedCapturer new];
+        MethodUnrecognizedGuard *handler = [MethodUnrecognizedGuard new];
         handler.className = className;
         handler.unrecognizedSelector = selector;
         handler.callStackSymbols = [NSThread callStackSymbols];
@@ -51,10 +51,10 @@ static id MySetBackgroundColor(id self, SEL _cmd, SEL selector) {
         NSLog(@"Class caller = %@", [array objectAtIndex:3]);
         NSLog(@"Function caller = %@", [array objectAtIndex:4]);
         
-        Method method = class_getInstanceMethod([MethodUnrecognizedCapturer class], @selector(noneExistedMethod));
+        Method method = class_getInstanceMethod([MethodUnrecognizedGuard class], @selector(noneExistedMethod));
         IMP imp = method_getImplementation(method);
         
-        BOOL added = class_addMethod([MethodUnrecognizedCapturer class], selector, imp, NULL);
+        BOOL added = class_addMethod([MethodUnrecognizedGuard class], selector, imp, NULL);
         if (added) {
             NSLog(@"added");
         }
@@ -68,9 +68,13 @@ static id MySetBackgroundColor(id self, SEL _cmd, SEL selector) {
     return SetBackgroundColorIMP(self, _cmd, selector);
 }
 
-+ (void)load {
+#pragma mark - Public Methods
+
++ (void)inject {
     [WCObjCRuntimeUtility exchangeIMPForSelector:@selector(forwardingTargetForSelector:) onClass:[NSObject class] swizzledIMP:(IMP)MySetBackgroundColor originalIMP:(IMP *)&SetBackgroundColorIMP];
 }
+
+#pragma mark -
 
 - (id)noneExistedMethod {
     

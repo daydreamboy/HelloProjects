@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MethodUnrecognizedCapturer.h"
+#import "MethodUnrecognizedGuard.h"
+#import "UncatchExceptionGuard.h"
 
 @interface WCCrashTool : NSObject
 

@@ -33,7 +33,7 @@ typedef struct a {
 
 - (void)test_struct_list_a {
     // Note: a demo for inline syntax
-    struct selBlockPair *list = (struct selBlockPair []) {
+    __unused struct selBlockPair *list = (struct selBlockPair []) {
         @selector(description),
         selBlockPair_cast ^id (id self) {
             return @"This is a MyCustomString string";

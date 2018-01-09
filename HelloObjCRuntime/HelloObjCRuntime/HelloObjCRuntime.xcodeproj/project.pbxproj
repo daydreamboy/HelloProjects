@@ -26,11 +26,13 @@
 		2BE8BEBF1E6D7235004CD034 /* SwizzleMethodByMethodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE8BEBE1E6D7235004CD034 /* SwizzleMethodByMethodViewController.m */; };
 		2BE8BEC21E6F000A004CD034 /* IsaSwizzlingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE8BEC11E6F000A004CD034 /* IsaSwizzlingViewController.m */; };
 		2BE8BEC51E705549004CD034 /* IsaSwizzlingIssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE8BEC41E705549004CD034 /* IsaSwizzlingIssueViewController.m */; };
+		4F53C97B20046B59003F79F6 /* UncatchExceptionGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53C97A20046B59003F79F6 /* UncatchExceptionGuard.m */; };
+		4F53C97E20047483003F79F6 /* SkipUnsafeMethodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53C97D20047483003F79F6 /* SkipUnsafeMethodViewController.m */; };
 		4FF5FA341FFD27BF00C095C1 /* CreateDynamicParamModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF5FA2F1FFD27BF00C095C1 /* CreateDynamicParamModelViewController.m */; };
 		4FF5FA351FFD27BF00C095C1 /* PublicModelsForSomeSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF5FA311FFD27BF00C095C1 /* PublicModelsForSomeSDK.m */; };
 		4FF5FA381FFD27DB00C095C1 /* SomeSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF5FA371FFD27DB00C095C1 /* SomeSDK.m */; };
 		4FF5FA3C1FFD362500C095C1 /* WCCrashTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF5FA3B1FFD362500C095C1 /* WCCrashTool.m */; };
-		4FF5FA3F1FFD364600C095C1 /* MethodUnrecognizedCapturer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF5FA3E1FFD364600C095C1 /* MethodUnrecognizedCapturer.m */; };
+		4FF5FA3F1FFD364600C095C1 /* MethodUnrecognizedGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF5FA3E1FFD364600C095C1 /* MethodUnrecognizedGuard.m */; };
 		548142558DFCD2B9A09D63BB /* libPods-HelloObjCRuntime.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09C0BF0F088AFD6DE5B6BCA9 /* libPods-HelloObjCRuntime.a */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +75,10 @@
 		2BE8BEC11E6F000A004CD034 /* IsaSwizzlingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IsaSwizzlingViewController.m; sourceTree = "<group>"; };
 		2BE8BEC31E705549004CD034 /* IsaSwizzlingIssueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsaSwizzlingIssueViewController.h; sourceTree = "<group>"; };
 		2BE8BEC41E705549004CD034 /* IsaSwizzlingIssueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IsaSwizzlingIssueViewController.m; sourceTree = "<group>"; };
+		4F53C97920046B59003F79F6 /* UncatchExceptionGuard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UncatchExceptionGuard.h; sourceTree = "<group>"; };
+		4F53C97A20046B59003F79F6 /* UncatchExceptionGuard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UncatchExceptionGuard.m; sourceTree = "<group>"; };
+		4F53C97C20047483003F79F6 /* SkipUnsafeMethodViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SkipUnsafeMethodViewController.h; sourceTree = "<group>"; };
+		4F53C97D20047483003F79F6 /* SkipUnsafeMethodViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SkipUnsafeMethodViewController.m; sourceTree = "<group>"; };
 		4FF5FA2F1FFD27BF00C095C1 /* CreateDynamicParamModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateDynamicParamModelViewController.m; sourceTree = "<group>"; };
 		4FF5FA301FFD27BF00C095C1 /* PublicModelsForSomeSDK_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicModelsForSomeSDK_Internal.h; sourceTree = "<group>"; };
 		4FF5FA311FFD27BF00C095C1 /* PublicModelsForSomeSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicModelsForSomeSDK.m; sourceTree = "<group>"; };
@@ -82,8 +88,8 @@
 		4FF5FA371FFD27DB00C095C1 /* SomeSDK.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SomeSDK.m; sourceTree = "<group>"; };
 		4FF5FA3A1FFD362500C095C1 /* WCCrashTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCCrashTool.h; sourceTree = "<group>"; };
 		4FF5FA3B1FFD362500C095C1 /* WCCrashTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCCrashTool.m; sourceTree = "<group>"; };
-		4FF5FA3D1FFD364600C095C1 /* MethodUnrecognizedCapturer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MethodUnrecognizedCapturer.h; sourceTree = "<group>"; };
-		4FF5FA3E1FFD364600C095C1 /* MethodUnrecognizedCapturer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MethodUnrecognizedCapturer.m; sourceTree = "<group>"; };
+		4FF5FA3D1FFD364600C095C1 /* MethodUnrecognizedGuard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MethodUnrecognizedGuard.h; sourceTree = "<group>"; };
+		4FF5FA3E1FFD364600C095C1 /* MethodUnrecognizedGuard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MethodUnrecognizedGuard.m; sourceTree = "<group>"; };
 		8B9D5D6444325E0389771D70 /* Pods-HelloObjCRuntime.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloObjCRuntime.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HelloObjCRuntime/Pods-HelloObjCRuntime.debug.xcconfig"; sourceTree = "<group>"; };
 		D95B2864436DD7CA5BA2048F /* Pods-HelloObjCRuntime.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloObjCRuntime.release.xcconfig"; path = "Pods/Target Support Files/Pods-HelloObjCRuntime/Pods-HelloObjCRuntime.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,6 +176,8 @@
 				2BA23BD51E7530C7000DBE48 /* InterceptCallByDynamicSubclassViewController.m */,
 				2BBE76B41E8E751300FDB6B9 /* InterceptDoesNotRecognizeSelectorViewController.h */,
 				2BBE76B51E8E751300FDB6B9 /* InterceptDoesNotRecognizeSelectorViewController.m */,
+				4F53C97C20047483003F79F6 /* SkipUnsafeMethodViewController.h */,
+				4F53C97D20047483003F79F6 /* SkipUnsafeMethodViewController.m */,
 				2B2EAA9B1E97CC2700DBCC0D /* CreateDynamicDelegateViewController.h */,
 				2B2EAA9C1E97CC2700DBCC0D /* CreateDynamicDelegateViewController.m */,
 				2B2EAA9D1E97CC2700DBCC0D /* CreateDynamicDelegateViewController.xib */,
@@ -198,8 +206,10 @@
 			children = (
 				4FF5FA3A1FFD362500C095C1 /* WCCrashTool.h */,
 				4FF5FA3B1FFD362500C095C1 /* WCCrashTool.m */,
-				4FF5FA3D1FFD364600C095C1 /* MethodUnrecognizedCapturer.h */,
-				4FF5FA3E1FFD364600C095C1 /* MethodUnrecognizedCapturer.m */,
+				4FF5FA3D1FFD364600C095C1 /* MethodUnrecognizedGuard.h */,
+				4FF5FA3E1FFD364600C095C1 /* MethodUnrecognizedGuard.m */,
+				4F53C97920046B59003F79F6 /* UncatchExceptionGuard.h */,
+				4F53C97A20046B59003F79F6 /* UncatchExceptionGuard.m */,
 			);
 			path = WCCrashTool;
 			sourceTree = "<group>";
@@ -350,8 +360,9 @@
 				4FF5FA381FFD27DB00C095C1 /* SomeSDK.m in Sources */,
 				2BE8BEC51E705549004CD034 /* IsaSwizzlingIssueViewController.m in Sources */,
 				2BE8BEBF1E6D7235004CD034 /* SwizzleMethodByMethodViewController.m in Sources */,
+				4F53C97E20047483003F79F6 /* SkipUnsafeMethodViewController.m in Sources */,
 				2B2ED6B41E2509CA006319E2 /* WCKeyboardShortcutManager.m in Sources */,
-				4FF5FA3F1FFD364600C095C1 /* MethodUnrecognizedCapturer.m in Sources */,
+				4FF5FA3F1FFD364600C095C1 /* MethodUnrecognizedGuard.m in Sources */,
 				4FF5FA351FFD27BF00C095C1 /* PublicModelsForSomeSDK.m in Sources */,
 				4FF5FA341FFD27BF00C095C1 /* CreateDynamicParamModelViewController.m in Sources */,
 				2B6E6B981DF91DD10045BD98 /* AppDelegate.m in Sources */,
@@ -365,6 +376,7 @@
 				2BA23BD61E7530C7000DBE48 /* InterceptCallByDynamicSubclassViewController.m in Sources */,
 				2BE8BEC21E6F000A004CD034 /* IsaSwizzlingViewController.m in Sources */,
 				2B6E6B951DF91DD10045BD98 /* main.m in Sources */,
+				4F53C97B20046B59003F79F6 /* UncatchExceptionGuard.m in Sources */,
 				4FF5FA3C1FFD362500C095C1 /* WCCrashTool.m in Sources */,
 				2B2EAA9E1E97CC2700DBCC0D /* CreateDynamicDelegateViewController.m in Sources */,
 				2BA23BD31E73E3F1000DBE48 /* SimpleDynamicSubclassViewController.m in Sources */,

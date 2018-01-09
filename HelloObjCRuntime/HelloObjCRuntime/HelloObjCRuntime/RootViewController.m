@@ -49,6 +49,7 @@
         @"Simple dynamic subclass",
         @"Swizzle Usage (Capture unrecognized methods)",
         @"Create dynamic delegates",
+        @"Skip unsafe method",
     ];
     _classes = @[
         @"GetPropertiesOfClassViewController",
@@ -61,6 +62,7 @@
         @"SimpleDynamicSubclassViewController",
         @"InterceptDoesNotRecognizeSelectorViewController",
         @"CreateDynamicParamModelViewController",
+        @"SkipUnsafeMethodViewController",
 //        @"CreateDynamicDelegateViewController.xib",
     ];
 }
