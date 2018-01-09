@@ -11,10 +11,42 @@
 #import <objc/runtime.h>
 #import <UIKit/UIKit.h>
 
+@interface UIAlertView (Addition)
+@property (nonatomic, strong, readonly) NSMutableDictionary *userInfo;
+@end
+
+@implementation UIAlertView (Addition)
+
+static const char * const UserInfoObjectTag = "UserInfoObjectTag";
+
+@dynamic userInfo;
+
+- (NSMutableDictionary *)userInfo {
+    NSMutableDictionary<NSString *, id> *userInfoM = objc_getAssociatedObject(self, UserInfoObjectTag);
+    
+    if (userInfoM == nil) {
+        userInfoM = [NSMutableDictionary dictionary];
+        objc_setAssociatedObject(self, UserInfoObjectTag, userInfoM, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+    
+    return userInfoM;
+}
+
+@end
+
+@interface MethodUnrecognizedGuard ()
+@property (nonatomic, copy) NSString *className;
+@property (nonatomic, assign) SEL unrecognizedSelector;
+@property (nonatomic, strong) NSArray<NSString *> *callStackSymbols;
+@property (nonatomic, strong) NSArray<NSNumber *> *callStackReturnAddresses;
+@end
+
 @implementation MethodUnrecognizedGuard
 
 static id MySetBackgroundColor(id self, SEL _cmd, SEL selector);
 static id (*SetBackgroundColorIMP)(id self, SEL _cmd, SEL selector);
+
+static NSMutableArray *sWhiteList = nil;
 
 static id MySetBackgroundColor(id self, SEL _cmd, SEL selector) {
     // TODO: do custom work
@@ -24,12 +56,26 @@ static id MySetBackgroundColor(id self, SEL _cmd, SEL selector) {
     const char *classNameCString = object_getClassName(self);
     NSString *className = [[NSString alloc] initWithUTF8String:classNameCString];
     
-    NSArray *whiteClassNameList = @[
-                                    @"InterceptDoesNotRecognizeSelectorViewController",
-                                    @"UIView",
-                                    ];
+    if (!sWhiteList) {
+        NSArray *presetWhiteList = @[
+                                     @"SomeClassShouldIgnore",
+                                     ];
+        
+        sWhiteList = [NSMutableArray arrayWithArray:presetWhiteList];
+    }
     
-    if ([whiteClassNameList containsObject:className]) {
+    BOOL shouldIgnored = NO;
+    if ([className hasPrefix:@"_"]) {
+        shouldIgnored = YES;
+        [sWhiteList addObject:className];
+    }
+    else {
+        if ([sWhiteList containsObject:className]) {
+            shouldIgnored = YES;
+        }
+    }
+    
+    if (!shouldIgnored) {
         
         MethodUnrecognizedGuard *handler = [MethodUnrecognizedGuard new];
         handler.className = className;
@@ -85,11 +131,22 @@ static id MySetBackgroundColor(id self, SEL _cmd, SEL selector) {
     
     NSString *title = [NSString stringWithFormat:@"%@ %@", _className, NSStringFromSelector(_unrecognizedSelector)];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:stringM delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:@"复制", nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:stringM delegate:self.class cancelButtonTitle:@"好的" otherButtonTitles:@"忽略", nil];
+    alert.userInfo[@"className"] = (id)_className;
     
     [alert show];
     
     return nil;
+}
+
+#pragma mark - UIAlertViewDelegate
+
++ (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != alertView.cancelButtonIndex) {
+        if (alertView.userInfo[@"className"]) {
+            [sWhiteList addObject:alertView.userInfo[@"className"]];
+        }
+    }
 }
 
 @end

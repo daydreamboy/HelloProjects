@@ -9,10 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface MethodUnrecognizedGuard : NSObject
-@property (nonatomic, copy) NSString *className;
-@property (nonatomic, assign) SEL unrecognizedSelector;
-@property (nonatomic, strong) NSArray<NSString *> *callStackSymbols;
-@property (nonatomic, strong) NSArray<NSNumber *> *callStackReturnAddresses;
 
 + (void)inject;
 

@@ -265,7 +265,7 @@
 				TargetAttributes = {
 					2B6E6B8F1DF91DD10045BD98 = {
 						CreatedOnToolsVersion = 8.1;
-						DevelopmentTeam = 7ZASD48W58;
+						DevelopmentTeam = QVRKK2EEDF;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -490,10 +490,10 @@
 			baseConfigurationReference = 8B9D5D6444325E0389771D70 /* Pods-HelloObjCRuntime.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7ZASD48W58;
+				DEVELOPMENT_TEAM = QVRKK2EEDF;
 				INFOPLIST_FILE = HelloObjCRuntime/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloObjCRuntime.cl;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloObjCRuntime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -503,10 +503,10 @@
 			baseConfigurationReference = D95B2864436DD7CA5BA2048F /* Pods-HelloObjCRuntime.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 7ZASD48W58;
+				DEVELOPMENT_TEAM = QVRKK2EEDF;
 				INFOPLIST_FILE = HelloObjCRuntime/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloObjCRuntime.cl;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloObjCRuntime;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
