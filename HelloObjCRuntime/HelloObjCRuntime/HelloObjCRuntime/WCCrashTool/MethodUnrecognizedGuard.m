@@ -11,6 +11,8 @@
 #import <objc/runtime.h>
 #import <UIKit/UIKit.h>
 
+#pragma mark - Additions
+
 @interface UIAlertView (Addition)
 @property (nonatomic, strong, readonly) NSMutableDictionary *userInfo;
 @end
@@ -34,6 +36,32 @@ static const char * const UserInfoObjectTag = "UserInfoObjectTag";
 
 @end
 
+@interface NSUserDefaults (Addition)
+- (NSSet *)setForKey:(NSString *)defaultName;
+- (void)setSet:(NSSet *)set forKey:(NSString *)defaultName;
+@end
+
+@implementation NSUserDefaults (Addition)
+- (NSSet *)setForKey:(NSString *)defaultName {
+    NSArray *array = [self arrayForKey:defaultName];
+    if (array) {
+        return [NSSet setWithArray:array];
+    }
+    else {
+        return nil;
+    }
+}
+- (void)setSet:(NSSet *)set forKey:(NSString *)defaultName {
+    if (set) {
+        [self setObject:[set allObjects] forKey:defaultName];
+    }
+    else {
+        [self setObject:nil forKey:defaultName];
+    }
+}
+@end
+
+
 @interface MethodUnrecognizedGuard ()
 @property (nonatomic, copy) NSString *className;
 @property (nonatomic, assign) SEL unrecognizedSelector;
@@ -46,7 +74,8 @@ static const char * const UserInfoObjectTag = "UserInfoObjectTag";
 static id MySetBackgroundColor(id self, SEL _cmd, SEL selector);
 static id (*SetBackgroundColorIMP)(id self, SEL _cmd, SEL selector);
 
-static NSMutableArray *sWhiteList = nil;
+static NSMutableSet *sWhiteList = nil;
+static NSString *kWhiteList = @"MethodUnrecognizedGuard_kWhiteList";
 
 static id MySetBackgroundColor(id self, SEL _cmd, SEL selector) {
     // TODO: do custom work
@@ -60,8 +89,13 @@ static id MySetBackgroundColor(id self, SEL _cmd, SEL selector) {
         NSArray *presetWhiteList = @[
                                      @"SomeClassShouldIgnore",
                                      ];
+
+        sWhiteList = [NSMutableSet setWithArray:presetWhiteList];
         
-        sWhiteList = [NSMutableArray arrayWithArray:presetWhiteList];
+        NSSet *storedWhiteList = [[NSUserDefaults standardUserDefaults] setForKey:kWhiteList];
+        if ([storedWhiteList isKindOfClass:[NSSet class]]) {
+            [sWhiteList unionSet:storedWhiteList];
+        }
     }
     
     BOOL shouldIgnored = NO;
@@ -145,6 +179,9 @@ static id MySetBackgroundColor(id self, SEL _cmd, SEL selector) {
     if (buttonIndex != alertView.cancelButtonIndex) {
         if (alertView.userInfo[@"className"]) {
             [sWhiteList addObject:alertView.userInfo[@"className"]];
+            
+            [[NSUserDefaults standardUserDefaults] setSet:sWhiteList forKey:kWhiteList];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }
     }
 }

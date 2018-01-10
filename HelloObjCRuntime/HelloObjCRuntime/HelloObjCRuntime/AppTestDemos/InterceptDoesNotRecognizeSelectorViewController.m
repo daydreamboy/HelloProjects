@@ -8,6 +8,7 @@
 
 #import "InterceptDoesNotRecognizeSelectorViewController.h"
 #import "WCCrashTool.h"
+#import <UnsafeFramework/CrashMaker.h>
 
 @interface InterceptDoesNotRecognizeSelectorViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -32,19 +33,28 @@
     _titles = @[
                 @"使用performSelector",
                 @"[NSClassFromString(@\"UIView\") alloc] initWithXXX:]调用",
+                @"unrecognized selector in framework",
                 ];
 }
 
 #pragma mark - Test Methods
 
 - (void)test_method_0 {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wundeclared-selector"
     id returnVal = [self performSelector:@selector(noneExistedMethod2:arg2:test:) withObject:self];
+#pragma GCC diagnostic pop
     NSLog(@"returnVal: %@", returnVal);
 }
 
 - (void)test_method_1 {
     UIView *obj = [[NSClassFromString(@"UIView") alloc] initWithBounds:CGRectMake(0, 0, 100, 100)];
     NSLog(@"obj: %@", obj);
+}
+
+- (void)test_method_2 {
+    CrashMaker *maker = [CrashMaker new];
+    [maker makeAnUnrecognizedMethodException];
 }
 
 #pragma mark -
