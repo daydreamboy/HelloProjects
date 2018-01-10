@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F1192EB1FF493E400B653F3 /* MyFramework3.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F1192E91FF493E400B653F3 /* MyFramework3.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4F1192EF1FF493E400B653F3 /* MyFramework3.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4F1192E71FF493E300B653F3 /* MyFramework3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4F1192F51FF4944100B653F3 /* SomeTool.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F1192F31FF4944100B653F3 /* SomeTool.h */; };
+		4F1192F61FF4944100B653F3 /* SomeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1192F41FF4944100B653F3 /* SomeTool.m */; };
+		4F1192F91FF494B800B653F3 /* OrphanClassWithoutImpl.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F1192F71FF494B800B653F3 /* OrphanClassWithoutImpl.h */; };
 		4F71EECE1F6ECF5900246E6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F71EECD1F6ECF5900246E6F /* main.m */; };
 		4F71EED11F6ECF5900246E6F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F71EED01F6ECF5900246E6F /* AppDelegate.m */; };
 		4F71EED91F6ECF5900246E6F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F71EED81F6ECF5900246E6F /* Assets.xcassets */; };
@@ -28,6 +33,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4F1192EC1FF493E400B653F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F71EEC11F6ECF5900246E6F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F1192E61FF493E300B653F3;
+			remoteInfo = MyFramework3;
+		};
 		4F71EF051F6ED12C00246E6F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4F71EEC11F6ECF5900246E6F /* Project object */;
@@ -53,12 +65,19 @@
 			files = (
 				4F71EF0E1F6ED2C000246E6F /* MyFramework1.framework in CopyFiles */,
 				4F71EF0F1F6ED2C000246E6F /* MyFramework2.framework in CopyFiles */,
+				4F1192EF1FF493E400B653F3 /* MyFramework3.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4F1192E71FF493E300B653F3 /* MyFramework3.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MyFramework3.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F1192E91FF493E400B653F3 /* MyFramework3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyFramework3.h; sourceTree = "<group>"; };
+		4F1192EA1FF493E400B653F3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F1192F31FF4944100B653F3 /* SomeTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SomeTool.h; sourceTree = "<group>"; };
+		4F1192F41FF4944100B653F3 /* SomeTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SomeTool.m; sourceTree = "<group>"; };
+		4F1192F71FF494B800B653F3 /* OrphanClassWithoutImpl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OrphanClassWithoutImpl.h; sourceTree = "<group>"; };
 		4F71EEC91F6ECF5900246E6F /* HelloLazyLoadFramework-Manual.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "HelloLazyLoadFramework-Manual.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F71EECD1F6ECF5900246E6F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F71EECF1F6ECF5900246E6F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -89,6 +108,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4F1192E31FF493E300B653F3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4F71EEC61F6ECF5900246E6F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -113,12 +139,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F1192E81FF493E400B653F3 /* MyFramework3 */ = {
+			isa = PBXGroup;
+			children = (
+				4F1192E91FF493E400B653F3 /* MyFramework3.h */,
+				4F1192EA1FF493E400B653F3 /* Info.plist */,
+				4F1192F31FF4944100B653F3 /* SomeTool.h */,
+				4F1192F41FF4944100B653F3 /* SomeTool.m */,
+				4F1192F71FF494B800B653F3 /* OrphanClassWithoutImpl.h */,
+			);
+			path = MyFramework3;
+			sourceTree = "<group>";
+		};
 		4F71EEC01F6ECF5900246E6F = {
 			isa = PBXGroup;
 			children = (
 				4F71EECB1F6ECF5900246E6F /* HelloLazyLoadFramework-Manual */,
 				4F71EEE91F6ED03D00246E6F /* MyFramework1 */,
 				4F71EEF61F6ED05700246E6F /* MyFramework2 */,
+				4F1192E81FF493E400B653F3 /* MyFramework3 */,
 				4F71EECA1F6ECF5900246E6F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -129,6 +168,7 @@
 				4F71EEC91F6ECF5900246E6F /* HelloLazyLoadFramework-Manual.app */,
 				4F71EEE81F6ED03C00246E6F /* MyFramework1.framework */,
 				4F71EEF51F6ED05700246E6F /* MyFramework2.framework */,
+				4F1192E71FF493E300B653F3 /* MyFramework3.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -197,6 +237,16 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		4F1192E41FF493E300B653F3 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F1192F91FF494B800B653F3 /* OrphanClassWithoutImpl.h in Headers */,
+				4F1192F51FF4944100B653F3 /* SomeTool.h in Headers */,
+				4F1192EB1FF493E400B653F3 /* MyFramework3.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4F71EEE51F6ED03C00246E6F /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -220,6 +270,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		4F1192E61FF493E300B653F3 /* MyFramework3 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F1192F21FF493E400B653F3 /* Build configuration list for PBXNativeTarget "MyFramework3" */;
+			buildPhases = (
+				4F1192E21FF493E300B653F3 /* Sources */,
+				4F1192E31FF493E300B653F3 /* Frameworks */,
+				4F1192E41FF493E300B653F3 /* Headers */,
+				4F1192E51FF493E300B653F3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MyFramework3;
+			productName = MyFramework3;
+			productReference = 4F1192E71FF493E300B653F3 /* MyFramework3.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		4F71EEC81F6ECF5900246E6F /* HelloLazyLoadFramework-Manual */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4F71EEE01F6ECF5900246E6F /* Build configuration list for PBXNativeTarget "HelloLazyLoadFramework-Manual" */;
@@ -234,6 +302,7 @@
 			dependencies = (
 				4F71EF061F6ED12C00246E6F /* PBXTargetDependency */,
 				4F71EF081F6ED12C00246E6F /* PBXTargetDependency */,
+				4F1192ED1FF493E400B653F3 /* PBXTargetDependency */,
 			);
 			name = "HelloLazyLoadFramework-Manual";
 			productName = "HelloLazyLoadFramework-Manual";
@@ -285,6 +354,11 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = wesley_chen;
 				TargetAttributes = {
+					4F1192E61FF493E300B653F3 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = QVRKK2EEDF;
+						ProvisioningStyle = Automatic;
+					};
 					4F71EEC81F6ECF5900246E6F = {
 						CreatedOnToolsVersion = 8.3.3;
 						DevelopmentTeam = QVRKK2EEDF;
@@ -316,11 +390,19 @@
 				4F71EEC81F6ECF5900246E6F /* HelloLazyLoadFramework-Manual */,
 				4F71EEE71F6ED03C00246E6F /* MyFramework1 */,
 				4F71EEF41F6ED05700246E6F /* MyFramework2 */,
+				4F1192E61FF493E300B653F3 /* MyFramework3 */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4F1192E51FF493E300B653F3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4F71EEC71F6ECF5900246E6F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -347,6 +429,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4F1192E21FF493E300B653F3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F1192F61FF4944100B653F3 /* SomeTool.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4F71EEC51F6ECF5900246E6F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -379,6 +469,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4F1192ED1FF493E400B653F3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F1192E61FF493E300B653F3 /* MyFramework3 */;
+			targetProxy = 4F1192EC1FF493E400B653F3 /* PBXContainerItemProxy */;
+		};
 		4F71EF061F6ED12C00246E6F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4F71EEE71F6ED03C00246E6F /* MyFramework1 */;
@@ -403,6 +498,82 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4F1192F01FF493E400B653F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QVRKK2EEDF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = MyFramework3/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-undefined",
+					dynamic_lookup,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.MyFramework3;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4F1192F11FF493E400B653F3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QVRKK2EEDF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_BITCODE = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = MyFramework3/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-undefined",
+					dynamic_lookup,
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.MyFramework3;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		4F71EEDE1F6ECF5900246E6F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -497,6 +668,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = QVRKK2EEDF;
 				INFOPLIST_FILE = "HelloLazyLoadFramework-Manual/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -510,6 +682,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEVELOPMENT_TEAM = QVRKK2EEDF;
 				INFOPLIST_FILE = "HelloLazyLoadFramework-Manual/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -606,6 +779,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4F1192F21FF493E400B653F3 /* Build configuration list for PBXNativeTarget "MyFramework3" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F1192F01FF493E400B653F3 /* Debug */,
+				4F1192F11FF493E400B653F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4F71EEC41F6ECF5900246E6F /* Build configuration list for PBXProject "HelloLazyLoadFramework-Manual" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
