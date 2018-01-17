@@ -8,7 +8,7 @@
 
 #import "GroupedTableViewViewController.h"
 
-@interface GroupedTableViewViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface GroupedTableViewViewController () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray<NSArray<NSString *> *> *listData;
 @end
@@ -21,6 +21,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
+    [self.tableView reloadData];
 }
 
 - (void)setup {
@@ -54,6 +55,12 @@
     self.listData = arr;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    // Note: iOS 10-, contentInset is {64, 0, 0, 0}
+    //       iOS 11+, contentInset is {0, 0, 0, 0}
+    NSLog(@"grouped tableView's contentInset: %@", NSStringFromUIEdgeInsets(self.tableView.contentInset));
+}
+
 #pragma mark - Getters
 
 - (UITableView *)tableView {
@@ -69,8 +76,19 @@
     return _tableView;
 }
 
-
 #pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 5;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"select");
+}
 
 #pragma mark - UITableViewDataSource
 

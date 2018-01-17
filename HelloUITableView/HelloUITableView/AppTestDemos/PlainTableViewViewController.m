@@ -54,6 +54,12 @@
     self.listData = arr;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    // Note: iOS 10-, contentInset is {64, 0, 0, 0}
+    //       iOS 11+, contentInset is {0, 0, 0, 0}
+    NSLog(@"plain tableView's contentInset: %@", NSStringFromUIEdgeInsets(self.tableView.contentInset));
+}
+
 #pragma mark - Getters
 
 - (UITableView *)tableView {
