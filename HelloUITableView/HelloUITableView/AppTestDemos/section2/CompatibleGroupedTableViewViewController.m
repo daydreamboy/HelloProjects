@@ -1,26 +1,29 @@
 //
-//  PlainTableViewViewController.m
+//  CompatibleGroupedTableViewViewController.m
 //  HelloUITableView
 //
-//  Created by wesley_chen on 26/12/2017.
-//  Copyright © 2017 wesley_chen. All rights reserved.
+//  Created by wesley_chen on 17/01/2018.
+//  Copyright © 2018 wesley_chen. All rights reserved.
 //
 
-#import "PlainTableViewViewController.h"
+#import "CompatibleGroupedTableViewViewController.h"
 
-@interface PlainTableViewViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface CompatibleGroupedTableViewViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray<NSArray<NSString *> *> *listData;
 @end
 
-@implementation PlainTableViewViewController
+@implementation CompatibleGroupedTableViewViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setup];
     
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
+    [self.tableView reloadData];
 }
 
 - (void)setup {
@@ -57,7 +60,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     // Note: iOS 10-, contentInset is {64, 0, 0, 0}
     //       iOS 11+, contentInset is {0, 0, 0, 0}
-    NSLog(@"plain tableView's contentInset: %@", NSStringFromUIEdgeInsets(self.tableView.contentInset));
+    NSLog(@"grouped tableView's contentInset: %@", NSStringFromUIEdgeInsets(self.tableView.contentInset));
 }
 
 #pragma mark - Getters
@@ -65,7 +68,7 @@
 - (UITableView *)tableView {
     if (!_tableView) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, screenSize.width, screenSize.height - 64) style:UITableViewStylePlain];
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, screenSize.width, screenSize.height - 64) style:UITableViewStyleGrouped];
         tableView.delegate = self;
         tableView.dataSource = self;
         
@@ -75,8 +78,23 @@
     return _tableView;
 }
 
-
 #pragma mark - UITableViewDelegate
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    return [UIView new];
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    return [UIView new];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 30;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    return 0.01;
+}
 
 #pragma mark - UITableViewDataSource
 

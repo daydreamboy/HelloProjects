@@ -8,7 +8,7 @@
 
 #import "GroupedTableViewViewController.h"
 
-@interface GroupedTableViewViewController () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
+@interface GroupedTableViewViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray<NSArray<NSString *> *> *listData;
 @end
@@ -79,15 +79,11 @@
 #pragma mark - UITableViewDelegate
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 5;
+    return 30;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 0.01;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"select");
 }
 
 #pragma mark - UITableViewDataSource

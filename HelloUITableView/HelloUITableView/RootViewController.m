@@ -10,12 +10,22 @@
 
 #import "FadeInCellRowByRowViewController.h"
 #import "ScrollTopBottomCellsToFadeInViewController.h"
-#import "GroupedTableViewViewController.h"
 #import "PlainTableViewViewController.h"
+#import "GroupedTableViewViewController.h"
+#import "CompatiblePlainTableViewViewController.h"
+#import "CompatibleGroupedTableViewViewController.h"
+
+#import "MoveMeViewController.h"
+#import "DeleteMeViewController.h"
+#import "SelectMeViewController.h"
+#import "InsertMeViewController.h"
+
+#define kTitle @"Title"
+#define kClass @"Class"
 
 @interface RootViewController ()
-@property (nonatomic, strong) NSArray *titles;
-@property (nonatomic, strong) NSArray *classes;
+@property (nonatomic, strong) NSArray *sectionTitles;
+@property (nonatomic, strong) NSArray<NSArray<NSDictionary *> *> *classes;
 @end
 
 @implementation RootViewController
@@ -31,62 +41,92 @@
 
 - (void)prepareForInit {
     self.title = @"AppTest";
-
-    // MARK: Configure titles and classes for table view
-    _titles = @[
-        @"Fade in cell row by row",
-        @"Scroll bottom cell to fade in",
-        @"Grouped UITableView",
-        @"Plain UITableView",
-        @"call a test method",
+    
+    // MARK: Configure sectionTitles and classes for table view
+    NSArray<NSDictionary *> *section1 = @[
+          @{ kTitle: @"Plain UITableView", kClass: [PlainTableViewViewController class] },
+          @{ kTitle: @"Grouped UITableView", kClass: [GroupedTableViewViewController class] },
     ];
+
+    NSArray<NSDictionary *> *section2 = @[
+          @{ kTitle: @"Compatible Plain UITableView", kClass: [CompatiblePlainTableViewViewController class] },
+          @{ kTitle: @"Compatible Grouped UITableView", kClass: [CompatibleGroupedTableViewViewController class] },
+    ];
+    
+    NSArray<NSDictionary *> *section3 = @[
+          @{ kTitle: @"Move Me", kClass: [MoveMeViewController class] },
+          @{ kTitle: @"Delete Me", kClass: [DeleteMeViewController class] },
+          @{ kTitle: @"Select Me", kClass: [SelectMeViewController class] },
+          @{ kTitle: @"Insert Me", kClass: [InsertMeViewController class] },
+    ];
+    
+    NSArray<NSDictionary *> *section4 = @[
+          @{ kTitle: @"Fade in cell row by row", kClass: [FadeInCellRowByRowViewController class] },
+          @{ kTitle: @"Scroll cells out with fade in", kClass: [ScrollTopBottomCellsToFadeInViewController class] },
+    ];
+    
+    NSArray<NSDictionary *> *section5 = @[
+          // TODO
+    ];
+    
+    _sectionTitles = @[
+        @"System Default TableViews",
+        @"System Default TableViews (both iOS 10- and iOS 11+)",
+        @"System Editable TableViews",
+        @"UITableView customizations",
+        @"WCTableView",
+    ];
+    
     _classes = @[
-        @"FadeInCellRowByRowViewController",
-        @"ScrollTopBottomCellsToFadeInViewController",
-        @"GroupedTableViewViewController",
-        @"PlainTableViewViewController",
-        @"testMethod",
+         section1,
+         section2,
+         section3,
+         section4,
+         section5,
     ];
 }
 
 #pragma mark -
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self pushViewController:_classes[indexPath.row]];
+    
+    NSDictionary *dict = _classes[indexPath.section][indexPath.row];
+    [self pushViewController:dict];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return _sectionTitles[section];
 }
 
 #pragma mark -
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [_classes count];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_titles count];
+    return [_classes[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *sCellIdentifier = @"RootViewController_sCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
-
+    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-
-    cell.textLabel.text = _titles[indexPath.row];
-
+    
+    NSString *cellTitle = [_classes[indexPath.section][indexPath.row] objectForKey:kTitle];
+    cell.textLabel.text = cellTitle;
+    
     return cell;
 }
 
-- (void)pushViewController:(NSString *)viewControllerClass {
-    NSAssert([viewControllerClass isKindOfClass:[NSString class]], @"%@ is not NSString", viewControllerClass);
+- (void)pushViewController:(NSDictionary *)dict {
+    id viewControllerClass = dict[kClass];
     
-    Class class = NSClassFromString(viewControllerClass);
-    if (class && [class isSubclassOfClass:[UIViewController class]]) {
-        
-        UIViewController *vc = [[class alloc] init];
-        vc.title = _titles[[_classes indexOfObject:viewControllerClass]];
-        
-        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    else {
+    id class = viewControllerClass;
+    if ([class isKindOfClass:[NSString class]]) {
         SEL selector = NSSelectorFromString(viewControllerClass);
         if ([self respondsToSelector:selector]) {
 #pragma GCC diagnostic push
@@ -97,6 +137,13 @@
         else {
             NSAssert(NO, @"can't handle selector `%@`", viewControllerClass);
         }
+    }
+    else if (class && [class isSubclassOfClass:[UIViewController class]]) {
+        UIViewController *vc = [[class alloc] init];
+        vc.title = dict[kTitle];
+        
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
