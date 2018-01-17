@@ -118,15 +118,15 @@
 			children = (
 				2B63BF0E200FA11200A5D8D2 /* dog.png */,
 				2B63BF0F200FA11200A5D8D2 /* InsertMeViewController.h */,
-				2B63BF10200FA11200A5D8D2 /* SelectMeViewController.h */,
-				2B63BF11200FA11200A5D8D2 /* DeleteMeViewController.h */,
-				2B63BF12200FA11200A5D8D2 /* MoveMeViewController.m */,
-				2B63BF13200FA11200A5D8D2 /* bird.png */,
-				2B63BF14200FA11200A5D8D2 /* computers.plist */,
 				2B63BF15200FA11200A5D8D2 /* InsertMeViewController.m */,
-				2B63BF16200FA11200A5D8D2 /* DeleteMeViewController.m */,
-				2B63BF17200FA11200A5D8D2 /* SelectMeViewController.m */,
 				2B63BF18200FA11200A5D8D2 /* MoveMeViewController.h */,
+				2B63BF12200FA11200A5D8D2 /* MoveMeViewController.m */,
+				2B63BF10200FA11200A5D8D2 /* SelectMeViewController.h */,
+				2B63BF17200FA11200A5D8D2 /* SelectMeViewController.m */,
+				2B63BF11200FA11200A5D8D2 /* DeleteMeViewController.h */,
+				2B63BF16200FA11200A5D8D2 /* DeleteMeViewController.m */,
+				2B63BF14200FA11200A5D8D2 /* computers.plist */,
+				2B63BF13200FA11200A5D8D2 /* bird.png */,
 				2B63BF19200FA11200A5D8D2 /* onebit.png */,
 				2B63BF1A200FA11200A5D8D2 /* babelfish.png */,
 			);
@@ -136,10 +136,10 @@
 		2B63BF24200FA22600A5D8D2 /* section2 */ = {
 			isa = PBXGroup;
 			children = (
-				2B63BF25200FA22600A5D8D2 /* CompatiblePlainTableViewViewController.m */,
 				2B63BF26200FA22600A5D8D2 /* CompatibleGroupedTableViewViewController.h */,
-				2B63BF27200FA22600A5D8D2 /* CompatiblePlainTableViewViewController.h */,
 				2B63BF28200FA22600A5D8D2 /* CompatibleGroupedTableViewViewController.m */,
+				2B63BF25200FA22600A5D8D2 /* CompatiblePlainTableViewViewController.m */,
+				2B63BF27200FA22600A5D8D2 /* CompatiblePlainTableViewViewController.h */,
 			);
 			path = section2;
 			sourceTree = "<group>";
@@ -147,10 +147,10 @@
 		2B63BF29200FA22600A5D8D2 /* section4 */ = {
 			isa = PBXGroup;
 			children = (
-				2B63BF2A200FA22600A5D8D2 /* FadeInCellRowByRowViewController.h */,
 				2B63BF2B200FA22600A5D8D2 /* ScrollTopBottomCellsToFadeInViewController.m */,
-				2B63BF2C200FA22600A5D8D2 /* FadeInCellRowByRowViewController.m */,
 				2B63BF2D200FA22600A5D8D2 /* ScrollTopBottomCellsToFadeInViewController.h */,
+				2B63BF2A200FA22600A5D8D2 /* FadeInCellRowByRowViewController.h */,
+				2B63BF2C200FA22600A5D8D2 /* FadeInCellRowByRowViewController.m */,
 			);
 			path = section4;
 			sourceTree = "<group>";
@@ -165,10 +165,10 @@
 		2B63BF2F200FA22600A5D8D2 /* section1 */ = {
 			isa = PBXGroup;
 			children = (
-				2B63BF30200FA22600A5D8D2 /* GroupedTableViewViewController.m */,
-				2B63BF31200FA22600A5D8D2 /* PlainTableViewViewController.m */,
 				2B63BF32200FA22600A5D8D2 /* GroupedTableViewViewController.h */,
+				2B63BF30200FA22600A5D8D2 /* GroupedTableViewViewController.m */,
 				2B63BF33200FA22600A5D8D2 /* PlainTableViewViewController.h */,
+				2B63BF31200FA22600A5D8D2 /* PlainTableViewViewController.m */,
 			);
 			path = section1;
 			sourceTree = "<group>";

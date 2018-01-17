@@ -2,8 +2,8 @@
 //  MoveMeViewController.m
 //  HelloEditableTableView
 //
-//  Created by chenliang-xy on 15/8/3.
-//  Copyright (c) 2015年 chenliang-xy. All rights reserved.
+//  Created by wesley chen on 15/8/3.
+//  Copyright (c) 2015年 wesley chen. All rights reserved.
 //
 
 #import "MoveMeViewController.h"

@@ -2,7 +2,7 @@
 //  WCTableViewController.h
 //  Finance360
 //
-//  Created by chenliang-xy on 15/7/21.
+//  Created by wesley chen on 15/7/21.
 //  Copyright (c) 2015年 qihoo. All rights reserved.
 //
 
