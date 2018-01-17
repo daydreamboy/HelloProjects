@@ -8,12 +8,21 @@
 
 #import "RootViewController.h"
 
-#import "ViewWithTwoCornersViewController.h"
-#import "ObserveViewChangeEventViewController.h"
+#import "UseCAShapeLayerToShowViewWithTwoCornersViewController.h"
+#import "ObserveViewGeometryChangeEventViewController.h"
+#import "TouchThroughPartRegionOfViewViewController.h"
+#import "MappingRectFromViewToViewViewController.h"
+#import "DrawGradientViewViewController.h"
+#import "DrawRadialGradientViewViewController.h"
+#import "UseCAGradientLayerWithTwoColorsViewController.h"
+#import "UseCAGradientLayerWithMultipleColorsViewController.h"
+
+#define kTitle @"Title"
+#define kClass @"Class"
 
 @interface RootViewController ()
-@property (nonatomic, strong) NSArray *titles;
-@property (nonatomic, strong) NSArray *classes;
+@property (nonatomic, strong) NSArray *sectionTitles;
+@property (nonatomic, strong) NSArray<NSArray<NSDictionary *> *> *classes;
 @end
 
 @implementation RootViewController
@@ -30,59 +39,73 @@
 - (void)prepareForInit {
     self.title = @"AppTest";
 
-    // MARK: Configure titles and classes for table view
-    _titles = @[
-        @"UIView with two corners",
-        @"observer UIView change event",
-        @"touch through part of view",
-        @"call a test method",
+    // MARK: Configure sectionTitles and classes for table view
+    NSArray<NSDictionary *> *section1 = @[
+          @{ kTitle: @"UIView with two corners", kClass: [UseCAShapeLayerToShowViewWithTwoCornersViewController class] },
+          @{ kTitle: @"observer UIView change event", kClass: [ObserveViewGeometryChangeEventViewController class] },
+          @{ kTitle: @"touch through part of view", kClass: [TouchThroughPartRegionOfViewViewController class] },
+          @{ kTitle: @"mapping rect from view to view", kClass: [MappingRectFromViewToViewViewController class] },
     ];
+
+    NSArray<NSDictionary *> *section2 = @[
+          @{ kTitle: @"Draw gradient view", kClass: [DrawGradientViewViewController class] },
+          @{ kTitle: @"Draw radial gradient view", kClass: [DrawRadialGradientViewViewController class] },
+          @{ kTitle: @"gradient with two colors (Use CAGradientLayer)", kClass: [UseCAGradientLayerWithTwoColorsViewController class] },
+          @{ kTitle: @"Use CAGradientLayer", kClass: [UseCAGradientLayerWithMultipleColorsViewController class] },
+    ];
+    
+    _sectionTitles = @[
+        @"UIView",
+        @"CALayer",
+    ];
+    
     _classes = @[
-        @"ViewWithTwoCornersViewController",
-        @"ObserveViewChangeEventViewController",
-        @"TouchThroughPartRegionViewController",
-        @"testMethod",
+         section1,
+         section2,
     ];
 }
 
 #pragma mark -
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self pushViewController:_classes[indexPath.row]];
+    
+    NSDictionary *dict = _classes[indexPath.section][indexPath.row];
+    [self pushViewController:dict];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return _sectionTitles[section];
 }
 
 #pragma mark -
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [_classes count];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_titles count];
+    return [_classes[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *sCellIdentifier = @"RootViewController_sCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
-
+    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-
-    cell.textLabel.text = _titles[indexPath.row];
-
+    
+    NSString *cellTitle = [_classes[indexPath.section][indexPath.row] objectForKey:kTitle];
+    cell.textLabel.text = cellTitle;
+    
     return cell;
 }
 
-- (void)pushViewController:(NSString *)viewControllerClass {
-    NSAssert([viewControllerClass isKindOfClass:[NSString class]], @"%@ is not NSString", viewControllerClass);
+- (void)pushViewController:(NSDictionary *)dict {
+    id viewControllerClass = dict[kClass];
     
-    Class class = NSClassFromString(viewControllerClass);
-    if (class && [class isSubclassOfClass:[UIViewController class]]) {
-        
-        UIViewController *vc = [[class alloc] init];
-        vc.title = _titles[[_classes indexOfObject:viewControllerClass]];
-        
-        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    else {
+    id class = viewControllerClass;
+    if ([class isKindOfClass:[NSString class]]) {
         SEL selector = NSSelectorFromString(viewControllerClass);
         if ([self respondsToSelector:selector]) {
 #pragma GCC diagnostic push
@@ -93,6 +116,13 @@
         else {
             NSAssert(NO, @"can't handle selector `%@`", viewControllerClass);
         }
+    }
+    else if (class && [class isSubclassOfClass:[UIViewController class]]) {
+        UIViewController *vc = [[class alloc] init];
+        vc.title = dict[kTitle];
+        
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  ObserveViewChangeEventViewController.h
+//  ObserveViewGeometryChangeEventViewController.h
 //  HelloUIView
 //
 //  Created by wesley_chen on 13/12/2017.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ObserveViewChangeEventViewController : UIViewController
+@interface ObserveViewGeometryChangeEventViewController : UIViewController
 
 @end

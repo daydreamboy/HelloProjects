@@ -65,6 +65,16 @@ UIView提供`- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event;`方�
 
 示例见，TouchThroughPartRegionViewController。黄色区域（overlay）在红色框按钮前面，蓝色框按钮在overlay中。overlay需要处理落在蓝色框的touch点让蓝色框按钮响应，而落在红色框的touch点让红色框按钮响应。
 
+### 5. 关于UIView的-convertRect:toView:和-convertRect:fromView:方法
 
+基本转换关系，如下
 
+```
+[sourceView convertRect:<someRect> toView:targetView];
+[targetView convertRect:<someRect> fromView:sourceView];
+```
+
+以[sourceView convertRect:<someRect> toView:targetView]为例
+
+将someRect视为在sourceView中的坐标，然后将someRect映射到在targetView中的坐标。
 

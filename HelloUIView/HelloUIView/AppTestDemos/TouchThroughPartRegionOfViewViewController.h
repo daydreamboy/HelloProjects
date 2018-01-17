@@ -1,5 +1,5 @@
 //
-//  TouchThroughPartRegionViewController.h
+//  TouchThroughPartRegionOfViewViewController.h
 //  HelloUIView
 //
 //  Created by wesley_chen on 05/01/2018.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TouchThroughPartRegionViewController : UIViewController
+@interface TouchThroughPartRegionOfViewViewController : UIViewController
 
 @end

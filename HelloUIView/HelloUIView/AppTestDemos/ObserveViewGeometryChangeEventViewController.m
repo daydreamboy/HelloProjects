@@ -1,20 +1,20 @@
 //
-//  ObserveViewChangeEventViewController.m
+//  ObserveViewGeometryChangeEventViewController.m
 //  HelloUIView
 //
 //  Created by wesley_chen on 13/12/2017.
 //  Copyright © 2017 wesley_chen. All rights reserved.
 //
 
-#import "ObserveViewChangeEventViewController.h"
+#import "ObserveViewGeometryChangeEventViewController.h"
 #import "WCViewTool.h"
 
-@interface ObserveViewChangeEventViewController ()
+@interface ObserveViewGeometryChangeEventViewController ()
 @property (nonatomic, assign) BOOL stop;
 @property (nonatomic, strong) UIView *observedView;
 @end
 
-@implementation ObserveViewChangeEventViewController
+@implementation ObserveViewGeometryChangeEventViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

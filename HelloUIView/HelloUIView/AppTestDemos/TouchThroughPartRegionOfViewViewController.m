@@ -1,12 +1,12 @@
 //
-//  TouchThroughPartRegionViewController.m
+//  TouchThroughPartRegionOfViewViewController.m
 //  HelloUIView
 //
 //  Created by wesley_chen on 05/01/2018.
 //  Copyright © 2018 wesley_chen. All rights reserved.
 //
 
-#import "TouchThroughPartRegionViewController.h"
+#import "TouchThroughPartRegionOfViewViewController.h"
 #import "OverlayView.h"
 
 #define ALERT_TIP(title, msg, cancel) \
@@ -26,13 +26,13 @@ do { \
     } \
 } while (0)
 
-@interface TouchThroughPartRegionViewController ()
+@interface TouchThroughPartRegionOfViewViewController ()
 @property (nonatomic, strong) UIButton *buttonUnderOverlay;
 @property (nonatomic, strong) UIButton *buttonInOverlay;
 @property (nonatomic, strong) OverlayView *overlay;
 @end
 
-@implementation TouchThroughPartRegionViewController
+@implementation TouchThroughPartRegionOfViewViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

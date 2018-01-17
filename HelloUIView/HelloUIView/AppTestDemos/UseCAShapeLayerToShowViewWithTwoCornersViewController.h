@@ -1,5 +1,5 @@
 //
-//  ViewWithTwoCornersViewController.h
+//  UseCAShapeLayerToShowViewWithTwoCornersViewController.h
 //  HelloUIView
 //
 //  Created by wesley_chen on 28/10/2017.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewWithTwoCornersViewController : UIViewController
+@interface UseCAShapeLayerToShowViewWithTwoCornersViewController : UIViewController
 
 @end

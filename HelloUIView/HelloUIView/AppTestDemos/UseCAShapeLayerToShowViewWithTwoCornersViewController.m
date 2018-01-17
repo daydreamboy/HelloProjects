@@ -1,12 +1,12 @@
 //
-//  ViewWithTwoCornersViewController.m
+//  UseCAShapeLayerToShowViewWithTwoCornersViewController.m
 //  HelloUIView
 //
 //  Created by wesley_chen on 28/10/2017.
 //  Copyright © 2017 wesley_chen. All rights reserved.
 //
 
-#import "ViewWithTwoCornersViewController.h"
+#import "UseCAShapeLayerToShowViewWithTwoCornersViewController.h"
 
 @implementation UIImage (UIColor)
 + (UIImage *)imageWithColor:(UIColor *)color {
@@ -21,7 +21,7 @@
 }
 @end
 
-@interface ViewWithTwoCornersViewController ()
+@interface UseCAShapeLayerToShowViewWithTwoCornersViewController ()
 @property (nonatomic, strong) UIView *view1;
 @property (nonatomic, strong) UIView *view2;
 @property (nonatomic, strong) UIView *view3;
@@ -29,7 +29,7 @@
 @property (nonatomic, strong) UIButton *button;
 @end
 
-@implementation ViewWithTwoCornersViewController
+@implementation UseCAShapeLayerToShowViewWithTwoCornersViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
