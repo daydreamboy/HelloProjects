@@ -31,6 +31,8 @@
 		4F9489DB2010C66C0030BC4A /* PlainTableViewWithFullSeparatorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9489DA2010C66C0030BC4A /* PlainTableViewWithFullSeparatorsViewController.m */; };
 		4F948A1B2010DC6C0030BC4A /* TableViewHeaderWithExtendedViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F948A1A2010DC6C0030BC4A /* TableViewHeaderWithExtendedViewViewController.m */; };
 		4F948A1E2011A0AE0030BC4A /* PlainTableViewWithNonFloatSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F948A1D2011A0AE0030BC4A /* PlainTableViewWithNonFloatSectionViewController.m */; };
+		4F948A222011C5CC0030BC4A /* WCExpandableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F948A212011C5CC0030BC4A /* WCExpandableHeaderView.m */; };
+		4F948A252011C8590030BC4A /* PlainTableViewWithExpandableSectionHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F948A242011C8590030BC4A /* PlainTableViewWithExpandableSectionHeaderViewController.m */; };
 		4FAAA5931FA4804600A80328 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAA5921FA4804600A80328 /* AppDelegate.m */; };
 		4FAAA59B1FA4804600A80328 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FAAA59A1FA4804600A80328 /* Assets.xcassets */; };
 		4FAAA59E1FA4804600A80328 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FAAA59C1FA4804600A80328 /* LaunchScreen.storyboard */; };
@@ -84,6 +86,10 @@
 		4F948A1A2010DC6C0030BC4A /* TableViewHeaderWithExtendedViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewHeaderWithExtendedViewViewController.m; sourceTree = "<group>"; };
 		4F948A1C2011A0AE0030BC4A /* PlainTableViewWithNonFloatSectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlainTableViewWithNonFloatSectionViewController.h; sourceTree = "<group>"; };
 		4F948A1D2011A0AE0030BC4A /* PlainTableViewWithNonFloatSectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlainTableViewWithNonFloatSectionViewController.m; sourceTree = "<group>"; };
+		4F948A202011C5CC0030BC4A /* WCExpandableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCExpandableHeaderView.h; sourceTree = "<group>"; };
+		4F948A212011C5CC0030BC4A /* WCExpandableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCExpandableHeaderView.m; sourceTree = "<group>"; };
+		4F948A232011C8590030BC4A /* PlainTableViewWithExpandableSectionHeaderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlainTableViewWithExpandableSectionHeaderViewController.h; sourceTree = "<group>"; };
+		4F948A242011C8590030BC4A /* PlainTableViewWithExpandableSectionHeaderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlainTableViewWithExpandableSectionHeaderViewController.m; sourceTree = "<group>"; };
 		4FAAA58E1FA4804600A80328 /* HelloUITableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUITableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FAAA5911FA4804600A80328 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FAAA5921FA4804600A80328 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -171,6 +177,8 @@
 				4F948A1A2010DC6C0030BC4A /* TableViewHeaderWithExtendedViewViewController.m */,
 				4F948A1C2011A0AE0030BC4A /* PlainTableViewWithNonFloatSectionViewController.h */,
 				4F948A1D2011A0AE0030BC4A /* PlainTableViewWithNonFloatSectionViewController.m */,
+				4F948A232011C8590030BC4A /* PlainTableViewWithExpandableSectionHeaderViewController.h */,
+				4F948A242011C8590030BC4A /* PlainTableViewWithExpandableSectionHeaderViewController.m */,
 			);
 			path = section4;
 			sourceTree = "<group>";
@@ -193,6 +201,15 @@
 			path = section1;
 			sourceTree = "<group>";
 		};
+		4F948A1F2011C5CC0030BC4A /* WCExpandableHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				4F948A202011C5CC0030BC4A /* WCExpandableHeaderView.h */,
+				4F948A212011C5CC0030BC4A /* WCExpandableHeaderView.m */,
+			);
+			path = WCExpandableHeaderView;
+			sourceTree = "<group>";
+		};
 		4FAAA5851FA4804600A80328 = {
 			isa = PBXGroup;
 			children = (
@@ -212,6 +229,7 @@
 		4FAAA5901FA4804600A80328 /* HelloUITableView */ = {
 			isa = PBXGroup;
 			children = (
+				4F948A1F2011C5CC0030BC4A /* WCExpandableHeaderView */,
 				2B63BEFD200F9DBC00A5D8D2 /* WCTableView */,
 				4FAAA5A71FA4806600A80328 /* AppTestDemos */,
 				4FAAA5911FA4804600A80328 /* AppDelegate.h */,
@@ -336,10 +354,12 @@
 				4FAAA5A11FA4804600A80328 /* main.m in Sources */,
 				2B63BF37200FA22600A5D8D2 /* FadeInCellRowByRowViewController.m in Sources */,
 				4F9489CA20104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.m in Sources */,
+				4F948A222011C5CC0030BC4A /* WCExpandableHeaderView.m in Sources */,
 				2B63BF1F200FA11200A5D8D2 /* InsertMeViewController.m in Sources */,
 				2B63BF34200FA22600A5D8D2 /* CompatiblePlainTableViewViewController.m in Sources */,
 				2B63BF09200F9DBC00A5D8D2 /* WCTableViewController.m in Sources */,
 				2B63BF1C200FA11200A5D8D2 /* MoveMeViewController.m in Sources */,
+				4F948A252011C8590030BC4A /* PlainTableViewWithExpandableSectionHeaderViewController.m in Sources */,
 				2B63BF20200FA11200A5D8D2 /* DeleteMeViewController.m in Sources */,
 				4F948A1E2011A0AE0030BC4A /* PlainTableViewWithNonFloatSectionViewController.m in Sources */,
 				2B63BF0C200F9DBC00A5D8D2 /* UITableViewCell+Addition.m in Sources */,

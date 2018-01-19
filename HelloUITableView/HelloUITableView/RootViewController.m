@@ -19,6 +19,7 @@
 #import "PlainTableViewWithFullSeparatorsViewController.h"
 #import "TableViewHeaderWithExtendedViewViewController.h"
 #import "PlainTableViewWithNonFloatSectionViewController.h"
+#import "PlainTableViewWithExpandableSectionHeaderViewController.h"
 
 #import "MoveMeViewController.h"
 #import "DeleteMeViewController.h"
@@ -72,6 +73,7 @@
           @{ kTitle: @"Compatible full separators for plain table view", kClass: [PlainTableViewWithFullSeparatorsViewController class] },
           @{ kTitle: @"Table header view with extended view", kClass: [TableViewHeaderWithExtendedViewViewController class] },
           @{ kTitle: @"Plain Table with non-float section view", kClass: [PlainTableViewWithNonFloatSectionViewController class] },
+          @{ kTitle: @"Plain Table with expandable section header", kClass: [PlainTableViewWithExpandableSectionHeaderViewController class] },
     ];
     
     NSArray<NSDictionary *> *section5 = @[
