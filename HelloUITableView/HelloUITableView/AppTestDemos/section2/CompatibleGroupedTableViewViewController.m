@@ -93,7 +93,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 0.01;
+    return CGFLOAT_MIN;
 }
 
 #pragma mark - UITableViewDataSource

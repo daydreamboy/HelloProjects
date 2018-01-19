@@ -15,6 +15,11 @@
 #import "CompatiblePlainTableViewViewController.h"
 #import "CompatibleGroupedTableViewViewController.h"
 
+#import "PlainTableViewRemoveRedundantSeparatorsViewController.h"
+#import "PlainTableViewWithFullSeparatorsViewController.h"
+#import "TableViewHeaderWithExtendedViewViewController.h"
+#import "PlainTableViewWithNonFloatSectionViewController.h"
+
 #import "MoveMeViewController.h"
 #import "DeleteMeViewController.h"
 #import "SelectMeViewController.h"
@@ -63,6 +68,10 @@
     NSArray<NSDictionary *> *section4 = @[
           @{ kTitle: @"Fade in cell row by row", kClass: [FadeInCellRowByRowViewController class] },
           @{ kTitle: @"Scroll cells out with fade in", kClass: [ScrollTopBottomCellsToFadeInViewController class] },
+          @{ kTitle: @"Remove redundant separators for plain table view", kClass: [PlainTableViewRemoveRedundantSeparatorsViewController class] },
+          @{ kTitle: @"Compatible full separators for plain table view", kClass: [PlainTableViewWithFullSeparatorsViewController class] },
+          @{ kTitle: @"Table header view with extended view", kClass: [TableViewHeaderWithExtendedViewViewController class] },
+          @{ kTitle: @"Plain Table with non-float section view", kClass: [PlainTableViewWithNonFloatSectionViewController class] },
     ];
     
     NSArray<NSDictionary *> *section5 = @[

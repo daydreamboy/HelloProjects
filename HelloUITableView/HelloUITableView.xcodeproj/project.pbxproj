@@ -27,6 +27,10 @@
 		2B63BF37200FA22600A5D8D2 /* FadeInCellRowByRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63BF2C200FA22600A5D8D2 /* FadeInCellRowByRowViewController.m */; };
 		2B63BF38200FA22600A5D8D2 /* GroupedTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63BF30200FA22600A5D8D2 /* GroupedTableViewViewController.m */; };
 		2B63BF39200FA22600A5D8D2 /* PlainTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63BF31200FA22600A5D8D2 /* PlainTableViewViewController.m */; };
+		4F9489CA20104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9489C920104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.m */; };
+		4F9489DB2010C66C0030BC4A /* PlainTableViewWithFullSeparatorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9489DA2010C66C0030BC4A /* PlainTableViewWithFullSeparatorsViewController.m */; };
+		4F948A1B2010DC6C0030BC4A /* TableViewHeaderWithExtendedViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F948A1A2010DC6C0030BC4A /* TableViewHeaderWithExtendedViewViewController.m */; };
+		4F948A1E2011A0AE0030BC4A /* PlainTableViewWithNonFloatSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F948A1D2011A0AE0030BC4A /* PlainTableViewWithNonFloatSectionViewController.m */; };
 		4FAAA5931FA4804600A80328 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAA5921FA4804600A80328 /* AppDelegate.m */; };
 		4FAAA59B1FA4804600A80328 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FAAA59A1FA4804600A80328 /* Assets.xcassets */; };
 		4FAAA59E1FA4804600A80328 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FAAA59C1FA4804600A80328 /* LaunchScreen.storyboard */; };
@@ -72,6 +76,14 @@
 		2B63BF31200FA22600A5D8D2 /* PlainTableViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainTableViewViewController.m; sourceTree = "<group>"; };
 		2B63BF32200FA22600A5D8D2 /* GroupedTableViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupedTableViewViewController.h; sourceTree = "<group>"; };
 		2B63BF33200FA22600A5D8D2 /* PlainTableViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainTableViewViewController.h; sourceTree = "<group>"; };
+		4F9489C820104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlainTableViewRemoveRedundantSeparatorsViewController.h; sourceTree = "<group>"; };
+		4F9489C920104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlainTableViewRemoveRedundantSeparatorsViewController.m; sourceTree = "<group>"; };
+		4F9489D92010C66C0030BC4A /* PlainTableViewWithFullSeparatorsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlainTableViewWithFullSeparatorsViewController.h; sourceTree = "<group>"; };
+		4F9489DA2010C66C0030BC4A /* PlainTableViewWithFullSeparatorsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlainTableViewWithFullSeparatorsViewController.m; sourceTree = "<group>"; };
+		4F948A192010DC6C0030BC4A /* TableViewHeaderWithExtendedViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewHeaderWithExtendedViewViewController.h; sourceTree = "<group>"; };
+		4F948A1A2010DC6C0030BC4A /* TableViewHeaderWithExtendedViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewHeaderWithExtendedViewViewController.m; sourceTree = "<group>"; };
+		4F948A1C2011A0AE0030BC4A /* PlainTableViewWithNonFloatSectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlainTableViewWithNonFloatSectionViewController.h; sourceTree = "<group>"; };
+		4F948A1D2011A0AE0030BC4A /* PlainTableViewWithNonFloatSectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlainTableViewWithNonFloatSectionViewController.m; sourceTree = "<group>"; };
 		4FAAA58E1FA4804600A80328 /* HelloUITableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUITableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FAAA5911FA4804600A80328 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FAAA5921FA4804600A80328 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -107,8 +119,8 @@
 				2B63BF02200F9DBC00A5D8D2 /* WCTableViewController.m */,
 				2B63BF00200F9DBC00A5D8D2 /* UITableViewCell+Addition.h */,
 				2B63BF05200F9DBC00A5D8D2 /* UITableViewCell+Addition.m */,
-				2B63BF01200F9DBC00A5D8D2 /* UITableView+Addition.m */,
 				2B63BF06200F9DBC00A5D8D2 /* UITableView+Addition.h */,
+				2B63BF01200F9DBC00A5D8D2 /* UITableView+Addition.m */,
 			);
 			path = WCTableView;
 			sourceTree = "<group>";
@@ -138,8 +150,8 @@
 			children = (
 				2B63BF26200FA22600A5D8D2 /* CompatibleGroupedTableViewViewController.h */,
 				2B63BF28200FA22600A5D8D2 /* CompatibleGroupedTableViewViewController.m */,
-				2B63BF25200FA22600A5D8D2 /* CompatiblePlainTableViewViewController.m */,
 				2B63BF27200FA22600A5D8D2 /* CompatiblePlainTableViewViewController.h */,
+				2B63BF25200FA22600A5D8D2 /* CompatiblePlainTableViewViewController.m */,
 			);
 			path = section2;
 			sourceTree = "<group>";
@@ -151,6 +163,14 @@
 				2B63BF2D200FA22600A5D8D2 /* ScrollTopBottomCellsToFadeInViewController.h */,
 				2B63BF2A200FA22600A5D8D2 /* FadeInCellRowByRowViewController.h */,
 				2B63BF2C200FA22600A5D8D2 /* FadeInCellRowByRowViewController.m */,
+				4F9489C820104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.h */,
+				4F9489C920104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.m */,
+				4F9489D92010C66C0030BC4A /* PlainTableViewWithFullSeparatorsViewController.h */,
+				4F9489DA2010C66C0030BC4A /* PlainTableViewWithFullSeparatorsViewController.m */,
+				4F948A192010DC6C0030BC4A /* TableViewHeaderWithExtendedViewViewController.h */,
+				4F948A1A2010DC6C0030BC4A /* TableViewHeaderWithExtendedViewViewController.m */,
+				4F948A1C2011A0AE0030BC4A /* PlainTableViewWithNonFloatSectionViewController.h */,
+				4F948A1D2011A0AE0030BC4A /* PlainTableViewWithNonFloatSectionViewController.m */,
 			);
 			path = section4;
 			sourceTree = "<group>";
@@ -309,19 +329,23 @@
 				2B63BF08200F9DBC00A5D8D2 /* UITableView+Addition.m in Sources */,
 				2B63BF35200FA22600A5D8D2 /* CompatibleGroupedTableViewViewController.m in Sources */,
 				2B63BF0B200F9DBC00A5D8D2 /* WCTableViewCell.m in Sources */,
+				4F9489DB2010C66C0030BC4A /* PlainTableViewWithFullSeparatorsViewController.m in Sources */,
 				2B63BF0A200F9DBC00A5D8D2 /* WCTableView.m in Sources */,
 				2B63BF39200FA22600A5D8D2 /* PlainTableViewViewController.m in Sources */,
 				2B63BF38200FA22600A5D8D2 /* GroupedTableViewViewController.m in Sources */,
 				4FAAA5A11FA4804600A80328 /* main.m in Sources */,
 				2B63BF37200FA22600A5D8D2 /* FadeInCellRowByRowViewController.m in Sources */,
+				4F9489CA20104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.m in Sources */,
 				2B63BF1F200FA11200A5D8D2 /* InsertMeViewController.m in Sources */,
 				2B63BF34200FA22600A5D8D2 /* CompatiblePlainTableViewViewController.m in Sources */,
 				2B63BF09200F9DBC00A5D8D2 /* WCTableViewController.m in Sources */,
 				2B63BF1C200FA11200A5D8D2 /* MoveMeViewController.m in Sources */,
 				2B63BF20200FA11200A5D8D2 /* DeleteMeViewController.m in Sources */,
+				4F948A1E2011A0AE0030BC4A /* PlainTableViewWithNonFloatSectionViewController.m in Sources */,
 				2B63BF0C200F9DBC00A5D8D2 /* UITableViewCell+Addition.m in Sources */,
 				4FAAA5931FA4804600A80328 /* AppDelegate.m in Sources */,
 				2B63BF21200FA11200A5D8D2 /* SelectMeViewController.m in Sources */,
+				4F948A1B2010DC6C0030BC4A /* TableViewHeaderWithExtendedViewViewController.m in Sources */,
 				4FAAA5AD1FA4806F00A80328 /* RootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,6 +473,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = HelloUITableView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloUITableView;
@@ -462,6 +487,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = HelloUITableView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloUITableView;

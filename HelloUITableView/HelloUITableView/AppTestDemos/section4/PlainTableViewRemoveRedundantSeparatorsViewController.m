@@ -1,19 +1,19 @@
 //
-//  PlainTableViewViewController.m
+//  PlainTableViewRemoveRedundantSeparatorsViewController.m
 //  HelloUITableView
 //
-//  Created by wesley_chen on 26/12/2017.
-//  Copyright © 2017 wesley_chen. All rights reserved.
+//  Created by wesley_chen on 18/01/2018.
+//  Copyright © 2018 wesley_chen. All rights reserved.
 //
 
-#import "PlainTableViewViewController.h"
+#import "PlainTableViewRemoveRedundantSeparatorsViewController.h"
 
-@interface PlainTableViewViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface PlainTableViewRemoveRedundantSeparatorsViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray<NSArray<NSString *> *> *listData;
 @end
 
-@implementation PlainTableViewViewController
+@implementation PlainTableViewRemoveRedundantSeparatorsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -23,41 +23,23 @@
     [self.view addSubview:self.tableView];
 }
 
+
 - (void)setup {
     NSArray *arr = @[
                      @[
                          @"viewDidLoad",
                          @"UITableView",
-                         @"UITableView2",
-                         @"screenSize",
-                         @"UITableViewCell",
                          ],
                      @[
                          @"UIScreen",
-                         @"backgroundColor",
-                         @"view",
-                         @"self",
-                         @"whiteColor",
-                         @"UIColor",
-                         @"initWithFrame",
                          ],
                      @[
                          @"UITableViewStylePlain",
                          @"delegate",
                          @"dataSource",
-                         @"UITableViewDelegate",
-                         @"UITableViewDataSource",
-                         @"FadeInCellRowByRowViewController",
-                         @"listData",
                          ],
                      ];
     self.listData = arr;
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    // Note: iOS 10-, contentInset is {64, 0, 0, 0}
-    //       iOS 11+, contentInset is {0, 0, 0, 0}
-    NSLog(@"plain tableView's contentInset: %@", NSStringFromUIEdgeInsets(self.tableView.contentInset));
 }
 
 #pragma mark - Getters
@@ -68,6 +50,8 @@
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, screenSize.width, screenSize.height - 64) style:UITableViewStylePlain];
         tableView.delegate = self;
         tableView.dataSource = self;
+        // Note: remove redudant separators
+        tableView.tableFooterView = [UIView new];
         
         _tableView = tableView;
     }
