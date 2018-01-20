@@ -13,7 +13,7 @@
 @protocol WCExpandableHeaderViewDelegate <NSObject>
 
 @required
-- (NSArray<NSArray *> *)tableViewData:(UITableView *)tableView;
+- (NSInteger)WCExpandableHeaderView_tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 
 @optional
 - (void)sectionDidExpandAtIndex:(NSInteger)sectionIndex expandableHeaderView:(WCExpandableHeaderView *)expandableHeaderView;

@@ -97,8 +97,10 @@
 
 #pragma mark - WCExpandableHeaderViewDelegate
 
-- (NSArray *)tableViewData:(UITableView *)tableView {
-    return self.listData;
+- (NSInteger)WCExpandableHeaderView_tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    NSInteger numItemsInSection = [[self.listData objectAtIndex:section] count];
+    
+    return numItemsInSection;
 }
 
 - (void)sectionDidExpandAtIndex:(NSInteger)sectionIndex expandableHeaderView:(WCExpandableHeaderView *)expandableHeaderView {

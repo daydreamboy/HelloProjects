@@ -14,7 +14,6 @@
 @property (nonatomic, weak) UITableView *tableView;
 // key is index of section
 @property (nonatomic, strong) NSMutableDictionary *headerViews;
-@property (nonatomic, strong) NSArray *listData;
 @end
 
 @implementation WCTableViewSectionInfo
@@ -33,7 +32,6 @@ static NSString *WCTableViewSectionInfoObjectTag = @"WCExpandableHeaderViewDeleg
         info.expandableHeaderView_delegate = expandableHeaderView_delegate;
         info.tableView = self;
         info.headerViews = [NSMutableDictionary dictionary];
-        info.listData = [expandableHeaderView_delegate tableViewData:self];
         
         objc_setAssociatedObject(self, &WCTableViewSectionInfoObjectTag, info, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
@@ -124,7 +122,7 @@ static NSString *WCTableViewSectionInfoObjectTag = @"WCExpandableHeaderViewDeleg
         NSInteger sectionOpened = sectionIndex;
         
         // Get the number of rows in the open section
-        NSInteger countOfRowsToInsert = [info.listData[sectionOpened] count];
+        NSInteger countOfRowsToInsert = [info.expandableHeaderView_delegate WCExpandableHeaderView_tableView:info.tableView numberOfRowsInSection:sectionOpened];
         NSMutableArray *indexPathsToInsert = [[NSMutableArray alloc] init];
         
         // Gather the indexes for inserting
@@ -154,7 +152,7 @@ static NSString *WCTableViewSectionInfoObjectTag = @"WCExpandableHeaderViewDeleg
         NSInteger sectionClosed = sectionIndex;
         
         // Get the number of rows in the close section
-        NSInteger countOfRowsToDelete = [info.listData[sectionClosed] count];
+        NSInteger countOfRowsToDelete = [info.expandableHeaderView_delegate WCExpandableHeaderView_tableView:info.tableView numberOfRowsInSection:sectionClosed];
         
         if (countOfRowsToDelete > 0) {
             NSMutableArray *indexPathsToDelete = [[NSMutableArray alloc] init];
