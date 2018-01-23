@@ -71,6 +71,23 @@
     return loaded;
 }
 
++ (NSArray *)allDynamicLibraries {
+    // Note: get all paths for images
+    unsigned int countOfImages = 0;
+    const char **imagePaths = objc_copyImageNames(&countOfImages);
+    
+    NSMutableArray *imagePathM = [NSMutableArray arrayWithCapacity:countOfImages];
+
+    for (unsigned int i = 0; i < countOfImages; i++) {
+        NSString *imagePath = [NSString stringWithUTF8String:imagePaths[i]];
+        [imagePathM addObject:imagePath];
+    }
+    
+    return [imagePathM sortedArrayUsingSelector:@selector(localizedCompare:)];
+}
+
+#pragma mark - Private Methods
+
 + (NSMutableDictionary<NSString *, NSArray *> *)imagesDict {
     static NSMutableDictionary *sImagesDict;
     if (!sImagesDict) {

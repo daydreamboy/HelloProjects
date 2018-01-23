@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F1A27D32015FEAE009EEF1B /* GetAllDynamicLibrariesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A27D22015FEAE009EEF1B /* GetAllDynamicLibrariesViewController.m */; };
 		4F3525B02006005F00891B09 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3525AF2006005F00891B09 /* AppDelegate.m */; };
 		4F3525B82006005F00891B09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3525B72006005F00891B09 /* Assets.xcassets */; };
 		4F3525BB2006005F00891B09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F3525B92006005F00891B09 /* LaunchScreen.storyboard */; };
@@ -60,6 +61,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4F1A27D12015FEAE009EEF1B /* GetAllDynamicLibrariesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAllDynamicLibrariesViewController.h; sourceTree = "<group>"; };
+		4F1A27D22015FEAE009EEF1B /* GetAllDynamicLibrariesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAllDynamicLibrariesViewController.m; sourceTree = "<group>"; };
 		4F3525AB2006005F00891B09 /* HelloNSBundle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSBundle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F3525AE2006005F00891B09 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F3525AF2006005F00891B09 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -170,6 +173,8 @@
 				4F9489AB200F42D80030BC4A /* GetAllClassNamesOfFrameworkViewController.m */,
 				4F9489C5200F570E0030BC4A /* GetAllClassNamesOfLazyLoadFrameworkViewController.h */,
 				4F9489C6200F570E0030BC4A /* GetAllClassNamesOfLazyLoadFrameworkViewController.m */,
+				4F1A27D12015FEAE009EEF1B /* GetAllDynamicLibrariesViewController.h */,
+				4F1A27D22015FEAE009EEF1B /* GetAllDynamicLibrariesViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -353,6 +358,7 @@
 				4F3525BE2006005F00891B09 /* main.m in Sources */,
 				4F3525B02006005F00891B09 /* AppDelegate.m in Sources */,
 				4F9489AC200F42D80030BC4A /* GetAllClassNamesOfFrameworkViewController.m in Sources */,
+				4F1A27D32015FEAE009EEF1B /* GetAllDynamicLibrariesViewController.m in Sources */,
 				4F9489A9200F42400030BC4A /* GetAllClassNamesOfMainBundleViewController.m in Sources */,
 				4F3525C72006013700891B09 /* WCBundleTool.m in Sources */,
 				4F3525CE2006017D00891B09 /* RootViewController.m in Sources */,

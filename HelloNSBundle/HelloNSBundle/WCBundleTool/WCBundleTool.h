@@ -23,4 +23,6 @@
  */
 + (BOOL)loadFrameworkWithName:(NSString *)name error:(NSError **)error;
 
++ (NSArray *)allDynamicLibraries;
+
 @end
