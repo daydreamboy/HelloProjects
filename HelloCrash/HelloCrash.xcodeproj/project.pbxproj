@@ -1,0 +1,425 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4F1A28182017803C009EEF1B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A28172017803C009EEF1B /* AppDelegate.m */; };
+		4F1A28202017803C009EEF1B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F1A281F2017803C009EEF1B /* Assets.xcassets */; };
+		4F1A28232017803C009EEF1B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F1A28212017803C009EEF1B /* LaunchScreen.storyboard */; };
+		4F1A28262017803C009EEF1B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A28252017803C009EEF1B /* main.m */; };
+		4F1A283520178086009EEF1B /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A282F20178086009EEF1B /* BaseTableViewController.m */; };
+		4F1A283620178086009EEF1B /* DisplayTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A283020178086009EEF1B /* DisplayTextViewController.m */; };
+		4F1A283720178086009EEF1B /* UseExceptionHanderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A283120178086009EEF1B /* UseExceptionHanderViewController.m */; };
+		4F1A283820178086009EEF1B /* UseSignalHandlerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A283220178086009EEF1B /* UseSignalHandlerViewController.m */; };
+		4F1A283E2017808B009EEF1B /* WCUncaughtExceptionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A283C2017808B009EEF1B /* WCUncaughtExceptionTool.m */; };
+		4F1A283F2017808B009EEF1B /* WCCrashCaseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A283D2017808B009EEF1B /* WCCrashCaseTool.m */; };
+		4F1A284220178097009EEF1B /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A284020178097009EEF1B /* RootViewController.m */; };
+		4F1A284420178113009EEF1B /* WCDebugKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F1A284320178113009EEF1B /* WCDebugKit.framework */; };
+		4F1A284520178113009EEF1B /* WCDebugKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F1A284320178113009EEF1B /* WCDebugKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4F1A284920178121009EEF1B /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F1A284820178121009EEF1B /* Reveal.framework */; };
+		4F1A284C201782EE009EEF1B /* UncaughtExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A284A201782ED009EEF1B /* UncaughtExceptionHandler.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		4F1A284620178113009EEF1B /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4F1A284520178113009EEF1B /* WCDebugKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		4F1A28132017803C009EEF1B /* HelloCrash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloCrash.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F1A28162017803C009EEF1B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4F1A28172017803C009EEF1B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4F1A281F2017803C009EEF1B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4F1A28222017803C009EEF1B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4F1A28242017803C009EEF1B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F1A28252017803C009EEF1B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4F1A282D20178086009EEF1B /* UseSignalHandlerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseSignalHandlerViewController.h; sourceTree = "<group>"; };
+		4F1A282E20178086009EEF1B /* UseExceptionHanderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseExceptionHanderViewController.h; sourceTree = "<group>"; };
+		4F1A282F20178086009EEF1B /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
+		4F1A283020178086009EEF1B /* DisplayTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayTextViewController.m; sourceTree = "<group>"; };
+		4F1A283120178086009EEF1B /* UseExceptionHanderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseExceptionHanderViewController.m; sourceTree = "<group>"; };
+		4F1A283220178086009EEF1B /* UseSignalHandlerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseSignalHandlerViewController.m; sourceTree = "<group>"; };
+		4F1A283320178086009EEF1B /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
+		4F1A283420178086009EEF1B /* DisplayTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayTextViewController.h; sourceTree = "<group>"; };
+		4F1A283A2017808B009EEF1B /* WCCrashCaseTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCCrashCaseTool.h; sourceTree = "<group>"; };
+		4F1A283B2017808B009EEF1B /* WCUncaughtExceptionTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCUncaughtExceptionTool.h; sourceTree = "<group>"; };
+		4F1A283C2017808B009EEF1B /* WCUncaughtExceptionTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCUncaughtExceptionTool.m; sourceTree = "<group>"; };
+		4F1A283D2017808B009EEF1B /* WCCrashCaseTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCCrashCaseTool.m; sourceTree = "<group>"; };
+		4F1A284020178097009EEF1B /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		4F1A284120178097009EEF1B /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		4F1A284320178113009EEF1B /* WCDebugKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WCDebugKit.framework; path = HelloCrash/WCDebugKit.framework; sourceTree = "<group>"; };
+		4F1A284820178121009EEF1B /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reveal.framework; path = HelloCrash/Reveal.framework; sourceTree = "<group>"; };
+		4F1A284A201782ED009EEF1B /* UncaughtExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UncaughtExceptionHandler.m; sourceTree = "<group>"; };
+		4F1A284B201782EE009EEF1B /* UncaughtExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UncaughtExceptionHandler.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4F1A28102017803C009EEF1B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F1A284920178121009EEF1B /* Reveal.framework in Frameworks */,
+				4F1A284420178113009EEF1B /* WCDebugKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4F1A280A2017803C009EEF1B = {
+			isa = PBXGroup;
+			children = (
+				4F1A284820178121009EEF1B /* Reveal.framework */,
+				4F1A284320178113009EEF1B /* WCDebugKit.framework */,
+				4F1A28152017803C009EEF1B /* HelloCrash */,
+				4F1A28142017803C009EEF1B /* Products */,
+				4F1A284720178120009EEF1B /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		4F1A28142017803C009EEF1B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4F1A28132017803C009EEF1B /* HelloCrash.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4F1A28152017803C009EEF1B /* HelloCrash */ = {
+			isa = PBXGroup;
+			children = (
+				4F1A284B201782EE009EEF1B /* UncaughtExceptionHandler.h */,
+				4F1A284A201782ED009EEF1B /* UncaughtExceptionHandler.m */,
+				4F1A28392017808B009EEF1B /* WCUncaughtExceptionTool */,
+				4F1A282C20178086009EEF1B /* AppTestDemos */,
+				4F1A28162017803C009EEF1B /* AppDelegate.h */,
+				4F1A28172017803C009EEF1B /* AppDelegate.m */,
+				4F1A284120178097009EEF1B /* RootViewController.h */,
+				4F1A284020178097009EEF1B /* RootViewController.m */,
+				4F1A281F2017803C009EEF1B /* Assets.xcassets */,
+				4F1A28212017803C009EEF1B /* LaunchScreen.storyboard */,
+				4F1A28242017803C009EEF1B /* Info.plist */,
+				4F1A28252017803C009EEF1B /* main.m */,
+			);
+			path = HelloCrash;
+			sourceTree = "<group>";
+		};
+		4F1A282C20178086009EEF1B /* AppTestDemos */ = {
+			isa = PBXGroup;
+			children = (
+				4F1A282E20178086009EEF1B /* UseExceptionHanderViewController.h */,
+				4F1A283120178086009EEF1B /* UseExceptionHanderViewController.m */,
+				4F1A282D20178086009EEF1B /* UseSignalHandlerViewController.h */,
+				4F1A283220178086009EEF1B /* UseSignalHandlerViewController.m */,
+				4F1A283320178086009EEF1B /* BaseTableViewController.h */,
+				4F1A282F20178086009EEF1B /* BaseTableViewController.m */,
+				4F1A283420178086009EEF1B /* DisplayTextViewController.h */,
+				4F1A283020178086009EEF1B /* DisplayTextViewController.m */,
+			);
+			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F1A28392017808B009EEF1B /* WCUncaughtExceptionTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F1A283B2017808B009EEF1B /* WCUncaughtExceptionTool.h */,
+				4F1A283C2017808B009EEF1B /* WCUncaughtExceptionTool.m */,
+				4F1A283A2017808B009EEF1B /* WCCrashCaseTool.h */,
+				4F1A283D2017808B009EEF1B /* WCCrashCaseTool.m */,
+			);
+			path = WCUncaughtExceptionTool;
+			sourceTree = "<group>";
+		};
+		4F1A284720178120009EEF1B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4F1A28122017803C009EEF1B /* HelloCrash */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F1A28292017803C009EEF1B /* Build configuration list for PBXNativeTarget "HelloCrash" */;
+			buildPhases = (
+				4F1A280F2017803C009EEF1B /* Sources */,
+				4F1A28102017803C009EEF1B /* Frameworks */,
+				4F1A28112017803C009EEF1B /* Resources */,
+				4F1A284620178113009EEF1B /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HelloCrash;
+			productName = HelloCrash;
+			productReference = 4F1A28132017803C009EEF1B /* HelloCrash.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4F1A280B2017803C009EEF1B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = wesley_chen;
+				TargetAttributes = {
+					4F1A28122017803C009EEF1B = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 4F1A280E2017803C009EEF1B /* Build configuration list for PBXProject "HelloCrash" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4F1A280A2017803C009EEF1B;
+			productRefGroup = 4F1A28142017803C009EEF1B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4F1A28122017803C009EEF1B /* HelloCrash */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4F1A28112017803C009EEF1B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F1A28232017803C009EEF1B /* LaunchScreen.storyboard in Resources */,
+				4F1A28202017803C009EEF1B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4F1A280F2017803C009EEF1B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F1A283620178086009EEF1B /* DisplayTextViewController.m in Sources */,
+				4F1A284C201782EE009EEF1B /* UncaughtExceptionHandler.m in Sources */,
+				4F1A283F2017808B009EEF1B /* WCCrashCaseTool.m in Sources */,
+				4F1A283720178086009EEF1B /* UseExceptionHanderViewController.m in Sources */,
+				4F1A28262017803C009EEF1B /* main.m in Sources */,
+				4F1A283520178086009EEF1B /* BaseTableViewController.m in Sources */,
+				4F1A284220178097009EEF1B /* RootViewController.m in Sources */,
+				4F1A283E2017808B009EEF1B /* WCUncaughtExceptionTool.m in Sources */,
+				4F1A283820178086009EEF1B /* UseSignalHandlerViewController.m in Sources */,
+				4F1A28182017803C009EEF1B /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4F1A28212017803C009EEF1B /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F1A28222017803C009EEF1B /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4F1A28272017803C009EEF1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4F1A28282017803C009EEF1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4F1A282A2017803C009EEF1B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HelloCrash",
+				);
+				INFOPLIST_FILE = HelloCrash/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					Reveal,
+					"-lz",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloCrash;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4F1A282B2017803C009EEF1B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HelloCrash",
+				);
+				INFOPLIST_FILE = HelloCrash/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					Reveal,
+					"-lz",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloCrash;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4F1A280E2017803C009EEF1B /* Build configuration list for PBXProject "HelloCrash" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F1A28272017803C009EEF1B /* Debug */,
+				4F1A28282017803C009EEF1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F1A28292017803C009EEF1B /* Build configuration list for PBXNativeTarget "HelloCrash" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F1A282A2017803C009EEF1B /* Debug */,
+				4F1A282B2017803C009EEF1B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4F1A280B2017803C009EEF1B /* Project object */;
+}
