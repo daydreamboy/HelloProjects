@@ -54,8 +54,14 @@ typedef void (^CompletionBlock)(void);
     NSLog(@"blk2 = %@", blk2); // blk2 = <__NSStackBlock__: 0xbfffddf8>
     
     NSLog(@"%@", globalBlock);
-    NSLog(@"%@", mallocBlock);
+    NSLog(@"%@", mallocBlock2);
     NSLog(@"%@", ^(void){ NSLog(@"This is a __NSMallocBlock__"); });
+}
+
+#pragma mark - Test Methods
+
+- (void)test_isBlock_with_ {
+    
 }
 
 - (void)test_with_block:(void (^)(void))block {
