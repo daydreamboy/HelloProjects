@@ -8,72 +8,57 @@
 
 #import "CheckBlockObjectViewController.h"
 #import "WCBlockTool.h"
+#import "GlobalAndMallocBlocks.h"
+#import "StackBlocks.h"
 
 #define STR_OF_BOOL(yesOrNo)     ((yesOrNo) ? @"YES" : @"NO")
-
-typedef long (^BlkSum)(int, int);
-typedef void (^CompletionBlock)(void);
 
 @implementation CheckBlockObjectViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    void (^aBlock)(void) = ^{
-        NSLog(@"something");
-    };
-    NSLog(@"is block: %@", STR_OF_BOOL([WCBlockTool isBlock:aBlock]));
-    
-    id object = [NSObject new];
-    NSLog(@"is block: %@", STR_OF_BOOL([WCBlockTool isBlock:object]));
-    
-    void (^globalBlock)(void) = ^{
-        NSLog(@"This is a __NSGlobalBlock__");
-    };
-    
-    void (^mallocBlock)(void) = ^{
-        NSLog(@"%@", self);
-        NSLog(@"This is a __NSMallocBlock__");
-    };
-    
-    void (^mallocBlock2)(BOOL enabled) = ^(BOOL enabled){
-        NSLog(@"This is a __NSMallocBlock__");
-    };
-    
-    [self test_with_block:mallocBlock];
-    [self test_with_block:^{
-        [self test_with_block:^{
-            NSLog(@"sdfsa");
-        }];
-    }];
-    
-    int base = 100;
-    BlkSum blk2 = ^ long (int a, int b) {
-        return base + a + b;
-    };
-    NSLog(@"blk2 = %@", blk2); // blk2 = <__NSStackBlock__: 0xbfffddf8>
-    
-    NSLog(@"%@", globalBlock);
-    NSLog(@"%@", mallocBlock2);
-    NSLog(@"%@", ^(void){ NSLog(@"This is a __NSMallocBlock__"); });
+    [self test_isBlock_with_gloabl_blocks];
+    [self test_isBlock_with_malloc_blocks];
+    [self test_isBlock_with_stack_blocks];
 }
 
 #pragma mark - Test Methods
 
-- (void)test_isBlock_with_ {
+- (void)test_isBlock_with_gloabl_blocks {
+    id aBlock = nil;
     
+    aBlock = [GlobalBlocks block1];
+    NSLog(@"is block: %@", STR_OF_BOOL([WCBlockTool isBlock:aBlock]));
+    
+    aBlock = [GlobalBlocks block2];
+    NSLog(@"is block: %@", STR_OF_BOOL([WCBlockTool isBlock:aBlock]));
+    
+    aBlock = [GlobalBlocks block3];
+    NSLog(@"is block: %@", STR_OF_BOOL([WCBlockTool isBlock:aBlock]));
+    
+    aBlock = [GlobalBlocks block4];
+    NSLog(@"is block: %@", STR_OF_BOOL([WCBlockTool isBlock:aBlock]));
+    
+    aBlock = [GlobalBlocks block5];
+    NSLog(@"is block: %@", STR_OF_BOOL([WCBlockTool isBlock:aBlock]));
 }
 
-- (void)test_with_block:(void (^)(void))block {
-    [self test_with_block2:block];
+- (void)test_isBlock_with_malloc_blocks {
+    id aBlock = nil;
+    
+    aBlock = [MallocBlocks block1];
+    NSLog(@"is block: %@", STR_OF_BOOL([WCBlockTool isBlock:aBlock]));
+    
+    aBlock = [MallocBlocks block2];
+    NSLog(@"is block: %@", STR_OF_BOOL([WCBlockTool isBlock:aBlock]));
+    
+    aBlock = [MallocBlocks block3];
+    NSLog(@"is block: %@", STR_OF_BOOL([WCBlockTool isBlock:aBlock]));
 }
 
-- (void)test_with_block2:(CompletionBlock)block {
-    [self test_with_object:block];
-}
-
-- (void)test_with_object:(id)object {
-    NSLog(@"object: %@", object);
+- (void)test_isBlock_with_stack_blocks {
+    [StackBlocks test_isBlock_with_stack_blocks];
 }
 
 @end

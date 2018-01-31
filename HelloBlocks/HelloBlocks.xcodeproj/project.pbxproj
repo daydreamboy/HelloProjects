@@ -18,6 +18,7 @@
 		4F3782861FC45314002BA02D /* CheckBlockObjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3782831FC45314002BA02D /* CheckBlockObjectViewController.m */; };
 		4F3782871FC45314002BA02D /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3782851FC45314002BA02D /* RootViewController.m */; };
 		4F37828B1FC458F6002BA02D /* WCBlockTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F37828A1FC458F6002BA02D /* WCBlockTool.m */; };
+		4F887DBB201EC1FE00A844BD /* Block1.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F887DBA201EC1FE00A844BD /* Block1.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		4F3782851FC45314002BA02D /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F3782891FC458F6002BA02D /* WCBlockTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCBlockTool.h; sourceTree = "<group>"; };
 		4F37828A1FC458F6002BA02D /* WCBlockTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCBlockTool.m; sourceTree = "<group>"; };
+		4F887DBA201EC1FE00A844BD /* Block1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Block1.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +103,7 @@
 				4F1A28C0201CC11C009EEF1B /* StackBlocks.m */,
 				4F1A28C5201CC159009EEF1B /* GlobalAndMallocBlocks.h */,
 				4F1A28C6201CC159009EEF1B /* GlobalAndMallocBlocks.m */,
+				4F887DBA201EC1FE00A844BD /* Block1.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -189,6 +192,7 @@
 				4F3782861FC45314002BA02D /* CheckBlockObjectViewController.m in Sources */,
 				4F37827B1FC44F12002BA02D /* main.m in Sources */,
 				4F1A28C7201CC159009EEF1B /* GlobalAndMallocBlocks.m in Sources */,
+				4F887DBB201EC1FE00A844BD /* Block1.m in Sources */,
 				4F1A28C1201CC11C009EEF1B /* StackBlocks.m in Sources */,
 				4F37826D1FC44F12002BA02D /* AppDelegate.m in Sources */,
 				4F1A28BE201CB912009EEF1B /* BlockTypesViewController.m in Sources */,

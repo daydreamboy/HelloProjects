@@ -15,4 +15,7 @@
 + (id)test_block4;
 + (id)test_block5;
 + (id)test_block6;
+
++ (void)test_isBlock_with_stack_blocks;
+
 @end

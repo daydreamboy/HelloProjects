@@ -7,6 +7,9 @@
 //
 
 #import "StackBlocks.h"
+#import "WCBlockTool.h"
+
+#define STR_OF_BOOL(yesOrNo)     ((yesOrNo) ? @"YES" : @"NO")
 
 static int a = 1;
 
@@ -72,6 +75,30 @@ static int a = 1;
     id globalBlockCopyed = [stackBlock copy];
     NSLog(@"6. %@", globalBlockCopyed);
     return globalBlockCopyed;
+}
+
+#pragma mark - WCBlockTool
+
++ (void)test_isBlock_with_stack_blocks {
+    int base = 100;
+    // Note: __NSStackBlock__
+    long (^stackBlock)(int) = ^ long (int b) {
+        return base + a + b;
+    };
+    NSLog(@"is block: %@", STR_OF_BOOL([self isBlock:stackBlock]));
+}
+
++ (BOOL)isBlock:(id _Nullable)block {
+    static Class blockClass;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        blockClass = [^{} class];
+        while ([blockClass superclass] != [NSObject class]) {
+            blockClass = [blockClass superclass];
+        }
+    });
+    
+    return [block isKindOfClass:blockClass];
 }
 
 @end
