@@ -71,8 +71,28 @@
     view.shadowOpacity = 0.9;
     view.shadowColor = [UIColor blackColor];
     view.shadowOffset = CGSizeMake(-1, -1);
+    view.contentInsets = UIEdgeInsetsMake(5, -5, -5, 5);
     
     self.bubbleView3WithShadow = view;
+    
+    return view;
+}
+
+- (WCAttachedBubbleView *)bubbleView4WithArrowDirection:(WCAttachedBubbleArrowDirection)arrowDirection {
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 30)];
+    label.layer.borderColor = [UIColor grayColor].CGColor;
+    label.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
+    label.text = @"Bubble 4";
+    
+    WCAttachedBubbleView *view = [WCAttachedBubbleView viewWithContentView:label arrowDirection:arrowDirection];
+    view.arrowPosition = CGPointMake(screenSize.width - 20, screenSize.height / 3.0);
+    view.borderColor = [UIColor orangeColor];
+    view.borderWidth = 1;
+    view.constrainedRectInMainScreen = [UIScreen mainScreen].bounds;
+    
+    self.bubbleView4WithconstrainedRectInMainScreen = view;
     
     return view;
 }

@@ -18,7 +18,13 @@ typedef NS_ENUM(NSUInteger, WCAttachedBubbleArrowDirection) {
 
 @interface WCAttachedBubbleView : UIView
 
-@property (nonatomic, assign) CGPoint arrowPosition;
+// bubble location
+@property (nonatomic, assign) CGPoint arrowPosition; // the location of arrow point which is outside of rectangle
+
+// make effort to place bubble in constrained rect (including margins), but not promise it
+@property (nonatomic, assign) CGRect constrainedRectInMainScreen;
+@property (nonatomic, assign) CGPoint arrowPositionInMainScreen;
+@property (nonatomic, assign) UIEdgeInsets marginsInContrainedRect;
 
 // bubble basic attributes
 @property (nonatomic, assign) CGFloat borderWidth;
@@ -27,6 +33,7 @@ typedef NS_ENUM(NSUInteger, WCAttachedBubbleArrowDirection) {
 @property (nonatomic, assign) CGFloat radius;
 @property (nonatomic, assign) CGSize trianleSizeInHorizontal; // triangle on horizontal
 @property (nonatomic, assign) CGSize trianleSizeInVertical; // triangle on vertical
+/// insets (top, left, bottom, right) of content view. (top + bottom) >/< 0 will increase/decrease height, (left + right) >/< 0 will increase/decrease width
 @property (nonatomic, assign) UIEdgeInsets contentInsets;
 @property (nonatomic, assign) UIEdgeInsets arrowOffsets; // arrow offset from edges (top, left, bottom, right). By Default, arrow is in middle on horizontal/vertical
 
@@ -44,5 +51,7 @@ typedef NS_ENUM(NSUInteger, WCAttachedBubbleArrowDirection) {
                       contentInsets:(UIEdgeInsets)contentInsets
                              radius:(CGFloat)radius;
 
+// private methods, just exposure for testing
++ (UIBezierPath *)bubblePathWithContentSize:(CGSize)contentSize radius:(CGFloat)radius borderWidth:(CGFloat)borderWidth triangleSize:(CGSize)triangleSize arrowDirection:(WCAttachedBubbleArrowDirection)arrowDirection arrowOffsets:(UIEdgeInsets)arrowOffsets transitPointPtr:(CGPoint *)transitPointPtr;
 
 @end

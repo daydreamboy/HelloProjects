@@ -114,6 +114,7 @@
     [super layoutSubviews];
     
     if (self.needLayoutSubviews) {
+        [self adjustArrowOffsetIfNeeded];
         [self.layer addSublayer:self.bubbleLayer];
         
         [self layoutSelfViewIfNeeded];
@@ -121,6 +122,52 @@
         
         self.needLayoutSubviews = NO;
     }
+}
+
+- (void)adjustArrowOffsetIfNeeded {
+//    // Note: only useArrowPosition is YES to consider constrainedRectInMainScreen
+//    if (self.useArrowPosition && !CGRectEqualToRect(self.constrainedRectInMainScreen, CGRectZero)) {
+//        CGRect bounds = [self frameOfAttachedBubbleView];
+//        
+//        CGPoint arrowPointInWindow = [self convertPoint:<#(CGPoint)#> toView:<#(nullable UIView *)#>]
+//        
+//        self.arrowPosition
+//        
+//        UIWindow *window = [[UIApplication sharedApplication].delegate window];
+//        CGRect rectInWindow = [self convertRect:bounds toView:window];
+//        
+//        if (!CGRectContainsRect(self.constrainedRectInMainScreen, rectInWindow)) {
+//            
+//            // start to detect which edges of constrainedRectInMainScreen is passed by bubble
+//            if (self.arrowDirection == WCAttachedBubbleArrowDirectionUp ||
+//                self.arrowDirection == WCAttachedBubbleArrowDirectionDown ||
+//                self.arrowDirection == WCAttachedBubbleArrowDirectionDefault) {
+//                
+//                // out of left edge
+//                if (CGRectGetMinX(rectInWindow) < CGRectGetMinX(window.bounds)) {
+//                    CGFloat offset = CGRectGetMinX(window.bounds) - CGRectGetMinX(rectInWindow);
+//                }
+//                
+//                // out of right edge
+//                if (CGRectGetMaxX(rectInWindow) > CGRectGetMaxX(window.bounds)) {
+//                    CGFloat delta = CGRectGetMaxX(rectInWindow) - CGRectGetMaxX(window.bounds);
+//                }
+//                
+//                // out of top edge
+//                if (CGRectGetMinY(rectInWindow) < CGRectGetMinY(window.bounds)) {
+//                    
+//                }
+//                
+//                // out of bottom edge
+//                if (CGRectGetMaxY(rectInWindow) > CGRectGetMaxY(window.bounds)) {
+//                    
+//                }
+//            }
+//            else if (self.arrowDirection == WCAttachedBubbleArrowDirectionLeft ||
+//                     self.arrowDirection == WCAttachedBubbleArrowDirectionRight) {
+//            }
+//        }
+//    }
 }
 
 - (void)layoutSelfViewIfNeeded {
@@ -140,17 +187,18 @@
         self.arrowDirection == WCAttachedBubbleArrowDirectionDown ||
         self.arrowDirection == WCAttachedBubbleArrowDirectionDefault) {
         
-        center.x = CGRectGetWidth(frame) / 2.0;
-        center.y = (self.arrowDirection == WCAttachedBubbleArrowDirectionUp)
+        center.x = CGRectGetWidth(frame) / 2.0 + self.contentInsets.left;
+        center.y = ((self.arrowDirection == WCAttachedBubbleArrowDirectionUp)
                     ? (CGRectGetHeight(frame) - self.trianleSizeInHorizontal.height) / 2.0 +  self.trianleSizeInHorizontal.height
-                    : (CGRectGetHeight(frame) - self.trianleSizeInHorizontal.height) / 2.0;
+                    : (CGRectGetHeight(frame) - self.trianleSizeInHorizontal.height) / 2.0) + self.contentInsets.top;
     }
     else if (self.arrowDirection == WCAttachedBubbleArrowDirectionLeft ||
              self.arrowDirection == WCAttachedBubbleArrowDirectionRight) {
-        center.x = (self.arrowDirection == WCAttachedBubbleArrowDirectionLeft)
+        
+        center.x = ((self.arrowDirection == WCAttachedBubbleArrowDirectionLeft)
                     ? (CGRectGetWidth(frame) - self.trianleSizeInVertical.height) / 2.0 + self.trianleSizeInVertical.height
-                    : (CGRectGetWidth(frame) - self.trianleSizeInVertical.height) / 2.0;
-        center.y = CGRectGetHeight(frame) / 2.0;
+                    : (CGRectGetWidth(frame) - self.trianleSizeInVertical.height) / 2.0) + self.contentInsets.left;
+        center.y = CGRectGetHeight(frame) / 2.0 +  self.contentInsets.top;
     }
 
     self.contentView.center = center;

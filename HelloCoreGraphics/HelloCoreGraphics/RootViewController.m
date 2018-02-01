@@ -12,6 +12,8 @@
 #import "CreatePDFGraphicsContext2ViewController.h"
 #import "CreateBitmapGraphicsContext1ViewController.h"
 #import "CreateBitmapGraphicsContext2ViewController.h"
+#import "CreateAttachedBubbleLayerViewController.h"
+#import "ExamplesOfWAttachedBubbleViewViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -38,13 +40,17 @@
         @"Create PDF graphics context by CGPDFContextCreate",
         @"Create Bitmap graphics context by CGBitmapContextCreate",
         @"Create Bitmap graphics context by UIGraphicsBeginImageContextWithOptions",
+        @"Create bubble layer",
+        @"Examples of WCAttachedBubbleView",
         @"call a test method",
     ];
     _classes = @[
-        @"CreatePDFGraphicsContext1ViewController",
-        @"CreatePDFGraphicsContext2ViewController",
-        @"CreateBitmapGraphicsContext1ViewController",
-        @"CreateBitmapGraphicsContext2ViewController",
+        [CreatePDFGraphicsContext1ViewController class],
+        [CreatePDFGraphicsContext2ViewController class],
+        [CreateBitmapGraphicsContext1ViewController class],
+        [CreateBitmapGraphicsContext2ViewController class],
+        [CreateAttachedBubbleLayerViewController class],
+        [ExamplesOfWAttachedBubbleViewViewController class],
         @"testMethod",
     ];
 }
@@ -74,19 +80,10 @@
     return cell;
 }
 
-- (void)pushViewController:(NSString *)viewControllerClass {
-    NSAssert([viewControllerClass isKindOfClass:[NSString class]], @"%@ is not NSString", viewControllerClass);
+- (void)pushViewController:(id)viewControllerClass {
     
-    Class class = NSClassFromString(viewControllerClass);
-    if (class && [class isSubclassOfClass:[UIViewController class]]) {
-        
-        UIViewController *vc = [[class alloc] init];
-        vc.title = _titles[[_classes indexOfObject:viewControllerClass]];
-        
-        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    else {
+    id class = viewControllerClass;
+    if ([class isKindOfClass:[NSString class]]){
         SEL selector = NSSelectorFromString(viewControllerClass);
         if ([self respondsToSelector:selector]) {
 #pragma GCC diagnostic push
@@ -97,6 +94,13 @@
         else {
             NSAssert(NO, @"can't handle selector `%@`", viewControllerClass);
         }
+    }
+    else if (class && [class isSubclassOfClass:[UIViewController class]]) {
+        UIViewController *vc = [[class alloc] init];
+        vc.title = _titles[[_classes indexOfObject:viewControllerClass]];
+        
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

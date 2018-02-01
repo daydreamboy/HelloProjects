@@ -25,6 +25,9 @@
     
     self.bubbleView3WithShadow = [super bubbleView3WithArrowDirection:WCAttachedBubbleArrowDirectionUp];
     [self.view addSubview:self.bubbleView3WithShadow];
+    
+    self.bubbleView4WithconstrainedRectInMainScreen = [super bubbleView4WithArrowDirection:WCAttachedBubbleArrowDirectionUp];
+    [self.view addSubview:self.bubbleView4WithconstrainedRectInMainScreen];
 }
 
 @end

@@ -16,6 +16,15 @@
 		2B0FD60F1FC99F0E0022E59D /* CreatePDFGraphicsContext2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FD60E1FC99F0E0022E59D /* CreatePDFGraphicsContext2ViewController.m */; };
 		2B7B0B951FCAA60400CB7388 /* CreateBitmapGraphicsContext1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7B0B941FCAA60400CB7388 /* CreateBitmapGraphicsContext1ViewController.m */; };
 		2B7B0B981FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7B0B971FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.m */; };
+		4F3525F120064D9200891B09 /* CreateAttachedBubbleLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3525F020064D9200891B09 /* CreateAttachedBubbleLayerViewController.m */; };
+		4F3525F4200707AE00891B09 /* WCAttachedBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3525F3200707AE00891B09 /* WCAttachedBubbleView.m */; };
+		4F3525FA20077D6200891B09 /* ExamplesOfWAttachedBubbleViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3525F920077D6200891B09 /* ExamplesOfWAttachedBubbleViewViewController.m */; };
+		4F3526312008B99C00891B09 /* AttachedBubbleWithUpArrowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3526302008B99C00891B09 /* AttachedBubbleWithUpArrowViewController.m */; };
+		4F3526342008B9CF00891B09 /* AttachedBubbleWithDownArrowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3526332008B9CF00891B09 /* AttachedBubbleWithDownArrowViewController.m */; };
+		4F3526372008B9DD00891B09 /* AttachedBubbleWithLeftArrowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3526362008B9DD00891B09 /* AttachedBubbleWithLeftArrowViewController.m */; };
+		4F35263A2008B9EB00891B09 /* AttachedBubbleWithRightArrowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3526392008B9EB00891B09 /* AttachedBubbleWithRightArrowViewController.m */; };
+		4F35263D2008BEA100891B09 /* AttachedBubbleBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35263C2008BEA100891B09 /* AttachedBubbleBaseViewController.m */; };
+		4F3526402008D68F00891B09 /* AttachedBubbleWithGradientColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35263F2008D68F00891B09 /* AttachedBubbleWithGradientColorViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +45,24 @@
 		2B7B0B941FCAA60400CB7388 /* CreateBitmapGraphicsContext1ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateBitmapGraphicsContext1ViewController.m; sourceTree = "<group>"; };
 		2B7B0B961FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateBitmapGraphicsContext2ViewController.h; sourceTree = "<group>"; };
 		2B7B0B971FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateBitmapGraphicsContext2ViewController.m; sourceTree = "<group>"; };
+		4F3525EF20064D9200891B09 /* CreateAttachedBubbleLayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAttachedBubbleLayerViewController.h; sourceTree = "<group>"; };
+		4F3525F020064D9200891B09 /* CreateAttachedBubbleLayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAttachedBubbleLayerViewController.m; sourceTree = "<group>"; };
+		4F3525F2200707AE00891B09 /* WCAttachedBubbleView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAttachedBubbleView.h; sourceTree = "<group>"; };
+		4F3525F3200707AE00891B09 /* WCAttachedBubbleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAttachedBubbleView.m; sourceTree = "<group>"; };
+		4F3525F820077D6200891B09 /* ExamplesOfWAttachedBubbleViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExamplesOfWAttachedBubbleViewViewController.h; sourceTree = "<group>"; };
+		4F3525F920077D6200891B09 /* ExamplesOfWAttachedBubbleViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExamplesOfWAttachedBubbleViewViewController.m; sourceTree = "<group>"; };
+		4F35262F2008B99C00891B09 /* AttachedBubbleWithUpArrowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttachedBubbleWithUpArrowViewController.h; sourceTree = "<group>"; };
+		4F3526302008B99C00891B09 /* AttachedBubbleWithUpArrowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttachedBubbleWithUpArrowViewController.m; sourceTree = "<group>"; };
+		4F3526322008B9CF00891B09 /* AttachedBubbleWithDownArrowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttachedBubbleWithDownArrowViewController.h; sourceTree = "<group>"; };
+		4F3526332008B9CF00891B09 /* AttachedBubbleWithDownArrowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttachedBubbleWithDownArrowViewController.m; sourceTree = "<group>"; };
+		4F3526352008B9DD00891B09 /* AttachedBubbleWithLeftArrowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttachedBubbleWithLeftArrowViewController.h; sourceTree = "<group>"; };
+		4F3526362008B9DD00891B09 /* AttachedBubbleWithLeftArrowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttachedBubbleWithLeftArrowViewController.m; sourceTree = "<group>"; };
+		4F3526382008B9EB00891B09 /* AttachedBubbleWithRightArrowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttachedBubbleWithRightArrowViewController.h; sourceTree = "<group>"; };
+		4F3526392008B9EB00891B09 /* AttachedBubbleWithRightArrowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttachedBubbleWithRightArrowViewController.m; sourceTree = "<group>"; };
+		4F35263B2008BEA100891B09 /* AttachedBubbleBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttachedBubbleBaseViewController.h; sourceTree = "<group>"; };
+		4F35263C2008BEA100891B09 /* AttachedBubbleBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttachedBubbleBaseViewController.m; sourceTree = "<group>"; };
+		4F35263E2008D68F00891B09 /* AttachedBubbleWithGradientColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttachedBubbleWithGradientColorViewController.h; sourceTree = "<group>"; };
+		4F35263F2008D68F00891B09 /* AttachedBubbleWithGradientColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttachedBubbleWithGradientColorViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +95,7 @@
 		2B0FD5EF1FC99DFC0022E59D /* HelloCoreGraphics */ = {
 			isa = PBXGroup;
 			children = (
+				4F3525E820063F3100891B09 /* WCAttachedBubbleView */,
 				2B0FD6061FC99E1E0022E59D /* AppTestDemos */,
 				2B0FD5F01FC99DFC0022E59D /* AppDelegate.h */,
 				2B0FD5F11FC99DFC0022E59D /* AppDelegate.m */,
@@ -84,6 +112,7 @@
 		2B0FD6061FC99E1E0022E59D /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F35262E2008B96A00891B09 /* ExamplesOfWCAttachedBubbleView */,
 				2B0FD6081FC99E1E0022E59D /* CreatePDFGraphicsContext1ViewController.h */,
 				2B0FD6071FC99E1E0022E59D /* CreatePDFGraphicsContext1ViewController.m */,
 				2B0FD60D1FC99F0E0022E59D /* CreatePDFGraphicsContext2ViewController.h */,
@@ -92,8 +121,40 @@
 				2B7B0B941FCAA60400CB7388 /* CreateBitmapGraphicsContext1ViewController.m */,
 				2B7B0B961FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.h */,
 				2B7B0B971FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.m */,
+				4F3525EF20064D9200891B09 /* CreateAttachedBubbleLayerViewController.h */,
+				4F3525F020064D9200891B09 /* CreateAttachedBubbleLayerViewController.m */,
+				4F3525F820077D6200891B09 /* ExamplesOfWAttachedBubbleViewViewController.h */,
+				4F3525F920077D6200891B09 /* ExamplesOfWAttachedBubbleViewViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F3525E820063F3100891B09 /* WCAttachedBubbleView */ = {
+			isa = PBXGroup;
+			children = (
+				4F3525F2200707AE00891B09 /* WCAttachedBubbleView.h */,
+				4F3525F3200707AE00891B09 /* WCAttachedBubbleView.m */,
+			);
+			path = WCAttachedBubbleView;
+			sourceTree = "<group>";
+		};
+		4F35262E2008B96A00891B09 /* ExamplesOfWCAttachedBubbleView */ = {
+			isa = PBXGroup;
+			children = (
+				4F35262F2008B99C00891B09 /* AttachedBubbleWithUpArrowViewController.h */,
+				4F3526302008B99C00891B09 /* AttachedBubbleWithUpArrowViewController.m */,
+				4F3526322008B9CF00891B09 /* AttachedBubbleWithDownArrowViewController.h */,
+				4F3526332008B9CF00891B09 /* AttachedBubbleWithDownArrowViewController.m */,
+				4F3526352008B9DD00891B09 /* AttachedBubbleWithLeftArrowViewController.h */,
+				4F3526362008B9DD00891B09 /* AttachedBubbleWithLeftArrowViewController.m */,
+				4F3526382008B9EB00891B09 /* AttachedBubbleWithRightArrowViewController.h */,
+				4F3526392008B9EB00891B09 /* AttachedBubbleWithRightArrowViewController.m */,
+				4F35263B2008BEA100891B09 /* AttachedBubbleBaseViewController.h */,
+				4F35263C2008BEA100891B09 /* AttachedBubbleBaseViewController.m */,
+				4F35263E2008D68F00891B09 /* AttachedBubbleWithGradientColorViewController.h */,
+				4F35263F2008D68F00891B09 /* AttachedBubbleWithGradientColorViewController.m */,
+			);
+			path = ExamplesOfWCAttachedBubbleView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,13 +227,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F3526342008B9CF00891B09 /* AttachedBubbleWithDownArrowViewController.m in Sources */,
+				4F3525F120064D9200891B09 /* CreateAttachedBubbleLayerViewController.m in Sources */,
+				4F3525FA20077D6200891B09 /* ExamplesOfWAttachedBubbleViewViewController.m in Sources */,
 				2B0FD6091FC99E1E0022E59D /* CreatePDFGraphicsContext1ViewController.m in Sources */,
+				4F35263A2008B9EB00891B09 /* AttachedBubbleWithRightArrowViewController.m in Sources */,
+				4F3526402008D68F00891B09 /* AttachedBubbleWithGradientColorViewController.m in Sources */,
+				4F3526312008B99C00891B09 /* AttachedBubbleWithUpArrowViewController.m in Sources */,
 				2B0FD60F1FC99F0E0022E59D /* CreatePDFGraphicsContext2ViewController.m in Sources */,
 				2B7B0B981FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.m in Sources */,
+				4F35263D2008BEA100891B09 /* AttachedBubbleBaseViewController.m in Sources */,
+				4F3525F4200707AE00891B09 /* WCAttachedBubbleView.m in Sources */,
 				2B7B0B951FCAA60400CB7388 /* CreateBitmapGraphicsContext1ViewController.m in Sources */,
 				2B0FD6001FC99DFC0022E59D /* main.m in Sources */,
 				2B0FD5F21FC99DFC0022E59D /* AppDelegate.m in Sources */,
 				2B0FD60C1FC99E280022E59D /* RootViewController.m in Sources */,
+				4F3526372008B9DD00891B09 /* AttachedBubbleWithLeftArrowViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -238,7 +308,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -287,7 +357,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -299,6 +369,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QVRKK2EEDF;
 				INFOPLIST_FILE = HelloCoreGraphics/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloCoreGraphics;
@@ -312,6 +383,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QVRKK2EEDF;
 				INFOPLIST_FILE = HelloCoreGraphics/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloCoreGraphics;
