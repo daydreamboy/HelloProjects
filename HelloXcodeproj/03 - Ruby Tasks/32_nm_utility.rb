@@ -13,6 +13,8 @@ class NmUtility
 
     self.cmd_parser = OptionParser.new do |opts|
       opts.banner = "Usage: #{__FILE__} PATH/TO/FOLDER -s symbol_list [options]"
+      opts.separator  ""
+      opts.separator  "在指定目录nm搜索特定的符号"
 
       opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
         self.cmd_options[:verbose] = v
