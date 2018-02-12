@@ -240,15 +240,12 @@ NSLog(RDI, RSI, RDX, RCX);
 
 `image lookup -rn '\ mouseDown:'`
 
-`register read -f d`[^3]
-
 
 References
 --
 
 [^1]: http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0802a/STP_gen.html
 [^2]: http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0802a/ADRP.html
-[^3]: https://www.raywenderlich.com/161938/assembly-register-calling-convention-tutorial
 
 
 

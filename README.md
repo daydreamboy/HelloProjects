@@ -60,6 +60,7 @@ WCBundleTool
 WCMobileProvisionTool
 WCInfoPlistTool
 WCNSObjectTool (wrap with NSObject+DLIntrospection)
+WCJSONTool
 ```
 
 ### UI Components (TODO)
