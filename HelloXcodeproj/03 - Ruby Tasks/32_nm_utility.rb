@@ -12,7 +12,7 @@ class NmUtility
     self.cmd_options = {}
 
     self.cmd_parser = OptionParser.new do |opts|
-      opts.banner = "Usage: #{__FILE__} PATH/TO/FOLDER -s symbol_list [options]"
+      opts.banner = "Usage: #{__FILE__} PATH/TO/FOLDER -s symbol1,symbol2,... [options]"
       opts.separator  ""
       opts.separator  "在指定目录nm搜索特定的符号"
 
@@ -28,7 +28,7 @@ class NmUtility
         self.cmd_options[:exclude_list] = exclude_list
       end
 
-      opts.on("-s", "--symbol_list symbol1,symbol2,...", Array, "the symbol to search") do |symbol_list|
+      opts.on("-s", "--symbol_list symbol1,symbol2,...", Array, "the symbols to search") do |symbol_list|
         self.cmd_options[:symbol_list] = symbol_list
       end
     end
