@@ -8,6 +8,18 @@
 
 #import "PrivateClass.h"
 
+using namespace std;
+
+class CAClass {
+    int a;
+public:
+    void test();
+};
+
+void CAClass::test() {
+//    std::cout << "hello" << std::endl;
+}
+
 @implementation PrivateClass
 
 - (void)helloPrivateClass {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F3ADA0E2025817A00EF1777 /* libMyStaticLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDCA43C1F8E177900F375F7 /* libMyStaticLibrary.a */; };
+		4F3ADA112025823500EF1777 /* PublicClass+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3ADA102025823500EF1777 /* PublicClass+Addition.m */; };
 		4FDCA4231F8E176100F375F7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCA4221F8E176100F375F7 /* main.m */; };
 		4FDCA4261F8E176100F375F7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCA4251F8E176100F375F7 /* AppDelegate.m */; };
 		4FDCA4291F8E176100F375F7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCA4281F8E176100F375F7 /* ViewController.m */; };
@@ -18,7 +20,7 @@
 		4FDCA4511F8E178A00F375F7 /* MyDynamicFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDCA44A1F8E178A00F375F7 /* MyDynamicFramework.framework */; };
 		4FDCA4521F8E178A00F375F7 /* MyDynamicFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4FDCA44A1F8E178A00F375F7 /* MyDynamicFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4FDCA45A1F8E18C700F375F7 /* PublicClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCA4591F8E18C700F375F7 /* PublicClass.m */; };
-		4FDCA45D1F8E18D300F375F7 /* PrivateClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCA45C1F8E18D300F375F7 /* PrivateClass.m */; };
+		4FDCA45D1F8E18D300F375F7 /* PrivateClass.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FDCA45C1F8E18D300F375F7 /* PrivateClass.mm */; };
 		4FDCA4B41F8E6C4700F375F7 /* hello.txt in Copy Files */ = {isa = PBXBuildFile; fileRef = 4FDCA46C1F8E22DE00F375F7 /* hello.txt */; };
 		4FDCA4E01F8E788300F375F7 /* MyStaticLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FDCA43E1F8E177900F375F7 /* MyStaticLibrary.h */; };
 		4FDCA4E11F8E788300F375F7 /* PublicHeaders.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4FDCA4571F8E18AE00F375F7 /* PublicHeaders.h */; };
@@ -84,6 +86,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4F3ADA0F2025823500EF1777 /* PublicClass+Addition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PublicClass+Addition.h"; sourceTree = "<group>"; };
+		4F3ADA102025823500EF1777 /* PublicClass+Addition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "PublicClass+Addition.m"; sourceTree = "<group>"; };
 		4FDCA41E1F8E176100F375F7 /* HelloConvertStaticLibraryToDynamicFramework.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloConvertStaticLibraryToDynamicFramework.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FDCA4221F8E176100F375F7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4FDCA4241F8E176100F375F7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -104,7 +108,7 @@
 		4FDCA4581F8E18C700F375F7 /* PublicClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicClass.h; sourceTree = "<group>"; };
 		4FDCA4591F8E18C700F375F7 /* PublicClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicClass.m; sourceTree = "<group>"; };
 		4FDCA45B1F8E18D300F375F7 /* PrivateClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateClass.h; sourceTree = "<group>"; };
-		4FDCA45C1F8E18D300F375F7 /* PrivateClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateClass.m; sourceTree = "<group>"; };
+		4FDCA45C1F8E18D300F375F7 /* PrivateClass.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = PrivateClass.mm; sourceTree = "<group>"; };
 		4FDCA46C1F8E22DE00F375F7 /* hello.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = hello.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -128,12 +132,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F3ADA0E2025817A00EF1777 /* libMyStaticLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F3ADA0D2025817A00EF1777 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4FDCA4151F8E176100F375F7 = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +153,7 @@
 				4FDCA43D1F8E177900F375F7 /* MyStaticLibrary */,
 				4FDCA44B1F8E178A00F375F7 /* MyDynamicFramework */,
 				4FDCA41F1F8E176100F375F7 /* Products */,
+				4F3ADA0D2025817A00EF1777 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -188,7 +201,9 @@
 				4FDCA4581F8E18C700F375F7 /* PublicClass.h */,
 				4FDCA4591F8E18C700F375F7 /* PublicClass.m */,
 				4FDCA45B1F8E18D300F375F7 /* PrivateClass.h */,
-				4FDCA45C1F8E18D300F375F7 /* PrivateClass.m */,
+				4FDCA45C1F8E18D300F375F7 /* PrivateClass.mm */,
+				4F3ADA0F2025823500EF1777 /* PublicClass+Addition.h */,
+				4F3ADA102025823500EF1777 /* PublicClass+Addition.m */,
 			);
 			path = MyStaticLibrary;
 			sourceTree = "<group>";
@@ -360,7 +375,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp ";
+			shellScript = "";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -380,8 +395,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FDCA4401F8E177900F375F7 /* MyStaticLibrary.m in Sources */,
+				4F3ADA112025823500EF1777 /* PublicClass+Addition.m in Sources */,
 				4FDCA45A1F8E18C700F375F7 /* PublicClass.m in Sources */,
-				4FDCA45D1F8E18D300F375F7 /* PrivateClass.m in Sources */,
+				4FDCA45D1F8E18D300F375F7 /* PrivateClass.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,6 +585,8 @@
 				INFOPLIST_FILE = MyDynamicFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "${CONFIGURATION_BUILD_DIR}";
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.MyDynamicFramework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -590,6 +608,8 @@
 				INFOPLIST_FILE = MyDynamicFramework/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "${CONFIGURATION_BUILD_DIR}";
+				OTHER_LDFLAGS = "-all_load";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.MyDynamicFramework;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

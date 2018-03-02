@@ -3,8 +3,14 @@
 # @see https://stackoverflow.com/a/46037941
 # @see https://gist.github.com/cromandini/1a9c4aeab27ca84f5d79
 
+# Note:
+# 1. set iOS Deployment Target to `iOS 8.0` to include i386 for simulator and armv7 for device. `iOS 11.2` won't include those archs
+# 2. error: Check dependencies No architectures to compile for (ARCHS=i386 x86_64, VALID_ARCHS=arm64 armv7 armv7s).
+#    solution: build settings, set VALID_ARCHS="arm64 armv7 armv7s i386 x86_64"
+
 # Set bash script to exit immediately if any commands fail.
 set -e
+set -x
 
 UNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal
 

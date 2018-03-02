@@ -33,6 +33,7 @@ framework可以是静态库，也可以是动态库，这里讨论的都是动�
 6\. App Target中懒加载framework
 
 * NSBundle或dlopen加载framework 
+* App Target中代码不能直接使用类对象来调用类方法，需要使用NSClassFromString获取类对象
 
 说明
 >
@@ -86,7 +87,42 @@ OrphanClassWithoutImpl.h
 
 OrphanClassWithoutImpl只有头文件，没有.m文件，doSomething方法的实现可能在另外一个framework中（通过分类方法）。
 
-为了能让SomeTool链接通过，将Other Linker Flag设置`-undefined dynamic_lookup`，可以发现ld通过了。但是和开启BitCode是冲突的，而`-undefined dynamic_lookup`会报warning，标记为deprecated。
+为了能让SomeTool链接通过，将Other Linker Flag设置`-undefined dynamic_lookup`，可以发现ld通过了。但是和开启bitcode是冲突的，而`-undefined dynamic_lookup`会报warning，标记为deprecated。
+
+举另一个例子，如下
+
+动态库链接静态库，静态库中有些undefined符号，如下
+
+```
+$ nm -um xxx                                 
+
+xxx(yyy.o):
+                 (undefined) external _OBJC_CLASS_$_NSObject
+                 (undefined) external _OBJC_CLASS_$_NSTimer
+                 (undefined) external _OBJC_METACLASS_$_NSObject
+                 (undefined) external __NSConcreteStackBlock
+                 (undefined) external ___CFConstantStringClassReference
+                 (undefined) external __dispatch_main_q
+                 (undefined) external __objc_empty_cache
+                 (undefined) external _dispatch_async
+                 (undefined) external _globalModular4MessengerKit
+                 (undefined) external _objc_autoreleaseReturnValue
+                 (undefined) external _objc_copyWeak
+                 (undefined) external _objc_destroyWeak
+                 (undefined) external _objc_getProperty
+                 (undefined) external _objc_initWeak
+                 (undefined) external _objc_loadWeakRetained
+```
+
+ld进行符号链接（和系统库、自定义库），如果根据undefined符号找不到对应的实现，则报错
+
+```
+Undefined symbols for architecture x86_64:
+  "_OBJC_CLASS_$_zzz", referenced from:
+      l_OBJC_$_CATEGORY_www in xxx(yyy.o)
+```
+
+如果将动态库的other linker flags添加`-undefined dynamic_lookup`，则编译可以通过。
 
 ### Tips
 
