@@ -10,7 +10,7 @@ Dir.glob(dir_path + '/**/*') do |item|
 
   if !File.directory?(item) && File.exist?(item) && File.extname(item) == '.o'
     # @see https://stackoverflow.com/a/3951391
-    output = `nm -m #{item} | grep dlsym`
+    output = `nm -m "#{item}" | grep dlsym`
     result = $?.success?
 
     if (result)

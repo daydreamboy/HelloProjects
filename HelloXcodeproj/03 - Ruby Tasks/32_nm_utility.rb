@@ -79,10 +79,10 @@ class NmUtility
           # Note: lookup symbols for every file
           symbol_list.each do |symbol|
             if verbose
-              puts "nm -m #{item} 2>/dev/null | grep #{symbol}"
+              puts "nm -m \"#{item}\" 2>/dev/null | grep #{symbol}"
             end
 
-            `nm -m #{item} 2>/dev/null | grep #{symbol}`
+            `nm -m "#{item}" 2>/dev/null | grep #{symbol}`
             result = $?.success?
 
             if (result)
