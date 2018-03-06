@@ -758,7 +758,7 @@ binary file path，二进制文件的文件路径
         Summary: Commons`__38-[UnixSignalHandler appendSignal:sig:]_block_invoke_3 at UnixSignalHandler.m:135
 ```
 
-* -v，输出详细信息
+* -v，输出详细信息。注意：v和r、n组合，只能是-vrn或者-rvn
 
 ```
 (lldb) image lookup -rvn "\-\[RegisterWithSixParamtersViewController\ viewDidLoad]"
@@ -845,4 +845,61 @@ settings set target.skip-prologue false
 
 * x0-x7，存放方法（函数）的前8个参数，具体个数视调试而定
 * x0，存放方法（函数）的返回值
+
+#### 寄存器命名
+
+根据寄存器大小，寄存器命名有一定约定，如下
+
+![寄存器命名](images/寄存器命名.png)
+
+lldb打印寄存器的值时，可以使用这些约定命名，输出特定大小的值。
+
+例如，pause当前程序，修改$rdx的值，然后用不同命名打印值。
+
+```
+(lldb) register write rdx 0x0123456789ABCDEF
+(lldb) p/x $rdx
+(unsigned long) $0 = 0x0123456789abcdef
+(lldb) p/x $edx
+(unsigned int) $1 = 0x89abcdef
+(lldb) p/x $dx
+(unsigned short) $2 = 0xcdef
+(lldb) p/x $dl
+(unsigned char) $3 = 0xef
+(lldb) p/x $dh
+(unsigned char) $4 = 0xcd
+```
+
+R8到R15的寄存器，由于仅出现在64bit架构，它们对应的命名是加后缀。
+
+例如，pause当前程序，修改$r9的值，然后用不同命名打印值。
+
+```
+(lldb) register write $r9 0x0123456789ABCDEF
+(lldb) p/x $r9
+(unsigned long) $5 = 0x0123456789abcdef
+(lldb) p/x $r9d
+(unsigned int) $6 = 0x89abcdef
+(lldb) p/x $r9w
+(unsigned short) $7 = 0xcdef
+(lldb) p/x $r9l
+(unsigned char) $8 = 0xef
+```
+
+#### 加载地址（load address）和偏移地址（implementation offset）
+
+* load address
+
+函数是内存\_\_TEXT,\_\_text一段连续地址，首地址就是加载地址。例如下面image lookup -rvn命令输出的Function的range起始地址就是加载地址
+
+![加载地址和偏移地址](images/加载地址和偏移地址.png)
+
+load address也对应方法的IMP地址，但不是偏移地址
+
+* implementation offset
+
+函数代码在文件中的偏移量，就是偏移地址。例如nm输出符号的地址
+
+![偏移地址](images/偏移地址.png)
+
 
