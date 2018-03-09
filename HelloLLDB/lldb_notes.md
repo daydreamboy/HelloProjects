@@ -13,7 +13,7 @@
 4. expression
 5. continue
 6. thread
-7. type（TODO）
+7. type
 8. finish
 9. frame
 10. command
@@ -217,7 +217,35 @@ Process 15767 stopped
   thread #8: tid = 0x5bfa15, 0x0000000115fa5562 libsystem_kernel.dylib`__workq_kernreturn + 10
 ```
 
-### 7、TODO
+### 7、type
+
+格式：type \<subcommand\>    
+说明：type命令用于定义LLDB环境中的类型以及输出格式    
+
+####（1）type summary
+
+格式：type summary \<subcommand\>  
+说明：用于显示某种类型的描述信息。常用子命令有add、clear等    
+
+* type summary add，向某种类型添加描述信息summary
+
+```
+(lldb) p superView
+(SuperView *) $0 = 0x00007fb4fac15130
+(lldb) type summary add SuperView --summary-string "This is a SuperView"
+(lldb) p superView
+(SuperView *) $1 = 0x00007fb4fac15130 This is a SuperView
+```
+
+* type summary clear，清除所有summary信息
+
+```
+(lldb) p superView
+(SuperView *) $1 = 0x00007fb4fac15130 This is a SuperView
+(lldb) type summary clear
+(lldb) p superView
+(SuperView *) $2 = 0x00007fb4fac15130
+```
 
 ### 8、finish
 
