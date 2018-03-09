@@ -16,6 +16,7 @@
 #import "DrawRadialGradientViewViewController.h"
 #import "UseCAGradientLayerWithTwoColorsViewController.h"
 #import "UseCAGradientLayerWithMultipleColorsViewController.h"
+#import "HitTestInViewViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -45,6 +46,7 @@
           @{ kTitle: @"observer UIView change event", kClass: [ObserveViewGeometryChangeEventViewController class] },
           @{ kTitle: @"touch through part of view", kClass: [TouchThroughPartRegionOfViewViewController class] },
           @{ kTitle: @"mapping rect from view to view", kClass: [MappingRectFromViewToViewViewController class] },
+          @{ kTitle: @"Demonstrate HitTest", kClass: [HitTestInViewViewController class] },
     ];
 
     NSArray<NSDictionary *> *section2 = @[

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F0B4F1E205269D9003B241E /* HitTestInViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0B4F1D205269D9003B241E /* HitTestInViewViewController.m */; };
 		4F63EFE41FE10068000AFD6F /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63EFE31FE10068000AFD6F /* WCViewTool.m */; };
 		4F63EFE71FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63EFE61FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m */; };
 		4F983BD81FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F983BD71FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m */; };
@@ -27,6 +28,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F0B4F1C205269D9003B241E /* HitTestInViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HitTestInViewViewController.h; sourceTree = "<group>"; };
+		4F0B4F1D205269D9003B241E /* HitTestInViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HitTestInViewViewController.m; sourceTree = "<group>"; };
 		4F63EFE21FE10068000AFD6F /* WCViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCViewTool.h; sourceTree = "<group>"; };
 		4F63EFE31FE10068000AFD6F /* WCViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewTool.m; sourceTree = "<group>"; };
 		4F63EFE51FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObserveViewGeometryChangeEventViewController.h; sourceTree = "<group>"; };
@@ -135,6 +138,8 @@
 				4F983BD71FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m */,
 				4FB43AC0200A476700D5D92D /* MappingRectFromViewToViewViewController.h */,
 				4FB43AC1200A476700D5D92D /* MappingRectFromViewToViewViewController.m */,
+				4F0B4F1C205269D9003B241E /* HitTestInViewViewController.h */,
+				4F0B4F1D205269D9003B241E /* HitTestInViewViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 				4FAAA5811FA4601E00A80328 /* RootViewController.m in Sources */,
 				4FAAA5671FA45FE700A80328 /* AppDelegate.m in Sources */,
 				4FB43AF8200DA28100D5D92D /* UseCAGradientLayerWithMultipleColorsViewController.m in Sources */,
+				4F0B4F1E205269D9003B241E /* HitTestInViewViewController.m in Sources */,
 				4F63EFE71FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
