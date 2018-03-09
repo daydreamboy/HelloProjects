@@ -20,21 +20,21 @@
 	 * command alias
 	 * command regex
 11. TODO
-12. breakpoint
+12. TODO
+13. breakpoint
 	 * breakpoint set
 	 * breakpoint list
 	 * breakpoint enable/disable
 	 * breakpoint delete
 	 * breakpoint command add/delete/list
 	 * breakpoint modify
-13. 执行简单的代码片段
-14. 设置UIView的frame
+14. memory
 15. register
 16. lldb attach进程
 17. lldb target
 18. lldb查看命令帮助
 19. lldb启动可执行文件
-20. lldb常用快捷键
+20. TODO
 21. image
 22. run
 
@@ -536,6 +536,111 @@ Condition: i == 99
 class]]"
 ```
 
+### 14. memory
+
+格式：memory \<subcommand\> [options]       
+说明：常用子命令有read等
+
+#### (1) memory read
+
+格式：memory read [options] \<memory address\>      
+简写: x/\<fmt\> \<memory address\>          
+常用选项：
+
+* -c\<num\>，根据输出的格式（或者每个单位），指定输出多少个单位。例如-fi指定按照指令格式，单位是内存地址，所以-c10，是输出10个连续地址。
+
+```
+(lldb) memory read -fi -c10 0x00000001000089f0
+->  0x1000089f0: 55                    pushq  %rbp
+    0x1000089f1: 48 89 e5              movq   %rsp, %rbp
+    0x1000089f4: 48 81 ec c0 00 00 00  subq   $0xc0, %rsp
+    0x1000089fb: 4c 89 6d f8           movq   %r13, -0x8(%rbp)
+    0x1000089ff: b8 01 00 00 00        movl   $0x1, %eax
+    0x100008a04: 89 c7                 movl   %eax, %edi
+    0x100008a06: e8 53 06 00 00        callq  0x10000905e               ; symbol stub for: generic specialization <preserving fragile attribute, Any> of Swift._allocateUninitializedArray<A>(Builtin.Word) -> (Swift.Array<A>, Builtin.RawPointer)
+    0x100008a0b: 48 89 c7              movq   %rax, %rdi
+    0x100008a0e: 48 89 45 a8           movq   %rax, -0x58(%rbp)
+    0x100008a12: 48 89 55 a0           movq   %rdx, -0x60(%rbp)
+```
+
+又例如-fx按照内存值输出，默认是4个字节为一个单位，输出20个单位。
+
+```
+(lldb) memory read -c20 -fx 0x00000001000089f0
+0x1000089f0: 0xe5894855 0xc0ec8148 0x4c000000 0xb8f86d89
+0x100008a00: 0x00000001 0x53e8c789 0x48000006 0x8948c789
+0x100008a10: 0x8948a845 0x9de8a055 0x48000006 0x48a87d8b
+0x100008a20: 0xe8984589 0x0000068a 0xe1058b48 0x48000025
+0x100008a30: 0x48a0558b 0xb9184289 0x00000003 0x15e8cf89
+```
+
+* -fi，按照指令格式(instruction)输出。objc上下文中，可以使用简写形式p/i。
+
+```
+(lldb) expr -l objc -f x -- $rip
+(unsigned long) $1 = 0x00000001000089f0
+(lldb) memory read -fi -c1 0x00000001000089f0
+->  0x1000089f0: 55  pushq  %rbp
+```
+
+上面读取内存地址0x00000001000089f0，它对应的值是0x55，对应的指令是pushq  %rbp
+
+除了对内存地址中的值，按照指令格式输出，也适用于对应任意值，例如
+
+```
+(lldb) expression -l objc -fi -- 0x55
+(int) $2 = 55  pushq  %rbp
+(lldb) expression -l objc -fi -- 0x4889e5
+(int) $3 = e5 89  inl    $0x89, %eax
+(lldb) expression -l objc -fi -- 0xe58948
+(int) $4 = 48 89 e5  movq   %rsp, %rbp
+```
+
+需要注意内存值的排列方式是little-endian，还是big-endian。
+
+>
+little-endian方式，即低位存低地址。例如存储0xabcd到内存，先存0xcd（地址x），然后存0xab（地址x+1）。big-endian方式则相反。
+
+* -fx，按照十六进制格式输出。如果不指定-s，默认是4个字节（64位上）
+
+```
+memory read -c1 -fx 0x00000001000089f0
+0x1000089f0: 0xe5894855
+```
+
+* -s\<n\>，指定每个单位的大小（n byte）。注意：-s和-fi一起使用，-s无效
+
+```
+(lldb) memory read -s1 -c20 -fx 0x00000001000089f0
+0x1000089f0: 0x55 0x48 0x89 0xe5 0x48 0x81 0xec 0xc0
+0x1000089f8: 0x00 0x00 0x00 0x4c 0x89 0x6d 0xf8 0xb8
+0x100008a00: 0x01 0x00 0x00 0x00
+(lldb) memory read -s2 -c10 -fx 0x00000001000089f0
+0x1000089f0: 0x4855 0xe589 0x8148 0xc0ec 0x0000 0x4c00 0x6d89 0xb8f8
+0x100008a00: 0x0001 0x0000
+(lldb) memory read -c20 -fx 0x00000001000089f0
+0x1000089f0: 0xe5894855 0xc0ec8148 0x4c000000 0xb8f86d89
+0x100008a00: 0x00000001 0x53e8c789 0x48000006 0x8948c789
+0x100008a10: 0x8948a845 0x9de8a055 0x48000006 0x48a87d8b
+0x100008a20: 0xe8984589 0x0000068a 0xe1058b48 0x48000025
+0x100008a30: 0x48a0558b 0xb9184289 0x00000003 0x15e8cf89
+```
+
+* x/\<fmt\>，支持-f和-G选项，例如
+
+```
+(lldb) x/gx $rsp
+0x7ffeefbfe3a8: 0x0000000100003550
+(lldb) memory read -fx -G g $rsp
+0x7ffeefbfe3a8: 0x0000000100003550
+(lldb) memory read -fx -G w $rsp
+0x7ffeefbfe3a8: 0x00003550
+```
+
+-G选项的参数，可以参考http://visualgdb.com/gdbreference/commands/x
+
+>
+
 ### 15、register
 
 格式：register \<subcommand\> [options]    
@@ -543,7 +648,7 @@ class]]"
 
 #### (1) register read
 
-格式：register read [options] \<register name\>
+格式：register read [options] \<register name\>    
 常用选项： 
 
 * 没有选项，输出通用寄存器值
@@ -672,9 +777,9 @@ Current targets:
 * 启动当前target，结合target命令使用
 * -e，将stderr定向到/dev/ttys027文件
 
-### 20、lldb常用快捷键
+### 20、TODO
 
-* Ctrl + c，暂停当前进程
+
 
 ### 21、image
 
@@ -829,6 +934,48 @@ settings set target.skip-prologue false
 
 * `^ + c`，暂停当前进程
 * `^ + d`，结束输入
+
+## lldb类型格式（Type Formatting）
+
+lldb的很多命令，可以按照一定类型和格式输出，例如expression、memory read等。这些命令的选项通常有-G和-f。
+
+* -G，采用GDB格式。如果-f和-G同时存在，一般优先采用GDB格式
+* -f，采用LLDB格式。
+
+| GBD格式(-G) | LLDB格式(-f) |
+|------------|--------------|
+| x: hexadecimal | B: boolean
+| d: decimal | b: binary |
+| u: unsigned decimal | y: bytes |
+| o: octal | Y: bytes with ASCII |
+| t: binary | c: character |
+| a: address | C: printable character |
+| c: character constant | F: complex float |
+| f: float | s: c-string |
+| s: string | i: decimal |
+| | E: enumeration |
+| | x: hex |
+| | f: float |
+| | o: octal |
+| | O: OSType |
+| | U: unicode16 |
+| | u: unsigned decimal |
+| | p: pointer |
+
+| GBD格式(-G)的size修饰符 | 大小 |
+|-----------------------|-----|
+| b | byte |
+| h | halfword (16-bit value) |
+| w | word (32-bit value) |
+| g | giant word (64-bit value) |
+
+GBD格式，参考[https://sourceware.org/gdb/ onlinedocs/gdb/Output-Formats.html](https://sourceware.org/gdb/ onlinedocs/gdb/Output-Formats.html)
+
+LLDB格式，参考[http://lldb.llvm.org/
+varformats.html](http://lldb.llvm.org/
+varformats.html)
+
+GBD格式的size修饰符，参考[http://visualgdb.com/gdbreference/commands/x](http://visualgdb.com/gdbreference/commands/x)
 
 
 ## Call Convention
