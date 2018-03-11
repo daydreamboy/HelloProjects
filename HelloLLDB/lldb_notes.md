@@ -1077,4 +1077,64 @@ load address也对应方法的IMP地址，但不是偏移地址
 
 ![偏移地址](images/偏移地址.png)
 
+#### 栈相关的opcode
+
+* push x
+
+push过程是，将栈指针（sp）自减，64位系统下，自减8个bytes，然后将值x，放在腾出的8个byte的位置。例如push 0x5，换成伪代码，如下
+
+```
+RSP = RSP - 0x8
+*RSP = 0x5
+```
+
+* pop x
+
+pop过程，和push完全相反，将栈指针（sp）当前指向的值，放入到x中，然后自增，64位系统下，自增8个bytes。例如pop rdx，换成伪代码，如下
+
+```
+RDX = *RSP
+RSP = RSP + 0x8
+```
+
+>
+一般来说，编译器会负责把push和pop配对。但是手动写汇编代码，一定要注意push和pop是匹配的。
+
+* call \<function address\>
+
+call过程，将被调用函数的返回后的地址压栈，然后跳入要执行的函数的地址处。举个例子，如下
+
+```
+0x7fffb34de913 <+227>: call   0x7fffb34df410
+0x7fffb34de918 <+232>: mov    edx, eax
+```
+
+0x7fffb34df410是函数地址，而0x7fffb34de918是这个函数执行完成后返回来的地址。假设RIP正指向0x7fffb34de913，此时还没有执行call操作。RIP自增，指向到0x7fffb34de918，call操作被执行，call操作被分为下面几个过程
+
+```
+RIP = 0x7fffb34de918 ; call操作被执行
+RSP = RSP - 0x8 ; 栈指针自减，腾出空间，准备存入函数返回后的地址
+*RSP = RIP ; 存入函数返回后的地址到栈上
+RIP = 0x7fffb34df410 ; 覆盖RIP，完成跳入函数地址
+```
+
+当上面的RIP被覆盖后，即开始执行函数那片地址。
+
+* ret
+
+ret过程，和call对应。将栈顶的值（函数返回后的地址）pop出来，存入到RIP。这样函数执行完，可以回到原来的地方，继续执行。ret对应的伪代码，如下
+
+```
+pop RIP
+```
+
+
+
+
+
+
+
+
+
+
 
