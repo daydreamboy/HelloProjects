@@ -841,7 +841,9 @@ binary file path，二进制文件的文件路径
 
 #### (2) image dump
 
-查看特定module的符号信息
+格式：image dump \<subcommand\>   
+
+* image dump symtab，查看特定module的符号表信息
 
 ```
 (lldb) image dump symtab UIKit -s address
@@ -849,6 +851,12 @@ binary file path，二进制文件的文件路径
 
 >   
 -s address，表示按照address排序
+
+* image dump symfile，查看特定module的debug信息
+
+```
+(lldb) image dump symfile Registers
+```
 
 #### (3) image lookup
 
@@ -1128,9 +1136,23 @@ ret过程，和call对应。将栈顶的值（函数返回后的地址）pop出�
 pop RIP
 ```
 
+#### ptrace
 
+ptrace函数位于<sys/ptrace.h>
 
+```
+ptrace(PT_DENY_ATTACH, 0, nil, 0)
+```
 
+```
+Program ended with exit code: 45
+```
+
+```
+lldb -n helloptrace
+(lldb) process attach --name "helloptrace"
+error: attach failed: lost connection
+```
 
 
 
