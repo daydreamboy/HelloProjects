@@ -82,7 +82,7 @@
     return [self mutableContainerWithJSONData:jsonData containerClass:[NSDictionary class]];
 }
 
-+ (NSDictionary *)mutableArrayWithJSONString:(NSString *)jsonString {
++ (NSMutableArray *)mutableArrayWithJSONString:(NSString *)jsonString {
     return [self mutableContainerWithJSONData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] containerClass:[NSArray class]];
 }
 
@@ -100,10 +100,14 @@
     NSString *className = NSStringFromClass(class);
     if ([className isEqualToString:NSStringFromClass([NSArray class])] || [className isEqualToString:NSStringFromClass([NSDictionary class])]) {
         NSError *error;
-        id mutableContainer = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
-        
-        if (mutableContainer && [mutableContainer isKindOfClass:class]) {
-            return mutableContainer;
+        @try {
+            id mutableContainer = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
+            if (mutableContainer && [mutableContainer isKindOfClass:class]) {
+                return mutableContainer;
+            }
+        }
+        @catch (NSException *exception) {
+            NSLog(@"[%@] an exception occured:\n%@", NSStringFromClass(self), exception);
         }
     }
 

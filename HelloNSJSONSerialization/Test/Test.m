@@ -25,7 +25,7 @@
     [super tearDown];
 }
 
-- (void)test_NSArray_ssonString {
+- (void)test_NSArray_jsonString {
     NSArray *arr = @[ @"1", @"hello", @"", @(3.14) ];
     NSLog(@"plain json of array: %@", [arr jsonString]);
     
@@ -69,7 +69,7 @@
     XCTAssertNil(jsonString);
 }
 
-- (void)test_WCJSONTool {
+- (void)test_WCJSONTool_mutableDictionaryWithJSONString {
     NSDictionary *dict;
     NSString *jsonString;
     
