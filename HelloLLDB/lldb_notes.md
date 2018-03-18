@@ -159,6 +159,16 @@ e [v setFrame:(CGRect){0, 0, 100, 100}]
 参考：   
 https://stackoverflow.com/questions/27533709/how-to-set-the-frame-of-a-uiview-at-runtime-using-lldb-expr-debugging-console
 
+* 打印Objective-C方法的字符串
+
+```
+(lldb) po (char *)$x1
+"_parseEventsArrayFromEvent:"
+
+(lldb) po (SEL)$x1
+"_parseEventsArrayFromEvent:"
+```
+
 * 执行方法，触发breakpoint
 
 格式：expr -i 0 -- \<objC code\>    
