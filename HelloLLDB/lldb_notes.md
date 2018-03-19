@@ -19,7 +19,7 @@
 10. command
 	 * command alias
 	 * command regex
-11. TODO
+11. process
 12. TODO
 13. breakpoint
 	 * breakpoint set
@@ -207,7 +207,7 @@ s不带参数。debug时，代表单步进入
 
 ##### (3) 当前线程中止后面的执行，提前返回到函数入口
 
-格式：thread return <optional retVal>    
+格式：thread return \<optional retVal\>    
 thread return带一个可选的返回值，如果执行，当前函数立即返回，剩下的代码不会执行。     
 注意：和finish不一样，finish是执行完当前函数才返回。由于提前返回，有可能ARC相关内存问题
 
@@ -377,7 +377,29 @@ command regex getcls 's/(([0-9]|\$|\@|\[).*)/cpo [%1 class]/' 's/
 (.+)/expression -l swift -O -- type(of: %1)/'
 ```
 
-### 11、TODO
+### 11、process
+
+格式：process \<subcommand\>    
+说明：用于和当前进程交互
+
+####（1）process load
+
+格式：process load \<path/to/image\>    
+说明：加载动态库到当前进程中
+
+```
+(lldb) process load /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS\ 10.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/Frameworks/Speech.framework/Speech
+Loading "/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 10.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/Frameworks/Speech.framework/Speech"...ok
+Image 0 loaded.
+```
+
+还可以省略完整的路径，采用xxx.framework/xxx格式，如下
+
+```
+(lldb) process load MessageUI.framework/MessageUI
+Loading "MessageUI.framework/MessageUI"...ok
+Image 1 loaded.
+```
 
 ### 12、TODO
 
@@ -849,6 +871,13 @@ UUID，image的唯一标识符，用于查找对应的符号信息
 load address，在进程的内存空间中的加载地址    
 binary file path，二进制文件的文件路径
 
+* -d，打印某个image所在的文件夹路径
+
+```
+(lldb) image list -d UIKit
+[  0] /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 10.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/Frameworks/UIKit.framework
+```
+
 #### (2) image dump
 
 格式：image dump \<subcommand\>   
@@ -953,6 +982,14 @@ LLDB使用.lldbinit-[context]文件，来初始化一些LLDB配置。LLDB按照�
 
 推荐使用方式1和2
 
+当lldb在运行时，修改.lldbinit文件不会立即生效，需要重新加载这个文件，如下
+
+```
+(lldb) command source ~/.lldbinit
+Executing commands in '/Users/wesley_chen/.lldbinit'.
+(lldb) ...
+```
+
 <b>（2）.lldbinit文件的配置项</b>
 
 * 配置LLDB显示汇编代码，用Intel形式
@@ -975,6 +1012,139 @@ Intel格式和AT&T格式的区别
 settings set target.skip-prologue false
 ```
 
+<b>（3）配置lldb常用快捷命令</b>
+
+在.lldbinit文件中，还可以配置一些常用命令的别名，缩短键入命令的长度。
+
+* ls，作用和shell中的ls命令差不多
+
+```
+command regex ls 's/(.+)/po @import Foundation; [[NSFileManager defaultManager] contentsOfDirectoryAtPath:@"%1" error:nil]/'
+```
+
+示例
+
+```
+(lldb) ls /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS\ 10.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/Frameworks
+<__NSArrayM 0x6180000438d0>(
+GameKit.framework,
+...
+SceneKit.framework
+)
+```
+
+>
+在iOS 10.3.2设备上，ls命令可以访问/和/System/Library/目录
+
+* dump_classMethods0，dump某个image中所有类或者分类方法，而且不带参数
+
+```
+command regex dump_classMethods0 "s/(.+)/image lookup -rn '\+\[\w+(\(\w+\))?\ \w+\]$' %1 /"
+```
+
+示例
+
+```
+(lldb) dump_classMethods0 Social
+71 matches found in /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 10.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/Frameworks/Social.framework/Social:
+        Address: Social[0x0000000000002280] (Social.__TEXT.__text + 0)
+        Summary: Social`+[SLInternalComposeServiceHostContext _extensionAuxiliaryVendorProtocol]        Address: Social[0x00000000000022ec] (Social.__TEXT.__text + 108)
+        Summary: Social`+[SLInternalComposeServiceHostContext _extensionAuxiliaryHostProtocol]        Address: Social[0x0000000000002471] (Social.__TEXT.__text + 497)
+        ...
+```
+
+* ivars，输出NSObject子类的实例中所有ivar变量。实际上，利用了NSObject的私有API（_ivarDescription方法）
+
+```
+command regex ivars 's/(.+)/expression -lobjc -o -- [%1 _ivarDescription]/'
+```
+
+示例
+
+```
+(lldb) ivars [SLFacebookPost new]
+<SLFacebookPost: 0x6000000daa20>:
+in SLFacebookPost:
+	_imageData (NSMutableArray*): <__NSArrayM: 0x6180000425e0>
+	_imageAssetURLs (NSMutableArray*): <__NSArrayM: 0x618000041d10>
+	_videoData (NSMutableArray*): <__NSArrayM: 0x618000041b90>
+	_videoAssetURLs (NSMutableArray*): <__NSArrayM: 0x618000043390>
+	_maskedApplicationID (NSString*): nil
+	_text (NSString*): nil
+	_videoExportPreset (NSString*): nil
+	_link (NSURL*): nil
+	_place (SLFacebookPlace*): nil
+	_album (SLFacebookAlbum*): nil
+	_privacySetting (SLFacebookPostPrivacySetting*): nil
+	_taggedUserIDs (NSArray*): nil
+in NSObject:
+	isa (Class): SLFacebookPost (isa, 0x10ceb4cf0)
+
+(lldb)
+```
+
+* methods，打印某个类的所有方法，但不包括它的父类方法。实际上，利用了NSObject的私有API（_shortMethodDescription方法）
+
+```
+command regex methods 's/(.+)/expression -lobjc -o -- [%1 _shortMethodDescription]/'
+```
+
+示例
+
+```
+(lldb) methods SLFacebookPost
+<SLFacebookPost: 0x10ceb4cf0>:
+in SLFacebookPost:
+	Class Methods:
+		+ (BOOL) supportsSecureCoding; (0x10ce0ebba)
+	Properties:
+		@property (retain) NSString* text;  (@synthesize text = _text;)
+		...
+		@property (retain) NSArray* taggedUserIDs;  (@synthesize taggedUserIDs = _taggedUserIDs;)
+	Instance Methods:
+		- (id) privacySetting; (0x10ce0f1bf)
+		...
+		- (id) album; (0x10ce0f198)
+(NSObject ...)
+
+```
+
+* methods\_r，打印某个类的所有方法，但包括它的所有父类方法。实际上，利用了NSObject的私有API（_methodDescription方法）
+
+```
+command regex methods_r 's/(.+)/expression -lobjc -o -- [%1 _methodDescription]/'
+```
+
+示例
+
+```
+(lldb) methods_r SLFacebookPost
+<SLFacebookPost: 0x10ceb4cf0>:
+in SLFacebookPost:
+	Class Methods:
+		+ (BOOL) supportsSecureCoding; (0x10ce0ebba)
+	Properties:
+		@property (retain) NSString* text;  (@synthesize text = _text;)
+		...
+		@property (retain) NSArray* taggedUserIDs;  (@synthesize taggedUserIDs = _taggedUserIDs;)
+	Instance Methods:
+		- (id) privacySetting; (0x10ce0f1bf)
+		...
+		- (id) album; (0x10ce0f198)
+in NSObject:
+	Class Methods:
+		+ (id) CKSQLiteClassName; (0x1240bedf6)
+		...
+		+ (id) description; (0x10d7a0dab)
+	Properties:
+		@property (retain, nonatomic) NSArray* accessibilityCustomRotors;
+		...
+		@property (readonly, copy) NSString* debugDescription;
+	Instance Methods:
+		- (id) mf_objectWithHighest:(^block)arg1; (0x123971bb6)
+		...
+		- (id) description; (0x10d7a0dae)
+```
 
 ## lldb快捷键
 
@@ -1146,7 +1316,7 @@ ret过程，和call对应。将栈顶的值（函数返回后的地址）pop出�
 pop RIP
 ```
 
-#### ptrace
+## ptrace
 
 ptrace函数位于<sys/ptrace.h>
 
@@ -1163,6 +1333,7 @@ lldb -n helloptrace
 (lldb) process attach --name "helloptrace"
 error: attach failed: lost connection
 ```
+
 
 
 
