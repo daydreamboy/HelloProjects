@@ -27,6 +27,7 @@
 #import "CreateDataBufferDispatchSourceViewController.h"
 #import "UseDispatchBenchmarkViewController.h"
 #import "UseDispatchIOViewController.h"
+#import "DispatchOnceIssueCallStackViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -95,16 +96,22 @@
           @{ kTitle: @"Example Of Batch Download Images", kClass: @"ExampleOfBatchDownloadImagesViewController" },
     ];
     
+    NSArray<NSDictionary *> *section4 = @[
+          @{ kTitle: @"Crash happen in dispatch_once", kClass: @"DispatchOnceIssueCallStackViewController" },
+    ];
+    
     _sectionTitles = @[
         @"dispatch queue",
         @"dispatch source",
-        @"operation queue"
+        @"operation queue",
+        @"GCD issues"
     ];
     
     _classes = @[
          section1,
          section2,
          section3,
+         section4
     ];
 }
 

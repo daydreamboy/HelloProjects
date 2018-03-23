@@ -213,11 +213,18 @@ dispatch\_queue\_set\_specific可以设置多个key-value数据。context data�
 
 * use `DISPATCH_QUEUE_SERIAL_INACTIVE` or `DISPATCH_QUEUE_CONCURRENT_INACTIVE`
 
-### dispatch source
+## Dispatch Source
 
 see HelloGCD project
 
 
+## GCD Issues
+
+#### 1. dispatch_once中出现crash，Xcode中调用栈没有显示正常的调用栈
+
+dispatch\_once方法中，如果出现crash，Xcode中调用栈没有显示正常的调用栈。应该是dispatch\_once宏使用汇编代码，丢掉了帧信息或者捕获到异常重新throw。
+
+![](images/Crash happen in dispatch_once.png)
 
 
 References
