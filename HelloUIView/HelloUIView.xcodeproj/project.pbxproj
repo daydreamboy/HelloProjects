@@ -10,6 +10,7 @@
 		4F0B4F1E205269D9003B241E /* HitTestInViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0B4F1D205269D9003B241E /* HitTestInViewViewController.m */; };
 		4F63EFE41FE10068000AFD6F /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63EFE31FE10068000AFD6F /* WCViewTool.m */; };
 		4F63EFE71FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63EFE61FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m */; };
+		4F86CF9C206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86CF9B206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.m */; };
 		4F983BD81FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F983BD71FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m */; };
 		4FAAA5671FA45FE700A80328 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAA5661FA45FE700A80328 /* AppDelegate.m */; };
 		4FAAA56F1FA45FE700A80328 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FAAA56E1FA45FE700A80328 /* Assets.xcassets */; };
@@ -39,6 +40,8 @@
 		4F63EFE31FE10068000AFD6F /* WCViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewTool.m; sourceTree = "<group>"; };
 		4F63EFE51FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObserveViewGeometryChangeEventViewController.h; sourceTree = "<group>"; };
 		4F63EFE61FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObserveViewGeometryChangeEventViewController.m; sourceTree = "<group>"; };
+		4F86CF9A206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwoAdjacentShadowBorderViewController.h; sourceTree = "<group>"; };
+		4F86CF9B206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwoAdjacentShadowBorderViewController.m; sourceTree = "<group>"; };
 		4F983BD61FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchThroughPartRegionOfViewViewController.h; sourceTree = "<group>"; };
 		4F983BD71FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TouchThroughPartRegionOfViewViewController.m; sourceTree = "<group>"; };
 		4FAAA5621FA45FE700A80328 /* HelloUIView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUIView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +99,42 @@
 			path = WCViewTool;
 			sourceTree = "<group>";
 		};
+		4F86CF98206CBD8E0080A9E1 /* CALayer Demo */ = {
+			isa = PBXGroup;
+			children = (
+				4FB43AF0200DA28000D5D92D /* UseCAGradientLayerWithTwoColorsViewController.h */,
+				4FB43AF1200DA28000D5D92D /* UseCAGradientLayerWithTwoColorsViewController.m */,
+				4FB43AF3200DA28000D5D92D /* UseCAGradientLayerWithMultipleColorsViewController.h */,
+				4FB43AF4200DA28100D5D92D /* UseCAGradientLayerWithMultipleColorsViewController.m */,
+				4FB43AF2200DA28000D5D92D /* DrawGradientViewViewController.h */,
+				4FB43AED200DA28000D5D92D /* DrawGradientViewViewController.m */,
+				4FB43AEF200DA28000D5D92D /* DrawRadialGradientViewViewController.h */,
+				4FB43AEE200DA28000D5D92D /* DrawRadialGradientViewViewController.m */,
+				4FAAA5821FA461E500A80328 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.h */,
+				4FAAA5831FA461E500A80328 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.m */,
+				4FD7BE0F206BBA9400368A46 /* AddShadowBorderToImageViewController.h */,
+				4FD7BE10206BBA9400368A46 /* AddShadowBorderToImageViewController.m */,
+				4F86CF9A206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.h */,
+				4F86CF9B206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.m */,
+			);
+			path = "CALayer Demo";
+			sourceTree = "<group>";
+		};
+		4F86CF99206CBD930080A9E1 /* UIView Demo */ = {
+			isa = PBXGroup;
+			children = (
+				4F0B4F1C205269D9003B241E /* HitTestInViewViewController.h */,
+				4F0B4F1D205269D9003B241E /* HitTestInViewViewController.m */,
+				4FB43AC0200A476700D5D92D /* MappingRectFromViewToViewViewController.h */,
+				4FB43AC1200A476700D5D92D /* MappingRectFromViewToViewViewController.m */,
+				4F983BD61FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.h */,
+				4F983BD71FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m */,
+				4F63EFE51FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.h */,
+				4F63EFE61FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m */,
+			);
+			path = "UIView Demo";
+			sourceTree = "<group>";
+		};
 		4FAAA5591FA45FE700A80328 = {
 			isa = PBXGroup;
 			children = (
@@ -133,27 +172,9 @@
 		4FAAA57B1FA4601500A80328 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F86CF99206CBD930080A9E1 /* UIView Demo */,
+				4F86CF98206CBD8E0080A9E1 /* CALayer Demo */,
 				4FB43AE3200DA22F00D5D92D /* Views */,
-				4FB43AF0200DA28000D5D92D /* UseCAGradientLayerWithTwoColorsViewController.h */,
-				4FB43AF1200DA28000D5D92D /* UseCAGradientLayerWithTwoColorsViewController.m */,
-				4FB43AF3200DA28000D5D92D /* UseCAGradientLayerWithMultipleColorsViewController.h */,
-				4FB43AF4200DA28100D5D92D /* UseCAGradientLayerWithMultipleColorsViewController.m */,
-				4FB43AF2200DA28000D5D92D /* DrawGradientViewViewController.h */,
-				4FB43AED200DA28000D5D92D /* DrawGradientViewViewController.m */,
-				4FB43AEF200DA28000D5D92D /* DrawRadialGradientViewViewController.h */,
-				4FB43AEE200DA28000D5D92D /* DrawRadialGradientViewViewController.m */,
-				4FAAA5821FA461E500A80328 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.h */,
-				4FAAA5831FA461E500A80328 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.m */,
-				4F63EFE51FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.h */,
-				4F63EFE61FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m */,
-				4F983BD61FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.h */,
-				4F983BD71FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m */,
-				4FB43AC0200A476700D5D92D /* MappingRectFromViewToViewViewController.h */,
-				4FB43AC1200A476700D5D92D /* MappingRectFromViewToViewViewController.m */,
-				4F0B4F1C205269D9003B241E /* HitTestInViewViewController.h */,
-				4F0B4F1D205269D9003B241E /* HitTestInViewViewController.m */,
-				4FD7BE0F206BBA9400368A46 /* AddShadowBorderToImageViewController.h */,
-				4FD7BE10206BBA9400368A46 /* AddShadowBorderToImageViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -263,6 +284,7 @@
 				4F983BD81FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m in Sources */,
 				4FB43AC2200A476700D5D92D /* MappingRectFromViewToViewViewController.m in Sources */,
 				4FAAA5841FA461E500A80328 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.m in Sources */,
+				4F86CF9C206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.m in Sources */,
 				4FB43AF5200DA28100D5D92D /* DrawGradientViewViewController.m in Sources */,
 				4FB43AF7200DA28100D5D92D /* UseCAGradientLayerWithTwoColorsViewController.m in Sources */,
 				4FD7BE11206BBA9400368A46 /* AddShadowBorderToImageViewController.m in Sources */,

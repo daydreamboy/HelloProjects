@@ -18,6 +18,7 @@
 #import "UseCAGradientLayerWithMultipleColorsViewController.h"
 #import "HitTestInViewViewController.h"
 #import "AddShadowBorderToImageViewController.h"
+#import "TwoAdjacentShadowBorderViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -43,7 +44,6 @@
 
     // MARK: Configure sectionTitles and classes for table view
     NSArray<NSDictionary *> *section1 = @[
-          @{ kTitle: @"UIView with two corners", kClass: [UseCAShapeLayerToShowViewWithTwoCornersViewController class] },
           @{ kTitle: @"observer UIView change event", kClass: [ObserveViewGeometryChangeEventViewController class] },
           @{ kTitle: @"touch through part of view", kClass: [TouchThroughPartRegionOfViewViewController class] },
           @{ kTitle: @"mapping rect from view to view", kClass: [MappingRectFromViewToViewViewController class] },
@@ -51,11 +51,13 @@
     ];
 
     NSArray<NSDictionary *> *section2 = @[
+          @{ kTitle: @"UIView with two corners", kClass: [UseCAShapeLayerToShowViewWithTwoCornersViewController class] },
           @{ kTitle: @"Draw gradient view", kClass: [DrawGradientViewViewController class] },
           @{ kTitle: @"Draw radial gradient view", kClass: [DrawRadialGradientViewViewController class] },
           @{ kTitle: @"gradient with two colors (Use CAGradientLayer)", kClass: [UseCAGradientLayerWithTwoColorsViewController class] },
           @{ kTitle: @"Use CAGradientLayer", kClass: [UseCAGradientLayerWithMultipleColorsViewController class] },
           @{ kTitle: @"Add shadow border to image", kClass: [AddShadowBorderToImageViewController class] },
+          @{ kTitle: @"Two adjacent shadow border", kClass: [TwoAdjacentShadowBorderViewController class] },
     ];
     
     _sectionTitles = @[
