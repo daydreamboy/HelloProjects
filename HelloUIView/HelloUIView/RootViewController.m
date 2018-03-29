@@ -18,6 +18,7 @@
 #import "UseCAGradientLayerWithMultipleColorsViewController.h"
 #import "HitTestInViewViewController.h"
 #import "AddShadowBorderToImageViewController.h"
+#import "AddBorderToImageViewController.h"
 #import "TwoAdjacentShadowBorderViewController.h"
 
 #define kTitle @"Title"
@@ -57,6 +58,7 @@
           @{ kTitle: @"gradient with two colors (Use CAGradientLayer)", kClass: [UseCAGradientLayerWithTwoColorsViewController class] },
           @{ kTitle: @"Use CAGradientLayer", kClass: [UseCAGradientLayerWithMultipleColorsViewController class] },
           @{ kTitle: @"Add shadow border to image", kClass: [AddShadowBorderToImageViewController class] },
+          @{ kTitle: @"Add border to image", kClass: [AddBorderToImageViewController class] },
           @{ kTitle: @"Two adjacent shadow border", kClass: [TwoAdjacentShadowBorderViewController class] },
     ];
     

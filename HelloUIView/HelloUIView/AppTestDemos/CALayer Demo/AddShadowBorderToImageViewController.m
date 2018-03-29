@@ -53,7 +53,6 @@
     [self.view addSubview:self.imageViewRight];
 }
 
-
 #pragma mark - Getters
 
 - (UIImageView *)imageViewLeft {

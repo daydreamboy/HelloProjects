@@ -11,6 +11,7 @@
 		4F63EFE41FE10068000AFD6F /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63EFE31FE10068000AFD6F /* WCViewTool.m */; };
 		4F63EFE71FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63EFE61FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m */; };
 		4F86CF9C206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86CF9B206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.m */; };
+		4F86CF9F206CBFD10080A9E1 /* AddBorderToImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86CF9E206CBFD10080A9E1 /* AddBorderToImageViewController.m */; };
 		4F983BD81FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F983BD71FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m */; };
 		4FAAA5671FA45FE700A80328 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAA5661FA45FE700A80328 /* AppDelegate.m */; };
 		4FAAA56F1FA45FE700A80328 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FAAA56E1FA45FE700A80328 /* Assets.xcassets */; };
@@ -42,6 +43,8 @@
 		4F63EFE61FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObserveViewGeometryChangeEventViewController.m; sourceTree = "<group>"; };
 		4F86CF9A206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwoAdjacentShadowBorderViewController.h; sourceTree = "<group>"; };
 		4F86CF9B206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwoAdjacentShadowBorderViewController.m; sourceTree = "<group>"; };
+		4F86CF9D206CBFD10080A9E1 /* AddBorderToImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddBorderToImageViewController.h; sourceTree = "<group>"; };
+		4F86CF9E206CBFD10080A9E1 /* AddBorderToImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddBorderToImageViewController.m; sourceTree = "<group>"; };
 		4F983BD61FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchThroughPartRegionOfViewViewController.h; sourceTree = "<group>"; };
 		4F983BD71FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TouchThroughPartRegionOfViewViewController.m; sourceTree = "<group>"; };
 		4FAAA5621FA45FE700A80328 /* HelloUIView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUIView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +117,8 @@
 				4FAAA5831FA461E500A80328 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.m */,
 				4FD7BE0F206BBA9400368A46 /* AddShadowBorderToImageViewController.h */,
 				4FD7BE10206BBA9400368A46 /* AddShadowBorderToImageViewController.m */,
+				4F86CF9D206CBFD10080A9E1 /* AddBorderToImageViewController.h */,
+				4F86CF9E206CBFD10080A9E1 /* AddBorderToImageViewController.m */,
 				4F86CF9A206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.h */,
 				4F86CF9B206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.m */,
 			);
@@ -285,6 +290,7 @@
 				4FB43AC2200A476700D5D92D /* MappingRectFromViewToViewViewController.m in Sources */,
 				4FAAA5841FA461E500A80328 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.m in Sources */,
 				4F86CF9C206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.m in Sources */,
+				4F86CF9F206CBFD10080A9E1 /* AddBorderToImageViewController.m in Sources */,
 				4FB43AF5200DA28100D5D92D /* DrawGradientViewViewController.m in Sources */,
 				4FB43AF7200DA28100D5D92D /* UseCAGradientLayerWithTwoColorsViewController.m in Sources */,
 				4FD7BE11206BBA9400368A46 /* AddShadowBorderToImageViewController.m in Sources */,
