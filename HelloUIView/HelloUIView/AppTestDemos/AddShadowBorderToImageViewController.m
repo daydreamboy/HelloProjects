@@ -8,6 +8,7 @@
 
 #import "AddShadowBorderToImageViewController.h"
 
+// @sa UIImageView+Addition.m
 @interface UIImageView (ShadowBorder)
 - (void)addShadowBorderWithBorderColor:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth;
 @end
