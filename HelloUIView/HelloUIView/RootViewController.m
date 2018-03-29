@@ -17,6 +17,7 @@
 #import "UseCAGradientLayerWithTwoColorsViewController.h"
 #import "UseCAGradientLayerWithMultipleColorsViewController.h"
 #import "HitTestInViewViewController.h"
+#import "AddShadowBorderToImageViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -54,6 +55,7 @@
           @{ kTitle: @"Draw radial gradient view", kClass: [DrawRadialGradientViewViewController class] },
           @{ kTitle: @"gradient with two colors (Use CAGradientLayer)", kClass: [UseCAGradientLayerWithTwoColorsViewController class] },
           @{ kTitle: @"Use CAGradientLayer", kClass: [UseCAGradientLayerWithMultipleColorsViewController class] },
+          @{ kTitle: @"Add shadow border to image", kClass: [AddShadowBorderToImageViewController class] },
     ];
     
     _sectionTitles = @[
