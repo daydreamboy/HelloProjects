@@ -1,26 +1,42 @@
 PODS:
   - AwesomeSDK_dynamic_framework (0.1.0)
   - AwesomeSDK_static_framework (0.1.0)
+  - FrameworkA (0.0.1)
+  - FrameworkB (0.0.1)
+  - FrameworkC (0.0.1)
   - ThisAStaticLibrary (0.1.0)
 
 DEPENDENCIES:
   - AwesomeSDK_dynamic_framework (from `../`)
-  - AwesomeSDK_static_framework (from `../`)
+  - AwesomeSDK_static_framework (from `/Users/wesley_chen/GitHub_Projcets/HelloProjects/HelloCocoaPods/HelloCocoaPods-StaticLibraryIntegration/AwesomeSDK/AwesomeSDK_static_framework.podspec.json`)
+  - FrameworkA (from `../AwesomeSDK_umbrella_framework/FrameworkA.podspec`)
+  - FrameworkB (from `../AwesomeSDK_umbrella_framework/FrameworkB.podspec`)
+  - FrameworkC (from `../AwesomeSDK_umbrella_framework/FrameworkC.podspec`)
   - ThisAStaticLibrary (from `../ThisAStaticLibrary/`)
 
 EXTERNAL SOURCES:
   AwesomeSDK_dynamic_framework:
     :path: ../
   AwesomeSDK_static_framework:
-    :path: ../
+    :include_podspecs: ../AwesomeSDK_static_framework.podspec
+    :path: /Users/wesley_chen/GitHub_Projcets/HelloProjects/HelloCocoaPods/HelloCocoaPods-StaticLibraryIntegration/AwesomeSDK/AwesomeSDK_static_framework.podspec.json
+  FrameworkA:
+    :path: ../AwesomeSDK_umbrella_framework/FrameworkA.podspec
+  FrameworkB:
+    :path: ../AwesomeSDK_umbrella_framework/FrameworkB.podspec
+  FrameworkC:
+    :path: ../AwesomeSDK_umbrella_framework/FrameworkC.podspec
   ThisAStaticLibrary:
     :path: ../ThisAStaticLibrary/
 
 SPEC CHECKSUMS:
   AwesomeSDK_dynamic_framework: 8d3980e57f46d5ac4bca3b51bf43628c6e40e6f7
-  AwesomeSDK_static_framework: 2583067dc0643803e3f5770afe516d73a6093e43
+  AwesomeSDK_static_framework: e243f6f3110a401132f0919938ba561b5f2ecaa6
+  FrameworkA: d2987edc1e9ae0befbc733caea4f0a8d3350c8a7
+  FrameworkB: 6fa38872ddd650c7438d389a4a970e569d7739c3
+  FrameworkC: 665c4d62a299b00dd0c2da6b1d3057025f513ce2
   ThisAStaticLibrary: 2646f42c5e6d8ac6279e275eeb292505dbe6ea02
 
-PODFILE CHECKSUM: cab4dbbbf9f0046b58631a4303930265eab9693a
+PODFILE CHECKSUM: 35048b45e37dac468ba1ed8ebda85713bcb517fd
 
 COCOAPODS: 1.3.1

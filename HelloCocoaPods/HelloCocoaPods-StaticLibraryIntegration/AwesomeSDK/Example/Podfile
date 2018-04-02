@@ -1,10 +1,13 @@
 #use_frameworks!
 
+# ali_source 'alibaba-specs' #集团内部仓库
+# ali_source 'alibaba-specs-mirror' #官方镜像仓库
+
 platform :ios, '8.0'
 
 # require 'pod_tweaker'
 
-load '/Users/wesley_chen/Ali-Projects/Integration_CocoaPods/WXOpenIMSDK_FrameworkPackager/cocoapods-pod_tweaker/lib/pod_tweaker.rb'
+load '/Users/wesley_chen/Ali-Projects/i_tb_cocoapods/wxopenimsdk/FrameworkPackager/cocoapods-pod_tweaker/lib/pod_tweaker.rb'
 
 # For Developer
 Debug.setLogLevel(Logger::DEBUG)
@@ -15,12 +18,40 @@ target 'AwesomeSDK_Example' do
   # puts caller
 
   if !ENV['develop_pod_mode'].nil?
+
     # pod developing mode
     puts 'In pod developing mode...'
+
     pod_tweak 'AwesomeSDK_dynamic_framework', :path => '../', :use_framework => true, :product_name => "AwesomeSDKDynamic"
     # pod_tweak 'AwesomeSDK_static_framework', :path => '../', :use_framework => true, :is_dynamic => false, :product_name => "AwesomeSDKStatic"
     pod_tweak 'AwesomeSDK_static_framework', :include_podspecs => '../AwesomeSDK_static_framework.podspec', :use_framework => true, :is_dynamic => false, :product_name => "AwesomeSDKStatic"
     pod_tweak 'ThisAStaticLibrary', :path => '../ThisAStaticLibrary/'
+
+    # # pod_tweak 'SDWebImage+ExtensionSupport'
+    # # pod_tweak 'AFNetworking+AutoRetry', '= 0.0.5'
+    
+    # # sub_pod force pod to :use_framework => true
+    pod_tweak 'AwesomeSDK_umbrella_framework', :sub_pod => {
+      'FrameworkA' => {
+        :path => "../AwesomeSDK_umbrella_framework/FrameworkA.podspec",
+        :is_dynamic => false
+      },
+      'FrameworkB' => {
+        :path => "../AwesomeSDK_umbrella_framework/FrameworkB.podspec",
+        :run_script_paths => [
+          'script_a.sh',
+          'script_b.sh'
+        ]
+      },
+      'FrameworkC' => {
+        :path => "../AwesomeSDK_umbrella_framework/FrameworkC.podspec",
+      },
+    }
+
+
+#    pod_tweak 'AwesomeSDK_umbrella_framework', :path => '../',
+#                                               :subspecs => ['ClassA', 'ClassB', 'ClassC'],
+#                                               :subspecs_attributes => { :use_framework => true, :is_dynamic => false }
   else
     # pod integrating mode
     puts 'In pod integrating mode...'
@@ -32,8 +63,9 @@ target 'AwesomeSDK_Example' do
   target 'AwesomeSDK_Tests' do
     inherit! :search_paths
   end
+
+  target 'AwesomeSDK_ExampleTwo' do
+    inherit! :complete
+  end
 end
 
-post_install do |installer|
-  pod_tweak_target_on_post_install(installer, 'AwesomeSDK_Example')
-end
