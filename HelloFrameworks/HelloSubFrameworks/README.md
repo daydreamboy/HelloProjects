@@ -7,8 +7,8 @@
 首先，使用CocoaTouch Framework模板，生成一个Target，类型是framework。然后按照下面步骤
 
 * 去掉Info.plist，Info.plist File设置为空
-* 去掉modulemap文件，Defines Module设置为NO
-* 去掉二进制文件，Versioning System设置为None（默认是Apple Generic）
+* 去掉modulemap文件，Defines Module设置为NO（DEFINES_MODULE = NO）
+* 去掉二进制文件，Versioning System设置为None（默认是Apple Generic）（VERSIONING_SYSTEM = ""）
 * 去掉头文件，Build Phases -> Headers，全部文件删掉
 
 完成上面的步骤，产物就是一个空的umbrella framework
