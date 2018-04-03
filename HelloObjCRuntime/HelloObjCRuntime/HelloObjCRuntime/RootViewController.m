@@ -17,6 +17,7 @@
 #import "CreateClassAtRuntimeViewController.h"
 #import "SimpleDynamicSubclassViewController.h"
 #import "InterceptDoesNotRecognizeSelectorViewController.h"
+#import "SetIVarDirectlyViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -50,6 +51,7 @@
         @"Swizzle Usage (Capture unrecognized methods)",
         @"Create dynamic delegates",
         @"Skip unsafe method",
+        @"Set ivar directly",
     ];
     _classes = @[
         @"GetPropertiesOfClassViewController",
@@ -64,6 +66,7 @@
         @"CreateDynamicParamModelViewController",
         @"SkipUnsafeMethodViewController",
 //        @"CreateDynamicDelegateViewController.xib",
+        @"SetIVarDirectlyViewController",
     ];
 }
 
