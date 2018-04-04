@@ -7,75 +7,75 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		EF79209F73D56703A44D1269 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16D226C1F5CAA7B07A7525D6 /* Foundation.framework */; };
+		5A7DA8F6F1DB691751DB81F0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94AAEC3F3DFD5BF8742C5302 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		16D226C1F5CAA7B07A7525D6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		2FDDAA9F07C4B8E20759302A /* umbrella_framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = umbrella_framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		94AAEC3F3DFD5BF8742C5302 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		98176681B78DE2610C3FE4D6 /* umbrella_framework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = umbrella_framework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		2EDF748D0B04592405D9277C /* Frameworks */ = {
+		07E2DD128D77127C48A12F8C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF79209F73D56703A44D1269 /* Foundation.framework in Frameworks */,
+				5A7DA8F6F1DB691751DB81F0 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		2BADC13AE9A86ED6F6C5B43A /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				16D226C1F5CAA7B07A7525D6 /* Foundation.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		2DF66F295E717A5942F863F7 /* umbrella_framework */ = {
+		003EEE58FFBF3539588FBE7D /* umbrella_framework */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = umbrella_framework;
 			sourceTree = "<group>";
 		};
+		2224F1B39E03188781183818 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				36D754D0E2E53A9C4F7764F9 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		36D754D0E2E53A9C4F7764F9 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				94AAEC3F3DFD5BF8742C5302 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
 		4FA0D2662073627900002607 = {
 			isa = PBXGroup;
 			children = (
-				B638BB872EFFF7ED3E9F21EC /* Products */,
-				2DF66F295E717A5942F863F7 /* umbrella_framework */,
-				E86027D0A9A38542E3191E18 /* Frameworks */,
+				921BFC4BD02866C4C9E5C8BC /* Products */,
+				003EEE58FFBF3539588FBE7D /* umbrella_framework */,
+				2224F1B39E03188781183818 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
-		B638BB872EFFF7ED3E9F21EC /* Products */ = {
+		921BFC4BD02866C4C9E5C8BC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2FDDAA9F07C4B8E20759302A /* umbrella_framework.framework */,
+				98176681B78DE2610C3FE4D6 /* umbrella_framework.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		E86027D0A9A38542E3191E18 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				2BADC13AE9A86ED6F6C5B43A /* iOS */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		CBD552F44CE67FFB16A4F1EE /* umbrella_framework */ = {
+		1E3037BC509AB63438990FF9 /* umbrella_framework */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FBF04908B84E715D7CE62BDA /* Build configuration list for PBXNativeTarget "umbrella_framework" */;
+			buildConfigurationList = 7567C0C044D02CAAF4683343 /* Build configuration list for PBXNativeTarget "umbrella_framework" */;
 			buildPhases = (
-				55510CBC3F96839DA8351C80 /* Sources */,
-				2EDF748D0B04592405D9277C /* Frameworks */,
+				AE1A2DB530FBDD3B30CA7A4B /* Sources */,
+				07E2DD128D77127C48A12F8C /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -83,7 +83,7 @@
 			);
 			name = umbrella_framework;
 			productName = umbrella_framework;
-			productReference = 2FDDAA9F07C4B8E20759302A /* umbrella_framework.framework */;
+			productReference = 98176681B78DE2610C3FE4D6 /* umbrella_framework.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -102,17 +102,17 @@
 				en,
 			);
 			mainGroup = 4FA0D2662073627900002607;
-			productRefGroup = B638BB872EFFF7ED3E9F21EC /* Products */;
+			productRefGroup = 921BFC4BD02866C4C9E5C8BC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				CBD552F44CE67FFB16A4F1EE /* umbrella_framework */,
+				1E3037BC509AB63438990FF9 /* umbrella_framework */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		55510CBC3F96839DA8351C80 /* Sources */ = {
+		AE1A2DB530FBDD3B30CA7A4B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +122,19 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		1EA949A7869FFB8B55C90C3F /* Release */ = {
+		4FA0D26B2073627900002607 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Debug;
+		};
+		4FA0D26C2073627900002607 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+			};
+			name = Release;
+		};
+		630A567B8EB75A78EB757427 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
@@ -135,6 +147,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/umbrella_framework/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -148,7 +161,7 @@
 			};
 			name = Release;
 		};
-		204AAA14294E2427961F1AB7 /* Debug */ = {
+		CAB62833C50F0BB8C8ECAA80 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
@@ -161,6 +174,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/umbrella_framework/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -174,18 +188,6 @@
 			};
 			name = Debug;
 		};
-		4FA0D26B2073627900002607 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Debug;
-		};
-		4FA0D26C2073627900002607 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -198,11 +200,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FBF04908B84E715D7CE62BDA /* Build configuration list for PBXNativeTarget "umbrella_framework" */ = {
+		7567C0C044D02CAAF4683343 /* Build configuration list for PBXNativeTarget "umbrella_framework" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				1EA949A7869FFB8B55C90C3F /* Release */,
-				204AAA14294E2427961F1AB7 /* Debug */,
+				630A567B8EB75A78EB757427 /* Release */,
+				CAB62833C50F0BB8C8ECAA80 /* Debug */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
