@@ -6,7 +6,7 @@
 
 首先，使用CocoaTouch Framework模板，生成一个Target，类型是framework。然后按照下面步骤
 
-* 去掉Info.plist，Info.plist File设置为空
+* <del>去掉Info.plist，Info.plist File设置为空</del>（Xcode 9.3上，代码签名报错，必须要Info.plist）
 * 去掉modulemap文件，Defines Module设置为NO（DEFINES_MODULE = NO）
 * 去掉二进制文件，Versioning System设置为None（默认是Apple Generic）（VERSIONING_SYSTEM = ""）
 * 去掉头文件，Build Phases -> Headers，全部文件删掉
