@@ -30,12 +30,17 @@
 	 * breakpoint modify
 14. memory
 15. register
+	 * register read
+	 * register write
 16. lldb attach进程
 17. lldb target
 18. lldb查看命令帮助
 19. lldb启动可执行文件
 20. TODO
 21. image
+	 * image list
+	 * image dump
+	 * image lookup
 22. run
 
 ----------------------
@@ -490,6 +495,16 @@ Breakpoint 7: where = CoreFoundation`+[NSSet setWithObject:], address = 0x000000
 Breakpoint 8: where = CoreFoundation`+[NSSet setWithObject:], address = 0x000000010abd3820
 ```
 
+* 指定函数的内存地址，设置断点
+
+```
+(lldb) b 0x00000001034643f0
+Breakpoint 1: where = HookingSwift`HookingSwift.CopyrightImageGenerator.(originalImage in _71AD57F3ABD678B113CF3AD05D01FF41).getter : Swift.Optional<__ObjC.UIImage> at CopyrightImageGenerator.swift:36, address = 0x00000001034643f0
+```
+说明
+>
+0x00000001034643f0是Swift方法originalImage的内存地址，可以使用image lookup -rn HookingSwift.*originalImage得到文件偏移量，然后使用image dump symtab -m HookingSwift，搜索该偏移量找到originalImage方法的内存地址
+
 注意：上面的命令方式，仅在当前debug session中生效，并没有同步到Xcode的breakpoint中
 
 ####（2）breakpoint list
@@ -882,14 +897,48 @@ binary file path，二进制文件的文件路径
 
 格式：image dump \<subcommand\>   
 
-* image dump symtab，查看特定module的符号表信息
+* image dump symtab，查看特定module的符号表信息，而且符号以demangled形式显示
+
+```
+(lldb) image dump symtab HookingSwift
+Symtab, file = /Users/wesley_chen/Library/Developer/Xcode/DerivedData/Watermark-bljnfutbpwxeipdlfbnqaxepnglx/Build/Products/Debug-iphonesimulator/Watermark.app/Frameworks/HookingSwift.framework/HookingSwift, num_symbols = 97:
+               Debug symbol
+               |Synthetic symbol
+               ||Externally Visible
+               |||
+Index   UserID DSX Type            File Address/Value Load Address       Size               Flags      Name
+------- ------ --- --------------- ------------------ ------------------ ------------------ ---------- ----------------------------------
+...
+[    6]     17 D X Code            0x00000000000013f0 0x0000000104ea93f0 0x00000000000000e0 0x000f0000 HookingSwift.CopyrightImageGenerator.(originalImage in _71AD57F3ABD678B113CF3AD05D01FF41).getter : Swift.Optional<__ObjC.UIImage>
+```
+
+关于字段的说明
+>
+* File Address/Value，符号在image（或者module）的偏移量
+* Load Address，符号在内存的地址。如果符号是函数，使用b \<address\>可以直接在该函数处下断点
+* Size，符号占用大小
+* Name，符号的名称。这里是Swift代码，符号名被mangled
+
+* image dump symtab \<module\> -s address，查看特定module的符号表信息，并且按照address排序
 
 ```
 (lldb) image dump symtab UIKit -s address
 ```
 
->   
--s address，表示按照address排序
+* image dump symtab -m \<module\>，查看特定module的符号表信息，而且符号以mangled形式显示
+
+```
+(lldb) image dump symtab -m HookingSwift
+Symtab, file = /Users/wesley_chen/Library/Developer/Xcode/DerivedData/Watermark-bljnfutbpwxeipdlfbnqaxepnglx/Build/Products/Debug-iphonesimulator/Watermark.app/Frameworks/HookingSwift.framework/HookingSwift, num_symbols = 97:
+               Debug symbol
+               |Synthetic symbol
+               ||Externally Visible
+               |||
+Index   UserID DSX Type            File Address/Value Load Address       Size               Flags      Name
+------- ------ --- --------------- ------------------ ------------------ ------------------ ---------- ----------------------------------
+...
+[    6]     17 D X Code            0x00000000000013f0 0x0000000104ea93f0 0x00000000000000e0 0x000f0000 _T012HookingSwift23CopyrightImageGeneratorC08originalD033_71AD57F3ABD678B113CF3AD05D01FF41LLSo7UIImageCSgvg
+```
 
 * image dump symfile，查看特定module的debug信息
 
@@ -901,7 +950,7 @@ binary file path，二进制文件的文件路径
 
 格式：image lookup [options] \<regex\>
 
-* -n，搜索特定的符号名
+* -n，搜索特定的符号名或者函数名
 
 ```
 (lldb) image lookup -n "-[UIViewController viewDidLoad]"
@@ -959,6 +1008,18 @@ binary file path，二进制文件的文件路径
 Blocks一行，range表示函数的加载地址范围，[0x1095bb380-0x1095bb3cf)，左闭右开
 
 ![函数的加载地址范围.png](images/函数的加载地址范围.png)
+
+* -s，搜索特定的符号名
+
+```
+(lldb) image lookup -s getenv
+1 symbols match 'getenv' in /Users/wesley_chen/Library/Developer/Xcode/DerivedData/Watermark-bljnfutbpwxeipdlfbnqaxepnglx/Build/Products/Debug-iphonesimulator/Watermark.app/Frameworks/HookingC.framework/HookingC:
+        Address: HookingC[0x0000000000000f60] (HookingC.__TEXT.__text + 0)
+        Summary: HookingC`getenv at getenvhook.c:18
+1 symbols match 'getenv' in /Users/wesley_chen/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/usr/lib/system/libsystem_c.dylib:
+        Address: libsystem_c.dylib[0x000000000005ce06] (libsystem_c.dylib.__TEXT.__text + 376838)
+        Summary: libsystem_c.dylib`getenv
+```
 
 ### 22、run
 
@@ -1334,9 +1395,120 @@ lldb -n helloptrace
 error: attach failed: lost connection
 ```
 
+## Hooking Functions
 
+#### Hooking c functions
 
+Hook c函数的技术，主要用到dlopen和dlsym两个函数。
 
+* dlopen，用于获取image的句柄handle。第一个参数是image路径（可以用image list查看路径），第二个参数是加载模式，一般使用RTLD_NOW立即加载。
+
+```
+#include <dlfcn.h>
+
+void* dlopen(const char* path, int mode);
+```
+
+* dlsym，用于获取函数符号。第一个参数是image句柄（可以用dlopen获取），第二个参数是函数符号名。
+
+```
+#include <dlfcn.h>
+
+void* dlsym(void* handle, const char* symbol);
+```
+
+以hook getenv函数为例
+
+```
+#import <dlfcn.h>
+#import <assert.h>
+#import <stdio.h>
+#import <dispatch/dispatch.h>
+#import <string.h>
+
+char * getenv(const char *name)
+{
+  static void *handle;
+  static char * (*real_getenv)(const char *);
+  
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    handle = dlopen("/usr/lib/system/libsystem_c.dylib", RTLD_NOW);
+    assert(handle);
+    real_getenv = dlsym(handle, "getenv");
+  });
+  
+  if (strcmp(name, "HOME") == 0) {
+    return "/";
+  }
+  
+  return real_getenv(name);
+}
+```
+
+说明
+>
+1. 如果dlopen和dlsym执行失败，会返回NULL
+2. hook的getenv函数是否被调用，和dyld如何解决外部函数符号有关。如果UIKit中有函数调用getenv，但是getenv地址解释成/usr/lib/system/libsystem_c.dylib中的getenv地址，则自定义hook的getenv不调用了
+
+#### Hooking swift functions
+
+Hook swift函数，要比hook c函数难一些，有两点需要解决
+
+* Swift采用面向对象思想，一般用类或者结构体封装方法，就必须考虑self这一类的参数，需要考虑如何获取self
+* Swift代码编译后，方法名被mangled，需要获取mangle后的符号名
+
+Hook swift函数主要技术，包括dlopen/dlsym、获取mangled符号名以及typealias强制转函数指针。
+
+以hook CopyrightImageGenerator类的getter方法originalImage为例
+
+基本步骤，如下
+
+1\. 确认要hook的方法，找到mangled符号名
+
+* 搜索方法名，找到文件偏移量
+
+```
+(lldb) image lookup -rn HookingSwift.*originalImage
+1 match found in /Users/wesley_chen/Library/Developer/Xcode/DerivedData/Watermark-bljnfutbpwxeipdlfbnqaxepnglx/Build/Products/Debug-iphonesimulator/Watermark.app/Frameworks/HookingSwift.framework/HookingSwift:
+        Address: HookingSwift[0x00000000000013f0] (HookingSwift.__TEXT.__text + 432)
+        Summary: HookingSwift`HookingSwift.CopyrightImageGenerator.(originalImage in _71AD57F3ABD678B113CF3AD05D01FF41).getter : Swift.Optional<__ObjC.UIImage> at CopyrightImageGenerator.swift:36
+```
+
+* 通过偏移量找到managled符号名
+
+```
+(lldb) image dump symtab -m HookingSwift
+Symtab, file = /Users/wesley_chen/Library/Developer/Xcode/DerivedData/Watermark-bljnfutbpwxeipdlfbnqaxepnglx/Build/Products/Debug-iphonesimulator/Watermark.app/Frameworks/HookingSwift.framework/HookingSwift, num_symbols = 97:
+               Debug symbol
+               |Synthetic symbol
+               ||Externally Visible
+               |||
+Index   UserID DSX Type            File Address/Value Load Address       Size               Flags      Name
+------- ------ --- --------------- ------------------ ------------------ ------------------ ---------- ----------------------------------
+...
+[    6]     17 D X Code            0x00000000000013f0 0x00000001034643f0 0x00000000000000e0 0x000f0000 _T012HookingSwift23CopyrightImageGeneratorC08originalD033_71AD57F3ABD678B113CF3AD05D01FF41LLSo7UIImageCSgvg
+```
+
+2\. 通过dlopen/dlsym函数获取原始的函数指针
+
+```
+override func viewDidLoad() {
+  super.viewDidLoad()
+
+  let imageGenerator = CopyrightImageGenerator()
+  imageView.image = imageGenerator.watermarkedImage
+  
+  if let handle = dlopen("./Frameworks/HookingSwift.framework/HookingSwift", RTLD_NOW) {
+    let sym = dlsym(handle, "_T012HookingSwift23CopyrightImageGeneratorC08originalD033_71AD57F3ABD678B113CF3AD05D01FF41LLSo7UIImageCSgvg")
+    print("\(sym)")
+    typealias privateMethodAlias = @convention(c) (Any) -> UIImage?
+    let originalImageFunction = unsafeBitCast(sym, to: privateMethodAlias.self)
+    let originalImage = originalImageFunction(imageGenerator)
+    self.imageView.image = originalImage
+  }
+}
+```
 
 
 
