@@ -99,6 +99,23 @@ bar
 格式：expression <expression>    
 简写：e    
 说明：expression是比较复杂的命令，后面可以加选项。     
+
+* expression -l\<objc/swift\>，lldb调试会根据上下文选择objc环境，还是swift环境，-l指定上下文的语言环境
+
+* expression -- \<expression\>，--指定后面不是选项，而是需要执行的表达式
+
+* expression -i 0 -- \<expression\>，lldb中执行expression默认不会触发断点。-i0（或者-i 0）强制执行expression触发断点。
+
+```
+(lldb) expr -i 0 -- [self areaNbr]
+```
+
+参考 
+>
+https://stackoverflow.com/questions/35861198/xcode-not-stopping-on-breakpoint-in-method-called-from-lldb
+
+* expression -O -- \<expression\>，等同于po命令
+
 例子：
 
 * 执行表达式
@@ -161,7 +178,8 @@ error: reading memory as characters of size 4 is not supported
 e [v setFrame:(CGRect){0, 0, 100, 100}] 
 ```
 
-参考：   
+参考
+>
 https://stackoverflow.com/questions/27533709/how-to-set-the-frame-of-a-uiview-at-runtime-using-lldb-expr-debugging-console
 
 * 打印Objective-C方法的字符串
@@ -173,19 +191,6 @@ https://stackoverflow.com/questions/27533709/how-to-set-the-frame-of-a-uiview-at
 (lldb) po (SEL)$x1
 "_parseEventsArrayFromEvent:"
 ```
-
-* 执行方法，触发breakpoint
-
-格式：expr -i 0 -- \<objC code\>    
-说明：    
-调试时lldb默认不会触发Xcode设置的breakpoint。
-
-```
-expr -i 0 -- [self areaNbr]
-```
-
-参考：    
-https://stackoverflow.com/questions/35861198/xcode-not-stopping-on-breakpoint-in-method-called-from-lldb
 
 ### 5、continue
 
@@ -1080,7 +1085,7 @@ settings set target.skip-prologue false
 * ls，作用和shell中的ls命令差不多
 
 ```
-command regex ls 's/(.+)/po @import Foundation; [[NSFileManager defaultManager] contentsOfDirectoryAtPath:@"%1" error:nil]/'
+command regex ls 's/(.+)/po @import Foundation; [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:@"%1" error:nil] sortedArrayUsingSelector:@selector(localizedCompare:)]/'
 ```
 
 示例
