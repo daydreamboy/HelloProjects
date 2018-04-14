@@ -355,7 +355,7 @@ in hex" -- cpx expression -f x -l objc --
 
 ####（2）command regex
 
-格式：command regex \<alias name\> 's/<regex>/<subst>/'
+格式：command regex \<alias name\> 's/\<regexp\>/\<subst\>/'    
 说明：command regex命令，根据regex抽取参数，同时替换到subst中。这样构成接收动态参数的命令subst。
 
 定义别名rlook，它接收一个按照(.+)匹配的参数%1，构成命令image lookup -rn \<%1\>
@@ -387,6 +387,32 @@ command regex getcls 's/(([0-9]|\$|\@|\[).*)/cpo [%1 class]/' 's/
 (.+)/expression -l swift -O -- type(of: %1)/'
 ```
 
+####（3）command script
+
+格式：command script \<subcommand\>    
+说明：command script命令，后面跟着几种自命名。例如import、list等
+
+* command script import，导入自定义的python脚本，指定脚本的路径。
+
+```
+(lldb) command script import /usr/local/opt/chisel/libexec/fblldb.py
+(lldb) command script import "/Users/wesley_chen/lldb/Scripts/Live Debug/subl.py"
+```
+
+如果预置的脚本在/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/Resources/Python/lldb下面，可直接使用下面方式
+
+```
+(lldb) command script import lldb.macosx.heap
+```
+
+* command script add，添加python函数作为一个lldb命令
+
+```
+(lldb) command script add -f helloworld.your_first_command yay
+```
+>
+-f，指定python函数名，同时指定lldb命令名称
+
 ### 11、process
 
 格式：process \<subcommand\>    
@@ -411,7 +437,15 @@ Loading "MessageUI.framework/MessageUI"...ok
 Image 1 loaded.
 ```
 
-### 12、TODO
+### 12、script
+
+格式：script \<python script\>
+说明：script用于执行python代码
+
+```
+(lldb) script import sys
+(lldb) script print (sys.version)
+```
 
 ### 13、breakpoint
 
