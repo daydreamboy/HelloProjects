@@ -9,7 +9,7 @@
 
 1. print
 2. po（print object）
-3. print/<fmt>
+3. print/\<fmt\>
 4. expression
 5. continue
 6. thread
@@ -20,6 +20,8 @@
 	 * command alias
 	 * command regex
 11. process
+	 * process load
+	 * process launch
 12. TODO
 13. breakpoint
 	 * breakpoint set
@@ -33,9 +35,9 @@
 	 * register read
 	 * register write
 16. lldb attach进程
-17. lldb target
-18. lldb查看命令帮助
-19. lldb启动可执行文件
+17. target
+18. help
+19. TODO
 20. TODO
 21. image
 	 * image list
@@ -437,9 +439,22 @@ Loading "MessageUI.framework/MessageUI"...ok
 Image 1 loaded.
 ```
 
+####（2）process launch
+
+格式：process launch [options]    
+说明：当target命令设置可执行文件后，process launch启动当前可执行文件
+
+```
+(lldb) process launch -e /dev/ttys027 --
+```
+
+>
+-e，将stderr定向到/dev/ttys027文件
+
+
 ### 12、script
 
-格式：script \<python script\>
+格式：script \<python script\>    
 说明：script用于执行python代码
 
 ```
@@ -521,7 +536,12 @@ Breakpoint 3: where = DebuggerDance`isEven + 16 at main.m:4, address = 0x0000000
 Breakpoint 4: where = DebuggerDance`isEven + 16 at main.m:4, address = 0x000000010a3f6d00
 ```
 
-* 指定OC方法的符号，设置断点
+* breakpoint set -F \<OC method\>, 指定OC方法的符号，设置断点
+
+```
+(lldb) br set -F "-[YWEmoticonGroupIndexController setupNavBar]"
+Breakpoint 14: where = YWExtensionForEmotionFMWK`-[YWEmoticonGroupIndexController setupNavBar] at YWEmoticonGroupIndexController.m:215, address = 0x000000011dc005dc
+```
 
 ```
 (lldb) breakpoint set -F "-[NSArray objectAtIndex:]"
@@ -868,31 +888,48 @@ Current targets:
 * target #1: /Applications/Xcode.app/Contents/MacOS/Xcode ( arch=x86_64-apple-macosx, platform=host )
 ```
 
-### 18、lldb查看命令帮助
+### 18、help
 
-* 查看命令帮助
-
-```
-(lldb) help <command>
-```
-
-* 查看子命令帮助
+格式：help \<command\> \<subcommand\>     
+说明：查看命令的帮助信息，subcommand是可选的
 
 ```
-(lldb) help <command> <subcommand>
+(lldb) help breakpoint list
+     List some or all breakpoints at configurable levels of detail.
+
+Syntax: 
+
+Command Options Usage:
+  breakpoint list [-Dbi] [<breakpt-id>]
+  breakpoint list [-Dfi] [<breakpt-id>]
+  breakpoint list [-Div] [<breakpt-id>]
+
+       -D ( --dummy-breakpoints )
+            List Dummy breakpoints - i.e. breakpoints set before a file is provided, which prime new targets.
+
+       -b ( --brief )
+            Give a brief description of the breakpoint (no location info).
+
+       -f ( --full )
+            Give a full description of the breakpoint and its locations.
+
+       -i ( --internal )
+            Show debugger internal breakpoints
+
+       -v ( --verbose )
+            Explain everything we know about the breakpoint (for debugging debugger bugs).
+     
+     This command takes options and free-form arguments.  If your arguments resemble option specifiers (i.e., they start with a - or --), you
+     must use ' -- ' between the end of the command options and the beginning of the arguments.
 ```
 
-### 19、lldb启动可执行文件
+>
+结合command alias命令的-H和-h参数，可以自定义该命令的help信息。具体见command alias的用法。
 
-```
-(lldb) process launch -e /dev/ttys027 --
-```
+### 19、TODO
 
-* 启动当前target，结合target命令使用
-* -e，将stderr定向到/dev/ttys027文件
 
 ### 20、TODO
-
 
 
 ### 21、image
