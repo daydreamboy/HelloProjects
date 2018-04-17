@@ -25,6 +25,7 @@
 		4F35263A2008B9EB00891B09 /* AttachedBubbleWithRightArrowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3526392008B9EB00891B09 /* AttachedBubbleWithRightArrowViewController.m */; };
 		4F35263D2008BEA100891B09 /* AttachedBubbleBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35263C2008BEA100891B09 /* AttachedBubbleBaseViewController.m */; };
 		4F3526402008D68F00891B09 /* AttachedBubbleWithGradientColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35263F2008D68F00891B09 /* AttachedBubbleWithGradientColorViewController.m */; };
+		4FB586AB2086150500D23CEE /* CGRectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB586AA2086150500D23CEE /* CGRectViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,8 @@
 		4F35263C2008BEA100891B09 /* AttachedBubbleBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttachedBubbleBaseViewController.m; sourceTree = "<group>"; };
 		4F35263E2008D68F00891B09 /* AttachedBubbleWithGradientColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttachedBubbleWithGradientColorViewController.h; sourceTree = "<group>"; };
 		4F35263F2008D68F00891B09 /* AttachedBubbleWithGradientColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttachedBubbleWithGradientColorViewController.m; sourceTree = "<group>"; };
+		4FB586A92086150500D23CEE /* CGRectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CGRectViewController.h; sourceTree = "<group>"; };
+		4FB586AA2086150500D23CEE /* CGRectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CGRectViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +128,8 @@
 				4F3525F020064D9200891B09 /* CreateAttachedBubbleLayerViewController.m */,
 				4F3525F820077D6200891B09 /* ExamplesOfWAttachedBubbleViewViewController.h */,
 				4F3525F920077D6200891B09 /* ExamplesOfWAttachedBubbleViewViewController.m */,
+				4FB586A92086150500D23CEE /* CGRectViewController.h */,
+				4FB586AA2086150500D23CEE /* CGRectViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 				4F3526312008B99C00891B09 /* AttachedBubbleWithUpArrowViewController.m in Sources */,
 				2B0FD60F1FC99F0E0022E59D /* CreatePDFGraphicsContext2ViewController.m in Sources */,
 				2B7B0B981FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.m in Sources */,
+				4FB586AB2086150500D23CEE /* CGRectViewController.m in Sources */,
 				4F35263D2008BEA100891B09 /* AttachedBubbleBaseViewController.m in Sources */,
 				4F3525F4200707AE00891B09 /* WCAttachedBubbleView.m in Sources */,
 				2B7B0B951FCAA60400CB7388 /* CreateBitmapGraphicsContext1ViewController.m in Sources */,
