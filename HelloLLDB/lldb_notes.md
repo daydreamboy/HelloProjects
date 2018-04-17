@@ -13,12 +13,22 @@
 4. expression
 5. continue
 6. thread
+	 * thread step-over (next)
+	 * thread step-in（step）
+	 * thread return
+	 * thread list
+	 * thread step-out（finish）
 7. type
+	 * type summary
 8. finish
 9. frame
+	 * frame info
+	 * frame select
+	 * frame variable
 10. command
 	 * command alias
 	 * command regex
+	 * command script
 11. process
 	 * process load
 	 * process launch
@@ -202,30 +212,31 @@ continue不带参数，是process continue的别名。debug时，代表当前进
 
 ### 6、thread
 
-##### (1) 当前线程单步执行
+####（1）thread step-over (next)
 
 格式：thread step-over    
 简写：n，next    
+说明：当前线程单步执行
 n不带参数。debug时，代表单步执行
 
-##### (2) 当前线程单步进入函数
+####（2）thread step-in（step）
 
 格式：thread step-in    
 简写：s，step    
-s不带参数。debug时，代表单步进入    
-补充：   
-1) 和thread step-in相反的操作，跳出函数，则是finish命令     
-2) step -a0，忽略lldb设置，总是单步进入
+说明：当前线程单步进入函数。finish命令是和step相反的操作，用于跳出函数
 
-##### (3) 当前线程中止后面的执行，提前返回到函数入口
+* step -a0，忽略lldb设置，总是单步进入
+
+####（3）thread return
 
 格式：thread return \<optional retVal\>    
-thread return带一个可选的返回值，如果执行，当前函数立即返回，剩下的代码不会执行。     
-注意：和finish不一样，finish是执行完当前函数才返回。由于提前返回，有可能ARC相关内存问题
+说明：当前线程中止后面的执行，提前返回到函数入口。thread return带一个可选的返回值，如果执行，当前函数立即返回，剩下的代码不会执行。  
+注意：和finish不一样，finish是执行完当前函数才返回。由于提前返回，可能有ARC相关内存问题
 
-##### (4) 列出当前所有线程
+####（4）thread list
 
-格式：thread list
+格式：thread list     
+说明：列出当前所有线程
 
 ```
 (lldb) thread list
@@ -238,6 +249,13 @@ Process 15767 stopped
   thread #6: tid = 0x5bfa13, 0x0000000115f9b7c2 libsystem_kernel.dylib`mach_msg_trap + 10, name = 'com.apple.uikit.eventfetch-thread'
   thread #8: tid = 0x5bfa15, 0x0000000115fa5562 libsystem_kernel.dylib`__workq_kernreturn + 10
 ```
+
+####（5）thread step-out（finish）
+
+格式：thread step-out    
+简写：finish    
+说明：debug时，代表执行完当前函数或者方法，然后跳到调用处，这时可以查看RAX寄存器    
+参考资料：https://www.objc.io/issues/19-debugging/lldb-debugging/
 
 ### 7、type
 
@@ -269,28 +287,24 @@ Process 15767 stopped
 (SuperView *) $2 = 0x00007fb4fac15130
 ```
 
-### 8、finish
-
-格式：finish    
-说明：debug时，代表执行完当前函数或者方法，然后跳到调用处，这时可以查看RAX寄存器    
-参考资料：    
-https://www.objc.io/issues/19-debugging/lldb-debugging/
+### 8、TODO
 
 ### 9、frame
 
-##### (1) 显示当前执行点的信息，例如对应源文件的行号等
+####（1）frame info
 
 格式：frame info    
+说明：显示当前执行点的信息，例如对应源文件的行号等
 
 ```
 (lldb) frame info
 frame #0: 0x0000000100000ecf flow_control`main(argc=1, argv=0x00007fff5fbff7e0) + 63 at main.m:25
 ```
 
-##### (2) 查看特定的frame。 
+####（2）frame select
 
 格式：frame select <frame No.>    
-说明：frame info只显示第0个frame。这里的序号，对应thread backtrace输出的frame序号。
+说明：查看特定的frame。frame info只显示第0个frame。这里的序号，对应thread backtrace输出的frame序号。
 
 ```
 (lldb) frame select 1
@@ -302,18 +316,17 @@ libdispatch.dylib`_dispatch_client_callout:
     0x115b15343 <+14>: retq 
 ```
 
-##### (3) 查看当前frame的所有变量
+####（3）frame variable
 
-格式：frame variable
+格式：frame variable    
+说明：查看当前frame的所有变量   
 
 ```
 (lldb) frame variable
 (__block_literal_1 *)  = 0x0000000113cc8470
 ```
 
-##### (4) 查看特定变量
-
-格式：frame variable -F self
+* frame variable -F self，查看特定变量的值
 
 ### 10、command
 
@@ -392,7 +405,7 @@ command regex getcls 's/(([0-9]|\$|\@|\[).*)/cpo [%1 class]/' 's/
 ####（3）command script
 
 格式：command script \<subcommand\>    
-说明：command script命令，后面跟着几种自命名。例如import、list等
+说明：command script命令，后面跟着几种子命令。例如import、list等
 
 * command script import，导入自定义的python脚本，指定脚本的路径。
 
@@ -515,17 +528,17 @@ Tips:
 (lldb) rb . -s UIKit -o
 ```
 
-例子：
-
-* 指定文件和行号，设置断点
+* breakpoint set -f \<filename\.m> -l \<line number\>，指定文件和行号，设置断点
 
 ```
-(lldb) breakpoint set -f main.m -l 16
-Breakpoint 1: where = DebuggerDance`main + 27 at main.m:16, address = 0x000000010a3f6cab
-
-(lldb) b main.m:17
-Breakpoint 2: where = DebuggerDance`main + 52 at main.m:17, address = 0x000000010a3f6cc4
+(lldb) breakpoint set -f YWEmoticonGroupIndexController.m -l 232
+Breakpoint 18: where = YWExtensionForEmotionFMWK`-[YWEmoticonGroupIndexController setupNavBar] + 780 at YWEmoticonGroupIndexController.m:232, address = 0x00000001227ec9fc
 ```
+
+>
+如果符号信息没有加载到内存中（例如手动加载动态库），则设置断点会报错如下    
+Breakpoint 16: no locations (pending).    
+WARNING:  Unable to resolve breakpoint to any actual locations.
 
 * 指定C函数的符号，设置断点
 
@@ -1287,6 +1300,7 @@ in NSObject:
 
 * `^ + c`，暂停当前进程
 * `^ + d`，结束输入
+* (lldb) ⏎，直接执行上次输入的命令
 
 ## lldb类型格式（Type Formatting）
 
