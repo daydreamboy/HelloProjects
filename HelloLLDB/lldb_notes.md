@@ -3,9 +3,11 @@
 1. lldb手册
 2. lldbinit配置
 3. lldb快捷键
-4. Call Convention
+4. lldb类型格式（Type Formatting）
+5. Call Convention
+6. Python调试脚本
 
-## lldb手册
+## 1. lldb手册
 
 1. print
 2. po（print object）
@@ -1296,13 +1298,13 @@ in NSObject:
 		- (id) description; (0x10d7a0dae)
 ```
 
-## lldb快捷键
+## 3. lldb快捷键
 
 * `^ + c`，暂停当前进程
 * `^ + d`，结束输入
 * (lldb) ⏎，直接执行上次输入的命令
 
-## lldb类型格式（Type Formatting）
+## 4. lldb类型格式（Type Formatting）
 
 lldb的很多命令，可以按照一定类型和格式输出，例如expression、memory read等。这些命令的选项通常有-G和-f。
 
@@ -1345,7 +1347,7 @@ varformats.html)
 GBD格式的size修饰符，参考[http://visualgdb.com/gdbreference/commands/x](http://visualgdb.com/gdbreference/commands/x)
 
 
-## Call Convention
+## 5. Call Convention
 
 #### x86_64
 
@@ -1600,6 +1602,123 @@ override func viewDidLoad() {
 }
 ```
 
+## 6. Python调试脚本
 
+Xcode的lldb提供一个python模块，也名为lldb。它位于/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/Resources/Python/lldb
+
+#### 1、导入python脚本或者模块
+通过command script import命令，可以导入python脚本或者模块到lldb环境中。只有导入到lldb才可以执行python函数。
+
+```
+(lldb) command script import lldb.macosx.heap
+```
+
+或者
+
+```
+(lldb) command script import ~/lldb/helloworld.py
+```
+
+#### 2、执行python代码
+
+通过script命令，可以执行python代码。
+>
+注意，script命令和command script命令不一样，script命令作用仅执行python代码，而command script命令用于管理脚本，有add、delete、list等子命令。
+
+```
+(lldb) script import sys
+(lldb) script print (sys.version)
+2.7.10 (default, Oct  6 2017, 22:29:07) 
+[GCC 4.2.1 Compatible Apple LLVM 9.0.0 (clang-900.0.31)]
+```
+
+#### 3、调试相关的python方法
+
+这里不详细介绍python的语法，而是列举一些和调试相关的python方法，方便解决python调试脚本中的问题。
+
+（1）help方法    
+
+格式：help (class/class.method)   
+说明：在python交互式环境中，可以查看类以及方法的帮助信息
+
+```
+>>> help (str)
+>>> help str
+  File "<stdin>", line 1
+    help str
+           ^
+SyntaxError: invalid syntax
+>>> help (str.split)
+```
+
+结合script命令，可以方便查看一些帮助信息。
+
+```
+(lldb) script help(lldb.SBDebugger.HandleCommand)
+```
+
+（2）\_\_class\_\_方法
+
+格式：object.\_\_class\_\_    
+说明：获取对象的类型
+
+```
+>>> h = "hello world"
+>>> h.split(" ").__class__
+<type 'list'>
+>>> h.__class__
+<type 'str'>
+```
+
+（3）dir方法 
+
+格式：dir ([object/class/module])   
+说明：在python交互式环境中，可以查看对象、类以及模块的属性。参数可以为为空，则输出当前scope的属性。
+
+```
+(lldb) script dir (helloworld)
+Traceback (most recent call last):
+  File "<input>", line 1, in <module>
+NameError: name 'helloworld' is not defined
+(lldb) command script import ~/lldb/helloworld.py
+(lldb) script dir (helloworld)
+['__builtins__', '__doc__', '__file__', '__lldb_init_module', '__name__', '__package__', 'your_first_command']
+```
+
+>
+使用dir可以检查module是否导入在当前环境中。
+
+#### 4、建立python方法的别名
+
+直接使用script命令执行python方法，比较麻烦，可能需要import模块以及多次执行script命令。command script add命令（具体见command script命令）可以为python方法建立别名，这样在lldb环境中直接使用别名调用python方法。
+
+```
+(lldb) command script add -f helloworld.your_first_command yay
+```
+如果helloworld模块没有导入在lldb环境中，command script add不会报错，执行yay命令才会报错。
+
+```
+(lldb) yay
+error: unable to execute script function
+```
+
+#### 5、python脚本断点调试
+
+
+
+#### 6、自定义lldb的python脚本
+
+（1）\_\_lldb\_init\_module方法
+
+lldb模块提供一个\_\_lldb\_init\_module方法，自定义的python脚本在导入lldb环境时，会自动执行该方法。因此，可以在\_\_lldb\_init\_module方法中做一些初始化工作。
+
+helloworld.py，在\_\_lldb\_init\_module方法中添加python方法的别名yay。
+
+```
+def __lldb_init_module(debugger, internal_dict):
+  debugger.HandleCommand('command script add -f helloworld.your_first_command yay')
+```
+
+debugger是SBDebugger实例，它的HandleCommand方法，相当于在lldb环境中执行命令。
 
 
