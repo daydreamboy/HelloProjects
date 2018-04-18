@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F53314520872BDD0016F650 /* NaNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53314420872BDD0016F650 /* NaNViewController.m */; };
 		4FC2CF7E2031B10300A416DC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC2CF7D2031B10300A416DC /* AppDelegate.m */; };
 		4FC2CF862031B10400A416DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FC2CF852031B10400A416DC /* Assets.xcassets */; };
 		4FC2CF892031B10400A416DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FC2CF872031B10400A416DC /* LaunchScreen.storyboard */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F53314320872BDD0016F650 /* NaNViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NaNViewController.h; sourceTree = "<group>"; };
+		4F53314420872BDD0016F650 /* NaNViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NaNViewController.m; sourceTree = "<group>"; };
 		4FC2CF792031B10300A416DC /* HelloSyntaxSugar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloSyntaxSugar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FC2CF7C2031B10300A416DC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FC2CF7D2031B10300A416DC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -82,6 +85,8 @@
 				4FC2CF9A2031B17700A416DC /* MultipleCharsInOneCharViewController.m */,
 				4FC2CF9C2031B84F00A416DC /* Cpp11FeatureRawStringViewController.h */,
 				4FC2CF9D2031B84F00A416DC /* Cpp11FeatureRawStringViewController.mm */,
+				4F53314320872BDD0016F650 /* NaNViewController.h */,
+				4F53314420872BDD0016F650 /* NaNViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -157,6 +162,7 @@
 			files = (
 				4FC2CF9E2031B84F00A416DC /* Cpp11FeatureRawStringViewController.mm in Sources */,
 				4FC2CF8C2031B10400A416DC /* main.m in Sources */,
+				4F53314520872BDD0016F650 /* NaNViewController.m in Sources */,
 				4FC2CF7E2031B10300A416DC /* AppDelegate.m in Sources */,
 				4FC2CF982031B12500A416DC /* RootViewController.m in Sources */,
 				4FC2CF9B2031B17700A416DC /* MultipleCharsInOneCharViewController.m in Sources */,

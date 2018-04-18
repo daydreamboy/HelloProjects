@@ -24,7 +24,7 @@
     [super tearDown];
 }
 
-- (void)testExample {
+- (void)test_price {
     NSString *pattern;
     NSString *matchString;
     
@@ -86,7 +86,7 @@
     NSLog(@"--------------------------------");
 }
 
-- (void)test1 {
+- (void)test_domain {
     // @see https://stackoverflow.com/questions/9276246/how-to-write-regular-expressions-in-objective-c-nsregularexpression
     NSString *searchedString = @"domain-name.tld.tld2";
     NSRange   searchedRange = NSMakeRange(0, [searchedString length]);
@@ -103,6 +103,52 @@
         NSLog(@"group1: %@", [searchedString substringWithRange:group1]);
         NSLog(@"group2: %@", [searchedString substringWithRange:group2]);
     }
+}
+
+- (void)test_floatString {
+    NSString *pattern;
+    NSString *matchString;
+    
+    pattern = @"(^-?[0-9]\\d*\\.{0,1}\\d+$)";
+    
+    matchString = @"1.2";
+    [self runRegexWithPattern:pattern matchString:matchString];
+    
+    matchString = @"-1.2";
+    [self runRegexWithPattern:pattern matchString:matchString];
+    
+    matchString = @"-0.2";
+    [self runRegexWithPattern:pattern matchString:matchString];
+    
+    matchString = @"0.2";
+    [self runRegexWithPattern:pattern matchString:matchString];
+    
+    matchString = @"0.2000";
+    [self runRegexWithPattern:pattern matchString:matchString];
+    
+    matchString = @"0";
+    [self runRegexWithPattern:pattern matchString:matchString];
+    
+    matchString = @"-0";
+    [self runRegexWithPattern:pattern matchString:matchString];
+    
+    matchString = @"-1";
+    [self runRegexWithPattern:pattern matchString:matchString];
+    
+    matchString = @"-01";
+    [self runRegexWithPattern:pattern matchString:matchString];
+    
+    matchString = @"01";
+    [self runRegexWithPattern:pattern matchString:matchString];
+}
+
+- (void)test_CGRectString {
+    NSString *pattern;
+    NSString *matchString;
+    
+    pattern = @"^\\{\\{(.+),(.+)\\},\\{(.+),(.+)\\}\\}$";
+    matchString = @"{{1,2},{3,4}}";
+    [self runRegexWithPattern:pattern matchString:matchString];
 }
 
 @end

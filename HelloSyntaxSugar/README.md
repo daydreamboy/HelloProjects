@@ -66,4 +66,39 @@ static NSString *jsonString = @R"JSON(
 
 上面的@符号将C字符串转成NSString类型。
 
+## 3. 表示NaN
+
+math.h头文件提供NaN（Not A Number），有时候需要这种特殊值来占位或者其他用途。
+
+（1）NaN值的表示
+
+使用NAN宏或者nan(NULL)返回一个NaN值
+
+（2）判断是否NaN
+
+NaN相关函数
+
+```
+extern float nanf(const char *);
+extern double nan(const char *);
+extern long double nanl(const char *);
+```
+
+或者直接使用isnan(x)宏
+
+（3）打印NaN值
+
+NaN值的字符串输出总是nan。系统函数一般都处理过，然后输出成nan。
+
+```
+double maybeNumber = nan(NULL);
+    
+NSLog(@"%f", maybeNumber); // nan
+
+CGRect rect = CGRectMake(maybeNumber, maybeNumber, maybeNumber, maybeNumber);
+NSLog(@"%@", NSStringFromCGRect(rect)); // {{nan, nan}, {nan, nan}}
+```
+>
+参考资料：https://stackoverflow.com/questions/9402348/how-to-return-a-nil-cgfloat
+
 

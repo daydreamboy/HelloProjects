@@ -10,6 +10,7 @@
 
 #import "MultipleCharsInOneCharViewController.h"
 #import "Cpp11FeatureRawStringViewController.h"
+#import "NaNViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -34,11 +35,13 @@
     _titles = @[
         @"Multiple characters in char",
         @"C++ 11 feature: raw string",
+        @"Use NaN",
         @"call a test method",
     ];
     _classes = @[
         [MultipleCharsInOneCharViewController class],
         [Cpp11FeatureRawStringViewController class],
+        [NaNViewController class],
         @"testMethod",
     ];
 }

@@ -1721,4 +1721,12 @@ def __lldb_init_module(debugger, internal_dict):
 
 debugger是SBDebugger实例，它的HandleCommand方法，相当于在lldb环境中执行命令。
 
+（2）~/.lldbinit文件
+
+可以直接配置~/.lldbinit文件，这样lldb启动自动加载需要的python脚本。具体见<b>lldbinit配置</b>。
+
+```
+command script import ~/lldb/helloworld.py
+```
+
 
