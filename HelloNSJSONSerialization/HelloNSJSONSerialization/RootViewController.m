@@ -10,6 +10,7 @@
 
 #import "NSJSONReadingAllowFragmentsIssueViewController.h"
 #import "MixJSONObjectWithEscapedJSONStringViewController.h"
+#import "AccessThemeConfigurationViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -34,11 +35,13 @@
     _titles = @[
         @"NSJSONReadingAllowFragments issue",
         @"abuse mixing JSONObject with escapedJSONString",
+        @"demo for WCThemeTool (TODO)",
         @"call a test method",
     ];
     _classes = @[
-        @"NSJSONReadingAllowFragmentsIssueViewController",
-        @"MixJSONObjectWithEscapedJSONStringViewController",
+        [NSJSONReadingAllowFragmentsIssueViewController class],
+        [MixJSONObjectWithEscapedJSONStringViewController class],
+        [AccessThemeConfigurationViewController class],
         @"testMethod",
     ];
 }
@@ -68,19 +71,10 @@
     return cell;
 }
 
-- (void)pushViewController:(NSString *)viewControllerClass {
-    NSAssert([viewControllerClass isKindOfClass:[NSString class]], @"%@ is not NSString", viewControllerClass);
+- (void)pushViewController:(id)viewControllerClass {
     
-    Class class = NSClassFromString(viewControllerClass);
-    if (class && [class isSubclassOfClass:[UIViewController class]]) {
-        
-        UIViewController *vc = [[class alloc] init];
-        vc.title = _titles[[_classes indexOfObject:viewControllerClass]];
-        
-        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    else {
+    id class = viewControllerClass;
+    if ([class isKindOfClass:[NSString class]]) {
         SEL selector = NSSelectorFromString(viewControllerClass);
         if ([self respondsToSelector:selector]) {
 #pragma GCC diagnostic push
@@ -92,8 +86,14 @@
             NSAssert(NO, @"can't handle selector `%@`", viewControllerClass);
         }
     }
+    else if (class && [class isSubclassOfClass:[UIViewController class]]) {
+        UIViewController *vc = [[class alloc] init];
+        vc.title = _titles[[_classes indexOfObject:viewControllerClass]];
+        
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
-
 #pragma mark - Test Methods
 
 - (void)testMethod {
