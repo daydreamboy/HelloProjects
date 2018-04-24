@@ -11,6 +11,7 @@
 #import "MultipleCharsInOneCharViewController.h"
 #import "Cpp11FeatureRawStringViewController.h"
 #import "NaNViewController.h"
+#import "GenericSelectionExpressionViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -36,12 +37,14 @@
         @"Multiple characters in char",
         @"C++ 11 feature: raw string",
         @"Use NaN",
+        @"Use Generic Selection Expression (C11 feature)",
         @"call a test method",
     ];
     _classes = @[
         [MultipleCharsInOneCharViewController class],
         [Cpp11FeatureRawStringViewController class],
         [NaNViewController class],
+        [GenericSelectionExpressionViewController class],
         @"testMethod",
     ];
 }
