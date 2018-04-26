@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4F03AEB9208E1DD500186DE1 /* GenericSelectionExpressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F03AEB8208E1DD500186DE1 /* GenericSelectionExpressionViewController.m */; };
 		4F53314520872BDD0016F650 /* NaNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53314420872BDD0016F650 /* NaNViewController.m */; };
+		4F641A0B209056F7009B41E5 /* NamespacedGlobalVarsAndFuncsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F641A0A209056F7009B41E5 /* NamespacedGlobalVarsAndFuncsViewController.m */; };
+		4F641A0E209058CE009B41E5 /* NamespacedDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F641A0D209058CE009B41E5 /* NamespacedDefines.m */; };
 		4FC2CF7E2031B10300A416DC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC2CF7D2031B10300A416DC /* AppDelegate.m */; };
 		4FC2CF862031B10400A416DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FC2CF852031B10400A416DC /* Assets.xcassets */; };
 		4FC2CF892031B10400A416DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FC2CF872031B10400A416DC /* LaunchScreen.storyboard */; };
@@ -23,6 +25,10 @@
 		4F03AEB8208E1DD500186DE1 /* GenericSelectionExpressionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenericSelectionExpressionViewController.m; sourceTree = "<group>"; };
 		4F53314320872BDD0016F650 /* NaNViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NaNViewController.h; sourceTree = "<group>"; };
 		4F53314420872BDD0016F650 /* NaNViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NaNViewController.m; sourceTree = "<group>"; };
+		4F641A09209056F7009B41E5 /* NamespacedGlobalVarsAndFuncsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NamespacedGlobalVarsAndFuncsViewController.h; sourceTree = "<group>"; };
+		4F641A0A209056F7009B41E5 /* NamespacedGlobalVarsAndFuncsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NamespacedGlobalVarsAndFuncsViewController.m; sourceTree = "<group>"; };
+		4F641A0C209058CE009B41E5 /* NamespacedDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NamespacedDefines.h; sourceTree = "<group>"; };
+		4F641A0D209058CE009B41E5 /* NamespacedDefines.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NamespacedDefines.m; sourceTree = "<group>"; };
 		4FC2CF792031B10300A416DC /* HelloSyntaxSugar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloSyntaxSugar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FC2CF7C2031B10300A416DC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FC2CF7D2031B10300A416DC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -92,6 +98,10 @@
 				4F53314420872BDD0016F650 /* NaNViewController.m */,
 				4F03AEB7208E1DD500186DE1 /* GenericSelectionExpressionViewController.h */,
 				4F03AEB8208E1DD500186DE1 /* GenericSelectionExpressionViewController.m */,
+				4F641A09209056F7009B41E5 /* NamespacedGlobalVarsAndFuncsViewController.h */,
+				4F641A0A209056F7009B41E5 /* NamespacedGlobalVarsAndFuncsViewController.m */,
+				4F641A0C209058CE009B41E5 /* NamespacedDefines.h */,
+				4F641A0D209058CE009B41E5 /* NamespacedDefines.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -170,7 +180,9 @@
 				4F53314520872BDD0016F650 /* NaNViewController.m in Sources */,
 				4FC2CF7E2031B10300A416DC /* AppDelegate.m in Sources */,
 				4FC2CF982031B12500A416DC /* RootViewController.m in Sources */,
+				4F641A0E209058CE009B41E5 /* NamespacedDefines.m in Sources */,
 				4FC2CF9B2031B17700A416DC /* MultipleCharsInOneCharViewController.m in Sources */,
+				4F641A0B209056F7009B41E5 /* NamespacedGlobalVarsAndFuncsViewController.m in Sources */,
 				4F03AEB9208E1DD500186DE1 /* GenericSelectionExpressionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

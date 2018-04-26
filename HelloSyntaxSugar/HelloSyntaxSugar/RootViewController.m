@@ -12,6 +12,7 @@
 #import "Cpp11FeatureRawStringViewController.h"
 #import "NaNViewController.h"
 #import "GenericSelectionExpressionViewController.h"
+#import "NamespacedGlobalVarsAndFuncsViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -38,6 +39,7 @@
         @"C++ 11 feature: raw string",
         @"Use NaN",
         @"Use Generic Selection Expression (C11 feature)",
+        @"Namespaced global vars and C funcs",
         @"call a test method",
     ];
     _classes = @[
@@ -45,6 +47,7 @@
         [Cpp11FeatureRawStringViewController class],
         [NaNViewController class],
         [GenericSelectionExpressionViewController class],
+        [NamespacedGlobalVarsAndFuncsViewController class],
         @"testMethod",
     ];
 }
