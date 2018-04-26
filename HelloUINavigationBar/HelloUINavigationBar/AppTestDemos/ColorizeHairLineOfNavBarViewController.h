@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CustomizeHairLineOfNavBarViewController : UIViewController
+@interface ColorizeHairLineOfNavBarViewController : UIViewController
 
 
 @end

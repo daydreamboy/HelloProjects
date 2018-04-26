@@ -14,7 +14,9 @@
 		4F564551207F4ABC00CE60A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F56454F207F4ABC00CE60A5 /* LaunchScreen.storyboard */; };
 		4F564554207F4ABC00CE60A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F564553207F4ABC00CE60A5 /* main.m */; };
 		4F564560207F4AE400CE60A5 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F56455E207F4AE400CE60A5 /* RootViewController.m */; };
-		4F564564207F4B0F00CE60A5 /* CustomizeHairLineOfNavBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F564562207F4B0F00CE60A5 /* CustomizeHairLineOfNavBarViewController.m */; };
+		4F564564207F4B0F00CE60A5 /* ColorizeHairLineOfNavBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F564562207F4B0F00CE60A5 /* ColorizeHairLineOfNavBarViewController.m */; };
+		4F899159209177C00028449A /* WCNavigationBarTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F899158209177C00028449A /* WCNavigationBarTool.m */; };
+		4F89915C209180EC0028449A /* RemoveHairLineOfNavBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F89915B209180EC0028449A /* RemoveHairLineOfNavBarViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,8 +33,12 @@
 		4F564553207F4ABC00CE60A5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F56455D207F4AE400CE60A5 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F56455E207F4AE400CE60A5 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		4F564562207F4B0F00CE60A5 /* CustomizeHairLineOfNavBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizeHairLineOfNavBarViewController.m; sourceTree = "<group>"; };
-		4F564563207F4B0F00CE60A5 /* CustomizeHairLineOfNavBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizeHairLineOfNavBarViewController.h; sourceTree = "<group>"; };
+		4F564562207F4B0F00CE60A5 /* ColorizeHairLineOfNavBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorizeHairLineOfNavBarViewController.m; sourceTree = "<group>"; };
+		4F564563207F4B0F00CE60A5 /* ColorizeHairLineOfNavBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorizeHairLineOfNavBarViewController.h; sourceTree = "<group>"; };
+		4F899157209177C00028449A /* WCNavigationBarTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCNavigationBarTool.h; sourceTree = "<group>"; };
+		4F899158209177C00028449A /* WCNavigationBarTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCNavigationBarTool.m; sourceTree = "<group>"; };
+		4F89915A209180EC0028449A /* RemoveHairLineOfNavBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RemoveHairLineOfNavBarViewController.h; sourceTree = "<group>"; };
+		4F89915B209180EC0028449A /* RemoveHairLineOfNavBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RemoveHairLineOfNavBarViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +55,7 @@
 		4F564538207F4ABA00CE60A5 = {
 			isa = PBXGroup;
 			children = (
+				4F899156209177890028449A /* WCNavigationBarTool */,
 				4F564543207F4ABA00CE60A5 /* HelloUINavigationBar */,
 				4F564542207F4ABA00CE60A5 /* Products */,
 			);
@@ -81,14 +88,25 @@
 		4F564561207F4B0F00CE60A5 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F564563207F4B0F00CE60A5 /* CustomizeHairLineOfNavBarViewController.h */,
-				4F564562207F4B0F00CE60A5 /* CustomizeHairLineOfNavBarViewController.m */,
+				4F564563207F4B0F00CE60A5 /* ColorizeHairLineOfNavBarViewController.h */,
+				4F564562207F4B0F00CE60A5 /* ColorizeHairLineOfNavBarViewController.m */,
+				4F89915A209180EC0028449A /* RemoveHairLineOfNavBarViewController.h */,
+				4F89915B209180EC0028449A /* RemoveHairLineOfNavBarViewController.m */,
 				4F5523142080903D00C137EC /* TransparentNavBarViewController.h */,
 				4F5523152080903D00C137EC /* TransparentNavBarViewController.m */,
 				4F55235420809F8300C137EC /* SolidColoredNavBarViewController.h */,
 				4F55235520809F8300C137EC /* SolidColoredNavBarViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F899156209177890028449A /* WCNavigationBarTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F899157209177C00028449A /* WCNavigationBarTool.h */,
+				4F899158209177C00028449A /* WCNavigationBarTool.m */,
+			);
+			path = WCNavigationBarTool;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,7 +179,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F564554207F4ABC00CE60A5 /* main.m in Sources */,
-				4F564564207F4B0F00CE60A5 /* CustomizeHairLineOfNavBarViewController.m in Sources */,
+				4F89915C209180EC0028449A /* RemoveHairLineOfNavBarViewController.m in Sources */,
+				4F899159209177C00028449A /* WCNavigationBarTool.m in Sources */,
+				4F564564207F4B0F00CE60A5 /* ColorizeHairLineOfNavBarViewController.m in Sources */,
 				4F564546207F4ABA00CE60A5 /* AppDelegate.m in Sources */,
 				4F5523162080903D00C137EC /* TransparentNavBarViewController.m in Sources */,
 				4F55235620809F8300C137EC /* SolidColoredNavBarViewController.m in Sources */,
@@ -298,6 +318,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = HelloUINavigationBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -314,6 +335,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = HelloUINavigationBar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -39,6 +39,7 @@
     
     // Note: reset navigationBar to default
     navigationBar.barTintColor = nil;
+    navigationBar.tintColor = nil;
     navigationBar.translucent = YES;
     [navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     navigationBar.shadowImage = nil;

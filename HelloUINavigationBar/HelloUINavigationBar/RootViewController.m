@@ -8,7 +8,8 @@
 
 #import "RootViewController.h"
 
-#import "CustomizeHairLineOfNavBarViewController.h"
+#import "ColorizeHairLineOfNavBarViewController.h"
+#import "RemoveHairLineOfNavBarViewController.h"
 #import "TransparentNavBarViewController.h"
 #import "SolidColoredNavBarViewController.h"
 
@@ -34,12 +35,14 @@
     // MARK: Configure titles and classes for table view
     _titles = @[
         @"Customize hair line of nav bar",
+        @"Remvoe hair line of nav bar",
         @"Transparent nav bar",
         @"Solid colored nav bar",
         @"call a test method",
     ];
     _classes = @[
-        [CustomizeHairLineOfNavBarViewController class],
+        [ColorizeHairLineOfNavBarViewController class],
+        [RemoveHairLineOfNavBarViewController class],
         [TransparentNavBarViewController class],
         [SolidColoredNavBarViewController class],
         @"testMethod",
