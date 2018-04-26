@@ -6,6 +6,7 @@
 4. lldb类型格式（Type Formatting）
 5. Call Convention
 6. Python调试脚本
+7. 符号解释
 
 ## 1. lldb手册
 
@@ -34,7 +35,7 @@
 11. process
 	 * process load
 	 * process launch
-12. TODO
+12. script
 13. breakpoint
 	 * breakpoint set
 	 * breakpoint list
@@ -49,7 +50,7 @@
 16. lldb attach进程
 17. target
 18. help
-19. TODO
+19. source
 20. TODO
 21. image
 	 * image list
@@ -941,7 +942,7 @@ Command Options Usage:
 >
 结合command alias命令的-H和-h参数，可以自定义该命令的help信息。具体见command alias的用法。
 
-### 19、TODO
+### 19、source
 
 
 ### 20、TODO
@@ -1729,4 +1730,12 @@ debugger是SBDebugger实例，它的HandleCommand方法，相当于在lldb环境
 command script import ~/lldb/helloworld.py
 ```
 
+#### 7、符号解释
 
+nm命令可以输出.o文件的二进制符号。除了代码，还有一些特定的符号，如下
+
+| 符号名 | 说明 |
+|-------|------|
+| ___CFConstantStringClassReference | 说明.o文件存在字面字符串 |
+| l\_.str.\<x\> | x是序号，这个符号表示宽字符串，例如@"中文"就是宽字符串。非宽字符串，不会有这个符号。 |
+| GCC\_except\_table<x> | x是序号，这个符号表示存在异常捕获，例如@try@catch，也可能带上\_objc\_begin\_catch和\_objc\_end\_catch符号 |
