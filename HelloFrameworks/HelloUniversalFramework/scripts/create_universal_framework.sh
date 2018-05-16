@@ -78,8 +78,11 @@ if [ "Release" == ${CONFIGURATION} ]; then
         # Step 2. Copy the framework structure (from iphoneos build) to the universal folder
         rsync -arv "${BUILD_DIR}/${CONFIGURATION}-${additional_arch}/${PRODUCT_NAME}.framework" "${UNIVERSAL_OUTPUTFOLDER}/"
         
-        # Note: copy dSYM if Release
-        rsync -arv "${BUILD_DIR}/${CONFIGURATION}-${additional_arch}/${PRODUCT_NAME}.framework.dSYM" "${UNIVERSAL_OUTPUTFOLDER}/"
+		# Note: copy dSYM if needed
+		dSYM="${BUILD_DIR}/${CONFIGURATION}-${additional_arch}/${PRODUCT_NAME}.framework.dSYM"
+		if [ -d "$dSYM" ]; then
+			rsync -arv "$dSYM" "${UNIVERSAL_OUTPUTFOLDER}/"
+		fi
 
         # Step 3. Copy Swift modules from iphonesimulator build (if it exists) to the copied framework directory
         SIMULATOR_SWIFT_MODULES_DIR="${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PRODUCT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule/."
@@ -90,8 +93,17 @@ if [ "Release" == ${CONFIGURATION} ]; then
         # Step 4. Create universal binary file using lipo and place the combined executable in the copied framework directory
         lipo -create -output "${UNIVERSAL_OUTPUTFOLDER}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}" "${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PRODUCT_NAME}.framework/${PRODUCT_NAME}" "${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PRODUCT_NAME}.framework/${PRODUCT_NAME}"
         
-        # Note: create universal dSYM
-        lipo -create -output "${UNIVERSAL_OUTPUTFOLDER}/${PRODUCT_NAME}.framework.dSYM/Contents/Resources/DWARF/${PRODUCT_NAME}" "${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PRODUCT_NAME}.framework.dSYM/Contents/Resources/DWARF/${PRODUCT_NAME}" "${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PRODUCT_NAME}.framework.dSYM/Contents/Resources/DWARF/${PRODUCT_NAME}"
+        if [ ${MACH_O_TYPE} == "mh_dylib" ]; then
+            strip -x "${UNIVERSAL_OUTPUTFOLDER}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}"
+        fi
+
+		# Note: create universal dSYM
+		dSYM_iphoneos="${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PRODUCT_NAME}.framework.dSYM/Contents/Resources/DWARF/${PRODUCT_NAME}"
+		dSYM_iphonesimulator="${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PRODUCT_NAME}.framework.dSYM/Contents/Resources/DWARF/${PRODUCT_NAME}"
+	
+		if [ -f "$dSYM_iphoneos" ] && [ -f "$dSYM_iphonesimulator" ] ; then
+			lipo -create -output "${UNIVERSAL_OUTPUTFOLDER}/${PRODUCT_NAME}.framework.dSYM/Contents/Resources/DWARF/${PRODUCT_NAME}" "${dSYM_iphoneos}" "${dSYM_iphonesimulator}"
+		fi
 
         # Step 5. Convenience step to copy the framework to the project's directory
         rsync -arv "${UNIVERSAL_OUTPUTFOLDER}/${PRODUCT_NAME}.framework" "${PROJECT_DIR}"
