@@ -519,7 +519,7 @@ Tips:
 (lldb) rb .
 ```
 
-匹配在特定module中所有的符号
+* -s (--shlib) \<module\>，匹配在特定module中所有的符号
 
 ```
 (lldb) rb . -s UIKit
@@ -1656,6 +1656,10 @@ SyntaxError: invalid syntax
 
 ```
 (lldb) script help(lldb.SBDebugger.HandleCommand)
+Help on method HandleCommand in module lldb:
+
+HandleCommand(self, *args) unbound lldb.SBDebugger method
+    HandleCommand(self, str command)
 ```
 
 （2）\_\_class\_\_方法
