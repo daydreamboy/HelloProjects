@@ -59,11 +59,24 @@
 }
 
 + (BOOL)loadFrameworkWithName:(NSString *)name error:(NSError **)error {
+    NSError *errorL = nil;
+    BOOL loaded = NO;
+    
     NSString *frameworkFolder = [[NSBundle mainBundle] privateFrameworksPath];
     NSString *frameworkPath = [frameworkFolder stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.framework", name]];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:frameworkPath]) {
+        loaded = NO;
+        
+        if (error) {
+            NSString *errorDescription = [NSString stringWithFormat:@"%@ not exists", frameworkPath];
+            *error = [NSError errorWithDomain:@"WCBundleToolError" code:-1 userInfo:@{ NSLocalizedDescriptionKey: errorDescription }];
+        }
+        
+        return loaded;
+    }
+    
     NSBundle *frameworkBundle = [NSBundle bundleWithPath:frameworkPath];
-    NSError *errorL = nil;
-    BOOL loaded = [frameworkBundle loadAndReturnError:&errorL];
+    loaded = [frameworkBundle loadAndReturnError:&errorL];
     if (error) {
         *error = errorL;
     }
