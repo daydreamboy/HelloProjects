@@ -7,6 +7,7 @@
 5. Call Convention
 6. Python调试脚本
 7. 符号解释
+8. lldb常见问题
 
 ## 1. lldb手册
 
@@ -63,7 +64,7 @@
 
 ### 1、print
 
-格式：print <expression>    
+格式：print \<expression\>    
 简写：p     
 说明：print是expression --的别名，后面不能加选项    
 例子：    
@@ -75,7 +76,7 @@
 
 ### 2、po（print object）
 
-格式：po <expression>    
+格式：po \<expression\>    
 简写：po    
 说明：po是expression -O --的别名，用于调用对象的debugDescription方法    
 例子：
@@ -615,9 +616,10 @@ Current breakpoints:
 
 ####（4）breakpoint delete
 
-格式：breakpoint delete \<breakpoint ID\> 
+格式：breakpoint delete \<breakpoint ID\>    
+简写：br li   
 
-删除特定断点
+* 删除特定断点
 
 ```
 (lldb) br del 1
@@ -626,7 +628,14 @@ Current breakpoints:
 No breakpoints currently set.
 ```
 
-删除全部断点
+* 删除断点的location
+
+```
+(lldb) br delete 1.8
+0 breakpoints deleted; 1 breakpoint locations disabled.
+```
+
+* 删除全部断点
 
 ```
 (lldb) br delete
@@ -1743,3 +1752,22 @@ nm命令可以输出.o文件的二进制符号。除了代码，还有一些特�
 | ___CFConstantStringClassReference | 说明.o文件存在字面字符串 |
 | l\_.str.\<x\> | x是序号，这个符号表示宽字符串，例如@"中文"就是宽字符串。非宽字符串，不会有这个符号。 |
 | GCC\_except\_table<x> | x是序号，这个符号表示存在异常捕获，例如@try@catch，也可能带上\_objc\_begin\_catch和\_objc\_end\_catch符号 |
+
+
+## 8、lldb常见问题
+
+### 1、不能使用stringWithFormat
+
+```
+(lldb) po [NSString stringWithFormat:@"%@", @"123"]
+error: too many arguments to method call, expected 1, have 2
+```
+
+解决方法：使用initWithFormat方法
+
+```
+(lldb) po [[NSString alloc] initWithFormat:@"%@", @"123"]
+123
+```
+
+https://stackoverflow.com/questions/19448101/stringwithformat-not-working-in-lldb

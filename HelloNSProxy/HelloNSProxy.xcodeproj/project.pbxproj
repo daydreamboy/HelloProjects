@@ -14,6 +14,10 @@
 		4F8BACA420ABD2A00034CB15 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8BACA020ABD2A00034CB15 /* RootViewController.m */; };
 		4F8BACA820ABD3D50034CB15 /* DelegateProxyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8BACA720ABD3D50034CB15 /* DelegateProxyViewController.m */; };
 		4F8BACAB20ABD4110034CB15 /* WeakWrapperProxyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8BACAA20ABD4110034CB15 /* WeakWrapperProxyViewController.m */; };
+		4FDF8E5720BA9A75008535F7 /* TimerRetainCycleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF8E5620BA9A75008535F7 /* TimerRetainCycleViewController.m */; };
+		4FDF8E5B20BAA1D9008535F7 /* WCWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF8E5920BAA1D9008535F7 /* WCWeakProxy.m */; };
+		4FDF8E5E20BAA50B008535F7 /* WCDelegateProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF8E5D20BAA50B008535F7 /* WCDelegateProxy.m */; };
+		4FDF8E6420BAB4CA008535F7 /* MyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF8E6320BAB4CA008535F7 /* MyView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +34,14 @@
 		4F8BACA720ABD3D50034CB15 /* DelegateProxyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelegateProxyViewController.m; sourceTree = "<group>"; };
 		4F8BACA920ABD4110034CB15 /* WeakWrapperProxyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeakWrapperProxyViewController.h; sourceTree = "<group>"; };
 		4F8BACAA20ABD4110034CB15 /* WeakWrapperProxyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeakWrapperProxyViewController.m; sourceTree = "<group>"; };
+		4FDF8E5520BA9A75008535F7 /* TimerRetainCycleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimerRetainCycleViewController.h; sourceTree = "<group>"; };
+		4FDF8E5620BA9A75008535F7 /* TimerRetainCycleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimerRetainCycleViewController.m; sourceTree = "<group>"; };
+		4FDF8E5920BAA1D9008535F7 /* WCWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCWeakProxy.m; sourceTree = "<group>"; };
+		4FDF8E5A20BAA1D9008535F7 /* WCWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCWeakProxy.h; sourceTree = "<group>"; };
+		4FDF8E5C20BAA50B008535F7 /* WCDelegateProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCDelegateProxy.h; sourceTree = "<group>"; };
+		4FDF8E5D20BAA50B008535F7 /* WCDelegateProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCDelegateProxy.m; sourceTree = "<group>"; };
+		4FDF8E6220BAB4CA008535F7 /* MyView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyView.h; sourceTree = "<group>"; };
+		4FDF8E6320BAB4CA008535F7 /* MyView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +74,7 @@
 		4F3D520C20AB041600AB06C9 /* HelloNSProxy */ = {
 			isa = PBXGroup;
 			children = (
+				4FDF8E5820BAA1D9008535F7 /* ProxyClasses */,
 				4F8BACA120ABD2A00034CB15 /* AppTestDemos */,
 				4F8BAC9F20ABD29F0034CB15 /* RootViewController.h */,
 				4F8BACA020ABD2A00034CB15 /* RootViewController.m */,
@@ -82,8 +95,23 @@
 				4F8BACA720ABD3D50034CB15 /* DelegateProxyViewController.m */,
 				4F8BACA920ABD4110034CB15 /* WeakWrapperProxyViewController.h */,
 				4F8BACAA20ABD4110034CB15 /* WeakWrapperProxyViewController.m */,
+				4FDF8E5520BA9A75008535F7 /* TimerRetainCycleViewController.h */,
+				4FDF8E5620BA9A75008535F7 /* TimerRetainCycleViewController.m */,
+				4FDF8E6220BAB4CA008535F7 /* MyView.h */,
+				4FDF8E6320BAB4CA008535F7 /* MyView.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4FDF8E5820BAA1D9008535F7 /* ProxyClasses */ = {
+			isa = PBXGroup;
+			children = (
+				4FDF8E5A20BAA1D9008535F7 /* WCWeakProxy.h */,
+				4FDF8E5920BAA1D9008535F7 /* WCWeakProxy.m */,
+				4FDF8E5C20BAA50B008535F7 /* WCDelegateProxy.h */,
+				4FDF8E5D20BAA50B008535F7 /* WCDelegateProxy.m */,
+			);
+			path = ProxyClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,6 +186,10 @@
 				4F8BACA820ABD3D50034CB15 /* DelegateProxyViewController.m in Sources */,
 				4F3D521D20AB041900AB06C9 /* main.m in Sources */,
 				4F8BACA420ABD2A00034CB15 /* RootViewController.m in Sources */,
+				4FDF8E5E20BAA50B008535F7 /* WCDelegateProxy.m in Sources */,
+				4FDF8E6420BAB4CA008535F7 /* MyView.m in Sources */,
+				4FDF8E5720BA9A75008535F7 /* TimerRetainCycleViewController.m in Sources */,
+				4FDF8E5B20BAA1D9008535F7 /* WCWeakProxy.m in Sources */,
 				4F3D520F20AB041600AB06C9 /* AppDelegate.m in Sources */,
 				4F8BACAB20ABD4110034CB15 /* WeakWrapperProxyViewController.m in Sources */,
 			);

@@ -7,31 +7,77 @@
 //
 
 #import "DelegateProxyViewController.h"
+#import "MyView.h"
 
-@interface DelegateProxyViewController ()
-
+@interface DelegateProxyViewController () <MyViewLifeCycle>
+@property (nonatomic, strong) UIButton *button;
+@property (nonatomic, strong) MyView *myView;
 @end
 
 @implementation DelegateProxyViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:self.button];
+    [self.view addSubview:self.myView];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+#pragma mark - Getters
+- (UIButton *)button {
+    if (!_button) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        CGFloat paddingH = 20;
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
+        button.frame = CGRectMake(paddingH, 80, screenSize.width - 2 * paddingH, 30);
+        button.selected = YES;
+        [button setTitle:@"Add View" forState:UIControlStateNormal];
+        [button setTitle:@"Remove View" forState:UIControlStateSelected];
+        [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+        
+        _button = button;
+    }
+    
+    return _button;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (MyView *)myView {
+    if (!_myView) {
+        
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        CGFloat paddingH = 20;
+        
+        MyView *view = [[MyView alloc] initWithFrame:CGRectMake(paddingH, 120, screenSize.width - 2 * paddingH, 200)];
+        view.delegate = self;
+        view.backgroundColor = [UIColor greenColor];
+        
+        _myView = view;
+    }
+    
+    return _myView;
 }
-*/
+
+#pragma mark - Actions
+
+- (void)buttonClicked:(UIButton *)sender {
+    if (sender == self.button) {
+        sender.selected = !sender.selected;
+        
+        if (sender.selected) {
+            [self.view addSubview:self.myView];
+        }
+        else {
+            [self.myView removeFromSuperview];
+        }
+    }
+}
+
+#pragma mark - MyViewLifeCycle
+
+- (void)myViewWillAppear:(MyView *)myView {
+    NSLog(@"myViewWillAppear");
+}
 
 @end

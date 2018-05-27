@@ -10,6 +10,7 @@
 
 #import "DelegateProxyViewController.h"
 #import "WeakWrapperProxyViewController.h"
+#import "TimerRetainCycleViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -33,12 +34,14 @@
     // MARK: Configure titles and classes for table view
     _titles = @[
         @"Use proxy as delegate",
-        @"Use proxy ",
+        @"Use proxy as weak wrapper",
+        @"Timer retain cycle (solution: weak proxy)",
         @"call a test method",
     ];
     _classes = @[
         [DelegateProxyViewController class],
         [WeakWrapperProxyViewController class],
+        [TimerRetainCycleViewController class],
         @"testMethod",
     ];
 }
