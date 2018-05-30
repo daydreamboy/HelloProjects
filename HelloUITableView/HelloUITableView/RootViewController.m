@@ -20,6 +20,7 @@
 #import "TableViewHeaderWithExtendedViewViewController.h"
 #import "PlainTableViewWithNonFloatSectionViewController.h"
 #import "PlainTableViewWithExpandableSectionHeaderViewController.h"
+#import "DetectUserScrollViewController.h"
 
 #import "MoveMeViewController.h"
 #import "DeleteMeViewController.h"
@@ -74,6 +75,7 @@
           @{ kTitle: @"Table header view with extended view", kClass: [TableViewHeaderWithExtendedViewViewController class] },
           @{ kTitle: @"Plain Table with non-float section view", kClass: [PlainTableViewWithNonFloatSectionViewController class] },
           @{ kTitle: @"Plain Table with expandable section header", kClass: [PlainTableViewWithExpandableSectionHeaderViewController class] },
+          @{ kTitle: @"Detect user scrolling", kClass: [DetectUserScrollViewController class] },
     ];
     
     NSArray<NSDictionary *> *section5 = @[
@@ -82,7 +84,7 @@
     
     _sectionTitles = @[
         @"System Default TableViews",
-        @"System Default TableViews (both iOS 10- and iOS 11+)",
+        @"System Compatible TableViews (both iOS 10- and iOS 11+)",
         @"System Editable TableViews",
         @"UITableView customizations",
         @"WCTableView",

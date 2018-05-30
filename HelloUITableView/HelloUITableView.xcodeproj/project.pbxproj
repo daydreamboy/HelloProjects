@@ -40,6 +40,7 @@
 		4FAAA5AD1FA4806F00A80328 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAA5AC1FA4806F00A80328 /* RootViewController.m */; };
 		4FAAA5B71FA4845B00A80328 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FAAA5B51FA4845A00A80328 /* calendar.png */; };
 		4FAAA5B81FA4845B00A80328 /* ibooks.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FAAA5B61FA4845A00A80328 /* ibooks.png */; };
+		4FAD1F4220BD2D0100F4766D /* DetectUserScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAD1F4120BD2D0100F4766D /* DetectUserScrollViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -101,6 +102,8 @@
 		4FAAA5AC1FA4806F00A80328 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4FAAA5B51FA4845A00A80328 /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
 		4FAAA5B61FA4845A00A80328 /* ibooks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ibooks.png; sourceTree = "<group>"; };
+		4FAD1F4020BD2D0100F4766D /* DetectUserScrollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectUserScrollViewController.h; sourceTree = "<group>"; };
+		4FAD1F4120BD2D0100F4766D /* DetectUserScrollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetectUserScrollViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +182,8 @@
 				4F948A1D2011A0AE0030BC4A /* PlainTableViewWithNonFloatSectionViewController.m */,
 				4F948A232011C8590030BC4A /* PlainTableViewWithExpandableSectionHeaderViewController.h */,
 				4F948A242011C8590030BC4A /* PlainTableViewWithExpandableSectionHeaderViewController.m */,
+				4FAD1F4020BD2D0100F4766D /* DetectUserScrollViewController.h */,
+				4FAD1F4120BD2D0100F4766D /* DetectUserScrollViewController.m */,
 			);
 			path = section4;
 			sourceTree = "<group>";
@@ -348,6 +353,7 @@
 				2B63BF35200FA22600A5D8D2 /* CompatibleGroupedTableViewViewController.m in Sources */,
 				2B63BF0B200F9DBC00A5D8D2 /* WCTableViewCell.m in Sources */,
 				4F9489DB2010C66C0030BC4A /* PlainTableViewWithFullSeparatorsViewController.m in Sources */,
+				4FAD1F4220BD2D0100F4766D /* DetectUserScrollViewController.m in Sources */,
 				2B63BF0A200F9DBC00A5D8D2 /* WCTableView.m in Sources */,
 				2B63BF39200FA22600A5D8D2 /* PlainTableViewViewController.m in Sources */,
 				2B63BF38200FA22600A5D8D2 /* GroupedTableViewViewController.m in Sources */,
