@@ -11,6 +11,10 @@
 @implementation WCStringTool
 
 + (CGRect)rectFromString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]] || !string.length) {
+        return CGRectNull;
+    }
+    
     NSString *compactString = [string stringByReplacingOccurrencesOfString:@" " withString:@""];
     if ([compactString isEqualToString:@"{{0,0},{0,0}}"]) {
         return CGRectZero;
@@ -27,6 +31,10 @@
 }
 
 + (NSValue *)edgeInsetsValueFromString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]] || !string.length) {
+        return nil;
+    }
+    
     NSString *compactString = [string stringByReplacingOccurrencesOfString:@" " withString:@""];
     if ([compactString isEqualToString:@"{0,0,0,0}"]) {
         return [NSValue valueWithUIEdgeInsets:UIEdgeInsetsZero];
