@@ -14,7 +14,6 @@
 #import "CreateBitmapGraphicsContext2ViewController.h"
 #import "CreateAttachedBubbleLayerViewController.h"
 #import "ExamplesOfWAttachedBubbleViewViewController.h"
-#import "CGRectViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -53,7 +52,6 @@
         [CreateBitmapGraphicsContext2ViewController class],
         [CreateAttachedBubbleLayerViewController class],
         [ExamplesOfWAttachedBubbleViewViewController class],
-        [CGRectViewController class],
         @"testMethod",
     ];
 }
