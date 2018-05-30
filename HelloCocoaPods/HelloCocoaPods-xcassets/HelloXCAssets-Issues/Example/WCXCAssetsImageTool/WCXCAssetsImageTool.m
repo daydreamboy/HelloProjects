@@ -10,13 +10,16 @@
 
 @implementation WCXCAssetsImageTool
 
-
 /**
- <#Description#>
+ Get image from Assets.car which maybe in four locations.
+    - XXX.app
+    - XXX.app/YYY.bundle
+    - XXX.app/Frameworks/ZZZ.framework (maybe bug)
+    - XXX.app/Frameworks/ZZZ.framework/UUU.bundle (maybe bug)
 
  @param name the name of image
  @param resourceBundleName the name of resource bundle (.bundle)
- @param podName the pod (static library or framework) name
+ @param podName the pod (static library or framework) name. If @"", lookup image in main bundle; if nil, lookup image in current pod
  @return the image if found
  */
 + (UIImage *)xcassetsImageNamed:(NSString *)name resourceBundleName:(NSString *)resourceBundleName podName:(NSString *)podName {
