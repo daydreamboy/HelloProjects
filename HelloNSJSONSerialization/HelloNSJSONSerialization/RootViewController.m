@@ -10,7 +10,6 @@
 
 #import "NSJSONReadingAllowFragmentsIssueViewController.h"
 #import "MixJSONObjectWithEscapedJSONStringViewController.h"
-#import "AccessThemeConfigurationViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -35,13 +34,11 @@
     _titles = @[
         @"NSJSONReadingAllowFragments issue",
         @"abuse mixing JSONObject with escapedJSONString",
-        @"demo for WCThemeTool (TODO)",
         @"call a test method",
     ];
     _classes = @[
         [NSJSONReadingAllowFragmentsIssueViewController class],
         [MixJSONObjectWithEscapedJSONStringViewController class],
-        [AccessThemeConfigurationViewController class],
         @"testMethod",
     ];
 }
