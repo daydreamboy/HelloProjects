@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F9DFA921FBD2EC100761DE2 /* HelloStaticLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9DFA911FBD2EC100761DE2 /* HelloStaticLibrary.m */; };
+		4F9DFA921FBD2EC100761DE2 /* HelloStaticLibrary.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F9DFA911FBD2EC100761DE2 /* HelloStaticLibrary.mm */; };
 		4F9DFA931FBD2EC100761DE2 /* HelloStaticLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4F9DFA901FBD2EC100761DE2 /* HelloStaticLibrary.h */; };
 /* End PBXBuildFile section */
 
@@ -27,7 +27,7 @@
 /* Begin PBXFileReference section */
 		4F9DFA8D1FBD2EC100761DE2 /* libHelloStaticLibrary.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libHelloStaticLibrary.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F9DFA901FBD2EC100761DE2 /* HelloStaticLibrary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloStaticLibrary.h; sourceTree = "<group>"; };
-		4F9DFA911FBD2EC100761DE2 /* HelloStaticLibrary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloStaticLibrary.m; sourceTree = "<group>"; };
+		4F9DFA911FBD2EC100761DE2 /* HelloStaticLibrary.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = HelloStaticLibrary.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				4F9DFA901FBD2EC100761DE2 /* HelloStaticLibrary.h */,
-				4F9DFA911FBD2EC100761DE2 /* HelloStaticLibrary.m */,
+				4F9DFA911FBD2EC100761DE2 /* HelloStaticLibrary.mm */,
 			);
 			path = HelloStaticLibrary;
 			sourceTree = "<group>";
@@ -123,7 +123,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F9DFA921FBD2EC100761DE2 /* HelloStaticLibrary.m in Sources */,
+				4F9DFA921FBD2EC100761DE2 /* HelloStaticLibrary.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +237,7 @@
 		4F9DFA971FBD2EC100761DE2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_STYLE = Automatic;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -248,6 +249,7 @@
 		4F9DFA981FBD2EC100761DE2 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LIBRARY = "libc++";
 				CODE_SIGN_STYLE = Automatic;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

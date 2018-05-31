@@ -9,5 +9,15 @@
 #import "HelloStaticLibrary.h"
 
 @implementation HelloStaticLibrary
+- (void)test {
+    @try {
+//        NSLog(@"a");
+        NSObject *a = [[NSObject alloc] init];
+    }
+    @catch (NSException *e) {
 
+    }
+    
+//    NSLog(@"a");
+}
 @end
