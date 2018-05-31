@@ -34,14 +34,13 @@ target 'AwesomeSDK_Example' do
     pod_tweak 'AwesomeSDK_umbrella_framework', :sub_pod => {
       'FrameworkA' => {
         :path => "../AwesomeSDK_umbrella_framework/FrameworkA.podspec",
-        :is_dynamic => false
       },
       'FrameworkB' => {
         :path => "../AwesomeSDK_umbrella_framework/FrameworkB.podspec",
-        :run_script_paths => [
-          'script_a.sh',
-          'script_b.sh'
-        ]
+        # :run_script_paths => [
+        #   'script_a.sh',
+        #   'script_b.sh'
+        # ]
       },
       'FrameworkC' => {
         :path => "../AwesomeSDK_umbrella_framework/FrameworkC.podspec",

@@ -30,9 +30,11 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '8.0'
 
-  s.source_files = [
+  source_files = [
     'AwesomeSDK_dynamic_framework/Classes/**/*',
   ]
+
+  s.source_files = source_files.map { |item| item }
   
   # s.resource_bundles = {
   #   'AwesomeSDK_dynamic_framework' => ['AwesomeSDK_dynamic_framework/Assets/*.png']
