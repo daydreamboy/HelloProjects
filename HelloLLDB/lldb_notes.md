@@ -208,6 +208,27 @@ https://stackoverflow.com/questions/27533709/how-to-set-the-frame-of-a-uiview-at
 "_parseEventsArrayFromEvent:"
 ```
 
+* expression -lobjc -O -- (unichar *)$rax，打印unichar类型的字符串
+
+```
+(lldb) expression -lobjc -O -- (char *)$rax
+"D"
+
+(lldb) memory read $rax
+error: invalid start address expression.
+error: address expression "$rax" evaluation failed
+(lldb) memory read 106377752533792
+0x60c00026db20: 44 00 65 00 72 00 65 00 6b 00 20 00 53 00 65 00  D.e.r.e.k. .S.e.
+0x60c00026db30: 6c 00 61 00 6e 00 64 00 65 00 72 00 00 00 00 00  l.a.n.d.e.r.....
+(lldb) expression -lobjc -O -- (unichar *)$rax
+u"Derek Selander"
+(lldb) po strlen("Derek Selander") * 2
+28
+(lldb) e -lobjc -O -- [[NSString alloc] initWithBytes:$rax length:28 encoding:0x94000100]
+Derek Selander
+```
+> 0x94000100是NSUTF16LittleEndianStringEncoding的值
+
 ### 5、continue
 
 格式：continue    
