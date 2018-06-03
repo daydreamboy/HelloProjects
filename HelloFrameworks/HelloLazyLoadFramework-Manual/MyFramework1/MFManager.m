@@ -8,6 +8,10 @@
 
 #import "MFManager.h"
 
+void __attribute__((constructor)) setupWhenImageLoad() {
+    NSLog(@"image load");
+}
+
 @interface Manager1 : NSObject <ManagerBehavior>
 
 @end
