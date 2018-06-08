@@ -13,6 +13,8 @@
 #define HighLightViewBorderWidth    1.5
 #define HighLightViewBorderColor    [UIColor yellowColor]
 
+#define switcherAllowJumpStatus     NO
+
 // @see https://stackoverflow.com/a/34065545
 @interface ScanQRCodeViewController () <AVCaptureMetadataOutputObjectsDelegate>
 @property (nonatomic, strong) AVCaptureSession *session;
@@ -292,6 +294,7 @@
     if (!_switcherAllowJump) {
         
         UISwitch *switcher = [UISwitch new];
+        switcher.on = switcherAllowJumpStatus;
         [switcher addTarget:self action:@selector(switcherAllowJumpToggled:) forControlEvents:UIControlEventValueChanged];
         [switcher sizeToFit];
         
