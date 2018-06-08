@@ -9,6 +9,10 @@
 #import "ScanQRCodeViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
+#define HighLightViewPresetSize     (CGSizeMake(200, 200))
+#define HighLightViewBorderWidth    1.5
+#define HighLightViewBorderColor    [UIColor yellowColor]
+
 // @see https://stackoverflow.com/a/34065545
 @interface ScanQRCodeViewController () <AVCaptureMetadataOutputObjectsDelegate>
 @property (nonatomic, strong) AVCaptureSession *session;
@@ -20,11 +24,10 @@
 @property (nonatomic, strong) UIView *previewView;
 @property (nonatomic, strong) UIView *highlightView;
 @property (nonatomic, strong) UITextView *textView;
-@property (nonatomic, assign) BOOL firstDetected;
-@property (nonatomic, assign) BOOL animating;
+@property (nonatomic, strong) UISwitch *switcherAllowJump; ///< 是否允许跳转到result界面
 
-@property (nonatomic, assign) BOOL allowJumpToNextSceneWhenDetected;
-@property (nonatomic, assign) BOOL jumpingToNextScene;
+@property (nonatomic, assign) BOOL firstDetected; ///< 是否首次识别
+@property (nonatomic, assign) BOOL ignoreScanCallback; ///< 是否忽略scan回调
 @end
 
 @implementation ScanQRCodeViewController
@@ -51,55 +54,73 @@
         [_output setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
         // Note: 这里有个坑，设置metadataObjectTypes不能在addOutput:方法之前，否则captureOutput:didOutputMetadataObjects:fromConnection:方法不会回调
         _output.metadataObjectTypes = [_output availableMetadataObjectTypes];
+        
+        _firstDetected = YES;
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor blackColor];
     
-    UISwitch *switcher = [UISwitch new];
-    switcher.on = self.allowJumpToNextSceneWhenDetected;
-    [switcher addTarget:self action:@selector(switcherToggled:) forControlEvents:UIControlEventValueChanged];
-    [switcher sizeToFit];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:switcher];
-    
-    self.view.backgroundColor = [UIColor clearColor];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.switcherAllowJump];
     
     [self.view addSubview:self.previewView];
     [self.view addSubview:self.textView];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSLog(@"viewWillAppear");
+    
+    if ([self appearingDueToPushed]) {
+        // start the flow of data from the inputs to the outputs
+        [self.session startRunning];
+    }
+}
+
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    self.jumpingToNextScene = NO;
-    self.firstDetected = YES;
-    
-    // Note: 约束在viewDidAppear中开始检测QRCode，因此back swipe手势，会触发viewWillAppear
-    // start the flow of data from the inputs to the outputs
-    [self.session startRunning];
+    if (![self appearingDueToPushed]) {
+        [self.session startRunning];
+    }
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    self.firstDetected = NO;
+    NSLog(@"viewWillDisappear");
+    self.ignoreScanCallback = YES;
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    NSLog(@"viewDidDisappear");
     
+    [self hideHighlightView];
+    
+    self.ignoreScanCallback = NO;
     [self.session stopRunning];
 }
 
 #pragma mark - Actions
 
-- (void)switcherToggled:(id)sender {
+- (void)switcherAllowJumpToggled:(id)sender {
     UISwitch *switcher = (UISwitch *)sender;
     switcher.on = !switcher.on;
-    self.allowJumpToNextSceneWhenDetected = switcher.on;
 }
 
 #pragma mark - AVCaptureMetadataOutputObjectsDelegate
 
 - (void)captureOutput:(AVCaptureOutput *)output didOutputMetadataObjects:(NSArray<__kindof AVMetadataObject *> *)metadataObjects fromConnection:(AVCaptureConnection *)connection {
+    NSLog(@"captureOutput");
+    
+    if (self.ignoreScanCallback) {
+        return;
+    }
+    
     CGRect highlightViewRect = CGRectZero;
     
     AVMetadataMachineReadableCodeObject *codeObject;
@@ -135,10 +156,7 @@
     }
     
     if (detectedString && !CGRectEqualToRect(highlightViewRect, CGRectZero)) {
-        // Note: 正在执行动画，则不要重新显示highlightView
-        if (!self.animating && !self.jumpingToNextScene) {
-            [self showHighlightViewWithDetectedString:detectedString atRect:highlightViewRect animated:self.firstDetected ? YES : NO];
-        }
+        [self showHighlightViewWithDetectedString:detectedString atRect:highlightViewRect animated:self.firstDetected ? YES : NO];
     }
     else {
         [self hideHighlightView];
@@ -147,28 +165,45 @@
     NSLog(@"rect: %@", NSStringFromCGRect(highlightViewRect));
 }
 
+#pragma mark -
+
+- (BOOL)appearingDueToPushed {
+    if (self.navigationController) {
+        return self.isMovingToParentViewController;
+    }
+    else {
+        return NO;
+    }
+}
+
 - (void)showHighlightViewWithDetectedString:(NSString *)detectedString atRect:(CGRect)rect animated:(BOOL)animated {
+    
     self.firstDetected = NO;
     self.highlightView.hidden = NO;
     
     if (animated) {
-        CGSize presetSize = CGSizeMake(200, 200);
-        self.highlightView.frame = CGRectMake((CGRectGetWidth(self.previewView.bounds) - presetSize.width) / 2.0, (CGRectGetHeight(self.previewView.bounds) - presetSize.height) / 2.0, presetSize.width, presetSize.height);
-        self.animating = YES;
+        self.ignoreScanCallback = YES;
+        self.highlightView.frame = CGRectMake((CGRectGetWidth(self.previewView.bounds) - HighLightViewPresetSize.width) / 2.0, (CGRectGetHeight(self.previewView.bounds) - HighLightViewPresetSize.height) / 2.0, HighLightViewPresetSize.width, HighLightViewPresetSize.height);
+        
         [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
             self.highlightView.frame = rect;
         } completion:^(BOOL finished) {
-            self.animating = NO;
-            if (self.allowJumpToNextSceneWhenDetected) {
+            if (self.switcherAllowJump.on) {
                 NSLog(@"jump with detected rect: %@", NSStringFromCGRect(rect));
                 [self jumpToNextSceneWithDetectedString:detectedString];
+            }
+            else {
+                NSLog(@"ignoreScanCallback");
+                self.ignoreScanCallback = NO;
             }
         }];
     }
     else {
         self.highlightView.frame = rect;
-        if (self.allowJumpToNextSceneWhenDetected) {
+        if (self.switcherAllowJump.on) {
             NSLog(@"jump with detected rect: %@", NSStringFromCGRect(rect));
+            
+            self.ignoreScanCallback = YES;
             [self jumpToNextSceneWithDetectedString:detectedString];
         }
     }
@@ -176,7 +211,6 @@
 
 - (void)jumpToNextSceneWithDetectedString:(NSString *)detectedString {
     NSLog(@"jump with detected string: %@", detectedString);
-    self.jumpingToNextScene = YES;
     CGSize screenSize = [[UIScreen mainScreen] bounds].size;
     CGFloat padding = 10;
     UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(padding, padding + 64, screenSize.width - 2 * padding, 200)];
@@ -194,13 +228,9 @@
     vc.view.backgroundColor = [UIColor whiteColor];
     [vc.view addSubview:textView];
     
-    [self.navigationController pushViewController:vc animated:YES];
-    
     [UIPasteboard generalPasteboard].string = [detectedString copy];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        self.highlightView.hidden = YES;
-    });
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)hideHighlightView {
@@ -216,8 +246,8 @@
     if (!_highlightView) {
         UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
         view.backgroundColor = [UIColor clearColor];
-        view.layer.borderColor = [UIColor yellowColor].CGColor;
-        view.layer.borderWidth = 1.5;
+        view.layer.borderColor = HighLightViewBorderColor.CGColor;
+        view.layer.borderWidth = HighLightViewBorderWidth;
         
         _highlightView = view;
     }
@@ -256,6 +286,19 @@
     }
     
     return _textView;
+}
+
+- (UISwitch *)switcherAllowJump {
+    if (!_switcherAllowJump) {
+        
+        UISwitch *switcher = [UISwitch new];
+        [switcher addTarget:self action:@selector(switcherAllowJumpToggled:) forControlEvents:UIControlEventValueChanged];
+        [switcher sizeToFit];
+        
+        _switcherAllowJump = switcher;
+    }
+    
+    return _switcherAllowJump;
 }
 
 @end

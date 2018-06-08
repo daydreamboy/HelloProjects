@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F02DA5620CACA7C00AA54A9 /* ScanControlSetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F02DA5520CACA7C00AA54A9 /* ScanControlSetViewController.m */; };
 		4F875D5520CA24D30029503B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F875D5420CA24D30029503B /* AppDelegate.m */; };
 		4F875D5D20CA24D50029503B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F875D5C20CA24D50029503B /* Assets.xcassets */; };
 		4F875D6020CA24D50029503B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F875D5E20CA24D50029503B /* LaunchScreen.storyboard */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F02DA5420CACA7C00AA54A9 /* ScanControlSetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScanControlSetViewController.h; sourceTree = "<group>"; };
+		4F02DA5520CACA7C00AA54A9 /* ScanControlSetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScanControlSetViewController.m; sourceTree = "<group>"; };
 		4F875D5020CA24D30029503B /* HelloQRCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloQRCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F875D5320CA24D30029503B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F875D5420CA24D30029503B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -77,6 +80,8 @@
 			children = (
 				4F875D6B20CA24F80029503B /* ScanQRCodeViewController.h */,
 				4F875D6A20CA24F80029503B /* ScanQRCodeViewController.m */,
+				4F02DA5420CACA7C00AA54A9 /* ScanControlSetViewController.h */,
+				4F02DA5520CACA7C00AA54A9 /* ScanControlSetViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -154,6 +159,7 @@
 				4F875D6320CA24D50029503B /* main.m in Sources */,
 				4F875D5520CA24D30029503B /* AppDelegate.m in Sources */,
 				4F875D6F20CA24FF0029503B /* RootViewController.m in Sources */,
+				4F02DA5620CACA7C00AA54A9 /* ScanControlSetViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
