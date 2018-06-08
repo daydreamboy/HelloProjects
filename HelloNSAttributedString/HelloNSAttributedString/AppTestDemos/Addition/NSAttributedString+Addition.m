@@ -59,5 +59,11 @@
     }
 }
 
+- (CGSize)textSizeForSingleLine {
+    return [self boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)
+                              options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                              context:nil].size;
+}
+
 @end
 

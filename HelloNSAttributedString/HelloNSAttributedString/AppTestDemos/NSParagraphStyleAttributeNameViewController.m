@@ -15,13 +15,20 @@
 #define UICOLOR_RGB(color) [UIColor colorWithRed: (((color) >> 16) & 0xFF) / 255.0 green: (((color) >> 8) & 0xFF) / 255.0 blue: ((color) & 0xFF) / 255.0 alpha: 1.0]
 #endif
 
+// use for initializing frame/size/point when change it afterward
+#ifndef UNSPECIFIED
+#define UNSPECIFIED 0
+#endif
+
 @interface NSParagraphStyleAttributeNameViewController ()
 @property (nonatomic, strong) UILabel *label1;
 @property (nonatomic, strong) UILabel *label2;
 @property (nonatomic, strong) UILabel *label3;
+@property (nonatomic, strong) UILabel *label4;
 
 @property (nonatomic, copy) NSString *text1;
 @property (nonatomic, copy) NSString *text2;
+@property (nonatomic, copy) NSString *text3;
 @end
 
 @implementation NSParagraphStyleAttributeNameViewController
@@ -32,6 +39,7 @@
     [self.view addSubview:self.label1];
     [self.view addSubview:self.label2];
     [self.view addSubview:self.label3];
+    [self.view addSubview:self.label4];
 }
 
 #pragma mark - Getters
@@ -98,10 +106,15 @@
         CGFloat paddingH = 19;
         CGFloat width = 280 - 2 * paddingH;
         
+        NSDictionary *attributes = [self createDefaultAttributes];
+        NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:self.text2 attributes:attributes];
+        
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(paddingH, CGRectGetMaxY(self.label2.frame) + 5, width, 0)];
         label.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:0.8];
         label.text = self.text2;
+        label.attributedText = attributedText;
         label.numberOfLines = 0;
+        label.font = [UIFont systemFontOfSize:15];
         
         CGSize textSize = [label.text textSizeForMultipleLineWithWidth:label.frame.size.width attributes:@{ NSFontAttributeName: label.font }];
         label.height = ceil(textSize.height);
@@ -109,6 +122,30 @@
         _label3 = label;
     }
     return _label3;
+}
+
+- (UILabel *)label4 {
+    if (!_label4) {
+        CGFloat paddingH = 19;
+        
+        NSDictionary *attributes = [self createDefaultAttributes];
+        NSMutableAttributedString *attributedText = [[NSMutableAttributedString alloc] initWithString:self.text3 attributes:attributes];
+        
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(paddingH, CGRectGetMaxY(self.label3.frame) + 5, UNSPECIFIED, UNSPECIFIED)];
+        label.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:0.8];
+        label.attributedText = attributedText;
+        label.numberOfLines = 0;
+        label.font = [UIFont systemFontOfSize:15];
+        label.textAlignment = NSTextAlignmentCenter;
+        
+        CGSize textSize = [label.attributedText textSizeForSingleLine];
+        CGSize textMiniSize = [label.attributedText size];
+        label.height = ceil(textSize.height);
+        label.width = ceil(textSize.width);
+        
+        _label4 = label;
+    }
+    return _label4;
 }
 
 - (NSString *)text1 {
@@ -137,6 +174,16 @@
     }
     
     return _text2;
+}
+
+- (NSString *)text3 {
+    if (!_text3) {
+        NSString *text = @"文本内容";
+        
+        _text3 = text;
+    }
+    
+    return _text3;
 }
 
 #pragma mark -

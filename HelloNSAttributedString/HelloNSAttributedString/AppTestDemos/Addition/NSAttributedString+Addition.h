@@ -20,6 +20,7 @@
 + (NSAttributedString *)attributedStringWithFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1,2);
 
 - (CGSize)textSizeForMultipleLineWithWidth:(CGFloat)width NS_AVAILABLE_IOS(6_0);
+- (CGSize)textSizeForSingleLine;;
 
 @end
 
