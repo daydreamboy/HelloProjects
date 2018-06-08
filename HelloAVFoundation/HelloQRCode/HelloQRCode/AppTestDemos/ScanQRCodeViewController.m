@@ -46,8 +46,10 @@
         }
         
         _output = [AVCaptureMetadataOutput new];
-        [_output setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
         [_session addOutput:_output];
+        
+        [_output setMetadataObjectsDelegate:self queue:dispatch_get_main_queue()];
+        // Note: 这里有个坑，设置metadataObjectTypes不能在addOutput:方法之前，否则captureOutput:didOutputMetadataObjects:fromConnection:方法不会回调
         _output.metadataObjectTypes = [_output availableMetadataObjectTypes];
     }
     return self;
@@ -82,7 +84,6 @@
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    [super viewDidDisappear:animated];
     self.firstDetected = NO;
     
     [self.session stopRunning];
