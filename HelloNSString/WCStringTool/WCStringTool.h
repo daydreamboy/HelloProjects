@@ -39,4 +39,10 @@
  */
 + (UIColor *)colorFromHexString:(NSString *)string;
 
+#pragma mark - Measure Size for Single-line/Multi-line String
+
++ (CGSize)textSizeWithSingleLineString:(NSString *)string font:(UIFont *)font;
++ (CGSize)textSizeWithMultiLineString:(NSString *)string font:(UIFont *)font size:(CGSize)size mode:(NSLineBreakMode)lineBreakMode;
++ (CGSize)textSizeWithMultipleLineString:(NSString *)string width:(CGFloat)width attributes:(NSDictionary *)attributes;
+
 @end
