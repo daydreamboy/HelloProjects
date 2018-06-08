@@ -18,10 +18,18 @@
     [super viewDidLoad];
     
     NSString *url = @"http://card-data.oss-cn-hangzhou.aliyuncs.com/temp_2018-06-08T09%3A30%3A51.477Z.json";
-    [self downloadDataWithUrl:url];
+    [self downloadDataWithUrl:url completion:^(id jsonObject, NSError *error) {
+        if ([jsonObject isKindOfClass:[NSDictionary class]] && !error) {
+            NSLog(@"%@", jsonObject);
+        }
+        else {
+            NSLog(@"error: %@", error);
+            NSLog(@"expect NSDictionary, but it's %@", jsonObject);
+        }
+    }];
 }
 
-- (void)downloadDataWithUrl:(NSString *)url {
+- (void)downloadDataWithUrl:(NSString *)url completion:(void (^)(id jsonObject, NSError *error))completion {
     NSString *dataUrl = url;
     NSURL *URL = [NSURL URLWithString:dataUrl];
     
@@ -38,12 +46,16 @@
             NSLog(@"data size: %lld", (long long)data.length);
             NSError *jsonError;
             id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
-            if ([jsonObject isKindOfClass:[NSDictionary class]] && !jsonError) {
-                NSLog(@"%@", jsonObject);
-            }
-            else {
-                NSLog(@"expect NSDictionary, but it's %@", jsonObject);
-            }
+            
+            // Note: completionHandler is called on main thread, so call completion on main thread
+            dispatch_async(dispatch_get_main_queue(), ^{
+                !completion ?: completion(jsonObject, jsonError);
+            });
+        }
+        else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                !completion ?: completion(data, error);
+            });
         }
     }];
     
