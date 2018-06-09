@@ -8,6 +8,8 @@
 
 #import "ScrollToTopOrBottomViewController.h"
 
+#define ContentHeight 900 // 200
+
 @interface ScrollToTopOrBottomViewController ()
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *contentView;
@@ -22,17 +24,17 @@
 
     // Configure: toggle animate and set content height
     self.scrollAnimated = YES;
-    self.contentHeight = 200;//900;
+    self.contentHeight = ContentHeight;
 
     [self.view addSubview:self.scrollView];
     
-    UIBarButtonItem *itemScrollToBottom = [[UIBarButtonItem alloc] initWithTitle:@"滑到UIScrollView底部" style:UIBarButtonItemStylePlain target:self action:@selector(itemScrollToBottomClicked:)];
+    UIBarButtonItem *itemScrollToBottom = [[UIBarButtonItem alloc] initWithTitle:@"UIScrollView底部" style:UIBarButtonItemStylePlain target:self action:@selector(itemScrollToBottomClicked:)];
 
-    UIBarButtonItem *itemScrollToTop = [[UIBarButtonItem alloc] initWithTitle:@"滑到UIScrollView顶部" style:UIBarButtonItemStylePlain target:self action:@selector(itemScrollToTopClicked:)];
+    UIBarButtonItem *itemScrollToTop = [[UIBarButtonItem alloc] initWithTitle:@"UIScrollView顶部" style:UIBarButtonItemStylePlain target:self action:@selector(itemScrollToTopClicked:)];
     
-    UIBarButtonItem *itemScrollToBottomOfContent = [[UIBarButtonItem alloc] initWithTitle:@"滑到内容底部" style:UIBarButtonItemStylePlain target:self action:@selector(itemScrollToBottomOfContentClicked:)];
+    UIBarButtonItem *itemScrollToBottomOfContent = [[UIBarButtonItem alloc] initWithTitle:@"内容底部" style:UIBarButtonItemStylePlain target:self action:@selector(itemScrollToBottomOfContentClicked:)];
     
-    UIBarButtonItem *itemScrollToTopOfContent = [[UIBarButtonItem alloc] initWithTitle:@"滑到内容顶部" style:UIBarButtonItemStylePlain target:self action:@selector(itemScrollToTopOfContentClicked:)];
+    UIBarButtonItem *itemScrollToTopOfContent = [[UIBarButtonItem alloc] initWithTitle:@"内容顶部" style:UIBarButtonItemStylePlain target:self action:@selector(itemScrollToTopOfContentClicked:)];
     
     self.navigationItem.rightBarButtonItems = @[itemScrollToBottom, itemScrollToTop, itemScrollToBottomOfContent, itemScrollToTopOfContent];
     

@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 #import "ScrollToTopOrBottomViewController.h"
+#import "NestedScrollViewViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -32,10 +33,12 @@
     // MARK: Configure titles and classes for table view
     _titles = @[
         @"Scroll UIScrollView to top or bottom",
+        @"Handle nested UIScrollView",
         @"call a test method",
     ];
     _classes = @[
         [ScrollToTopOrBottomViewController class],
+        [NestedScrollViewViewController class],
         @"testMethod",
     ];
 }
