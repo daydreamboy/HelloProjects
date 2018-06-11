@@ -11,6 +11,7 @@
 #import "FlowLayoutViewController.h"
 #import "CustomCollectionViewCellViewController.h"
 #import "PagableCollectionViewViewController.h"
+#import "DifferentSizeCellViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -35,12 +36,15 @@
     _titles = @[
         @"Flow layout (horizontal/vertical)",
         @"Custom UICollectionViewCell",
+        @"Pagable UICollectionView",
+        @"Different size cells",
         @"call a test method",
     ];
     _classes = @[
         [FlowLayoutViewController class],
         [CustomCollectionViewCellViewController class],
         [PagableCollectionViewViewController class],
+        [DifferentSizeCellViewController class],
         @"testMethod",
     ];
 }

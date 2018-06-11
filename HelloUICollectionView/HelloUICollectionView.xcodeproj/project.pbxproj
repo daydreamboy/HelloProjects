@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F83D3BC20CECAB800F2FE80 /* DifferentSizeCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F83D3BB20CECAB800F2FE80 /* DifferentSizeCellViewController.m */; };
 		4FB1D4B420CC0D5700DBA776 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1D4B320CC0D5700DBA776 /* AppDelegate.m */; };
 		4FB1D4BC20CC0D5900DBA776 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FB1D4BB20CC0D5900DBA776 /* Assets.xcassets */; };
 		4FB1D4BF20CC0D5900DBA776 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FB1D4BD20CC0D5900DBA776 /* LaunchScreen.storyboard */; };
@@ -19,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F83D3BA20CECAB800F2FE80 /* DifferentSizeCellViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DifferentSizeCellViewController.h; sourceTree = "<group>"; };
+		4F83D3BB20CECAB800F2FE80 /* DifferentSizeCellViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DifferentSizeCellViewController.m; sourceTree = "<group>"; };
 		4FB1D4AF20CC0D5700DBA776 /* HelloUICollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUICollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FB1D4B220CC0D5700DBA776 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FB1D4B320CC0D5700DBA776 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -49,6 +52,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F83D3B920CEC93700F2FE80 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4FB1D4D520CC2CBD00DBA776 /* MyCustomCollectionViewCell.h */,
+				4FB1D4D620CC2CBD00DBA776 /* MyCustomCollectionViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		4FB1D4A620CC0D5700DBA776 = {
 			isa = PBXGroup;
 			children = (
@@ -88,10 +100,11 @@
 				4FB1D4D020CC0DDB00DBA776 /* FlowLayoutViewController.m */,
 				4FB1D4D220CC156B00DBA776 /* CustomCollectionViewCellViewController.h */,
 				4FB1D4D320CC156B00DBA776 /* CustomCollectionViewCellViewController.m */,
-				4FB1D4D520CC2CBD00DBA776 /* MyCustomCollectionViewCell.h */,
-				4FB1D4D620CC2CBD00DBA776 /* MyCustomCollectionViewCell.m */,
 				4FB1D4D820CC324100DBA776 /* PagableCollectionViewViewController.h */,
 				4FB1D4D920CC324100DBA776 /* PagableCollectionViewViewController.m */,
+				4F83D3BA20CECAB800F2FE80 /* DifferentSizeCellViewController.h */,
+				4F83D3BB20CECAB800F2FE80 /* DifferentSizeCellViewController.m */,
+				4F83D3B920CEC93700F2FE80 /* Cell */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -172,6 +185,7 @@
 				4FB1D4B420CC0D5700DBA776 /* AppDelegate.m in Sources */,
 				4FB1D4DA20CC324100DBA776 /* PagableCollectionViewViewController.m in Sources */,
 				4FB1D4D720CC2CBD00DBA776 /* MyCustomCollectionViewCell.m in Sources */,
+				4F83D3BC20CECAB800F2FE80 /* DifferentSizeCellViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
