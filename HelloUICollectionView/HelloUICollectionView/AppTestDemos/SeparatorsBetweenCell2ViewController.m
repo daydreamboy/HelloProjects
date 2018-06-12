@@ -9,6 +9,7 @@
 #import "SeparatorsBetweenCell2ViewController.h"
 #import "MyCustomCollectionViewCell.h"
 #import "CellSeparator.h"
+#import "CollectionViewFlowLayoutSeparator.h"
 
 #ifndef UICOLOR_randomColor
 #define UICOLOR_randomColor [UIColor colorWithRed:(arc4random() % 255 / 255.0f) green:(arc4random() % 255 / 255.0f) blue:(arc4random() % 255 / 255.0f) alpha:1]
@@ -20,6 +21,7 @@
 @interface SeparatorsBetweenCell2ViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) NSArray<NSDictionary *> *collectionData;
 @property (nonatomic, strong) UICollectionView *collectionView1;
+@property (nonatomic, strong) UICollectionView *collectionView2;
 @end
 
 @implementation SeparatorsBetweenCell2ViewController
@@ -28,7 +30,7 @@
     self = [super init];
     if (self) {
         NSMutableArray *arrM = [NSMutableArray array];
-        for (NSInteger i = 0; i < 4; i++) {
+        for (NSInteger i = 0; i < 10; i++) {
             [arrM addObject:@{ kTitle: [NSString stringWithFormat:@"%d", (int)i], kColor: [UIColor whiteColor] }];
         }
         
@@ -42,26 +44,38 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.collectionView1];
+    [self.view addSubview:self.collectionView2];
 }
 
 #pragma mark - Getters
 
 #define spaceV 30
+#define cell_height 100
+#define cell_width  60
+
+// horizontal
+#define cell1_width 60
+#define cell2_width 120
+
+// vertical
+#define cell1_height 30
+#define cell2_height 60
 
 - (UICollectionView *)collectionView1 {
     if (!_collectionView1) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        CGFloat padding = 10;
         
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
+        CollectionViewFlowLayoutSeparator *layout = [[CollectionViewFlowLayoutSeparator alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         [layout registerClass:[CellSeparator class] forDecorationViewOfKind:@"Separator"];
         
-        UICollectionView *view = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 64 + 10, screenSize.width, 50) collectionViewLayout:layout];
+        UICollectionView *view = [[UICollectionView alloc] initWithFrame:CGRectMake(padding, 64 + 10, screenSize.width - 2 * padding, 50) collectionViewLayout:layout];
         view.dataSource = self;
         view.delegate = self;
         // @see https://stackoverflow.com/questions/18390972/uicollectionview-doesnt-bounce-when-datasource-has-only-1-item
         view.alwaysBounceHorizontal = YES;
-        view.backgroundColor = [UIColor lightGrayColor];
+        view.backgroundColor = [UIColor whiteColor];
         
         [view registerClass:[MyCustomCollectionViewCell class] forCellWithReuseIdentifier:@"sCellIdentifier"];
         
@@ -69,6 +83,28 @@
     }
     
     return _collectionView1;
+}
+
+- (UICollectionView *)collectionView2 {
+    if (!_collectionView2) {
+        CollectionViewFlowLayoutSeparator *layout = [[CollectionViewFlowLayoutSeparator alloc] init];
+        layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+        layout.itemSize = CGSizeMake(44, 44);
+        [layout registerClass:[CellSeparator class] forDecorationViewOfKind:@"Separator"];
+        
+        UICollectionView *view = [[UICollectionView alloc] initWithFrame:CGRectMake(40, CGRectGetMaxY(self.collectionView1.frame) + spaceV, 50, 300) collectionViewLayout:layout];
+        view.dataSource = self;
+        view.delegate = self;
+        // @see https://stackoverflow.com/questions/18390972/uicollectionview-doesnt-bounce-when-datasource-has-only-1-item
+        view.alwaysBounceVertical = YES;
+        view.backgroundColor = [UIColor whiteColor];
+        
+        [view registerClass:[MyCustomCollectionViewCell class] forCellWithReuseIdentifier:@"sCellIdentifier"];
+        
+        _collectionView2 = view;
+    }
+    
+    return _collectionView2;
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -88,28 +124,55 @@
 
 #pragma mark - UICollectionViewDelegateFlowLayout
 
-#define cell_height 100
-#define cell1_width 60
-#define cell2_width 120
-
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 1.0 / [UIScreen mainScreen].scale;
+    if (collectionView == self.collectionView1) {
+        return 1.0 / [UIScreen mainScreen].scale;
+    }
+    else if (collectionView == self.collectionView2) {
+        return 0;
+    }
+    else {
+        return 10;
+    }
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 0;
+    if (collectionView == self.collectionView1) {
+        return 0;
+    }
+    else if (collectionView == self.collectionView2) {
+        return 1.0 / [UIScreen mainScreen].scale;
+    }
+    else {
+        return 10;
+    }
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+
     CGSize newSize = CGSizeZero;
-    newSize.height = CGRectGetHeight(self.collectionView1.bounds);
-    
-    if(indexPath.item % 4 == 0 || indexPath.item % 4 == 3) {
-        newSize.width = cell1_width;
+
+    if (collectionView == self.collectionView1) {
+        newSize.height = CGRectGetHeight(self.collectionView1.bounds);
+
+        if(indexPath.item % 4 == 0 || indexPath.item % 4 == 3) {
+            newSize.width = cell1_width;
+        }
+        else {
+            newSize.width = cell2_width;
+        }
     }
-    else {
-        newSize.width = cell2_width;
+    else if (collectionView == self.collectionView2) {
+        newSize.width = CGRectGetWidth(self.collectionView2.bounds);
+
+        if(indexPath.item % 4 == 0 || indexPath.item % 4 == 3) {
+            newSize.height = cell1_height;
+        }
+        else {
+            newSize.height = cell2_height;
+        }
     }
+
     return newSize;
 }
 

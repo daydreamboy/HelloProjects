@@ -8,34 +8,61 @@
 
 #import "CollectionViewFlowLayoutSeparator.h"
 
+// @see https://stackoverflow.com/a/28691409
 @implementation CollectionViewFlowLayoutSeparator
 
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect {
-    NSMutableArray *layoutAttributesArray = [NSMutableArray arrayWithArray:[super layoutAttributesForElementsInRect:rect]];
+    NSMutableArray *layoutAttributes = [NSMutableArray arrayWithArray:[super layoutAttributesForElementsInRect:rect]];
     
-    NSMutableArray *decorationAttributes = [NSMutableArray array];
-    NSArray *visibleIndexPaths = [self indexPathsOfSeparatorsInRect:rect]; // will implement below
-    
-    for (NSIndexPath *indexPath in visibleIndexPaths) {
-        UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForDecorationViewOfKind:@"Separator" atIndexPath:indexPath];
-        [decorationAttributes addObject:attributes];
-    }
-    
-    return [layoutAttributesArray arrayByAddingObjectsFromArray:decorationAttributes];
-}
-
-- (NSArray*)indexPathsOfSeparatorsInRect:(CGRect)rect {
-    NSInteger firstCellIndexToShow = floorf(rect.origin.y / self.itemSize.height);
-    NSInteger lastCellIndexToShow = floorf((rect.origin.y + CGRectGetHeight(rect)) / self.itemSize.height);
-    NSInteger countOfItems = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:0];
-    
-    NSMutableArray* indexPaths = [NSMutableArray new];
-    for (NSInteger i = MAX(firstCellIndexToShow, 0); i <= lastCellIndexToShow; i++) {
-        if (i < countOfItems) {
-            [indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+    NSMutableArray *decorationAttrs = [NSMutableArray array];
+    for (UICollectionViewLayoutAttributes *cellAttr in layoutAttributes) {
+        NSIndexPath *indexPath = cellAttr.indexPath;
+        NSInteger numberOfItemsInSection = [self.collectionView.dataSource collectionView:self.collectionView numberOfItemsInSection:indexPath.section];
+        
+        if (indexPath.row < numberOfItemsInSection - 1) {
+            UICollectionViewLayoutAttributes *attributes = [self layoutAttributesForDecorationViewOfKind:@"Separator" atIndexPath:indexPath];
+            [decorationAttrs addObject:attributes];
         }
     }
-    return indexPaths;
+    [layoutAttributes addObjectsFromArray:decorationAttrs];
+    
+    return layoutAttributes;
 }
+
+- (UICollectionViewLayoutAttributes *)layoutAttributesForDecorationViewOfKind:(NSString *)decorationViewKind atIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewLayoutAttributes *cellAttr = [self layoutAttributesForItemAtIndexPath:indexPath];
+    
+    UICollectionViewLayoutAttributes *decorationAttr = [UICollectionViewLayoutAttributes layoutAttributesForDecorationViewOfKind:decorationViewKind withIndexPath:indexPath];
+    
+    if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
+        CGFloat minimumLineSpacing = self.minimumLineSpacing;
+        
+        id<UICollectionViewDelegateFlowLayout> delegate = (id<UICollectionViewDelegateFlowLayout>)self.collectionView.delegate;
+        if ([delegate respondsToSelector:@selector(collectionView:layout:minimumLineSpacingForSectionAtIndex:)]) {
+            minimumLineSpacing = [delegate collectionView:self.collectionView layout:self minimumLineSpacingForSectionAtIndex:indexPath.section];
+        }
+        
+        decorationAttr.frame = CGRectMake(CGRectGetMinX(cellAttr.frame), CGRectGetMaxY(cellAttr.frame), cellAttr.size.width, minimumLineSpacing);
+    }
+    else {
+        CGFloat minimumInteritemSpacing = self.minimumInteritemSpacing;
+        
+        id<UICollectionViewDelegateFlowLayout> delegate = (id<UICollectionViewDelegateFlowLayout>)self.collectionView.delegate;
+        if ([delegate respondsToSelector:@selector(collectionView:layout:minimumInteritemSpacingForSectionAtIndex:)]) {
+            minimumInteritemSpacing = [delegate collectionView:self.collectionView layout:self minimumInteritemSpacingForSectionAtIndex:indexPath.section];
+        }
+        
+        decorationAttr.frame = CGRectMake(CGRectGetMaxX(cellAttr.frame), CGRectGetMinY(cellAttr.frame), minimumInteritemSpacing, cellAttr.size.height);
+    }
+    decorationAttr.zIndex = 1000;
+    
+    return decorationAttr;
+}
+
+- (UICollectionViewLayoutAttributes *)initialLayoutAttributesForAppearingDecorationElementOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)decorationIndexPath {
+    UICollectionViewLayoutAttributes *layoutAttributes =  [self layoutAttributesForDecorationViewOfKind:elementKind atIndexPath:decorationIndexPath];
+    return layoutAttributes;
+}
+
 
 @end

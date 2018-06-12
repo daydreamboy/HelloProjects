@@ -30,4 +30,10 @@
     return self;
 }
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    self.textLabel.frame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
+}
+
 @end

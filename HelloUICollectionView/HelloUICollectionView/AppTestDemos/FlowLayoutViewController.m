@@ -81,7 +81,7 @@
 }
 
 // Example 2:
-// - minimumLineSpacing, the space between item on horizontal line
+// - minimumLineSpacing, the space between item on horizontal line (the successive items make the line)
 - (UICollectionView *)collectionView2 {
     if (!_collectionView2) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
@@ -105,7 +105,7 @@
 }
 
 // Example 3:
-// - minimumInteritemSpacing, the space between item on vertical line
+// - minimumInteritemSpacing, the space between item on vertical line (the successive items make the line)
 - (UICollectionView *)collectionView3 {
     if (!_collectionView3) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
