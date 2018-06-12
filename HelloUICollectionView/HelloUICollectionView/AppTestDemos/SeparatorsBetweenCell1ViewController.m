@@ -62,15 +62,15 @@
 #define cell1_height 30
 #define cell2_height 60
 
-
 - (UICollectionView *)collectionView1 {
     if (!_collectionView1) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        CGFloat padding = 10;
         
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
-        UICollectionView *view = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 64 + 10, screenSize.width, 50) collectionViewLayout:layout];
+        UICollectionView *view = [[UICollectionView alloc] initWithFrame:CGRectMake(padding, 64 + 10, screenSize.width - 2 * padding, 50) collectionViewLayout:layout];
         view.dataSource = self;
         view.delegate = self;
         // @see https://stackoverflow.com/questions/18390972/uicollectionview-doesnt-bounce-when-datasource-has-only-1-item
@@ -87,8 +87,6 @@
 
 - (UICollectionView *)collectionView2 {
     if (!_collectionView2) {
-        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
         
