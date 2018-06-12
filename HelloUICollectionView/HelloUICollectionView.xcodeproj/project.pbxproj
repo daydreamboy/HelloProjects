@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4F83D3BC20CECAB800F2FE80 /* DifferentSizeCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F83D3BB20CECAB800F2FE80 /* DifferentSizeCellViewController.m */; };
+		4F97DB2F20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97DB2E20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m */; };
+		4F97DB3320CFABE7003EBB3B /* CellSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97DB3220CFABE7003EBB3B /* CellSeparator.m */; };
+		4F97DB3620CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97DB3520CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m */; };
 		4FB1D4B420CC0D5700DBA776 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1D4B320CC0D5700DBA776 /* AppDelegate.m */; };
 		4FB1D4BC20CC0D5900DBA776 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FB1D4BB20CC0D5900DBA776 /* Assets.xcassets */; };
 		4FB1D4BF20CC0D5900DBA776 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FB1D4BD20CC0D5900DBA776 /* LaunchScreen.storyboard */; };
@@ -17,11 +20,19 @@
 		4FB1D4D420CC156B00DBA776 /* CustomCollectionViewCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1D4D320CC156B00DBA776 /* CustomCollectionViewCellViewController.m */; };
 		4FB1D4D720CC2CBD00DBA776 /* MyCustomCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1D4D620CC2CBD00DBA776 /* MyCustomCollectionViewCell.m */; };
 		4FB1D4DA20CC324100DBA776 /* PagableCollectionViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1D4D920CC324100DBA776 /* PagableCollectionViewViewController.m */; };
+		4FB8A3EE20CF68B500300954 /* CollectionViewFlowLayoutLeftAligned.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB8A3ED20CF68B500300954 /* CollectionViewFlowLayoutLeftAligned.m */; };
+		4FB8A3F120CF72BE00300954 /* SeparatorsBetweenCell1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB8A3F020CF72BE00300954 /* SeparatorsBetweenCell1ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		4F83D3BA20CECAB800F2FE80 /* DifferentSizeCellViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DifferentSizeCellViewController.h; sourceTree = "<group>"; };
 		4F83D3BB20CECAB800F2FE80 /* DifferentSizeCellViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DifferentSizeCellViewController.m; sourceTree = "<group>"; };
+		4F97DB2D20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeparatorsBetweenCell2ViewController.h; sourceTree = "<group>"; };
+		4F97DB2E20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeparatorsBetweenCell2ViewController.m; sourceTree = "<group>"; };
+		4F97DB3120CFABE7003EBB3B /* CellSeparator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellSeparator.h; sourceTree = "<group>"; };
+		4F97DB3220CFABE7003EBB3B /* CellSeparator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellSeparator.m; sourceTree = "<group>"; };
+		4F97DB3420CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewFlowLayoutSeparator.h; sourceTree = "<group>"; };
+		4F97DB3520CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewFlowLayoutSeparator.m; sourceTree = "<group>"; };
 		4FB1D4AF20CC0D5700DBA776 /* HelloUICollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUICollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FB1D4B220CC0D5700DBA776 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FB1D4B320CC0D5700DBA776 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -39,6 +50,10 @@
 		4FB1D4D620CC2CBD00DBA776 /* MyCustomCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCustomCollectionViewCell.m; sourceTree = "<group>"; };
 		4FB1D4D820CC324100DBA776 /* PagableCollectionViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PagableCollectionViewViewController.h; sourceTree = "<group>"; };
 		4FB1D4D920CC324100DBA776 /* PagableCollectionViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PagableCollectionViewViewController.m; sourceTree = "<group>"; };
+		4FB8A3EC20CF68B500300954 /* CollectionViewFlowLayoutLeftAligned.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewFlowLayoutLeftAligned.h; sourceTree = "<group>"; };
+		4FB8A3ED20CF68B500300954 /* CollectionViewFlowLayoutLeftAligned.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewFlowLayoutLeftAligned.m; sourceTree = "<group>"; };
+		4FB8A3EF20CF72BE00300954 /* SeparatorsBetweenCell1ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeparatorsBetweenCell1ViewController.h; sourceTree = "<group>"; };
+		4FB8A3F020CF72BE00300954 /* SeparatorsBetweenCell1ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeparatorsBetweenCell1ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +74,15 @@
 				4FB1D4D620CC2CBD00DBA776 /* MyCustomCollectionViewCell.m */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		4F97DB3020CFABB9003EBB3B /* Separator */ = {
+			isa = PBXGroup;
+			children = (
+				4F97DB3120CFABE7003EBB3B /* CellSeparator.h */,
+				4F97DB3220CFABE7003EBB3B /* CellSeparator.m */,
+			);
+			path = Separator;
 			sourceTree = "<group>";
 		};
 		4FB1D4A620CC0D5700DBA776 = {
@@ -96,6 +120,7 @@
 		4FB1D4C820CC0D7F00DBA776 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F97DB3020CFABB9003EBB3B /* Separator */,
 				4FB1D4CF20CC0DDB00DBA776 /* FlowLayoutViewController.h */,
 				4FB1D4D020CC0DDB00DBA776 /* FlowLayoutViewController.m */,
 				4FB1D4D220CC156B00DBA776 /* CustomCollectionViewCellViewController.h */,
@@ -104,9 +129,25 @@
 				4FB1D4D920CC324100DBA776 /* PagableCollectionViewViewController.m */,
 				4F83D3BA20CECAB800F2FE80 /* DifferentSizeCellViewController.h */,
 				4F83D3BB20CECAB800F2FE80 /* DifferentSizeCellViewController.m */,
+				4FB8A3EF20CF72BE00300954 /* SeparatorsBetweenCell1ViewController.h */,
+				4FB8A3F020CF72BE00300954 /* SeparatorsBetweenCell1ViewController.m */,
+				4F97DB2D20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.h */,
+				4F97DB2E20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m */,
+				4FB8A3EB20CF682200300954 /* Layout */,
 				4F83D3B920CEC93700F2FE80 /* Cell */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4FB8A3EB20CF682200300954 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				4FB8A3EC20CF68B500300954 /* CollectionViewFlowLayoutLeftAligned.h */,
+				4FB8A3ED20CF68B500300954 /* CollectionViewFlowLayoutLeftAligned.m */,
+				4F97DB3420CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.h */,
+				4F97DB3520CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m */,
+			);
+			path = Layout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,11 +222,16 @@
 				4FB1D4D420CC156B00DBA776 /* CustomCollectionViewCellViewController.m in Sources */,
 				4FB1D4C220CC0D5900DBA776 /* main.m in Sources */,
 				4FB1D4D120CC0DDB00DBA776 /* FlowLayoutViewController.m in Sources */,
+				4F97DB3320CFABE7003EBB3B /* CellSeparator.m in Sources */,
+				4FB8A3F120CF72BE00300954 /* SeparatorsBetweenCell1ViewController.m in Sources */,
 				4FB1D4CE20CC0D8400DBA776 /* RootViewController.m in Sources */,
+				4F97DB3620CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m in Sources */,
 				4FB1D4B420CC0D5700DBA776 /* AppDelegate.m in Sources */,
 				4FB1D4DA20CC324100DBA776 /* PagableCollectionViewViewController.m in Sources */,
 				4FB1D4D720CC2CBD00DBA776 /* MyCustomCollectionViewCell.m in Sources */,
 				4F83D3BC20CECAB800F2FE80 /* DifferentSizeCellViewController.m in Sources */,
+				4FB8A3EE20CF68B500300954 /* CollectionViewFlowLayoutLeftAligned.m in Sources */,
+				4F97DB2F20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

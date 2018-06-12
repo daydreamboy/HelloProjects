@@ -12,6 +12,8 @@
 #import "CustomCollectionViewCellViewController.h"
 #import "PagableCollectionViewViewController.h"
 #import "DifferentSizeCellViewController.h"
+#import "SeparatorsBetweenCell1ViewController.h"
+#import "SeparatorsBetweenCell2ViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -38,6 +40,8 @@
         @"Custom UICollectionViewCell",
         @"Pagable UICollectionView",
         @"Different size cells",
+        @"Separators between cells (solution 1)",
+        @"Separators between cells (solution 2)",
         @"call a test method",
     ];
     _classes = @[
@@ -45,6 +49,8 @@
         [CustomCollectionViewCellViewController class],
         [PagableCollectionViewViewController class],
         [DifferentSizeCellViewController class],
+        [SeparatorsBetweenCell1ViewController class],
+        [SeparatorsBetweenCell2ViewController class],
         @"testMethod",
     ];
 }
