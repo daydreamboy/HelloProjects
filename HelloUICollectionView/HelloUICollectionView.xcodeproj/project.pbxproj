@@ -11,6 +11,7 @@
 		4F97DB2F20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97DB2E20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m */; };
 		4F97DB3320CFABE7003EBB3B /* CellSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97DB3220CFABE7003EBB3B /* CellSeparator.m */; };
 		4F97DB3620CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97DB3520CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m */; };
+		4F97DB4220CFFB50003EBB3B /* CellSelectionAndHighlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97DB4120CFFB50003EBB3B /* CellSelectionAndHighlightViewController.m */; };
 		4FB1D4B420CC0D5700DBA776 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1D4B320CC0D5700DBA776 /* AppDelegate.m */; };
 		4FB1D4BC20CC0D5900DBA776 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FB1D4BB20CC0D5900DBA776 /* Assets.xcassets */; };
 		4FB1D4BF20CC0D5900DBA776 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FB1D4BD20CC0D5900DBA776 /* LaunchScreen.storyboard */; };
@@ -33,6 +34,8 @@
 		4F97DB3220CFABE7003EBB3B /* CellSeparator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellSeparator.m; sourceTree = "<group>"; };
 		4F97DB3420CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewFlowLayoutSeparator.h; sourceTree = "<group>"; };
 		4F97DB3520CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewFlowLayoutSeparator.m; sourceTree = "<group>"; };
+		4F97DB4020CFFB50003EBB3B /* CellSelectionAndHighlightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellSelectionAndHighlightViewController.h; sourceTree = "<group>"; };
+		4F97DB4120CFFB50003EBB3B /* CellSelectionAndHighlightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellSelectionAndHighlightViewController.m; sourceTree = "<group>"; };
 		4FB1D4AF20CC0D5700DBA776 /* HelloUICollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUICollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FB1D4B220CC0D5700DBA776 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FB1D4B320CC0D5700DBA776 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -133,6 +136,8 @@
 				4FB8A3F020CF72BE00300954 /* SeparatorsBetweenCell1ViewController.m */,
 				4F97DB2D20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.h */,
 				4F97DB2E20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m */,
+				4F97DB4020CFFB50003EBB3B /* CellSelectionAndHighlightViewController.h */,
+				4F97DB4120CFFB50003EBB3B /* CellSelectionAndHighlightViewController.m */,
 				4FB8A3EB20CF682200300954 /* Layout */,
 				4F83D3B920CEC93700F2FE80 /* Cell */,
 			);
@@ -225,6 +230,7 @@
 				4F97DB3320CFABE7003EBB3B /* CellSeparator.m in Sources */,
 				4FB8A3F120CF72BE00300954 /* SeparatorsBetweenCell1ViewController.m in Sources */,
 				4FB1D4CE20CC0D8400DBA776 /* RootViewController.m in Sources */,
+				4F97DB4220CFFB50003EBB3B /* CellSelectionAndHighlightViewController.m in Sources */,
 				4F97DB3620CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m in Sources */,
 				4FB1D4B420CC0D5700DBA776 /* AppDelegate.m in Sources */,
 				4FB1D4DA20CC324100DBA776 /* PagableCollectionViewViewController.m in Sources */,

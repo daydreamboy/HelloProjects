@@ -70,6 +70,8 @@
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         [layout registerClass:[CellSeparator class] forDecorationViewOfKind:@"Separator"];
         
+        CellSeparator.color = [UIColor redColor];
+        
         UICollectionView *view = [[UICollectionView alloc] initWithFrame:CGRectMake(padding, 64 + 10, screenSize.width - 2 * padding, 50) collectionViewLayout:layout];
         view.dataSource = self;
         view.delegate = self;

@@ -14,6 +14,7 @@
 #import "DifferentSizeCellViewController.h"
 #import "SeparatorsBetweenCell1ViewController.h"
 #import "SeparatorsBetweenCell2ViewController.h"
+#import "CellSelectionAndHighlightViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -42,6 +43,7 @@
         @"Different size cells",
         @"Separators between cells (solution 1)",
         @"Separators between cells (solution 2)",
+        @"Cell highlight and selection",
         @"call a test method",
     ];
     _classes = @[
@@ -51,6 +53,7 @@
         [DifferentSizeCellViewController class],
         [SeparatorsBetweenCell1ViewController class],
         [SeparatorsBetweenCell2ViewController class],
+        [CellSelectionAndHighlightViewController class],
         @"testMethod",
     ];
 }
