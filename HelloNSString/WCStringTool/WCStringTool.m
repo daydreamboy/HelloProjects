@@ -89,12 +89,14 @@
     }
     
     if ([string respondsToSelector:@selector(sizeWithAttributes:)]) {
-        return [string sizeWithAttributes:@{ NSFontAttributeName: font }];
+        CGSize textSize = [string sizeWithAttributes:@{ NSFontAttributeName: font }];
+        return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
     }
     else {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        return [string sizeWithFont:font];
+        CGSize textSize = [string sizeWithFont:font];
+        return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
 #pragma clang diagnostic pop
     }
 }
@@ -116,21 +118,26 @@
                                            options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                                         attributes:attr
                                            context:nil];
-        return rect.size;
-    } else {
+        CGSize textSize = rect.size;
+        return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
+    }
+    else {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        return [string sizeWithFont:font constrainedToSize:size lineBreakMode:lineBreakMode];
+        CGSize textSize = [string sizeWithFont:font constrainedToSize:size lineBreakMode:lineBreakMode];
+        return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
 #pragma clang diagnostic pop
     }
 }
 
 + (CGSize)textSizeWithMultipleLineString:(NSString *)string width:(CGFloat)width attributes:(NSDictionary *)attributes {
     if (width > 0) {
-        return [string boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
-                                    options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
-                                 attributes:attributes
-                                    context:nil].size;
+        CGRect rect = [string boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
+                                           options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                        attributes:attributes
+                                           context:nil];
+        CGSize textSize = rect.size;
+        return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
     }
     else {
         return CGSizeZero;

@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 #import "Demo1ViewController.h"
+#import "StringSizeViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -31,11 +32,11 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"Demo1ViewController's title",
+        @"label fit string size",
         @"call a test method",
     ];
     _classes = @[
-        [Demo1ViewController class],
+        [StringSizeViewController class],
         @"testMethod",
     ];
 }

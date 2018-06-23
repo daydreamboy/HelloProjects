@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F3DE4FD20D8B85F00FCCE6A /* StringSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3DE4FC20D8B85F00FCCE6A /* StringSizeViewController.m */; };
 		4F4D74AC20BED6CA0027DE7C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D74AB20BED6CA0027DE7C /* AppDelegate.m */; };
 		4F4D74B420BED6CB0027DE7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F4D74B320BED6CB0027DE7C /* Assets.xcassets */; };
 		4F4D74B720BED6CB0027DE7C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F4D74B520BED6CB0027DE7C /* LaunchScreen.storyboard */; };
@@ -28,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F3DE4FB20D8B85F00FCCE6A /* StringSizeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringSizeViewController.h; sourceTree = "<group>"; };
+		4F3DE4FC20D8B85F00FCCE6A /* StringSizeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringSizeViewController.m; sourceTree = "<group>"; };
 		4F4D74A720BED6CA0027DE7C /* HelloNSString.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSString.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F4D74AA20BED6CA0027DE7C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F4D74AB20BED6CA0027DE7C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -104,6 +107,8 @@
 			children = (
 				4F4D74C320BED73C0027DE7C /* Demo1ViewController.h */,
 				4F4D74C220BED73C0027DE7C /* Demo1ViewController.m */,
+				4F3DE4FB20D8B85F00FCCE6A /* StringSizeViewController.h */,
+				4F3DE4FC20D8B85F00FCCE6A /* StringSizeViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -227,6 +232,7 @@
 			files = (
 				4F4D74BA20BED6CB0027DE7C /* main.m in Sources */,
 				4F731A8C20BEE28F00D095F9 /* WCStringTool.m in Sources */,
+				4F3DE4FD20D8B85F00FCCE6A /* StringSizeViewController.m in Sources */,
 				4F4D74C620BED73D0027DE7C /* Demo1ViewController.m in Sources */,
 				4F4D74C520BED73D0027DE7C /* RootViewController.m in Sources */,
 				4F4D74AC20BED6CA0027DE7C /* AppDelegate.m in Sources */,
