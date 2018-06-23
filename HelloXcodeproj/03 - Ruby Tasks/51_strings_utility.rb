@@ -1,8 +1,9 @@
 #encoding: utf-8
 
 require 'optparse'
+require_relative '../02 - Ruby Helper/rubyscript_helper'
 
-class NmUtility
+class StringsUtility
 
   attr_accessor :cmd_parser
   attr_accessor :cmd_options
@@ -14,7 +15,7 @@ class NmUtility
     self.cmd_parser = OptionParser.new do |opts|
       opts.banner = "Usage: #{__FILE__} PATH/TO/FOLDER -s symbol1,symbol2,... [options]"
       opts.separator  ""
-      opts.separator  "在指定目录nm搜索特定的符号"
+      opts.separator  "在指定目录strings搜索特定的符号"
 
       opts.on("-v", "--[no-]verbose", "Run verbosely") do |v|
         self.cmd_options[:verbose] = v
@@ -79,14 +80,14 @@ class NmUtility
           # Note: lookup symbols for every file
           symbol_list.each do |symbol|
             if verbose
-              puts "nm -m \"#{item}\" 2>/dev/null | grep #{symbol}"
+              puts "strings -o \"#{item}\" 2>/dev/null | grep #{symbol}"
             end
 
-            `nm -m "#{item}" 2>/dev/null | grep #{symbol}`
+            `strings -o "#{item}" 2>/dev/null | grep #{symbol}`
             result = $?.success?
 
-            if (result)
-              puts "Find symbol #{symbol} in #{item}"
+            if result
+              puts "Find string symbol `#{symbol}` in #{item}"
             end
           end
 
@@ -97,4 +98,4 @@ class NmUtility
   end
 end
 
-NmUtility.new.run
+StringsUtility.new.run
