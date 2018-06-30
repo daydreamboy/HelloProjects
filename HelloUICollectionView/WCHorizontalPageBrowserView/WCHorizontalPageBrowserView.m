@@ -12,8 +12,7 @@
 
 @interface WCHorizontalPageBrowserView () <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) Class cellClass;
-@property (nonatomic, copy) NSString *cellReuseIdentifier;
+@property (nonatomic, strong) NSMutableDictionary<NSString *, Class> *registeredCells;
 @end
 
 @implementation WCHorizontalPageBrowserView
@@ -25,17 +24,18 @@
     if (self) {
         // defaults
         _pageSpace = 16;
-        _cellClass = [WCBaseHorizontalPage class];
-        _cellReuseIdentifier = NSStringFromClass([WCBaseHorizontalPage class]);
+        _registeredCells = [NSMutableDictionary dictionary];
         
         self.clipsToBounds = YES;
     }
     return self;
 }
 
-- (void)registerPageClass:(Class)cellClass forPageWithReuseIdentifier:(NSString *)identifier {
-    _cellClass = cellClass;
-    _cellReuseIdentifier = identifier;
+- (void)registerPageClass:(Class)cellClass forPageWithReuseIdentifier:(NSString *)reuseIdentifier {
+    
+    if (reuseIdentifier) {
+        _registeredCells[reuseIdentifier] = cellClass;
+    }
 }
 
 - (void)reloadData {
@@ -52,10 +52,29 @@
     }
 }
 
+- (WCBaseHorizontalPage *)dequeueReusablePageWithReuseIdentifier:(NSString *)reuseIdentifier forIndex:(NSInteger)index {
+    NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
+    WCBaseHorizontalPage *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:reuseIdentifier forIndexPath:indexPath];
+    
+    return cell;
+}
+
+- (void)setCurrentPage:(NSInteger)index animated:(BOOL)animated {
+    NSInteger numberOfPages = 0;
+    if ([self.dataSource respondsToSelector:@selector(numberOfPagesHorizontalPageBrowserView:)]) {
+        numberOfPages = [self.dataSource numberOfPagesHorizontalPageBrowserView:self];
+    }
+    if (index >= 0 && index < numberOfPages) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
+        [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:animated];
+    }
+}
+
 #pragma mark -
 
 - (void)willMoveToSuperview:(UIView *)newSuperview {
     if (newSuperview) {
+        WCBaseHorizontalPage.pageSpace = self.pageSpace;
         [self addSubview:self.collectionView];
     }
 }
@@ -82,7 +101,14 @@
         view.alwaysBounceHorizontal = YES;
         view.showsHorizontalScrollIndicator = NO;
         
-        [view registerClass:_cellClass forCellWithReuseIdentifier:_cellReuseIdentifier];
+        if (_registeredCells.count == 0) {
+            [view registerClass:[WCBaseHorizontalPage class] forCellWithReuseIdentifier:NSStringFromClass([WCBaseHorizontalPage class])];
+        }
+        else {
+            for (NSString *identifier in _registeredCells) {
+                [view registerClass:_registeredCells[identifier] forCellWithReuseIdentifier:identifier];
+            }
+        }
         
         _collectionView = view;
     }
@@ -105,11 +131,10 @@
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    WCBaseHorizontalPage.pageSpace = self.pageSpace;
-    WCBaseHorizontalPage *cell = [collectionView dequeueReusableCellWithReuseIdentifier:_cellReuseIdentifier forIndexPath:indexPath];
+    WCBaseHorizontalPage *cell = nil;
     
-    if ([self.dataSource respondsToSelector:@selector(horizontalPageBrowserView:configurePage:forItemAtIndex:reuseIdentifier:)]) {
-        cell = [self.dataSource horizontalPageBrowserView:self configurePage:cell forItemAtIndex:indexPath.item reuseIdentifier:_cellReuseIdentifier];
+    if ([self.dataSource respondsToSelector:@selector(horizontalPageBrowserView:pageForItemAtIndex:)]) {
+        cell = [self.dataSource horizontalPageBrowserView:self pageForItemAtIndex:indexPath.item];
     }
     return cell;
 }

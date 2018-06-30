@@ -18,7 +18,7 @@
 - (NSInteger)numberOfPagesHorizontalPageBrowserView:(WCHorizontalPageBrowserView *)horizontalPageBrowserView;
 
 @optional
-- (WCBaseHorizontalPage *)horizontalPageBrowserView:(WCHorizontalPageBrowserView *)horizontalPageBrowserView configurePage:(WCBaseHorizontalPage *)page forItemAtIndex:(NSInteger)index reuseIdentifier:(NSString *)reuseIdentifier;
+- (WCBaseHorizontalPage *)horizontalPageBrowserView:(WCHorizontalPageBrowserView *)horizontalPageBrowserView pageForItemAtIndex:(NSInteger)index;
 @end
 
 @protocol WCHorizontalPageBrowserViewDelegate <NSObject>
@@ -29,17 +29,15 @@
 - (void)horizontalPageBrowserView:(WCHorizontalPageBrowserView *)horizontalPageBrowserView didEndDisplayingPage:(WCBaseHorizontalPage *)page forItemAtIndex:(NSInteger)index;
 @end
 
-@protocol WCHorizontalPage <NSObject>
-
-@end
-
 @interface WCHorizontalPageBrowserView : UIView
 @property (nonatomic, weak) id<WCHorizontalPageBrowserViewDataSource> dataSource;
 @property (nonatomic, weak) id<WCHorizontalPageBrowserViewDelegate> delegate;
 @property (nonatomic, assign) CGFloat pageSpace;
 
-- (void)registerPageClass:(Class)cellClass forPageWithReuseIdentifier:(NSString *)identifier;
+- (void)registerPageClass:(Class)cellClass forPageWithReuseIdentifier:(NSString *)reuseIdentifier;
+- (WCBaseHorizontalPage *)dequeueReusablePageWithReuseIdentifier:(NSString *)reuseIdentifier forIndex:(NSInteger)index;
 - (void)reloadData;
 - (void)reloadItemsAtIndexes:(NSArray<NSNumber *> *)indexes;
+- (void)setCurrentPage:(NSInteger)index animated:(BOOL)animated;
 
 @end

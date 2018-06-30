@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		10A60B011CD6C1F90B90C16E /* libPods-HelloUICollectionView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E53F53994D672AECEE3640C /* libPods-HelloUICollectionView.a */; };
 		4F82DF5220E6799B007035FC /* WCHorizontalPageBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F82DF5120E6799B007035FC /* WCHorizontalPageBrowserView.m */; };
 		4F82DF5520E67A06007035FC /* WCBaseHorizontalPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F82DF5420E67A06007035FC /* WCBaseHorizontalPage.m */; };
 		4F82DF5F20E68ABC007035FC /* WCZoomableImagePage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F82DF5E20E68ABC007035FC /* WCZoomableImagePage.m */; };
@@ -33,6 +34,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E53F53994D672AECEE3640C /* libPods-HelloUICollectionView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HelloUICollectionView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		21A2CE42427550FA09283371 /* Pods-HelloUICollectionView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloUICollectionView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HelloUICollectionView/Pods-HelloUICollectionView.debug.xcconfig"; sourceTree = "<group>"; };
 		4F82DF5020E6799B007035FC /* WCHorizontalPageBrowserView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCHorizontalPageBrowserView.h; sourceTree = "<group>"; };
 		4F82DF5120E6799B007035FC /* WCHorizontalPageBrowserView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCHorizontalPageBrowserView.m; sourceTree = "<group>"; };
 		4F82DF5320E67A06007035FC /* WCBaseHorizontalPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCBaseHorizontalPage.h; sourceTree = "<group>"; };
@@ -76,6 +79,7 @@
 		4FB8A3F020CF72BE00300954 /* SeparatorsBetweenCell1ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeparatorsBetweenCell1ViewController.m; sourceTree = "<group>"; };
 		4FC48DA220E64F66003789BB /* HorizontalPageBrowserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HorizontalPageBrowserViewController.h; sourceTree = "<group>"; };
 		4FC48DA320E64F66003789BB /* HorizontalPageBrowserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HorizontalPageBrowserViewController.m; sourceTree = "<group>"; };
+		9414F9A59EC88D10934EE7C0 /* Pods-HelloUICollectionView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloUICollectionView.release.xcconfig"; path = "Pods/Target Support Files/Pods-HelloUICollectionView/Pods-HelloUICollectionView.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				10A60B011CD6C1F90B90C16E /* libPods-HelloUICollectionView.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,6 +142,8 @@
 				4F82DF4F20E6796F007035FC /* WCHorizontalPageBrowserView */,
 				4FB1D4B120CC0D5700DBA776 /* HelloUICollectionView */,
 				4FB1D4B020CC0D5700DBA776 /* Products */,
+				C7E231FC158EFCF68976579B /* Pods */,
+				830E171881AC237778A06725 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -202,6 +209,23 @@
 			path = Layout;
 			sourceTree = "<group>";
 		};
+		830E171881AC237778A06725 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0E53F53994D672AECEE3640C /* libPods-HelloUICollectionView.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C7E231FC158EFCF68976579B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				21A2CE42427550FA09283371 /* Pods-HelloUICollectionView.debug.xcconfig */,
+				9414F9A59EC88D10934EE7C0 /* Pods-HelloUICollectionView.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -209,6 +233,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4FB1D4C520CC0D5900DBA776 /* Build configuration list for PBXNativeTarget "HelloUICollectionView" */;
 			buildPhases = (
+				82A3CDDF67D52FB98BF3FB95 /* [CP] Check Pods Manifest.lock */,
 				4FB1D4AB20CC0D5700DBA776 /* Sources */,
 				4FB1D4AC20CC0D5700DBA776 /* Frameworks */,
 				4FB1D4AD20CC0D5700DBA776 /* Resources */,
@@ -268,6 +293,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		82A3CDDF67D52FB98BF3FB95 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HelloUICollectionView-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4FB1D4AB20CC0D5700DBA776 /* Sources */ = {
@@ -421,14 +467,12 @@
 		};
 		4FB1D4C620CC0D5900DBA776 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 21A2CE42427550FA09283371 /* Pods-HelloUICollectionView.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = HelloUICollectionView/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloUICollectionView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -437,14 +481,12 @@
 		};
 		4FB1D4C720CC0D5900DBA776 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9414F9A59EC88D10934EE7C0 /* Pods-HelloUICollectionView.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = HelloUICollectionView/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloUICollectionView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
