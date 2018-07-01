@@ -1,19 +1,20 @@
 //
-//  PlainTableViewViewController.m
+//  HorizontalTableViewViewController.m
 //  HelloUITableView
 //
-//  Created by wesley_chen on 26/12/2017.
-//  Copyright © 2017 wesley_chen. All rights reserved.
+//  Created by wesley_chen on 2018/7/1.
+//  Copyright © 2018 wesley_chen. All rights reserved.
 //
 
-#import "PlainTableViewViewController.h"
+#import "HorizontalTableViewViewController.h"
 
-@interface PlainTableViewViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface HorizontalTableViewViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray<NSArray<NSString *> *> *listData;
 @end
 
-@implementation PlainTableViewViewController
+@implementation HorizontalTableViewViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -65,14 +66,38 @@
 - (UITableView *)tableView {
     if (!_tableView) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, screenSize.width, screenSize.height - 64) style:UITableViewStylePlain];
         tableView.delegate = self;
         tableView.dataSource = self;
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        // @see https://stackoverflow.com/a/3324597
+        // Note: make table view rotate by -90°
+        CGAffineTransform transform = CGAffineTransformMakeRotation(-M_PI_2);
+        tableView.transform = transform;
+        
+        // reposition table view
+        tableView.frame = CGRectMake(0, 64, screenSize.width, 300);
+        tableView.contentOffset = CGPointZero;
         
         _tableView = tableView;
     }
     
     return _tableView;
+}
+
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    return 200;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    // Note: after make table view rotate by -90°, so make cell rotate by 90°
+    CGAffineTransform transform = CGAffineTransformMakeRotation(M_PI_2);
+    cell.transform = transform;
 }
 
 #pragma mark - UITableViewDataSource

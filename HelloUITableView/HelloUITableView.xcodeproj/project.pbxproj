@@ -41,6 +41,7 @@
 		4FAAA5B71FA4845B00A80328 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FAAA5B51FA4845A00A80328 /* calendar.png */; };
 		4FAAA5B81FA4845B00A80328 /* ibooks.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FAAA5B61FA4845A00A80328 /* ibooks.png */; };
 		4FAD1F4220BD2D0100F4766D /* DetectUserScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAD1F4120BD2D0100F4766D /* DetectUserScrollViewController.m */; };
+		4FB55FC120E92EAC002DEF76 /* HorizontalTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB55FC020E92EAC002DEF76 /* HorizontalTableViewViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -104,6 +105,8 @@
 		4FAAA5B61FA4845A00A80328 /* ibooks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ibooks.png; sourceTree = "<group>"; };
 		4FAD1F4020BD2D0100F4766D /* DetectUserScrollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectUserScrollViewController.h; sourceTree = "<group>"; };
 		4FAD1F4120BD2D0100F4766D /* DetectUserScrollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetectUserScrollViewController.m; sourceTree = "<group>"; };
+		4FB55FBF20E92EAC002DEF76 /* HorizontalTableViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HorizontalTableViewViewController.h; sourceTree = "<group>"; };
+		4FB55FC020E92EAC002DEF76 /* HorizontalTableViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HorizontalTableViewViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +187,8 @@
 				4F948A242011C8590030BC4A /* PlainTableViewWithExpandableSectionHeaderViewController.m */,
 				4FAD1F4020BD2D0100F4766D /* DetectUserScrollViewController.h */,
 				4FAD1F4120BD2D0100F4766D /* DetectUserScrollViewController.m */,
+				4FB55FBF20E92EAC002DEF76 /* HorizontalTableViewViewController.h */,
+				4FB55FC020E92EAC002DEF76 /* HorizontalTableViewViewController.m */,
 			);
 			path = section4;
 			sourceTree = "<group>";
@@ -348,6 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FB55FC120E92EAC002DEF76 /* HorizontalTableViewViewController.m in Sources */,
 				2B63BF36200FA22600A5D8D2 /* ScrollTopBottomCellsToFadeInViewController.m in Sources */,
 				2B63BF08200F9DBC00A5D8D2 /* UITableView+Addition.m in Sources */,
 				2B63BF35200FA22600A5D8D2 /* CompatibleGroupedTableViewViewController.m in Sources */,

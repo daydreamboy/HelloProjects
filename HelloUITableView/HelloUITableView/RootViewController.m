@@ -21,6 +21,7 @@
 #import "PlainTableViewWithNonFloatSectionViewController.h"
 #import "PlainTableViewWithExpandableSectionHeaderViewController.h"
 #import "DetectUserScrollViewController.h"
+#import "HorizontalTableViewViewController.h"
 
 #import "MoveMeViewController.h"
 #import "DeleteMeViewController.h"
@@ -76,6 +77,7 @@
           @{ kTitle: @"Plain Table with non-float section view", kClass: [PlainTableViewWithNonFloatSectionViewController class] },
           @{ kTitle: @"Plain Table with expandable section header", kClass: [PlainTableViewWithExpandableSectionHeaderViewController class] },
           @{ kTitle: @"Detect user scrolling", kClass: [DetectUserScrollViewController class] },
+          @{ kTitle: @"Horizontal table view", kClass: [HorizontalTableViewViewController class] },
     ];
     
     NSArray<NSDictionary *> *section5 = @[
