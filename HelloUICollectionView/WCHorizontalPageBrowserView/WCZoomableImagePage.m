@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UITapGestureRecognizer *doubleTapGesture;
 
 - (void)displayImage:(UIImage *)image;
+- (void)resetImageZoomView;
 
 @end
 
@@ -49,6 +50,12 @@
     [self configureForImageSize:image.size];
     [self centerImageView];
 }
+
+- (void)resetImageZoomView {
+    [self setZoomScale:self.minimumZoomScale animated:NO];
+}
+
+#pragma mark -
 
 - (void)configureForImageSize:(CGSize)imageSize {
     CGSize boundSize = self.bounds.size;
@@ -172,6 +179,10 @@
 
 - (void)displayImage:(UIImage *)image {
     [_imageZoomView displayImage:image];
+}
+
+- (void)resetZoomableImagePage {
+    [_imageZoomView resetImageZoomView];
 }
 
 @end

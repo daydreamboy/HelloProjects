@@ -11,4 +11,5 @@
 @interface WCZoomableImagePage : WCBaseHorizontalPage
 - (instancetype)initWithFrame:(CGRect)frame;
 - (void)displayImage:(UIImage *)image;
+- (void)resetZoomableImagePage;
 @end

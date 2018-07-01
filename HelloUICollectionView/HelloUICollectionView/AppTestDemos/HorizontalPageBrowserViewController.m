@@ -31,7 +31,7 @@
 
 @end
 
-@interface HorizontalPageBrowserViewController () <WCHorizontalPageBrowserViewDataSource>
+@interface HorizontalPageBrowserViewController () <WCHorizontalPageBrowserViewDataSource, WCHorizontalPageBrowserViewDelegate>
 @property (nonatomic, strong) WCHorizontalPageBrowserView *pageBrowserView;
 @property (nonatomic, strong) NSArray<NSString *> *pageData;
 @property (nonatomic, strong) id <SDWebImageOperation> imageDownload;
@@ -66,6 +66,7 @@
         view.center = CGPointMake(screenSize.width / 2.0, screenSize.height / 2.0);
         view.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:0.8];
         view.dataSource = self;
+        view.delegate = self;
         view.pageSpace = 30;
         
         [view registerPageClass:[WCZoomableImagePage class] forPageWithReuseIdentifier:NSStringFromClass([WCZoomableImagePage class])];
@@ -106,6 +107,13 @@
     }];
 
     return page;
+}
+
+#pragma mark - WCHorizontalPageBrowserViewDelegate
+
+- (void)horizontalPageBrowserView:(WCHorizontalPageBrowserView *)horizontalPageBrowserView willDisplayPage:(WCBaseHorizontalPage *)page forItemAtIndex:(NSInteger)index {
+    WCZoomableImagePage *zoomableImagePage = (WCZoomableImagePage *)page;
+    [zoomableImagePage resetZoomableImagePage];
 }
 
 @end
