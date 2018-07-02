@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UIView *playerView;
 @property (nonatomic, strong) AVPlayerItem *item;
 @property (nonatomic, strong) AVPlayer *player;
+@property (nonatomic, strong) UIImageView *imageView;
 @end
 
 @implementation UseAVPlayerLayerViewController
@@ -30,6 +31,7 @@
     self.navigationItem.rightBarButtonItems = @[replayItem, fastForwardItem, rewindItem, stopItem, pauseItem, playItem];
     
     [self.view addSubview:self.playerView];
+    [self.view addSubview:self.imageView];
     
     AVPlayer *player = [AVPlayer playerWithPlayerItem:self.item];
     
@@ -92,6 +94,24 @@
     }
     
     return _playerView;
+}
+
+- (UIImageView *)imageView {
+    if (!_imageView) {
+        UIImage *image = [UIImage imageNamed:@"video_play"];
+        CGSize imageSize = image.size;
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, imageSize.width, imageSize.height)];
+        imageView.image = image;
+        imageView.center = CGPointMake(self.playerView.bounds.size.width / 2.0, self.playerView.bounds.size.height / 2.0);
+        imageView.userInteractionEnabled = YES;
+        
+        UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewTapped:)];
+        [imageView addGestureRecognizer:gesture];
+        
+        _imageView = imageView;
+    }
+    
+    return _imageView;
 }
 
 #pragma mark - NSNotifications
@@ -173,14 +193,17 @@
 #pragma mark - Actions
 
 - (void)playItemClicked:(id)sender {
+    self.imageView.hidden = YES;
     [self.player play];
 }
 
 - (void)pauseItemClicked:(id)sender {
+    self.imageView.hidden = NO;
     [self.player pause];
 }
 
 - (void)stopItemClicked:(id)sender {
+    self.imageView.hidden = NO;
     [self.player pause];
     [self.player seekToTime:kCMTimeZero];
 }
@@ -199,8 +222,13 @@
 }
 
 - (void)replayItemClicked:(id)sender {
+    self.imageView.hidden = YES;
     [self.player seekToTime:kCMTimeZero];
     [self.player play];
+}
+
+- (void)imageViewTapped:(id)sender {
+    [self playItemClicked:nil];
 }
 
 @end
