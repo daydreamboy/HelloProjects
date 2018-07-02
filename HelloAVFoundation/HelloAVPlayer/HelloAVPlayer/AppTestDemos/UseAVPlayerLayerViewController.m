@@ -11,6 +11,7 @@
 
 @interface UseAVPlayerLayerViewController ()
 @property (nonatomic, strong) UIView *playerView;
+@property (nonatomic, strong) AVPlayerItem *item;
 @end
 
 @implementation UseAVPlayerLayerViewController
@@ -38,6 +39,17 @@
     
     [player seekToTime:kCMTimeZero];
     [player play];
+    
+    self.item = item;
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:_item];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemFailedToPlayToEndTimeNotification object:_item];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemTimeJumpedNotification object:_item];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemPlaybackStalledNotification object:_item];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemNewAccessLogEntryNotification object:_item];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemNewErrorLogEntryNotification object:_item];
 }
 
 #pragma mark - Getters
