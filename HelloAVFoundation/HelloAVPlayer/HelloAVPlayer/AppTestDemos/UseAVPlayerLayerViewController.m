@@ -20,8 +20,7 @@
     [super viewDidLoad];
     [self.view addSubview:self.playerView];
     
-    AVPlayerItem *item = [AVPlayerItem playerItemWithURL:self.URLDemo1];
-    AVPlayer *player = [AVPlayer playerWithPlayerItem:item];
+    AVPlayer *player = [AVPlayer playerWithPlayerItem:self.item];
     
     CALayer *superLayer = self.playerView.layer;
     
@@ -30,17 +29,15 @@
     playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     [superLayer addSublayer:playerLayer];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAVPlayerItemDidPlayToEndTimeNotification:) name:AVPlayerItemDidPlayToEndTimeNotification object:item];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAVPlayerItemFailedToPlayToEndTimeNotification:) name:AVPlayerItemFailedToPlayToEndTimeNotification object:item];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAVPlayerItemTimeJumpedNotification:) name:AVPlayerItemTimeJumpedNotification object:item];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAVPlayerItemPlaybackStalledNotification:) name:AVPlayerItemPlaybackStalledNotification object:item];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAVPlayerItemNewAccessLogEntryNotification:) name:AVPlayerItemNewAccessLogEntryNotification object:item];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAVPlayerItemNewErrorLogEntryNotification:) name:AVPlayerItemNewErrorLogEntryNotification object:item];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAVPlayerItemDidPlayToEndTimeNotification:) name:AVPlayerItemDidPlayToEndTimeNotification object:self.item];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAVPlayerItemFailedToPlayToEndTimeNotification:) name:AVPlayerItemFailedToPlayToEndTimeNotification object:self.item];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAVPlayerItemTimeJumpedNotification:) name:AVPlayerItemTimeJumpedNotification object:self.item];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAVPlayerItemPlaybackStalledNotification:) name:AVPlayerItemPlaybackStalledNotification object:self.item];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAVPlayerItemNewAccessLogEntryNotification:) name:AVPlayerItemNewAccessLogEntryNotification object:self.item];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAVPlayerItemNewErrorLogEntryNotification:) name:AVPlayerItemNewErrorLogEntryNotification object:self.item];
     
     [player seekToTime:kCMTimeZero];
     [player play];
-    
-    self.item = item;
 }
 
 - (void)dealloc {
@@ -50,9 +47,26 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemPlaybackStalledNotification object:_item];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemNewAccessLogEntryNotification object:_item];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemNewErrorLogEntryNotification object:_item];
+    
+    [_item removeObserver:self forKeyPath:@"status"];
 }
 
 #pragma mark - Getters
+
+- (AVPlayerItem *)item {
+    if (!_item) {
+        AVPlayerItem *item = [AVPlayerItem playerItemWithURL:self.URLDemo1];
+        
+        NSKeyValueObservingOptions options = NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew;
+        
+        // Register as an observer of the player item's status property
+        [item addObserver:self forKeyPath:@"status" options:options context:nil];
+        
+        _item = item;
+    }
+    
+    return _item;
+}
 
 - (UIView *)playerView {
     if (!_playerView) {
@@ -97,6 +111,47 @@
 - (void)handleAVPlayerItemNewErrorLogEntryNotification:(NSNotification *)notification {
     // Note: maybe called on anthoer thread
     NSLog(@"Posted when a new error log entry has been added.");
+}
+
+#pragma mark - KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary<NSString *,id> *)change
+                       context:(void *)context {
+    // Only handle observations for the PlayerItemContext
+    /*
+    if (context != &PlayerItemContext) {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+        return;
+    }
+     */
+    
+    AVPlayerItem *item = (AVPlayerItem *)object;
+    
+    if ([keyPath isEqualToString:@"status"]) {
+        AVPlayerItemStatus status = AVPlayerItemStatusUnknown;
+        // Get the status change from the change dictionary
+        NSNumber *statusNumber = change[NSKeyValueChangeNewKey];
+        if ([statusNumber isKindOfClass:[NSNumber class]]) {
+            status = statusNumber.integerValue;
+        }
+        // Switch over the status
+        switch (status) {
+            case AVPlayerItemStatusReadyToPlay:
+                // Ready to Play
+                NSLog(@"KVO: Ready to Play, %@", item.error);
+                break;
+            case AVPlayerItemStatusFailed:
+                // Failed. Examine AVPlayerItem.error
+                NSLog(@"KVO: Failed, %@", item.error);
+                break;
+            case AVPlayerItemStatusUnknown:
+                // Not ready
+                NSLog(@"KVO: Not ready, %@", item.error);
+                break;
+        }
+    }
 }
 
 @end
