@@ -14,6 +14,8 @@
 		4F87677920E9D49900F2B02F /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F87677420E9D49900F2B02F /* RootViewController.m */; };
 		4F87677A20E9D49900F2B02F /* UseAVPlayerViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F87677720E9D49900F2B02F /* UseAVPlayerViewControllerViewController.m */; };
 		4F87677D20E9D5EF00F2B02F /* 1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4F87677C20E9D5EF00F2B02F /* 1.mp4 */; };
+		4F87678020E9DA3A00F2B02F /* UseAVPlayerLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F87677F20E9DA3A00F2B02F /* UseAVPlayerLayerViewController.m */; };
+		4F87678320E9DA5E00F2B02F /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F87678220E9DA5E00F2B02F /* BaseViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,10 @@
 		4F87677720E9D49900F2B02F /* UseAVPlayerViewControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseAVPlayerViewControllerViewController.m; sourceTree = "<group>"; };
 		4F87677820E9D49900F2B02F /* UseAVPlayerViewControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseAVPlayerViewControllerViewController.h; sourceTree = "<group>"; };
 		4F87677C20E9D5EF00F2B02F /* 1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1.mp4; sourceTree = "<group>"; };
+		4F87677E20E9DA3A00F2B02F /* UseAVPlayerLayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseAVPlayerLayerViewController.h; sourceTree = "<group>"; };
+		4F87677F20E9DA3A00F2B02F /* UseAVPlayerLayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseAVPlayerLayerViewController.m; sourceTree = "<group>"; };
+		4F87678120E9DA5E00F2B02F /* BaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		4F87678220E9DA5E00F2B02F /* BaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +86,10 @@
 			children = (
 				4F87677820E9D49900F2B02F /* UseAVPlayerViewControllerViewController.h */,
 				4F87677720E9D49900F2B02F /* UseAVPlayerViewControllerViewController.m */,
+				4F87677E20E9DA3A00F2B02F /* UseAVPlayerLayerViewController.h */,
+				4F87677F20E9DA3A00F2B02F /* UseAVPlayerLayerViewController.m */,
+				4F87678120E9DA5E00F2B02F /* BaseViewController.h */,
+				4F87678220E9DA5E00F2B02F /* BaseViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -163,9 +173,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F87676E20E9D46000F2B02F /* main.m in Sources */,
+				4F87678320E9DA5E00F2B02F /* BaseViewController.m in Sources */,
 				4F87677A20E9D49900F2B02F /* UseAVPlayerViewControllerViewController.m in Sources */,
 				4F87676020E9D45F00F2B02F /* AppDelegate.m in Sources */,
 				4F87677920E9D49900F2B02F /* RootViewController.m in Sources */,
+				4F87678020E9DA3A00F2B02F /* UseAVPlayerLayerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

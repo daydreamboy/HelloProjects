@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 #import "UseAVPlayerViewControllerViewController.h"
+#import "UseAVPlayerLayerViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -31,11 +32,13 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"Demo1ViewController's title",
+        @"Use AVPlayerViewController",
+        @"Use AVPlayerLayer",
         @"call a test method",
     ];
     _classes = @[
         [UseAVPlayerViewControllerViewController class],
+        [UseAVPlayerLayerViewController class],
         @"testMethod",
     ];
 }

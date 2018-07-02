@@ -28,9 +28,8 @@
 #pragma mark -
 
 - (void)presentPlayerViewController {
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"1" ofType:@"mp4"];
-    NSURL *URL = [NSURL fileURLWithPath:filePath];
-    AVPlayer *player = [AVPlayer playerWithURL:URL];
+    // @see https://stackoverflow.com/questions/25348877/how-to-play-a-local-video-with-swift
+    AVPlayer *player = [AVPlayer playerWithURL:self.URLDemo1];
     AVPlayerViewController *playerViewController = [AVPlayerViewController new];
     playerViewController.player = player;
     
