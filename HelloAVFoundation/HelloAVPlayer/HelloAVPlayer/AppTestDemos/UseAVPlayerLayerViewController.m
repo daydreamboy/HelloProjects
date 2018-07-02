@@ -12,18 +12,30 @@
 @interface UseAVPlayerLayerViewController ()
 @property (nonatomic, strong) UIView *playerView;
 @property (nonatomic, strong) AVPlayerItem *item;
+@property (nonatomic, strong) AVPlayer *player;
 @end
 
 @implementation UseAVPlayerLayerViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIBarButtonItem *playItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPlay target:self action:@selector(playItemClicked:)];
+    UIBarButtonItem *pauseItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemPause target:self action:@selector(pauseItemClicked:)];
+    UIBarButtonItem *stopItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(stopItemClicked:)];
+    UIBarButtonItem *rewindItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(rewindItemClicked:)];
+    UIBarButtonItem *fastForwardItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(fastForwardItemClicked:)];
+    UIBarButtonItem *replayItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemReply target:self action:@selector(replayItemClicked:)];
+    
+    self.navigationItem.rightBarButtonItems = @[replayItem, fastForwardItem, rewindItem, stopItem, pauseItem, playItem];
+    
     [self.view addSubview:self.playerView];
     
     AVPlayer *player = [AVPlayer playerWithPlayerItem:self.item];
     
     CALayer *superLayer = self.playerView.layer;
     
+    // @see https://stackoverflow.com/a/38081257
     AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:player];
     playerLayer.frame = self.playerView.bounds;
     playerLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
@@ -37,7 +49,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAVPlayerItemNewErrorLogEntryNotification:) name:AVPlayerItemNewErrorLogEntryNotification object:self.item];
     
     [player seekToTime:kCMTimeZero];
-    [player play];
+    self.player = player;
 }
 
 - (void)dealloc {
@@ -49,6 +61,10 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemNewErrorLogEntryNotification object:_item];
     
     [_item removeObserver:self forKeyPath:@"status"];
+}
+
+- (NSTimeInterval)currentPlaybackTime {
+    return CMTimeGetSeconds([self.item currentTime]);
 }
 
 #pragma mark - Getters
@@ -152,6 +168,39 @@
                 break;
         }
     }
+}
+
+#pragma mark - Actions
+
+- (void)playItemClicked:(id)sender {
+    [self.player play];
+}
+
+- (void)pauseItemClicked:(id)sender {
+    [self.player pause];
+}
+
+- (void)stopItemClicked:(id)sender {
+    [self.player pause];
+    [self.player seekToTime:kCMTimeZero];
+}
+
+- (void)rewindItemClicked:(id)sender {
+    // @see
+    NSTimeInterval rewindTime = [self currentPlaybackTime] - 5.0;
+    CMTime cmTime = CMTimeMakeWithSeconds(rewindTime, NSEC_PER_SEC);
+    [self.player seekToTime:cmTime];
+}
+
+- (void)fastForwardItemClicked:(id)sender {
+    NSTimeInterval rewindTime = [self currentPlaybackTime] + 5.0;
+    CMTime cmTime = CMTimeMakeWithSeconds(rewindTime, NSEC_PER_SEC);
+    [self.player seekToTime:cmTime];
+}
+
+- (void)replayItemClicked:(id)sender {
+    [self.player seekToTime:kCMTimeZero];
+    [self.player play];
 }
 
 @end
