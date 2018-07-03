@@ -7,27 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2B5E26E81D3894F800417BA8 /* NavPopStyleAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E26E11D3894F700417BA8 /* NavPopStyleAnimator.m */; };
-		2B5E26E91D3894F800417BA8 /* NavPopStyleInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E26E31D3894F700417BA8 /* NavPopStyleInteractor.m */; };
-		2B5E26EA1D3894F800417BA8 /* NavPushStyleAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E26E51D3894F700417BA8 /* NavPushStyleAnimator.m */; };
 		2B5E26EB1D3894F800417BA8 /* ONESwipeBackInteractionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B5E26E71D3894F700417BA8 /* ONESwipeBackInteractionController.m */; };
 		2BC33B8E1D354D4000F3CB57 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC33B8D1D354D4000F3CB57 /* main.m */; };
 		2BC33B911D354D4000F3CB57 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC33B901D354D4000F3CB57 /* AppDelegate.m */; };
 		2BC33B991D354D4000F3CB57 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BC33B981D354D4000F3CB57 /* Assets.xcassets */; };
 		2BC33B9C1D354D4000F3CB57 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BC33B9A1D354D4000F3CB57 /* LaunchScreen.storyboard */; };
-		2BC33BA61D354E0900F3CB57 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC33BA51D354E0900F3CB57 /* Demo1ViewController.m */; };
+		2BC33BA61D354E0900F3CB57 /* UseWCNavSystemTransitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC33BA51D354E0900F3CB57 /* UseWCNavSystemTransitionViewController.m */; };
 		2BC33BA91D354E1400F3CB57 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC33BA81D354E1400F3CB57 /* RootViewController.m */; };
 		2BC33BAE1D354F0B00F3CB57 /* Demo1ModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC33BAB1D354F0B00F3CB57 /* Demo1ModalViewController.m */; };
 		2BC33BAF1D354F0B00F3CB57 /* Demo1StackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC33BAD1D354F0B00F3CB57 /* Demo1StackViewController.m */; };
+		4F8FDA2A20EB4F1A00C766D4 /* WCNavSystemTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FDA2920EB4F1A00C766D4 /* WCNavSystemTransition.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2B5E26E01D3894F700417BA8 /* NavPopStyleAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavPopStyleAnimator.h; sourceTree = "<group>"; };
-		2B5E26E11D3894F700417BA8 /* NavPopStyleAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavPopStyleAnimator.m; sourceTree = "<group>"; };
-		2B5E26E21D3894F700417BA8 /* NavPopStyleInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavPopStyleInteractor.h; sourceTree = "<group>"; };
-		2B5E26E31D3894F700417BA8 /* NavPopStyleInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavPopStyleInteractor.m; sourceTree = "<group>"; };
-		2B5E26E41D3894F700417BA8 /* NavPushStyleAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavPushStyleAnimator.h; sourceTree = "<group>"; };
-		2B5E26E51D3894F700417BA8 /* NavPushStyleAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavPushStyleAnimator.m; sourceTree = "<group>"; };
 		2B5E26E61D3894F700417BA8 /* ONESwipeBackInteractionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ONESwipeBackInteractionController.h; sourceTree = "<group>"; };
 		2B5E26E71D3894F700417BA8 /* ONESwipeBackInteractionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ONESwipeBackInteractionController.m; sourceTree = "<group>"; };
 		2BC33B891D354D4000F3CB57 /* HelloUIViewControllerTransitioningDelegate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUIViewControllerTransitioningDelegate.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -37,14 +29,16 @@
 		2BC33B981D354D4000F3CB57 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2BC33B9B1D354D4000F3CB57 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2BC33B9D1D354D4000F3CB57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2BC33BA41D354E0900F3CB57 /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
-		2BC33BA51D354E0900F3CB57 /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
+		2BC33BA41D354E0900F3CB57 /* UseWCNavSystemTransitionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseWCNavSystemTransitionViewController.h; sourceTree = "<group>"; };
+		2BC33BA51D354E0900F3CB57 /* UseWCNavSystemTransitionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseWCNavSystemTransitionViewController.m; sourceTree = "<group>"; };
 		2BC33BA71D354E1400F3CB57 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		2BC33BA81D354E1400F3CB57 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		2BC33BAA1D354F0B00F3CB57 /* Demo1ModalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ModalViewController.h; sourceTree = "<group>"; };
 		2BC33BAB1D354F0B00F3CB57 /* Demo1ModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ModalViewController.m; sourceTree = "<group>"; };
 		2BC33BAC1D354F0B00F3CB57 /* Demo1StackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1StackViewController.h; sourceTree = "<group>"; };
 		2BC33BAD1D354F0B00F3CB57 /* Demo1StackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1StackViewController.m; sourceTree = "<group>"; };
+		4F8FDA2820EB4F1A00C766D4 /* WCNavSystemTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCNavSystemTransition.h; sourceTree = "<group>"; };
+		4F8FDA2920EB4F1A00C766D4 /* WCNavSystemTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCNavSystemTransition.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,14 +55,10 @@
 		2B5E26DF1D3894F700417BA8 /* TransitioningAnimators */ = {
 			isa = PBXGroup;
 			children = (
-				2B5E26E01D3894F700417BA8 /* NavPopStyleAnimator.h */,
-				2B5E26E11D3894F700417BA8 /* NavPopStyleAnimator.m */,
-				2B5E26E21D3894F700417BA8 /* NavPopStyleInteractor.h */,
-				2B5E26E31D3894F700417BA8 /* NavPopStyleInteractor.m */,
-				2B5E26E41D3894F700417BA8 /* NavPushStyleAnimator.h */,
-				2B5E26E51D3894F700417BA8 /* NavPushStyleAnimator.m */,
 				2B5E26E61D3894F700417BA8 /* ONESwipeBackInteractionController.h */,
 				2B5E26E71D3894F700417BA8 /* ONESwipeBackInteractionController.m */,
+				4F8FDA2820EB4F1A00C766D4 /* WCNavSystemTransition.h */,
+				4F8FDA2920EB4F1A00C766D4 /* WCNavSystemTransition.m */,
 			);
 			path = TransitioningAnimators;
 			sourceTree = "<group>";
@@ -117,8 +107,8 @@
 		2BC33BA31D354E0900F3CB57 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				2BC33BA41D354E0900F3CB57 /* Demo1ViewController.h */,
-				2BC33BA51D354E0900F3CB57 /* Demo1ViewController.m */,
+				2BC33BA41D354E0900F3CB57 /* UseWCNavSystemTransitionViewController.h */,
+				2BC33BA51D354E0900F3CB57 /* UseWCNavSystemTransitionViewController.m */,
 				2BC33BAA1D354F0B00F3CB57 /* Demo1ModalViewController.h */,
 				2BC33BAB1D354F0B00F3CB57 /* Demo1ModalViewController.m */,
 				2BC33BAC1D354F0B00F3CB57 /* Demo1StackViewController.h */,
@@ -198,13 +188,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BC33B911D354D4000F3CB57 /* AppDelegate.m in Sources */,
-				2BC33BA61D354E0900F3CB57 /* Demo1ViewController.m in Sources */,
+				2BC33BA61D354E0900F3CB57 /* UseWCNavSystemTransitionViewController.m in Sources */,
 				2BC33B8E1D354D4000F3CB57 /* main.m in Sources */,
-				2B5E26E81D3894F800417BA8 /* NavPopStyleAnimator.m in Sources */,
+				4F8FDA2A20EB4F1A00C766D4 /* WCNavSystemTransition.m in Sources */,
 				2BC33BA91D354E1400F3CB57 /* RootViewController.m in Sources */,
 				2BC33BAF1D354F0B00F3CB57 /* Demo1StackViewController.m in Sources */,
-				2B5E26E91D3894F800417BA8 /* NavPopStyleInteractor.m in Sources */,
-				2B5E26EA1D3894F800417BA8 /* NavPushStyleAnimator.m in Sources */,
 				2BC33BAE1D354F0B00F3CB57 /* Demo1ModalViewController.m in Sources */,
 				2B5E26EB1D3894F800417BA8 /* ONESwipeBackInteractionController.m in Sources */,
 			);

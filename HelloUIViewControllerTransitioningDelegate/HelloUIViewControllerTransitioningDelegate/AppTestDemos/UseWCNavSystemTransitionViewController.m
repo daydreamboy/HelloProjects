@@ -6,26 +6,24 @@
 //  Copyright © 2016年 wesley chen. All rights reserved.
 //
 
-#import "Demo1ViewController.h"
+#import "UseWCNavSystemTransitionViewController.h"
 #import "Demo1ModalViewController.h"
 #import "Demo1StackViewController.h"
 
-#import "NavPushStyleAnimator.h"
-#import "NavPopStyleAnimator.h"
-#import "NavPopStyleInteractor.h"
 #import "ONESwipeBackInteractionController.h"
+#import "WCNavSystemTransition.h"
 
-@interface Demo1ViewController () <UIViewControllerTransitioningDelegate>
+@interface UseWCNavSystemTransitionViewController () <UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) UIButton *buttonPush;
 @property (nonatomic, strong) UIButton *buttonPresent;
 @property (nonatomic, strong) UIButton *buttonPresentNav;
 
-@property (nonatomic, strong) NavPopStyleInteractor *interactiveAnimator;
+@property (nonatomic, strong) WCNavSystemTransitionPopInteractor *interactiveAnimator;
 //@property (nonatomic, strong) ONESwipeBackInteractionController *interactor;
 
 @end
 
-@implementation Demo1ViewController
+@implementation UseWCNavSystemTransitionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,7 +32,7 @@
     [self.view addSubview:self.buttonPresent];
     [self.view addSubview:self.buttonPresentNav];
     
-    self.interactiveAnimator = [NavPopStyleInteractor new];
+    self.interactiveAnimator = [WCNavSystemTransitionPopInteractor new];
 //    self.interactor = [ONESwipeBackInteractionController new];
 }
 
@@ -130,11 +128,11 @@
 #pragma mark - UIViewControllerTransitioningDelegate
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    return [NavPushStyleAnimator new];
+    return [WCNavSystemTransitionPushAnimator new];
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    return [NavPopStyleAnimator new];
+    return [WCNavSystemTransitionPopAnimator new];
 //    return nil;
 }
 

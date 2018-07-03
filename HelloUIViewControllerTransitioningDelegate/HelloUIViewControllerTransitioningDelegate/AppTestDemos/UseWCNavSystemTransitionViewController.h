@@ -1,5 +1,5 @@
 //
-//  NavPopStyleAnimator.h
+//  ViewController.h
 //  HelloUIViewControllerTransitioningDelegate
 //
 //  Created by wesley chen on 16/7/13.
@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NavPopStyleAnimator : NSObject <UIViewControllerAnimatedTransitioning>
+@interface UseWCNavSystemTransitionViewController : UIViewController
 
 @end
+

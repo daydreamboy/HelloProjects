@@ -7,7 +7,7 @@
 //
 
 #import "RootViewController.h"
-#import "Demo1ViewController.h"
+#import "UseWCNavSystemTransitionViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -30,10 +30,10 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"Demo1ViewController's title",
+        @"Use WCNavSystemTransition",
     ];
     _classes = @[
-        @"Demo1ViewController",
+        [UseWCNavSystemTransitionViewController class],
     ];
 }
 
@@ -51,29 +51,45 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *sCellIdentifier = @"RootViewController_sCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
-
+    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-
+    
     cell.textLabel.text = _titles[indexPath.row];
-
+    
     return cell;
 }
 
-- (void)pushViewController:(NSString *)viewControllerClass {
-    NSAssert([viewControllerClass isKindOfClass:[NSString class]], @"%@ is not NSString", viewControllerClass);
+- (void)pushViewController:(id)viewControllerClass {
     
-    Class class = NSClassFromString(viewControllerClass);
-    if (class && [class isSubclassOfClass:[UIViewController class]]) {
-        
+    id class = viewControllerClass;
+    if ([class isKindOfClass:[NSString class]]) {
+        SEL selector = NSSelectorFromString(viewControllerClass);
+        if ([self respondsToSelector:selector]) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
+            [self performSelector:selector];
+#pragma GCC diagnostic pop
+        }
+        else {
+            NSAssert(NO, @"can't handle selector `%@`", viewControllerClass);
+        }
+    }
+    else if (class && [class isSubclassOfClass:[UIViewController class]]) {
         UIViewController *vc = [[class alloc] init];
         vc.title = _titles[[_classes indexOfObject:viewControllerClass]];
         
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
         [self.navigationController pushViewController:vc animated:YES];
     }
+}
+
+#pragma mark - Test Methods
+
+- (void)testMethod {
+    NSLog(@"test something");
 }
 
 @end
