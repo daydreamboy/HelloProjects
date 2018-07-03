@@ -6,16 +6,18 @@
 //
 //
 
-#import "DownloadDataViewController.h"
+#import "UseNSURLSessionDataTaskViewController.h"
 
-@interface DownloadDataViewController ()
-
+// NSURLSessionDataTask vs NSURLSessionDownloadTask
+// Note: https://stackoverflow.com/a/20605116
+@interface UseNSURLSessionDataTaskViewController ()
 @end
 
-@implementation DownloadDataViewController
+@implementation UseNSURLSessionDataTaskViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     NSString *url = @"http://card-data.oss-cn-hangzhou.aliyuncs.com/temp_2018-06-08T09%3A30%3A51.477Z.json";
     [self downloadDataWithUrl:url completion:^(id jsonObject, NSError *error) {
@@ -28,6 +30,8 @@
         }
     }];
 }
+
+#pragma mark -
 
 - (void)downloadDataWithUrl:(NSString *)url completion:(void (^)(id jsonObject, NSError *error))completion {
     NSString *dataUrl = url;

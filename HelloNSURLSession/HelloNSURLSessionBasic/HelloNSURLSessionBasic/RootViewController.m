@@ -8,7 +8,9 @@
 
 #import "RootViewController.h"
 
-#import "DownloadDataViewController.h"
+#import "UseNSURLSessionDataTaskViewController.h"
+#import "UseNSURLSessionDataTaskDelegateViewController.h"
+#import "UseNSURLSessionDownloadTaskDelegateViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -31,11 +33,15 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"Demo1ViewController's title",
+        @"Download data",
+        @"Use URLSessionDataTaskDelegate",
+        @"Download data with progress",
         @"call a test method",
     ];
     _classes = @[
-        [DownloadDataViewController class],
+        [UseNSURLSessionDataTaskViewController class],
+        [UseNSURLSessionDataTaskDelegateViewController class],
+        [UseNSURLSessionDownloadTaskDelegateViewController class],
         @"testMethod",
     ];
 }
