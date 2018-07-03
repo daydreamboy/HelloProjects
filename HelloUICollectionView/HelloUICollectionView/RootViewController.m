@@ -15,7 +15,7 @@
 #import "SeparatorsBetweenCell1ViewController.h"
 #import "SeparatorsBetweenCell2ViewController.h"
 #import "CellSelectionAndHighlightViewController.h"
-#import "HorizontalPageBrowserViewController.h"
+#import "UseWCHorizontalPageBrowserViewControllerViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -55,7 +55,7 @@
         [SeparatorsBetweenCell1ViewController class],
         [SeparatorsBetweenCell2ViewController class],
         [CellSelectionAndHighlightViewController class],
-        [HorizontalPageBrowserViewController class],
+        [UseWCHorizontalPageBrowserViewControllerViewController class],
     ];
 }
 

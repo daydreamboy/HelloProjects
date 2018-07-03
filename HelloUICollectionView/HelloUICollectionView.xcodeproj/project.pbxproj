@@ -15,6 +15,10 @@
 		4F82DF6520E68D6F007035FC /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F82DF6220E68D6E007035FC /* 3.jpg */; };
 		4F82DF6620E68D6F007035FC /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F82DF6320E68D6E007035FC /* 1.jpg */; };
 		4F83D3BC20CECAB800F2FE80 /* DifferentSizeCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F83D3BB20CECAB800F2FE80 /* DifferentSizeCellViewController.m */; };
+		4F8767B020EA5FAD00F2B02F /* WCHorizontalPageBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8767AF20EA5FAD00F2B02F /* WCHorizontalPageBrowserViewController.m */; };
+		4F8767B320EA5FE900F2B02F /* UseWCHorizontalPageBrowserViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8767B220EA5FE900F2B02F /* UseWCHorizontalPageBrowserViewControllerViewController.m */; };
+		4F8FDA2620EB146400C766D4 /* video_play@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8FDA2420EB146300C766D4 /* video_play@3x.png */; };
+		4F8FDA2720EB146400C766D4 /* video_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8FDA2520EB146400C766D4 /* video_play@2x.png */; };
 		4F97DB2F20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97DB2E20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m */; };
 		4F97DB3320CFABE7003EBB3B /* CellSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97DB3220CFABE7003EBB3B /* CellSeparator.m */; };
 		4F97DB3620CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97DB3520CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m */; };
@@ -30,7 +34,6 @@
 		4FB1D4DA20CC324100DBA776 /* PagableCollectionViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1D4D920CC324100DBA776 /* PagableCollectionViewViewController.m */; };
 		4FB8A3EE20CF68B500300954 /* CollectionViewFlowLayoutLeftAligned.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB8A3ED20CF68B500300954 /* CollectionViewFlowLayoutLeftAligned.m */; };
 		4FB8A3F120CF72BE00300954 /* SeparatorsBetweenCell1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB8A3F020CF72BE00300954 /* SeparatorsBetweenCell1ViewController.m */; };
-		4FC48DA420E64F66003789BB /* HorizontalPageBrowserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC48DA320E64F66003789BB /* HorizontalPageBrowserViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,12 @@
 		4F82DF6320E68D6E007035FC /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		4F83D3BA20CECAB800F2FE80 /* DifferentSizeCellViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DifferentSizeCellViewController.h; sourceTree = "<group>"; };
 		4F83D3BB20CECAB800F2FE80 /* DifferentSizeCellViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DifferentSizeCellViewController.m; sourceTree = "<group>"; };
+		4F8767AE20EA5FAD00F2B02F /* WCHorizontalPageBrowserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCHorizontalPageBrowserViewController.h; sourceTree = "<group>"; };
+		4F8767AF20EA5FAD00F2B02F /* WCHorizontalPageBrowserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCHorizontalPageBrowserViewController.m; sourceTree = "<group>"; };
+		4F8767B120EA5FE900F2B02F /* UseWCHorizontalPageBrowserViewControllerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseWCHorizontalPageBrowserViewControllerViewController.h; sourceTree = "<group>"; };
+		4F8767B220EA5FE900F2B02F /* UseWCHorizontalPageBrowserViewControllerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCHorizontalPageBrowserViewControllerViewController.m; sourceTree = "<group>"; };
+		4F8FDA2420EB146300C766D4 /* video_play@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_play@3x.png"; sourceTree = "<group>"; };
+		4F8FDA2520EB146400C766D4 /* video_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_play@2x.png"; sourceTree = "<group>"; };
 		4F97DB2D20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeparatorsBetweenCell2ViewController.h; sourceTree = "<group>"; };
 		4F97DB2E20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeparatorsBetweenCell2ViewController.m; sourceTree = "<group>"; };
 		4F97DB3120CFABE7003EBB3B /* CellSeparator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellSeparator.h; sourceTree = "<group>"; };
@@ -77,8 +86,6 @@
 		4FB8A3ED20CF68B500300954 /* CollectionViewFlowLayoutLeftAligned.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewFlowLayoutLeftAligned.m; sourceTree = "<group>"; };
 		4FB8A3EF20CF72BE00300954 /* SeparatorsBetweenCell1ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeparatorsBetweenCell1ViewController.h; sourceTree = "<group>"; };
 		4FB8A3F020CF72BE00300954 /* SeparatorsBetweenCell1ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeparatorsBetweenCell1ViewController.m; sourceTree = "<group>"; };
-		4FC48DA220E64F66003789BB /* HorizontalPageBrowserViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HorizontalPageBrowserViewController.h; sourceTree = "<group>"; };
-		4FC48DA320E64F66003789BB /* HorizontalPageBrowserViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HorizontalPageBrowserViewController.m; sourceTree = "<group>"; };
 		9414F9A59EC88D10934EE7C0 /* Pods-HelloUICollectionView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloUICollectionView.release.xcconfig"; path = "Pods/Target Support Files/Pods-HelloUICollectionView/Pods-HelloUICollectionView.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +104,8 @@
 		4F82DF4F20E6796F007035FC /* WCHorizontalPageBrowserView */ = {
 			isa = PBXGroup;
 			children = (
+				4F8767AE20EA5FAD00F2B02F /* WCHorizontalPageBrowserViewController.h */,
+				4F8767AF20EA5FAD00F2B02F /* WCHorizontalPageBrowserViewController.m */,
 				4F82DF5020E6799B007035FC /* WCHorizontalPageBrowserView.h */,
 				4F82DF5120E6799B007035FC /* WCHorizontalPageBrowserView.m */,
 				4F82DF5320E67A06007035FC /* WCBaseHorizontalPage.h */,
@@ -111,6 +120,8 @@
 		4F82DF6020E68D6E007035FC /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F8FDA2520EB146400C766D4 /* video_play@2x.png */,
+				4F8FDA2420EB146300C766D4 /* video_play@3x.png */,
 				4F82DF6120E68D6E007035FC /* 2.jpg */,
 				4F82DF6220E68D6E007035FC /* 3.jpg */,
 				4F82DF6320E68D6E007035FC /* 1.jpg */,
@@ -190,8 +201,8 @@
 				4F97DB2E20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m */,
 				4F97DB4020CFFB50003EBB3B /* CellSelectionAndHighlightViewController.h */,
 				4F97DB4120CFFB50003EBB3B /* CellSelectionAndHighlightViewController.m */,
-				4FC48DA220E64F66003789BB /* HorizontalPageBrowserViewController.h */,
-				4FC48DA320E64F66003789BB /* HorizontalPageBrowserViewController.m */,
+				4F8767B120EA5FE900F2B02F /* UseWCHorizontalPageBrowserViewControllerViewController.h */,
+				4F8767B220EA5FE900F2B02F /* UseWCHorizontalPageBrowserViewControllerViewController.m */,
 				4FB8A3EB20CF682200300954 /* Layout */,
 				4F83D3B920CEC93700F2FE80 /* Cell */,
 			);
@@ -285,6 +296,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F82DF6420E68D6F007035FC /* 2.jpg in Resources */,
+				4F8FDA2620EB146400C766D4 /* video_play@3x.png in Resources */,
+				4F8FDA2720EB146400C766D4 /* video_play@2x.png in Resources */,
 				4FB1D4BF20CC0D5900DBA776 /* LaunchScreen.storyboard in Resources */,
 				4FB1D4BC20CC0D5900DBA776 /* Assets.xcassets in Resources */,
 				4F82DF6520E68D6F007035FC /* 3.jpg in Resources */,
@@ -324,7 +337,9 @@
 				4FB1D4C220CC0D5900DBA776 /* main.m in Sources */,
 				4FB1D4D120CC0DDB00DBA776 /* FlowLayoutViewController.m in Sources */,
 				4F82DF5520E67A06007035FC /* WCBaseHorizontalPage.m in Sources */,
+				4F8767B020EA5FAD00F2B02F /* WCHorizontalPageBrowserViewController.m in Sources */,
 				4F97DB3320CFABE7003EBB3B /* CellSeparator.m in Sources */,
+				4F8767B320EA5FE900F2B02F /* UseWCHorizontalPageBrowserViewControllerViewController.m in Sources */,
 				4F82DF5F20E68ABC007035FC /* WCZoomableImagePage.m in Sources */,
 				4FB8A3F120CF72BE00300954 /* SeparatorsBetweenCell1ViewController.m in Sources */,
 				4FB1D4CE20CC0D8400DBA776 /* RootViewController.m in Sources */,
@@ -335,7 +350,6 @@
 				4FB1D4DA20CC324100DBA776 /* PagableCollectionViewViewController.m in Sources */,
 				4FB1D4D720CC2CBD00DBA776 /* MyCustomCollectionViewCell.m in Sources */,
 				4F83D3BC20CECAB800F2FE80 /* DifferentSizeCellViewController.m in Sources */,
-				4FC48DA420E64F66003789BB /* HorizontalPageBrowserViewController.m in Sources */,
 				4FB8A3EE20CF68B500300954 /* CollectionViewFlowLayoutLeftAligned.m in Sources */,
 				4F97DB2F20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m in Sources */,
 			);
@@ -472,7 +486,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = HelloUICollectionView/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloUICollectionView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -486,7 +503,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = HelloUICollectionView/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloUICollectionView;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";

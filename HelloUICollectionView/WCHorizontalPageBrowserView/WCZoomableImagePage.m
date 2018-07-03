@@ -14,6 +14,13 @@
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UITapGestureRecognizer *doubleTapGesture;
 
+/**
+ If scale to fit the screen size when image original size is smaller than the screen size
+ 
+ Default is NO
+ */
+@property (nonatomic, assign) BOOL scaleToFit;
+
 - (void)displayImage:(UIImage *)image;
 - (void)resetImageZoomView;
 
@@ -71,7 +78,7 @@
     self.contentSize = imageSize;
     
     // if the image is smaller than the screen, we don't want to force it to be zoomed.
-    if (imageSize.width < boundSize.width && imageSize.height < boundSize.height) {
+    if (!self.scaleToFit && (imageSize.width < boundSize.width && imageSize.height < boundSize.height)) {
         self.minimumZoomScale = 1.0;
         self.maximumZoomScale = MAX(minScale, 1.0);
         self.zoomScale = 1.0;
@@ -178,6 +185,7 @@
 }
 
 - (void)displayImage:(UIImage *)image {
+    _imageZoomView.scaleToFit = self.scaleToFit;
     [_imageZoomView displayImage:image];
 }
 
