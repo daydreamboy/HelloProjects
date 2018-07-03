@@ -31,24 +31,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    _pageData = @[
-//                @"1.jpg",
-//                @"2.jpg",
-//                @"3.jpg",
-//                  @"https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/242ce817-97a3-48fe-9acd-b1bf97930b01/09-posterization-opt.jpg",
-//                  @"http://kb4images.com/images/image/37185176-image.jpg",
-//                  @"https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350",
-//                  @"https://user-images.githubusercontent.com/883386/35498466-1375b88a-04d7-11e8-8f8e-9d202da6a6b3.jpg"
-//                ];
-    
-    
+
     if ([self.dataSource respondsToSelector:@selector(itemsInHorizontalPageBrowserViewController:)]) {
         self.pageData = [self.dataSource itemsInHorizontalPageBrowserViewController:self];
     }
     
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.pageBrowserView];
-//   [self.pageBrowserView setCurrentPage:3 animated:NO];
+}
+
+#pragma mark - Public Methods
+
+- (instancetype)initWithPageData:(NSArray<WCHorizontalPageBrowserItem *> *)pageData {
+    self = [super init];
+    if (self) {
+        _pageData = pageData;
+    }
+    return self;
+}
+
+- (void)setCurrentPageAtIndex:(NSInteger)index animated:(BOOL)animated {
+    if (0 <= index && index < self.pageData.count) {
+        [self.pageBrowserView setCurrentPage:index animated:animated];
+    }
 }
 
 #pragma mark - Getters
@@ -65,7 +70,6 @@
         view.pageSpace = 30;
         
         [view registerPageClass:[WCZoomableImagePage class] forPageWithReuseIdentifier:NSStringFromClass([WCZoomableImagePage class])];
-//        [view registerPageClass:[VideoPlayerPage class] forPageWithReuseIdentifier:NSStringFromClass([VideoPlayerPage class])];
         
         _pageBrowserView = view;
     }

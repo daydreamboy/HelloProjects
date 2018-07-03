@@ -29,4 +29,7 @@ typedef NS_ENUM(NSUInteger, WCHorizontalPageBrowserItemType) {
 
 @interface WCHorizontalPageBrowserViewController : UIViewController
 @property (nonatomic, weak) id<WCHorizontalPageBrowserViewControllerDataSource> dataSource;
+
+- (instancetype)initWithPageData:(NSArray<WCHorizontalPageBrowserItem *> *)pageData;
+- (void)setCurrentPageAtIndex:(NSInteger)index animated:(BOOL)animated;
 @end
