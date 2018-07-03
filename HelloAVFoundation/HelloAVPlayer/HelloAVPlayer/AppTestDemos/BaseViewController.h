@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface BaseViewController : UIViewController
-@property (nonatomic, strong) NSURL *URLDemo1;
+@property (nonatomic, strong) NSURL *URLLocalDemo1;
 @property (nonatomic, strong) NSURL *URLRemoteDemo1;
 @end

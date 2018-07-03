@@ -29,7 +29,8 @@
 
 - (void)presentPlayerViewController {
     // @see https://stackoverflow.com/questions/25348877/how-to-play-a-local-video-with-swift
-    AVPlayer *player = [AVPlayer playerWithURL:self.URLRemoteDemo1/*self.URLDemo1*/];
+    //AVPlayer *player = [AVPlayer playerWithURL:self.URLLocalDemo1];
+    AVPlayer *player = [AVPlayer playerWithURL:self.URLRemoteDemo1];
     AVPlayerViewController *playerViewController = [AVPlayerViewController new];
     playerViewController.player = player;
     

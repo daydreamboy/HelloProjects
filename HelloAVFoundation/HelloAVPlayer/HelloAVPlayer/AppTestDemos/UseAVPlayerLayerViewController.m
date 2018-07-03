@@ -73,7 +73,7 @@
 
 - (AVPlayerItem *)item {
     if (!_item) {
-        AVPlayerItem *item = [AVPlayerItem playerItemWithURL:self.URLDemo1];
+        AVPlayerItem *item = [AVPlayerItem playerItemWithURL:self.URLLocalDemo1];
         
         NSKeyValueObservingOptions options = NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew;
         
