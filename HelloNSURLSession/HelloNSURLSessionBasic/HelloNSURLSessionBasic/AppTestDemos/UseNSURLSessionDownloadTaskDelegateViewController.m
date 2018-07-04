@@ -83,11 +83,12 @@
 - (void)URLSession:(NSURLSession *)session downloadTask:(NSURLSessionDownloadTask *)downloadTask didFinishDownloadingToURL:(NSURL *)location {
     NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
     
+    // Note: use currentRequest instead of originalRequest
     NSURL *requestURL = [[downloadTask currentRequest] URL];
-    NSString *fileName = [requestURL lastPathComponent];
+    NSString *extension = [requestURL pathExtension];
     
     // @see https://stackoverflow.com/a/27170681
-    NSURL *newLocation = [[location URLByDeletingPathExtension] URLByAppendingPathExtension:@"mp4"];
+    NSURL *newLocation = [[location URLByDeletingPathExtension] URLByAppendingPathExtension:extension];
     [[NSFileManager defaultManager] moveItemAtURL:location toURL:newLocation error:nil];
     
     AVAsset *asset = [AVAsset assetWithURL:newLocation];
@@ -114,7 +115,6 @@
     self.progressView.progress = totalBytesWritten / (double)totalBytesExpectedToWrite;
     self.labelProgress.text = [NSString stringWithFormat:@"%.2f %%", self.progressView.progress * 100.0];
 }
-
 
 #pragma mark - KVO
 
