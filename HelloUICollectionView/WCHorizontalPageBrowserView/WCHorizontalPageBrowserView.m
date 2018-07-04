@@ -10,9 +10,10 @@
 #import "WCBaseHorizontalPage.h"
 #import "WCBaseHorizontalPage_Internal.h"
 
-@interface WCHorizontalPageBrowserView () <UICollectionViewDelegate, UICollectionViewDataSource>
+@interface WCHorizontalPageBrowserView () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, Class> *registeredCells;
+@property (nonatomic, assign) NSInteger indexOfCurrentPage;
 @end
 
 @implementation WCHorizontalPageBrowserView
@@ -152,21 +153,36 @@
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     if ([self.delegate respondsToSelector:@selector(horizontalPageBrowserView:willDisplayPage:forItemAtIndex:)]) {
         [self.delegate horizontalPageBrowserView:self willDisplayPage:(WCBaseHorizontalPage *)cell forItemAtIndex:indexPath.item];
     }
-    
-    NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     if ([self.delegate respondsToSelector:@selector(horizontalPageBrowserView:didEndDisplayingPage:forItemAtIndex:)]) {
         [self.delegate horizontalPageBrowserView:self didEndDisplayingPage:(WCBaseHorizontalPage *)cell forItemAtIndex:indexPath.item];
     }
-    
-    NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat pageWidth = CGRectGetWidth(self.collectionView.frame);
+    self.indexOfCurrentPage = floor((self.collectionView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    NSInteger numberOfPages = [self collectionView:self.collectionView numberOfItemsInSection:0];
+    if ([self.delegate respondsToSelector:@selector(horizontalPageBrowserView:didScrollToPage:forItemAtIndex:)]) {
+        if (0 <= _indexOfCurrentPage && _indexOfCurrentPage < numberOfPages) {
+            WCBaseHorizontalPage *page = (WCBaseHorizontalPage *)[self.collectionView cellForItemAtIndexPath:[NSIndexPath indexPathForItem:_indexOfCurrentPage inSection:0]];
+            [self.delegate horizontalPageBrowserView:self didScrollToPage:page forItemAtIndex:self.indexOfCurrentPage];
+        }
+    }
+}
+
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    [self scrollViewDidEndDecelerating:scrollView];
 }
 
 @end

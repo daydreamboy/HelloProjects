@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		10A60B011CD6C1F90B90C16E /* libPods-HelloUICollectionView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E53F53994D672AECEE3640C /* libPods-HelloUICollectionView.a */; };
+		4F5F8F9920ECA160002FFC03 /* WCVideoPlayerPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F8F9820ECA160002FFC03 /* WCVideoPlayerPage.m */; };
 		4F82DF5220E6799B007035FC /* WCHorizontalPageBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F82DF5120E6799B007035FC /* WCHorizontalPageBrowserView.m */; };
 		4F82DF5520E67A06007035FC /* WCBaseHorizontalPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F82DF5420E67A06007035FC /* WCBaseHorizontalPage.m */; };
 		4F82DF5F20E68ABC007035FC /* WCZoomableImagePage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F82DF5E20E68ABC007035FC /* WCZoomableImagePage.m */; };
@@ -39,6 +40,8 @@
 /* Begin PBXFileReference section */
 		0E53F53994D672AECEE3640C /* libPods-HelloUICollectionView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HelloUICollectionView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21A2CE42427550FA09283371 /* Pods-HelloUICollectionView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloUICollectionView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HelloUICollectionView/Pods-HelloUICollectionView.debug.xcconfig"; sourceTree = "<group>"; };
+		4F5F8F9720ECA160002FFC03 /* WCVideoPlayerPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCVideoPlayerPage.h; sourceTree = "<group>"; };
+		4F5F8F9820ECA160002FFC03 /* WCVideoPlayerPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCVideoPlayerPage.m; sourceTree = "<group>"; };
 		4F82DF5020E6799B007035FC /* WCHorizontalPageBrowserView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCHorizontalPageBrowserView.h; sourceTree = "<group>"; };
 		4F82DF5120E6799B007035FC /* WCHorizontalPageBrowserView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCHorizontalPageBrowserView.m; sourceTree = "<group>"; };
 		4F82DF5320E67A06007035FC /* WCBaseHorizontalPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCBaseHorizontalPage.h; sourceTree = "<group>"; };
@@ -113,6 +116,8 @@
 				4F82DF5620E6811A007035FC /* WCBaseHorizontalPage_Internal.h */,
 				4F82DF5D20E68ABC007035FC /* WCZoomableImagePage.h */,
 				4F82DF5E20E68ABC007035FC /* WCZoomableImagePage.m */,
+				4F5F8F9720ECA160002FFC03 /* WCVideoPlayerPage.h */,
+				4F5F8F9820ECA160002FFC03 /* WCVideoPlayerPage.m */,
 			);
 			path = WCHorizontalPageBrowserView;
 			sourceTree = "<group>";
@@ -342,6 +347,7 @@
 				4F8767B320EA5FE900F2B02F /* UseWCHorizontalPageBrowserViewControllerViewController.m in Sources */,
 				4F82DF5F20E68ABC007035FC /* WCZoomableImagePage.m in Sources */,
 				4FB8A3F120CF72BE00300954 /* SeparatorsBetweenCell1ViewController.m in Sources */,
+				4F5F8F9920ECA160002FFC03 /* WCVideoPlayerPage.m in Sources */,
 				4FB1D4CE20CC0D8400DBA776 /* RootViewController.m in Sources */,
 				4F97DB4220CFFB50003EBB3B /* CellSelectionAndHighlightViewController.m in Sources */,
 				4F97DB3620CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m in Sources */,
