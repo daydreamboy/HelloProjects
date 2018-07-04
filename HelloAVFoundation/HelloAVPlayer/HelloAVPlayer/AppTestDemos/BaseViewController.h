@@ -10,5 +10,6 @@
 
 @interface BaseViewController : UIViewController
 @property (nonatomic, strong) NSURL *URLLocalDemo1;
+@property (nonatomic, strong) NSURL *URLLocalDemo2;
 @property (nonatomic, strong) NSURL *URLRemoteDemo1;
 @end

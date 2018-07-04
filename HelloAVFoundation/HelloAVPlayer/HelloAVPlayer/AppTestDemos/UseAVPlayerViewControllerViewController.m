@@ -11,7 +11,7 @@
 #import <AVKit/AVKit.h>
 
 @interface UseAVPlayerViewControllerViewController ()
-
+@property (nonatomic, strong) AVPlayer *player;
 @end
 
 @implementation UseAVPlayerViewControllerViewController
@@ -23,6 +23,10 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self presentPlayerViewController];
+    
+    [NSTimer scheduledTimerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+        NSLog(@"availableDuration: %f", [self availableDuration]);
+    }];
 }
 
 #pragma mark -
@@ -37,6 +41,18 @@
     [self presentViewController:playerViewController animated:YES completion:^{
         [player play];
     }];
+    
+    self.player = player;
+}
+
+- (NSTimeInterval)availableDuration {
+    // @see https://stackoverflow.com/a/7730708
+    NSArray *loadedTimeRanges = [[self.player currentItem] loadedTimeRanges];
+    CMTimeRange timeRange = [[loadedTimeRanges objectAtIndex:0] CMTimeRangeValue];
+    Float64 startSeconds = CMTimeGetSeconds(timeRange.start);
+    Float64 durationSeconds = CMTimeGetSeconds(timeRange.duration);
+    NSTimeInterval result = startSeconds + durationSeconds;
+    return result;
 }
 
 @end

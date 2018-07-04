@@ -10,6 +10,7 @@
 
 #import "UseAVPlayerViewControllerViewController.h"
 #import "UseAVPlayerLayerViewController.h"
+#import "PlayFileWithoutExtensionViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -34,11 +35,13 @@
     _titles = @[
         @"Use AVPlayerViewController",
         @"Use AVPlayerLayer",
+        @"Play file without extension",
         @"call a test method",
     ];
     _classes = @[
         [UseAVPlayerViewControllerViewController class],
         [UseAVPlayerLayerViewController class],
+        [PlayFileWithoutExtensionViewController class],
         @"testMethod",
     ];
 }

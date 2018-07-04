@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F5F8F6F20EC671E002FFC03 /* PlayFileWithoutExtensionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F8F6E20EC671E002FFC03 /* PlayFileWithoutExtensionViewController.m */; };
+		4F5F8F7220EC67D6002FFC03 /* WCNSDataAssetResourceLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F8F7120EC67D6002FFC03 /* WCNSDataAssetResourceLoader.m */; };
+		4F5F8F7420EC6D5C002FFC03 /* this_is_mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4F5F8F7320EC6D5C002FFC03 /* this_is_mp4 */; };
 		4F87676020E9D45F00F2B02F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F87675F20E9D45F00F2B02F /* AppDelegate.m */; };
 		4F87676820E9D46000F2B02F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F87676720E9D46000F2B02F /* Assets.xcassets */; };
 		4F87676B20E9D46000F2B02F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F87676920E9D46000F2B02F /* LaunchScreen.storyboard */; };
@@ -21,6 +24,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F5F8F6D20EC671E002FFC03 /* PlayFileWithoutExtensionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayFileWithoutExtensionViewController.h; sourceTree = "<group>"; };
+		4F5F8F6E20EC671E002FFC03 /* PlayFileWithoutExtensionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayFileWithoutExtensionViewController.m; sourceTree = "<group>"; };
+		4F5F8F7020EC67D6002FFC03 /* WCNSDataAssetResourceLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCNSDataAssetResourceLoader.h; sourceTree = "<group>"; };
+		4F5F8F7120EC67D6002FFC03 /* WCNSDataAssetResourceLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCNSDataAssetResourceLoader.m; sourceTree = "<group>"; };
+		4F5F8F7320EC6D5C002FFC03 /* this_is_mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = this_is_mp4; sourceTree = "<group>"; };
 		4F87675B20E9D45F00F2B02F /* HelloAVPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloAVPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F87675E20E9D45F00F2B02F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F87675F20E9D45F00F2B02F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -92,8 +100,12 @@
 				4F87677720E9D49900F2B02F /* UseAVPlayerViewControllerViewController.m */,
 				4F87677E20E9DA3A00F2B02F /* UseAVPlayerLayerViewController.h */,
 				4F87677F20E9DA3A00F2B02F /* UseAVPlayerLayerViewController.m */,
+				4F5F8F6D20EC671E002FFC03 /* PlayFileWithoutExtensionViewController.h */,
+				4F5F8F6E20EC671E002FFC03 /* PlayFileWithoutExtensionViewController.m */,
 				4F87678120E9DA5E00F2B02F /* BaseViewController.h */,
 				4F87678220E9DA5E00F2B02F /* BaseViewController.m */,
+				4F5F8F7020EC67D6002FFC03 /* WCNSDataAssetResourceLoader.h */,
+				4F5F8F7120EC67D6002FFC03 /* WCNSDataAssetResourceLoader.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -101,6 +113,7 @@
 		4F87677B20E9D5EF00F2B02F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F5F8F7320EC6D5C002FFC03 /* this_is_mp4 */,
 				4F87678420EA0ED100F2B02F /* video_play@2x.png */,
 				4F87678520EA0ED100F2B02F /* video_play@3x.png */,
 				4F87677C20E9D5EF00F2B02F /* 1.mp4 */,
@@ -169,6 +182,7 @@
 				4F87676B20E9D46000F2B02F /* LaunchScreen.storyboard in Resources */,
 				4F87678620EA0ED100F2B02F /* video_play@2x.png in Resources */,
 				4F87676820E9D46000F2B02F /* Assets.xcassets in Resources */,
+				4F5F8F7420EC6D5C002FFC03 /* this_is_mp4 in Resources */,
 				4F87678720EA0ED100F2B02F /* video_play@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -181,8 +195,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F87676E20E9D46000F2B02F /* main.m in Sources */,
+				4F5F8F6F20EC671E002FFC03 /* PlayFileWithoutExtensionViewController.m in Sources */,
 				4F87678320E9DA5E00F2B02F /* BaseViewController.m in Sources */,
 				4F87677A20E9D49900F2B02F /* UseAVPlayerViewControllerViewController.m in Sources */,
+				4F5F8F7220EC67D6002FFC03 /* WCNSDataAssetResourceLoader.m in Sources */,
 				4F87676020E9D45F00F2B02F /* AppDelegate.m in Sources */,
 				4F87677920E9D49900F2B02F /* RootViewController.m in Sources */,
 				4F87678020E9DA3A00F2B02F /* UseAVPlayerLayerViewController.m in Sources */,

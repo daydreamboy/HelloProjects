@@ -18,6 +18,8 @@
     [super viewDidLoad];
     
     _URLLocalDemo1 = [[NSBundle mainBundle] URLForResource:@"1" withExtension:@"mp4"];
+    // @see https://stackoverflow.com/a/24373075
+    _URLLocalDemo2 = [[NSBundle mainBundle] URLForResource:@"this_is_mp4" withExtension:nil];
     
     // @see http://demo.theoplayer.com/test-your-stream-with-statistics
     _URLRemoteDemo1 = [NSURL URLWithString:@"http://cdn.theoplayer.com/video/elephants-dream/448/chunklist_w370587926_b688000_vo_slen_t64TWFpbg==.m3u8"];
