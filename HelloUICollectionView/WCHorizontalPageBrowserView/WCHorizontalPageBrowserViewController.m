@@ -233,7 +233,7 @@
         
         WCVideoPlayerPage *videoPlayerPage = (WCVideoPlayerPage *)page;
         if (videoPlayerPage.readyToPlay && item.autoPlayVideo) {
-            if (!videoPlayerPage.playing && !videoPlayerPage.paused) {
+            if (!videoPlayerPage.playing) {
                 [videoPlayerPage play];
             }
         }

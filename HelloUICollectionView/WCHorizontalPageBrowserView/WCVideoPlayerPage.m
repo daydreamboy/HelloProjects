@@ -26,6 +26,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self addSubview:self.imageViewPlayIcon];
+        self.backgroundColor = [UIColor blackColor];
     }
     return self;
 }
@@ -40,8 +41,9 @@
 - (void)displayLocalVideo:(NSURL *)fileURL {
     AVAsset *asset = [AVAsset assetWithURL:fileURL];
     
-    if (!_currentPlayerItem) {
+    if (_currentPlayerItem) {
         [[NSNotificationCenter defaultCenter] removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:_currentPlayerItem];
+        [_currentPlayerItem removeObserver:self forKeyPath:@"status"];
     }
     _currentPlayerItem = [AVPlayerItem playerItemWithAsset:asset];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleAVPlayerItemDidPlayToEndTimeNotification:) name:AVPlayerItemDidPlayToEndTimeNotification object:_currentPlayerItem];
