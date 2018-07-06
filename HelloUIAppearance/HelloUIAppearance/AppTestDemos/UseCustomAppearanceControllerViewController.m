@@ -15,6 +15,30 @@
 
 @implementation UseCustomAppearanceControllerViewController
 
+#define CLASS_PROPERTY_DEFINITION(getterName, setterName, type) \
+@dynamic getterName; \
+static type __static_##getterName; \
++ (void)setterName:(type)object { \
+    __static_##getterName = object; \
+} \
++ (type)getterName { \
+    return __static_##getterName; \
+}
+
+CLASS_PROPERTY_DEFINITION(disableSomething, setDisableSomething, BOOL);
+
+//@dynamic disableSomething;
+//
+//static BOOL sDisableSomething;
+//
+//+ (void)setDisableSomething:(BOOL)disableSomething {
+//    sDisableSomething = disableSomething;
+//}
+//
+//+ (BOOL)disableSomething {
+//    return sDisableSomething;
+//}
+
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -29,8 +53,10 @@
     
     [self.view addSubview:self.myView];
     
-    [MyViewWithUIAppearance appearance].myBorderColor = [UIColor redColor];
-    [MyViewWithUIAppearance appearance].myBorderWidth = 1.0;
+    if (!UseCustomAppearanceControllerViewController.disableSomething) {
+        [MyViewWithUIAppearance appearance].myBorderColor = [UIColor redColor];
+        [MyViewWithUIAppearance appearance].myBorderWidth = 1.0;
+    }
 }
 
 #pragma mark - Getters

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface MyViewWithUIAppearance : UIView
+// UI_APPEARANCE_SELECTOR just indicate, ommit it also work
 @property (nonatomic, strong) UIColor *myBackgroundColor UI_APPEARANCE_SELECTOR;
 @property (nonatomic, strong) UIColor *myBorderColor UI_APPEARANCE_SELECTOR;
 @property (nonatomic, assign) CGFloat myBorderWidth UI_APPEARANCE_SELECTOR;
