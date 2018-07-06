@@ -38,6 +38,7 @@
         [UseCustomAppearanceControllerViewController class],
         @"testMethod",
     ];
+//    UseCustomAppearanceControllerViewController.disableSomething = YES;
 }
 
 #pragma mark -
