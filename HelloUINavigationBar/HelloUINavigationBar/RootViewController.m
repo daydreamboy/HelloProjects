@@ -12,6 +12,7 @@
 #import "RemoveHairLineOfNavBarViewController.h"
 #import "TransparentNavBarViewController.h"
 #import "SolidColoredNavBarViewController.h"
+#import "HideBackArrowViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -38,6 +39,7 @@
         @"Remvoe hair line of nav bar",
         @"Transparent nav bar",
         @"Solid colored nav bar",
+        @"Hide back arrow",
         @"call a test method",
     ];
     _classes = @[
@@ -45,6 +47,7 @@
         [RemoveHairLineOfNavBarViewController class],
         [TransparentNavBarViewController class],
         [SolidColoredNavBarViewController class],
+        [HideBackArrowViewController class],
         @"testMethod",
     ];
 }
