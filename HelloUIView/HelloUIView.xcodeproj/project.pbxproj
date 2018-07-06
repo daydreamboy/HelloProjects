@@ -10,6 +10,7 @@
 		4F0B4F1E205269D9003B241E /* HitTestInViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0B4F1D205269D9003B241E /* HitTestInViewViewController.m */; };
 		4F63EFE41FE10068000AFD6F /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63EFE31FE10068000AFD6F /* WCViewTool.m */; };
 		4F63EFE71FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63EFE61FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m */; };
+		4F7CB04920EF96CD00ABDED4 /* TouchThroughToUnderneathViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7CB04820EF96CD00ABDED4 /* TouchThroughToUnderneathViewViewController.m */; };
 		4F86CF9C206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86CF9B206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.m */; };
 		4F86CF9F206CBFD10080A9E1 /* AddBorderToImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86CF9E206CBFD10080A9E1 /* AddBorderToImageViewController.m */; };
 		4F983BD81FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F983BD71FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m */; };
@@ -20,7 +21,7 @@
 		4FAAA5811FA4601E00A80328 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAA5801FA4601E00A80328 /* RootViewController.m */; };
 		4FAAA5841FA461E500A80328 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAA5831FA461E500A80328 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.m */; };
 		4FB43AC2200A476700D5D92D /* MappingRectFromViewToViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB43AC1200A476700D5D92D /* MappingRectFromViewToViewViewController.m */; };
-		4FB43AE6200DA22F00D5D92D /* OverlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB43AE4200DA22F00D5D92D /* OverlayView.m */; };
+		4FB43AE6200DA22F00D5D92D /* WCTouchThroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB43AE4200DA22F00D5D92D /* WCTouchThroughView.m */; };
 		4FB43AEB200DA27300D5D92D /* RadialGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB43AE7200DA27300D5D92D /* RadialGradientView.m */; };
 		4FB43AEC200DA27300D5D92D /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB43AEA200DA27300D5D92D /* GradientView.m */; };
 		4FB43AF5200DA28100D5D92D /* DrawGradientViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB43AED200DA28000D5D92D /* DrawGradientViewViewController.m */; };
@@ -41,6 +42,8 @@
 		4F63EFE31FE10068000AFD6F /* WCViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewTool.m; sourceTree = "<group>"; };
 		4F63EFE51FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObserveViewGeometryChangeEventViewController.h; sourceTree = "<group>"; };
 		4F63EFE61FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObserveViewGeometryChangeEventViewController.m; sourceTree = "<group>"; };
+		4F7CB04720EF96CD00ABDED4 /* TouchThroughToUnderneathViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchThroughToUnderneathViewViewController.h; sourceTree = "<group>"; };
+		4F7CB04820EF96CD00ABDED4 /* TouchThroughToUnderneathViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TouchThroughToUnderneathViewViewController.m; sourceTree = "<group>"; };
 		4F86CF9A206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwoAdjacentShadowBorderViewController.h; sourceTree = "<group>"; };
 		4F86CF9B206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwoAdjacentShadowBorderViewController.m; sourceTree = "<group>"; };
 		4F86CF9D206CBFD10080A9E1 /* AddBorderToImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddBorderToImageViewController.h; sourceTree = "<group>"; };
@@ -60,8 +63,8 @@
 		4FAAA5831FA461E500A80328 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCAShapeLayerToShowViewWithTwoCornersViewController.m; sourceTree = "<group>"; };
 		4FB43AC0200A476700D5D92D /* MappingRectFromViewToViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MappingRectFromViewToViewViewController.h; sourceTree = "<group>"; };
 		4FB43AC1200A476700D5D92D /* MappingRectFromViewToViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MappingRectFromViewToViewViewController.m; sourceTree = "<group>"; };
-		4FB43AE4200DA22F00D5D92D /* OverlayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayView.m; sourceTree = "<group>"; };
-		4FB43AE5200DA22F00D5D92D /* OverlayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayView.h; sourceTree = "<group>"; };
+		4FB43AE4200DA22F00D5D92D /* WCTouchThroughView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCTouchThroughView.m; sourceTree = "<group>"; };
+		4FB43AE5200DA22F00D5D92D /* WCTouchThroughView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTouchThroughView.h; sourceTree = "<group>"; };
 		4FB43AE7200DA27300D5D92D /* RadialGradientView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadialGradientView.m; sourceTree = "<group>"; };
 		4FB43AE8200DA27300D5D92D /* GradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
 		4FB43AE9200DA27300D5D92D /* RadialGradientView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadialGradientView.h; sourceTree = "<group>"; };
@@ -134,6 +137,8 @@
 				4FB43AC1200A476700D5D92D /* MappingRectFromViewToViewViewController.m */,
 				4F983BD61FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.h */,
 				4F983BD71FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m */,
+				4F7CB04720EF96CD00ABDED4 /* TouchThroughToUnderneathViewViewController.h */,
+				4F7CB04820EF96CD00ABDED4 /* TouchThroughToUnderneathViewViewController.m */,
 				4F63EFE51FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.h */,
 				4F63EFE61FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m */,
 			);
@@ -191,8 +196,8 @@
 				4FB43AEA200DA27300D5D92D /* GradientView.m */,
 				4FB43AE9200DA27300D5D92D /* RadialGradientView.h */,
 				4FB43AE7200DA27300D5D92D /* RadialGradientView.m */,
-				4FB43AE5200DA22F00D5D92D /* OverlayView.h */,
-				4FB43AE4200DA22F00D5D92D /* OverlayView.m */,
+				4FB43AE5200DA22F00D5D92D /* WCTouchThroughView.h */,
+				4FB43AE4200DA22F00D5D92D /* WCTouchThroughView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -285,7 +290,7 @@
 				4FB43AEC200DA27300D5D92D /* GradientView.m in Sources */,
 				4FAAA5751FA45FE700A80328 /* main.m in Sources */,
 				4FB43AF6200DA28100D5D92D /* DrawRadialGradientViewViewController.m in Sources */,
-				4FB43AE6200DA22F00D5D92D /* OverlayView.m in Sources */,
+				4FB43AE6200DA22F00D5D92D /* WCTouchThroughView.m in Sources */,
 				4F983BD81FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m in Sources */,
 				4FB43AC2200A476700D5D92D /* MappingRectFromViewToViewViewController.m in Sources */,
 				4FAAA5841FA461E500A80328 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.m in Sources */,
@@ -300,6 +305,7 @@
 				4FAAA5671FA45FE700A80328 /* AppDelegate.m in Sources */,
 				4FB43AF8200DA28100D5D92D /* UseCAGradientLayerWithMultipleColorsViewController.m in Sources */,
 				4F0B4F1E205269D9003B241E /* HitTestInViewViewController.m in Sources */,
+				4F7CB04920EF96CD00ABDED4 /* TouchThroughToUnderneathViewViewController.m in Sources */,
 				4F63EFE71FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
