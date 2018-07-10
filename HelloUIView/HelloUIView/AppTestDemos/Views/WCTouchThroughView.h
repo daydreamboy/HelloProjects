@@ -10,7 +10,7 @@
 
 
 /**
- A super view for 
+ A super view for allowing touch pass through to its underneath views
  
  @see https://stackoverflow.com/questions/3834301/ios-forward-all-touches-through-a-view
  */

@@ -29,18 +29,6 @@
     return self;
 }
 
-// 
-//- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {
-//
-//    BOOL isInside = [super pointInside:point withEvent:event];
-//    NSLog(@"super, isInside: %@", STR_OF_BOOL(isInside));
-//
-//    if (CGRectContainsPoint(self.touchableRegion, point)) {
-//        return YES;
-//    }
-//    return NO;
-//}
-
 - (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
     if (self.touchThrough) {
         UIView *targetSubview;
@@ -78,7 +66,6 @@
 }
 
 - (void)setInterceptedSubviews:(NSArray<UIView *> *)interceptedViews {
-//    _weakTouchableSubviews = [NSMutableArray arrayWithCapacity:interceptedViews.count];
     _weakTouchableSubviews = [NSPointerArray weakObjectsPointerArray];
     for (UIView *view in interceptedViews) {
         // @see https://stackoverflow.com/a/9336430
