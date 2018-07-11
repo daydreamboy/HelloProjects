@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@interface CellSeparator : UICollectionReusableView
+@property (nonatomic, strong, class) UIColor *color;
+@end
+
 @interface CollectionViewFlowLayoutSeparator : UICollectionViewFlowLayout
 
 @end

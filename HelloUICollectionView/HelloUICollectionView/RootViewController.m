@@ -16,6 +16,7 @@
 #import "SeparatorsBetweenCell2ViewController.h"
 #import "CellSelectionAndHighlightViewController.h"
 #import "UseWCHorizontalPageBrowserViewControllerViewController.h"
+#import "SupplementaryViewOfSectionViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -45,6 +46,7 @@
         @"Separators between cells (solution 1)",
         @"Separators between cells (solution 2)",
         @"Cell highlight and selection",
+        @"Supplementary view of section",
         @"Horizontal page browser",
     ];
     _classes = @[
@@ -55,6 +57,7 @@
         [SeparatorsBetweenCell1ViewController class],
         [SeparatorsBetweenCell2ViewController class],
         [CellSelectionAndHighlightViewController class],
+        [SupplementaryViewOfSectionViewController class],
         [UseWCHorizontalPageBrowserViewControllerViewController class],
     ];
 }

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		10A60B011CD6C1F90B90C16E /* libPods-HelloUICollectionView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E53F53994D672AECEE3640C /* libPods-HelloUICollectionView.a */; };
 		4F5F8F9920ECA160002FFC03 /* WCVideoPlayerPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F8F9820ECA160002FFC03 /* WCVideoPlayerPage.m */; };
+		4F748FD920F5EEBE001CF507 /* SupplementaryViewOfSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F748FD820F5EEBE001CF507 /* SupplementaryViewOfSectionViewController.m */; };
+		4F748FDD20F6075B001CF507 /* SupplementaryViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F748FDC20F6075B001CF507 /* SupplementaryViewHeader.m */; };
+		4F748FE020F6076E001CF507 /* SupplementaryViewFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F748FDF20F6076E001CF507 /* SupplementaryViewFooter.m */; };
 		4F82DF5220E6799B007035FC /* WCHorizontalPageBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F82DF5120E6799B007035FC /* WCHorizontalPageBrowserView.m */; };
 		4F82DF5520E67A06007035FC /* WCBaseHorizontalPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F82DF5420E67A06007035FC /* WCBaseHorizontalPage.m */; };
 		4F82DF5F20E68ABC007035FC /* WCZoomableImagePage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F82DF5E20E68ABC007035FC /* WCZoomableImagePage.m */; };
@@ -21,7 +24,6 @@
 		4F8FDA2620EB146400C766D4 /* video_play@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8FDA2420EB146300C766D4 /* video_play@3x.png */; };
 		4F8FDA2720EB146400C766D4 /* video_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8FDA2520EB146400C766D4 /* video_play@2x.png */; };
 		4F97DB2F20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97DB2E20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m */; };
-		4F97DB3320CFABE7003EBB3B /* CellSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97DB3220CFABE7003EBB3B /* CellSeparator.m */; };
 		4F97DB3620CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97DB3520CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m */; };
 		4F97DB4220CFFB50003EBB3B /* CellSelectionAndHighlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97DB4120CFFB50003EBB3B /* CellSelectionAndHighlightViewController.m */; };
 		4FB1D4B420CC0D5700DBA776 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1D4B320CC0D5700DBA776 /* AppDelegate.m */; };
@@ -42,6 +44,12 @@
 		21A2CE42427550FA09283371 /* Pods-HelloUICollectionView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloUICollectionView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HelloUICollectionView/Pods-HelloUICollectionView.debug.xcconfig"; sourceTree = "<group>"; };
 		4F5F8F9720ECA160002FFC03 /* WCVideoPlayerPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCVideoPlayerPage.h; sourceTree = "<group>"; };
 		4F5F8F9820ECA160002FFC03 /* WCVideoPlayerPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCVideoPlayerPage.m; sourceTree = "<group>"; };
+		4F748FD720F5EEBE001CF507 /* SupplementaryViewOfSectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SupplementaryViewOfSectionViewController.h; sourceTree = "<group>"; };
+		4F748FD820F5EEBE001CF507 /* SupplementaryViewOfSectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SupplementaryViewOfSectionViewController.m; sourceTree = "<group>"; };
+		4F748FDB20F6075B001CF507 /* SupplementaryViewHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SupplementaryViewHeader.h; sourceTree = "<group>"; };
+		4F748FDC20F6075B001CF507 /* SupplementaryViewHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SupplementaryViewHeader.m; sourceTree = "<group>"; };
+		4F748FDE20F6076E001CF507 /* SupplementaryViewFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SupplementaryViewFooter.h; sourceTree = "<group>"; };
+		4F748FDF20F6076E001CF507 /* SupplementaryViewFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SupplementaryViewFooter.m; sourceTree = "<group>"; };
 		4F82DF5020E6799B007035FC /* WCHorizontalPageBrowserView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCHorizontalPageBrowserView.h; sourceTree = "<group>"; };
 		4F82DF5120E6799B007035FC /* WCHorizontalPageBrowserView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCHorizontalPageBrowserView.m; sourceTree = "<group>"; };
 		4F82DF5320E67A06007035FC /* WCBaseHorizontalPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCBaseHorizontalPage.h; sourceTree = "<group>"; };
@@ -62,8 +70,6 @@
 		4F8FDA2520EB146400C766D4 /* video_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_play@2x.png"; sourceTree = "<group>"; };
 		4F97DB2D20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeparatorsBetweenCell2ViewController.h; sourceTree = "<group>"; };
 		4F97DB2E20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeparatorsBetweenCell2ViewController.m; sourceTree = "<group>"; };
-		4F97DB3120CFABE7003EBB3B /* CellSeparator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellSeparator.h; sourceTree = "<group>"; };
-		4F97DB3220CFABE7003EBB3B /* CellSeparator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellSeparator.m; sourceTree = "<group>"; };
 		4F97DB3420CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewFlowLayoutSeparator.h; sourceTree = "<group>"; };
 		4F97DB3520CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewFlowLayoutSeparator.m; sourceTree = "<group>"; };
 		4F97DB4020CFFB50003EBB3B /* CellSelectionAndHighlightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellSelectionAndHighlightViewController.h; sourceTree = "<group>"; };
@@ -104,6 +110,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F748FDA20F6072C001CF507 /* Header&Footer */ = {
+			isa = PBXGroup;
+			children = (
+				4F748FDB20F6075B001CF507 /* SupplementaryViewHeader.h */,
+				4F748FDC20F6075B001CF507 /* SupplementaryViewHeader.m */,
+				4F748FDE20F6076E001CF507 /* SupplementaryViewFooter.h */,
+				4F748FDF20F6076E001CF507 /* SupplementaryViewFooter.m */,
+			);
+			path = "Header&Footer";
+			sourceTree = "<group>";
+		};
 		4F82DF4F20E6796F007035FC /* WCHorizontalPageBrowserView */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,15 +158,6 @@
 				4FB1D4D620CC2CBD00DBA776 /* MyCustomCollectionViewCell.m */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		4F97DB3020CFABB9003EBB3B /* Separator */ = {
-			isa = PBXGroup;
-			children = (
-				4F97DB3120CFABE7003EBB3B /* CellSeparator.h */,
-				4F97DB3220CFABE7003EBB3B /* CellSeparator.m */,
-			);
-			path = Separator;
 			sourceTree = "<group>";
 		};
 		4FB1D4A620CC0D5700DBA776 = {
@@ -191,7 +199,6 @@
 		4FB1D4C820CC0D7F00DBA776 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F97DB3020CFABB9003EBB3B /* Separator */,
 				4FB1D4CF20CC0DDB00DBA776 /* FlowLayoutViewController.h */,
 				4FB1D4D020CC0DDB00DBA776 /* FlowLayoutViewController.m */,
 				4FB1D4D220CC156B00DBA776 /* CustomCollectionViewCellViewController.h */,
@@ -208,6 +215,9 @@
 				4F97DB4120CFFB50003EBB3B /* CellSelectionAndHighlightViewController.m */,
 				4F8767B120EA5FE900F2B02F /* UseWCHorizontalPageBrowserViewControllerViewController.h */,
 				4F8767B220EA5FE900F2B02F /* UseWCHorizontalPageBrowserViewControllerViewController.m */,
+				4F748FD720F5EEBE001CF507 /* SupplementaryViewOfSectionViewController.h */,
+				4F748FD820F5EEBE001CF507 /* SupplementaryViewOfSectionViewController.m */,
+				4F748FDA20F6072C001CF507 /* Header&Footer */,
 				4FB8A3EB20CF682200300954 /* Layout */,
 				4F83D3B920CEC93700F2FE80 /* Cell */,
 			);
@@ -343,10 +353,11 @@
 				4FB1D4D120CC0DDB00DBA776 /* FlowLayoutViewController.m in Sources */,
 				4F82DF5520E67A06007035FC /* WCBaseHorizontalPage.m in Sources */,
 				4F8767B020EA5FAD00F2B02F /* WCHorizontalPageBrowserViewController.m in Sources */,
-				4F97DB3320CFABE7003EBB3B /* CellSeparator.m in Sources */,
 				4F8767B320EA5FE900F2B02F /* UseWCHorizontalPageBrowserViewControllerViewController.m in Sources */,
 				4F82DF5F20E68ABC007035FC /* WCZoomableImagePage.m in Sources */,
+				4F748FDD20F6075B001CF507 /* SupplementaryViewHeader.m in Sources */,
 				4FB8A3F120CF72BE00300954 /* SeparatorsBetweenCell1ViewController.m in Sources */,
+				4F748FD920F5EEBE001CF507 /* SupplementaryViewOfSectionViewController.m in Sources */,
 				4F5F8F9920ECA160002FFC03 /* WCVideoPlayerPage.m in Sources */,
 				4FB1D4CE20CC0D8400DBA776 /* RootViewController.m in Sources */,
 				4F97DB4220CFFB50003EBB3B /* CellSelectionAndHighlightViewController.m in Sources */,
@@ -356,6 +367,7 @@
 				4FB1D4DA20CC324100DBA776 /* PagableCollectionViewViewController.m in Sources */,
 				4FB1D4D720CC2CBD00DBA776 /* MyCustomCollectionViewCell.m in Sources */,
 				4F83D3BC20CECAB800F2FE80 /* DifferentSizeCellViewController.m in Sources */,
+				4F748FE020F6076E001CF507 /* SupplementaryViewFooter.m in Sources */,
 				4FB8A3EE20CF68B500300954 /* CollectionViewFlowLayoutLeftAligned.m in Sources */,
 				4F97DB2F20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m in Sources */,
 			);

@@ -71,5 +71,6 @@ WCNavigationBarTool
 WCAttachedBubbleView
 WCExpandableHeaderView
 WCTableView
+WCTouchThroughView
 ```
 

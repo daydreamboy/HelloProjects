@@ -1,35 +1,42 @@
 //
-//  DifferentSizeCellViewController.m
+//  SupplementaryViewOfSectionViewController.m
 //  HelloUICollectionView
 //
-//  Created by wesley_chen on 2018/6/11.
+//  Created by wesley_chen on 2018/7/11.
 //  Copyright © 2018 wesley_chen. All rights reserved.
 //
 
-#import "DifferentSizeCellViewController.h"
+#import "SupplementaryViewOfSectionViewController.h"
+#import "SupplementaryViewHeader.h"
+#import "SupplementaryViewFooter.h"
 
 #ifndef UICOLOR_randomColor
 #define UICOLOR_randomColor [UIColor colorWithRed:(arc4random() % 255 / 255.0f) green:(arc4random() % 255 / 255.0f) blue:(arc4random() % 255 / 255.0f) alpha:1]
 #endif
 
-@interface DifferentSizeCellViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
-@property (nonatomic, strong) NSArray<UIColor *> *collectionData;
+@interface SupplementaryViewOfSectionViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@property (nonatomic, strong) NSArray<NSArray<UIColor *> *> *collectionData;
 
 @property (nonatomic, strong) UICollectionView *collectionView1;
 @property (nonatomic, strong) UICollectionView *collectionView5;
 @end
 
-@implementation DifferentSizeCellViewController
+@implementation SupplementaryViewOfSectionViewController
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        NSMutableArray *arrM = [NSMutableArray array];
-        for (NSInteger i = 0; i < 15; i++) {
-            [arrM addObject:UICOLOR_randomColor];
-        }
+        NSMutableArray *arrM2 = [NSMutableArray array];
         
-        _collectionData = arrM;
+        for (NSInteger i = 0; i < 3; i++) {
+            NSMutableArray *arrM = [NSMutableArray array];
+            for (NSInteger i = 0; i < 10; i++) {
+                [arrM addObject:UICOLOR_randomColor];
+            }
+            [arrM2 addObject:arrM];
+        }
+
+        _collectionData = arrM2;
     }
     return self;
 }
@@ -64,6 +71,8 @@
         view.backgroundColor = [UIColor greenColor];
         
         [view registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"sCellIdentifier"];
+        [view registerClass:[SupplementaryViewHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([SupplementaryViewHeader class])];
+        [view registerClass:[SupplementaryViewFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:NSStringFromClass([SupplementaryViewFooter class])];
         
         _collectionView1 = view;
     }
@@ -86,6 +95,8 @@
         view.backgroundColor = [UIColor greenColor];
         
         [view registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"sCellIdentifier"];
+        [view registerClass:[SupplementaryViewHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([SupplementaryViewHeader class])];
+        [view registerClass:[SupplementaryViewFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:NSStringFromClass([SupplementaryViewFooter class])];
         
         _collectionView5 = view;
     }
@@ -96,18 +107,38 @@
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
+    return self.collectionData.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.collectionData.count;
+    return [self.collectionData[section] count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"sCellIdentifier" forIndexPath:indexPath];
-    cell.contentView.backgroundColor = self.collectionData[indexPath.row];
+    UIColor *color = self.collectionData[indexPath.section][indexPath.row];
+    cell.contentView.backgroundColor = color;
     
     return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    UICollectionReusableView *reusableview = nil;
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+        SupplementaryViewHeader *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([SupplementaryViewHeader class]) forIndexPath:indexPath];
+        headerView.backgroundColor = [UIColor orangeColor];
+        
+        reusableview = headerView;
+    }
+    else if (kind == UICollectionElementKindSectionFooter) {
+        SupplementaryViewFooter *footerview = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:NSStringFromClass([SupplementaryViewFooter class]) forIndexPath:indexPath];
+        footerview.backgroundColor = [UIColor brownColor];
+        
+        reusableview = footerview;
+    }
+    
+    return reusableview;
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
@@ -135,6 +166,17 @@
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(padding, padding, padding, padding);
+}
+
+// @see https://stackoverflow.com/a/18174257
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
+    // Note: width for horizontal layout, height for vertical layout
+    return CGSizeMake(100, 30);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section {
+    // Note: width for horizontal layout, height for vertical layout
+    return CGSizeMake(80, 10);
 }
 
 @end

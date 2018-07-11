@@ -8,7 +8,6 @@
 
 #import "SeparatorsBetweenCell2ViewController.h"
 #import "MyCustomCollectionViewCell.h"
-#import "CellSeparator.h"
 #import "CollectionViewFlowLayoutSeparator.h"
 
 #ifndef UICOLOR_randomColor
