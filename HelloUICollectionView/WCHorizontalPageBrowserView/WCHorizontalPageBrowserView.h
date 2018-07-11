@@ -19,6 +19,7 @@
 
 @optional
 - (WCBaseHorizontalPage *)horizontalPageBrowserView:(WCHorizontalPageBrowserView *)horizontalPageBrowserView pageForItemAtIndex:(NSInteger)index;
+
 @end
 
 @protocol WCHorizontalPageBrowserViewDelegate <NSObject>
@@ -37,6 +38,10 @@
 @property (nonatomic, weak) id<WCHorizontalPageBrowserViewDataSource> dataSource;
 @property (nonatomic, weak) id<WCHorizontalPageBrowserViewDelegate> delegate;
 @property (nonatomic, assign) CGFloat pageSpace;
+/**
+ use page mode or not. Default is YES.
+ */
+@property (nonatomic, assign) BOOL pagable;
 
 - (void)registerPageClass:(Class)cellClass forPageWithReuseIdentifier:(NSString *)reuseIdentifier;
 - (WCBaseHorizontalPage *)dequeueReusablePageWithReuseIdentifier:(NSString *)reuseIdentifier forIndex:(NSInteger)index;

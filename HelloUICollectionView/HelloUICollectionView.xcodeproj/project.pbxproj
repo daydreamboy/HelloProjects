@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		10A60B011CD6C1F90B90C16E /* libPods-HelloUICollectionView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E53F53994D672AECEE3640C /* libPods-HelloUICollectionView.a */; };
+		4F48FC3220F62EC200DB26EE /* NestedCollectionViewCrossDirectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F48FC3120F62EC200DB26EE /* NestedCollectionViewCrossDirectionViewController.m */; };
+		4F48FC3620F631A300DB26EE /* WCCrossDirectionEmotionPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F48FC3520F631A300DB26EE /* WCCrossDirectionEmotionPickerViewController.m */; };
+		4F48FC3920F634CB00DB26EE /* WCCollectionPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F48FC3820F634CB00DB26EE /* WCCollectionPage.m */; };
 		4F5F8F9920ECA160002FFC03 /* WCVideoPlayerPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F8F9820ECA160002FFC03 /* WCVideoPlayerPage.m */; };
 		4F748FD920F5EEBE001CF507 /* SupplementaryViewOfSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F748FD820F5EEBE001CF507 /* SupplementaryViewOfSectionViewController.m */; };
 		4F748FDD20F6075B001CF507 /* SupplementaryViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F748FDC20F6075B001CF507 /* SupplementaryViewHeader.m */; };
@@ -42,6 +45,12 @@
 /* Begin PBXFileReference section */
 		0E53F53994D672AECEE3640C /* libPods-HelloUICollectionView.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HelloUICollectionView.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		21A2CE42427550FA09283371 /* Pods-HelloUICollectionView.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloUICollectionView.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HelloUICollectionView/Pods-HelloUICollectionView.debug.xcconfig"; sourceTree = "<group>"; };
+		4F48FC3020F62EC200DB26EE /* NestedCollectionViewCrossDirectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NestedCollectionViewCrossDirectionViewController.h; sourceTree = "<group>"; };
+		4F48FC3120F62EC200DB26EE /* NestedCollectionViewCrossDirectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NestedCollectionViewCrossDirectionViewController.m; sourceTree = "<group>"; };
+		4F48FC3420F631A300DB26EE /* WCCrossDirectionEmotionPickerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCCrossDirectionEmotionPickerViewController.h; sourceTree = "<group>"; };
+		4F48FC3520F631A300DB26EE /* WCCrossDirectionEmotionPickerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCCrossDirectionEmotionPickerViewController.m; sourceTree = "<group>"; };
+		4F48FC3720F634CB00DB26EE /* WCCollectionPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCCollectionPage.h; sourceTree = "<group>"; };
+		4F48FC3820F634CB00DB26EE /* WCCollectionPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCCollectionPage.m; sourceTree = "<group>"; };
 		4F5F8F9720ECA160002FFC03 /* WCVideoPlayerPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCVideoPlayerPage.h; sourceTree = "<group>"; };
 		4F5F8F9820ECA160002FFC03 /* WCVideoPlayerPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCVideoPlayerPage.m; sourceTree = "<group>"; };
 		4F748FD720F5EEBE001CF507 /* SupplementaryViewOfSectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SupplementaryViewOfSectionViewController.h; sourceTree = "<group>"; };
@@ -110,6 +119,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F48FC3320F6318D00DB26EE /* WCCrossDirectionEmotionPickerView */ = {
+			isa = PBXGroup;
+			children = (
+				4F48FC3420F631A300DB26EE /* WCCrossDirectionEmotionPickerViewController.h */,
+				4F48FC3520F631A300DB26EE /* WCCrossDirectionEmotionPickerViewController.m */,
+				4F48FC3720F634CB00DB26EE /* WCCollectionPage.h */,
+				4F48FC3820F634CB00DB26EE /* WCCollectionPage.m */,
+			);
+			path = WCCrossDirectionEmotionPickerView;
+			sourceTree = "<group>";
+		};
 		4F748FDA20F6072C001CF507 /* Header&Footer */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,6 +183,7 @@
 		4FB1D4A620CC0D5700DBA776 = {
 			isa = PBXGroup;
 			children = (
+				4F48FC3320F6318D00DB26EE /* WCCrossDirectionEmotionPickerView */,
 				4F82DF4F20E6796F007035FC /* WCHorizontalPageBrowserView */,
 				4FB1D4B120CC0D5700DBA776 /* HelloUICollectionView */,
 				4FB1D4B020CC0D5700DBA776 /* Products */,
@@ -217,6 +238,8 @@
 				4F8767B220EA5FE900F2B02F /* UseWCHorizontalPageBrowserViewControllerViewController.m */,
 				4F748FD720F5EEBE001CF507 /* SupplementaryViewOfSectionViewController.h */,
 				4F748FD820F5EEBE001CF507 /* SupplementaryViewOfSectionViewController.m */,
+				4F48FC3020F62EC200DB26EE /* NestedCollectionViewCrossDirectionViewController.h */,
+				4F48FC3120F62EC200DB26EE /* NestedCollectionViewCrossDirectionViewController.m */,
 				4F748FDA20F6072C001CF507 /* Header&Footer */,
 				4FB8A3EB20CF682200300954 /* Layout */,
 				4F83D3B920CEC93700F2FE80 /* Cell */,
@@ -348,15 +371,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F48FC3220F62EC200DB26EE /* NestedCollectionViewCrossDirectionViewController.m in Sources */,
 				4FB1D4D420CC156B00DBA776 /* CustomCollectionViewCellViewController.m in Sources */,
 				4FB1D4C220CC0D5900DBA776 /* main.m in Sources */,
 				4FB1D4D120CC0DDB00DBA776 /* FlowLayoutViewController.m in Sources */,
 				4F82DF5520E67A06007035FC /* WCBaseHorizontalPage.m in Sources */,
 				4F8767B020EA5FAD00F2B02F /* WCHorizontalPageBrowserViewController.m in Sources */,
 				4F8767B320EA5FE900F2B02F /* UseWCHorizontalPageBrowserViewControllerViewController.m in Sources */,
+				4F48FC3620F631A300DB26EE /* WCCrossDirectionEmotionPickerViewController.m in Sources */,
 				4F82DF5F20E68ABC007035FC /* WCZoomableImagePage.m in Sources */,
 				4F748FDD20F6075B001CF507 /* SupplementaryViewHeader.m in Sources */,
 				4FB8A3F120CF72BE00300954 /* SeparatorsBetweenCell1ViewController.m in Sources */,
+				4F48FC3920F634CB00DB26EE /* WCCollectionPage.m in Sources */,
 				4F748FD920F5EEBE001CF507 /* SupplementaryViewOfSectionViewController.m in Sources */,
 				4F5F8F9920ECA160002FFC03 /* WCVideoPlayerPage.m in Sources */,
 				4FB1D4CE20CC0D8400DBA776 /* RootViewController.m in Sources */,

@@ -25,6 +25,7 @@
     if (self) {
         // defaults
         _pageSpace = 16;
+        _pagable = YES;
         _registeredCells = [NSMutableDictionary dictionary];
         
         self.clipsToBounds = YES;
@@ -84,13 +85,11 @@
 
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
-        
         // @see https://stackoverflow.com/a/42487721
         // Note: make UICollectionView wider than its container view
         CGRect frame = CGRectMake(-self.pageSpace / 2.0, 0, self.bounds.size.width + self.pageSpace, self.bounds.size.height);
         
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.itemSize = frame.size;
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         layout.minimumLineSpacing = 0;
         layout.minimumInteritemSpacing = 0;
@@ -98,7 +97,7 @@
         UICollectionView *view = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:layout];
         view.dataSource = self;
         view.delegate = self;
-        view.pagingEnabled = YES;
+        view.pagingEnabled = _pagable;
         view.alwaysBounceHorizontal = YES;
         view.showsHorizontalScrollIndicator = NO;
         
@@ -138,6 +137,10 @@
         cell = [self.dataSource horizontalPageBrowserView:self pageForItemAtIndex:indexPath.item];
     }
     return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    return self.collectionView.bounds.size;
 }
 
 #pragma mark - UICollectionViewDelegateFlowLayout
