@@ -111,8 +111,12 @@
         view.dataSource = self;
         view.delegate = self;
         view.pageSpace = 0;
+        view.separatorWidth = 30;
+        view.pagable = NO;
         
         [view registerPageClass:[WCEmotionVerticalLayoutPage class] forPageWithReuseIdentifier:NSStringFromClass([WCEmotionVerticalLayoutPage class])];
+        
+//        [view registerPageClass:[UICollectionViewCell class] forPageWithReuseIdentifier:NSStringFromClass([UICollectionViewCell class])];
         
         _pickerView = view;
     }
@@ -150,14 +154,19 @@
     WCEmotionGroupInfo *item = self.emotionPageData[index];
     item.itemSize = CGSizeMake(horizontalPageBrowserView.bounds.size.width / 8.0, 40);
     
+//    page = [horizontalPageBrowserView dequeueReusablePageWithReuseIdentifier:NSStringFromClass([UICollectionViewCell class]) forIndex:index];
+    
     page = [horizontalPageBrowserView dequeueReusablePageWithReuseIdentifier:NSStringFromClass([WCEmotionVerticalLayoutPage class]) forIndex:index];
     WCEmotionVerticalLayoutPage *emotionPage = (WCEmotionVerticalLayoutPage *)page;
     emotionPage.dataSource = self;
     emotionPage.delegate = self;
     [emotionPage configurePage:item];
+    page.backgroundColor = UICOLOR_randomColor;
     
     return page;
 }
+
+#pragma mark - WCEmotionVerticalPageDataSource
 
 - (UICollectionViewCell *)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage cellForGroupInfo:(WCEmotionGroupInfo *)groupInfo atIndexPath:(NSIndexPath *)indexPath {
     Class cellClass = groupInfo.itemViewClasses[0];

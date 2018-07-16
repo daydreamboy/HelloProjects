@@ -9,6 +9,7 @@
 #import "WCHorizontalPageBrowserView.h"
 #import "WCBaseHorizontalPage.h"
 #import "WCBaseHorizontalPage_Internal.h"
+#import "WCSeparatorFlowLayout.h"
 
 typedef NS_ENUM(NSUInteger, WCHorizontalPageBrowserViewScrollDirection) {
     WCHorizontalPageBrowserViewScrollDirectionNone,
@@ -36,6 +37,7 @@ typedef NS_ENUM(NSUInteger, WCHorizontalPageBrowserViewScrollDirection) {
         _pageSpace = 16;
         _pagable = YES;
         _registeredCells = [NSMutableDictionary dictionary];
+        _separatorColor = [UIColor lightGrayColor];
         
         self.clipsToBounds = YES;
     }
@@ -98,10 +100,22 @@ typedef NS_ENUM(NSUInteger, WCHorizontalPageBrowserViewScrollDirection) {
         // Note: make UICollectionView wider than its container view
         CGRect frame = CGRectMake(-self.pageSpace / 2.0, 0, self.bounds.size.width + self.pageSpace, self.bounds.size.height);
         
-        UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
-        layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        layout.minimumLineSpacing = 0;
-        layout.minimumInteritemSpacing = 0;
+        UICollectionViewFlowLayout *layout;
+        
+        if (self.separatorWidth > 0) {
+            layout = [[WCSeparatorFlowLayout alloc] init];
+            layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+            layout.minimumInteritemSpacing = 0;
+            layout.minimumLineSpacing = self.separatorWidth;
+            [layout registerClass:[WCCollectionViewCellSeparator class] forDecorationViewOfKind:@"Separator"];
+            WCCollectionViewCellSeparator.color = self.separatorColor;
+        }
+        else {
+            layout = [[UICollectionViewFlowLayout alloc] init];
+            layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+            layout.minimumLineSpacing = 0;
+            layout.minimumInteritemSpacing = 0;
+        }
         
         UICollectionView *view = [[UICollectionView alloc] initWithFrame:frame collectionViewLayout:layout];
         view.dataSource = self;

@@ -34,6 +34,7 @@
 		4F97DB3620CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97DB3520CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m */; };
 		4F97DB4220CFFB50003EBB3B /* CellSelectionAndHighlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97DB4120CFFB50003EBB3B /* CellSelectionAndHighlightViewController.m */; };
 		4FA5ABED20FC40280098A138 /* MPMLightPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA5ABEC20FC40280098A138 /* MPMLightPopoverView.m */; };
+		4FA5ABF020FC93FF0098A138 /* WCSeparatorFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA5ABEF20FC93FF0098A138 /* WCSeparatorFlowLayout.m */; };
 		4FB1D4B420CC0D5700DBA776 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1D4B320CC0D5700DBA776 /* AppDelegate.m */; };
 		4FB1D4BC20CC0D5900DBA776 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FB1D4BB20CC0D5900DBA776 /* Assets.xcassets */; };
 		4FB1D4BF20CC0D5900DBA776 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FB1D4BD20CC0D5900DBA776 /* LaunchScreen.storyboard */; };
@@ -97,6 +98,8 @@
 		4F97DB4120CFFB50003EBB3B /* CellSelectionAndHighlightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellSelectionAndHighlightViewController.m; sourceTree = "<group>"; };
 		4FA5ABEB20FC40280098A138 /* MPMLightPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMLightPopoverView.h; sourceTree = "<group>"; };
 		4FA5ABEC20FC40280098A138 /* MPMLightPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMLightPopoverView.m; sourceTree = "<group>"; };
+		4FA5ABEE20FC93FF0098A138 /* WCSeparatorFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCSeparatorFlowLayout.h; sourceTree = "<group>"; };
+		4FA5ABEF20FC93FF0098A138 /* WCSeparatorFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCSeparatorFlowLayout.m; sourceTree = "<group>"; };
 		4FB1D4AF20CC0D5700DBA776 /* HelloUICollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUICollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FB1D4B220CC0D5700DBA776 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FB1D4B320CC0D5700DBA776 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -178,6 +181,8 @@
 				4F5F8F9820ECA160002FFC03 /* WCVideoPlayerPage.m */,
 				4F48FC3720F634CB00DB26EE /* WCEmotionVerticalLayoutPage.h */,
 				4F48FC3820F634CB00DB26EE /* WCEmotionVerticalLayoutPage.m */,
+				4FA5ABEE20FC93FF0098A138 /* WCSeparatorFlowLayout.h */,
+				4FA5ABEF20FC93FF0098A138 /* WCSeparatorFlowLayout.m */,
 			);
 			path = WCHorizontalPageBrowserView;
 			sourceTree = "<group>";
@@ -418,6 +423,7 @@
 				4FB1D4B420CC0D5700DBA776 /* AppDelegate.m in Sources */,
 				4FA5ABED20FC40280098A138 /* MPMLightPopoverView.m in Sources */,
 				4FB1D4DA20CC324100DBA776 /* PagableCollectionViewViewController.m in Sources */,
+				4FA5ABF020FC93FF0098A138 /* WCSeparatorFlowLayout.m in Sources */,
 				4FB1D4D720CC2CBD00DBA776 /* MyCustomCollectionViewCell.m in Sources */,
 				4F65BFA320F87D6B00CE86EB /* WCEmotionFooterView.m in Sources */,
 				4F83D3BC20CECAB800F2FE80 /* DifferentSizeCellViewController.m in Sources */,

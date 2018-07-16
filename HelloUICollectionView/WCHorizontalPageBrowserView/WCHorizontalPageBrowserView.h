@@ -45,6 +45,14 @@
  */
 @property (nonatomic, assign) BOOL pagable;
 
+/**
+ The separators between pages. If zero or negative, there are no separators.
+ 
+ Default is 0.
+ */
+@property (nonatomic, assign) CGFloat separatorWidth;
+@property (nonatomic, strong) UIColor *separatorColor;
+
 - (void)registerPageClass:(Class)cellClass forPageWithReuseIdentifier:(NSString *)reuseIdentifier;
 - (WCBaseHorizontalPage *)dequeueReusablePageWithReuseIdentifier:(NSString *)reuseIdentifier forIndex:(NSInteger)index;
 - (void)reloadData;
