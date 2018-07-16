@@ -32,6 +32,8 @@
 
 - (void)horizontalPageBrowserView:(WCHorizontalPageBrowserView *)horizontalPageBrowserView didScrollToPage:(WCBaseHorizontalPage *)page forItemAtIndex:(NSInteger)index;
 
+- (void)horizontalPageBrowserViewWillBeginDragging:(WCHorizontalPageBrowserView *)horizontalPageBrowserView;
+
 @end
 
 @interface WCHorizontalPageBrowserView : UIView

@@ -33,14 +33,38 @@
 
 @end
 
+@protocol WCEmotionVerticalPageDelegate <NSObject>
+
+@optional
+
+/**
+ touch down cell or view when tap or long press, maybe called many times
+
+ @param emotionPage the WCEmotionVerticalLayoutPage
+ @param groupInfo the WCEmotionGroupInfo
+ @param indexPath the index path for cell. If touch down not on cell, the index path is nil
+ */
+- (void)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage groupInfo:(WCEmotionGroupInfo *)groupInfo touchDownAtIndexPath:(NSIndexPath *)indexPath;
+
+@end
+
 @interface WCEmotionVerticalLayoutPage : WCBaseHorizontalPage
 @property (nonatomic, strong, readonly) WCEmotionGroupInfo *groupInfo;
 @property (nonatomic, weak) id<WCEmotionVerticalPageDataSource> dataSource;
+@property (nonatomic, weak) id<WCEmotionVerticalPageDelegate> delegate;
 
 - (void)configurePage:(WCEmotionGroupInfo *)groupInfo;
 
 - (UICollectionViewCell *)dequeueReusableCellWithReuseIdentifier:(NSString *)reuseIdentifier forIndexPath:(NSIndexPath *)indexPath;
 - (UICollectionReusableView *)dequeueReusableHeaderViewWithReuseIdentifier:(NSString *)reuseIdentifier forIndexPath:(NSIndexPath *)indexPath;
 - (UICollectionReusableView *)dequeueReusableFooterViewWithReuseIdentifier:(NSString *)reuseIdentifier forIndexPath:(NSIndexPath *)indexPath;
+
+/**
+ Get the cell frame relative to the page.
+
+ @param indexPath the index path of cell
+ @return the frame of cell relative to WCEmotionVerticalLayoutPage. If not find the cell, just return CGRectZero.
+ */
+- (CGRect)visibleCellRectInPageAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

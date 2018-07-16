@@ -10,10 +10,19 @@
 #import "WCBaseHorizontalPage.h"
 #import "WCBaseHorizontalPage_Internal.h"
 
+typedef NS_ENUM(NSUInteger, WCHorizontalPageBrowserViewScrollDirection) {
+    WCHorizontalPageBrowserViewScrollDirectionNone,
+    WCHorizontalPageBrowserViewScrollDirectionRight,
+    WCHorizontalPageBrowserViewScrollDirectionLeft,
+    WCHorizontalPageBrowserViewScrollDirectionUp,
+    WCHorizontalPageBrowserViewScrollDirectionDown,
+};
+
 @interface WCHorizontalPageBrowserView () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, Class> *registeredCells;
 @property (nonatomic, assign) NSInteger indexOfCurrentPage;
+@property (nonatomic, assign) CGFloat lastContentOffset;
 @end
 
 @implementation WCHorizontalPageBrowserView
@@ -169,9 +178,34 @@
 
 #pragma mark - UIScrollViewDelegate
 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+    if ([self.delegate respondsToSelector:@selector(horizontalPageBrowserViewWillBeginDragging:)]) {
+        [self.delegate horizontalPageBrowserViewWillBeginDragging:self];
+    }
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     CGFloat pageWidth = CGRectGetWidth(self.collectionView.frame);
     self.indexOfCurrentPage = floor((self.collectionView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    
+    NSLog(@"scrollViewDidScroll: %ld", self.indexOfCurrentPage);
+    
+    //[self updateLastContentOffsetWithScrollView:scrollView];
+}
+
+- (void)updateLastContentOffsetWithScrollView:(UIScrollView *)scrollView {
+    WCHorizontalPageBrowserViewScrollDirection scrollDirection;
+    
+    if (self.lastContentOffset > scrollView.contentOffset.x) {
+        scrollDirection = WCHorizontalPageBrowserViewScrollDirectionRight;
+        NSLog(@"right");
+    }
+    else if (self.lastContentOffset < scrollView.contentOffset.x) {
+        scrollDirection = WCHorizontalPageBrowserViewScrollDirectionLeft;
+        NSLog(@"left");
+    }
+    
+    self.lastContentOffset = scrollView.contentOffset.x;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {

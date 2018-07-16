@@ -12,6 +12,7 @@
 #import "WCEmotionItemView.h"
 #import "WCEmotionHeaderView.h"
 #import "WCEmotionFooterView.h"
+#import "MPMLightPopoverView.h"
 
 #ifndef UICOLOR_randomColor
 #define UICOLOR_randomColor [UIColor colorWithRed:(arc4random() % 255 / 255.0f) green:(arc4random() % 255 / 255.0f) blue:(arc4random() % 255 / 255.0f) alpha:1]
@@ -29,10 +30,12 @@
 
 @end
 
-@interface WCCrossDirectionEmotionPickerViewController () <WCHorizontalPageBrowserViewDataSource, WCHorizontalPageBrowserViewDelegate, WCEmotionVerticalPageDataSource>
+@interface WCCrossDirectionEmotionPickerViewController () <WCHorizontalPageBrowserViewDataSource, WCHorizontalPageBrowserViewDelegate, WCEmotionVerticalPageDataSource, WCEmotionVerticalPageDelegate>
 @property (nonatomic, strong) WCHorizontalPageBrowserView *pickerView;
 @property (nonatomic, strong) WCHorizontalPageBrowserView *sliderView;
 @property (nonatomic, strong) NSArray<WCEmotionGroupInfo *> *emotionPageData;
+@property (nonatomic, strong) MPMLightPopoverView *popoverView;
+@property (nonatomic, strong) NSIndexPath *touchDownIndexPath;
 @end
 
 @implementation WCCrossDirectionEmotionPickerViewController
@@ -150,6 +153,7 @@
     page = [horizontalPageBrowserView dequeueReusablePageWithReuseIdentifier:NSStringFromClass([WCEmotionVerticalLayoutPage class]) forIndex:index];
     WCEmotionVerticalLayoutPage *emotionPage = (WCEmotionVerticalLayoutPage *)page;
     emotionPage.dataSource = self;
+    emotionPage.delegate = self;
     [emotionPage configurePage:item];
     
     return page;
@@ -191,6 +195,53 @@
 
 - (CGFloat)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage heightOfFooterForGroupInfo:(WCEmotionGroupInfo *)groupInfo inSection:(NSInteger)section {
     return 30;
+}
+
+#pragma mark - WCHorizontalPageBrowserViewDelegate
+
+- (void)horizontalPageBrowserViewWillBeginDragging:(WCHorizontalPageBrowserView *)horizontalPageBrowserView {
+    [self.popoverView dismiss:YES];
+}
+
+#pragma mark - WCEmotionVerticalPageDelegate
+
+- (void)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage groupInfo:(WCEmotionGroupInfo *)groupInfo touchDownAtIndexPath:(NSIndexPath *)indexPath {
+    UIImageView *contentView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    contentView.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:0.6];
+    WCEmotionItemModel *item = (WCEmotionItemModel *)groupInfo.groupData[indexPath.section][indexPath.item];
+    NSString *emotionBundlePath = [[NSBundle mainBundle].bundlePath stringByAppendingPathComponent:@"Emoticon.bundle"];
+    NSString *imagePath = [emotionBundlePath stringByAppendingPathComponent:item.name];
+    contentView.image = [UIImage imageNamed:imagePath];
+    
+    if ([self.touchDownIndexPath isEqual:indexPath] && !self.popoverView.hidden) {
+        // Note: touch down the same cell as previous cell, just return, and not show it again
+        return;
+    }
+    else {
+        self.touchDownIndexPath = indexPath;
+        [self.popoverView dismiss:NO];
+    }
+
+    if (indexPath) {
+        CGRect rect = [emotionPage visibleCellRectInPageAtIndexPath:indexPath];
+        if (!CGRectEqualToRect(rect, CGRectZero)) {
+            MPMLightPopoverViewDescriptor *descriptor = [MPMLightPopoverViewDescriptor new];
+            descriptor.autoDismissAfterSeconds = 0.5;
+            descriptor.boxPadding = 5;
+            descriptor.showDuration = 0.15;
+            descriptor.dismissDuration = 0.1;
+            
+            CGPoint topMiddlePoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
+            CGPoint locationInWindow = [emotionPage convertPoint:topMiddlePoint toView:self.view.window];
+            self.popoverView = [MPMLightPopoverView showAlwaysAbovePopoverAtPoint:locationInWindow inView:self.view.window withContentView:contentView withDescriptor:descriptor];
+        }
+        else {
+            [self.popoverView dismiss:NO];
+        }
+    }
+    else {
+        [self.popoverView dismiss:NO];
+    }
 }
 
 @end
