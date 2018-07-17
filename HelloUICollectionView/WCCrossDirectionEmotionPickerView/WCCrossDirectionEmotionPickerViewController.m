@@ -109,8 +109,6 @@ WCEmotionGroupInfoPropertiesImpl
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-//    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-//    self.view.frame = CGRectMake(0, 0, screenSize.width, 216);
     
     [self.view addSubview:self.pickerView];
     [self.view addSubview:self.sliderView];
@@ -324,7 +322,6 @@ WCEmotionGroupInfoPropertiesImpl
 #pragma mark - WCHorizontalSliderViewDelegate
 
 - (void)WCEmotionSliderView:(WCHorizontalSliderView *)emotionSliderView didSelectItem:(id<WCHorizontalSliderItem>)item atIndex:(NSInteger)index {
-    
 }
 
 - (BOOL)WCEmotionSliderView:(WCHorizontalSliderView *)emotionSliderView shouldSelectItem:(id<WCHorizontalSliderItem>)item atIndex:(NSInteger)index {

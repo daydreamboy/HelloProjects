@@ -164,6 +164,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F32D09120FDF3BA00D68A32 /* Subclass Pages */ = {
+			isa = PBXGroup;
+			children = (
+				4F82DF5D20E68ABC007035FC /* WCZoomableImagePage.h */,
+				4F82DF5E20E68ABC007035FC /* WCZoomableImagePage.m */,
+				4F5F8F9720ECA160002FFC03 /* WCVideoPlayerPage.h */,
+				4F5F8F9820ECA160002FFC03 /* WCVideoPlayerPage.m */,
+				4F48FC3720F634CB00DB26EE /* WCEmotionVerticalLayoutPage.h */,
+				4F48FC3820F634CB00DB26EE /* WCEmotionVerticalLayoutPage.m */,
+			);
+			path = "Subclass Pages";
+			sourceTree = "<group>";
+		};
 		4F48FC3320F6318D00DB26EE /* WCCrossDirectionEmotionPickerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -196,6 +209,7 @@
 		4F82DF4F20E6796F007035FC /* WCHorizontalPageBrowserView */ = {
 			isa = PBXGroup;
 			children = (
+				4F32D09120FDF3BA00D68A32 /* Subclass Pages */,
 				4F8767AE20EA5FAD00F2B02F /* WCHorizontalPageBrowserViewController.h */,
 				4F8767AF20EA5FAD00F2B02F /* WCHorizontalPageBrowserViewController.m */,
 				4F82DF5020E6799B007035FC /* WCHorizontalPageBrowserView.h */,
@@ -203,12 +217,6 @@
 				4F82DF5320E67A06007035FC /* WCBaseHorizontalPage.h */,
 				4F82DF5420E67A06007035FC /* WCBaseHorizontalPage.m */,
 				4F82DF5620E6811A007035FC /* WCBaseHorizontalPage_Internal.h */,
-				4F82DF5D20E68ABC007035FC /* WCZoomableImagePage.h */,
-				4F82DF5E20E68ABC007035FC /* WCZoomableImagePage.m */,
-				4F5F8F9720ECA160002FFC03 /* WCVideoPlayerPage.h */,
-				4F5F8F9820ECA160002FFC03 /* WCVideoPlayerPage.m */,
-				4F48FC3720F634CB00DB26EE /* WCEmotionVerticalLayoutPage.h */,
-				4F48FC3820F634CB00DB26EE /* WCEmotionVerticalLayoutPage.m */,
 				4FA5ABEE20FC93FF0098A138 /* WCSeparatorFlowLayout.h */,
 				4FA5ABEF20FC93FF0098A138 /* WCSeparatorFlowLayout.m */,
 			);

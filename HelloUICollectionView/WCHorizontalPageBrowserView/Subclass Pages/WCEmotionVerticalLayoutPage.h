@@ -8,6 +8,8 @@
 
 #import "WCBaseHorizontalPage.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol WCEmotionGroupInfo <NSObject>
 
 #define WCEmotionGroupInfoPropertiesImpl \
@@ -15,13 +17,19 @@
 @synthesize groupData; \
 @synthesize itemViewClasses; \
 @synthesize headerViewClass; \
-@synthesize footerViewClass;
+@synthesize footerViewClass; \
+@synthesize extraData;
 
+@required
 @property (nonatomic, assign) CGSize itemSize;
 @property (nonatomic, strong) NSArray<NSArray<NSObject *> *> *groupData;
 @property (nonatomic, strong) NSArray<Class> *itemViewClasses;
 @property (nonatomic, strong) Class headerViewClass;
 @property (nonatomic, strong) Class footerViewClass;
+
+@optional
+@property (nonatomic, strong) NSMutableDictionary *extraData;
+
 @end
 
 @class WCEmotionVerticalLayoutPage;
@@ -80,3 +88,5 @@
 - (CGRect)visibleCellRectInPageAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
+
+NS_ASSUME_NONNULL_END
