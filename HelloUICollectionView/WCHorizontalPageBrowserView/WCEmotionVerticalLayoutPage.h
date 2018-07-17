@@ -8,7 +8,15 @@
 
 #import "WCBaseHorizontalPage.h"
 
-@interface WCEmotionGroupInfo : NSObject
+@protocol WCEmotionGroupInfo <NSObject>
+
+#define WCEmotionGroupInfoPropertiesImpl \
+@synthesize itemSize; \
+@synthesize groupData; \
+@synthesize itemViewClasses; \
+@synthesize headerViewClass; \
+@synthesize footerViewClass;
+
 @property (nonatomic, assign) CGSize itemSize;
 @property (nonatomic, strong) NSArray<NSArray<NSObject *> *> *groupData;
 @property (nonatomic, strong) NSArray<Class> *itemViewClasses;
@@ -21,15 +29,15 @@
 @protocol WCEmotionVerticalPageDataSource <NSObject>
 
 @required
-- (UICollectionViewCell *)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage cellForGroupInfo:(WCEmotionGroupInfo *)groupInfo atIndexPath:(NSIndexPath *)indexPath;
+- (UICollectionViewCell *)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage cellForGroupInfo:(id<WCEmotionGroupInfo>)groupInfo atIndexPath:(NSIndexPath *)indexPath;
 
 @optional
 
-- (UICollectionReusableView *)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage headerViewForGroupInfo:(WCEmotionGroupInfo *)groupInfo atIndexPath:(NSIndexPath *)indexPath;
-- (UICollectionReusableView *)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage footerViewForGroupInfo:(WCEmotionGroupInfo *)groupInfo atIndexPath:(NSIndexPath *)indexPath;
+- (UICollectionReusableView *)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage headerViewForGroupInfo:(id<WCEmotionGroupInfo>)groupInfo atIndexPath:(NSIndexPath *)indexPath;
+- (UICollectionReusableView *)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage footerViewForGroupInfo:(id<WCEmotionGroupInfo>)groupInfo atIndexPath:(NSIndexPath *)indexPath;
 
-- (CGFloat)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage heightOfHeaderForGroupInfo:(WCEmotionGroupInfo *)groupInfo inSection:(NSInteger)section;
-- (CGFloat)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage heightOfFooterForGroupInfo:(WCEmotionGroupInfo *)groupInfo inSection:(NSInteger)section;
+- (CGFloat)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage heightOfHeaderForGroupInfo:(id<WCEmotionGroupInfo>)groupInfo inSection:(NSInteger)section;
+- (CGFloat)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage heightOfFooterForGroupInfo:(id<WCEmotionGroupInfo>)groupInfo inSection:(NSInteger)section;
 
 @end
 
@@ -44,20 +52,20 @@
  @param groupInfo the WCEmotionGroupInfo
  @param indexPath the index path for cell. If touch down not on cell, the index path is nil
  */
-- (void)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage groupInfo:(WCEmotionGroupInfo *)groupInfo clickedAtIndexPath:(NSIndexPath *)indexPath;
+- (void)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage groupInfo:(id<WCEmotionGroupInfo>)groupInfo clickedAtIndexPath:(NSIndexPath *)indexPath;
 
-- (void)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage groupInfo:(WCEmotionGroupInfo *)groupInfo pressDownAtIndexPath:(NSIndexPath *)indexPath;
+- (void)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage groupInfo:(id<WCEmotionGroupInfo>)groupInfo pressDownAtIndexPath:(NSIndexPath *)indexPath;
 
-- (void)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage groupInfo:(WCEmotionGroupInfo *)groupInfo pressUpAtIndexPath:(NSIndexPath *)indexPath;
+- (void)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage groupInfo:(id<WCEmotionGroupInfo>)groupInfo pressUpAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 
 @interface WCEmotionVerticalLayoutPage : WCBaseHorizontalPage
-@property (nonatomic, strong, readonly) WCEmotionGroupInfo *groupInfo;
+@property (nonatomic, strong, readonly) id<WCEmotionGroupInfo>groupInfo;
 @property (nonatomic, weak) id<WCEmotionVerticalPageDataSource> dataSource;
 @property (nonatomic, weak) id<WCEmotionVerticalPageDelegate> delegate;
 
-- (void)configurePage:(WCEmotionGroupInfo *)groupInfo;
+- (void)configurePage:(id<WCEmotionGroupInfo>)groupInfo;
 
 - (UICollectionViewCell *)dequeueReusableCellWithReuseIdentifier:(NSString *)reuseIdentifier forIndexPath:(NSIndexPath *)indexPath;
 - (UICollectionReusableView *)dequeueReusableHeaderViewWithReuseIdentifier:(NSString *)reuseIdentifier forIndexPath:(NSIndexPath *)indexPath;

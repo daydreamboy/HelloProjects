@@ -12,25 +12,16 @@
 #define UICOLOR_randomColor [UIColor colorWithRed:(arc4random() % 255 / 255.0f) green:(arc4random() % 255 / 255.0f) blue:(arc4random() % 255 / 255.0f) alpha:1]
 #endif
 
-@implementation WCEmotionGroupInfo
-- (instancetype)init {
-    self = [super init];
-    if (self) {
-    }
-    return self;
-}
-@end
-
 @interface WCEmotionVerticalLayoutPage () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong, readwrite) WCEmotionGroupInfo *groupInfo;
+@property (nonatomic, strong, readwrite) id<WCEmotionGroupInfo> groupInfo;
 @end
 
 @implementation WCEmotionVerticalLayoutPage
 
 #pragma mark - Public Methods
 
-- (void)configurePage:(WCEmotionGroupInfo *)groupInfo {
+- (void)configurePage:(id<WCEmotionGroupInfo>)groupInfo {
     _groupInfo = groupInfo;
 }
 

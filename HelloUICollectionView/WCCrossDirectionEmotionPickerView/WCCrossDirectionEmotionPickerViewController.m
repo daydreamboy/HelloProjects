@@ -28,21 +28,25 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, strong) NSArray<NSString *> *codes;
 @end
-
 @implementation WCEmotionItemModel
 @end
 
 @interface WCEmotionSliderGroupItem : NSObject <WCHorizontalSliderItem>
 @end
-
 @implementation WCEmotionSliderGroupItem
 WCHorizontalSliderItemPropertiesImpl
+@end
+
+@interface WCEmotionPickerGroupItem : NSObject <WCEmotionGroupInfo>
+@end
+@implementation WCEmotionPickerGroupItem
+WCEmotionGroupInfoPropertiesImpl
 @end
 
 @interface WCCrossDirectionEmotionPickerViewController () <WCHorizontalPageBrowserViewDataSource, WCHorizontalPageBrowserViewDelegate, WCEmotionVerticalPageDataSource, WCEmotionVerticalPageDelegate, WCHorizontalSliderViewDelegate>
 @property (nonatomic, strong) WCHorizontalPageBrowserView *pickerView;
 @property (nonatomic, strong) WCHorizontalSliderView *sliderView;
-@property (nonatomic, strong) NSArray<WCEmotionGroupInfo *> *emotionPageData;
+@property (nonatomic, strong) NSArray<id<WCEmotionGroupInfo>> *emotionPageData;
 @property (nonatomic, strong) MPMLightPopoverView *popoverView;
 @property (nonatomic, strong) NSIndexPath *touchDownIndexPath;
 @property (nonatomic, strong) UICollectionView *collectionView;
@@ -72,7 +76,7 @@ WCHorizontalSliderItemPropertiesImpl
             [items addObject:item];
         }
         
-        WCEmotionGroupInfo *group1 = [WCEmotionGroupInfo new];
+        id<WCEmotionGroupInfo> group1 = [WCEmotionPickerGroupItem new];
         group1.groupData = @[
                              items,
                              items,
@@ -81,13 +85,13 @@ WCHorizontalSliderItemPropertiesImpl
         group1.headerViewClass = [WCEmotionHeaderView class];
         group1.footerViewClass = [WCEmotionFooterView class];
         
-        WCEmotionGroupInfo *group2 = [WCEmotionGroupInfo new];
+        id<WCEmotionGroupInfo> group2 = [WCEmotionPickerGroupItem new];
         group2.groupData = @[
                              items,
                              ];
         group2.itemViewClasses = @[[WCEmotionItemView class]];
         
-        WCEmotionGroupInfo *group3 = [WCEmotionGroupInfo new];
+        id<WCEmotionGroupInfo> group3 = [WCEmotionPickerGroupItem new];
         group3.groupData = @[
                              items,
                              ];
@@ -125,8 +129,6 @@ WCHorizontalSliderItemPropertiesImpl
 //        view.pagable = NO;
         
         [view registerPageClass:[WCEmotionVerticalLayoutPage class] forPageWithReuseIdentifier:NSStringFromClass([WCEmotionVerticalLayoutPage class])];
-        
-//        [view registerPageClass:[UICollectionViewCell class] forPageWithReuseIdentifier:NSStringFromClass([UICollectionViewCell class])];
         
         _pickerView = view;
     }
@@ -173,10 +175,8 @@ WCHorizontalSliderItemPropertiesImpl
 - (WCBaseHorizontalPage *)horizontalPageBrowserView:(WCHorizontalPageBrowserView *)horizontalPageBrowserView pageForItemAtIndex:(NSInteger)index {
     WCBaseHorizontalPage *page;
     
-    WCEmotionGroupInfo *item = self.emotionPageData[index];
+    id<WCEmotionGroupInfo>item = self.emotionPageData[index];
     item.itemSize = CGSizeMake(horizontalPageBrowserView.bounds.size.width / 8.0, 40);
-    
-    //    page = [horizontalPageBrowserView dequeueReusablePageWithReuseIdentifier:NSStringFromClass([UICollectionViewCell class]) forIndex:index];
     
     page = [horizontalPageBrowserView dequeueReusablePageWithReuseIdentifier:NSStringFromClass([WCEmotionVerticalLayoutPage class]) forIndex:index];
     WCEmotionVerticalLayoutPage *emotionPage = (WCEmotionVerticalLayoutPage *)page;
@@ -196,7 +196,7 @@ WCHorizontalSliderItemPropertiesImpl
 
 #pragma mark - WCEmotionVerticalPageDataSource
 
-- (UICollectionViewCell *)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage cellForGroupInfo:(WCEmotionGroupInfo *)groupInfo atIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionViewCell *)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage cellForGroupInfo:(id<WCEmotionGroupInfo>)groupInfo atIndexPath:(NSIndexPath *)indexPath {
     Class cellClass = groupInfo.itemViewClasses[0];
     
     WCEmotionItemView *cell = (WCEmotionItemView *)[emotionPage dequeueReusableCellWithReuseIdentifier:NSStringFromClass(cellClass) forIndexPath:indexPath];
@@ -211,7 +211,7 @@ WCHorizontalSliderItemPropertiesImpl
     return cell;
 }
 
-- (UICollectionReusableView *)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage headerViewForGroupInfo:(WCEmotionGroupInfo *)groupInfo atIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionReusableView *)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage headerViewForGroupInfo:(id<WCEmotionGroupInfo>)groupInfo atIndexPath:(NSIndexPath *)indexPath {
     WCEmotionHeaderView *header = (WCEmotionHeaderView *)[emotionPage dequeueReusableHeaderViewWithReuseIdentifier:NSStringFromClass([WCEmotionHeaderView class]) forIndexPath:indexPath];
     header.backgroundColor = [UIColor redColor];
     header.textLabel.text = (indexPath.section == 0) ? @"最近使用" : @"全部表情";
@@ -219,18 +219,18 @@ WCHorizontalSliderItemPropertiesImpl
     return header;
 }
 
-- (UICollectionReusableView *)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage footerViewForGroupInfo:(WCEmotionGroupInfo *)groupInfo atIndexPath:(NSIndexPath *)indexPath {
+- (UICollectionReusableView *)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage footerViewForGroupInfo:(id<WCEmotionGroupInfo>)groupInfo atIndexPath:(NSIndexPath *)indexPath {
     UICollectionReusableView *footer = [emotionPage dequeueReusableFooterViewWithReuseIdentifier:NSStringFromClass([WCEmotionFooterView class])  forIndexPath:indexPath];
     footer.backgroundColor = [UIColor blueColor];
     
     return footer;
 }
 
-- (CGFloat)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage heightOfHeaderForGroupInfo:(WCEmotionGroupInfo *)groupInfo inSection:(NSInteger)section {
+- (CGFloat)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage heightOfHeaderForGroupInfo:(id<WCEmotionGroupInfo>)groupInfo inSection:(NSInteger)section {
     return 30;
 }
 
-- (CGFloat)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage heightOfFooterForGroupInfo:(WCEmotionGroupInfo *)groupInfo inSection:(NSInteger)section {
+- (CGFloat)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage heightOfFooterForGroupInfo:(id<WCEmotionGroupInfo>)groupInfo inSection:(NSInteger)section {
     return 30;
 }
 
@@ -239,7 +239,7 @@ WCHorizontalSliderItemPropertiesImpl
 #define NSIndexPathEqualToIndexPath(indexPath1, indexPath2) \
 ((indexPath1.section == indexPath2.section) && (indexPath1.row == indexPath2.row))
 
-- (void)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage groupInfo:(WCEmotionGroupInfo *)groupInfo clickedAtIndexPath:(NSIndexPath *)indexPath {
+- (void)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage groupInfo:(id<WCEmotionGroupInfo>)groupInfo clickedAtIndexPath:(NSIndexPath *)indexPath {
     UIImageView *contentView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     contentView.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:0.6];
     WCEmotionItemModel *item = (WCEmotionItemModel *)groupInfo.groupData[indexPath.section][indexPath.item];
@@ -278,7 +278,7 @@ WCHorizontalSliderItemPropertiesImpl
     }
 }
 
-- (void)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage groupInfo:(WCEmotionGroupInfo *)groupInfo pressDownAtIndexPath:(NSIndexPath *)indexPath {
+- (void)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage groupInfo:(id<WCEmotionGroupInfo>)groupInfo pressDownAtIndexPath:(NSIndexPath *)indexPath {
     UIImageView *contentView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     contentView.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:0.6];
     WCEmotionItemModel *item = (WCEmotionItemModel *)groupInfo.groupData[indexPath.section][indexPath.item];
@@ -317,7 +317,7 @@ WCHorizontalSliderItemPropertiesImpl
     }
 }
 
-- (void)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage groupInfo:(WCEmotionGroupInfo *)groupInfo pressUpAtIndexPath:(NSIndexPath *)indexPath {
+- (void)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage groupInfo:(id<WCEmotionGroupInfo>)groupInfo pressUpAtIndexPath:(NSIndexPath *)indexPath {
     [self.popoverView dismiss:YES];
 }
 
