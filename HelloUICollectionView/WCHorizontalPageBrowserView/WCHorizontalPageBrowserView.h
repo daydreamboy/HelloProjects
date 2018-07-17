@@ -17,7 +17,6 @@
 @required
 - (NSInteger)numberOfPagesHorizontalPageBrowserView:(WCHorizontalPageBrowserView *)horizontalPageBrowserView;
 
-@optional
 - (WCBaseHorizontalPage *)horizontalPageBrowserView:(WCHorizontalPageBrowserView *)horizontalPageBrowserView pageForItemAtIndex:(NSInteger)index;
 
 @end
@@ -51,6 +50,12 @@
  Default is 0.
  */
 @property (nonatomic, assign) CGFloat separatorWidth;
+
+/**
+ The color of separators
+ 
+ Default is [UIColor lightGrayColor]
+ */
 @property (nonatomic, strong) UIColor *separatorColor;
 
 - (void)registerPageClass:(Class)cellClass forPageWithReuseIdentifier:(NSString *)reuseIdentifier;

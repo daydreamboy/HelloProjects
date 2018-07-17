@@ -44,7 +44,11 @@
  @param groupInfo the WCEmotionGroupInfo
  @param indexPath the index path for cell. If touch down not on cell, the index path is nil
  */
-- (void)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage groupInfo:(WCEmotionGroupInfo *)groupInfo touchDownAtIndexPath:(NSIndexPath *)indexPath;
+- (void)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage groupInfo:(WCEmotionGroupInfo *)groupInfo clickedAtIndexPath:(NSIndexPath *)indexPath;
+
+- (void)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage groupInfo:(WCEmotionGroupInfo *)groupInfo pressDownAtIndexPath:(NSIndexPath *)indexPath;
+
+- (void)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage groupInfo:(WCEmotionGroupInfo *)groupInfo pressUpAtIndexPath:(NSIndexPath *)indexPath;
 
 @end
 

@@ -13,6 +13,9 @@
 #import "WCEmotionHeaderView.h"
 #import "WCEmotionFooterView.h"
 #import "MPMLightPopoverView.h"
+#import "WCHorizontalSliderViewBaseCell.h"
+#import "WCHorizontalSliderViewLayout.h"
+#import "WCHorizontalSliderView.h"
 
 #ifndef UICOLOR_randomColor
 #define UICOLOR_randomColor [UIColor colorWithRed:(arc4random() % 255 / 255.0f) green:(arc4random() % 255 / 255.0f) blue:(arc4random() % 255 / 255.0f) alpha:1]
@@ -27,15 +30,22 @@
 @end
 
 @implementation WCEmotionItemModel
-
 @end
 
-@interface WCCrossDirectionEmotionPickerViewController () <WCHorizontalPageBrowserViewDataSource, WCHorizontalPageBrowserViewDelegate, WCEmotionVerticalPageDataSource, WCEmotionVerticalPageDelegate>
+@interface WCEmotionSliderGroupItem : NSObject <WCHorizontalSliderItem>
+@end
+
+@implementation WCEmotionSliderGroupItem
+WCHorizontalSliderItemPropertiesImpl
+@end
+
+@interface WCCrossDirectionEmotionPickerViewController () <WCHorizontalPageBrowserViewDataSource, WCHorizontalPageBrowserViewDelegate, WCEmotionVerticalPageDataSource, WCEmotionVerticalPageDelegate, WCHorizontalSliderViewDelegate>
 @property (nonatomic, strong) WCHorizontalPageBrowserView *pickerView;
-@property (nonatomic, strong) WCHorizontalPageBrowserView *sliderView;
+@property (nonatomic, strong) WCHorizontalSliderView *sliderView;
 @property (nonatomic, strong) NSArray<WCEmotionGroupInfo *> *emotionPageData;
 @property (nonatomic, strong) MPMLightPopoverView *popoverView;
 @property (nonatomic, strong) NSIndexPath *touchDownIndexPath;
+@property (nonatomic, strong) UICollectionView *collectionView;
 @end
 
 @implementation WCCrossDirectionEmotionPickerViewController
@@ -111,8 +121,8 @@
         view.dataSource = self;
         view.delegate = self;
         view.pageSpace = 0;
-        view.separatorWidth = 30;
-        view.pagable = NO;
+//        view.separatorWidth = 30;
+//        view.pagable = NO;
         
         [view registerPageClass:[WCEmotionVerticalLayoutPage class] forPageWithReuseIdentifier:NSStringFromClass([WCEmotionVerticalLayoutPage class])];
         
@@ -124,24 +134,35 @@
     return _pickerView;
 }
 
-//- (WCHorizontalPageBrowserView *)sliderView {
-//    if (!_sliderView) {
-//        CGFloat paddingH = 20;
-//        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-//        WCHorizontalPageBrowserView *view = [[WCHorizontalPageBrowserView alloc] initWithFrame:CGRectMake(paddingH, CGRectGetMaxY(self.pickerView.frame) + 20, screenSize.width  - 2 * paddingH, sliderViewHeight)];
-//        view.delegate = self;
-//        view.dataSource = self;
-////        view.pagable = YES;
-////        view.pageSpace = 0;
-//
-//        //[view registerPageClass:[WCBaseHorizontalPage class] forPageWithReuseIdentifier:NSStringFromClass([WCBaseHorizontalPage class])];
-//
-//        _sliderView = view;
-//    }
-//
-//    return _sliderView;
-//}
+- (WCHorizontalSliderView *)sliderView {
+    if (!_sliderView) {
+        NSMutableArray<id<WCHorizontalSliderItem>> *items = [NSMutableArray array];
+        
+        for (NSInteger i = 0; i < 10; i++) {
+            WCEmotionSliderGroupItem *item = [WCEmotionSliderGroupItem new];
+            NSString *imageName = [NSString stringWithFormat:@"EmotionGroupIcon_%d@2x", arc4random() % 8 + 1];
+            item.iconURL = [[NSBundle mainBundle] URLForResource:imageName withExtension:@"png"];
+            item.iconSize = CGSizeMake(21, 21);
+            item.width = 45.5;
+            [items addObject:item];
+        }
+        
+        CGFloat paddingH = 20;
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        WCHorizontalSliderView *view = [[WCHorizontalSliderView alloc] initWithFrame:CGRectMake(paddingH, CGRectGetMaxY(self.pickerView.frame) + 20, screenSize.width  - 2 * paddingH, sliderViewHeight)];
+        view.delegate = self;
+        view.sliderData = items;
+        view.separatorWidth = 1.0 / [UIScreen mainScreen].scale;
+        view.separatorColor = [UIColor redColor];
+        view.itemSelectedColor = [UIColor redColor];
+        
+        view.backgroundColor = [UIColor yellowColor];
 
+        _sliderView = view;
+    }
+
+    return _sliderView;
+}
 
 #pragma mark - WCHorizontalPageBrowserViewDataSource
 
@@ -151,10 +172,11 @@
 
 - (WCBaseHorizontalPage *)horizontalPageBrowserView:(WCHorizontalPageBrowserView *)horizontalPageBrowserView pageForItemAtIndex:(NSInteger)index {
     WCBaseHorizontalPage *page;
+    
     WCEmotionGroupInfo *item = self.emotionPageData[index];
     item.itemSize = CGSizeMake(horizontalPageBrowserView.bounds.size.width / 8.0, 40);
     
-//    page = [horizontalPageBrowserView dequeueReusablePageWithReuseIdentifier:NSStringFromClass([UICollectionViewCell class]) forIndex:index];
+    //    page = [horizontalPageBrowserView dequeueReusablePageWithReuseIdentifier:NSStringFromClass([UICollectionViewCell class]) forIndex:index];
     
     page = [horizontalPageBrowserView dequeueReusablePageWithReuseIdentifier:NSStringFromClass([WCEmotionVerticalLayoutPage class]) forIndex:index];
     WCEmotionVerticalLayoutPage *emotionPage = (WCEmotionVerticalLayoutPage *)page;
@@ -164,6 +186,12 @@
     page.backgroundColor = UICOLOR_randomColor;
     
     return page;
+}
+
+#pragma mark - WCHorizontalPageBrowserViewDelegate
+
+- (void)horizontalPageBrowserViewWillBeginDragging:(WCHorizontalPageBrowserView *)horizontalPageBrowserView {
+    [self.popoverView dismiss:YES];
 }
 
 #pragma mark - WCEmotionVerticalPageDataSource
@@ -206,15 +234,12 @@
     return 30;
 }
 
-#pragma mark - WCHorizontalPageBrowserViewDelegate
-
-- (void)horizontalPageBrowserViewWillBeginDragging:(WCHorizontalPageBrowserView *)horizontalPageBrowserView {
-    [self.popoverView dismiss:YES];
-}
-
 #pragma mark - WCEmotionVerticalPageDelegate
 
-- (void)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage groupInfo:(WCEmotionGroupInfo *)groupInfo touchDownAtIndexPath:(NSIndexPath *)indexPath {
+#define NSIndexPathEqualToIndexPath(indexPath1, indexPath2) \
+((indexPath1.section == indexPath2.section) && (indexPath1.row == indexPath2.row))
+
+- (void)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage groupInfo:(WCEmotionGroupInfo *)groupInfo clickedAtIndexPath:(NSIndexPath *)indexPath {
     UIImageView *contentView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
     contentView.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:0.6];
     WCEmotionItemModel *item = (WCEmotionItemModel *)groupInfo.groupData[indexPath.section][indexPath.item];
@@ -222,7 +247,7 @@
     NSString *imagePath = [emotionBundlePath stringByAppendingPathComponent:item.name];
     contentView.image = [UIImage imageNamed:imagePath];
     
-    if ([self.touchDownIndexPath isEqual:indexPath] && !self.popoverView.hidden) {
+    if (NSIndexPathEqualToIndexPath(self.touchDownIndexPath, indexPath) && !self.popoverView.hidden) {
         // Note: touch down the same cell as previous cell, just return, and not show it again
         return;
     }
@@ -251,6 +276,62 @@
     else {
         [self.popoverView dismiss:NO];
     }
+}
+
+- (void)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage groupInfo:(WCEmotionGroupInfo *)groupInfo pressDownAtIndexPath:(NSIndexPath *)indexPath {
+    UIImageView *contentView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    contentView.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:0.6];
+    WCEmotionItemModel *item = (WCEmotionItemModel *)groupInfo.groupData[indexPath.section][indexPath.item];
+    NSString *emotionBundlePath = [[NSBundle mainBundle].bundlePath stringByAppendingPathComponent:@"Emoticon.bundle"];
+    NSString *imagePath = [emotionBundlePath stringByAppendingPathComponent:item.name];
+    contentView.image = [UIImage imageNamed:imagePath];
+    
+    if (NSIndexPathEqualToIndexPath(self.touchDownIndexPath, indexPath) && !self.popoverView.hidden) {
+        // Note: touch down the same cell as previous cell, just return, and not show it again
+        return;
+    }
+    else {
+        self.touchDownIndexPath = indexPath;
+        [self.popoverView dismiss:NO];
+    }
+    
+    if (indexPath) {
+        CGRect rect = [emotionPage visibleCellRectInPageAtIndexPath:indexPath];
+        if (!CGRectEqualToRect(rect, CGRectZero)) {
+            MPMLightPopoverViewDescriptor *descriptor = [MPMLightPopoverViewDescriptor new];
+            descriptor.autoDismissAfterSeconds = 0;
+            descriptor.boxPadding = 5;
+            descriptor.showDuration = 0.15;
+            descriptor.dismissDuration = 0.1;
+            
+            CGPoint topMiddlePoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
+            CGPoint locationInWindow = [emotionPage convertPoint:topMiddlePoint toView:self.view.window];
+            self.popoverView = [MPMLightPopoverView showAlwaysAbovePopoverAtPoint:locationInWindow inView:self.view.window withContentView:contentView withDescriptor:descriptor];
+        }
+        else {
+            [self.popoverView dismiss:NO];
+        }
+    }
+    else {
+        [self.popoverView dismiss:NO];
+    }
+}
+
+- (void)WCEmotionVerticalPage:(WCEmotionVerticalLayoutPage *)emotionPage groupInfo:(WCEmotionGroupInfo *)groupInfo pressUpAtIndexPath:(NSIndexPath *)indexPath {
+    [self.popoverView dismiss:YES];
+}
+
+#pragma mark - WCHorizontalSliderViewDelegate
+
+- (void)WCEmotionSliderView:(WCHorizontalSliderView *)emotionSliderView didSelectItem:(id<WCHorizontalSliderItem>)item atIndex:(NSInteger)index {
+    
+}
+
+- (BOOL)WCEmotionSliderView:(WCHorizontalSliderView *)emotionSliderView shouldSelectItem:(id<WCHorizontalSliderItem>)item atIndex:(NSInteger)index {
+    if (index == 0) {
+        return NO;
+    }
+    return YES;
 }
 
 @end

@@ -307,8 +307,8 @@
         NSLog(@"indexPath is nil");
     }
     
-    if ([self.delegate respondsToSelector:@selector(WCEmotionVerticalPage:groupInfo:touchDownAtIndexPath:)]) {
-        [self.delegate WCEmotionVerticalPage:self groupInfo:self.groupInfo touchDownAtIndexPath:indexPath];
+    if ([self.delegate respondsToSelector:@selector(WCEmotionVerticalPage:groupInfo:clickedAtIndexPath:)]) {
+        [self.delegate WCEmotionVerticalPage:self groupInfo:self.groupInfo clickedAtIndexPath:indexPath];
     }
     
 //    if (recognizer.state == UIGestureRecognizerStateBegan) {
@@ -355,22 +355,19 @@
         NSLog(@"indexPath is nil");
     }
     
-    if ([self.delegate respondsToSelector:@selector(WCEmotionVerticalPage:groupInfo:touchDownAtIndexPath:)]) {
-        [self.delegate WCEmotionVerticalPage:self groupInfo:self.groupInfo touchDownAtIndexPath:indexPath];
+    if (recognizer.state == UIGestureRecognizerStateBegan ||
+        recognizer.state == UIGestureRecognizerStateChanged) {
+        if ([self.delegate respondsToSelector:@selector(WCEmotionVerticalPage:groupInfo:pressDownAtIndexPath:)]) {
+            [self.delegate WCEmotionVerticalPage:self groupInfo:self.groupInfo pressDownAtIndexPath:indexPath];
+        }
     }
-    
-//    if (recognizer.state == UIGestureRecognizerStateBegan) {
-//        NSLog(@"begin: %@", NSStringFromCGPoint(location));
-//    }
-//    else if (recognizer.state == UIGestureRecognizerStateChanged) {
-//        NSLog(@"change: %@", NSStringFromCGPoint(location));
-//    }
-//    else if (recognizer.state == UIGestureRecognizerStateCancelled) {
-//        NSLog(@"cancel: %@", NSStringFromCGPoint(location));
-//    }
-//    else if (recognizer.state == UIGestureRecognizerStateEnded) {
-//        NSLog(@"ended: %@", NSStringFromCGPoint(location));
-//    }
+    else if (recognizer.state == UIGestureRecognizerStateEnded ||
+             recognizer.state == UIGestureRecognizerStateFailed ||
+             recognizer.state == UIGestureRecognizerStateCancelled) {
+        if ([self.delegate respondsToSelector:@selector(WCEmotionVerticalPage:groupInfo:pressUpAtIndexPath:)]) {
+            [self.delegate WCEmotionVerticalPage:self groupInfo:self.groupInfo pressUpAtIndexPath:indexPath];
+        }
+    }
 }
 
 @end

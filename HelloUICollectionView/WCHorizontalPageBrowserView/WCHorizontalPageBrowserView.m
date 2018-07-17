@@ -143,7 +143,6 @@ typedef NS_ENUM(NSUInteger, WCHorizontalPageBrowserViewScrollDirection) {
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    
     NSInteger numberOfItems = 0;
     
     if ([self.dataSource respondsToSelector:@selector(numberOfPagesHorizontalPageBrowserView:)]) {
