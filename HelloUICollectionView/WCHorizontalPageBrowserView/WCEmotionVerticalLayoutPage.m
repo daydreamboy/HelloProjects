@@ -21,97 +21,8 @@
 }
 @end
 
-@interface TouchableCollectionView : UICollectionView
-
-@end
-
-#define DEBUG_LOG 0
-
-@implementation TouchableCollectionView
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [super touchesBegan:touches withEvent:event];
-    
-    UITouch *touch = [touches anyObject];
-    CGPoint pt = [touch locationInView:self];
-    
-    #if DEBUG_LOG
-    NSLog(@"began pt: %@", NSStringFromCGPoint(pt));
-    #endif
-    
-    //    NSInteger index = [self indexFromPoint:pt];
-    //
-    //    if (!_scrollView.decelerating) {
-    //        __weak typeof(self) weakSelf = self;
-    //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-    //            [weakSelf addMagnifierAtIndex:index];
-    //        });
-    //    }
-    //
-    //    if (!_scrollView.decelerating && index != -1) {
-    //        [[UIDevice currentDevice] playInputClick];
-    //    }
-}
-
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-    [super touchesMoved:touches withEvent:event];
-
-    UITouch *touch = [touches anyObject];
-    CGPoint pt = [touch locationInView:self];
-
-#if DEBUG_LOG
-    NSLog(@"moved pt: %@", NSStringFromCGPoint(pt));
-#endif
-
-//    NSInteger index = [self indexFromPoint:pt];
-//    [self addMagnifierAtIndex:index];
-//    if (index == -1) {
-//        [self touchesCancelled:touches withEvent:event];
-//    }
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-    [super touchesEnded:touches withEvent:event];
-
-    UITouch *touch = [touches anyObject];
-    CGPoint pt = [touch locationInView:self];
-
-#if DEBUG_LOG
-    NSLog(@"ended pt: %@", NSStringFromCGPoint(pt));
-#endif
-
-//    NSInteger index = [self indexFromPoint:pt];
-//
-//    if (index >= 0 && index < _numberOfEmotion) {
-//
-//        if (_delegate && [_delegate respondsToSelector:@selector(keyTapped:)]) {
-//            [_delegate keyTapped:_keyBeans[index]];
-//        }
-//    }
-//
-//    __weak typeof (self) weakSelf = self;
-//    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.1 * NSEC_PER_SEC);
-//    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-//        [weakSelf resetMagnifier];
-//    });
-}
-
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
-    [super touchesCancelled:touches withEvent:event];
-
-    UITouch *touch = [touches anyObject];
-    CGPoint pt = [touch locationInView:self];
-
-#if DEBUG_LOG
-    NSLog(@"cancelled pt: %@", NSStringFromCGPoint(pt));
-#endif
-
-//    [self indexFromPoint:pt];
-//    [self resetMagnifier];
-}
-@end
-
 @interface WCEmotionVerticalLayoutPage () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
-@property (nonatomic, strong) TouchableCollectionView *collectionView;
+@property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong, readwrite) WCEmotionGroupInfo *groupInfo;
 @end
 
@@ -168,7 +79,7 @@
 
 #pragma mark - Getters
 
-- (TouchableCollectionView *)collectionView {
+- (UICollectionView *)collectionView {
     if (!_collectionView) {
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.scrollDirection = UICollectionViewScrollDirectionVertical;
@@ -176,7 +87,7 @@
         layout.minimumInteritemSpacing = 0;
         layout.minimumLineSpacing = 0;
         
-        TouchableCollectionView *view = [[TouchableCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height) collectionViewLayout:layout];
+        UICollectionView *view = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height) collectionViewLayout:layout];
         view.dataSource = self;
         view.delegate = self;
         view.backgroundColor = [UIColor clearColor];
@@ -310,19 +221,6 @@
     if ([self.delegate respondsToSelector:@selector(WCEmotionVerticalPage:groupInfo:clickedAtIndexPath:)]) {
         [self.delegate WCEmotionVerticalPage:self groupInfo:self.groupInfo clickedAtIndexPath:indexPath];
     }
-    
-//    if (recognizer.state == UIGestureRecognizerStateBegan) {
-//        NSLog(@"begin: %@", NSStringFromCGPoint(location));
-//    }
-//    else if (recognizer.state == UIGestureRecognizerStateChanged) {
-//        NSLog(@"change: %@", NSStringFromCGPoint(location));
-//    }
-//    else if (recognizer.state == UIGestureRecognizerStateCancelled) {
-//        NSLog(@"cancel: %@", NSStringFromCGPoint(location));
-//    }
-//    else if (recognizer.state == UIGestureRecognizerStateEnded) {
-//        NSLog(@"ended: %@", NSStringFromCGPoint(location));
-//    }
 }
 
 - (NSString *)stringFromUIGestureRecognizerState:(UIGestureRecognizerState)state {

@@ -44,12 +44,4 @@
     return _button;
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    //self.imageView.center = CGPointMake(CGRectGetWidth(self.bounds) / 2.0, CGRectGetHeight(self.bounds) / 2.0);
-}
-
-#pragma mark -
-
 @end
