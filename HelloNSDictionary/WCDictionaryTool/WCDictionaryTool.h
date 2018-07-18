@@ -8,9 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#define NSDictionary_stringForKey(key, dict) ([WCDictionaryTool dictionary:(dict) stringForKey:(key)])
+
 @interface WCDictionaryTool : NSObject
 
-#pragma mark - safe access values (NSArray, NSDictionary, NSString, NSNumber) for key/keypath
+#pragma mark - Safe Access Values (NSArray, NSDictionary, NSString, NSNumber) for key/keypath
 
 /**
  Get a NSArray object in the dictionary for given key

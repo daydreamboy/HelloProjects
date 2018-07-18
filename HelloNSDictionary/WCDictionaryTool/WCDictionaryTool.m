@@ -13,6 +13,11 @@
 #pragma mark - Safe access values (NSArray, NSDictionary, NSString, NSNumber) for key/keypath
 
 + (id)dictionary:(NSDictionary *)dictionary objectForKey:(NSString *)key objectClass:(Class)objectClass {
+#if DEBUG
+    NSAssert([key isKindOfClass:[NSString class]], @"%@ is not a NSString", key);
+    NSAssert([dictionary isKindOfClass:[NSDictionary class]], @"%@ is not a NSDictionary", dictionary);
+#endif
+    
     // key is not a NSString
     if (![key isKindOfClass:[NSString class]]) {
         return nil;
