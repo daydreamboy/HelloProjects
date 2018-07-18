@@ -110,4 +110,17 @@
     XCTAssertNil([WCStringTool edgeInsetsValueFromString:str]);
 }
 
+- (void)test_urlKeyValuePairsWithString {
+    NSString *string;
+    NSDictionary *dict;
+    
+    string = @"wangx://ut/card?page=Page_Message&event=2101&arg1=&arg2=&arg3=&flags=k1,k2,k3&cardtype=1001";
+    dict = [WCStringTool keyValuePairsWithUrlString:string];
+    NSLog(@"%@", dict);
+    
+    string = @"page=Page_Message&event=2101&arg1=&arg2=&arg3=&flags=k1,k2,k3&cardtype=1001";
+    dict = [WCStringTool keyValuePairsWithUrlString:string];
+    XCTAssertTrue(dict.count == 0);
+}
+
 @end

@@ -144,4 +144,98 @@
     }
 }
 
+#pragma mark - NSStringFromXXX
+
++ (NSString *)stringFromUIGestureRecognizerState:(UIGestureRecognizerState)state {
+    switch (state) {
+        case UIGestureRecognizerStatePossible:
+            return @"possible";
+        case UIGestureRecognizerStateBegan:
+            return @"began";
+        case UIGestureRecognizerStateChanged:
+            return @"changed";
+        case UIGestureRecognizerStateFailed:
+            return @"failed";
+            // a.k.a UIGestureRecognizerStateRecognized
+        case UIGestureRecognizerStateEnded:
+            return @"ended";
+        case UIGestureRecognizerStateCancelled:
+            return @"cancelled";
+    }
+}
+
+#pragma mark - Handle String As Specific Strings
+
+#pragma mark > Handle String As Url
+
+/*!
+ *  Get the 'value' string for the given 'key' string, e.g. "http://m.cp.360.cn/news/mobile/150410515.html?act=1&reffer=ios&titleRight=share&empty="
+ *
+ *  @param key       the 'key' string
+ *  @param connector the sign, such as =, : and so on
+ *  @param separator the sign, such as & and so on
+ *
+ *  @return the 'value' string
+ */
++ (NSString *)valueWithUrlString:(NSString *)string forKey:(NSString *)key usingConnector:(NSString *)connector usingSeparator:(NSString *)separator {
+    
+    NSString *searchedKey = [NSString stringWithFormat:@"%@%@", key, connector];
+    
+    NSUInteger locationOfSearchedKey = [string rangeOfString:searchedKey options:NSBackwardsSearch].location;
+    if (locationOfSearchedKey == NSNotFound) {
+        return nil;
+    }
+    else {
+        NSUInteger locationOfSeparator = [string rangeOfString:separator options:0 range:NSMakeRange(locationOfSearchedKey, string.length - locationOfSearchedKey)].location;
+        if (locationOfSeparator == NSNotFound) {
+            locationOfSeparator = string.length;
+        }
+        
+        NSUInteger start = locationOfSearchedKey + searchedKey.length;
+        NSUInteger end = locationOfSeparator;
+        NSString *value = [string substringWithRange:NSMakeRange(start, end - start)];
+        
+        return value;
+    }
+}
+
+/*!
+ *  Get the 'value' string for the given 'key' string, e.g. "http://m.cp.360.cn/news/mobile/150410515.html?act=1&reffer=ios&titleRight=share&empty="
+ *
+ *  @param key the 'key' in string as "key1=value1&key2=value2&..."
+ *
+ *  @return the 'value' string
+ */
++ (NSString *)valueWithUrlString:(NSString *)string forKey:(NSString *)key {
+    
+    NSString *separator = @"&";
+    NSString *connector = @"=";
+    
+    return [self valueWithUrlString:string forKey:key usingConnector:connector usingSeparator:separator];
+}
+
++ (NSDictionary *)keyValuePairsWithUrlString:(NSString *)urlString {
+    NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
+    
+    NSURL *URL = [NSURL URLWithString:urlString];
+    if (URL) {
+        // Note: not URL.parameterString
+        // For example, in the URL file:///path/to/file;foo, the parameter string is foo.
+        NSArray *pairs = [URL.query componentsSeparatedByString:@"&"];
+        
+        for (NSString *keyValuePair in pairs) {
+            NSArray *keyValue = [keyValuePair componentsSeparatedByString:@"="];
+            
+            NSString *key = [keyValue firstObject];
+            NSString *value = [keyValue lastObject];
+            
+            if (key && value) {
+                dictM[key] = value;
+            }
+        }
+    }
+    
+    return [dictM copy];
+}
+
 @end
