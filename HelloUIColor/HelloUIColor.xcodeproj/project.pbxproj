@@ -1,0 +1,366 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4F4E14BD21036CEF00D12D11 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E14BC21036CEF00D12D11 /* AppDelegate.m */; };
+		4F4E14C521036CF100D12D11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F4E14C421036CF100D12D11 /* Assets.xcassets */; };
+		4F4E14C821036CF100D12D11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F4E14C621036CF100D12D11 /* LaunchScreen.storyboard */; };
+		4F4E14CB21036CF100D12D11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E14CA21036CF100D12D11 /* main.m */; };
+		4F4E14DA21036DAE00D12D11 /* StringColorConvertionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E14D321036DAE00D12D11 /* StringColorConvertionViewController.m */; };
+		4F4E14DB21036DAE00D12D11 /* TransitionColorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E14D421036DAE00D12D11 /* TransitionColorsViewController.m */; };
+		4F4E14DC21036DAE00D12D11 /* RandomColorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E14D521036DAE00D12D11 /* RandomColorsViewController.m */; };
+		4F4E14DD21036DAE00D12D11 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E14D921036DAE00D12D11 /* RootViewController.m */; };
+		4F4E14E121036E3800D12D11 /* WCColorTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E14E021036E3800D12D11 /* WCColorTool.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4F4E14B821036CEF00D12D11 /* HelloUIColor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUIColor.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F4E14BB21036CEF00D12D11 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4F4E14BC21036CEF00D12D11 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4F4E14C421036CF100D12D11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4F4E14C721036CF100D12D11 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4F4E14C921036CF100D12D11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F4E14CA21036CF100D12D11 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4F4E14D221036DAE00D12D11 /* RandomColorsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RandomColorsViewController.h; sourceTree = "<group>"; };
+		4F4E14D321036DAE00D12D11 /* StringColorConvertionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StringColorConvertionViewController.m; sourceTree = "<group>"; };
+		4F4E14D421036DAE00D12D11 /* TransitionColorsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransitionColorsViewController.m; sourceTree = "<group>"; };
+		4F4E14D521036DAE00D12D11 /* RandomColorsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RandomColorsViewController.m; sourceTree = "<group>"; };
+		4F4E14D621036DAE00D12D11 /* StringColorConvertionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringColorConvertionViewController.h; sourceTree = "<group>"; };
+		4F4E14D721036DAE00D12D11 /* TransitionColorsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransitionColorsViewController.h; sourceTree = "<group>"; };
+		4F4E14D821036DAE00D12D11 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		4F4E14D921036DAE00D12D11 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		4F4E14DF21036E3800D12D11 /* WCColorTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCColorTool.h; sourceTree = "<group>"; };
+		4F4E14E021036E3800D12D11 /* WCColorTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCColorTool.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4F4E14B521036CEF00D12D11 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4F4E14AF21036CEF00D12D11 = {
+			isa = PBXGroup;
+			children = (
+				4F4E14DE21036E3800D12D11 /* WCColorTool */,
+				4F4E14BA21036CEF00D12D11 /* HelloUIColor */,
+				4F4E14B921036CEF00D12D11 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4F4E14B921036CEF00D12D11 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4F4E14B821036CEF00D12D11 /* HelloUIColor.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4F4E14BA21036CEF00D12D11 /* HelloUIColor */ = {
+			isa = PBXGroup;
+			children = (
+				4F4E14D121036DAE00D12D11 /* AppTestDemos */,
+				4F4E14D821036DAE00D12D11 /* RootViewController.h */,
+				4F4E14D921036DAE00D12D11 /* RootViewController.m */,
+				4F4E14BB21036CEF00D12D11 /* AppDelegate.h */,
+				4F4E14BC21036CEF00D12D11 /* AppDelegate.m */,
+				4F4E14C421036CF100D12D11 /* Assets.xcassets */,
+				4F4E14C621036CF100D12D11 /* LaunchScreen.storyboard */,
+				4F4E14C921036CF100D12D11 /* Info.plist */,
+				4F4E14CA21036CF100D12D11 /* main.m */,
+			);
+			path = HelloUIColor;
+			sourceTree = "<group>";
+		};
+		4F4E14D121036DAE00D12D11 /* AppTestDemos */ = {
+			isa = PBXGroup;
+			children = (
+				4F4E14D221036DAE00D12D11 /* RandomColorsViewController.h */,
+				4F4E14D521036DAE00D12D11 /* RandomColorsViewController.m */,
+				4F4E14D421036DAE00D12D11 /* TransitionColorsViewController.m */,
+				4F4E14D721036DAE00D12D11 /* TransitionColorsViewController.h */,
+				4F4E14D321036DAE00D12D11 /* StringColorConvertionViewController.m */,
+				4F4E14D621036DAE00D12D11 /* StringColorConvertionViewController.h */,
+			);
+			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F4E14DE21036E3800D12D11 /* WCColorTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F4E14DF21036E3800D12D11 /* WCColorTool.h */,
+				4F4E14E021036E3800D12D11 /* WCColorTool.m */,
+			);
+			path = WCColorTool;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4F4E14B721036CEF00D12D11 /* HelloUIColor */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F4E14CE21036CF100D12D11 /* Build configuration list for PBXNativeTarget "HelloUIColor" */;
+			buildPhases = (
+				4F4E14B421036CEF00D12D11 /* Sources */,
+				4F4E14B521036CEF00D12D11 /* Frameworks */,
+				4F4E14B621036CEF00D12D11 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HelloUIColor;
+			productName = HelloUIColor;
+			productReference = 4F4E14B821036CEF00D12D11 /* HelloUIColor.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4F4E14B021036CEF00D12D11 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = wesley_chen;
+				TargetAttributes = {
+					4F4E14B721036CEF00D12D11 = {
+						CreatedOnToolsVersion = 9.4;
+					};
+				};
+			};
+			buildConfigurationList = 4F4E14B321036CEF00D12D11 /* Build configuration list for PBXProject "HelloUIColor" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4F4E14AF21036CEF00D12D11;
+			productRefGroup = 4F4E14B921036CEF00D12D11 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4F4E14B721036CEF00D12D11 /* HelloUIColor */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4F4E14B621036CEF00D12D11 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F4E14C821036CF100D12D11 /* LaunchScreen.storyboard in Resources */,
+				4F4E14C521036CF100D12D11 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4F4E14B421036CEF00D12D11 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F4E14CB21036CF100D12D11 /* main.m in Sources */,
+				4F4E14E121036E3800D12D11 /* WCColorTool.m in Sources */,
+				4F4E14DC21036DAE00D12D11 /* RandomColorsViewController.m in Sources */,
+				4F4E14DD21036DAE00D12D11 /* RootViewController.m in Sources */,
+				4F4E14BD21036CEF00D12D11 /* AppDelegate.m in Sources */,
+				4F4E14DB21036DAE00D12D11 /* TransitionColorsViewController.m in Sources */,
+				4F4E14DA21036DAE00D12D11 /* StringColorConvertionViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4F4E14C621036CF100D12D11 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F4E14C721036CF100D12D11 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4F4E14CC21036CF100D12D11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4F4E14CD21036CF100D12D11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4F4E14CF21036CF100D12D11 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = HelloUIColor/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloUIColor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4F4E14D021036CF100D12D11 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = HelloUIColor/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloUIColor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4F4E14B321036CEF00D12D11 /* Build configuration list for PBXProject "HelloUIColor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F4E14CC21036CF100D12D11 /* Debug */,
+				4F4E14CD21036CF100D12D11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F4E14CE21036CF100D12D11 /* Build configuration list for PBXNativeTarget "HelloUIColor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F4E14CF21036CF100D12D11 /* Debug */,
+				4F4E14D021036CF100D12D11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4F4E14B021036CEF00D12D11 /* Project object */;
+}
