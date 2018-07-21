@@ -123,4 +123,13 @@
     XCTAssertTrue(dict.count == 0);
 }
 
+- (void)test_valueWithUrlString_forKey {
+    NSString *string;
+    NSString *value;
+    
+    string = @"https://qngateway.taobao.com/gw/wwjs/multi.resource.emoticon.query?id=144";
+    value = [WCStringTool valueWithUrlString:string forKey:@"id"];
+    XCTAssertEqualObjects(value, @"144");
+}
+
 @end
