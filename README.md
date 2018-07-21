@@ -63,6 +63,8 @@ WCNSObjectTool (wrap with NSObject+DLIntrospection)
 WCJSONTool
 WCDeviceTool
 WCNavigationBarTool
+WCColorTool
+WCStringTool
 ```
 
 ### UI Components (TODO)
