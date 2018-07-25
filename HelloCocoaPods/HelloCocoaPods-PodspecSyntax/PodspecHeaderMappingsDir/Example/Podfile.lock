@@ -1,0 +1,16 @@
+PODS:
+  - PodspecHeaderMappingsDir (0.1.0)
+
+DEPENDENCIES:
+  - PodspecHeaderMappingsDir (from `../`)
+
+EXTERNAL SOURCES:
+  PodspecHeaderMappingsDir:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  PodspecHeaderMappingsDir: 3aeb81d7cb89a947d2e3c8dd7c41abb2f144a149
+
+PODFILE CHECKSUM: 1d94bb86c2de54c3a4fe2b7c5887484db253c6e7
+
+COCOAPODS: 1.5.0

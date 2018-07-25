@@ -1,0 +1,9 @@
+platform :ios, '9.0'
+
+target 'PodspecHeaderMappingsDir_Example' do
+  pod 'PodspecHeaderMappingsDir', :path => '../'
+
+  target 'PodspecHeaderMappingsDir_Tests' do
+    inherit! :search_paths
+  end
+end
