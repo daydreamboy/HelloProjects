@@ -31,7 +31,7 @@ TODO: Add long description of the pod here.
   s.ios.deployment_target = '8.0'
 
   s.source_files = 'PodspecPrepareCommand/Classes/**/*'
-  s.prepare_command = "/bin/sh prepare_build.sh > build.log"
+  s.prepare_command = "/bin/bash Hello.sh"
   s.vendored_frameworks = "PodspecPrepareCommand.framework"
   # s.resource_bundles = {
   #   'PodspecPrepareCommand' => ['PodspecPrepareCommand/Assets/*.png']

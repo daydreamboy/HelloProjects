@@ -1,11 +1,14 @@
+platform :ios, '9.0'
+
 use_frameworks!
 
 target 'PodspecPrepareCommand_Example' do
+  # Note: pod install --verbose, to see the Hello.sh to echo some tips
   pod 'PodspecPrepareCommand', :path => '../'
 
-  target 'PodspecPrepareCommand_Tests' do
-    inherit! :search_paths
-
-    
-  end
+  # Note: `prepare_command` is executed before the Pod is cleaned and before the Pods project is created. 
+  # The working directory is the root of the Pod (pwd)
+  # Warning: `prepare_command` with :path only execute the command but not generate the pod in Pods folder.
+  # pod 'WCMacroKit', :path => '/Users/wesley_chen/GitHub_Projcets/WCMacroKit/WCMacroKit.podspec'
+  pod 'WCMacroKit', :git => "https://github.com/daydreamboy/WCMacroKit.git"
 end
