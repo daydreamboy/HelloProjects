@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F7D8E552107583E00145B00 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8E512107583D00145B00 /* Demo1ViewController.m */; };
+		4F7D8E562107583E00145B00 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8E542107583E00145B00 /* RootViewController.m */; };
+		4F7D8E5A21075AE000145B00 /* WCThreadSafeDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8E5921075AE000145B00 /* WCThreadSafeDictionary.m */; };
 		4F92607A20C531E200F37DF5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F92607920C531E200F37DF5 /* AppDelegate.m */; };
-		4F92607D20C531E200F37DF5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F92607C20C531E200F37DF5 /* ViewController.m */; };
-		4F92608020C531E200F37DF5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F92607E20C531E200F37DF5 /* Main.storyboard */; };
 		4F92608220C531E400F37DF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F92608120C531E400F37DF5 /* Assets.xcassets */; };
 		4F92608520C531E400F37DF5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F92608320C531E400F37DF5 /* LaunchScreen.storyboard */; };
 		4F92608820C531E400F37DF5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F92608720C531E400F37DF5 /* main.m */; };
@@ -17,12 +18,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F7D8E512107583D00145B00 /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
+		4F7D8E522107583D00145B00 /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
+		4F7D8E532107583D00145B00 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		4F7D8E542107583E00145B00 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		4F7D8E5821075AE000145B00 /* WCThreadSafeDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCThreadSafeDictionary.h; sourceTree = "<group>"; };
+		4F7D8E5921075AE000145B00 /* WCThreadSafeDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCThreadSafeDictionary.m; sourceTree = "<group>"; };
 		4F92607520C531E200F37DF5 /* HelloNSDictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSDictionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F92607820C531E200F37DF5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F92607920C531E200F37DF5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4F92607B20C531E200F37DF5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		4F92607C20C531E200F37DF5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		4F92607F20C531E200F37DF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4F92608120C531E400F37DF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F92608420C531E400F37DF5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F92608620C531E400F37DF5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -42,9 +46,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F7D8E502107583D00145B00 /* AppTestDemos */ = {
+			isa = PBXGroup;
+			children = (
+				4F7D8E522107583D00145B00 /* Demo1ViewController.h */,
+				4F7D8E512107583D00145B00 /* Demo1ViewController.m */,
+			);
+			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F7D8E5721075AAE00145B00 /* WCThreadSafeDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				4F7D8E5821075AE000145B00 /* WCThreadSafeDictionary.h */,
+				4F7D8E5921075AE000145B00 /* WCThreadSafeDictionary.m */,
+			);
+			path = WCThreadSafeDictionary;
+			sourceTree = "<group>";
+		};
 		4F92606C20C531E200F37DF5 = {
 			isa = PBXGroup;
 			children = (
+				4F7D8E5721075AAE00145B00 /* WCThreadSafeDictionary */,
 				4F92608E20C531FF00F37DF5 /* WCDictionaryTool */,
 				4F92607720C531E200F37DF5 /* HelloNSDictionary */,
 				4F92607620C531E200F37DF5 /* Products */,
@@ -62,11 +85,11 @@
 		4F92607720C531E200F37DF5 /* HelloNSDictionary */ = {
 			isa = PBXGroup;
 			children = (
+				4F7D8E502107583D00145B00 /* AppTestDemos */,
+				4F7D8E532107583D00145B00 /* RootViewController.h */,
+				4F7D8E542107583E00145B00 /* RootViewController.m */,
 				4F92607820C531E200F37DF5 /* AppDelegate.h */,
 				4F92607920C531E200F37DF5 /* AppDelegate.m */,
-				4F92607B20C531E200F37DF5 /* ViewController.h */,
-				4F92607C20C531E200F37DF5 /* ViewController.m */,
-				4F92607E20C531E200F37DF5 /* Main.storyboard */,
 				4F92608120C531E400F37DF5 /* Assets.xcassets */,
 				4F92608320C531E400F37DF5 /* LaunchScreen.storyboard */,
 				4F92608620C531E400F37DF5 /* Info.plist */,
@@ -143,7 +166,6 @@
 			files = (
 				4F92608520C531E400F37DF5 /* LaunchScreen.storyboard in Resources */,
 				4F92608220C531E400F37DF5 /* Assets.xcassets in Resources */,
-				4F92608020C531E200F37DF5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,8 +176,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F92607D20C531E200F37DF5 /* ViewController.m in Sources */,
+				4F7D8E5A21075AE000145B00 /* WCThreadSafeDictionary.m in Sources */,
 				4F92608820C531E400F37DF5 /* main.m in Sources */,
+				4F7D8E562107583E00145B00 /* RootViewController.m in Sources */,
+				4F7D8E552107583E00145B00 /* Demo1ViewController.m in Sources */,
 				4F92607A20C531E200F37DF5 /* AppDelegate.m in Sources */,
 				4F92609120C5322A00F37DF5 /* WCDictionaryTool.m in Sources */,
 			);
@@ -164,14 +188,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		4F92607E20C531E200F37DF5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4F92607F20C531E200F37DF5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4F92608320C531E400F37DF5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
