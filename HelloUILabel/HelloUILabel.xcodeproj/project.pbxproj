@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F7D8E4C21062BB000145B00 /* TestUILabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8E4B21062BB000145B00 /* TestUILabelViewController.m */; };
+		4F7D8E4F21062F3F00145B00 /* WCStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8E4E21062F3F00145B00 /* WCStringTool.m */; };
 		4F9382F720C6D67C00568EE1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9382F620C6D67C00568EE1 /* AppDelegate.m */; };
 		4F9382FF20C6D67E00568EE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F9382FE20C6D67E00568EE1 /* Assets.xcassets */; };
 		4F93830220C6D67E00568EE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F93830020C6D67E00568EE1 /* LaunchScreen.storyboard */; };
@@ -37,6 +39,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F7D8E4A21062BAF00145B00 /* TestUILabelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestUILabelViewController.h; sourceTree = "<group>"; };
+		4F7D8E4B21062BB000145B00 /* TestUILabelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestUILabelViewController.m; sourceTree = "<group>"; };
+		4F7D8E4D21062F3F00145B00 /* WCStringTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStringTool.h; sourceTree = "<group>"; };
+		4F7D8E4E21062F3F00145B00 /* WCStringTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCStringTool.m; sourceTree = "<group>"; };
 		4F9382F220C6D67C00568EE1 /* HelloUILabel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUILabel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F9382F520C6D67C00568EE1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F9382F620C6D67C00568EE1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -128,6 +134,8 @@
 				4F9382F620C6D67C00568EE1 /* AppDelegate.m */,
 				4F93831220C6D6C900568EE1 /* RootViewController.h */,
 				4F93831320C6D6C900568EE1 /* RootViewController.m */,
+				4F7D8E4D21062F3F00145B00 /* WCStringTool.h */,
+				4F7D8E4E21062F3F00145B00 /* WCStringTool.m */,
 				4F93836920C6EB3700568EE1 /* Resources */,
 				4F9382FE20C6D67E00568EE1 /* Assets.xcassets */,
 				4F93830020C6D67E00568EE1 /* LaunchScreen.storyboard */,
@@ -154,6 +162,8 @@
 				4F93836020C6EA2C00568EE1 /* YYTextExampleHelper.m */,
 				4F93836520C6EA6900568EE1 /* YYGestureRecognizer.h */,
 				4F93836620C6EA6A00568EE1 /* YYGestureRecognizer.m */,
+				4F7D8E4A21062BAF00145B00 /* TestUILabelViewController.h */,
+				4F7D8E4B21062BB000145B00 /* TestUILabelViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -284,6 +294,8 @@
 				4F93835E20C6EA1300568EE1 /* NSString+YYAdd.m in Sources */,
 				4F93834320C6E3E300568EE1 /* YYTextDebugOption.m in Sources */,
 				4F93833620C6E26E00568EE1 /* YYTextUtilities.m in Sources */,
+				4F7D8E4F21062F3F00145B00 /* WCStringTool.m in Sources */,
+				4F7D8E4C21062BB000145B00 /* TestUILabelViewController.m in Sources */,
 				4F93834020C6E3C100568EE1 /* YYTextRunDelegate.m in Sources */,
 				4F93834620C6E42800568EE1 /* YYTextWeakProxy.m in Sources */,
 				4F93833A20C6E2B100568EE1 /* NSAttributedString+YYText.m in Sources */,

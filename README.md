@@ -65,6 +65,7 @@ WCDeviceTool
 WCNavigationBarTool
 WCColorTool
 WCStringTool
+WCFileManagerTool
 ```
 
 ### UI Components (TODO)

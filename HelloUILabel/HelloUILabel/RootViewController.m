@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 #import "YYTextAttachmentExample.h"
+#import "TestUILabelViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -32,10 +33,12 @@
     // MARK: Configure titles and classes for table view
     _titles = @[
         @"YYTextAttachmentExample",
+        @"TestUILabelViewController",
         @"call a test method",
     ];
     _classes = @[
         [YYTextAttachmentExample class],
+        [TestUILabelViewController class],
         @"testMethod",
     ];
 }
