@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'PodspecPrepareCommand_Example' do
+  pod 'PodspecPrepareCommand', :path => '../'
+
+  target 'PodspecPrepareCommand_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
