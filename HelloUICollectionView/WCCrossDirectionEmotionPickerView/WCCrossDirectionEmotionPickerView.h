@@ -1,5 +1,5 @@
 //
-//  WCCrossDirectionEmotionPickerViewController.h
+//  WCCrossDirectionEmotionPickerView.h
 //  HelloUICollectionView
 //
 //  Created by wesley_chen on 2018/7/11.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 
 
-@interface WCCrossDirectionEmotionPickerViewController : UIViewController
+@interface WCCrossDirectionEmotionPickerView : UIView
 
 @end

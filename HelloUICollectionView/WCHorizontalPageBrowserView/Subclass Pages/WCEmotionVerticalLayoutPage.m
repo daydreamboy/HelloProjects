@@ -12,6 +12,11 @@
 #define UICOLOR_randomColor [UIColor colorWithRed:(arc4random() % 255 / 255.0f) green:(arc4random() % 255 / 255.0f) blue:(arc4random() % 255 / 255.0f) alpha:1]
 #endif
 
+// >= `10.0`
+#ifndef IOS10_OR_LATER
+#define IOS10_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"10.0" options:NSNumericSearch] != NSOrderedAscending)
+#endif
+
 @interface WCEmotionVerticalLayoutPage () <UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong, readwrite) id<WCEmotionGroupInfo> groupInfo;
@@ -23,6 +28,7 @@
 
 - (void)configurePage:(id<WCEmotionGroupInfo>)groupInfo {
     _groupInfo = groupInfo;
+    [self.collectionView reloadData];
 }
 
 - (UICollectionViewCell *)dequeueReusableCellWithReuseIdentifier:(NSString *)reuseIdentifier forIndexPath:(NSIndexPath *)indexPath {
@@ -242,6 +248,30 @@
     }
     else {
         NSLog(@"indexPath is nil");
+    }
+    
+    if (indexPath) {
+        if (IOS10_OR_LATER) {
+            NSArray<NSIndexPath *> *indexPaths = self.collectionView.indexPathsForVisibleItems;
+            
+            BOOL found = NO;
+            for (NSIndexPath *element in indexPaths) {
+                if (indexPath.section == element.section && indexPath.item == element.item) {
+                    found = YES;
+                    break;
+                }
+            }
+            
+            if (!found) {
+                indexPath = nil;
+            }
+        }
+        else {
+            UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+            if (!cell) {
+                indexPath = nil;
+            }
+        }
     }
     
     if (recognizer.state == UIGestureRecognizerStateBegan ||

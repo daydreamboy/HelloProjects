@@ -103,7 +103,6 @@ NS_ASSUME_NONNULL_BEGIN
  Select the item and scroll it to visible
 
  @param index the index of the item
- @param animated the scrolling animation if allowed
  */
 - (void)selectItemAtIndex:(NSInteger)index;
 

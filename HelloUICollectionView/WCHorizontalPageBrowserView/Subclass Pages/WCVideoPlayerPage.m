@@ -90,8 +90,11 @@
 
 - (BOOL)playing {
     if (IOS10_OR_LATER) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability"
         // @see https://stackoverflow.com/a/41125062
         return self.player.timeControlStatus == AVPlayerTimeControlStatusPlaying;
+#pragma GCC diagnostic pop
     }
     else {
         // @see https://stackoverflow.com/a/9288642
@@ -101,7 +104,10 @@
 
 - (BOOL)paused {
     if (IOS10_OR_LATER) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability"
         return self.player.timeControlStatus == AVPlayerTimeControlStatusPaused;
+#pragma GCC diagnostic pop
     }
     else {
         return (self.player.rate == 0 && !self.player.error) ? YES : NO;

@@ -17,7 +17,7 @@
 #import "CellSelectionAndHighlightViewController.h"
 #import "UseWCHorizontalPageBrowserViewControllerViewController.h"
 #import "SupplementaryViewOfSectionViewController.h"
-#import "WCCrossDirectionEmotionPickerViewController.h"
+#import "UseWCCrossDirectionEmotionPickerViewViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -49,7 +49,7 @@
         @"Cell highlight and selection",
         @"Supplementary view of section",
         @"Horizontal page browser",
-        @"WCCrossDirectionEmotionPickerViewController",
+        @"Use WCCrossDirectionEmotionPickerView",
     ];
     _classes = @[
         [FlowLayoutViewController class],
@@ -61,7 +61,7 @@
         [CellSelectionAndHighlightViewController class],
         [SupplementaryViewOfSectionViewController class],
         [UseWCHorizontalPageBrowserViewControllerViewController class],
-        [WCCrossDirectionEmotionPickerViewController class],
+        [UseWCCrossDirectionEmotionPickerViewViewController class],
     ];
 }
 

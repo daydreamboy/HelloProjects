@@ -73,6 +73,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak) id<WCEmotionVerticalPageDataSource> dataSource;
 @property (nonatomic, weak) id<WCEmotionVerticalPageDelegate> delegate;
 
+/**
+ Configure the data of the page
+ 
+ @param groupInfo the data
+ @note this method will cause refresh the page
+ */
 - (void)configurePage:(id<WCEmotionGroupInfo>)groupInfo;
 
 - (UICollectionViewCell *)dequeueReusableCellWithReuseIdentifier:(NSString *)reuseIdentifier forIndexPath:(NSIndexPath *)indexPath;

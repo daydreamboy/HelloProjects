@@ -123,6 +123,7 @@ typedef NS_ENUM(NSUInteger, WCHorizontalPageBrowserViewScrollDirection) {
         view.pagingEnabled = _pagable;
         view.alwaysBounceHorizontal = YES;
         view.showsHorizontalScrollIndicator = NO;
+        view.backgroundColor = [UIColor clearColor];
         
         if (_registeredCells.count == 0) {
             [view registerClass:[WCBaseHorizontalPage class] forCellWithReuseIdentifier:NSStringFromClass([WCBaseHorizontalPage class])];

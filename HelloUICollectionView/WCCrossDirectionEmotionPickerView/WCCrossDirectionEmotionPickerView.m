@@ -1,12 +1,12 @@
 //
-//  WCCrossDirectionEmotionPickerViewController.m
+//  WCCrossDirectionEmotionPickerView.m
 //  HelloUICollectionView
 //
 //  Created by wesley_chen on 2018/7/11.
 //  Copyright © 2018 wesley_chen. All rights reserved.
 //
 
-#import "WCCrossDirectionEmotionPickerViewController.h"
+#import "WCCrossDirectionEmotionPickerView.h"
 #import "WCHorizontalPageBrowserView.h"
 #import "WCEmotionVerticalLayoutPage.h"
 #import "WCEmotionItemView.h"
@@ -43,75 +43,75 @@ WCHorizontalSliderItemPropertiesImpl
 WCEmotionGroupInfoPropertiesImpl
 @end
 
-@interface WCCrossDirectionEmotionPickerViewController () <WCHorizontalPageBrowserViewDataSource, WCHorizontalPageBrowserViewDelegate, WCEmotionVerticalPageDataSource, WCEmotionVerticalPageDelegate, WCHorizontalSliderViewDelegate>
+@interface WCCrossDirectionEmotionPickerView () <WCHorizontalPageBrowserViewDataSource, WCHorizontalPageBrowserViewDelegate, WCEmotionVerticalPageDataSource, WCEmotionVerticalPageDelegate, WCHorizontalSliderViewDelegate>
 @property (nonatomic, strong) WCHorizontalPageBrowserView *pickerView;
 @property (nonatomic, strong) WCHorizontalSliderView *sliderView;
 @property (nonatomic, strong) NSArray<id<WCEmotionGroupInfo>> *emotionPageData;
 @property (nonatomic, strong) MPMLightPopoverView *popoverView;
 @property (nonatomic, strong) NSIndexPath *touchDownIndexPath;
-@property (nonatomic, strong) UICollectionView *collectionView;
 @end
 
-@implementation WCCrossDirectionEmotionPickerViewController
+@implementation WCCrossDirectionEmotionPickerView
 
-- (instancetype)init {
-    self = [super init];
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
     if (self) {
-        NSString *emotionBundlePath = [[NSBundle mainBundle].bundlePath stringByAppendingPathComponent:@"Emoticon.bundle"];
+        self.backgroundColor = [UIColor whiteColor];
         
-        NSString *orderPlistFilePath = [emotionBundlePath stringByAppendingPathComponent:@"emotionOrder.plist"];
-        NSString *codePlistFilePath = [emotionBundlePath stringByAppendingPathComponent:@"EmoticonInfo.plist"];
+        [self addSubview:self.pickerView];
+        [self addSubview:self.sliderView];
         
-        NSMutableArray<WCEmotionItemModel *> *items = [NSMutableArray array];
-        NSArray<NSString *> *emotionNameList = [NSArray arrayWithContentsOfFile:orderPlistFilePath];
-        NSDictionary<NSString *, NSArray *> *emotionCodeDict = [NSDictionary dictionaryWithContentsOfFile:codePlistFilePath];
-        
-        for (NSUInteger i = 0; i < emotionNameList.count; i++) {
-            NSString *imageName = emotionNameList[i];
-            
-            WCEmotionItemModel *item = [WCEmotionItemModel new];
-            item.name = imageName;
-            item.codes = emotionCodeDict[imageName];
-            
-            [items addObject:item];
-        }
-        
-        id<WCEmotionGroupInfo> group1 = [WCEmotionPickerGroupItem new];
-        group1.groupData = @[
-                             items,
-                             items,
-                             ];
-        group1.itemViewClasses = @[[WCEmotionItemView class]];
-        group1.headerViewClass = [WCEmotionHeaderView class];
-        group1.footerViewClass = [WCEmotionFooterView class];
-        
-        id<WCEmotionGroupInfo> group2 = [WCEmotionPickerGroupItem new];
-        group2.groupData = @[
-                             items,
-                             ];
-        group2.itemViewClasses = @[[WCEmotionItemView class]];
-        
-        id<WCEmotionGroupInfo> group3 = [WCEmotionPickerGroupItem new];
-        group3.groupData = @[
-                             items,
-                             ];
-        group3.itemViewClasses = @[[WCEmotionItemView class]];
-        
-        self.emotionPageData = @[
-                                 group1,
-                                 group2,
-                                 group3,
-                                 ];
+        [self preloadData];
     }
     return self;
 }
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+- (void)preloadData {
+    NSString *emotionBundlePath = [[NSBundle mainBundle].bundlePath stringByAppendingPathComponent:@"Emoticon.bundle"];
     
-    [self.view addSubview:self.pickerView];
-    [self.view addSubview:self.sliderView];
+    NSString *orderPlistFilePath = [emotionBundlePath stringByAppendingPathComponent:@"emotionOrder.plist"];
+    NSString *codePlistFilePath = [emotionBundlePath stringByAppendingPathComponent:@"EmoticonInfo.plist"];
+    
+    NSMutableArray<WCEmotionItemModel *> *items = [NSMutableArray array];
+    NSArray<NSString *> *emotionNameList = [NSArray arrayWithContentsOfFile:orderPlistFilePath];
+    NSDictionary<NSString *, NSArray *> *emotionCodeDict = [NSDictionary dictionaryWithContentsOfFile:codePlistFilePath];
+    
+    for (NSUInteger i = 0; i < emotionNameList.count; i++) {
+        NSString *imageName = emotionNameList[i];
+        
+        WCEmotionItemModel *item = [WCEmotionItemModel new];
+        item.name = imageName;
+        item.codes = emotionCodeDict[imageName];
+        
+        [items addObject:item];
+    }
+    
+    id<WCEmotionGroupInfo> group1 = [WCEmotionPickerGroupItem new];
+    group1.groupData = @[
+                         items,
+                         items,
+                         ];
+    group1.itemViewClasses = @[[WCEmotionItemView class]];
+    group1.headerViewClass = [WCEmotionHeaderView class];
+    group1.footerViewClass = [WCEmotionFooterView class];
+    
+    id<WCEmotionGroupInfo> group2 = [WCEmotionPickerGroupItem new];
+    group2.groupData = @[
+                         items,
+                         ];
+    group2.itemViewClasses = @[[WCEmotionItemView class]];
+    
+    id<WCEmotionGroupInfo> group3 = [WCEmotionPickerGroupItem new];
+    group3.groupData = @[
+                         items,
+                         ];
+    group3.itemViewClasses = @[[WCEmotionItemView class]];
+    
+    self.emotionPageData = @[
+                             group1,
+                             group2,
+                             group3,
+                             ];
 }
 
 #pragma mark - Getters
@@ -264,8 +264,8 @@ WCEmotionGroupInfoPropertiesImpl
             descriptor.dismissDuration = 0.1;
             
             CGPoint topMiddlePoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
-            CGPoint locationInWindow = [emotionPage convertPoint:topMiddlePoint toView:self.view.window];
-            self.popoverView = [MPMLightPopoverView showAlwaysAbovePopoverAtPoint:locationInWindow inView:self.view.window withContentView:contentView withDescriptor:descriptor];
+            CGPoint locationInWindow = [emotionPage convertPoint:topMiddlePoint toView:self.window];
+            self.popoverView = [MPMLightPopoverView showAlwaysAbovePopoverAtPoint:locationInWindow inView:self.window withContentView:contentView withDescriptor:descriptor];
         }
         else {
             [self.popoverView dismiss:NO];
@@ -303,8 +303,8 @@ WCEmotionGroupInfoPropertiesImpl
             descriptor.dismissDuration = 0.1;
             
             CGPoint topMiddlePoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
-            CGPoint locationInWindow = [emotionPage convertPoint:topMiddlePoint toView:self.view.window];
-            self.popoverView = [MPMLightPopoverView showAlwaysAbovePopoverAtPoint:locationInWindow inView:self.view.window withContentView:contentView withDescriptor:descriptor];
+            CGPoint locationInWindow = [emotionPage convertPoint:topMiddlePoint toView:self.window];
+            self.popoverView = [MPMLightPopoverView showAlwaysAbovePopoverAtPoint:locationInWindow inView:self.window withContentView:contentView withDescriptor:descriptor];
         }
         else {
             [self.popoverView dismiss:NO];
