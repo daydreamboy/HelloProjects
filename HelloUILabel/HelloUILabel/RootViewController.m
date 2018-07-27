@@ -8,8 +8,9 @@
 
 #import "RootViewController.h"
 
-#import "YYTextAttachmentExample.h"
-#import "TestUILabelViewController.h"
+#import "UseYYLabelWithAttachmentViewController.h"
+#import "UseUILabelViewController.h"
+#import "UseYYLabelWithLinkViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -34,11 +35,13 @@
     _titles = @[
         @"YYTextAttachmentExample",
         @"TestUILabelViewController",
+        @"YYLabel with Link",
         @"call a test method",
     ];
     _classes = @[
-        [YYTextAttachmentExample class],
-        [TestUILabelViewController class],
+        [UseYYLabelWithAttachmentViewController class],
+        [UseUILabelViewController class],
+        [UseYYLabelWithLinkViewController class],
         @"testMethod",
     ];
 }

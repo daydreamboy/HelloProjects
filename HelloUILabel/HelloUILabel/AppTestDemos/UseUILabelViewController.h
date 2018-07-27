@@ -1,5 +1,5 @@
 //
-//  TestUILabelViewController.h
+//  UseUILabelViewController.h
 //  HelloUILabel
 //
 //  Created by wesley_chen on 2018/7/23.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TestUILabelViewController : UIViewController
+@interface UseUILabelViewController : UIViewController
 
 @end

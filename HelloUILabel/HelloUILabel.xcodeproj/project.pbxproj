@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F7D8E4C21062BB000145B00 /* TestUILabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8E4B21062BB000145B00 /* TestUILabelViewController.m */; };
+		4F7D8E4C21062BB000145B00 /* UseUILabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8E4B21062BB000145B00 /* UseUILabelViewController.m */; };
 		4F7D8E4F21062F3F00145B00 /* WCStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8E4E21062F3F00145B00 /* WCStringTool.m */; };
+		4F7D8F37210B674D00145B00 /* UseYYLabelWithLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8F36210B674D00145B00 /* UseYYLabelWithLinkViewController.m */; };
 		4F9382F720C6D67C00568EE1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9382F620C6D67C00568EE1 /* AppDelegate.m */; };
 		4F9382FF20C6D67E00568EE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F9382FE20C6D67E00568EE1 /* Assets.xcassets */; };
 		4F93830220C6D67E00568EE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F93830020C6D67E00568EE1 /* LaunchScreen.storyboard */; };
@@ -28,7 +29,7 @@
 		4F93834920C6E4A100568EE1 /* YYTextInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F93834720C6E4A000568EE1 /* YYTextInput.m */; };
 		4F93834C20C6E53200568EE1 /* YYTextAsyncLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F93834A20C6E53100568EE1 /* YYTextAsyncLayer.m */; };
 		4F93835220C6E75F00568EE1 /* UIView+YYText.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F93835120C6E75F00568EE1 /* UIView+YYText.m */; };
-		4F93835520C6E83000568EE1 /* YYTextAttachmentExample.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F93835420C6E83000568EE1 /* YYTextAttachmentExample.m */; };
+		4F93835520C6E83000568EE1 /* UseYYLabelWithAttachmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F93835420C6E83000568EE1 /* UseYYLabelWithAttachmentViewController.m */; };
 		4F93835820C6E9A000568EE1 /* UIView+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F93835720C6E9A000568EE1 /* UIView+YYAdd.m */; };
 		4F93835B20C6E9AD00568EE1 /* NSBundle+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F93835920C6E9AC00568EE1 /* NSBundle+YYAdd.m */; };
 		4F93835E20C6EA1300568EE1 /* NSString+YYAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F93835C20C6EA1300568EE1 /* NSString+YYAdd.m */; };
@@ -39,10 +40,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4F7D8E4A21062BAF00145B00 /* TestUILabelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestUILabelViewController.h; sourceTree = "<group>"; };
-		4F7D8E4B21062BB000145B00 /* TestUILabelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestUILabelViewController.m; sourceTree = "<group>"; };
+		4F7D8E4A21062BAF00145B00 /* UseUILabelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseUILabelViewController.h; sourceTree = "<group>"; };
+		4F7D8E4B21062BB000145B00 /* UseUILabelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseUILabelViewController.m; sourceTree = "<group>"; };
 		4F7D8E4D21062F3F00145B00 /* WCStringTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStringTool.h; sourceTree = "<group>"; };
 		4F7D8E4E21062F3F00145B00 /* WCStringTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCStringTool.m; sourceTree = "<group>"; };
+		4F7D8F35210B674D00145B00 /* UseYYLabelWithLinkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseYYLabelWithLinkViewController.h; sourceTree = "<group>"; };
+		4F7D8F36210B674D00145B00 /* UseYYLabelWithLinkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseYYLabelWithLinkViewController.m; sourceTree = "<group>"; };
 		4F9382F220C6D67C00568EE1 /* HelloUILabel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUILabel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F9382F520C6D67C00568EE1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F9382F620C6D67C00568EE1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -80,8 +83,8 @@
 		4F93834B20C6E53100568EE1 /* YYTextAsyncLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTextAsyncLayer.h; sourceTree = "<group>"; };
 		4F93835020C6E75F00568EE1 /* UIView+YYText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YYText.h"; sourceTree = "<group>"; };
 		4F93835120C6E75F00568EE1 /* UIView+YYText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YYText.m"; sourceTree = "<group>"; };
-		4F93835320C6E82F00568EE1 /* YYTextAttachmentExample.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTextAttachmentExample.h; sourceTree = "<group>"; };
-		4F93835420C6E83000568EE1 /* YYTextAttachmentExample.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTextAttachmentExample.m; sourceTree = "<group>"; };
+		4F93835320C6E82F00568EE1 /* UseYYLabelWithAttachmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseYYLabelWithAttachmentViewController.h; sourceTree = "<group>"; };
+		4F93835420C6E83000568EE1 /* UseYYLabelWithAttachmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseYYLabelWithAttachmentViewController.m; sourceTree = "<group>"; };
 		4F93835620C6E9A000568EE1 /* UIView+YYAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+YYAdd.h"; sourceTree = "<group>"; };
 		4F93835720C6E9A000568EE1 /* UIView+YYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+YYAdd.m"; sourceTree = "<group>"; };
 		4F93835920C6E9AC00568EE1 /* NSBundle+YYAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+YYAdd.m"; sourceTree = "<group>"; };
@@ -109,6 +112,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F7D8F34210B66EA00145B00 /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				4F93835620C6E9A000568EE1 /* UIView+YYAdd.h */,
+				4F93835720C6E9A000568EE1 /* UIView+YYAdd.m */,
+				4F93835A20C6E9AC00568EE1 /* NSBundle+YYAdd.h */,
+				4F93835920C6E9AC00568EE1 /* NSBundle+YYAdd.m */,
+				4F93835D20C6EA1300568EE1 /* NSString+YYAdd.h */,
+				4F93835C20C6EA1300568EE1 /* NSString+YYAdd.m */,
+				4F93836320C6EA5100568EE1 /* UIControl+YYAdd.h */,
+				4F93836220C6EA5000568EE1 /* UIControl+YYAdd.m */,
+			);
+			path = Additions;
+			sourceTree = "<group>";
+		};
 		4F9382E920C6D67C00568EE1 = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +147,7 @@
 		4F9382F420C6D67C00568EE1 /* HelloUILabel */ = {
 			isa = PBXGroup;
 			children = (
+				4F7D8F34210B66EA00145B00 /* Additions */,
 				4F93830B20C6D6AE00568EE1 /* AppTestDemos */,
 				4F9382F520C6D67C00568EE1 /* AppDelegate.h */,
 				4F9382F620C6D67C00568EE1 /* AppDelegate.m */,
@@ -148,22 +167,16 @@
 		4F93830B20C6D6AE00568EE1 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F93835320C6E82F00568EE1 /* YYTextAttachmentExample.h */,
-				4F93835420C6E83000568EE1 /* YYTextAttachmentExample.m */,
-				4F93835620C6E9A000568EE1 /* UIView+YYAdd.h */,
-				4F93835720C6E9A000568EE1 /* UIView+YYAdd.m */,
-				4F93835A20C6E9AC00568EE1 /* NSBundle+YYAdd.h */,
-				4F93835920C6E9AC00568EE1 /* NSBundle+YYAdd.m */,
-				4F93835D20C6EA1300568EE1 /* NSString+YYAdd.h */,
-				4F93835C20C6EA1300568EE1 /* NSString+YYAdd.m */,
-				4F93836320C6EA5100568EE1 /* UIControl+YYAdd.h */,
-				4F93836220C6EA5000568EE1 /* UIControl+YYAdd.m */,
+				4F93835320C6E82F00568EE1 /* UseYYLabelWithAttachmentViewController.h */,
+				4F93835420C6E83000568EE1 /* UseYYLabelWithAttachmentViewController.m */,
+				4F7D8E4A21062BAF00145B00 /* UseUILabelViewController.h */,
+				4F7D8E4B21062BB000145B00 /* UseUILabelViewController.m */,
+				4F7D8F35210B674D00145B00 /* UseYYLabelWithLinkViewController.h */,
+				4F7D8F36210B674D00145B00 /* UseYYLabelWithLinkViewController.m */,
 				4F93835F20C6EA2B00568EE1 /* YYTextExampleHelper.h */,
 				4F93836020C6EA2C00568EE1 /* YYTextExampleHelper.m */,
 				4F93836520C6EA6900568EE1 /* YYGestureRecognizer.h */,
 				4F93836620C6EA6A00568EE1 /* YYGestureRecognizer.m */,
-				4F7D8E4A21062BAF00145B00 /* TestUILabelViewController.h */,
-				4F7D8E4B21062BB000145B00 /* TestUILabelViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -295,19 +308,20 @@
 				4F93834320C6E3E300568EE1 /* YYTextDebugOption.m in Sources */,
 				4F93833620C6E26E00568EE1 /* YYTextUtilities.m in Sources */,
 				4F7D8E4F21062F3F00145B00 /* WCStringTool.m in Sources */,
-				4F7D8E4C21062BB000145B00 /* TestUILabelViewController.m in Sources */,
+				4F7D8E4C21062BB000145B00 /* UseUILabelViewController.m in Sources */,
 				4F93834020C6E3C100568EE1 /* YYTextRunDelegate.m in Sources */,
 				4F93834620C6E42800568EE1 /* YYTextWeakProxy.m in Sources */,
 				4F93833A20C6E2B100568EE1 /* NSAttributedString+YYText.m in Sources */,
 				4F93832C20C6E22C00568EE1 /* YYTextLayout.m in Sources */,
 				4F93833320C6E23900568EE1 /* YYTextAttribute.m in Sources */,
 				4F93836420C6EA5100568EE1 /* UIControl+YYAdd.m in Sources */,
+				4F7D8F37210B674D00145B00 /* UseYYLabelWithLinkViewController.m in Sources */,
 				4F93835820C6E9A000568EE1 /* UIView+YYAdd.m in Sources */,
 				4F93836120C6EA2C00568EE1 /* YYTextExampleHelper.m in Sources */,
 				4F93833D20C6E37000568EE1 /* NSParagraphStyle+YYText.m in Sources */,
 				4F93830520C6D67E00568EE1 /* main.m in Sources */,
 				4F9382F720C6D67C00568EE1 /* AppDelegate.m in Sources */,
-				4F93835520C6E83000568EE1 /* YYTextAttachmentExample.m in Sources */,
+				4F93835520C6E83000568EE1 /* UseYYLabelWithAttachmentViewController.m in Sources */,
 				4F93835B20C6E9AD00568EE1 /* NSBundle+YYAdd.m in Sources */,
 				4F93833220C6E23900568EE1 /* YYTextParser.m in Sources */,
 				4F93835220C6E75F00568EE1 /* UIView+YYText.m in Sources */,

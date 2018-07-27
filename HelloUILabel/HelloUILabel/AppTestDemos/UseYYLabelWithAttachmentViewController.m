@@ -1,12 +1,12 @@
 //
-//  YYTextAttachmentExample.m
+//  UseYYLabelWithAttachmentViewController.m
 //  YYKitExample
 //
 //  Created by ibireme on 15/8/21.
 //  Copyright (c) 2015 ibireme. All rights reserved.
 //
 
-#import "YYTextAttachmentExample.h"
+#import "UseYYLabelWithAttachmentViewController.h"
 //#import "YYText.h"
 #import "YYLabel.h"
 //#import "YYImage.h"
@@ -17,11 +17,11 @@
 #import "YYTextExampleHelper.h"
 #import "YYGestureRecognizer.h"
 
-@interface YYTextAttachmentExample ()<UIGestureRecognizerDelegate>
+@interface UseYYLabelWithAttachmentViewController ()<UIGestureRecognizerDelegate>
 @property (nonatomic, strong) YYLabel *label;
 @end
 
-@implementation YYTextAttachmentExample
+@implementation UseYYLabelWithAttachmentViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
