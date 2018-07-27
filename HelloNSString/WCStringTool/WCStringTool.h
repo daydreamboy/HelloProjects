@@ -65,4 +65,8 @@
  */
 + (NSDictionary *)keyValuePairsWithUrlString:(NSString *)string;
 
+#pragma mark - Cryption
+
++ (NSString *)MD5WithString:(NSString *)string;
+
 @end
