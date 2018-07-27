@@ -55,13 +55,24 @@ typedef NS_ENUM(NSUInteger, WCHorizontalPageBrowserViewScrollDirection) {
     [self.collectionView reloadData];
 }
 
-- (void)reloadItemsAtIndexes:(NSArray<NSNumber *> *)indexes {
+- (void)reloadItemsAtIndexes:(NSArray<NSNumber *> *)indexes animated:(BOOL)animated {
     NSMutableArray<NSIndexPath *> *indexPaths = [NSMutableArray array];
     for (NSNumber *index in indexes) {
         [indexPaths addObject:[NSIndexPath indexPathForItem:[index integerValue] inSection:0]];
     }
     if (indexPaths.count) {
-        [self.collectionView reloadItemsAtIndexPaths:indexPaths];
+        if (animated) {
+            [self.collectionView reloadItemsAtIndexPaths:indexPaths];
+        }
+        else {
+            // @see https://stackoverflow.com/a/15068865
+            [UIView setAnimationsEnabled:NO];
+            [self.collectionView performBatchUpdates:^{
+                [self.collectionView reloadItemsAtIndexPaths:indexPaths];
+            } completion:^(BOOL finished) {
+                [UIView setAnimationsEnabled:YES];
+            }];
+        }
     }
 }
 
