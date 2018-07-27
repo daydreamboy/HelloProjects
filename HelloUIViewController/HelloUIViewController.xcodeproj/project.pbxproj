@@ -13,6 +13,7 @@
 		4F4E14A22103573900D12D11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E14A12103573900D12D11 /* main.m */; };
 		4F4E14AD2103576600D12D11 /* UseToolbarItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E14A92103576600D12D11 /* UseToolbarItemsViewController.m */; };
 		4F4E14AE2103576600D12D11 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E14AC2103576600D12D11 /* RootViewController.m */; };
+		4F7D8EDA2109777300145B00 /* UseViewControllerAsSubviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8ED92109777300145B00 /* UseViewControllerAsSubviewViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,8 @@
 		4F4E14AA2103576600D12D11 /* UseToolbarItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseToolbarItemsViewController.h; sourceTree = "<group>"; };
 		4F4E14AB2103576600D12D11 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F4E14AC2103576600D12D11 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		4F7D8ED82109777300145B00 /* UseViewControllerAsSubviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseViewControllerAsSubviewViewController.h; sourceTree = "<group>"; };
+		4F7D8ED92109777300145B00 /* UseViewControllerAsSubviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseViewControllerAsSubviewViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +80,8 @@
 			children = (
 				4F4E14AA2103576600D12D11 /* UseToolbarItemsViewController.h */,
 				4F4E14A92103576600D12D11 /* UseToolbarItemsViewController.m */,
+				4F7D8ED82109777300145B00 /* UseViewControllerAsSubviewViewController.h */,
+				4F7D8ED92109777300145B00 /* UseViewControllerAsSubviewViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -152,6 +157,7 @@
 			files = (
 				4F4E14AD2103576600D12D11 /* UseToolbarItemsViewController.m in Sources */,
 				4F4E14A22103573900D12D11 /* main.m in Sources */,
+				4F7D8EDA2109777300145B00 /* UseViewControllerAsSubviewViewController.m in Sources */,
 				4F4E14942103573700D12D11 /* AppDelegate.m in Sources */,
 				4F4E14AE2103576600D12D11 /* RootViewController.m in Sources */,
 			);

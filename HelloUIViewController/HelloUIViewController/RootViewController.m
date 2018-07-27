@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 #import "UseToolbarItemsViewController.h"
+#import "UseViewControllerAsSubviewViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -32,10 +33,12 @@
     // MARK: Configure titles and classes for table view
     _titles = @[
         @"Use @toolbarItems of UIViewController",
+        @"Use UIViewController as subview",
         @"call a test method",
     ];
     _classes = @[
         [UseToolbarItemsViewController class],
+        [UseViewControllerAsSubviewViewController class],
         @"testMethod",
     ];
 }
