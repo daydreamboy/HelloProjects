@@ -61,4 +61,14 @@
     NSLog(@"%@", string);
 }
 
+- (void)test_check_letterCharacterSet {
+    NSArray *array;
+    NSString *string;
+    
+    // Case 1
+    array = [WCCharacterSetTool charactersInCharacterSet:[NSCharacterSet letterCharacterSet]];
+    string = [array componentsJoinedByString:@""];
+    NSLog(@"%@", string);
+}
+
 @end
