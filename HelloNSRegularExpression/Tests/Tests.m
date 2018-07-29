@@ -67,7 +67,7 @@
 - (NSArray<NSValue *> *)runRegexWithPattern:(NSString *)pattern matchString:(NSString *)matchString {
     NSLog(@"--------------------------------");
     NSError *error;
-    NSMutableArray *ranges = [NSMutableArray array];
+    NSMutableArray *captureRanges = [NSMutableArray array];
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:kNilOptions error:&error];
     [regex enumerateMatchesInString:matchString options:kNilOptions range:NSMakeRange(0, matchString.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
         
@@ -81,14 +81,14 @@
             if (captureRange.location != NSNotFound) {
                 NSLog(@"captureRange: %@ - %@", NSStringFromRange(captureRange), [matchString substringWithRange:captureRange]);
                 
-                [ranges addObject:[NSValue valueWithRange:captureRange]];
+                [captureRanges addObject:[NSValue valueWithRange:captureRange]];
             }
         }
     }];
     
     NSLog(@"--------------------------------");
     
-    return ranges;
+    return captureRanges;
 }
 
 - (void)test_domain {
@@ -371,6 +371,37 @@
     // Case 10
     matchString = @"https://detail.tmall.com/item.htm?id=568371443233&spm=a223v.7835278.t0.1.3cbe2312nwviTo&pvid=be2a1b12-f24f-4050-9227-e7c3448fd8b8&scm=1007.12144.81309.9011_8949&utparam={%22x_hestia_source%22:%228949%22,%22x_mt%22:10,%22x_object_id%22:568371443233,%22x_object_type%22:%22item%22,%22x_pos%22:1,%22x_pvid%22:%22be2a1b12-f24f-4050-9227-e7c3448fd8b8%22,%22x_src%22:%228949%22}";
     [self runRegexWithPattern:pattern matchString:matchString];
+}
+
+- (void)test_emoticon_code {
+    NSString *emoticonCodePlistPath = [[NSBundle mainBundle] pathForResource:@"EmoticonInfo" ofType:@"plist"];
+    
+    // code (/:^_^) -> png name
+    NSMutableDictionary<NSString *, NSString *> *dictM = [NSMutableDictionary dictionary];
+    
+    NSDictionary<NSString *, NSArray *> *emotionCodeDict = [NSDictionary dictionaryWithContentsOfFile:emoticonCodePlistPath];
+    [emotionCodeDict enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSArray * _Nonnull obj, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[NSArray class]] && obj.count == 2) {
+            NSArray *arr = (NSArray *)obj;
+            dictM[arr[1]] = [NSString stringWithFormat:@"%@@2x.png", key];
+        }
+    }];
+    
+    NSString *patternOfEmoticon = @"(\\/\\:[a-zA-Z0-9_^$<>'~!%&=\\-\\.\\*\\?\\@\\(\\)\\\"]+)";
+    NSInteger numberOfValidItems = 0;
+    for (NSString *key in [dictM allKeys]) {
+        NSArray *ranges = [self runRegexWithPattern:patternOfEmoticon matchString:key];
+        if (ranges.count == 0) {
+            NSLog(@"Check here: %@", key);
+            break;
+        }
+        else {
+            NSRange range = [[ranges firstObject] rangeValue];
+            XCTAssertEqualObjects(key, [key substringWithRange:range]);
+        }
+        numberOfValidItems++;
+    }
+    XCTAssertEqual(numberOfValidItems, [dictM allKeys].count);
 }
 
 @end

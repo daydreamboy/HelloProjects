@@ -14,6 +14,8 @@
 		4F20CB1B2060F9FF00C4463B /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F20CB192060F9FF00C4463B /* Demo1ViewController.m */; };
 		4F20CB1E2060FA0700C4463B /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F20CB1C2060FA0700C4463B /* RootViewController.m */; };
 		4F20CB262061073200C4463B /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F20CB252061073200C4463B /* Tests.m */; };
+		4F7D9012210DE92F00145B00 /* EmoticonInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D9011210DE92E00145B00 /* EmoticonInfo.plist */; };
+		4F7D9013210DE93D00145B00 /* EmoticonInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D9011210DE92E00145B00 /* EmoticonInfo.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,7 @@
 		4F20CB232061073200C4463B /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F20CB252061073200C4463B /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		4F20CB272061073200C4463B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F7D9011210DE92E00145B00 /* EmoticonInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = EmoticonInfo.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +85,7 @@
 		4F20CB012060F98D00C4463B /* HelloNSRegularExpression */ = {
 			isa = PBXGroup;
 			children = (
+				4F7D9010210DE92E00145B00 /* Resources */,
 				4F20CB182060F9FF00C4463B /* AppTestDemos */,
 				4F20CB022060F98D00C4463B /* AppDelegate.h */,
 				4F20CB032060F98D00C4463B /* AppDelegate.m */,
@@ -111,6 +115,14 @@
 				4F20CB272061073200C4463B /* Info.plist */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		4F7D9010210DE92E00145B00 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4F7D9011210DE92E00145B00 /* EmoticonInfo.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +209,7 @@
 			files = (
 				4F20CB0F2060F98D00C4463B /* LaunchScreen.storyboard in Resources */,
 				4F20CB0C2060F98D00C4463B /* Assets.xcassets in Resources */,
+				4F7D9012210DE92F00145B00 /* EmoticonInfo.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,6 +217,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F7D9013210DE93D00145B00 /* EmoticonInfo.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
