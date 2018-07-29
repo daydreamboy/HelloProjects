@@ -11,6 +11,7 @@
 #import "UseYYLabelWithAttachmentViewController.h"
 #import "UseUILabelViewController.h"
 #import "UseYYLabelWithLinkViewController.h"
+#import "UseYYWLabelWithEmoticonViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -36,12 +37,14 @@
         @"YYTextAttachmentExample",
         @"TestUILabelViewController",
         @"YYLabel with Link",
+        @"YYLabel with emoticon",
         @"call a test method",
     ];
     _classes = @[
         [UseYYLabelWithAttachmentViewController class],
         [UseUILabelViewController class],
         [UseYYLabelWithLinkViewController class],
+        [UseYYWLabelWithEmoticonViewController class],
         @"testMethod",
     ];
 }

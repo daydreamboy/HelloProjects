@@ -9,7 +9,6 @@
 #import "UseYYLabelWithLinkViewController.h"
 #import "YYLabel.h"
 
-
 @interface UseYYLabelWithLinkViewController ()
 @property (nonatomic, strong) YYLabel *label1;
 @end

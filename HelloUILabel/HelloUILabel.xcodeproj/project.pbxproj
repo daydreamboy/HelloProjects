@@ -10,6 +10,8 @@
 		4F7D8E4C21062BB000145B00 /* UseUILabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8E4B21062BB000145B00 /* UseUILabelViewController.m */; };
 		4F7D8E4F21062F3F00145B00 /* WCStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8E4E21062F3F00145B00 /* WCStringTool.m */; };
 		4F7D8F37210B674D00145B00 /* UseYYLabelWithLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8F36210B674D00145B00 /* UseYYLabelWithLinkViewController.m */; };
+		4F7D900D210DD8DF00145B00 /* UseYYWLabelWithEmoticonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D900C210DD8DF00145B00 /* UseYYWLabelWithEmoticonViewController.m */; };
+		4F7D900F210DDB8300145B00 /* 001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D900E210DDB8200145B00 /* 001@2x.png */; };
 		4F9382F720C6D67C00568EE1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9382F620C6D67C00568EE1 /* AppDelegate.m */; };
 		4F9382FF20C6D67E00568EE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F9382FE20C6D67E00568EE1 /* Assets.xcassets */; };
 		4F93830220C6D67E00568EE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F93830020C6D67E00568EE1 /* LaunchScreen.storyboard */; };
@@ -46,6 +48,9 @@
 		4F7D8E4E21062F3F00145B00 /* WCStringTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCStringTool.m; sourceTree = "<group>"; };
 		4F7D8F35210B674D00145B00 /* UseYYLabelWithLinkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseYYLabelWithLinkViewController.h; sourceTree = "<group>"; };
 		4F7D8F36210B674D00145B00 /* UseYYLabelWithLinkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseYYLabelWithLinkViewController.m; sourceTree = "<group>"; };
+		4F7D900B210DD8DE00145B00 /* UseYYWLabelWithEmoticonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseYYWLabelWithEmoticonViewController.h; sourceTree = "<group>"; };
+		4F7D900C210DD8DF00145B00 /* UseYYWLabelWithEmoticonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseYYWLabelWithEmoticonViewController.m; sourceTree = "<group>"; };
+		4F7D900E210DDB8200145B00 /* 001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "001@2x.png"; sourceTree = "<group>"; };
 		4F9382F220C6D67C00568EE1 /* HelloUILabel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUILabel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F9382F520C6D67C00568EE1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F9382F620C6D67C00568EE1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -173,6 +178,8 @@
 				4F7D8E4B21062BB000145B00 /* UseUILabelViewController.m */,
 				4F7D8F35210B674D00145B00 /* UseYYLabelWithLinkViewController.h */,
 				4F7D8F36210B674D00145B00 /* UseYYLabelWithLinkViewController.m */,
+				4F7D900B210DD8DE00145B00 /* UseYYWLabelWithEmoticonViewController.h */,
+				4F7D900C210DD8DF00145B00 /* UseYYWLabelWithEmoticonViewController.m */,
 				4F93835F20C6EA2B00568EE1 /* YYTextExampleHelper.h */,
 				4F93836020C6EA2C00568EE1 /* YYTextExampleHelper.m */,
 				4F93836520C6EA6900568EE1 /* YYGestureRecognizer.h */,
@@ -228,6 +235,7 @@
 		4F93836920C6EB3700568EE1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F7D900E210DDB8200145B00 /* 001@2x.png */,
 				4F93836A20C6EB4200568EE1 /* dribbble64_imageio.png */,
 			);
 			path = Resources;
@@ -290,6 +298,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F7D900F210DDB8300145B00 /* 001@2x.png in Resources */,
 				4F93830220C6D67E00568EE1 /* LaunchScreen.storyboard in Resources */,
 				4F93836B20C6EB4200568EE1 /* dribbble64_imageio.png in Resources */,
 				4F9382FF20C6D67E00568EE1 /* Assets.xcassets in Resources */,
@@ -312,6 +321,7 @@
 				4F93834020C6E3C100568EE1 /* YYTextRunDelegate.m in Sources */,
 				4F93834620C6E42800568EE1 /* YYTextWeakProxy.m in Sources */,
 				4F93833A20C6E2B100568EE1 /* NSAttributedString+YYText.m in Sources */,
+				4F7D900D210DD8DF00145B00 /* UseYYWLabelWithEmoticonViewController.m in Sources */,
 				4F93832C20C6E22C00568EE1 /* YYTextLayout.m in Sources */,
 				4F93833320C6E23900568EE1 /* YYTextAttribute.m in Sources */,
 				4F93836420C6EA5100568EE1 /* UIControl+YYAdd.m in Sources */,
