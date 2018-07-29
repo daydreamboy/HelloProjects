@@ -326,4 +326,51 @@
     NSLog(@"jsonObject: %@", jsonObject);
 }
 
+- (void)test_url {
+    NSString *pattern;
+    NSString *matchString;
+    
+    pattern = @"(http|https)://((\\w)*|([0-9]*)|([-|_])*)+([\\.|/]((\\w)*|([0-9]*)|([-|_])*))+";
+    
+    // Case 1
+    matchString = @"http://www.example.com";
+    [self runRegexWithPattern:pattern matchString:matchString];
+    
+    // Case 2
+    matchString = @"http://www.example.es";
+    [self runRegexWithPattern:pattern matchString:matchString];
+    
+    // Case 3
+    matchString = @"https://www.example.com/index?param=a";
+    [self runRegexWithPattern:pattern matchString:matchString];
+
+    // Case 4: not valid
+    matchString = @"www.example.com";
+    [self runRegexWithPattern:pattern matchString:matchString];
+
+    // Case 5: not valid
+    matchString = @"example.com";
+    [self runRegexWithPattern:pattern matchString:matchString];
+    
+    // Case 6: not valid
+    matchString = @"example";
+    [self runRegexWithPattern:pattern matchString:matchString];
+
+    // Case 7: not valid
+    matchString = @"http://example";
+    [self runRegexWithPattern:pattern matchString:matchString];
+
+    // Case 8
+    matchString = @"http://example.com";
+    [self runRegexWithPattern:pattern matchString:matchString];
+
+    // Case 9: not valid
+    matchString = @"www.example";
+    [self runRegexWithPattern:pattern matchString:matchString];
+    
+    // Case 10
+    matchString = @"https://detail.tmall.com/item.htm?id=568371443233&spm=a223v.7835278.t0.1.3cbe2312nwviTo&pvid=be2a1b12-f24f-4050-9227-e7c3448fd8b8&scm=1007.12144.81309.9011_8949&utparam={%22x_hestia_source%22:%228949%22,%22x_mt%22:10,%22x_object_id%22:568371443233,%22x_object_type%22:%22item%22,%22x_pos%22:1,%22x_pvid%22:%22be2a1b12-f24f-4050-9227-e7c3448fd8b8%22,%22x_src%22:%228949%22}";
+    [self runRegexWithPattern:pattern matchString:matchString];
+}
+
 @end
