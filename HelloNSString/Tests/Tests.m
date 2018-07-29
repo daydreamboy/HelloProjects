@@ -9,8 +9,22 @@
 #import <XCTest/XCTest.h>
 #import "WCStringTool.h"
 
-@interface Tests : XCTestCase
+@interface Model : NSObject
+@property (nonatomic, assign) NSRange range;
+@end
 
+@implementation Model
++ (instancetype)modelWithRange:(NSRange)range {
+    Model *model = [Model new];
+    model.range = range;
+    return model;
+}
+- (NSString *)description {
+    return [NSString stringWithFormat:@"%@", NSStringFromRange(self.range)];
+}
+@end
+
+@interface Tests : XCTestCase
 @end
 
 @implementation Tests
@@ -130,6 +144,53 @@
     string = @"https://qngateway.taobao.com/gw/wwjs/multi.resource.emoticon.query?id=144";
     value = [WCStringTool valueWithUrlString:string forKey:@"id"];
     XCTAssertEqualObjects(value, @"144");
+}
+
+- (void)test_WCStringTool_componentsWithString_delimeters {
+    NSString *string;
+    NSArray *components;
+    
+    // Case 1
+    string = @"This is a test string, and should split into multiple parts by multiple delimeters.";
+    components = [WCStringTool componentsWithString:string delimeters:@[@"and", @"multiple", @"a"]];
+    for (NSString *part in components) {
+        NSLog(@"`%@`", part);
+    }
+    NSLog(@"---------------------------------");
+    
+    // Case 2
+    string = @"This is a test string, and should split into multiple parts by multiple delimeters.";
+    components = [WCStringTool componentsWithString:string delimeters:@[@"multiple", @"a", @"and"]];
+    for (NSString *part in components) {
+        NSLog(@"`%@`", part);
+    }
+    NSLog(@"---------------------------------");
+}
+
+- (void)test_NSArray {
+    Model *m1 = [Model modelWithRange:(NSRange){3, 10}];
+    Model *m2 = [Model modelWithRange:(NSRange){1, 5}];
+    Model *m3 = [Model modelWithRange:(NSRange){4, 1}];
+    Model *m4 = [Model modelWithRange:(NSRange){2, 15}];
+    
+    NSMutableArray *arrM = [NSMutableArray array];
+    [arrM addObject:m1];
+    [arrM addObject:m2];
+    [arrM addObject:m3];
+    [arrM addObject:m4];
+    
+    NSArray *arr;
+    arr = [arrM sortedArrayUsingComparator:^NSComparisonResult(Model* _Nonnull value1, Model* _Nonnull value2) {
+        NSComparisonResult result = NSOrderedSame;
+        if (value1.range.location > value2.range.location) {
+            result = NSOrderedDescending;
+        } else if (value1.range.location < value2.range.location) {
+            result = NSOrderedAscending;
+        }
+        return result;
+    }];
+    
+    NSLog(@"%@", arr);
 }
 
 @end

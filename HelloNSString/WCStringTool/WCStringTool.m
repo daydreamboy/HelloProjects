@@ -11,77 +11,6 @@
 
 @implementation WCStringTool
 
-#pragma mark - NSString to Struct/Object
-
-+ (CGRect)rectFromString:(NSString *)string {
-    if (![string isKindOfClass:[NSString class]] || !string.length) {
-        return CGRectNull;
-    }
-    
-    NSString *compactString = [string stringByReplacingOccurrencesOfString:@" " withString:@""];
-    if ([compactString isEqualToString:@"{{0,0},{0,0}}"]) {
-        return CGRectZero;
-    }
-    else {
-        CGRect rect = CGRectFromString(string);
-        if (CGRectEqualToRect(rect, CGRectZero)) {
-            return CGRectNull;
-        }
-        else {
-            return rect;
-        }
-    }
-}
-
-+ (NSValue *)edgeInsetsValueFromString:(NSString *)string {
-    if (![string isKindOfClass:[NSString class]] || !string.length) {
-        return nil;
-    }
-    
-    NSString *compactString = [string stringByReplacingOccurrencesOfString:@" " withString:@""];
-    if ([compactString isEqualToString:@"{0,0,0,0}"]) {
-        return [NSValue valueWithUIEdgeInsets:UIEdgeInsetsZero];
-    }
-    else {
-        UIEdgeInsets edgeInsets = UIEdgeInsetsFromString(string);
-        if (UIEdgeInsetsEqualToEdgeInsets(edgeInsets, UIEdgeInsetsZero)) {
-            // string is invalid, return nil
-            return nil;
-        }
-        else {
-            return [NSValue valueWithUIEdgeInsets:edgeInsets];
-        }
-    }
-}
-
-+ (UIColor *)colorFromHexString:(NSString *)string {
-    if (![string isKindOfClass:[NSString class]]) {
-        return nil;
-    }
-    
-    if (![string hasPrefix:@"#"] || (string.length != 7 && string.length != 9)) {
-        return nil;
-    }
-    
-    // Note: -1 as failure flag
-    int r = -1, g = -1, b = -1, a = -1;
-    
-    if (string.length == 7) {
-        a = 0xFF;
-        sscanf([string UTF8String], "#%02x%02x%02x", &r, &g, &b);
-    }
-    else if (string.length == 9) {
-        sscanf([string UTF8String], "#%02x%02x%02x%02x", &r, &g, &b, &a);
-    }
-    
-    if (r == -1 || g == -1 || b == -1 || a == -1) {
-        // parse hex failed
-        return nil;
-    }
-    
-    return [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:a / 255.0];
-}
-
 #pragma mark - Measure Size for Single-line/Multi-line String
 
 + (CGSize)textSizeWithSingleLineString:(NSString *)string font:(UIFont *)font {
@@ -167,6 +96,77 @@
 
 #pragma mark - Handle String As Specific Strings
 
+#pragma mark > Handle String as CGRect/UIEdgeInsets/UIColor
+
++ (CGRect)rectFromString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]] || !string.length) {
+        return CGRectNull;
+    }
+    
+    NSString *compactString = [string stringByReplacingOccurrencesOfString:@" " withString:@""];
+    if ([compactString isEqualToString:@"{{0,0},{0,0}}"]) {
+        return CGRectZero;
+    }
+    else {
+        CGRect rect = CGRectFromString(string);
+        if (CGRectEqualToRect(rect, CGRectZero)) {
+            return CGRectNull;
+        }
+        else {
+            return rect;
+        }
+    }
+}
+
++ (NSValue *)edgeInsetsValueFromString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]] || !string.length) {
+        return nil;
+    }
+    
+    NSString *compactString = [string stringByReplacingOccurrencesOfString:@" " withString:@""];
+    if ([compactString isEqualToString:@"{0,0,0,0}"]) {
+        return [NSValue valueWithUIEdgeInsets:UIEdgeInsetsZero];
+    }
+    else {
+        UIEdgeInsets edgeInsets = UIEdgeInsetsFromString(string);
+        if (UIEdgeInsetsEqualToEdgeInsets(edgeInsets, UIEdgeInsetsZero)) {
+            // string is invalid, return nil
+            return nil;
+        }
+        else {
+            return [NSValue valueWithUIEdgeInsets:edgeInsets];
+        }
+    }
+}
+
++ (UIColor *)colorFromHexString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    if (![string hasPrefix:@"#"] || (string.length != 7 && string.length != 9)) {
+        return nil;
+    }
+    
+    // Note: -1 as failure flag
+    int r = -1, g = -1, b = -1, a = -1;
+    
+    if (string.length == 7) {
+        a = 0xFF;
+        sscanf([string UTF8String], "#%02x%02x%02x", &r, &g, &b);
+    }
+    else if (string.length == 9) {
+        sscanf([string UTF8String], "#%02x%02x%02x%02x", &r, &g, &b, &a);
+    }
+    
+    if (r == -1 || g == -1 || b == -1 || a == -1) {
+        // parse hex failed
+        return nil;
+    }
+    
+    return [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:a / 255.0];
+}
+
 #pragma mark > Handle String As Url
 
 /*!
@@ -237,6 +237,79 @@
     }
     
     return [dictM copy];
+}
+
+#pragma mark - Handle String As Plain
+
+#pragma mark > Substring String
+
++ (NSString *)substringWithString:(NSString *)string atLocation:(NSUInteger)location length:(NSUInteger)length {
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    if (location < string.length) {
+        if (length < string.length - location) {
+            return [string substringWithRange:NSMakeRange(location, length)];
+        }
+        else {
+            // Now substring from loc to the end of string
+            return [string substringFromIndex:location];
+        }
+    }
+    else {
+        return nil;
+    }
+}
+
++ (NSString *)substringWithString:(NSString *)string range:(NSRange)range {
+    return [self substringWithString:string atLocation:range.location length:range.length];
+}
+
++ (NSString *)firstSubstringWithString:(NSString *)string substringInCharacterSet:(NSCharacterSet *)characterSet {
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    NSString *substring = nil;
+    
+    NSScanner *scanner = [NSScanner scannerWithString:string];
+    
+    // Throw away characters before matching the first character in characterSet
+    [scanner scanUpToCharactersFromSet:characterSet intoString:NULL];
+    
+    // Start collecting characters in characterSet until not matching the first character in the characterSet
+    [scanner scanCharactersFromSet:characterSet intoString:&substring];
+    
+    return substring;
+}
+
+#pragma mark > Split String
+
++ (NSArray<NSString *> *)componentsWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters {
+    NSMutableArray *strings = [NSMutableArray arrayWithObject:string];
+    NSArray *components = [self splitStringWithComponents:strings delimeters:[delimeters mutableCopy]];
+    return components;
+}
+
++ (NSMutableArray<NSString *> *)splitStringWithComponents:(NSMutableArray<NSString *> *)components delimeters:(NSMutableArray<NSString *> *)delimeters {
+    if (delimeters.count) {
+        // Get the first delimeter
+        NSString *delimeter = [delimeters firstObject];
+        NSMutableArray *parts = [NSMutableArray array];
+        for (NSString *component in components) {
+            NSMutableArray *subcomponents = [[component componentsSeparatedByString:delimeter] mutableCopy];
+            [subcomponents removeObject:@""];
+            [parts addObjectsFromArray:subcomponents];
+        }
+        
+        // remove the used delimeter
+        [delimeters removeObjectAtIndex:0];
+        return [self splitStringWithComponents:parts delimeters:delimeters];
+    }
+    else {
+        return components;
+    }
 }
 
 #pragma mark - Cryption

@@ -11,7 +11,19 @@
 
 @interface WCStringTool : NSObject
 
-#pragma mark - NSString to CGRect/Object
+#pragma mark - Measure Size for Single-line/Multi-line String
+
++ (CGSize)textSizeWithSingleLineString:(NSString *)string font:(UIFont *)font;
++ (CGSize)textSizeWithMultiLineString:(NSString *)string font:(UIFont *)font size:(CGSize)size mode:(NSLineBreakMode)lineBreakMode;
++ (CGSize)textSizeWithMultipleLineString:(NSString *)string width:(CGFloat)width attributes:(NSDictionary *)attributes;
+
+#pragma mark - NSStringFromXXX
+
++ (NSString *)stringFromUIGestureRecognizerState:(UIGestureRecognizerState)state;
+
+#pragma mark - Handle String As Specific Strings
+
+#pragma mark > Handle String as CGRect/UIEdgeInsets/UIColor
 
 /**
  Safe convert NSString to CGRect
@@ -24,7 +36,7 @@
 
 /**
  Safe convert NSString to UIEdgeInsets, use value.UIEdgeInsets to get UIEdgeInsets
-
+ 
  @param string the NSString represents UIEdgeInsets
  @return the NSValue to wrap UIEdgeInsets. Return nil if string is invalid.
  @warning not allow 0.0, instead of just using 0.
@@ -38,18 +50,6 @@
  @return the UIColor object. return nil if string is not valid.
  */
 + (UIColor *)colorFromHexString:(NSString *)string;
-
-#pragma mark - Measure Size for Single-line/Multi-line String
-
-+ (CGSize)textSizeWithSingleLineString:(NSString *)string font:(UIFont *)font;
-+ (CGSize)textSizeWithMultiLineString:(NSString *)string font:(UIFont *)font size:(CGSize)size mode:(NSLineBreakMode)lineBreakMode;
-+ (CGSize)textSizeWithMultipleLineString:(NSString *)string width:(CGFloat)width attributes:(NSDictionary *)attributes;
-
-#pragma mark - NSStringFromXXX
-
-+ (NSString *)stringFromUIGestureRecognizerState:(UIGestureRecognizerState)state;
-
-#pragma mark - Handle String As Specific Strings
 
 #pragma mark > Handle String As Url
 
@@ -65,8 +65,54 @@
  */
 + (NSDictionary *)keyValuePairsWithUrlString:(NSString *)string;
 
-#pragma mark - Cryption
+#pragma mark - Handle String As Plain
+
+#pragma mark > Substring String
+
+/**
+ Safe get substring with the location and the length
+
+ @param string the whole string
+ @param location the start location
+ @param length the length of substring
+ @return the substring. Return nil if the locatio or length is invalid, e.g. location out of the string index [0..string.length]
+ */
++ (NSString *)substringWithString:(NSString *)string atLocation:(NSUInteger)location length:(NSUInteger)length;
+
+/**
+ Safe get substring with the length which started at the location
+
+ @param string the whole string
+ @param range the range
+ @return the substring. Return nil if the range is invalid.
+ @discussion this method will internally call +[WCStringTool substringWithString:atLocation:length:]
+ */
++ (NSString *)substringWithString:(NSString *)string range:(NSRange)range;
+
+/**
+ Get the first substring which matches the characterSet
+
+ @param string the whole string
+ @param characterSet the character set to match
+ @return the substring
+ @code
+ // Input
+ NSString *originalString = @"*_?.幸运号This's my string：01234adbc5678";
+ 
+ NSString *numberString = [originalString firstSubstringInCharacterSet:[NSCharacterSet decimalDigitCharacterSet]];
+ NSLog(@"%@", numberString); // 01234
+ @endcode
+ */
++ (NSString *)firstSubstringWithString:(NSString *)string substringInCharacterSet:(NSCharacterSet *)characterSet;
+
+#pragma mark > Split String
+
++ (NSArray<NSString *> *)componentsWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters;
+
+#pragma mark - Encryption
 
 + (NSString *)MD5WithString:(NSString *)string;
+
+
 
 @end
