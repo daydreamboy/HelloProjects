@@ -7,34 +7,7 @@
 //
 
 #import "WCDataDetector.h"
-#import <CommonCrypto/CommonDigest.h>
-
-@interface WCStringTool : NSObject
-@end
-
-@interface WCStringTool ()
-+ (NSString *)MD5WithString:(NSString *)string;
-@end
-
-@implementation WCStringTool
-+ (NSString *)MD5WithString:(NSString *)string {
-    if (string.length) {
-        const char *cStr = [string UTF8String];
-        unsigned char result[16];
-        CC_MD5(cStr, (unsigned int)strlen(cStr), result);
-        return [NSString stringWithFormat:
-                @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
-                result[0], result[1], result[2], result[3],
-                result[4], result[5], result[6], result[7],
-                result[8], result[9], result[10], result[11],
-                result[12], result[13], result[14], result[15]
-                ];
-    }
-    else {
-        return nil;
-    }
-}
-@end
+#import "MPMStringTool.h"
 
 @interface WCDataDetector ()
 @property (nonatomic, strong) NSDataDetector *dataDetector;
@@ -72,7 +45,7 @@
     
     NSRange range = NSMakeRange(0, string.length);
     if (self.enableCheckResultsCache) {
-        NSString *key = [WCStringTool MD5WithString:string];
+        NSString *key = [MPMStringTool MD5WithString:string];
         
         matches = [self.cache objectForKey:key];
         if (matches) {

@@ -15,6 +15,11 @@
 		4F7D8F60210B705F00145B00 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8F5E210B705F00145B00 /* RootViewController.m */; };
 		4F7D8F64210B70F800145B00 /* WCDataDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8F63210B70F800145B00 /* WCDataDetector.m */; };
 		4F7D8F6C210B712F00145B00 /* Test_NSDataDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8F6B210B712F00145B00 /* Test_NSDataDetector.m */; };
+		4F7D9016210E13BE00145B00 /* MPMDataDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D9015210E13BE00145B00 /* MPMDataDetector.m */; };
+		4F7D9019210E13F600145B00 /* MPMStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D9018210E13F600145B00 /* MPMStringTool.m */; };
+		4F7D901A210E14D700145B00 /* MPMDataDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D9015210E13BE00145B00 /* MPMDataDetector.m */; };
+		4F7D901B210E14D700145B00 /* WCDataDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8F63210B70F800145B00 /* WCDataDetector.m */; };
+		4F7D901C210E14D700145B00 /* MPMStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D9018210E13F600145B00 /* MPMStringTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +49,10 @@
 		4F7D8F69210B712F00145B00 /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F7D8F6B210B712F00145B00 /* Test_NSDataDetector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_NSDataDetector.m; sourceTree = "<group>"; };
 		4F7D8F6D210B712F00145B00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F7D9014210E13BC00145B00 /* MPMDataDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMDataDetector.h; sourceTree = "<group>"; };
+		4F7D9015210E13BE00145B00 /* MPMDataDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMDataDetector.m; sourceTree = "<group>"; };
+		4F7D9017210E13F600145B00 /* MPMStringTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPMStringTool.h; sourceTree = "<group>"; };
+		4F7D9018210E13F600145B00 /* MPMStringTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPMStringTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,8 +120,12 @@
 		4F7D8F61210B70E400145B00 /* WCDataDetector */ = {
 			isa = PBXGroup;
 			children = (
+				4F7D9014210E13BC00145B00 /* MPMDataDetector.h */,
+				4F7D9015210E13BE00145B00 /* MPMDataDetector.m */,
 				4F7D8F62210B70F800145B00 /* WCDataDetector.h */,
 				4F7D8F63210B70F800145B00 /* WCDataDetector.m */,
+				4F7D9017210E13F600145B00 /* MPMStringTool.h */,
+				4F7D9018210E13F600145B00 /* MPMStringTool.m */,
 			);
 			path = WCDataDetector;
 			sourceTree = "<group>";
@@ -225,7 +238,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F7D9016210E13BE00145B00 /* MPMDataDetector.m in Sources */,
 				4F7D8F54210B702000145B00 /* main.m in Sources */,
+				4F7D9019210E13F600145B00 /* MPMStringTool.m in Sources */,
 				4F7D8F5F210B705F00145B00 /* Demo1ViewController.m in Sources */,
 				4F7D8F60210B705F00145B00 /* RootViewController.m in Sources */,
 				4F7D8F64210B70F800145B00 /* WCDataDetector.m in Sources */,
@@ -237,6 +252,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F7D901A210E14D700145B00 /* MPMDataDetector.m in Sources */,
+				4F7D901B210E14D700145B00 /* WCDataDetector.m in Sources */,
+				4F7D901C210E14D700145B00 /* MPMStringTool.m in Sources */,
 				4F7D8F6C210B712F00145B00 /* Test_NSDataDetector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
