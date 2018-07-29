@@ -9,5 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface WCURLTool : NSObject
+
+/**
+ Get URL for local png image
+
+ @param imageName the png name without extension and @2x or @3x
+ @param resourceBundleName the resource bundle name. If nil, use main bundle
+ @return the NSURL for the png image
+ */
 + (NSURL *)PNGImageURLWithImageName:(NSString *)imageName inResourceBundle:(NSString *)resourceBundleName;
 @end

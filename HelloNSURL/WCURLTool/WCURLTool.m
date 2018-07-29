@@ -12,8 +12,20 @@
 @implementation WCURLTool
 
 + (NSURL *)PNGImageURLWithImageName:(NSString *)imageName inResourceBundle:(NSString *)resourceBundleName {
-    NSString *resourceBundlePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:resourceBundleName];
-    NSBundle *resourceBundle = [NSBundle bundleWithPath:resourceBundlePath];
+    if (![imageName isKindOfClass:[NSString class]] || ![resourceBundleName isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    NSBundle *resourceBundle;
+    NSString *resourceBundlePath;
+    if (resourceBundleName) {
+        resourceBundlePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:resourceBundleName];
+        resourceBundle = [NSBundle bundleWithPath:resourceBundlePath];
+    }
+    else {
+        resourceBundle = [NSBundle mainBundle];
+        resourceBundlePath = [[NSBundle mainBundle] bundlePath];
+    }
     
     NSArray *imageNames = @[
                             // image@2x.png
