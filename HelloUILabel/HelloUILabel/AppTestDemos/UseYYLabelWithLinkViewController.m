@@ -9,10 +9,11 @@
 #import "UseYYLabelWithLinkViewController.h"
 #import "YYLabel.h"
 
-@interface UseYYLabelWithLinkViewController ()
+@interface UseYYLabelWithLinkViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) YYLabel *label1;
 @property (nonatomic, strong) YYLabel *label2;
 @property (nonatomic, strong) YYLabel *label3;
+@property (nonatomic, strong) UITableView *tableView;
 @end
 
 @implementation UseYYLabelWithLinkViewController
@@ -23,6 +24,7 @@
     [self.view addSubview:self.label1];
     [self.view addSubview:self.label2];
     [self.view addSubview:self.label3];
+    [self.view addSubview:self.tableView];
 }
 
 #pragma mark - Getters
@@ -109,5 +111,51 @@
     return _label3;
 }
 
+- (UITableView *)tableView {
+    if (!_tableView) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 300, screenSize.width, 200) style:UITableViewStylePlain];
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        _tableView = tableView;
+    }
+    
+    return _tableView;
+}
+
+#pragma mark - UITableViewDelegate
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 3;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *sCellIdentifier = @"UseYYLabelWithLinkViewController_sCellIdentifier";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
+        
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        NSString *string = @"This is a link, www.baidu.com. Tap to open it.";
+        NSRange range = [string rangeOfString:@"www.baidu.com"];
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:string];
+        
+        [attrString yy_setTextHighlightRange:range color:[UIColor blueColor] backgroundColor:[[UIColor lightGrayColor] colorWithAlphaComponent:0.5] userInfo:@{@"key": @"value"}];
+        
+        YYLabel *label = [[YYLabel alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, 30)];
+        label.attributedText = attrString;
+        [label setHighlightTapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+            NSLog(@"highlighted text: %@", [text attributedSubstringFromRange:range]);
+            NSDictionary *attrs = [[text attributedSubstringFromRange:range] attributesAtIndex:0 effectiveRange:nil];
+            NSLog(@"userInfo: %@", [attrs[YYTextHighlightAttributeName] userInfo]);
+        }];
+        
+        [cell addSubview:label];
+    }
+    
+    return cell;
+}
 
 @end
