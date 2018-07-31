@@ -11,6 +11,8 @@
 
 @interface UseYYLabelWithLinkViewController ()
 @property (nonatomic, strong) YYLabel *label1;
+@property (nonatomic, strong) YYLabel *label2;
+@property (nonatomic, strong) YYLabel *label3;
 @end
 
 @implementation UseYYLabelWithLinkViewController
@@ -19,6 +21,8 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.label1];
+    [self.view addSubview:self.label2];
+    [self.view addSubview:self.label3];
 }
 
 #pragma mark - Getters
@@ -39,11 +43,71 @@
         
         YYLabel *label = [[YYLabel alloc] initWithFrame:CGRectMake(10, 100, screenSize.width - 2 * 10, 30)];
         label.attributedText = attrString;
+        [label setHighlightTapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+            NSLog(@"text: %@", text);
+        }];
         
         _label1 = label;
     }
     
     return _label1;
 }
+
+- (YYLabel *)label2 {
+    if (!_label2) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        NSString *string = @"This is a link, www.baidu.com. Tap to open it.";
+        NSRange range = [string rangeOfString:@"www.baidu.com"];
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:string];
+        
+        [attrString yy_setTextHighlightRange:range color:[UIColor blueColor] backgroundColor:[[UIColor lightGrayColor] colorWithAlphaComponent:0.5] userInfo:@{@"key": @"value"}];
+        
+        YYLabel *label = [[YYLabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(self.label1.frame) + 10, screenSize.width - 2 * 10, 30)];
+        label.attributedText = attrString;
+        [label setHighlightTapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+            NSLog(@"highlighted text: %@", [text attributedSubstringFromRange:range]);
+            NSDictionary *attrs = [[text attributedSubstringFromRange:range] attributesAtIndex:0 effectiveRange:nil];
+            NSLog(@"userInfo: %@", [attrs[YYTextHighlightAttributeName] userInfo]);
+        }];
+        
+        _label2 = label;
+    }
+    
+    return _label2;
+}
+
+- (YYLabel *)label3 {
+    if (!_label3) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        NSString *string = @"This is a link, www.baidu.com. Tap to open it.";
+        NSRange range = [string rangeOfString:@"www.baidu.com"];
+        NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:string];
+        
+        YYTextHighlight *textHighlight = [YYTextHighlight highlightWithBackgroundColor:[[UIColor lightGrayColor] colorWithAlphaComponent:0.5]];
+        [textHighlight setColor:[UIColor blueColor]];
+        [textHighlight setUserInfo:@{@"key": @"value"}];
+        [textHighlight setTapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+            NSLog(@"highlighted text: %@", [text attributedSubstringFromRange:range]);
+            NSDictionary *attrs = [[text attributedSubstringFromRange:range] attributesAtIndex:0 effectiveRange:nil];
+            NSLog(@"userInfo: %@", [attrs[YYTextHighlightAttributeName] userInfo]);
+        }];
+        
+        [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:range];
+        [attrString yy_setTextHighlight:textHighlight range:range];
+        YYLabel *label = [[YYLabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(self.label2.frame) + 10, screenSize.width - 2 * 10, 30)];
+        label.attributedText = attrString;
+        // Note: not called
+        [label setHighlightTapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+            NSLog(@"highlighted text: %@", [text attributedSubstringFromRange:range]);
+            NSDictionary *attrs = [[text attributedSubstringFromRange:range] attributesAtIndex:0 effectiveRange:nil];
+            NSLog(@"userInfo: %@", [attrs[YYTextHighlightAttributeName] userInfo]);
+        }];
+        
+        _label3 = label;
+    }
+    
+    return _label3;
+}
+
 
 @end

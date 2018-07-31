@@ -34,10 +34,10 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"YYTextAttachmentExample",
+        @"YYLabel with Attachment",
         @"TestUILabelViewController",
         @"YYLabel with Link",
-        @"YYLabel with emoticon",
+        @"YYLabel with Emoticon",
         @"call a test method",
     ];
     _classes = @[
