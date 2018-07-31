@@ -153,7 +153,8 @@
         NSComparisonResult result = NSOrderedSame;
         if (value1.range.location > value2.range.location) {
             result = NSOrderedDescending;
-        } else if (value1.range.location < value2.range.location) {
+        }
+        else if (value1.range.location < value2.range.location) {
             result = NSOrderedAscending;
         }
         return result;
