@@ -404,4 +404,90 @@
     XCTAssertEqual(numberOfValidItems, [dictM allKeys].count);
 }
 
+- (void)test_translate_emoticon_display_format_to_emoticon_code {
+    NSString *emoticonCodePlistPath = [[NSBundle mainBundle] pathForResource:@"EmoticonInfo" ofType:@"plist"];
+    
+    // 1. prepare map
+    // 天使 -> /:065
+    NSMutableDictionary<NSString *, NSString *> *dictM = [NSMutableDictionary dictionary];
+    
+    NSDictionary<NSString *, NSArray *> *emotionCodeDict = [NSDictionary dictionaryWithContentsOfFile:emoticonCodePlistPath];
+    [emotionCodeDict enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSArray * _Nonnull obj, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[NSArray class]] && obj.count == 2) {
+            NSArray *arr = (NSArray *)obj;
+            dictM[[NSString stringWithFormat:@"%@", arr[0]]] = arr[1];
+        }
+    }];
+    
+    
+    // 2. check by pattern
+    NSString *pattern = @"\\[(.+?)\\]";
+    NSString *string;
+    string = @"测试表情[微笑]另一个表情[害羞]...";
+    
+    NSMutableArray<NSString *> *matchStrings = [NSMutableArray array];
+    NSError *error;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:kNilOptions error:&error];
+    [regex enumerateMatchesInString:string options:kNilOptions range:NSMakeRange(0, string.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        if (result.numberOfRanges == 2) {
+            NSRange captureRange = [result rangeAtIndex:1];
+            if (captureRange.location != NSNotFound) {
+                NSString *substring = [string substringWithRange:captureRange];
+                if (substring.length) {
+                    NSString *code = dictM[substring];
+                    if (code.length) {
+                        [matchStrings addObject:substring];
+                    }
+                }
+            }
+        }
+    }];
+    
+    // 3. replace display format to code
+    NSMutableString *stringM = [string mutableCopy];
+    for (NSString *match in matchStrings) {
+        NSString *code = dictM[match];
+        NSString *stringToReplace = [NSString stringWithFormat:@"[%@]", match];
+        [stringM replaceOccurrencesOfString:stringToReplace withString:code options:kNilOptions range:NSMakeRange(0, stringM.length)];
+    }
+    
+    NSLog(@"%@", stringM);
+}
+
+- (void)test_non_greedy_capture {
+    
+    NSString *pattern = @"\\[([^\\]]*)\\]"; // not match @"[]]"
+    // Note: `+?` Match 1 or more times. Match as few times as possible.
+    // `*?` Match 0 or more times. Match as few times as possible.
+    pattern = @"\\[(.+?)\\]";
+    
+    // Case 1
+    NSString *string;
+    string = @"测试表情[微笑]另一个表情[害羞]";
+//    string = @"[]";
+//    string = @"[]]测试[a]";
+//    string = @"[[]";
+//    string = @"[[]]";
+    
+    NSMutableArray<NSString *> *matchStrings = [NSMutableArray array];
+    
+    NSError *error;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:kNilOptions error:&error];
+    [regex enumerateMatchesInString:string options:kNilOptions range:NSMakeRange(0, string.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        if (result.numberOfRanges == 2) {
+            NSRange captureRange = [result rangeAtIndex:1];
+            if (captureRange.location != NSNotFound) {
+                NSString *substring = [string substringWithRange:captureRange];
+                if (substring.length) {
+                    [matchStrings addObject:substring];
+                }
+            }
+        }
+    }];
+    
+    for (NSString *match in matchStrings) {
+        NSLog(@"%@", match);
+    }
+}
+
 @end
