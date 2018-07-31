@@ -16,7 +16,18 @@
 		4F4E14DC21036DAE00D12D11 /* RandomColorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E14D521036DAE00D12D11 /* RandomColorsViewController.m */; };
 		4F4E14DD21036DAE00D12D11 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E14D921036DAE00D12D11 /* RootViewController.m */; };
 		4F4E14E121036E3800D12D11 /* WCColorTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E14E021036E3800D12D11 /* WCColorTool.m */; };
+		4F7D9024210EB71700145B00 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D9023210EB71700145B00 /* Test.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4F7D9026210EB71700145B00 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F4E14B021036CEF00D12D11 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F4E14B721036CEF00D12D11;
+			remoteInfo = HelloUIColor;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4F4E14B821036CEF00D12D11 /* HelloUIColor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUIColor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,10 +47,20 @@
 		4F4E14D921036DAE00D12D11 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F4E14DF21036E3800D12D11 /* WCColorTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCColorTool.h; sourceTree = "<group>"; };
 		4F4E14E021036E3800D12D11 /* WCColorTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCColorTool.m; sourceTree = "<group>"; };
+		4F7D9021210EB71600145B00 /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F7D9023210EB71700145B00 /* Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
+		4F7D9025210EB71700145B00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		4F4E14B521036CEF00D12D11 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F7D901E210EB71600145B00 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -54,6 +75,7 @@
 			children = (
 				4F4E14DE21036E3800D12D11 /* WCColorTool */,
 				4F4E14BA21036CEF00D12D11 /* HelloUIColor */,
+				4F7D9022210EB71700145B00 /* Test */,
 				4F4E14B921036CEF00D12D11 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				4F4E14B821036CEF00D12D11 /* HelloUIColor.app */,
+				4F7D9021210EB71600145B00 /* Test.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -104,6 +127,15 @@
 			path = WCColorTool;
 			sourceTree = "<group>";
 		};
+		4F7D9022210EB71700145B00 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				4F7D9023210EB71700145B00 /* Test.m */,
+				4F7D9025210EB71700145B00 /* Info.plist */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -124,6 +156,24 @@
 			productReference = 4F4E14B821036CEF00D12D11 /* HelloUIColor.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4F7D9020210EB71600145B00 /* Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F7D902A210EB71800145B00 /* Build configuration list for PBXNativeTarget "Test" */;
+			buildPhases = (
+				4F7D901D210EB71600145B00 /* Sources */,
+				4F7D901E210EB71600145B00 /* Frameworks */,
+				4F7D901F210EB71600145B00 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F7D9027210EB71700145B00 /* PBXTargetDependency */,
+			);
+			name = Test;
+			productName = Test;
+			productReference = 4F7D9021210EB71600145B00 /* Test.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -135,6 +185,10 @@
 				TargetAttributes = {
 					4F4E14B721036CEF00D12D11 = {
 						CreatedOnToolsVersion = 9.4;
+					};
+					4F7D9020210EB71600145B00 = {
+						CreatedOnToolsVersion = 9.4;
+						TestTargetID = 4F4E14B721036CEF00D12D11;
 					};
 				};
 			};
@@ -152,6 +206,7 @@
 			projectRoot = "";
 			targets = (
 				4F4E14B721036CEF00D12D11 /* HelloUIColor */,
+				4F7D9020210EB71600145B00 /* Test */,
 			);
 		};
 /* End PBXProject section */
@@ -163,6 +218,13 @@
 			files = (
 				4F4E14C821036CF100D12D11 /* LaunchScreen.storyboard in Resources */,
 				4F4E14C521036CF100D12D11 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F7D901F210EB71600145B00 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,7 +245,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4F7D901D210EB71600145B00 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F7D9024210EB71700145B00 /* Test.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4F7D9027210EB71700145B00 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F4E14B721036CEF00D12D11 /* HelloUIColor */;
+			targetProxy = 4F7D9026210EB71700145B00 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4F4E14C621036CF100D12D11 /* LaunchScreen.storyboard */ = {
@@ -339,6 +417,42 @@
 			};
 			name = Release;
 		};
+		4F7D9028210EB71800145B00 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Test/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Test;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloUIColor.app/HelloUIColor";
+			};
+			name = Debug;
+		};
+		4F7D9029210EB71800145B00 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Test/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Test;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloUIColor.app/HelloUIColor";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -356,6 +470,15 @@
 			buildConfigurations = (
 				4F4E14CF21036CF100D12D11 /* Debug */,
 				4F4E14D021036CF100D12D11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F7D902A210EB71800145B00 /* Build configuration list for PBXNativeTarget "Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F7D9028210EB71800145B00 /* Debug */,
+				4F7D9029210EB71800145B00 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
