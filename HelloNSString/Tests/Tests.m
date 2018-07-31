@@ -179,8 +179,7 @@
     [arrM addObject:m3];
     [arrM addObject:m4];
     
-    NSArray *arr;
-    arr = [arrM sortedArrayUsingComparator:^NSComparisonResult(Model* _Nonnull value1, Model* _Nonnull value2) {
+    [arrM sortUsingComparator:^NSComparisonResult(Model* _Nonnull value1, Model* _Nonnull value2) {
         NSComparisonResult result = NSOrderedSame;
         if (value1.range.location > value2.range.location) {
             result = NSOrderedDescending;
@@ -190,7 +189,7 @@
         return result;
     }];
     
-    NSLog(@"%@", arr);
+    NSLog(@"%@", arrM);
 }
 
 @end
