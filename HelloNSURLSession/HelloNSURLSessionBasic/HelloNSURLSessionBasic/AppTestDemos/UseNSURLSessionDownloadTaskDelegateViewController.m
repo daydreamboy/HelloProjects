@@ -90,6 +90,7 @@
     // @see https://stackoverflow.com/a/27170681
     NSURL *newLocation = [[location URLByDeletingPathExtension] URLByAppendingPathExtension:extension];
     [[NSFileManager defaultManager] moveItemAtURL:location toURL:newLocation error:nil];
+    //[[NSFileManager defaultManager] createSymbolicLinkAtURL:newLocation withDestinationURL:location error:nil];
     
     AVAsset *asset = [AVAsset assetWithURL:newLocation];
     AVPlayerItem *item = [AVPlayerItem playerItemWithAsset:asset];
