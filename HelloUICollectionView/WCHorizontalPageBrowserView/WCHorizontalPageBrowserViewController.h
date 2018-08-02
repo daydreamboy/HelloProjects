@@ -18,6 +18,10 @@ typedef NS_ENUM(NSUInteger, WCHorizontalPageBrowserItemType) {
 @interface WCHorizontalPageBrowserItem : NSObject
 @property (nonatomic, assign) WCHorizontalPageBrowserItemType type;
 @property (nonatomic, strong) NSURL *URL;
+
+/**
+ Default is YES
+ */
 @property (nonatomic, assign) BOOL autoPlayVideo;
 + (instancetype)itemWithURL:(NSURL *)URL type:(WCHorizontalPageBrowserItemType)type;
 @end

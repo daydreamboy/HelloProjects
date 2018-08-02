@@ -18,6 +18,10 @@
 
 - (void)displayLocalVideo:(NSURL *)fileURL;
 - (void)play;
+/**
+ Auto play when remote video become ready. If ready, play immediately.
+ */
+- (void)playIfReady;
 - (void)stop;
 
 @end

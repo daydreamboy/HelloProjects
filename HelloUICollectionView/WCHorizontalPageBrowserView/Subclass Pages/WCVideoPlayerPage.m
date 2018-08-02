@@ -18,6 +18,7 @@
 @property (nonatomic, strong, readwrite) UIImageView *imageViewPlayIcon;
 @property (nonatomic, strong) AVPlayerLayer *playerLayer;
 @property (nonatomic, strong) AVPlayerItem *currentPlayerItem;
+@property (nonatomic, assign) BOOL autoPlayWhenStatusReady;
 @end
 
 @implementation WCVideoPlayerPage
@@ -74,6 +75,15 @@
     self.imageViewPlayIcon.hidden = YES;
     [self.player seekToTime:kCMTimeZero];
     [self.player play];
+}
+
+- (void)playIfReady {
+    if ([self readyToPlay]) {
+        [self play];
+    }
+    else {
+        self.autoPlayWhenStatusReady = YES;
+    }
 }
 
 - (void)stop {
@@ -179,10 +189,18 @@
             case AVPlayerItemStatusReadyToPlay:
                 // Ready to Play
                 NSLog(@"KVO: Ready to Play, %@", item.error);
+                if (self.autoPlayWhenStatusReady) {
+                    self.autoPlayWhenStatusReady = NO;
+                    [self play];
+                }
                 break;
             case AVPlayerItemStatusFailed:
                 // Failed. Examine AVPlayerItem.error
                 NSLog(@"KVO: Failed, %@", item.error);
+                if (self.autoPlayWhenStatusReady) {
+                    self.autoPlayWhenStatusReady = NO;
+                    // TODO: 播放失败
+                }
                 break;
             case AVPlayerItemStatusUnknown:
                 // Not ready

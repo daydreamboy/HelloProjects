@@ -52,6 +52,7 @@
     [super viewDidAppear:animated];
     
     if (self.present) {
+        [_pageBrowserViewController setCurrentPageAtIndex:self.items.count - 1 animated:NO];
         [_pageBrowserViewController.view addSubview:self.buttonDismiss];
         [_pageBrowserViewController.view addSubview:self.buttonScrollToPage];
         

@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, WCHorizontalPageBrowserViewScrollDirection) {
 @interface WCHorizontalPageBrowserView () <UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, Class> *registeredCells;
-@property (nonatomic, assign) NSInteger indexOfCurrentPage;
+@property (nonatomic, assign, readwrite) NSInteger indexOfCurrentPage;
 @property (nonatomic, assign) CGFloat lastContentOffset;
 @end
 
@@ -88,10 +88,25 @@ typedef NS_ENUM(NSUInteger, WCHorizontalPageBrowserViewScrollDirection) {
     if ([self.dataSource respondsToSelector:@selector(numberOfPagesHorizontalPageBrowserView:)]) {
         numberOfPages = [self.dataSource numberOfPagesHorizontalPageBrowserView:self];
     }
-    if (index >= 0 && index < numberOfPages) {
+    if (0 <= index && index < numberOfPages) {
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
         [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:animated];
     }
+}
+
+- (WCBaseHorizontalPage *)pageAtIndex:(NSInteger)index {
+    WCBaseHorizontalPage *page;
+    
+    NSInteger numberOfPages = 0;
+    if ([self.dataSource respondsToSelector:@selector(numberOfPagesHorizontalPageBrowserView:)]) {
+        numberOfPages = [self.dataSource numberOfPagesHorizontalPageBrowserView:self];
+    }
+    if (0 <= index && index < numberOfPages) {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForItem:index inSection:0];
+        page = (WCBaseHorizontalPage *)[self.collectionView cellForItemAtIndexPath:indexPath];
+    }
+    
+    return page;
 }
 
 #pragma mark -

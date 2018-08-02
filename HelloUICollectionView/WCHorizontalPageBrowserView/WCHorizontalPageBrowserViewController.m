@@ -67,6 +67,7 @@
 @property (nonatomic, strong) id <SDWebImageOperation> imageDownload;
 @property (nonatomic, strong) AFURLSessionManager *sessionManager;
 @property (nonatomic, strong) NSURL *cacheFolderURL;
+@property (nonatomic, strong) NSNumber *initialPageIndex;
 @end
 
 @implementation WCHorizontalPageBrowserViewController
@@ -81,6 +82,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //system("osascript -e 'tell app \"Xcode\" to display dialog \"Hello World\"'");
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     self.sessionManager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
@@ -91,6 +93,36 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.pageBrowserView];
+    
+    if (self.initialPageIndex) {
+        NSInteger index = [self.initialPageIndex integerValue];
+        if (0 <= index && index < self.pageData.count) {
+            [self.pageBrowserView setCurrentPage:index animated:NO];
+        }
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    NSInteger index = self.pageBrowserView.indexOfCurrentPage;
+    if (0 <= index && index < self.pageData.count) {
+        WCBaseHorizontalPage *page = [self.pageBrowserView pageAtIndex:index];
+        WCHorizontalPageBrowserItem *item = self.pageData[index];
+        if ([page isKindOfClass:[WCVideoPlayerPage class]] && item.autoPlayVideo) {
+            WCVideoPlayerPage *videoPlayerPage = (WCVideoPlayerPage *)page;
+            if (item.autoPlayVideo) {
+                if (videoPlayerPage.readyToPlay) {
+                    if (!videoPlayerPage.playing) {
+                        [videoPlayerPage play];
+                    }
+                }
+                else {
+                    [videoPlayerPage playIfReady];
+                }
+            }
+        }
+    }
 }
 
 #pragma mark - 
@@ -117,8 +149,14 @@
 }
 
 - (void)setCurrentPageAtIndex:(NSInteger)index animated:(BOOL)animated {
-    if (0 <= index && index < self.pageData.count) {
-        [self.pageBrowserView setCurrentPage:index animated:animated];
+    // Note: viewDidLoad not called, pageData is not ready, so just keep the index as initialPageIndex
+    if (self.isViewLoaded) {
+        if (0 <= index && index < self.pageData.count) {
+            [self.pageBrowserView setCurrentPage:index animated:animated];
+        }
+    }
+    else {
+        self.initialPageIndex = @(index);
     }
 }
 

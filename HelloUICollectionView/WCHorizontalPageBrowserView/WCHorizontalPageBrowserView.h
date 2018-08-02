@@ -58,10 +58,16 @@
  */
 @property (nonatomic, strong) UIColor *separatorColor;
 
+/**
+ The index of current page
+ */
+@property (nonatomic, assign, readonly) NSInteger indexOfCurrentPage;
+
 - (void)registerPageClass:(Class)cellClass forPageWithReuseIdentifier:(NSString *)reuseIdentifier;
 - (WCBaseHorizontalPage *)dequeueReusablePageWithReuseIdentifier:(NSString *)reuseIdentifier forIndex:(NSInteger)index;
 - (void)reloadData;
 - (void)reloadItemsAtIndexes:(NSArray<NSNumber *> *)indexes animated:(BOOL)animated;
 - (void)setCurrentPage:(NSInteger)index animated:(BOOL)animated;
+- (WCBaseHorizontalPage *)pageAtIndex:(NSInteger)index;
 
 @end
