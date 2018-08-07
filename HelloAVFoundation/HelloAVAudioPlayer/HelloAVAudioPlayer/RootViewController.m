@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 #import "ContinuousPlayVoiceViewController.h"
 #import "UseWCAudioPlayerViewController.h"
+#import "PlayOPUSAudioFileViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -33,11 +34,13 @@
     _titles = @[
         @"Demo1ViewController's title",
         @"Use WCAudioPlayer",
+        @"Play .opus audio file",
         @"call a test method",
     ];
     _classes = @[
         [ContinuousPlayVoiceViewController class],
         [UseWCAudioPlayerViewController class],
+        [PlayOPUSAudioFileViewController class],
         @"testMethod",
     ];
 }
