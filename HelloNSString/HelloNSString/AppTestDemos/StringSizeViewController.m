@@ -29,7 +29,7 @@
         NSString *text = @"60\"";
         
         CGSize textSize = [WCStringTool textSizeWithSingleLineString:text font:[UIFont systemFontOfSize:16]];
-//        CGSize textSize = [WCStringTool textSizeWithMultiLineString:text font:[UIFont systemFontOfSize:16] size:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) mode:NSLineBreakByCharWrapping];
+//        CGSize textSize = [WCStringTool textSizeWithMultipleLineString:text font:[UIFont systemFontOfSize:16] size:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) mode:NSLineBreakByCharWrapping];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 64 + 10, textSize.width, textSize.height)];
         label.text = text;
 //        label.numberOfLines = 0;
