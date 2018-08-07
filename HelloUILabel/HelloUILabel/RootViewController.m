@@ -12,6 +12,11 @@
 #import "UseUILabelViewController.h"
 #import "UseYYLabelWithLinkViewController.h"
 #import "UseYYWLabelWithEmoticonViewController.h"
+#import "UseMPMShareCommodityViewViewController.h"
+#import "UseMPMShareStoreViewViewController.h"
+#import "UseMPMShareCouponViewViewController.h"
+#import "UseMPMShareLinkViewViewController.h"
+#import "UseMPMShareLiveViewViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -38,6 +43,11 @@
         @"TestUILabelViewController",
         @"YYLabel with Link",
         @"YYLabel with Emoticon",
+        @"Use MPMShareCommodityView",
+        @"Use MPMShareStoreView",
+        @"Use MPMShareCouponView",
+        @"Use MPMShareLinkView",
+        @"Use MPMShareLiveView",
         @"call a test method",
     ];
     _classes = @[
@@ -45,6 +55,11 @@
         [UseUILabelViewController class],
         [UseYYLabelWithLinkViewController class],
         [UseYYWLabelWithEmoticonViewController class],
+        [UseMPMShareCommodityViewViewController class],
+        [UseMPMShareStoreViewViewController class],
+        [UseMPMShareCouponViewViewController class],
+        [UseMPMShareLinkViewViewController class],
+        [UseMPMShareLiveViewViewController class],
         @"testMethod",
     ];
 }
