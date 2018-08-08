@@ -21,6 +21,8 @@
 #   define WCLog(fmt, ...)
 #endif
 
+NSFileAttributeKey const WCFileName = @"WCFileName";
+
 @implementation WCFileManagerTool
 
 #pragma mark - File Creation
@@ -167,6 +169,12 @@
 
 #pragma mark - File Name Sort
 
++ (NSArray *)sortedFileNamesInDirectoryPath:(NSString *)directoryPath ascend:(BOOL)ascend {
+    NSArray *sortedFileNames = [self sortedFileNamesWithAttributeName:WCFileName inDirectoryPath:directoryPath ascend:ascend];
+    
+    return sortedFileNames;
+}
+
 + (NSArray *)sortedFileNamesByCreationDateInDirectoryPath:(NSString *)directoryPath ascend:(BOOL)ascend {
     NSArray *sortedFileNames = [self sortedFileNamesWithAttributeName:NSFileCreationDate inDirectoryPath:directoryPath ascend:ascend];
     
@@ -188,6 +196,36 @@
 + (NSArray *)sortedFileNamesByExtensionInDirectoryPath:(NSString *)directoryPath ascend:(BOOL)ascend {
     // TODO:
     return nil;
+}
+
++ (NSArray *)sortedFileNamesWithAttributeName:(NSString *)attributeName inDirectoryPath:(NSString *)directoryPath ascend:(BOOL)ascend {
+    // Note: Get current item not recursively
+    NSArray *fileNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:directoryPath error:nil];
+    
+    if ([attributeName isEqualToString:WCFileName]) {
+        NSArray *sortedFileNames = [fileNames sortedArrayUsingComparator:^NSComparisonResult(NSString *  _Nonnull fileName1, NSString * _Nonnull fileName2) {
+            return ascend ? [fileName1 localizedCompare:fileName2] : [fileName2 localizedCompare:fileName1];
+        }];
+        return sortedFileNames;
+    }
+    else {
+        NSArray *sortedFileNames = [fileNames sortedArrayUsingComparator:^NSComparisonResult (NSString *fileName1, NSString *fileName2) {
+            NSString *filePath1 = [directoryPath stringByAppendingPathComponent:fileName1];
+            NSString *filePath2 = [directoryPath stringByAppendingPathComponent:fileName2];
+            
+            NSDictionary *attributes1 = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath1
+                                                                                         error:nil];
+            NSDictionary *attributes2 = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath2
+                                                                                         error:nil];
+            
+            id attribute1 = attributes1[attributeName];
+            id attrubute2 = attributes2[attributeName];
+            
+            return ascend ? [attribute1 compare:attrubute2] : [attrubute2 compare:attribute1];
+        }];
+        
+        return sortedFileNames;
+    }
 }
 
 #pragma mark - File Path Sort
@@ -412,29 +450,6 @@
     }
     
     return fileSize;
-}
-
-#pragma mark - Internal Methods
-
-+ (NSArray *)sortedFileNamesWithAttributeName:(NSString *)attributeName inDirectoryPath:(NSString *)directoryPath ascend:(BOOL)ascend {
-    NSArray *fileNames = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:directoryPath error:nil];
-    
-    NSArray *sortedFileNames = [fileNames sortedArrayUsingComparator:^NSComparisonResult (NSString *fileName1, NSString *fileName2) {
-        NSString *filePath1 = [directoryPath stringByAppendingPathComponent:fileName1];
-        NSString *filePath2 = [directoryPath stringByAppendingPathComponent:fileName2];
-        
-        NSDictionary *attributes1 = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath1
-                                                                                     error:nil];
-        NSDictionary *attributes2 = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath2
-                                                                                     error:nil];
-        
-        id attribute1 = attributes1[attributeName];
-        id attrubute2 = attributes2[attributeName];
-        
-        return ascend ? [attribute1 compare:attrubute2] : [attrubute2 compare:attribute1];
-    }];
-    
-    return sortedFileNames;
 }
 
 + (NSArray *)sortedFilePathsWithAttributeName:(NSString *)attributeName inDirectoryPath:(NSString *)directoryPath ascend:(BOOL)ascend {

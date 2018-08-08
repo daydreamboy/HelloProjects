@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+FOUNDATION_EXPORT NSFileAttributeKey const WCFileName;
 
 @interface WCFileManagerTool : NSObject
 
@@ -42,10 +45,32 @@
 
 #pragma mark - File Name Sort
 
+/**
+ Get sorted file names in the directory not recursively
+
+ @param directoryPath the path of directory
+ @param ascend YES if ascend, NO if descend
+ @return the sorted file names
+ */
++ (NSArray *)sortedFileNamesInDirectoryPath:(NSString *)directoryPath ascend:(BOOL)ascend;
 + (NSArray *)sortedFileNamesByCreationDateInDirectoryPath:(NSString *)directoryPath ascend:(BOOL)ascend;
 + (NSArray *)sortedFileNamesByModificationDateInDirectoryPath:(NSString *)directoryPath ascend:(BOOL)ascend;
 + (NSArray *)sortedFileNamesBySizeInDirectoryPath:(NSString *)directoryPath ascend:(BOOL)ascend;
 + (NSArray *)sortedFileNamesByExtensionInDirectoryPath:(NSString *)directoryPath ascend:(BOOL)ascend;
+
+/**
+ Get an sorted file names by attribute in the directory not recursively
+
+ @param attributeName the attribute, e.g. WCFileName, NSFileCreationDate,
+ @param directoryPath the path of directory
+ @param ascend YES if ascend, NO if descend
+ @return the sorted file names including the file extension
+ */
++ (NSArray *)sortedFileNamesWithAttributeName:(NSString *)attributeName inDirectoryPath:(NSString *)directoryPath ascend:(BOOL)ascend;
+
+#pragma mark - File Name Filter
+
+
 
 #pragma mark - File Path Sort
 
@@ -53,6 +78,9 @@
 + (NSArray *)sortedFilePathsByModificationDateInDirectoryPath:(NSString *)directoryPath ascend:(BOOL)ascend;
 + (NSArray *)sortedFilePathsBySizeInDirectoryPath:(NSString *)directoryPath ascend:(BOOL)ascend;
 + (NSArray *)sortedFilePathsByExtensionInDirectoryPath:(NSString *)directoryPath ascend:(BOOL)ascend;
+
+#pragma mark - File Path Filter
+
 
 #pragma mark - Directory Creation
 
@@ -75,3 +103,5 @@
 + (NSString *)directoryNameAtPath:(NSString *)path;
 
 @end
+
+NS_ASSUME_NONNULL_END

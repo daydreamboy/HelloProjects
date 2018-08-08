@@ -1,0 +1,152 @@
+{
+    "header": {
+        "title": "",
+        "summary": "",
+        "degrade": {}
+    },
+    "template": {
+        "data": {
+            "f": [
+                0,
+                0,
+                12,
+                4.5
+            ],
+            "sv": [
+                {
+                    "f": [
+                        0,
+                        0,
+                        12,
+                        4.5
+                    ],
+                    "sv": [
+                        {
+                            "cs": "box",
+                            "bc": "#FFFFFF",
+                            "sv": [
+                                {
+                                    "url": "https://gw.alicdn.com/tfs/TB1U7.XswmTBuNjy1XbXXaMrVXa-48-48.png",
+                                    "cs": "img",
+                                    "rds": 0.15,
+                                    "f": [
+                                        0.5,
+                                        0,
+                                        2.5,
+                                        2.5
+                                    ]
+                                },
+                                {
+                                    "cs": "box",
+                                    "sv": [
+                                        {
+                                            "cs": "box",
+                                            "sv": [
+                                                {
+                                                    "cs": "lbl",
+                                                    "text": "标题标题标题",
+                                                    "tfs": 0.7,
+                                                    "as": "fs",
+                                                    "ai": "fs",
+                                                    "tc": "#333333",
+                                                    "f": [
+                                                        0,
+                                                        0,
+                                                        8,
+                                                        2
+                                                    ]
+                                                }
+                                            ],
+                                            "f": [
+                                                0,
+                                                -0.25,
+                                                8,
+                                                2
+                                            ],
+                                            "as": "fs",
+                                            "ai": "fs",
+                                            "fd": "row",
+                                            "ds": "flex"
+                                        },
+                                        {
+                                            "cs": "lbl",
+                                            "text": "正文正文正文正文正文正文正文正文正文正文正文正文22222",
+                                            "tfs": "0.6",
+                                            "tc": "#999999",
+                                            "f": [
+                                                0,
+                                                1.9,
+                                                8,
+                                                0.6
+                                            ]
+                                        }
+                                    ],
+                                    "ds": "fix",
+                                    "f": [
+                                        0.5,
+                                        0,
+                                        8,
+                                        2.5
+                                    ]
+                                }
+                            ],
+                            "ds": "flex",
+                            "fd": "row",
+                            "f": [
+                                0,
+                                0.5,
+                                11.5,
+                                4.173
+                            ]
+                        },
+                        {
+                            "cs": "box",
+                            "sv": [
+                                {
+                                    "cs": "img",
+                                    "url": "https://gw.alicdn.com/tfs/TB1qrRTsGmWBuNjy1XaXXXCbXXa-48-48.png",
+                                    "f": [
+                                        0.5,
+                                        0.35,
+                                        0.65,
+                                        0.65
+                                    ]
+                                },
+                                {
+                                    "f": [
+                                        1.3,
+                                        0.35,
+                                        10,
+                                        0.61
+                                    ],
+                                    "tfs": "0.6",
+                                    "text": "分享链接",
+                                    "cs": "lbl",
+                                    "tc": "#BBBBBB"
+                                }
+                            ],
+                            "ds": "fix",
+                            "f": [
+                                0,
+                                3.25,
+                                12,
+                                1.3
+                            ]
+                        }
+                    ],
+                    "bc": "#ffffff",
+                    "ds": "fix",
+                    "cs": "box",
+                    "ac": [
+                        "wangxs://multiaction/or?multi=%5b%22wangx%3a%2f%2fweex%2fshowAlphaBgLayer%3furl%3dhttp%25253a%25252f%25252fmarket.m.taobao.com%25252fapp%25252fIMWeex%25252fHongbaoWeex%25252fsendhongbao%25253fwh_weex%25253dtrue%22%2c%22https%3a%2f%2falimarket.m.taobao.com%2fmarkets%2fqnww%2fhongbao%3fActionExtraParam%3dwangx%253a%252f%252fhongbao%252fquery%253fhongbaoId%253d111%2526hongbaoType%253d1%22%5d"
+                    ]
+                }
+            ],
+            "cs": "box",
+            "rds": 0.6,
+            "bc": "#00FFFFFF",
+            "ds": "fix"
+        },
+        "id": 20014
+    }
+}

@@ -12,9 +12,10 @@
 		4F4E1423210311C500D12D11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F4E1421210311C500D12D11 /* LaunchScreen.storyboard */; };
 		4F4E1426210311C500D12D11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E1425210311C500D12D11 /* main.m */; };
 		4F4E1431210311F800D12D11 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E142C210311F800D12D11 /* RootViewController.m */; };
-		4F4E1432210311F800D12D11 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E142E210311F800D12D11 /* Demo1ViewController.m */; };
 		4F4E14392103125B00D12D11 /* WCFileManagerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E14382103125B00D12D11 /* WCFileManagerTool.m */; };
 		4F4E1441210312EC00D12D11 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E1440210312EC00D12D11 /* Test.m */; };
+		4F52D24A211B08D3004EE254 /* SampleData in Resources */ = {isa = PBXBuildFile; fileRef = 4F52D249211B08D3004EE254 /* SampleData */; };
+		4F52D24D211B08F8004EE254 /* SortFileNamesInDirectoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D24C211B08F8004EE254 /* SortFileNamesInDirectoryViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,14 +37,15 @@
 		4F4E1424210311C500D12D11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F4E1425210311C500D12D11 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F4E142C210311F800D12D11 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		4F4E142E210311F800D12D11 /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
-		4F4E142F210311F800D12D11 /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
 		4F4E1430210311F800D12D11 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F4E14372103125B00D12D11 /* WCFileManagerTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCFileManagerTool.h; sourceTree = "<group>"; };
 		4F4E14382103125B00D12D11 /* WCFileManagerTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCFileManagerTool.m; sourceTree = "<group>"; };
 		4F4E143E210312EC00D12D11 /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F4E1440210312EC00D12D11 /* Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		4F4E1442210312EC00D12D11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F52D249211B08D3004EE254 /* SampleData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SampleData; sourceTree = "<group>"; };
+		4F52D24B211B08F8004EE254 /* SortFileNamesInDirectoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SortFileNamesInDirectoryViewController.h; sourceTree = "<group>"; };
+		4F52D24C211B08F8004EE254 /* SortFileNamesInDirectoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SortFileNamesInDirectoryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 		4F4E1415210311C000D12D11 /* HelloNSFileManager */ = {
 			isa = PBXGroup;
 			children = (
+				4F52D248211B07F2004EE254 /* Resources */,
 				4F4E142D210311F800D12D11 /* AppTestDemos */,
 				4F4E1416210311C000D12D11 /* AppDelegate.h */,
 				4F4E1417210311C000D12D11 /* AppDelegate.m */,
@@ -102,8 +105,8 @@
 		4F4E142D210311F800D12D11 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F4E142F210311F800D12D11 /* Demo1ViewController.h */,
-				4F4E142E210311F800D12D11 /* Demo1ViewController.m */,
+				4F52D24B211B08F8004EE254 /* SortFileNamesInDirectoryViewController.h */,
+				4F52D24C211B08F8004EE254 /* SortFileNamesInDirectoryViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -124,6 +127,14 @@
 				4F4E1442210312EC00D12D11 /* Info.plist */,
 			);
 			path = Test;
+			sourceTree = "<group>";
+		};
+		4F52D248211B07F2004EE254 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4F52D249211B08D3004EE254 /* SampleData */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -207,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F4E1423210311C500D12D11 /* LaunchScreen.storyboard in Resources */,
+				4F52D24A211B08D3004EE254 /* SampleData in Resources */,
 				4F4E1420210311C500D12D11 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -226,7 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F4E1426210311C500D12D11 /* main.m in Sources */,
-				4F4E1432210311F800D12D11 /* Demo1ViewController.m in Sources */,
+				4F52D24D211B08F8004EE254 /* SortFileNamesInDirectoryViewController.m in Sources */,
 				4F4E1431210311F800D12D11 /* RootViewController.m in Sources */,
 				4F4E1418210311C000D12D11 /* AppDelegate.m in Sources */,
 				4F4E14392103125B00D12D11 /* WCFileManagerTool.m in Sources */,
