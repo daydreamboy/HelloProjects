@@ -46,7 +46,7 @@ FOUNDATION_EXPORT NSFileAttributeKey const WCFileName;
 #pragma mark - File Name Sort
 
 /**
- Get sorted file names in the directory not recursively
+ Get a sorted file names in the directory not recursively
 
  @param directoryPath the path of directory
  @param ascend YES if ascend, NO if descend
@@ -59,7 +59,7 @@ FOUNDATION_EXPORT NSFileAttributeKey const WCFileName;
 + (NSArray *)sortedFileNamesByExtensionInDirectoryPath:(NSString *)directoryPath ascend:(BOOL)ascend;
 
 /**
- Get an sorted file names by attribute in the directory not recursively
+ Get a sorted file names by attribute in the directory not recursively
 
  @param attributeName the attribute, e.g. WCFileName, NSFileCreationDate,
  @param directoryPath the path of directory
@@ -70,7 +70,15 @@ FOUNDATION_EXPORT NSFileAttributeKey const WCFileName;
 
 #pragma mark - File Name Filter
 
+/**
+ Get a filtered file names in the directory not recursively
 
+ @param directoryPath the path of directory
+ @param ascend YES if ascend, NO if descend
+ @param extensions the array of extension (without `.`) whose are included
+ @return the filtered and sorted file names
+ */
++ (NSArray *)filteredFileNamesInDirectoryPath:(NSString *)directoryPath ascend:(BOOL)ascend extensions:(NSArray<NSString *> *)extensions;
 
 #pragma mark - File Path Sort
 

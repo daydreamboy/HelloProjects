@@ -16,6 +16,7 @@
 		4F4E1441210312EC00D12D11 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E1440210312EC00D12D11 /* Test.m */; };
 		4F52D24A211B08D3004EE254 /* SampleData in Resources */ = {isa = PBXBuildFile; fileRef = 4F52D249211B08D3004EE254 /* SampleData */; };
 		4F52D24D211B08F8004EE254 /* SortFileNamesInDirectoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D24C211B08F8004EE254 /* SortFileNamesInDirectoryViewController.m */; };
+		4F52D250211B1582004EE254 /* SortAndFilterFileNamesInDirectoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D24F211B1582004EE254 /* SortAndFilterFileNamesInDirectoryViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,8 @@
 		4F52D249211B08D3004EE254 /* SampleData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SampleData; sourceTree = "<group>"; };
 		4F52D24B211B08F8004EE254 /* SortFileNamesInDirectoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SortFileNamesInDirectoryViewController.h; sourceTree = "<group>"; };
 		4F52D24C211B08F8004EE254 /* SortFileNamesInDirectoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SortFileNamesInDirectoryViewController.m; sourceTree = "<group>"; };
+		4F52D24E211B1582004EE254 /* SortAndFilterFileNamesInDirectoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SortAndFilterFileNamesInDirectoryViewController.h; sourceTree = "<group>"; };
+		4F52D24F211B1582004EE254 /* SortAndFilterFileNamesInDirectoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SortAndFilterFileNamesInDirectoryViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +110,8 @@
 			children = (
 				4F52D24B211B08F8004EE254 /* SortFileNamesInDirectoryViewController.h */,
 				4F52D24C211B08F8004EE254 /* SortFileNamesInDirectoryViewController.m */,
+				4F52D24E211B1582004EE254 /* SortAndFilterFileNamesInDirectoryViewController.h */,
+				4F52D24F211B1582004EE254 /* SortAndFilterFileNamesInDirectoryViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -241,6 +246,7 @@
 				4F52D24D211B08F8004EE254 /* SortFileNamesInDirectoryViewController.m in Sources */,
 				4F4E1431210311F800D12D11 /* RootViewController.m in Sources */,
 				4F4E1418210311C000D12D11 /* AppDelegate.m in Sources */,
+				4F52D250211B1582004EE254 /* SortAndFilterFileNamesInDirectoryViewController.m in Sources */,
 				4F4E14392103125B00D12D11 /* WCFileManagerTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

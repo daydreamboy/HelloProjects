@@ -25,15 +25,14 @@
 - (void)test_sorted_file_names_by_name {
     NSString *directoryPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"SampleData"];
     
-    NSArray *fileNamesBySize1 = [WCFileManagerTool sortedFileNamesInDirectoryPath:directoryPath ascend:YES];
+    NSArray *fileNames1 = [WCFileManagerTool sortedFileNamesInDirectoryPath:directoryPath ascend:YES];
     NSLog(@"sorted ascend------------------");
-    NSLog(@"%@", fileNamesBySize1);
+    NSLog(@"%@", fileNames1);
     
     NSLog(@"sorted descend------------------");
-    NSArray *fileNamesBySize2 = [WCFileManagerTool sortedFileNamesInDirectoryPath:directoryPath ascend:NO];
-    NSLog(@"%@", fileNamesBySize2);
+    NSArray *fileNames2 = [WCFileManagerTool sortedFileNamesInDirectoryPath:directoryPath ascend:NO];
+    NSLog(@"%@", fileNames2);
 }
-
 
 - (void)test_sorted_file_names_by_size {
     NSString *directoryPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"SampleData"];

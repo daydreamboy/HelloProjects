@@ -228,6 +228,23 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
     }
 }
 
+#pragma mark - File Name Filter
+
++ (NSArray *)filteredFileNamesInDirectoryPath:(NSString *)directoryPath ascend:(BOOL)ascend extensions:(NSArray<NSString *> *)extensions {
+    NSArray *sortedFileNames = [self sortedFileNamesInDirectoryPath:directoryPath ascend:ascend];
+    
+    NSMutableArray<NSPredicate *> *subpredicates = [NSMutableArray array];
+    for (NSString *extension in extensions) {
+        // @see https://stackoverflow.com/a/6921590
+        [subpredicates addObject:[NSPredicate predicateWithFormat:[NSString stringWithFormat:@"self ENDSWITH '.%@'", extension]]];
+    }
+    // @see https://stackoverflow.com/a/25636590
+    NSCompoundPredicate *predicate = [NSCompoundPredicate orPredicateWithSubpredicates:subpredicates];
+    NSArray *filteredFileNames = [sortedFileNames filteredArrayUsingPredicate:predicate];
+    
+    return filteredFileNames;
+}
+
 #pragma mark - File Path Sort
 
 + (NSArray *)sortedFilePathsByCreationDateInDirectoryPath:(NSString *)directoryPath ascend:(BOOL)ascend {

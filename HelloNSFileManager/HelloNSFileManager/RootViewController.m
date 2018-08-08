@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 #import "SortFileNamesInDirectoryViewController.h"
+#import "SortAndFilterFileNamesInDirectoryViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -32,10 +33,12 @@
     // MARK: Configure titles and classes for table view
     _titles = @[
         @"Sort file names",
+        @"Filter file names",
         @"call a test method",
     ];
     _classes = @[
         [SortFileNamesInDirectoryViewController class],
+        [SortAndFilterFileNamesInDirectoryViewController class],
         @"testMethod",
     ];
 }
