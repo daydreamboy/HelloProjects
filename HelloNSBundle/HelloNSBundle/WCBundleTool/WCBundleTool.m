@@ -110,4 +110,53 @@
     return sImagesDict;
 }
 
+#pragma mark - Resource Bundle
+
++ (nullable NSURL *)URLForResource:(NSString *)resourceName inResourceBundle:(nullable NSString *)bundleName {
+    if (bundleName) {
+        NSURL *resourceBundleURL;
+        if ([bundleName hasSuffix:@".bundle"]) {
+            resourceBundleURL = [[NSBundle mainBundle] URLForResource:[bundleName stringByDeletingPathExtension] withExtension:@"bundle"];
+        }
+        else {
+            resourceBundleURL = [[NSBundle mainBundle] URLForResource:bundleName withExtension:@"bundle"];
+        }
+        
+        if (resourceBundleURL) {
+            // Note: pass nil to bundleWithURL: will crash
+            return [[NSBundle bundleWithURL:resourceBundleURL] URLForResource:[resourceName stringByDeletingPathExtension] withExtension:[resourceName pathExtension]];
+        }
+        else {
+            NSLog(@"resource bundle %@ not found", bundleName);
+            return nil;
+        }
+    }
+    else {
+        return [[NSBundle mainBundle] URLForResource:[resourceName stringByDeletingPathExtension] withExtension:[resourceName pathExtension]];
+    }
+}
+
++ (nullable NSString *)PathForResource:(NSString *)resourceName inResourceBundle:(nullable NSString *)bundleName {
+    if (bundleName) {
+        NSString *resourceBundlePath;
+        if ([bundleName hasSuffix:@".bundle"]) {
+            resourceBundlePath = [[NSBundle mainBundle] pathForResource:[bundleName stringByDeletingPathExtension] ofType:@"bundle"];
+        }
+        else {
+            resourceBundlePath = [[NSBundle mainBundle] pathForResource:bundleName ofType:@"bundle"];
+        }
+        
+        if (resourceBundlePath) {
+            return [[NSBundle bundleWithPath:resourceBundlePath] pathForResource:[resourceName stringByDeletingPathExtension] ofType:[resourceName pathExtension]];
+        }
+        else {
+            NSLog(@"resource bundle %@ not found", bundleName);
+            return nil;
+        }
+    }
+    else {
+        return [[NSBundle mainBundle] pathForResource:[resourceName stringByDeletingPathExtension] ofType:[resourceName pathExtension]];
+    }
+}
+
 @end

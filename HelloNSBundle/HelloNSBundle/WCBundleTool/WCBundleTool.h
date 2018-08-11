@@ -8,7 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface WCBundleTool : NSObject
+
+#pragma mark - Binary Bundle
 
 + (NSArray *)classNamesWithMainBundleImage;
 + (NSArray *)classNamesWithFrameworkImage:(NSString *)frameworkName;
@@ -25,4 +29,18 @@
 
 + (NSArray *)allDynamicLibraries;
 
+#pragma mark - Resource Bundle
+
+/**
+ Get the URL for resource file, e.g. plist, png
+
+ @param resourceName the resource file with extension
+ @param bundleName the resource bundle, e.g @"images" or @"images.bundle". And nil for main bundle
+ @return the URL for the resource file. Return nil if the resource file not found or the resource bundle not found.
+ */
++ (nullable NSURL *)URLForResource:(NSString *)resourceName inResourceBundle:(nullable NSString *)bundleName;
++ (nullable NSString *)PathForResource:(NSString *)resourceName inResourceBundle:(nullable NSString *)bundleName;
+
 @end
+
+NS_ASSUME_NONNULL_END

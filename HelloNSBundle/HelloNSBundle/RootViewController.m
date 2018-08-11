@@ -12,6 +12,7 @@
 #import "GetAllClassNamesOfMainBundleViewController.h"
 #import "GetAllClassNamesOfLazyLoadFrameworkViewController.h"
 #import "GetAllDynamicLibrariesViewController.h"
+#import "Test_PathForResourceInBundle_ViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -38,6 +39,7 @@
         @"Get all classes of framework image",
         @"Get all classes of lazy-loaded framework image",
         @"Get all dynamic libraries",
+        @"Access resource files",
         @"call a test method",
     ];
     _classes = @[
@@ -45,6 +47,7 @@
         [GetAllClassNamesOfFrameworkViewController class],
         [GetAllClassNamesOfLazyLoadFrameworkViewController class],
         [GetAllDynamicLibrariesViewController class],
+        [Test_PathForResourceInBundle_ViewController class],
         @"testMethod",
     ];
 }

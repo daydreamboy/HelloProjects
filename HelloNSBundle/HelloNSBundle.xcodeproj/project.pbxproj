@@ -26,6 +26,7 @@
 		4F9489C1200F4A1B0030BC4A /* LazyLoadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9489BF200F4A1B0030BC4A /* LazyLoadManager.m */; };
 		4F9489C4200F4AC40030BC4A /* LazyLoadFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F9489B2200F49FB0030BC4A /* LazyLoadFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4F9489C7200F570E0030BC4A /* GetAllClassNamesOfLazyLoadFrameworkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9489C6200F570E0030BC4A /* GetAllClassNamesOfLazyLoadFrameworkViewController.m */; };
+		4F94E500211EBCE5007AEA3B /* Test_PathForResourceInBundle_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F94E4FF211EBCE5007AEA3B /* Test_PathForResourceInBundle_ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,8 @@
 		4F9489BF200F4A1B0030BC4A /* LazyLoadManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LazyLoadManager.m; sourceTree = "<group>"; };
 		4F9489C5200F570E0030BC4A /* GetAllClassNamesOfLazyLoadFrameworkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAllClassNamesOfLazyLoadFrameworkViewController.h; sourceTree = "<group>"; };
 		4F9489C6200F570E0030BC4A /* GetAllClassNamesOfLazyLoadFrameworkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAllClassNamesOfLazyLoadFrameworkViewController.m; sourceTree = "<group>"; };
+		4F94E4FE211EBCE5007AEA3B /* Test_PathForResourceInBundle_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test_PathForResourceInBundle_ViewController.h; sourceTree = "<group>"; };
+		4F94E4FF211EBCE5007AEA3B /* Test_PathForResourceInBundle_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Test_PathForResourceInBundle_ViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +178,8 @@
 				4F9489C6200F570E0030BC4A /* GetAllClassNamesOfLazyLoadFrameworkViewController.m */,
 				4F1A27D12015FEAE009EEF1B /* GetAllDynamicLibrariesViewController.h */,
 				4F1A27D22015FEAE009EEF1B /* GetAllDynamicLibrariesViewController.m */,
+				4F94E4FE211EBCE5007AEA3B /* Test_PathForResourceInBundle_ViewController.h */,
+				4F94E4FF211EBCE5007AEA3B /* Test_PathForResourceInBundle_ViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -356,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F3525BE2006005F00891B09 /* main.m in Sources */,
+				4F94E500211EBCE5007AEA3B /* Test_PathForResourceInBundle_ViewController.m in Sources */,
 				4F3525B02006005F00891B09 /* AppDelegate.m in Sources */,
 				4F9489AC200F42D80030BC4A /* GetAllClassNamesOfFrameworkViewController.m in Sources */,
 				4F1A27D32015FEAE009EEF1B /* GetAllDynamicLibrariesViewController.m in Sources */,
