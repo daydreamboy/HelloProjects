@@ -312,6 +312,55 @@
     }
 }
 
+#pragma mark - Handle String As JSON
+
+#pragma mark > JSON String to id/NSArray/NSDictionary
+
++ (id)JSONObjectWithString:(NSString *)string NS_AVAILABLE_IOS(5_0) {
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    NSData *jsonData = [string dataUsingEncoding:NSUTF8StringEncoding];
+    if (!jsonData) {
+        return nil;
+    }
+    
+    @try {
+        NSError *error;
+        id jsonObject = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
+        if (!jsonObject) {
+            NSLog(@"[%@] error parsing JSON: %@", NSStringFromClass([self class]), error);
+        }
+        return jsonObject;
+    }
+    @catch (NSException *exception) {
+        NSLog(@"[%@] an exception occured:\n%@", NSStringFromClass([self class]), exception);
+    }
+    
+    return nil;
+}
+
++ (NSArray *)JSONArrayWithString:(NSString *)string NS_AVAILABLE_IOS(5_0) {
+    NSArray *jsonArray = [self JSONObjectWithString:string];
+    if ([jsonArray isKindOfClass:[NSArray class]]) {
+        return jsonArray;
+    }
+    else {
+        return nil;
+    }
+}
+
++ (NSDictionary *)JSONDictWithString:(NSString *)string NS_AVAILABLE_IOS(5_0) {
+    NSDictionary *jsonDict = [self JSONObjectWithString:string];
+    if ([jsonDict isKindOfClass:[NSDictionary class]]) {
+        return jsonDict;
+    }
+    else {
+        return nil;
+    }
+}
+
 #pragma mark - Cryption
 
 + (NSString *)MD5WithString:(NSString *)string {

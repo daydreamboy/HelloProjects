@@ -109,10 +109,37 @@
 
 + (NSArray<NSString *> *)componentsWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters;
 
+#pragma mark - Handle String As JSON
+
+#pragma mark > JSON String to id/NSArray/NSDictionary
+
+/**
+ Convert the JSON formatted string to NSArray or NSDictionary object
+
+ @param string the JSON formatted string
+ @return If the string is not JSON formatted, return nil.
+ */
++ (id)JSONObjectWithString:(NSString *)string NS_AVAILABLE_IOS(5_0);
+
+/**
+ Convert the JSON formatted string to NSArray object
+
+ @param string the JSON formatted string
+ @return If the string is not JSON formatted or a JSON array object, return nil.
+ */
++ (NSArray *)JSONArrayWithString:(NSString *)string NS_AVAILABLE_IOS(5_0);
+
+/**
+ Convert the JSON formatted string to NSDictionary object
+
+ @param string the JSON formatted string
+ @return If the string is not JSON formatted or a JSON dictionary object, return nil.
+ */
++ (NSDictionary *)JSONDictWithString:(NSString *)string NS_AVAILABLE_IOS(5_0);
+
 #pragma mark - Encryption
 
 + (NSString *)MD5WithString:(NSString *)string;
-
 
 
 @end

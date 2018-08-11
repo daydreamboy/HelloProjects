@@ -39,6 +39,14 @@ NS_ASSUME_NONNULL_BEGIN
  @return the URL for the resource file. Return nil if the resource file not found or the resource bundle not found.
  */
 + (nullable NSURL *)URLForResource:(NSString *)resourceName inResourceBundle:(nullable NSString *)bundleName;
+
+/**
+ Get the Path for resource file, e.g. plist, png
+
+ @param resourceName the resource file with extension
+ @param bundleName the resource bundle, e.g @"images" or @"images.bundle". And nil for main bundle
+ @return the Path for the resource file. Return nil if the resource file not found or the resource bundle not found.
+ */
 + (nullable NSString *)PathForResource:(NSString *)resourceName inResourceBundle:(nullable NSString *)bundleName;
 
 @end

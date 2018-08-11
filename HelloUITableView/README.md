@@ -12,15 +12,13 @@
 
 解决方法
 
-1\. 使用`self.automaticallyAdjustsScrollViewInsets = NO`（iOS 7+），contentInset设置{0, 0, 0, 0}
+1\. 使用`self.automaticallyAdjustsScrollViewInsets = NO`（iOS 7+），将contentInset设置为{0, 0, 0, 0}
 
 2&3\. iOS 11+提供`tableView:viewForHeaderInSection:`和`tableView:viewForFooterInSection:`方法，返回空的view
 
 
 说明
->
-1. viewDidAppear可以打印contentInset检查
-
+>viewDidAppear可以打印contentInset检查
 ## UITableView Tips
 
 1\. Plain Table的数据没有显示超出屏幕时，去除下面多余的分隔线

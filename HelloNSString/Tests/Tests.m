@@ -9,21 +9,6 @@
 #import <XCTest/XCTest.h>
 #import "WCStringTool.h"
 
-@interface Model : NSObject
-@property (nonatomic, assign) NSRange range;
-@end
-
-@implementation Model
-+ (instancetype)modelWithRange:(NSRange)range {
-    Model *model = [Model new];
-    model.range = range;
-    return model;
-}
-- (NSString *)description {
-    return [NSString stringWithFormat:@"%@", NSStringFromRange(self.range)];
-}
-@end
-
 @interface Tests : XCTestCase
 @end
 
@@ -146,7 +131,7 @@
     XCTAssertEqualObjects(value, @"144");
 }
 
-- (void)test_WCStringTool_componentsWithString_delimeters {
+- (void)test_componentsWithString_delimeters {
     NSString *string;
     NSArray *components;
     
@@ -167,29 +152,49 @@
     NSLog(@"---------------------------------");
 }
 
-- (void)test_NSArray {
-    Model *m1 = [Model modelWithRange:(NSRange){3, 10}];
-    Model *m2 = [Model modelWithRange:(NSRange){1, 5}];
-    Model *m3 = [Model modelWithRange:(NSRange){4, 1}];
-    Model *m4 = [Model modelWithRange:(NSRange){2, 15}];
+#pragma mark - Handle String As JSON
+
+#pragma mark > JSON String to id/NSArray/NSDictionary
+
+- (void)test_jsonObject {
+    NSString *jsonDictString = @"{\"result_code\":\"9999\",\"message\":\"ok\",\"conf\":{\"d\":\"E9F8EE6FA52D548711BA59DEFABD948C\",\"switch\":\"1\",\"issync\":\"1\",\"mode\":\"2\",\"infoSwitch\":\"0\"}}";
+    NSDictionary *dict = [WCStringTool JSONObjectWithString:jsonDictString];
+    XCTAssertTrue([dict isKindOfClass:[NSDictionary class]]);
     
-    NSMutableArray *arrM = [NSMutableArray array];
-    [arrM addObject:m1];
-    [arrM addObject:m2];
-    [arrM addObject:m3];
-    [arrM addObject:m4];
+    NSString *jsonArrayString = @"[{\"id\": \"1\", \"name\":\"Aaa\"}, {\"id\": \"2\", \"name\":\"Bbb\"}]";
+    NSArray *arr = [WCStringTool JSONObjectWithString:jsonArrayString];
+    XCTAssertTrue([arr isKindOfClass:[NSArray class]]);
     
-    [arrM sortUsingComparator:^NSComparisonResult(Model* _Nonnull value1, Model* _Nonnull value2) {
-        NSComparisonResult result = NSOrderedSame;
-        if (value1.range.location > value2.range.location) {
-            result = NSOrderedDescending;
-        } else if (value1.range.location < value2.range.location) {
-            result = NSOrderedAscending;
-        }
-        return result;
-    }];
+    NSString *plainString = @"hello, world]";
+    id jsonObject = [WCStringTool JSONObjectWithString:plainString];
+    XCTAssertNil(jsonObject);
+}
+
+- (void)test_jsonDict {
+    NSString *jsonDictString = @"{\"result_code\":\"9999\",\"message\":\"ok\",\"conf\":{\"d\":\"E9F8EE6FA52D548711BA59DEFABD948C\",\"switch\":\"1\",\"issync\":\"1\",\"mode\":\"2\",\"infoSwitch\":\"0\"}}";
+    NSDictionary *dict = [WCStringTool JSONDictWithString:jsonDictString];
+    XCTAssert([dict isKindOfClass:[NSDictionary class]], @"%@ should be NSDictionary", dict);
     
-    NSLog(@"%@", arrM);
+    NSLog(@"%@", [dict valueForKeyPath:@"result_code"]);
+    NSLog(@"%@", [dict valueForKeyPath:@"conf.infoSwitch"]);
+    
+    NSString *jsonArrayString = @"[{\"id\": \"1\", \"name\":\"Aaa\"}, {\"id\": \"2\", \"name\":\"Bbb\"}]";
+    NSDictionary *fakeDict = [WCStringTool JSONDictWithString:jsonArrayString];
+    XCTAssertNil(fakeDict, @"%@ should be nil", fakeDict);
+    
+    XCTAssertEqualObjects(@(1), [WCStringTool JSONDictWithString:@"{\"\":true}"][@""]);
+    XCTAssertEqualObjects(@(0), [WCStringTool JSONDictWithString:@"{\"\":false}"][@""]);
+    XCTAssertEqualObjects([NSNull null], [WCStringTool JSONDictWithString:@"{\"\":null}"][@""]);
+}
+
+- (void)test_jsonArray {
+    NSString *jsonArrayString = @"[{\"id\": \"1\", \"name\":\"Aaa\"}, {\"id\": \"2\", \"name\":\"Bbb\"}]";
+    NSArray *arr = [WCStringTool JSONArrayWithString:jsonArrayString];
+    XCTAssert([arr isKindOfClass:[NSArray class]], @"%@ should be NSArray", arr);
+    
+    NSString *jsonDictString = @"{\"result_code\":\"9999\",\"message\":\"ok\",\"conf\":{\"d\":\"E9F8EE6FA52D548711BA59DEFABD948C\",\"switch\":\"1\",\"issync\":\"1\",\"mode\":\"2\",\"infoSwitch\":\"0\"}}";
+    NSArray *fakedArr =  [WCStringTool JSONArrayWithString:jsonDictString];
+    XCTAssertNil(fakedArr, @"%@ should be nil", fakedArr);
 }
 
 @end

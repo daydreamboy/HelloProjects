@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F1D7DB5211F0F9A0021023C /* Tests_NSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1D7DB4211F0F9A0021023C /* Tests_NSArray.m */; };
 		4F3DE4FD20D8B85F00FCCE6A /* StringSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3DE4FC20D8B85F00FCCE6A /* StringSizeViewController.m */; };
 		4F4D74AC20BED6CA0027DE7C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D74AB20BED6CA0027DE7C /* AppDelegate.m */; };
 		4F4D74B420BED6CB0027DE7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F4D74B320BED6CB0027DE7C /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F1D7DB4211F0F9A0021023C /* Tests_NSArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSArray.m; sourceTree = "<group>"; };
 		4F3DE4FB20D8B85F00FCCE6A /* StringSizeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringSizeViewController.h; sourceTree = "<group>"; };
 		4F3DE4FC20D8B85F00FCCE6A /* StringSizeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringSizeViewController.m; sourceTree = "<group>"; };
 		4F4D74A720BED6CA0027DE7C /* HelloNSString.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSString.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				4F731A9320BEE34F00D095F9 /* Tests.m */,
+				4F1D7DB4211F0F9A0021023C /* Tests_NSArray.m */,
 				4F731A9520BEE34F00D095F9 /* Info.plist */,
 			);
 			path = Tests;
@@ -243,6 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F1D7DB5211F0F9A0021023C /* Tests_NSArray.m in Sources */,
 				4F731A9420BEE34F00D095F9 /* Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
