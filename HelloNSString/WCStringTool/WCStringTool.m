@@ -316,7 +316,7 @@
 
 #pragma mark > JSON String to id/NSArray/NSDictionary
 
-+ (id)JSONObjectWithString:(NSString *)string NS_AVAILABLE_IOS(5_0) {
++ (nullable id)JSONObjectWithString:(nullable NSString *)string NS_AVAILABLE_IOS(5_0) {
     if (![string isKindOfClass:[NSString class]]) {
         return nil;
     }
@@ -341,7 +341,7 @@
     return nil;
 }
 
-+ (NSArray *)JSONArrayWithString:(NSString *)string NS_AVAILABLE_IOS(5_0) {
++ (nullable NSArray *)JSONArrayWithString:(nullable NSString *)string NS_AVAILABLE_IOS(5_0) {
     NSArray *jsonArray = [self JSONObjectWithString:string];
     if ([jsonArray isKindOfClass:[NSArray class]]) {
         return jsonArray;
@@ -351,7 +351,7 @@
     }
 }
 
-+ (NSDictionary *)JSONDictWithString:(NSString *)string NS_AVAILABLE_IOS(5_0) {
++ (nullable NSDictionary *)JSONDictWithString:(nullable NSString *)string NS_AVAILABLE_IOS(5_0) {
     NSDictionary *jsonDict = [self JSONObjectWithString:string];
     if ([jsonDict isKindOfClass:[NSDictionary class]]) {
         return jsonDict;

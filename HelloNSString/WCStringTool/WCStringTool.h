@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface WCStringTool : NSObject
 
 #pragma mark - Measure Size for Single-line/Multi-line String
@@ -119,7 +121,7 @@
  @param string the JSON formatted string
  @return If the string is not JSON formatted, return nil.
  */
-+ (id)JSONObjectWithString:(NSString *)string NS_AVAILABLE_IOS(5_0);
++ (nullable id)JSONObjectWithString:(nullable NSString *)string NS_AVAILABLE_IOS(5_0);
 
 /**
  Convert the JSON formatted string to NSArray object
@@ -127,7 +129,7 @@
  @param string the JSON formatted string
  @return If the string is not JSON formatted or a JSON array object, return nil.
  */
-+ (NSArray *)JSONArrayWithString:(NSString *)string NS_AVAILABLE_IOS(5_0);
++ (nullable NSArray *)JSONArrayWithString:(nullable NSString *)string NS_AVAILABLE_IOS(5_0);
 
 /**
  Convert the JSON formatted string to NSDictionary object
@@ -135,11 +137,12 @@
  @param string the JSON formatted string
  @return If the string is not JSON formatted or a JSON dictionary object, return nil.
  */
-+ (NSDictionary *)JSONDictWithString:(NSString *)string NS_AVAILABLE_IOS(5_0);
++ (nullable NSDictionary *)JSONDictWithString:(nullable NSString *)string NS_AVAILABLE_IOS(5_0);
 
 #pragma mark - Encryption
 
 + (NSString *)MD5WithString:(NSString *)string;
 
-
 @end
+
+NS_ASSUME_NONNULL_END
