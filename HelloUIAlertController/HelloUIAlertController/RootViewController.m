@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 #import "TabledAlertController.h"
+#import "WCAlertController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -32,9 +33,13 @@
     // MARK: Configure titles and classes for table view
     _titles = @[
         @"Show Tabled ActionSheet",
+        @"Show alert without view controller",
+        @"Show action sheet without view controller",
     ];
     _classes = @[
         @"showTabledActionSheet",
+        @"showGlobalAlert",
+        @"showGlobalActionSheet",
     ];
 }
 
@@ -89,14 +94,36 @@
 
 #pragma mark - Test Methods
 
-#pragma mark - Test Methods
-
 - (void)showTabledActionSheet {
     TabledAlertController *actionSheet = [TabledAlertController alertControllerWithTitle:@"Title" message:@"some info" preferredStyle:UIAlertControllerStyleActionSheet];
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"Reset to default" style:UIAlertActionStyleDestructive handler:nil]];
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:nil]];
     
     [self presentViewController:actionSheet animated:YES completion:nil];
+}
+
+- (void)showGlobalAlert {
+    // need local variable for TextField to prevent retain cycle of Alert otherwise UIWindow
+    // would not disappear after the Alert was dismissed
+    __block UITextField *localTextField;
+    WCAlertController *alert = [WCAlertController alertControllerWithTitle:@"Global Alert" message:@"Enter some text" preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSLog(@"do something with text:%@", localTextField.text);
+        // do NOT use alert.textfields or otherwise reference the alert in the block. Will cause retain cycle
+    }]];
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        localTextField = textField;
+    }];
+    [alert show];
+}
+
+- (void)showGlobalActionSheet {
+    __block UITextField *localTextField;
+    WCAlertController *alert = [WCAlertController alertControllerWithTitle:@"Global ActionSheet" message:@"Enter some text" preferredStyle:UIAlertControllerStyleActionSheet];
+    [alert addAction:[UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSLog(@"do something with text:%@", localTextField.text);
+    }]];
+    [alert show];
 }
 
 @end
