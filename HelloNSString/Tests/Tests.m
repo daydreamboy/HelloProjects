@@ -197,4 +197,84 @@
     XCTAssertNil(fakedArr, @"%@ should be nil", fakedArr);
 }
 
+#pragma mark - Handle String As Plain
+
+#pragma mark > URL Encode/Decode
+
+- (void)test_URLEscapeStringWithString {
+    NSString *originalString;
+    NSString *encodedString;
+    NSString *decodedString;
+    
+    // Case 1
+    originalString = @"https://h5.m.taobao.com/istore-coupon/detail/index.html?seller_id=2649119619&coupon_id=486841666328&spm=a2141.8336399.3095317.2-0";
+    encodedString = [WCStringTool URLEscapeStringWithString:originalString];
+    decodedString = [WCStringTool URLUnescapeStringWithString:encodedString];
+    
+    NSLog(@"%@", encodedString);
+    NSLog(@"%@", [originalString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]);
+    NSLog(@"%@", decodedString);
+    XCTAssertEqualObjects(originalString, decodedString);
+    NSLog(@"-----------------------");
+    
+    // Case 2
+    originalString = @"👴🏻👮🏽";
+    encodedString = [WCStringTool URLEscapeStringWithString:originalString];
+    decodedString = [WCStringTool URLUnescapeStringWithString:encodedString];
+    
+    NSLog(@"%@", encodedString);
+    NSLog(@"%@", [originalString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]);
+    NSLog(@"%@", decodedString);
+    XCTAssertEqualObjects(originalString, decodedString);
+    NSLog(@"-----------------------");
+    
+    // Case 3
+    //  @sa https://en.wikipedia.org/wiki/Percent-encoding
+    //  @sa online tool: http://meyerweb.com/eric/tools/dencoder/
+    //
+    // Test unescape characters [].
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"["], @"[");
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"]"], @"]");
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"."], @".");
+    
+    // Test escape characters :/?&=;+!@#$()',*
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@":"], @"%3A");
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"/"], @"%2F");
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"?"], @"%3F");
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"&"], @"%26");
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"="], @"%3D");
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@";"], @"%3B");
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"+"], @"%2B");
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"!"], @"%21");
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"@"], @"%40");
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"#"], @"%23");
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"$"], @"%24");
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"("], @"%28");
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@")"], @"%29");
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"'"], @"%27");
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@","], @"%2C");
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"*"], @"%2A");
+    
+    // Letters and numbers
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"a"], @"a");
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"Z"], @"Z");
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"0"], @"0");
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"1234567890"], @"1234567890");
+    
+    // Non-ASCII characters
+    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"中文"], @"%E4%B8%AD%E6%96%87");
+}
+
+- (void)test_URLUnescapeStringWithString {
+    XCTAssertEqualObjects([WCStringTool URLUnescapeStringWithString:@"%E5%88%B7%E6%96%B0%E8%BF%87%E4%BA%8E%E9%A2%91%E7%B9%81%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%90%8E%E5%86%8D%E8%AF%95"], @"刷新过于频繁，请稍后再试");
+}
+
 @end
+
+
+
+
+
+
+
+

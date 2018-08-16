@@ -312,6 +312,78 @@
     }
 }
 
+#pragma mark > URL Encode/Decode
+
++ (NSString *)URLEscapeStringWithString:(nullable NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    static NSString * const kAFCharactersGeneralDelimitersToEncode = @":#[]@"; // does not include "?" or "/" due to RFC 3986 - Section 3.4
+    static NSString * const kAFCharactersSubDelimitersToEncode = @"!$&'()*+,;=";
+    
+    NSMutableCharacterSet * allowedCharacterSet = [[NSCharacterSet URLQueryAllowedCharacterSet] mutableCopy];
+    [allowedCharacterSet removeCharactersInString:[kAFCharactersGeneralDelimitersToEncode stringByAppendingString:kAFCharactersSubDelimitersToEncode]];
+    
+    // FIXME: https://github.com/AFNetworking/AFNetworking/pull/3028
+    // return [string stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacterSet];
+    
+    static NSUInteger const batchSize = 50;
+    
+    NSUInteger index = 0;
+    NSMutableString *escapedString = @"".mutableCopy;
+    
+    while (index < string.length) {
+        NSUInteger length = MIN(string.length - index, batchSize);
+        NSRange range = NSMakeRange(index, length);
+        
+        // To avoid breaking up character sequences such as 👴🏻👮🏽
+        range = [string rangeOfComposedCharacterSequencesForRange:range];
+        
+        NSString *substring = [string substringWithRange:range];
+        NSString *encoded = [substring stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacterSet];
+        [escapedString appendString:encoded];
+        
+        index += range.length;
+    }
+    
+    return escapedString;
+}
+
++ (NSString *)URLUnescapeStringWithString:(nullable NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    NSString *decodedString;
+    
+    if ([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) {
+        // iOS 9 or later
+        decodedString = CFBridgingRelease(
+                CFURLCreateStringByReplacingPercentEscapes(
+                    kCFAllocatorDefault,
+                    (__bridge CFStringRef)string,
+                    CFSTR("")
+                    )
+                );
+    }
+    else {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+        decodedString = CFBridgingRelease(
+                CFURLCreateStringByReplacingPercentEscapesUsingEncoding(
+                    kCFAllocatorDefault,
+                    (__bridge CFStringRef)string,
+                    CFSTR(""),
+                    kCFStringEncodingUTF8
+                    )
+                );
+#pragma GCC diagnostic pop
+    }
+    
+    return decodedString;
+}
+
 #pragma mark - Handle String As JSON
 
 #pragma mark > JSON String to id/NSArray/NSDictionary

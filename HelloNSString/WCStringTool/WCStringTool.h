@@ -111,6 +111,28 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSArray<NSString *> *)componentsWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters;
 
+#pragma mark > URL Encode/Decode
+
+/**
+ Get a URL encoded string
+
+ @param string the string
+ @return the URL encoded string
+ 
+ @see AFURLRequestSerialization.m, AFPercentEscapedStringFromString function
+ */
++ (NSString *)URLEscapeStringWithString:(nullable NSString *)string;
+
+/**
+ Get a URL decoded string with UTF-8 encoding
+
+ @param string the string
+ @return the URL decoded string
+ 
+ @see http://isobar.logdown.com/posts/211030-url-encode-decode-in-ios
+ */
++ (NSString *)URLUnescapeStringWithString:(nullable NSString *)string;
+
 #pragma mark - Handle String As JSON
 
 #pragma mark > JSON String to id/NSArray/NSDictionary
