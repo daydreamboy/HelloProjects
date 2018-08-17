@@ -37,7 +37,8 @@ static CGFloat sPageSpace;
         CGRect contentFrame = CGRectMake(sPageSpace / 2.0, 0, frame.size.width - sPageSpace, frame.size.height);
         
         _pageContentView = [[UIView alloc] initWithFrame:contentFrame];
-        _pageContentView.backgroundColor = UICOLOR_randomColor;
+        // DEBUG: turn on backgroundColor
+        //_pageContentView.backgroundColor = UICOLOR_randomColor;
         [self addSubview:_pageContentView];
     }
     return self;

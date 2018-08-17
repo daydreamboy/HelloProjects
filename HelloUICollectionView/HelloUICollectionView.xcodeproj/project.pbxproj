@@ -59,6 +59,7 @@
 		4FB1D4DA20CC324100DBA776 /* PagableCollectionViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1D4D920CC324100DBA776 /* PagableCollectionViewViewController.m */; };
 		4FB8A3EE20CF68B500300954 /* CollectionViewFlowLayoutLeftAligned.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB8A3ED20CF68B500300954 /* CollectionViewFlowLayoutLeftAligned.m */; };
 		4FB8A3F120CF72BE00300954 /* SeparatorsBetweenCell1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB8A3F020CF72BE00300954 /* SeparatorsBetweenCell1ViewController.m */; };
+		4FD283D42125CEAA00E76131 /* WCZoomTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD283D32125CEAA00E76131 /* WCZoomTransitionAnimator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -152,6 +153,8 @@
 		4FB8A3ED20CF68B500300954 /* CollectionViewFlowLayoutLeftAligned.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewFlowLayoutLeftAligned.m; sourceTree = "<group>"; };
 		4FB8A3EF20CF72BE00300954 /* SeparatorsBetweenCell1ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeparatorsBetweenCell1ViewController.h; sourceTree = "<group>"; };
 		4FB8A3F020CF72BE00300954 /* SeparatorsBetweenCell1ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeparatorsBetweenCell1ViewController.m; sourceTree = "<group>"; };
+		4FD283D22125CEAA00E76131 /* WCZoomTransitionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCZoomTransitionAnimator.h; sourceTree = "<group>"; };
+		4FD283D32125CEAA00E76131 /* WCZoomTransitionAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCZoomTransitionAnimator.m; sourceTree = "<group>"; };
 		9414F9A59EC88D10934EE7C0 /* Pods-HelloUICollectionView.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloUICollectionView.release.xcconfig"; path = "Pods/Target Support Files/Pods-HelloUICollectionView/Pods-HelloUICollectionView.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -222,6 +225,8 @@
 				4F82DF5620E6811A007035FC /* WCBaseHorizontalPage_Internal.h */,
 				4FA5ABEE20FC93FF0098A138 /* WCSeparatorFlowLayout.h */,
 				4FA5ABEF20FC93FF0098A138 /* WCSeparatorFlowLayout.m */,
+				4FD283D22125CEAA00E76131 /* WCZoomTransitionAnimator.h */,
+				4FD283D32125CEAA00E76131 /* WCZoomTransitionAnimator.m */,
 			);
 			path = WCHorizontalPageBrowserView;
 			sourceTree = "<group>";
@@ -325,12 +330,12 @@
 				4F97DB2E20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m */,
 				4F97DB4020CFFB50003EBB3B /* CellSelectionAndHighlightViewController.h */,
 				4F97DB4120CFFB50003EBB3B /* CellSelectionAndHighlightViewController.m */,
-				4F8767B120EA5FE900F2B02F /* UseWCHorizontalPageBrowserViewControllerViewController.h */,
-				4F8767B220EA5FE900F2B02F /* UseWCHorizontalPageBrowserViewControllerViewController.m */,
 				4F748FD720F5EEBE001CF507 /* SupplementaryViewOfSectionViewController.h */,
 				4F748FD820F5EEBE001CF507 /* SupplementaryViewOfSectionViewController.m */,
 				4F48FC3020F62EC200DB26EE /* NestedCollectionViewCrossDirectionViewController.h */,
 				4F48FC3120F62EC200DB26EE /* NestedCollectionViewCrossDirectionViewController.m */,
+				4F8767B120EA5FE900F2B02F /* UseWCHorizontalPageBrowserViewControllerViewController.h */,
+				4F8767B220EA5FE900F2B02F /* UseWCHorizontalPageBrowserViewControllerViewController.m */,
 				4F7D8EE12109AFC400145B00 /* UseWCCrossDirectionEmotionPickerViewViewController.h */,
 				4F7D8EE22109AFC400145B00 /* UseWCCrossDirectionEmotionPickerViewViewController.m */,
 				4F748FDA20F6072C001CF507 /* Header&Footer */,
@@ -476,6 +481,7 @@
 				4F48FC3220F62EC200DB26EE /* NestedCollectionViewCrossDirectionViewController.m in Sources */,
 				4F47D70620F79296002C6B57 /* WCEmotionItemView.m in Sources */,
 				4FB1D4D420CC156B00DBA776 /* CustomCollectionViewCellViewController.m in Sources */,
+				4FD283D42125CEAA00E76131 /* WCZoomTransitionAnimator.m in Sources */,
 				4FA5AC0420FCBC720098A138 /* WCHorizontalSliderView.m in Sources */,
 				4FB1D4C220CC0D5900DBA776 /* main.m in Sources */,
 				4FB1D4D120CC0DDB00DBA776 /* FlowLayoutViewController.m in Sources */,

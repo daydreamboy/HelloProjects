@@ -32,7 +32,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        self.contentInset =UIEdgeInsetsZero;
+        self.contentInset = UIEdgeInsetsZero;
         self.showsVerticalScrollIndicator = YES;
         self.showsHorizontalScrollIndicator = YES;
         self.decelerationRate = UIScrollViewDecelerationRateFast;
@@ -171,15 +171,21 @@
 
 @interface WCZoomableImagePage ()
 @property (nonatomic, strong) WDKImageZoomView *imageZoomView;
+@property (nonatomic, strong) UILongPressGestureRecognizer *longPressGesture;
 @end
 
 @implementation WCZoomableImagePage
+
+#pragma mark - Public Methods
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         _imageZoomView = [[WDKImageZoomView alloc] initWithFrame:self.pageContentView.bounds];
         [self.pageContentView addSubview:_imageZoomView];
+        
+        _longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewLongPressed:)];
+        [_imageZoomView addGestureRecognizer:_longPressGesture];
     }
     return self;
 }
@@ -191,6 +197,21 @@
 
 - (void)resetZoomableImagePage {
     [_imageZoomView resetImageZoomView];
+}
+
+- (UITapGestureRecognizer *)doubleTapGesture {
+    return _imageZoomView.doubleTapGesture;
+}
+
+- (void)imageViewLongPressed:(UILongPressGestureRecognizer *)recognizer {
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
+//        if ([self.delegate respondsToSelector:@selector(MPMZoomableImagePage:imageViewDidLongPressed:)]) {
+//
+//            WDKImageZoomView *view = (WDKImageZoomView *)recognizer.view;
+//            [self.delegate MPMZoomableImagePage:self imageViewDidLongPressed:view.imageView];
+//        }
+    }
 }
 
 @end

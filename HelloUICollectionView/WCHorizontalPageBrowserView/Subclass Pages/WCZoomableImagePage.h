@@ -17,6 +17,11 @@
  */
 @property (nonatomic, assign) BOOL scaleToFit;
 
+/**
+ The gesture for double tapping to zoom in
+ */
+@property (nonatomic, strong, readonly) UITapGestureRecognizer *doubleTapGesture;
+
 - (instancetype)initWithFrame:(CGRect)frame;
 - (void)displayImage:(UIImage *)image;
 - (void)resetZoomableImagePage;

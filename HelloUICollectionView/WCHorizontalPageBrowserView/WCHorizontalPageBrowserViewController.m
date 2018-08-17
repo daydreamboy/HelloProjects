@@ -11,6 +11,7 @@
 #import "WCZoomableImagePage.h"
 #import "WCVideoPlayerPage.h"
 #import "WCHorizontalPageBrowserViewController.h"
+#import "WCZoomTransitionAnimator.h"
 #import <SDWebImage/SDWebImageManager.h>
 #import <AFNetworking/AFNetworking.h>
 #import <CommonCrypto/CommonDigest.h>
@@ -61,13 +62,15 @@
 
 @end
 
-@interface WCHorizontalPageBrowserViewController () <WCHorizontalPageBrowserViewDataSource, WCHorizontalPageBrowserViewDelegate>
+@interface WCHorizontalPageBrowserViewController () <WCHorizontalPageBrowserViewDataSource, WCHorizontalPageBrowserViewDelegate, UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) WCHorizontalPageBrowserView *pageBrowserView;
 @property (nonatomic, strong) NSArray<WCHorizontalPageBrowserItem *> *pageData;
 @property (nonatomic, strong) id <SDWebImageOperation> imageDownload;
 @property (nonatomic, strong) AFURLSessionManager *sessionManager;
 @property (nonatomic, strong) NSURL *cacheFolderURL;
 @property (nonatomic, strong) NSNumber *initialPageIndex;
+@property (nonatomic, strong) WCZoomTransitionAnimator *transitionAnimator;
+@property (nonatomic, strong) UITapGestureRecognizer *backgroundTapGesture;
 @end
 
 @implementation WCHorizontalPageBrowserViewController
@@ -82,7 +85,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //system("osascript -e 'tell app \"Xcode\" to display dialog \"Hello World\"'");
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     self.sessionManager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
@@ -91,7 +93,6 @@
         self.pageData = [self.dataSource itemsInHorizontalPageBrowserViewController:self];
     }
     
-    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.pageBrowserView];
     
     if (self.initialPageIndex) {
@@ -100,6 +101,8 @@
             [self.pageBrowserView setCurrentPage:index animated:NO];
         }
     }
+    
+    [self.view addGestureRecognizer:self.backgroundTapGesture];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -123,6 +126,12 @@
             }
         }
     }
+}
+
+#pragma mark - Actions
+
+- (void)backgroundTapGestureRecognized:(UITapGestureRecognizer *)recognizer {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - 
@@ -160,15 +169,26 @@
     }
 }
 
+- (void)showInRect:(CGRect)rect fromViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    if (animated) {
+        self.transitionAnimator = [[WCZoomTransitionAnimator alloc] initWithFromRect:rect];
+        self.transitioningDelegate = self;
+        [viewController presentViewController:self animated:YES completion:nil];
+    }
+    else {
+       [viewController presentViewController:self animated:NO completion:nil];
+    }
+}
+
 #pragma mark - Getters
 
 - (WCHorizontalPageBrowserView *)pageBrowserView {
     if (!_pageBrowserView) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         
-        WCHorizontalPageBrowserView *view = [[WCHorizontalPageBrowserView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width - 100, 400)];
+        WCHorizontalPageBrowserView *view = [[WCHorizontalPageBrowserView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height)/*CGRectMake(0, 0, screenSize.width - 100, 400)*/];
         view.center = CGPointMake(screenSize.width / 2.0, screenSize.height / 2.0);
-        view.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:0.8];
+        //view.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:0.8];
         view.dataSource = self;
         view.delegate = self;
         view.pageSpace = 30;
@@ -180,6 +200,14 @@
     }
     
     return _pageBrowserView;
+}
+
+- (UITapGestureRecognizer *)backgroundTapGesture {
+    if (!_backgroundTapGesture) {
+        _backgroundTapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(backgroundTapGestureRecognized:)];
+    }
+    
+    return _backgroundTapGesture;
 }
 
 #pragma mark - WCHorizontalPageBrowserViewDataSource
@@ -197,6 +225,7 @@
         
         WCZoomableImagePage *zoomableImagePage = (WCZoomableImagePage *)page;
         zoomableImagePage.scaleToFit = YES;
+        [self.backgroundTapGesture requireGestureRecognizerToFail:zoomableImagePage.doubleTapGesture];
         
         NSData *data = [NSData dataWithContentsOfURL:item.URL];
         UIImage *image = [UIImage imageWithData:data];
@@ -207,12 +236,15 @@
     }
     else if (item.type == WCHorizontalPageBrowserItemRemoteImage) {
         page = [horizontalPageBrowserView dequeueReusablePageWithReuseIdentifier:NSStringFromClass([WCZoomableImagePage class]) forIndex:index];
+        WCZoomableImagePage *zoomableImagePage = (WCZoomableImagePage *)page;
+        zoomableImagePage.scaleToFit = YES;
+        [self.backgroundTapGesture requireGestureRecognizerToFail:zoomableImagePage.doubleTapGesture];
+        
         self.imageDownload = [[SDWebImageManager sharedManager] loadImageWithURL:item.URL options:SDWebImageAvoidAutoSetImage progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
             
         } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
             
             if (image) {
-                WCZoomableImagePage *zoomableImagePage = (WCZoomableImagePage *)page;
                 [zoomableImagePage displayImage:image];
             }
             else {
@@ -277,5 +309,20 @@
         }
     }
 }
+
+#pragma mark - UIViewControllerTransitioningDelegate
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
+    return self.transitionAnimator;
+}
+
+- (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
+    return self.transitionAnimator;
+}
+
+//- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
+//    return self.interactiveAnimator.interactionInProgress ? self.interactiveAnimator : nil;
+//    //    return self.interactor.interactionInProgress ? self.interactor : nil;
+//}
 
 @end

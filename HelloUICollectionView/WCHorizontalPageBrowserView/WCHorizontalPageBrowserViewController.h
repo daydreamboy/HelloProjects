@@ -38,4 +38,14 @@ typedef NS_ENUM(NSUInteger, WCHorizontalPageBrowserItemType) {
 
 - (instancetype)initWithPageData:(NSArray<WCHorizontalPageBrowserItem *> *)pageData;
 - (void)setCurrentPageAtIndex:(NSInteger)index animated:(BOOL)animated;
+
+/**
+ Show from a specific rect which of a UIImageView
+
+ @param rect the rect for the image view to open. And rect's origin is refer UIWindow
+ @param viewController the host view controller present this view controller
+ @param animated YES, animate with a zoom effect. NO, just show immediately
+ */
+- (void)showInRect:(CGRect)rect fromViewController:(UIViewController *)viewController animated:(BOOL)animated;
+
 @end

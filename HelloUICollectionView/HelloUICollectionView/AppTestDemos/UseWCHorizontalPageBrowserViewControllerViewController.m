@@ -16,12 +16,14 @@
 @property (nonatomic, assign) BOOL present;
 @property (nonatomic, strong) UIButton *buttonScrollToPage;
 @property (nonatomic, strong) UIButton *buttonDismiss;
+@property (nonatomic, strong) UIImageView *imageViewToOpen;
 @end
 
 @implementation UseWCHorizontalPageBrowserViewControllerViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.present = YES;
     
     _pageBrowserViewController = [WCHorizontalPageBrowserViewController new];
@@ -44,23 +46,41 @@
     
     // remote videos
     item = [WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://card-data.oss-cn-hangzhou.aliyuncs.com/demo.mp4"] type:WCHorizontalPageBrowserItemRemoteVideo];
-//    item.autoPlayVideo = NO;
+    //item.autoPlayVideo = NO;
     [_items addObject:item];
+    
+    [self.view addSubview:self.imageViewToOpen];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    if (self.present) {
-        [_pageBrowserViewController setCurrentPageAtIndex:self.items.count - 1 animated:NO];
-        [_pageBrowserViewController.view addSubview:self.buttonDismiss];
-        [_pageBrowserViewController.view addSubview:self.buttonScrollToPage];
-        
-        [self presentViewController:_pageBrowserViewController animated:YES completion:nil];
-    }
+//    if (self.present) {
+//        [_pageBrowserViewController setCurrentPageAtIndex:self.items.count - 1 animated:NO];
+//        [_pageBrowserViewController.view addSubview:self.buttonDismiss];
+//        [_pageBrowserViewController.view addSubview:self.buttonScrollToPage];
+//
+//        [self presentViewController:_pageBrowserViewController animated:YES completion:nil];
+//    }
 }
 
 #pragma mark - Getters
+
+- (UIImageView *)imageViewToOpen {
+    if (!_imageViewToOpen) {
+        UIImage *image = [UIImage imageNamed:@"3.jpg"];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, image.size.width / 3.0, image.size.height / 3.0)];
+        imageView.image = image;
+        imageView.center = CGPointMake(CGRectGetWidth(self.view.bounds) / 2.0, CGRectGetHeight(self.view.bounds) / 2.0 + 150);
+        imageView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewToOpenTapped:)];
+        [imageView addGestureRecognizer:tapGesture];
+        
+        _imageViewToOpen = imageView;
+    }
+    
+    return _imageViewToOpen;
+}
 
 - (UIButton *)buttonScrollToPage {
     if (!_buttonScrollToPage) {
@@ -107,6 +127,15 @@
 
 - (void)buttonScrollToPageClicked:(id)sender {
     [self.pageBrowserViewController setCurrentPageAtIndex:3 animated:YES];
+}
+
+- (void)imageViewToOpenTapped:(id)sender {
+    [_pageBrowserViewController setCurrentPageAtIndex:2 animated:NO];
+    [_pageBrowserViewController.view addSubview:self.buttonDismiss];
+    [_pageBrowserViewController.view addSubview:self.buttonScrollToPage];
+    
+    CGRect rectInWindow = [self.view convertRect:self.imageViewToOpen.frame toView:nil];
+    [_pageBrowserViewController showInRect:rectInWindow fromViewController:self animated:YES];
 }
 
 @end
