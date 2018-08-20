@@ -119,7 +119,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param string the string
  @return the URL encoded string
  
- @see AFURLRequestSerialization.m, AFPercentEscapedStringFromString function
+ @see AFPercentEscapedStringFromString function, https://github.com/AFNetworking/AFNetworking/blob/master/AFNetworking/AFURLRequestSerialization.m#L47
  */
 + (NSString *)URLEscapeStringWithString:(nullable NSString *)string;
 

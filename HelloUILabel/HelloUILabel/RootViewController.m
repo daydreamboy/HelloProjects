@@ -17,6 +17,7 @@
 #import "UseMPMShareCouponViewViewController.h"
 #import "UseMPMShareLinkViewViewController.h"
 #import "UseMPMShareLiveViewViewController.h"
+#import "LabelWithMaximumLinesViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -48,6 +49,7 @@
         @"Use MPMShareCouponView",
         @"Use MPMShareLinkView",
         @"Use MPMShareLiveView",
+        @"LabelWithMaximumLinesViewController",
         @"call a test method",
     ];
     _classes = @[
@@ -60,6 +62,7 @@
         [UseMPMShareCouponViewViewController class],
         [UseMPMShareLinkViewViewController class],
         [UseMPMShareLiveViewViewController class],
+        [LabelWithMaximumLinesViewController class],
         @"testMethod",
     ];
 }

@@ -28,12 +28,15 @@
 
 - (UILabel *)labelEnglish {
     if (!_labelEnglish) {
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 0, 0)];
-        label.text = @"我";
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(100, 100, 100, 60)];
+        label.text = @"文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本文本";
+        label.numberOfLines = 2;
         label.font = [UIFont systemFontOfSize:16];
+        label.contentMode = UIViewContentModeTop;
+        label.backgroundColor = [UIColor greenColor];
         [label sizeToFit];
-        CGSize textSize = [WCStringTool textSizeWithSingleLineString:label.text font:label.font];
-        NSLog(@"1. %@", NSStringFromCGSize(textSize));
+//        CGSize textSize = [WCStringTool textSizeWithSingleLineString:label.text font:label.font];
+//        NSLog(@"1. %@", NSStringFromCGSize(textSize));
         
         _labelEnglish = label;
     }

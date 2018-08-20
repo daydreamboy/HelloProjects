@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F1D7DCB2122B2D20021023C /* LabelWithMaximumLinesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1D7DCA2122B2D20021023C /* LabelWithMaximumLinesViewController.m */; };
 		4F52D1172117FF50004EE254 /* MPMShareCommodityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D1162117FF50004EE254 /* MPMShareCommodityView.m */; };
 		4F52D11A211800C0004EE254 /* UseMPMShareCommodityViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D119211800C0004EE254 /* UseMPMShareCommodityViewViewController.m */; };
 		4F52D11E21181B72004EE254 /* WCMacroTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D11D21181B72004EE254 /* WCMacroTool.m */; };
@@ -60,6 +61,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F1D7DC92122B2D20021023C /* LabelWithMaximumLinesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabelWithMaximumLinesViewController.h; sourceTree = "<group>"; };
+		4F1D7DCA2122B2D20021023C /* LabelWithMaximumLinesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelWithMaximumLinesViewController.m; sourceTree = "<group>"; };
 		4F52D1152117FF50004EE254 /* MPMShareCommodityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPMShareCommodityView.h; sourceTree = "<group>"; };
 		4F52D1162117FF50004EE254 /* MPMShareCommodityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPMShareCommodityView.m; sourceTree = "<group>"; };
 		4F52D118211800C0004EE254 /* UseMPMShareCommodityViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseMPMShareCommodityViewViewController.h; sourceTree = "<group>"; };
@@ -264,6 +267,8 @@
 				4F52D18621188860004EE254 /* UseMPMShareLinkViewViewController.m */,
 				4F52D18C211943B4004EE254 /* UseMPMShareLiveViewViewController.h */,
 				4F52D18D211943B4004EE254 /* UseMPMShareLiveViewViewController.m */,
+				4F1D7DC92122B2D20021023C /* LabelWithMaximumLinesViewController.h */,
+				4F1D7DCA2122B2D20021023C /* LabelWithMaximumLinesViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -430,6 +435,7 @@
 				4F52D18A211893E3004EE254 /* MPMShareLiveView.m in Sources */,
 				4F52D144211845AF004EE254 /* MPMShareStoreView.m in Sources */,
 				4F52D11A211800C0004EE254 /* UseMPMShareCommodityViewViewController.m in Sources */,
+				4F1D7DCB2122B2D20021023C /* LabelWithMaximumLinesViewController.m in Sources */,
 				4F93830520C6D67E00568EE1 /* main.m in Sources */,
 				4F9382F720C6D67C00568EE1 /* AppDelegate.m in Sources */,
 				4F93835520C6E83000568EE1 /* UseYYLabelWithAttachmentViewController.m in Sources */,
