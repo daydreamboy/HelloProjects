@@ -9,6 +9,7 @@
 #import "LabelWithMaximumLinesViewController.h"
 #import "WCStringTool.h"
 #import "YYLabel.h"
+#import "WCMacroTool.h"
 
 @interface LabelWithMaximumLinesViewController ()
 @property (nonatomic, strong) UILabel *labelWithAutoLineNumber;
@@ -53,21 +54,11 @@
         NSString *string = @"a long long long long long long long long long long long long text";
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
         UIFont *font = [UIFont systemFontOfSize:14];
-        //label.text = string;
-//        label.lineBreakMode = NSLineBreakByTruncatingTail;
-//        label.font = font;
+        label.text = string;
+        label.lineBreakMode = NSLineBreakByTruncatingTail;
+        label.font = font;
         label.numberOfLines = 2;
         label.backgroundColor = [UIColor yellowColor];
-        
-        NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-        paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
-        paragraphStyle.hyphenationFactor = 1.0;
-        
-        NSMutableDictionary *attr = [NSMutableDictionary dictionary];
-        attr[NSParagraphStyleAttributeName] = paragraphStyle;
-        attr[NSFontAttributeName] = font;
-        
-        label.attributedText = [[NSMutableAttributedString alloc] initWithString:string attributes:attr];
         
         CGSize textSize = [WCStringTool textSizeWithFixedLineString:label.text width:100 font:label.font numberOfLines:label.numberOfLines mode:label.lineBreakMode widthToFit:YES];
         NSLog(@"%@", NSStringFromCGSize(textSize));
@@ -84,7 +75,7 @@
     if (!_yyLabel) {
         // @see https://www.jianshu.com/p/24148edec6c2
         NSString *content = @"a long long long long long long long long long long long long text";
-        YYLabel *label = [[YYLabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(self.labelWithFixedLineNumber.frame) + 10, 100, 50)];
+        YYLabel *label = [[YYLabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(self.labelWithFixedLineNumber.frame) + 10, 100, UNSPECIFIED)];
         label.backgroundColor = [UIColor yellowColor];
         
         label.truncationToken = [[NSAttributedString alloc] initWithString:@"..."];
@@ -97,9 +88,12 @@
         
         CGSize textSize = [WCStringTool textSizeWithFixedLineString:content width:100 font:text.yy_font numberOfLines:label.numberOfLines mode:text.yy_lineBreakMode widthToFit:YES];
         
-        label.frame = CGRectMake(10, CGRectGetMaxY(self.labelWithFixedLineNumber.frame) + 10, 100, textSize.height);
+        CGRect frame = label.frame;
+        frame.size.width = textSize.width;
+        frame.size.height = textSize.height;
+        label.frame = frame;
         
-        YYTextContainer *container = [YYTextContainer containerWithSize:CGSizeMake(100, textSize.height)];
+        YYTextContainer *container = [YYTextContainer containerWithSize:CGSizeMake(textSize.width, textSize.height)];
         container.truncationType = YYTextTruncationTypeEnd;
         YYTextLayout *layout = [YYTextLayout layoutWithContainer:container text:text];
         
