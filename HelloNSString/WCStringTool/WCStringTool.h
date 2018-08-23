@@ -13,11 +13,61 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WCStringTool : NSObject
 
-#pragma mark - Measure Size for Single-line/Multi-line String
+#pragma mark - Handle String As Text In UILabel
 
-+ (CGSize)textSizeWithSingleLineString:(NSString *)string font:(UIFont *)font;
-+ (CGSize)textSizeWithMultipleLineString:(NSString *)string font:(UIFont *)font size:(CGSize)size mode:(NSLineBreakMode)lineBreakMode;
-+ (CGSize)textSizeWithMultipleLineString:(NSString *)string width:(CGFloat)width attributes:(NSDictionary *)attributes;
+/**
+ Calculate text size for single line (numberOfLines = 1)
+
+ @param string the text
+ @param font the font of text
+ @return the text size
+ */
++ (CGSize)textSizeWithSingleLineString:(NSString *)string font:(UIFont *)font NS_AVAILABLE_IOS(7_0);
+
+/**
+ Calculate text size for single line (numberOfLines = 1) with attributes
+ 
+ @param string the text
+ @param attributes the attributes dictionary
+ @return the text size
+ */
++ (CGSize)textSizeWithSingleLineString:(NSString *)string attributes:(NSDictionary *)attributes NS_AVAILABLE_IOS(7_0);
+
+/**
+ Calculate text size for multiple lines (numberOfLines = 0)
+
+ @param string the text
+ @param width the fixed width
+ @param font the font of text
+ @param lineBreakMode the lineBreakMode. NSLineBreakByClipping/NSLineBreakByTruncatingHead/NSLineBreakByTruncatingTail/NSLineBreakByTruncatingMiddle will be treated as NSLineBreakByCharWrapping
+ @param widthToFit If NO, the width of calculated text size always is the input width. If YES, the width of calculated text size as it.
+ @return the text size
+ */
++ (CGSize)textSizeWithMultipleLineString:(NSString *)string width:(CGFloat)width font:(UIFont *)font mode:(NSLineBreakMode)lineBreakMode widthToFit:(BOOL)widthToFit NS_AVAILABLE_IOS(8_0);
+
+/**
+ Calculate text size for multiple lines (numberOfLines = 0) with attributes
+
+ @param string the text
+ @param width the fixed width
+ @param attributes the attributes dictionary
+ @param widthToFit If NO, the width of calculated text size always is the input width. If YES, the width of calculated text size as it.
+ @return the text size
+ */
++ (CGSize)textSizeWithMultipleLineString:(NSString *)string width:(CGFloat)width attributes:(NSDictionary *)attributes widthToFit:(BOOL)widthToFit NS_AVAILABLE_IOS(8_0);
+
+/**
+ Calculate text size for fixed lines (numberOfLines > 0)
+
+ @param string the text
+ @param width the fixed width
+ @param font the font of text
+ @param numberOfLines the number of lines. numberOfLines <= 0, will treat as multiple lines (numberOfLines = 0)
+ @param lineBreakMode the lineBreakMode. NSLineBreakByClipping/NSLineBreakByTruncatingHead/NSLineBreakByTruncatingTail/NSLineBreakByTruncatingMiddle will be treated as NSLineBreakByCharWrapping
+ @param widthToFit If NO, the width of calculated text size always is the input width. If YES, the width of calculated text size as it.
+ @return the text size
+ */
++ (CGSize)textSizeWithFixedLineString:(NSString *)string width:(CGFloat)width font:(UIFont *)font numberOfLines:(NSUInteger)numberOfLines mode:(NSLineBreakMode)lineBreakMode widthToFit:(BOOL)widthToFit NS_AVAILABLE_IOS(8_0);
 
 #pragma mark - NSStringFromXXX
 
@@ -25,7 +75,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Handle String As Specific Strings
 
-#pragma mark > Handle String as CGRect/UIEdgeInsets/UIColor
+#pragma mark > String as CGRect/UIEdgeInsets/UIColor
 
 /**
  Safe convert NSString to CGRect
@@ -53,7 +103,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (UIColor *)colorFromHexString:(NSString *)string;
 
-#pragma mark > Handle String As Url
+#pragma mark - Handle String As Url
 
 /// get value for key like `key1=value1&key2=value2`
 + (NSString *)valueWithUrlString:(NSString *)string forKey:(NSString *)key usingConnector:(NSString *)connector usingSeparator:(NSString *)separator;

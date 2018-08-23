@@ -11,66 +11,86 @@
 
 @implementation WCStringTool
 
-#pragma mark - Measure Size for Single-line/Multi-line String
+#pragma mark - Handle String As Text In UILabel
 
-+ (CGSize)textSizeWithSingleLineString:(NSString *)string font:(UIFont *)font {
++ (CGSize)textSizeWithSingleLineString:(NSString *)string font:(UIFont *)font NS_AVAILABLE_IOS(7_0) {
     if (![string isKindOfClass:[NSString class]] || !string.length || ![font isKindOfClass:[UIFont class]]) {
         return CGSizeZero;
     }
     
-    if ([string respondsToSelector:@selector(sizeWithAttributes:)]) {
-        CGSize textSize = [string sizeWithAttributes:@{ NSFontAttributeName: font }];
-        return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
-    }
-    else {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        CGSize textSize = [string sizeWithFont:font];
-        return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
-#pragma clang diagnostic pop
-    }
+    CGSize textSize = [string sizeWithAttributes:@{ NSFontAttributeName: font }];
+    return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
 }
 
-+ (CGSize)textSizeWithMultipleLineString:(NSString *)string font:(UIFont *)font size:(CGSize)size mode:(NSLineBreakMode)lineBreakMode {
-    if (![string isKindOfClass:[NSString class]] || !string.length || ![font isKindOfClass:[UIFont class]]) {
++ (CGSize)textSizeWithSingleLineString:(NSString *)string attributes:(NSDictionary *)attributes NS_AVAILABLE_IOS(7_0) {
+    if (![string isKindOfClass:[NSString class]] || !string.length || ![attributes isKindOfClass:[NSDictionary class]]) {
         return CGSizeZero;
     }
     
-    if ([string respondsToSelector:@selector(boundingRectWithSize:options:attributes:context:)]) {
-        NSMutableDictionary *attr = [NSMutableDictionary dictionary];
-        attr[NSFontAttributeName] = font;
-        if (lineBreakMode != NSLineBreakByWordWrapping) {
-            NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
-            paragraphStyle.lineBreakMode = lineBreakMode;
-            attr[NSParagraphStyleAttributeName] = paragraphStyle;
-        }
-        CGRect rect = [string boundingRectWithSize:size
-                                           options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
-                                        attributes:attr
-                                           context:nil];
-        CGSize textSize = rect.size;
-        return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
-    }
-    else {
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        CGSize textSize = [string sizeWithFont:font constrainedToSize:size lineBreakMode:lineBreakMode];
-        return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
-#pragma clang diagnostic pop
-    }
+    CGSize textSize = [string sizeWithAttributes:attributes];
+    return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
 }
 
-+ (CGSize)textSizeWithMultipleLineString:(NSString *)string width:(CGFloat)width attributes:(NSDictionary *)attributes {
++ (CGSize)textSizeWithMultipleLineString:(NSString *)string width:(CGFloat)width font:(UIFont *)font mode:(NSLineBreakMode)lineBreakMode widthToFit:(BOOL)widthToFit NS_AVAILABLE_IOS(8_0) {
+    if (![string isKindOfClass:[NSString class]] || !string.length || ![font isKindOfClass:[UIFont class]] || width <= 0) {
+        return CGSizeZero;
+    }
+    
+    NSMutableDictionary *attr = [NSMutableDictionary dictionary];
+    attr[NSFontAttributeName] = font;
+    NSLineBreakMode fixedLineBreakMode = lineBreakMode;
+    // ISSUE: NSLineBreakByClipping/NSLineBreakByTruncatingHead/NSLineBreakByTruncatingTail/NSLineBreakByTruncatingMiddle not working with mutiple line,
+    // boundingRectWithSize:options:attributes:context: always calculate one line height
+    // @see https://www.jianshu.com/p/5dd5cd803d34
+    if (lineBreakMode != NSLineBreakByWordWrapping || lineBreakMode != NSLineBreakByCharWrapping) {
+        fixedLineBreakMode = NSLineBreakByCharWrapping;
+    }
+    NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
+    paragraphStyle.lineBreakMode = fixedLineBreakMode;
+    attr[NSParagraphStyleAttributeName] = paragraphStyle;
+    
+    return [self textSizeWithMultipleLineString:string width:width attributes:attr widthToFit:widthToFit];
+}
+
++ (CGSize)textSizeWithMultipleLineString:(NSString *)string width:(CGFloat)width attributes:(NSDictionary *)attributes widthToFit:(BOOL)widthToFit NS_AVAILABLE_IOS(8_0) {
     if (width > 0) {
         CGRect rect = [string boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
-                                           options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                           options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
                                         attributes:attributes
                                            context:nil];
         CGSize textSize = rect.size;
-        return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
+        if (widthToFit) {
+            return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
+        }
+        else {
+            return CGSizeMake(width, ceil(textSize.height));
+        }
     }
     else {
         return CGSizeZero;
+    }
+}
+
++ (CGSize)textSizeWithFixedLineString:(NSString *)string width:(CGFloat)width font:(UIFont *)font numberOfLines:(NSUInteger)numberOfLines mode:(NSLineBreakMode)lineBreakMode widthToFit:(BOOL)widthToFit NS_AVAILABLE_IOS(8_0) {
+    if (![string isKindOfClass:[NSString class]] || !string.length || ![font isKindOfClass:[UIFont class]] || width <= 0) {
+        return CGSizeZero;
+    }
+    
+    if (numberOfLines <= 0) {
+        return [self textSizeWithMultipleLineString:string width:width font:font mode:lineBreakMode widthToFit:widthToFit];
+    }
+    else {
+        CGSize textSizeForOneLine = [self textSizeWithSingleLineString:string font:font];
+        CGSize textSizeForMultipleLines = [self textSizeWithMultipleLineString:string width:width font:font mode:lineBreakMode widthToFit:widthToFit];
+        
+        CGFloat height;
+        if (textSizeForMultipleLines.height > (numberOfLines * textSizeForOneLine.height)) {
+            height = (numberOfLines * textSizeForOneLine.height);
+        }
+        else {
+            height = textSizeForMultipleLines.height;
+        }
+        return CGSizeMake(textSizeForMultipleLines.width, ceil(height));
     }
 }
 
@@ -96,7 +116,7 @@
 
 #pragma mark - Handle String As Specific Strings
 
-#pragma mark > Handle String as CGRect/UIEdgeInsets/UIColor
+#pragma mark > String as CGRect/UIEdgeInsets/UIColor
 
 + (CGRect)rectFromString:(NSString *)string {
     if (![string isKindOfClass:[NSString class]] || !string.length) {
@@ -167,7 +187,7 @@
     return [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:a / 255.0];
 }
 
-#pragma mark > Handle String As Url
+#pragma mark - Handle String As Url
 
 /*!
  *  Get the 'value' string for the given 'key' string, e.g. "http://m.cp.360.cn/news/mobile/150410515.html?act=1&reffer=ios&titleRight=share&empty="
