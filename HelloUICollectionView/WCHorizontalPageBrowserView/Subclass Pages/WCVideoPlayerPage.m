@@ -26,7 +26,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self addSubview:self.imageViewPlayIcon];
+        [self.pageContentView addSubview:self.imageViewPlayIcon];
         self.backgroundColor = [UIColor blackColor];
     }
     return self;
@@ -62,13 +62,14 @@
     
     if (!_playerLayer) {
         AVPlayerLayer *layer = [AVPlayerLayer playerLayerWithPlayer:_player];
-        layer.frame = self.bounds;
+        layer.frame = self.pageContentView.bounds;
         layer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-        [self.layer addSublayer:layer];
+        [self.pageContentView.layer addSublayer:layer];
+        
         _playerLayer = layer;
     }
     
-    [self bringSubviewToFront:self.imageViewPlayIcon];
+    [self.pageContentView bringSubviewToFront:self.imageViewPlayIcon];
 }
 
 - (void)play {
@@ -132,7 +133,7 @@
         CGSize imageSize = image.size;
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, imageSize.width, imageSize.height)];
         imageView.image = image;
-        imageView.center = CGPointMake(self.bounds.size.width / 2.0, self.bounds.size.height / 2.0);
+        imageView.center = CGPointMake(CGRectGetWidth(self.pageContentView.bounds) / 2.0, CGRectGetHeight(self.pageContentView.bounds) / 2.0);
         imageView.userInteractionEnabled = YES;
         
         UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewPlayIconTapped:)];

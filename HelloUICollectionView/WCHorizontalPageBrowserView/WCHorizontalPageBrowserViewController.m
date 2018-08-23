@@ -274,6 +274,12 @@
         }];
         [downloadTask resume];
     }
+    else if (item.type == WCHorizontalPageBrowserItemLocalVideo) {
+        page = [horizontalPageBrowserView dequeueReusablePageWithReuseIdentifier:NSStringFromClass([WCVideoPlayerPage class]) forIndex:index];
+        
+        WCVideoPlayerPage *videoPlayerPage = (WCVideoPlayerPage *)page;
+        [videoPlayerPage displayLocalVideo:item.URL];
+    }
 
     return page;
 }

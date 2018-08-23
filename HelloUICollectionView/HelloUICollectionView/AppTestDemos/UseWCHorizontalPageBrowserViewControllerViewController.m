@@ -46,6 +46,9 @@
     
     // remote videos
     item = [WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://card-data.oss-cn-hangzhou.aliyuncs.com/demo.mp4"] type:WCHorizontalPageBrowserItemRemoteVideo];
+    [_items addObject:item];
+    
+    item = [WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://static-tb.dingtalk.com/ddmedia/iAEEAqNtcDQDBgQABQAG2gAjhAGkC7qKCAKqhUvSE__W2c1oUAPPAAABZV9W4qYEzgAB_98HzgAHNDcIAA.mp4"] type:WCHorizontalPageBrowserItemRemoteVideo];
     //item.autoPlayVideo = NO;
     [_items addObject:item];
     
@@ -130,7 +133,7 @@
 }
 
 - (void)imageViewToOpenTapped:(id)sender {
-    [_pageBrowserViewController setCurrentPageAtIndex:2 animated:NO];
+    [_pageBrowserViewController setCurrentPageAtIndex:7 animated:NO];
     [_pageBrowserViewController.view addSubview:self.buttonDismiss];
     [_pageBrowserViewController.view addSubview:self.buttonScrollToPage];
     
