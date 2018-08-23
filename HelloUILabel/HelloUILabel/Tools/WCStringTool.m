@@ -10,7 +10,7 @@
 
 @implementation WCStringTool
 
-+ (CGSize)textSizeWithSingleLineString:(NSString *)string font:(UIFont *)font {
++ (CGSize)textSizeWithSingleLineString:(NSString *)string font:(UIFont *)font NS_AVAILABLE_IOS(7_0) {
     if (![string isKindOfClass:[NSString class]] || !string.length || ![font isKindOfClass:[UIFont class]]) {
         return CGSizeZero;
     }
@@ -19,7 +19,7 @@
     return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
 }
 
-+ (CGSize)textSizeWithSingleLineString:(NSString *)string attributes:(NSDictionary *)attributes {
++ (CGSize)textSizeWithSingleLineString:(NSString *)string attributes:(NSDictionary *)attributes NS_AVAILABLE_IOS(7_0) {
     if (![string isKindOfClass:[NSString class]] || !string.length || ![attributes isKindOfClass:[NSDictionary class]]) {
         return CGSizeZero;
     }
@@ -28,7 +28,7 @@
     return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
 }
 
-+ (CGSize)textSizeWithMultipleLineString:(NSString *)string width:(CGFloat)width font:(UIFont *)font mode:(NSLineBreakMode)lineBreakMode widthToFit:(BOOL)widthToFit {
++ (CGSize)textSizeWithMultipleLineString:(NSString *)string width:(CGFloat)width font:(UIFont *)font mode:(NSLineBreakMode)lineBreakMode widthToFit:(BOOL)widthToFit NS_AVAILABLE_IOS(8_0) {
     if (![string isKindOfClass:[NSString class]] || !string.length || ![font isKindOfClass:[UIFont class]] || width <= 0) {
         return CGSizeZero;
     }
@@ -49,7 +49,7 @@
     return [self textSizeWithMultipleLineString:string width:width attributes:attr widthToFit:widthToFit];
 }
 
-+ (CGSize)textSizeWithMultipleLineString:(NSString *)string width:(CGFloat)width attributes:(NSDictionary *)attributes widthToFit:(BOOL)widthToFit {
++ (CGSize)textSizeWithMultipleLineString:(NSString *)string width:(CGFloat)width attributes:(NSDictionary *)attributes widthToFit:(BOOL)widthToFit NS_AVAILABLE_IOS(8_0) {
     if (width > 0) {
         CGRect rect = [string boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
                                            options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
