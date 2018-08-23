@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4F1D7DCB2122B2D20021023C /* LabelWithMaximumLinesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1D7DCA2122B2D20021023C /* LabelWithMaximumLinesViewController.m */; };
+		4F517B2D212E90C9008CE69F /* LabelWithHyphenationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F517B2C212E90C9008CE69F /* LabelWithHyphenationViewController.m */; };
 		4F52D1172117FF50004EE254 /* MPMShareCommodityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D1162117FF50004EE254 /* MPMShareCommodityView.m */; };
 		4F52D11A211800C0004EE254 /* UseMPMShareCommodityViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D119211800C0004EE254 /* UseMPMShareCommodityViewViewController.m */; };
 		4F52D11E21181B72004EE254 /* WCMacroTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D11D21181B72004EE254 /* WCMacroTool.m */; };
@@ -63,6 +64,8 @@
 /* Begin PBXFileReference section */
 		4F1D7DC92122B2D20021023C /* LabelWithMaximumLinesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabelWithMaximumLinesViewController.h; sourceTree = "<group>"; };
 		4F1D7DCA2122B2D20021023C /* LabelWithMaximumLinesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelWithMaximumLinesViewController.m; sourceTree = "<group>"; };
+		4F517B2B212E90C9008CE69F /* LabelWithHyphenationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabelWithHyphenationViewController.h; sourceTree = "<group>"; };
+		4F517B2C212E90C9008CE69F /* LabelWithHyphenationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelWithHyphenationViewController.m; sourceTree = "<group>"; };
 		4F52D1152117FF50004EE254 /* MPMShareCommodityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPMShareCommodityView.h; sourceTree = "<group>"; };
 		4F52D1162117FF50004EE254 /* MPMShareCommodityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPMShareCommodityView.m; sourceTree = "<group>"; };
 		4F52D118211800C0004EE254 /* UseMPMShareCommodityViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseMPMShareCommodityViewViewController.h; sourceTree = "<group>"; };
@@ -269,6 +272,8 @@
 				4F52D18D211943B4004EE254 /* UseMPMShareLiveViewViewController.m */,
 				4F1D7DC92122B2D20021023C /* LabelWithMaximumLinesViewController.h */,
 				4F1D7DCA2122B2D20021023C /* LabelWithMaximumLinesViewController.m */,
+				4F517B2B212E90C9008CE69F /* LabelWithHyphenationViewController.h */,
+				4F517B2C212E90C9008CE69F /* LabelWithHyphenationViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -414,6 +419,7 @@
 				4F93835E20C6EA1300568EE1 /* NSString+YYAdd.m in Sources */,
 				4F52D19521194ADD004EE254 /* WCImageTool.m in Sources */,
 				4F93834320C6E3E300568EE1 /* YYTextDebugOption.m in Sources */,
+				4F517B2D212E90C9008CE69F /* LabelWithHyphenationViewController.m in Sources */,
 				4F93833620C6E26E00568EE1 /* YYTextUtilities.m in Sources */,
 				4F52D14F21185499004EE254 /* MPMShareCouponView.m in Sources */,
 				4F7D8E4F21062F3F00145B00 /* WCStringTool.m in Sources */,

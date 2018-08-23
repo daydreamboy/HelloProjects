@@ -94,6 +94,68 @@
     }
 }
 
+#pragma mark > Others
+
++ (NSString *)softHyphenatedStringWithString:(NSString *)string error:(out NSError **)error {
+    NSLocale *locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
+    
+    return [self softHyphenatedStringWithString:string locale:locale error:error];
+}
+
++ (NSString *)softHyphenatedStringWithString:(NSString *)string locale:(NSLocale *)locale error:(out NSError **)error {
+    if (![string isKindOfClass:[NSString class]] || ![locale isKindOfClass:[NSLocale class]]) {
+        return nil;
+    }
+    
+    static unichar const sTextDrawingSoftHyphenUniChar = 0x00AD;
+    
+    CFLocaleRef localeRef = (__bridge CFLocaleRef)(locale);
+    if (!CFStringIsHyphenationAvailableForLocale(localeRef)) {
+        if(error != NULL) {
+            NSDictionary *userInfo = @{
+                                       NSLocalizedDescriptionKey: @"Hyphenation is not available for given locale",
+                                       NSLocalizedFailureReasonErrorKey: @"Hyphenation is not available for given locale",
+                                       NSLocalizedRecoverySuggestionErrorKey: @"You could try using a different locale even though it might not be 100% correct"
+                                       };
+            
+            NSError *errorL = [NSError errorWithDomain:@"" code:-1 userInfo:userInfo];
+            *error = errorL;
+        }
+        return nil;
+    }
+    else {
+        NSMutableString *stringM = [string mutableCopy];
+        unsigned char hyphenationLocations[stringM.length];
+        memset(hyphenationLocations, 0, stringM.length);
+        CFRange range = CFRangeMake(0, stringM.length);
+        
+        for (int i = 0; i < stringM.length; i++) {
+            CFIndex location = CFStringGetHyphenationLocationBeforeIndex((CFStringRef)stringM,
+                                                                         i,
+                                                                         range,
+                                                                         0,
+                                                                         localeRef,
+                                                                         NULL);
+            
+            if (location >= 0 && location < stringM.length) {
+                hyphenationLocations[location] = 1;
+            }
+        }
+        
+        for (NSInteger i = stringM.length - 1; i > 0; i--) {
+            if (hyphenationLocations[i]) {
+                [stringM insertString:[NSString stringWithFormat:@"%C", sTextDrawingSoftHyphenUniChar] atIndex:i];
+                // Note: use the following line for debugging
+                //[stringM insertString:@"-" atIndex:i];
+            }
+        }
+        
+        if (error != NULL) { *error = nil; }
+        
+        return stringM;
+    }
+}
+
 #pragma mark - NSStringFromXXX
 
 + (NSString *)stringFromUIGestureRecognizerState:(UIGestureRecognizerState)state {
@@ -402,6 +464,14 @@
     }
     
     return decodedString;
+}
+
+#pragma mark > unichar
+
++ (NSString *)stringWithUnichar:(unichar)unichar {
+    // Note: %C for unichar with 16 bits width
+    NSString *string = [NSString stringWithFormat:@"%C", unichar];
+    return string;
 }
 
 #pragma mark - Handle String As JSON

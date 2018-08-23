@@ -69,6 +69,29 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (CGSize)textSizeWithFixedLineString:(NSString *)string width:(CGFloat)width font:(UIFont *)font numberOfLines:(NSUInteger)numberOfLines mode:(NSLineBreakMode)lineBreakMode widthToFit:(BOOL)widthToFit NS_AVAILABLE_IOS(8_0);
 
+#pragma mark > Others
+
+/**
+ Get a hyphenated string which can rendered in UILabel and use @"en_US" as locale
+
+ @param string the plain string
+ @param error the error. If the locale not support hyphenation, the error is not nil and return nil.
+ @return the hyphenated string which has invisible hyphenation (unichar 0x00AD)
+ */
++ (NSString *)softHyphenatedStringWithString:(NSString *)string error:(out NSError * _Nullable * _Nullable)error;
+
+/**
+ Get a hyphenated string which can rendered in UILabel
+
+ @param string the plain string
+ @param locale the NSLocale
+ @param error the error. If the locale not support hyphenation, the error is not nil and return nil.
+ @return the hyphenated string which has invisible hyphenation (unichar 0x00AD)
+ 
+ @see https://stackoverflow.com/a/19856111
+ */
++ (NSString *)softHyphenatedStringWithString:(NSString *)string locale:(NSLocale *)locale error:(out NSError * _Nullable * _Nullable)error;
+
 #pragma mark - NSStringFromXXX
 
 + (NSString *)stringFromUIGestureRecognizerState:(UIGestureRecognizerState)state;
@@ -182,6 +205,18 @@ NS_ASSUME_NONNULL_BEGIN
  @see http://isobar.logdown.com/posts/211030-url-encode-decode-in-ios
  */
 + (NSString *)URLUnescapeStringWithString:(nullable NSString *)string;
+
+#pragma mark > unichar
+
+/**
+ Convert an unichar to NSString
+ 
+ @param unichar the unichar
+ @return the NSString
+ 
+ @see https://stackoverflow.com/a/1354413
+ */
++ (NSString *)stringWithUnichar:(unichar)unichar;
 
 #pragma mark - Handle String As JSON
 

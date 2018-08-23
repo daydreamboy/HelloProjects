@@ -18,6 +18,7 @@
 #import "UseMPMShareLinkViewViewController.h"
 #import "UseMPMShareLiveViewViewController.h"
 #import "LabelWithMaximumLinesViewController.h"
+#import "LabelWithHyphenationViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -50,6 +51,7 @@
         @"Use MPMShareLinkView",
         @"Use MPMShareLiveView",
         @"LabelWithMaximumLinesViewController",
+        @"LabelWithHyphenationViewController",
         @"call a test method",
     ];
     _classes = @[
@@ -63,6 +65,7 @@
         [UseMPMShareLinkViewViewController class],
         [UseMPMShareLiveViewViewController class],
         [LabelWithMaximumLinesViewController class],
+        [LabelWithHyphenationViewController class],
         @"testMethod",
     ];
 }
