@@ -18,7 +18,7 @@
 @property (nonatomic, strong) UIButton *buttonPresent;
 @property (nonatomic, strong) UIButton *buttonPresentNav;
 
-@property (nonatomic, strong) WCNavSystemTransitionPopInteractor *interactiveAnimator;
+@property (nonatomic, strong) WCNavSystemPopTransitionInteractor *interactiveAnimator;
 //@property (nonatomic, strong) ONESwipeBackInteractionController *interactor;
 
 @end
@@ -32,7 +32,7 @@
     [self.view addSubview:self.buttonPresent];
     [self.view addSubview:self.buttonPresentNav];
     
-    self.interactiveAnimator = [WCNavSystemTransitionPopInteractor new];
+    self.interactiveAnimator = [WCNavSystemPopTransitionInteractor new];
 //    self.interactor = [ONESwipeBackInteractionController new];
 }
 
@@ -128,11 +128,11 @@
 #pragma mark - UIViewControllerTransitioningDelegate
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    return [WCNavSystemTransitionPushAnimator new];
+    return [WCNavSystemPushTransitionAnimator new];
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    return [WCNavSystemTransitionPopAnimator new];
+    return [WCNavSystemPopTransitionAnimator new];
 //    return nil;
 }
 

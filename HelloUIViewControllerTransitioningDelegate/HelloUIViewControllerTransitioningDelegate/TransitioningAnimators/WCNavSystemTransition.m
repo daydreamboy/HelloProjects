@@ -8,7 +8,7 @@
 
 #import "WCNavSystemTransition.h"
 
-@implementation WCNavSystemTransitionPopAnimator
+@implementation WCNavSystemPopTransitionAnimator
 
 #pragma mark - UIViewControllerAnimatedTransitioning
 
@@ -64,12 +64,12 @@
 
 
 // @sa http://stackoverflow.com/questions/29290313/in-ios-how-to-drag-down-to-dismiss-a-modal
-@interface WCNavSystemTransitionPopInteractor ()
+@interface WCNavSystemPopTransitionInteractor ()
 @property (nonatomic, assign) BOOL shouldCompleteTransition;
 @property (nonatomic, strong) UIViewController *presentedViewController;
 @end
 
-@implementation WCNavSystemTransitionPopInteractor
+@implementation WCNavSystemPopTransitionInteractor
 
 - (void)setPresentedViewController:(UIViewController *)presentedViewController {
     _presentedViewController = presentedViewController;
@@ -152,7 +152,7 @@
 @end
 
 // @sa https://developer.apple.com/library/ios/featuredarticles/ViewControllerPGforiPhoneOS/PresentingaViewController.html#//apple_ref/doc/uid/TP40007457-CH14-SW1
-@implementation WCNavSystemTransitionPushAnimator
+@implementation WCNavSystemPushTransitionAnimator
 
 #pragma mark - UIViewControllerAnimatedTransitioning
 
@@ -207,7 +207,7 @@
 
 @dynamic interactor;
 
-- (void)setInteractor:(WCNavSystemTransitionPopInteractor *)interactor {
+- (void)setInteractor:(WCNavSystemPopTransitionInteractor *)interactor {
     interactor.presentedViewController = self;
 }
 
