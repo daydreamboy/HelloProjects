@@ -63,10 +63,13 @@ class NmUtility
       return
     end
 
-    Dir.glob(dir_path + '/**/*') do |item|
+    # Note: not use `/**/*` instead of `**{,/*/**}/*`
+    # @see https://stackoverflow.com/a/2724048
+    Dir.glob(dir_path + '**{,/*/**}/*') do |item|
       next if item == '.' or item == '..'
 
       if !File.directory?(item) && File.exist?(item)
+        # puts "stub1"
 
         # @see https://stackoverflow.com/questions/16902083/exclude-the-from-a-file-extension-in-rails
         file_ext = File.extname(item).delete('.')
@@ -75,7 +78,6 @@ class NmUtility
         end
 
         if include_list.empty? or include_list.include?(file_ext) or file_ext == ''
-
           # Note: lookup symbols for every file
           symbol_list.each do |symbol|
             if verbose
