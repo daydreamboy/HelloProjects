@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4F0B4F1E205269D9003B241E /* HitTestInViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0B4F1D205269D9003B241E /* HitTestInViewViewController.m */; };
+		4F517BB7212FD41C008CE69F /* BlurAnyViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F517BB6212FD41C008CE69F /* BlurAnyViewViewController.m */; };
+		4F517BB9212FD500008CE69F /* dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F517BB8212FD500008CE69F /* dog.jpg */; };
 		4F63EFE41FE10068000AFD6F /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63EFE31FE10068000AFD6F /* WCViewTool.m */; };
 		4F63EFE71FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63EFE61FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m */; };
 		4F7CB04920EF96CD00ABDED4 /* TouchThroughToUnderneathViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7CB04820EF96CD00ABDED4 /* TouchThroughToUnderneathViewViewController.m */; };
@@ -38,6 +40,9 @@
 /* Begin PBXFileReference section */
 		4F0B4F1C205269D9003B241E /* HitTestInViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HitTestInViewViewController.h; sourceTree = "<group>"; };
 		4F0B4F1D205269D9003B241E /* HitTestInViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HitTestInViewViewController.m; sourceTree = "<group>"; };
+		4F517BB5212FD41C008CE69F /* BlurAnyViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlurAnyViewViewController.h; sourceTree = "<group>"; };
+		4F517BB6212FD41C008CE69F /* BlurAnyViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlurAnyViewViewController.m; sourceTree = "<group>"; };
+		4F517BB8212FD500008CE69F /* dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dog.jpg; sourceTree = "<group>"; };
 		4F63EFE21FE10068000AFD6F /* WCViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCViewTool.h; sourceTree = "<group>"; };
 		4F63EFE31FE10068000AFD6F /* WCViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewTool.m; sourceTree = "<group>"; };
 		4F63EFE51FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObserveViewGeometryChangeEventViewController.h; sourceTree = "<group>"; };
@@ -96,6 +101,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F517BBA212FD537008CE69F /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		4F63EFE11FE10053000AFD6F /* WCViewTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +153,8 @@
 				4F7CB04820EF96CD00ABDED4 /* TouchThroughToUnderneathViewViewController.m */,
 				4F63EFE51FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.h */,
 				4F63EFE61FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m */,
+				4F517BB5212FD41C008CE69F /* BlurAnyViewViewController.h */,
+				4F517BB6212FD41C008CE69F /* BlurAnyViewViewController.m */,
 			);
 			path = "UIView Demo";
 			sourceTree = "<group>";
@@ -164,6 +178,7 @@
 		4FAAA5641FA45FE700A80328 /* HelloUIView */ = {
 			isa = PBXGroup;
 			children = (
+				4F517BBA212FD537008CE69F /* Tools */,
 				4F63EFE11FE10053000AFD6F /* WCViewTool */,
 				4FAAA57B1FA4601500A80328 /* AppTestDemos */,
 				4FAAA5651FA45FE700A80328 /* AppDelegate.h */,
@@ -205,6 +220,7 @@
 		4FD7BE12206BBC3100368A46 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F517BB8212FD500008CE69F /* dog.jpg */,
 				4FD7BE13206BBC3100368A46 /* aliwx_card_bubble_right_bg@2x.png */,
 				4FD7BE14206BBC3100368A46 /* aliwx_card_bubble_right_bg@3x.png */,
 				4FD7BE15206BBC3100368A46 /* aliwx_card_bubble_left_bg@3x.png */,
@@ -271,6 +287,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F517BB9212FD500008CE69F /* dog.jpg in Resources */,
 				4FD7BE19206BBC3100368A46 /* aliwx_card_bubble_left_bg@3x.png in Resources */,
 				4FD7BE17206BBC3100368A46 /* aliwx_card_bubble_right_bg@2x.png in Resources */,
 				4FAAA5721FA45FE700A80328 /* LaunchScreen.storyboard in Resources */,
@@ -288,6 +305,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FB43AEC200DA27300D5D92D /* GradientView.m in Sources */,
+				4F517BB7212FD41C008CE69F /* BlurAnyViewViewController.m in Sources */,
 				4FAAA5751FA45FE700A80328 /* main.m in Sources */,
 				4FB43AF6200DA28100D5D92D /* DrawRadialGradientViewViewController.m in Sources */,
 				4FB43AE6200DA22F00D5D92D /* WCTouchThroughView.m in Sources */,

@@ -64,6 +64,19 @@
 
 @implementation WCViewTool
 
+#pragma mark - Blurring
+
++ (void)blurWithView:(UIView *)view style:(UIBlurEffectStyle)style {
+    
+    UIVisualEffect *blurEffect = [UIBlurEffect effectWithStyle:style];
+    UIVisualEffectView *visualEffectView = [[UIVisualEffectView alloc] initWithEffect:blurEffect];
+    
+    visualEffectView.frame = view.bounds;
+    [view addSubview:visualEffectView];
+}
+
+#pragma mark - Debug
+
 + (void)registerGeometryChangedObserverForView:(UIView *)view {
     
     ViewObserver *observer = [[self observers] objectForKey:view];

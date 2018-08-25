@@ -21,6 +21,7 @@
 #import "AddBorderToImageViewController.h"
 #import "TwoAdjacentShadowBorderViewController.h"
 #import "TouchThroughToUnderneathViewViewController.h"
+#import "BlurAnyViewViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -51,6 +52,7 @@
           @{ kTitle: @"pass touch through to underneath view", kClass: [TouchThroughToUnderneathViewViewController class] },
           @{ kTitle: @"mapping rect from view to view", kClass: [MappingRectFromViewToViewViewController class] },
           @{ kTitle: @"Demonstrate HitTest", kClass: [HitTestInViewViewController class] },
+          @{ kTitle: @"Blur a view", kClass: [BlurAnyViewViewController class] },
     ];
 
     NSArray<NSDictionary *> *section2 = @[
