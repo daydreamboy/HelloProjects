@@ -6,13 +6,13 @@
 //
 //
 
-#import "Demo1ViewController.h"
+#import "CenterImageInUIImageViewViewController.h"
 
-@interface Demo1ViewController ()
+@interface CenterImageInUIImageViewViewController ()
 @property (nonatomic, strong) UIImageView *imageView;
 @end
 
-@implementation Demo1ViewController
+@implementation CenterImageInUIImageViewViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

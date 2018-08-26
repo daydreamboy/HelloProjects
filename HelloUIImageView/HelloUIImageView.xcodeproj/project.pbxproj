@@ -11,7 +11,7 @@
 		4F75A005213130DD000DDE60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F75A004213130DD000DDE60 /* Assets.xcassets */; };
 		4F75A008213130DD000DDE60 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F75A006213130DD000DDE60 /* LaunchScreen.storyboard */; };
 		4F75A00B213130DD000DDE60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A00A213130DD000DDE60 /* main.m */; };
-		4F75A03F21313133000DDE60 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A03B21313133000DDE60 /* Demo1ViewController.m */; };
+		4F75A03F21313133000DDE60 /* CenterImageInUIImageViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A03B21313133000DDE60 /* CenterImageInUIImageViewViewController.m */; };
 		4F75A04021313133000DDE60 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A03D21313133000DDE60 /* RootViewController.m */; };
 		4F75A04321313247000DDE60 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F75A04221313247000DDE60 /* image.png */; };
 /* End PBXBuildFile section */
@@ -24,8 +24,8 @@
 		4F75A007213130DD000DDE60 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F75A009213130DD000DDE60 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F75A00A213130DD000DDE60 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4F75A03B21313133000DDE60 /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
-		4F75A03C21313133000DDE60 /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
+		4F75A03B21313133000DDE60 /* CenterImageInUIImageViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterImageInUIImageViewViewController.m; sourceTree = "<group>"; };
+		4F75A03C21313133000DDE60 /* CenterImageInUIImageViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterImageInUIImageViewViewController.h; sourceTree = "<group>"; };
 		4F75A03D21313133000DDE60 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F75A03E21313133000DDE60 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F75A04221313247000DDE60 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
@@ -78,8 +78,8 @@
 		4F75A03A21313133000DDE60 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F75A03B21313133000DDE60 /* Demo1ViewController.m */,
-				4F75A03C21313133000DDE60 /* Demo1ViewController.h */,
+				4F75A03B21313133000DDE60 /* CenterImageInUIImageViewViewController.m */,
+				4F75A03C21313133000DDE60 /* CenterImageInUIImageViewViewController.h */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -162,7 +162,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F75A03F21313133000DDE60 /* Demo1ViewController.m in Sources */,
+				4F75A03F21313133000DDE60 /* CenterImageInUIImageViewViewController.m in Sources */,
 				4F75A00B213130DD000DDE60 /* main.m in Sources */,
 				4F759FFD213130DB000DDE60 /* AppDelegate.m in Sources */,
 				4F75A04021313133000DDE60 /* RootViewController.m in Sources */,
