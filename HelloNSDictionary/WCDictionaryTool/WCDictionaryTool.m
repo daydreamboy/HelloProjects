@@ -39,19 +39,19 @@
     return [object isKindOfClass:objectClass] ? object : nil;
 }
 
-+ (NSArray *)dictionary:(NSDictionary *)dictionary arrayForKey:(NSString *)key {
++ (NSArray *)arrayWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key {
     return [self dictionary:dictionary objectForKey:key objectClass:[NSArray class]];
 }
 
-+ (NSDictionary *)dictionary:(NSDictionary *)dictionary dictForKey:(NSString *)key {
++ (NSDictionary *)dictWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key {
     return [self dictionary:dictionary objectForKey:key objectClass:[NSDictionary class]];
 }
 
-+ (NSString *)dictionary:(NSDictionary *)dictionary stringForKey:(NSString *)key {
++ (NSString *)stringWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key {
     return [self dictionary:dictionary objectForKey:key objectClass:[NSString class]];
 }
 
-+ (NSNumber *)dictionary:(NSDictionary *)dictionary numberForKey:(NSString *)key {
++ (NSNumber *)numberWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key {
     return [self dictionary:dictionary objectForKey:key objectClass:[NSNumber class]];
 }
 
@@ -107,6 +107,8 @@
     return dict;
 }
 
+#pragma mark - JSON String to NSDictionary
+
 + (NSDictionary *)dictionaryWithJSONString:(NSString *)jsonString {
     if (![jsonString isKindOfClass:[NSString class]]) {
         return nil;
@@ -123,7 +125,25 @@
         return nil;
     }
     
+    if (![dict isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    
     return dict;
+}
+
+#pragma mark - Mutation
+
++ (NSDictionary *)removeObjectWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key {
+    if (![dictionary isKindOfClass:[NSDictionary class]] || ![key isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    NSMutableDictionary *dictM = [NSMutableDictionary dictionaryWithCapacity:dictionary.count];
+    [dictM addEntriesFromDictionary:dictionary];
+    [dictM removeObjectForKey:key];
+        
+    return dictM;
 }
 
 #pragma mark - Override Methods
