@@ -31,8 +31,11 @@
         NSString *string = @"Do any additional setup after loading the view. Do any additional setup after loading the view.";
         
         // @see https://stackoverflow.com/a/19414663
+        // Note: 系统语言是中文，英文断字（hyphenationFactor）不起作用. (@see https://www.jianshu.com/p/24148edec6c2)
+        // 需要手动添加hyphenation，参考+[WCStringTool softHyphenatedStringWithString:locale:error:]
         NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
         paragraphStyle.hyphenationFactor = 1;
+        paragraphStyle.lineBreakMode = NSLineBreakByTruncatingTail;
         
         NSMutableDictionary *attrs = [NSMutableDictionary dictionary];
         attrs[NSFontAttributeName] = [UIFont systemFontOfSize:14];
@@ -41,7 +44,7 @@
         NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:string attributes:attrs];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 60 + 10, 100, 200)];
-        label.numberOfLines = 0;
+        label.numberOfLines = 2;
         label.attributedText = attrString;
         label.backgroundColor = [UIColor yellowColor];
         
@@ -61,7 +64,8 @@
         NSString *hyphenatedString = [WCStringTool softHyphenatedStringWithString:string locale:locale error:&error];
         
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(self.labelWithHyphenation.frame) + 10, 100, 200)];
-        label.numberOfLines = 0;
+        label.numberOfLines = 2;
+        label.lineBreakMode = NSLineBreakByTruncatingTail;
         label.text = hyphenatedString;
         label.font = [UIFont systemFontOfSize:14];
         label.backgroundColor = [UIColor yellowColor];
