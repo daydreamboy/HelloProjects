@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 #import "CenterImageInUIImageViewViewController.h"
+#import "RoundedImageInUIImageViewViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -31,11 +32,13 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"Demo1ViewController's title",
+        @"Center image in UIImageView",
+        @"Make rounded image",
         @"call a test method",
     ];
     _classes = @[
         [CenterImageInUIImageViewViewController class],
+        [RoundedImageInUIImageViewViewController class],
         @"testMethod",
     ];
 }

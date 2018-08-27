@@ -103,4 +103,39 @@
     return mapTable;
 }
 
+#pragma mark - Hierarchy
+
++ (void)enumerateSubviewsInView:(UIView *)view usingBlock:(void (^)(UIView *subview, BOOL *stop))block {
+    BOOL stop = NO;
+    if (block) {
+        // Note: pre-travse subviews for root view, so skip the block for root view
+        
+        NSArray *subviews = [view subviews];
+        for (UIView *subview in subviews) {
+            [self traverseViewHierarchyWithView:subview usinglock:block stop:&stop];
+            if (stop) {
+                break;
+            }
+        }
+    }
+}
+
++ (void)traverseViewHierarchyWithView:(UIView *)view usinglock:(void (^)(UIView *subview, BOOL *stop))block stop:(BOOL *)stop {
+    NSParameterAssert(block != nil);
+    // not use `if (block)` to protect, because it maybe consumes more time when recursion
+    block(view, stop);
+    
+    if (*stop) {
+        return;
+    }
+    
+    NSArray *subviews = [view subviews];
+    for (UIView *subview in subviews) {
+        [self traverseViewHierarchyWithView:subview usinglock:block stop:stop];
+        if (*stop) {
+            break;
+        }
+    }
+}
+
 @end

@@ -16,7 +16,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-//    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.imageView];
 }
@@ -27,7 +27,8 @@
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         imageView.layer.borderColor = [UIColor redColor].CGColor;
         imageView.layer.borderWidth = 1;
-        imageView.backgroundColor = [UIColor yellowColor];
+        imageView.layer.cornerRadius = 20;
+        imageView.layer.masksToBounds = YES;
         imageView.center = CGPointMake(screenSize.width / 2.0, screenSize.height / 2.0);
         imageView.image = [UIImage imageNamed:@"image.png"];
         imageView.contentMode = UIViewContentModeCenter;
@@ -37,4 +38,15 @@
     
     return _imageView;
 }
+
+- (UIImage*) roundCorneredImage:(UIImage *)orig radius:(CGFloat) r {
+    UIGraphicsBeginImageContextWithOptions(orig.size, NO, 0);
+    [[UIBezierPath bezierPathWithRoundedRect:(CGRect){CGPointZero, orig.size}
+                                cornerRadius:r] addClip];
+    [orig drawInRect:(CGRect){CGPointZero, orig.size}];
+    UIImage* result = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return result;
+}
+
 @end

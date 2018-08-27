@@ -15,6 +15,7 @@
 		4F7CB04920EF96CD00ABDED4 /* TouchThroughToUnderneathViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7CB04820EF96CD00ABDED4 /* TouchThroughToUnderneathViewViewController.m */; };
 		4F86CF9C206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86CF9B206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.m */; };
 		4F86CF9F206CBFD10080A9E1 /* AddBorderToImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86CF9E206CBFD10080A9E1 /* AddBorderToImageViewController.m */; };
+		4F961BAC2132FB0F009402F3 /* TraverseSubviewsInViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F961BAB2132FB0F009402F3 /* TraverseSubviewsInViewViewController.m */; };
 		4F983BD81FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F983BD71FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m */; };
 		4FAAA5671FA45FE700A80328 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAA5661FA45FE700A80328 /* AppDelegate.m */; };
 		4FAAA56F1FA45FE700A80328 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FAAA56E1FA45FE700A80328 /* Assets.xcassets */; };
@@ -53,6 +54,8 @@
 		4F86CF9B206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwoAdjacentShadowBorderViewController.m; sourceTree = "<group>"; };
 		4F86CF9D206CBFD10080A9E1 /* AddBorderToImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AddBorderToImageViewController.h; sourceTree = "<group>"; };
 		4F86CF9E206CBFD10080A9E1 /* AddBorderToImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AddBorderToImageViewController.m; sourceTree = "<group>"; };
+		4F961BAA2132FB0F009402F3 /* TraverseSubviewsInViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TraverseSubviewsInViewViewController.h; sourceTree = "<group>"; };
+		4F961BAB2132FB0F009402F3 /* TraverseSubviewsInViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TraverseSubviewsInViewViewController.m; sourceTree = "<group>"; };
 		4F983BD61FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchThroughPartRegionOfViewViewController.h; sourceTree = "<group>"; };
 		4F983BD71FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TouchThroughPartRegionOfViewViewController.m; sourceTree = "<group>"; };
 		4FAAA5621FA45FE700A80328 /* HelloUIView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUIView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +158,8 @@
 				4F63EFE61FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m */,
 				4F517BB5212FD41C008CE69F /* BlurAnyViewViewController.h */,
 				4F517BB6212FD41C008CE69F /* BlurAnyViewViewController.m */,
+				4F961BAA2132FB0F009402F3 /* TraverseSubviewsInViewViewController.h */,
+				4F961BAB2132FB0F009402F3 /* TraverseSubviewsInViewViewController.m */,
 			);
 			path = "UIView Demo";
 			sourceTree = "<group>";
@@ -322,6 +327,7 @@
 				4FAAA5811FA4601E00A80328 /* RootViewController.m in Sources */,
 				4FAAA5671FA45FE700A80328 /* AppDelegate.m in Sources */,
 				4FB43AF8200DA28100D5D92D /* UseCAGradientLayerWithMultipleColorsViewController.m in Sources */,
+				4F961BAC2132FB0F009402F3 /* TraverseSubviewsInViewViewController.m in Sources */,
 				4F0B4F1E205269D9003B241E /* HitTestInViewViewController.m in Sources */,
 				4F7CB04920EF96CD00ABDED4 /* TouchThroughToUnderneathViewViewController.m in Sources */,
 				4F63EFE71FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m in Sources */,
