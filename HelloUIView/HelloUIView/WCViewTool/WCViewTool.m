@@ -120,6 +120,8 @@
     }
 }
 
+#pragma mark :
+
 + (void)traverseViewHierarchyWithView:(UIView *)view usinglock:(void (^)(UIView *subview, BOOL *stop))block stop:(BOOL *)stop {
     NSParameterAssert(block != nil);
     // not use `if (block)` to protect, because it maybe consumes more time when recursion
@@ -136,6 +138,56 @@
             break;
         }
     }
+}
+
++ (BOOL)checkView:(UIView *)view hasAncestralViewIsKindOfClass:(Class)cls {
+    if ([view isKindOfClass:cls]) {
+        return YES;
+    }
+    else {
+        UIView *aView = view.superview;
+        while (aView && ![aView isKindOfClass:cls]) {
+            aView = aView.superview;
+        }
+        if ([aView isKindOfClass:cls]) {
+            return YES;
+        }
+        return NO;
+    }
+}
+
++ (UIViewController *)holdingViewControllerWithView:(UIView *)view {
+    UIResponder *responder = view;
+    
+    while ([responder isKindOfClass:[UIView class]]) {
+        // @note about nextResponder from apple doc:
+        // UIView implements this method by returning the UIViewController object that manages it (if it has one) or its superview (if it doesn’t);
+        // UIViewController implements the method by returning its view’s superview;
+        // UIWindow returns the application object;
+        // UIApplication returns nil.
+        responder = [responder nextResponder];
+    }
+    
+    if ([responder isKindOfClass:[UIViewController class]]) {
+        return (UIViewController *)responder;
+    }
+    else {
+        return nil;
+    }
+}
+
++ (void)hierarchalDescriptionWithView:(UIView *)view {
+    // Note: recursiveDescription is a private method, disabled in release mode
+#if DEBUG
+    
+    if ([view isKindOfClass:[UIView class]]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+    NSLog(@"hierarchalDescription:\n\n%@", [view performSelector:NSSelectorFromString(@"recursiveDescription")]);
+#pragma GCC diagnostic pop
+    }
+    
+#endif
 }
 
 @end

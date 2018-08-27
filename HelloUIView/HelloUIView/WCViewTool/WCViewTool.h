@@ -50,4 +50,31 @@
  */
 + (void)enumerateSubviewsInView:(UIView *)view usingBlock:(void (^)(UIView *subview, BOOL *stop))block;
 
+/**
+ Check it and itself all ancestor views `isKindOfClass`
+
+ @param view the view to check
+ @param cls the Class type wanted to search
+ @return YES, if found its first ancestor view belong to cls. <br/>NO, if all ancestor views not belong to cls
+ */
++ (BOOL)checkView:(UIView *)view hasAncestralViewIsKindOfClass:(Class)cls;
+
+/**
+ Get the UIViewController holds the receiver UIView directly or indirectly (that's its super or super... view is self.view)
+
+ @param view the view to check its holding view controller
+ @return If nil, the receiver UIView has no UIViewController to holding it.
+ @see http://stackoverflow.com/questions/1372977/given-a-view-how-do-i-get-its-viewcontroller
+ */
++ (UIViewController *)holdingViewControllerWithView:(UIView *)view;
+
+/**
+ Print recursive description of its all subviews, including itself
+
+ @param view the view to print
+ @warning Only available in debug mode which is DEBUG macro is enabled
+ @see http://www.raywenderlich.com/62435/make-swipeable-table-view-cell-actions-without-going-nuts-scroll-views
+ */
++ (void)hierarchalDescriptionWithView:(UIView *)view;
+
 @end
