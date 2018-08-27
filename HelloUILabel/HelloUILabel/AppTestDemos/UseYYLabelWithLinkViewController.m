@@ -9,11 +9,28 @@
 #import "UseYYLabelWithLinkViewController.h"
 #import "YYLabel.h"
 
-@interface UseYYLabelWithLinkViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface MyView : UIView
+
+@end
+
+@implementation MyView
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
+}
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
+}
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
+}
+@end
+
+@interface UseYYLabelWithLinkViewController () <UITableViewDelegate, UITableViewDataSource, UIGestureRecognizerDelegate>
 @property (nonatomic, strong) YYLabel *label1;
 @property (nonatomic, strong) YYLabel *label2;
 @property (nonatomic, strong) YYLabel *label3;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) MyView *myView;
 @end
 
 @implementation UseYYLabelWithLinkViewController
@@ -25,6 +42,36 @@
     [self.view addSubview:self.label2];
     [self.view addSubview:self.label3];
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.myView];
+    
+    UITapGestureRecognizer *tapGesure = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selfViewTapped:)];
+    tapGesure.delegate = self;
+//    tapGesure.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapGesure];
+}
+
+#pragma mark - Actions
+
+- (void)selfViewTapped:(id)sender {
+    NSLog(@"tapped");
+}
+
+- (void)bubbleTapped:(id)sender {
+    NSLog(@"tapped2");
+}
+
+#pragma mark - UIGestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    
+    // 若为UITableViewCellContentView（即点击了tableViewCell），则不截获Touch事件
+    if ([NSStringFromClass([touch.view class]) isEqualToString:@"UITableViewCellContentView"]) {
+        if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
+            
+        }
+        
+        return NO;
+    }
+    return YES;
 }
 
 #pragma mark - Getters
@@ -123,6 +170,16 @@
     return _tableView;
 }
 
+- (MyView *)myView {
+    if (!_myView) {
+        MyView *view = [[MyView alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(self.tableView.frame), 100, 100)];
+        view.backgroundColor = [UIColor yellowColor];
+        _myView = view;
+    }
+    
+    return _myView;
+}
+
 #pragma mark - UITableViewDelegate
 
 #pragma mark - UITableViewDataSource
@@ -144,15 +201,26 @@
         
         [attrString yy_setTextHighlightRange:range color:[UIColor blueColor] backgroundColor:[[UIColor lightGrayColor] colorWithAlphaComponent:0.5] userInfo:@{@"key": @"value"}];
         
-        YYLabel *label = [[YYLabel alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, 30)];
-        label.attributedText = attrString;
-        [label setHighlightTapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
-            NSLog(@"highlighted text: %@", [text attributedSubstringFromRange:range]);
-            NSDictionary *attrs = [[text attributedSubstringFromRange:range] attributesAtIndex:0 effectiveRange:nil];
-            NSLog(@"userInfo: %@", [attrs[YYTextHighlightAttributeName] userInfo]);
-        }];
+//        YYLabel *label = [[YYLabel alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, 30)];
+//        label.attributedText = attrString;
+//        [label setHighlightTapAction:^(UIView * _Nonnull containerView, NSAttributedString * _Nonnull text, NSRange range, CGRect rect) {
+//            NSLog(@"highlighted text: %@", [text attributedSubstringFromRange:range]);
+//            NSDictionary *attrs = [[text attributedSubstringFromRange:range] attributesAtIndex:0 effectiveRange:nil];
+//            NSLog(@"userInfo: %@", [attrs[YYTextHighlightAttributeName] userInfo]);
+//        }];
         
-        [cell addSubview:label];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 200, 30)];
+        view.backgroundColor = [UIColor greenColor];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bubbleTapped:)];
+        [view addGestureRecognizer:tap];
+        view.tag = 100;
+        
+        UIView *subview = [cell.contentView viewWithTag:100];
+        if (!subview) {
+            [cell.contentView addSubview:view];
+        }
+        
+//        [cell addSubview:label];
     }
     
     return cell;

@@ -140,6 +140,8 @@
     }
 }
 
+#pragma mark :
+
 + (BOOL)checkView:(UIView *)view hasAncestralViewIsKindOfClass:(Class)cls {
     if ([view isKindOfClass:cls]) {
         return YES;
