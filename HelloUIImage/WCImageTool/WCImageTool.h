@@ -83,24 +83,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Image Access
 
-+ (NSURL *)URLWithPNGImageName:(NSString *)imageName inResourceBundle:(NSString *)resourceBundleName;
-
 /**
- Get an image with name
+ Get a URL for image in resource bundle
 
- @param name the image name, if not with extension, treat image as png and consider @2x.png, @3x.png
- @return the UIImage. Return nil if not found.
+ @param imageName the name of image
+ @param resourceBundleName the resource bundle name, and nil for main bundle
+ @return the NSURL. Return nil if not found.
  */
-+ (UIImage *)imageWithName:(NSString *)name;
++ (NSURL *)URLWithImageName:(NSString *)imageName inResourceBundle:(nullable NSString *)resourceBundleName;
 
 /**
  Get an image with name in resource bundle
 
- @param name the image name, if not with extension, treat image as png and consider @2x.png, @3x.png
- @param bundleName the bundle name
+ @param name the image name, if not with extension, treat image as png and consider @2x.png/@2X.PNG, @3x.png/@3X.PNG
+ @param resourceBundleName the bundle name, and the name can have or not have .bundle extension. Note that nil for main bunde.
  @return the UIImage. Return nil if not found.
  */
-+ (UIImage *)imageWithName:(NSString *)name inBundle:(nullable NSString *)bundleName;
++ (UIImage *)imageWithName:(NSString *)name inResourceBundle:(nullable NSString *)resourceBundleName;
 
 NS_ASSUME_NONNULL_END
 

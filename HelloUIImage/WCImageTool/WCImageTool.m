@@ -183,54 +183,82 @@
 
 #pragma mark - Image Access
 
-+ (NSURL *)URLWithPNGImageName:(NSString *)imageName inResourceBundle:(NSString *)resourceBundleName {
-    NSString *resourceBundlePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:resourceBundleName];
-    NSBundle *resourceBundle = [NSBundle bundleWithPath:resourceBundlePath];
++ (NSURL *)URLWithImageName:(NSString *)name inResourceBundle:(NSString *)resourceBundleName {
+    NSBundle *resourceBundle;
+    NSString *resourceBundlePath;
     
-    NSArray *imageNames = @[
-                            // image@2x.png
-                            [NSString stringWithFormat:@"%@@%dx.png", imageName, (int)[UIScreen mainScreen].scale],
-                            // iamge@2x.PNG
-                            [NSString stringWithFormat:@"%@@%dx.PNG", imageName, (int)[UIScreen mainScreen].scale],
-                            // image@2X.png
-                            [NSString stringWithFormat:@"%@@%dX.png", imageName, (int)[UIScreen mainScreen].scale],
-                            // image@2X.PNG
-                            [NSString stringWithFormat:@"%@@%dX.png", imageName, (int)[UIScreen mainScreen].scale],
-                            ];
-    
-    NSString *imageFileName = [imageNames firstObject];
-    for (NSString *imageName in imageNames) {
-        NSString *filePath = [resourceBundlePath stringByAppendingPathComponent:imageName];
-        if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
-            imageFileName = imageName;
-            break;
-        }
+    if (resourceBundleName) {
+        resourceBundlePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:resourceBundleName];
+        resourceBundle = [NSBundle bundleWithPath:resourceBundlePath];
     }
-    
-    NSURL *URL = [resourceBundle URLForResource:[imageFileName stringByDeletingPathExtension] withExtension:[imageFileName pathExtension]];
-    return URL;
-}
-
-+ (UIImage *)imageWithName:(NSString *)name {
-    return [self imageWithName:name inBundle:nil];
-}
-
-+ (UIImage *)imageWithName:(NSString *)name inBundle:(NSString *)bundleName {
-    NSString *resourceBundlePath = [NSBundle mainBundle].bundlePath;
-    if (bundleName) {
-        if ([bundleName hasSuffix:@".bundle"]) {
-            resourceBundlePath = [resourceBundlePath stringByAppendingPathComponent:bundleName];
-        }
-        else {
-            resourceBundlePath = [resourceBundlePath stringByAppendingPathComponent:[bundleName stringByAppendingPathExtension:@"bundle"]];
-        }
+    else {
+        resourceBundlePath = [[NSBundle mainBundle] bundlePath];
+        resourceBundle = [NSBundle mainBundle];
     }
     
     if (!name.pathExtension.length) {
-        name = [NSString stringWithFormat:@"%@@%dx.png", name, (int)[UIScreen mainScreen].scale];
+        NSArray *imageNames = @[
+                                // image@2x.png
+                                [NSString stringWithFormat:@"%@@%dx.png", name, (int)[UIScreen mainScreen].scale],
+                                // iamge@2x.PNG
+                                [NSString stringWithFormat:@"%@@%dx.PNG", name, (int)[UIScreen mainScreen].scale],
+                                // image@2X.png
+                                [NSString stringWithFormat:@"%@@%dX.png", name, (int)[UIScreen mainScreen].scale],
+                                // image@2X.PNG
+                                [NSString stringWithFormat:@"%@@%dX.PNG", name, (int)[UIScreen mainScreen].scale],
+                                ];
+        
+        NSString *imageFileName = [imageNames firstObject];
+        for (NSString *imageName in imageNames) {
+            NSString *filePath = [resourceBundlePath stringByAppendingPathComponent:imageName];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+                imageFileName = imageName;
+                break;
+            }
+        }
+        
+        NSURL *URL = [resourceBundle URLForResource:[imageFileName stringByDeletingPathExtension] withExtension:[imageFileName pathExtension]];
+        return URL;
+    }
+    else {
+        NSURL *URL = [resourceBundle URLForResource:[name stringByDeletingPathExtension] withExtension:[name pathExtension]];
+        return URL;
+    }
+}
+
++ (UIImage *)imageWithName:(NSString *)name inResourceBundle:(NSString *)resourceBundleName {
+    NSString *resourceBundlePath = [NSBundle mainBundle].bundlePath;
+    if (resourceBundleName) {
+        if ([resourceBundleName hasSuffix:@".bundle"]) {
+            resourceBundlePath = [resourceBundlePath stringByAppendingPathComponent:resourceBundleName];
+        }
+        else {
+            resourceBundlePath = [resourceBundlePath stringByAppendingPathComponent:[resourceBundleName stringByAppendingPathExtension:@"bundle"]];
+        }
     }
     
-    NSString *filePath = [resourceBundlePath stringByAppendingPathComponent:name];
+    NSString *filePath;
+    if (!name.pathExtension.length) {
+        NSArray *imageNames = @[
+                                [NSString stringWithFormat:@"%@@%dx.png", name, (int)[UIScreen mainScreen].scale],
+                                [NSString stringWithFormat:@"%@@%dx.PNG", name, (int)[UIScreen mainScreen].scale],
+                                [NSString stringWithFormat:@"%@@%dX.png", name, (int)[UIScreen mainScreen].scale],
+                                [NSString stringWithFormat:@"%@@%dX.PNG", name, (int)[UIScreen mainScreen].scale],
+                                ];
+        NSString *imageFileName = [imageNames firstObject];
+        for (NSString *imageName in imageNames) {
+            NSString *path = [resourceBundlePath stringByAppendingPathComponent:imageName];
+            if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+                imageFileName = imageName;
+                break;
+            }
+        }
+        filePath = [resourceBundlePath stringByAppendingPathComponent:imageFileName];
+    }
+    else {
+        filePath = [resourceBundlePath stringByAppendingPathComponent:name];
+    }
+    
     return [UIImage imageWithContentsOfFile:filePath];
 }
 
