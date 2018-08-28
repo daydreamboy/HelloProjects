@@ -224,10 +224,10 @@ NS_ASSUME_NONNULL_BEGIN
  Check string if contains an ascend or descend character sequence with length
 
  @param string the string to check
- @param length the length of ascend or descend character sequence. If length <= 1 or string.length <= 1, always return NO
+ @param charactersLength the length of ascend or descend character sequence. If length <= 1 or string.length <= 1, always return NO
  @return YES if the string has ascend or descend character sequence as least with length (>= `length`)
  */
-+ (BOOL)checkStringWithString:(NSString *)string charactersOrderByAscendOrDescendWithLength:(NSInteger)length;
++ (BOOL)checkStringContainsCharactersAscendOrDescendWithString:(NSString *)string charactersLength:(NSInteger)charactersLength;
 
 /**
  Check string if composed by only one character
@@ -299,6 +299,15 @@ NS_ASSUME_NONNULL_BEGIN
  @see http://stackoverflow.com/questions/7546235/check-if-nsstring-contains-alphanumeric-underscore-characters-only
  */
 + (BOOL)checkStringAsAlphanumericWithString:(NSString *)string;
+
+/**
+ Check string if match email
+
+ @param string the string to check
+ @return YES if string match email format
+ @see https://stackoverflow.com/a/5428376
+ */
++ (BOOL)checkStringAsEmailWithString:(NSString *)string;
 
 #pragma mark - Handle String As JSON
 

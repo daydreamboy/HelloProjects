@@ -301,6 +301,24 @@
     XCTAssertNil(substring);
 }
 
+#pragma mark - Handle String As Plain
+
+#pragma mark > String Validation
+
+- (void)test_checkStringAsEmailWithString {
+    XCTAssertTrue([WCStringTool checkStringAsEmailWithString:@"me@163.com"]);
+    XCTAssertTrue([WCStringTool checkStringAsEmailWithString:@"me.2000@163.com"]);
+    XCTAssertTrue([WCStringTool checkStringAsEmailWithString:@"123456@qq.com"]);
+    XCTAssertTrue([WCStringTool checkStringAsEmailWithString:@"1@t.cn"]);
+    XCTAssertTrue([WCStringTool checkStringAsEmailWithString:@"test@gmai-l.com"]);
+    XCTAssertTrue([WCStringTool checkStringAsEmailWithString:@"test@qq.com.cn"]);
+    
+    XCTAssertFalse([WCStringTool checkStringAsEmailWithString:@"email@provider..com"]);
+    XCTAssertFalse([WCStringTool checkStringAsEmailWithString:@"email@provider."]);
+    XCTAssertFalse([WCStringTool checkStringAsEmailWithString:@"email@provider"]);
+    XCTAssertFalse([WCStringTool checkStringAsEmailWithString:@"email@provider@provider.com"]);
+}
+
 @end
 
 

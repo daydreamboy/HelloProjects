@@ -480,12 +480,12 @@
 
 #pragma mark > String Validation
 
-+ (BOOL)checkStringWithString:(NSString *)string charactersOrderByAscendOrDescendWithLength:(NSInteger)length {
++ (BOOL)checkStringContainsCharactersAscendOrDescendWithString:(NSString *)string charactersLength:(NSInteger)charactersLength {
     if (![string isKindOfClass:[NSString class]]) {
         return NO;
     }
     
-    if (length < 2 && string.length < 2) {
+    if (charactersLength < 2 && string.length < 2) {
         return NO;
     }
     
@@ -498,7 +498,7 @@
         ascendCount = (currentChar - previousChar == 1 ? ++ascendCount : 1);
         descendCount = (currentChar - previousChar == -1 ? ++descendCount : 1);
         
-        if (ascendCount >= length || descendCount >= length) {
+        if (ascendCount >= charactersLength || descendCount >= charactersLength) {
             return YES;
         }
     }
@@ -621,6 +621,14 @@
     }
     
     return [NSPREDICATE(@"^[1-9]+[0-9]*$") evaluateWithObject:string];
+}
+
++ (BOOL)checkStringAsEmailWithString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    
+    return [NSPREDICATE(@"[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}") evaluateWithObject:string];
 }
 
 #pragma mark - Handle String As JSON
