@@ -136,7 +136,7 @@
     }
 }
 
-+ (nullable NSString *)PathForResource:(NSString *)resourceName inResourceBundle:(nullable NSString *)bundleName {
++ (nullable NSString *)pathForResource:(NSString *)resourceName inResourceBundle:(nullable NSString *)bundleName {
     if (bundleName) {
         NSString *resourceBundlePath;
         if ([bundleName hasSuffix:@".bundle"]) {

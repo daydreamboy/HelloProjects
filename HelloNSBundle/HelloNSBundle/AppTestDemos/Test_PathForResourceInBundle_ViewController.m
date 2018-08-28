@@ -20,7 +20,7 @@
     
     NSString *path;
     
-    path = [WCBundleTool PathForResource:@"Info.plist" inResourceBundle:nil];
+    path = [WCBundleTool pathForResource:@"Info.plist" inResourceBundle:nil];
     NSLog(@"%@", path);
 }
 
