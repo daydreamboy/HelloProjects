@@ -7,19 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F60620521353A0100D049DF /* WCImageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60620421353A0100D049DF /* WCImageTool.m */; };
+		4F60620F21357B8200D049DF /* image.pNG in Resources */ = {isa = PBXBuildFile; fileRef = 4F60620E21357B8200D049DF /* image.pNG */; };
+		4F60621321358D1A00D049DF /* WCImageViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60621221358D1900D049DF /* WCImageViewTool.m */; };
+		4F60621821358D2400D049DF /* MaskImageViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60621421358D2300D049DF /* MaskImageViewViewController.m */; };
+		4F60621921358D2400D049DF /* AddShadowBorderToImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60621721358D2400D049DF /* AddShadowBorderToImageViewController.m */; };
+		4F60622121358D2D00D049DF /* aliwx_card_bubble_left_bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F60621A21358D2B00D049DF /* aliwx_card_bubble_left_bg@3x.png */; };
+		4F60622221358D2D00D049DF /* coupon.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F60621B21358D2C00D049DF /* coupon.png */; };
+		4F60622321358D2D00D049DF /* aliwx_card_bubble_left_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F60621C21358D2C00D049DF /* aliwx_card_bubble_left_bg@2x.png */; };
+		4F60622421358D2D00D049DF /* mask@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F60621D21358D2C00D049DF /* mask@3x.png */; };
+		4F60622521358D2D00D049DF /* aliwx_card_bubble_right_bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F60621E21358D2C00D049DF /* aliwx_card_bubble_right_bg@3x.png */; };
+		4F60622621358D2D00D049DF /* mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F60621F21358D2C00D049DF /* mask@2x.png */; };
+		4F60622721358D2D00D049DF /* aliwx_card_bubble_right_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F60622021358D2C00D049DF /* aliwx_card_bubble_right_bg@2x.png */; };
 		4F759FFD213130DB000DDE60 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F759FFC213130DB000DDE60 /* AppDelegate.m */; };
 		4F75A005213130DD000DDE60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F75A004213130DD000DDE60 /* Assets.xcassets */; };
 		4F75A008213130DD000DDE60 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F75A006213130DD000DDE60 /* LaunchScreen.storyboard */; };
 		4F75A00B213130DD000DDE60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A00A213130DD000DDE60 /* main.m */; };
 		4F75A03F21313133000DDE60 /* CenterImageInUIImageViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A03B21313133000DDE60 /* CenterImageInUIImageViewViewController.m */; };
 		4F75A04021313133000DDE60 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A03D21313133000DDE60 /* RootViewController.m */; };
-		4F75A04321313247000DDE60 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F75A04221313247000DDE60 /* image.png */; };
 		4F961BA72132ED42009402F3 /* RoundedImageInUIImageViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F961BA62132ED42009402F3 /* RoundedImageInUIImageViewViewController.m */; };
 		4F961BA92132F1B6009402F3 /* cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F961BA82132F1B6009402F3 /* cat.jpg */; };
 		4F961BAE2133003B009402F3 /* flower.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F961BAD2133003A009402F3 /* flower.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F60620321353A0100D049DF /* WCImageTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCImageTool.h; sourceTree = "<group>"; };
+		4F60620421353A0100D049DF /* WCImageTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCImageTool.m; sourceTree = "<group>"; };
+		4F60620E21357B8200D049DF /* image.pNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.pNG; sourceTree = "<group>"; };
+		4F60621121358D1900D049DF /* WCImageViewTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCImageViewTool.h; sourceTree = "<group>"; };
+		4F60621221358D1900D049DF /* WCImageViewTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCImageViewTool.m; sourceTree = "<group>"; };
+		4F60621421358D2300D049DF /* MaskImageViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MaskImageViewViewController.m; sourceTree = "<group>"; };
+		4F60621521358D2300D049DF /* MaskImageViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MaskImageViewViewController.h; sourceTree = "<group>"; };
+		4F60621621358D2400D049DF /* AddShadowBorderToImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddShadowBorderToImageViewController.h; sourceTree = "<group>"; };
+		4F60621721358D2400D049DF /* AddShadowBorderToImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddShadowBorderToImageViewController.m; sourceTree = "<group>"; };
+		4F60621A21358D2B00D049DF /* aliwx_card_bubble_left_bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aliwx_card_bubble_left_bg@3x.png"; sourceTree = "<group>"; };
+		4F60621B21358D2C00D049DF /* coupon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = coupon.png; sourceTree = "<group>"; };
+		4F60621C21358D2C00D049DF /* aliwx_card_bubble_left_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aliwx_card_bubble_left_bg@2x.png"; sourceTree = "<group>"; };
+		4F60621D21358D2C00D049DF /* mask@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mask@3x.png"; sourceTree = "<group>"; };
+		4F60621E21358D2C00D049DF /* aliwx_card_bubble_right_bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aliwx_card_bubble_right_bg@3x.png"; sourceTree = "<group>"; };
+		4F60621F21358D2C00D049DF /* mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mask@2x.png"; sourceTree = "<group>"; };
+		4F60622021358D2C00D049DF /* aliwx_card_bubble_right_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aliwx_card_bubble_right_bg@2x.png"; sourceTree = "<group>"; };
 		4F759FF8213130DB000DDE60 /* HelloUIImageView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUIImageView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F759FFB213130DB000DDE60 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F759FFC213130DB000DDE60 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -31,7 +58,6 @@
 		4F75A03C21313133000DDE60 /* CenterImageInUIImageViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterImageInUIImageViewViewController.h; sourceTree = "<group>"; };
 		4F75A03D21313133000DDE60 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F75A03E21313133000DDE60 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		4F75A04221313247000DDE60 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
 		4F961BA52132ED42009402F3 /* RoundedImageInUIImageViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoundedImageInUIImageViewViewController.h; sourceTree = "<group>"; };
 		4F961BA62132ED42009402F3 /* RoundedImageInUIImageViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoundedImageInUIImageViewViewController.m; sourceTree = "<group>"; };
 		4F961BA82132F1B6009402F3 /* cat.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cat.jpg; sourceTree = "<group>"; };
@@ -49,9 +75,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F606202213539E200D049DF /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F60620321353A0100D049DF /* WCImageTool.h */,
+				4F60620421353A0100D049DF /* WCImageTool.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		4F60621021358D0400D049DF /* WCImageViewTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F60621121358D1900D049DF /* WCImageViewTool.h */,
+				4F60621221358D1900D049DF /* WCImageViewTool.m */,
+			);
+			path = WCImageViewTool;
+			sourceTree = "<group>";
+		};
 		4F759FEF213130DB000DDE60 = {
 			isa = PBXGroup;
 			children = (
+				4F60621021358D0400D049DF /* WCImageViewTool */,
 				4F759FFA213130DB000DDE60 /* HelloUIImageView */,
 				4F759FF9213130DB000DDE60 /* Products */,
 			);
@@ -68,12 +113,13 @@
 		4F759FFA213130DB000DDE60 /* HelloUIImageView */ = {
 			isa = PBXGroup;
 			children = (
-				4F75A04121313247000DDE60 /* Resources */,
+				4F606202213539E200D049DF /* Tools */,
 				4F75A03A21313133000DDE60 /* AppTestDemos */,
 				4F75A03E21313133000DDE60 /* RootViewController.h */,
 				4F75A03D21313133000DDE60 /* RootViewController.m */,
 				4F759FFB213130DB000DDE60 /* AppDelegate.h */,
 				4F759FFC213130DB000DDE60 /* AppDelegate.m */,
+				4F75A04121313247000DDE60 /* Resources */,
 				4F75A004213130DD000DDE60 /* Assets.xcassets */,
 				4F75A006213130DD000DDE60 /* LaunchScreen.storyboard */,
 				4F75A009213130DD000DDE60 /* Info.plist */,
@@ -89,6 +135,10 @@
 				4F75A03B21313133000DDE60 /* CenterImageInUIImageViewViewController.m */,
 				4F961BA52132ED42009402F3 /* RoundedImageInUIImageViewViewController.h */,
 				4F961BA62132ED42009402F3 /* RoundedImageInUIImageViewViewController.m */,
+				4F60621621358D2400D049DF /* AddShadowBorderToImageViewController.h */,
+				4F60621721358D2400D049DF /* AddShadowBorderToImageViewController.m */,
+				4F60621521358D2300D049DF /* MaskImageViewViewController.h */,
+				4F60621421358D2300D049DF /* MaskImageViewViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -96,9 +146,16 @@
 		4F75A04121313247000DDE60 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F60621C21358D2C00D049DF /* aliwx_card_bubble_left_bg@2x.png */,
+				4F60621A21358D2B00D049DF /* aliwx_card_bubble_left_bg@3x.png */,
+				4F60622021358D2C00D049DF /* aliwx_card_bubble_right_bg@2x.png */,
+				4F60621E21358D2C00D049DF /* aliwx_card_bubble_right_bg@3x.png */,
+				4F60621B21358D2C00D049DF /* coupon.png */,
+				4F60621F21358D2C00D049DF /* mask@2x.png */,
+				4F60621D21358D2C00D049DF /* mask@3x.png */,
+				4F60620E21357B8200D049DF /* image.pNG */,
 				4F961BAD2133003A009402F3 /* flower.jpg */,
 				4F961BA82132F1B6009402F3 /* cat.jpg */,
-				4F75A04221313247000DDE60 /* image.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -160,11 +217,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F60622721358D2D00D049DF /* aliwx_card_bubble_right_bg@2x.png in Resources */,
+				4F60622321358D2D00D049DF /* aliwx_card_bubble_left_bg@2x.png in Resources */,
+				4F60622521358D2D00D049DF /* aliwx_card_bubble_right_bg@3x.png in Resources */,
 				4F75A008213130DD000DDE60 /* LaunchScreen.storyboard in Resources */,
+				4F60620F21357B8200D049DF /* image.pNG in Resources */,
+				4F60622421358D2D00D049DF /* mask@3x.png in Resources */,
+				4F60622621358D2D00D049DF /* mask@2x.png in Resources */,
 				4F75A005213130DD000DDE60 /* Assets.xcassets in Resources */,
 				4F961BA92132F1B6009402F3 /* cat.jpg in Resources */,
+				4F60622121358D2D00D049DF /* aliwx_card_bubble_left_bg@3x.png in Resources */,
 				4F961BAE2133003B009402F3 /* flower.jpg in Resources */,
-				4F75A04321313247000DDE60 /* image.png in Resources */,
+				4F60622221358D2D00D049DF /* coupon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,10 +240,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F75A03F21313133000DDE60 /* CenterImageInUIImageViewViewController.m in Sources */,
+				4F60621821358D2400D049DF /* MaskImageViewViewController.m in Sources */,
 				4F75A00B213130DD000DDE60 /* main.m in Sources */,
 				4F759FFD213130DB000DDE60 /* AppDelegate.m in Sources */,
+				4F60621321358D1A00D049DF /* WCImageViewTool.m in Sources */,
 				4F961BA72132ED42009402F3 /* RoundedImageInUIImageViewViewController.m in Sources */,
+				4F60621921358D2400D049DF /* AddShadowBorderToImageViewController.m in Sources */,
 				4F75A04021313133000DDE60 /* RootViewController.m in Sources */,
+				4F60620521353A0100D049DF /* WCImageTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

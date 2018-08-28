@@ -39,14 +39,4 @@
     return _imageView;
 }
 
-- (UIImage*) roundCorneredImage:(UIImage *)orig radius:(CGFloat) r {
-    UIGraphicsBeginImageContextWithOptions(orig.size, NO, 0);
-    [[UIBezierPath bezierPathWithRoundedRect:(CGRect){CGPointZero, orig.size}
-                                cornerRadius:r] addClip];
-    [orig drawInRect:(CGRect){CGPointZero, orig.size}];
-    UIImage* result = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return result;
-}
-
 @end

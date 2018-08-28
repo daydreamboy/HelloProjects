@@ -10,6 +10,8 @@
 
 #import "CenterImageInUIImageViewViewController.h"
 #import "RoundedImageInUIImageViewViewController.h"
+#import "AddShadowBorderToImageViewController.h"
+#import "MaskImageViewViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -34,11 +36,14 @@
     _titles = @[
         @"Center image in UIImageView",
         @"Make rounded image",
-        @"call a test method",
+        @"Add shadow border to image",
+        @"Mask a image by antoher image",
     ];
     _classes = @[
         [CenterImageInUIImageViewViewController class],
         [RoundedImageInUIImageViewViewController class],
+        [AddShadowBorderToImageViewController class],
+        [MaskImageViewViewController class],
         @"testMethod",
     ];
 }
