@@ -218,6 +218,88 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSString *)stringWithUnichar:(unichar)unichar;
 
+#pragma mark > String Validation
+
+/**
+ Check string if contains an ascend or descend character sequence with length
+
+ @param string the string to check
+ @param length the length of ascend or descend character sequence. If length <= 1 or string.length <= 1, always return NO
+ @return YES if the string has ascend or descend character sequence as least with length (>= `length`)
+ */
++ (BOOL)checkStringWithString:(NSString *)string charactersOrderByAscendOrDescendWithLength:(NSInteger)length;
+
+/**
+ Check string if composed by only one character
+
+ @param string the string to check
+ @return YES if the string is composed by only one character
+ */
++ (BOOL)checkStringUniformedBySingleCharacterWithString:(NSString *)string;
+
+/**
+ Check string if numeric, e.g. @"000", @"010", @"1"
+ 
+ @param string the string to check
+ @return NO, if empty string @"" or nil, or not a numeric string
+ */
++ (BOOL)checkStringComposedOfNumbersWithString:(NSString *)string;
+
+/**
+ Check string only if contains a-z and A-Z, e.g. @"aaa", @"ABC", @"abcABC"
+
+ @param string the string to check
+ @return NO, if empty string @"" or nil, or contains non-letter characters
+ */
++ (BOOL)checkStringComposedOfLettersWithString:(NSString *)string;
++ (BOOL)checkStringComposedOfLettersLowercaseWithString:(NSString *)string;
++ (BOOL)checkStringComposedOfLettersUppercaseWithString:(NSString *)string;
+
+/**
+ Check string if chinese characters, e.g. @"中文", @"中国"
+
+ @param string the string to check
+ @return NO, if empty string @"" or nil, or contains non-chinese characters
+ @see http://www.ssec.wisc.edu/~tomw/java/unicode.html#x4E00 (CJK Unified Ideographs)
+ */
++ (BOOL)checkStringComposedOfChineseCharactersWithString:(NSString *)string;
+
+/**
+ Check string if non-negative integer value, e.g. @"0", @"1", @"10"
+
+ @param string the string to check
+ @return If YES, the string is integer value and NUMBER(string) >= 0.
+ @warning <br/> 1. positive sign (+) is NOT allowed <br/> 2. leading zeros are NOT allowed, e.g. @"00", @"010"
+ @discussion same as checkStringAsNaturalIntegerWithString
+ */
++ (BOOL)checkStringAsNoneNegativeIntegerWithString:(NSString *)string;
+
+/**
+ Check string if non-negative integer value, e.g. @"0", @"1", @"10".
+
+ @param string the string to check
+ @return If YES, the string is integer value and NUMBER(string) >= 0.
+ @see http://stackoverflow.com/questions/6644004/how-to-check-if-nsstring-is-contains-a-numeric-value
+ */
++ (BOOL)checkStringAsNaturalIntegerWithString:(NSString *)string;
+
+/**
+ Check string if positive integer value, e.g. @"1", @"2"
+
+ @param string the string to check
+ @return If YES, the string is integer value and NUMBER(string) > 0.
+ */
++ (BOOL)checkStringAsPositiveIntegerWithString:(NSString *)string;
+
+/**
+ Check string if alphabetical and numerical
+ 
+ @param string the string to check
+ @return YES if string contains only letters (uppercase or lowercase) and numbers
+ @see http://stackoverflow.com/questions/7546235/check-if-nsstring-contains-alphanumeric-underscore-characters-only
+ */
++ (BOOL)checkStringAsAlphanumericWithString:(NSString *)string;
+
 #pragma mark - Handle String As JSON
 
 #pragma mark > JSON String to id/NSArray/NSDictionary

@@ -9,6 +9,10 @@
 #import "WCStringTool.h"
 #import <CommonCrypto/CommonDigest.h>
 
+#ifndef NSPREDICATE
+#define NSPREDICATE(expression)    ([NSPredicate predicateWithFormat:@"SELF MATCHES %@", expression])
+#endif
+
 @implementation WCStringTool
 
 #pragma mark - Handle String As Text In UILabel
@@ -472,6 +476,151 @@
     // Note: %C for unichar with 16 bits width
     NSString *string = [NSString stringWithFormat:@"%C", unichar];
     return string;
+}
+
+#pragma mark > String Validation
+
++ (BOOL)checkStringWithString:(NSString *)string charactersOrderByAscendOrDescendWithLength:(NSInteger)length {
+    if (![string isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    
+    if (length < 2 && string.length < 2) {
+        return NO;
+    }
+    
+    NSInteger ascendCount = 1;
+    NSInteger descendCount = 1;
+    for (NSInteger i = 1; i < string.length; i++) {
+        unichar previousChar = [string characterAtIndex:i - 1];
+        unichar currentChar = [string characterAtIndex:i];
+        
+        ascendCount = (currentChar - previousChar == 1 ? ++ascendCount : 1);
+        descendCount = (currentChar - previousChar == -1 ? ++descendCount : 1);
+        
+        if (ascendCount >= length || descendCount >= length) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
++ (BOOL)checkStringUniformedBySingleCharacterWithString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    
+    NSRange range = NSMakeRange(0, string.length);
+    
+    __block BOOL uniformed = YES;
+    __block NSString *previousString = nil;
+    
+    [string enumerateSubstringsInRange:range options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+        if (!previousString) {
+            previousString = substring;
+        }
+        else {
+            if (![previousString isEqualToString:substring]) {
+                uniformed = NO;
+                *stop = YES;
+            }
+        }
+    }];
+    
+    return uniformed;
+}
+
++ (BOOL)checkStringComposedOfNumbersWithString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    
+    return [NSPREDICATE(@"^[0-9]+[0-9]*$") evaluateWithObject:self];
+}
+
++ (BOOL)checkStringComposedOfLettersWithString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    
+    return [NSPREDICATE(@"^[a-zA-Z]+[a-zA-Z]*$") evaluateWithObject:string];
+}
+
++ (BOOL)checkStringComposedOfLettersLowercaseWithString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    
+    return [NSPREDICATE(@"^[a-z]+[a-z]*$") evaluateWithObject:string];
+}
+
++ (BOOL)checkStringComposedOfLettersUppercaseWithString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    
+    return [NSPREDICATE(@"^[A-Z]+[A-Z]*$") evaluateWithObject:string];
+}
+
++ (BOOL)checkStringComposedOfChineseCharactersWithString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    
+    return [NSPREDICATE(@"^[\u4e00-\u9fa5]+[\u4e00-\u9fa5]*$") evaluateWithObject:string];
+}
+
++ (BOOL)checkStringAsAlphanumericWithString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    
+    if (string.length) {
+        static NSCharacterSet *characterSet;
+        if (!characterSet) {
+            characterSet = [NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890"];
+        }
+        
+        return ([string rangeOfCharacterFromSet:[characterSet invertedSet]].location == NSNotFound);
+    }
+    else {
+        // empty string is not alphanumeric
+        return NO;
+    }
+}
+
++ (BOOL)checkStringAsNoneNegativeIntegerWithString:(NSString *)string {
+    return [self checkStringAsNaturalIntegerWithString:string];
+}
+
++ (BOOL)checkStringAsNaturalIntegerWithString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    
+    if (string.length) {
+        if ([string hasPrefix:@"0"] && string.length != 1) {
+            return NO;
+        }
+        else {
+            NSCharacterSet *noneNumberSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+            NSRange range = [string rangeOfCharacterFromSet:noneNumberSet];
+            
+            return range.location == NSNotFound;
+        }
+    }
+    else {
+        return NO;
+    }
+}
+
++ (BOOL)checkStringAsPositiveIntegerWithString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    
+    return [NSPREDICATE(@"^[1-9]+[0-9]*$") evaluateWithObject:string];
 }
 
 #pragma mark - Handle String As JSON

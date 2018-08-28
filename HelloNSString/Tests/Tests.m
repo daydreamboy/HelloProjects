@@ -269,6 +269,38 @@
     XCTAssertEqualObjects([WCStringTool URLUnescapeStringWithString:@"%E5%88%B7%E6%96%B0%E8%BF%87%E4%BA%8E%E9%A2%91%E7%B9%81%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%90%8E%E5%86%8D%E8%AF%95"], @"刷新过于频繁，请稍后再试");
 }
 
+- (void)test_substringWithString_atLocation_length {
+    NSString *str1 = @"2014-11-07 18:36:04";
+    
+    XCTAssertEqualObjects(@"11-07", [WCStringTool substringWithString:str1 atLocation:5 length:5]);
+    XCTAssertEqualObjects(@"18:36:04", [WCStringTool substringWithString:str1 atLocation:11 length:NSUIntegerMax]);
+    XCTAssertEqualObjects(@"4", [WCStringTool substringWithString:str1 atLocation:str1.length - 1 length:1]);
+    XCTAssertEqualObjects(@"4", [WCStringTool substringWithString:str1 atLocation:str1.length - 1 length:4]);
+    XCTAssertEqualObjects(@"", [WCStringTool substringWithString:@"abc" atLocation:0 length:0]);
+    XCTAssertEqualObjects(@"a", [WCStringTool substringWithString:@"abc" atLocation:0 length:1]);
+    
+    XCTAssertNil([WCStringTool substringWithString:str1 atLocation:str1.length length:1]);
+    XCTAssertNil([WCStringTool substringWithString:@"" atLocation:0 length:1]);
+    XCTAssertNil([WCStringTool substringWithString:@"" atLocation:0 length:0]);
+    NSString *nilString = nil;
+    XCTAssertNil([WCStringTool substringWithString:nilString atLocation:0 length:1]);
+}
+
+- (void)test_firstSubstringWithString_substringInCharacterSet {
+    NSString *originalString;
+    NSString *substring;
+    
+    // case 1
+    originalString = @"*_?.幸运号This's my string：01234adbc5678";
+    substring = [WCStringTool firstSubstringWithString:originalString substringInCharacterSet:[NSCharacterSet decimalDigitCharacterSet]];
+    XCTAssertEqualObjects(substring, @"01234");
+    
+    // case 2
+    originalString = @"*_?.This's my string.";
+    substring = [WCStringTool firstSubstringWithString:originalString substringInCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@"0123456789"]];
+    XCTAssertNil(substring);
+}
+
 @end
 
 
