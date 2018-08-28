@@ -30,7 +30,7 @@
         @synchronized(self) {
             if (dictM == nil) {
                 dictM = [NSMutableDictionary dictionary];
-                objc_setAssociatedObject(dictM, @selector(associatedUserInfo), dictM, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                objc_setAssociatedObject(self, @selector(associatedUserInfo), dictM, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
             }
         }
     }
@@ -45,7 +45,7 @@
         @synchronized(self) {
             if (tableStrongToWeak == nil) {
                 tableStrongToWeak = [NSMapTable strongToWeakObjectsMapTable];
-                objc_setAssociatedObject(tableStrongToWeak, @selector(associatedWeakUserInfo), tableStrongToWeak, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+                objc_setAssociatedObject(self, @selector(associatedWeakUserInfo), tableStrongToWeak, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
             }
         }
     }
