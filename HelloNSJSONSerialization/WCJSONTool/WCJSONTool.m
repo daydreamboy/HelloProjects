@@ -9,17 +9,17 @@
 #import "WCJSONTool.h"
 
 @interface WCJSONTool ()
-+ (NSString *)jsonStringWithObject:(id)object printOptions:(NSJSONWritingOptions)options;
++ (NSString *)JSONStringWithObject:(id)object printOptions:(NSJSONWritingOptions)options;
 @end
 
 @implementation NSArray (WCJSONTool)
 
 - (NSString *)jsonString {
-    return [WCJSONTool jsonStringWithObject:self printOptions:kNilOptions];
+    return [WCJSONTool JSONStringWithObject:self printOptions:kNilOptions];
 }
 
 - (NSString *)jsonStringWithReadability {
-    return [WCJSONTool jsonStringWithObject:self printOptions:NSJSONWritingPrettyPrinted];
+    return [WCJSONTool JSONStringWithObject:self printOptions:NSJSONWritingPrettyPrinted];
 }
 
 @end
@@ -27,23 +27,18 @@
 @implementation NSDictionary (WCJSONTool)
 
 - (NSString *)jsonString {
-    return [WCJSONTool jsonStringWithObject:self printOptions:kNilOptions];
+    return [WCJSONTool JSONStringWithObject:self printOptions:kNilOptions];
 }
 
 - (NSString *)jsonStringWithReadability {
-    return [WCJSONTool jsonStringWithObject:self printOptions:NSJSONWritingPrettyPrinted];
+    return [WCJSONTool JSONStringWithObject:self printOptions:NSJSONWritingPrettyPrinted];
 }
 
 @end
 
 @implementation WCJSONTool
 
-/*!
- *  Get a json string
- *
- *  @sa http://stackoverflow.com/questions/6368867/generate-json-string-from-nsdictionary
- */
-+ (NSString *)jsonStringWithObject:(id)object printOptions:(NSJSONWritingOptions)options {
++ (NSString *)JSONStringWithObject:(id)object printOptions:(NSJSONWritingOptions)options {
     if ([object isKindOfClass:[NSArray class]] || [object isKindOfClass:[NSDictionary class]]) {
         NSData *jsonData = nil;
         @try {
@@ -62,6 +57,30 @@
         NSString *jsonString = nil;
         if (jsonData) {
             jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        }
+        
+        return jsonString;
+    }
+    else if ([object isKindOfClass:[NSNumber class]] || [object isKindOfClass:[NSNull class]]) {
+        NSData *jsonData = nil;
+        @try {
+            NSError *error;
+            jsonData = [NSJSONSerialization dataWithJSONObject:object options:options error:&error];
+        }
+        @catch (NSException *exception) {
+            if (![NSJSONSerialization isValidJSONObject:object]) {
+                NSLog(@"[%@]: %@ is not a valid JSON object", NSStringFromClass(self), object);
+            }
+            else {
+                NSLog(@"[%@] an exception occured:\n%@", NSStringFromClass(self), exception);
+            }
+        }
+        
+        NSString *jsonString = nil;
+        if (jsonData) {
+            // @see https://stackoverflow.com/a/34268973
+            jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"[]"]];
         }
         
         return jsonString;
@@ -92,7 +111,7 @@
 
 #pragma mark -
 
-+ (id)mutableContainerWithJSONData:(NSData *)jsonData containerClass:(Class)class {
++ (nullable id)mutableContainerWithJSONData:(NSData *)jsonData containerClass:(Class)class {
     if (!jsonData) {
         return nil;
     }

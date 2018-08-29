@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface NSArray (WCJSONTool)
 #pragma mark - JSON String
 /// Get a json string of NSArray with plain style
@@ -24,10 +26,21 @@
 @end
 
 @interface WCJSONTool : NSObject
-/// Convert JSON object (NSArray/NSDictionary) to JSON string
-+ (NSString *)jsonStringWithObject:(id)object printOptions:(NSJSONWritingOptions)options;
+
+/**
+ Convert object to JSON string
+
+ @param object the object which can match JSON element, e.g. NSArray/NSDictionary/NSNumber/NSString/NSNull
+ @param options the options, kNilOptions for compact string.
+ @return the JSON formatted string
+ 
+ @see https://www.json.org/
+ @see http://stackoverflow.com/questions/6368867/generate-json-string-from-nsdictionary
+ */
++ (nullable NSString *)JSONStringWithObject:(id)object printOptions:(NSJSONWritingOptions)options NS_AVAILABLE_IOS(5_0);
 
 #pragma mark - Convert JSON String/Data to NSDictionary
+
 + (NSMutableDictionary *)mutableDictionaryWithJSONString:(NSString *)jsonString;
 + (NSMutableDictionary *)mutableDictionaryWithJSONData:(NSData *)jsonData;
 
@@ -35,3 +48,5 @@
 + (NSMutableArray *)mutableArrayWithJSONData:(NSData *)jsonData;
 
 @end
+
+NS_ASSUME_NONNULL_END
