@@ -116,7 +116,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return the NSValue to wrap UIEdgeInsets. Return nil if string is invalid.
  @warning not allow 0.0, instead of just using 0.
  */
-+ (NSValue *)edgeInsetsValueFromString:(NSString *)string;
++ (nullable NSValue *)edgeInsetsValueFromString:(NSString *)string;
 
 /**
  Convert hex string to UIColor
@@ -124,13 +124,13 @@ NS_ASSUME_NONNULL_BEGIN
  @param string the hex string with foramt @"#RRGGBB" or @"#RRGGBBAA"
  @return the UIColor object. return nil if string is not valid.
  */
-+ (UIColor *)colorFromHexString:(NSString *)string;
++ (nullable UIColor *)colorFromHexString:(NSString *)string;
 
 #pragma mark - Handle String As Url
 
 /// get value for key like `key1=value1&key2=value2`
-+ (NSString *)valueWithUrlString:(NSString *)string forKey:(NSString *)key usingConnector:(NSString *)connector usingSeparator:(NSString *)separator;
-+ (NSString *)valueWithUrlString:(NSString *)string forKey:(NSString *)key;
++ (nullable NSString *)valueWithUrlString:(NSString *)string forKey:(NSString *)key usingConnector:(NSString *)connector usingSeparator:(NSString *)separator;
++ (nullable NSString *)valueWithUrlString:(NSString *)string forKey:(NSString *)key;
 
 /**
  Get key/value from url string like `http://xxx?key1=value1&key2=value2`
@@ -138,7 +138,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param string the url string, e.g. xxx://....
  @return return empty dictionary if the url string is invalid.
  */
-+ (NSDictionary *)keyValuePairsWithUrlString:(NSString *)string;
++ (nullable NSDictionary *)keyValuePairsWithUrlString:(NSString *)string;
 
 #pragma mark - Handle String As Plain
 
@@ -152,7 +152,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param length the length of substring
  @return the substring. Return nil if the locatio or length is invalid, e.g. location out of the string index [0..string.length]
  */
-+ (NSString *)substringWithString:(NSString *)string atLocation:(NSUInteger)location length:(NSUInteger)length;
++ (nullable NSString *)substringWithString:(NSString *)string atLocation:(NSUInteger)location length:(NSUInteger)length;
 
 /**
  Safe get substring with the length which started at the location
@@ -162,7 +162,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return the substring. Return nil if the range is invalid.
  @discussion this method will internally call +[WCStringTool substringWithString:atLocation:length:]
  */
-+ (NSString *)substringWithString:(NSString *)string range:(NSRange)range;
++ (nullable NSString *)substringWithString:(NSString *)string range:(NSRange)range;
 
 /**
  Get the first substring which matches the characterSet
@@ -178,7 +178,7 @@ NS_ASSUME_NONNULL_BEGIN
  NSLog(@"%@", numberString); // 01234
  @endcode
  */
-+ (NSString *)firstSubstringWithString:(NSString *)string substringInCharacterSet:(NSCharacterSet *)characterSet;
++ (nullable NSString *)firstSubstringWithString:(NSString *)string substringInCharacterSet:(NSCharacterSet *)characterSet;
 
 #pragma mark > Split String
 
@@ -194,7 +194,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @see AFPercentEscapedStringFromString function, https://github.com/AFNetworking/AFNetworking/blob/master/AFNetworking/AFURLRequestSerialization.m#L47
  */
-+ (NSString *)URLEscapeStringWithString:(nullable NSString *)string;
++ (nullable NSString *)URLEscapeStringWithString:(nullable NSString *)string;
 
 /**
  Get a URL decoded string with UTF-8 encoding
@@ -204,7 +204,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @see http://isobar.logdown.com/posts/211030-url-encode-decode-in-ios
  */
-+ (NSString *)URLUnescapeStringWithString:(nullable NSString *)string;
++ (nullable NSString *)URLUnescapeStringWithString:(nullable NSString *)string;
 
 #pragma mark > unichar
 
@@ -216,7 +216,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @see https://stackoverflow.com/a/1354413
  */
-+ (NSString *)stringWithUnichar:(unichar)unichar;
++ (nullable NSString *)stringWithUnichar:(unichar)unichar;
 
 #pragma mark > String Validation
 
@@ -309,6 +309,49 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)checkStringAsEmailWithString:(NSString *)string;
 
+#pragma mark > String Generation
+
+/**
+ Generate a random alphanumeric string from @"a-zA-Z0-9"
+
+ @param length the length of the random string
+ @return the random string. Return nil if length = 0.
+ */
++ (nullable NSString *)randomStringWithLength:(NSUInteger)length;
+
+/**
+ Generate a random string from characters
+
+ @param characters the characters to generate the random string
+ @param length the length of the random string
+ @return the random string. Return nil if length = 0 or characters is empty.
+ @see http://stackoverflow.com/questions/2633801/generate-a-random-alphanumeric-string-in-cocoa
+ */
++ (nullable NSString *)randomStringWithCharacters:(NSString *)characters length:(NSUInteger)length;
+
+/**
+ Convert non-spaced string into spaced string with the specified format, e.g. @"12312341234" to @"123 1234 1234" with format @"XXX XXXX XXXX"
+
+ @param string the original string
+ @param format the format string contains spaces and non-space characters
+ @return the spaced string
+ @discussion 1. The trailing space in formatString will be ignored, e.g. @"abc" to @" a b c" with format @" X X X "
+        <br/> 2. If the string contains space, the space will be trimmed
+ */
++ (nullable NSString *)spacedStringWithString:(NSString *)string format:(NSString *)format;
+
+/**
+ Get a string with format and an array of arguments
+
+ @param string the original string
+ @param format the format string which used in +[NSString stringWithFormat:]
+ @param arguments the array of argument which are objects, and the length of arguments should not > 10
+ @return the formatted string
+ @see https://stackoverflow.com/questions/1058736/how-to-create-a-nsstring-from-a-format-string-like-xxx-yyy-and-a-nsarr
+ @warning If the length of arguments > 10, this method will throw an exception when DEBUG = 1.
+ */
++ (nullable NSString *)formattedStringWithString:(NSString *)string format:(NSString *)format arguments:(NSArray *)arguments;
+
 #pragma mark - Handle String As JSON
 
 #pragma mark > JSON String to id/NSArray/NSDictionary
@@ -339,6 +382,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Encryption
 
+/*!
+ *  MD5 encryption
+ *
+ *  @header #import <CommonCrypto/CommonDigest.h>
+ */
 + (NSString *)MD5WithString:(NSString *)string;
 
 @end

@@ -122,15 +122,6 @@
     XCTAssertTrue(dict.count == 0);
 }
 
-- (void)test_valueWithUrlString_forKey {
-    NSString *string;
-    NSString *value;
-    
-    string = @"https://qngateway.taobao.com/gw/wwjs/multi.resource.emoticon.query?id=144";
-    value = [WCStringTool valueWithUrlString:string forKey:@"id"];
-    XCTAssertEqualObjects(value, @"144");
-}
-
 - (void)test_componentsWithString_delimeters {
     NSString *string;
     NSArray *components;
@@ -195,6 +186,48 @@
     NSString *jsonDictString = @"{\"result_code\":\"9999\",\"message\":\"ok\",\"conf\":{\"d\":\"E9F8EE6FA52D548711BA59DEFABD948C\",\"switch\":\"1\",\"issync\":\"1\",\"mode\":\"2\",\"infoSwitch\":\"0\"}}";
     NSArray *fakedArr =  [WCStringTool JSONArrayWithString:jsonDictString];
     XCTAssertNil(fakedArr, @"%@ should be nil", fakedArr);
+}
+
+#pragma mark - Handle String As Url
+
+- (void)test_valueWithUrlString_forKey {
+    NSString *url;
+    
+    // case 1
+    url = @"http://m.cp.360.cn/news/mobile/150410515.html?act=1&reffer=ios&titleRight=share&empty=";
+    
+    NSLog(@"titleRight=%@", [WCStringTool valueWithUrlString:url forKey:@"titleRight"]);
+    NSLog(@"act=%@", [WCStringTool valueWithUrlString:url forKey:@"act"]);
+    NSLog(@"reffer=%@", [WCStringTool valueWithUrlString:url forKey:@"reffer"]);
+    NSLog(@"empty=%@", [WCStringTool valueWithUrlString:url forKey:@"empty"]);
+    
+    // case 2
+    url = @"wangxs://multiaction/and?multi=%5B%22wangx%3A%2F%2Fh5%2Fopen%3Furl%3Dhttp%253a%252f%252fwww.taobao.com%22%2C%22wangx%3A%2F%2Fmenu%2Fdismiss%3Fmenuname%3DMenuNameForShowType%26container%3DpopBubble%26strategy%3Dtransient%26bubbleBizType%3Dtest%26conversationId%3Dcnhhupanww%E5%BA%97%E9%93%BA%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7003%22%5D";
+    
+//    NSLog(@"multi=%@", [WCStringTool valueWithUrlString:url forKey:@"multi"]);
+//    NSLog(@"multi (decoded)=%@", [WCStringTool URLUnescapeStringWithString:[WCStringTool valueWithUrlString:url forKey:@"multi"]]);
+//    NSLog(@"multi (decoded as array)=%@", [[WCStringTool URLUnescapeStringWithString:[[WCStringTool valueWithUrlString:url forKey:@"multi"]] jsonArray]);
+//    NSArray *arr = [[[WCStringTool valueWithUrlString:url forKey:@"multi"] urlDecodedString] jsonArray];
+//    NSLog(@"%@", arr);
+    
+    // case 3
+    NSString *string;
+    NSString *value;
+    
+    string = @"https://qngateway.taobao.com/gw/wwjs/multi.resource.emoticon.query?id=144";
+    value = [WCStringTool valueWithUrlString:string forKey:@"id"];
+    XCTAssertEqualObjects(value, @"144");
+}
+
+- (void)test_valueWithUrlString_forKey_usingConnector_usingSeparator {
+    NSString *str = @"Mon:Monday#Tue:Tuesday#Wed:Wednesday#Thurs:Thursday#Fri:Friday#Sat:Saturday#Sun:Sunday";
+    
+    NSLog(@"Mon=%@", [WCStringTool valueWithUrlString:str forKey:@"Mon" usingConnector:@":" usingSeparator:@"#"]);
+    NSLog(@"today=%@", [WCStringTool valueWithUrlString:str forKey:@"today" usingConnector:@":" usingSeparator:@"#"]);
+    
+    NSString *cookie = @"Q=u%3D360H1491330706%26n%3D%26le%3DoT10MKA0ZvH0ZUSkYzAioD%3D%3D%26m%3D%26qid%3D1491330706%26im%3D1_t00df551a583a87f4e9%26src%3Dmpc_caipiao_os_100000%26t%3D1; T=s%3D70657b22272b33d114f2b6a6d8efcf5c%26t%3D1433590027%26lm%3D%26lf%3D1%26sk%3Db5dcb4c7fa89fe4215b2fea0d7d98d31%26mt%3D1433590027%26rc%3D%26v%3D2.0%26a%3D1";
+    NSLog(@"Q=%@", [WCStringTool valueWithUrlString:cookie forKey:@"Q" usingConnector:@"=" usingSeparator:@";"]);
+    NSLog(@"T=%@", [WCStringTool valueWithUrlString:cookie forKey:@"T" usingConnector:@"=" usingSeparator:@";"]);
 }
 
 #pragma mark - Handle String As Plain
@@ -317,6 +350,202 @@
     XCTAssertFalse([WCStringTool checkStringAsEmailWithString:@"email@provider."]);
     XCTAssertFalse([WCStringTool checkStringAsEmailWithString:@"email@provider"]);
     XCTAssertFalse([WCStringTool checkStringAsEmailWithString:@"email@provider@provider.com"]);
+}
+
+- (void)test_checkStringContainsCharactersAscendOrDescendWithString_charactersLength {
+    XCTAssertTrue([WCStringTool checkStringContainsCharactersAscendOrDescendWithString:@"123" charactersLength:2]);
+    XCTAssertTrue([WCStringTool checkStringContainsCharactersAscendOrDescendWithString:@"324" charactersLength:2]);
+    XCTAssertTrue([WCStringTool checkStringContainsCharactersAscendOrDescendWithString:@"123456" charactersLength:5]);
+    XCTAssertTrue([WCStringTool checkStringContainsCharactersAscendOrDescendWithString:@"abcdefg" charactersLength:7]);
+    XCTAssertTrue([WCStringTool checkStringContainsCharactersAscendOrDescendWithString:@"gfedcba" charactersLength:7]);
+    XCTAssertFalse([WCStringTool checkStringContainsCharactersAscendOrDescendWithString:@"gfedcba" charactersLength:8]);
+    XCTAssertFalse([WCStringTool checkStringContainsCharactersAscendOrDescendWithString:@"123123" charactersLength:5]);
+}
+
+- (void)test_checkStringUniformedBySingleCharacterWithString {
+    XCTAssertTrue([WCStringTool checkStringUniformedBySingleCharacterWithString:@""]);
+    XCTAssertTrue([WCStringTool checkStringUniformedBySingleCharacterWithString:@"a"]);
+    XCTAssertTrue([WCStringTool checkStringUniformedBySingleCharacterWithString:@"aaaaaaaaa"]);
+    XCTAssertTrue([WCStringTool checkStringUniformedBySingleCharacterWithString:@"😁😁😁😁"]);
+    XCTAssertTrue([WCStringTool checkStringUniformedBySingleCharacterWithString:@"\n\n\n\n\n"]);
+    XCTAssertTrue([WCStringTool checkStringUniformedBySingleCharacterWithString:@"        "]);
+    XCTAssertTrue([WCStringTool checkStringUniformedBySingleCharacterWithString:@"9999999999"]);
+    XCTAssertTrue([WCStringTool checkStringUniformedBySingleCharacterWithString:@"0"]);
+    
+    NSString *nilString = nil;
+    XCTAssertFalse([WCStringTool checkStringUniformedBySingleCharacterWithString:nilString]);
+    XCTAssertFalse([WCStringTool checkStringUniformedBySingleCharacterWithString:@"aaaaz"]);
+    XCTAssertFalse([WCStringTool checkStringUniformedBySingleCharacterWithString:@"\t\n\t\t"]);
+    XCTAssertFalse([WCStringTool checkStringUniformedBySingleCharacterWithString:@"😁😂"]);
+}
+
+- (void)test_checkStringAsNoneNegativeIntegerWithString {
+    XCTAssertFalse([WCStringTool checkStringAsNoneNegativeIntegerWithString:@""]);
+    XCTAssertFalse([WCStringTool checkStringAsNoneNegativeIntegerWithString:@"110abc"]);
+    XCTAssertFalse([WCStringTool checkStringAsNoneNegativeIntegerWithString:@"110\n"]);
+    XCTAssertFalse([WCStringTool checkStringAsNoneNegativeIntegerWithString:@"110 "]);
+    XCTAssertFalse([WCStringTool checkStringAsNoneNegativeIntegerWithString:@"110.1"]);
+    XCTAssertFalse([WCStringTool checkStringAsNoneNegativeIntegerWithString:@".10"]);
+    XCTAssertFalse([WCStringTool checkStringAsNoneNegativeIntegerWithString:@"110."]);
+    XCTAssertFalse([WCStringTool checkStringAsNoneNegativeIntegerWithString:@"  "]);
+    XCTAssertFalse([WCStringTool checkStringAsNoneNegativeIntegerWithString:@"\t"]);
+    XCTAssertFalse([WCStringTool checkStringAsNoneNegativeIntegerWithString:@"+1000"]);
+    XCTAssertFalse([WCStringTool checkStringAsNoneNegativeIntegerWithString:@"-1000"]);
+    XCTAssertFalse([WCStringTool checkStringAsNoneNegativeIntegerWithString:@"010"]);
+    XCTAssertFalse([WCStringTool checkStringAsNoneNegativeIntegerWithString:@"000"]);
+    
+    XCTAssertTrue([WCStringTool checkStringAsNoneNegativeIntegerWithString:@"0"]);
+    XCTAssertTrue([WCStringTool checkStringAsNoneNegativeIntegerWithString:@"10"]);
+    XCTAssertTrue([WCStringTool checkStringAsNoneNegativeIntegerWithString:@"123"]);
+    XCTAssertTrue([WCStringTool checkStringAsNoneNegativeIntegerWithString:@"10000000000000000000000000000000000000000000000000000000000000000000000000000000"]);
+}
+
+- (void)test_checkStringAsPositiveIntegerWithString {
+    XCTAssertFalse([WCStringTool checkStringAsPositiveIntegerWithString:@"0"]);
+    XCTAssertFalse([WCStringTool checkStringAsPositiveIntegerWithString:@""]);
+    XCTAssertFalse([WCStringTool checkStringAsPositiveIntegerWithString:@"\n"]);
+    XCTAssertFalse([WCStringTool checkStringAsPositiveIntegerWithString:@" "]);
+    XCTAssertFalse([WCStringTool checkStringAsPositiveIntegerWithString:@"01"]);
+    XCTAssertFalse([WCStringTool checkStringAsPositiveIntegerWithString:@"abc"]);
+    XCTAssertFalse([WCStringTool checkStringAsPositiveIntegerWithString:@"\\"]);
+    XCTAssertFalse([WCStringTool checkStringAsPositiveIntegerWithString:@"+1"]);
+    XCTAssertFalse([WCStringTool checkStringAsPositiveIntegerWithString:@"-1"]);
+    XCTAssertFalse([WCStringTool checkStringAsPositiveIntegerWithString:@"1.1"]);
+    XCTAssertFalse([WCStringTool checkStringAsPositiveIntegerWithString:@"1."]);
+    XCTAssertFalse([WCStringTool checkStringAsPositiveIntegerWithString:@"😂"]);
+    NSString *nilString = nil;
+    XCTAssertFalse([WCStringTool checkStringAsPositiveIntegerWithString:nilString]);
+    
+    XCTAssertTrue([WCStringTool checkStringAsPositiveIntegerWithString:@"1"]);
+    XCTAssertTrue([WCStringTool checkStringAsPositiveIntegerWithString:@"10"]);
+    XCTAssertTrue([WCStringTool checkStringAsPositiveIntegerWithString:@"99999"]);
+}
+
+- (void)test_checkStringComposedOfNumbersWithString {
+    XCTAssertFalse([WCStringTool checkStringComposedOfNumbersWithString:@"abc"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfNumbersWithString:@" "]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfNumbersWithString:@""]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfNumbersWithString:@"\t"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfNumbersWithString:@"\\"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfNumbersWithString:@"0ac"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfNumbersWithString:@"a100"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfNumbersWithString:@"-100"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfNumbersWithString:@"+100"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfNumbersWithString:@"1.1"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfNumbersWithString:@"123😂"]);
+    NSString *nilString = nil;
+    XCTAssertFalse([WCStringTool checkStringComposedOfNumbersWithString:nilString]);
+    
+    XCTAssertTrue([WCStringTool checkStringComposedOfNumbersWithString:@"0"]);
+    XCTAssertTrue([WCStringTool checkStringComposedOfNumbersWithString:@"0001"]);
+    XCTAssertTrue([WCStringTool checkStringComposedOfNumbersWithString:@"40"]);
+    XCTAssertTrue([WCStringTool checkStringComposedOfNumbersWithString:@"1000000"]);
+    XCTAssertTrue([WCStringTool checkStringComposedOfNumbersWithString:@"1001"]);
+}
+
+- (void)test_checkStringComposedOfLettersWithString {
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersWithString:@""]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersWithString:@" "]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersWithString:@"100"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersWithString:@"000"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersWithString:@"0"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersWithString:@"\t"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersWithString:@"abc123"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersWithString:@"123abc"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersWithString:@"abc\n"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersWithString:@"abc "]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersWithString:@"abc😂"]);
+    NSString *nilString = nil;
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersWithString:nilString]);
+    
+    XCTAssertTrue([WCStringTool checkStringComposedOfLettersWithString:@"abcABC"]);
+    XCTAssertTrue([WCStringTool checkStringComposedOfLettersWithString:@"a"]);
+    XCTAssertTrue([WCStringTool checkStringComposedOfLettersWithString:@"A"]);
+    XCTAssertTrue([WCStringTool checkStringComposedOfLettersWithString:@"Zz"]);
+    XCTAssertTrue([WCStringTool checkStringComposedOfLettersWithString:@"abcdefghijklmnopqrstuvwxyz"]);
+    XCTAssertTrue([WCStringTool checkStringComposedOfLettersWithString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZ"]);
+    XCTAssertTrue([WCStringTool checkStringComposedOfLettersWithString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"]);
+}
+
+- (void)test_checkStringComposedOfLettersLowercaseWithString {
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersLowercaseWithString:@""]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersLowercaseWithString:@" "]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersLowercaseWithString:@"100"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersLowercaseWithString:@"000"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersLowercaseWithString:@"0"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersLowercaseWithString:@"\t"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersLowercaseWithString:@"abc123"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersLowercaseWithString:@"123abc"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersLowercaseWithString:@"abc\n"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersLowercaseWithString:@"abc "]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersLowercaseWithString:@"abc😂"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersLowercaseWithString:@"A"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersLowercaseWithString:@"Zz"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersLowercaseWithString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZ"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersLowercaseWithString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"]);
+    NSString *nilString = nil;
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersLowercaseWithString:nilString]);
+    
+    XCTAssertTrue([WCStringTool checkStringComposedOfLettersLowercaseWithString:@"abcdefghijklmnopqrstuvwxyz"]);
+    XCTAssertTrue([WCStringTool checkStringComposedOfLettersLowercaseWithString:@"a"]);
+}
+
+- (void)test_checkStringComposedOfLettersUppercaseWithString {
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersUppercaseWithString:@""]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersUppercaseWithString:@" "]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersUppercaseWithString:@"100"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersUppercaseWithString:@"000"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersUppercaseWithString:@"0"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersUppercaseWithString:@"\t"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersUppercaseWithString:@"abc123"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersUppercaseWithString:@"123abc"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersUppercaseWithString:@"abc\n"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersUppercaseWithString:@"abc "]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersUppercaseWithString:@"abc😂"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersUppercaseWithString:@"abcABC"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersUppercaseWithString:@"a"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersUppercaseWithString:@"Zz"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersUppercaseWithString:@"abcdefghijklmnopqrstuvwxyz"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersUppercaseWithString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"]);
+    
+    NSString *nilString = nil;
+    XCTAssertFalse([WCStringTool checkStringComposedOfLettersUppercaseWithString:nilString]);
+    
+    XCTAssertTrue([WCStringTool checkStringComposedOfLettersUppercaseWithString:@"A"]);
+    XCTAssertTrue([WCStringTool checkStringComposedOfLettersUppercaseWithString:@"ABCDEFGHIJKLMNOPQRSTUVWXYZ"]);
+}
+
+- (void)test_checkStringComposedOfChineseCharactersWithString {
+    XCTAssertFalse([WCStringTool checkStringComposedOfChineseCharactersWithString:@""]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfChineseCharactersWithString:@"a中"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfChineseCharactersWithString:@"中a"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfChineseCharactersWithString:@"中 文"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfChineseCharactersWithString:@"、中文"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfChineseCharactersWithString:@"中文\b"]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfChineseCharactersWithString:@"中文😂"]);
+    NSString *nilString = nil;
+    XCTAssertFalse([WCStringTool checkStringComposedOfChineseCharactersWithString:nilString]);
+    XCTAssertFalse([WCStringTool checkStringComposedOfChineseCharactersWithString:@" "]);
+    
+    XCTAssertTrue([WCStringTool checkStringComposedOfChineseCharactersWithString:@"中文"]);
+    XCTAssertTrue([WCStringTool checkStringComposedOfChineseCharactersWithString:@"中"]);
+    XCTAssertTrue([WCStringTool checkStringComposedOfChineseCharactersWithString:@"中文是中国汉字"]);
+}
+
+- (void)test_checkStringAsAlphanumericWithString {
+    XCTAssertTrue([WCStringTool checkStringAsAlphanumericWithString:@"abc"]);
+    XCTAssertTrue([WCStringTool checkStringAsAlphanumericWithString:@"ABC"]);
+    XCTAssertTrue([WCStringTool checkStringAsAlphanumericWithString:@"abc123"]);
+    XCTAssertTrue([WCStringTool checkStringAsAlphanumericWithString:@"ABC123"]);
+    XCTAssertTrue([WCStringTool checkStringAsAlphanumericWithString:@"abcABC"]);
+    XCTAssertTrue([WCStringTool checkStringAsAlphanumericWithString:@"abcABC123"]);
+    
+    XCTAssertFalse([WCStringTool checkStringAsAlphanumericWithString:@"!@#"]);
+    XCTAssertFalse([WCStringTool checkStringAsAlphanumericWithString:@""]);
+    NSString *nilString = nil;
+    XCTAssertFalse([WCStringTool checkStringAsAlphanumericWithString:nilString]);
+    XCTAssertFalse([WCStringTool checkStringAsAlphanumericWithString:@" "]);
+    XCTAssertFalse([WCStringTool checkStringAsAlphanumericWithString:@"中文"]);
 }
 
 @end

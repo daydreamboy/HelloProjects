@@ -536,7 +536,7 @@
         return NO;
     }
     
-    return [NSPREDICATE(@"^[0-9]+[0-9]*$") evaluateWithObject:self];
+    return [NSPREDICATE(@"^[0-9]+[0-9]*$") evaluateWithObject:string];
 }
 
 + (BOOL)checkStringComposedOfLettersWithString:(NSString *)string {
@@ -629,6 +629,74 @@
     }
     
     return [NSPREDICATE(@"[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}") evaluateWithObject:string];
+}
+
+#pragma mark > String Generation
+
++ (NSString *)randomStringWithLength:(NSUInteger)length {
+    NSString *characters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    
+    return [self randomStringWithCharacters:characters length:length];
+}
+
++ (NSString *)randomStringWithCharacters:(NSString *)characters length:(NSUInteger)length {
+    if (![characters isKindOfClass:[NSString class]] || !characters.length || length == 0) {
+        return nil;
+    }
+
+    NSMutableString *randomString = [NSMutableString stringWithCapacity:length];
+    for (int i = 0; i < length; i++) {
+        [randomString appendFormat:@"%C", [characters characterAtIndex:arc4random_uniform((u_int32_t)characters.length)]];
+    }
+    
+    return randomString;
+}
+
++ (NSString *)spacedStringWithString:(NSString *)string format:(NSString *)format {
+    if (![string isKindOfClass:[NSString class]] || ![format isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    NSString *trimmedString = [string stringByReplacingOccurrencesOfString:@" " withString:@""];
+    
+    NSMutableString *stringM = [NSMutableString string];
+    NSUInteger i = 0;
+    NSUInteger j = 0;
+    for (i = 0; i < format.length && j < trimmedString.length; i++) {
+        
+        unichar char1 = [format characterAtIndex:i];
+        unichar char2 = [trimmedString characterAtIndex:j];
+        
+        if (char1 == ' ') {
+            [stringM appendString:@" "];
+        }
+        else {
+            [stringM appendFormat:@"%C", char2];
+            j++;
+        }
+    }
+    
+    for (; j < trimmedString.length; j++) {
+        [stringM appendFormat:@"%C", [trimmedString characterAtIndex:j]];
+    }
+    
+    return [stringM copy];
+}
+
++ (nullable NSString *)formattedStringWithString:(NSString *)string format:(NSString *)format arguments:(NSArray *)arguments {
+    if (![string isKindOfClass:[NSString class]] || ![format isKindOfClass:[NSString class]] || ![arguments isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
+    
+    if (arguments.count > 10) {
+#if DEBUG
+        @throw [NSException exceptionWithName:NSRangeException reason:@"Maximum of 10 arguments allowed" userInfo:@{@"collection": arguments}];
+#else
+        return nil;
+#end
+    }
+    NSArray *args = [arguments arrayByAddingObjectsFromArray:@[@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X"]];
+    return [NSString stringWithFormat:format, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9]];
 }
 
 #pragma mark - Handle String As JSON
