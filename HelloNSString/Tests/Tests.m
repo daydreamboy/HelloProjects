@@ -109,7 +109,7 @@
     XCTAssertNil([WCStringTool edgeInsetsValueFromString:str]);
 }
 
-- (void)test_urlKeyValuePairsWithString {
+- (void)test_keyValuePairsWithUrlString {
     NSString *string;
     NSDictionary *dict;
     
@@ -120,6 +120,10 @@
     string = @"page=Page_Message&event=2101&arg1=&arg2=&arg3=&flags=k1,k2,k3&cardtype=1001";
     dict = [WCStringTool keyValuePairsWithUrlString:string];
     XCTAssertTrue(dict.count == 0);
+    
+    string = @"wangwang://hongbao/query?hongbaoId=13314001535794922&hongbaoType=0&sender=cntaobaoqn店铺测试账号001:晨凉&note=恭喜发财，大吉大利！&hongbaoSubType=0";
+    dict = [WCStringTool keyValuePairsWithUrlString:string];
+    NSLog(@"%@", dict);
 }
 
 - (void)test_componentsWithString_delimeters {
@@ -146,7 +150,7 @@
 #pragma mark - Handle String As JSON
 
 #pragma mark > JSON String to id/NSArray/NSDictionary
-
+/*
 - (void)test_jsonObject {
     NSString *jsonDictString = @"{\"result_code\":\"9999\",\"message\":\"ok\",\"conf\":{\"d\":\"E9F8EE6FA52D548711BA59DEFABD948C\",\"switch\":\"1\",\"issync\":\"1\",\"mode\":\"2\",\"infoSwitch\":\"0\"}}";
     NSDictionary *dict = [WCStringTool JSONObjectWithString:jsonDictString];
@@ -187,7 +191,7 @@
     NSArray *fakedArr =  [WCStringTool JSONArrayWithString:jsonDictString];
     XCTAssertNil(fakedArr, @"%@ should be nil", fakedArr);
 }
-
+*/
 #pragma mark - Handle String As Url
 
 - (void)test_valueWithUrlString_forKey {
@@ -205,8 +209,8 @@
     url = @"wangxs://multiaction/and?multi=%5B%22wangx%3A%2F%2Fh5%2Fopen%3Furl%3Dhttp%253a%252f%252fwww.taobao.com%22%2C%22wangx%3A%2F%2Fmenu%2Fdismiss%3Fmenuname%3DMenuNameForShowType%26container%3DpopBubble%26strategy%3Dtransient%26bubbleBizType%3Dtest%26conversationId%3Dcnhhupanww%E5%BA%97%E9%93%BA%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7003%22%5D";
     
 //    NSLog(@"multi=%@", [WCStringTool valueWithUrlString:url forKey:@"multi"]);
-//    NSLog(@"multi (decoded)=%@", [WCStringTool URLUnescapeStringWithString:[WCStringTool valueWithUrlString:url forKey:@"multi"]]);
-//    NSLog(@"multi (decoded as array)=%@", [[WCStringTool URLUnescapeStringWithString:[[WCStringTool valueWithUrlString:url forKey:@"multi"]] jsonArray]);
+//    NSLog(@"multi (decoded)=%@", [WCStringTool URLUnescapedStringWithString:[WCStringTool valueWithUrlString:url forKey:@"multi"]]);
+//    NSLog(@"multi (decoded as array)=%@", [[WCStringTool URLUnescapedStringWithString:[[WCStringTool valueWithUrlString:url forKey:@"multi"]] jsonArray]);
 //    NSArray *arr = [[[WCStringTool valueWithUrlString:url forKey:@"multi"] urlDecodedString] jsonArray];
 //    NSLog(@"%@", arr);
     
@@ -241,8 +245,8 @@
     
     // Case 1
     originalString = @"https://h5.m.taobao.com/istore-coupon/detail/index.html?seller_id=2649119619&coupon_id=486841666328&spm=a2141.8336399.3095317.2-0";
-    encodedString = [WCStringTool URLEscapeStringWithString:originalString];
-    decodedString = [WCStringTool URLUnescapeStringWithString:encodedString];
+    encodedString = [WCStringTool URLEscapedStringWithString:originalString];
+    decodedString = [WCStringTool URLUnescapedStringWithString:encodedString];
     
     NSLog(@"%@", encodedString);
     NSLog(@"%@", [originalString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]);
@@ -252,8 +256,8 @@
     
     // Case 2
     originalString = @"👴🏻👮🏽";
-    encodedString = [WCStringTool URLEscapeStringWithString:originalString];
-    decodedString = [WCStringTool URLUnescapeStringWithString:encodedString];
+    encodedString = [WCStringTool URLEscapedStringWithString:originalString];
+    decodedString = [WCStringTool URLUnescapedStringWithString:encodedString];
     
     NSLog(@"%@", encodedString);
     NSLog(@"%@", [originalString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]]);
@@ -266,40 +270,40 @@
     //  @sa online tool: http://meyerweb.com/eric/tools/dencoder/
     //
     // Test unescape characters [].
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"["], @"[");
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"]"], @"]");
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"."], @".");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"["], @"[");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"]"], @"]");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"."], @".");
     
     // Test escape characters :/?&=;+!@#$()',*
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@":"], @"%3A");
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"/"], @"%2F");
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"?"], @"%3F");
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"&"], @"%26");
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"="], @"%3D");
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@";"], @"%3B");
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"+"], @"%2B");
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"!"], @"%21");
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"@"], @"%40");
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"#"], @"%23");
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"$"], @"%24");
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"("], @"%28");
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@")"], @"%29");
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"'"], @"%27");
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@","], @"%2C");
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"*"], @"%2A");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@":"], @"%3A");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"/"], @"%2F");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"?"], @"%3F");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"&"], @"%26");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"="], @"%3D");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@";"], @"%3B");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"+"], @"%2B");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"!"], @"%21");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"@"], @"%40");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"#"], @"%23");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"$"], @"%24");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"("], @"%28");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@")"], @"%29");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"'"], @"%27");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@","], @"%2C");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"*"], @"%2A");
     
     // Letters and numbers
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"a"], @"a");
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"Z"], @"Z");
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"0"], @"0");
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"1234567890"], @"1234567890");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"a"], @"a");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"Z"], @"Z");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"0"], @"0");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"1234567890"], @"1234567890");
     
     // Non-ASCII characters
-    XCTAssertEqualObjects([WCStringTool URLEscapeStringWithString:@"中文"], @"%E4%B8%AD%E6%96%87");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"中文"], @"%E4%B8%AD%E6%96%87");
 }
 
 - (void)test_URLUnescapeStringWithString {
-    XCTAssertEqualObjects([WCStringTool URLUnescapeStringWithString:@"%E5%88%B7%E6%96%B0%E8%BF%87%E4%BA%8E%E9%A2%91%E7%B9%81%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%90%8E%E5%86%8D%E8%AF%95"], @"刷新过于频繁，请稍后再试");
+    XCTAssertEqualObjects([WCStringTool URLUnescapedStringWithString:@"%E5%88%B7%E6%96%B0%E8%BF%87%E4%BA%8E%E9%A2%91%E7%B9%81%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%90%8E%E5%86%8D%E8%AF%95"], @"刷新过于频繁，请稍后再试");
 }
 
 - (void)test_substringWithString_atLocation_length {

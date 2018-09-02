@@ -301,28 +301,32 @@
     return [self valueWithUrlString:string forKey:key usingConnector:connector usingSeparator:separator];
 }
 
-+ (NSDictionary *)keyValuePairsWithUrlString:(NSString *)urlString {
-    NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
++ (NSDictionary *)keyValuePairsWithUrlString:(NSString *)urlString  {
+    if (![urlString isKindOfClass:[NSString class]]) {
+        return nil;
+    }
     
-    NSURL *URL = [NSURL URLWithString:urlString];
-    if (URL) {
-        // Note: not URL.parameterString
-        // For example, in the URL file:///path/to/file;foo, the parameter string is foo.
-        NSArray *pairs = [URL.query componentsSeparatedByString:@"&"];
+    NSRange range = [urlString rangeOfString:@"?"];
+    if (range.location == NSNotFound || range.length == 0 || range.location == urlString.length - 1) {
+        return nil;
+    }
+    
+    NSString *queryString = [urlString substringFromIndex:range.location + 1];
+    
+    NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
+    NSArray *queryComponents = [queryString componentsSeparatedByString:@"&"];
+    
+    for (NSString *keyValuePair in queryComponents) {
+        NSArray *pairComponents = [keyValuePair componentsSeparatedByString:@"="];
+        NSString *key = [pairComponents firstObject];
+        NSString *value = [pairComponents lastObject];
         
-        for (NSString *keyValuePair in pairs) {
-            NSArray *keyValue = [keyValuePair componentsSeparatedByString:@"="];
-            
-            NSString *key = [keyValue firstObject];
-            NSString *value = [keyValue lastObject];
-            
-            if (key && value) {
-                dictM[key] = value;
-            }
+        if (key && value) {
+            dictM[key] = value;
         }
     }
     
-    return [dictM copy];
+    return dictM;
 }
 
 #pragma mark - Handle String As Plain
@@ -400,7 +404,7 @@
 
 #pragma mark > URL Encode/Decode
 
-+ (NSString *)URLEscapeStringWithString:(nullable NSString *)string {
++ (NSString *)URLEscapedStringWithString:(nullable NSString *)string {
     if (![string isKindOfClass:[NSString class]]) {
         return nil;
     }
@@ -436,7 +440,7 @@
     return escapedString;
 }
 
-+ (NSString *)URLUnescapeStringWithString:(nullable NSString *)string {
++ (NSString *)URLUnescapedStringWithString:(nullable NSString *)string {
     if (![string isKindOfClass:[NSString class]]) {
         return nil;
     }
@@ -693,59 +697,10 @@
         @throw [NSException exceptionWithName:NSRangeException reason:@"Maximum of 10 arguments allowed" userInfo:@{@"collection": arguments}];
 #else
         return nil;
-#end
+#endif
     }
     NSArray *args = [arguments arrayByAddingObjectsFromArray:@[@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X"]];
     return [NSString stringWithFormat:format, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9]];
-}
-
-#pragma mark - Handle String As JSON
-
-#pragma mark > JSON String to id/NSArray/NSDictionary
-
-+ (nullable id)JSONObjectWithString:(nullable NSString *)string NS_AVAILABLE_IOS(5_0) {
-    if (![string isKindOfClass:[NSString class]]) {
-        return nil;
-    }
-    
-    NSData *jsonData = [string dataUsingEncoding:NSUTF8StringEncoding];
-    if (!jsonData) {
-        return nil;
-    }
-    
-    @try {
-        NSError *error;
-        id jsonObject = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:&error];
-        if (!jsonObject) {
-            NSLog(@"[%@] error parsing JSON: %@", NSStringFromClass([self class]), error);
-        }
-        return jsonObject;
-    }
-    @catch (NSException *exception) {
-        NSLog(@"[%@] an exception occured:\n%@", NSStringFromClass([self class]), exception);
-    }
-    
-    return nil;
-}
-
-+ (nullable NSArray *)JSONArrayWithString:(nullable NSString *)string NS_AVAILABLE_IOS(5_0) {
-    NSArray *jsonArray = [self JSONObjectWithString:string];
-    if ([jsonArray isKindOfClass:[NSArray class]]) {
-        return jsonArray;
-    }
-    else {
-        return nil;
-    }
-}
-
-+ (nullable NSDictionary *)JSONDictWithString:(nullable NSString *)string NS_AVAILABLE_IOS(5_0) {
-    NSDictionary *jsonDict = [self JSONObjectWithString:string];
-    if ([jsonDict isKindOfClass:[NSDictionary class]]) {
-        return jsonDict;
-    }
-    else {
-        return nil;
-    }
 }
 
 #pragma mark - Cryption

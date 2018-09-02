@@ -133,10 +133,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable NSString *)valueWithUrlString:(NSString *)string forKey:(NSString *)key;
 
 /**
- Get key/value from url string like `http://xxx?key1=value1&key2=value2`
+ Get key/value from url string or url-like string, e.g. http://xxx?key1=value1&key2=value2
 
  @param string the url string, e.g. xxx://....
  @return return empty dictionary if the url string is invalid.
+ @see https://stackoverflow.com/a/8756852
  */
 + (nullable NSDictionary *)keyValuePairsWithUrlString:(NSString *)string;
 
@@ -194,7 +195,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @see AFPercentEscapedStringFromString function, https://github.com/AFNetworking/AFNetworking/blob/master/AFNetworking/AFURLRequestSerialization.m#L47
  */
-+ (nullable NSString *)URLEscapeStringWithString:(nullable NSString *)string;
++ (nullable NSString *)URLEscapedStringWithString:(nullable NSString *)string;
 
 /**
  Get a URL decoded string with UTF-8 encoding
@@ -204,7 +205,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @see http://isobar.logdown.com/posts/211030-url-encode-decode-in-ios
  */
-+ (nullable NSString *)URLUnescapeStringWithString:(nullable NSString *)string;
++ (nullable NSString *)URLUnescapedStringWithString:(nullable NSString *)string;
 
 #pragma mark > unichar
 
@@ -351,34 +352,6 @@ NS_ASSUME_NONNULL_BEGIN
  @warning If the length of arguments > 10, this method will throw an exception when DEBUG = 1.
  */
 + (nullable NSString *)formattedStringWithString:(NSString *)string format:(NSString *)format arguments:(NSArray *)arguments;
-
-#pragma mark - Handle String As JSON
-
-#pragma mark > JSON String to id/NSArray/NSDictionary
-
-/**
- Convert the JSON formatted string to NSArray or NSDictionary object
-
- @param string the JSON formatted string
- @return If the string is not JSON formatted, return nil.
- */
-+ (nullable id)JSONObjectWithString:(nullable NSString *)string NS_AVAILABLE_IOS(5_0);
-
-/**
- Convert the JSON formatted string to NSArray object
-
- @param string the JSON formatted string
- @return If the string is not JSON formatted or a JSON array object, return nil.
- */
-+ (nullable NSArray *)JSONArrayWithString:(nullable NSString *)string NS_AVAILABLE_IOS(5_0);
-
-/**
- Convert the JSON formatted string to NSDictionary object
-
- @param string the JSON formatted string
- @return If the string is not JSON formatted or a JSON dictionary object, return nil.
- */
-+ (nullable NSDictionary *)JSONDictWithString:(nullable NSString *)string NS_AVAILABLE_IOS(5_0);
 
 #pragma mark - Encryption
 
