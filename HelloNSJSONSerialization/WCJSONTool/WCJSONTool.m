@@ -14,11 +14,11 @@
 
 @implementation NSArray (WCJSONTool)
 
-- (NSString *)jsonString {
+- (NSString *)JSONString {
     return [WCJSONTool JSONStringWithObject:self printOptions:kNilOptions];
 }
 
-- (NSString *)jsonStringWithReadability {
+- (NSString *)JSONStringWithReadability {
     return [WCJSONTool JSONStringWithObject:self printOptions:NSJSONWritingPrettyPrinted];
 }
 
@@ -26,11 +26,11 @@
 
 @implementation NSDictionary (WCJSONTool)
 
-- (NSString *)jsonString {
+- (NSString *)JSONString {
     return [WCJSONTool JSONStringWithObject:self printOptions:kNilOptions];
 }
 
-- (NSString *)jsonStringWithReadability {
+- (NSString *)JSONStringWithReadability {
     return [WCJSONTool JSONStringWithObject:self printOptions:NSJSONWritingPrettyPrinted];
 }
 
@@ -38,7 +38,9 @@
 
 @implementation WCJSONTool
 
-+ (NSString *)JSONStringWithObject:(id)object printOptions:(NSJSONWritingOptions)options {
+#pragma mark - Object to String
+
++ (nullable NSString *)JSONStringWithObject:(id)object printOptions:(NSJSONWritingOptions)options NS_AVAILABLE_IOS(5_0) {
     if ([object isKindOfClass:[NSArray class]] || [object isKindOfClass:[NSDictionary class]]) {
         NSData *jsonData = nil;
         @try {
@@ -93,43 +95,98 @@
     }
 }
 
-+ (NSMutableDictionary *)mutableDictionaryWithJSONString:(NSString *)jsonString {
-    return [self mutableContainerWithJSONData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] containerClass:[NSDictionary class]];
++ (nullable NSString *)JSONStringWithObject:(id)object printOptions:(NSJSONWritingOptions)options tolerateInvalidObjects:(BOOL)tolerateInvalidObjects NS_AVAILABLE_IOS(5_0) {
+    if (!tolerateInvalidObjects) {
+        return [self JSONStringWithObject:object printOptions:options];
+    }
+    else {
+        // TODO:
+        return nil;
+    }
 }
 
-+ (NSMutableDictionary *)mutableDictionaryWithJSONData:(NSData *)jsonData {
-    return [self mutableContainerWithJSONData:jsonData containerClass:[NSDictionary class]];
+#pragma mark - String to Object
+
+#pragma mark > to NSDictionary/NSArray
+
++ (nullable NSArray *)JSONArrayWithString:(NSString *)string {
+    return [self JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions objectClass:[NSArray class]];
 }
 
-+ (NSMutableArray *)mutableArrayWithJSONString:(NSString *)jsonString {
-    return [self mutableContainerWithJSONData:[jsonString dataUsingEncoding:NSUTF8StringEncoding] containerClass:[NSArray class]];
++ (nullable NSDictionary *)JSONDictWithString:(NSString *)string {
+    return [self JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions objectClass:[NSDictionary class]];
 }
 
-+ (NSMutableArray *)mutableArrayWithJSONData:(NSData *)jsonData {
-    return [self mutableContainerWithJSONData:jsonData containerClass:[NSArray class]];
+#pragma mark > to NSMutableDictionary/NSMutableArray
+
++ (nullable NSMutableDictionary *)JSONMutableDictWithString:(NSString *)string {
+    return [self JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers objectClass:[NSMutableDictionary class]];
 }
 
-#pragma mark -
++ (nullable NSMutableArray *)JSONMutableArrayWithString:(NSString *)string {
+    return [self JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers objectClass:[NSMutableArray class]];
+}
 
-+ (nullable id)mutableContainerWithJSONData:(NSData *)jsonData containerClass:(Class)class {
-    if (!jsonData) {
+#pragma mark > to id
+
+/**
+ Convert the JSON formatted string to NSArray or NSDictionary object
+ 
+ @param string the JSON formatted string
+ @return If the string is not JSON formatted, return nil.
+ */
++ (nullable id)JSONObjectWithString:(NSString *)string options:(NSJSONReadingOptions)options objectClass:(Class)objectClass {
+    return [self JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:options objectClass:objectClass];
+}
+
+#pragma mark - Data to Object
+
+#pragma mark > to NSDictionary/NSArray
+
++ (nullable NSDictionary *)JSONDictWithData:(NSData *)data {
+    return [self JSONObjectWithData:data options:kNilOptions objectClass:[NSDictionary class]];
+}
+
++ (nullable NSArray *)JSONArrayWithData:(NSData *)data {
+    return [self JSONObjectWithData:data options:kNilOptions objectClass:[NSArray class]];
+}
+
+#pragma mark > to NSMutableDictionary/NSMutableArray
+
++ (nullable NSMutableDictionary *)JSONMutableDictWithData:(NSData *)data {
+    return [self JSONObjectWithData:data options:kNilOptions objectClass:[NSMutableDictionary class]];
+}
+
++ (nullable NSMutableArray *)JSONMutableArrayWithData:(NSData *)data {
+    return [self JSONObjectWithData:data options:kNilOptions objectClass:[NSMutableArray class]];
+}
+
+#pragma mark > to id
+
++ (nullable id)JSONObjectWithData:(NSData *)data options:(NSJSONReadingOptions)options objectClass:(Class)objectClass {
+    if (![data isKindOfClass:[NSData class]] ||
+        ![NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSArray class])] ||
+        ![NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSMutableArray class])] ||
+        ![NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSDictionary class])] ||
+        ![NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSMutableDictionary class])]) {
         return nil;
     }
     
-    NSString *className = NSStringFromClass(class);
-    if ([className isEqualToString:NSStringFromClass([NSArray class])] || [className isEqualToString:NSStringFromClass([NSDictionary class])]) {
+    @try {
         NSError *error;
-        @try {
-            id mutableContainer = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:&error];
-            if (mutableContainer && [mutableContainer isKindOfClass:class]) {
-                return mutableContainer;
-            }
+        id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:options error:&error];
+        if (!jsonObject) {
+            NSLog(@"[%@] error parsing JSON: %@", NSStringFromClass([self class]), error);
         }
-        @catch (NSException *exception) {
-            NSLog(@"[%@] an exception occured:\n%@", NSStringFromClass(self), exception);
+        
+        if ([jsonObject isKindOfClass:objectClass]) {
+            return jsonObject;
         }
     }
-
+    @catch (NSException *exception) {
+        NSLog(@"[%@] an exception occured:\n%@", NSStringFromClass([self class]), exception);
+    }
+    
     return nil;
 }
 

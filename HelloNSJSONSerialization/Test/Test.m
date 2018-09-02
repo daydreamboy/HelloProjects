@@ -27,10 +27,10 @@
 
 - (void)test_NSArray_jsonString {
     NSArray *arr = @[ @"1", @"hello", @"", @(3.14) ];
-    NSLog(@"plain json of array: %@", [arr jsonString]);
+    NSLog(@"plain json of array: %@", [arr JSONString]);
     
     NSMutableArray *mutableArr = [[NSMutableArray alloc] initWithArray:arr];
-    NSLog(@"readable json of array: \n%@", [mutableArr jsonStringWithReadability]);
+    NSLog(@"readable json of array: \n%@", [mutableArr JSONStringWithReadability]);
 }
 
 - (void)test_NSDictionary_jsonString {
@@ -45,11 +45,11 @@
              //@(1) : @(YES), // Error occurred in jsong parsing
              @"key": @"中文汉字"
              };
-    jsonString = [dict jsonString];
+    jsonString = [dict JSONString];
     NSLog(@"plain json of dictionary: %@", jsonString);
     
     NSMutableDictionary *mutableDict = [[NSMutableDictionary alloc] initWithDictionary:dict];
-    jsonString = [mutableDict jsonStringWithReadability];
+    jsonString = [mutableDict JSONStringWithReadability];
     NSLog(@"readable json of dictionary: \n%@", jsonString);
     
     NSLog(@"===========================================");
@@ -57,7 +57,7 @@
     dict = @{
              @"now": [NSDate date],
              };
-    jsonString = [dict jsonString];
+    jsonString = [dict JSONString];
     XCTAssertNil(jsonString);
     
     NSLog(@"===========================================");
@@ -65,7 +65,7 @@
     dict = @{
              @(1) : @(YES), // Error occurred in jsong parsing
              };
-    jsonString = [dict jsonString];
+    jsonString = [dict JSONString];
     XCTAssertNil(jsonString);
 }
 
@@ -80,10 +80,19 @@
              @"num": @(3.14),
              @"key": @"中文汉字"
              };
-    jsonString = [dict jsonString];
-    NSMutableDictionary *dictM = [WCJSONTool mutableDictionaryWithJSONString:jsonString];
+    jsonString = [dict JSONString];
+    NSMutableDictionary *dictM = [WCJSONTool JSONMutableDictWithString:jsonString];
     XCTAssertTrue([dictM isKindOfClass:[NSMutableDictionary class]]);
     NSLog(@"mutuable dictionary: %@", dictM);
+}
+
+- (void)test_nil {
+    @try {
+        NSAssert(NO, @"test");
+    }
+    @catch (NSException *e) {
+        NSLog(@"%@", e);
+    }
 }
 
 @end
