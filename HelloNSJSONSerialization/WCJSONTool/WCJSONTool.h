@@ -42,7 +42,7 @@ NS_AVAILABLE_IOS(5_0)
  */
 + (nullable NSString *)JSONStringWithObject:(id)object printOptions:(NSJSONWritingOptions)options;
 
-+ (nullable NSString *)JSONStringWithObject:(id)object printOptions:(NSJSONWritingOptions)options tolerateInvalidObjects:(BOOL)tolerateInvalidObjects;
++ (nullable NSString *)JSONStringWithObject:(id)object printOptions:(NSJSONWritingOptions)options filterInvalidObjects:(BOOL)tolerateInvalidObjects;
 
 #pragma mark - String to Object
 
