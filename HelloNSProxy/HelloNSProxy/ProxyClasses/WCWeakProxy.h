@@ -10,7 +10,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-
 /**
  A proxy used to hold a weak object.
  It can be used to avoid retain cycles, such as the target in NSTimer or CADisplayLink.
