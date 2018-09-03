@@ -347,7 +347,7 @@
 
 #pragma mark > Substring String
 
-+ (NSString *)substringWithString:(NSString *)string atLocation:(NSUInteger)location length:(NSUInteger)length {
++ (nullable NSString *)substringWithString:(NSString *)string atLocation:(NSUInteger)location length:(NSUInteger)length {
     if (![string isKindOfClass:[NSString class]]) {
         return nil;
     }
@@ -366,8 +366,26 @@
     }
 }
 
-+ (NSString *)substringWithString:(NSString *)string range:(NSRange)range {
-    return [self substringWithString:string atLocation:range.location length:range.length];
++ (nullable NSString *)substringWithString:(NSString *)string range:(NSRange)range {
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    if (range.location == NSNotFound || range.length == 0) {
+        return nil;
+    }
+    
+    if (range.location < string.length) {
+        if (range.length < string.length - range.location) {
+            return [string substringWithRange:range];
+        }
+        else {
+            return nil;;
+        }
+    }
+    else {
+        return nil;
+    }
 }
 
 + (NSString *)firstSubstringWithString:(NSString *)string substringInCharacterSet:(NSCharacterSet *)characterSet {

@@ -86,7 +86,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Get a URL for image in resource bundle
 
- @param imageName the name of image
+ @param imageName the name of image, if not with extension, treat image as png and consider @2x.png/@2X.PNG, @3x.png/@3X.PNG
  @param resourceBundleName the resource bundle name, and nil for main bundle
  @return the NSURL. Return nil if not found.
  */

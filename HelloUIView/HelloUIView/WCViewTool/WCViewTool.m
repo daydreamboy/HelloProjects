@@ -123,7 +123,6 @@
 #pragma mark :
 
 + (void)traverseViewHierarchyWithView:(UIView *)view usinglock:(void (^)(UIView *subview, BOOL *stop))block stop:(BOOL *)stop {
-    NSParameterAssert(block != nil);
     // not use `if (block)` to protect, because it maybe consumes more time when recursion
     block(view, stop);
     
