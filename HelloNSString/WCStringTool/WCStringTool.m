@@ -264,26 +264,40 @@
  *
  *  @return the 'value' string
  */
-+ (NSString *)valueWithUrlString:(NSString *)string forKey:(NSString *)key usingConnector:(NSString *)connector usingSeparator:(NSString *)separator {
++ (nullable NSString *)valueWithUrlString:(NSString *)string forKey:(NSString *)key usingConnector:(NSString *)connector usingSeparator:(NSString *)separator {
     
-    NSString *searchedKey = [NSString stringWithFormat:@"%@%@", key, connector];
-    
-    NSUInteger locationOfSearchedKey = [string rangeOfString:searchedKey options:NSBackwardsSearch].location;
-    if (locationOfSearchedKey == NSNotFound) {
+    if (![string isKindOfClass:[NSString class]] ||
+        ![key isKindOfClass:[NSString class]] ||
+        ![separator isKindOfClass:[NSString class]]) {
         return nil;
     }
-    else {
-        NSUInteger locationOfSeparator = [string rangeOfString:separator options:0 range:NSMakeRange(locationOfSearchedKey, string.length - locationOfSearchedKey)].location;
-        if (locationOfSeparator == NSNotFound) {
-            locationOfSeparator = string.length;
-        }
-        
-        NSUInteger start = locationOfSearchedKey + searchedKey.length;
-        NSUInteger end = locationOfSeparator;
-        NSString *value = [string substringWithRange:NSMakeRange(start, end - start)];
-        
-        return value;
+    
+    NSRange rangeOfQuestionMark = [string rangeOfString:@"?" options:kNilOptions];
+    if (rangeOfQuestionMark.location == NSNotFound || rangeOfQuestionMark.length == 0) {
+        return nil;
     }
+    
+    NSString *queryString;
+    if (rangeOfQuestionMark.location + 1 < string.length) {
+        queryString = [string substringFromIndex:rangeOfQuestionMark.location + 1];
+    }
+    
+    if (!queryString.length) {
+        return nil;
+    }
+    
+    NSArray *keyValuePairs = [queryString componentsSeparatedByString:separator];
+    for (NSString *keyValue in keyValuePairs) {
+        NSArray *pairComponents = [keyValue componentsSeparatedByString:connector];
+        
+        NSString *theKey = [pairComponents firstObject];
+        NSString *theValue = [pairComponents lastObject];
+        if ([theKey isEqualToString:key]) {
+            return theValue;
+        }
+    }
+    
+    return nil;
 }
 
 /*!
@@ -293,7 +307,7 @@
  *
  *  @return the 'value' string
  */
-+ (NSString *)valueWithUrlString:(NSString *)string forKey:(NSString *)key {
++ (nullable NSString *)valueWithUrlString:(NSString *)string forKey:(NSString *)key {
     
     NSString *separator = @"&";
     NSString *connector = @"=";

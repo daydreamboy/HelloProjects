@@ -196,6 +196,7 @@
 
 - (void)test_valueWithUrlString_forKey {
     NSString *url;
+    NSString *value;
     
     // case 1
     url = @"http://m.cp.360.cn/news/mobile/150410515.html?act=1&reffer=ios&titleRight=share&empty=";
@@ -215,12 +216,14 @@
 //    NSLog(@"%@", arr);
     
     // case 3
-    NSString *string;
-    NSString *value;
-    
-    string = @"https://qngateway.taobao.com/gw/wwjs/multi.resource.emoticon.query?id=144";
-    value = [WCStringTool valueWithUrlString:string forKey:@"id"];
+    url = @"https://qngateway.taobao.com/gw/wwjs/multi.resource.emoticon.query?id=144";
+    value = [WCStringTool valueWithUrlString:url forKey:@"id"];
     XCTAssertEqualObjects(value, @"144");
+    
+    // case 4
+    url = @"http://interface.im.taobao.com/mobileimweb/fileupload/downloadPriFile.do?type=0&fileId=8f3371144e1317eabc789ea175644e57.jpg&suffix=jpg&width=750&height=555&mediaSize=516784&fromId=cntaobaowc%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B71000&thumb_width=80&thumb_height=80";
+    value = [WCStringTool valueWithUrlString:url forKey:@"width"];
+    XCTAssertEqualObjects(value, @"750");
 }
 
 - (void)test_valueWithUrlString_forKey_usingConnector_usingSeparator {
