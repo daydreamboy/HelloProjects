@@ -92,6 +92,17 @@ NS_AVAILABLE_IOS(5_0)
  */
 + (nullable id)JSONObjectWithData:(NSData *)data options:(NSJSONReadingOptions)options objectClass:(Class)objectClass;
 
+#pragma mark - JSON Escaped String
+
+/**
+ Convert NSString to JSON string by escaping some special characters, e.g. `\`, `"`
+
+ @param string the JSON string
+ @return the JSON escaped string from the string
+ @see http://stackoverflow.com/questions/15843570/objective-c-how-to-convert-nsstring-to-escaped-json-string
+ */
++ (nullable NSString *)JSONEscapedStringWithString:(NSString *)string;
+
 @end
 
 NS_ASSUME_NONNULL_END

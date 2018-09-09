@@ -86,6 +86,21 @@
     NSLog(@"mutuable dictionary: %@", dictM);
 }
 
+- (void)test_JSONEscapedStringWithString {
+    NSString *string;
+    
+    // Case 1
+    string = @"It's \"Tom\".\n"; // the original string is `It's "Tom".\n` in memory
+    XCTAssertEqualObjects([WCJSONTool JSONEscapedStringWithString:string], @"It's \\\"Tom\\\".\\n");
+    
+    // Case 2: string must escaped when filled in JSON string node
+    string = @"wangx://menu/present/template?container=dialog&body={\"template\":{\"data\":{\"text\":\"http://www.taobao.com\"},\"id\":20001},\"header\":{\"title\":\"标题\"}}";
+    
+    NSString *JSONString = [NSString stringWithFormat:@"{\"action\": \"%@\" }", [WCJSONTool JSONEscapedStringWithString:string]];
+    NSDictionary *dict = [WCJSONTool JSONDictWithString:JSONString];
+    XCTAssertEqualObjects(dict[@"action"], string);
+}
+
 - (void)test_nil {
     @try {
         NSAssert(NO, @"test");

@@ -219,11 +219,12 @@
 #pragma mark > to id
 
 + (nullable id)JSONObjectWithData:(NSData *)data options:(NSJSONReadingOptions)options objectClass:(Class)objectClass {
-    if (![data isKindOfClass:[NSData class]] ||
-        ![NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSArray class])] ||
-        ![NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSMutableArray class])] ||
-        ![NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSDictionary class])] ||
-        ![NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSMutableDictionary class])]) {
+    if (![data isKindOfClass:[NSData class]] && (
+        [NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSArray class])] ||
+        [NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSMutableArray class])] ||
+        [NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSDictionary class])] ||
+        [NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSMutableDictionary class])])
+        ) {
         return nil;
     }
     
@@ -243,6 +244,26 @@
     }
     
     return nil;
+}
+
+#pragma mark - JSON Escaped String
+
++ (nullable NSString *)JSONEscapedStringWithString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    NSMutableString *stringM = [NSMutableString stringWithString:string];
+    
+    [stringM replaceOccurrencesOfString:@"\"" withString:@"\\\"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"/" withString:@"\\/" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\n" withString:@"\\n" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\b" withString:@"\\b" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\f" withString:@"\\f" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\r" withString:@"\\r" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\t" withString:@"\\t" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    
+    return [NSString stringWithString:stringM];
 }
 
 @end
