@@ -8,6 +8,16 @@
 
 #import <XCTest/XCTest.h>
 
+@interface Model : NSObject {
+    @public
+    NSString *_string2;
+}
+//@property (nonatomic, copy) NSString *string;
+@end
+
+@implementation Model
+@end
+
 @interface Test : XCTestCase
 
 @end
@@ -52,7 +62,8 @@
     NSLog(@"%@", URL);
     NSLog(@"query: %@", URL.query);
     
-    url = @"http://a/b/c/d;p?q";
+    url = @"http://a:80/b/c/d;p?q";
+    // @"http://www.ics.uci.edu/pub/ietf/uri/#Related";
     
     // @see https://tools.ietf.org/html/rfc2396
     // @see https://tools.ietf.org/html/rfc1808
@@ -61,13 +72,17 @@
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^(([^:\\/\\?#]+):)?(\\/\\/([^\\/\\?#]*))?([^\\?#]*)(\\\?([^#]*))?(#(.*))?" options:NSRegularExpressionCaseInsensitive | NSRegularExpressionAnchorsMatchLines error:&error];
     NSTextCheckingResult *match = [regex firstMatchInString:url options:kNilOptions range:NSMakeRange(0, url.length)];
     if (match.numberOfRanges == 10) {
-        NSRange schemeRange = [match rangeAtIndex:1];
-        NSRange domainRange = [match rangeAtIndex:3];
-        NSRange pathRange = [match rangeAtIndex:4];
-        NSRange queryRange = [match rangeAtIndex:6];
-        NSRange fragmentRange = [match rangeAtIndex:8];
+        NSRange schemeRange = [match rangeAtIndex:2];
+        NSRange domainRange = [match rangeAtIndex:4];
+        NSRange pathRange = [match rangeAtIndex:5];
+        NSRange queryRange = [match rangeAtIndex:7];
+        NSRange fragmentRange = [match rangeAtIndex:9];
         
         NSString *scheme = [self substringWithString:url range:schemeRange];
+        NSString *domain = [self substringWithString:url range:domainRange];
+        NSString *path = [self substringWithString:url range:pathRange];
+        NSString *query = [self substringWithString:url range:queryRange];
+        NSString *fragment = [self substringWithString:url range:fragmentRange];
     }
     
     URL = [NSURL URLWithString:url];
@@ -85,7 +100,7 @@
     }
     
     if (range.location < string.length) {
-        if (range.length < string.length - range.location) {
+        if (range.length + range.location <= string.length ) {
             return [string substringWithRange:range];
         }
         else {
@@ -95,6 +110,40 @@
     else {
         return nil;
     }
+}
+
+- (void)test_NSArray {
+    NSMutableArray *arr = [NSMutableArray array];
+//    arr[arr.count] = @"0";
+//    arr[arr.count] = @"1";
+//    arr[arr.count] = @"2";
+    
+    NSString *nilString = nil;
+    arr[arr.count] = nilString;
+    
+    //arr[2] = @"2";
+    
+    NSLog(@"%@", arr);
+}
+
+- (void)test_access_ivar {
+    Model *model;
+    
+    NSString *str = model->_string2;
+    NSLog(@"%@", str);
+}
+
+- (void)test_dereference {
+    Model *model = nil;
+    
+    void *ptr = &model;
+    NSLog(@"%p", ptr);
+}
+
+- (void)test {
+    NSString *string = @"wangwang://wang.com?q%3D%7B%22key%22%3A%22value%22%7D";
+    NSURL *URL = [NSURL URLWithString:string];
+    NSLog(@"%@", URL);
 }
 
 @end

@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+@interface NSURLComponents (parameterString)
+@property (nonatomic, copy, nullable) NSString *parameterString;
+@end
+
 @interface WCURLTool : NSObject
 
 /**
@@ -17,5 +23,9 @@
  @param resourceBundleName the resource bundle name. If nil, use main bundle
  @return the NSURL for the png image
  */
-+ (NSURL *)PNGImageURLWithImageName:(NSString *)imageName inResourceBundle:(NSString *)resourceBundleName;
++ (nullable NSURL *)PNGImageURLWithImageName:(NSString *)imageName inResourceBundle:(NSString *)resourceBundleName;
++ (nullable NSURLComponents *)URLComponentsWithUrlString:(NSString *)urlString;
+
 @end
+
+NS_ASSUME_NONNULL_END
