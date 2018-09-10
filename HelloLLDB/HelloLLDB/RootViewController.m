@@ -10,6 +10,9 @@
 
 #import "RegisterWithSixParamtersViewController.h"
 #import "RegisterWithMoreSixParametersViewController.h"
+#import "TrapWithBuiltinTrapViewController.h"
+#import "TrapWithSignalViewController.h"
+#import "TrapWithASMViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -34,11 +37,16 @@
     _titles = @[
         @"Register used for 6 parameters",
         @"Register used for more 6 parameters",
-        @"call a test method",
+        @"trap with __builtin_trap",
+        @"trap with raise(SIGTRAP)",
+        @"trap with asm(int3)",
     ];
     _classes = @[
         [RegisterWithSixParamtersViewController class],
         [RegisterWithMoreSixParametersViewController class],
+        [TrapWithBuiltinTrapViewController class],
+        [TrapWithSignalViewController class],
+        [TrapWithASMViewController class],
         @"testMethod",
     ];
 }

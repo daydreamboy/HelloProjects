@@ -7,13 +7,14 @@
 5. Call Convention
 6. Python调试脚本
 7. 符号解释
-8. lldb常见问题
+8. 运行时trap
+9. lldb常见问题
 
 ------
 
-### 
+[TOC]
 
-## 1. lldb手册
+## 1、lldb手册
 
 1. print
 2. po（print object）
@@ -608,7 +609,7 @@ Breakpoint 1: where = HookingSwift`HookingSwift.CopyrightImageGenerator.(origina
 
 注意：上面的命令方式，仅在当前debug session中生效，并没有同步到Xcode的breakpoint中
 
-####（2）breakpoint list
+#### （2）breakpoint list
 
 格式：breakpoint list    
 简写：br li    
@@ -623,7 +624,7 @@ Current breakpoints:
   1.1: where = DebuggerDance`main + 27 at main.m:16, address = 0x000000010a3f6cab, resolved, hit count = 1
 ```
 
-####（3）breakpoint enable/disable
+#### （3）breakpoint enable/disable
 
 格式：breakpoint enable/disable \<breakpointID\>    
 说明：启用和禁用某个断点
@@ -639,7 +640,7 @@ Current breakpoints:
   1.1: where = DebuggerDance`main + 27 at main.m:16, address = 0x000000010a3f6cab, unresolved, hit count = 1
 ```
 
-####（4）breakpoint delete
+#### （4）breakpoint delete
 
 格式：breakpoint delete \<breakpoint ID\>    
 简写：br li   
@@ -668,7 +669,7 @@ About to delete all breakpoints, do you want to do that?: [Y/n] Y
 All breakpoints removed. (3 breakpoints)
 ```
 
-####（5）breakpoint command add/delete/list
+#### （5）breakpoint command add/delete/list
 
 格式：breakpoint command \<subcommand\>   
 说明：subcommand有add、delete和list三个子命令
@@ -708,7 +709,7 @@ Condition: i == 99
   1.1: where = DebuggerDance`isEven + 16 at main.m:4, address = 0x00000001083b5d00, resolved, hit count = 0 
 ```
 
-#### (6) breakpoint modify
+#### （6）breakpoint modify
 
 格式：breakpoint modify [options]    
 常用选项：
@@ -1155,7 +1156,7 @@ Blocks一行，range表示函数的加载地址范围，[0x1095bb380-0x1095bb3cf
 
 说明：不编译app，直接重新启动app
 
-## lldbinit配置
+## 2. lldbinit配置
 
 <b>（1）加载.lldbinit文件</b>
 
@@ -1504,7 +1505,7 @@ ret过程，和call对应。将栈顶的值（函数返回后的地址）pop出�
 pop RIP
 ```
 
-## ptrace
+## 6. ptrace
 
 ptrace函数位于<sys/ptrace.h>
 
@@ -1522,7 +1523,7 @@ lldb -n helloptrace
 error: attach failed: lost connection
 ```
 
-## Hooking Functions
+## 7. Hooking Functions
 
 #### Hooking c functions
 
@@ -1637,7 +1638,7 @@ override func viewDidLoad() {
 }
 ```
 
-## 6. Python调试脚本
+## 8. Python调试脚本
 
 Xcode的lldb提供一个python模块，也名为lldb。它位于/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/Resources/Python/lldb
 
@@ -1768,7 +1769,7 @@ debugger是SBDebugger实例，它的HandleCommand方法，相当于在lldb环境
 command script import ~/lldb/helloworld.py
 ```
 
-#### 7、符号解释
+## 9、符号解释
 
 nm命令可以输出.o文件的二进制符号。除了代码，还有一些特定的符号，如下
 
@@ -1779,9 +1780,16 @@ nm命令可以输出.o文件的二进制符号。除了代码，还有一些特�
 | GCC\_except\_table<x> | x是序号，这个符号表示存在异常捕获，例如@try@catch，也可能带上\_objc\_begin\_catch和\_objc\_end\_catch符号 |
 
 
-## 8、lldb常见问题
 
-### 1、不能使用stringWithFormat
+## 10、运行时trap
+
+
+
+
+
+## 11、lldb常见问题
+
+#### 1. 不能使用stringWithFormat
 
 ```
 (lldb) po [NSString stringWithFormat:@"%@", @"123"]

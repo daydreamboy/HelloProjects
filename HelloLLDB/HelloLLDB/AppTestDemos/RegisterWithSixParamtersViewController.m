@@ -102,7 +102,7 @@ General Purpose Registers:
 <RegisterWithSixParamtersViewController: 0x100427bb0>
  */
     
-#if 0//DEBUG
+#if DEBUG
     NSLog(@"%@:%@ (breakpoint): %@", [[NSString stringWithUTF8String:__FILE__] lastPathComponent], @(__LINE__), @"expect never hit this line. Please check your parameters and type `continue` to resume. And this information only for Debug, never show on Release");
     raise(SIGTRAP); // __builtin_trap();
 #endif

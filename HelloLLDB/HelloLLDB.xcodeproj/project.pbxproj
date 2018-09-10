@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4FB214C721370C1B00799FD6 /* TrapWithBuiltinTrapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB214C621370C1B00799FD6 /* TrapWithBuiltinTrapViewController.m */; };
+		4FBA0E192137C1360008F561 /* TrapWithSignalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBA0E182137C1360008F561 /* TrapWithSignalViewController.m */; };
+		4FBA0E1C2137C1500008F561 /* TrapWithASMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBA0E1B2137C1500008F561 /* TrapWithASMViewController.m */; };
 		4FC2CF6F2031536300A416DC /* RegisterWithMoreSixParametersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC2CF6E2031536300A416DC /* RegisterWithMoreSixParametersViewController.m */; };
 		4FC8F839203069B000E32502 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8F838203069B000E32502 /* AppDelegate.m */; };
 		4FC8F841203069B100E32502 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FC8F840203069B100E32502 /* Assets.xcassets */; };
@@ -17,6 +20,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4FB214C521370C1B00799FD6 /* TrapWithBuiltinTrapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrapWithBuiltinTrapViewController.h; sourceTree = "<group>"; };
+		4FB214C621370C1B00799FD6 /* TrapWithBuiltinTrapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrapWithBuiltinTrapViewController.m; sourceTree = "<group>"; };
+		4FBA0E172137C1360008F561 /* TrapWithSignalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrapWithSignalViewController.h; sourceTree = "<group>"; };
+		4FBA0E182137C1360008F561 /* TrapWithSignalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrapWithSignalViewController.m; sourceTree = "<group>"; };
+		4FBA0E1A2137C1500008F561 /* TrapWithASMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrapWithASMViewController.h; sourceTree = "<group>"; };
+		4FBA0E1B2137C1500008F561 /* TrapWithASMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrapWithASMViewController.m; sourceTree = "<group>"; };
 		4FC2CF6D2031536300A416DC /* RegisterWithMoreSixParametersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterWithMoreSixParametersViewController.h; sourceTree = "<group>"; };
 		4FC2CF6E2031536300A416DC /* RegisterWithMoreSixParametersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterWithMoreSixParametersViewController.m; sourceTree = "<group>"; };
 		4FC8F834203069AF00E32502 /* HelloLLDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloLLDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +91,12 @@
 				4FE63C80203133990055C7A0 /* RegisterWithSixParamtersViewController.m */,
 				4FC2CF6D2031536300A416DC /* RegisterWithMoreSixParametersViewController.h */,
 				4FC2CF6E2031536300A416DC /* RegisterWithMoreSixParametersViewController.m */,
+				4FB214C521370C1B00799FD6 /* TrapWithBuiltinTrapViewController.h */,
+				4FB214C621370C1B00799FD6 /* TrapWithBuiltinTrapViewController.m */,
+				4FBA0E172137C1360008F561 /* TrapWithSignalViewController.h */,
+				4FBA0E182137C1360008F561 /* TrapWithSignalViewController.m */,
+				4FBA0E1A2137C1500008F561 /* TrapWithASMViewController.h */,
+				4FBA0E1B2137C1500008F561 /* TrapWithASMViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -156,9 +171,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FC8F847203069B100E32502 /* main.m in Sources */,
+				4FBA0E1C2137C1500008F561 /* TrapWithASMViewController.m in Sources */,
 				4FC2CF6F2031536300A416DC /* RegisterWithMoreSixParametersViewController.m in Sources */,
 				4FC8F839203069B000E32502 /* AppDelegate.m in Sources */,
 				4FE63C7E203133210055C7A0 /* RootViewController.m in Sources */,
+				4FB214C721370C1B00799FD6 /* TrapWithBuiltinTrapViewController.m in Sources */,
+				4FBA0E192137C1360008F561 /* TrapWithSignalViewController.m in Sources */,
 				4FE63C81203133990055C7A0 /* RegisterWithSixParamtersViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

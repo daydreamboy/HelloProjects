@@ -55,7 +55,7 @@ General Purpose Registers:
 (lldb) po 0x00007fcaf650bd70
 <RegisterWithMoreSixParametersViewController: 0x7fcaf650bd70>
  */
-#if 0//DEBUG
+#if DEBUG
     NSLog(@"%@:%@ (breakpoint): %@", [[NSString stringWithUTF8String:__FILE__] lastPathComponent], @(__LINE__), @"expect never hit this line. Please check your parameters and type `continue` to resume. And this information only for Debug, never show on Release");
     raise(SIGTRAP); // __builtin_trap();
 #endif
