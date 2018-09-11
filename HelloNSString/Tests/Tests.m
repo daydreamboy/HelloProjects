@@ -326,6 +326,37 @@
     XCTAssertNil([WCStringTool substringWithString:nilString atLocation:0 length:1]);
 }
 
+- (void)test_substringWithString_range {
+    NSString *string;
+    NSString *substring;
+    
+    // Case 1
+    string = @"2014-11-07 18:36:04";
+    XCTAssertEqualObjects(@"11-07", [WCStringTool substringWithString:string range:NSMakeRange(5, 5)]);
+    XCTAssertEqualObjects(@"4", [WCStringTool substringWithString:string range:NSMakeRange(string.length - 1, 1)]);
+    
+    // Case 2
+    XCTAssertEqualObjects(@"a", [WCStringTool substringWithString:@"abc" range:NSMakeRange(0, 1)]);
+    XCTAssertNil([WCStringTool substringWithString:string range:NSMakeRange(string.length - 1, 4)]);
+    XCTAssertNil([WCStringTool substringWithString:string range:NSMakeRange(string.length, 1)]);
+    XCTAssertNil([WCStringTool substringWithString:@"" range:NSMakeRange(0, 1)]);
+    
+    // Case 3
+    string = @"";
+    substring = [string substringWithRange:NSMakeRange(0, 0)];
+    XCTAssertEqualObjects(substring, @"");
+    
+    string = @"abc";
+    substring = [string substringWithRange:NSMakeRange(0, 0)];
+    XCTAssertEqualObjects(substring, @"");
+    
+    XCTAssertEqualObjects([WCStringTool substringWithString:@"abc" range:NSMakeRange(0, 0)], @"");
+    XCTAssertEqualObjects([WCStringTool substringWithString:@"" range:NSMakeRange(0, 0)], @"");
+    
+    string = nil;
+    XCTAssertNil([WCStringTool substringWithString:string range:NSMakeRange(0, 1)]);
+}
+
 - (void)test_firstSubstringWithString_substringInCharacterSet {
     NSString *originalString;
     NSString *substring;
@@ -553,6 +584,26 @@
     XCTAssertFalse([WCStringTool checkStringAsAlphanumericWithString:nilString]);
     XCTAssertFalse([WCStringTool checkStringAsAlphanumericWithString:@" "]);
     XCTAssertFalse([WCStringTool checkStringAsAlphanumericWithString:@"中文"]);
+}
+
+#pragma mark > Split String
+
+- (void)test_componentsWithString_gapRanges {
+    NSString *string;
+    NSArray *gaps;
+    NSArray *components;
+    
+    // Case 1
+    string = @"This is a long string";
+    gaps = [WCStringTool rangesOfSubstringWithString:string substring:@"s"];
+    components = [WCStringTool componentsWithString:string gapRanges:gaps];
+    NSLog(@"%@", components);
+    
+    // Case 2
+    string = @"This is a long string";
+    gaps = [WCStringTool rangesOfSubstringWithString:string substring:@"is "];
+    components = [WCStringTool componentsWithString:string gapRanges:gaps];
+    NSLog(@"%@", components);
 }
 
 @end

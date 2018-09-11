@@ -64,4 +64,57 @@
     
     NSLog(@"%@", arrM);
 }
+
+- (void)test {
+#define not_intersect 0
+    
+    NSRange a;
+    NSRange b;
+    NSRange intersect;
+    
+    // Case 1
+    a = NSMakeRange(0, 0);
+    b = NSMakeRange(0, 1);
+    
+    intersect = NSIntersectionRange(a, b);
+    XCTAssertTrue(intersect.length == not_intersect);
+    
+    // Case 2
+    a = NSMakeRange(0, 0);
+    b = NSMakeRange(0, 0);
+    
+    intersect = NSIntersectionRange(a, b);
+    XCTAssertTrue(intersect.length == not_intersect);
+    
+    // Case 3
+    a = NSMakeRange(0, 1);
+    b = NSMakeRange(1, 1);
+    
+    intersect = NSIntersectionRange(a, b);
+    XCTAssertTrue(intersect.length == not_intersect);
+    
+    // Case 4
+    a = NSMakeRange(0, 1);
+    b = NSMakeRange(0, 1);
+    
+    intersect = NSIntersectionRange(a, b);
+    XCTAssertFalse(intersect.length == not_intersect);
+    
+    // Case 5
+    a = NSMakeRange(0, 2);
+    b = NSMakeRange(1, 1);
+    
+    intersect = NSIntersectionRange(a, b);
+    XCTAssertFalse(intersect.length == not_intersect);
+}
+
+- (void)test2 {
+    
+    // Case 1
+    NSString *string = @"";
+    
+    NSString *substring = [string substringWithRange:NSMakeRange(0, 0)];
+    NSLog(@"%@", substring);
+    
+}
 @end

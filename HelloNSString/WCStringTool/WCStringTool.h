@@ -128,7 +128,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Handle String As Url
 
-/// get value for key like `key1=value1&key2=value2`
 + (nullable NSString *)valueWithUrlString:(NSString *)string forKey:(NSString *)key usingConnector:(NSString *)connector usingSeparator:(NSString *)separator;
 + (nullable NSString *)valueWithUrlString:(NSString *)string forKey:(NSString *)key;
 
@@ -150,18 +149,17 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param string the whole string
  @param location the start location
- @param length the length of substring
+ @param length the length of substring. And the length can be greater than the actual length of the returned substring.
  @return the substring. Return nil if the locatio or length is invalid, e.g. location out of the string index [0..string.length]
  */
 + (nullable NSString *)substringWithString:(NSString *)string atLocation:(NSUInteger)location length:(NSUInteger)length;
 
 /**
- Safe get substring with the length which started at the location
+ Safe get substring with range
 
  @param string the whole string
- @param range the range
- @return the substring. Return nil if the range is invalid.
- @discussion this method will internally call +[WCStringTool substringWithString:atLocation:length:]
+ @param range the range.
+ @return the substring. Return nil if the range is invalid, e.g. range.length = 0; location out of the string index [0..string.length]
  */
 + (nullable NSString *)substringWithString:(NSString *)string range:(NSRange)range;
 
@@ -184,6 +182,15 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark > Split String
 
 + (NSArray<NSString *> *)componentsWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters;
+
+/**
+ Split string into components by multiple gap ranges
+
+ @param string the string to split
+ @param gapRanges the array of NSValue which is range
+ @return the component strings. Return nil, if the gapRanges has invalid range, e.g. the two range have intersection; the range out of the string; ...
+ */
++ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string gapRanges:(NSArray<NSValue *> *)gapRanges;
 
 #pragma mark > URL Encode/Decode
 
@@ -352,6 +359,18 @@ NS_ASSUME_NONNULL_BEGIN
  @warning If the length of arguments > 10, this method will throw an exception when DEBUG = 1.
  */
 + (nullable NSString *)formattedStringWithString:(NSString *)string format:(NSString *)format arguments:(NSArray *)arguments;
+
+#pragma mark - String Measuration (e.g. length, number of substring, range, ...)
+
+/**
+ Find ranges of all substrings
+
+ @param string the string
+ @param substring the substring maybe occurred many times
+ @return the array constructed by [NSValue valueWithRange:range]
+ @see http://stackoverflow.com/questions/7033574/find-all-locations-of-substring-in-nsstring-not-just-first
+ */
++ (nullable NSArray<NSValue *> *)rangesOfSubstringWithString:(NSString *)string substring:(NSString *)substring;
 
 #pragma mark - Encryption
 

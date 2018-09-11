@@ -353,7 +353,7 @@
     }
     
     if (location < string.length) {
-        if (length < string.length - location) {
+        if (location + length <= string.length)  {
             return [string substringWithRange:NSMakeRange(location, length)];
         }
         else {
@@ -371,12 +371,17 @@
         return nil;
     }
     
-    if (range.location == NSNotFound || range.length == 0) {
+    if (range.location == NSNotFound) {
         return nil;
     }
     
+    // Note: behavior same as substringWithRange:
+    if (range.length == 0) {
+        return @"";
+    }
+    
     if (range.location < string.length) {
-        if (range.length < string.length - range.location) {
+        if (range.location + range.length <= string.length) {
             return [string substringWithRange:range];
         }
         else {
@@ -432,6 +437,86 @@
     else {
         return components;
     }
+}
+
++ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string gapRanges:(NSArray<NSValue *> *)gapRanges {
+    if (![string isKindOfClass:[NSString class]] || ![gapRanges isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
+    
+    BOOL valid = YES;
+    for (NSValue *value in gapRanges) {
+        if (![value isKindOfClass:[NSValue class]]) {
+            valid = NO;
+            break;
+        }
+        
+        NSRange range = [value rangeValue];
+        if (range.location == NSNotFound || range.length == 0) {
+            valid = NO;
+            break;
+        }
+    }
+    
+    if (!valid) {
+        return nil;
+    }
+    
+    // Note: sort the gapRanges by ascend
+    NSArray *sortedGapRanges = [gapRanges sortedArrayUsingComparator:^NSComparisonResult(NSValue * _Nonnull value1, NSValue * _Nonnull value2) {
+        NSComparisonResult result = NSOrderedSame;
+        if (value1.rangeValue.location > value2.rangeValue.location) {
+            result = NSOrderedDescending;
+        }
+        else if (value1.rangeValue.location < value2.rangeValue.location) {
+            result = NSOrderedAscending;
+        }
+        return result;
+    }];
+    
+    NSRange previousRange = NSMakeRange(0, 0);
+    NSMutableArray<NSString *> *componentsM = [NSMutableArray array];
+    for (NSInteger i = 0; i < sortedGapRanges.count; i++) {
+        NSRange currentRange = [sortedGapRanges[i] rangeValue];
+        NSRange intersection = NSIntersectionRange(previousRange, currentRange);
+        if (intersection.length > 0) {
+            // Note: the two ranges does intersect
+            valid = NO;
+            break;
+        }
+        
+        NSRange extractRange = NSMakeRange(previousRange.location + previousRange.length, currentRange.location - (previousRange.location + previousRange.length));
+        NSString *substring = [WCStringTool substringWithString:string range:extractRange];
+        if (substring) {
+            [componentsM addObject:substring];
+        }
+        else {
+            valid = NO;
+            break;
+        }
+        
+        previousRange = [sortedGapRanges[i] rangeValue];
+        
+        if (i == sortedGapRanges.count - 1) {
+            // last gap range
+            NSRange extractRange = NSMakeRange(currentRange.location + currentRange.length, string.length - (previousRange.location + previousRange.length));
+            
+            NSString *substring = [WCStringTool substringWithString:string range:extractRange];
+            if (substring) {
+                [componentsM addObject:substring];
+            }
+            else {
+                valid = NO;
+                break;
+            }
+        }
+    }
+    
+    if (!valid) {
+        return nil;
+    }
+    
+    return componentsM;
 }
 
 #pragma mark > URL Encode/Decode
@@ -733,6 +818,38 @@
     }
     NSArray *args = [arguments arrayByAddingObjectsFromArray:@[@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X"]];
     return [NSString stringWithFormat:format, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9]];
+}
+
+#pragma mark - String Measuration (e.g. length, number of substring, range, ...)
+
++ (nullable NSArray<NSValue *> *)rangesOfSubstringWithString:(NSString *)string substring:(NSString *)substring {
+    if (![string isKindOfClass:[NSString class]] || ![substring isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    NSRange searchRange = NSMakeRange(0, string.length);
+    NSRange foundRange;
+    
+    NSMutableArray *arrM = [NSMutableArray array];
+    
+    while (searchRange.location < string.length) {
+        searchRange.length = string.length - searchRange.location;
+        foundRange = [string rangeOfString:substring options:kNilOptions range:searchRange];
+        
+        if (foundRange.location != NSNotFound) {
+            // found an occurrence of the substring, and add its range to NSArray
+            [arrM addObject:[NSValue valueWithRange:foundRange]];
+            
+            // move forward
+            searchRange.location = foundRange.location + foundRange.length;
+        }
+        else {
+            // no more substring to find
+            break;
+        }
+    }
+    
+    return arrM;
 }
 
 #pragma mark - Cryption
