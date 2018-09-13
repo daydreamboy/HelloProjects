@@ -889,6 +889,57 @@
     return [unescapedString copy];
 }
 
++ (nullable NSString *)binaryStringFromInt64:(int64_t)intValue {
+    int sizeOfByte = 8,            // 8 bits per byte
+    numberOfBits = (sizeof(int64_t)) * sizeOfByte; // Total bits
+    
+    return [self binaryStringFromIntX:intValue numberOfBits:numberOfBits];
+}
+
++ (nullable NSString *)binaryStringFromInt32:(int32_t)intValue {
+    int sizeOfByte = 8,            // 8 bits per byte
+    numberOfBits = (sizeof(int32_t)) * sizeOfByte; // Total bits
+    
+    return [self binaryStringFromIntX:intValue numberOfBits:numberOfBits];
+}
+
++ (nullable NSString *)binaryStringFromInt16:(int16_t)intValue {
+    int sizeOfByte = 8,            // 8 bits per byte
+    numberOfBits = (sizeof(int16_t)) * sizeOfByte; // Total bits
+    
+    return [self binaryStringFromIntX:intValue numberOfBits:numberOfBits];
+}
+
++ (nullable NSString *)binaryStringFromInt8:(int8_t)intValue {
+    int sizeOfByte = 8,            // 8 bits per byte
+    numberOfBits = (sizeof(int8_t)) * sizeOfByte; // Total bits
+    
+    return [self binaryStringFromIntX:intValue numberOfBits:numberOfBits];
+}
+
++ (nullable NSString *)binaryStringFromIntX:(int64_t)intValue numberOfBits:(int64_t)numberOfBits {
+    // Note: intValue's type maximum allow int64_t
+    int64_t indexOfDigits = numberOfBits;
+    
+    // C array - storage plus one for null
+    char digits[numberOfBits + 1];
+    
+    while (indexOfDigits-- > 0)
+    {
+        // Set digit in array based on rightmost bit
+        digits[indexOfDigits] = (intValue & 1) ? '1' : '0';
+        
+        // Shift incoming value one to right
+        intValue >>= 1;
+    }
+    
+    // Append null
+    digits[numberOfBits] = 0;
+    
+    // Return the binary string
+    return [NSString stringWithUTF8String:digits];
+}
+
 #pragma mark > String Measuration (e.g. length, number of substring, range, ...)
 
 + (nullable NSArray<NSValue *> *)rangesOfSubstringWithString:(NSString *)string substring:(NSString *)substring {

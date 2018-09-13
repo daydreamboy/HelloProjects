@@ -395,6 +395,20 @@ NS_ASSUME_NONNULL_BEGIN
  */
 #define ESCAPE_UNICODE_CSTR(...) @#__VA_ARGS__
 
+/**
+ Convert int64 to binary string
+ 
+ @param intValue the int value of 64 bits
+ @return the NSString with binary style, e.g. @"...01010" (the length is 64)
+ 
+ @see http://iosdevelopertips.com/objective-c/convert-integer-to-binary-nsstring.html
+ */
++ (nullable NSString *)binaryStringFromInt64:(int64_t)intValue;
++ (nullable NSString *)binaryStringFromInt32:(int32_t)intValue;
++ (nullable NSString *)binaryStringFromInt16:(int16_t)intValue;
++ (nullable NSString *)binaryStringFromInt8:(int8_t)intValue;
++ (nullable NSString *)binaryStringFromIntX:(int64_t)intValue numberOfBits:(int64_t)numberOfBits;
+
 #pragma mark > String Measuration (e.g. length, number of substring, range, ...)
 
 /**
@@ -469,7 +483,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @header #import <CommonCrypto/CommonDigest.h>
  */
-+ (NSString *)MD5WithString:(NSString *)string;
++ (nullable NSString *)MD5WithString:(NSString *)string;
 
 #pragma mark > Base64 Encode/Decode
 
