@@ -180,79 +180,6 @@
     }
 }
 
-#pragma mark - Handle String As Specific Strings
-
-#pragma mark > String as CGRect/UIEdgeInsets/UIColor
-
-+ (CGRect)rectFromString:(NSString *)string {
-    if (![string isKindOfClass:[NSString class]] || !string.length) {
-        return CGRectNull;
-    }
-    
-    NSString *compactString = [string stringByReplacingOccurrencesOfString:@" " withString:@""];
-    if ([compactString isEqualToString:@"{{0,0},{0,0}}"]) {
-        return CGRectZero;
-    }
-    else {
-        CGRect rect = CGRectFromString(string);
-        if (CGRectEqualToRect(rect, CGRectZero)) {
-            return CGRectNull;
-        }
-        else {
-            return rect;
-        }
-    }
-}
-
-+ (NSValue *)edgeInsetsValueFromString:(NSString *)string {
-    if (![string isKindOfClass:[NSString class]] || !string.length) {
-        return nil;
-    }
-    
-    NSString *compactString = [string stringByReplacingOccurrencesOfString:@" " withString:@""];
-    if ([compactString isEqualToString:@"{0,0,0,0}"]) {
-        return [NSValue valueWithUIEdgeInsets:UIEdgeInsetsZero];
-    }
-    else {
-        UIEdgeInsets edgeInsets = UIEdgeInsetsFromString(string);
-        if (UIEdgeInsetsEqualToEdgeInsets(edgeInsets, UIEdgeInsetsZero)) {
-            // string is invalid, return nil
-            return nil;
-        }
-        else {
-            return [NSValue valueWithUIEdgeInsets:edgeInsets];
-        }
-    }
-}
-
-+ (UIColor *)colorFromHexString:(NSString *)string {
-    if (![string isKindOfClass:[NSString class]]) {
-        return nil;
-    }
-    
-    if (![string hasPrefix:@"#"] || (string.length != 7 && string.length != 9)) {
-        return nil;
-    }
-    
-    // Note: -1 as failure flag
-    int r = -1, g = -1, b = -1, a = -1;
-    
-    if (string.length == 7) {
-        a = 0xFF;
-        sscanf([string UTF8String], "#%02x%02x%02x", &r, &g, &b);
-    }
-    else if (string.length == 9) {
-        sscanf([string UTF8String], "#%02x%02x%02x%02x", &r, &g, &b, &a);
-    }
-    
-    if (r == -1 || g == -1 || b == -1 || a == -1) {
-        // parse hex failed
-        return nil;
-    }
-    
-    return [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:a / 255.0];
-}
-
 #pragma mark - Handle String As Url
 
 /*!
@@ -870,38 +797,99 @@
     return interpolatedString;
 }
 
-#pragma mark - Handle String As HTML
 
-+ (nullable NSString *)stripTagsWithHTMLString:(NSString *)htmlString {
+#pragma mark > String Conversion
+
+#pragma mark >> String to CGRect/UIEdgeInsets/UIColor
+
++ (CGRect)rectFromString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]] || !string.length) {
+        return CGRectNull;
+    }
     
-    if (![htmlString isKindOfClass:[NSString class]]) {
+    NSString *compactString = [string stringByReplacingOccurrencesOfString:@" " withString:@""];
+    if ([compactString isEqualToString:@"{{0,0},{0,0}}"]) {
+        return CGRectZero;
+    }
+    else {
+        CGRect rect = CGRectFromString(string);
+        if (CGRectEqualToRect(rect, CGRectZero)) {
+            return CGRectNull;
+        }
+        else {
+            return rect;
+        }
+    }
+}
+
++ (NSValue *)edgeInsetsValueFromString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]] || !string.length) {
         return nil;
     }
     
-    NSMutableString *strippedString = [NSMutableString stringWithCapacity:[htmlString length]];
-    
-    NSScanner *scanner = [NSScanner scannerWithString:htmlString];
-    scanner.charactersToBeSkipped = nil;
-    NSString *tempText = nil;
-    
-    while (![scanner isAtEnd]) {
-        [scanner scanUpToString:@"<" intoString:&tempText];
-        
-        if (tempText != nil)
-            [strippedString appendString:tempText];
-        
-        [scanner scanUpToString:@">" intoString:NULL];
-        
-        if (![scanner isAtEnd])
-            [scanner setScanLocation:[scanner scanLocation] + 1];
-        
-        tempText = nil;
+    NSString *compactString = [string stringByReplacingOccurrencesOfString:@" " withString:@""];
+    if ([compactString isEqualToString:@"{0,0,0,0}"]) {
+        return [NSValue valueWithUIEdgeInsets:UIEdgeInsetsZero];
     }
-    
-    return strippedString;
+    else {
+        UIEdgeInsets edgeInsets = UIEdgeInsetsFromString(string);
+        if (UIEdgeInsetsEqualToEdgeInsets(edgeInsets, UIEdgeInsetsZero)) {
+            // string is invalid, return nil
+            return nil;
+        }
+        else {
+            return [NSValue valueWithUIEdgeInsets:edgeInsets];
+        }
+    }
 }
 
-#pragma mark - String Measuration (e.g. length, number of substring, range, ...)
++ (UIColor *)colorFromHexString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    if (![string hasPrefix:@"#"] || (string.length != 7 && string.length != 9)) {
+        return nil;
+    }
+    
+    // Note: -1 as failure flag
+    int r = -1, g = -1, b = -1, a = -1;
+    
+    if (string.length == 7) {
+        a = 0xFF;
+        sscanf([string UTF8String], "#%02x%02x%02x", &r, &g, &b);
+    }
+    else if (string.length == 9) {
+        sscanf([string UTF8String], "#%02x%02x%02x%02x", &r, &g, &b, &a);
+    }
+    
+    if (r == -1 || g == -1 || b == -1 || a == -1) {
+        // parse hex failed
+        return nil;
+    }
+    
+    return [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:a / 255.0];
+}
+
++ (nullable NSString *)unescapedUnicodeStringWithString:(NSString *)string {
+    
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    // Bug: The escaped string must use \u not \U, CFStringTransform only treats \u
+    NSString *modifiedString = [string stringByReplacingOccurrencesOfString:@"\\U" withString:@"\\u"];
+    // Note: remove left or right redundant `"` if needed
+    modifiedString = [modifiedString stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\""]];
+    
+    NSMutableString *unescapedString = [modifiedString mutableCopy];
+    CFStringRef transform = CFSTR("Any-Hex/Java");
+    CFStringTransform((__bridge CFMutableStringRef)unescapedString, NULL, transform, YES);
+    
+    return [unescapedString copy];
+}
+
+#pragma mark > String Measuration (e.g. length, number of substring, range, ...)
 
 + (nullable NSArray<NSValue *> *)rangesOfSubstringWithString:(NSString *)string substring:(NSString *)substring {
     if (![string isKindOfClass:[NSString class]] || ![substring isKindOfClass:[NSString class]]) {
@@ -972,11 +960,109 @@
     }
 }
 
+#pragma mark - Handle String As HTML
+
++ (nullable NSString *)stripTagsWithHTMLString:(NSString *)htmlString {
+    if (![htmlString isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    NSMutableString *strippedString = [NSMutableString stringWithCapacity:[htmlString length]];
+    
+    NSScanner *scanner = [NSScanner scannerWithString:htmlString];
+    scanner.charactersToBeSkipped = nil;
+    NSString *tempText = nil;
+    
+    while (![scanner isAtEnd]) {
+        [scanner scanUpToString:@"<" intoString:&tempText];
+        
+        if (tempText != nil)
+            [strippedString appendString:tempText];
+        
+        [scanner scanUpToString:@">" intoString:NULL];
+        
+        if (![scanner isAtEnd])
+            [scanner setScanLocation:[scanner scanLocation] + 1];
+        
+        tempText = nil;
+    }
+    
+    return strippedString;
+}
+
+#pragma mark - Handle String As Path
+
++ (nullable NSString *)pathWithPathString:(NSString *)pathString relativeToPath:(NSString *)anchorPath {
+    if (![pathString isKindOfClass:[NSString class]] || ![anchorPath isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    NSArray *pathComponents = [pathString pathComponents];
+    NSArray *anchorComponents = [anchorPath pathComponents];
+    
+    NSInteger componentsInCommon = MIN([pathComponents count], [anchorComponents count]);
+    for (NSInteger i = 0, n = componentsInCommon; i < n; i++) {
+        if (![[pathComponents objectAtIndex:i] isEqualToString:[anchorComponents objectAtIndex:i]]) {
+            componentsInCommon = i;
+            break;
+        }
+    }
+    
+    NSUInteger numberOfParentComponents = [anchorComponents count] - componentsInCommon;
+    NSUInteger numberOfPathComponents = [pathComponents count] - componentsInCommon;
+    
+    NSMutableArray *relativeComponents = [NSMutableArray arrayWithCapacity:numberOfParentComponents + numberOfPathComponents];
+    for (NSInteger i = 0; i < numberOfParentComponents; i++) {
+        [relativeComponents addObject:@".."];
+    }
+    [relativeComponents addObjectsFromArray:[pathComponents subarrayWithRange:NSMakeRange(componentsInCommon, numberOfPathComponents)]];
+    
+    return [NSString pathWithComponents:relativeComponents];
+}
+
++ (nullable NSString *)pathWithSubpathInCacheFolder:(NSString *)subpath {
+    return [self pathWithSubpath:subpath inDirectory:NSCachesDirectory];
+}
+
++ (nullable NSString *)pathWithSubpathInDocumentFolder:(NSString *)subpath {
+    return [self pathWithSubpath:subpath inDirectory:NSDocumentDirectory];
+}
+
++ (nullable NSString *)pathWithSubpathInLibraryFolder:(NSString *)subpath {
+    return [self pathWithSubpath:subpath inDirectory:NSLibraryDirectory];
+}
+
++ (nullable NSString *)pathWithSubpath:(NSString *)subpath inDirectory:(NSSearchPathDirectory)systemDirectory {
+    if (![subpath isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    static NSMutableDictionary *sDict = nil;
+    
+    if (!sDict) {
+        sDict = [NSMutableDictionary dictionary];
+    }
+    
+    NSNumber *key = @(systemDirectory);
+    if (!sDict[key]) {
+        NSString *directoryPath = [NSSearchPathForDirectoriesInDomains(systemDirectory, NSUserDomainMask, YES) firstObject];
+        sDict[key] = directoryPath;
+    }
+    
+    NSString *folderPath = [sDict[key] stringByAppendingPathComponent:subpath];
+    
+    return folderPath;
+}
+
 #pragma mark - Cryption
 
 #pragma mark > MD5
 
-+ (NSString *)MD5WithString:(NSString *)string {
++ (nullable NSString *)MD5WithString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
     if (string.length) {
         const char *cStr = [string UTF8String];
         unsigned char result[16];

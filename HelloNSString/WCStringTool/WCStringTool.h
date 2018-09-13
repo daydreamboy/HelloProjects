@@ -96,36 +96,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)stringFromUIGestureRecognizerState:(UIGestureRecognizerState)state;
 
-#pragma mark - Handle String As Specific Strings
-
-#pragma mark > String as CGRect/UIEdgeInsets/UIColor
-
-/**
- Safe convert NSString to CGRect
- 
- @param string the NSString represents CGRect
- @return the CGRect. If the NSString is malformed, return the CGRectNull
- @warning not allow 0.0, instead of just using 0.
- */
-+ (CGRect)rectFromString:(NSString *)string;
-
-/**
- Safe convert NSString to UIEdgeInsets, use value.UIEdgeInsets to get UIEdgeInsets
- 
- @param string the NSString represents UIEdgeInsets
- @return the NSValue to wrap UIEdgeInsets. Return nil if string is invalid.
- @warning not allow 0.0, instead of just using 0.
- */
-+ (nullable NSValue *)edgeInsetsValueFromString:(NSString *)string;
-
-/**
- Convert hex string to UIColor
- 
- @param string the hex string with foramt @"#RRGGBB" or @"#RRGGBBAA"
- @return the UIColor object. return nil if string is not valid.
- */
-+ (nullable UIColor *)colorFromHexString:(NSString *)string;
-
 #pragma mark - Handle String As Url
 
 + (nullable NSString *)valueWithUrlString:(NSString *)string forKey:(NSString *)key usingConnector:(NSString *)connector usingSeparator:(NSString *)separator;
@@ -379,17 +349,53 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSString *)insertSeparatorWithString:(NSString *)string separator:(NSString *)separator atInterval:(NSInteger)interval;
 
-#pragma mark - Handle String As HTML
+#pragma mark > String Conversion
+
+#pragma mark >> String to CGRect/UIEdgeInsets/UIColor
 
 /**
- Remove all html tags (<a></a> or <not a tag>) for html string
-
- @param htmlString the string expected to be html string
- @return the striped string
+ Safe convert NSString to CGRect
+ 
+ @param string the NSString represents CGRect
+ @return the CGRect. If the NSString is malformed, return the CGRectNull
+ @warning not allow 0.0, instead of just using 0.
  */
-+ (nullable NSString *)stripTagsWithHTMLString:(NSString *)htmlString;
++ (CGRect)rectFromString:(NSString *)string;
 
-#pragma mark - String Measuration (e.g. length, number of substring, range, ...)
+/**
+ Safe convert NSString to UIEdgeInsets, use value.UIEdgeInsets to get UIEdgeInsets
+ 
+ @param string the NSString represents UIEdgeInsets
+ @return the NSValue to wrap UIEdgeInsets. Return nil if string is invalid.
+ @warning not allow 0.0, instead of just using 0.
+ */
++ (nullable NSValue *)edgeInsetsValueFromString:(NSString *)string;
+
+/**
+ Convert hex string to UIColor
+ 
+ @param string the hex string with foramt @"#RRGGBB" or @"#RRGGBBAA"
+ @return the UIColor object. return nil if string is not valid.
+ */
++ (nullable UIColor *)colorFromHexString:(NSString *)string;
+
+/**
+ Converting escaped utf8 characters back to their original form, e.g. @"\\U5378\\U8f7d\\U5e94\\U7528" => @"卸载应用"
+
+ @param string the escaped utf8 string
+ @return the unescaped string
+ @see http://stackoverflow.com/questions/2099349/using-objective-c-cocoa-to-unescape-unicode-characters-ie-u1234/11615076#11615076
+ */
++ (nullable NSString *)unescapedUnicodeStringWithString:(NSString *)string;
+/**
+ Companion with unescapedUnicodeString, escape raw unicode string, e.g. ESCAPE_UNICODE_CSTR("\U5e97\U94fa\U6d4b\U8bd5\U8d26\U53f7") => @"\"\\U5e97\\U94fa\\U6d4b\\U8bd5\\U8d26\\U53f7\""
+
+ @param ... the c string
+ @return the NSString
+ */
+#define ESCAPE_UNICODE_CSTR(...) @#__VA_ARGS__
+
+#pragma mark > String Measuration (e.g. length, number of substring, range, ...)
 
 /**
  Find ranges of all substrings
@@ -418,6 +424,41 @@ NS_ASSUME_NONNULL_BEGIN
  @return the occurrence times of substring. If substring is \@"", return 0. Return NSNotFound if an error happened.
  */
 + (NSInteger)occurrenceOfSubstringInString:(NSString *)string substring:(NSString *)substring;
+
+#pragma mark - Handle String As HTML
+
+/**
+ Remove all html tags (<a></a> or <not a tag>) for html string
+
+ @param htmlString the string expected to be html string
+ @return the striped string
+ */
++ (nullable NSString *)stripTagsWithHTMLString:(NSString *)htmlString;
+
+#pragma mark - Handle String As Path
+
+/**
+ Get a relative path based on anchorPath
+
+ @param pathString the path
+ @param anchorPath the anchor path which is based on
+ @return the relative path, e.g. "b/c", "../b/c"
+ @see http://stackoverflow.com/questions/6539273/objective-c-code-to-generate-a-relative-path-given-a-file-and-a-directory
+ */
++ (nullable NSString *)pathWithPathString:(NSString *)pathString relativeToPath:(NSString *)anchorPath;
+
++ (nullable NSString *)pathWithSubpathInCacheFolder:(NSString *)subpath;
++ (nullable NSString *)pathWithSubpathInDocumentFolder:(NSString *)subpath;
++ (nullable NSString *)pathWithSubpathInLibraryFolder:(NSString *)subpath;
+
+/**
+ Get path in some folder
+
+ @param subpath the subpath expected in the system directory
+ @param systemDirectory the system directory
+ @return the path
+ */
++ (nullable NSString *)pathWithSubpath:(NSString *)subpath inDirectory:(NSSearchPathDirectory)systemDirectory;
 
 #pragma mark - Encryption
 
