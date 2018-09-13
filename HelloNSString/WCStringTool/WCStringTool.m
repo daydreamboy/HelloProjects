@@ -375,11 +375,6 @@
         return nil;
     }
     
-    // Note: behavior same as substringWithRange:
-    if (range.length == 0) {
-        return @"";
-    }
-    
     if (range.location < string.length) {
         if (range.location + range.length <= string.length) {
             return [string substringWithRange:range];
@@ -478,6 +473,7 @@
     NSMutableArray<NSString *> *componentsM = [NSMutableArray array];
     for (NSInteger i = 0; i < sortedGapRanges.count; i++) {
         NSRange currentRange = [sortedGapRanges[i] rangeValue];
+        // @see https://stackoverflow.com/a/10172768
         NSRange intersection = NSIntersectionRange(previousRange, currentRange);
         if (intersection.length > 0) {
             // Note: the two ranges does intersect
@@ -820,6 +816,91 @@
     return [NSString stringWithFormat:format, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9]];
 }
 
++ (nullable NSString *)collapseAdjacentCharactersWithString:(NSString *)string characters:(NSString *)characters {
+    if (![string isKindOfClass:[NSString class]] || ![characters isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    if (characters.length == 0) {
+        return string;
+    }
+    
+    NSMutableString *collapsedString = [NSMutableString string];
+    __block NSString *testString; // used to ommit continuous same characters
+    __block BOOL isFirstSubstring = YES;
+    
+    [string enumerateSubstringsInRange:NSMakeRange(0, string.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock: ^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop) {
+        if (isFirstSubstring) {
+            
+            [collapsedString appendString:substring];
+            testString = substring;
+            
+            isFirstSubstring = NO;
+        }
+        else {
+            if (![characters rangeOfString:testString].length || ![testString isEqualToString:substring]) {
+                
+                [collapsedString appendString:substring];
+                testString = substring;
+            }
+        }
+    }];
+    
+    return collapsedString;
+}
+
++ (nullable NSString *)insertSeparatorWithString:(NSString *)string separator:(NSString *)separator atInterval:(NSInteger)interval {
+    
+    if (![string isKindOfClass:[NSString class]] || ![separator isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    if (interval <= 0) {
+        return string;
+    }
+    
+    NSMutableString *mutableString = [[NSMutableString alloc] initWithString:string];
+    for (NSInteger i = 0; i < [mutableString length]; i++) {
+        if (i % (interval + 1) == 0) {
+            [mutableString insertString:separator atIndex:i];
+        }
+    }
+    NSString *interpolatedString = [mutableString substringFromIndex:1];
+    
+    return interpolatedString;
+}
+
+#pragma mark - Handle String As HTML
+
++ (nullable NSString *)stripTagsWithHTMLString:(NSString *)htmlString {
+    
+    if (![htmlString isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    NSMutableString *strippedString = [NSMutableString stringWithCapacity:[htmlString length]];
+    
+    NSScanner *scanner = [NSScanner scannerWithString:htmlString];
+    scanner.charactersToBeSkipped = nil;
+    NSString *tempText = nil;
+    
+    while (![scanner isAtEnd]) {
+        [scanner scanUpToString:@"<" intoString:&tempText];
+        
+        if (tempText != nil)
+            [strippedString appendString:tempText];
+        
+        [scanner scanUpToString:@">" intoString:NULL];
+        
+        if (![scanner isAtEnd])
+            [scanner setScanLocation:[scanner scanLocation] + 1];
+        
+        tempText = nil;
+    }
+    
+    return strippedString;
+}
+
 #pragma mark - String Measuration (e.g. length, number of substring, range, ...)
 
 + (nullable NSArray<NSValue *> *)rangesOfSubstringWithString:(NSString *)string substring:(NSString *)substring {
@@ -852,7 +933,48 @@
     return arrM;
 }
 
++ (NSInteger)lengthWithString:(NSString *)string treatChineseCharacterAsTwoCharacters:(BOOL)chineseCharacterAsTwoCharacters {
+    if (![string isKindOfClass:[NSString class]]) {
+        return NSNotFound;
+    }
+    
+    NSUInteger len = string.length;
+    
+    if (!chineseCharacterAsTwoCharacters) {
+        return len;
+    }
+    else {
+        // CJK Unified Ideographs, details see http://www.ssec.wisc.edu/~tomw/java/unicode.html
+        NSString *pattern = @"[\u4e00-\u9fff]";
+        NSError *error;
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
+        if (error) {
+            return NSNotFound;
+        }
+        
+        NSUInteger numberOfMatch = [regex numberOfMatchesInString:string options:NSMatchingReportProgress range:NSMakeRange(0, len)];
+        return len + numberOfMatch;
+    }
+}
+
++ (NSInteger)occurrenceOfSubstringInString:(NSString *)string substring:(NSString *)substring {
+    
+    if (![string isKindOfClass:[NSString class]] || ![substring isKindOfClass:[NSString class]]) {
+        return NSNotFound;
+    }
+    
+    NSArray *parts = [string componentsSeparatedByString:substring];
+    if ([parts count] > 0) {
+        return [parts count] - 1;
+    }
+    else {
+        return 0;
+    }
+}
+
 #pragma mark - Cryption
+
+#pragma mark > MD5
 
 + (NSString *)MD5WithString:(NSString *)string {
     if (string.length) {
@@ -870,6 +992,44 @@
     else {
         return nil;
     }
+}
+
+#pragma mark > Base64 Encode/Decode
+
++ (nullable NSString *)base64EncodedStringWithString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    NSString *encodedString;
+    
+    if ([self respondsToSelector:@selector(base64EncodedDataWithOptions:)]) {
+        // iOS >= `7.0`
+        // one line base64 string
+        NSData *data = [[string dataUsingEncoding:NSUTF8StringEncoding] base64EncodedDataWithOptions:0];
+        encodedString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    }
+    else {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+        // one line base64 string
+        encodedString = [[string dataUsingEncoding:NSUTF8StringEncoding] base64Encoding];
+#pragma GCC diagnostic pop
+    }
+    
+    return encodedString;
+}
+
++ (nullable NSString *)base64DecodedStringWithString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    // iOS >= `7.0`
+    NSData *data = [[NSData alloc] initWithBase64EncodedString:string options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    NSString *decodedString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    
+    return decodedString;
 }
 
 @end

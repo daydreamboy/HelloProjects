@@ -360,6 +360,35 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSString *)formattedStringWithString:(NSString *)string format:(NSString *)format arguments:(NSArray *)arguments;
 
+/**
+ Collapse continuous same characters into only one character, e.g. "AAABBCDD" -> "ABCD"
+
+ @param string the original string
+ @param characters the adjacent characters which should be collapsed
+ @return the collapsed string. If the characters is empty (@""), just return the original string
+ */
++ (nullable NSString *)collapseAdjacentCharactersWithString:(NSString *)string characters:(NSString *)characters;
+
+/**
+ Insert an separator into a string at the interval space
+
+ @param string the string to insert
+ @param separator the separator string
+ @param interval the interval which should > 0.
+ @return the inserted string. Return the original string if the interval <=0.
+ */
++ (nullable NSString *)insertSeparatorWithString:(NSString *)string separator:(NSString *)separator atInterval:(NSInteger)interval;
+
+#pragma mark - Handle String As HTML
+
+/**
+ Remove all html tags (<a></a> or <not a tag>) for html string
+
+ @param htmlString the string expected to be html string
+ @return the striped string
+ */
++ (nullable NSString *)stripTagsWithHTMLString:(NSString *)htmlString;
+
 #pragma mark - String Measuration (e.g. length, number of substring, range, ...)
 
 /**
@@ -372,7 +401,27 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSArray<NSValue *> *)rangesOfSubstringWithString:(NSString *)string substring:(NSString *)substring;
 
+/**
+ Get the length with treat a chinese character as two characters
+
+ @param string the string
+ @param chineseCharacterAsTwoCharacters YES, treat a chinese character as two characters; NO, use string.length
+ @return the number of characters in the string. Return NSNotFound if an error happened.
+ */
++ (NSInteger)lengthWithString:(NSString *)string treatChineseCharacterAsTwoCharacters:(BOOL)chineseCharacterAsTwoCharacters;
+
+/**
+ Get the occurrence times of substring in string
+
+ @param string the whole string
+ @param substring the substring
+ @return the occurrence times of substring. If substring is \@"", return 0. Return NSNotFound if an error happened.
+ */
++ (NSInteger)occurrenceOfSubstringInString:(NSString *)string substring:(NSString *)substring;
+
 #pragma mark - Encryption
+
+#pragma mark > MD5
 
 /*!
  *  MD5 encryption
@@ -380,6 +429,24 @@ NS_ASSUME_NONNULL_BEGIN
  *  @header #import <CommonCrypto/CommonDigest.h>
  */
 + (NSString *)MD5WithString:(NSString *)string;
+
+#pragma mark > Base64 Encode/Decode
+
+/**
+ Encode plain string into base64 string
+
+ @param string the plain string
+ @return the base64 encoded string
+ */
++ (nullable NSString *)base64EncodedStringWithString:(NSString *)string;
+
+/**
+ Decode base64 string to plain string
+
+ @param string the base64 encoded string
+ @return the plain string
+ */
++ (nullable NSString *)base64DecodedStringWithString:(NSString *)string;
 
 @end
 

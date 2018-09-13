@@ -346,12 +346,14 @@
     substring = [string substringWithRange:NSMakeRange(0, 0)];
     XCTAssertEqualObjects(substring, @"");
     
+    // Case 4
     string = @"abc";
     substring = [string substringWithRange:NSMakeRange(0, 0)];
     XCTAssertEqualObjects(substring, @"");
     
     XCTAssertEqualObjects([WCStringTool substringWithString:@"abc" range:NSMakeRange(0, 0)], @"");
-    XCTAssertEqualObjects([WCStringTool substringWithString:@"" range:NSMakeRange(0, 0)], @"");
+    XCTAssertNil([WCStringTool substringWithString:@"" range:NSMakeRange(0, 0)]);
+    XCTAssertNil([WCStringTool substringWithString:@"" range:NSMakeRange(1, 0)]);
     
     string = nil;
     XCTAssertNil([WCStringTool substringWithString:string range:NSMakeRange(0, 1)]);
@@ -602,6 +604,16 @@
     // Case 2
     string = @"This is a long string";
     gaps = [WCStringTool rangesOfSubstringWithString:string substring:@"is "];
+    components = [WCStringTool componentsWithString:string gapRanges:gaps];
+    NSLog(@"%@", components);
+    
+    // Case 3
+    string = @"0123456789";
+    gaps = @[
+             [NSValue valueWithRange:NSMakeRange(1, 1)],
+             [NSValue valueWithRange:NSMakeRange(3, 2)],
+             [NSValue valueWithRange:NSMakeRange(6, 3)],
+             ];
     components = [WCStringTool componentsWithString:string gapRanges:gaps];
     NSLog(@"%@", components);
 }

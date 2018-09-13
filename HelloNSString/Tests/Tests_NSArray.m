@@ -111,10 +111,10 @@
 - (void)test2 {
     
     // Case 1
-    NSString *string = @"";
+    NSString *string = @"abc";
     
-    NSString *substring = [string substringWithRange:NSMakeRange(0, 0)];
-    NSLog(@"%@", substring);
-    
+    NSArray *parts = [string componentsSeparatedByString:@""];
+    NSLog(@"%@", parts);
 }
+
 @end
