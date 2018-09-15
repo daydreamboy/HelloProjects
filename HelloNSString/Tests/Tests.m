@@ -618,6 +618,291 @@
     NSLog(@"%@", components);
 }
 
+#pragma mark > String Generation
+
+- (void)test_randomStringWithLength {
+    NSLog(@"random string: %@", [WCStringTool randomStringWithLength:20]);
+    NSLog(@"random string: %@", [WCStringTool randomStringWithLength:20]);
+    NSLog(@"random string: %@", [WCStringTool randomStringWithLength:40]);
+    NSLog(@"random string: %@", [WCStringTool randomStringWithLength:40]);
+}
+
+- (void)test_randomStringWithCharacters_length {
+    NSString *characters = @"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.-_";
+    
+    NSLog(@"random string: %@", [WCStringTool randomStringWithCharacters:characters length:20]);
+    NSLog(@"random string: %@", [WCStringTool randomStringWithCharacters:characters length:20]);
+    NSLog(@"random string: %@", [WCStringTool randomStringWithCharacters:characters length:40]);
+    NSLog(@"random string: %@", [WCStringTool randomStringWithCharacters:characters length:40]);
+}
+
+- (void)test_spacedStringWithString_format {
+    XCTAssertEqualObjects([WCStringTool spacedStringWithString:@"1234567890" format:@"XXX XXXX XXXX"], @"123 4567 890");
+    XCTAssertEqualObjects([WCStringTool spacedStringWithString:@"1234567890" format:@"XXX XXX XXXX"], @"123 456 7890");
+    XCTAssertEqualObjects([WCStringTool spacedStringWithString:@"123456789012" format:@"XXX XXXX XXXX"], @"123 4567 89012");
+    XCTAssertEqualObjects([WCStringTool spacedStringWithString:@"1234" format:@"XXX XXXX XXXX"], @"123 4");
+    XCTAssertEqualObjects([WCStringTool spacedStringWithString:@"123456789012" format:@" X XX XXX"], @" 1 23 456789012");
+    XCTAssertEqualObjects([WCStringTool spacedStringWithString:@"abc" format:@" X X X "], @" a b c");
+    XCTAssertEqualObjects([WCStringTool spacedStringWithString:@"abcd" format:@" X X X "], @" a b c d");
+    XCTAssertEqualObjects([WCStringTool spacedStringWithString:@"abcd" format:@" X X "], @" a b cd");
+    
+    // abnormal cases
+    XCTAssertEqualObjects([WCStringTool spacedStringWithString:@" 1 2 3 4 5 6 7 8 9 0 " format:@"XXX XXXX XXXX"], @"123 4567 890");
+    XCTAssertEqualObjects([WCStringTool spacedStringWithString:@" 1 2 3 4 5 6 7 8 9 0 " format:@"ZZZZZZzzzzzzzzzzzzzzzzzzzz"], @"1234567890");
+    XCTAssertEqualObjects([WCStringTool spacedStringWithString:@"1234567890" format:@"X"], @"1234567890");
+    XCTAssertEqualObjects([WCStringTool spacedStringWithString:@"1234567890" format:@"ZZZZZZzzzzzzzzzzzzzzzzzzzz"], @"1234567890");
+    XCTAssertEqualObjects([WCStringTool spacedStringWithString:@"1234567890" format:@""], @"1234567890");
+    XCTAssertEqualObjects([WCStringTool spacedStringWithString:@"" format:@""], @"");
+    XCTAssertEqualObjects([WCStringTool spacedStringWithString:@"" format:@"123456"], @"");
+    XCTAssertEqualObjects([WCStringTool spacedStringWithString:@"" format:@"aa aa"], @"");
+    XCTAssertEqualObjects([WCStringTool spacedStringWithString:@"  " format:@"aa aa"], @"");
+}
+
+- (void)test_formattedStringWithString_format_arguments {
+    NSString *string;
+    NSArray *args;
+    
+    // case 1
+    args = @[
+             @"He",
+             @"llo",
+             @"wo",
+             @"r",
+             @"ld"
+             ];
+    string = [WCStringTool stringWithFormat:@"%@%@, %@%@%@!" arguments:args];
+    NSLog(@"%@", string);
+    XCTAssertEqualObjects(string, @"Hello, world!");
+    
+    // case 2
+    args = @[
+             @(1),
+             @"2",
+             @".",
+             @"1",
+             @(12.1f)
+             ];
+    string = [WCStringTool stringWithFormat:@"%@%@%@%@ = %@" arguments:args];
+    NSLog(@"%@", string);
+    XCTAssertEqualObjects(string, @"12.1 = 12.1");
+    
+    
+    // case 3
+    args = @[
+             @"a",
+             @"b",
+             @"c"
+             ];
+    string = [WCStringTool stringWithFormat:@"%@%@" arguments:args];
+    NSLog(@"%@", string);
+    XCTAssertEqualObjects(string, @"ab");
+}
+
+- (void)test_insertSeparatorWithString_separator_atInterval {
+    NSString *inputString;
+    NSString *outputString;
+    
+    // Case 1：每隔1个字符插入一个"."
+    inputString = @"您的操作过于频繁，验证码可能有延迟请收到后再输入";
+    outputString = [WCStringTool insertSeparatorWithString:inputString separator:@"." atInterval:1];
+    NSLog(@"%@", outputString);
+    
+    // Case 2：每隔10个字符插入一个"\n"
+    inputString = @"您的操作过于频繁，验证码可能有延迟请收到后再输入";
+    outputString = [WCStringTool insertSeparatorWithString:inputString separator:@"\n" atInterval:10];
+    NSLog(@"%@", outputString);
+}
+
+- (void)test_collapseAdjacentCharactersWithString_characters {
+    // Omit spaces
+    NSString *inputString;
+    NSString *outputString;
+    
+    inputString = @"  Hello      this  is a   long       string!   ";
+    NSLog(@"\"%@\"", [WCStringTool collapseAdjacentCharactersWithString:inputString characters:@" "]);
+    NSLog(@"-----------------------------");
+    
+    //
+    inputString = @"\n\n\nHello\t\t\tthis is a   long       string!   ";
+    NSLog(@"\"%@\"", [WCStringTool collapseAdjacentCharactersWithString:inputString characters:@" \n\t"]);
+    NSLog(@"-----------------------------");
+    
+    inputString = @"😄😄😄😄Hello    😂😂😂😂this  is a   long😁😁😁😁😁😁       string!   ";
+    NSLog(@"\"%@\"", [WCStringTool collapseAdjacentCharactersWithString:inputString characters:@" 😄😂😁"]);
+    NSLog(@"-----------------------------");
+    
+    inputString = @"AAABBCDDDDEEFF";
+    NSLog(@"\"%@\"", [WCStringTool collapseAdjacentCharactersWithString:inputString characters:@"ABCDEf"]);
+    NSLog(@"-----------------------------");
+}
+
+#pragma mark > String Conversion
+
+#pragma mark >> String to CGRect/UIEdgeInsets/UIColor
+
+- (void)test_unescapedUnicodeStringWithString {
+    // Case 1: Need to unescape
+    XCTAssertEqualObjects([WCStringTool unescapedUnicodeStringWithString:@"\\u5404\\u500b\\u90fd"], @"各個都");
+    XCTAssertEqualObjects([WCStringTool unescapedUnicodeStringWithString:@"\\U5378\\U8f7d\\U5e94\\U7528"], @"卸载应用");
+    
+    XCTAssertEqualObjects([WCStringTool unescapedUnicodeStringWithString:@"\u03C0"], @"π");
+    // Note: Xcode not allow c string to use "\U03C0", must be "\u03C0", so use ESCAPE_UNICODE_CSTR macro to escape it
+    XCTAssertEqualObjects([WCStringTool unescapedUnicodeStringWithString:ESCAPE_UNICODE_CSTR("\U03C0")], @"π");
+    
+    XCTAssertEqualObjects([WCStringTool unescapedUnicodeStringWithString:ESCAPE_UNICODE_CSTR("\U5e97\U94fa\U6d4b\U8bd5\U8d26\U53f7")], @"店铺测试账号");
+    
+    // Case 2: No need to unescape
+    XCTAssertEqualObjects([WCStringTool unescapedUnicodeStringWithString:@""], @"");
+    XCTAssertEqualObjects([WCStringTool unescapedUnicodeStringWithString:@"a normal string"], @"a normal string");
+    NSString *nilString;
+    XCTAssertNil([WCStringTool unescapedUnicodeStringWithString:nilString]);
+}
+
+#pragma mark > String Measuration (e.g. length, number of substring, range, ...)
+
+- (void)test_rangesOfSubstringWithString_substring {
+    NSString *string =
+    @"• 此操作仅限更换手机号，不影响当前账号内容\n"
+    @"• 您将使用新的手机号登录当前账号\n"
+    @"• 司机联系您时，将拨打您的新手机号\n"
+    @"• 司机联系您时，将拨打您的新手机号\n"
+    @"• 一个月只允许更换一次手机号";
+    
+    NSArray *ranges = [WCStringTool rangesOfSubstringWithString:string substring:@"•"];
+    
+    XCTAssertTrue(ranges.count == 5);
+    for (NSUInteger i = 0; i < ranges.count; i++) {
+        NSValue *value = (NSValue *)ranges[i];
+        NSRange range = [value rangeValue];
+        
+        NSLog(@"%@", NSStringFromRange(range));
+    }
+    
+    XCTAssertTrue([WCStringTool rangesOfSubstringWithString:string substring:@"\n"].count == 4);
+    XCTAssertTrue([WCStringTool rangesOfSubstringWithString:string substring:@"司机"].count == 2);
+    XCTAssertTrue([WCStringTool rangesOfSubstringWithString:string substring:@"null"].count == 0);
+}
+
+- (void)test_lengthWithString_treatChineseCharacterAsTwoCharacters {
+    NSString *str = @"Hi，中国";
+    NSLog(@"len1: %lu", (unsigned long)[WCStringTool lengthWithString:str treatChineseCharacterAsTwoCharacters:NO]);
+    NSLog(@"len2: %lu", (unsigned long)[WCStringTool lengthWithString:str treatChineseCharacterAsTwoCharacters:YES]);
+}
+
+- (void)test_occurrenceOfSubstringInString_substring {
+    NSString *formatString = @"%@:%@";
+    NSLog(@"occurence of %%@ is %ld", [WCStringTool occurrenceOfSubstringInString:formatString substring:@"%@"]);
+}
+
+#pragma mark - Handle String As HTML
+
+- (void)test_stripTagsWithHTMLString {
+    NSString *htmlString;
+    htmlString = @"<html>This is a html <font style=\"blah\">string</font>.</html>";
+    NSLog(@"%@", [WCStringTool stripTagsWithHTMLString:htmlString]);
+}
+
+#pragma mark - Handle String As Path
+
+- (void)test_pathWithPathString_relativeToPath {
+    XCTAssertEqualObjects([WCStringTool pathWithPathString:@"/a" relativeToPath:@"/"], @"a", @"should equal");
+    XCTAssertEqualObjects([WCStringTool pathWithPathString:@"a/b" relativeToPath:@"a"], @"b", @"");
+    XCTAssertEqualObjects([WCStringTool pathWithPathString:@"a/b/c" relativeToPath:@"a"], @"b/c", @"");
+    XCTAssertEqualObjects([WCStringTool pathWithPathString:@"a/b/c" relativeToPath:@"a/b"], @"c", @"");
+    XCTAssertEqualObjects([WCStringTool pathWithPathString:@"a/b/c" relativeToPath:@"a/d"], @"../b/c", @"");
+    XCTAssertEqualObjects([WCStringTool pathWithPathString:@"a/b/c" relativeToPath:@"a/d/e"], @"../../b/c", @"");
+    XCTAssertEqualObjects([WCStringTool pathWithPathString:@"/a/b/c" relativeToPath:@"/d/e/f"], @"../../../a/b/c", @"");
+}
+
+- (void)test_binaryStringFromInt64 {
+    int64_t intValue = 16;
+    NSLog(@"%lld = %@", intValue, [WCStringTool binaryStringFromInt64:intValue]);
+    
+    intValue = -1;
+    NSLog(@"%lld = %@", intValue, [WCStringTool binaryStringFromInt64:intValue]);
+    
+    intValue = 2147483647;
+    NSLog(@"%lld = %@", intValue, [WCStringTool binaryStringFromInt64:intValue]);
+    
+    intValue = -2147483648;
+    NSLog(@"%lld = %@", intValue, [WCStringTool binaryStringFromInt64:intValue]);
+    
+    NSLog(@"%d = %@", INT32_MAX, [WCStringTool binaryStringFromInt64:INT32_MAX]);
+    NSLog(@"%d = %@", INT32_MIN, [WCStringTool binaryStringFromInt64:INT32_MIN]);
+    
+    intValue = 9223372036854775807LL;
+    NSLog(@"%lld = %@", intValue, [WCStringTool binaryStringFromInt64:intValue]);
+    
+    intValue = (-INT64_MAX-1);
+    NSLog(@"%lld = %@", intValue, [WCStringTool binaryStringFromInt64:intValue]);
+    
+    NSLog(@"%lld = %@", INT64_MAX, [WCStringTool binaryStringFromInt64:INT64_MAX]);
+    NSLog(@"%lld = %@", INT64_MIN, [WCStringTool binaryStringFromInt64:INT64_MIN]);
+}
+
+- (void)test_binaryStringFromInt32 {
+    int intValue = 16;
+    NSLog(@"%d = %@", intValue, [WCStringTool binaryStringFromInt32:intValue]);
+    
+    intValue = -1;
+    NSLog(@"%d = %@", intValue, [WCStringTool binaryStringFromInt32:intValue]);
+    
+    intValue = 2147483647;
+    NSLog(@"%d = %@", intValue, [WCStringTool binaryStringFromInt32:intValue]);
+    
+    intValue = -2147483648;
+    NSLog(@"%d = %@", intValue, [WCStringTool binaryStringFromInt32:intValue]);
+    
+    NSLog(@"%d = %@", INT32_MAX, [WCStringTool binaryStringFromInt32:INT32_MAX]);
+    NSLog(@"%d = %@", INT32_MIN, [WCStringTool binaryStringFromInt32:INT32_MIN]);
+}
+
+- (void)test_binaryStringFromInt16 {
+    int intValue = 16;
+    NSLog(@"%d = %@", intValue, [WCStringTool binaryStringFromInt16:intValue]);
+    
+    intValue = -1;
+    NSLog(@"%d = %@", intValue, [WCStringTool binaryStringFromInt16:intValue]);
+    
+    intValue = 32767;
+    NSLog(@"%d = %@", intValue, [WCStringTool binaryStringFromInt16:intValue]);
+    
+    intValue = -32768;
+    NSLog(@"%d = %@", intValue, [WCStringTool binaryStringFromInt16:intValue]);
+    
+    NSLog(@"%d = %@", INT16_MAX, [WCStringTool binaryStringFromInt16:INT16_MAX]);
+    NSLog(@"%d = %@", INT16_MIN, [WCStringTool binaryStringFromInt16:INT16_MIN]);
+}
+
+- (void)test_binaryStringFromInt8 {
+    short shortValue = 16;
+    NSLog(@"%d = %@", shortValue, [WCStringTool binaryStringFromInt8:shortValue]);
+    
+    shortValue = -1;
+    NSLog(@"%d = %@", shortValue, [WCStringTool binaryStringFromInt8:shortValue]);
+    
+    shortValue = 127;
+    NSLog(@"%d = %@", shortValue, [WCStringTool binaryStringFromInt8:shortValue]);
+    
+    shortValue = -128;
+    NSLog(@"%d = %@", shortValue, [WCStringTool binaryStringFromInt8:shortValue]);
+    
+    NSLog(@"%d = %@", INT8_MAX, [WCStringTool binaryStringFromInt8:INT8_MAX]);
+    NSLog(@"%d = %@", INT8_MIN, [WCStringTool binaryStringFromInt8:INT8_MIN]);
+}
+
+#pragma mark - Cryption
+
+#pragma mark > MD5
+
+- (void)test_MD5WithString {
+    XCTAssertTrue([WCStringTool MD5WithString:@"abc"].length == 32);
+    XCTAssertNil([WCStringTool MD5WithString:@""]);
+    NSString *nilString = nil;
+    XCTAssertNil([WCStringTool MD5WithString:nilString]);
+    NSLog(@"%@", [WCStringTool MD5WithString:@"abc"]);
+}
+
 @end
 
 

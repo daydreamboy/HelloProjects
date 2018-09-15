@@ -321,14 +321,13 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Get a string with format and an array of arguments
 
- @param string the original string
  @param format the format string which used in +[NSString stringWithFormat:]
  @param arguments the array of argument which are objects, and the length of arguments should not > 10
  @return the formatted string
  @see https://stackoverflow.com/questions/1058736/how-to-create-a-nsstring-from-a-format-string-like-xxx-yyy-and-a-nsarr
  @warning If the length of arguments > 10, this method will throw an exception when DEBUG = 1.
  */
-+ (nullable NSString *)formattedStringWithString:(NSString *)string format:(NSString *)format arguments:(NSArray *)arguments;
++ (nullable NSString *)stringWithFormat:(NSString *)format arguments:(NSArray *)arguments;
 
 /**
  Collapse continuous same characters into only one character, e.g. "AAABBCDD" -> "ABCD"

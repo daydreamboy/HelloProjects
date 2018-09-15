@@ -727,8 +727,8 @@
     return [stringM copy];
 }
 
-+ (nullable NSString *)formattedStringWithString:(NSString *)string format:(NSString *)format arguments:(NSArray *)arguments {
-    if (![string isKindOfClass:[NSString class]] || ![format isKindOfClass:[NSString class]] || ![arguments isKindOfClass:[NSArray class]]) {
++ (nullable NSString *)stringWithFormat:(NSString *)format arguments:(NSArray *)arguments {
+    if (![format isKindOfClass:[NSString class]] || ![arguments isKindOfClass:[NSArray class]]) {
         return nil;
     }
     
