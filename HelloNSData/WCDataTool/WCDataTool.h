@@ -8,6 +8,79 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+typedef NS_ENUM(NSUInteger, WCMIMEType) {
+    WCMIMETypeUnknown,
+    WCMIMETypeAmr,
+    WCMIMETypeAr,
+    WCMIMETypeAvi,
+    WCMIMETypeBmp,
+    WCMIMETypeBz2,
+    WCMIMETypeCab,
+    WCMIMETypeCr2,
+    WCMIMETypeCrx,
+    WCMIMETypeDeb,
+    WCMIMETypeDmg,
+    WCMIMETypeEot,
+    WCMIMETypeEpub,
+    WCMIMETypeExe,
+    WCMIMETypeFlac,
+    WCMIMETypeFlif,
+    WCMIMETypeFlv,
+    WCMIMETypeGif,
+    WCMIMETypeGz,
+    WCMIMETypeIco,
+    WCMIMETypeJpg,
+    WCMIMETypeJxr,
+    WCMIMETypeLz,
+    WCMIMETypeM4a,
+    WCMIMETypeM4v,
+    WCMIMETypeMid,
+    WCMIMETypeMkv,
+    WCMIMETypeMov,
+    WCMIMETypeMp3,
+    WCMIMETypeMp4,
+    WCMIMETypeMpg,
+    WCMIMETypeMsi,
+    WCMIMETypeMxf,
+    WCMIMETypeNes,
+    WCMIMETypeOgg,
+    WCMIMETypeOpus,
+    WCMIMETypeOtf,
+    WCMIMETypePdf,
+    WCMIMETypePng,
+    WCMIMETypePs,
+    WCMIMETypePsd,
+    WCMIMETypeRar,
+    WCMIMETypeRpm,
+    WCMIMETypeRtf,
+    WCMIMEType7z,
+    WCMIMETypeSqlite,
+    WCMIMETypeSwf,
+    WCMIMETypeTar,
+    WCMIMETypeTif,
+    WCMIMETypeTtf,
+    WCMIMETypeWav,
+    WCMIMETypeWebm,
+    WCMIMETypeWebp,
+    WCMIMETypeWmv,
+    WCMIMETypeWoff,
+    WCMIMETypeWoff2,
+    WCMIMETypeXpi,
+    WCMIMETypeXz,
+    WCMIMETypeZ,
+    WCMIMETypeZip,
+};
+
+@interface WCMIMETypeInfo : NSObject
+@property (nonatomic, copy) NSString *MIME;
+@property (nonatomic, copy) NSString *extension;
+@property (nonatomic, assign) WCMIMEType type;
+@property (nonatomic, assign) NSUInteger bytesCount;
+@property (nonatomic, copy) BOOL (^matchBlock)(NSData *data);
+@end
+
 @interface WCDataTool : NSObject
 
 /**
@@ -39,3 +112,5 @@
 + (NSString *)MIMETypeWithData:(NSData *)data;
 
 @end
+
+NS_ASSUME_NONNULL_END

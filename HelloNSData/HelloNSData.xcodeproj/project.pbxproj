@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F4AFFDE213E80EB0031856A /* 1.amr in Resources */ = {isa = PBXBuildFile; fileRef = 4F4AFFDC213E80EB0031856A /* 1.amr */; };
+		4F4AFFDF213E80EB0031856A /* piano2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4F4AFFDD213E80EB0031856A /* piano2.wav */; };
 		4F75A01F213130EE000DDE60 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A01E213130EE000DDE60 /* AppDelegate.m */; };
 		4F75A022213130EE000DDE60 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A021213130EE000DDE60 /* ViewController.m */; };
 		4F75A025213130EE000DDE60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F75A023213130EE000DDE60 /* Main.storyboard */; };
@@ -19,6 +21,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F4AFFDC213E80EB0031856A /* 1.amr */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1.amr; sourceTree = "<group>"; };
+		4F4AFFDD213E80EB0031856A /* piano2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = piano2.wav; sourceTree = "<group>"; };
 		4F75A01A213130EE000DDE60 /* HelloNSData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F75A01D213130EE000DDE60 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F75A01E213130EE000DDE60 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -48,6 +52,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F4AFFD9213E6DA30031856A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4F4AFFDC213E80EB0031856A /* 1.amr */,
+				4F4AFFDD213E80EB0031856A /* piano2.wav */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		4F75A011213130EE000DDE60 = {
 			isa = PBXGroup;
 			children = (
@@ -76,6 +89,7 @@
 				4F75A020213130EE000DDE60 /* ViewController.h */,
 				4F75A021213130EE000DDE60 /* ViewController.m */,
 				4F75A023213130EE000DDE60 /* Main.storyboard */,
+				4F4AFFD9213E6DA30031856A /* Resources */,
 				4F75A026213130EF000DDE60 /* Assets.xcassets */,
 				4F75A028213130EF000DDE60 /* LaunchScreen.storyboard */,
 				4F75A02B213130EF000DDE60 /* Info.plist */,
@@ -87,8 +101,8 @@
 		4F75A03321313126000DDE60 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F75A03421313126000DDE60 /* Demo1ViewController.m */,
 				4F75A03521313126000DDE60 /* Demo1ViewController.h */,
+				4F75A03421313126000DDE60 /* Demo1ViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -159,7 +173,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F4AFFDE213E80EB0031856A /* 1.amr in Resources */,
 				4F75A02A213130EF000DDE60 /* LaunchScreen.storyboard in Resources */,
+				4F4AFFDF213E80EB0031856A /* piano2.wav in Resources */,
 				4F75A027213130EF000DDE60 /* Assets.xcassets in Resources */,
 				4F75A025213130EE000DDE60 /* Main.storyboard in Resources */,
 			);
