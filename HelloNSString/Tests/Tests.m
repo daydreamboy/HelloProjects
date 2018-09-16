@@ -903,6 +903,105 @@
     NSLog(@"%@", [WCStringTool MD5WithString:@"abc"]);
 }
 
+#pragma mark - Others
+
+- (void)test1 {
+#define NSPREDICATE(expression)    ([NSPredicate predicateWithFormat:@"SELF MATCHES %@", expression])
+    
+    NSString *str = @"\u00b7";
+    NSLog(@"%@", str);
+    NSLog(@"%@", @"·");
+    NSLog(@"%@", @"·");
+    
+    NSString *text = @"你好·哈好·你好";//·你好
+    if ([NSPREDICATE(@"^[\u4e00-\u9fa5]{2,5}(?:\u00b7[\u4e00-\u9fa5]{2,5})*$") evaluateWithObject:text]) {
+        NSLog(@"pass");
+    }
+}
+
+- (NSArray<NSString *> *)_parseEventsArrayFromEvent:(NSString *)aEvent {
+    NSArray *events = nil;
+    
+    if ([aEvent rangeOfString:@"{"].location != NSNotFound || [aEvent rangeOfString:@"["].location != NSNotFound) {
+        NSData *jsonData = [aEvent dataUsingEncoding:NSUTF8StringEncoding];
+        id jsonObject = nil;
+        @try {
+            jsonObject = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:NULL];
+        } @catch (NSException *exception) {
+            jsonObject = nil;
+        }
+        
+        if ([jsonObject isKindOfClass:[NSArray class]]) {
+            events = jsonObject;
+        } else if ([jsonObject isKindOfClass:[NSDictionary class]]) {
+            events = jsonObject[@"action"];
+            if (![events isKindOfClass:[NSArray class]]) { events = nil; }
+        }
+    } else if (aEvent != nil) {
+        events = @[aEvent];
+    }
+    
+    return events;
+}
+
+- (void)test_unescapedString {
+    NSString *event = @"wangx://recommendItems/show?data={\"api\":\"mtop.cb.menu.event\",\"needSession\":true,\"needencode\":true,\"params\":{\"handlerBonding\":{\"handlerContent\":{\"sellerId\":2257290474,\"instanceId\":8020,\"activityTag\":0,\"rettype\":\"tao\"}, \"handlerKey\":\"cbinteraction-itemRecommend\"}}}";
+    
+    event = @"wangx://recommendItems/show?data=%7B%22api%22%3A%22mtop.cb.menu.event%22%2C%22needSession%22%3Atrue%2C%22needencode%22%3Atrue%2C%22params%22%3A%7B%22handlerBonding%22%3A%7B%22handlerContent%22%3A%7B%22sellerId%22%3A2257290474%2C%22instanceId%22%3A8020%2C%22activityTag%22%3A0%2C%22rettype%22%3A%22tao%22%7D%2C%20%22handlerKey%22%3A%22cbinteraction-itemRecommend%22%7D%7D%7D";
+    event = @"wangx://p2sconversation/package?toId=cntaobaoww店铺测试账号003&serviceType=cloud_auto_reply&bizType=3&cardCode=cb_shop_recommend&title=猜你喜欢&fromId=cntaobaowc测试账号1000&intent=doNormalCardAction&bot_action=CbSmartMenuAction";
+    
+    BOOL success = [self _parseEventsArrayFromEvent:event];
+    NSLog(@"%@", success ? @"YES" : @"NO");
+}
+
+- (void)test_ulrstring {
+//    NSString *s1 = @"g\u2006h";
+//    NSData *data = [s1 dataUsingEncoding:NSUTF8StringEncoding];
+//    NSString *s3 = [[NSString alloc] initWithData:data encoding:NSNonLossyASCIIStringEncoding];
+//
+//    NSLog(@"%@", [s1 urlEncodedString]);
+//    NSLog(@"%@", [s1 urlEncodedStringWithEncoding:NSUnicodeStringEncoding]);
+//
+//    NSString *s2 = @"g h";
+//    NSLog(@"%@", [s2 urlEncodedString]);
+//    NSLog(@"%@", [s2 urlEncodedStringWithEncoding:NSUTF8StringEncoding]);
+    
+    
+//    NSString *unicodedString = @"😃";
+//    NSData *unicodedStringData = [unicodedString dataUsingEncoding:NSUTF8StringEncoding];
+//    NSString *emojiStringValue = [[NSString alloc] initWithData:unicodedStringData encoding:NSNonLossyASCIIStringEncoding];
+    
+    NSString *s1 = @"g\u2006h";
+    NSString *s4 = @"g h";
+    NSLog(@"%@", [s1 dataUsingEncoding:NSUTF8StringEncoding]);
+    NSLog(@"%@", [s4 dataUsingEncoding:NSUTF8StringEncoding]);
+    
+    NSLog(@"%@", s1);
+    NSLog(@"%@", s4);
+    
+    const char *cString = s1.UTF8String;
+    NSData *data = [NSData dataWithBytes:cString length:strlen(cString)];
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSLog(@"string: %@", [string dataUsingEncoding:NSASCIIStringEncoding]);
+    NSLog(@"%@", [WCStringTool URLEscapedStringWithString:string]);
+    
+    NSString *space1 = @"\u2006";
+    NSString *space2 = @" ";
+//    space2 = @"\u0041";
+    
+    space1 = [space1 stringByReplacingOccurrencesOfString:@"\u2006" withString:@" "];
+    
+    if ([space1 isEqualToString:space2]) {
+        NSLog(@"equal");
+    }
+    else {
+        NSLog(@"not equal");
+    }
+    
+    NSString *str = @"\u5404\u500b\u90fd";
+    NSLog(@"%@", str);
+}
+
 @end
 
 

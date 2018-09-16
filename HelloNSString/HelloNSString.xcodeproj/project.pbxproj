@@ -15,8 +15,11 @@
 		4F4D74BA20BED6CB0027DE7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D74B920BED6CB0027DE7C /* main.m */; };
 		4F4D74C520BED73D0027DE7C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D74C020BED73C0027DE7C /* RootViewController.m */; };
 		4F4D74C620BED73D0027DE7C /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D74C220BED73C0027DE7C /* Demo1ViewController.m */; };
+		4F591D74214D27BF00F3F30A /* WCStringTool+OpenSSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F591D73214D27BF00F3F30A /* WCStringTool+OpenSSL.m */; };
+		4F591D77214D284600F3F30A /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F591D76214D284600F3F30A /* openssl.framework */; };
 		4F731A8C20BEE28F00D095F9 /* WCStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F731A8B20BEE28F00D095F9 /* WCStringTool.m */; };
 		4F731A9420BEE34F00D095F9 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F731A9320BEE34F00D095F9 /* Tests.m */; };
+		4F746918214E3EFF0079F654 /* Tests_OpenSSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F746917214E3EFF0079F654 /* Tests_OpenSSL.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,11 +47,15 @@
 		4F4D74C220BED73C0027DE7C /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
 		4F4D74C320BED73C0027DE7C /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
 		4F4D74C420BED73D0027DE7C /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		4F591D72214D27BF00F3F30A /* WCStringTool+OpenSSL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WCStringTool+OpenSSL.h"; sourceTree = "<group>"; };
+		4F591D73214D27BF00F3F30A /* WCStringTool+OpenSSL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "WCStringTool+OpenSSL.m"; sourceTree = "<group>"; };
+		4F591D76214D284600F3F30A /* openssl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = openssl.framework; sourceTree = "<group>"; };
 		4F731A8A20BEE28F00D095F9 /* WCStringTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStringTool.h; sourceTree = "<group>"; };
 		4F731A8B20BEE28F00D095F9 /* WCStringTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCStringTool.m; sourceTree = "<group>"; };
 		4F731A9120BEE34F00D095F9 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F731A9320BEE34F00D095F9 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		4F731A9520BEE34F00D095F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F746917214E3EFF0079F654 /* Tests_OpenSSL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_OpenSSL.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F591D77214D284600F3F30A /* openssl.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +80,7 @@
 		4F4D749E20BED6CA0027DE7C = {
 			isa = PBXGroup;
 			children = (
+				4F591D75214D284600F3F30A /* Library */,
 				4F731A8920BEE27D00D095F9 /* WCStringTool */,
 				4F4D74A920BED6CA0027DE7C /* HelloNSString */,
 				4F731A9220BEE34F00D095F9 /* Tests */,
@@ -115,11 +124,21 @@
 			path = AppTestDemos;
 			sourceTree = "<group>";
 		};
+		4F591D75214D284600F3F30A /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				4F591D76214D284600F3F30A /* openssl.framework */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
 		4F731A8920BEE27D00D095F9 /* WCStringTool */ = {
 			isa = PBXGroup;
 			children = (
 				4F731A8A20BEE28F00D095F9 /* WCStringTool.h */,
 				4F731A8B20BEE28F00D095F9 /* WCStringTool.m */,
+				4F591D72214D27BF00F3F30A /* WCStringTool+OpenSSL.h */,
+				4F591D73214D27BF00F3F30A /* WCStringTool+OpenSSL.m */,
 			);
 			path = WCStringTool;
 			sourceTree = "<group>";
@@ -128,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				4F731A9320BEE34F00D095F9 /* Tests.m */,
+				4F746917214E3EFF0079F654 /* Tests_OpenSSL.m */,
 				4F1D7DB4211F0F9A0021023C /* Tests_NSArray.m */,
 				4F731A9520BEE34F00D095F9 /* Info.plist */,
 			);
@@ -236,6 +256,7 @@
 				4F4D74BA20BED6CB0027DE7C /* main.m in Sources */,
 				4F731A8C20BEE28F00D095F9 /* WCStringTool.m in Sources */,
 				4F3DE4FD20D8B85F00FCCE6A /* StringSizeViewController.m in Sources */,
+				4F591D74214D27BF00F3F30A /* WCStringTool+OpenSSL.m in Sources */,
 				4F4D74C620BED73D0027DE7C /* Demo1ViewController.m in Sources */,
 				4F4D74C520BED73D0027DE7C /* RootViewController.m in Sources */,
 				4F4D74AC20BED6CA0027DE7C /* AppDelegate.m in Sources */,
@@ -247,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F1D7DB5211F0F9A0021023C /* Tests_NSArray.m in Sources */,
+				4F746918214E3EFF0079F654 /* Tests_OpenSSL.m in Sources */,
 				4F731A9420BEE34F00D095F9 /* Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,6 +410,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)",
+				);
 				INFOPLIST_FILE = HelloNSString/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -404,6 +430,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)$(LOCAL_LIBRARY_DIR)",
+				);
 				INFOPLIST_FILE = HelloNSString/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
