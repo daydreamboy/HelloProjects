@@ -280,7 +280,8 @@
     }
     
     if (location < string.length) {
-        if (location + length <= string.length)  {
+        // Note: Don't use location + length <= string.length, because if length is too large (e.g. NSUIntegerMax), location + length will become smaller (upper overflow)
+        if (length <= string.length - location) {
             return [string substringWithRange:NSMakeRange(location, length)];
         }
         else {

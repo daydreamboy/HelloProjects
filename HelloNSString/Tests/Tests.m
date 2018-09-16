@@ -310,20 +310,27 @@
 }
 
 - (void)test_substringWithString_atLocation_length {
-    NSString *str1 = @"2014-11-07 18:36:04";
+    // Case 1
+    NSString *string;
+    string = @"2014-11-07 18:36:04";
     
-    XCTAssertEqualObjects(@"11-07", [WCStringTool substringWithString:str1 atLocation:5 length:5]);
-    XCTAssertEqualObjects(@"18:36:04", [WCStringTool substringWithString:str1 atLocation:11 length:NSUIntegerMax]);
-    XCTAssertEqualObjects(@"4", [WCStringTool substringWithString:str1 atLocation:str1.length - 1 length:1]);
-    XCTAssertEqualObjects(@"4", [WCStringTool substringWithString:str1 atLocation:str1.length - 1 length:4]);
+    XCTAssertEqualObjects(@"11-07", [WCStringTool substringWithString:string atLocation:5 length:5]);
+    XCTAssertEqualObjects(@"18:36:04", [WCStringTool substringWithString:string atLocation:11 length:NSUIntegerMax]);
+    XCTAssertEqualObjects(@"4", [WCStringTool substringWithString:string atLocation:string.length - 1 length:1]);
+    XCTAssertEqualObjects(@"4", [WCStringTool substringWithString:string atLocation:string.length - 1 length:4]);
     XCTAssertEqualObjects(@"", [WCStringTool substringWithString:@"abc" atLocation:0 length:0]);
     XCTAssertEqualObjects(@"a", [WCStringTool substringWithString:@"abc" atLocation:0 length:1]);
     
-    XCTAssertNil([WCStringTool substringWithString:str1 atLocation:str1.length length:1]);
+    XCTAssertNil([WCStringTool substringWithString:string atLocation:string.length length:1]);
     XCTAssertNil([WCStringTool substringWithString:@"" atLocation:0 length:1]);
     XCTAssertNil([WCStringTool substringWithString:@"" atLocation:0 length:0]);
     NSString *nilString = nil;
     XCTAssertNil([WCStringTool substringWithString:nilString atLocation:0 length:1]);
+    
+    // Case 2
+    string = @"123";
+    XCTAssertEqualObjects(@"123", [WCStringTool substringWithString:string atLocation:0 length:3]);
+    XCTAssertEqualObjects(@"23", [WCStringTool substringWithString:string atLocation:1 length:2]);
 }
 
 - (void)test_substringWithString_range {
