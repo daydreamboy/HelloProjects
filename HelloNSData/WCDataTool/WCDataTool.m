@@ -7,6 +7,7 @@
 //
 
 #import "WCDataTool.h"
+#import <CommonCrypto/CommonCryptor.h>
 
 //#define kMime           @"mime"
 //#define kExt            @"ext"
@@ -15,6 +16,20 @@
 //#define kMatches        @"matches"
 
 @implementation WCMIMETypeInfo
+
+#pragma mark - Public Methods
+
++ (nullable WCMIMETypeInfo *)infoWithMIMEType:(WCMIMEType)type {
+    NSDictionary *dict = [[self allSupportMIMETypeInfos] objectForKey:@(type)];
+    if (dict) {
+        return [self infoWithDictionary:dict];
+    }
+    else {
+        return nil;
+    }
+}
+
+#pragma mark -
 
 + (instancetype)infoWithDictionary:(NSDictionary *)dict {
     WCMIMETypeInfo *info = [[WCMIMETypeInfo alloc] init];
@@ -41,10 +56,10 @@
             },
     },
     @(WCMIMETypeAr): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"application/x-unix-archive",
+            @"ext": @"ar",
             @"type": @(WCMIMETypeAr),
-            @"bytesCount": @6,
+            @"bytesCount": @7,
             @"matches": ^BOOL(unsigned char *byteOrder) {
                 const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
                 return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
@@ -621,8 +636,6 @@
             },
     },
     };
-    
-    return nil;
 }
 
 @end
@@ -633,49 +646,132 @@
 
 @implementation WCDataTool
 
-+ (instancetype)sharedInstance {
-    static WCDataTool *sInstance;
+#pragma mark - Data Validation
+
++ (nullable WCMIMETypeInfo *)MIMETypeInfoWithData:(NSData *)data {
+    if (![data isKindOfClass:[NSData class]]) {
+        return nil;
+    }
+    
+    static NSDictionary *sMap;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sInstance = [[WCDataTool alloc] init];
+        sMap = [WCMIMETypeInfo allSupportMIMETypeInfos];
     });
-    return sInstance;
-}
-
-- (void)setupMIMETable {
     
-}
-
-#pragma mark - Getters
-
-- (NSArray<WCMIMETypeInfo *> *)allSupportMIMETypeInfos {
-    return nil;
-}
-
-+ (NSString *)MIMETypeWithData:(NSData *)data {
-    uint8_t c;
-    [data getBytes:&c length:1];
-    
-    switch (c) {
-        case 0xFF:
-            return @"image/jpeg";
-        case 0x89:
-            return @"image/png";
-        case 0x47:
-            return @"image/gif";
-        case 0x49:
-        case 0x4D:
-            return @"image/tiff";
-        case 0x25:
-            return @"application/pdf";
-        case 0xD0:
-            return @"application/vnd";
-        case 0x46:
-            return @"text/plain";
-        default:
-            return nil;
+    for (NSDictionary *info in sMap) {
+        BOOL(^block)(unsigned char *byteOrder) = info[@"matches"];
+        if (block && block((unsigned char *)[data bytes])) {
+            return [WCMIMETypeInfo infoWithDictionary:info];
+        }
     }
+    
     return nil;
+}
+
+#pragma mark - Data Generation
+
++ (NSData *)randomDataWithLength:(NSUInteger)length {
+    NSMutableData *randomData = [NSMutableData dataWithCapacity:length];
+    
+    for (unsigned int i = 0; i < length / 4; ++i) {
+        u_int32_t randomBits = arc4random();
+        [randomData appendBytes:(void *)&randomBits length:4];
+    }
+    
+    return randomData;
+}
+
+#pragma mark - Data Enctyption
+
++ (nullable NSData *)AES256EncryptWithData:(NSData *)data key:(NSString *)key {
+    if (![data isKindOfClass:[NSData class]] || ![key isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    // 'key' should be 32 bytes for AES256, will be null-padded otherwise
+    char keyPtr[kCCKeySizeAES256+1]; // room for terminator (unused)
+    bzero(keyPtr, sizeof(keyPtr)); // fill with zeroes (for padding)
+    
+    // fetch key data
+    [key getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
+    
+    NSUInteger dataLength = [data length];
+    
+    //See the doc: For block ciphers, the output size will always be less than or
+    //equal to the input size plus the size of one block.
+    //That's why we need to add the size of one block here
+    size_t bufferSize = dataLength + kCCBlockSizeAES128;
+    void *buffer = malloc(bufferSize);
+    
+    size_t numBytesEncrypted = 0;
+    CCCryptorStatus cryptStatus = CCCrypt(kCCEncrypt, kCCAlgorithmAES128, kCCOptionPKCS7Padding,
+                                          keyPtr, kCCKeySizeAES256,
+                                          NULL /* initialization vector (optional) */,
+                                          [data bytes], dataLength, /* input */
+                                          buffer, bufferSize, /* output */
+                                          &numBytesEncrypted);
+    if (cryptStatus == kCCSuccess) {
+        //the returned NSData takes ownership of the buffer and will free it on deallocation
+        return [NSData dataWithBytesNoCopy:buffer length:numBytesEncrypted];
+    }
+    
+    free(buffer); //free the buffer;
+    return nil;
+}
+
++ (nullable NSData *)AES256DecryptWithData:(NSData *)data key:(NSString *)key {
+    if (![data isKindOfClass:[NSData class]] || ![key isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    // 'key' should be 32 bytes for AES256, will be null-padded otherwise
+    char keyPtr[kCCKeySizeAES256+1]; // room for terminator (unused)
+    bzero(keyPtr, sizeof(keyPtr)); // fill with zeroes (for padding)
+    
+    // fetch key data
+    [key getCString:keyPtr maxLength:sizeof(keyPtr) encoding:NSUTF8StringEncoding];
+    
+    NSUInteger dataLength = [data length];
+    
+    //See the doc: For block ciphers, the output size will always be less than or
+    //equal to the input size plus the size of one block.
+    //That's why we need to add the size of one block here
+    size_t bufferSize = dataLength + kCCBlockSizeAES128;
+    void *buffer = malloc(bufferSize);
+    
+    size_t numBytesDecrypted = 0;
+    CCCryptorStatus cryptStatus = CCCrypt(kCCDecrypt, kCCAlgorithmAES128, kCCOptionPKCS7Padding,
+                                          keyPtr, kCCKeySizeAES256,
+                                          NULL /* initialization vector (optional) */,
+                                          [data bytes], dataLength, /* input */
+                                          buffer, bufferSize, /* output */
+                                          &numBytesDecrypted);
+    
+    if (cryptStatus == kCCSuccess) {
+        //the returned NSData takes ownership of the buffer and will free it on deallocation
+        return [NSData dataWithBytesNoCopy:buffer length:numBytesDecrypted];
+    }
+    
+    free(buffer); //free the buffer;
+    return nil;
+}
+
++ (nullable NSString *)base64EncodedStringWithData:(NSData *)data {
+    if (![data isKindOfClass:[NSData class]]) {
+        return nil;
+    }
+    
+    if ([self respondsToSelector:@selector(base64EncodedStringWithOptions:)]) {
+        return [data base64EncodedStringWithOptions:NSDataBase64Encoding64CharacterLineLength];
+    }
+    else {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+        return [data base64Encoding];
+
+#pragma GCC diagnostic pop
+    }
 }
 
 @end

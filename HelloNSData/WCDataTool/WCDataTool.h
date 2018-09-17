@@ -74,42 +74,71 @@ typedef NS_ENUM(NSUInteger, WCMIMEType) {
 };
 
 @interface WCMIMETypeInfo : NSObject
+/// the MIME, e.g. audio/amr
 @property (nonatomic, copy) NSString *MIME;
+/// file extesion, e.g. amr
 @property (nonatomic, copy) NSString *extension;
+/// The WCMIMEType
 @property (nonatomic, assign) WCMIMEType type;
+/// the total bytes count of MIME flag
 @property (nonatomic, assign) NSUInteger bytesCount;
+/// the match block
 @property (nonatomic, copy) BOOL (^matchBlock)(NSData *data);
+
+/**
+ Get MIME type
+
+ @param type the WCMIMEType
+ @return the WCMIMETypeInfo object. Return nil if the type not supported.
+ */
++ (nullable WCMIMETypeInfo *)infoWithMIMEType:(WCMIMEType)type;
+
 @end
 
 @interface WCDataTool : NSObject
 
+#pragma mark - Data Validation
+
 /**
- Get MIME type of the data
+ Get MIME type from data
 
  @param data the NSData
- @return the MIME type which refer to https://www.freeformatter.com/mime-types-list.html
- 
- @discussion supported MIME types are following
- @code
-        case 0xFF:
-            return @"image/jpeg";
-        case 0x89:
-            return @"image/png";
-        case 0x47:
-            return @"image/gif";
-        case 0x49:
-        case 0x4D:
-            return @"image/tiff";
-        case 0x25:
-            return @"application/pdf";
-        case 0xD0:
-            return @"application/vnd";
-        case 0x46:
-            return @"text/plain";
- @endcode
- @see https://stackoverflow.com/a/32765708
+ @return the WCMIMETypeInfo object. Return nil if the data's MIME type not recognized.
  */
-+ (NSString *)MIMETypeWithData:(NSData *)data;
++ (nullable WCMIMETypeInfo *)MIMETypeInfoWithData:(NSData *)data;
+
+#pragma mark - Data Generation
+
+/**
+ Generate random NSData with specified size
+
+ @param length the number of bytes
+ @return the random NSData
+ @see http://stackoverflow.com/questions/4917968/best-way-to-generate-nsdata-object-with-random-bytes-of-a-specific-length
+ */
++ (NSData *)randomDataWithLength:(NSUInteger)length;
+
+#pragma mark - Data Enctyption
+
+/**
+ Encrypt data with AES256
+
+ @param data the data
+ @param key the key
+ @return the encrypted data
+ */
++ (nullable NSData *)AES256EncryptWithData:(NSData *)data key:(NSString *)key;
+
+/**
+ Decrypt data with AES256
+
+ @param data the encrypted data
+ @param key the key
+ @return the decrypted data
+ */
++ (nullable NSData *)AES256DecryptWithData:(NSData *)data key:(NSString *)key;
+
++ (nullable NSString *)base64EncodedStringWithData:(NSData *)data;
 
 @end
 

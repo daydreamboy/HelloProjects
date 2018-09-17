@@ -21,7 +21,7 @@
     
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"1" ofType:@"amr"];
     NSData *data = [NSData dataWithContentsOfFile:filePath];
-    NSString *MIMEType = [WCDataTool MIMETypeWithData:data];
+    WCMIMETypeInfo *MIMEType = [WCDataTool MIMETypeInfoWithData:data];
     NSLog(@"%@", MIMEType);
     
     [self checkARMTypeWithData:data];
