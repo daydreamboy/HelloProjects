@@ -10,6 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+// @see https://github.com/sendyhalim/Swime
 typedef NS_ENUM(NSUInteger, WCMIMEType) {
     WCMIMETypeUnknown,
     WCMIMETypeAmr,
