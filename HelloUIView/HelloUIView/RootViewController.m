@@ -23,6 +23,7 @@
 #import "TouchThroughToUnderneathViewViewController.h"
 #import "BlurAnyViewViewController.h"
 #import "TraverseSubviewsInViewViewController.h"
+#import "GroupSubviewsViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -48,13 +49,14 @@
 
     // MARK: Configure sectionTitles and classes for table view
     NSArray<NSDictionary *> *section1 = @[
-          @{ kTitle: @"observer UIView change event", kClass: [ObserveViewGeometryChangeEventViewController class] },
-          @{ kTitle: @"touch through part of view", kClass: [TouchThroughPartRegionOfViewViewController class] },
-          @{ kTitle: @"pass touch through to underneath view", kClass: [TouchThroughToUnderneathViewViewController class] },
-          @{ kTitle: @"mapping rect from view to view", kClass: [MappingRectFromViewToViewViewController class] },
+          @{ kTitle: @"Observer UIView change event", kClass: [ObserveViewGeometryChangeEventViewController class] },
+          @{ kTitle: @"Touch through part of view", kClass: [TouchThroughPartRegionOfViewViewController class] },
+          @{ kTitle: @"Pass touch through to underneath view", kClass: [TouchThroughToUnderneathViewViewController class] },
+          @{ kTitle: @"Mapping rect from view to view", kClass: [MappingRectFromViewToViewViewController class] },
           @{ kTitle: @"Demonstrate HitTest", kClass: [HitTestInViewViewController class] },
           @{ kTitle: @"Blur a view", kClass: [BlurAnyViewViewController class] },
           @{ kTitle: @"Traverse view hierachy", kClass: [TraverseSubviewsInViewViewController class] },
+          @{ kTitle: @"Group all subviews", kClass: [GroupSubviewsViewController class] },
     ];
 
     NSArray<NSDictionary *> *section2 = @[

@@ -191,4 +191,37 @@
 #endif
 }
 
+#pragma mark - Frame Adjustment
+
++ (BOOL)frameToFitAllSubviewsWithView:(UIView *)view {
+    if (![view isKindOfClass:[UIView class]]) {
+        return NO;
+    }
+    
+    NSArray *subviews = [view subviews];
+    if (subviews.count == 0) {
+        return NO;
+    }
+    
+    // 1 - calculate size
+    CGRect r = CGRectZero;
+    for (UIView *v in subviews) {
+        r = CGRectUnion(r, v.frame);
+    }
+    
+    // 2 - move all subviews inside
+    CGPoint fix = r.origin;
+    for (UIView *v in subviews) {
+        v.frame = CGRectOffset(v.frame, -fix.x, -fix.y);
+    }
+    
+    // 3 - move frame to negate the previous movement
+    CGRect newFrame = CGRectOffset(view.frame, fix.x, fix.y);
+    newFrame.size = r.size;
+    
+    view.frame = newFrame;
+    
+    return YES;
+}
+
 @end

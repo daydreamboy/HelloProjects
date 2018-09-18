@@ -77,4 +77,15 @@
  */
 + (void)hierarchalDescriptionWithView:(UIView *)view;
 
+#pragma mark - Frame Adjustment
+
+/**
+ Adjust the frame of the view to fit its all subviews
+
+ @param view the view whose frame should fit its all subviews and it expect to has at less one subview
+ @return YES if the operation is success. NO if the view has no subviews.
+ @see https://stackoverflow.com/a/21107340
+ */
++ (BOOL)frameToFitAllSubviewsWithView:(UIView *)view;
+
 @end
