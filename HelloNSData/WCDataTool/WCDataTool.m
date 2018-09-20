@@ -52,6 +52,7 @@
             @"bytesCount": @6,
             @"matches": ^BOOL(unsigned char *byteOrder) {
                 const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
+                
                 return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
             },
     },
@@ -62,19 +63,27 @@
             @"bytesCount": @7,
             @"matches": ^BOOL(unsigned char *byteOrder) {
                 const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
+                
                 return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
             },
     },
     @(WCMIMETypeAvi): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"video/x-msvideo",
+            @"ext": @"avi",
             @"type": @(WCMIMETypeAvi),
-            @"bytesCount": @6,
+            @"bytesCount": @11,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
-                return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
+                const unsigned char bytes1[] = { 0x52, 0x49, 0x46, 0x46 };
+                const unsigned char bytes2[] = { 0x41, 0x56, 0x49 };
+                
+                // [0, 4] and [8, 10]
+                BOOL b1 = memcmp(byteOrder, bytes1, sizeof(bytes1)) == 0;
+                BOOL b2 = memcmp(byteOrder + 8, bytes2, sizeof(bytes2)) == 0;
+                
+                return (b1 && b2);
             },
     },
+    /*
     @(WCMIMETypeBmp): @{
             @"mime": @"audio/amr",
             @"ext": @"amr",
@@ -635,6 +644,7 @@
                 return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
             },
     },
+     */
     };
 }
 
@@ -659,14 +669,21 @@
         sMap = [WCMIMETypeInfo allSupportMIMETypeInfos];
     });
     
-    for (NSDictionary *info in sMap) {
-        BOOL(^block)(unsigned char *byteOrder) = info[@"matches"];
-        if (block && block((unsigned char *)[data bytes])) {
-            return [WCMIMETypeInfo infoWithDictionary:info];
+    __block WCMIMETypeInfo *MIMETypeInfo = nil;
+    [sMap enumerateKeysAndObjectsUsingBlock:^(NSNumber * _Nonnull key, NSDictionary * _Nonnull info, BOOL * _Nonnull stop) {
+        NSInteger byteCount = [info[@"bytesCount"] integerValue];
+        BOOL(^block)(unsigned char *) = info[@"matches"];
+        
+        if (data.length >= byteCount) {
+            unsigned char *byteOrder = (unsigned char *)[data bytes];
+            if (block && block(byteOrder)) {
+                *stop = YES;
+                MIMETypeInfo = [WCMIMETypeInfo infoWithDictionary:info];
+            }
         }
-    }
+    }];
     
-    return nil;
+    return MIMETypeInfo;
 }
 
 #pragma mark - Data Generation
@@ -769,7 +786,6 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
         return [data base64Encoding];
-
 #pragma GCC diagnostic pop
     }
 }

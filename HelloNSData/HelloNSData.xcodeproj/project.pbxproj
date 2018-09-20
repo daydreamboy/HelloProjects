@@ -18,7 +18,21 @@
 		4F75A03821313127000DDE60 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A03421313126000DDE60 /* Demo1ViewController.m */; };
 		4F75A03921313127000DDE60 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A03621313126000DDE60 /* RootViewController.m */; };
 		4F75A04B213144E8000DDE60 /* WCDataTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A04A213144E8000DDE60 /* WCDataTool.m */; };
+		4F8BB3E6215201D600F0AD99 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8BB3E5215201D600F0AD99 /* Tests.m */; };
+		4F8BB3F02152022E00F0AD99 /* 1.amr in Resources */ = {isa = PBXBuildFile; fileRef = 4F8BB3EE2152022E00F0AD99 /* 1.amr */; };
+		4F8BB418215299CC00F0AD99 /* 50.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4F8BB416215299CB00F0AD99 /* 50.wav */; };
+		4F8BB419215299CC00F0AD99 /* 3.avi in Resources */ = {isa = PBXBuildFile; fileRef = 4F8BB417215299CC00F0AD99 /* 3.avi */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4F8BB3E8215201D600F0AD99 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F75A012213130EE000DDE60 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F75A019213130EE000DDE60;
+			remoteInfo = HelloNSData;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4F4AFFDC213E80EB0031856A /* 1.amr */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1.amr; sourceTree = "<group>"; };
@@ -39,10 +53,23 @@
 		4F75A03721313127000DDE60 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F75A049213144E8000DDE60 /* WCDataTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCDataTool.h; sourceTree = "<group>"; };
 		4F75A04A213144E8000DDE60 /* WCDataTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCDataTool.m; sourceTree = "<group>"; };
+		4F8BB3E3215201D600F0AD99 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F8BB3E5215201D600F0AD99 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		4F8BB3E7215201D600F0AD99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F8BB3EE2152022E00F0AD99 /* 1.amr */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1.amr; sourceTree = "<group>"; };
+		4F8BB416215299CB00F0AD99 /* 50.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 50.wav; sourceTree = "<group>"; };
+		4F8BB417215299CC00F0AD99 /* 3.avi */ = {isa = PBXFileReference; lastKnownFileType = video.avi; path = 3.avi; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		4F75A017213130EE000DDE60 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F8BB3E0215201D600F0AD99 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -66,6 +93,7 @@
 			children = (
 				4F75A048213144D8000DDE60 /* WCDataTool */,
 				4F75A01C213130EE000DDE60 /* HelloNSData */,
+				4F8BB3E4215201D600F0AD99 /* Tests */,
 				4F75A01B213130EE000DDE60 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -74,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				4F75A01A213130EE000DDE60 /* HelloNSData.app */,
+				4F8BB3E3215201D600F0AD99 /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -116,6 +145,26 @@
 			path = WCDataTool;
 			sourceTree = "<group>";
 		};
+		4F8BB3E4215201D600F0AD99 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4F8BB3ED2152022E00F0AD99 /* Samples */,
+				4F8BB3E5215201D600F0AD99 /* Tests.m */,
+				4F8BB3E7215201D600F0AD99 /* Info.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		4F8BB3ED2152022E00F0AD99 /* Samples */ = {
+			isa = PBXGroup;
+			children = (
+				4F8BB417215299CC00F0AD99 /* 3.avi */,
+				4F8BB416215299CB00F0AD99 /* 50.wav */,
+				4F8BB3EE2152022E00F0AD99 /* 1.amr */,
+			);
+			path = Samples;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -136,6 +185,24 @@
 			productReference = 4F75A01A213130EE000DDE60 /* HelloNSData.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4F8BB3E2215201D600F0AD99 /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F8BB3EC215201D600F0AD99 /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				4F8BB3DF215201D600F0AD99 /* Sources */,
+				4F8BB3E0215201D600F0AD99 /* Frameworks */,
+				4F8BB3E1215201D600F0AD99 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F8BB3E9215201D600F0AD99 /* PBXTargetDependency */,
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = 4F8BB3E3215201D600F0AD99 /* Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -147,6 +214,10 @@
 				TargetAttributes = {
 					4F75A019213130EE000DDE60 = {
 						CreatedOnToolsVersion = 9.4;
+					};
+					4F8BB3E2215201D600F0AD99 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 4F75A019213130EE000DDE60;
 					};
 				};
 			};
@@ -164,6 +235,7 @@
 			projectRoot = "";
 			targets = (
 				4F75A019213130EE000DDE60 /* HelloNSData */,
+				4F8BB3E2215201D600F0AD99 /* Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -178,6 +250,16 @@
 				4F4AFFDF213E80EB0031856A /* piano2.wav in Resources */,
 				4F75A027213130EF000DDE60 /* Assets.xcassets in Resources */,
 				4F75A025213130EE000DDE60 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F8BB3E1215201D600F0AD99 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F8BB3F02152022E00F0AD99 /* 1.amr in Resources */,
+				4F8BB418215299CC00F0AD99 /* 50.wav in Resources */,
+				4F8BB419215299CC00F0AD99 /* 3.avi in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,7 +279,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4F8BB3DF215201D600F0AD99 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F8BB3E6215201D600F0AD99 /* Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4F8BB3E9215201D600F0AD99 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F75A019213130EE000DDE60 /* HelloNSData */;
+			targetProxy = 4F8BB3E8215201D600F0AD99 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4F75A023213130EE000DDE60 /* Main.storyboard */ = {
@@ -361,6 +459,42 @@
 			};
 			name = Release;
 		};
+		4F8BB3EA215201D600F0AD99 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloNSData.app/HelloNSData";
+			};
+			name = Debug;
+		};
+		4F8BB3EB215201D600F0AD99 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloNSData.app/HelloNSData";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -378,6 +512,15 @@
 			buildConfigurations = (
 				4F75A031213130EF000DDE60 /* Debug */,
 				4F75A032213130EF000DDE60 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F8BB3EC215201D600F0AD99 /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F8BB3EA215201D600F0AD99 /* Debug */,
+				4F8BB3EB215201D600F0AD99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

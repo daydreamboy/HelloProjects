@@ -84,7 +84,7 @@ typedef NS_ENUM(NSUInteger, WCMIMEType) {
 /// the total bytes count of MIME flag
 @property (nonatomic, assign) NSUInteger bytesCount;
 /// the match block
-@property (nonatomic, copy) BOOL (^matchBlock)(NSData *data);
+@property (nonatomic, copy) BOOL (^matchBlock)(unsigned char *byteOrder);
 
 /**
  Get MIME type
