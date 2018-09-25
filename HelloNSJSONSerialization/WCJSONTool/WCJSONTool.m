@@ -209,11 +209,11 @@
 #pragma mark > to NSMutableDictionary/NSMutableArray
 
 + (nullable NSMutableDictionary *)JSONMutableDictWithData:(NSData *)data {
-    return [self JSONObjectWithData:data options:kNilOptions objectClass:[NSMutableDictionary class]];
+    return [self JSONObjectWithData:data options:NSJSONReadingMutableContainers objectClass:[NSMutableDictionary class]];
 }
 
 + (nullable NSMutableArray *)JSONMutableArrayWithData:(NSData *)data {
-    return [self JSONObjectWithData:data options:kNilOptions objectClass:[NSMutableArray class]];
+    return [self JSONObjectWithData:data options:NSJSONReadingMutableContainers objectClass:[NSMutableArray class]];
 }
 
 #pragma mark > to id
