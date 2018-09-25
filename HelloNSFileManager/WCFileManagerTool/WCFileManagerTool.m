@@ -393,6 +393,10 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
  *  @return YES if the directory created successfully or the directory is existed, or NO if created failed
  */
 + (BOOL)createNewDirectoryIfNeededAtPath:(NSString *)path {
+    if (![path isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    // Note: path - This parameter must not be nil.
     return [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
 }
 

@@ -29,6 +29,7 @@
     NSString *matchString;
     
     // Case 1
+    // Note: `￥` and `¥` is different
     pattern = @"￥(\\d+)(?:\\.\\d+)?(?:-(\\d+)(?:\\.\\d+)?)?";
     
     // ￥1
@@ -38,23 +39,23 @@
     
     matchString = @"￥1";
     [self runRegexWithPattern:pattern matchString:matchString];
-    
+
     matchString = @"￥1.5";
     [self runRegexWithPattern:pattern matchString:matchString];
-    
+
     matchString = @"￥1.5-20";
     [self runRegexWithPattern:pattern matchString:matchString];
-    
+
     matchString = @"￥1.5-20.5";
     [self runRegexWithPattern:pattern matchString:matchString];
-    
+
     //
     matchString = @"abc￥2.5-21.5";
     [self runRegexWithPattern:pattern matchString:matchString];
-    
+
     matchString = @"abc￥00.5-02.5";
     [self runRegexWithPattern:pattern matchString:matchString];
-    
+
     matchString = @"abc￥1.5-2.5-03.6";
     [self runRegexWithPattern:pattern matchString:matchString];
     
