@@ -27,6 +27,10 @@
 		4F636E692134F2F3003DE979 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F636E682134F2F3003DE979 /* Assets.xcassets */; };
 		4F636E6C2134F2F3003DE979 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F636E6A2134F2F3003DE979 /* LaunchScreen.storyboard */; };
 		4F636E6F2134F2F3003DE979 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F636E6E2134F2F3003DE979 /* main.m */; };
+		4F8BB40721526A5900F0AD99 /* fake@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8BB40621526A5900F0AD99 /* fake@2x.png */; };
+		4F8BB40B21526BEB00F0AD99 /* fake.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8BB40821526BEB00F0AD99 /* fake.png */; };
+		4F8BB40C21526BEB00F0AD99 /* fake@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8BB40921526BEB00F0AD99 /* fake@1x.png */; };
+		4F8BB40D21526BEB00F0AD99 /* fake@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8BB40A21526BEB00F0AD99 /* fake@3x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +63,10 @@
 		4F636E6B2134F2F3003DE979 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F636E6D2134F2F3003DE979 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F636E6E2134F2F3003DE979 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4F8BB40621526A5900F0AD99 /* fake@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fake@2x.png"; sourceTree = "<group>"; };
+		4F8BB40821526BEB00F0AD99 /* fake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fake.png; sourceTree = "<group>"; };
+		4F8BB40921526BEB00F0AD99 /* fake@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fake@1x.png"; sourceTree = "<group>"; };
+		4F8BB40A21526BEB00F0AD99 /* fake@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fake@3x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +107,10 @@
 		4F6061DE2134F5EA00D049DF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F8BB40821526BEB00F0AD99 /* fake.png */,
+				4F8BB40921526BEB00F0AD99 /* fake@1x.png */,
+				4F8BB40621526A5900F0AD99 /* fake@2x.png */,
+				4F8BB40A21526BEB00F0AD99 /* fake@3x.png */,
 				4F6061DF2134F5EA00D049DF /* 1.jpeg */,
 				4F6061E02134F5EA00D049DF /* 8.png */,
 				4F6061E12134F5EA00D049DF /* 9.png */,
@@ -204,7 +216,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F8BB40D21526BEB00F0AD99 /* fake@3x.png in Resources */,
 				4F6061F12134F5EA00D049DF /* 7.png in Resources */,
+				4F8BB40721526A5900F0AD99 /* fake@2x.png in Resources */,
 				4F6061F02134F5EA00D049DF /* 2.jpeg in Resources */,
 				4F6061EA2134F5EA00D049DF /* 8.png in Resources */,
 				4F636E6C2134F2F3003DE979 /* LaunchScreen.storyboard in Resources */,
@@ -215,6 +229,8 @@
 				4F6061ED2134F5EA00D049DF /* 4.jpeg in Resources */,
 				4F6061F22134F5EA00D049DF /* 3.jpeg in Resources */,
 				4F6061EB2134F5EA00D049DF /* 9.png in Resources */,
+				4F8BB40B21526BEB00F0AD99 /* fake.png in Resources */,
+				4F8BB40C21526BEB00F0AD99 /* fake@1x.png in Resources */,
 				4F636E692134F2F3003DE979 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
