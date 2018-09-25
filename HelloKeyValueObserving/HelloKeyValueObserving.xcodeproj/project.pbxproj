@@ -20,6 +20,9 @@
 		2B53DF271E51E148007A943A /* DependentKeyToOneRelationshipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B53DF261E51E148007A943A /* DependentKeyToOneRelationshipViewController.m */; };
 		2B53DF2A1E51E1BD007A943A /* DependentKeyToManyRelationshipViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B53DF291E51E1BD007A943A /* DependentKeyToManyRelationshipViewController.m */; };
 		2B53DF331E52DC19007A943A /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B53DF321E52DC19007A943A /* Transaction.m */; };
+		4F560917215A8BA000E6D205 /* WCNSObjectTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F560916215A8BA000E6D205 /* WCNSObjectTool.m */; };
+		4F56091B215A8FD900E6D205 /* WCKVOTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F56091A215A8FD900E6D205 /* WCKVOTool.m */; };
+		4FBA530E215A0C6800711552 /* GetObservationInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBA530D215A0C6800711552 /* GetObservationInfoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,12 @@
 		2B53DF291E51E1BD007A943A /* DependentKeyToManyRelationshipViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DependentKeyToManyRelationshipViewController.m; sourceTree = "<group>"; };
 		2B53DF311E52DC19007A943A /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
 		2B53DF321E52DC19007A943A /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
+		4F560915215A8BA000E6D205 /* WCNSObjectTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCNSObjectTool.h; sourceTree = "<group>"; };
+		4F560916215A8BA000E6D205 /* WCNSObjectTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCNSObjectTool.m; sourceTree = "<group>"; };
+		4F560919215A8FD900E6D205 /* WCKVOTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCKVOTool.h; sourceTree = "<group>"; };
+		4F56091A215A8FD900E6D205 /* WCKVOTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCKVOTool.m; sourceTree = "<group>"; };
+		4FBA530C215A0C6800711552 /* GetObservationInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetObservationInfoViewController.h; sourceTree = "<group>"; };
+		4FBA530D215A0C6800711552 /* GetObservationInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetObservationInfoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +73,7 @@
 		2B53DEEF1E5066CF007A943A = {
 			isa = PBXGroup;
 			children = (
+				4F560918215A8FC900E6D205 /* WCKVOTool */,
 				2B53DEFA1E5066D0007A943A /* HelloKeyValueObserving */,
 				2B53DEF91E5066D0007A943A /* Products */,
 			);
@@ -80,6 +90,7 @@
 		2B53DEFA1E5066D0007A943A /* HelloKeyValueObserving */ = {
 			isa = PBXGroup;
 			children = (
+				4F560914215A8B8200E6D205 /* Tools */,
 				2B53DEFE1E5066D0007A943A /* AppDelegate.h */,
 				2B53DEFF1E5066D0007A943A /* AppDelegate.m */,
 				2B53DF1B1E5068E8007A943A /* RootViewController.h */,
@@ -120,8 +131,28 @@
 				2B53DF261E51E148007A943A /* DependentKeyToOneRelationshipViewController.m */,
 				2B53DF281E51E1BD007A943A /* DependentKeyToManyRelationshipViewController.h */,
 				2B53DF291E51E1BD007A943A /* DependentKeyToManyRelationshipViewController.m */,
+				4FBA530C215A0C6800711552 /* GetObservationInfoViewController.h */,
+				4FBA530D215A0C6800711552 /* GetObservationInfoViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F560914215A8B8200E6D205 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F560915215A8BA000E6D205 /* WCNSObjectTool.h */,
+				4F560916215A8BA000E6D205 /* WCNSObjectTool.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		4F560918215A8FC900E6D205 /* WCKVOTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F560919215A8FD900E6D205 /* WCKVOTool.h */,
+				4F56091A215A8FD900E6D205 /* WCKVOTool.m */,
+			);
+			path = WCKVOTool;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,7 +229,10 @@
 				2B53DF1E1E5068E8007A943A /* RootViewController.m in Sources */,
 				2B53DF1D1E5068E8007A943A /* AutomaticChangeNotifyViewController.m in Sources */,
 				2B53DF331E52DC19007A943A /* Transaction.m in Sources */,
+				4F560917215A8BA000E6D205 /* WCNSObjectTool.m in Sources */,
+				4F56091B215A8FD900E6D205 /* WCKVOTool.m in Sources */,
 				2B53DF141E5067C5007A943A /* Account.m in Sources */,
+				4FBA530E215A0C6800711552 /* GetObservationInfoViewController.m in Sources */,
 				2B53DF171E5067D0007A943A /* Person.m in Sources */,
 				2B53DF2A1E51E1BD007A943A /* DependentKeyToManyRelationshipViewController.m in Sources */,
 				2B53DF211E50A2C2007A943A /* ManualChangeNotifyViewController.m in Sources */,
@@ -354,6 +388,7 @@
 				2B53DF111E5066D0007A943A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

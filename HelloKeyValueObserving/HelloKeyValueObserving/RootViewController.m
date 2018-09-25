@@ -13,6 +13,7 @@
 #import "ToggleOptionPriorViewController.h"
 #import "DependentKeyToOneRelationshipViewController.h"
 #import "DependentKeyToManyRelationshipViewController.h"
+#import "GetObservationInfoViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -40,14 +41,17 @@
         @"Manual change notify for KVO",
         @"Dependent key (to-one relationship)",
         @"Dependent key (to-many relationship)",
+        @"Get observationInfo from observer"
     ];
     _classes = @[
         @"AutomaticChangeNotifyViewController",
         @"ManualChangeNotifyViewController",
         @"DependentKeyToOneRelationshipViewController",
         @"DependentKeyToManyRelationshipViewController",
+        @"GetObservationInfoViewController",
     ];
     _switcherOnStatuses = [@[
+                            @(NO),
                             @(NO),
                             @(NO),
                             @(NO),
@@ -113,6 +117,10 @@
         else if ([viewControllerClass isEqualToString:@"DependentKeyToManyRelationshipViewController"]) {
             BOOL isOn = [_switcherOnStatuses[[_classes indexOfObject:viewControllerClass]] boolValue];
             vc = [[DependentKeyToManyRelationshipViewController alloc] initWithOptionPrior:isOn];
+        }
+        else if ([viewControllerClass isEqualToString:@"GetObservationInfoViewController"]) {
+            BOOL isOn = [_switcherOnStatuses[[_classes indexOfObject:viewControllerClass]] boolValue];
+            vc = [[GetObservationInfoViewController alloc] initWithOptionPrior:isOn];
         }
         else {
             vc = [[class alloc] init];
