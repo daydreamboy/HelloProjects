@@ -17,9 +17,8 @@ TOC
 * 按照队列的生命周期，分为全局队列（global queue）和私有队列（private queue）
   - 全局队列，生命周期在app执行过程中，系统为每个app，初始化5个队列，1个串行队列（main queue）和4个并行队列（high、default、low、background queue，优先级依次递减）
   - 私有队列，开发者自己创建的队列（串行或者并行），生命周期自己维护
- 
+
 优先级对应QoS的关系
->
 * High priority (user-initiated-qos)
 * Default priority (default-qos)
 * Low priority (utility-qos)
@@ -153,20 +152,19 @@ dispatch\_queue\_set\_specific可以设置多个key-value数据。context data�
 >
 设置context data的另一种方式，dispatch\_set\_context和dispatch\_get\_context，支持对所有dispatch_object设置，dispatch_queue是dispatch_object的一种。缺点：1. 不能取当前queue的context data，必须指定queue参数。2. 不支持key-value形式，只能设置一个context data。
 
-
-5\. Add task to a queue (AddTaskToQueueViewController)
+### 5\. Add task to a queue (AddTaskToQueueViewController)
 
 * 同步/异步：`dispatch_sync` or `dispatch_async`
 * 回调是block/function：`dispatch_async` or `dispatch_async_f`
 * Dead Lock示例
 
-6\. Barrier block
+### 6\. Barrier block
 
 * 使用`dispatch_barrier_async`提交barrier block到concurrent queue（created by dispatch_queue_create）。
 * barrier block执行前会等之前的任务执行完，barrier block执行过程中会阻塞后面的任务，当barrier block执行结束后才执行后面的任务
 * `dispatch_barrier_async`提交barrier block到serial queue或者global concurrent queue，则退化到`dispatch_async` (from `dispatch_barrier_async` apple doc)
 
-7\. Add completion block to a queue
+### 7\. Add completion block to a queue
 
 ```
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -178,7 +176,7 @@ dispatch\_queue\_set\_specific可以设置多个key-value数据。context data�
     });
 ```
 
-8\. Concurrent loop using `dispatch_apply`
+### 8\. Concurrent loop using `dispatch_apply`
 
 * `dispatch_apply`是同步调用，需要注意死锁情况
 * `dispatch_apply`执行的任务是并行loop，需要注意资源隔离和方法重入
@@ -196,20 +194,20 @@ dispatch\_queue\_set\_specific可以设置多个key-value数据。context data�
     });
 ```
 
-9\. Suspend and resume queue
+### 9\. Suspend and resume queue
 
-10\. Dispatch semaphore
+### 10\. Dispatch semaphore
 
 * use for finite resource pool
 * use for completion block
 
-11\. Dispatch group
+### 11\. Dispatch group
 
 * `dispatch_group_async` with `dispatch_group_wait`
 * `dispatch_group_async` with `dispatch_group_notify`
 * use `dispatch_group_enter` and `dispatch_group_leave` instead of `dispatch_group_async `
 
-12\. Create inactive queue
+### 12\. Create inactive queue
 
 * use `DISPATCH_QUEUE_SERIAL_INACTIVE` or `DISPATCH_QUEUE_CONCURRENT_INACTIVE`
 
