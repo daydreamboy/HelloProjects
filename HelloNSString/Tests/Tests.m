@@ -595,6 +595,30 @@
     XCTAssertFalse([WCStringTool checkStringAsAlphanumericWithString:@"中文"]);
 }
 
+- (void)test_checkStringURLEscapedWithString {
+    NSString *urlEscapedString;
+    
+    // Case 1: 中文
+    urlEscapedString = @"%E4%B8%AD%E6%96%87";
+    XCTAssertTrue([WCStringTool checkStringURLEscapedWithString:urlEscapedString]);
+    
+    // Case 2: 😆
+    urlEscapedString = @"%F0%9F%98%86";
+    XCTAssertTrue([WCStringTool checkStringURLEscapedWithString:urlEscapedString]);
+    
+    // Case 3: Thisis中文
+    urlEscapedString = @"Thisis%E4%B8%AD%E6%96%87";
+    XCTAssertTrue([WCStringTool checkStringURLEscapedWithString:urlEscapedString]);
+    
+    // Case 4: 1234567=+?, for `?` should not encode
+    urlEscapedString = @"1234567%3D%2B%3F";
+    XCTAssertFalse([WCStringTool checkStringURLEscapedWithString:urlEscapedString]);
+    
+    // Case 5: This is a url escaped string: 中文
+    urlEscapedString = @"This is a url escaped string: %E4%B8%AD%E6%96%87";
+    XCTAssertFalse([WCStringTool checkStringURLEscapedWithString:urlEscapedString]);
+}
+
 #pragma mark > Split String
 
 - (void)test_componentsWithString_gapRanges {

@@ -287,6 +287,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)checkStringAsEmailWithString:(NSString *)string;
 
+/**
+ Check string if url escaped
+
+ @param string the string to check
+ @return YES if string has url escaped
+ @see https://stackoverflow.com/questions/33445003/check-nsstring-is-encoded-or-not
+ */
++ (BOOL)checkStringURLEscapedWithString:(NSString *)string;
+
 #pragma mark > String Generation
 
 /**

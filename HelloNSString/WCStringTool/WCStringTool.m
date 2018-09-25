@@ -676,6 +676,19 @@
     return [NSPREDICATE(@"[A-Z0-9a-z\\._%+-]+@([A-Za-z0-9-]+\\.)+[A-Za-z]{2,4}") evaluateWithObject:string];
 }
 
++ (BOOL)checkStringURLEscapedWithString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    
+    NSString *decodedString = [WCStringTool URLUnescapedStringWithString:string];
+    NSString *encodedString = [WCStringTool URLEscapedStringWithString:decodedString];
+    if ([encodedString isEqualToString:string]) {
+        return YES;
+    }
+    return NO;
+}
+
 #pragma mark > String Generation
 
 + (NSString *)randomStringWithLength:(NSUInteger)length {
