@@ -19,6 +19,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.imageView];
+    
+
 }
 
 - (UIImageView *)imageView {
@@ -30,7 +32,13 @@
         imageView.layer.cornerRadius = 20;
         imageView.layer.masksToBounds = YES;
         imageView.center = CGPointMake(screenSize.width / 2.0, screenSize.height / 2.0);
-        imageView.image = [UIImage imageNamed:@"image.png"];
+//        imageView.image = [UIImage imageNamed:@"image.png"];
+        //NSString *filePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"image.pNG"];
+        NSString *filePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"simulator.png"];
+        UIImage *image = [UIImage imageWithContentsOfFile:filePath];
+        NSLog(@"image: %@", image);
+        imageView.image = image;
+        
         imageView.contentMode = UIViewContentModeCenter;
         
         _imageView = imageView;
