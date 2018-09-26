@@ -31,6 +31,8 @@
 		4F8767B320EA5FE900F2B02F /* UseWCHorizontalPageBrowserViewControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8767B220EA5FE900F2B02F /* UseWCHorizontalPageBrowserViewControllerViewController.m */; };
 		4F8FDA2620EB146400C766D4 /* video_play@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8FDA2420EB146300C766D4 /* video_play@3x.png */; };
 		4F8FDA2720EB146400C766D4 /* video_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8FDA2520EB146400C766D4 /* video_play@2x.png */; };
+		4F961BA1213280C9009402F3 /* ManyRoundedImageViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F961BA0213280C9009402F3 /* ManyRoundedImageViewViewController.m */; };
+		4F961BA421328B67009402F3 /* FPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F961BA321328B67009402F3 /* FPSLabel.m */; };
 		4F97DB2F20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97DB2E20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m */; };
 		4F97DB3620CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97DB3520CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m */; };
 		4F97DB4220CFFB50003EBB3B /* CellSelectionAndHighlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97DB4120CFFB50003EBB3B /* CellSelectionAndHighlightViewController.m */; };
@@ -106,6 +108,10 @@
 		4F8767B220EA5FE900F2B02F /* UseWCHorizontalPageBrowserViewControllerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCHorizontalPageBrowserViewControllerViewController.m; sourceTree = "<group>"; };
 		4F8FDA2420EB146300C766D4 /* video_play@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_play@3x.png"; sourceTree = "<group>"; };
 		4F8FDA2520EB146400C766D4 /* video_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video_play@2x.png"; sourceTree = "<group>"; };
+		4F961B9F213280C9009402F3 /* ManyRoundedImageViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManyRoundedImageViewViewController.h; sourceTree = "<group>"; };
+		4F961BA0213280C9009402F3 /* ManyRoundedImageViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManyRoundedImageViewViewController.m; sourceTree = "<group>"; };
+		4F961BA221328B66009402F3 /* FPSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FPSLabel.h; sourceTree = "<group>"; };
+		4F961BA321328B67009402F3 /* FPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FPSLabel.m; sourceTree = "<group>"; };
 		4F97DB2D20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeparatorsBetweenCell2ViewController.h; sourceTree = "<group>"; };
 		4F97DB2E20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeparatorsBetweenCell2ViewController.m; sourceTree = "<group>"; };
 		4F97DB3420CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewFlowLayoutSeparator.h; sourceTree = "<group>"; };
@@ -338,6 +344,10 @@
 				4F8767B220EA5FE900F2B02F /* UseWCHorizontalPageBrowserViewControllerViewController.m */,
 				4F7D8EE12109AFC400145B00 /* UseWCCrossDirectionEmotionPickerViewViewController.h */,
 				4F7D8EE22109AFC400145B00 /* UseWCCrossDirectionEmotionPickerViewViewController.m */,
+				4F961B9F213280C9009402F3 /* ManyRoundedImageViewViewController.h */,
+				4F961BA0213280C9009402F3 /* ManyRoundedImageViewViewController.m */,
+				4F961BA221328B66009402F3 /* FPSLabel.h */,
+				4F961BA321328B67009402F3 /* FPSLabel.m */,
 				4F748FDA20F6072C001CF507 /* Header&Footer */,
 				4FB8A3EB20CF682200300954 /* Layout */,
 				4F83D3B920CEC93700F2FE80 /* Cell */,
@@ -504,7 +514,9 @@
 				4F97DB3620CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m in Sources */,
 				4F82DF5220E6799B007035FC /* WCHorizontalPageBrowserView.m in Sources */,
 				4FB1D4B420CC0D5700DBA776 /* AppDelegate.m in Sources */,
+				4F961BA421328B67009402F3 /* FPSLabel.m in Sources */,
 				4FA5AC1C20FD97E80098A138 /* WCHorizontalSliderViewUtility.m in Sources */,
+				4F961BA1213280C9009402F3 /* ManyRoundedImageViewViewController.m in Sources */,
 				4FA5ABED20FC40280098A138 /* MPMLightPopoverView.m in Sources */,
 				4FB1D4DA20CC324100DBA776 /* PagableCollectionViewViewController.m in Sources */,
 				4FA5ABF020FC93FF0098A138 /* WCSeparatorFlowLayout.m in Sources */,

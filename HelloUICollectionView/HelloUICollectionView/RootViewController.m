@@ -18,6 +18,7 @@
 #import "UseWCHorizontalPageBrowserViewControllerViewController.h"
 #import "SupplementaryViewOfSectionViewController.h"
 #import "UseWCCrossDirectionEmotionPickerViewViewController.h"
+#import "ManyRoundedImageViewViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -50,6 +51,7 @@
         @"Supplementary view of section",
         @"Horizontal page browser",
         @"Use WCCrossDirectionEmotionPickerView",
+        @"Many rounded image view in UICollectionView",
     ];
     _classes = @[
         [FlowLayoutViewController class],
@@ -62,6 +64,7 @@
         [SupplementaryViewOfSectionViewController class],
         [UseWCHorizontalPageBrowserViewControllerViewController class],
         [UseWCCrossDirectionEmotionPickerViewViewController class],
+        [ManyRoundedImageViewViewController class],
     ];
 }
 
