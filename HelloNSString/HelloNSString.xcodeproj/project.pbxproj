@@ -17,6 +17,7 @@
 		4F4D74C620BED73D0027DE7C /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D74C220BED73C0027DE7C /* Demo1ViewController.m */; };
 		4F591D74214D27BF00F3F30A /* WCStringTool+OpenSSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F591D73214D27BF00F3F30A /* WCStringTool+OpenSSL.m */; };
 		4F591D77214D284600F3F30A /* openssl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F591D76214D284600F3F30A /* openssl.framework */; };
+		4F698CB6215B924700A32FCD /* Tests_encode.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F698CB5215B924700A32FCD /* Tests_encode.m */; };
 		4F731A8C20BEE28F00D095F9 /* WCStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F731A8B20BEE28F00D095F9 /* WCStringTool.m */; };
 		4F731A9420BEE34F00D095F9 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F731A9320BEE34F00D095F9 /* Tests.m */; };
 		4F746918214E3EFF0079F654 /* Tests_OpenSSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F746917214E3EFF0079F654 /* Tests_OpenSSL.m */; };
@@ -50,6 +51,7 @@
 		4F591D72214D27BF00F3F30A /* WCStringTool+OpenSSL.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WCStringTool+OpenSSL.h"; sourceTree = "<group>"; };
 		4F591D73214D27BF00F3F30A /* WCStringTool+OpenSSL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "WCStringTool+OpenSSL.m"; sourceTree = "<group>"; };
 		4F591D76214D284600F3F30A /* openssl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = openssl.framework; sourceTree = "<group>"; };
+		4F698CB5215B924700A32FCD /* Tests_encode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_encode.m; sourceTree = "<group>"; };
 		4F731A8A20BEE28F00D095F9 /* WCStringTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStringTool.h; sourceTree = "<group>"; };
 		4F731A8B20BEE28F00D095F9 /* WCStringTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCStringTool.m; sourceTree = "<group>"; };
 		4F731A9120BEE34F00D095F9 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -149,6 +151,7 @@
 				4F731A9320BEE34F00D095F9 /* Tests.m */,
 				4F746917214E3EFF0079F654 /* Tests_OpenSSL.m */,
 				4F1D7DB4211F0F9A0021023C /* Tests_NSArray.m */,
+				4F698CB5215B924700A32FCD /* Tests_encode.m */,
 				4F731A9520BEE34F00D095F9 /* Info.plist */,
 			);
 			path = Tests;
@@ -268,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F1D7DB5211F0F9A0021023C /* Tests_NSArray.m in Sources */,
+				4F698CB6215B924700A32FCD /* Tests_encode.m in Sources */,
 				4F746918214E3EFF0079F654 /* Tests_OpenSSL.m in Sources */,
 				4F731A9420BEE34F00D095F9 /* Tests.m in Sources */,
 			);

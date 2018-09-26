@@ -26,7 +26,7 @@ static NSCache *sCache;
     return sCache;
 }
 
-+ (NSArray<NSString *> *)charactersInCharacterSet:(NSCharacterSet *)characterSet {
++ (nullable NSArray<NSString *> *)charactersInCharacterSet:(NSCharacterSet *)characterSet {
     if (![characterSet isKindOfClass:[NSCharacterSet class]]) {
         return nil;
     }
@@ -55,4 +55,5 @@ static NSCache *sCache;
     
     return array;
 }
+
 @end

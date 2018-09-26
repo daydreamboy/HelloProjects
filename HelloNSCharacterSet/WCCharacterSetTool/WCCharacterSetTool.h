@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface WCCharacterSetTool : NSObject
 
 /**
@@ -17,5 +19,7 @@
  @return an array of characters, and each element is NSString
  @see https://stackoverflow.com/a/15742659
  */
-+ (NSArray<NSString *> *)charactersInCharacterSet:(NSCharacterSet *)characterSet;
++ (nullable NSArray<NSString *> *)charactersInCharacterSet:(NSCharacterSet *)characterSet;
 @end
+
+NS_ASSUME_NONNULL_END
