@@ -8,6 +8,7 @@
 
 #import "UseYYLabelWithLinkViewController.h"
 #import "YYLabel.h"
+#import "YYKit.h"
 
 @interface MyView : UIView
 
@@ -46,7 +47,7 @@
     
     UITapGestureRecognizer *tapGesure = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(selfViewTapped:)];
     tapGesure.delegate = self;
-//    tapGesure.cancelsTouchesInView = NO;
+    tapGesure.cancelsTouchesInView = NO;
     [self.view addGestureRecognizer:tapGesure];
 }
 
@@ -83,7 +84,7 @@
         NSRange range = [string rangeOfString:@"www.baidu.com"];
         NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:string];
         
-        [attrString yy_setTextHighlightRange:range
+        [attrString setTextHighlightRange:range
                                  color:[UIColor blueColor]
                        backgroundColor:nil//[UIColor lightGrayColor]
                              tapAction:^(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect){
@@ -109,7 +110,7 @@
         NSRange range = [string rangeOfString:@"www.baidu.com"];
         NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:string];
         
-        [attrString yy_setTextHighlightRange:range color:[UIColor blueColor] backgroundColor:[[UIColor lightGrayColor] colorWithAlphaComponent:0.5] userInfo:@{@"key": @"value"}];
+        [attrString setTextHighlightRange:range color:[UIColor blueColor] backgroundColor:[[UIColor lightGrayColor] colorWithAlphaComponent:0.5] userInfo:@{@"key": @"value"}];
         
         YYLabel *label = [[YYLabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(self.label1.frame) + 10, screenSize.width - 2 * 10, 30)];
         label.attributedText = attrString;
@@ -142,7 +143,7 @@
         }];
         
         [attrString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:range];
-        [attrString yy_setTextHighlight:textHighlight range:range];
+        [attrString setTextHighlight:textHighlight range:range];
         YYLabel *label = [[YYLabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(self.label2.frame) + 10, screenSize.width - 2 * 10, 30)];
         label.attributedText = attrString;
         // Note: not called
@@ -199,7 +200,7 @@
         NSRange range = [string rangeOfString:@"www.baidu.com"];
         NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:string];
         
-        [attrString yy_setTextHighlightRange:range color:[UIColor blueColor] backgroundColor:[[UIColor lightGrayColor] colorWithAlphaComponent:0.5] userInfo:@{@"key": @"value"}];
+        [attrString setTextHighlightRange:range color:[UIColor blueColor] backgroundColor:[[UIColor lightGrayColor] colorWithAlphaComponent:0.5] userInfo:@{@"key": @"value"}];
         
 //        YYLabel *label = [[YYLabel alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, 30)];
 //        label.attributedText = attrString;

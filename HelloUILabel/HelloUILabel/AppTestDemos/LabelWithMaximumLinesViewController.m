@@ -10,6 +10,7 @@
 #import "WCStringTool.h"
 #import "YYLabel.h"
 #import "WCMacroTool.h"
+#import "YYKit.h"
 
 @interface LabelWithMaximumLinesViewController ()
 @property (nonatomic, strong) UILabel *labelWithAutoLineNumber;
@@ -51,7 +52,7 @@
 
 - (UILabel *)labelWithFixedLineNumber {
     if (!_labelWithFixedLineNumber) {
-        NSString *string = @"a long long long long long long long long long long long long text";
+        NSString *string = @"a long lo\ng long long long long long long long long long long text";
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
         UIFont *font = [UIFont systemFontOfSize:14];
         label.text = string;
@@ -83,10 +84,10 @@
         label.numberOfLines = 2;
         
         NSMutableAttributedString *text = [[NSMutableAttributedString alloc] initWithString:content];
-        text.yy_font = [UIFont systemFontOfSize:14];
-        text.yy_lineBreakMode = NSLineBreakByCharWrapping;
+        text.font = [UIFont systemFontOfSize:14];
+        text.lineBreakMode = NSLineBreakByCharWrapping;
         
-        CGSize textSize = [WCStringTool textSizeWithFixedLineString:content width:100 font:text.yy_font numberOfLines:label.numberOfLines mode:text.yy_lineBreakMode widthToFit:YES];
+        CGSize textSize = [WCStringTool textSizeWithFixedLineString:content width:100 font:text.font numberOfLines:label.numberOfLines mode:text.lineBreakMode widthToFit:YES];
         
         CGRect frame = label.frame;
         frame.size.width = textSize.width;

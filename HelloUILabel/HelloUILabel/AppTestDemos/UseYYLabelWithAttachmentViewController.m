@@ -16,6 +16,7 @@
 #import "NSString+YYAdd.h"
 #import "YYTextExampleHelper.h"
 #import "YYGestureRecognizer.h"
+#import "YYKit.h"
 
 @interface UseYYLabelWithAttachmentViewController ()<UIGestureRecognizerDelegate>
 @property (nonatomic, strong) YYLabel *label;
@@ -38,7 +39,7 @@
         UIImage *image = [UIImage imageNamed:@"dribbble64_imageio"];
         image = [UIImage imageWithCGImage:image.CGImage scale:2 orientation:UIImageOrientationUp];
         
-        NSMutableAttributedString *attachText = [NSMutableAttributedString yy_attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+        NSMutableAttributedString *attachText = [NSMutableAttributedString attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
         [text appendAttributedString:attachText];
         [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n" attributes:nil]];
     }
@@ -50,7 +51,7 @@
         UISwitch *switcher = [UISwitch new];
         [switcher sizeToFit];
         
-        NSMutableAttributedString *attachText = [NSMutableAttributedString yy_attachmentStringWithContent:switcher contentMode:UIViewContentModeCenter attachmentSize:switcher.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+        NSMutableAttributedString *attachText = [NSMutableAttributedString attachmentStringWithContent:switcher contentMode:UIViewContentModeCenter attachmentSize:switcher.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
         [text appendAttributedString:attachText];
         [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n" attributes:nil]];
     }
@@ -62,7 +63,7 @@
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 80)];
         view.backgroundColor = [UIColor yellowColor];
         
-        NSMutableAttributedString *attachText = [NSMutableAttributedString yy_attachmentStringWithContent:view contentMode:UIViewContentModeCenter attachmentSize:view.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+        NSMutableAttributedString *attachText = [NSMutableAttributedString attachmentStringWithContent:view contentMode:UIViewContentModeCenter attachmentSize:view.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
         [text appendAttributedString:attachText];
         [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n" attributes:nil]];
     }
@@ -79,7 +80,7 @@
 //            image.preloadAllAnimatedImageFrames = YES;
 //            YYAnimatedImageView *imageView = [[YYAnimatedImageView alloc] initWithImage:image];
 //
-//            NSMutableAttributedString *attachText = [NSMutableAttributedString yy_attachmentStringWithContent:imageView contentMode:UIViewContentModeCenter attachmentSize:imageView.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+//            NSMutableAttributedString *attachText = [NSMutableAttributedString attachmentStringWithContent:imageView contentMode:UIViewContentModeCenter attachmentSize:imageView.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
 //            [text appendAttributedString:attachText];
 //        }
 //
@@ -89,7 +90,7 @@
 //        imageView.autoPlayAnimatedImage = NO;
 //        [imageView startAnimating];
 //
-//        NSMutableAttributedString *attachText = [NSMutableAttributedString yy_attachmentStringWithContent:imageView contentMode:UIViewContentModeCenter attachmentSize:imageView.size alignToFont:font alignment:YYTextVerticalAlignmentBottom];
+//        NSMutableAttributedString *attachText = [NSMutableAttributedString attachmentStringWithContent:imageView contentMode:UIViewContentModeCenter attachmentSize:imageView.size alignToFont:font alignment:YYTextVerticalAlignmentBottom];
 //        [text appendAttributedString:attachText];
 //
 //        [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n" attributes:nil]];
@@ -97,7 +98,7 @@
     
     
     
-    text.yy_font = font;
+    text.font = font;
     
     _label = [YYLabel new];
     _label.userInteractionEnabled = YES;
@@ -141,15 +142,15 @@
         [label sizeToFit];
     };
     
-    [text yy_setColor:[UIColor colorWithRed:0.000 green:0.449 blue:1.000 alpha:1.000] range:[text.string rangeOfString:@"more"]];
-    [text yy_setTextHighlight:hi range:[text.string rangeOfString:@"more"]];
-    text.yy_font = _label.font;
+    [text setColor:[UIColor colorWithRed:0.000 green:0.449 blue:1.000 alpha:1.000] range:[text.string rangeOfString:@"more"]];
+    [text setTextHighlight:hi range:[text.string rangeOfString:@"more"]];
+    text.font = _label.font;
     
     YYLabel *seeMore = [YYLabel new];
     seeMore.attributedText = text;
     [seeMore sizeToFit];
     
-    NSAttributedString *truncationToken = [NSAttributedString yy_attachmentStringWithContent:seeMore contentMode:UIViewContentModeCenter attachmentSize:seeMore.size alignToFont:text.yy_font alignment:YYTextVerticalAlignmentCenter];
+    NSAttributedString *truncationToken = [NSAttributedString attachmentStringWithContent:seeMore contentMode:UIViewContentModeCenter attachmentSize:seeMore.size alignToFont:text.font alignment:YYTextVerticalAlignmentCenter];
     _label.truncationToken = truncationToken;
 }
 

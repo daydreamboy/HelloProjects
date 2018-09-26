@@ -15,8 +15,7 @@
         return CGSizeZero;
     }
     
-    CGSize textSize = [string sizeWithAttributes:@{ NSFontAttributeName: font }];
-    return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
+    return [WCStringTool textSizeWithSingleLineString:string attributes:@{ NSFontAttributeName: font }];
 }
 
 + (CGSize)textSizeWithSingleLineString:(NSString *)string attributes:(NSDictionary *)attributes NS_AVAILABLE_IOS(7_0) {
@@ -24,7 +23,10 @@
         return CGSizeZero;
     }
     
-    CGSize textSize = [string sizeWithAttributes:attributes];
+    // Note: `\n` will count for a line, so strip it
+    NSString *singleLineString = [string stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    CGSize textSize = [singleLineString sizeWithAttributes:attributes];
+    
     return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
 }
 

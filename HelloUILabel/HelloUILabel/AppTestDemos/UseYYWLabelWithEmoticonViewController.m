@@ -8,6 +8,7 @@
 
 #import "UseYYWLabelWithEmoticonViewController.h"
 #import "YYLabel.h"
+#import "YYKit.h"
 
 #define WCCGSizeScaled(size, scale) (CGSizeMake((size).width * (scale), (size).height * (scale)))
 
@@ -59,7 +60,7 @@
     CGSize imageViewSize = WCCGSizeScaled(imageView.bounds.size, textFont.lineHeight / imageView.bounds.size.height);
     imageView.frame = CGRectMake(0, 0, imageViewSize.width, imageViewSize.height);
     
-    NSMutableAttributedString *attachText = [NSMutableAttributedString yy_attachmentStringWithContent:imageView contentMode:UIViewContentModeCenter attachmentSize:imageViewSize alignToFont:textFont alignment:YYTextVerticalAlignmentCenter];
+    NSMutableAttributedString *attachText = [NSMutableAttributedString attachmentStringWithContent:imageView contentMode:UIViewContentModeCenter attachmentSize:imageViewSize alignToFont:textFont alignment:YYTextVerticalAlignmentCenter];
     if (emoticonCode) {
         [attachText addAttribute:YYTextBackedStringAttributeName value:[YYTextBackedString stringWithString:emoticonCode] range:NSMakeRange(0, attachText.length)];
     }
@@ -207,7 +208,7 @@
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 60)];
         view.backgroundColor = [UIColor yellowColor];
         
-        NSMutableAttributedString *attachText = [NSMutableAttributedString yy_attachmentStringWithContent:view contentMode:UIViewContentModeCenter attachmentSize:view.bounds.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+        NSMutableAttributedString *attachText = [NSMutableAttributedString attachmentStringWithContent:view contentMode:UIViewContentModeCenter attachmentSize:view.bounds.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
         [attachText appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n" attributes:nil]];
         [attrText appendAttributedString:attachText];
         
