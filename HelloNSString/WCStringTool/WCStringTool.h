@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Calculate text size for single line (numberOfLines = 1)
 
- @param string the text
+ @param string the text expected a single line which has no line wrap '\\n'
  @param font the font of text
  @return the text size
  */
@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Calculate text size for single line (numberOfLines = 1) with attributes
  
- @param string the text
+ @param string the text expected a single line which has no line wrap '\\n'
  @param attributes the attributes dictionary
  @return the text size
  */
