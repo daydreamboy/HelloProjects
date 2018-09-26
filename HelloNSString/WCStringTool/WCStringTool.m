@@ -905,6 +905,48 @@
     return [unescapedString copy];
 }
 
++ (nullable NSNumber *)numberFromString:(NSString *)string encodedType:(char *)encodedType {
+    if (![string isKindOfClass:[NSString class]] || string.length == 0 || encodedType == NULL) {
+        return nil;
+    }
+    
+    NSNumber *number = nil;
+    
+    if (strcmp(encodedType, @encode(BOOL)) == 0) {
+        BOOL value = [string boolValue];
+        number = [NSNumber numberWithBool:value];
+    }
+    else {
+        NSCharacterSet *subSet = [NSCharacterSet characterSetWithCharactersInString:string];
+        NSCharacterSet *superSet = [NSCharacterSet characterSetWithCharactersInString:@"-.0123456789"];
+        if (![superSet isSupersetOfSet:subSet]) {
+            return nil;
+        }
+        
+        // Note: NSString provides doubleValue/floatValue/intValue/longLongValue/boolValue
+        if (strcmp(encodedType, @encode(double)) == 0) {
+            double value = [string doubleValue];
+            number = [NSNumber numberWithDouble:value];
+        }
+        else if (strcmp(encodedType, @encode(float)) == 0) {
+            float value = [string floatValue];
+            number = [NSNumber numberWithFloat:value];
+        }
+        else if (strcmp(encodedType, @encode(int)) == 0) {
+            int value = [string intValue];
+            number = [NSNumber numberWithInt:value];
+        }
+        else if (strcmp(encodedType, @encode(NSInteger)) == 0 ||
+                 strcmp(encodedType, @encode(long long)) == 0 ||
+                 strcmp(encodedType, @encode(long)) == 0) {
+            long long value = [string longLongValue];
+            number = [NSNumber numberWithLongLong:value];
+        }
+    }
+    
+    return number;
+}
+
 + (nullable NSString *)binaryStringFromInt64:(int64_t)intValue {
     int sizeOfByte = 8,            // 8 bits per byte
     numberOfBits = (sizeof(int64_t)) * sizeOfByte; // Total bits

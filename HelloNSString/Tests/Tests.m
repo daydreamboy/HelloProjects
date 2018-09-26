@@ -747,7 +747,6 @@
 - (void)test_collapseAdjacentCharactersWithString_characters {
     // Omit spaces
     NSString *inputString;
-    NSString *outputString;
     
     inputString = @"  Hello      this  is a   long       string!   ";
     NSLog(@"\"%@\"", [WCStringTool collapseAdjacentCharactersWithString:inputString characters:@" "]);
@@ -787,6 +786,76 @@
     XCTAssertEqualObjects([WCStringTool unescapedUnicodeStringWithString:@"a normal string"], @"a normal string");
     NSString *nilString;
     XCTAssertNil([WCStringTool unescapedUnicodeStringWithString:nilString]);
+}
+
+- (void)test_numberFromString_encodedType {
+    NSString *string;
+    
+    // Case 1
+    string = @"3.14159";
+    XCTAssertEqualObjects([WCStringTool numberFromString:string encodedType:@encode(double)], @(3.14159));
+    
+    // Case 2
+    string = @"-3.14159";
+    XCTAssertEqualObjects([WCStringTool numberFromString:string encodedType:@encode(double)], @(-3.14159));
+    
+    // Case 3
+    string = @"-3.14159";
+    XCTAssertEqualObjects([WCStringTool numberFromString:string encodedType:@encode(float)], @(-3.14159f));
+    
+    // Case 4
+    string = @"-3.14159";
+    XCTAssertEqualObjects([WCStringTool numberFromString:string encodedType:@encode(int)], @(-3));
+    
+    // Case 5
+    string = @"-3.5";
+    XCTAssertEqualObjects([WCStringTool numberFromString:string encodedType:@encode(int)], @(-3));
+    
+    // Case 6
+    string = @"3.5";
+    XCTAssertEqualObjects([WCStringTool numberFromString:string encodedType:@encode(int)], @(3));
+    
+    // Case 7
+    string = @"0001";
+    XCTAssertEqualObjects([WCStringTool numberFromString:string encodedType:@encode(int)], @1);
+    
+    // Case 8
+    string = @"-0001";
+    XCTAssertEqualObjects([WCStringTool numberFromString:string encodedType:@encode(int)], @(-1));
+    
+    // Case 9
+    string = [NSString stringWithFormat:@"%ld", LONG_MAX];
+    XCTAssertEqualObjects([WCStringTool numberFromString:string encodedType:@encode(long)], @(LONG_MAX));
+    
+    // Case 10
+    string = @"Y";
+    XCTAssertEqualObjects([WCStringTool numberFromString:string encodedType:@encode(BOOL)], @YES);
+    
+    // Case 11
+    string = @"true";
+    XCTAssertEqualObjects([WCStringTool numberFromString:string encodedType:@encode(BOOL)], @YES);
+    
+    // Case 12
+    string = @"  t";
+    XCTAssertEqualObjects([WCStringTool numberFromString:string encodedType:@encode(BOOL)], @YES);
+    
+    // Case 13
+    string = @"NO";
+    XCTAssertEqualObjects([WCStringTool numberFromString:string encodedType:@encode(BOOL)], @NO);
+    
+    // Case 14
+    string = @"0";
+    XCTAssertEqualObjects([WCStringTool numberFromString:string encodedType:@encode(BOOL)], @NO);
+    
+    // Case 15
+    string = @"abc";
+    XCTAssertEqualObjects([WCStringTool numberFromString:string encodedType:@encode(BOOL)], @NO);
+    
+    // Case 16
+    string = @"abc";
+    XCTAssertNil([WCStringTool numberFromString:string encodedType:@encode(id)]);
+    
+    NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
 }
 
 #pragma mark > String Measuration (e.g. length, number of substring, range, ...)

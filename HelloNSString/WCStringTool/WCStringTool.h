@@ -388,7 +388,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable UIColor *)colorFromHexString:(NSString *)string;
 
 /**
- Converting escaped utf8 characters back to their original form, e.g. @"\\U5378\\U8f7d\\U5e94\\U7528" => @"卸载应用"
+ Convert escaped utf8 characters back to their original form, e.g. @"\\U5378\\U8f7d\\U5e94\\U7528" => @"卸载应用"
 
  @param string the escaped utf8 string
  @return the unescaped string
@@ -402,6 +402,26 @@ NS_ASSUME_NONNULL_BEGIN
  @return the NSString
  */
 #define ESCAPE_UNICODE_CSTR(...) @#__VA_ARGS__
+
+/**
+ Convert NSString to NSNumber with \@encode
+
+ @param string the string
+        1. number type, characters are in @"-.0123456789"
+        2. bool type, YES for string started by "Y", "y", "T", "t", or a digit 1-9 and ignore leading whitespace; others for NO.
+ @param encodedType the char string using \@encode
+ @return the number. Return nil if encodedType not support
+ @discussion The encodedType supports as following:
+     \@encode(double)
+     \@encode(float)
+     \@encode(int)
+     \@encode(NSInteger)
+     \@encode(long long)
+     \@encode(long)
+     \@encode(BOOL)
+ @see https://stackoverflow.com/a/17093809
+ */
++ (nullable NSNumber *)numberFromString:(NSString *)string encodedType:(char *)encodedType;
 
 /**
  Convert int64 to binary string
