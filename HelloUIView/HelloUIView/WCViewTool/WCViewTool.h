@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface WCViewTool : NSObject
 
 #pragma mark - Blurring
@@ -88,4 +90,18 @@
  */
 + (BOOL)frameToFitAllSubviewsWithView:(UIView *)view;
 
+#pragma mark - Visibility
+
+/**
+ Check a view if visible to user
+
+ @param view the view to check
+ @return YES if the view possibly is visible to the user
+ @discussion This method is not accurate to judge the view is visible to the user
+ @see https://stackoverflow.com/questions/1536923/determine-if-uiview-is-visible-to-the-user
+ */
++ (BOOL)checkViewVisibleToUserWithView:(UIView *)view;
+
 @end
+
+NS_ASSUME_NONNULL_END

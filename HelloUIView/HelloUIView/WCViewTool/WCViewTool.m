@@ -224,4 +224,22 @@
     return YES;
 }
 
+#pragma mark - Visibility
+
++ (BOOL)checkViewVisibleToUserWithView:(UIView *)view {
+    if (![view isKindOfClass:[UIView class]]) {
+        return NO;
+    }
+    
+    if (view.window == nil) {
+        return NO;
+    }
+    
+    if (view.hidden == YES  || view.alpha < 0.01) {
+        return NO;
+    }
+    
+    return YES;
+}
+
 @end

@@ -12,7 +12,7 @@
 
 @interface GroupSubviewsViewController ()
 @property (nonatomic, strong) UIView *containerView1;
-@property (nonatomic, strong) WCGroupView *containerView2;
+@property (nonatomic, strong) UIView *containerView2;
 @end
 
 @implementation GroupSubviewsViewController
@@ -53,7 +53,7 @@
     return _containerView1;
 }
 
-- (WCGroupView *)containerView2 {
+- (UIView *)containerView2 {
     if (!_containerView2) {
         UIView *view = [UIView new];
         
