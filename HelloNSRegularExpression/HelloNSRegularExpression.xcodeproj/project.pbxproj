@@ -14,6 +14,7 @@
 		4F20CB1B2060F9FF00C4463B /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F20CB192060F9FF00C4463B /* Demo1ViewController.m */; };
 		4F20CB1E2060FA0700C4463B /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F20CB1C2060FA0700C4463B /* RootViewController.m */; };
 		4F20CB262061073200C4463B /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F20CB252061073200C4463B /* Tests.m */; };
+		4F4588C7215CBE12005A52C8 /* WCRegularExpressionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4588C6215CBE12005A52C8 /* WCRegularExpressionTool.m */; };
 		4F7D9012210DE92F00145B00 /* EmoticonInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D9011210DE92E00145B00 /* EmoticonInfo.plist */; };
 		4F7D9013210DE93D00145B00 /* EmoticonInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D9011210DE92E00145B00 /* EmoticonInfo.plist */; };
 /* End PBXBuildFile section */
@@ -43,6 +44,8 @@
 		4F20CB232061073200C4463B /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F20CB252061073200C4463B /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		4F20CB272061073200C4463B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F4588C5215CBE12005A52C8 /* WCRegularExpressionTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCRegularExpressionTool.h; sourceTree = "<group>"; };
+		4F4588C6215CBE12005A52C8 /* WCRegularExpressionTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCRegularExpressionTool.m; sourceTree = "<group>"; };
 		4F7D9011210DE92E00145B00 /* EmoticonInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = EmoticonInfo.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +70,7 @@
 		4F20CAF62060F98D00C4463B = {
 			isa = PBXGroup;
 			children = (
+				4F4588C4215CBE00005A52C8 /* WCRegularExpressionTool */,
 				4F20CB012060F98D00C4463B /* HelloNSRegularExpression */,
 				4F20CB242061073200C4463B /* Tests */,
 				4F20CB002060F98D00C4463B /* Products */,
@@ -115,6 +119,15 @@
 				4F20CB272061073200C4463B /* Info.plist */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		4F4588C4215CBE00005A52C8 /* WCRegularExpressionTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F4588C5215CBE12005A52C8 /* WCRegularExpressionTool.h */,
+				4F4588C6215CBE12005A52C8 /* WCRegularExpressionTool.m */,
+			);
+			path = WCRegularExpressionTool;
 			sourceTree = "<group>";
 		};
 		4F7D9010210DE92E00145B00 /* Resources */ = {
@@ -229,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F20CB1B2060F9FF00C4463B /* Demo1ViewController.m in Sources */,
+				4F4588C7215CBE12005A52C8 /* WCRegularExpressionTool.m in Sources */,
 				4F20CB122060F98D00C4463B /* main.m in Sources */,
 				4F20CB042060F98D00C4463B /* AppDelegate.m in Sources */,
 				4F20CB1E2060FA0700C4463B /* RootViewController.m in Sources */,
