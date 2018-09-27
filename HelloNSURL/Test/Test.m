@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "WCURLTool.h"
 
 @interface Model : NSObject {
     @public
@@ -88,6 +89,99 @@
     URL = [NSURL URLWithString:url];
     NSLog(@"%@", URL);
     NSLog(@"query: %@", URL.query);
+}
+
+- (void)test_URLComponentsWithUrlString {
+    NSString *urlString;
+    WCURLComponents *components;
+    
+    // Case 1
+    urlString = @"http://a:80/b/c/d;p?q";
+    components = [WCURLTool URLComponentsWithUrlString:urlString];
+    
+    XCTAssertEqualObjects(components.string, urlString);
+    XCTAssertEqualObjects(components.scheme, @"http");
+    XCTAssertNil(components.user);
+    XCTAssertNil(components.password);
+    XCTAssertEqualObjects(components.host, @"a");
+    XCTAssertEqualObjects(components.port, @80);
+    XCTAssertEqualObjects(components.path, @"/b/c/d");
+    XCTAssertEqualObjects(components.parameterString, @"p");
+    XCTAssertEqualObjects(components.query, @"q");
+    XCTAssertNil(components.fragment);
+    XCTAssertNil(components.queryItems);
+    
+    // Case 2
+    urlString = @"http://username:password@www.example.com:8080/index.html?key1=value1&key2=value2#jumpLocation";
+    components = [WCURLTool URLComponentsWithUrlString:urlString];
+    
+    XCTAssertEqualObjects(components.string, urlString);
+    XCTAssertEqualObjects(components.scheme, @"http");
+    XCTAssertEqualObjects(components.user, @"username");
+    XCTAssertEqualObjects(components.password, @"password");
+    XCTAssertEqualObjects(components.host, @"www.example.com");
+    XCTAssertEqualObjects(components.port, @8080);
+    XCTAssertEqualObjects(components.path, @"/index.html");
+    XCTAssertNil(components.parameterString);
+    XCTAssertEqualObjects(components.query, @"key1=value1&key2=value2");
+    XCTAssertEqualObjects(components.fragment, @"jumpLocation");
+    XCTAssertEqualObjects([components.queryItems[0] name], @"key1");
+    XCTAssertEqualObjects([components.queryItems[0] value], @"value1");
+    XCTAssertEqualObjects([components.queryItems[1] name], @"key2");
+    XCTAssertEqualObjects([components.queryItems[1] value], @"value2");
+    
+    // Case 3
+    urlString = @"http://a:80/b/c/d?q=http://a:80/b/c/d#jumpLocation";
+    components = [WCURLTool URLComponentsWithUrlString:urlString];
+    
+    XCTAssertEqualObjects(components.string, urlString);
+    XCTAssertEqualObjects(components.scheme, @"http");
+    XCTAssertNil(components.user);
+    XCTAssertNil(components.password);
+    XCTAssertEqualObjects(components.host, @"a");
+    XCTAssertEqualObjects(components.port, @80);
+    XCTAssertEqualObjects(components.path, @"/b/c/d");
+    XCTAssertNil(components.parameterString);
+    XCTAssertEqualObjects(components.query, @"q=http://a:80/b/c/d");
+    XCTAssertEqualObjects(components.fragment, @"jumpLocation");
+    XCTAssertEqualObjects([components.queryItems[0] name], @"q");
+    XCTAssertEqualObjects([components.queryItems[0] value], @"http://a:80/b/c/d");
+    
+    // Case 4
+    urlString = @"http://a:80/b/c/d;p?key1=value1#jumpLocation";
+    components = [WCURLTool URLComponentsWithUrlString:urlString];
+    
+    XCTAssertEqualObjects([components.queryItems[0] name], @"key1");
+    XCTAssertEqualObjects([components.queryItems[0] value], @"value1");
+    
+    // Abnormal Case 1
+    urlString = @"http://a:80/b/c/d;p?key1=#jumpLocation";
+    components = [WCURLTool URLComponentsWithUrlString:urlString];
+    
+    XCTAssertEqualObjects([components.queryItems[0] name], @"key1");
+    XCTAssertNil([components.queryItems[0] value]);
+    
+    // Abnormal Case 2
+    urlString = @"http://a:80/b/c/d;p?=value1#jumpLocation";
+    components = [WCURLTool URLComponentsWithUrlString:urlString];
+    
+    XCTAssertEqualObjects([components.queryItems[0] name], @"");
+    XCTAssertEqualObjects([components.queryItems[0] value], @"value1");
+    
+    // Abnormal Case 3
+    urlString = @"http://a:80/b/c/d;p?=#jumpLocation";
+    components = [WCURLTool URLComponentsWithUrlString:urlString];
+    
+    XCTAssertEqualObjects([components.queryItems[0] name], @"");
+    XCTAssertNil([components.queryItems[0] value]);
+    
+    // Abnormal Case 4
+    urlString = @"http://a:80/b/c/d;p?==#jumpLocation";
+    components = [WCURLTool URLComponentsWithUrlString:urlString];
+    
+    XCTAssertTrue([components.queryItems count] == 1);
+    XCTAssertEqualObjects([components.queryItems[0] name], @"");
+    XCTAssertEqualObjects([components.queryItems[0] value], @"");
 }
 
 - (NSString *)substringWithString:(NSString *)string range:(NSRange)range {
