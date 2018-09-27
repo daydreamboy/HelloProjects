@@ -239,6 +239,10 @@
         return NO;
     }
     
+    if (view.bounds.size.width <= 0 || view.bounds.size.height <= 0) {
+        return NO;
+    }
+    
     return YES;
 }
 
