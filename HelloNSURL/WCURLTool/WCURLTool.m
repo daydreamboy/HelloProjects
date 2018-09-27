@@ -64,16 +64,7 @@
     return URL;
 }
 
-+ (nullable NSTextCheckingResult *)firstMatchInString:(NSString *)string pattern:(NSString *)pattern {
-    NSError *error = nil;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:kNilOptions error:&error];
-    if (error) {
-        return nil;
-    }
-    
-    NSTextCheckingResult *match = [regex firstMatchInString:string options:kNilOptions range:NSMakeRange(0, string.length)];
-    return match;
-}
+
 
 + (nullable WCURLComponents *)URLComponentsWithUrlString:(NSString *)urlString {
     if (![urlString isKindOfClass:[NSString class]] || urlString.length == 0) {
@@ -139,36 +130,40 @@
         components.query = queryComponent;
         components.fragment = fragmentComponent;
         
-        NSMutableArray<WCURLQueryItem *> *queryItemsM = [NSMutableArray array];
-        BOOL success = [self enumerateMatchesInString:queryComponent pattern:patternOfQueryItems usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
-            NSTextCheckingResult *matchOfQueryItems = result;
+        if (queryComponent.length) {
+            NSMutableArray<WCURLQueryItem *> *queryItemsM = [NSMutableArray array];
+            BOOL success = [self enumerateMatchesInString:queryComponent pattern:patternOfQueryItems usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+                NSTextCheckingResult *matchOfQueryItems = result;
+                
+                if (matchOfQueryItems.numberOfRanges == 3) {
+                    NSRange keyRange = [matchOfQueryItems rangeAtIndex:1];
+                    NSRange valueRange = [matchOfQueryItems rangeAtIndex:2];
+                    
+                    NSString *key = [self substringWithString:queryComponent range:keyRange];
+                    NSString *value = [self substringWithString:queryComponent range:valueRange];
+                    
+                    WCURLQueryItem *queryItem = [WCURLQueryItem queryItemWithName:key value:value];
+                    queryItem.queryString = queryComponent;
+                    [queryItemsM addObject:queryItem];
+                }
+            }];
             
-            if (matchOfQueryItems.numberOfRanges == 3) {
-                NSRange keyRange = [matchOfQueryItems rangeAtIndex:1];
-                NSRange valueRange = [matchOfQueryItems rangeAtIndex:2];
-                
-                NSString *key = [self substringWithString:queryComponent range:keyRange];
-                NSString *value = [self substringWithString:queryComponent range:valueRange];
-                
-                WCURLQueryItem *queryItem = [WCURLQueryItem queryItemWithName:key value:value];
-                queryItem.queryString = queryComponent;
-                [queryItemsM addObject:queryItem];
+            if (success && queryItemsM.count) {
+                components.queryItems = queryItemsM;
             }
-        }];
-        
-        if (success && queryItemsM.count) {
-            components.queryItems = queryItemsM;
         }
-        /*
-        components.queryItems = nil; // TODO
-         */
     }
     
     return components;
 }
 
+#pragma mark - Utility Methods
+
 + (BOOL)enumerateMatchesInString:(NSString *)string pattern:(NSString *)pattern usingBlock:(void (^)(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop))block {
-   
+    if (![string isKindOfClass:[NSString class]] || string.length == 0 || ![pattern isKindOfClass:[NSString class]] || pattern.length == 0) {
+        return NO;
+    }
+    
     NSError *error = nil;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:kNilOptions error:&error];
     if (error) {
@@ -189,7 +184,20 @@
     }
 }
 
-#pragma mark - Utility Methods
++ (nullable NSTextCheckingResult *)firstMatchInString:(NSString *)string pattern:(NSString *)pattern {
+    if (![string isKindOfClass:[NSString class]] || string.length == 0 || ![pattern isKindOfClass:[NSString class]] || pattern.length == 0) {
+        return nil;
+    }
+    
+    NSError *error = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:kNilOptions error:&error];
+    if (error) {
+        return nil;
+    }
+    
+    NSTextCheckingResult *match = [regex firstMatchInString:string options:kNilOptions range:NSMakeRange(0, string.length)];
+    return match;
+}
 
 + (nullable NSString *)substringWithString:(NSString *)string range:(NSRange)range {
     if (![string isKindOfClass:[NSString class]]) {
