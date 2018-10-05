@@ -526,248 +526,355 @@
                 return memcmp(byteOrder + 28, bytes, sizeof(bytes)) == 0;
             },
     },
-    /*
     @(WCMIMETypeOtf): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"application/font-sfnt",
+            @"ext": @"otf",
             @"type": @(WCMIMETypeOtf),
-            @"bytesCount": @6,
+            @"bytesCount": @5,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
+                // [0, 4]
+                const unsigned char bytes[] = { 0x4F, 0x54, 0x54, 0x4F, 0x00 };
                 return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
             },
     },
     @(WCMIMETypePdf): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"application/pdf",
+            @"ext": @"pdf",
             @"type": @(WCMIMETypePdf),
-            @"bytesCount": @6,
+            @"bytesCount": @4,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
+                // [0, 3]
+                const unsigned char bytes[] = { 0x25, 0x50, 0x44, 0x46 };
                 return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
             },
     },
     @(WCMIMETypePng): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"image/png",
+            @"ext": @"png",
             @"type": @(WCMIMETypePng),
-            @"bytesCount": @6,
+            @"bytesCount": @4,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
+                // [0, 3]
+                const unsigned char bytes[] = { 0x89, 0x50, 0x4E, 0x47 };
                 return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
             },
     },
     @(WCMIMETypePs): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"application/postscript",
+            @"ext": @"ps",
             @"type": @(WCMIMETypePs),
-            @"bytesCount": @6,
+            @"bytesCount": @2,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
+                // [0, 1]
+                const unsigned char bytes[] = { 0x25, 0x21 };
                 return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
             },
     },
     @(WCMIMETypePsd): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"image/vnd.adobe.photoshop",
+            @"ext": @"psd",
             @"type": @(WCMIMETypePsd),
-            @"bytesCount": @6,
+            @"bytesCount": @4,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
+                // [0, 3]
+                const unsigned char bytes[] = { 0x38, 0x42, 0x50, 0x53 };
                 return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
             },
     },
     @(WCMIMETypeRar): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"application/x-rar-compressed",
+            @"ext": @"rar",
             @"type": @(WCMIMETypeRar),
-            @"bytesCount": @6,
+            @"bytesCount": @7,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
-                return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
+                const unsigned char bytes1[] = { 0x52, 0x61, 0x72, 0x21, 0x1A, 0x07 };
+                const unsigned char bytes2[] = { 0x0 };
+                const unsigned char bytes3[] = { 0x1 };
+                
+                // [0, 5]
+                BOOL b1 = memcmp(byteOrder, bytes1, sizeof(bytes1)) == 0;
+                // [6]
+                BOOL b2 = memcmp(byteOrder + 6, bytes2, sizeof(bytes2)) == 0;
+                // [6]
+                BOOL b3 = memcmp(byteOrder + 6, bytes3, sizeof(bytes3)) == 0;
+                
+                return (b1 && (b2 || b3));
             },
     },
     @(WCMIMETypeRpm): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"application/x-rpm",
+            @"ext": @"rpm",
             @"type": @(WCMIMETypeRpm),
-            @"bytesCount": @6,
+            @"bytesCount": @4,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
+                // [0, 3]
+                const unsigned char bytes[] = { 0xED, 0xAB, 0xEE, 0xDB };
                 return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
             },
     },
     @(WCMIMETypeRtf): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"application/rtf",
+            @"ext": @"rtf",
             @"type": @(WCMIMETypeRtf),
-            @"bytesCount": @6,
+            @"bytesCount": @5,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
+                // [0, 4]
+                const unsigned char bytes[] = { 0x7B, 0x5C, 0x72, 0x74, 0x66 };
                 return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
             },
     },
     @(WCMIMEType7z): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"application/x-7z-compressed",
+            @"ext": @"7z",
             @"type": @(WCMIMEType7z),
             @"bytesCount": @6,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
+                // [0, 5]
+                const unsigned char bytes[] = { 0x37, 0x7A, 0xBC, 0xAF, 0x27, 0x1C };
                 return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
             },
     },
     @(WCMIMETypeSqlite): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"application/x-sqlite3",
+            @"ext": @"sqlite",
             @"type": @(WCMIMETypeSqlite),
-            @"bytesCount": @6,
+            @"bytesCount": @4,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
+                // [0, 3]
+                const unsigned char bytes[] = { 0x53, 0x51, 0x4C, 0x69 };
                 return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
             },
     },
     @(WCMIMETypeSwf): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"application/x-shockwave-flash",
+            @"ext": @"swf",
             @"type": @(WCMIMETypeSwf),
-            @"bytesCount": @6,
+            @"bytesCount": @3,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
-                return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
+                const unsigned char bytes1[] = { 0x43 };
+                const unsigned char bytes2[] = { 0x46 };
+                const unsigned char bytes3[] = { 0x57, 0x53 };
+                
+                // [0]
+                BOOL b1 = memcmp(byteOrder, bytes1, sizeof(bytes1)) == 0;
+                // [0]
+                BOOL b2 = memcmp(byteOrder, bytes2, sizeof(bytes2)) == 0;
+                // [1, 2]
+                BOOL b3 = memcmp(byteOrder + 1, bytes3, sizeof(bytes3)) == 0;
+                
+                return ((b1 || b2) && b3);
             },
     },
     @(WCMIMETypeTar): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"application/x-tar",
+            @"ext": @"tar",
             @"type": @(WCMIMETypeTar),
-            @"bytesCount": @6,
+            @"bytesCount": @262,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
-                return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
+                // [257, 261]
+                const unsigned char bytes[] = { 0x75, 0x73, 0x74, 0x61, 0x72 };
+                return memcmp(byteOrder + 257, bytes, sizeof(bytes)) == 0;
             },
     },
     @(WCMIMETypeTif): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"image/tiff",
+            @"ext": @"tif",
             @"type": @(WCMIMETypeTif),
-            @"bytesCount": @6,
+            @"bytesCount": @4,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
-                return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
+                const unsigned char bytes1[] = { 0x49, 0x49, 0x2A, 0x00 };
+                const unsigned char bytes2[] = { 0x4D, 0x4D, 0x20, 0x2A };
+                
+                // [0, 3]
+                BOOL b1 = memcmp(byteOrder, bytes1, sizeof(bytes1)) == 0;
+                // [0, 3]
+                BOOL b2 = memcmp(byteOrder, bytes2, sizeof(bytes2)) == 0;
+                
+                return b1 || b2;
             },
     },
     @(WCMIMETypeTtf): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"application/font-sfnt",
+            @"ext": @"ttf",
             @"type": @(WCMIMETypeTtf),
-            @"bytesCount": @6,
+            @"bytesCount": @5,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
+                // [0, 4]
+                const unsigned char bytes[] = { 0x00, 0x01, 0x00, 0x00, 0x00 };
                 return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
             },
     },
     @(WCMIMETypeWav): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"audio/x-wav",
+            @"ext": @"wav",
             @"type": @(WCMIMETypeWav),
-            @"bytesCount": @6,
+            @"bytesCount": @12,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
-                return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
+                const unsigned char bytes1[] = { 0x52, 0x49, 0x46, 0x46 };
+                const unsigned char bytes2[] = { 0x57, 0x41, 0x56, 0x45 };
+                
+                // [0, 3]
+                BOOL b1 = memcmp(byteOrder, bytes1, sizeof(bytes1)) == 0;
+                // [8, 11]
+                BOOL b2 = memcmp(byteOrder + 8, bytes2, sizeof(bytes2)) == 0;
+                
+                return b1 && b2;
             },
     },
     @(WCMIMETypeWebm): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"video/webm",
+            @"ext": @"webm",
             @"type": @(WCMIMETypeWebm),
             @"bytesCount": @6,
             @"matches": ^BOOL(unsigned char *byteOrder) {
+                // TODO:
                 const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
                 return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
             },
     },
     @(WCMIMETypeWebp): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"image/webp",
+            @"ext": @"webp",
             @"type": @(WCMIMETypeWebp),
-            @"bytesCount": @6,
+            @"bytesCount": @12,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
+                // [8, 11]
+                const unsigned char bytes[] = { 0x57, 0x45, 0x42, 0x50 };
                 return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
             },
     },
     @(WCMIMETypeWmv): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"video/x-ms-wmv",
+            @"ext": @"wmv",
             @"type": @(WCMIMETypeWmv),
-            @"bytesCount": @6,
+            @"bytesCount": @10,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
+                // [0, 9]
+                const unsigned char bytes[] = { 0x30, 0x26, 0xB2, 0x75, 0x8E, 0x66, 0xCF, 0x11, 0xA6, 0xD9 };
                 return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
             },
     },
     @(WCMIMETypeWoff): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"application/font-woff",
+            @"ext": @"woff",
             @"type": @(WCMIMETypeWoff),
-            @"bytesCount": @6,
+            @"bytesCount": @8,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
-                return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
+                const unsigned char bytes1[] = { 0x77, 0x4F, 0x46, 0x46 };
+                const unsigned char bytes2[] = { 0x00, 0x01, 0x00, 0x00 };
+                const unsigned char bytes3[] = { 0x4F, 0x54, 0x54, 0x4F };
+                
+                // [0, 3]
+                BOOL b1 = memcmp(byteOrder, bytes1, sizeof(bytes1)) == 0;
+                // [4, 7]
+                BOOL b2 = memcmp(byteOrder + 4, bytes2, sizeof(bytes2)) == 0;
+                // [4, 7]
+                BOOL b3 = memcmp(byteOrder + 4, bytes3, sizeof(bytes3)) == 0;
+                
+                return b1 && (b2 || b3);
             },
     },
     @(WCMIMETypeWoff2): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"application/font-woff",
+            @"ext": @"woff2",
             @"type": @(WCMIMETypeWoff2),
-            @"bytesCount": @6,
+            @"bytesCount": @8,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
-                return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
+                const unsigned char bytes1[] = { 0x77, 0x4F, 0x46, 0x32 };
+                const unsigned char bytes2[] = { 0x00, 0x01, 0x00, 0x00 };
+                const unsigned char bytes3[] = { 0x4F, 0x54, 0x54, 0x4F };
+                
+                // [0, 3]
+                BOOL b1 = memcmp(byteOrder, bytes1, sizeof(bytes1)) == 0;
+                // [4, 7]
+                BOOL b2 = memcmp(byteOrder + 4, bytes2, sizeof(bytes2)) == 0;
+                // [4, 7]
+                BOOL b3 = memcmp(byteOrder + 4, bytes3, sizeof(bytes3)) == 0;
+                
+                return b1 && (b2 || b3);
             },
     },
     @(WCMIMETypeXpi): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"application/x-xpinstall",
+            @"ext": @"xpi",
             @"type": @(WCMIMETypeXpi),
-            @"bytesCount": @6,
+            @"bytesCount": @50,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
-                return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
+                const unsigned char bytes1[] = { 0x50, 0x4B, 0x03, 0x04 };
+                const unsigned char bytes2[] = { 0x4D, 0x45, 0x54, 0x41, 0x2D, 0x49, 0x4E, 0x46, 0x2F, 0x6D, 0x6F, 0x7A,
+                    0x69, 0x6C, 0x6C, 0x61, 0x2E, 0x72, 0x73, 0x61 };
+                
+                // [0, 3]
+                BOOL b1 = memcmp(byteOrder, bytes1, sizeof(bytes1)) == 0;
+                // [30, 49]
+                BOOL b2 = memcmp(byteOrder + 4, bytes2, sizeof(bytes2)) == 0;
+                
+                // TODO:
+                // Needs to be before `zip` check
+                // assumes signed .xpi from addons.mozilla.org
+                return b1 && b2;
             },
     },
     @(WCMIMETypeXz): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"application/x-xz",
+            @"ext": @"xz",
             @"type": @(WCMIMETypeXz),
             @"bytesCount": @6,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
+                // [0, 5]
+                const unsigned char bytes[] = { 0xFD, 0x37, 0x7A, 0x58, 0x5A, 0x00 };
                 return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
             },
     },
     @(WCMIMETypeZ): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"application/x-compress",
+            @"ext": @"z",
             @"type": @(WCMIMETypeZ),
-            @"bytesCount": @6,
+            @"bytesCount": @2,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
-                return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
+                const unsigned char bytes1[] = { 0x1F, 0xA0 };
+                const unsigned char bytes2[] = { 0x1F, 0x9D };
+                
+                // [0, 1]
+                BOOL b1 = memcmp(byteOrder, bytes1, sizeof(bytes1)) == 0;
+                // [0, 1]
+                BOOL b2 = memcmp(byteOrder, bytes2, sizeof(bytes2)) == 0;
+                
+                return b1 || b2;
             },
     },
     @(WCMIMETypeZip): @{
-            @"mime": @"audio/amr",
-            @"ext": @"amr",
+            @"mime": @"application/zip",
+            @"ext": @"zip",
             @"type": @(WCMIMETypeZip),
-            @"bytesCount": @6,
+            @"bytesCount": @50,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
-                return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
+                const unsigned char bytes1[] = { 0x50, 0x4B };
+                const unsigned char bytes2[] = { 0x3 };
+                const unsigned char bytes3[] = { 0x5 };
+                const unsigned char bytes4[] = { 0x7 };
+                const unsigned char bytes5[] = { 0x4 };
+                const unsigned char bytes6[] = { 0x6 };
+                const unsigned char bytes7[] = { 0x8 };
+                
+                // [0, 1]
+                BOOL b1 = memcmp(byteOrder, bytes1, sizeof(bytes1)) == 0;
+                // [2]
+                BOOL b2 = memcmp(byteOrder + 2, bytes2, sizeof(bytes2)) == 0;
+                // [2]
+                BOOL b3 = memcmp(byteOrder + 2, bytes3, sizeof(bytes3)) == 0;
+                // [2]
+                BOOL b4 = memcmp(byteOrder + 2, bytes4, sizeof(bytes4)) == 0;
+                // [3]
+                BOOL b5 = memcmp(byteOrder + 3, bytes5, sizeof(bytes5)) == 0;
+                // [3]
+                BOOL b6 = memcmp(byteOrder + 3, bytes6, sizeof(bytes6)) == 0;
+                // [3]
+                BOOL b7 = memcmp(byteOrder + 3, bytes7, sizeof(bytes7)) == 0;
+                
+                return b1 && (b2 || b3 || b4) && (b5 || b6 || b7);
             },
     },
-     */
     };
 }
 
