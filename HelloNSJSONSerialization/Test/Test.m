@@ -9,6 +9,11 @@
 #import <XCTest/XCTest.h>
 #import "WCJSONTool.h"
 
+// >= `11.0`
+#ifndef IOS11_OR_LATER
+#define IOS11_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"11.0" options:NSNumericSearch] != NSOrderedAscending)
+#endif
+
 @interface Test : XCTestCase
 
 @end
@@ -25,12 +30,82 @@
     [super tearDown];
 }
 
-- (void)test_NSArray_jsonString {
-    NSArray *arr = @[ @"1", @"hello", @"", @(3.14) ];
-    NSLog(@"plain json of array: %@", [arr JSONString]);
+#pragma mark - Object to String
+
+- (void)test_JSONStringWithObject_printOptions {
+    // Case 1
+    XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:@YES printOptions:kNilOptions], @"true");
+    XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:@NO printOptions:kNilOptions], @"false");
+    XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:@1 printOptions:kNilOptions], @"1");
+    XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:@0 printOptions:kNilOptions], @"0");
     
-    NSMutableArray *mutableArr = [[NSMutableArray alloc] initWithArray:arr];
-    NSLog(@"readable json of array: \n%@", [mutableArr JSONStringWithReadability]);
+    if (IOS11_OR_LATER) {
+        XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:@3.14 printOptions:kNilOptions], @"3.1400000000000001");
+        XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:@(-3.14) printOptions:kNilOptions], @"-3.1400000000000001");
+    }
+    else {
+        XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:@3.14 printOptions:kNilOptions], @"3.14");
+        XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:@(-3.14) printOptions:kNilOptions], @"-3.14");
+    }
+    
+    // Case 2
+    XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:[NSNull null] printOptions:kNilOptions], @"null");
+    
+    // Case 3
+    XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:@"null" printOptions:kNilOptions], @"null");
+    
+    // Case 4
+    NSArray *arr;
+    arr = @[ [NSNull null], @"null" ];
+    XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:arr printOptions:kNilOptions], @"[null,\"null\"]");
+    
+    // Case 5
+    NSDictionary *dict;
+    dict = @{ @"null": [NSNull null] };
+    XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:dict printOptions:kNilOptions], @"{\"null\":null}");
+}
+
+- (void)test_JSONStringWithObject_printOptions_filterInvalidObjects {
+    NSArray *arr;
+    NSDictionary *dict;
+    
+    // Case 1
+    arr = @[ [NSDate date], @"1" ];
+    XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:arr printOptions:kNilOptions filterInvalidObjects:YES], @"[\"1\"]");
+    
+    // Case 2
+    dict = @{ @(1): @"1" };
+    XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:dict printOptions:kNilOptions filterInvalidObjects:YES], @"{}");
+    
+    // Case 3
+    dict = @{
+             @(1): @"1",
+             @"null": [NSNull null],
+             @"date": [NSDate date],
+             };
+    XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:dict printOptions:kNilOptions filterInvalidObjects:YES], @"{\"null\":null}");
+}
+
+#pragma mark -
+
+- (void)test_NSArray_JSONString {
+    NSArray *arr;
+    NSString *JSONString;
+    
+    // Case 1
+    arr = @[ @"1", @"hello", @"", @(3.14) ];
+    JSONString = [arr JSONString];
+    XCTAssertNotNil(JSONString);
+    NSLog(@"plain json of array: %@", JSONString);
+    
+    // Case 2
+    arr = @[ @"1", @"hello", @"" ];
+    JSONString = [arr JSONString];
+    XCTAssertEqualObjects(JSONString, @"[\"1\",\"hello\",\"\"]");
+    
+    // Case 2
+    NSMutableArray *arrM = [[NSMutableArray alloc] initWithArray:arr];
+    NSLog(@"readable json of array: \n%@", [arrM JSONStringWithReadability]);
 }
 
 - (void)test_NSDictionary_jsonString {

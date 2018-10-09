@@ -40,123 +40,94 @@
 
 #pragma mark - Object to String
 
-+ (nullable NSString *)JSONStringWithObject:(id)object printOptions:(NSJSONWritingOptions)options NS_AVAILABLE_IOS(5_0) {
++ (nullable NSString *)JSONStringWithObject:(id)object printOptions:(NSJSONWritingOptions)options {
     return [self JSONStringWithObject:object printOptions:options filterInvalidObjects:NO];
 }
 
 + (nullable NSString *)JSONStringWithObject:(id)object printOptions:(NSJSONWritingOptions)options filterInvalidObjects:(BOOL)filterInvalidObjects {
-    id JSONObject = object;
-    
-    if (filterInvalidObjects && ![NSJSONSerialization isValidJSONObject:JSONObject]) {
-        if (![JSONObject isKindOfClass:[NSArray class]] || ![JSONObject isKindOfClass:[NSDictionary class]]) {
-            return nil;
-        }
-        
-        if ([JSONObject isKindOfClass:[NSArray class]]) {
-            NSMutableArray *container = [NSMutableArray array];
-            // TODO:
-            JSONObject = container;
-        }
-        else if ([JSONObject isKindOfClass:[NSDictionary class]]) {
-            NSMutableDictionary *container = [NSMutableDictionary dictionary];
-            // TODO:
-            JSONObject = container;
-        }
+    if (![object isKindOfClass:[NSObject class]]) {
+        return nil;
     }
     
-    if ([JSONObject isKindOfClass:[NSArray class]] || [JSONObject isKindOfClass:[NSDictionary class]]) {
-        NSData *jsonData = nil;
-        @try {
-            NSError *error;
-            jsonData = [NSJSONSerialization dataWithJSONObject:JSONObject options:options error:&error];
-        }
-        @catch (NSException *exception) {
-            if (![NSJSONSerialization isValidJSONObject:JSONObject]) {
-                NSLog(@"[%@]: %@ is not a valid JSON object", NSStringFromClass(self), JSONObject);
-            }
-            else {
-                NSLog(@"[%@] an exception occured:\n%@", NSStringFromClass(self), exception);
-            }
-        }
-        
-        NSString *jsonString = nil;
-        if (jsonData) {
-            jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        }
-        
-        return jsonString;
+    id rootObject = object;
+    if ([rootObject isKindOfClass:[NSString class]]) {
+        return (NSString *)rootObject;
     }
-    else if ([JSONObject isKindOfClass:[NSNumber class]] || [JSONObject isKindOfClass:[NSNull class]]) {
+    else if ([rootObject isKindOfClass:[NSNumber class]] || [rootObject isKindOfClass:[NSNull class]]) {
         NSData *jsonData = nil;
+        NSError *error = nil;
         @try {
-            NSError *error;
-            jsonData = [NSJSONSerialization dataWithJSONObject:JSONObject options:options error:&error];
-        }
-        @catch (NSException *exception) {
-            if (![NSJSONSerialization isValidJSONObject:JSONObject]) {
-                NSLog(@"[%@]: %@ is not a valid JSON object", NSStringFromClass(self), JSONObject);
-            }
-            else {
-                NSLog(@"[%@] an exception occured:\n%@", NSStringFromClass(self), exception);
-            }
-        }
-        
-        NSString *jsonString = nil;
-        if (jsonData) {
             // @see https://stackoverflow.com/a/34268973
+            // convert to array for distinguish @1/@YES, @0/@NO
+            jsonData = [NSJSONSerialization dataWithJSONObject:@[rootObject] options:options error:&error];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"[%@] an exception occured:\n%@", NSStringFromClass(self), exception);
+        }
+        
+        NSString *jsonString = nil;
+        if (jsonData && !error) {
             jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+            // Note: remove [] to get the only one element
             jsonString = [jsonString stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"[]"]];
         }
         
         return jsonString;
     }
-    else if ([JSONObject isKindOfClass:[NSString class]]) {
-        return JSONObject;
+    else if ([rootObject isKindOfClass:[NSArray class]] || [rootObject isKindOfClass:[NSDictionary class]]) {
+        if (filterInvalidObjects && ![NSJSONSerialization isValidJSONObject:rootObject]) {
+            rootObject = [self safeJSONObjectWithObject:rootObject];
+        }
+        
+        NSData *jsonData = nil;
+        NSError *error = nil;
+        @try {
+            jsonData = [NSJSONSerialization dataWithJSONObject:rootObject options:options error:&error];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"[%@] an exception occured:\n%@", NSStringFromClass(self), exception);
+        }
+        
+        NSString *jsonString = nil;
+        if (jsonData && !error) {
+            jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        }
+        
+        return jsonString;
     }
     else {
         return nil;
     }
 }
 
-- (void)duplicateDictionary:(NSDictionary *)dict toContainer:(NSMutableDictionary *)container {
-    if ([dict isKindOfClass:[NSDictionary class]]) {
-        [dict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull value, BOOL * _Nonnull stop) {
-            if ([value isKindOfClass:[NSDictionary class]]) {
-                
++ (nullable id)safeJSONObjectWithObject:(id)object {
+    if ([object isKindOfClass:[NSNumber class]] || [object isKindOfClass:[NSString class]] || object == [NSNull null]) {
+        return object;
+    }
+    else if ([object isKindOfClass:[NSArray class]]) {
+        NSMutableArray *arrM = [NSMutableArray array];
+        for (id element in (NSArray *)object) {
+            id item = [self safeJSONObjectWithObject:element];
+            if (item) {
+                [arrM addObject:item];
             }
-            else if ([value isKindOfClass:[NSArray class]]) {
-                
+        }
+        return arrM;
+    }
+    else if ([object isKindOfClass:[NSDictionary class]]) {
+        NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
+        [(NSDictionary *)object enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            if ([key isKindOfClass:[NSString class]]) {
+                id value = [self safeJSONObjectWithObject:obj];
+                if (value) {
+                    dictM[key] = value;
+                }
             }
         }];
+        return dictM;
     }
-}
-
-- (void)processParsedObject:(id)object
-{
-    [self processParsedObject:object depth:0 parent:nil];
-}
-
-- (void)processParsedObject:(id)object depth:(int)depth parent:(id)parent
-{
-    if ([object isKindOfClass:[NSDictionary class]])
-    {
-        for (NSString* key in [object allKeys])
-        {
-            id child = [object objectForKey:key];
-            [self processParsedObject:child depth:(depth + 1) parent:object];
-        }
-    }
-    else if ([object isKindOfClass:[NSArray class]])
-    {
-        for (id child in object)
-        {
-            [self processParsedObject:child depth:(depth + 1) parent:object];
-        }
-    }
-    else
-    {
-        // This object is not a container you might be interested in it's value
-        NSLog(@"Node: %@  depth: %d", [object description], depth);
+    else {
+        return nil;
     }
 }
 

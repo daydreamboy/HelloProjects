@@ -42,7 +42,26 @@ NS_AVAILABLE_IOS(5_0)
  */
 + (nullable NSString *)JSONStringWithObject:(id)object printOptions:(NSJSONWritingOptions)options;
 
-+ (nullable NSString *)JSONStringWithObject:(id)object printOptions:(NSJSONWritingOptions)options filterInvalidObjects:(BOOL)tolerateInvalidObjects;
+/**
+ Convert any object to JSON string
+
+ @param object the object which maybe match JSON element
+ @param options the options, kNilOptions for compact string.
+ @param filterInvalidObjects YES will filter invalid objects. NO will force to convert, return nil if not valid.
+ @return the JSON formatted string
+ */
++ (nullable NSString *)JSONStringWithObject:(id)object printOptions:(NSJSONWritingOptions)options filterInvalidObjects:(BOOL)filterInvalidObjects;
+
+#pragma mark > Safe JSON Object
+
+/**
+ Safe get JSON object (NSArray/NSDictionary/NSString/NSNumber/NSNull)
+
+ @param object the any object
+ @return the JSON object which is valid for +[NSJSONSerialization isValidJSONObject:]
+ @discussion This method maybe return a new instance which is different from the object
+ */
++ (nullable id)safeJSONObjectWithObject:(id)object;
 
 #pragma mark - String to Object
 
