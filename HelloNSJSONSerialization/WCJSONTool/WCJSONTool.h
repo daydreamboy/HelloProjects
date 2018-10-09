@@ -10,21 +10,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSArray (WCJSONTool)
-#pragma mark - JSON String
-/// Get a json string of NSArray with plain style
-- (NSString *)JSONString;
-/// Get a json string of NSArray with readable style
-- (NSString *)JSONStringWithReadability;
-
-@end
-
-@interface NSDictionary (WCJSONTool)
-#pragma mark - JSON string
-- (NSString *)JSONString;
-- (NSString *)JSONStringWithReadability;
-@end
-
 NS_AVAILABLE_IOS(5_0)
 @interface WCJSONTool : NSObject
 
@@ -34,7 +19,10 @@ NS_AVAILABLE_IOS(5_0)
  Convert object to JSON string
 
  @param object the object which can match JSON element, e.g. NSArray/NSDictionary/NSNumber/NSString/NSNull
- @param options the options, kNilOptions for compact string.
+ @param options the options
+        - kNilOptions for compact string.
+        - NSJSONWritingPrettyPrinted for pretty printed string.
+        - NSJSONWritingSortedKeys for sorted keys.
  @return the JSON formatted string
  
  @see https://www.json.org/
@@ -46,7 +34,10 @@ NS_AVAILABLE_IOS(5_0)
  Convert any object to JSON string
 
  @param object the object which maybe match JSON element
- @param options the options, kNilOptions for compact string.
+ @param options the options
+        - kNilOptions for compact string.
+        - NSJSONWritingPrettyPrinted for pretty printed string.
+        - NSJSONWritingSortedKeys for sorted keys.
  @param filterInvalidObjects YES will filter invalid objects. NO will force to convert, return nil if not valid.
  @return the JSON formatted string
  */

@@ -10,6 +10,8 @@
 		4F2DF697205BAD2A0097EF50 /* NSJSONReadingAllowFragmentsIssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2DF693205BAD2A0097EF50 /* NSJSONReadingAllowFragmentsIssueViewController.m */; };
 		4F2DF698205BAD2A0097EF50 /* MixJSONObjectWithEscapedJSONStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2DF696205BAD2A0097EF50 /* MixJSONObjectWithEscapedJSONStringViewController.m */; };
 		4F2DF69B205BAD3F0097EF50 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2DF69A205BAD3F0097EF50 /* RootViewController.m */; };
+		4F4588CA215CD21C005A52C8 /* WCJSONTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70BC1420301C600017C99B /* WCJSONTool.m */; };
+		4F4588CC215CD56A005A52C8 /* Tests_NSJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4588CB215CD56A005A52C8 /* Tests_NSJSONSerialization.m */; };
 		4F53314B208746F10016F650 /* theme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F53314A208746F10016F650 /* theme.plist */; };
 		4F70BBFE203012BD0017C99B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70BBFD203012BD0017C99B /* AppDelegate.m */; };
 		4F70BC06203012BD0017C99B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F70BC05203012BD0017C99B /* Assets.xcassets */; };
@@ -36,6 +38,7 @@
 		4F2DF696205BAD2A0097EF50 /* MixJSONObjectWithEscapedJSONStringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixJSONObjectWithEscapedJSONStringViewController.m; sourceTree = "<group>"; };
 		4F2DF699205BAD3F0097EF50 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F2DF69A205BAD3F0097EF50 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		4F4588CB215CD56A005A52C8 /* Tests_NSJSONSerialization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSJSONSerialization.m; sourceTree = "<group>"; };
 		4F53314A208746F10016F650 /* theme.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = theme.plist; sourceTree = "<group>"; };
 		4F70BBF9203012BD0017C99B /* HelloNSJSONSerialization.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSJSONSerialization.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F70BBFC203012BD0017C99B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -129,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				4F70BC35203025CE0017C99B /* Test.m */,
+				4F4588CB215CD56A005A52C8 /* Tests_NSJSONSerialization.m */,
 				4F70BC37203025CE0017C99B /* Info.plist */,
 			);
 			path = Test;
@@ -178,7 +182,7 @@
 		4F70BBF1203012BD0017C99B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = wesley_chen;
 				TargetAttributes = {
 					4F70BBF8203012BD0017C99B = {
@@ -249,7 +253,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F4588CA215CD21C005A52C8 /* WCJSONTool.m in Sources */,
 				4F70BC36203025CE0017C99B /* Test.m in Sources */,
+				4F4588CC215CD56A005A52C8 /* Tests_NSJSONSerialization.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +295,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -296,6 +303,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -344,6 +352,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -351,6 +360,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

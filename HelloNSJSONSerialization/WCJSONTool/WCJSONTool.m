@@ -8,34 +8,6 @@
 
 #import "WCJSONTool.h"
 
-@interface WCJSONTool ()
-+ (NSString *)JSONStringWithObject:(id)object printOptions:(NSJSONWritingOptions)options;
-@end
-
-@implementation NSArray (WCJSONTool)
-
-- (NSString *)JSONString {
-    return [WCJSONTool JSONStringWithObject:self printOptions:kNilOptions];
-}
-
-- (NSString *)JSONStringWithReadability {
-    return [WCJSONTool JSONStringWithObject:self printOptions:NSJSONWritingPrettyPrinted];
-}
-
-@end
-
-@implementation NSDictionary (WCJSONTool)
-
-- (NSString *)JSONString {
-    return [WCJSONTool JSONStringWithObject:self printOptions:kNilOptions];
-}
-
-- (NSString *)JSONStringWithReadability {
-    return [WCJSONTool JSONStringWithObject:self printOptions:NSJSONWritingPrettyPrinted];
-}
-
-@end
-
 @implementation WCJSONTool
 
 #pragma mark - Object to String
