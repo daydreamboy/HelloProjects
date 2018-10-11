@@ -357,6 +357,21 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSString *)insertSeparatorWithString:(NSString *)string separator:(NSString *)separator atInterval:(NSInteger)interval;
 
+#pragma mark > String Modification
+
+/**
+ Replace string by multiple ranges
+
+ @param string the original string
+ @param ranges the ranges to replace which elements are NSValue
+ @param replacementStrings the strings to replace
+ @return the replaced string. Return nil if the parameters are not valid. Return the original string if the parameters are empty array.
+ @discussion The parameters condition are considered
+    - the ranges should be valid. (1) ranges have no intersection; (2) ranges not out of the original string
+    - the ranges and replacementStrings have same length
+ */
++ (nullable NSString *)replaceCharactersInRangesWithString:(NSString *)string ranges:(NSArray<NSValue *> *)ranges replacementStrings:(NSArray<NSString *> *)replacementStrings;
+
 #pragma mark > String Conversion
 
 #pragma mark >> String to CGRect/UIEdgeInsets/UIColor

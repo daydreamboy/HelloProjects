@@ -647,6 +647,8 @@
              ];
     components = [WCStringTool componentsWithString:string gapRanges:gaps];
     NSLog(@"%@", components);
+    
+    
 }
 
 #pragma mark > String Generation
@@ -764,6 +766,152 @@
     inputString = @"AAABBCDDDDEEFF";
     NSLog(@"\"%@\"", [WCStringTool collapseAdjacentCharactersWithString:inputString characters:@"ABCDEf"]);
     NSLog(@"-----------------------------");
+}
+
+#pragma mark > String Modification
+
+- (void)test_replaceCharactersInRangesWithString_ranges_replacementStrings {
+    NSString *inputString;
+    NSArray<NSValue *> *ranges;
+    NSArray<NSString *> *replacements;
+    NSString *outputString;
+    
+    // Case 1
+    inputString = @"0123456789";
+    ranges = @[
+               [NSValue valueWithRange:NSMakeRange(0, 1)],
+               [NSValue valueWithRange:NSMakeRange(1, 1)],
+               [NSValue valueWithRange:NSMakeRange(2, 1)],
+               [NSValue valueWithRange:NSMakeRange(3, 1)],
+               [NSValue valueWithRange:NSMakeRange(4, 1)],
+               [NSValue valueWithRange:NSMakeRange(5, 1)],
+               [NSValue valueWithRange:NSMakeRange(6, 1)],
+               [NSValue valueWithRange:NSMakeRange(7, 1)],
+               [NSValue valueWithRange:NSMakeRange(8, 1)],
+               [NSValue valueWithRange:NSMakeRange(9, 1)],
+               ];
+    replacements = @[
+                     @"Aa",
+                     @"Bb",
+                     @"Cc",
+                     @"Dd",
+                     @"Ee",
+                     @"Ff",
+                     @"Gg",
+                     @"Hh",
+                     @"Ii",
+                     @"Jj",
+                     ];
+
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements];
+    XCTAssertEqualObjects(outputString, @"AaBbCcDdEeFfGgHhIiJj");
+
+    // Case 2
+    inputString = @"0123456789";
+    ranges = @[
+               [NSValue valueWithRange:NSMakeRange(1, 3)],
+               [NSValue valueWithRange:NSMakeRange(7, 3)],
+               ];
+    replacements = @[
+                     @"A",
+                     @"B",
+                     ];
+
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements];
+    XCTAssertEqualObjects(outputString, @"0A456B");
+
+    // Case 3
+    inputString = @"0123456789";
+    ranges = @[
+               [NSValue valueWithRange:NSMakeRange(1, 3)],
+               [NSValue valueWithRange:NSMakeRange(7, 2)],
+               ];
+    replacements = @[
+                     @"A",
+                     @"B",
+                     ];
+
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements];
+    XCTAssertEqualObjects(outputString, @"0A456B9");
+
+    // Case 4
+    inputString = @"0中文12345678😆9";
+    ranges = @[
+               [NSValue valueWithRange:NSMakeRange(1, 2)],
+               // Note: 😆'length is 2
+               [NSValue valueWithRange:NSMakeRange(11, 2)],
+               ];
+    replacements = @[
+                     @"鐘文",
+                     @"😄",
+                     ];
+
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements];
+    XCTAssertEqualObjects(outputString, @"0鐘文12345678😄9");
+
+    // Case 5
+    inputString = @"0123456789";
+    ranges = @[
+               [NSValue valueWithRange:NSMakeRange(9, 1)],
+               [NSValue valueWithRange:NSMakeRange(8, 1)],
+               [NSValue valueWithRange:NSMakeRange(7, 1)],
+               [NSValue valueWithRange:NSMakeRange(6, 1)],
+               [NSValue valueWithRange:NSMakeRange(5, 1)],
+               [NSValue valueWithRange:NSMakeRange(4, 1)],
+               [NSValue valueWithRange:NSMakeRange(3, 1)],
+               [NSValue valueWithRange:NSMakeRange(2, 1)],
+               [NSValue valueWithRange:NSMakeRange(1, 1)],
+               [NSValue valueWithRange:NSMakeRange(0, 1)],
+               ];
+    replacements = @[
+                     @"Jj",
+                     @"Ii",
+                     @"Hh",
+                     @"Gg",
+                     @"Ff",
+                     @"Ee",
+                     @"Dd",
+                     @"Cc",
+                     @"Bb",
+                     @"Aa",
+                     ];
+
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements];
+    XCTAssertEqualObjects(outputString, @"AaBbCcDdEeFfGgHhIiJj");
+
+    // Case 5
+    inputString = @"0123456789";
+    ranges = @[];
+    replacements = @[];
+
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements];
+    XCTAssertEqualObjects(outputString, @"0123456789");
+
+    // Abnormal Case 1: range out of bounds
+    inputString = @"0123456789";
+    ranges = @[
+               [NSValue valueWithRange:NSMakeRange(0, 11)],
+               ];
+    replacements = @[
+                     @"A",
+                     ];
+
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements];
+    XCTAssertNil(outputString);
+    
+    // Abnormal Case 2: ranges has intersection
+    inputString = @"0123456789";
+    ranges = @[
+               [NSValue valueWithRange:NSMakeRange(0, 3)],
+               [NSValue valueWithRange:NSMakeRange(1, 1)],
+               ];
+    replacements = @[
+                     @"A",
+                     @"B",
+                     ];
+    
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements];
+    XCTAssertNil(outputString);
 }
 
 #pragma mark > String Conversion
@@ -1100,6 +1248,29 @@
     
     NSString *str = @"\u5404\u500b\u90fd";
     NSLog(@"%@", str);
+}
+
+- (void)test_mutableString {
+    NSMutableString *string;
+    
+    // Case 1
+    string = [@"0123456789" mutableCopy];
+    
+    
+}
+
+- (void)test_iterate_characters {
+    // Case 1: @see https://gist.github.com/kharmabum/9455944
+    
+    NSString *s = @"The weather on \U0001F30D is \U0001F31E today.";
+    // The weather on 🌍 is 🌞 today.
+    NSRange fullRange = NSMakeRange(0, [s length]);
+    [s enumerateSubstringsInRange:fullRange
+                          options:NSStringEnumerationByComposedCharacterSequences
+                       usingBlock:^(NSString *substring, NSRange substringRange,
+                                    NSRange enclosingRange, BOOL *stop) {
+        NSLog(@"%@ %@", substring, NSStringFromRange(substringRange));
+    }];
 }
 
 @end
