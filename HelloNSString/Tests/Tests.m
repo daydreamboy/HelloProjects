@@ -770,7 +770,7 @@
 
 #pragma mark > String Modification
 
-- (void)test_replaceCharactersInRangesWithString_ranges_replacementStrings {
+- (void)test_replaceCharactersInRangesWithString_ranges_replacementStrings_replacementRanges {
     NSString *inputString;
     NSArray<NSValue *> *ranges;
     NSArray<NSString *> *replacements;
@@ -803,7 +803,7 @@
                      @"Jj",
                      ];
 
-    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements];
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:nil];
     XCTAssertEqualObjects(outputString, @"AaBbCcDdEeFfGgHhIiJj");
 
     // Case 2
@@ -817,7 +817,7 @@
                      @"B",
                      ];
 
-    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements];
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:nil];
     XCTAssertEqualObjects(outputString, @"0A456B");
 
     // Case 3
@@ -831,7 +831,7 @@
                      @"B",
                      ];
 
-    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements];
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:nil];
     XCTAssertEqualObjects(outputString, @"0A456B9");
 
     // Case 4
@@ -846,7 +846,7 @@
                      @"😄",
                      ];
 
-    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements];
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:nil];
     XCTAssertEqualObjects(outputString, @"0鐘文12345678😄9");
 
     // Case 5
@@ -876,7 +876,7 @@
                      @"Aa",
                      ];
 
-    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements];
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:nil];
     XCTAssertEqualObjects(outputString, @"AaBbCcDdEeFfGgHhIiJj");
 
     // Case 5
@@ -884,7 +884,7 @@
     ranges = @[];
     replacements = @[];
 
-    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements];
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:nil];
     XCTAssertEqualObjects(outputString, @"0123456789");
 
     // Abnormal Case 1: range out of bounds
@@ -896,7 +896,7 @@
                      @"A",
                      ];
 
-    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements];
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:nil];
     XCTAssertNil(outputString);
     
     // Abnormal Case 2: ranges has intersection
@@ -910,7 +910,7 @@
                      @"B",
                      ];
     
-    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements];
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:nil];
     XCTAssertNil(outputString);
 }
 

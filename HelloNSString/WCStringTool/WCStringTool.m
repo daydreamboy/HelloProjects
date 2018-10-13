@@ -814,11 +814,16 @@
 
 #pragma mark > String Modification
 
-+ (nullable NSString *)replaceCharactersInRangesWithString:(NSString *)string ranges:(NSArray<NSValue *> *)ranges replacementStrings:(NSArray<NSString *> *)replacementStrings {
++ (nullable NSString *)replaceCharactersInRangesWithString:(NSString *)string ranges:(NSArray<NSValue *> *)ranges replacementStrings:(NSArray<NSString *> *)replacementStrings replacementRanges:(inout nullable NSMutableArray<NSValue *> *)replacementRanges {
     if (![string isKindOfClass:[NSString class]] ||
         ![ranges isKindOfClass:[NSArray class]] ||
         ![replacementStrings isKindOfClass:[NSArray class]] ||
         ranges.count != replacementStrings.count) {
+        return nil;
+    }
+    
+    // Parameter check: replacementRanges
+    if (replacementRanges && ![replacementRanges isKindOfClass:[NSMutableArray class]]) {
         return nil;
     }
     
@@ -887,6 +892,7 @@
     };
     
     NSMutableArray<NSString *> *replacementStringsM = [replacementStrings mutableCopy];
+    [replacementRanges removeAllObjects];
     
     NSMutableString *stringM = [NSMutableString stringWithCapacity:string.length];
     [string enumerateSubstringsInRange:NSMakeRange(0, string.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
@@ -897,12 +903,20 @@
         NSInteger index = checkChacterInRanges(rangeOfCharacter);
         if (index != NSNotFound) {
             NSValue *rangeValue = sortedRanges[index];
+            
+            // Note: find the index of the replacement string in unsorted array
             NSInteger indexOfReplacementString = [ranges indexOfObject:rangeValue];
             if (indexOfReplacementString != NSNotFound) {
                 NSString *stringToInsert = replacementStringsM[indexOfReplacementString];
                 
                 if (stringToInsert.length) {
                     [stringM appendString:stringToInsert];
+                    
+                    // Note: the range of stringToInsert
+                    NSRange replacementRange = NSMakeRange(stringM.length, stringToInsert.length);
+                    [replacementRanges addObject:[NSValue valueWithRange:replacementRange]];
+                    
+                    // Note: set the stringToInsert to @"" to avoid inserting again
                     replacementStringsM[indexOfReplacementString] = @"";
                 }
             }

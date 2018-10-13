@@ -14,6 +14,8 @@
 #define IOS11_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"11.0" options:NSNumericSearch] != NSOrderedAscending)
 #endif
 
+#define STR_OF_JSON(...) @#__VA_ARGS__
+
 @interface Test : XCTestCase
 
 @end
@@ -147,8 +149,9 @@
 - (void)test_WCJSONTool_mutableDictionaryWithJSONString {
     NSDictionary *dict;
     NSString *jsonString;
+    NSMutableDictionary *dictM;
     
-    // case 1: normal
+    // Case 1: normal
     dict = @{
              @"str": @"valueOfStr",
              @"url": @"http://www.baidu.com/",
@@ -156,7 +159,17 @@
              @"key": @"中文汉字"
              };
     jsonString = [WCJSONTool JSONStringWithObject:dict printOptions:kNilOptions];
-    NSMutableDictionary *dictM = [WCJSONTool JSONMutableDictWithString:jsonString];
+    dictM = [WCJSONTool JSONMutableDictWithString:jsonString];
+    XCTAssertTrue([dictM isKindOfClass:[NSMutableDictionary class]]);
+    NSLog(@"mutuable dictionary: %@", dictM);
+
+    
+    // Case 2
+    jsonString = STR_OF_JSON(
+                             {"api":"mtop.taobao.amp2.im.msgAction","v":"1.0","needecode":true,"needsession":true,"params":{"sessionViewId":"0_U_1956212549#3_2554606548#3_1_1956212549#3","msgCode":"0_U_2554606548_1956212549_1539096778077_185571796986","map":{"op":"like"}}}
+                             );
+    
+    dictM = [WCJSONTool JSONMutableDictWithString:jsonString];
     XCTAssertTrue([dictM isKindOfClass:[NSMutableDictionary class]]);
     NSLog(@"mutuable dictionary: %@", dictM);
 }
