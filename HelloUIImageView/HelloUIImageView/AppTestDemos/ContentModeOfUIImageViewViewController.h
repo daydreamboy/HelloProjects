@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CenterImageInUIImageViewViewController : UIViewController
+@interface ContentModeOfUIImageViewViewController : UIViewController
 
 
 @end

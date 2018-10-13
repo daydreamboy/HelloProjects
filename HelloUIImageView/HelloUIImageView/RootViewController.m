@@ -8,10 +8,11 @@
 
 #import "RootViewController.h"
 
-#import "CenterImageInUIImageViewViewController.h"
+#import "ContentModeOfUIImageViewViewController.h"
 #import "RoundedImageInUIImageViewViewController.h"
 #import "AddShadowBorderToImageViewController.h"
 #import "MaskImageViewViewController.h"
+#import "AspectRatioScaledImageViewInsideRectViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -34,16 +35,18 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"Center image in UIImageView",
+        @"contentMode of UIImageView",
         @"Make rounded image",
         @"Add shadow border to image",
         @"Mask a image by antoher image",
+        @"Aspect ratio scaled image",
     ];
     _classes = @[
-        [CenterImageInUIImageViewViewController class],
+        [ContentModeOfUIImageViewViewController class],
         [RoundedImageInUIImageViewViewController class],
         [AddShadowBorderToImageViewController class],
         [MaskImageViewViewController class],
+        [AspectRatioScaledImageViewInsideRectViewController class],
         @"testMethod",
     ];
 }
