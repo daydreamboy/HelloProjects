@@ -276,24 +276,54 @@
     CGSize scaledSize = CGSizeZero;
     
     if (contentSize.width > contentSize.height) {
-        // Note: landscape, scale by width ratio
+        // Note: landscape
+        // 1. firstly scale by width ratio
         CGFloat ratioByWidth = (boundingSize.width / contentSize.width);
         
-        scaledSize = CGSizeMake(boundingSize.width, contentSize.height * ratioByWidth);
+        if (contentSize.height * ratioByWidth <= boundingSize.height) {
+            scaledSize = CGSizeMake(boundingSize.width, contentSize.height * ratioByWidth);
+        }
+        else {
+            // 2. if scale by width ratio, scaled height is still greater than boundingSize.height, then scale by height ratio
+            CGFloat ratioByHeight = (boundingSize.height / contentSize.height);
+            scaledSize = CGSizeMake(contentSize.width * ratioByHeight, boundingSize.height);
+        }
     }
     else if (contentSize.width < contentSize.height) {
-        // Note: portrait, scale by height ratio
+        // Note: portrait
+        // 1. firstly scale by height ratio
         CGFloat ratioByHeight = (boundingSize.height / contentSize.height);
         
-        scaledSize = CGSizeMake(contentSize.width * ratioByHeight, boundingSize.height);
+        if (contentSize.width * ratioByHeight <= boundingSize.width) {
+            scaledSize = CGSizeMake(contentSize.width * ratioByHeight, boundingSize.height);
+        }
+        else {
+            // 2. if scale by height ratio, scaled width is still greater than boundingSize.width, then scale by width ratio
+            CGFloat ratioByWidth = (boundingSize.width / contentSize.width);
+            scaledSize = CGSizeMake(boundingSize.width, contentSize.height * ratioByWidth);
+        }
     }
     else {
-        // Note: squared, scale by width or height ratio
+        // Note: squared
+        // 1. firstly scale by width ratio
         CGFloat ratioByWidth = (boundingSize.width / contentSize.width);
         
-        scaledSize = CGSizeMake(boundingSize.width, contentSize.height * ratioByWidth);
+        if (contentSize.height * ratioByWidth <= boundingSize.height) {
+            scaledSize = CGSizeMake(boundingSize.width, contentSize.height * ratioByWidth);
+        }
+        else {
+            // 2. if scale by width ratio, scaled height is still greater than boundingSize.height, then scale by height ratio
+            CGFloat ratioByHeight = (boundingSize.height / contentSize.height);
+            scaledSize = CGSizeMake(contentSize.width * ratioByHeight, boundingSize.height);
+        }
     }
-    
+
+#if DEBUG
+    if (scaledSize.width > boundingSize.width || scaledSize.height > boundingSize.height) {
+        NSLog(@"This line should never show. Check scaledSize");
+    }
+#endif
+
     CGRect scaledRect = CGRectMake(boundingRect.origin.x + (CGRectGetWidth(boundingRect) - scaledSize.width) / 2.0, boundingRect.origin.y +  (CGRectGetHeight(boundingRect) - scaledSize.height) / 2.0, scaledSize.width, scaledSize.height);
     return scaledRect;
 }
