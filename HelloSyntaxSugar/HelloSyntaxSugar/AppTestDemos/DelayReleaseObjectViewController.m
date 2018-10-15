@@ -29,6 +29,12 @@
 }
 
 - (void)dealloc {
+    [self test_safe_delay_release];
+    //[self test_bad_delay_release];
+    //[self test_delay_release_not_work];
+}
+
+- (void)test_safe_delay_release {
     // @see https://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/
     MyObject *tempObject = _myObject;
     _myObject = nil;
@@ -36,6 +42,23 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // Note: use it to avoid warning
         [tempObject class];
+    });
+}
+
+- (void)test_bad_delay_release {
+    NSLog(@"start to dealloc");
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // Crash: EXC_BAD_ACCESS
+        _myObject = nil;
+    });
+}
+
+- (void)test_delay_release_not_work {
+    // Crash: objc[31817]: Cannot form weak reference to instance (0x7f88a0919ea0) of class DelayReleaseObjectViewController. It is possible that this object was over-released, or is in the process of deallocation.
+    __weak typeof(self) weak_self = self;
+    NSLog(@"start to dealloc");
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        weak_self.myObject = nil;
     });
 }
 
