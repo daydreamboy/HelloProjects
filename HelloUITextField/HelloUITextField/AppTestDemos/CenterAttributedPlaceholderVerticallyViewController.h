@@ -1,5 +1,5 @@
 //
-//  Demo2ViewController.h
+//  CenterAttributedPlaceholderVerticallyViewController.h
 //  HelloUITextField
 //
 //  Created by wesley chen on 16/7/9.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Demo2ViewController : UIViewController
+@interface CenterAttributedPlaceholderVerticallyViewController : UIViewController
 
 @end

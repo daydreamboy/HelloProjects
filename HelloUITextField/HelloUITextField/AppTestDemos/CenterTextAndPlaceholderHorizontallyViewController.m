@@ -1,16 +1,16 @@
 //
-//  Demo3ViewController.m
+//  CenterTextAndPlaceholderHorizontallyViewController.m
 //  HelloUITextField
 //
 //  Created by wesley chen on 16/9/9.
 //  Copyright © 2016年 wesley_chen. All rights reserved.
 //
 
-#import "Demo3ViewController.h"
+#import "CenterTextAndPlaceholderHorizontallyViewController.h"
 
-// MARK: center UITextField's text and placeholder
+// MARK: center horizontally UITextField's text and placeholder
 // @sa http://stackoverflow.com/questions/25436637/how-do-i-centre-uitextfield-cursor-after-user-input-consistently
-@interface Demo3ViewController () <UITextFieldDelegate>
+@interface CenterTextAndPlaceholderHorizontallyViewController () <UITextFieldDelegate>
 @property (nonatomic, strong) UITextField *textField1;
 @property (nonatomic, strong) UITextField *textField2;
 @property (nonatomic, strong) UITextField *textField3;
@@ -19,7 +19,7 @@
 
 @end
 
-@implementation Demo3ViewController
+@implementation CenterTextAndPlaceholderHorizontallyViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

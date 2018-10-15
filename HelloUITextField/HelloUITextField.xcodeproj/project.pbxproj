@@ -14,8 +14,8 @@
 		2B0A92061AFCAB4300416EDB /* HelloUITextFieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0A92051AFCAB4300416EDB /* HelloUITextFieldTests.m */; };
 		2BC57D651D30BB220094953E /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC57D641D30BB220094953E /* Demo1ViewController.m */; };
 		2BC57D681D30BB290094953E /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC57D671D30BB290094953E /* RootViewController.m */; };
-		2BC57D6B1D30C2B70094953E /* Demo2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC57D6A1D30C2B70094953E /* Demo2ViewController.m */; };
-		2BD55BBF1D83132900AF2DEB /* Demo3ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD55BBE1D83132900AF2DEB /* Demo3ViewController.m */; };
+		2BC57D6B1D30C2B70094953E /* CenterAttributedPlaceholderVerticallyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC57D6A1D30C2B70094953E /* CenterAttributedPlaceholderVerticallyViewController.m */; };
+		2BD55BBF1D83132900AF2DEB /* CenterTextAndPlaceholderHorizontallyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD55BBE1D83132900AF2DEB /* CenterTextAndPlaceholderHorizontallyViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,10 +43,10 @@
 		2BC57D641D30BB220094953E /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
 		2BC57D661D30BB290094953E /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		2BC57D671D30BB290094953E /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		2BC57D691D30C2B70094953E /* Demo2ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo2ViewController.h; sourceTree = "<group>"; };
-		2BC57D6A1D30C2B70094953E /* Demo2ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo2ViewController.m; sourceTree = "<group>"; };
-		2BD55BBD1D83132900AF2DEB /* Demo3ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo3ViewController.h; sourceTree = "<group>"; };
-		2BD55BBE1D83132900AF2DEB /* Demo3ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo3ViewController.m; sourceTree = "<group>"; };
+		2BC57D691D30C2B70094953E /* CenterAttributedPlaceholderVerticallyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterAttributedPlaceholderVerticallyViewController.h; sourceTree = "<group>"; };
+		2BC57D6A1D30C2B70094953E /* CenterAttributedPlaceholderVerticallyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterAttributedPlaceholderVerticallyViewController.m; sourceTree = "<group>"; };
+		2BD55BBD1D83132900AF2DEB /* CenterTextAndPlaceholderHorizontallyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterTextAndPlaceholderHorizontallyViewController.h; sourceTree = "<group>"; };
+		2BD55BBE1D83132900AF2DEB /* CenterTextAndPlaceholderHorizontallyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterTextAndPlaceholderHorizontallyViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,10 +131,10 @@
 			children = (
 				2BC57D631D30BB220094953E /* Demo1ViewController.h */,
 				2BC57D641D30BB220094953E /* Demo1ViewController.m */,
-				2BC57D691D30C2B70094953E /* Demo2ViewController.h */,
-				2BC57D6A1D30C2B70094953E /* Demo2ViewController.m */,
-				2BD55BBD1D83132900AF2DEB /* Demo3ViewController.h */,
-				2BD55BBE1D83132900AF2DEB /* Demo3ViewController.m */,
+				2BC57D691D30C2B70094953E /* CenterAttributedPlaceholderVerticallyViewController.h */,
+				2BC57D6A1D30C2B70094953E /* CenterAttributedPlaceholderVerticallyViewController.m */,
+				2BD55BBD1D83132900AF2DEB /* CenterTextAndPlaceholderHorizontallyViewController.h */,
+				2BD55BBE1D83132900AF2DEB /* CenterTextAndPlaceholderHorizontallyViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -239,10 +239,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BC57D6B1D30C2B70094953E /* Demo2ViewController.m in Sources */,
+				2BC57D6B1D30C2B70094953E /* CenterAttributedPlaceholderVerticallyViewController.m in Sources */,
 				2B0A91EF1AFCAB4300416EDB /* AppDelegate.m in Sources */,
 				2BC57D651D30BB220094953E /* Demo1ViewController.m in Sources */,
-				2BD55BBF1D83132900AF2DEB /* Demo3ViewController.m in Sources */,
+				2BD55BBF1D83132900AF2DEB /* CenterTextAndPlaceholderHorizontallyViewController.m in Sources */,
 				2B0A91EC1AFCAB4300416EDB /* main.m in Sources */,
 				2BC57D681D30BB290094953E /* RootViewController.m in Sources */,
 			);

@@ -1,21 +1,21 @@
 //
-//  Demo2ViewController.m
+//  CenterAttributedPlaceholderVerticallyViewController.m
 //  HelloUITextField
 //
 //  Created by wesley chen on 16/7/9.
 //  Copyright © 2016年 wesley_chen. All rights reserved.
 //
 
-#import "Demo2ViewController.h"
+#import "CenterAttributedPlaceholderVerticallyViewController.h"
 
 // MARK: center vertically UITextField's attributedPlaceholder
-@interface Demo2ViewController () <UITextFieldDelegate>
+@interface CenterAttributedPlaceholderVerticallyViewController () <UITextFieldDelegate>
 @property (nonatomic, strong) UITextField *textField1;
 @property (nonatomic, strong) UITextField *textField2;
 @property (nonatomic, strong) UITextField *textField3;
 @end
 
-@implementation Demo2ViewController
+@implementation CenterAttributedPlaceholderVerticallyViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

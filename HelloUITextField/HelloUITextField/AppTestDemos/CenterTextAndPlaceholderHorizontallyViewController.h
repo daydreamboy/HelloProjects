@@ -1,5 +1,5 @@
 //
-//  Demo3ViewController.h
+//  CenterTextAndPlaceholderHorizontallyViewController.h
 //  HelloUITextField
 //
 //  Created by wesley chen on 16/9/9.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Demo3ViewController : UIViewController
+@interface CenterTextAndPlaceholderHorizontallyViewController : UIViewController
 
 @end
