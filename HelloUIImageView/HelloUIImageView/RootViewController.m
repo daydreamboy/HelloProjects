@@ -12,7 +12,9 @@
 #import "RoundedImageInUIImageViewViewController.h"
 #import "AddShadowBorderToImageViewController.h"
 #import "MaskImageViewViewController.h"
-#import "AspectRatioScaledImageViewInsideRectViewController.h"
+#import "AspectRatioScaledImageViewInsideRectViewController1.h"
+#import "AspectRatioScaledImageViewInsideRectViewController2.h"
+#import "AspectRatioScaledImageViewInsideRectViewController3.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -40,13 +42,17 @@
         @"Add shadow border to image",
         @"Mask a image by antoher image",
         @"Aspect ratio scaled image",
+        @"Safe aspect ratio scaled image 1",
+        @"Safe aspect ratio scaled image 2",
     ];
     _classes = @[
         [ContentModeOfUIImageViewViewController class],
         [RoundedImageInUIImageViewViewController class],
         [AddShadowBorderToImageViewController class],
         [MaskImageViewViewController class],
-        [AspectRatioScaledImageViewInsideRectViewController class],
+        [AspectRatioScaledImageViewInsideRectViewController1 class],
+        [AspectRatioScaledImageViewInsideRectViewController2 class],
+        [AspectRatioScaledImageViewInsideRectViewController3 class],
         @"testMethod",
     ];
 }

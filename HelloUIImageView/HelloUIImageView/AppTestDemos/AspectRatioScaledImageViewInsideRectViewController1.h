@@ -1,5 +1,5 @@
 //
-//  AspectRatioScaledImageViewInsideRectViewController.h
+//  AspectRatioScaledImageViewInsideRectViewController1.h
 //  HelloUIImageView
 //
 //  Created by wesley_chen on 2018/10/12.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AspectRatioScaledImageViewInsideRectViewController : UIViewController
+@interface AspectRatioScaledImageViewInsideRectViewController1 : UIViewController
 
 @end

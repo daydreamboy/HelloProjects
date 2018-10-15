@@ -1,13 +1,13 @@
 //
-//  AspectRatioScaledImageViewInsideRectViewController.m
+//  AspectRatioScaledImageViewInsideRectViewController3.m
 //  HelloUIImageView
 //
-//  Created by wesley_chen on 2018/10/12.
+//  Created by wesley_chen on 2018/10/15.
 //  Copyright © 2018 wesley_chen. All rights reserved.
 //
 
-#import "AspectRatioScaledImageViewInsideRectViewController.h"
-#import <AVFoundation/AVFoundation.h>
+#import "AspectRatioScaledImageViewInsideRectViewController3.h"
+#import "WCViewTool.h"
 
 /**
  macro for [UIImage imageNamed:@"xxx"]
@@ -18,15 +18,15 @@
  */
 #define UIImageInResourceBundle(imageName, resource_bundle)  ([UIImage imageNamed:[(resource_bundle) stringByAppendingPathComponent:(imageName)]])
 
-#define BoundingSize CGSizeMake(300, 300)
+#define BoundingSize CGSizeMake(300, 200)
 
-@interface AspectRatioScaledImageViewInsideRectViewController ()
+@interface AspectRatioScaledImageViewInsideRectViewController3 ()
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIView *boundingView;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @end
 
-@implementation AspectRatioScaledImageViewInsideRectViewController
+@implementation AspectRatioScaledImageViewInsideRectViewController3
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -63,7 +63,7 @@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake((screenSize.width - BoundingSize.width) / 2.0, y, BoundingSize.width, BoundingSize.height)];
     
     UIImage *image = UIImageInResourceBundle(imageName, @"");
-    CGRect aspectScaledRect = AVMakeRectWithAspectRatioInsideRect(image.size, view.bounds);
+    CGRect aspectScaledRect = [WCViewTool makeAspectRatioRectWithContentSize:image.size insideBoundingRect:view.bounds];
     
     UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
     imageView.frame = aspectScaledRect;

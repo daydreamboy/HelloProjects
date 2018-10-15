@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		4F5072352170A283007CBFFB /* walnuts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F5072342170A283007CBFFB /* walnuts@2x.png */; };
 		4F50723D2170A64E007CBFFB /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50723C2170A64E007CBFFB /* Tests.m */; };
-		4F5072462170C270007CBFFB /* AspectRatioScaledImageViewInsideRectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5072452170C270007CBFFB /* AspectRatioScaledImageViewInsideRectViewController.m */; };
+		4F5072462170C270007CBFFB /* AspectRatioScaledImageViewInsideRectViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5072452170C270007CBFFB /* AspectRatioScaledImageViewInsideRectViewController1.m */; };
 		4F60620521353A0100D049DF /* WCImageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60620421353A0100D049DF /* WCImageTool.m */; };
 		4F60620F21357B8200D049DF /* image.pNG in Resources */ = {isa = PBXBuildFile; fileRef = 4F60620E21357B8200D049DF /* image.pNG */; };
 		4F60621321358D1A00D049DF /* WCImageViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60621221358D1900D049DF /* WCImageViewTool.m */; };
@@ -22,6 +22,9 @@
 		4F60622521358D2D00D049DF /* aliwx_card_bubble_right_bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F60621E21358D2C00D049DF /* aliwx_card_bubble_right_bg@3x.png */; };
 		4F60622621358D2D00D049DF /* mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F60621F21358D2C00D049DF /* mask@2x.png */; };
 		4F60622721358D2D00D049DF /* aliwx_card_bubble_right_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F60622021358D2C00D049DF /* aliwx_card_bubble_right_bg@2x.png */; };
+		4F67684121743D0800B371A7 /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F67684021743D0800B371A7 /* WCViewTool.m */; };
+		4F6768442174478300B371A7 /* AspectRatioScaledImageViewInsideRectViewController2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6768432174478300B371A7 /* AspectRatioScaledImageViewInsideRectViewController2.m */; };
+		4F6768472174479200B371A7 /* AspectRatioScaledImageViewInsideRectViewController3.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6768462174479200B371A7 /* AspectRatioScaledImageViewInsideRectViewController3.m */; };
 		4F759FFD213130DB000DDE60 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F759FFC213130DB000DDE60 /* AppDelegate.m */; };
 		4F75A005213130DD000DDE60 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F75A004213130DD000DDE60 /* Assets.xcassets */; };
 		4F75A008213130DD000DDE60 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F75A006213130DD000DDE60 /* LaunchScreen.storyboard */; };
@@ -55,8 +58,8 @@
 		4F50723A2170A64E007CBFFB /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F50723C2170A64E007CBFFB /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		4F50723E2170A64E007CBFFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4F5072442170C270007CBFFB /* AspectRatioScaledImageViewInsideRectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AspectRatioScaledImageViewInsideRectViewController.h; sourceTree = "<group>"; };
-		4F5072452170C270007CBFFB /* AspectRatioScaledImageViewInsideRectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AspectRatioScaledImageViewInsideRectViewController.m; sourceTree = "<group>"; };
+		4F5072442170C270007CBFFB /* AspectRatioScaledImageViewInsideRectViewController1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AspectRatioScaledImageViewInsideRectViewController1.h; sourceTree = "<group>"; };
+		4F5072452170C270007CBFFB /* AspectRatioScaledImageViewInsideRectViewController1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AspectRatioScaledImageViewInsideRectViewController1.m; sourceTree = "<group>"; };
 		4F60620321353A0100D049DF /* WCImageTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCImageTool.h; sourceTree = "<group>"; };
 		4F60620421353A0100D049DF /* WCImageTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCImageTool.m; sourceTree = "<group>"; };
 		4F60620E21357B8200D049DF /* image.pNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.pNG; sourceTree = "<group>"; };
@@ -73,6 +76,12 @@
 		4F60621E21358D2C00D049DF /* aliwx_card_bubble_right_bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aliwx_card_bubble_right_bg@3x.png"; sourceTree = "<group>"; };
 		4F60621F21358D2C00D049DF /* mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mask@2x.png"; sourceTree = "<group>"; };
 		4F60622021358D2C00D049DF /* aliwx_card_bubble_right_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aliwx_card_bubble_right_bg@2x.png"; sourceTree = "<group>"; };
+		4F67683F21743D0800B371A7 /* WCViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCViewTool.h; sourceTree = "<group>"; };
+		4F67684021743D0800B371A7 /* WCViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewTool.m; sourceTree = "<group>"; };
+		4F6768422174478300B371A7 /* AspectRatioScaledImageViewInsideRectViewController2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AspectRatioScaledImageViewInsideRectViewController2.h; sourceTree = "<group>"; };
+		4F6768432174478300B371A7 /* AspectRatioScaledImageViewInsideRectViewController2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AspectRatioScaledImageViewInsideRectViewController2.m; sourceTree = "<group>"; };
+		4F6768452174479200B371A7 /* AspectRatioScaledImageViewInsideRectViewController3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AspectRatioScaledImageViewInsideRectViewController3.h; sourceTree = "<group>"; };
+		4F6768462174479200B371A7 /* AspectRatioScaledImageViewInsideRectViewController3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AspectRatioScaledImageViewInsideRectViewController3.m; sourceTree = "<group>"; };
 		4F759FF8213130DB000DDE60 /* HelloUIImageView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUIImageView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F759FFB213130DB000DDE60 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F759FFC213130DB000DDE60 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -129,6 +138,8 @@
 			children = (
 				4F60620321353A0100D049DF /* WCImageTool.h */,
 				4F60620421353A0100D049DF /* WCImageTool.m */,
+				4F67683F21743D0800B371A7 /* WCViewTool.h */,
+				4F67684021743D0800B371A7 /* WCViewTool.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -190,8 +201,12 @@
 				4F60621721358D2400D049DF /* AddShadowBorderToImageViewController.m */,
 				4F60621521358D2300D049DF /* MaskImageViewViewController.h */,
 				4F60621421358D2300D049DF /* MaskImageViewViewController.m */,
-				4F5072442170C270007CBFFB /* AspectRatioScaledImageViewInsideRectViewController.h */,
-				4F5072452170C270007CBFFB /* AspectRatioScaledImageViewInsideRectViewController.m */,
+				4F5072442170C270007CBFFB /* AspectRatioScaledImageViewInsideRectViewController1.h */,
+				4F5072452170C270007CBFFB /* AspectRatioScaledImageViewInsideRectViewController1.m */,
+				4F6768422174478300B371A7 /* AspectRatioScaledImageViewInsideRectViewController2.h */,
+				4F6768432174478300B371A7 /* AspectRatioScaledImageViewInsideRectViewController2.m */,
+				4F6768452174479200B371A7 /* AspectRatioScaledImageViewInsideRectViewController3.h */,
+				4F6768462174479200B371A7 /* AspectRatioScaledImageViewInsideRectViewController3.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -355,15 +370,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F75A03F21313133000DDE60 /* ContentModeOfUIImageViewViewController.m in Sources */,
+				4F67684121743D0800B371A7 /* WCViewTool.m in Sources */,
 				4F60621821358D2400D049DF /* MaskImageViewViewController.m in Sources */,
 				4F75A00B213130DD000DDE60 /* main.m in Sources */,
 				4F759FFD213130DB000DDE60 /* AppDelegate.m in Sources */,
 				4F60621321358D1A00D049DF /* WCImageViewTool.m in Sources */,
 				4F961BA72132ED42009402F3 /* RoundedImageInUIImageViewViewController.m in Sources */,
 				4F60621921358D2400D049DF /* AddShadowBorderToImageViewController.m in Sources */,
+				4F6768442174478300B371A7 /* AspectRatioScaledImageViewInsideRectViewController2.m in Sources */,
 				4F75A04021313133000DDE60 /* RootViewController.m in Sources */,
 				4F60620521353A0100D049DF /* WCImageTool.m in Sources */,
-				4F5072462170C270007CBFFB /* AspectRatioScaledImageViewInsideRectViewController.m in Sources */,
+				4F6768472174479200B371A7 /* AspectRatioScaledImageViewInsideRectViewController3.m in Sources */,
+				4F5072462170C270007CBFFB /* AspectRatioScaledImageViewInsideRectViewController1.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

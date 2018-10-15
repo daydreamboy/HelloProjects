@@ -28,4 +28,5 @@
  @param capInsets the stretch cap inset. If no stretch, use UIEdgeInsetZero
  */
 + (void)setImageView:(UIImageView *)imageView maskImage:(UIImage *)maskImage contentImage:(UIImage *)contentImage capInsets:(UIEdgeInsets)capInsets;
+
 @end
