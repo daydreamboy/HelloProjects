@@ -102,6 +102,31 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)checkViewVisibleToUserWithView:(UIView *)view;
 
+#pragma mark - Assistant Methods
+
+#pragma mark > CGRect
+
+/**
+ Safe wrapper of AVMakeRectWithAspectRatioInsideRect
+ 
+ @param contentSize the content size to scale and fit to the bounding rect
+ @param boundingRect the bounding rect
+ @return the scaled rect
+ @header #import <AVFoundation/AVFoundation.h>
+ @discussion 1. The AVMakeRectWithAspectRatioInsideRect's signature is CGRect AVMakeRectWithAspectRatioInsideRect(CGSize aspectRatio, CGRect boundingRect), and contentSize for aspectRatio, boundingRect for boundingRect. 2. This method internally use AVMakeRectWithAspectRatioInsideRect.
+ */
++ (CGRect)safeAVMakeAspectRatioRectWithContentSize:(CGSize)contentSize insideBoundingRect:(CGRect)boundingRect;
+
+/**
+ Equivalent of AVMakeRectWithAspectRatioInsideRect
+ 
+ @param contentSize the content size to scale and fit to the bounding rect
+ @param boundingRect the bounding rect
+ @return the scaled rect
+ @discussion The AVMakeRectWithAspectRatioInsideRect's signature is CGRect AVMakeRectWithAspectRatioInsideRect(CGSize aspectRatio, CGRect boundingRect), and contentSize for aspectRatio, boundingRect for boundingRect
+ */
++ (CGRect)makeAspectRatioRectWithContentSize:(CGSize)contentSize insideBoundingRect:(CGRect)boundingRect;
+
 @end
 
 NS_ASSUME_NONNULL_END

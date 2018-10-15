@@ -12,6 +12,8 @@
 		4F517BB9212FD500008CE69F /* dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F517BB8212FD500008CE69F /* dog.jpg */; };
 		4F63EFE41FE10068000AFD6F /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63EFE31FE10068000AFD6F /* WCViewTool.m */; };
 		4F63EFE71FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63EFE61FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m */; };
+		4F67684F21746BBA00B371A7 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F67684E21746BBA00B371A7 /* Tests.m */; };
+		4F67685721746BE700B371A7 /* Tests_AVMakeRectWithAspectRatioInsideRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F67685621746BE700B371A7 /* Tests_AVMakeRectWithAspectRatioInsideRect.m */; };
 		4F7CB04920EF96CD00ABDED4 /* TouchThroughToUnderneathViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7CB04820EF96CD00ABDED4 /* TouchThroughToUnderneathViewViewController.m */; };
 		4F86CF9C206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86CF9B206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.m */; };
 		4F86CF9F206CBFD10080A9E1 /* AddBorderToImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86CF9E206CBFD10080A9E1 /* AddBorderToImageViewController.m */; };
@@ -41,6 +43,16 @@
 		4FD7BE1A206BBC3100368A46 /* aliwx_card_bubble_left_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FD7BE16206BBC3100368A46 /* aliwx_card_bubble_left_bg@2x.png */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4F67685121746BBA00B371A7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FAAA55A1FA45FE700A80328 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4FAAA5611FA45FE700A80328;
+			remoteInfo = HelloUIView;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		4F0B4F1C205269D9003B241E /* HitTestInViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HitTestInViewViewController.h; sourceTree = "<group>"; };
 		4F0B4F1D205269D9003B241E /* HitTestInViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HitTestInViewViewController.m; sourceTree = "<group>"; };
@@ -51,6 +63,10 @@
 		4F63EFE31FE10068000AFD6F /* WCViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewTool.m; sourceTree = "<group>"; };
 		4F63EFE51FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObserveViewGeometryChangeEventViewController.h; sourceTree = "<group>"; };
 		4F63EFE61FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObserveViewGeometryChangeEventViewController.m; sourceTree = "<group>"; };
+		4F67684C21746BB900B371A7 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F67684E21746BBA00B371A7 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		4F67685021746BBA00B371A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F67685621746BE700B371A7 /* Tests_AVMakeRectWithAspectRatioInsideRect.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_AVMakeRectWithAspectRatioInsideRect.m; sourceTree = "<group>"; };
 		4F7CB04720EF96CD00ABDED4 /* TouchThroughToUnderneathViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchThroughToUnderneathViewViewController.h; sourceTree = "<group>"; };
 		4F7CB04820EF96CD00ABDED4 /* TouchThroughToUnderneathViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TouchThroughToUnderneathViewViewController.m; sourceTree = "<group>"; };
 		4F86CF9A206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TwoAdjacentShadowBorderViewController.h; sourceTree = "<group>"; };
@@ -103,6 +119,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4F67684921746BB900B371A7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FAAA55F1FA45FE700A80328 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -124,6 +147,16 @@
 				4F961BB32133ABF5009402F3 /* UIView+Position.m */,
 			);
 			path = WCViewTool;
+			sourceTree = "<group>";
+		};
+		4F67684D21746BBA00B371A7 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4F67684E21746BBA00B371A7 /* Tests.m */,
+				4F67685621746BE700B371A7 /* Tests_AVMakeRectWithAspectRatioInsideRect.m */,
+				4F67685021746BBA00B371A7 /* Info.plist */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		4F86CF98206CBD8E0080A9E1 /* CALayer Demo */ = {
@@ -176,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				4FAAA5641FA45FE700A80328 /* HelloUIView */,
+				4F67684D21746BBA00B371A7 /* Tests */,
 				4FAAA5631FA45FE700A80328 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -184,6 +218,7 @@
 			isa = PBXGroup;
 			children = (
 				4FAAA5621FA45FE700A80328 /* HelloUIView.app */,
+				4F67684C21746BB900B371A7 /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -244,6 +279,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4F67684B21746BB900B371A7 /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F67685521746BBA00B371A7 /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				4F67684821746BB900B371A7 /* Sources */,
+				4F67684921746BB900B371A7 /* Frameworks */,
+				4F67684A21746BB900B371A7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F67685221746BBA00B371A7 /* PBXTargetDependency */,
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = 4F67684C21746BB900B371A7 /* Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		4FAAA5611FA45FE700A80328 /* HelloUIView */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4FAAA5781FA45FE700A80328 /* Build configuration list for PBXNativeTarget "HelloUIView" */;
@@ -270,6 +323,11 @@
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = wesley_chen;
 				TargetAttributes = {
+					4F67684B21746BB900B371A7 = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 4FAAA5611FA45FE700A80328;
+					};
 					4FAAA5611FA45FE700A80328 = {
 						CreatedOnToolsVersion = 9.0.1;
 						ProvisioningStyle = Automatic;
@@ -290,11 +348,19 @@
 			projectRoot = "";
 			targets = (
 				4FAAA5611FA45FE700A80328 /* HelloUIView */,
+				4F67684B21746BB900B371A7 /* Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4F67684A21746BB900B371A7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FAAA5601FA45FE700A80328 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -312,6 +378,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4F67684821746BB900B371A7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F67685721746BE700B371A7 /* Tests_AVMakeRectWithAspectRatioInsideRect.m in Sources */,
+				4F67684F21746BBA00B371A7 /* Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FAAA55E1FA45FE700A80328 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -346,6 +421,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		4F67685221746BBA00B371A7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4FAAA5611FA45FE700A80328 /* HelloUIView */;
+			targetProxy = 4F67685121746BBA00B371A7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		4FAAA5701FA45FE700A80328 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -358,6 +441,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4F67685321746BBA00B371A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloUIView.app/HelloUIView";
+			};
+			name = Debug;
+		};
+		4F67685421746BBA00B371A7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloUIView.app/HelloUIView";
+			};
+			name = Release;
+		};
 		4FAAA5761FA45FE700A80328 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -491,6 +610,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4F67685521746BBA00B371A7 /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F67685321746BBA00B371A7 /* Debug */,
+				4F67685421746BBA00B371A7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4FAAA55D1FA45FE700A80328 /* Build configuration list for PBXProject "HelloUIView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

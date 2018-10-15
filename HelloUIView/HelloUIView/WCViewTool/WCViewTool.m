@@ -7,6 +7,7 @@
 //
 
 #import "WCViewTool.h"
+#import <AVFoundation/AVFoundation.h>
 
 #define PauseOnThisLineWhenAddedExceptionBreakpoint(shouldPause) \
 @try { \
@@ -244,6 +245,57 @@
     }
     
     return YES;
+}
+
+#pragma mark - Assistant Methods
+
+#pragma mark > CGRect
+
++ (CGRect)safeAVMakeAspectRatioRectWithContentSize:(CGSize)contentSize insideBoundingRect:(CGRect)boundingRect {
+    if (contentSize.width <= 0 || contentSize.height <= 0) {
+        return CGRectZero;
+    }
+    
+    if (CGRectGetWidth(boundingRect) <= 0 || CGRectGetHeight(boundingRect) <= 0) {
+        return CGRectZero;
+    }
+    
+    return AVMakeRectWithAspectRatioInsideRect(contentSize, boundingRect);
+}
+
++ (CGRect)makeAspectRatioRectWithContentSize:(CGSize)contentSize insideBoundingRect:(CGRect)boundingRect {
+    if (contentSize.width <= 0 || contentSize.height <= 0) {
+        return CGRectZero;
+    }
+    
+    if (CGRectGetWidth(boundingRect) <= 0 || CGRectGetHeight(boundingRect) <= 0) {
+        return CGRectZero;
+    }
+    
+    CGSize boundingSize = boundingRect.size;
+    CGSize scaledSize = CGSizeZero;
+    
+    if (contentSize.width > contentSize.height) {
+        // Note: landscape, scale by width ratio
+        CGFloat ratioByWidth = (boundingSize.width / contentSize.width);
+        
+        scaledSize = CGSizeMake(boundingSize.width, contentSize.height * ratioByWidth);
+    }
+    else if (contentSize.width < contentSize.height) {
+        // Note: portrait, scale by height ratio
+        CGFloat ratioByHeight = (boundingSize.height / contentSize.height);
+        
+        scaledSize = CGSizeMake(contentSize.width * ratioByHeight, boundingSize.height);
+    }
+    else {
+        // Note: squared, scale by width or height ratio
+        CGFloat ratioByWidth = (boundingSize.width / contentSize.width);
+        
+        scaledSize = CGSizeMake(boundingSize.width, contentSize.height * ratioByWidth);
+    }
+    
+    CGRect scaledRect = CGRectMake(boundingRect.origin.x + (CGRectGetWidth(boundingRect) - scaledSize.width) / 2.0, boundingRect.origin.y +  (CGRectGetHeight(boundingRect) - scaledSize.height) / 2.0, scaledSize.width, scaledSize.height);
+    return scaledRect;
 }
 
 @end
