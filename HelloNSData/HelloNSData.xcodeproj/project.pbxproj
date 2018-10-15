@@ -18,6 +18,10 @@
 		4F75A03821313127000DDE60 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A03421313126000DDE60 /* Demo1ViewController.m */; };
 		4F75A03921313127000DDE60 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A03621313126000DDE60 /* RootViewController.m */; };
 		4F75A04B213144E8000DDE60 /* WCDataTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A04A213144E8000DDE60 /* WCDataTool.m */; };
+		4F793B262174EAF0000067AF /* 26.mkv in Resources */ = {isa = PBXBuildFile; fileRef = 4F793B252174EAF0000067AF /* 26.mkv */; };
+		4F793B282174EF21000067AF /* 35.opus in Resources */ = {isa = PBXBuildFile; fileRef = 4F793B272174EF21000067AF /* 35.opus */; };
+		4F793B2A2174F08B000067AF /* 51.webm in Resources */ = {isa = PBXBuildFile; fileRef = 4F793B292174F08B000067AF /* 51.webm */; };
+		4F793B2C2174F40D000067AF /* 56.xpi in Resources */ = {isa = PBXBuildFile; fileRef = 4F793B2B2174F40D000067AF /* 56.xpi */; };
 		4F8BB3E6215201D600F0AD99 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8BB3E5215201D600F0AD99 /* Tests.m */; };
 		4F8BB3F02152022E00F0AD99 /* 1.amr in Resources */ = {isa = PBXBuildFile; fileRef = 4F8BB3EE2152022E00F0AD99 /* 1.amr */; };
 		4F8BB418215299CC00F0AD99 /* 50.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4F8BB416215299CB00F0AD99 /* 50.wav */; };
@@ -53,6 +57,10 @@
 		4F75A03721313127000DDE60 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F75A049213144E8000DDE60 /* WCDataTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCDataTool.h; sourceTree = "<group>"; };
 		4F75A04A213144E8000DDE60 /* WCDataTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCDataTool.m; sourceTree = "<group>"; };
+		4F793B252174EAF0000067AF /* 26.mkv */ = {isa = PBXFileReference; lastKnownFileType = file; path = 26.mkv; sourceTree = "<group>"; };
+		4F793B272174EF21000067AF /* 35.opus */ = {isa = PBXFileReference; lastKnownFileType = file; path = 35.opus; sourceTree = "<group>"; };
+		4F793B292174F08B000067AF /* 51.webm */ = {isa = PBXFileReference; lastKnownFileType = file; path = 51.webm; sourceTree = "<group>"; };
+		4F793B2B2174F40D000067AF /* 56.xpi */ = {isa = PBXFileReference; lastKnownFileType = file; path = 56.xpi; sourceTree = "<group>"; };
 		4F8BB3E3215201D600F0AD99 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F8BB3E5215201D600F0AD99 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		4F8BB3E7215201D600F0AD99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -158,9 +166,13 @@
 		4F8BB3ED2152022E00F0AD99 /* Samples */ = {
 			isa = PBXGroup;
 			children = (
-				4F8BB417215299CC00F0AD99 /* 3.avi */,
-				4F8BB416215299CB00F0AD99 /* 50.wav */,
 				4F8BB3EE2152022E00F0AD99 /* 1.amr */,
+				4F8BB417215299CC00F0AD99 /* 3.avi */,
+				4F793B252174EAF0000067AF /* 26.mkv */,
+				4F793B272174EF21000067AF /* 35.opus */,
+				4F8BB416215299CB00F0AD99 /* 50.wav */,
+				4F793B292174F08B000067AF /* 51.webm */,
+				4F793B2B2174F40D000067AF /* 56.xpi */,
 			);
 			path = Samples;
 			sourceTree = "<group>";
@@ -257,9 +269,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F793B2A2174F08B000067AF /* 51.webm in Resources */,
 				4F8BB3F02152022E00F0AD99 /* 1.amr in Resources */,
 				4F8BB418215299CC00F0AD99 /* 50.wav in Resources */,
+				4F793B262174EAF0000067AF /* 26.mkv in Resources */,
+				4F793B2C2174F40D000067AF /* 56.xpi in Resources */,
 				4F8BB419215299CC00F0AD99 /* 3.avi in Resources */,
+				4F793B282174EF21000067AF /* 35.opus in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

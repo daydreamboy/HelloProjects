@@ -373,8 +373,32 @@
                     return NO;
                 }
                 
-                // TODO
-                return NO;
+                NSInteger idPos = -1;
+                for (NSInteger i = 4; i < 4100; i++) {
+                    if (byteOrder[i] == 0x42 && byteOrder[i + 1] == 0x82) {
+                        idPos = i;
+                        break;
+                    }
+                }
+                
+                if (idPos == -1) {
+                    return NO;
+                }
+                
+                // Note: make 3 bytes shift
+                idPos += 3;
+                BOOL (^findDocType)(char *) = ^BOOL(char *type) {
+                    for (NSInteger i = 0; i < strlen(type); i++) {
+                        char ch = type[i];
+                        if (byteOrder[idPos + i] != ch) {
+                            return NO;
+                        }
+                    }
+                    
+                    return YES;
+                };
+                
+                return findDocType("matroska");
             },
     },
     @(WCMIMETypeMov): @{
@@ -520,10 +544,17 @@
             @"type": @(WCMIMETypeOpus),
             @"bytesCount": @36,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                // [28, 35]
-                // TODO: Needs to be before `ogg` check
-                const unsigned char bytes[] = { 0x4F, 0x70, 0x75, 0x73, 0x48, 0x65, 0x61, 0x64 };
-                return memcmp(byteOrder + 28, bytes, sizeof(bytes)) == 0;
+                // [0, 3], `OggS`
+                const unsigned char bytes1[] = { 0x4F, 0x67, 0x67, 0x53 };
+                // [28, 35], `OpusHead`
+                const unsigned char bytes2[] = { 0x4F, 0x70, 0x75, 0x73, 0x48, 0x65, 0x61, 0x64 };
+                
+                // Note: Needs to be before `ogg` check
+                if (memcmp(byteOrder, bytes1, sizeof(bytes1)) == 0 && memcmp(byteOrder + 28, bytes2, sizeof(bytes2)) == 0) {
+                    return YES;
+                }
+                
+                return NO;
             },
     },
     @(WCMIMETypeOtf): @{
@@ -727,9 +758,38 @@
             @"type": @(WCMIMETypeWebm),
             @"bytesCount": @6,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                // TODO:
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
-                return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
+                const unsigned char bytes[] = { 0x1A, 0x45, 0xDF, 0xA3 };
+                BOOL b1 = memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
+                if (!b1) {
+                    return NO;
+                }
+                
+                NSInteger idPos = -1;
+                for (NSInteger i = 4; i < 4100; i++) {
+                    if (byteOrder[i] == 0x42 && byteOrder[i + 1] == 0x82) {
+                        idPos = i;
+                        break;
+                    }
+                }
+                
+                if (idPos == -1) {
+                    return NO;
+                }
+                
+                // Note: make 3 bytes shift
+                idPos += 3;
+                BOOL (^findDocType)(char *) = ^BOOL(char *type) {
+                    for (NSInteger i = 0; i < strlen(type); i++) {
+                        char ch = type[i];
+                        if (byteOrder[idPos + i] != ch) {
+                            return NO;
+                        }
+                    }
+                    
+                    return YES;
+                };
+                
+                return findDocType("webm");
             },
     },
     @(WCMIMETypeWebp): @{
@@ -800,19 +860,50 @@
             @"type": @(WCMIMETypeXpi),
             @"bytesCount": @50,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes1[] = { 0x50, 0x4B, 0x03, 0x04 };
-                const unsigned char bytes2[] = { 0x4D, 0x45, 0x54, 0x41, 0x2D, 0x49, 0x4E, 0x46, 0x2F, 0x6D, 0x6F, 0x7A,
-                    0x69, 0x6C, 0x6C, 0x61, 0x2E, 0x72, 0x73, 0x61 };
-                
-                // [0, 3]
-                BOOL b1 = memcmp(byteOrder, bytes1, sizeof(bytes1)) == 0;
-                // [30, 49]
-                BOOL b2 = memcmp(byteOrder + 4, bytes2, sizeof(bytes2)) == 0;
-                
-                // TODO:
                 // Needs to be before `zip` check
                 // assumes signed .xpi from addons.mozilla.org
-                return b1 && b2;
+                BOOL isZip = NO;
+                {
+                    const unsigned char bytes1[] = { 0x50, 0x4B };
+                    const unsigned char bytes2[] = { 0x3 };
+                    const unsigned char bytes3[] = { 0x5 };
+                    const unsigned char bytes4[] = { 0x7 };
+                    const unsigned char bytes5[] = { 0x4 };
+                    const unsigned char bytes6[] = { 0x6 };
+                    const unsigned char bytes7[] = { 0x8 };
+                    
+                    // [0, 1]
+                    BOOL b1 = memcmp(byteOrder, bytes1, sizeof(bytes1)) == 0;
+                    // [2]
+                    BOOL b2 = memcmp(byteOrder + 2, bytes2, sizeof(bytes2)) == 0;
+                    // [2]
+                    BOOL b3 = memcmp(byteOrder + 2, bytes3, sizeof(bytes3)) == 0;
+                    // [2]
+                    BOOL b4 = memcmp(byteOrder + 2, bytes4, sizeof(bytes4)) == 0;
+                    // [3]
+                    BOOL b5 = memcmp(byteOrder + 3, bytes5, sizeof(bytes5)) == 0;
+                    // [3]
+                    BOOL b6 = memcmp(byteOrder + 3, bytes6, sizeof(bytes6)) == 0;
+                    // [3]
+                    BOOL b7 = memcmp(byteOrder + 3, bytes7, sizeof(bytes7)) == 0;
+                    
+                    isZip = b1 && (b2 || b3 || b4) && (b5 || b6 || b7);
+                }
+                
+                if (isZip) {
+                    const unsigned char bytes1[] = { 0x50, 0x4B, 0x03, 0x04 };
+                    const unsigned char bytes2[] = { 0x4D, 0x45, 0x54, 0x41, 0x2D, 0x49, 0x4E, 0x46, 0x2F, 0x6D, 0x6F, 0x7A,
+                        0x69, 0x6C, 0x6C, 0x61, 0x2E, 0x72, 0x73, 0x61 };
+                    
+                    // [0, 3]
+                    BOOL b1 = memcmp(byteOrder, bytes1, sizeof(bytes1)) == 0;
+                    // [30, 49]
+                    BOOL b2 = memcmp(byteOrder + 30, bytes2, sizeof(bytes2)) == 0;
+                    
+                    return b1 && b2;
+                }
+                
+                return NO;
             },
     },
     @(WCMIMETypeXz): @{
@@ -888,12 +979,13 @@
 
 #pragma mark - Data Validation
 
+static NSDictionary *sMap;
+
 + (nullable WCMIMETypeInfo *)MIMETypeInfoWithData:(NSData *)data {
     if (![data isKindOfClass:[NSData class]]) {
         return nil;
     }
     
-    static NSDictionary *sMap;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sMap = [WCMIMETypeInfo allSupportMIMETypeInfos];
@@ -914,6 +1006,32 @@
     }];
     
     return MIMETypeInfo;
+}
+
++ (nullable WCMIMETypeInfo *)checkMIMETypeWithData:(NSData *)data type:(WCMIMEType)type {
+    if (![data isKindOfClass:[NSData class]]) {
+        return nil;
+    }
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sMap = [WCMIMETypeInfo allSupportMIMETypeInfos];
+    });
+    
+    NSDictionary *info = sMap[@(type)];
+    if (info) {
+        NSInteger byteCount = [info[@"bytesCount"] integerValue];
+        BOOL(^block)(unsigned char *) = info[@"matches"];
+        
+        if (data.length >= byteCount) {
+            unsigned char *byteOrder = (unsigned char *)[data bytes];
+            if (block && block(byteOrder)) {
+                return [WCMIMETypeInfo infoWithDictionary:info];
+            }
+        }
+    }
+    
+    return nil;
 }
 
 #pragma mark - Data Generation

@@ -21,7 +21,7 @@ typedef NS_ENUM(NSUInteger, WCMIMEType) {
     WCMIMETypeCab,
     WCMIMETypeCr2,
     WCMIMETypeCrx,
-    WCMIMETypeDeb,
+    WCMIMETypeDeb, // Needs to be before `ar` check, because `deb` is kind of `ar`
     WCMIMETypeDmg,
     WCMIMETypeEot,
     WCMIMETypeEpub,
@@ -47,7 +47,7 @@ typedef NS_ENUM(NSUInteger, WCMIMEType) {
     WCMIMETypeMxf,
     WCMIMETypeNes,
     WCMIMETypeOgg,
-    WCMIMETypeOpus,
+    WCMIMETypeOpus, // Needs to be before `ogg` check, because `opus` is kind of `ogg`
     WCMIMETypeOtf,
     WCMIMETypePdf,
     WCMIMETypePng,
@@ -68,7 +68,7 @@ typedef NS_ENUM(NSUInteger, WCMIMEType) {
     WCMIMETypeWmv,
     WCMIMETypeWoff,
     WCMIMETypeWoff2,
-    WCMIMETypeXpi,
+    WCMIMETypeXpi, // Needs to be before `zip` check, because `xpi` is kind of `zip`. And assumes signed .xpi from addons.mozilla.org
     WCMIMETypeXz,
     WCMIMETypeZ,
     WCMIMETypeZip,
@@ -107,6 +107,15 @@ typedef NS_ENUM(NSUInteger, WCMIMEType) {
  @return the WCMIMETypeInfo object. Return nil if the data's MIME type not recognized.
  */
 + (nullable WCMIMETypeInfo *)MIMETypeInfoWithData:(NSData *)data;
+
+/**
+ Check MIME type from data with the specific type
+
+ @param data the NSData
+ @param type the WCMIMEType
+ @return the WCMIMETypeInfo object. Return nil if the data not match the type
+ */
++ (nullable WCMIMETypeInfo *)checkMIMETypeWithData:(NSData *)data type:(WCMIMEType)type;
 
 #pragma mark - Data Generation
 
