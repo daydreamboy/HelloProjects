@@ -11,6 +11,7 @@
 		4F53314520872BDD0016F650 /* NaNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53314420872BDD0016F650 /* NaNViewController.m */; };
 		4F641A0B209056F7009B41E5 /* NamespacedGlobalVarsAndFuncsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F641A0A209056F7009B41E5 /* NamespacedGlobalVarsAndFuncsViewController.m */; };
 		4F641A0E209058CE009B41E5 /* NamespacedDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F641A0D209058CE009B41E5 /* NamespacedDefines.m */; };
+		4F793B242174CF57000067AF /* DelayReleaseObjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F793B232174CF57000067AF /* DelayReleaseObjectViewController.m */; };
 		4FC2CF7E2031B10300A416DC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC2CF7D2031B10300A416DC /* AppDelegate.m */; };
 		4FC2CF862031B10400A416DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FC2CF852031B10400A416DC /* Assets.xcassets */; };
 		4FC2CF892031B10400A416DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FC2CF872031B10400A416DC /* LaunchScreen.storyboard */; };
@@ -29,6 +30,8 @@
 		4F641A0A209056F7009B41E5 /* NamespacedGlobalVarsAndFuncsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NamespacedGlobalVarsAndFuncsViewController.m; sourceTree = "<group>"; };
 		4F641A0C209058CE009B41E5 /* NamespacedDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NamespacedDefines.h; sourceTree = "<group>"; };
 		4F641A0D209058CE009B41E5 /* NamespacedDefines.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NamespacedDefines.m; sourceTree = "<group>"; };
+		4F793B222174CF57000067AF /* DelayReleaseObjectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelayReleaseObjectViewController.h; sourceTree = "<group>"; };
+		4F793B232174CF57000067AF /* DelayReleaseObjectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelayReleaseObjectViewController.m; sourceTree = "<group>"; };
 		4FC2CF792031B10300A416DC /* HelloSyntaxSugar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloSyntaxSugar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FC2CF7C2031B10300A416DC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FC2CF7D2031B10300A416DC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -102,6 +105,8 @@
 				4F641A0A209056F7009B41E5 /* NamespacedGlobalVarsAndFuncsViewController.m */,
 				4F641A0C209058CE009B41E5 /* NamespacedDefines.h */,
 				4F641A0D209058CE009B41E5 /* NamespacedDefines.m */,
+				4F793B222174CF57000067AF /* DelayReleaseObjectViewController.h */,
+				4F793B232174CF57000067AF /* DelayReleaseObjectViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -180,6 +185,7 @@
 				4F53314520872BDD0016F650 /* NaNViewController.m in Sources */,
 				4FC2CF7E2031B10300A416DC /* AppDelegate.m in Sources */,
 				4FC2CF982031B12500A416DC /* RootViewController.m in Sources */,
+				4F793B242174CF57000067AF /* DelayReleaseObjectViewController.m in Sources */,
 				4F641A0E209058CE009B41E5 /* NamespacedDefines.m in Sources */,
 				4FC2CF9B2031B17700A416DC /* MultipleCharsInOneCharViewController.m in Sources */,
 				4F641A0B209056F7009B41E5 /* NamespacedGlobalVarsAndFuncsViewController.m in Sources */,

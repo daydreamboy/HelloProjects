@@ -1,8 +1,10 @@
 ## HelloSyntaxSugar
 
-TOC
+[TOC]
 
-## 1. char字面常量，存放多个字符
+---
+
+### 1、char字面常量，存放多个字符
 
 char字面常量，存放多个字符。例如'abc'、'abcd'、'abcde'等。
 
@@ -33,7 +35,7 @@ printf("'ABC'  = %02x%02x%02x%02x = %08x\n", ptr[0], ptr[1], ptr[2], ptr[3], val
 由于是little endian，低地址的字节放在word（4个字节）的低位。
 
 
-## 2. C++ 11支持Raw String
+### 2、C++ 11支持Raw String
 
 C++ 11支持Raw String，在.mm文件中可以使用R"\<LANG\>(raw string)\<LANG\>"语法，用于直接写非转义的C字符串。如下
 
@@ -66,15 +68,15 @@ static NSString *jsonString = @R"JSON(
 
 上面的@符号将C字符串转成NSString类型。
 
-## 3. 表示NaN
+### 3、表示NaN
 
 math.h头文件提供NaN（Not A Number），有时候需要这种特殊值来占位或者其他用途。
 
-（1）NaN值的表示
+#### （1）NaN值的表示
 
 使用NAN宏或者nan(NULL)返回一个NaN值
 
-（2）判断是否NaN
+#### （2）判断是否NaN
 
 NaN相关函数
 
@@ -86,7 +88,7 @@ extern long double nanl(const char *);
 
 或者直接使用isnan(x)宏
 
-（3）打印NaN值
+#### （3）打印NaN值
 
 NaN值的字符串输出总是nan。系统函数一般都处理过，然后输出成nan。
 
@@ -100,5 +102,26 @@ NSLog(@"%@", NSStringFromCGRect(rect)); // {{nan, nan}, {nan, nan}}
 ```
 >
 参考资料：https://stackoverflow.com/questions/9402348/how-to-return-a-nil-cgfloat
+
+
+
+### 4、延迟释放对象
+
+ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/)提到一种简便的延迟释放对象的方法，举个例子，如下。详见`DelayReleaseObjectViewController`
+
+```
+- (void)dealloc {
+    MyObject *tempObject = _myObject;
+    _myObject = nil;
+    NSLog(@"start to dealloc");
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // Note: use it to avoid warning
+        [tempObject class];
+    });
+}
+```
+
+文章也提到，如果对象可以在后台线程释放，可以放在非主线程去释放这个对象，这样可以减少主线程的开销。
+
 
 

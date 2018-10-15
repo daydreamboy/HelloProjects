@@ -13,6 +13,7 @@
 #import "NaNViewController.h"
 #import "GenericSelectionExpressionViewController.h"
 #import "NamespacedGlobalVarsAndFuncsViewController.h"
+#import "DelayReleaseObjectViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -40,6 +41,7 @@
         @"Use NaN",
         @"Use Generic Selection Expression (C11 feature)",
         @"Namespaced global vars and C funcs",
+        @"Delay release object",
         @"call a test method",
     ];
     _classes = @[
@@ -48,6 +50,7 @@
         [NaNViewController class],
         [GenericSelectionExpressionViewController class],
         [NamespacedGlobalVarsAndFuncsViewController class],
+        [DelayReleaseObjectViewController class],
         @"testMethod",
     ];
 }
