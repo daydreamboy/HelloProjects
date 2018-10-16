@@ -12,3 +12,7 @@
 
 * xpi，https://github.com/TarekJor/Firefox-52-ESR-legacy-addon/blob/master/xpi/Nuke-Anything-Enhanced%7B1.1%7D%7BFirefox.addon%7D.xpi
 
+* heic，http://nokiatech.github.io/heif/content/images/cheers_1440x960.heic
+
+
+

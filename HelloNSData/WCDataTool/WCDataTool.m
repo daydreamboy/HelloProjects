@@ -62,7 +62,7 @@
             @"type": @(WCMIMETypeAr),
             @"bytesCount": @7,
             @"matches": ^BOOL(unsigned char *byteOrder) {
-                const unsigned char bytes[] = { 0x23, 0x21, 0x41, 0x4D, 0x52, 0x0A };
+                const unsigned char bytes[] = { 0x21, 0x3C, 0x61, 0x72, 0x63, 0x68, 0x3E };
                 
                 return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
             },
@@ -304,7 +304,7 @@
     },
     @(WCMIMETypeHeif): @{
             @"mime": @"image/heif",
-            @"ext": @"heif",
+            @"ext": @"heic",
             @"type": @(WCMIMETypeHeif),
             @"bytesCount": @12,
             @"matches": ^BOOL(unsigned char *byteOrder) {
