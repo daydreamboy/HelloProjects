@@ -278,6 +278,48 @@
                 return memcmp(byteOrder, bytes, sizeof(bytes)) == 0;
             },
     },
+    @(WCMIMETypeHeic): @{
+            // @see http://nokiatech.github.io/heif/technical.html
+            @"mime": @"image/heic",
+            @"ext": @"heic",
+            @"type": @(WCMIMETypeHeic),
+            @"bytesCount": @12,
+            @"matches": ^BOOL(unsigned char *byteOrder) {
+                // @see https://github.com/rs/SDWebImage/blob/master/SDWebImage/NSData%2BImageContentType.m
+                // [4, 8]
+                const unsigned char bytes1[] = { 0x66, 0x74, 0x79, 0x70, 0x68, 0x65, 0x69, 0x63 }; // @"ftypheic"
+                const unsigned char bytes2[] = { 0x66, 0x74, 0x79, 0x70, 0x68, 0x65, 0x69, 0x78 }; // @"ftypheix"
+                const unsigned char bytes3[] = { 0x66, 0x74, 0x79, 0x70, 0x68, 0x65, 0x76, 0x63 }; // @"ftyphevc"
+                const unsigned char bytes4[] = { 0x66, 0x74, 0x79, 0x70, 0x68, 0x65, 0x76, 0x78 }; // @"ftyphevx"
+                
+                if (memcmp(byteOrder + 4, bytes1, sizeof(bytes1)) == 0 ||
+                    memcmp(byteOrder + 4, bytes2, sizeof(bytes2)) == 0 ||
+                    memcmp(byteOrder + 4, bytes3, sizeof(bytes3)) == 0 ||
+                    memcmp(byteOrder + 4, bytes4, sizeof(bytes4)) == 0) {
+                    return YES;
+                }
+                
+                return NO;
+            },
+    },
+    @(WCMIMETypeHeif): @{
+            @"mime": @"image/heif",
+            @"ext": @"heif",
+            @"type": @(WCMIMETypeHeif),
+            @"bytesCount": @12,
+            @"matches": ^BOOL(unsigned char *byteOrder) {
+                // [4, 8]
+                const unsigned char bytes1[] = { 0x66, 0x74, 0x79, 0x70, 0x6D, 0x69, 0x66, 0x31 }; // @"ftypmif1"
+                const unsigned char bytes2[] = { 0x66, 0x74, 0x79, 0x70, 0x6D, 0x73, 0x66, 0x31 }; // @"ftypmsf1"
+                
+                if (memcmp(byteOrder + 4, bytes1, sizeof(bytes1)) == 0 ||
+                    memcmp(byteOrder + 4, bytes2, sizeof(bytes2)) == 0) {
+                    return YES;
+                }
+                
+                return NO;
+            },
+    },
     @(WCMIMETypeIco): @{
             @"mime": @"image/x-icon",
             @"ext": @"ico",

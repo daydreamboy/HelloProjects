@@ -31,6 +31,8 @@ typedef NS_ENUM(NSUInteger, WCMIMEType) {
     WCMIMETypeFlv,
     WCMIMETypeGif,
     WCMIMETypeGz,
+    WCMIMETypeHeic,
+    WCMIMETypeHeif,
     WCMIMETypeIco,
     WCMIMETypeJpg,
     WCMIMETypeJxr,
