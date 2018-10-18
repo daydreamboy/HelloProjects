@@ -1089,6 +1089,36 @@ static NSDictionary *sMap;
     return randomData;
 }
 
++ (nullable NSData *)resizedJPEGImageDataWithImageData:(NSData *)imageData maximumBytes:(long long)maximumBytes {
+    if (![imageData isKindOfClass:[NSData class]] || imageData.length == 0 || maximumBytes <= 0) {
+        return nil;
+    }
+    
+    if (imageData.length > maximumBytes) {
+        UIImage *image = [UIImage imageWithData:imageData];
+        if (!image) {
+            return imageData;
+        }
+        
+        NSData *resizedImageData = nil;
+        for (CGFloat compressQuality = 1.0; compressQuality > 0;) {
+            NSData *resizedData = UIImageJPEGRepresentation(image, compressQuality);
+            
+            if (resizedData.length <= maximumBytes) {
+                resizedImageData = resizedData;
+                break;
+            }
+            
+            compressQuality -= 0.1;
+        }
+        
+        return resizedImageData;
+    }
+    else {
+        return imageData;
+    }
+}
+
 #pragma mark - Data Enctyption
 
 + (nullable NSData *)AES256EncryptWithData:(NSData *)data key:(NSString *)key {

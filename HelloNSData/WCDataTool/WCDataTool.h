@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -129,6 +130,16 @@ typedef NS_ENUM(NSUInteger, WCMIMEType) {
  @see http://stackoverflow.com/questions/4917968/best-way-to-generate-nsdata-object-with-random-bytes-of-a-specific-length
  */
 + (NSData *)randomDataWithLength:(NSUInteger)length;
+
+/**
+ Resize image data under the maximum bytes
+
+ @param imageData the NSData for image
+ @param maximumBytes the maximum bytes expect greater than 0
+ @return the resized JPEG image data. Return nil if resize data failed.
+ @see https://stackoverflow.com/a/47490970
+ */
++ (nullable NSData *)resizedJPEGImageDataWithImageData:(NSData *)imageData maximumBytes:(long long)maximumBytes;
 
 #pragma mark - Data Enctyption
 
