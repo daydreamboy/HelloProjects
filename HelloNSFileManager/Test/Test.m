@@ -113,6 +113,18 @@
     XCTAssertTrue(isExisted);
 }
 
+#pragma mark > File Attributes
+
+- (void)test_sizeOfFileAtPath {
+    NSString *filePath;
+    unsigned long long size;
+    
+    // Case 1
+    filePath = [[NSBundle bundleForClass:self.class] pathForResource:@"3" ofType:@"txt"];
+    size = [WCFileManagerTool sizeOfFileAtPath:filePath];
+    XCTAssertTrue(size == 0);
+}
+
 #pragma mark - File Name Sort
 
 - (void)test_sortedFileNamesByCreateDateInDirectoryPath_ascend {

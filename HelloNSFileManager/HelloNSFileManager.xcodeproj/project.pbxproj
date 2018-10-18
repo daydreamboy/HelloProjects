@@ -17,6 +17,12 @@
 		4F52D24A211B08D3004EE254 /* SampleData in Resources */ = {isa = PBXBuildFile; fileRef = 4F52D249211B08D3004EE254 /* SampleData */; };
 		4F52D24D211B08F8004EE254 /* SortFileNamesInDirectoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D24C211B08F8004EE254 /* SortFileNamesInDirectoryViewController.m */; };
 		4F52D250211B1582004EE254 /* SortAndFilterFileNamesInDirectoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D24F211B1582004EE254 /* SortAndFilterFileNamesInDirectoryViewController.m */; };
+		4F94366E2178D5F1004D29C3 /* a2.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F9436682178D5F1004D29C3 /* a2.json */; };
+		4F94366F2178D5F1004D29C3 /* 3.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4F9436692178D5F1004D29C3 /* 3.txt */; };
+		4F9436702178D5F1004D29C3 /* 2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4F94366A2178D5F1004D29C3 /* 2.txt */; };
+		4F9436712178D5F1004D29C3 /* 1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4F94366B2178D5F1004D29C3 /* 1.txt */; };
+		4F9436722178D5F1004D29C3 /* a1.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F94366C2178D5F1004D29C3 /* a1.json */; };
+		4F9436732178D5F1004D29C3 /* 3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F94366D2178D5F1004D29C3 /* 3.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +55,12 @@
 		4F52D24C211B08F8004EE254 /* SortFileNamesInDirectoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SortFileNamesInDirectoryViewController.m; sourceTree = "<group>"; };
 		4F52D24E211B1582004EE254 /* SortAndFilterFileNamesInDirectoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SortAndFilterFileNamesInDirectoryViewController.h; sourceTree = "<group>"; };
 		4F52D24F211B1582004EE254 /* SortAndFilterFileNamesInDirectoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SortAndFilterFileNamesInDirectoryViewController.m; sourceTree = "<group>"; };
+		4F9436682178D5F1004D29C3 /* a2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = a2.json; sourceTree = "<group>"; };
+		4F9436692178D5F1004D29C3 /* 3.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 3.txt; sourceTree = "<group>"; };
+		4F94366A2178D5F1004D29C3 /* 2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 2.txt; sourceTree = "<group>"; };
+		4F94366B2178D5F1004D29C3 /* 1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 1.txt; sourceTree = "<group>"; };
+		4F94366C2178D5F1004D29C3 /* a1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = a1.json; sourceTree = "<group>"; };
+		4F94366D2178D5F1004D29C3 /* 3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = 3.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +140,7 @@
 		4F4E143F210312EC00D12D11 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				4F9436672178D5F1004D29C3 /* SampleData */,
 				4F4E1440210312EC00D12D11 /* Test.m */,
 				4F4E1442210312EC00D12D11 /* Info.plist */,
 			);
@@ -140,6 +153,19 @@
 				4F52D249211B08D3004EE254 /* SampleData */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		4F9436672178D5F1004D29C3 /* SampleData */ = {
+			isa = PBXGroup;
+			children = (
+				4F9436682178D5F1004D29C3 /* a2.json */,
+				4F9436692178D5F1004D29C3 /* 3.txt */,
+				4F94366A2178D5F1004D29C3 /* 2.txt */,
+				4F94366B2178D5F1004D29C3 /* 1.txt */,
+				4F94366C2178D5F1004D29C3 /* a1.json */,
+				4F94366D2178D5F1004D29C3 /* 3.plist */,
+			);
+			path = SampleData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,6 +258,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F9436732178D5F1004D29C3 /* 3.plist in Resources */,
+				4F9436712178D5F1004D29C3 /* 1.txt in Resources */,
+				4F9436702178D5F1004D29C3 /* 2.txt in Resources */,
+				4F94366F2178D5F1004D29C3 /* 3.txt in Resources */,
+				4F9436722178D5F1004D29C3 /* a1.json in Resources */,
+				4F94366E2178D5F1004D29C3 /* a2.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

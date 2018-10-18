@@ -1,0 +1,141 @@
+{
+    "f": [
+        0,
+        0,
+        12,
+        5
+    ],
+    "sv": [
+        {
+            "cs": "img",
+            "rds": 0.2,
+            "ir": "al",
+            "f": [
+                0,
+                0,
+                12,
+                5
+            ],
+            "url": "https://gw.alicdn.com/tps/TB17Sm8PXXXXXcNXpXXXXXXXXXX-564-789.png"
+        },
+        {
+            "f": [
+                0,
+                0,
+                12,
+                4.98
+            ],
+            "sv": [
+                {
+                    "url": "https://gw.alicdn.com/tfs/TB1NDJnofDH8KJjy1XcXXcpdXXa-720-210.png",
+                    "cs": "img",
+                    "f": [
+                        0,
+                        0,
+                        12,
+                        3.5
+                    ]
+                },
+                {
+                    "cs": "box",
+                    "bc": "#00FFFFFF",
+                    "sv": [
+                        {
+                            "url": "https://gw.alicdn.com/tfs/TB1SpAun22H8KJjy0FcXXaDlFXa-108-108.png",
+                            "cs": "img",
+                            "rds": 0.3,
+                            "f": [
+                                0.85,
+                                1,
+                                1.6,
+                                1.6
+                            ]
+                        },
+                        {
+                            "cs": "lbl",
+                            "text": "¥$!amount",
+                            "mts": "m",
+                            "tfs": 0.7,
+                            "tc": "#ffffff",
+                            "f": [
+                                2.8,
+                                0.85,
+                                7,
+                                1
+                            ]
+                        },
+                        {
+                            "cs": "lbl",
+                            "text": "满$!startFee元使用",
+                            "mts": "s",
+                            "tfs": 0.6,
+                            "tc": "#ffffff",
+                            "f": [
+                                2.8,
+                                1.8,
+                                7,
+                                0.85
+                            ]
+                        }
+                    ],
+                    "ds": "fix",
+                    "f": [
+                        0,
+                        0,
+                        12,
+                        3.5
+                    ]
+                },
+                {
+                    "cs": "box",
+                    "bc": "#ffffff",
+                    "sv": [
+                        {
+                            "cs": "img",
+                            "rds": 0.2,
+                            "ir": "al",
+                            "f": [
+                                0.5,
+                                0.415,
+                                0.65,
+                                0.65
+                            ],
+                            "url": "https://gw.alicdn.com/tfs/TB1CRpNonnI8KJjy0FfXXcdoVXa-39-42.png"
+                        },
+                        {
+                            "f": [
+                                1.35,
+                                0,
+                                10,
+                                1.48
+                            ],
+                            "text": "店铺优惠券",
+                            "cs": "lbl",
+                            "tc": "#BBBBBB",
+                            "tfs": "0.6",
+                            "mts": "s"
+                        }
+                    ],
+                    "ds": "fix",
+                    "f": [
+                        0,
+                        3.5,
+                        12,
+                        1.48
+                    ]
+                }
+            ],
+            "bc": "#000000",
+            "ds": "fix",
+            "rds": 0.2,
+            "cs": "box",
+            "ac": [
+                "$!applyUrl"
+            ]
+        }
+    ],
+    "cs": "box",
+    "rds": 0.2,
+    "bc": "#00FFFFFF",
+    "ds": "fix"
+}

@@ -25,20 +25,10 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
 
 @implementation WCFileManagerTool
 
-#pragma mark - File Creation
+#pragma mark - File
 
-/**
- *  Create a new file with content. And if the parent folders is not existing, create them if needed.
- *
- *  @param path    the absolute file path started by root path '/'
- *  @param content the text of the content
- *
- *  @warning <br/>1. the path NOT support the '~' tilde symbol, use stringByExpandingTildeInPath method to expand it.
- *           <br/>2. the new file will overwrite the existing file.
- *  @note stringByExpandingTildeInPath expand  '~' decided by current environment, so '~' is NOT the same path always.
- *
- *  @return YES if created successfully, or NO if it failed
- */
+#pragma mark > File Creation
+
 + (BOOL)createNewFileAtPath:(NSString *)path content:(NSString *)content {
     NSString *parentFolderPath = [path stringByDeletingLastPathComponent];
     NSString *directoryPath = [parentFolderPath hasPrefix:@"/"]
@@ -63,13 +53,6 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
     return isFileCreated;
 }
 
-/**
- *  Create an empty file. And if the parent folders is not existing, create them if needed.
- *
- *  @param path the path of a file
- *
- *  @return YES if created successfully, or NO if it failed
- */
 + (BOOL)createNewFileAtPath:(NSString *)path {
     return [self createNewFileAtPath:path content:nil];
 }
@@ -122,15 +105,8 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
 #undef CheckErrorAndBreak
 }
 
-#pragma mark - File Deletion
+#pragma mark > File Deletion
 
-/**
- *  Delete a file only
- *
- *  @param path the path of a file
- *
- *  @return YES if deleted successfully or NO if 1. deletion failed, or 2. the path is a directory, or 3. the path is not existed
- */
 + (BOOL)deleteFileAtPath:(NSString *)path {
     BOOL isDirectory = NO;
     
@@ -146,15 +122,8 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
     return NO;
 }
 
-#pragma mark - File Check
+#pragma mark > File Check
 
-/**
- *  Check a file if exists
- *
- *  @param path the path of file
- *
- *  @return YES if the file exists, or NO if the file not exists or it's a directory
- */
 + (BOOL)fileExistsAtPath:(NSString *)path {
     BOOL isDirectory = NO;
     BOOL isExisted = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory];
@@ -167,7 +136,7 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
     return isExisted;
 }
 
-#pragma mark - File Name Sort
+#pragma mark > File Name Sort
 
 + (NSArray *)sortedFileNamesInDirectoryPath:(NSString *)directoryPath ascend:(BOOL)ascend {
     NSArray *sortedFileNames = [self sortedFileNamesWithAttributeName:WCFileName inDirectoryPath:directoryPath ascend:ascend];
@@ -228,7 +197,7 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
     }
 }
 
-#pragma mark - File Name Filter
+#pragma mark > File Name Filter
 
 + (NSArray *)filteredFileNamesInDirectoryPath:(NSString *)directoryPath ascend:(BOOL)ascend extensions:(NSArray<NSString *> *)extensions {
     NSArray *sortedFileNames = [self sortedFileNamesInDirectoryPath:directoryPath ascend:ascend];
@@ -245,7 +214,7 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
     return filteredFileNames;
 }
 
-#pragma mark - File Path Sort
+#pragma mark > File Path Sort
 
 + (NSArray *)sortedFilePathsByCreationDateInDirectoryPath:(NSString *)directoryPath ascend:(BOOL)ascend {
     NSArray *sortedFilePaths = [self sortedFilePathsWithAttributeName:NSFileCreationDate inDirectoryPath:directoryPath ascend:ascend];
@@ -270,15 +239,8 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
     return nil;
 }
 
-#pragma mark - File Attributes
+#pragma mark > File Attributes
 
-/**
- *  Get creation date of file
- *
- *  @param path the path of file
- *
- *  @return If nil, path is not a file or the file not exists
- */
 + (NSDate *)creationDateOfFileAtPath:(NSString *)path {
     BOOL isDirectory = NO;
     BOOL isExisted = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory];
@@ -293,13 +255,6 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
     return attributes[NSFileCreationDate];
 }
 
-/**
- *  Get modified date of file
- *
- *  @param path the path of file
- *
- *  @return If nil, path is not a file or the file not exists
- */
 + (NSDate *)modificationDateOfFileAtPath:(NSString *)path {
     BOOL isDirectory = NO;
     BOOL isExisted = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory];
@@ -314,38 +269,20 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
     return attributes[NSFileModificationDate];
 }
 
-/**
- *  Get file size in bytes
- *
- *  @param path the path of file
- *
- *  @return the size of file in bytes. If 0, path is not a file or the file not exists
- */
-+ (unsigned long long)sizeOfFileAtPath:(NSString *)path {
++ (long long)sizeOfFileAtPath:(NSString *)path {
     BOOL isDirectory = NO;
     BOOL isExisted = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory];
     
     if (isDirectory || !isExisted) {
         // If the path is a directory, or no file at the path exists
-        return 0;
+        return -1;
     }
     
     NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfItemAtPath:path error:nil];
     
-    return [attributes[NSFileSize] unsignedLongLongValue];
+    return [attributes[NSFileSize] longLongValue];
 }
 
-/**
- *  Touch a file with a date
- *
- *  @param path the path of file
- *  @param date the modification date
- *
- *  @sa http://stackoverflow.com/questions/3511981/touch-a-file-update-its-modified-time-stamp
- *  @warning the date's sub-seconds will be lost, e.g. the passed date is 1446607039.469321 (timeIntervalSince1970), after modified, the modification date is 1446607039.000000
- *
- *  @return YES if touched successfully. NO if the path is not a file or touched failed or date is nil
- */
 + (BOOL)touchFileAtPath:(NSString *)path modificationDate:(NSDate *)date {
     BOOL isDirectory = NO;
     BOOL isExisted = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory];
@@ -362,15 +299,8 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
     return success;
 }
 
-#pragma mark - File Display Name
+#pragma mark > File Display Name
 
-/**
- *  Get display name of a file
- *
- *  @param path the path of file
- *
- *  @return nil if the path is not a file or the path not exists
- */
 + (NSString *)fileNameAtPath:(NSString *)path {
     BOOL isDirectory = NO;
     BOOL isExisted = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory];
@@ -383,15 +313,10 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
     return [[NSFileManager defaultManager] displayNameAtPath:path];
 }
 
-#pragma mark - Directory Creation
+#pragma mark - Directory
 
-/**
- *  Create a new directory
- *
- *  @param path the path of a directory
- *
- *  @return YES if the directory created successfully or the directory is existed, or NO if created failed
- */
+#pragma mark > Directory Creation
+
 + (BOOL)createNewDirectoryIfNeededAtPath:(NSString *)path {
     if (![path isKindOfClass:[NSString class]]) {
         return NO;
@@ -400,15 +325,8 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
     return [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
 }
 
-#pragma mark - Directory Deletion
+#pragma mark > Directory Deletion
 
-/**
- *  Delete a directory only
- *
- *  @param path the path of a directory
- *
- *  @return YES if deleted successfully or NO if 1. deletion failed, or 2. the path is not a directory, or 3. the path is not existed
- */
 + (BOOL)deleteDirectoryAtPath:(NSString *)path {
     BOOL isDirectory = NO;
     BOOL isExisted = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory];
@@ -421,15 +339,8 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
     return [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
 }
 
-#pragma mark - Directory Check
+#pragma mark > Directory Check
 
-/**
- *  Check a directory if exists
- *
- *  @param path the path of directory
- *
- *  @return YES if the directory exists, or NO if the directory not exists or it's a file
- */
 + (BOOL)directoryExistsAtPath:(NSString *)path {
     BOOL isDirectory = NO;
     BOOL isExisted = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory];
@@ -437,7 +348,7 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
     return (isDirectory && isExisted) ? YES : NO;
 }
 
-#pragma mark - Directory Display Name
+#pragma mark > Directory Display Name
 
 + (NSString *)directoryNameAtPath:(NSString *)path {
     BOOL isDirectory = NO;
@@ -451,20 +362,18 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
     return [[NSFileManager defaultManager] displayNameAtPath:path];
 }
 
-#pragma mark - Directory Attributes
+#pragma mark > Directory Attributes
 
-/*!
- *  Get the total size of the directory
- *
- *  @warning If the path is a file, won't return the size of the file
- *  @see http://stackoverflow.com/questions/2188469/calculate-the-size-of-a-folder
- */
-+ (unsigned long long)sizeOfDirectoryAtPath:(NSString *)path {
++ (long long)sizeOfDirectoryAtPath:(NSString *)path {
+    if (![WCFileManagerTool directoryExistsAtPath:path]) {
+        return -1;
+    }
+    
     NSArray *filesArray = [[NSFileManager defaultManager] subpathsOfDirectoryAtPath:path error:nil];
     NSEnumerator *filesEnumerator = [filesArray objectEnumerator];
     NSString *fileName;
-    unsigned long long fileSize = 0;
     
+    long long fileSize = 0;
     while (fileName = [filesEnumerator nextObject]) {
         NSDictionary *fileDictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:[path stringByAppendingPathComponent:fileName] error:nil];
         fileSize += [fileDictionary fileSize];
