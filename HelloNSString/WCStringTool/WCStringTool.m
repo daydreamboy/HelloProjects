@@ -690,6 +690,24 @@
     return NO;
 }
 
++ (BOOL)checkStringContainsChineseCharactersWithString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]] || string.length == 0) {
+        return NO;
+    }
+    
+    __block BOOL containsChineseCharacter = NO;
+    [string enumerateSubstringsInRange:NSMakeRange(0, string.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+        
+        NSString *character = substring;
+        if ([WCStringTool checkStringComposedOfChineseCharactersWithString:character]) {
+            containsChineseCharacter = YES;
+            *stop = YES;
+        }
+    }];
+    
+    return containsChineseCharacter;
+}
+
 #pragma mark > String Generation
 
 + (NSString *)randomStringWithLength:(NSUInteger)length {

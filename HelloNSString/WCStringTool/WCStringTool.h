@@ -296,6 +296,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)checkStringURLEscapedWithString:(NSString *)string;
 
+/**
+ Check string if contains a chinese character
+
+ @param string the string to check
+ @return YES if string contains a chinese character. NO if string contains no chinese characters.
+ */
++ (BOOL)checkStringContainsChineseCharactersWithString:(NSString *)string;
+
 #pragma mark > String Generation
 
 /**

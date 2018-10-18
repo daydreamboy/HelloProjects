@@ -619,6 +619,26 @@
     XCTAssertFalse([WCStringTool checkStringURLEscapedWithString:urlEscapedString]);
 }
 
+- (void)test_checkStringContainsChineseCharactersWithString {
+    NSString *string;
+    
+    // Case 1
+    string = @"%E4%B8%AD%E6%96%87";
+    XCTAssertFalse([WCStringTool checkStringContainsChineseCharactersWithString:string]);
+    
+    // Case 2
+    string = @"1234567890？";
+    XCTAssertFalse([WCStringTool checkStringContainsChineseCharactersWithString:string]);
+    
+    // Case 3:
+    string = @"Thisis中文";
+    XCTAssertTrue([WCStringTool checkStringContainsChineseCharactersWithString:string]);
+    
+    // Case 4
+    string = @"123456789零";
+    XCTAssertTrue([WCStringTool checkStringContainsChineseCharactersWithString:string]);
+}
+
 #pragma mark > Split String
 
 - (void)test_componentsWithString_gapRanges {
