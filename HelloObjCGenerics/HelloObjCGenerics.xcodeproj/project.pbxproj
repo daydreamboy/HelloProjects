@@ -18,13 +18,11 @@
 		4F2FE19E1FAF10D10074690D /* UseProtocolRestrictGenericClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FE19D1FAF10D10074690D /* UseProtocolRestrictGenericClassViewController.m */; };
 		4F2FE1A11FAF110E0074690D /* RestrictedByProtocolGenericPetHotel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FE1A01FAF110E0074690D /* RestrictedByProtocolGenericPetHotel.m */; };
 		4F2FE1AA1FAF13A40074690D /* DefineGenericCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FE1A91FAF13A40074690D /* DefineGenericCategoryViewController.m */; };
-		4F37824A1FC43FBA002BA02D /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3782491FC43FBA002BA02D /* TestViewController.m */; };
 		4FD217D92179C1EC00FB23DD /* Animal.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD217CC2179C1EC00FB23DD /* Animal.m */; };
 		4FD217DA2179C1EC00FB23DD /* NSMutableArray+Cat.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD217CD2179C1EC00FB23DD /* NSMutableArray+Cat.m */; };
 		4FD217DB2179C1EC00FB23DD /* RestrictedGenericPetHotel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD217CF2179C1EC00FB23DD /* RestrictedGenericPetHotel.m */; };
 		4FD217DC2179C1EC00FB23DD /* Cat.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD217D12179C1EC00FB23DD /* Cat.m */; };
 		4FD217DD2179C1EC00FB23DD /* GenericPetHotel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD217D22179C1EC00FB23DD /* GenericPetHotel.m */; };
-		4FD217DE2179C1EC00FB23DD /* ItemContainer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD217D32179C1EC00FB23DD /* ItemContainer.m */; };
 		4FD217DF2179C1EC00FB23DD /* Duck.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD217D42179C1EC00FB23DD /* Duck.m */; };
 		4FD217E22179C29500FB23DD /* UseKindOfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD217E12179C29500FB23DD /* UseKindOfViewController.m */; };
 /* End PBXBuildFile section */
@@ -51,9 +49,6 @@
 		4F2FE1A01FAF110E0074690D /* RestrictedByProtocolGenericPetHotel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RestrictedByProtocolGenericPetHotel.m; sourceTree = "<group>"; };
 		4F2FE1A81FAF13A40074690D /* DefineGenericCategoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DefineGenericCategoryViewController.h; sourceTree = "<group>"; };
 		4F2FE1A91FAF13A40074690D /* DefineGenericCategoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DefineGenericCategoryViewController.m; sourceTree = "<group>"; };
-		4F3782481FC43FBA002BA02D /* TestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		4F3782491FC43FBA002BA02D /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
-		4FD217CA2179C1EC00FB23DD /* ItemContainer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemContainer.h; sourceTree = "<group>"; };
 		4FD217CB2179C1EC00FB23DD /* GenericPetHotel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericPetHotel.h; sourceTree = "<group>"; };
 		4FD217CC2179C1EC00FB23DD /* Animal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Animal.m; sourceTree = "<group>"; };
 		4FD217CD2179C1EC00FB23DD /* NSMutableArray+Cat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Cat.m"; sourceTree = "<group>"; };
@@ -62,7 +57,6 @@
 		4FD217D02179C1EC00FB23DD /* Duck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Duck.h; sourceTree = "<group>"; };
 		4FD217D12179C1EC00FB23DD /* Cat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cat.m; sourceTree = "<group>"; };
 		4FD217D22179C1EC00FB23DD /* GenericPetHotel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenericPetHotel.m; sourceTree = "<group>"; };
-		4FD217D32179C1EC00FB23DD /* ItemContainer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemContainer.m; sourceTree = "<group>"; };
 		4FD217D42179C1EC00FB23DD /* Duck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Duck.m; sourceTree = "<group>"; };
 		4FD217D52179C1EC00FB23DD /* RestrictedGenericPetHotel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RestrictedGenericPetHotel.h; sourceTree = "<group>"; };
 		4FD217D62179C1EC00FB23DD /* Animal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Animal.h; sourceTree = "<group>"; };
@@ -129,8 +123,6 @@
 				4F2FE1A91FAF13A40074690D /* DefineGenericCategoryViewController.m */,
 				4F2FE19C1FAF10D10074690D /* UseProtocolRestrictGenericClassViewController.h */,
 				4F2FE19D1FAF10D10074690D /* UseProtocolRestrictGenericClassViewController.m */,
-				4F3782481FC43FBA002BA02D /* TestViewController.h */,
-				4F3782491FC43FBA002BA02D /* TestViewController.m */,
 				4F2FE19F1FAF110E0074690D /* RestrictedByProtocolGenericPetHotel.h */,
 				4F2FE1A01FAF110E0074690D /* RestrictedByProtocolGenericPetHotel.m */,
 				4FD217E02179C29500FB23DD /* UseKindOfViewController.h */,
@@ -147,8 +139,6 @@
 				4FD217CE2179C1EC00FB23DD /* Swim.h */,
 				4FD217CB2179C1EC00FB23DD /* GenericPetHotel.h */,
 				4FD217D22179C1EC00FB23DD /* GenericPetHotel.m */,
-				4FD217CA2179C1EC00FB23DD /* ItemContainer.h */,
-				4FD217D32179C1EC00FB23DD /* ItemContainer.m */,
 				4FD217D02179C1EC00FB23DD /* Duck.h */,
 				4FD217D42179C1EC00FB23DD /* Duck.m */,
 				4FD217D52179C1EC00FB23DD /* RestrictedGenericPetHotel.h */,
@@ -241,11 +231,9 @@
 				4FD217DF2179C1EC00FB23DD /* Duck.m in Sources */,
 				4F2FE17C1FAF06EB0074690D /* main.m in Sources */,
 				4F2FE19E1FAF10D10074690D /* UseProtocolRestrictGenericClassViewController.m in Sources */,
-				4F37824A1FC43FBA002BA02D /* TestViewController.m in Sources */,
 				4F2FE19A1FAF0E0A0074690D /* DefineRestrictedGenericClassViewController.m in Sources */,
 				4FD217D92179C1EC00FB23DD /* Animal.m in Sources */,
 				4FD217DD2179C1EC00FB23DD /* GenericPetHotel.m in Sources */,
-				4FD217DE2179C1EC00FB23DD /* ItemContainer.m in Sources */,
 				4F2FE1881FAF07390074690D /* RootViewController.m in Sources */,
 				4F2FE16E1FAF06EB0074690D /* AppDelegate.m in Sources */,
 				4FD217DB2179C1EC00FB23DD /* RestrictedGenericPetHotel.m in Sources */,
