@@ -16,15 +16,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark > Memory
 
+/**
+ Get available memory on the device
+
+ @return the available memory (MB)
+ @see https://gist.github.com/1901/917a0064b125175db95e
+ */
 + (double)systemAvailableMemory;
+
+/**
+ Get resident memory for the current process/app
+ 
+ @return the resident memory (MB)
+ @see https://gist.github.com/1901/917a0064b125175db95e
+ */
 + (double)processMemoryResident;
 
 /**
- 查看内存footprint（基本和Memory Report显示一致）
- 
- @return the memory footprint
- 
- @note https://forums.developer.apple.com/thread/52186
+ Get footprint for the current process/app
+
+ @return the footprint memory (MB), which should be same as Xcode's Memory Report
+ @see https://forums.developer.apple.com/thread/52186
  */
 + (double)processMemoryFootprint;
 
@@ -91,6 +103,22 @@ NS_ASSUME_NONNULL_BEGIN
  @see https://github.com/Shmoopi/iOS-System-Services/blob/master/System%20Services/Utilities/SSHardwareInfo.m
  */
 + (NSString *)deviceModelPrettyPrinted:(BOOL)prettyPrinted;
+
+#pragma mark > Processor
+
+/**
+ Get the number of processors
+
+ @return the number of processors. Return -1 if failed.
+ */
++ (NSInteger)deviceProcessorNumber;
+
+/**
+ Get the number of active processors
+
+ @return the number of active processors. Return -1 if failed.
+ */
++ (NSInteger)deviceProcessorActiveNumber;
 
 @end
 

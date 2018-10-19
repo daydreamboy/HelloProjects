@@ -20,8 +20,6 @@
 
 #pragma mark > Memory
 
-// 获取当前设备可用内存(单位：MB）
-// @see https://gist.github.com/1901/917a0064b125175db95e
 + (double)systemAvailableMemory {
     vm_statistics_data_t vmStats;
     mach_msg_type_number_t infoCount = HOST_VM_INFO_COUNT;
@@ -37,11 +35,6 @@
     return ((vm_page_size *vmStats.free_count) / 1024.0) / 1024.0;
 }
 
-/**
- 获取当前任务所占用的内存（单位：MB）
-
- @see https://gist.github.com/1901/917a0064b125175db95e
- */
 + (double)processMemoryResident {
     task_basic_info_data_t taskInfo;
     mach_msg_type_number_t infoCount = TASK_BASIC_INFO_COUNT;
@@ -324,6 +317,36 @@
             // Error
             return @"Unknown";
         }
+    }
+}
+
+#pragma mark > Processor
+
++ (NSInteger)deviceProcessorNumber {
+    // See if the process info responds to selector
+    if ([[NSProcessInfo processInfo] respondsToSelector:@selector(processorCount)]) {
+        // Get the number of processors
+        NSInteger processorCount = [[NSProcessInfo processInfo] processorCount];
+        // Return the number of processors
+        return processorCount;
+    }
+    else {
+        // Return -1 (not found)
+        return -1;
+    }
+}
+
++ (NSInteger)deviceProcessorActiveNumber {
+    // See if the process info responds to selector
+    if ([[NSProcessInfo processInfo] respondsToSelector:@selector(activeProcessorCount)]) {
+        // Get the number of active processors
+        NSInteger activeprocessorCount = [[NSProcessInfo processInfo] activeProcessorCount];
+        // Return the number of active processors
+        return activeprocessorCount;
+    }
+    else {
+        // Return -1 (not found)
+        return -1;
     }
 }
 

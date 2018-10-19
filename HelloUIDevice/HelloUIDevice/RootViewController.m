@@ -9,6 +9,8 @@
 #import "RootViewController.h"
 
 #import "GetHardwareModelInfoViewController.h"
+#import "GetHardwareProcessorInfoViewController.h"
+#import "GetSystemMemoryInfoViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -32,10 +34,14 @@
     // MARK: Configure titles and classes for table view
     _titles = @[
         @"Get hardware model",
+        @"Get processor info",
+        @"Get memory info",
         @"call a test method",
     ];
     _classes = @[
         [GetHardwareModelInfoViewController class],
+        [GetHardwareProcessorInfoViewController class],
+        [GetSystemMemoryInfoViewController class],
         @"testMethod",
     ];
 }

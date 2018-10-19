@@ -15,6 +15,8 @@
 		4F58CF0921772CA900D0FD17 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F58CF0821772CA900D0FD17 /* Tests.m */; };
 		4F58CF12217731A800D0FD17 /* GetHardwareModelInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F58CF11217731A800D0FD17 /* GetHardwareModelInfoViewController.m */; };
 		4F63B7D0216DEAC000B2E317 /* WCDeviceTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63B7CF216DEAC000B2E317 /* WCDeviceTool.m */; };
+		4FD218332179E1BA00FB23DD /* GetHardwareProcessorInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD218322179E1BA00FB23DD /* GetHardwareProcessorInfoViewController.m */; };
+		4FD218362179F49C00FB23DD /* GetSystemMemoryInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD218352179F49C00FB23DD /* GetSystemMemoryInfoViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,10 @@
 		4F58CF11217731A800D0FD17 /* GetHardwareModelInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetHardwareModelInfoViewController.m; sourceTree = "<group>"; };
 		4F63B7CE216DEAC000B2E317 /* WCDeviceTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCDeviceTool.h; sourceTree = "<group>"; };
 		4F63B7CF216DEAC000B2E317 /* WCDeviceTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCDeviceTool.m; sourceTree = "<group>"; };
+		4FD218312179E1BA00FB23DD /* GetHardwareProcessorInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetHardwareProcessorInfoViewController.h; sourceTree = "<group>"; };
+		4FD218322179E1BA00FB23DD /* GetHardwareProcessorInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetHardwareProcessorInfoViewController.m; sourceTree = "<group>"; };
+		4FD218342179F49C00FB23DD /* GetSystemMemoryInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetSystemMemoryInfoViewController.h; sourceTree = "<group>"; };
+		4FD218352179F49C00FB23DD /* GetSystemMemoryInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetSystemMemoryInfoViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +110,10 @@
 			children = (
 				4F58CF10217731A800D0FD17 /* GetHardwareModelInfoViewController.h */,
 				4F58CF11217731A800D0FD17 /* GetHardwareModelInfoViewController.m */,
+				4FD218312179E1BA00FB23DD /* GetHardwareProcessorInfoViewController.h */,
+				4FD218322179E1BA00FB23DD /* GetHardwareProcessorInfoViewController.m */,
+				4FD218342179F49C00FB23DD /* GetSystemMemoryInfoViewController.h */,
+				4FD218352179F49C00FB23DD /* GetSystemMemoryInfoViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -229,6 +239,8 @@
 				4F58CF0121772BA300D0FD17 /* RootViewController.m in Sources */,
 				4F63B7D0216DEAC000B2E317 /* WCDeviceTool.m in Sources */,
 				4F545021216DD3E6001068C3 /* main.m in Sources */,
+				4FD218362179F49C00FB23DD /* GetSystemMemoryInfoViewController.m in Sources */,
+				4FD218332179E1BA00FB23DD /* GetHardwareProcessorInfoViewController.m in Sources */,
 				4F545013216DD3E5001068C3 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
