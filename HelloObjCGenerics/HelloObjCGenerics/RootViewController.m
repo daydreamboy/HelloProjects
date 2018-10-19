@@ -14,6 +14,7 @@
 #import "UseProtocolRestrictGenericClassViewController.h"
 #import "DefineGenericCategoryViewController.h"
 #import "DefineGenericCategoryViewController.h"
+#import "UseKindOfViewController.h"
 #import "TestViewController.h"
 
 @interface RootViewController ()
@@ -42,16 +43,18 @@
         @"Define a restricted generic class",
         @"Define a restricted generic class by protocol",
         @"Define a generic category",
+        @"Use __kindof keyword",
         @"TestViewController",
         @"call a test method",
     ];
     _classes = @[
-        @"UseGenericCollectionClassViewController",
-        @"DefineGenericClassViewController",
-        @"DefineRestrictedGenericClassViewController",
-        @"UseProtocolRestrictGenericClassViewController",
-        @"DefineGenericCategoryViewController",
-        @"TestViewController",
+        [UseGenericCollectionClassViewController class],
+        [DefineGenericClassViewController class],
+        [DefineRestrictedGenericClassViewController class],
+        [UseProtocolRestrictGenericClassViewController class],
+        [DefineGenericCategoryViewController class],
+        [UseKindOfViewController class],
+        [TestViewController class],
         @"testMethod",
     ];
 }
@@ -70,30 +73,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *sCellIdentifier = @"RootViewController_sCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
-
+    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-
+    
     cell.textLabel.text = _titles[indexPath.row];
-
+    
     return cell;
 }
 
-- (void)pushViewController:(NSString *)viewControllerClass {
-    NSAssert([viewControllerClass isKindOfClass:[NSString class]], @"%@ is not NSString", viewControllerClass);
+- (void)pushViewController:(id)viewControllerClass {
     
-    Class class = NSClassFromString(viewControllerClass);
-    if (class && [class isSubclassOfClass:[UIViewController class]]) {
-        
-        UIViewController *vc = [[class alloc] init];
-        vc.title = _titles[[_classes indexOfObject:viewControllerClass]];
-        
-        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    else {
+    id class = viewControllerClass;
+    if ([class isKindOfClass:[NSString class]]) {
         SEL selector = NSSelectorFromString(viewControllerClass);
         if ([self respondsToSelector:selector]) {
 #pragma GCC diagnostic push
@@ -104,6 +98,13 @@
         else {
             NSAssert(NO, @"can't handle selector `%@`", viewControllerClass);
         }
+    }
+    else if (class && [class isSubclassOfClass:[UIViewController class]]) {
+        UIViewController *vc = [[class alloc] init];
+        vc.title = _titles[[_classes indexOfObject:viewControllerClass]];
+        
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

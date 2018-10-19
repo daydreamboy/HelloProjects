@@ -38,17 +38,19 @@ typedef void(^myBlock)(void);
     
     // @see https://stackoverflow.com/questions/35822645/understand-one-edge-case-of-block-memory-management-in-objc
     NSArray *tmp = [self getBlockArray];
-    myBlock block = tmp[0];
+    myBlock block = [tmp[2] copy];
     block();
 }
 
 - (id)getBlockArray {
     int val = 10;
     //crash version
-//    return [[NSArray alloc] initWithObjects:
-//            ^{NSLog(@"blk0:%d", val);},
-//            ^{NSLog(@"blk1:%d", val);}, nil];
+    return [[NSArray alloc] initWithObjects:
+            ^{NSLog(@"blk0:%d", val);},
+            ^{NSLog(@"blk1:%d", val);},
+            ^{NSLog(@"blk2:%d", val);},
+            nil];
     //won't crash version
-        return @[^{NSLog(@"block0: %d", val);}, ^{NSLog(@"block1: %d", val);}];
+//        return @[^{NSLog(@"block0: %d", val);}, ^{NSLog(@"block1: %d", val);}];
 }
 @end
