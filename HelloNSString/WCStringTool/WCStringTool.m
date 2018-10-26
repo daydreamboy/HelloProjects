@@ -193,22 +193,22 @@
  *
  *  @return the 'value' string
  */
-+ (nullable NSString *)valueWithUrlString:(NSString *)string forKey:(NSString *)key usingConnector:(NSString *)connector usingSeparator:(NSString *)separator {
++ (nullable NSString *)valueWithUrlString:(NSString *)urlString forKey:(NSString *)key usingConnector:(NSString *)connector usingSeparator:(NSString *)separator {
     
-    if (![string isKindOfClass:[NSString class]] ||
+    if (![urlString isKindOfClass:[NSString class]] ||
         ![key isKindOfClass:[NSString class]] ||
         ![separator isKindOfClass:[NSString class]]) {
         return nil;
     }
     
-    NSRange rangeOfQuestionMark = [string rangeOfString:@"?" options:kNilOptions];
+    NSRange rangeOfQuestionMark = [urlString rangeOfString:@"?" options:kNilOptions];
     if (rangeOfQuestionMark.location == NSNotFound || rangeOfQuestionMark.length == 0) {
         return nil;
     }
     
     NSString *queryString;
-    if (rangeOfQuestionMark.location + 1 < string.length) {
-        queryString = [string substringFromIndex:rangeOfQuestionMark.location + 1];
+    if (rangeOfQuestionMark.location + 1 < urlString.length) {
+        queryString = [urlString substringFromIndex:rangeOfQuestionMark.location + 1];
     }
     
     if (!queryString.length) {
@@ -236,15 +236,15 @@
  *
  *  @return the 'value' string
  */
-+ (nullable NSString *)valueWithUrlString:(NSString *)string forKey:(NSString *)key {
++ (nullable NSString *)valueWithUrlString:(NSString *)urlString forKey:(NSString *)key {
     
     NSString *separator = @"&";
     NSString *connector = @"=";
     
-    return [self valueWithUrlString:string forKey:key usingConnector:connector usingSeparator:separator];
+    return [self valueWithUrlString:urlString forKey:key usingConnector:connector usingSeparator:separator];
 }
 
-+ (NSDictionary *)keyValuePairsWithUrlString:(NSString *)urlString  {
++ (nullable NSDictionary *)keyValuePairsWithUrlString:(NSString *)urlString  {
     if (![urlString isKindOfClass:[NSString class]]) {
         return nil;
     }
@@ -305,7 +305,7 @@
         return nil;
     }
     
-    if (range.location < string.length) {
+    if (range.location <= string.length) {
         if (range.location + range.length <= string.length) {
             return [string substringWithRange:range];
         }

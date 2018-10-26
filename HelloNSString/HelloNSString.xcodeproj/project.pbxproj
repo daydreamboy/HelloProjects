@@ -21,6 +21,7 @@
 		4F731A8C20BEE28F00D095F9 /* WCStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F731A8B20BEE28F00D095F9 /* WCStringTool.m */; };
 		4F731A9420BEE34F00D095F9 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F731A9320BEE34F00D095F9 /* Tests.m */; };
 		4F746918214E3EFF0079F654 /* Tests_OpenSSL.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F746917214E3EFF0079F654 /* Tests_OpenSSL.m */; };
+		4FA4E2682182FDFF002F407A /* Tests_NSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA4E2672182FDFF002F407A /* Tests_NSString.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		4F731A9320BEE34F00D095F9 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		4F731A9520BEE34F00D095F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F746917214E3EFF0079F654 /* Tests_OpenSSL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_OpenSSL.m; sourceTree = "<group>"; };
+		4FA4E2672182FDFF002F407A /* Tests_NSString.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSString.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				4F731A9320BEE34F00D095F9 /* Tests.m */,
+				4FA4E2672182FDFF002F407A /* Tests_NSString.m */,
 				4F746917214E3EFF0079F654 /* Tests_OpenSSL.m */,
 				4F1D7DB4211F0F9A0021023C /* Tests_NSArray.m */,
 				4F698CB5215B924700A32FCD /* Tests_encode.m */,
@@ -274,6 +277,7 @@
 				4F698CB6215B924700A32FCD /* Tests_encode.m in Sources */,
 				4F746918214E3EFF0079F654 /* Tests_OpenSSL.m in Sources */,
 				4F731A9420BEE34F00D095F9 /* Tests.m in Sources */,
+				4FA4E2682182FDFF002F407A /* Tests_NSString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
