@@ -120,9 +120,10 @@ NS_ASSUME_NONNULL_BEGIN
  Safe get substring with the location and the length
 
  @param string the whole string
- @param location the start location which expected in the [0, string.length)
+ @param location the start location which expected in the [0, string.length]. If location is equal to the length of the string, returns an empty string.
  @param length the length of substring. And the length > string.length - location, will return the substring from location to the end
- @return the substring. Return nil if the locatio or length is invalid, e.g. location out of the string index [0..string.length]
+ @return the substring. Return nil if the locatio or length is invalid, e.g. location out of the string index [0..string.length].
+ @discussion The location is equal to the length of the string, returns an empty string. This is keep same as -[NSString substringFromIndex:].
  */
 + (nullable NSString *)substringWithString:(NSString *)string atLocation:(NSUInteger)location length:(NSUInteger)length;
 
@@ -131,7 +132,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param string the whole string
  @param range the range.
- @return the substring. Return nil if the range is invalid, e.g. range.length = 0; location out of the string index [0..string.length]
+ @return the substring. Return nil if the range is invalid, e.g. location out of the string index [0..string.length]
  */
 + (nullable NSString *)substringWithString:(NSString *)string range:(NSRange)range;
 

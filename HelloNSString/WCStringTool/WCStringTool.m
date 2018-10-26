@@ -281,7 +281,7 @@
         return nil;
     }
     
-    if (location < string.length) {
+    if (location <= string.length) {
         // Note: Don't use location + length <= string.length, because if length is too large (e.g. NSUIntegerMax), location + length will become smaller (upper overflow)
         if (length <= string.length - location) {
             return [string substringWithRange:NSMakeRange(location, length)];
@@ -306,7 +306,8 @@
     }
     
     if (range.location <= string.length) {
-        if (range.location + range.length <= string.length) {
+        // Note: Don't use range.location + range.length <= string.length, because if length is too large (e.g. NSUIntegerMax), location + length will become smaller (upper overflow)
+        if (range.length <= string.length - range.location) {
             return [string substringWithRange:range];
         }
         else {
