@@ -24,6 +24,8 @@
 
 @implementation WCURLTool
 
+#pragma mark - Public Methods
+
 + (NSURL *)PNGImageURLWithImageName:(NSString *)imageName inResourceBundle:(NSString *)resourceBundleName {
     if (![imageName isKindOfClass:[NSString class]] || ![resourceBundleName isKindOfClass:[NSString class]]) {
         return nil;
@@ -64,32 +66,15 @@
     return URL;
 }
 
-
-
 + (nullable WCURLComponents *)URLComponentsWithUrlString:(NSString *)urlString {
+#define NSRangeZero (NSMakeRange(0, 0))
     if (![urlString isKindOfClass:[NSString class]] || urlString.length == 0) {
         return nil;
     }
     
     WCURLComponents *components = [[WCURLComponents alloc] init];
     
-    // @see https://tools.ietf.org/html/rfc2396
-    //                          12                3      4              5         6    7        8 9
-    NSString *patternOfURI = @"^(([^:\\/\\?#]+):)?(\\/\\/([^\\/\\?#]*))?([^\\?#]*)(\\\?([^#]*))?(#(.*))?";
-    
-    // @see https://stackoverflow.com/a/39811696 e.g. <username>:<password>@<host>:<port>
-    //                                           1       2         3            4
-    NSString *patternOfAuthorityComponent = @"(?:([^:]*):([^@]*)@|)([^/:]{1,}):?(\\d*)?";
-    
-    // @see https://stackoverflow.com/a/39811696
-    //                                   1              2
-    NSString *patternOfPathComponent = @"(\\/[^;]{1,});?([^;]+)?";
-    
-    // @see https://stackoverflow.com/a/46885117
-    //                                          1        2
-    NSString *patternOfQueryItems = @"(?:^|[?&])([^=&]*)=([^=&]*)";
-    
-    NSTextCheckingResult *match = [self firstMatchInString:urlString pattern:patternOfURI];
+    NSTextCheckingResult *match = [self firstMatchInString:urlString pattern:self.patternOfURI];
     if (match.numberOfRanges == 10) {
         NSRange schemeRange = [match rangeAtIndex:2];
         NSRange authorityRange = [match rangeAtIndex:4];
@@ -103,7 +88,16 @@
         NSString *queryComponent = [self substringWithString:urlString range:queryRange];
         NSString *fragmentComponent = [self substringWithString:urlString range:fragmentRange];
         
-        NSTextCheckingResult *matchOfAuthorityComponent = [self firstMatchInString:authorityComponent pattern:patternOfAuthorityComponent];
+        components.string = urlString;
+        components.scheme = schemeComponent;
+        components.query = queryComponent;
+        components.fragment = fragmentComponent;
+        
+        components.rangeOfScheme = components.scheme.length > 0 ? schemeRange : NSRangeZero;
+        components.rangeOfQuery = components.query.length > 0 ? queryRange : NSRangeZero;
+        components.rangeOfFragment = fragmentComponent.length > 0 ? fragmentRange : NSRangeZero;
+        
+        NSTextCheckingResult *matchOfAuthorityComponent = [self firstMatchInString:authorityComponent pattern:self.patternOfAuthorityComponent];
         if (matchOfAuthorityComponent.numberOfRanges == 5) {
             NSRange userRange = [matchOfAuthorityComponent rangeAtIndex:1];
             NSRange passwordRange = [matchOfAuthorityComponent rangeAtIndex:2];
@@ -114,25 +108,37 @@
             components.password = [self substringWithString:authorityComponent range:passwordRange];
             components.host = [self substringWithString:authorityComponent range:hostRange];
             components.port = [self numberFromString:[self substringWithString:authorityComponent range:portRange] encodedType:@encode(int)];
+            
+            components.rangeOfUser = components.user.length > 0 ? NSMakeRange(userRange.location + authorityRange.location, userRange.length) : NSRangeZero;
+            components.rangeOfPassword = components.password.length > 0 ? NSMakeRange(passwordRange.location + authorityRange.location, passwordRange.length) : NSRangeZero;
+            components.rangeOfHost = components.host.length > 0 ? NSMakeRange(hostRange.location + authorityRange.location, hostRange.length) : NSRangeZero;
+            components.rangeOfPort = components.port.integerValue > 0 ? NSMakeRange(portRange.location + authorityRange.location, portRange.length) : NSRangeZero;
         }
         
-        NSTextCheckingResult *matchOfPathComponent = [self firstMatchInString:pathComponent pattern:patternOfPathComponent];
+        NSTextCheckingResult *matchOfPathComponent = [self firstMatchInString:pathComponent pattern:self.patternOfPathComponent];
         if (matchOfPathComponent.numberOfRanges == 3) {
             NSRange wellKnownPathRange = [matchOfPathComponent rangeAtIndex:1];
             NSRange parameterRange = [matchOfPathComponent rangeAtIndex:2];
             
             components.path = [self substringWithString:pathComponent range:wellKnownPathRange];
             components.parameterString = [self substringWithString:pathComponent range:parameterRange];
+            
+            components.rangeOfPath = components.path.length > 0 ? NSMakeRange(wellKnownPathRange.location + pathRange.location, wellKnownPathRange.length) : NSRangeZero;
+            components.rangeOfParameterString = components.parameterString.length > 0 ? NSMakeRange(parameterRange.location + pathRange.location, parameterRange.length) : NSRangeZero;
+            
+            NSTextCheckingResult *matchOfPathExtension = [self firstMatchInString:components.path pattern:self.patternOfPathExtension];
+            if (matchOfPathExtension.numberOfRanges == 2) {
+                NSRange pathExtensionRange = [matchOfPathExtension rangeAtIndex:1];
+                
+                components.pathExtension = [self substringWithString:components.path range:pathExtensionRange];
+                
+                components.rangeOfPathExtension = components.pathExtension > 0 ? NSMakeRange(pathExtensionRange.location + components.rangeOfPath.location, pathExtensionRange.length) : NSRangeZero;
+            }
         }
-        
-        components.string = urlString;
-        components.scheme = schemeComponent;
-        components.query = queryComponent;
-        components.fragment = fragmentComponent;
         
         if (queryComponent.length) {
             NSMutableArray<WCURLQueryItem *> *queryItemsM = [NSMutableArray array];
-            BOOL success = [self enumerateMatchesInString:queryComponent pattern:patternOfQueryItems usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+            BOOL success = [self enumerateMatchesInString:queryComponent pattern:self.patternOfQueryItems usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
                 NSTextCheckingResult *matchOfQueryItems = result;
                 
                 if (matchOfQueryItems.numberOfRanges == 3) {
@@ -144,6 +150,9 @@
                     
                     WCURLQueryItem *queryItem = [WCURLQueryItem queryItemWithName:key value:value];
                     queryItem.queryString = queryComponent;
+                    queryItem.rangeOfName = key.length > 0 ? NSMakeRange(keyRange.location + components.rangeOfQuery.location, keyRange.length) : NSRangeZero;
+                    queryItem.rangeOfValue = value.length > 0 ? NSMakeRange(valueRange.location + components.rangeOfQuery.location, valueRange.length) : NSRangeZero;
+                    
                     [queryItemsM addObject:queryItem];
                 }
             }];
@@ -155,6 +164,39 @@
     }
     
     return components;
+#undef NSRangeZero
+}
+
+#pragma mark > Properties
+
++ (NSString *)patternOfURI {
+    // @see https://tools.ietf.org/html/rfc2396
+    //        12                3      4              5         6    7        8 9
+    return @"^(([^:\\/\\?#]+):)?(\\/\\/([^\\/\\?#]*))?([^\\?#]*)(\\\?([^#]*))?(#(.*))?";
+}
+
++ (NSString *)patternOfAuthorityComponent {
+    // @see https://stackoverflow.com/a/39811696 e.g. <username>:<password>@<host>:<port>
+    //          1       2         3            4
+    return @"(?:([^:]*):([^@]*)@|)([^/:]{1,}):?(\\d*)?";
+}
+
++ (NSString *)patternOfPathComponent {
+    // @see https://stackoverflow.com/a/39811696
+    //       1              2
+    return @"(\\/[^;]{1,});?([^;]+)?";
+}
+
++ (NSString *)patternOfQueryItems {
+    // @see https://stackoverflow.com/a/46885117
+    //       1        2
+    return @"(?:^|[?&])([^=&]*)=([^=&]*)";
+}
+
++ (NSString *)patternOfPathExtension {
+    // @see https://stackoverflow.com/a/31481242
+    //          1
+    return @"\\.([^/?;.]+)(?:$|\\?|;)";
 }
 
 #pragma mark - Utility Methods
@@ -199,6 +241,7 @@
     return match;
 }
 
+// Note: refer to +[WCStringTool substringWithString:range:]
 + (nullable NSString *)substringWithString:(NSString *)string range:(NSRange)range {
     if (![string isKindOfClass:[NSString class]]) {
         return nil;
@@ -208,8 +251,8 @@
         return nil;
     }
     
-    if (range.location < string.length) {
-        if (range.location + range.length <= string.length) {
+    if (range.location <= string.length) {
+        if (range.length <= string.length - range.location) {
             return [string substringWithRange:range];
         }
         else {

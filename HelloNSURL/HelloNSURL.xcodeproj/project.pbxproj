@@ -45,6 +45,7 @@
 		4F7D8FFD210DAFC100145B00 /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F7D8FFF210DAFC200145B00 /* Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		4F7D9001210DAFC200145B00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FA4E2662182CE9F002F407A /* WCURLTool_Testing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCURLTool_Testing.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +106,7 @@
 			children = (
 				4F7D8F0B210A0EF500145B00 /* WCURLTool.h */,
 				4F7D8F0C210A0EF500145B00 /* WCURLTool.m */,
+				4FA4E2662182CE9F002F407A /* WCURLTool_Testing.h */,
 			);
 			path = WCURLTool;
 			sourceTree = "<group>";

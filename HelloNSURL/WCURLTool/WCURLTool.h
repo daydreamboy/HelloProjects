@@ -15,10 +15,14 @@ NS_AVAILABLE_IOS(8_0)
 @interface WCURLQueryItem : NSObject
 /// this field missing, e.g. (missing)=value, will get @""
 @property (nonatomic, copy, nullable) NSString *name;
-/// this field missing, e.g. key=(missing), will get nil
+/// this field missing, e.g. key=(missing), will get @""
 @property (nonatomic, copy, nullable) NSString *value;
 /// the query string which not include `?`
 @property (nonatomic, copy) NSString *queryString;
+
+@property (nonatomic, assign) NSRange rangeOfName;
+@property (nonatomic, assign) NSRange rangeOfValue;
+
 + (instancetype)queryItemWithName:(NSString *)name value:(NSString *)value;
 @end
 
@@ -32,14 +36,33 @@ NS_AVAILABLE_IOS(8_0)
 @property (nonatomic, copy, nullable) NSString *host;
 @property (nonatomic, strong, nullable) NSNumber *port;
 @property (nonatomic, copy, nullable) NSString *path;
+@property (nonatomic, copy, nullable) NSString *pathExtension;
 @property (nonatomic, copy, nullable) NSString *parameterString;
 @property (nonatomic, copy, nullable) NSString *query;
 @property (nonatomic, copy, nullable) NSString *fragment;
 @property (nonatomic, strong) NSArray<WCURLQueryItem *> *queryItems;
+
+@property (nonatomic, assign) NSRange rangeOfScheme;
+@property (nonatomic, assign) NSRange rangeOfUser;
+@property (nonatomic, assign) NSRange rangeOfPassword;
+@property (nonatomic, assign) NSRange rangeOfHost;
+@property (nonatomic, assign) NSRange rangeOfPort;
+@property (nonatomic, assign) NSRange rangeOfPath;
+@property (nonatomic, assign) NSRange rangeOfPathExtension;
+@property (nonatomic, assign) NSRange rangeOfParameterString;
+@property (nonatomic, assign) NSRange rangeOfQuery;
+@property (nonatomic, assign) NSRange rangeOfFragment;
+
 @end
 
 NS_AVAILABLE_IOS(8_0)
 @interface WCURLTool : NSObject
+
+@property (nonatomic, copy, readonly, class) NSString *patternOfURI;
+@property (nonatomic, copy, readonly, class) NSString *patternOfAuthorityComponent;
+@property (nonatomic, copy, readonly, class) NSString *patternOfPathComponent;
+@property (nonatomic, copy, readonly, class) NSString *patternOfQueryItems;
+@property (nonatomic, copy, readonly, class) NSString *patternOfPathExtension;
 
 /**
  Get URL for local png image
