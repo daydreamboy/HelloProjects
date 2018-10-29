@@ -3,7 +3,7 @@
 //  HelloNSAttributedString
 //
 //  Created by wesley_chen on 17/11/2017.
-//  Copyright © 2017 chenliang-xy. All rights reserved.
+//  Copyright © 2017 wesley_chen. All rights reserved.
 //
 
 #import "NSString+Addition.h"
