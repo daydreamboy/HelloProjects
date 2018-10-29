@@ -88,6 +88,17 @@
     XCTAssertEqualObjects([components.queryItems[1] name], @"key2");
     XCTAssertEqualObjects([components.queryItems[1] value], @"value2");
     
+    XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"http"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfUser, [urlString rangeOfString:@"username"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPassword, [urlString rangeOfString:@"password"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfHost, [urlString rangeOfString:@"www.example.com"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPort, [urlString rangeOfString:@"8080"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPath, [urlString rangeOfString:@"/index.html"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPathExtension, [urlString rangeOfString:@"html"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfParameterString, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfQuery, [urlString rangeOfString:@"key1=value1&key2=value2"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfFragment, [urlString rangeOfString:@"jumpLocation"]));
+    
     // Case 3
     urlString = @"http://a:80/b/c/d?q=http://a:80/b/c/d#jumpLocation";
     components = [WCURLTool URLComponentsWithUrlString:urlString];
@@ -106,6 +117,17 @@
     XCTAssertEqualObjects([components.queryItems[0] name], @"q");
     XCTAssertEqualObjects([components.queryItems[0] value], @"http://a:80/b/c/d");
     
+    XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"http"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPassword, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfHost, [urlString rangeOfString:@"a"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPort, [urlString rangeOfString:@"80"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPath, [urlString rangeOfString:@"/b/c/d"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPathExtension, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfParameterString, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfQuery, [urlString rangeOfString:@"q=http://a:80/b/c/d"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfFragment, [urlString rangeOfString:@"jumpLocation"]));
+    
     // Case 4
     urlString = @"http://a:80/b/c/d;p?key1=value1#jumpLocation";
     components = [WCURLTool URLComponentsWithUrlString:urlString];
@@ -113,6 +135,17 @@
     XCTAssertEqualObjects([components.queryItems[0] name], @"key1");
     XCTAssertEqualObjects([components.queryItems[0] value], @"value1");
     XCTAssertNil(components.pathExtension);
+    
+    XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"http"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPassword, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfHost, [urlString rangeOfString:@"a"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPort, [urlString rangeOfString:@"80"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPath, [urlString rangeOfString:@"/b/c/d"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPathExtension, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfParameterString, NSMakeRange([urlString rangeOfString:@";p"].location + 1, 1)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfQuery, [urlString rangeOfString:@"key1=value1"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfFragment, [urlString rangeOfString:@"jumpLocation"]));
     
     // Case 5
     urlString = @"http://www.ics.uci.edu/pub/ietf/uri/#Related";
@@ -131,13 +164,37 @@
     XCTAssertEqualObjects(components.fragment, @"Related");
     XCTAssertNil(components.queryItems);
     
+    XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"http"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPassword, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfHost, [urlString rangeOfString:@"www.ics.uci.edu"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPort, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPath, [urlString rangeOfString:@"/pub/ietf/uri/"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPathExtension, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfParameterString, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfQuery, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfFragment, [urlString rangeOfString:@"Related"]));
+    
     // Abnormal Case 1
     urlString = @"http://a:80/b/c/d;p?key1=#jumpLocation";
     components = [WCURLTool URLComponentsWithUrlString:urlString];
     
     XCTAssertEqualObjects([components.queryItems[0] name], @"key1");
     XCTAssertEqualObjects([components.queryItems[0] value], @"");
+    XCTAssertTrue(NSEqualRanges([components.queryItems[0] rangeOfName], [urlString rangeOfString:@"key1"]));
+    XCTAssertTrue(NSEqualRanges([components.queryItems[0] rangeOfValue], NSMakeRange(0, 0)));
     XCTAssertNil(components.pathExtension);
+    
+    XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"http"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPassword, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfHost, [urlString rangeOfString:@"a"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPort, [urlString rangeOfString:@"80"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPath, [urlString rangeOfString:@"/b/c/d"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPathExtension, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfParameterString, NSMakeRange([urlString rangeOfString:@";p"].location + 1, 1)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfQuery, [urlString rangeOfString:@"key1="]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfFragment, [urlString rangeOfString:@"jumpLocation"]));
     
     // Abnormal Case 2
     urlString = @"http://a:80/b/c/d;p?=value1#jumpLocation";
@@ -145,7 +202,20 @@
     
     XCTAssertEqualObjects([components.queryItems[0] name], @"");
     XCTAssertEqualObjects([components.queryItems[0] value], @"value1");
+    XCTAssertTrue(NSEqualRanges([components.queryItems[0] rangeOfName], NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges([components.queryItems[0] rangeOfValue], [urlString rangeOfString:@"value1"]));
     XCTAssertNil(components.pathExtension);
+    
+    XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"http"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPassword, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfHost, [urlString rangeOfString:@"a"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPort, [urlString rangeOfString:@"80"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPath, [urlString rangeOfString:@"/b/c/d"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPathExtension, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfParameterString, NSMakeRange([urlString rangeOfString:@";p"].location + 1, 1)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfQuery, [urlString rangeOfString:@"=value1"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfFragment, [urlString rangeOfString:@"jumpLocation"]));
     
     // Abnormal Case 3
     urlString = @"http://a:80/b/c/d;p?=#jumpLocation";
@@ -153,7 +223,20 @@
     
     XCTAssertEqualObjects([components.queryItems[0] name], @"");
     XCTAssertEqualObjects([components.queryItems[0] value], @"");
+    XCTAssertTrue(NSEqualRanges([components.queryItems[0] rangeOfName], NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges([components.queryItems[0] rangeOfValue], NSMakeRange(0, 0)));
     XCTAssertNil(components.pathExtension);
+    
+    XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"http"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPassword, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfHost, [urlString rangeOfString:@"a"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPort, [urlString rangeOfString:@"80"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPath, [urlString rangeOfString:@"/b/c/d"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPathExtension, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfParameterString, NSMakeRange([urlString rangeOfString:@";p"].location + 1, 1)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfQuery, [urlString rangeOfString:@"="]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfFragment, [urlString rangeOfString:@"jumpLocation"]));
     
     // Abnormal Case 4
     urlString = @"http://a:80/b/c/d;p?==#jumpLocation";
@@ -163,6 +246,17 @@
     XCTAssertEqualObjects([components.queryItems[0] name], @"");
     XCTAssertEqualObjects([components.queryItems[0] value], @"");
     XCTAssertNil(components.pathExtension);
+    
+    XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"http"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPassword, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfHost, [urlString rangeOfString:@"a"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPort, [urlString rangeOfString:@"80"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPath, [urlString rangeOfString:@"/b/c/d"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPathExtension, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfParameterString, NSMakeRange([urlString rangeOfString:@";p"].location + 1, 1)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfQuery, [urlString rangeOfString:@"=="]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfFragment, [urlString rangeOfString:@"jumpLocation"]));
     
     // Abnormal Case 5
     urlString = @"https://detail.tmall.com/item.htm?id=568371443233&spm=a223v.7835278.t0.1.3cbe2312nwviTo&pvid=be2a1b12-f24f-4050-9227-e7c3448fd8b8&scm=1007.12144.81309.9011_8949&utparam={%22x_hestia_source%22:%228949%22,%22x_mt%22:10,%22x_object_id%22:568371443233,%22x_object_type%22:%22item%22,%22x_pos%22:1,%22x_pvid%22:%22be2a1b12-f24f-4050-9227-e7c3448fd8b8%22,%22x_src%22:%228949%22}";
@@ -182,14 +276,35 @@
     XCTAssertTrue([components.queryItems count] == 5);
     XCTAssertEqualObjects([components.queryItems[0] name], @"id");
     XCTAssertEqualObjects([components.queryItems[0] value], @"568371443233");
+    XCTAssertTrue(NSEqualRanges([components.queryItems[0] rangeOfName], [urlString rangeOfString:@"id"]));
+    XCTAssertTrue(NSEqualRanges([components.queryItems[0] rangeOfValue], [urlString rangeOfString:@"568371443233"]));
     XCTAssertEqualObjects([components.queryItems[1] name], @"spm");
     XCTAssertEqualObjects([components.queryItems[1] value], @"a223v.7835278.t0.1.3cbe2312nwviTo");
+    XCTAssertTrue(NSEqualRanges([components.queryItems[1] rangeOfName], [urlString rangeOfString:@"spm"]));
+    XCTAssertTrue(NSEqualRanges([components.queryItems[1] rangeOfValue], [urlString rangeOfString:@"a223v.7835278.t0.1.3cbe2312nwviTo"]));
     XCTAssertEqualObjects([components.queryItems[2] name], @"pvid");
     XCTAssertEqualObjects([components.queryItems[2] value], @"be2a1b12-f24f-4050-9227-e7c3448fd8b8");
+    XCTAssertTrue(NSEqualRanges([components.queryItems[2] rangeOfName], [urlString rangeOfString:@"pvid"]));
+    XCTAssertTrue(NSEqualRanges([components.queryItems[2] rangeOfValue], [urlString rangeOfString:@"be2a1b12-f24f-4050-9227-e7c3448fd8b8"]));
     XCTAssertEqualObjects([components.queryItems[3] name], @"scm");
     XCTAssertEqualObjects([components.queryItems[3] value], @"1007.12144.81309.9011_8949");
+    XCTAssertTrue(NSEqualRanges([components.queryItems[3] rangeOfName], [urlString rangeOfString:@"scm"]));
+    XCTAssertTrue(NSEqualRanges([components.queryItems[3] rangeOfValue], [urlString rangeOfString:@"1007.12144.81309.9011_8949"]));
     XCTAssertEqualObjects([components.queryItems[4] name], @"utparam");
     XCTAssertEqualObjects([components.queryItems[4] value], @"{%22x_hestia_source%22:%228949%22,%22x_mt%22:10,%22x_object_id%22:568371443233,%22x_object_type%22:%22item%22,%22x_pos%22:1,%22x_pvid%22:%22be2a1b12-f24f-4050-9227-e7c3448fd8b8%22,%22x_src%22:%228949%22}");
+    XCTAssertTrue(NSEqualRanges([components.queryItems[4] rangeOfName], [urlString rangeOfString:@"utparam"]));
+    XCTAssertTrue(NSEqualRanges([components.queryItems[4] rangeOfValue], [urlString rangeOfString:@"{%22x_hestia_source%22:%228949%22,%22x_mt%22:10,%22x_object_id%22:568371443233,%22x_object_type%22:%22item%22,%22x_pos%22:1,%22x_pvid%22:%22be2a1b12-f24f-4050-9227-e7c3448fd8b8%22,%22x_src%22:%228949%22}"]));
+    
+    XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"https"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPassword, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfHost, [urlString rangeOfString:@"detail.tmall.com"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPort, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPath, [urlString rangeOfString:@"/item.htm"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPathExtension, [urlString rangeOfString:@"htm"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfParameterString, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfQuery, [urlString rangeOfString:@"id=568371443233&spm=a223v.7835278.t0.1.3cbe2312nwviTo&pvid=be2a1b12-f24f-4050-9227-e7c3448fd8b8&scm=1007.12144.81309.9011_8949&utparam={%22x_hestia_source%22:%228949%22,%22x_mt%22:10,%22x_object_id%22:568371443233,%22x_object_type%22:%22item%22,%22x_pos%22:1,%22x_pvid%22:%22be2a1b12-f24f-4050-9227-e7c3448fd8b8%22,%22x_src%22:%228949%22}"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfFragment, NSMakeRange(0, 0)));
     
     // Abnormal Case 6: @see https://stackoverflow.com/questions/48576329/ios-urlstring-not-working-always
     urlString = @"http://akns-images.eonline.com/eol_images/Entire_Site/2018029/rs_1024x759-180129200032-1024.lupita-nyongo-angela-bassett-black-panther-premiere.ct.012918.jpg?fit=inside|900:auto";
@@ -209,6 +324,19 @@
     XCTAssertTrue([components.queryItems count] == 1);
     XCTAssertEqualObjects([components.queryItems[0] name], @"fit");
     XCTAssertEqualObjects([components.queryItems[0] value], @"inside|900:auto");
+    XCTAssertTrue(NSEqualRanges([components.queryItems[0] rangeOfName], [urlString rangeOfString:@"fit"]));
+    XCTAssertTrue(NSEqualRanges([components.queryItems[0] rangeOfValue], [urlString rangeOfString:@"inside|900:auto"]));
+    
+    XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"http"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPassword, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfHost, [urlString rangeOfString:@"akns-images.eonline.com"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPort, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPath, [urlString rangeOfString:@"/eol_images/Entire_Site/2018029/rs_1024x759-180129200032-1024.lupita-nyongo-angela-bassett-black-panther-premiere.ct.012918.jpg"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPathExtension, [urlString rangeOfString:@"jpg"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfParameterString, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfQuery, [urlString rangeOfString:@"fit=inside|900:auto"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfFragment, NSMakeRange(0, 0)));
     
     // Abnormal Case 7: http://wapp.wapa.taobao.com/alicare/wangxin.html 's query string should not contain `&key=value`
     urlString = @"wangx://menu/present/template?container=dialog&body={\"template\":{\"data\":{\"text\":\"http://wapp.wapa.taobao.com/alicare/wangxin.html\"},\"id\":20001},\"header\":{\"title\":\"test\"}}";
@@ -228,8 +356,23 @@
     XCTAssertTrue([components.queryItems count] == 2);
     XCTAssertEqualObjects([components.queryItems[0] name], @"container");
     XCTAssertEqualObjects([components.queryItems[0] value], @"dialog");
+    XCTAssertTrue(NSEqualRanges([components.queryItems[0] rangeOfName], [urlString rangeOfString:@"container"]));
+    XCTAssertTrue(NSEqualRanges([components.queryItems[0] rangeOfValue], [urlString rangeOfString:@"dialog"]));
     XCTAssertEqualObjects([components.queryItems[1] name], @"body");
     XCTAssertEqualObjects([components.queryItems[1] value], @"{\"template\":{\"data\":{\"text\":\"http://wapp.wapa.taobao.com/alicare/wangxin.html\"},\"id\":20001},\"header\":{\"title\":\"test\"}}");
+    XCTAssertTrue(NSEqualRanges([components.queryItems[1] rangeOfName], [urlString rangeOfString:@"body"]));
+    XCTAssertTrue(NSEqualRanges([components.queryItems[1] rangeOfValue], [urlString rangeOfString:@"{\"template\":{\"data\":{\"text\":\"http://wapp.wapa.taobao.com/alicare/wangxin.html\"},\"id\":20001},\"header\":{\"title\":\"test\"}}"]));
+    
+    XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"wangx"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPassword, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfHost, [urlString rangeOfString:@"menu"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPort, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPath, [urlString rangeOfString:@"/present/template"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPathExtension, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfParameterString, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfQuery, [urlString rangeOfString:@"container=dialog&body={\"template\":{\"data\":{\"text\":\"http://wapp.wapa.taobao.com/alicare/wangxin.html\"},\"id\":20001},\"header\":{\"title\":\"test\"}}"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfFragment, NSMakeRange(0, 0)));
     
     // Abnormal Case 8
     urlString = @"wangx://menu/present/template?container=dialog&body={\"template\":{\"data\":{\"text\":\"http%3a%2f%2fwapp.wapa.taobao.com%2falicare%2fwangxin.html%3fhost%3dh5.wapa.taobao.com%26sid%3d1234567890\"},\"id\":20001},\"header\":{\"title\":\"test\"}}";
@@ -249,8 +392,23 @@
     XCTAssertTrue([components.queryItems count] == 2);
     XCTAssertEqualObjects([components.queryItems[0] name], @"container");
     XCTAssertEqualObjects([components.queryItems[0] value], @"dialog");
+    XCTAssertTrue(NSEqualRanges([components.queryItems[0] rangeOfName], [urlString rangeOfString:@"container"]));
+    XCTAssertTrue(NSEqualRanges([components.queryItems[0] rangeOfValue], [urlString rangeOfString:@"dialog"]));
     XCTAssertEqualObjects([components.queryItems[1] name], @"body");
     XCTAssertEqualObjects([components.queryItems[1] value], @"{\"template\":{\"data\":{\"text\":\"http%3a%2f%2fwapp.wapa.taobao.com%2falicare%2fwangxin.html%3fhost%3dh5.wapa.taobao.com%26sid%3d1234567890\"},\"id\":20001},\"header\":{\"title\":\"test\"}}");
+    XCTAssertTrue(NSEqualRanges([components.queryItems[1] rangeOfName], [urlString rangeOfString:@"body"]));
+    XCTAssertTrue(NSEqualRanges([components.queryItems[1] rangeOfValue], [urlString rangeOfString:@"{\"template\":{\"data\":{\"text\":\"http%3a%2f%2fwapp.wapa.taobao.com%2falicare%2fwangxin.html%3fhost%3dh5.wapa.taobao.com%26sid%3d1234567890\"},\"id\":20001},\"header\":{\"title\":\"test\"}}"]));
+    
+    XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"wangx"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPassword, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfHost, [urlString rangeOfString:@"menu"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPort, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPath, [urlString rangeOfString:@"/present/template"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPathExtension, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfParameterString, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfQuery, [urlString rangeOfString:@"container=dialog&body={\"template\":{\"data\":{\"text\":\"http%3a%2f%2fwapp.wapa.taobao.com%2falicare%2fwangxin.html%3fhost%3dh5.wapa.taobao.com%26sid%3d1234567890\"},\"id\":20001},\"header\":{\"title\":\"test\"}}"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfFragment, NSMakeRange(0, 0)));
 }
 
 - (void)test_patternOfPathExtension {
