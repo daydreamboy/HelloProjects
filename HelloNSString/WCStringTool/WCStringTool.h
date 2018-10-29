@@ -151,6 +151,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string gapRanges:(NSArray<NSValue *> *)gapRanges;
 
+/**
+ Get key/value pairs from the string with the specific connector and separator
+
+ @param string the string contains key-value format
+ @param connector the connector sign which connects key and value
+ @param separator the separator sign which separate the key value pairs
+ @return the dictionary of the key value pairs
+ */
++ (nullable NSDictionary<NSString *, NSString *> *)keyValuePairsWithString:(NSString *)string usingConnector:(NSString *)connector usingSeparator:(NSString *)separator;
+
 #pragma mark > URL Encode/Decode
 
 /**

@@ -108,23 +108,6 @@
     XCTAssertNil([WCStringTool edgeInsetsValueFromString:str]);
 }
 
-- (void)test_keyValuePairsWithUrlString {
-    NSString *string;
-    NSDictionary *dict;
-    
-    string = @"wangx://ut/card?page=Page_Message&event=2101&arg1=&arg2=&arg3=&flags=k1,k2,k3&cardtype=1001";
-    dict = [WCStringTool keyValuePairsWithUrlString:string];
-    NSLog(@"%@", dict);
-    
-    string = @"page=Page_Message&event=2101&arg1=&arg2=&arg3=&flags=k1,k2,k3&cardtype=1001";
-    dict = [WCStringTool keyValuePairsWithUrlString:string];
-    XCTAssertTrue(dict.count == 0);
-    
-    string = @"wangwang://hongbao/query?hongbaoId=13314001535794922&hongbaoType=0&sender=cntaobaoqn店铺测试账号001:晨凉&note=恭喜发财，大吉大利！&hongbaoSubType=0";
-    dict = [WCStringTool keyValuePairsWithUrlString:string];
-    NSLog(@"%@", dict);
-}
-
 - (void)test_componentsWithString_delimeters {
     NSString *string;
     NSArray *components;
@@ -191,50 +174,6 @@
     XCTAssertNil(fakedArr, @"%@ should be nil", fakedArr);
 }
 */
-#pragma mark - Handle String As Url
-
-- (void)test_valueWithUrlString_forKey {
-    NSString *url;
-    NSString *value;
-    
-    // case 1
-    url = @"http://m.cp.360.cn/news/mobile/150410515.html?act=1&reffer=ios&titleRight=share&empty=";
-    
-    NSLog(@"titleRight=%@", [WCStringTool valueWithUrlString:url forKey:@"titleRight"]);
-    NSLog(@"act=%@", [WCStringTool valueWithUrlString:url forKey:@"act"]);
-    NSLog(@"reffer=%@", [WCStringTool valueWithUrlString:url forKey:@"reffer"]);
-    NSLog(@"empty=%@", [WCStringTool valueWithUrlString:url forKey:@"empty"]);
-    
-    // case 2
-    url = @"wangxs://multiaction/and?multi=%5B%22wangx%3A%2F%2Fh5%2Fopen%3Furl%3Dhttp%253a%252f%252fwww.taobao.com%22%2C%22wangx%3A%2F%2Fmenu%2Fdismiss%3Fmenuname%3DMenuNameForShowType%26container%3DpopBubble%26strategy%3Dtransient%26bubbleBizType%3Dtest%26conversationId%3Dcnhhupanww%E5%BA%97%E9%93%BA%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7003%22%5D";
-    
-//    NSLog(@"multi=%@", [WCStringTool valueWithUrlString:url forKey:@"multi"]);
-//    NSLog(@"multi (decoded)=%@", [WCStringTool URLUnescapedStringWithString:[WCStringTool valueWithUrlString:url forKey:@"multi"]]);
-//    NSLog(@"multi (decoded as array)=%@", [[WCStringTool URLUnescapedStringWithString:[[WCStringTool valueWithUrlString:url forKey:@"multi"]] jsonArray]);
-//    NSArray *arr = [[[WCStringTool valueWithUrlString:url forKey:@"multi"] urlDecodedString] jsonArray];
-//    NSLog(@"%@", arr);
-    
-    // case 3
-    url = @"https://qngateway.taobao.com/gw/wwjs/multi.resource.emoticon.query?id=144";
-    value = [WCStringTool valueWithUrlString:url forKey:@"id"];
-    XCTAssertEqualObjects(value, @"144");
-    
-    // case 4
-    url = @"http://interface.im.taobao.com/mobileimweb/fileupload/downloadPriFile.do?type=0&fileId=8f3371144e1317eabc789ea175644e57.jpg&suffix=jpg&width=750&height=555&mediaSize=516784&fromId=cntaobaowc%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B71000&thumb_width=80&thumb_height=80";
-    value = [WCStringTool valueWithUrlString:url forKey:@"width"];
-    XCTAssertEqualObjects(value, @"750");
-}
-
-- (void)test_valueWithUrlString_forKey_usingConnector_usingSeparator {
-    NSString *str = @"Mon:Monday#Tue:Tuesday#Wed:Wednesday#Thurs:Thursday#Fri:Friday#Sat:Saturday#Sun:Sunday";
-    
-    NSLog(@"Mon=%@", [WCStringTool valueWithUrlString:str forKey:@"Mon" usingConnector:@":" usingSeparator:@"#"]);
-    NSLog(@"today=%@", [WCStringTool valueWithUrlString:str forKey:@"today" usingConnector:@":" usingSeparator:@"#"]);
-    
-    NSString *cookie = @"Q=u%3D360H1491330706%26n%3D%26le%3DoT10MKA0ZvH0ZUSkYzAioD%3D%3D%26m%3D%26qid%3D1491330706%26im%3D1_t00df551a583a87f4e9%26src%3Dmpc_caipiao_os_100000%26t%3D1; T=s%3D70657b22272b33d114f2b6a6d8efcf5c%26t%3D1433590027%26lm%3D%26lf%3D1%26sk%3Db5dcb4c7fa89fe4215b2fea0d7d98d31%26mt%3D1433590027%26rc%3D%26v%3D2.0%26a%3D1";
-    NSLog(@"Q=%@", [WCStringTool valueWithUrlString:cookie forKey:@"Q" usingConnector:@"=" usingSeparator:@";"]);
-    NSLog(@"T=%@", [WCStringTool valueWithUrlString:cookie forKey:@"T" usingConnector:@"=" usingSeparator:@";"]);
-}
 
 #pragma mark - Handle String As Plain
 
@@ -742,8 +681,29 @@
              ];
     components = [WCStringTool componentsWithString:string gapRanges:gaps];
     NSLog(@"%@", components);
+}
+
+- (void)test_keyValuePairsWithString_usingConnector_usingSeparator {
+    NSString *string;
+    NSDictionary *keyValues;
     
+    // Case
+    string = @"Mon:Monday#Tue:Tuesday#Wed:Wednesday#Thurs:Thursday#Fri:Friday#Sat:Saturday#Sun:Sunday";
+    keyValues = [WCStringTool keyValuePairsWithString:string usingConnector:@":" usingSeparator:@"#"];
+    XCTAssertEqualObjects(keyValues[@"Mon"], @"Monday");
+    XCTAssertEqualObjects(keyValues[@"Tue"], @"Tuesday");
+    XCTAssertEqualObjects(keyValues[@"Wed"], @"Wednesday");
+    XCTAssertEqualObjects(keyValues[@"Thurs"], @"Thursday");
+    XCTAssertEqualObjects(keyValues[@"Fri"], @"Friday");
+    XCTAssertEqualObjects(keyValues[@"Sat"], @"Saturday");
+    XCTAssertEqualObjects(keyValues[@"Sun"], @"Sunday");
+    XCTAssertNil(keyValues[@"today"]);
     
+    // Case
+    string =  @"Q=u%3D360H1491330706%26n%3D%26le%3DoT10MKA0ZvH0ZUSkYzAioD%3D%3D%26m%3D%26qid%3D1491330706%26im%3D1_t00df551a583a87f4e9%26src%3Dmpc_caipiao_os_100000%26t%3D1;T=s%3D70657b22272b33d114f2b6a6d8efcf5c%26t%3D1433590027%26lm%3D%26lf%3D1%26sk%3Db5dcb4c7fa89fe4215b2fea0d7d98d31%26mt%3D1433590027%26rc%3D%26v%3D2.0%26a%3D1";
+    keyValues = [WCStringTool keyValuePairsWithString:string usingConnector:@"=" usingSeparator:@";"];
+    XCTAssertEqualObjects(keyValues[@"Q"], @"u%3D360H1491330706%26n%3D%26le%3DoT10MKA0ZvH0ZUSkYzAioD%3D%3D%26m%3D%26qid%3D1491330706%26im%3D1_t00df551a583a87f4e9%26src%3Dmpc_caipiao_os_100000%26t%3D1");
+    XCTAssertEqualObjects(keyValues[@"T"], @"s%3D70657b22272b33d114f2b6a6d8efcf5c%26t%3D1433590027%26lm%3D%26lf%3D1%26sk%3Db5dcb4c7fa89fe4215b2fea0d7d98d31%26mt%3D1433590027%26rc%3D%26v%3D2.0%26a%3D1");
 }
 
 #pragma mark > String Generation

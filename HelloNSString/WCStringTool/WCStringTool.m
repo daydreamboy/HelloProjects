@@ -357,6 +357,31 @@
     return componentsM;
 }
 
++ (nullable NSDictionary<NSString *, NSString *> *)keyValuePairsWithString:(NSString *)string usingConnector:(NSString *)connector usingSeparator:(NSString *)separator {
+    
+    if (![string isKindOfClass:[NSString class]] ||
+        ![connector isKindOfClass:[NSString class]] ||
+        ![separator isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    NSMutableDictionary *keyValuePairsM = [NSMutableDictionary dictionary];
+    
+    NSArray *keyValuePairs = [string componentsSeparatedByString:separator];
+    for (NSString *keyValue in keyValuePairs) {
+        NSArray *pairComponents = [keyValue componentsSeparatedByString:connector];
+        
+        NSString *theKey = [pairComponents firstObject];
+        NSString *theValue = [pairComponents lastObject];
+        
+        if (theKey && theValue) {
+            keyValuePairsM[theKey] = theValue;
+        }
+    }
+    
+    return keyValuePairsM;
+}
+
 #pragma mark > URL Encode/Decode
 
 + (NSString *)URLEscapedStringWithString:(nullable NSString *)string {
