@@ -98,20 +98,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Handle String As Url (Use WCURLTool instead)
 
-+ (nullable NSString *)valueWithUrlString:(NSString *)urlString forKey:(NSString *)key usingConnector:(NSString *)connector usingSeparator:(NSString *)separator;
-+ (nullable NSString *)valueWithUrlString:(NSString *)urlString forKey:(NSString *)key;
-
-/**
- Get key/value from url string or url-like string, e.g. http://xxx?key1=value1&key2=value2
-
- @param string the url string, e.g. xxx://....
- @return return empty dictionary if the url string is invalid.
- @see https://stackoverflow.com/a/8756852
- */
-+ (nullable NSDictionary *)keyValuePairsWithUrlString:(NSString *)urlString;
-
-+ (nullable NSString *)pathExtensionWithUrlString:(NSString *)urlString;
-
 #pragma mark - Handle String As Plain
 
 #pragma mark > Substring String
