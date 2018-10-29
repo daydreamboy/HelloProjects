@@ -56,6 +56,7 @@
     XCTAssertEqualObjects(components.query, @"q");
     XCTAssertNil(components.fragment);
     XCTAssertNil(components.queryItems);
+    XCTAssertNil(components.queryKeyValues);
     
     XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"http"]));
     XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
@@ -87,6 +88,7 @@
     XCTAssertEqualObjects([components.queryItems[0] value], @"value1");
     XCTAssertEqualObjects([components.queryItems[1] name], @"key2");
     XCTAssertEqualObjects([components.queryItems[1] value], @"value2");
+    XCTAssertTrue(components.queryKeyValues.count == 2);
     
     XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"http"]));
     XCTAssertTrue(NSEqualRanges(components.rangeOfUser, [urlString rangeOfString:@"username"]));
@@ -116,6 +118,7 @@
     XCTAssertEqualObjects(components.fragment, @"jumpLocation");
     XCTAssertEqualObjects([components.queryItems[0] name], @"q");
     XCTAssertEqualObjects([components.queryItems[0] value], @"http://a:80/b/c/d");
+    XCTAssertTrue(components.queryKeyValues.count == 1);
     
     XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"http"]));
     XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
@@ -135,6 +138,7 @@
     XCTAssertEqualObjects([components.queryItems[0] name], @"key1");
     XCTAssertEqualObjects([components.queryItems[0] value], @"value1");
     XCTAssertNil(components.pathExtension);
+    XCTAssertTrue(components.queryKeyValues.count == 1);
     
     XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"http"]));
     XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
@@ -163,6 +167,7 @@
     XCTAssertNil(components.query);
     XCTAssertEqualObjects(components.fragment, @"Related");
     XCTAssertNil(components.queryItems);
+    XCTAssertNil(components.queryKeyValues);
     
     XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"http"]));
     XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
@@ -184,6 +189,7 @@
     XCTAssertTrue(NSEqualRanges([components.queryItems[0] rangeOfName], [urlString rangeOfString:@"key1"]));
     XCTAssertTrue(NSEqualRanges([components.queryItems[0] rangeOfValue], NSMakeRange(0, 0)));
     XCTAssertNil(components.pathExtension);
+    XCTAssertTrue(components.queryKeyValues.count == 1);
     
     XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"http"]));
     XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
@@ -205,6 +211,7 @@
     XCTAssertTrue(NSEqualRanges([components.queryItems[0] rangeOfName], NSMakeRange(0, 0)));
     XCTAssertTrue(NSEqualRanges([components.queryItems[0] rangeOfValue], [urlString rangeOfString:@"value1"]));
     XCTAssertNil(components.pathExtension);
+    XCTAssertTrue(components.queryKeyValues.count == 1);
     
     XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"http"]));
     XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
@@ -226,6 +233,7 @@
     XCTAssertTrue(NSEqualRanges([components.queryItems[0] rangeOfName], NSMakeRange(0, 0)));
     XCTAssertTrue(NSEqualRanges([components.queryItems[0] rangeOfValue], NSMakeRange(0, 0)));
     XCTAssertNil(components.pathExtension);
+    XCTAssertTrue(components.queryKeyValues.count == 1);
     
     XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"http"]));
     XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
@@ -246,6 +254,7 @@
     XCTAssertEqualObjects([components.queryItems[0] name], @"");
     XCTAssertEqualObjects([components.queryItems[0] value], @"");
     XCTAssertNil(components.pathExtension);
+    XCTAssertTrue(components.queryKeyValues.count == 1);
     
     XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"http"]));
     XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
@@ -294,6 +303,7 @@
     XCTAssertEqualObjects([components.queryItems[4] value], @"{%22x_hestia_source%22:%228949%22,%22x_mt%22:10,%22x_object_id%22:568371443233,%22x_object_type%22:%22item%22,%22x_pos%22:1,%22x_pvid%22:%22be2a1b12-f24f-4050-9227-e7c3448fd8b8%22,%22x_src%22:%228949%22}");
     XCTAssertTrue(NSEqualRanges([components.queryItems[4] rangeOfName], [urlString rangeOfString:@"utparam"]));
     XCTAssertTrue(NSEqualRanges([components.queryItems[4] rangeOfValue], [urlString rangeOfString:@"{%22x_hestia_source%22:%228949%22,%22x_mt%22:10,%22x_object_id%22:568371443233,%22x_object_type%22:%22item%22,%22x_pos%22:1,%22x_pvid%22:%22be2a1b12-f24f-4050-9227-e7c3448fd8b8%22,%22x_src%22:%228949%22}"]));
+    XCTAssertTrue(components.queryKeyValues.count == 5);
     
     XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"https"]));
     XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
@@ -326,6 +336,7 @@
     XCTAssertEqualObjects([components.queryItems[0] value], @"inside|900:auto");
     XCTAssertTrue(NSEqualRanges([components.queryItems[0] rangeOfName], [urlString rangeOfString:@"fit"]));
     XCTAssertTrue(NSEqualRanges([components.queryItems[0] rangeOfValue], [urlString rangeOfString:@"inside|900:auto"]));
+    XCTAssertTrue(components.queryKeyValues.count == 1);
     
     XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"http"]));
     XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
@@ -362,6 +373,7 @@
     XCTAssertEqualObjects([components.queryItems[1] value], @"{\"template\":{\"data\":{\"text\":\"http://wapp.wapa.taobao.com/alicare/wangxin.html\"},\"id\":20001},\"header\":{\"title\":\"test\"}}");
     XCTAssertTrue(NSEqualRanges([components.queryItems[1] rangeOfName], [urlString rangeOfString:@"body"]));
     XCTAssertTrue(NSEqualRanges([components.queryItems[1] rangeOfValue], [urlString rangeOfString:@"{\"template\":{\"data\":{\"text\":\"http://wapp.wapa.taobao.com/alicare/wangxin.html\"},\"id\":20001},\"header\":{\"title\":\"test\"}}"]));
+    XCTAssertTrue(components.queryKeyValues.count == 2);
     
     XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"wangx"]));
     XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
@@ -398,6 +410,7 @@
     XCTAssertEqualObjects([components.queryItems[1] value], @"{\"template\":{\"data\":{\"text\":\"http%3a%2f%2fwapp.wapa.taobao.com%2falicare%2fwangxin.html%3fhost%3dh5.wapa.taobao.com%26sid%3d1234567890\"},\"id\":20001},\"header\":{\"title\":\"test\"}}");
     XCTAssertTrue(NSEqualRanges([components.queryItems[1] rangeOfName], [urlString rangeOfString:@"body"]));
     XCTAssertTrue(NSEqualRanges([components.queryItems[1] rangeOfValue], [urlString rangeOfString:@"{\"template\":{\"data\":{\"text\":\"http%3a%2f%2fwapp.wapa.taobao.com%2falicare%2fwangxin.html%3fhost%3dh5.wapa.taobao.com%26sid%3d1234567890\"},\"id\":20001},\"header\":{\"title\":\"test\"}}"]));
+    XCTAssertTrue(components.queryKeyValues.count == 2);
     
     XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"wangx"]));
     XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));

@@ -28,7 +28,9 @@ NS_AVAILABLE_IOS(8_0)
 
 NS_AVAILABLE_IOS(8_0)
 @interface WCURLComponents : NSObject
-/// the original url string
+/**
+ The original url string
+ */
 @property (nonatomic, copy, nullable) NSString *string;
 @property (nonatomic, copy, nullable) NSString *scheme;
 @property (nonatomic, copy, nullable) NSString *user;
@@ -40,7 +42,16 @@ NS_AVAILABLE_IOS(8_0)
 @property (nonatomic, copy, nullable) NSString *parameterString;
 @property (nonatomic, copy, nullable) NSString *query;
 @property (nonatomic, copy, nullable) NSString *fragment;
-@property (nonatomic, strong) NSArray<WCURLQueryItem *> *queryItems;
+/**
+ The parameters in query string
+ */
+@property (nonatomic, strong, nullable) NSArray<WCURLQueryItem *> *queryItems;
+/**
+ The parameters in query string
+ 
+ @warning the keys maybe duplicated, and which one is overwrite not determined. Use `queryItems` instead for more safe
+ */
+@property (nonatomic, strong, nullable) NSMutableDictionary<NSString *, NSString *> *queryKeyValues;
 
 @property (nonatomic, assign) NSRange rangeOfScheme;
 @property (nonatomic, assign) NSRange rangeOfUser;
@@ -72,6 +83,13 @@ NS_AVAILABLE_IOS(8_0)
  @return the NSURL for the png image
  */
 + (nullable NSURL *)PNGImageURLWithImageName:(NSString *)imageName inResourceBundle:(NSString *)resourceBundleName;
+
+/**
+ Get a URL component which parsed with the url string
+
+ @param urlString the url string which should match the url rule.
+ @return the WCURLComponents object. Return nil if the urlString is invalid (e.g. nil, malformed)
+ */
 + (nullable WCURLComponents *)URLComponentsWithUrlString:(NSString *)urlString;
 
 @end

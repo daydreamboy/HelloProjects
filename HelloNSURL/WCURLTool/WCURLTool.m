@@ -138,6 +138,7 @@
         
         if (queryComponent.length) {
             NSMutableArray<WCURLQueryItem *> *queryItemsM = [NSMutableArray array];
+            NSMutableDictionary<NSString *, NSString *> *keyValuesM = [NSMutableDictionary dictionary];
             BOOL success = [self enumerateMatchesInString:queryComponent pattern:self.patternOfQueryItems usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
                 NSTextCheckingResult *matchOfQueryItems = result;
                 
@@ -154,11 +155,19 @@
                     queryItem.rangeOfValue = value.length > 0 ? NSMakeRange(valueRange.location + components.rangeOfQuery.location, valueRange.length) : NSRangeZero;
                     
                     [queryItemsM addObject:queryItem];
+                    
+                    if (key && value) {
+                        keyValuesM[key] = value;
+                    }
                 }
             }];
             
             if (success && queryItemsM.count) {
                 components.queryItems = queryItemsM;
+            }
+            
+            if (success && keyValuesM.count) {
+                components.queryKeyValues = keyValuesM;
             }
         }
     }
