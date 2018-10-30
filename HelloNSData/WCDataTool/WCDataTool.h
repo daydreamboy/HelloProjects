@@ -161,6 +161,12 @@ typedef NS_ENUM(NSUInteger, WCMIMEType) {
  */
 + (nullable NSData *)AES256DecryptWithData:(NSData *)data key:(NSString *)key;
 
+/**
+ Encode data with base64
+
+ @param data the data
+ @return the base64 encoded string
+ */
 + (nullable NSString *)base64EncodedStringWithData:(NSData *)data;
 
 @end
