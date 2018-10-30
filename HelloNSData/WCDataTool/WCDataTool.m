@@ -1019,10 +1019,6 @@
 
 @end
 
-@interface WCDataTool ()
-@property (nonatomic, strong) NSArray<WCMIMETypeInfo *> *allSupportMIMETypeInfos;
-@end
-
 @implementation WCDataTool
 
 #pragma mark - Data Validation
