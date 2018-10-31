@@ -10,6 +10,7 @@
 
 #import "UseToolbarItemsViewController.h"
 #import "UseViewControllerAsSubviewViewController.h"
+#import "CheckAppearingAndDisappearingViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -34,11 +35,13 @@
     _titles = @[
         @"Use @toolbarItems of UIViewController",
         @"Use UIViewController as subview",
+        @"Check ViewController appearing and disappearing",
         @"call a test method",
     ];
     _classes = @[
         [UseToolbarItemsViewController class],
         [UseViewControllerAsSubviewViewController class],
+        [CheckAppearingAndDisappearingViewController class],
         @"testMethod",
     ];
 }
