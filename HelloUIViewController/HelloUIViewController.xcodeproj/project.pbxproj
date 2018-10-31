@@ -18,6 +18,7 @@
 		4F7D8EDA2109777300145B00 /* UseViewControllerAsSubviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8ED92109777300145B00 /* UseViewControllerAsSubviewViewController.m */; };
 		4FB0291B2188558D000E6516 /* WCViewControllerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0291A2188558D000E6516 /* WCViewControllerTool.m */; };
 		4FB0291E21888B4A000E6516 /* CheckAppearingAndDisappearingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0291D21888B4A000E6516 /* CheckAppearingAndDisappearingViewController.m */; };
+		4FEDD41A2189A979008CB64F /* CustomPresentationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FEDD4192189A979008CB64F /* CustomPresentationViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,8 @@
 		4FB0291A2188558D000E6516 /* WCViewControllerTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewControllerTool.m; sourceTree = "<group>"; };
 		4FB0291C21888B4A000E6516 /* CheckAppearingAndDisappearingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckAppearingAndDisappearingViewController.h; sourceTree = "<group>"; };
 		4FB0291D21888B4A000E6516 /* CheckAppearingAndDisappearingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckAppearingAndDisappearingViewController.m; sourceTree = "<group>"; };
+		4FEDD4182189A979008CB64F /* CustomPresentationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPresentationViewController.h; sourceTree = "<group>"; };
+		4FEDD4192189A979008CB64F /* CustomPresentationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPresentationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +101,8 @@
 				4F7D8ED92109777300145B00 /* UseViewControllerAsSubviewViewController.m */,
 				4FB0291C21888B4A000E6516 /* CheckAppearingAndDisappearingViewController.h */,
 				4FB0291D21888B4A000E6516 /* CheckAppearingAndDisappearingViewController.m */,
+				4FEDD4182189A979008CB64F /* CustomPresentationViewController.h */,
+				4FEDD4192189A979008CB64F /* CustomPresentationViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -195,6 +200,7 @@
 				4F68564D218954840080CF0B /* DummyModalViewController.m in Sources */,
 				4F4E14A22103573900D12D11 /* main.m in Sources */,
 				4F7D8EDA2109777300145B00 /* UseViewControllerAsSubviewViewController.m in Sources */,
+				4FEDD41A2189A979008CB64F /* CustomPresentationViewController.m in Sources */,
 				4F4E14942103573700D12D11 /* AppDelegate.m in Sources */,
 				4FB0291B2188558D000E6516 /* WCViewControllerTool.m in Sources */,
 				4F4E14AE2103576600D12D11 /* RootViewController.m in Sources */,
