@@ -256,7 +256,27 @@ NSLog(RDI, RSI, RDX, RCX);
 几点说明，如下
 
 * leaq，不解引用地址，直接将地址赋值给dest；movq，解引用地址，将值赋值给dest
-* (%rdx, %rcx, 4)的用法[^5]是，%rdx + %rcx * 4，得到0x110。
+* leaq (%rdx, %rcx, 4), %rax的用法[^5]是，%rdx + %rcx * 4，得到0x110。然后将0x110赋值到%rax
+
+另外，leaq还有两个操作符的写法，举个例子[^6]，如下
+
+```
+lea    0x4(%rsi),%rcx
+```
+
+其含义是rcx = rsi + 0x4。
+
+* movq，q的含义是8 bytes。其他类型[^7]，如下
+
+| C Declaration | Intel Data Type | Assembly code suffix | Size (bytes) |
+| ------------- | --------------- | -------------------- | ------------ |
+| Char          | Byte            | b                    | 1            |
+| Short         | Word            | w                    | 2            |
+| Int           | Double Word     | l                    | 4            |
+| Long          | Quad Word       | q                    | 8            |
+| Pointer       | Quad Word       | q                    | 8            |
+
+
 
 
 
@@ -270,10 +290,8 @@ References
 [^3]: https://www.raywenderlich.com/2705-ios-assembly-tutorial-understanding-arm 
 [^4]: https://courses.cs.washington.edu/courses/cse374/16wi/lectures/leaq-movq.pdf
 [^5]: https://stackoverflow.com/questions/4534617/lea-instruction 
-
-
-
-
+[^6]: https://stackoverflow.com/questions/16185446/what-does-lea-in-this-x86-64-code-do 
+[^7]: https://cs.nyu.edu/courses/spring17/CSCI-GA.1144-001/lecture4.pdf 
 
 
 
