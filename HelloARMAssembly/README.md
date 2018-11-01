@@ -276,7 +276,21 @@ lea    0x4(%rsi),%rcx
 | Long          | Quad Word       | q                    | 8            |
 | Pointer       | Quad Word       | q                    | 8            |
 
+* lea是Load Effective Address的缩写。
 
+
+
+### 6、xorl   %ecx, %ecx
+
+xor的作用是按位异或[^8]。xor S, D ，将S和D按位异或，结果放在D。
+
+通常使用这种将某个寄存器置为零。举个例子，如下
+
+```
+xorl   %ecx, %ecx
+```
+
+这里等价于ecx = 0。可能会疑问，为什么不使用mov指令（`mov $0, %ecx`），因为xor指令需要的bytes比mov更少一些[^9]。
 
 
 
@@ -292,8 +306,6 @@ References
 [^5]: https://stackoverflow.com/questions/4534617/lea-instruction 
 [^6]: https://stackoverflow.com/questions/16185446/what-does-lea-in-this-x86-64-code-do 
 [^7]: https://cs.nyu.edu/courses/spring17/CSCI-GA.1144-001/lecture4.pdf 
-
-
-
-
+[^8]: https://cs.brown.edu/courses/cs033/docs/guides/x64_cheatsheet.pdf 
+[^9]: https://stackoverflow.com/a/23575803 
 
