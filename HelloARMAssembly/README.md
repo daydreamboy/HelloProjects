@@ -1,18 +1,20 @@
 # HelloARMAssembly
---
+[TOC]
 
-1、汇编语法基础知识
+---
+
+### 1、汇编语法基础知识[^3]
 
 （1） ;或者@开头是注释
 
-```
+```assembly
 ; BB#0:
 	sub	sp, sp, #16             ; =16
 ```
 
 （2）以冒号结尾是标号（label），一般以L开头
 
-```
+```assembly
 Lcfi0:
 	.cfi_def_cfa_offset 16
 	str	w0, [sp, #12]
@@ -23,7 +25,7 @@ Ltmp1:
 
 （3）c函数一般以下划线开头
 
-```
+```assembly
 	.globl	_addFunction
 	.p2align	2
 _addFunction:  
@@ -31,7 +33,7 @@ _addFunction:
 
 （4）以.开头的是汇编指令，不是汇编代码
 
-```
+```assembly
 	.section	__TEXT,__text,regular,pure_instructions
 	.ios_version_min 11, 2
 	.file	1 "/Users/wesley_chen/GitHub_Projcets/HelloProjects/HelloARMAssembly" "/Users/wesley_chen/GitHub_Projcets/HelloProjects/HelloARMAssembly/HelloARMAssembly/addFunction.m"
@@ -43,7 +45,7 @@ _addFunction:
 
 栈的分配空间总是从高地址到低地址，例如
 
-```
+```assembly
 _addFunction:                           ; @addFunction
 Lfunc_begin0:
 	sub	sp, sp, #16             ; =16
@@ -56,7 +58,7 @@ sp减去16个bytes，腾出16个bytes空间。`str`(store register)意思是将�
 
 和str相反，`ldr`(load register)意思是将指定地址的值装载到寄存器中。例如
 
-```
+```assembly
 ldr	w0, [sp, #12]
 ldr	w1, [sp, #8]
 ```
@@ -65,21 +67,21 @@ ldr	w1, [sp, #8]
 
 （6）add操作符
 
-```
+```assembly
 add		w0, w0, w1
 ```
 将w0和w1的值相加，然后存到w0中。
 
 还有另外一种形式，只带两个操作数
 
-```
+```assembly
 add	r0, r1
 ```
 也是将r0和r1相加，然后存到r0中。
 
 （7）push操作符
 
-```
+```assembly
 push	{r7, lr}
 ```
 
@@ -87,7 +89,7 @@ push	{r7, lr}
 
 （8）mov操作符
 
-```
+```assembly
 @ 1
 mov	r1, r0
 
@@ -99,9 +101,9 @@ mov	r0, #12
 
 @2，将值12放到r0（注意，destination和@1不一样）
 
-2、addFunction例子
+### 2、addFunction例子
 
-```
+```c
 int addFunction(int a, int b)
 {
     int c = a + b;
@@ -110,7 +112,7 @@ int addFunction(int a, int b)
 ```
 Xcode中Destination选择Generic iOS Device，Product -> Perform Action -> Assemble "addFunction.m"，得到汇编代码（去掉了一些自动生成的注释），如下
 
-```
+```assembly
 ; Assembly output for addFunction.m
 ; Using Debug configuration, arm64 architecture for HelloARMAssembly target of HelloARMAssembly project
 
@@ -165,7 +167,7 @@ Lfunc_end0:
 
 @6，ret指令返回函数，这里返回值存在了w0中。有些这里不是ret，而是
 
-```
+```assembly
 bx	lr
 ```
 
@@ -173,7 +175,7 @@ bx	lr
 
 将build configuration设置成Release，Product -> Perform Action -> Assemble "addFunction.m"，重新得到汇编代码（去掉了一些自动生成的注释），如下
 
-```
+```assembly
 ; Assembly output for addFunction.m
 ; Using Release configuration, arm64 architecture for HelloARMAssembly target of HelloARMAssembly project
 
@@ -193,8 +195,7 @@ Lfunc_end0:
 
 为了方便学习，需要阻止这样的编译器优化，可以加上`__attribute__((noinline))。`
 
-
-3、手册
+### 3、指令简化手册
 
 ```
 mov r0, r1 => r0 = r1
@@ -213,7 +214,7 @@ stp x29, x30, [sp, #16] => *(sp + 16) = x29, *(sp + 20) = x30
 stp指令[^1]
 adrp指令[^2]
 
-4、x86_64的Call Convention
+### 4、x86_64的Call Convention
 
 ```
 First Argument: RDI
@@ -241,15 +242,34 @@ NSLog(RDI, RSI, RDX, RCX);
 `image lookup -rn '\ mouseDown:'`
 
 
+
+### 5、leaq vs. movq的区别
+
+举个例子[^4]，如下
+
+![leaq vs. movq_1.png](images/leaq vs. movq_1.png)
+
+执行leaq和movq指令后，寄存器的结果，如下
+
+![leaq vs. movq_2.png](images/leaq vs. movq_2.png)
+
+几点说明，如下
+
+* leaq，不解引用地址，直接将地址赋值给dest；movq，解引用地址，将值赋值给dest
+* (%rdx, %rcx, 4)的用法[^5]是，%rdx + %rcx * 4，得到0x110。
+
+
+
+
 References
 --
 
 [^1]: http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0802a/STP_gen.html
 [^2]: http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.dui0802a/ADRP.html
 
-
-
-
+[^3]: https://www.raywenderlich.com/2705-ios-assembly-tutorial-understanding-arm 
+[^4]: https://courses.cs.washington.edu/courses/cse374/16wi/lectures/leaq-movq.pdf
+[^5]: https://stackoverflow.com/questions/4534617/lea-instruction 
 
 
 

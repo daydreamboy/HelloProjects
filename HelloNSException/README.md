@@ -1,10 +1,12 @@
 ## HelloNSException
 
+[TOC]
 
+---
 
-1、如何分析Crash Reports[^1]
+### 1、如何分析Crash Reports[^1]
 
-
+#### （1）Report的Header部分
 
 ```
 Incident Identifier: 6C1DF203-BF5B-4A10-98AB-FF1D44A5D518
@@ -18,6 +20,13 @@ Code Type:           ARM-64 (Native)
 Role:                Foreground
 Parent Process:      launchd [1]
 Coalition:           com.wc.HelloNSException [3791]
+
+
+Date/Time:           2018-10-17 15:33:16.1141 +0800
+Launch Time:         2018-10-17 15:33:14.0543 +0800
+OS Version:          iPhone OS 11.4 (15F79)
+Baseband Version:    4.60.00
+Report Version:      104
 ```
 
 
@@ -31,13 +40,189 @@ Coalition:           com.wc.HelloNSException [3791]
   在相同设备上，相同的crash下，该值是一样的。可以使用该值，确定某个crash在多少台设备发生过。
 
 
+
 * **Hardware Model**：This is the hardware on which a crash occurred, as available from the “hw.machine” sysctl. This can be useful for reproducing some bugs that are specific to a given phone model, but those cases are rare.
 
   设备型号，可以使用hw.machine
 
 
 
+* **Code Type**：This is the target processor type. On an iOS device, this will always be ‘ARM’, even if the code is ARMv7 or ARMv7s.
+
+
+
+* **OS Version**：The OS version on which the crash occurred, including the build number. This can be used to identify regressions that are specific to a given OS release. Note that while different models of iOS devices are assigned unique build numbers (eg, 9B206), crashes are only very rarely specific to a given OS build.
+
+
+
+* **Report Version**：This opaque value is used by Apple to version the actual format of the report. As the report format is changed, Apple *may* update this version number.
+
+
+
+#### （2）分析堆栈的frame
+
+frame是crash时调用栈的帧，有一定显示的格式。举个例子，如下
+
+符号化之前
+
+```
+// Before symbolication
+8 OurApp 0x000029d4 0x1000 + 6612
+```
+
+* column 1，the index of the stack frame in the stack trace
+* column 2，the name of the binary the function belongs to
+* column 3，the address of the function that was called in the process’ address space
+* column 4，a base address for the library’s binary image and an offset
+
+
+
+符号化之后
+
+```
+// After symbolication
+8 OurApp 0x000029d4 -[OurAppDelegate applicationDidFinishLaunching:] (OurAppDelegate.m:128)
+```
+
+前3列都是一样的，只有最后一列有变化，变成文件名、行号和函数名。
+
+
+
+#### （3）Report的Exception部分
+
+```
+Exception Type:  EXC_CRASH (SIGABRT)
+Exception Codes: 0x0000000000000000, 0x0000000000000000
+Exception Note:  EXC_CORPSE_NOTIFY
+Triggered by Thread:  0
+```
+
+Exception部分提供几个信息
+
+* exception type，异常的类型
+* exception codes，
+* the index of the thread where the crash occurred，crash在哪个线程上
+
+这里的Exception不是指Objective-C的exception，而是*Mach Exceptions*。另外，异常也可以指UNIX信号，例如SIGABRT。
+
+
+
+##### 1. Signals
+
+* SIGILL Attempted to execute an illegal (malformed, unknown, or privileged) instruction. This may occur if your code jumps to an invalid but executable memory address.
+
+* SIGTRAP Mostly used for debugger watchpoints and other debugger features.
+
+* SIGABRT Tells the process to abort. It can only be initiated by the process itself using the `abort()` C stdlib function. Unless you’re using `abort()` yourself, this is probably most commonly encountered if an `assert()` or `NSAssert()` fails.
+
+* SIGFPE A floating point or arithmetic exception occurred, such as an attempted division by zero.
+
+* SIGBUS A bus error occurred, e.g. when trying to load an unaligned pointer.
+
+* SIGSEGV Sent when the kernel determines that the process is trying to access invalid memory, e.g. when an invalid pointer is dereferenced.
+
+
+##### 2. Exceptions
+
+* EXC_BAD_ACCESS Memory could not be accessed. The memory address where an access attempt was made is provided by the kernel. 
+* EXC_BAD_INSTRUCTION Instruction failed. Illegal or undefined instruction or operand.
+* EXC_ARITHMETIC For arithmetic errors.
+
+除了Exception之外，还有一个关联的exception code用于进一步描述信息。举些例子，如下
+
+`EXC_BAD_ACCESS` could point to a `KERN_PROTECTION_FAILURE`, which would indicate that the address being accessed is valid, but does not permit the required form of access (see[`osfmk/mach/kern_return.h`](http://fxr.watson.org/fxr/source/osfmk/mach/kern_return.h?v=xnu-2050.18.24)). 
+
+`EXC_ARITHMETIC` exceptions will also include the precise nature of the problem as part of the exception code.
+
+
+
+#### （4）Report的Binary Images部分
+
+```
+Binary Images:
+0x104910000 - 0x104917fff HelloNSException arm64  <060561111a403aa2a35970db520f2178> /var/containers/Bundle/Application/B6AC6F47-951D-4AD2-A728-3B84EB610D59/HelloNSException.app/HelloNSException
+0x104c40000 - 0x104c7bfff dyld arm64  <b15e536a710732dabfafece44c5685e4> /usr/lib/dyld
+0x182a37000 - 0x182a38fff libSystem.B.dylib arm64  <f3beb9029e533a899d794429fec383f9> /usr/lib/libSystem.B.dylib
+...
+```
+
+Crash Report最下面有一个Binary Images部分，这里列出了app目前加载的所有binary image，以及它们在进程中的地址空间。每一条entry也有对应的UUID，它是由linker在编译时确定的，同时存储在Mach-O文件以及对应.dSYM文件中，位置在LC_UUID command中。根据UUID，可以正确匹配Mach-O到对应的.dSYM文件进行符号化。
+
+
+
+举个例子，每一条entry格式，如下
+
+```
+0x35f62000 - 0x36079fff CoreFoundation armv7 /System/Library/Frameworks/CoreFoundation.framework/CoreFoundation
+```
+
+* column 1，binary image在进程中的地址范围，起始地址0x35f62000，结束地址0x36079fff
+* column 2，binary image的名称
+* column 3，binary image的架构，一般和设备架构是一致的
+* column 4，binary image的本地路径 
+
+当分析堆栈的frame时，会有一个内存中的函数地址，例如
+
+```
+9 CoreFoundation 0x35fee2ad ___CFRunLoopRun + 1269
+```
+
+如果想反汇编CFRunLoopRun函数，则需要计算它在CoreFoundation中偏移量，如下
+
+```
+0x35fee2ad - 0x35f62000 == 0x8c2ad
+```
+
+在本地反汇编CoreFoundation后，查看地址0x8c2ad的汇编指令就对应上CFRunLoopRun函数
+
+
+
+#### （5）Report的Register State部分
+
+```
+Thread 0 crashed with ARM Thread State (64-bit):
+    x0: 0x0000000000000000   x1: 0x0000000000000000   x2: 0x0000000000000000   x3: 0x00000001c00f0137
+    x4: 0x0000000182ab2abd   x5: 0x000000016b4ef3d0   x6: 0x000000000000006e   x7: 0xffffffffffffffec
+    x8: 0x0000000008000000   x9: 0x0000000004000000  x10: 0x000000018352a110  x11: 0x0000000000000003
+   x12: 0xffffffffffffffff  x13: 0x0000000000000001  x14: 0x0000000000000000  x15: 0x0000000000000010
+   x16: 0x0000000000000148  x17: 0x0000000000000300  x18: 0x0000000000000000  x19: 0x0000000000000006
+   x20: 0x00000001b5c78b40  x21: 0x000000016b4ef3d0  x22: 0x0000000000000303  x23: 0x00000001b5c78c20
+   x24: 0x0000000000000001  x25: 0x00000001c0002090  x26: 0x0000000000000000  x27: 0x0000000000000001
+   x28: 0x000000016b4efb20   fp: 0x000000016b4ef330   lr: 0x000000018352a288
+    sp: 0x000000016b4ef300   pc: 0x00000001833892ec cpsr: 0x00000000
+```
+
+Register State部分描述crash时寄存器的状态，在某些情况下，这些寄存器信息是非常有用的。
+
+举个例子，下面一行代码发生crash
+
+```
+new_data->ptr2 = [myObject executeSomeMethod:old_data->ptr2];
+```
+
+假设Crash产生SIGSEGV信号，推断是解引用NULL导致，但是这里有两个解引用，从调用栈上无法判断出来。这时可以通过Register State来分析。
+
+```
+str r0, [r1, #4]
+```
+
+假设crash发生在上面这行指令，r0和r1在使用。等价的C语言形式如下
+
+```
+*(r1 + 4) = r0;
+```
+
+这是个赋值语句，而且new_data是指向data_t结构体的指针，
+
+```
+typedef struct { void *ptr1, void *ptr2 } data_t;
+```
+
+所以，+4是可以看做是new_data->ptr2，这样可以推测new_data->ptr2被赋值时产生的crash，那么解引用应该发生在new_data。实际上，这时r1地址是0x00000000，加上4后也是一个无效的地址，对这个地址进行取值就会出现crash问题。
+
 
 
 [^1]: https://www.plausible.coop/blog/?p=176 "Exploring iOS Crash Reports"
+
+
 

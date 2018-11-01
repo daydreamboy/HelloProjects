@@ -1387,7 +1387,7 @@ GBD格式的size修饰符，参考[http://visualgdb.com/gdbreference/commands/x]
 
 #### x86_64
 
-* RDI、RSI、RDX、RCX、R8、R9，存放方法（函数）的前6个参数，从第7个参数开始用栈来存放。
+* RDI、RSI、RDX、RCX、R8、R9，存放方法（函数）的前6个参数。剩余的参数（从第7个参数开始）从右到左的顺序用栈来存放[^1]。
 * RAX，存放方法（函数）的返回值
 * RIP，存放当前指令的地址，如下
 ![$RIP的作用.png](images/$RIP的作用.png)
@@ -1403,6 +1403,15 @@ GBD格式的size修饰符，参考[http://visualgdb.com/gdbreference/commands/x]
 根据寄存器大小，寄存器命名有一定约定，如下
 
 ![寄存器命名](images/寄存器命名.png)
+
+归纳如下[^1]
+
+* `r*x` (64 bits)，`e*x` (32 bits)，`*x` (16 bits)，`*h` (8 bits)，`*l` (8 bits)
+* r8-r15，`rN` (64 bits)，`rNd` (32 bits)，`rNb` (8 bits)（`rNb`和上表有出入，待定）
+* `rip`和`rflags`只能是64 bits
+* `rsi`、`rdi`、`rsp`、`rbp`的8 bits版本有特殊命名，分别是`sil`、`dil`、`spl`、`bpl`
+
+
 
 lldb打印寄存器的值时，可以使用这些约定命名，输出特定大小的值。
 
@@ -1804,3 +1813,11 @@ error: too many arguments to method call, expected 1, have 2
 ```
 
 https://stackoverflow.com/questions/19448101/stringwithformat-not-working-in-lldb
+
+
+
+## References
+
+[^1]: https://www.mikeash.com/pyblog/friday-qa-2011-12-16-disassembling-the-assembly-part-1.html
+
+ 
