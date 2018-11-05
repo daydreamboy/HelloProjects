@@ -97,4 +97,54 @@
     return WCViewControllerDisappearingReasonUnknown;
 }
 
+#pragma mark - Hierarchy
+
++ (nullable UIViewController *)rootViewControllerWithNavController:(UINavigationController *)navController {
+    
+    UIViewController *rootViewController = nil;
+    
+    if ([navController isKindOfClass:[UINavigationController class]]) {
+        NSArray *viewControllers = [navController viewControllers];
+        
+        if (viewControllers.count > 0) {
+            rootViewController = viewControllers[0];
+        }
+    }
+    
+    return rootViewController;
+}
+
++ (nullable UIViewController *)topViewController {
+    return [self topViewControllerOnWindow:[UIApplication sharedApplication].keyWindow];
+}
+
++ (nullable UIViewController *)topViewControllerOnWindow:(UIWindow *)window {
+    if (![window isKindOfClass:[UIWindow class]]) {
+        return nil;
+    }
+    
+    return [self topViewControllerWithRootViewController:window.rootViewController];
+}
+
+#pragma mark ::
+
++ (UIViewController *)topViewControllerWithRootViewController:(UIViewController *)rootViewController {
+    if ([rootViewController isKindOfClass:[UITabBarController class]]) {
+        UITabBarController *tabBarController = (UITabBarController *)rootViewController;
+        return [self topViewControllerWithRootViewController:tabBarController.selectedViewController];
+    }
+    else if ([rootViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *navigationController = (UINavigationController *)rootViewController;
+        // Note: visibleViewController is the view controller at the top of the navigation stack or a view controller that was presented modally on top of the navigation controller itself.
+        return [self topViewControllerWithRootViewController:navigationController.visibleViewController];
+    }
+    else if (rootViewController.presentedViewController) {
+        UIViewController *presentedViewController = rootViewController.presentedViewController;
+        return [self topViewControllerWithRootViewController:presentedViewController];
+    }
+    else {
+        return rootViewController;
+    }
+}
+
 @end
