@@ -127,6 +127,26 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (CGRect)makeAspectRatioRectWithContentSize:(CGSize)contentSize insideBoundingRect:(CGRect)boundingRect;
 
+#pragma mark > CGSize
+
+/**
+ Get scaled size by ratio of width
+
+ @param contentSize the content size
+ @param fixedWidth the fixed width to fit
+ @return the scaled size. Return CGSizeZero if the content's width or height is <= 0 or fixedWidth <= 0
+ */
++ (CGSize)scaledSizeWithContentSize:(CGSize)contentSize fitToWidth:(CGFloat)fixedWidth;
+
+/**
+ Get scaled size by ratio of height
+ 
+ @param contentSize the content size
+ @param fixedHeight the fixed height to fit
+ @return the scaled size. Return CGSizeZero if the content's width or height is <= 0 or fixedHeight <= 0
+ */
++ (CGSize)scaledSizeWithContentSize:(CGSize)contentSize fitToHeight:(CGFloat)fixedHeight;
+
 @end
 
 NS_ASSUME_NONNULL_END

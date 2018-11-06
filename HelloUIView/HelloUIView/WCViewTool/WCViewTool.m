@@ -328,4 +328,24 @@
     return scaledRect;
 }
 
+#pragma mark > CGSize
+
++ (CGSize)scaledSizeWithContentSize:(CGSize)contentSize fitToWidth:(CGFloat)fixedWidth {
+    if (contentSize.width <= 0 || contentSize.height <= 0 || fixedWidth <= 0) {
+        return CGSizeZero;
+    }
+    
+    CGFloat ratioByWidth = (fixedWidth / contentSize.width);
+    return CGSizeMake(fixedWidth, contentSize.height * ratioByWidth);
+}
+
++ (CGSize)scaledSizeWithContentSize:(CGSize)contentSize fitToHeight:(CGFloat)fixedHeight {
+    if (contentSize.width <= 0 || contentSize.height <= 0 || fixedHeight <= 0) {
+        return CGSizeZero;
+    }
+    
+    CGFloat ratioByHeight = (fixedHeight / contentSize.height);
+    return CGSizeMake(contentSize.width * ratioByHeight, fixedHeight);
+}
+
 @end
