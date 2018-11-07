@@ -10,6 +10,7 @@
 #import "NSString+Addition.h"
 #import "UIView+Addition.h"
 #import "NSAttributedString+Addition.h"
+#import "WCAttributedStringTool.h"
 
 #ifndef UICOLOR_RGB
 #define UICOLOR_RGB(color) [UIColor colorWithRed: (((color) >> 16) & 0xFF) / 255.0 green: (((color) >> 8) & 0xFF) / 255.0 blue: ((color) & 0xFF) / 255.0 alpha: 1.0]
@@ -64,7 +65,7 @@
         label.attributedText = attributedText;
         label.numberOfLines = 0;
         
-        CGSize textSize = [attributedText textSizeForMultipleLineWithWidth:label.frame.size.width];
+        CGSize textSize = [WCAttributedStringTool textSizeWithMultipleLineAttributedString:attributedText width:label.frame.size.width widthToFit:NO];
         label.height = ceil(textSize.height);
         
         _label1 = label;

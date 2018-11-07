@@ -47,18 +47,6 @@
     return [attributedString copy];
 }
 
-// @sa http://stackoverflow.com/questions/13621084/boundingrectwithsize-for-nsattributedstring-returning-wrong-size
-- (CGSize)textSizeForMultipleLineWithWidth:(CGFloat)width {
-    if (width > 0) {
-        return [self boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
-                                  options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
-                                  context:nil].size;
-    }
-    else {
-        return CGSizeZero;
-    }
-}
-
 - (CGSize)textSizeForSingleLine {
     return [self boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)
                               options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)

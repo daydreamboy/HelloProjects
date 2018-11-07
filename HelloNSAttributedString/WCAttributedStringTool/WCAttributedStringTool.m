@@ -136,6 +136,25 @@
     return attrStringM;
 }
 
+#pragma mark > Text Size
+
++ (CGSize)textSizeWithMultipleLineAttributedString:(NSAttributedString *)attributedString width:(CGFloat)width widthToFit:(BOOL)widthToFit {
+    if (![attributedString isKindOfClass:[NSAttributedString class]] || !attributedString.length || width <= 0) {
+        return CGSizeZero;
+    }
+    
+    CGRect rect = [attributedString boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
+                                                 options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
+                                                 context:nil];
+    CGSize textSize = rect.size;
+    if (widthToFit) {
+        return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
+    }
+    else {
+        return CGSizeMake(width, ceil(textSize.height));
+    }
+}
+
 #pragma mark - Private Utility Functions
 
 /**

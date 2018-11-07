@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -39,6 +40,19 @@ NS_ASSUME_NONNULL_BEGIN
     - the ranges and replacementStrings have same length
  */
 + (nullable NSAttributedString *)replaceCharactersInRangesWithAttributedString:(NSAttributedString *)attributedString ranges:(NSArray<NSValue *> *)ranges replacementAttributedStrings:(NSArray<NSAttributedString *> *)replacementAttributedStrings replacementRanges:(inout nullable NSMutableArray<NSValue *> *)replacementRanges;
+
+#pragma mark > Text Size
+
+/**
+ Calculate text size for multiple lines (numberOfLines = 0)
+
+ @param attributedString the attributed string
+ @param width the fixed width
+ @param widthToFit If NO, the width of calculated text size always is the input width. If YES, the width of calculated text size as it.
+ @return the text size
+ @see http://stackoverflow.com/questions/13621084/boundingrectwithsize-for-nsattributedstring-returning-wrong-size
+ */
++ (CGSize)textSizeWithMultipleLineAttributedString:(NSAttributedString *)attributedString width:(CGFloat)width widthToFit:(BOOL)widthToFit;
 
 @end
 

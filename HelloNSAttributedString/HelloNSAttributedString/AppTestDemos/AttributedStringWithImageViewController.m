@@ -9,6 +9,7 @@
 #import "AttributedStringWithImageViewController.h"
 #import "NSAttributedString+Addition.h"
 #import "UIView+Addition.h"
+#import "WCAttributedStringTool.h"
 
 @interface AttributedStringWithImageViewController ()
 @property (nonatomic, strong) UILabel *label1;
@@ -40,8 +41,8 @@
         label.attributedText = attributedText;
         label.numberOfLines = 0;
         
-        CGSize textSize = [attributedText textSizeForMultipleLineWithWidth:label.frame.size.width];
-        label.height = ceil(textSize.height);
+        CGSize textSize = [WCAttributedStringTool textSizeWithMultipleLineAttributedString:attributedText width:label.frame.size.width widthToFit:NO];
+        label.height = textSize.height;
         
         _label1 = label;
     }
@@ -62,8 +63,8 @@
         label.attributedText = attributedText;
         label.numberOfLines = 0;
         
-        CGSize textSize = [attributedText textSizeForMultipleLineWithWidth:label.frame.size.width];
-        label.height = ceil(textSize.height);
+        CGSize textSize = [WCAttributedStringTool textSizeWithMultipleLineAttributedString:attributedText width:label.frame.size.width widthToFit:NO];
+        label.height = textSize.height;
         
         _label2 = label;
     }
