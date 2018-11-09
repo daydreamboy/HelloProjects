@@ -371,7 +371,7 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param string the original string
  @param ranges the ranges to replace which elements are NSValue
- @param replacementStrings the strings to replace
+ @param replacementStrings the strings to replace and allow empty string (a.k.a. @"")
  @param replacementRanges (inout) the ranges of replacementStrings which is an out parameters. Pass an empty NSMutableArray instance to get elements.
  @return the replaced string. Return nil if the parameters are not valid. Return the original string if the parameters are empty array.
  @discussion The parameters condition are considered

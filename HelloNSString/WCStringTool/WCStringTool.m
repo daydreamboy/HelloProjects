@@ -848,7 +848,7 @@
         return NSNotFound;
     };
     
-    NSMutableArray<NSString *> *replacementStringsM = [replacementStrings mutableCopy];
+    NSMutableArray<id> *replacementStringsM = [replacementStrings mutableCopy];
     [replacementRanges removeAllObjects];
     for (NSInteger i = 0; i < replacementStringsM.count; i++) {
         replacementRanges[i] = [NSValue valueWithRange:NSMakeRange(NSNotFound, 0)];
@@ -869,15 +869,16 @@
             if (indexOfReplacementString != NSNotFound) {
                 NSString *stringToInsert = replacementStringsM[indexOfReplacementString];
                 
-                if (stringToInsert.length) {
-                    // Note: the range of stringToInsert
+                // Note: allow to insert empty string and check it if [NSNull null]
+                if (stringToInsert && [stringToInsert isKindOfClass:[NSString class]]) {
+                    // Note: record the range of stringToInsert
                     NSRange replacementRange = NSMakeRange(stringM.length, stringToInsert.length);
                     replacementRanges[indexOfReplacementString] = [NSValue valueWithRange:replacementRange];
                     
                     [stringM appendString:stringToInsert];
                     
-                    // Note: set the stringToInsert to @"" to avoid inserting again
-                    replacementStringsM[indexOfReplacementString] = @"";
+                    // Note: set the stringToInsert to [NSNull null] to avoid inserting again
+                    replacementStringsM[indexOfReplacementString] = [NSNull null];
                 }
             }
         }

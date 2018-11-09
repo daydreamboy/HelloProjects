@@ -934,7 +934,45 @@
         XCTAssertTrue(NSEqualRanges(range1, range2));
     }
     
-    // Case 4
+    // Case 5
+    inputString = @"0123456789";
+    ranges = @[
+               [NSValue valueWithRange:NSMakeRange(1, 3)],
+               [NSValue valueWithRange:NSMakeRange(5, 1)],
+               [NSValue valueWithRange:NSMakeRange(7, 2)],
+               ];
+    replacements = @[
+                     @"",
+                     @"",
+                     @"",
+                     ];
+    
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:replacementRanges];
+    XCTAssertEqualObjects(outputString, @"0469");
+    XCTAssertTrue(replacementRanges.count == replacements.count);
+    XCTAssertTrue(NSEqualRanges([replacementRanges[0] rangeValue], NSMakeRange(1, 0)));
+    XCTAssertTrue(NSEqualRanges([replacementRanges[1] rangeValue], NSMakeRange(2, 0)));
+    XCTAssertTrue(NSEqualRanges([replacementRanges[2] rangeValue], NSMakeRange(3, 0)));
+    
+    
+    // Case 6
+    inputString = @"0123456789";
+    ranges = @[
+               [NSValue valueWithRange:NSMakeRange(1, 3)],
+               [NSValue valueWithRange:NSMakeRange(7, 2)],
+               ];
+    replacements = @[
+                     @"",
+                     @"",
+                     ];
+    
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:replacementRanges];
+    XCTAssertEqualObjects(outputString, @"04569");
+    XCTAssertTrue(replacementRanges.count == replacements.count);
+    XCTAssertTrue(NSEqualRanges([replacementRanges[0] rangeValue], NSMakeRange(1, 0)));
+    XCTAssertTrue(NSEqualRanges([replacementRanges[1] rangeValue], NSMakeRange(4, 0)));
+    
+    // Case 7
     inputString = @"0中文12345678😆9";
     ranges = @[
                [NSValue valueWithRange:NSMakeRange(1, 2)],
@@ -956,7 +994,7 @@
         XCTAssertTrue(NSEqualRanges(range1, range2));
     }
     
-    // Case 5
+    // Case 8
     inputString = @"0123456789";
     ranges = @[
                [NSValue valueWithRange:NSMakeRange(9, 1)],
@@ -993,7 +1031,7 @@
         XCTAssertTrue(NSEqualRanges(range1, range2));
     }
 
-    // Case 5
+    // Case 9
     inputString = @"0123456789";
     ranges = @[];
     replacements = @[];
