@@ -15,6 +15,7 @@
 #import "NamespacedGlobalVarsAndFuncsViewController.h"
 #import "DelayReleaseObjectViewController.h"
 #import "SynthesizePropertyViewController.h"
+#import "GCCAttributeCleanupViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -44,6 +45,7 @@
         @"Namespaced global vars and C funcs",
         @"Delay release object",
         @"Synthesize property manually",
+        @"GCC attribute __cleanup__",
         @"call a test method",
     ];
     _classes = @[
@@ -54,6 +56,7 @@
         [NamespacedGlobalVarsAndFuncsViewController class],
         [DelayReleaseObjectViewController class],
         [SynthesizePropertyViewController class],
+        [GCCAttributeCleanupViewController class],
         @"testMethod",
     ];
 }

@@ -160,3 +160,10 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 
 
 
+### 6、\_\_attribute\_\_ ((\_\_cleanup\_\_(\<callback\>)))的用法
+
+
+
+[1]: https://stackoverflow.com/questions/34574933/a-good-and-idiomatic-way-to-use-gcc-and-clang-attribute-cleanup-and-point
+[ 2 ]: http://echorand.me/site/notes/articles/c_cleanup/cleanup_attribute_c.html
+
