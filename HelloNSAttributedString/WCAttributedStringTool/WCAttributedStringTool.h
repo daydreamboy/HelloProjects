@@ -11,9 +11,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#pragma mark > Substring String
-
 @interface WCAttributedStringTool : NSObject
+
+#pragma mark > Substring String
 
 /**
  Get substring of an attributed string with the range
@@ -41,7 +41,21 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSAttributedString *)replaceCharactersInRangesWithAttributedString:(NSAttributedString *)attributedString ranges:(NSArray<NSValue *> *)ranges replacementAttributedStrings:(NSArray<NSAttributedString *> *)replacementAttributedStrings replacementRanges:(inout nullable NSMutableArray<NSValue *> *)replacementRanges;
 
-#pragma mark > Text Size
+/**
+ Replace string in attributed string
+
+ @param attributedString the attributed string
+ @param occurrenceString the occurrence of string
+ @param replacementString the replacement string
+ @param range the range of replacing.
+        - If range.location out of [0, attributedString.length) return nil.
+        - If range.location is [0, attributedString.length), but range.length exceed the length of attributedString, range is from location to the end of attributedString
+ @return the attributed string after replace.
+ @see https://stackoverflow.com/questions/8231240/replace-substring-of-nsattributedstring-with-another-nsattributedstring
+ */
++ (nullable NSAttributedString *)replaceStringWithAttributedString:(NSAttributedString *)attributedString occurrenceString:(NSString *)occurrenceString replacementString:(NSString *)replacementString range:(NSRange)range;
+
+#pragma mark > Text Size (UILabel)
 
 /**
  Calculate text size for multiple lines (numberOfLines = 0)
@@ -53,6 +67,14 @@ NS_ASSUME_NONNULL_BEGIN
  @see http://stackoverflow.com/questions/13621084/boundingrectwithsize-for-nsattributedstring-returning-wrong-size
  */
 + (CGSize)textSizeWithMultipleLineAttributedString:(NSAttributedString *)attributedString width:(CGFloat)width widthToFit:(BOOL)widthToFit;
+
+/**
+ Calculate text size for single line (numberOfLines = 1)
+
+ @param attributedString tha attributed string expected a single line which should have no line wrap '\\n'
+ @return the text size
+ */
++ (CGSize)textSizeWithSingleLineAttributedString:(NSAttributedString *)attributedString;
 
 @end
 

@@ -135,11 +135,11 @@
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(paddingH, CGRectGetMaxY(self.label3.frame) + 5, UNSPECIFIED, UNSPECIFIED)];
         label.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:0.8];
         label.attributedText = attributedText;
-        label.numberOfLines = 0;
+        label.numberOfLines = 1;
         label.font = [UIFont systemFontOfSize:15];
         label.textAlignment = NSTextAlignmentCenter;
         
-        CGSize textSize = [label.attributedText textSizeForSingleLine];
+        CGSize textSize = [WCAttributedStringTool textSizeWithSingleLineAttributedString:label.attributedText];
         CGSize textMiniSize = [label.attributedText size];
         label.height = ceil(textSize.height);
         label.width = ceil(textSize.width);
@@ -179,7 +179,7 @@
 
 - (NSString *)text3 {
     if (!_text3) {
-        NSString *text = @"文本内容";
+        NSString *text = @"\n文本内容\n";
         
         _text3 = text;
     }

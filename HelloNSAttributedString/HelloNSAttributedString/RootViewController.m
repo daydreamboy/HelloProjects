@@ -11,6 +11,7 @@
 #import "AttributedStringWithFormatViewController.h"
 #import "NSParagraphStyleAttributeNameViewController.h"
 #import "AttributedStringWithImageViewController.h"
+#import "ReplaceAttributedStringViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -36,11 +37,13 @@
         @"NSAttributedString with format",
         @"Use NSParagraphStyleAttributeName",
         @"NSAttributedString with image",
+        @"Replace NSAttributedString with substring",
     ];
     _classes = @[
         @"AttributedStringWithFormatViewController",
         @"NSParagraphStyleAttributeNameViewController",
         @"AttributedStringWithImageViewController",
+        @"ReplaceAttributedStringViewController",
     ];
 }
 

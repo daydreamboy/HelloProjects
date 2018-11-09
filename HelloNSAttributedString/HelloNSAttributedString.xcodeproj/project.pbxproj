@@ -21,6 +21,7 @@
 		4F26FCC21FBEC4D6002A28AF /* AttributedStringWithImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F26FCC11FBEC4D6002A28AF /* AttributedStringWithImageViewController.m */; };
 		4F26FCCA1FBEC924002A28AF /* img1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F26FCC81FBEC924002A28AF /* img1.jpg */; };
 		4F26FCCB1FBEC924002A28AF /* img2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F26FCC91FBEC924002A28AF /* img2.png */; };
+		4F63396E219335270041056F /* ReplaceAttributedStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63396D219335270041056F /* ReplaceAttributedStringViewController.m */; };
 		4FEEC40A218726DA00EF46D9 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FEEC409218726DA00EF46D9 /* Tests.m */; };
 		4FEEC4122187274F00EF46D9 /* Tests_NSAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FEEC4112187274F00EF46D9 /* Tests_NSAttributedString.m */; };
 /* End PBXBuildFile section */
@@ -61,6 +62,8 @@
 		4F26FCC11FBEC4D6002A28AF /* AttributedStringWithImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttributedStringWithImageViewController.m; sourceTree = "<group>"; };
 		4F26FCC81FBEC924002A28AF /* img1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = img1.jpg; sourceTree = "<group>"; };
 		4F26FCC91FBEC924002A28AF /* img2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img2.png; sourceTree = "<group>"; };
+		4F63396C219335270041056F /* ReplaceAttributedStringViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReplaceAttributedStringViewController.h; sourceTree = "<group>"; };
+		4F63396D219335270041056F /* ReplaceAttributedStringViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReplaceAttributedStringViewController.m; sourceTree = "<group>"; };
 		4FEEC407218726DA00EF46D9 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FEEC409218726DA00EF46D9 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		4FEEC40B218726DA00EF46D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -139,6 +142,8 @@
 				2B4AC4121D0FF1C80026BE19 /* NSParagraphStyleAttributeNameViewController.m */,
 				4F26FCC01FBEC4D6002A28AF /* AttributedStringWithImageViewController.h */,
 				4F26FCC11FBEC4D6002A28AF /* AttributedStringWithImageViewController.m */,
+				4F63396C219335270041056F /* ReplaceAttributedStringViewController.h */,
+				4F63396D219335270041056F /* ReplaceAttributedStringViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -290,6 +295,7 @@
 				2B0591341A26BF6800E36EF7 /* AppDelegate.m in Sources */,
 				4F1C610C2180B53B000D5548 /* WCAttributedStringTool.m in Sources */,
 				4F26FCBC1FBEB299002A28AF /* NSString+Addition.m in Sources */,
+				4F63396E219335270041056F /* ReplaceAttributedStringViewController.m in Sources */,
 				2B4AC4131D0FF1C80026BE19 /* NSParagraphStyleAttributeNameViewController.m in Sources */,
 				4F26FCC21FBEC4D6002A28AF /* AttributedStringWithImageViewController.m in Sources */,
 				4F26FCBF1FBEB55B002A28AF /* UIView+Addition.m in Sources */,
