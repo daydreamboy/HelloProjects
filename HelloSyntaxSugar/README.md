@@ -35,6 +35,7 @@ printf("'ABC'  = %02x%02x%02x%02x = %08x\n", ptr[0], ptr[1], ptr[2], ptr[3], val
 由于是little endian，低地址的字节放在word（4个字节）的低位。
 
 
+
 ### 2、C++ 11支持Raw String
 
 C++ 11支持Raw String，在.mm文件中可以使用R"\<LANG\>(raw string)\<LANG\>"语法，用于直接写非转义的C字符串。如下
@@ -67,6 +68,8 @@ static NSString *jsonString = @R"JSON(
 ```
 
 上面的@符号将C字符串转成NSString类型。
+
+
 
 ### 3、表示NaN
 
@@ -122,6 +125,38 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 ```
 
 文章也提到，如果对象可以在后台线程释放，可以放在非主线程去释放这个对象，这样可以减少主线程的开销。
+
+
+
+### 5、手动synthesize @property
+
+一般来说，定义@property会自动synthesize setter和getter方法，同时定义一个名为`_property`的实例变量。手动实现setter或getter方法，这个`_property`实例变量也是自动合成的。但是手动同时实现setter和getter方法，编译器不再自动合成`_property`实例变量，当用到`_property`实例变量会在编译时报错。
+
+举个例子，如下
+
+```objective-c
+@interface SynthesizePropertyViewController ()
+@property (nonatomic, copy) NSString *propertyWithBothCustomSetterAndGetter;
+@end
+
+#pragma mark - Both Setter and Getter
+
+- (void)setPropertyWithBothCustomSetterAndGetter:(NSString *)propertyWithBothCustomSetterAndGetter {
+    // Compile Error: Use of undeclared identifier '_propertyWithBothCustomSetterAndGetter'; did you mean 'propertyWithBothCustomSetterAndGetter'?
+    _propertyWithBothCustomSetterAndGetter = propertyWithBothCustomSetterAndGetter;
+}
+
+- (NSString *)propertyWithBothCustomSetterAndGetter {
+    // Compile Error: Use of undeclared identifier '_propertyWithBothCustomSetterAndGetter'
+    return _propertyWithBothCustomSetterAndGetter;
+}
+```
+
+解决方法：这种情况需要手动合成`_property`实例变量，如下
+
+```objective-c
+@synthesize propertyWithBothCustomSetterAndGetter = _propertyWithBothCustomSetterAndGetter;
+```
 
 
 
