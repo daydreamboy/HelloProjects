@@ -113,6 +113,36 @@ NS_AVAILABLE_IOS(5_0)
  */
 + (nullable NSString *)JSONEscapedStringWithString:(NSString *)string;
 
+#pragma mark - Assistant Methods
+
+#pragma mark > Key Path Query
+
++ (nullable NSArray *)arrayOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath;
++ (nullable NSDictionary *)dictionaryOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath;
++ (nullable NSString *)stringOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath;
+
+/**
+ Get a NSInteger using keyPath, value can be a NSNumber or NSString
+
+ @param JSONObject a NSDictionary or a NSArray
+ @param keyPath a key or a keyPath separated by `.`, such as @"key1.key2.[1].key3"
+ @return return NSNotFound if the value can't be evaluated as a number
+ */
++ (NSInteger)integerOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath;
+
++ (nullable NSNumber *)numberOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath;
++ (BOOL)boolOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath;
++ (nullable NSNull *)nullOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath;
+
+/**
+ Get value using keyPath
+
+ @param JSONObject a NSDictionary or a NSArray
+ @param keyPath a key or a keyPath separated by `.`, such as @"key1.key2.[1].key3"
+ @return return nil, if the keyPath not match the JSONObject
+ */
++ (nullable id)valueOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath;
+
 @end
 
 NS_ASSUME_NONNULL_END

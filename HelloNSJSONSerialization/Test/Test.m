@@ -35,6 +35,10 @@
 #pragma mark - Object to String
 
 - (void)test_JSONStringWithObject_printOptions {
+    NSArray *arr;
+    NSDictionary *dict;
+    NSString *JSONString;
+    
     // Case 1
     XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:@YES printOptions:kNilOptions], @"true");
     XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:@NO printOptions:kNilOptions], @"false");
@@ -57,14 +61,59 @@
     XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:@"null" printOptions:kNilOptions], @"null");
     
     // Case 4
-    NSArray *arr;
+    
     arr = @[ [NSNull null], @"null" ];
     XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:arr printOptions:kNilOptions], @"[null,\"null\"]");
     
     // Case 5
-    NSDictionary *dict;
     dict = @{ @"null": [NSNull null] };
     XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:dict printOptions:kNilOptions], @"{\"null\":null}");
+    
+    // Case 6
+    arr = @[ @"1", @"hello", @"", @(3.14) ];
+    JSONString = [WCJSONTool JSONStringWithObject:arr printOptions:kNilOptions];
+    XCTAssertNotNil(JSONString);
+    NSLog(@"plain json of array: %@", JSONString);
+    
+    // Case 7
+    arr = @[ @"1", @"hello", @"" ];
+    JSONString = [WCJSONTool JSONStringWithObject:arr printOptions:kNilOptions];
+    XCTAssertEqualObjects(JSONString, @"[\"1\",\"hello\",\"\"]");
+    
+    // Case 8
+    NSMutableArray *arrM = [[NSMutableArray alloc] initWithArray:arr];
+    NSLog(@"readable json of array: \n%@", [WCJSONTool JSONStringWithObject:arrM printOptions:NSJSONWritingPrettyPrinted]);
+    
+    // case 1: normal
+    dict = @{
+             @"str": @"valueOfStr",
+             @"url": @"http://www.baidu.com/",
+             @"num": @(3.14),
+             //@(1) : @(YES), // Error occurred in jsong parsing
+             @"key": @"中文汉字"
+             };
+    JSONString = [WCJSONTool JSONStringWithObject:dict printOptions:kNilOptions];
+    NSLog(@"plain json of dictionary: %@", JSONString);
+    
+    NSMutableDictionary *mutableDict = [[NSMutableDictionary alloc] initWithDictionary:dict];
+    JSONString = [WCJSONTool JSONStringWithObject:mutableDict printOptions:NSJSONWritingPrettyPrinted];
+    NSLog(@"readable json of dictionary: \n%@", JSONString);
+    
+    NSLog(@"===========================================");
+    // case 2: invalid json
+    dict = @{
+             @"now": [NSDate date],
+             };
+    JSONString = [WCJSONTool JSONStringWithObject:dict printOptions:kNilOptions];
+    XCTAssertNil(JSONString);
+    
+    NSLog(@"===========================================");
+    // case 3: invalid json
+    dict = @{
+             @(1) : @(YES), // Error occurred in jsong parsing
+             };
+    JSONString = [WCJSONTool JSONStringWithObject:dict printOptions:kNilOptions];
+    XCTAssertNil(JSONString);
 }
 
 - (void)test_JSONStringWithObject_printOptions_filterInvalidObjects {
@@ -88,65 +137,7 @@
     XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:dict printOptions:kNilOptions filterInvalidObjects:YES], @"{\"null\":null}");
 }
 
-#pragma mark -
-
-- (void)test_NSArray_JSONString {
-    NSArray *arr;
-    NSString *JSONString;
-    
-    // Case 1
-    arr = @[ @"1", @"hello", @"", @(3.14) ];
-    JSONString = [WCJSONTool JSONStringWithObject:arr printOptions:kNilOptions];
-    XCTAssertNotNil(JSONString);
-    NSLog(@"plain json of array: %@", JSONString);
-    
-    // Case 2
-    arr = @[ @"1", @"hello", @"" ];
-    JSONString = [WCJSONTool JSONStringWithObject:arr printOptions:kNilOptions];
-    XCTAssertEqualObjects(JSONString, @"[\"1\",\"hello\",\"\"]");
-    
-    // Case 2
-    NSMutableArray *arrM = [[NSMutableArray alloc] initWithArray:arr];
-    NSLog(@"readable json of array: \n%@", [WCJSONTool JSONStringWithObject:arrM printOptions:NSJSONWritingPrettyPrinted]);
-}
-
-- (void)test_NSDictionary_jsonString {
-    NSDictionary *dict;
-    NSString *jsonString;
-    
-    // case 1: normal
-    dict = @{
-             @"str": @"valueOfStr",
-             @"url": @"http://www.baidu.com/",
-             @"num": @(3.14),
-             //@(1) : @(YES), // Error occurred in jsong parsing
-             @"key": @"中文汉字"
-             };
-    jsonString = [WCJSONTool JSONStringWithObject:dict printOptions:kNilOptions];
-    NSLog(@"plain json of dictionary: %@", jsonString);
-    
-    NSMutableDictionary *mutableDict = [[NSMutableDictionary alloc] initWithDictionary:dict];
-    jsonString = [WCJSONTool JSONStringWithObject:mutableDict printOptions:NSJSONWritingPrettyPrinted];
-    NSLog(@"readable json of dictionary: \n%@", jsonString);
-    
-    NSLog(@"===========================================");
-    // case 2: invalid json
-    dict = @{
-             @"now": [NSDate date],
-             };
-    jsonString = [WCJSONTool JSONStringWithObject:dict printOptions:kNilOptions];
-    XCTAssertNil(jsonString);
-    
-    NSLog(@"===========================================");
-    // case 3: invalid json
-    dict = @{
-             @(1) : @(YES), // Error occurred in jsong parsing
-             };
-    jsonString = [WCJSONTool JSONStringWithObject:dict printOptions:kNilOptions];
-    XCTAssertNil(jsonString);
-}
-
-- (void)test_WCJSONTool_mutableDictionaryWithJSONString {
+- (void)test_JSONMutableDictWithString {
     NSDictionary *dict;
     NSString *jsonString;
     NSMutableDictionary *dictM;
@@ -162,7 +153,7 @@
     dictM = [WCJSONTool JSONMutableDictWithString:jsonString];
     XCTAssertTrue([dictM isKindOfClass:[NSMutableDictionary class]]);
     NSLog(@"mutuable dictionary: %@", dictM);
-
+    
     
     // Case 2
     jsonString = STR_OF_JSON(
@@ -176,6 +167,7 @@
 
 - (void)test_JSONEscapedStringWithString {
     NSString *string;
+    NSString *outputString;
     
     // Case 1
     string = @"It's \"Tom\".\n"; // the original string is `It's "Tom".\n` in memory
@@ -187,7 +179,25 @@
     NSString *JSONString = [NSString stringWithFormat:@"{\"action\": \"%@\" }", [WCJSONTool JSONEscapedStringWithString:string]];
     NSDictionary *dict = [WCJSONTool JSONDictWithString:JSONString];
     XCTAssertEqualObjects(dict[@"action"], string);
+    
+    // Case 3
+    string = STR_OF_JSON(
+                         [
+                          {
+                              "title": "这是标题1这是标题1这是标题1这是标题1这是标题1这是标题1这是标题1这是标题1",
+                              "action": "wangwang://p2pconversation/sendText?text=dGhpcyBpcyBhIGV4YW1wbGU=&toLongId=Y250YW9iYW9rYW5nYXJvbzg1NjcyMTU=&asLocal=0"
+                          },
+                          {
+                              "title": "这是标题2",
+                              "action": "wangwang://p2pconversation/sendText?text=dGhpcyBpcyBhIGV4YW1wbGU=&toLongId=Y250YW9iYW9rYW5nYXJvbzg1NjcyMTU=&asLocal=1&asReceiver=1"
+                          }
+                          ]
+    );
+    outputString = [WCJSONTool JSONEscapedStringWithString:string];
+    NSLog(@"%@", outputString);
 }
+
+#pragma mark - 
 
 - (void)test_nil {
     @try {
