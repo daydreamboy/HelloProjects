@@ -17,15 +17,15 @@
 
 #pragma mark - Handle String As Text In UILabel
 
-+ (CGSize)textSizeWithSingleLineString:(NSString *)string font:(UIFont *)font NS_AVAILABLE_IOS(7_0) {
++ (CGSize)textSizeWithSingleLineString:(NSString *)string font:(UIFont *)font {
     if (![string isKindOfClass:[NSString class]] || !string.length || ![font isKindOfClass:[UIFont class]]) {
         return CGSizeZero;
     }
     
-    return [WCStringTool textSizeWithSingleLineString:string attributes:@{ NSFontAttributeName: font }];
+    return [self textSizeWithSingleLineString:string attributes:@{ NSFontAttributeName: font }];
 }
 
-+ (CGSize)textSizeWithSingleLineString:(NSString *)string attributes:(NSDictionary *)attributes NS_AVAILABLE_IOS(7_0) {
++ (CGSize)textSizeWithSingleLineString:(NSString *)string attributes:(NSDictionary *)attributes {
     if (![string isKindOfClass:[NSString class]] || !string.length || ![attributes isKindOfClass:[NSDictionary class]]) {
         return CGSizeZero;
     }
@@ -37,7 +37,7 @@
     return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
 }
 
-+ (CGSize)textSizeWithMultipleLineString:(NSString *)string width:(CGFloat)width font:(UIFont *)font mode:(NSLineBreakMode)lineBreakMode widthToFit:(BOOL)widthToFit NS_AVAILABLE_IOS(8_0) {
++ (CGSize)textSizeWithMultipleLineString:(NSString *)string width:(CGFloat)width font:(UIFont *)font mode:(NSLineBreakMode)lineBreakMode widthToFit:(BOOL)widthToFit {
     if (![string isKindOfClass:[NSString class]] || !string.length || ![font isKindOfClass:[UIFont class]] || width <= 0) {
         return CGSizeZero;
     }
@@ -58,7 +58,7 @@
     return [self textSizeWithMultipleLineString:string width:width attributes:attr widthToFit:widthToFit];
 }
 
-+ (CGSize)textSizeWithMultipleLineString:(NSString *)string width:(CGFloat)width attributes:(NSDictionary *)attributes widthToFit:(BOOL)widthToFit NS_AVAILABLE_IOS(8_0) {
++ (CGSize)textSizeWithMultipleLineString:(NSString *)string width:(CGFloat)width attributes:(NSDictionary *)attributes widthToFit:(BOOL)widthToFit {
     if (width > 0) {
         CGRect rect = [string boundingRectWithSize:CGSizeMake(width, CGFLOAT_MAX)
                                            options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading)
@@ -77,7 +77,7 @@
     }
 }
 
-+ (CGSize)textSizeWithFixedLineString:(NSString *)string width:(CGFloat)width font:(UIFont *)font numberOfLines:(NSUInteger)numberOfLines mode:(NSLineBreakMode)lineBreakMode widthToFit:(BOOL)widthToFit NS_AVAILABLE_IOS(8_0) {
++ (CGSize)textSizeWithFixedLineString:(NSString *)string width:(CGFloat)width font:(UIFont *)font numberOfLines:(NSUInteger)numberOfLines mode:(NSLineBreakMode)lineBreakMode widthToFit:(BOOL)widthToFit {
     if (![string isKindOfClass:[NSString class]] || !string.length || ![font isKindOfClass:[UIFont class]] || width <= 0) {
         return CGSizeZero;
     }
@@ -771,6 +771,7 @@
 #pragma mark > String Modification
 
 + (nullable NSString *)replaceCharactersInRangesWithString:(NSString *)string ranges:(NSArray<NSValue *> *)ranges replacementStrings:(NSArray<NSString *> *)replacementStrings replacementRanges:(inout nullable NSMutableArray<NSValue *> *)replacementRanges {
+    
     if (![string isKindOfClass:[NSString class]] ||
         ![ranges isKindOfClass:[NSArray class]] ||
         ![replacementStrings isKindOfClass:[NSArray class]] ||
@@ -849,6 +850,9 @@
     
     NSMutableArray<NSString *> *replacementStringsM = [replacementStrings mutableCopy];
     [replacementRanges removeAllObjects];
+    for (NSInteger i = 0; i < replacementStringsM.count; i++) {
+        replacementRanges[i] = [NSValue valueWithRange:NSMakeRange(NSNotFound, 0)];
+    }
     
     NSMutableString *stringM = [NSMutableString stringWithCapacity:string.length];
     [string enumerateSubstringsInRange:NSMakeRange(0, string.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
@@ -866,11 +870,11 @@
                 NSString *stringToInsert = replacementStringsM[indexOfReplacementString];
                 
                 if (stringToInsert.length) {
-                    [stringM appendString:stringToInsert];
-                    
                     // Note: the range of stringToInsert
                     NSRange replacementRange = NSMakeRange(stringM.length, stringToInsert.length);
-                    [replacementRanges addObject:[NSValue valueWithRange:replacementRange]];
+                    replacementRanges[indexOfReplacementString] = [NSValue valueWithRange:replacementRange];
+                    
+                    [stringM appendString:stringToInsert];
                     
                     // Note: set the stringToInsert to @"" to avoid inserting again
                     replacementStringsM[indexOfReplacementString] = @"";

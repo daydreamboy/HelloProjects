@@ -11,6 +11,7 @@
 
 @interface StringSizeViewController ()
 @property (nonatomic, strong) UILabel *label1;
+@property (nonatomic, strong) UILabel *label2;
 @end
 
 @implementation StringSizeViewController
@@ -28,8 +29,8 @@
     if (!_label1) {
         NSString *text = @"60\"";
         
-        CGSize textSize = [WCStringTool textSizeWithSingleLineString:text font:[UIFont systemFontOfSize:16]];
-//        CGSize textSize = [WCStringTool textSizeWithMultipleLineString:text font:[UIFont systemFontOfSize:16] size:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX) mode:NSLineBreakByCharWrapping];
+//        CGSize textSize = [WCStringTool textSizeWithSingleLineString:text font:[UIFont systemFontOfSize:16]];
+        CGSize textSize = [WCStringTool textSizeWithMultipleLineString:text width:100 font:[UIFont systemFontOfSize:16] mode:NSLineBreakByCharWrapping widthToFit:NO];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 64 + 10, textSize.width, textSize.height)];
         label.text = text;
 //        label.numberOfLines = 0;

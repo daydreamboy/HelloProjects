@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Calculate text size for single line (numberOfLines = 1)
 
- @param string the text expected a single line which has no line wrap '\\n'
+ @param string the text expected a single line which should have no line wrap '\\n'
  @param font the font of text
  @return the text size
  */
@@ -27,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Calculate text size for single line (numberOfLines = 1) with attributes
  
- @param string the text expected a single line which has no line wrap '\\n'
+ @param string the text expected a single line which should have no line wrap '\\n'
  @param attributes the attributes dictionary
  @return the text size
  */
@@ -372,7 +372,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param string the original string
  @param ranges the ranges to replace which elements are NSValue
  @param replacementStrings the strings to replace
- @param replacementRanges (inout) the ranges of replacementStrings which is an out parameters. Pass a NSMutableArray instance to get elements.
+ @param replacementRanges (inout) the ranges of replacementStrings which is an out parameters. Pass an empty NSMutableArray instance to get elements.
  @return the replaced string. Return nil if the parameters are not valid. Return the original string if the parameters are empty array.
  @discussion The parameters condition are considered
     - the ranges should be valid. (1) ranges have no intersection; (2) ranges not out of the original string

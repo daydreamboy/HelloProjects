@@ -829,6 +829,7 @@
     NSString *inputString;
     NSArray<NSValue *> *ranges;
     NSArray<NSString *> *replacements;
+    NSMutableArray<NSValue *> *replacementRanges = [NSMutableArray array];
     NSString *outputString;
     
     // Case 1
@@ -858,8 +859,15 @@
                      @"Jj",
                      ];
 
-    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:nil];
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:replacementRanges];
     XCTAssertEqualObjects(outputString, @"AaBbCcDdEeFfGgHhIiJj");
+    XCTAssertTrue(replacementRanges.count == replacements.count);
+    for (NSInteger i = 0; i < replacements.count; i++) {
+        NSRange range1 = [outputString rangeOfString:replacements[i]];
+        NSRange range2 = [replacementRanges[i] rangeValue];
+        
+        XCTAssertTrue(NSEqualRanges(range1, range2));
+    }
 
     // Case 2
     inputString = @"0123456789";
@@ -872,8 +880,15 @@
                      @"B",
                      ];
 
-    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:nil];
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:replacementRanges];
     XCTAssertEqualObjects(outputString, @"0A456B");
+    XCTAssertTrue(replacementRanges.count == replacements.count);
+    for (NSInteger i = 0; i < replacements.count; i++) {
+        NSRange range1 = [outputString rangeOfString:replacements[i]];
+        NSRange range2 = [replacementRanges[i] rangeValue];
+        
+        XCTAssertTrue(NSEqualRanges(range1, range2));
+    }
 
     // Case 3
     inputString = @"0123456789";
@@ -886,9 +901,39 @@
                      @"B",
                      ];
 
-    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:nil];
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:replacementRanges];
     XCTAssertEqualObjects(outputString, @"0A456B9");
-
+    XCTAssertTrue(replacementRanges.count == replacements.count);
+    for (NSInteger i = 0; i < replacements.count; i++) {
+        NSRange range1 = [outputString rangeOfString:replacements[i]];
+        NSRange range2 = [replacementRanges[i] rangeValue];
+        
+        XCTAssertTrue(NSEqualRanges(range1, range2));
+    }
+    
+    // Case 4
+    inputString = @"0123456789";
+    ranges = @[
+               [NSValue valueWithRange:NSMakeRange(1, 3)],
+               [NSValue valueWithRange:NSMakeRange(5, 1)],
+               [NSValue valueWithRange:NSMakeRange(7, 2)],
+               ];
+    replacements = @[
+                     @"A",
+                     @"BCD",
+                     @"E",
+                     ];
+    
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:replacementRanges];
+    XCTAssertEqualObjects(outputString, @"0A4BCD6E9");
+    XCTAssertTrue(replacementRanges.count == replacements.count);
+    for (NSInteger i = 0; i < replacements.count; i++) {
+        NSRange range1 = [outputString rangeOfString:replacements[i]];
+        NSRange range2 = [replacementRanges[i] rangeValue];
+        
+        XCTAssertTrue(NSEqualRanges(range1, range2));
+    }
+    
     // Case 4
     inputString = @"0中文12345678😆9";
     ranges = @[
@@ -901,9 +946,16 @@
                      @"😄",
                      ];
 
-    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:nil];
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:replacementRanges];
     XCTAssertEqualObjects(outputString, @"0鐘文12345678😄9");
-
+    XCTAssertTrue(replacementRanges.count == replacements.count);
+    for (NSInteger i = 0; i < replacements.count; i++) {
+        NSRange range1 = [outputString rangeOfString:replacements[i]];
+        NSRange range2 = [replacementRanges[i] rangeValue];
+        
+        XCTAssertTrue(NSEqualRanges(range1, range2));
+    }
+    
     // Case 5
     inputString = @"0123456789";
     ranges = @[
@@ -931,15 +983,22 @@
                      @"Aa",
                      ];
 
-    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:nil];
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:replacementRanges];
     XCTAssertEqualObjects(outputString, @"AaBbCcDdEeFfGgHhIiJj");
+    XCTAssertTrue(replacementRanges.count == replacements.count);
+    for (NSInteger i = 0; i < replacements.count; i++) {
+        NSRange range1 = [outputString rangeOfString:replacements[i]];
+        NSRange range2 = [replacementRanges[i] rangeValue];
+        
+        XCTAssertTrue(NSEqualRanges(range1, range2));
+    }
 
     // Case 5
     inputString = @"0123456789";
     ranges = @[];
     replacements = @[];
 
-    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:nil];
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:replacementRanges];
     XCTAssertEqualObjects(outputString, @"0123456789");
 
     // Abnormal Case 1: range out of bounds
@@ -951,7 +1010,7 @@
                      @"A",
                      ];
 
-    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:nil];
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:replacementRanges];
     XCTAssertNil(outputString);
     
     // Abnormal Case 2: ranges has intersection
