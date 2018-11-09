@@ -15,7 +15,6 @@
 		2B4AC4101D0FF0920026BE19 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B4AC40F1D0FF0920026BE19 /* Launch Screen.storyboard */; };
 		2B4AC4131D0FF1C80026BE19 /* NSParagraphStyleAttributeNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AC4121D0FF1C80026BE19 /* NSParagraphStyleAttributeNameViewController.m */; };
 		4F1C610C2180B53B000D5548 /* WCAttributedStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C610B2180B53B000D5548 /* WCAttributedStringTool.m */; };
-		4F26FCB91FBEB130002A28AF /* NSAttributedString+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F26FCB81FBEB130002A28AF /* NSAttributedString+Addition.m */; };
 		4F26FCBC1FBEB299002A28AF /* NSString+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F26FCBB1FBEB299002A28AF /* NSString+Addition.m */; };
 		4F26FCBF1FBEB55B002A28AF /* UIView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F26FCBE1FBEB55B002A28AF /* UIView+Addition.m */; };
 		4F26FCC21FBEC4D6002A28AF /* AttributedStringWithImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F26FCC11FBEC4D6002A28AF /* AttributedStringWithImageViewController.m */; };
@@ -52,8 +51,6 @@
 		2B4AC4121D0FF1C80026BE19 /* NSParagraphStyleAttributeNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSParagraphStyleAttributeNameViewController.m; sourceTree = "<group>"; };
 		4F1C610A2180B53B000D5548 /* WCAttributedStringTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAttributedStringTool.h; sourceTree = "<group>"; };
 		4F1C610B2180B53B000D5548 /* WCAttributedStringTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAttributedStringTool.m; sourceTree = "<group>"; };
-		4F26FCB71FBEB130002A28AF /* NSAttributedString+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSAttributedString+Addition.h"; sourceTree = "<group>"; };
-		4F26FCB81FBEB130002A28AF /* NSAttributedString+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSAttributedString+Addition.m"; sourceTree = "<group>"; };
 		4F26FCBA1FBEB299002A28AF /* NSString+Addition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Addition.h"; sourceTree = "<group>"; };
 		4F26FCBB1FBEB299002A28AF /* NSString+Addition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Addition.m"; sourceTree = "<group>"; };
 		4F26FCBD1FBEB55B002A28AF /* UIView+Addition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Addition.h"; sourceTree = "<group>"; };
@@ -160,8 +157,6 @@
 		4F26FCB61FBEB130002A28AF /* Addition */ = {
 			isa = PBXGroup;
 			children = (
-				4F26FCB71FBEB130002A28AF /* NSAttributedString+Addition.h */,
-				4F26FCB81FBEB130002A28AF /* NSAttributedString+Addition.m */,
 				4F26FCBA1FBEB299002A28AF /* NSString+Addition.h */,
 				4F26FCBB1FBEB299002A28AF /* NSString+Addition.m */,
 				4F26FCBD1FBEB55B002A28AF /* UIView+Addition.h */,
@@ -301,7 +296,6 @@
 				4F26FCBF1FBEB55B002A28AF /* UIView+Addition.m in Sources */,
 				2B0591311A26BF6800E36EF7 /* main.m in Sources */,
 				2B4AC40B1D0FF0080026BE19 /* AttributedStringWithFormatViewController.m in Sources */,
-				4F26FCB91FBEB130002A28AF /* NSAttributedString+Addition.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

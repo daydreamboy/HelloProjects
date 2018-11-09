@@ -55,6 +55,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSAttributedString *)replaceStringWithAttributedString:(NSAttributedString *)attributedString occurrenceString:(NSString *)occurrenceString replacementString:(NSString *)replacementString range:(NSRange)range;
 
+/**
+ Create an attributed string by using a given format string as a template into which the remaining argument values are substituted.
+
+ @param format A format string. This value must not be nil.
+ @param ... A comma-separated list of arguments to substitute into format.
+ @return An attributed string created by using format as a template into which the remaining argument values are substituted.
+ */
++ (nullable NSAttributedString *)attributedStringWithFormat:(NSString *)format, ... NS_FORMAT_FUNCTION(1,2);
+
 #pragma mark > Text Size (UILabel)
 
 /**

@@ -9,7 +9,6 @@
 #import "NSParagraphStyleAttributeNameViewController.h"
 #import "NSString+Addition.h"
 #import "UIView+Addition.h"
-#import "NSAttributedString+Addition.h"
 #import "WCAttributedStringTool.h"
 
 #ifndef UICOLOR_RGB
@@ -179,7 +178,7 @@
 
 - (NSString *)text3 {
     if (!_text3) {
-        NSString *text = @"\n文本内容\n";
+        NSString *text = @"文本内容\n";
         
         _text3 = text;
     }

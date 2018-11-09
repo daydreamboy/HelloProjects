@@ -7,7 +7,7 @@
 //
 
 #import "AttributedStringWithFormatViewController.h"
-#import "NSAttributedString+Addition.h"
+#import "WCAttributedStringTool.h"
 
 @interface AttributedStringWithFormatViewController ()
 @property (nonatomic, strong) UILabel *attrLabel;
@@ -38,7 +38,7 @@
                                                                              }];
     
     // Bug: Append "\n" to show  ,see http://stackoverflow.com/questions/19127828/ios-7-bug-nsattributedstring-does-not-appear
-    result = [NSAttributedString attributedStringWithFormat:@"%@ and %@ must %@ be seen\n", blue, green, never];
+    result = [WCAttributedStringTool attributedStringWithFormat:@"%@ and %@ must %@ be seen\n", blue, green, never];
     
     
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 60)];

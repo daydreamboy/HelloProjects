@@ -7,7 +7,6 @@
 //
 
 #import "AttributedStringWithImageViewController.h"
-#import "NSAttributedString+Addition.h"
 #import "UIView+Addition.h"
 #import "WCAttributedStringTool.h"
 
