@@ -13,6 +13,7 @@
 #import "DragViewRestrictedViewController.h"
 #import "DetectSwipeUsingUIPanGestureRecognizerViewController.h"
 #import "DragDownAndScaleImageViewViewController.h"
+#import "TapGestureVSButtonClickViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -40,6 +41,7 @@
         @"Drag up view and increase height",
         @"Detect swipe using UIPanGestureRecognizer",
         @"Drag down and scale image",
+        @"Tap gesture vs. button UIControlEventTouchUpInside",
         @"call a test method",
     ];
     _classes = @[
@@ -48,6 +50,7 @@
         [DragViewRestrictedViewController class],
         [DetectSwipeUsingUIPanGestureRecognizerViewController class],
         [DragDownAndScaleImageViewViewController class],
+        [TapGestureVSButtonClickViewController class],
         @"testMethod",
     ];
 }

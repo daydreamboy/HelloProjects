@@ -11,6 +11,7 @@
 		4F49902B1F9D99C400D313B5 /* DragViewDemo2UsingUIPanGestureRecognizerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F49902A1F9D99C400D313B5 /* DragViewDemo2UsingUIPanGestureRecognizerViewController.m */; };
 		4F49902E1F9D9D6600D313B5 /* DragViewRestrictedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F49902D1F9D9D6600D313B5 /* DragViewRestrictedViewController.m */; };
 		4F4990311F9DB95400D313B5 /* DetectSwipeUsingUIPanGestureRecognizerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4990301F9DB95400D313B5 /* DetectSwipeUsingUIPanGestureRecognizerViewController.m */; };
+		4F66F76B21986133007DA8FD /* WCViewControllerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F66F76A21986133007DA8FD /* WCViewControllerTool.m */; };
 		4F671A2E1F944F5B0031E9C9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F671A2D1F944F5B0031E9C9 /* main.m */; };
 		4F671A311F944F5B0031E9C9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F671A301F944F5B0031E9C9 /* AppDelegate.m */; };
 		4F671A391F944F5B0031E9C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F671A381F944F5B0031E9C9 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 		4F671A491F944FAD0031E9C9 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F671A481F944FAD0031E9C9 /* RootViewController.m */; };
 		4F8FDA2D20EB566300C766D4 /* DragDownAndScaleImageViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FDA2C20EB566300C766D4 /* DragDownAndScaleImageViewViewController.m */; };
 		4F8FDA3020EB571300C766D4 /* Xcode.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8FDA2F20EB571300C766D4 /* Xcode.png */; };
+		4FFAF8BB214975D500843530 /* TapGestureVSButtonClickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFAF8BA214975D500843530 /* TapGestureVSButtonClickViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +31,8 @@
 		4F49902D1F9D9D6600D313B5 /* DragViewRestrictedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DragViewRestrictedViewController.m; sourceTree = "<group>"; };
 		4F49902F1F9DB95400D313B5 /* DetectSwipeUsingUIPanGestureRecognizerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectSwipeUsingUIPanGestureRecognizerViewController.h; sourceTree = "<group>"; };
 		4F4990301F9DB95400D313B5 /* DetectSwipeUsingUIPanGestureRecognizerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetectSwipeUsingUIPanGestureRecognizerViewController.m; sourceTree = "<group>"; };
+		4F66F76921986133007DA8FD /* WCViewControllerTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCViewControllerTool.h; sourceTree = "<group>"; };
+		4F66F76A21986133007DA8FD /* WCViewControllerTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewControllerTool.m; sourceTree = "<group>"; };
 		4F671A291F944F5B0031E9C9 /* HelloUIGestureRecognizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUIGestureRecognizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F671A2D1F944F5B0031E9C9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F671A2F1F944F5B0031E9C9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -41,6 +45,8 @@
 		4F8FDA2B20EB566300C766D4 /* DragDownAndScaleImageViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragDownAndScaleImageViewViewController.h; sourceTree = "<group>"; };
 		4F8FDA2C20EB566300C766D4 /* DragDownAndScaleImageViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DragDownAndScaleImageViewViewController.m; sourceTree = "<group>"; };
 		4F8FDA2F20EB571300C766D4 /* Xcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Xcode.png; sourceTree = "<group>"; };
+		4FFAF8B9214975D500843530 /* TapGestureVSButtonClickViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TapGestureVSButtonClickViewController.h; sourceTree = "<group>"; };
+		4FFAF8BA214975D500843530 /* TapGestureVSButtonClickViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TapGestureVSButtonClickViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +60,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F66F7682198610C007DA8FD /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F66F76921986133007DA8FD /* WCViewControllerTool.h */,
+				4F66F76A21986133007DA8FD /* WCViewControllerTool.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		4F671A201F944F5B0031E9C9 = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +113,7 @@
 		4F671A431F944F9E0031E9C9 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F66F7682198610C007DA8FD /* Tools */,
 				4F4990241F9D987F00D313B5 /* DragViewDemo1UsingUIPanGestureRecognizerViewController.h */,
 				4F4990251F9D987F00D313B5 /* DragViewDemo1UsingUIPanGestureRecognizerViewController.m */,
 				4F4990291F9D99C400D313B5 /* DragViewDemo2UsingUIPanGestureRecognizerViewController.h */,
@@ -108,6 +124,8 @@
 				4F4990301F9DB95400D313B5 /* DetectSwipeUsingUIPanGestureRecognizerViewController.m */,
 				4F8FDA2B20EB566300C766D4 /* DragDownAndScaleImageViewViewController.h */,
 				4F8FDA2C20EB566300C766D4 /* DragDownAndScaleImageViewViewController.m */,
+				4FFAF8B9214975D500843530 /* TapGestureVSButtonClickViewController.h */,
+				4FFAF8BA214975D500843530 /* TapGestureVSButtonClickViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -194,7 +212,9 @@
 			files = (
 				4F671A311F944F5B0031E9C9 /* AppDelegate.m in Sources */,
 				4F4990311F9DB95400D313B5 /* DetectSwipeUsingUIPanGestureRecognizerViewController.m in Sources */,
+				4FFAF8BB214975D500843530 /* TapGestureVSButtonClickViewController.m in Sources */,
 				4F8FDA2D20EB566300C766D4 /* DragDownAndScaleImageViewViewController.m in Sources */,
+				4F66F76B21986133007DA8FD /* WCViewControllerTool.m in Sources */,
 				4F49902E1F9D9D6600D313B5 /* DragViewRestrictedViewController.m in Sources */,
 				4F4990261F9D987F00D313B5 /* DragViewDemo1UsingUIPanGestureRecognizerViewController.m in Sources */,
 				4F49902B1F9D99C400D313B5 /* DragViewDemo2UsingUIPanGestureRecognizerViewController.m in Sources */,
