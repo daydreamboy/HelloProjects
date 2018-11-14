@@ -539,12 +539,27 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark > Base64 Encode/Decode
 
 /**
- Encode plain string into base64 string
+ Encode plain string into single line base64 string
 
  @param string the plain string
  @return the base64 encoded string
  */
-+ (nullable NSString *)base64EncodedStringWithString:(NSString *)string;
++ (nullable NSString *)base64EncodedStringWithString:(NSString *)string NS_AVAILABLE_IOS(7_0);
+
+/**
+ Encode plain string into base64 string
+
+ @param string the plain string
+ @param options the NSDataBase64EncodingOptions
+        - NSDataBase64EncodingEndLineWithCarriageReturn, the line ending to insert `\r`
+        - NSDataBase64EncodingEndLineWithLineFeed, the line ending to insert `\n`
+        - kNilOptions, the line ending to insert `\r\n`
+        - NSDataBase64Encoding64CharacterLineLength, the maximum length of each line is 64
+        - NSDataBase64Encoding76CharacterLineLength, the maximum length of each line is 76
+ @return the base64 encoded string
+ @see About `\r` (CarriageReturn) and `\n` (LineFeed), https://stackoverflow.com/a/12747850
+ */
++ (nullable NSString *)base64EncodedStringWithString:(NSString *)string options:(NSDataBase64EncodingOptions)options NS_AVAILABLE_IOS(7_0);
 
 /**
  Decode base64 string to plain string
@@ -552,7 +567,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param string the base64 encoded string
  @return the plain string
  */
-+ (nullable NSString *)base64DecodedStringWithString:(NSString *)string;
++ (nullable NSString *)base64DecodedStringWithString:(NSString *)string NS_AVAILABLE_IOS(7_0);
 
 @end
 

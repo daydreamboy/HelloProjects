@@ -1268,25 +1268,21 @@
 #pragma mark > Base64 Encode/Decode
 
 + (nullable NSString *)base64EncodedStringWithString:(NSString *)string {
+    // Note: kNilOptions for one line base64 string
+    return [self base64EncodedStringWithString:string options:kNilOptions];
+}
+
++ (nullable NSString *)base64EncodedStringWithString:(NSString *)string options:(NSDataBase64EncodingOptions)options {
     if (![string isKindOfClass:[NSString class]]) {
         return nil;
     }
     
-    NSString *encodedString;
+    NSData *data = [[string dataUsingEncoding:NSUTF8StringEncoding] base64EncodedDataWithOptions:options];
+    if (!data) {
+        return nil;
+    }
     
-    if ([self respondsToSelector:@selector(base64EncodedDataWithOptions:)]) {
-        // iOS >= `7.0`
-        // one line base64 string
-        NSData *data = [[string dataUsingEncoding:NSUTF8StringEncoding] base64EncodedDataWithOptions:0];
-        encodedString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    }
-    else {
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-        // one line base64 string
-        encodedString = [[string dataUsingEncoding:NSUTF8StringEncoding] base64Encoding];
-#pragma GCC diagnostic pop
-    }
+    NSString *encodedString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     return encodedString;
 }
@@ -1296,8 +1292,11 @@
         return nil;
     }
     
-    // iOS >= `7.0`
     NSData *data = [[NSData alloc] initWithBase64EncodedString:string options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    if (!data) {
+        return nil;
+    }
+    
     NSString *decodedString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     return decodedString;

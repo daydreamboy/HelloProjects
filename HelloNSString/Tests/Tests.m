@@ -9,6 +9,8 @@
 #import <XCTest/XCTest.h>
 #import "WCStringTool.h"
 
+#define STR_OF_JSON(...) @#__VA_ARGS__
+
 @interface Tests : XCTestCase
 @end
 
@@ -1322,6 +1324,181 @@
     NSString *nilString = nil;
     XCTAssertNil([WCStringTool MD5WithString:nilString]);
     NSLog(@"%@", [WCStringTool MD5WithString:@"abc"]);
+}
+
+#pragma mark > Base64 Encode/Decode
+
+- (void)test_base64EncodedStringWithString {
+    NSString *encodedString;
+    NSString *plainString;
+    
+    // Case 1
+    encodedString = [WCStringTool base64EncodedStringWithString:@"恭喜发财，大吉大利！"];
+    XCTAssertEqualObjects(encodedString, @"5oGt5Zac5Y+R6LSi77yM5aSn5ZCJ5aSn5Yip77yB");
+    
+    // Case 2
+    encodedString = [WCStringTool base64EncodedStringWithString:@"Hello, world!"];
+    XCTAssertEqualObjects(encodedString, @"SGVsbG8sIHdvcmxkIQ==");
+    
+    // Case 3
+    plainString = STR_OF_JSON(
+                              Mean, median, and mode are different measures of center in a numerical data set. They each try to summarize a dataset with a single number to represent a "typical" data point from the dataset.
+                              Mean: The "average" number; found by adding all data points and dividing by the number of data points.
+                              Example: The mean of 444, 111, and 777 is (4+1+7)/3 = 12/3 = 4(4+1+7)/3=12/3=4left parenthesis, 4, plus, 1, plus, 7, right parenthesis, slash, 3, equals, 12, slash, 3, equals, 4.
+                              Median: The middle number; found by ordering all data points and picking out the one in the middle (or if there are two middle numbers, taking the mean of those two numbers).
+                              Example: The median of 444, 111, and 777 is 444 because when the numbers are put in order (1(1left parenthesis, 1, 444, 7)7)7, right parenthesis, the number 444 is in the middle.
+    );
+    encodedString = [WCStringTool base64EncodedStringWithString:plainString];
+    XCTAssertEqualObjects(encodedString, @"TWVhbiwgbWVkaWFuLCBhbmQgbW9kZSBhcmUgZGlmZmVyZW50IG1lYXN1cmVzIG9mIGNlbnRlciBpbiBhIG51bWVyaWNhbCBkYXRhIHNldC4gVGhleSBlYWNoIHRyeSB0byBzdW1tYXJpemUgYSBkYXRhc2V0IHdpdGggYSBzaW5nbGUgbnVtYmVyIHRvIHJlcHJlc2VudCBhICJ0eXBpY2FsIiBkYXRhIHBvaW50IGZyb20gdGhlIGRhdGFzZXQuIE1lYW46IFRoZSAiYXZlcmFnZSIgbnVtYmVyOyBmb3VuZCBieSBhZGRpbmcgYWxsIGRhdGEgcG9pbnRzIGFuZCBkaXZpZGluZyBieSB0aGUgbnVtYmVyIG9mIGRhdGEgcG9pbnRzLiBFeGFtcGxlOiBUaGUgbWVhbiBvZiA0NDQsIDExMSwgYW5kIDc3NyBpcyAoNCsxKzcpLzMgPSAxMi8zID0gNCg0KzErNykvMz0xMi8zPTRsZWZ0IHBhcmVudGhlc2lzLCA0LCBwbHVzLCAxLCBwbHVzLCA3LCByaWdodCBwYXJlbnRoZXNpcywgc2xhc2gsIDMsIGVxdWFscywgMTIsIHNsYXNoLCAzLCBlcXVhbHMsIDQuIE1lZGlhbjogVGhlIG1pZGRsZSBudW1iZXI7IGZvdW5kIGJ5IG9yZGVyaW5nIGFsbCBkYXRhIHBvaW50cyBhbmQgcGlja2luZyBvdXQgdGhlIG9uZSBpbiB0aGUgbWlkZGxlIChvciBpZiB0aGVyZSBhcmUgdHdvIG1pZGRsZSBudW1iZXJzLCB0YWtpbmcgdGhlIG1lYW4gb2YgdGhvc2UgdHdvIG51bWJlcnMpLiBFeGFtcGxlOiBUaGUgbWVkaWFuIG9mIDQ0NCwgMTExLCBhbmQgNzc3IGlzIDQ0NCBiZWNhdXNlIHdoZW4gdGhlIG51bWJlcnMgYXJlIHB1dCBpbiBvcmRlciAoMSgxbGVmdCBwYXJlbnRoZXNpcywgMSwgNDQ0LCA3KTcpNywgcmlnaHQgcGFyZW50aGVzaXMsIHRoZSBudW1iZXIgNDQ0IGlzIGluIHRoZSBtaWRkbGUu");
+}
+
+- (void)test_base64EncodedStringWithString_options {
+    NSString *encodedString;
+    NSString *decodedString;
+    NSString *plainString;
+    
+    // Case 1
+    encodedString = [WCStringTool base64EncodedStringWithString:@"恭喜发财，大吉大利！" options:NSDataBase64Encoding64CharacterLineLength];
+    XCTAssertEqualObjects(encodedString, @"5oGt5Zac5Y+R6LSi77yM5aSn5ZCJ5aSn5Yip77yB");
+    
+    // Case 2
+    encodedString = [WCStringTool base64EncodedStringWithString:@"Hello, world!" options:NSDataBase64Encoding64CharacterLineLength];
+    XCTAssertEqualObjects(encodedString, @"SGVsbG8sIHdvcmxkIQ==");
+    
+    // Case 3
+    plainString = STR_OF_JSON(
+                              Mean, median, and mode are different measures of center in a numerical data set. They each try to summarize a dataset with a single number to represent a "typical" data point from the dataset.
+                              Mean: The "average" number; found by adding all data points and dividing by the number of data points.
+                              Example: The mean of 444, 111, and 777 is (4+1+7)/3 = 12/3 = 4(4+1+7)/3=12/3=4left parenthesis, 4, plus, 1, plus, 7, right parenthesis, slash, 3, equals, 12, slash, 3, equals, 4.
+                              Median: The middle number; found by ordering all data points and picking out the one in the middle (or if there are two middle numbers, taking the mean of those two numbers).
+                              Example: The median of 444, 111, and 777 is 444 because when the numbers are put in order (1(1left parenthesis, 1, 444, 7)7)7, right parenthesis, the number 444 is in the middle.
+                              );
+    encodedString = [WCStringTool base64EncodedStringWithString:plainString options:NSDataBase64Encoding64CharacterLineLength];
+    
+    decodedString = STR_OF_JSON(
+                                TWVhbiwgbWVkaWFuLCBhbmQgbW9kZSBhcmUgZGlmZmVyZW50IG1lYXN1cmVzIG9m
+                                IGNlbnRlciBpbiBhIG51bWVyaWNhbCBkYXRhIHNldC4gVGhleSBlYWNoIHRyeSB0
+                                byBzdW1tYXJpemUgYSBkYXRhc2V0IHdpdGggYSBzaW5nbGUgbnVtYmVyIHRvIHJl
+                                cHJlc2VudCBhICJ0eXBpY2FsIiBkYXRhIHBvaW50IGZyb20gdGhlIGRhdGFzZXQu
+                                IE1lYW46IFRoZSAiYXZlcmFnZSIgbnVtYmVyOyBmb3VuZCBieSBhZGRpbmcgYWxs
+                                IGRhdGEgcG9pbnRzIGFuZCBkaXZpZGluZyBieSB0aGUgbnVtYmVyIG9mIGRhdGEg
+                                cG9pbnRzLiBFeGFtcGxlOiBUaGUgbWVhbiBvZiA0NDQsIDExMSwgYW5kIDc3NyBp
+                                cyAoNCsxKzcpLzMgPSAxMi8zID0gNCg0KzErNykvMz0xMi8zPTRsZWZ0IHBhcmVu
+                                dGhlc2lzLCA0LCBwbHVzLCAxLCBwbHVzLCA3LCByaWdodCBwYXJlbnRoZXNpcywg
+                                c2xhc2gsIDMsIGVxdWFscywgMTIsIHNsYXNoLCAzLCBlcXVhbHMsIDQuIE1lZGlh
+                                bjogVGhlIG1pZGRsZSBudW1iZXI7IGZvdW5kIGJ5IG9yZGVyaW5nIGFsbCBkYXRh
+                                IHBvaW50cyBhbmQgcGlja2luZyBvdXQgdGhlIG9uZSBpbiB0aGUgbWlkZGxlIChv
+                                ciBpZiB0aGVyZSBhcmUgdHdvIG1pZGRsZSBudW1iZXJzLCB0YWtpbmcgdGhlIG1l
+                                YW4gb2YgdGhvc2UgdHdvIG51bWJlcnMpLiBFeGFtcGxlOiBUaGUgbWVkaWFuIG9m
+                                IDQ0NCwgMTExLCBhbmQgNzc3IGlzIDQ0NCBiZWNhdXNlIHdoZW4gdGhlIG51bWJl
+                                cnMgYXJlIHB1dCBpbiBvcmRlciAoMSgxbGVmdCBwYXJlbnRoZXNpcywgMSwgNDQ0
+                                LCA3KTcpNywgcmlnaHQgcGFyZW50aGVzaXMsIHRoZSBudW1iZXIgNDQ0IGlzIGlu
+                                IHRoZSBtaWRkbGUu
+                                );
+    decodedString = [[decodedString componentsSeparatedByString:@" "] componentsJoinedByString:@"\r\n"];
+    XCTAssertEqualObjects(encodedString, decodedString);
+    
+    // Case 4
+    plainString = STR_OF_JSON(
+                              Mean, median, and mode are different measures of center in a numerical data set. They each try to summarize a dataset with a single number to represent a "typical" data point from the dataset.
+                              Mean: The "average" number; found by adding all data points and dividing by the number of data points.
+                              Example: The mean of 444, 111, and 777 is (4+1+7)/3 = 12/3 = 4(4+1+7)/3=12/3=4left parenthesis, 4, plus, 1, plus, 7, right parenthesis, slash, 3, equals, 12, slash, 3, equals, 4.
+                              Median: The middle number; found by ordering all data points and picking out the one in the middle (or if there are two middle numbers, taking the mean of those two numbers).
+                              Example: The median of 444, 111, and 777 is 444 because when the numbers are put in order (1(1left parenthesis, 1, 444, 7)7)7, right parenthesis, the number 444 is in the middle.
+                              );
+    encodedString = [WCStringTool base64EncodedStringWithString:plainString options:NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithLineFeed];
+    
+    decodedString = STR_OF_JSON(
+                                TWVhbiwgbWVkaWFuLCBhbmQgbW9kZSBhcmUgZGlmZmVyZW50IG1lYXN1cmVzIG9mIGNlbnRlciBp
+                                biBhIG51bWVyaWNhbCBkYXRhIHNldC4gVGhleSBlYWNoIHRyeSB0byBzdW1tYXJpemUgYSBkYXRh
+                                c2V0IHdpdGggYSBzaW5nbGUgbnVtYmVyIHRvIHJlcHJlc2VudCBhICJ0eXBpY2FsIiBkYXRhIHBv
+                                aW50IGZyb20gdGhlIGRhdGFzZXQuIE1lYW46IFRoZSAiYXZlcmFnZSIgbnVtYmVyOyBmb3VuZCBi
+                                eSBhZGRpbmcgYWxsIGRhdGEgcG9pbnRzIGFuZCBkaXZpZGluZyBieSB0aGUgbnVtYmVyIG9mIGRh
+                                dGEgcG9pbnRzLiBFeGFtcGxlOiBUaGUgbWVhbiBvZiA0NDQsIDExMSwgYW5kIDc3NyBpcyAoNCsx
+                                KzcpLzMgPSAxMi8zID0gNCg0KzErNykvMz0xMi8zPTRsZWZ0IHBhcmVudGhlc2lzLCA0LCBwbHVz
+                                LCAxLCBwbHVzLCA3LCByaWdodCBwYXJlbnRoZXNpcywgc2xhc2gsIDMsIGVxdWFscywgMTIsIHNs
+                                YXNoLCAzLCBlcXVhbHMsIDQuIE1lZGlhbjogVGhlIG1pZGRsZSBudW1iZXI7IGZvdW5kIGJ5IG9y
+                                ZGVyaW5nIGFsbCBkYXRhIHBvaW50cyBhbmQgcGlja2luZyBvdXQgdGhlIG9uZSBpbiB0aGUgbWlk
+                                ZGxlIChvciBpZiB0aGVyZSBhcmUgdHdvIG1pZGRsZSBudW1iZXJzLCB0YWtpbmcgdGhlIG1lYW4g
+                                b2YgdGhvc2UgdHdvIG51bWJlcnMpLiBFeGFtcGxlOiBUaGUgbWVkaWFuIG9mIDQ0NCwgMTExLCBh
+                                bmQgNzc3IGlzIDQ0NCBiZWNhdXNlIHdoZW4gdGhlIG51bWJlcnMgYXJlIHB1dCBpbiBvcmRlciAo
+                                MSgxbGVmdCBwYXJlbnRoZXNpcywgMSwgNDQ0LCA3KTcpNywgcmlnaHQgcGFyZW50aGVzaXMsIHRo
+                                ZSBudW1iZXIgNDQ0IGlzIGluIHRoZSBtaWRkbGUu
+                                );
+    decodedString = [[decodedString componentsSeparatedByString:@" "] componentsJoinedByString:@"\n"];
+    XCTAssertEqualObjects(encodedString, decodedString);
+    
+    // Case 5
+    plainString = STR_OF_JSON(
+                              Mean, median, and mode are different measures of center in a numerical data set. They each try to summarize a dataset with a single number to represent a "typical" data point from the dataset.
+                              Mean: The "average" number; found by adding all data points and dividing by the number of data points.
+                              Example: The mean of 444, 111, and 777 is (4+1+7)/3 = 12/3 = 4(4+1+7)/3=12/3=4left parenthesis, 4, plus, 1, plus, 7, right parenthesis, slash, 3, equals, 12, slash, 3, equals, 4.
+                              Median: The middle number; found by ordering all data points and picking out the one in the middle (or if there are two middle numbers, taking the mean of those two numbers).
+                              Example: The median of 444, 111, and 777 is 444 because when the numbers are put in order (1(1left parenthesis, 1, 444, 7)7)7, right parenthesis, the number 444 is in the middle.
+                              );
+    encodedString = [WCStringTool base64EncodedStringWithString:plainString options:NSDataBase64Encoding76CharacterLineLength | NSDataBase64EncodingEndLineWithCarriageReturn];
+    
+    decodedString = STR_OF_JSON(
+                                TWVhbiwgbWVkaWFuLCBhbmQgbW9kZSBhcmUgZGlmZmVyZW50IG1lYXN1cmVzIG9mIGNlbnRlciBp
+                                biBhIG51bWVyaWNhbCBkYXRhIHNldC4gVGhleSBlYWNoIHRyeSB0byBzdW1tYXJpemUgYSBkYXRh
+                                c2V0IHdpdGggYSBzaW5nbGUgbnVtYmVyIHRvIHJlcHJlc2VudCBhICJ0eXBpY2FsIiBkYXRhIHBv
+                                aW50IGZyb20gdGhlIGRhdGFzZXQuIE1lYW46IFRoZSAiYXZlcmFnZSIgbnVtYmVyOyBmb3VuZCBi
+                                eSBhZGRpbmcgYWxsIGRhdGEgcG9pbnRzIGFuZCBkaXZpZGluZyBieSB0aGUgbnVtYmVyIG9mIGRh
+                                dGEgcG9pbnRzLiBFeGFtcGxlOiBUaGUgbWVhbiBvZiA0NDQsIDExMSwgYW5kIDc3NyBpcyAoNCsx
+                                KzcpLzMgPSAxMi8zID0gNCg0KzErNykvMz0xMi8zPTRsZWZ0IHBhcmVudGhlc2lzLCA0LCBwbHVz
+                                LCAxLCBwbHVzLCA3LCByaWdodCBwYXJlbnRoZXNpcywgc2xhc2gsIDMsIGVxdWFscywgMTIsIHNs
+                                YXNoLCAzLCBlcXVhbHMsIDQuIE1lZGlhbjogVGhlIG1pZGRsZSBudW1iZXI7IGZvdW5kIGJ5IG9y
+                                ZGVyaW5nIGFsbCBkYXRhIHBvaW50cyBhbmQgcGlja2luZyBvdXQgdGhlIG9uZSBpbiB0aGUgbWlk
+                                ZGxlIChvciBpZiB0aGVyZSBhcmUgdHdvIG1pZGRsZSBudW1iZXJzLCB0YWtpbmcgdGhlIG1lYW4g
+                                b2YgdGhvc2UgdHdvIG51bWJlcnMpLiBFeGFtcGxlOiBUaGUgbWVkaWFuIG9mIDQ0NCwgMTExLCBh
+                                bmQgNzc3IGlzIDQ0NCBiZWNhdXNlIHdoZW4gdGhlIG51bWJlcnMgYXJlIHB1dCBpbiBvcmRlciAo
+                                MSgxbGVmdCBwYXJlbnRoZXNpcywgMSwgNDQ0LCA3KTcpNywgcmlnaHQgcGFyZW50aGVzaXMsIHRo
+                                ZSBudW1iZXIgNDQ0IGlzIGluIHRoZSBtaWRkbGUu
+                                );
+    decodedString = [[decodedString componentsSeparatedByString:@" "] componentsJoinedByString:@"\r"];
+    XCTAssertEqualObjects(encodedString, decodedString);
+}
+
+- (void)test_base64DecodedStringWithString {
+    NSString *encodedString;
+    NSString *decodedString;
+    NSString *plainString;
+    
+    // Case 1
+    plainString = @"恭喜发财，大吉大利！";
+    encodedString = [WCStringTool base64EncodedStringWithString:plainString];
+    decodedString = [WCStringTool base64DecodedStringWithString:encodedString];
+    XCTAssertEqualObjects(decodedString, plainString);
+    
+    // Case 2
+    plainString = @"Hello, world!";
+    encodedString = [WCStringTool base64EncodedStringWithString:plainString];
+    decodedString = [WCStringTool base64DecodedStringWithString:encodedString];
+    XCTAssertEqualObjects(decodedString, plainString);
+    
+    // Case 3
+    plainString = STR_OF_JSON(
+                              Mean, median, and mode are different measures of center in a numerical data set. They each try to summarize a dataset with a single number to represent a "typical" data point from the dataset.
+                              Mean: The "average" number; found by adding all data points and dividing by the number of data points.
+                              Example: The mean of 444, 111, and 777 is (4+1+7)/3 = 12/3 = 4(4+1+7)/3=12/3=4left parenthesis, 4, plus, 1, plus, 7, right parenthesis, slash, 3, equals, 12, slash, 3, equals, 4.
+                              Median: The middle number; found by ordering all data points and picking out the one in the middle (or if there are two middle numbers, taking the mean of those two numbers).
+                              Example: The median of 444, 111, and 777 is 444 because when the numbers are put in order (1(1left parenthesis, 1, 444, 7)7)7, right parenthesis, the number 444 is in the middle.
+                              );
+    encodedString = [WCStringTool base64EncodedStringWithString:plainString];
+    decodedString = [WCStringTool base64DecodedStringWithString:encodedString];
+    XCTAssertEqualObjects(decodedString, plainString);
+    
+    // Case 4
+    plainString = STR_OF_JSON(
+                              Mean, median, and mode are different measures of center in a numerical data set. They each try to summarize a dataset with a single number to represent a "typical" data point from the dataset.
+                              Mean: The "average" number; found by adding all data points and dividing by the number of data points.
+                              Example: The mean of 444, 111, and 777 is (4+1+7)/3 = 12/3 = 4(4+1+7)/3=12/3=4left parenthesis, 4, plus, 1, plus, 7, right parenthesis, slash, 3, equals, 12, slash, 3, equals, 4.
+                              Median: The middle number; found by ordering all data points and picking out the one in the middle (or if there are two middle numbers, taking the mean of those two numbers).
+                              Example: The median of 444, 111, and 777 is 444 because when the numbers are put in order (1(1left parenthesis, 1, 444, 7)7)7, right parenthesis, the number 444 is in the middle.
+                              );
+    encodedString = [WCStringTool base64EncodedStringWithString:plainString options:NSDataBase64Encoding64CharacterLineLength];
+    decodedString = [WCStringTool base64DecodedStringWithString:encodedString];
+    XCTAssertEqualObjects(decodedString, plainString);
 }
 
 #pragma mark - Others
