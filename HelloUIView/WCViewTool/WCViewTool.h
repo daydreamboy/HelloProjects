@@ -127,6 +127,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (CGRect)makeAspectRatioRectWithContentSize:(CGSize)contentSize insideBoundingRect:(CGRect)boundingRect;
 
+/**
+ Get the rect with specific size which always centered in the rect
+
+ @param size the size of the centered rect
+ @param rect the super rect
+ @return the centered rect. Return CGRectZero if the `size` or `rect` have zero width or zero height.
+ */
++ (CGRect)centeredRectInRectWithSize:(CGSize)size inRect:(CGRect)rect;
+
 #pragma mark > CGSize
 
 /**

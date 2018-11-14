@@ -26,6 +26,10 @@
     [super tearDown];
 }
 
+#pragma mark - Assistant Methods
+
+#pragma mark > CGRect
+
 - (void)test_safeAVMakeAspectRatioRectWithContentSize_insideBoundingRect {
     CGRect scaledRect1;
     CGRect scaledRect2;
@@ -84,6 +88,30 @@
     scaledRect1 = AVMakeRectWithAspectRatioInsideRect(CGSizeMake(672, 500), CGRectMake(0, 0, 300, 200));
     scaledRect2 = [WCViewTool makeAspectRatioRectWithContentSize:CGSizeMake(672, 500) insideBoundingRect:CGRectMake(0, 0, 300, 200)];
     XCTAssertTrue(CGRectEqualToRect(scaledRect1, scaledRect2));
+}
+
+- (void)test_centeredRectInRectWithSize_inRect {
+    CGSize centeredRectSize;
+    CGRect superRect;
+    CGRect centeredRect;
+    
+    // Case 1
+    centeredRectSize = CGSizeMake(120, 150);
+    superRect = CGRectMake(0, 0, 120, 1200);
+    centeredRect = [WCViewTool centeredRectInRectWithSize:centeredRectSize inRect:superRect];
+    XCTAssertTrue(CGRectEqualToRect(centeredRect, CGRectMake(0, (superRect.size.height - centeredRectSize.height) / 2.0, centeredRectSize.width, centeredRectSize.height)));
+    
+    // Case 2
+    centeredRectSize = CGSizeMake(120, 150);
+    superRect = CGRectMake(10, 0, 900, 1200);
+    centeredRect = [WCViewTool centeredRectInRectWithSize:centeredRectSize inRect:superRect];
+    XCTAssertTrue(CGRectEqualToRect(centeredRect, CGRectMake(superRect.origin.x + (superRect.size.width - centeredRectSize.width) / 2.0, superRect.origin.y + (superRect.size.height - centeredRectSize.height) / 2.0, centeredRectSize.width, centeredRectSize.height)));
+    
+    // Case 3
+    centeredRectSize = CGSizeMake(300, 750);
+    superRect = CGRectMake(10, 20, 100, 200);
+    centeredRect = [WCViewTool centeredRectInRectWithSize:centeredRectSize inRect:superRect];
+    XCTAssertTrue(CGRectEqualToRect(centeredRect, CGRectMake(superRect.origin.x + (superRect.size.width - centeredRectSize.width) / 2.0, superRect.origin.y + (superRect.size.height - centeredRectSize.height) / 2.0, centeredRectSize.width, centeredRectSize.height)));
 }
 
 @end

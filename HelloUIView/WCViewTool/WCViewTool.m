@@ -121,7 +121,7 @@
     }
 }
 
-#pragma mark :
+#pragma mark ::
 
 + (void)traverseViewHierarchyWithView:(UIView *)view usinglock:(void (^)(UIView *subview, BOOL *stop))block stop:(BOOL *)stop {
     // not use `if (block)` to protect, because it maybe consumes more time when recursion
@@ -140,7 +140,7 @@
     }
 }
 
-#pragma mark :
+#pragma mark ::
 
 + (BOOL)checkView:(UIView *)view hasAncestralViewIsKindOfClass:(Class)cls {
     if ([view isKindOfClass:cls]) {
@@ -326,6 +326,23 @@
 
     CGRect scaledRect = CGRectMake(boundingRect.origin.x + (CGRectGetWidth(boundingRect) - scaledSize.width) / 2.0, boundingRect.origin.y +  (CGRectGetHeight(boundingRect) - scaledSize.height) / 2.0, scaledSize.width, scaledSize.height);
     return scaledRect;
+}
+
++ (CGRect)centeredRectInRectWithSize:(CGSize)size inRect:(CGRect)rect {
+    if (size.width <= 0 || size.height <= 0 ||
+        rect.size.width <= 0 || rect.size.height <= 0) {
+        return CGRectZero;
+    }
+    
+    CGPoint origin = rect.origin;
+    CGFloat deltaX = (rect.size.width - size.width) / 2.0;
+    CGFloat deltaY = (rect.size.height - size.height) / 2.0;
+    
+    origin.x += deltaX;
+    origin.y += deltaY;
+    
+    CGRect centeredRect = CGRectMake(origin.x, origin.y, size.width, size.height);
+    return centeredRect;
 }
 
 #pragma mark > CGSize
