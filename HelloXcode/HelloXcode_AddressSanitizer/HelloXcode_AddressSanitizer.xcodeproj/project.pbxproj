@@ -1,0 +1,392 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4F81CDF9219DD81D00A178E7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F81CDF8219DD81D00A178E7 /* AppDelegate.m */; };
+		4F81CE01219DD81E00A178E7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F81CE00219DD81E00A178E7 /* Assets.xcassets */; };
+		4F81CE04219DD81E00A178E7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F81CE02219DD81E00A178E7 /* LaunchScreen.storyboard */; };
+		4F81CE07219DD81E00A178E7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F81CE06219DD81E00A178E7 /* main.m */; };
+		4F81CE10219DD88100A178E7 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F81CE0F219DD88100A178E7 /* RootViewController.m */; };
+		4F81CE13219DD96A00A178E7 /* UseDeallocatedMemoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F81CE12219DD96A00A178E7 /* UseDeallocatedMemoryViewController.m */; };
+		4F81CE17219DD99700A178E7 /* MyClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F81CE16219DD99700A178E7 /* MyClass.m */; };
+		4F81CE1A219DE14900A178E7 /* DeallocateAlreadyDeallocatedMemoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F81CE19219DE14900A178E7 /* DeallocateAlreadyDeallocatedMemoryViewController.m */; };
+		4F81CE1D219DE2C500A178E7 /* DeallocateNonallocatedMemoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F81CE1C219DE2C500A178E7 /* DeallocateNonallocatedMemoryViewController.m */; };
+		4F81CE20219DE41500A178E7 /* UseofStackMemoryAfterFunctionReturnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F81CE1F219DE41500A178E7 /* UseofStackMemoryAfterFunctionReturnViewController.m */; };
+		4F81CE26219DE73B00A178E7 /* UseOfOutOfScopeStackMemoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F81CE25219DE73B00A178E7 /* UseOfOutOfScopeStackMemoryViewController.m */; };
+		4F81CE29219DE9F300A178E7 /* OverflowAndUnderflowOfBuffersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F81CE28219DE9F300A178E7 /* OverflowAndUnderflowOfBuffersViewController.m */; };
+		4F81CE2C219DEB5A00A178E7 /* OverflowOfCppContainersViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F81CE2B219DEB5A00A178E7 /* OverflowOfCppContainersViewController.mm */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4F81CDF4219DD81D00A178E7 /* HelloXcode_AddressSanitizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloXcode_AddressSanitizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F81CDF7219DD81D00A178E7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4F81CDF8219DD81D00A178E7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4F81CE00219DD81E00A178E7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4F81CE03219DD81E00A178E7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4F81CE05219DD81E00A178E7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F81CE06219DD81E00A178E7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4F81CE0E219DD88000A178E7 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		4F81CE0F219DD88100A178E7 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		4F81CE11219DD96A00A178E7 /* UseDeallocatedMemoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseDeallocatedMemoryViewController.h; sourceTree = "<group>"; };
+		4F81CE12219DD96A00A178E7 /* UseDeallocatedMemoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseDeallocatedMemoryViewController.m; sourceTree = "<group>"; };
+		4F81CE15219DD99700A178E7 /* MyClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyClass.h; sourceTree = "<group>"; };
+		4F81CE16219DD99700A178E7 /* MyClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyClass.m; sourceTree = "<group>"; };
+		4F81CE18219DE14900A178E7 /* DeallocateAlreadyDeallocatedMemoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeallocateAlreadyDeallocatedMemoryViewController.h; sourceTree = "<group>"; };
+		4F81CE19219DE14900A178E7 /* DeallocateAlreadyDeallocatedMemoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeallocateAlreadyDeallocatedMemoryViewController.m; sourceTree = "<group>"; };
+		4F81CE1B219DE2C500A178E7 /* DeallocateNonallocatedMemoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DeallocateNonallocatedMemoryViewController.h; sourceTree = "<group>"; };
+		4F81CE1C219DE2C500A178E7 /* DeallocateNonallocatedMemoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeallocateNonallocatedMemoryViewController.m; sourceTree = "<group>"; };
+		4F81CE1E219DE41500A178E7 /* UseofStackMemoryAfterFunctionReturnViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseofStackMemoryAfterFunctionReturnViewController.h; sourceTree = "<group>"; };
+		4F81CE1F219DE41500A178E7 /* UseofStackMemoryAfterFunctionReturnViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseofStackMemoryAfterFunctionReturnViewController.m; sourceTree = "<group>"; };
+		4F81CE24219DE73B00A178E7 /* UseOfOutOfScopeStackMemoryViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseOfOutOfScopeStackMemoryViewController.h; sourceTree = "<group>"; };
+		4F81CE25219DE73B00A178E7 /* UseOfOutOfScopeStackMemoryViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseOfOutOfScopeStackMemoryViewController.m; sourceTree = "<group>"; };
+		4F81CE27219DE9F300A178E7 /* OverflowAndUnderflowOfBuffersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OverflowAndUnderflowOfBuffersViewController.h; sourceTree = "<group>"; };
+		4F81CE28219DE9F300A178E7 /* OverflowAndUnderflowOfBuffersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OverflowAndUnderflowOfBuffersViewController.m; sourceTree = "<group>"; };
+		4F81CE2A219DEB5A00A178E7 /* OverflowOfCppContainersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OverflowOfCppContainersViewController.h; sourceTree = "<group>"; };
+		4F81CE2B219DEB5A00A178E7 /* OverflowOfCppContainersViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = OverflowOfCppContainersViewController.mm; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4F81CDF1219DD81D00A178E7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4F81CDEB219DD81D00A178E7 = {
+			isa = PBXGroup;
+			children = (
+				4F81CDF6219DD81D00A178E7 /* HelloXcode_AddressSanitizer */,
+				4F81CDF5219DD81D00A178E7 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4F81CDF5219DD81D00A178E7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4F81CDF4219DD81D00A178E7 /* HelloXcode_AddressSanitizer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4F81CDF6219DD81D00A178E7 /* HelloXcode_AddressSanitizer */ = {
+			isa = PBXGroup;
+			children = (
+				4F81CE0D219DD88000A178E7 /* AppTestDemos */,
+				4F81CDF7219DD81D00A178E7 /* AppDelegate.h */,
+				4F81CDF8219DD81D00A178E7 /* AppDelegate.m */,
+				4F81CE0E219DD88000A178E7 /* RootViewController.h */,
+				4F81CE0F219DD88100A178E7 /* RootViewController.m */,
+				4F81CE00219DD81E00A178E7 /* Assets.xcassets */,
+				4F81CE02219DD81E00A178E7 /* LaunchScreen.storyboard */,
+				4F81CE05219DD81E00A178E7 /* Info.plist */,
+				4F81CE06219DD81E00A178E7 /* main.m */,
+			);
+			path = HelloXcode_AddressSanitizer;
+			sourceTree = "<group>";
+		};
+		4F81CE0D219DD88000A178E7 /* AppTestDemos */ = {
+			isa = PBXGroup;
+			children = (
+				4F81CE14219DD97E00A178E7 /* DummyClasses */,
+				4F81CE11219DD96A00A178E7 /* UseDeallocatedMemoryViewController.h */,
+				4F81CE12219DD96A00A178E7 /* UseDeallocatedMemoryViewController.m */,
+				4F81CE18219DE14900A178E7 /* DeallocateAlreadyDeallocatedMemoryViewController.h */,
+				4F81CE19219DE14900A178E7 /* DeallocateAlreadyDeallocatedMemoryViewController.m */,
+				4F81CE1B219DE2C500A178E7 /* DeallocateNonallocatedMemoryViewController.h */,
+				4F81CE1C219DE2C500A178E7 /* DeallocateNonallocatedMemoryViewController.m */,
+				4F81CE1E219DE41500A178E7 /* UseofStackMemoryAfterFunctionReturnViewController.h */,
+				4F81CE1F219DE41500A178E7 /* UseofStackMemoryAfterFunctionReturnViewController.m */,
+				4F81CE24219DE73B00A178E7 /* UseOfOutOfScopeStackMemoryViewController.h */,
+				4F81CE25219DE73B00A178E7 /* UseOfOutOfScopeStackMemoryViewController.m */,
+				4F81CE27219DE9F300A178E7 /* OverflowAndUnderflowOfBuffersViewController.h */,
+				4F81CE28219DE9F300A178E7 /* OverflowAndUnderflowOfBuffersViewController.m */,
+				4F81CE2A219DEB5A00A178E7 /* OverflowOfCppContainersViewController.h */,
+				4F81CE2B219DEB5A00A178E7 /* OverflowOfCppContainersViewController.mm */,
+			);
+			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F81CE14219DD97E00A178E7 /* DummyClasses */ = {
+			isa = PBXGroup;
+			children = (
+				4F81CE15219DD99700A178E7 /* MyClass.h */,
+				4F81CE16219DD99700A178E7 /* MyClass.m */,
+			);
+			path = DummyClasses;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4F81CDF3219DD81D00A178E7 /* HelloXcode_AddressSanitizer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F81CE0A219DD81E00A178E7 /* Build configuration list for PBXNativeTarget "HelloXcode_AddressSanitizer" */;
+			buildPhases = (
+				4F81CDF0219DD81D00A178E7 /* Sources */,
+				4F81CDF1219DD81D00A178E7 /* Frameworks */,
+				4F81CDF2219DD81D00A178E7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HelloXcode_AddressSanitizer;
+			productName = HelloXcode_AddressSanitizer;
+			productReference = 4F81CDF4219DD81D00A178E7 /* HelloXcode_AddressSanitizer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4F81CDEC219DD81D00A178E7 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = wesley_chen;
+				TargetAttributes = {
+					4F81CDF3219DD81D00A178E7 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 4F81CDEF219DD81D00A178E7 /* Build configuration list for PBXProject "HelloXcode_AddressSanitizer" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4F81CDEB219DD81D00A178E7;
+			productRefGroup = 4F81CDF5219DD81D00A178E7 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4F81CDF3219DD81D00A178E7 /* HelloXcode_AddressSanitizer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4F81CDF2219DD81D00A178E7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F81CE04219DD81E00A178E7 /* LaunchScreen.storyboard in Resources */,
+				4F81CE01219DD81E00A178E7 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4F81CDF0219DD81D00A178E7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F81CE1A219DE14900A178E7 /* DeallocateAlreadyDeallocatedMemoryViewController.m in Sources */,
+				4F81CE07219DD81E00A178E7 /* main.m in Sources */,
+				4F81CE26219DE73B00A178E7 /* UseOfOutOfScopeStackMemoryViewController.m in Sources */,
+				4F81CDF9219DD81D00A178E7 /* AppDelegate.m in Sources */,
+				4F81CE17219DD99700A178E7 /* MyClass.m in Sources */,
+				4F81CE1D219DE2C500A178E7 /* DeallocateNonallocatedMemoryViewController.m in Sources */,
+				4F81CE29219DE9F300A178E7 /* OverflowAndUnderflowOfBuffersViewController.m in Sources */,
+				4F81CE13219DD96A00A178E7 /* UseDeallocatedMemoryViewController.m in Sources */,
+				4F81CE20219DE41500A178E7 /* UseofStackMemoryAfterFunctionReturnViewController.m in Sources */,
+				4F81CE10219DD88100A178E7 /* RootViewController.m in Sources */,
+				4F81CE2C219DEB5A00A178E7 /* OverflowOfCppContainersViewController.mm in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4F81CE02219DD81E00A178E7 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F81CE03219DD81E00A178E7 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4F81CE08219DD81E00A178E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4F81CE09219DD81E00A178E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4F81CE0B219DD81E00A178E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ADDRESS_SANITIZER_CONTAINER_OVERFLOW = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = HelloXcode_AddressSanitizer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wc.HelloXcode-AddressSanitizer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4F81CE0C219DD81E00A178E7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ADDRESS_SANITIZER_CONTAINER_OVERFLOW = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = HelloXcode_AddressSanitizer/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wc.HelloXcode-AddressSanitizer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4F81CDEF219DD81D00A178E7 /* Build configuration list for PBXProject "HelloXcode_AddressSanitizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F81CE08219DD81E00A178E7 /* Debug */,
+				4F81CE09219DD81E00A178E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F81CE0A219DD81E00A178E7 /* Build configuration list for PBXNativeTarget "HelloXcode_AddressSanitizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F81CE0B219DD81E00A178E7 /* Debug */,
+				4F81CE0C219DD81E00A178E7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4F81CDEC219DD81D00A178E7 /* Project object */;
+}
