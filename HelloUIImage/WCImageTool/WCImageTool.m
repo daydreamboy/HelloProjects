@@ -153,7 +153,6 @@
     CGSize canvasSize = CGSizeMake(size.width * scale, size.height * scale);
     
     CGContextRef contextRef = CGBitmapContextCreate(nil, canvasSize.width, canvasSize.height, bitsPerComponent, 1, colorSpace, bitmapInfo);
-    CGContextRelease(contextRef);
     if (contextRef == NULL) {
         return nil;
     }
