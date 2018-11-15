@@ -47,19 +47,39 @@ NS_ASSUME_NONNULL_BEGIN
  @param image the orginal image
  @param size the size for scale to fit
  @return the new image
- 
  @see http://stackoverflow.com/questions/2658738/the-simplest-way-to-resize-an-uiimage
+ @discussion The returned image considers screen scale
  */
-+ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size;
++ (nullable UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size;
 
+/**
+ Draw a foreground image with frame on a background image
 
-+ (UIImage *)drawImage:(UIImage *)image inParentImage:(UIImage *)parentImage placedAt:(CGRect)frame;
+ @param foregroundImage the foreground image
+ @param backgroundImage the background image
+ @param frame the frame of the foreground image
+ @return the new image
+ */
++ (UIImage *)imageWithForegroundImage:(UIImage *)foregroundImage inBackgroundImage:(UIImage *)backgroundImage foregroundImageFrame:(CGRect)frame;
 
-#pragma mark - Image Modify
++ (nullable UIImage *)imageWithImage:(UIImage *)image croppedToFrame:(CGRect)frame;
+
+/**
+ Crop an image with the specific frame, then scale the cropped image to the specific size
+
+ @param image the image to crop
+ @param frame the frame of cropping
+ @param size the scaled size
+ @return the cropped and scaled image
+ @see https://nshipster.com/image-resizing/
+ @discussion The returned image considers screen scale
+ */
++ (nullable UIImage *)imageWithImage:(UIImage *)image croppedToFrame:(CGRect)frame scaledToSize:(CGSize)size;
+
+#pragma mark - Image Modification
 
 + (UIImage *)imageWithImage:(UIImage *)image templateColor:(UIColor *)templateColor;
-+ (UIImage *)setImage:(UIImage *)image replaceColorComponents:(CGFloat[6])components toColor:(UIColor *)color;
-
++ (UIImage *)imageWithImage:(UIImage *)image replaceColorComponents:(CGFloat[6])components toColor:(UIColor *)color;
 
 /**
  Get a corner rounded image

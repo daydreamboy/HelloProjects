@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F58CEF42176503D00D0FD17 /* 11.heic in Resources */ = {isa = PBXBuildFile; fileRef = 4F58CEF32176503D00D0FD17 /* 11.heic */; };
 		4F6061CD2134F57C00D049DF /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6061CA2134F57B00D049DF /* RootViewController.m */; };
 		4F6061D62134F5A300D049DF /* CreateImageWithAlphaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6061CF2134F5A300D049DF /* CreateImageWithAlphaViewController.m */; };
 		4F6061D72134F5A300D049DF /* CreateOnePixelHeightLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6061D02134F5A300D049DF /* CreateOnePixelHeightLineViewController.m */; };
 		4F6061D82134F5A300D049DF /* ReplaceColorByPixelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6061D12134F5A300D049DF /* ReplaceColorByPixelViewController.m */; };
-		4F6061D92134F5A300D049DF /* ScaleImageWithNewSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6061D22134F5A300D049DF /* ScaleImageWithNewSizeViewController.m */; };
+		4F6061D92134F5A300D049DF /* ScaleImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6061D22134F5A300D049DF /* ScaleImageViewController.m */; };
 		4F6061DD2134F5B300D049DF /* WCImageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6061DB2134F5B300D049DF /* WCImageTool.m */; };
 		4F6061E92134F5EA00D049DF /* 1.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4F6061DF2134F5EA00D049DF /* 1.jpeg */; };
 		4F6061EA2134F5EA00D049DF /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F6061E02134F5EA00D049DF /* 8.png */; };
@@ -31,18 +32,22 @@
 		4F8BB40B21526BEB00F0AD99 /* fake.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8BB40821526BEB00F0AD99 /* fake.png */; };
 		4F8BB40C21526BEB00F0AD99 /* fake@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8BB40921526BEB00F0AD99 /* fake@1x.png */; };
 		4F8BB40D21526BEB00F0AD99 /* fake@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8BB40A21526BEB00F0AD99 /* fake@3x.png */; };
+		4F9909A6219C6BF000606B97 /* CropImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9909A5219C6BF000606B97 /* CropImageViewController.m */; };
+		4F9909A8219C6C3D00606B97 /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F9909A7219C6C3D00606B97 /* 12.jpg */; };
+		4F9909AC219C6CD000606B97 /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9909AB219C6CD000606B97 /* WCViewTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F58CEF32176503D00D0FD17 /* 11.heic */ = {isa = PBXFileReference; lastKnownFileType = file; path = 11.heic; sourceTree = "<group>"; };
 		4F6061CA2134F57B00D049DF /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F6061CB2134F57C00D049DF /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F6061CE2134F5A300D049DF /* CreateOnePixelHeightLineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateOnePixelHeightLineViewController.h; sourceTree = "<group>"; };
 		4F6061CF2134F5A300D049DF /* CreateImageWithAlphaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateImageWithAlphaViewController.m; sourceTree = "<group>"; };
 		4F6061D02134F5A300D049DF /* CreateOnePixelHeightLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateOnePixelHeightLineViewController.m; sourceTree = "<group>"; };
 		4F6061D12134F5A300D049DF /* ReplaceColorByPixelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReplaceColorByPixelViewController.m; sourceTree = "<group>"; };
-		4F6061D22134F5A300D049DF /* ScaleImageWithNewSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleImageWithNewSizeViewController.m; sourceTree = "<group>"; };
+		4F6061D22134F5A300D049DF /* ScaleImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleImageViewController.m; sourceTree = "<group>"; };
 		4F6061D32134F5A300D049DF /* CreateImageWithAlphaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateImageWithAlphaViewController.h; sourceTree = "<group>"; };
-		4F6061D42134F5A300D049DF /* ScaleImageWithNewSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleImageWithNewSizeViewController.h; sourceTree = "<group>"; };
+		4F6061D42134F5A300D049DF /* ScaleImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleImageViewController.h; sourceTree = "<group>"; };
 		4F6061D52134F5A300D049DF /* ReplaceColorByPixelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReplaceColorByPixelViewController.h; sourceTree = "<group>"; };
 		4F6061DB2134F5B300D049DF /* WCImageTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCImageTool.m; sourceTree = "<group>"; };
 		4F6061DC2134F5B300D049DF /* WCImageTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCImageTool.h; sourceTree = "<group>"; };
@@ -67,6 +72,11 @@
 		4F8BB40821526BEB00F0AD99 /* fake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fake.png; sourceTree = "<group>"; };
 		4F8BB40921526BEB00F0AD99 /* fake@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fake@1x.png"; sourceTree = "<group>"; };
 		4F8BB40A21526BEB00F0AD99 /* fake@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fake@3x.png"; sourceTree = "<group>"; };
+		4F9909A4219C6BF000606B97 /* CropImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CropImageViewController.h; sourceTree = "<group>"; };
+		4F9909A5219C6BF000606B97 /* CropImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CropImageViewController.m; sourceTree = "<group>"; };
+		4F9909A7219C6C3D00606B97 /* 12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 12.jpg; sourceTree = "<group>"; };
+		4F9909AA219C6CD000606B97 /* WCViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCViewTool.h; sourceTree = "<group>"; };
+		4F9909AB219C6CD000606B97 /* WCViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,8 +99,10 @@
 				4F6061D02134F5A300D049DF /* CreateOnePixelHeightLineViewController.m */,
 				4F6061D52134F5A300D049DF /* ReplaceColorByPixelViewController.h */,
 				4F6061D12134F5A300D049DF /* ReplaceColorByPixelViewController.m */,
-				4F6061D42134F5A300D049DF /* ScaleImageWithNewSizeViewController.h */,
-				4F6061D22134F5A300D049DF /* ScaleImageWithNewSizeViewController.m */,
+				4F6061D42134F5A300D049DF /* ScaleImageViewController.h */,
+				4F6061D22134F5A300D049DF /* ScaleImageViewController.m */,
+				4F9909A4219C6BF000606B97 /* CropImageViewController.h */,
+				4F9909A5219C6BF000606B97 /* CropImageViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -107,6 +119,8 @@
 		4F6061DE2134F5EA00D049DF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F9909A7219C6C3D00606B97 /* 12.jpg */,
+				4F58CEF32176503D00D0FD17 /* 11.heic */,
 				4F8BB40821526BEB00F0AD99 /* fake.png */,
 				4F8BB40921526BEB00F0AD99 /* fake@1x.png */,
 				4F8BB40621526A5900F0AD99 /* fake@2x.png */,
@@ -145,6 +159,7 @@
 		4F636E5E2134F2F1003DE979 /* HelloUIImage */ = {
 			isa = PBXGroup;
 			children = (
+				4F9909A9219C6CA200606B97 /* Tools */,
 				4F6061C72134F57B00D049DF /* AppTestDemos */,
 				4F636E5F2134F2F1003DE979 /* AppDelegate.h */,
 				4F636E602134F2F1003DE979 /* AppDelegate.m */,
@@ -157,6 +172,15 @@
 				4F636E6E2134F2F3003DE979 /* main.m */,
 			);
 			path = HelloUIImage;
+			sourceTree = "<group>";
+		};
+		4F9909A9219C6CA200606B97 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F9909AA219C6CD000606B97 /* WCViewTool.h */,
+				4F9909AB219C6CD000606B97 /* WCViewTool.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -218,6 +242,7 @@
 			files = (
 				4F8BB40D21526BEB00F0AD99 /* fake@3x.png in Resources */,
 				4F6061F12134F5EA00D049DF /* 7.png in Resources */,
+				4F9909A8219C6C3D00606B97 /* 12.jpg in Resources */,
 				4F8BB40721526A5900F0AD99 /* fake@2x.png in Resources */,
 				4F6061F02134F5EA00D049DF /* 2.jpeg in Resources */,
 				4F6061EA2134F5EA00D049DF /* 8.png in Resources */,
@@ -232,6 +257,7 @@
 				4F8BB40B21526BEB00F0AD99 /* fake.png in Resources */,
 				4F8BB40C21526BEB00F0AD99 /* fake@1x.png in Resources */,
 				4F636E692134F2F3003DE979 /* Assets.xcassets in Resources */,
+				4F58CEF42176503D00D0FD17 /* 11.heic in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,9 +271,11 @@
 				4F6061D82134F5A300D049DF /* ReplaceColorByPixelViewController.m in Sources */,
 				4F636E6F2134F2F3003DE979 /* main.m in Sources */,
 				4F6061DD2134F5B300D049DF /* WCImageTool.m in Sources */,
-				4F6061D92134F5A300D049DF /* ScaleImageWithNewSizeViewController.m in Sources */,
+				4F6061D92134F5A300D049DF /* ScaleImageViewController.m in Sources */,
+				4F9909AC219C6CD000606B97 /* WCViewTool.m in Sources */,
 				4F6061CD2134F57C00D049DF /* RootViewController.m in Sources */,
 				4F6061D72134F5A300D049DF /* CreateOnePixelHeightLineViewController.m in Sources */,
+				4F9909A6219C6BF000606B97 /* CropImageViewController.m in Sources */,
 				4F636E612134F2F1003DE979 /* AppDelegate.m in Sources */,
 				4F6061D62134F5A300D049DF /* CreateImageWithAlphaViewController.m in Sources */,
 			);

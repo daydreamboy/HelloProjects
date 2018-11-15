@@ -11,7 +11,8 @@
 #import "CreateOnePixelHeightLineViewController.h"
 #import "ReplaceColorByPixelViewController.h"
 #import "CreateImageWithAlphaViewController.h"
-#import "ScaleImageWithNewSizeViewController.h"
+#import "ScaleImageViewController.h"
+#import "CropImageViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -38,12 +39,14 @@
         @"Replace pixel colors (unfinished)",
         @"Create an alpha version of UIImage",
         @"Scale image with new size",
+        @"Crop an image",
     ];
     _classes = @[
         [CreateOnePixelHeightLineViewController class],
         [ReplaceColorByPixelViewController class],
         [CreateImageWithAlphaViewController class],
-        [ScaleImageWithNewSizeViewController class],
+        [ScaleImageViewController class],
+        [CropImageViewController class],
     ];
 }
 

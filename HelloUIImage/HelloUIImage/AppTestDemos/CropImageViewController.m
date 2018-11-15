@@ -1,19 +1,22 @@
 //
-//  ScaleImageWithNewSizeViewController.m
-//  AppTest
+//  CropImageViewController.m
+//  HelloUIImage
 //
-//  Created by wesley_chen on 2018/5/6.
+//  Created by wesley_chen on 2018/11/14.
+//  Copyright © 2018 wesley_chen. All rights reserved.
 //
 
-#import "ScaleImageWithNewSizeViewController.h"
+#import "CropImageViewController.h"
+#import "WCViewTool.h"
 #import "WCImageTool.h"
 
-@interface ScaleImageWithNewSizeViewController ()
+@interface CropImageViewController ()
 @property (nonatomic, strong) UIImageView *imageViewOriginal;
 @property (nonatomic, strong) UIImageView *imageViewScaled;
 @end
 
-@implementation ScaleImageWithNewSizeViewController
+@implementation CropImageViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -21,18 +24,23 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.imageViewOriginal];
-    [self.view addSubview:self.imageViewScaled];
+    //[self.view addSubview:self.imageViewScaled];
 }
 
 #pragma mark - Getters
 
 - (UIImageView *)imageViewOriginal {
     if (!_imageViewOriginal) {
-        UIImage *image = [UIImage imageNamed:@"10"];
-        CGSize imageSize = image.size;
+        UIImage *image = [UIImage imageNamed:@"12.jpg"];
         
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 64 + 10, imageSize.width, imageSize.height)];
-        imageView.image = image;
+        CGSize size = CGSizeMake(120, 150);
+        CGSize cropSize = [WCViewTool scaledSizeWithContentSize:size fitToWidth:image.size.width];
+        CGRect cropRect = [WCViewTool centeredRectInRectWithSize:cropSize inRect:CGRectMake(0, 0, image.size.width, image.size.height)];
+        
+        UIImage *croppedImage = [WCImageTool imageWithImage:image croppedToFrame:cropRect scaledToSize:size];
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 64 + 10, size.width, size.height)];
+        imageView.image = croppedImage;
         
         _imageViewOriginal = imageView;
     }

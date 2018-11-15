@@ -32,11 +32,11 @@
     return newImage;
 }
 
-+ (UIImage *)drawImage:(UIImage *)image inParentImage:(UIImage *)parentImage placedAt:(CGRect)frame {
-    UIGraphicsBeginImageContextWithOptions(parentImage.size, NO, 0.0);
++ (UIImage *)imageWithForegroundImage:(UIImage *)foregroundImage inBackgroundImage:(UIImage *)backgroundImage foregroundImageFrame:(CGRect)frame {
+    UIGraphicsBeginImageContextWithOptions(backgroundImage.size, NO, 0.0);
     
-    [parentImage drawInRect:CGRectMake(0, 0, parentImage.size.width, parentImage.size.height)];
-    [image drawInRect:frame];
+    [backgroundImage drawInRect:CGRectMake(0, 0, backgroundImage.size.width, backgroundImage.size.height)];
+    [foregroundImage drawInRect:frame];
     
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     
@@ -69,21 +69,104 @@
     return newImage;
 }
 
-+ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
++ (nullable UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
+    if (!image) {
+        return nil;
+    }
     
-    // Avoid redundant drawing
+    if (size.width <= 0 || size.height <= 0) {
+        return nil;
+    }
+    
+    // Note: avoid redundant drawing
     if (CGSizeEqualToSize(image.size, size)) {
         return image;
     }
     
-    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
-    // Pass 1.0 to force exact pixel size.
-    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
+    CGImageRef imageRef = image.CGImage;
     
-    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    size_t bitsPerComponent = CGImageGetBitsPerComponent(imageRef);
+    CGColorSpaceRef colorSpace = CGImageGetColorSpace(imageRef);
+    CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
+    CGFloat scale = [UIScreen mainScreen].scale;
     
-    UIGraphicsEndImageContext();
+    CGSize canvasSize = CGSizeMake(size.width * scale, size.height * scale);
+    
+    // Note: use 0, see https://stackoverflow.com/questions/24124546/cgbitmapcontextcreate-invalid-data-bytes-row
+    CGContextRef contextRef = CGBitmapContextCreate(nil, canvasSize.width, canvasSize.height, bitsPerComponent, 0, colorSpace, bitmapInfo);
+    CGContextSetInterpolationQuality(contextRef, kCGInterpolationHigh);
+    CGContextDrawImage(contextRef, CGRectMake(0, 0, canvasSize.width, canvasSize.height), imageRef);
+    
+    CGImageRef newImageRef = CGBitmapContextCreateImage(contextRef);
+    
+    UIImage *newImage = [UIImage imageWithCGImage:newImageRef scale:scale orientation:UIImageOrientationUp];
+    
+    CGContextRelease(contextRef);
+    CGImageRelease(newImageRef);
+    
+    return newImage;
+}
+
++ (nullable UIImage *)imageWithImage:(UIImage *)image croppedToFrame:(CGRect)frame {
+    if (!image) {
+        return nil;
+    }
+    
+    if (frame.size.width <= 0 || frame.size.height <= 0) {
+        return nil;
+    }
+    
+    CGRect imageRect = CGRectMake(0, 0, image.size.width, image.size.height);
+    if (CGRectEqualToRect(frame, imageRect)) {
+        return image;
+    }
+    
+    CGRect clippedRect = frame;
+    CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, clippedRect);
+    UIImage *newImage = [UIImage imageWithCGImage:imageRef];
+    CGImageRelease(imageRef);
+    
+    return newImage;
+}
+
++ (nullable UIImage *)imageWithImage:(UIImage *)image croppedToFrame:(CGRect)frame scaledToSize:(CGSize)size {
+    if (!image) {
+        return nil;
+    }
+    
+    if (frame.size.width <= 0 || frame.size.height <= 0 || size.width <= 0 || size.height <= 0) {
+        return nil;
+    }
+    
+    if (CGSizeEqualToSize(image.size, size)) {
+        return image;
+    }
+    
+    CGRect clippedRect = frame;
+    CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, clippedRect);
+    
+    size_t bitsPerComponent = CGImageGetBitsPerComponent(imageRef);
+    CGColorSpaceRef colorSpace = CGImageGetColorSpace(imageRef);
+    CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
+    CGFloat scale = [UIScreen mainScreen].scale;
+    
+    CGSize canvasSize = CGSizeMake(size.width * scale, size.height * scale);
+    
+    CGContextRef contextRef = CGBitmapContextCreate(nil, canvasSize.width, canvasSize.height, bitsPerComponent, 1, colorSpace, bitmapInfo);
+    CGContextRelease(contextRef);
+    if (contextRef == NULL) {
+        return nil;
+    }
+    CGContextSetInterpolationQuality(contextRef, kCGInterpolationHigh);
+    CGContextDrawImage(contextRef, CGRectMake(0, 0, canvasSize.width, canvasSize.height), imageRef);
+    
+    CGImageRef newImageRef = CGBitmapContextCreateImage(contextRef);
+    
+    UIImage *newImage = [UIImage imageWithCGImage:newImageRef scale:scale orientation:UIImageOrientationUp];
+    
+    CGContextRelease(contextRef);
+    CGImageRelease(imageRef);
+    CGImageRelease(newImageRef);
     
     return newImage;
 }
@@ -109,7 +192,7 @@
 }
 
 // @see https://gist.github.com/Shilo/1292152
-+ (UIImage *)setImage:(UIImage *)image replaceColorComponents:(CGFloat[6])components toColor:(UIColor *)color {
++ (UIImage *)imageWithImage:(UIImage *)image replaceColorComponents:(CGFloat[6])components toColor:(UIColor *)color {
     CGFloat alpha = CGColorGetAlpha(color.CGColor);
     CGRect imageRect = CGRectMake(0, 0, image.size.width, image.size.height);
     

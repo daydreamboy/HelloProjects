@@ -36,10 +36,10 @@
     UIImage *image = [WCImageTool imageWithColor:[UIColor whiteColor] size:imageSize];
     
     CGSize smallImageSize = CGSizeMake(50, 50);
-    image = [WCImageTool drawImage:[WCImageTool imageWithColor:[UIColor redColor] size:smallImageSize] inParentImage:image placedAt:CGRectMake(0, 0, smallImageSize.width, smallImageSize.height)];
-    image = [WCImageTool drawImage:[WCImageTool imageWithColor:[UIColor greenColor] size:smallImageSize] inParentImage:image placedAt:CGRectMake(50, 0, smallImageSize.width, smallImageSize.height)];
-    image = [WCImageTool drawImage:[WCImageTool imageWithColor:[UIColor blueColor] size:smallImageSize] inParentImage:image placedAt:CGRectMake(0, 50, smallImageSize.width, smallImageSize.height)];
-    image = [WCImageTool drawImage:[WCImageTool imageWithColor:[UIColor yellowColor] size:smallImageSize] inParentImage:image placedAt:CGRectMake(50, 50, smallImageSize.width, smallImageSize.height)];
+    image = [WCImageTool imageWithForegroundImage:[WCImageTool imageWithColor:[UIColor redColor] size:smallImageSize] inBackgroundImage:image foregroundImageFrame:CGRectMake(0, 0, smallImageSize.width, smallImageSize.height)];
+    image = [WCImageTool imageWithForegroundImage:[WCImageTool imageWithColor:[UIColor greenColor] size:smallImageSize] inBackgroundImage:image foregroundImageFrame:CGRectMake(50, 0, smallImageSize.width, smallImageSize.height)];
+    image = [WCImageTool imageWithForegroundImage:[WCImageTool imageWithColor:[UIColor blueColor] size:smallImageSize] inBackgroundImage:image foregroundImageFrame:CGRectMake(0, 50, smallImageSize.width, smallImageSize.height)];
+    image = [WCImageTool imageWithForegroundImage:[WCImageTool imageWithColor:[UIColor yellowColor] size:smallImageSize] inBackgroundImage:image foregroundImageFrame:CGRectMake(50, 50, smallImageSize.width, smallImageSize.height)];
     
     return image;
 }
@@ -57,7 +57,7 @@
     // TODO: 
     
     // red to magentaColor
-    destImage = [WCImageTool setImage:destImage replaceColorComponents:red toColor:[UIColor magentaColor]];
+    destImage = [WCImageTool imageWithImage:destImage replaceColorComponents:red toColor:[UIColor magentaColor]];
 //    // green to grayColor
 //    destImage = [WCImageTool imageWithImage:destImage replaceColorComponents:green toColor:[UIColor grayColor]];
 //    // blue to blackColor
@@ -144,7 +144,7 @@
         222, 255, 222, 255, 222, 255
     };
     
-    self.imageViewCaptcha.image = [WCImageTool setImage:image replaceColorComponents:(CGFloat *)colorMasking toColor:[UIColor redColor]];
+    self.imageViewCaptcha.image = [WCImageTool imageWithImage:image replaceColorComponents:(CGFloat *)colorMasking toColor:[UIColor redColor]];
 }
 
 @end
