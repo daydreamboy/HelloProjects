@@ -242,14 +242,14 @@ continue不带参数，是process continue的别名。debug时，代表当前进
 
 ### 6、thread
 
-####（1）thread step-over (next)
+#### （1）thread step-over (next)
 
 格式：thread step-over    
 简写：n，next    
 说明：当前线程单步执行
 n不带参数。debug时，代表单步执行
 
-####（2）thread step-in（step）
+#### （2）thread step-in（step）
 
 格式：thread step-in    
 简写：s，step    
@@ -257,13 +257,13 @@ n不带参数。debug时，代表单步执行
 
 * step -a0，忽略lldb设置，总是单步进入
 
-####（3）thread return
+#### （3）thread return
 
 格式：thread return \<optional retVal\>    
 说明：当前线程中止后面的执行，提前返回到函数入口。thread return带一个可选的返回值，如果执行，当前函数立即返回，剩下的代码不会执行。  
 注意：和finish不一样，finish是执行完当前函数才返回。由于提前返回，可能有ARC相关内存问题
 
-####（4）thread list
+#### （4）thread list
 
 格式：thread list     
 说明：列出当前所有线程
@@ -280,12 +280,28 @@ Process 15767 stopped
   thread #8: tid = 0x5bfa15, 0x0000000115fa5562 libsystem_kernel.dylib`__workq_kernreturn + 10
 ```
 
-####（5）thread step-out（finish）
+#### （5）thread step-out（finish）
 
 格式：thread step-out    
 简写：finish    
 说明：debug时，代表执行完当前函数或者方法，然后跳到调用处，这时可以查看RAX寄存器    
 参考资料：https://www.objc.io/issues/19-debugging/lldb-debugging/
+
+#### （6）thread info
+
+格式：thread info [-js]    
+
+说明：显示当前thread信息
+
+```
+(lldb) thread info
+thread #1: tid = 0x1ba0d4, 0x000000010dc05280 libclang_rt.asan_iossim_dynamic.dylib`__asan::AsanDie(), queue = 'com.apple.main-thread', stop reason = Use of deallocated memory
+```
+
+* -j，JSON格式显示当前thread信息
+* -s，JSON格式显示当前thread的扩展信息
+
+
 
 ### 7、type
 
