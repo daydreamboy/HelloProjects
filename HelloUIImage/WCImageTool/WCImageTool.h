@@ -14,12 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Image Generation
 
-/*!
- *  Get an image with pure color
- *
- *  @param color the UIColor
- *
- *  @return a UIImage with {1px, 1px} colored by UIColor
+/**
+ Get an image with pure color
+
+ @param color the UIColor
+ @return a UIImage with {1px, 1px} colored by UIColor
  */
 + (nullable UIImage *)imageWithColor:(UIColor *)color;
 
