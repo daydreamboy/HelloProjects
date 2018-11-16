@@ -11,12 +11,20 @@
 
 #pragma mark - Image Generation
 
-+ (UIImage *)imageWithColor:(UIColor *)color {
++ (nullable UIImage *)imageWithColor:(UIColor *)color {
     // Note: create 1px X 1px size of rect
     return [self imageWithColor:color size:CGSizeMake(1.0 / [UIScreen mainScreen].scale, 1.0 / [UIScreen mainScreen].scale)];
 }
 
-+ (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size {
++ (nullable UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size {
+    if (![color isKindOfClass:[UIColor class]]) {
+        return nil;
+    }
+    
+    if (size.width <= 0 || size.height <= 0) {
+        return nil;
+    }
+    
     CGRect rect = CGRectMake(0, 0, size.width, size.height);
     // Note: use UIGraphicsBeginImageContextWithOptions instead of UIGraphicsBeginImageContext to set UIImage.scale
     // @see https://stackoverflow.com/questions/4965036/uigraphicsgetimagefromcurrentimagecontext-retina-resolution
@@ -32,18 +40,10 @@
     return newImage;
 }
 
-+ (UIImage *)imageWithForegroundImage:(UIImage *)foregroundImage inBackgroundImage:(UIImage *)backgroundImage foregroundImageFrame:(CGRect)frame {
-    UIGraphicsBeginImageContextWithOptions(backgroundImage.size, NO, 0.0);
-    
-    [backgroundImage drawInRect:CGRectMake(0, 0, backgroundImage.size.width, backgroundImage.size.height)];
-    [foregroundImage drawInRect:frame];
-    
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    
-    return newImage;
-}
-
-+ (UIImage *)imageWithImage:(UIImage *)image alpha:(CGFloat)alpha {
++ (nullable UIImage *)imageWithImage:(UIImage *)image alpha:(CGFloat)alpha {
+    if (![image isKindOfClass:[UIImage class]]) {
+        return nil;
+    }
     
     if (alpha >= 1.0 || alpha < 0.0) {
         return image;
@@ -63,7 +63,27 @@
     CGContextDrawImage(contex, rect, image.CGImage);
     
     UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
     
+    return newImage;
+}
+
++ (nullable UIImage *)imageWithForegroundImage:(UIImage *)foregroundImage inBackgroundImage:(UIImage *)backgroundImage foregroundImageFrame:(CGRect)frame {
+    if (![foregroundImage isKindOfClass:[UIImage class]] ||
+        ![backgroundImage isKindOfClass:[UIImage class]]) {
+        return nil;
+    }
+    
+    if (frame.size.width <= 0 || frame.size.height <= 0) {
+        return nil;
+    }
+    
+    UIGraphicsBeginImageContextWithOptions(backgroundImage.size, NO, 0.0);
+    
+    [backgroundImage drawInRect:CGRectMake(0, 0, backgroundImage.size.width, backgroundImage.size.height)];
+    [foregroundImage drawInRect:frame];
+    
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
     return newImage;
@@ -178,8 +198,8 @@
  @param templateColor the template color which is a pure color
  @return an image which is a template shadow applied with template color
  */
-+ (UIImage *)imageWithImage:(UIImage *)image templateColor:(UIColor *)templateColor {
-    UIImage *newImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
++ (UIImage *)imageWithTemplateImage:(UIImage *)templateImage templateColor:(UIColor *)templateColor {
+    UIImage *newImage = [templateImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
     UIGraphicsBeginImageContextWithOptions(newImage.size, NO, newImage.scale);
     [templateColor set];
@@ -248,11 +268,23 @@
     return newImage;
 }
 
-+ (UIImage *)cornerRoundedImageWithImage:(UIImage *)image radius:(CGFloat)radius {
-    return [self cornerRoundedImageWithImage:image radius:radius size:image.size];
++ (nullable UIImage *)cornerRoundedImageWithImage:(UIImage *)image radius:(CGFloat)radius {
+    return [self cornerRoundedImageWithImage:image radius:radius scaledToSize:image.size];
 }
 
-+ (UIImage *)cornerRoundedImageWithImage:(UIImage *)image radius:(CGFloat)radius size:(CGSize)size {
++ (nullable UIImage *)cornerRoundedImageWithImage:(UIImage *)image radius:(CGFloat)radius scaledToSize:(CGSize)size {
+    if (![image isKindOfClass:[UIImage class]]) {
+        return nil;
+    }
+    
+    if (size.width <= 0 || size.height <= 0) {
+        return nil;
+    }
+    
+    if (radius <= 0 && CGSizeEqualToSize(image.size, size)) {
+        return image;
+    }
+    
     UIGraphicsBeginImageContextWithOptions(size, NO, 0);
     [[UIBezierPath bezierPathWithRoundedRect:(CGRect){CGPointZero, size} cornerRadius:radius] addClip];
     [image drawInRect:(CGRect){CGPointZero, size}];

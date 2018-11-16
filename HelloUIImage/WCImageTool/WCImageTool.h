@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
  *
  *  @return a UIImage with {1px, 1px} colored by UIColor
  */
-+ (UIImage *)imageWithColor:(UIColor *)color;
++ (nullable UIImage *)imageWithColor:(UIColor *)color;
 
 /**
  Get an image with pure color
@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param size the size
  @return the new image
  */
-+ (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
++ (nullable UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
 
 /**
  Get a alpha version of UIImage
@@ -39,7 +39,17 @@ NS_ASSUME_NONNULL_BEGIN
  @param alpha the alpha, which is (0,1)
  @return the new image with alpha
  */
-+ (UIImage *)imageWithImage:(UIImage *)image alpha:(CGFloat)alpha;
++ (nullable UIImage *)imageWithImage:(UIImage *)image alpha:(CGFloat)alpha;
+
+/**
+ Draw a foreground image with frame on a background image
+ 
+ @param foregroundImage the foreground image
+ @param backgroundImage the background image
+ @param frame the frame of the foreground image
+ @return the new image
+ */
++ (nullable UIImage *)imageWithForegroundImage:(UIImage *)foregroundImage inBackgroundImage:(UIImage *)backgroundImage foregroundImageFrame:(CGRect)frame;
 
 /**
  Resize UIImage
@@ -53,15 +63,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size;
 
 /**
- Draw a foreground image with frame on a background image
+ Crop an image with the specific frame
 
- @param foregroundImage the foreground image
- @param backgroundImage the background image
- @param frame the frame of the foreground image
- @return the new image
+ @param image the image to crop
+ @param frame the frame of cropping
+ @return the cropped image
  */
-+ (UIImage *)imageWithForegroundImage:(UIImage *)foregroundImage inBackgroundImage:(UIImage *)backgroundImage foregroundImageFrame:(CGRect)frame;
-
 + (nullable UIImage *)imageWithImage:(UIImage *)image croppedToFrame:(CGRect)frame;
 
 /**
@@ -78,7 +85,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Image Modification
 
-+ (UIImage *)imageWithImage:(UIImage *)image templateColor:(UIColor *)templateColor;
++ (UIImage *)imageWithTemplateImage:(UIImage *)templateImage templateColor:(UIColor *)templateColor;
 + (UIImage *)imageWithImage:(UIImage *)image replaceColorComponents:(CGFloat[6])components toColor:(UIColor *)color;
 
 /**
@@ -88,7 +95,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param radius the radius
  @return the corner rounded image
  */
-+ (UIImage *)cornerRoundedImageWithImage:(UIImage *)image radius:(CGFloat)radius;
++ (nullable UIImage *)cornerRoundedImageWithImage:(UIImage *)image radius:(CGFloat)radius;
 
 /**
  Get a corner rounded image with size
@@ -99,7 +106,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return the corner rounded image
  @see https://stackoverflow.com/a/8125604
  */
-+ (UIImage *)cornerRoundedImageWithImage:(UIImage *)image radius:(CGFloat)radius size:(CGSize)size;
++ (nullable UIImage *)cornerRoundedImageWithImage:(UIImage *)image radius:(CGFloat)radius scaledToSize:(CGSize)size;
 
 #pragma mark - Image Access
 
