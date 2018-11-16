@@ -10,20 +10,35 @@
 
 @implementation WCDictionaryTool
 
-#pragma mark - Safe access values (NSArray, NSDictionary, NSString, NSNumber) for key/keypath
+#pragma mark - Get Value for Key
 
-+ (id)dictionary:(NSDictionary *)dictionary objectForKey:(NSString *)key objectClass:(Class)objectClass {
-#if DEBUG
-    NSAssert([key isKindOfClass:[NSString class]], @"%@ is not a NSString", key);
-    NSAssert([dictionary isKindOfClass:[NSDictionary class]], @"%@ is not a NSDictionary", dictionary);
-#endif
-    
-    // key is not a NSString
-    if (![key isKindOfClass:[NSString class]]) {
+#pragma mark > keypath
+
++ (nullable NSArray *)arrayWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key {
+    return [self objectWithDictionary:dictionary forKey:key objectClass:[NSArray class]];
+}
+
++ (nullable NSDictionary *)dictWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key {
+    return [self objectWithDictionary:dictionary forKey:key objectClass:[NSDictionary class]];
+}
+
++ (nullable NSString *)stringWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key {
+    return [self objectWithDictionary:dictionary forKey:key objectClass:[NSString class]];
+}
+
++ (nullable NSNumber *)numberWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key {
+    return [self objectWithDictionary:dictionary forKey:key objectClass:[NSNumber class]];
+}
+
++ (nullable id)objectWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key objectClass:(Class)objectClass {
+    if (![key isKindOfClass:[NSString class]] || ![dictionary isKindOfClass:[NSDictionary class]]) {
         return nil;
     }
-    // dictionary is not NSDictionary
-    if (![dictionary isKindOfClass:[NSDictionary class]]) {
+    
+    if (![NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSArray class])] &&
+        ![NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSDictionary class])] &&
+        ![NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSString class])] &&
+        ![NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSNumber class])]) {
         return nil;
     }
     
@@ -37,22 +52,6 @@
     }
     
     return [object isKindOfClass:objectClass] ? object : nil;
-}
-
-+ (NSArray *)arrayWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key {
-    return [self dictionary:dictionary objectForKey:key objectClass:[NSArray class]];
-}
-
-+ (NSDictionary *)dictWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key {
-    return [self dictionary:dictionary objectForKey:key objectClass:[NSDictionary class]];
-}
-
-+ (NSString *)stringWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key {
-    return [self dictionary:dictionary objectForKey:key objectClass:[NSString class]];
-}
-
-+ (NSNumber *)numberWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key {
-    return [self dictionary:dictionary objectForKey:key objectClass:[NSNumber class]];
 }
 
 #pragma mark - Safe Wrapping
@@ -107,34 +106,9 @@
     return dict;
 }
 
-#pragma mark - JSON String to NSDictionary
+#pragma mark - Modification
 
-+ (NSDictionary *)dictionaryWithJSONString:(NSString *)jsonString {
-    if (![jsonString isKindOfClass:[NSString class]]) {
-        return nil;
-    }
-    
-    NSData *data = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
-    if (!data) {
-        return nil;
-    }
-    
-    NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-    
-    if (![NSJSONSerialization isValidJSONObject:dict]) {
-        return nil;
-    }
-    
-    if (![dict isKindOfClass:[NSDictionary class]]) {
-        return nil;
-    }
-    
-    return dict;
-}
-
-#pragma mark - Mutation
-
-+ (NSDictionary *)removeObjectWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key {
++ (nullable NSDictionary *)removeObjectWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key {
     if (![dictionary isKindOfClass:[NSDictionary class]] || ![key isKindOfClass:[NSString class]]) {
         return nil;
     }
