@@ -57,9 +57,9 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param view the view to check
  @param cls the Class type wanted to search
- @return YES, if found its first ancestor view belong to cls. <br/>NO, if all ancestor views not belong to cls
+ @return The first ancestor view which belongs to cls. Return nil if all ancestor views not belong to cls.
  */
-+ (BOOL)checkView:(UIView *)view hasAncestralViewIsKindOfClass:(Class)cls;
++ (nullable UIView *)checkAncestralViewWithView:(UIView *)view ancestralViewIsKindOfClass:(Class)cls;
 
 /**
  Get the UIViewController holds the receiver UIView directly or indirectly (that's its super or super... view is self.view)

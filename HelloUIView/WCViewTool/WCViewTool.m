@@ -142,9 +142,14 @@
 
 #pragma mark ::
 
-+ (BOOL)checkView:(UIView *)view hasAncestralViewIsKindOfClass:(Class)cls {
++ (nullable UIView *)checkAncestralViewWithView:(UIView *)view ancestralViewIsKindOfClass:(Class)cls {
+    if (![view isKindOfClass:[UIView class]] || cls == nil) {
+        return nil;
+    }
+    
+    UIView *ancestralView = nil;
     if ([view isKindOfClass:cls]) {
-        return YES;
+        ancestralView = view;
     }
     else {
         UIView *aView = view.superview;
@@ -152,10 +157,11 @@
             aView = aView.superview;
         }
         if ([aView isKindOfClass:cls]) {
-            return YES;
+            ancestralView = aView;
         }
-        return NO;
     }
+    
+    return ancestralView;
 }
 
 + (UIViewController *)holdingViewControllerWithView:(UIView *)view {
