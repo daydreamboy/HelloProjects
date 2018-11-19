@@ -1,14 +1,14 @@
 //
-//  SynthesizePropertyViewController.m
+//  SynthesizePropertyBothSetterGetterViewController.m
 //  HelloSyntaxSugar
 //
 //  Created by wesley_chen on 2018/11/9.
 //  Copyright © 2018 wesley_chen. All rights reserved.
 //
 
-#import "SynthesizePropertyViewController.h"
+#import "SynthesizePropertyBothSetterGetterViewController.h"
 
-@interface SynthesizePropertyViewController ()
+@interface SynthesizePropertyBothSetterGetterViewController ()
 @property (nonatomic, copy) NSString *propertyWithAutoSynthesize;
 @property (nonatomic, copy) NSString *propertyOnlyWithCustomSetter;
 @property (nonatomic, copy) NSString *propertyOnlyWithCustomGetter;
@@ -16,7 +16,7 @@
 @property (nonatomic, copy) NSString *propertyWithBothCustomSetterGetterAndManualSynthesize;
 @end
 
-@implementation SynthesizePropertyViewController
+@implementation SynthesizePropertyBothSetterGetterViewController
 
 @synthesize propertyWithBothCustomSetterGetterAndManualSynthesize = _propertyWithBothCustomSetterGetterAndManualSynthesize;
 

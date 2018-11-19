@@ -1,5 +1,5 @@
 //
-//  SynthesizePropertyViewController.h
+//  SynthesizePropertyBothSetterGetterViewController.h
 //  HelloSyntaxSugar
 //
 //  Created by wesley_chen on 2018/11/9.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SynthesizePropertyViewController : UIViewController
+@interface SynthesizePropertyBothSetterGetterViewController : UIViewController
 
 @end

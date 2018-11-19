@@ -14,8 +14,9 @@
 #import "GenericSelectionExpressionViewController.h"
 #import "NamespacedGlobalVarsAndFuncsViewController.h"
 #import "DelayReleaseObjectViewController.h"
-#import "SynthesizePropertyViewController.h"
+#import "SynthesizePropertyBothSetterGetterViewController.h"
 #import "GCCAttributeCleanupViewController.h"
+#import "SynthesizePropertyDerivedFromBaseClassViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -44,7 +45,8 @@
         @"Use Generic Selection Expression (C11 feature)",
         @"Namespaced global vars and C funcs",
         @"Delay release object",
-        @"Synthesize property manually",
+        @"Synthesize property 1 manually",
+        @"Synthesize property 2 manually",
         @"GCC attribute __cleanup__",
         @"call a test method",
     ];
@@ -55,7 +57,8 @@
         [GenericSelectionExpressionViewController class],
         [NamespacedGlobalVarsAndFuncsViewController class],
         [DelayReleaseObjectViewController class],
-        [SynthesizePropertyViewController class],
+        [SynthesizePropertyBothSetterGetterViewController class],
+        [SynthesizePropertyDerivedFromBaseClassViewController class],
         [GCCAttributeCleanupViewController class],
         @"testMethod",
     ];

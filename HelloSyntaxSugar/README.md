@@ -16,7 +16,7 @@ char字面常量，存放多个字符。例如'abc'、'abcd'、'abcde'等。
 
 举个例子
 
-```
+```c
 unsigned value;
 char* ptr = (char*)&value;
 
@@ -40,7 +40,7 @@ printf("'ABC'  = %02x%02x%02x%02x = %08x\n", ptr[0], ptr[1], ptr[2], ptr[3], val
 
 C++ 11支持Raw String，在.mm文件中可以使用R"\<LANG\>(raw string)\<LANG\>"语法，用于直接写非转义的C字符串。如下
 
-```
+```objective-c
 static NSString *jsonString = @R"JSON(
 {
     "glossary": {
@@ -83,7 +83,7 @@ math.h头文件提供NaN（Not A Number），有时候需要这种特殊值来�
 
 NaN相关函数
 
-```
+```c
 extern float nanf(const char *);
 extern double nan(const char *);
 extern long double nanl(const char *);
@@ -95,7 +95,7 @@ extern long double nanl(const char *);
 
 NaN值的字符串输出总是nan。系统函数一般都处理过，然后输出成nan。
 
-```
+```objective-c
 double maybeNumber = nan(NULL);
     
 NSLog(@"%f", maybeNumber); // nan
@@ -112,7 +112,7 @@ NSLog(@"%@", NSStringFromCGRect(rect)); // {{nan, nan}, {nan, nan}}
 
 ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/)提到一种简便的延迟释放对象的方法，举个例子，如下。详见`DelayReleaseObjectViewController`
 
-```
+```objective-c
 - (void)dealloc {
     MyObject *tempObject = _myObject;
     _myObject = nil;
@@ -130,7 +130,11 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 
 ### 5、手动synthesize @property
 
-一般来说，定义@property会自动synthesize setter和getter方法，同时定义一个名为`_property`的实例变量。手动实现setter或getter方法，这个`_property`实例变量也是自动合成的。但是手动同时实现setter和getter方法，编译器不再自动合成`_property`实例变量，当用到`_property`实例变量会在编译时报错。
+#### （1）同时实现setter和getter方法，需要手动synthesize @property
+
+​         一般来说，定义@property会自动synthesize setter和getter方法，同时定义一个名为`_property`的实例变量。手动实现setter或getter方法，这个`_property`实例变量也是自动合成的。
+
+​        但是手动同时实现setter和getter方法，编译器不再自动合成`_property`实例变量，当用到`_property`实例变量会在编译时报错。
 
 举个例子，如下
 
@@ -157,6 +161,31 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 ```objective-c
 @synthesize propertyWithBothCustomSetterAndGetter = _propertyWithBothCustomSetterAndGetter;
 ```
+
+
+
+#### （2）子类和父类不共用一个实例变量，需要手动synthesize @property
+
+​        一般来说，父类定义@property后，自动合成的实例变量，继承父类的子类不能直接使用`_ivar`方式访问，但是可以通过`super`关键字来访问。但需要注意的是，子类重写了setter或getter方法，需要调用对应的super方法。
+
+​      举个错误的例子，如下
+
+```objective-c
+- (void)setResourceDicPath:(NSString *)resourceDicPath {
+    // WARNING: missing call [super setXXX:]
+    self.myManager.directoryPath = resourceDicPath;
+}
+```
+
+这里父类的_resourceDicPath没有被赋值。有两种方法可以解决这个问题。
+
+方法一：调用super方法
+
+方法二：在子类中手动合成实例变量，让子类和父类不共用一个实例变量。调试检查如下
+
+![](images/子类和父类不共用一个实例变量.png)
+
+可以看出子类和父类有各自的_resourceDicPath2实例变量。
 
 
 
