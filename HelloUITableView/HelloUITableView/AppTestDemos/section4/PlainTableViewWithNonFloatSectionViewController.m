@@ -189,9 +189,7 @@
         label.text = @"This is table view header";
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:20];
-        label.layer.borderColor = [UIColor grayColor].CGColor;
-        label.layer.borderWidth = 1;
-        label.layer.cornerRadius = 4;
+        label.center = CGPointMake(CGRectGetWidth(tableHeaderView.bounds) / 2.0, CGRectGetHeight(tableHeaderView.bounds) / 2.0);
         [tableHeaderView addSubview:label];
         
         tableView.tableHeaderView = tableHeaderView;

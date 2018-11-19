@@ -22,6 +22,7 @@
 #import "PlainTableViewWithExpandableSectionHeaderViewController.h"
 #import "DetectUserScrollViewController.h"
 #import "HorizontalTableViewViewController.h"
+#import "LoadMoreViewController.h"
 
 #import "MoveMeViewController.h"
 #import "DeleteMeViewController.h"
@@ -78,6 +79,7 @@
           @{ kTitle: @"Plain Table with expandable section header", kClass: [PlainTableViewWithExpandableSectionHeaderViewController class] },
           @{ kTitle: @"Detect user scrolling", kClass: [DetectUserScrollViewController class] },
           @{ kTitle: @"Horizontal table view", kClass: [HorizontalTableViewViewController class] },
+          @{ kTitle: @"Table view load more", kClass: [LoadMoreViewController class] },
     ];
     
     NSArray<NSDictionary *> *section5 = @[

@@ -44,6 +44,7 @@
     _hudTip.userInteractionEnabled = NO;
     _hudTip.hidden = YES;
     
+    [self.view addSubview:_hudTip];
 }
 
 #pragma mark - UITableViewDataSource
