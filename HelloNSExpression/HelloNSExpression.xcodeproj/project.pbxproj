@@ -12,8 +12,12 @@
 		4F66F75F219851E0007DA8FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F66F75D219851E0007DA8FD /* LaunchScreen.storyboard */; };
 		4F66F762219851E0007DA8FD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F66F761219851E0007DA8FD /* main.m */; };
 		4F66F77121987054007DA8FD /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F66F76D21987054007DA8FD /* RootViewController.m */; };
-		4F66F775219870CE007DA8FD /* AlgorithmExpressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F66F774219870CE007DA8FD /* AlgorithmExpressionViewController.m */; };
+		4F66F775219870CE007DA8FD /* NumericExpressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F66F774219870CE007DA8FD /* NumericExpressionViewController.m */; };
 		4F66F77821987F91007DA8FD /* PredefinedFunctionsExpressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F66F77721987F91007DA8FD /* PredefinedFunctionsExpressionViewController.m */; };
+		4F9D159D21A4473F008B1407 /* WCStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D159C21A4473F008B1407 /* WCStringTool.m */; };
+		4F9D15A021A45AF0008B1407 /* LogicalExpressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D159F21A45AF0008B1407 /* LogicalExpressionViewController.m */; };
+		4F9D15A421A45E88008B1407 /* NSNumber+CustomFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D15A321A45E88008B1407 /* NSNumber+CustomFunction.m */; };
+		4F9D15A721A465D6008B1407 /* NSString+CustomFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D15A621A465D6008B1407 /* NSString+CustomFunction.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,10 +30,18 @@
 		4F66F761219851E0007DA8FD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F66F76C21987054007DA8FD /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F66F76D21987054007DA8FD /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		4F66F773219870CE007DA8FD /* AlgorithmExpressionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlgorithmExpressionViewController.h; sourceTree = "<group>"; };
-		4F66F774219870CE007DA8FD /* AlgorithmExpressionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlgorithmExpressionViewController.m; sourceTree = "<group>"; };
+		4F66F773219870CE007DA8FD /* NumericExpressionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NumericExpressionViewController.h; sourceTree = "<group>"; };
+		4F66F774219870CE007DA8FD /* NumericExpressionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NumericExpressionViewController.m; sourceTree = "<group>"; };
 		4F66F77621987F91007DA8FD /* PredefinedFunctionsExpressionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PredefinedFunctionsExpressionViewController.h; sourceTree = "<group>"; };
 		4F66F77721987F91007DA8FD /* PredefinedFunctionsExpressionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PredefinedFunctionsExpressionViewController.m; sourceTree = "<group>"; };
+		4F9D159B21A4473F008B1407 /* WCStringTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStringTool.h; sourceTree = "<group>"; };
+		4F9D159C21A4473F008B1407 /* WCStringTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCStringTool.m; sourceTree = "<group>"; };
+		4F9D159E21A45AF0008B1407 /* LogicalExpressionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogicalExpressionViewController.h; sourceTree = "<group>"; };
+		4F9D159F21A45AF0008B1407 /* LogicalExpressionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogicalExpressionViewController.m; sourceTree = "<group>"; };
+		4F9D15A221A45E88008B1407 /* NSNumber+CustomFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+CustomFunction.h"; sourceTree = "<group>"; };
+		4F9D15A321A45E88008B1407 /* NSNumber+CustomFunction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+CustomFunction.m"; sourceTree = "<group>"; };
+		4F9D15A521A465D6008B1407 /* NSString+CustomFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+CustomFunction.h"; sourceTree = "<group>"; };
+		4F9D15A621A465D6008B1407 /* NSString+CustomFunction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+CustomFunction.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,9 +74,9 @@
 		4F66F751219851DE007DA8FD /* HelloNSExpression */ = {
 			isa = PBXGroup;
 			children = (
+				4F66F76E21987054007DA8FD /* AppTestDemos */,
 				4F66F752219851DE007DA8FD /* AppDelegate.h */,
 				4F66F753219851DE007DA8FD /* AppDelegate.m */,
-				4F66F76E21987054007DA8FD /* AppTestDemos */,
 				4F66F76C21987054007DA8FD /* RootViewController.h */,
 				4F66F76D21987054007DA8FD /* RootViewController.m */,
 				4F66F75B219851E0007DA8FD /* Assets.xcassets */,
@@ -78,12 +90,36 @@
 		4F66F76E21987054007DA8FD /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F66F773219870CE007DA8FD /* AlgorithmExpressionViewController.h */,
-				4F66F774219870CE007DA8FD /* AlgorithmExpressionViewController.m */,
+				4F9D15A121A45E41008B1407 /* Addtions */,
+				4F9D159A21A4472B008B1407 /* Tools */,
+				4F66F773219870CE007DA8FD /* NumericExpressionViewController.h */,
+				4F66F774219870CE007DA8FD /* NumericExpressionViewController.m */,
+				4F9D159E21A45AF0008B1407 /* LogicalExpressionViewController.h */,
+				4F9D159F21A45AF0008B1407 /* LogicalExpressionViewController.m */,
 				4F66F77621987F91007DA8FD /* PredefinedFunctionsExpressionViewController.h */,
 				4F66F77721987F91007DA8FD /* PredefinedFunctionsExpressionViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F9D159A21A4472B008B1407 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F9D159B21A4473F008B1407 /* WCStringTool.h */,
+				4F9D159C21A4473F008B1407 /* WCStringTool.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		4F9D15A121A45E41008B1407 /* Addtions */ = {
+			isa = PBXGroup;
+			children = (
+				4F9D15A221A45E88008B1407 /* NSNumber+CustomFunction.h */,
+				4F9D15A321A45E88008B1407 /* NSNumber+CustomFunction.m */,
+				4F9D15A521A465D6008B1407 /* NSString+CustomFunction.h */,
+				4F9D15A621A465D6008B1407 /* NSString+CustomFunction.m */,
+			);
+			path = Addtions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,10 +191,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F9D15A021A45AF0008B1407 /* LogicalExpressionViewController.m in Sources */,
 				4F66F762219851E0007DA8FD /* main.m in Sources */,
+				4F9D15A421A45E88008B1407 /* NSNumber+CustomFunction.m in Sources */,
 				4F66F77821987F91007DA8FD /* PredefinedFunctionsExpressionViewController.m in Sources */,
-				4F66F775219870CE007DA8FD /* AlgorithmExpressionViewController.m in Sources */,
+				4F66F775219870CE007DA8FD /* NumericExpressionViewController.m in Sources */,
 				4F66F77121987054007DA8FD /* RootViewController.m in Sources */,
+				4F9D159D21A4473F008B1407 /* WCStringTool.m in Sources */,
+				4F9D15A721A465D6008B1407 /* NSString+CustomFunction.m in Sources */,
 				4F66F754219851DE007DA8FD /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

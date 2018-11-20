@@ -8,7 +8,8 @@
 
 #import "RootViewController.h"
 
-#import "AlgorithmExpressionViewController.h"
+#import "NumericExpressionViewController.h"
+#import "LogicalExpressionViewController.h"
 #import "PredefinedFunctionsExpressionViewController.h"
 
 @interface RootViewController ()
@@ -32,12 +33,14 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"Math expression",
+        @"Numeric Expression",
+        @"Logical Expression (NSPredicate)",
         @"Functions expression",
         @"call a test method",
     ];
     _classes = @[
-        [AlgorithmExpressionViewController class],
+        [NumericExpressionViewController class],
+        [LogicalExpressionViewController class],
         [PredefinedFunctionsExpressionViewController class],
         @"testMethod",
     ];

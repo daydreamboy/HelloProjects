@@ -7,6 +7,7 @@
 //
 
 #import "PredefinedFunctionsExpressionViewController.h"
+#import "WCStringTool.h"
 
 #define ALERT_TIP(title, msg, cancel, dismissCompletion) \
 \
@@ -88,7 +89,11 @@ do { \
                      @"noindex:",
                      ],
              @"#Custom Functions": @[
-                     @"",
+                     @"factorial",
+                     @"squareAndSubtractFive",
+                     @"gaussianWithMean:andVariance:",
+                     @"characterStringAtIndex:",
+                     @"concatString:",
                      ],
         };
     }
@@ -153,20 +158,79 @@ do { \
 
 #pragma mark - UITextFieldDelegate
 
+#define ConstantExp(x) ([NSExpression expressionForConstantValue:(x)])
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    NSNumber *resultNumber;
+    NSNumber *resultValue;
     NSString *functionString = [self functionStringInPickerView];
     
+    BOOL isStringFunction = NO;
+    BOOL isCustomFunction = [self.predefinedFunctions[@"#Custom Functions"] containsObject:functionString];;
+    
     @try {
-        NSArray *numberStrings = [self.textField.text componentsSeparatedByString:@","];
-        NSMutableArray<NSNumber *> *numbers = [NSMutableArray arrayWithCapacity:numberStrings.count];
-        for (NSString *numberString in numberStrings) {
-            [numbers addObject:@([numberString doubleValue])];
+        NSExpression *expression;
+        NSMutableArray *arguments = [NSMutableArray array];
+        
+        if (isCustomFunction) {
+            NSArray *numberStrings = [self.textField.text componentsSeparatedByString:@","];
+            
+            NSArray *ranges = [WCStringTool rangesOfSubstringWithString:functionString substring:@":"];
+            // Note: use `FUNCTION` or `function` both OK
+            NSMutableString *formatString = [NSMutableString stringWithString:@"FUNCTION("];
+            
+            for (NSInteger i = 0; i < ranges.count + 1 && i < numberStrings.count; i++) {
+                if (i == 0) {
+                    [formatString appendFormat:@"%@, '%@'", numberStrings[i], functionString];
+                }
+                else {
+                    [formatString appendFormat:@", %@", numberStrings[i]];
+                }
+            }
+            
+            [formatString appendString:@")"];
+            
+            expression = [NSExpression expressionWithFormat:formatString];
+        }
+        else {
+            BOOL isStatisticFunction = [self.predefinedFunctions[@"Statistics"] containsObject:functionString];
+            if (isStatisticFunction) {
+                NSArray *numberStrings = [self.textField.text componentsSeparatedByString:@","];
+                NSMutableArray<NSNumber *> *numbers = [NSMutableArray arrayWithCapacity:numberStrings.count];
+                for (NSString *numberString in numberStrings) {
+                    [numbers addObject:@([numberString doubleValue])];
+                }
+                
+                [arguments addObject:ConstantExp(numbers)];
+            }
+            else {
+                isStringFunction = [self.predefinedFunctions[@"String Functions"] containsObject:functionString];
+                
+                if (isStringFunction) {
+                    NSArray *strings = [self.textField.text componentsSeparatedByString:@","];
+                    
+                    NSString *firstString = [strings firstObject];
+                    if (firstString) {
+                        [arguments addObject:ConstantExp(firstString)];
+                    }
+                }
+                else {
+                    NSArray *numberStrings = [self.textField.text componentsSeparatedByString:@","];
+                    NSMutableArray<NSNumber *> *numbers = [NSMutableArray arrayWithCapacity:numberStrings.count];
+                    for (NSString *numberString in numberStrings) {
+                        [numbers addObject:@([numberString doubleValue])];
+                    }
+                    
+                    NSArray *ranges = [WCStringTool rangesOfSubstringWithString:functionString substring:@":"];
+                    for (NSInteger i = 0; i < ranges.count && i < numbers.count; i++) {
+                        [arguments addObject:ConstantExp(numbers[i])];
+                    }
+                }
+            }
+            
+            expression = [NSExpression expressionForFunction:functionString arguments:arguments];
         }
         
-        //NSExpression *statisticExpression = [NSExpression expressionForFunction:functionString arguments:@[[NSExpression expressionForConstantValue:numbers]]];
-        NSExpression *statisticExpression = [NSExpression expressionForFunction:functionString arguments:@[[NSExpression expressionForConstantValue:@3]]];
-        resultNumber = [statisticExpression expressionValueWithObject:nil context:nil];
+        resultValue = [expression expressionValueWithObject:nil context:nil];
     }
     @catch (NSException *e) {
         NSLog(@"%@", e);
@@ -175,13 +239,16 @@ do { \
         return NO;
     }
     
-    if ([resultNumber isKindOfClass:[NSNumber class]] ||
-        ([functionString isEqualToString:@"mode:"] && [resultNumber isKindOfClass:[NSArray class]])) {
-        NSString *msg = [NSString stringWithFormat:@"%@", resultNumber];
+    if ([resultValue isKindOfClass:[NSNumber class]] ||
+        ([functionString isEqualToString:@"mode:"] && [resultValue isKindOfClass:[NSArray class]]) ||
+        ([functionString isEqualToString:@"now"] && [resultValue isKindOfClass:[NSDate class]]) ||
+        (isStringFunction && [resultValue isKindOfClass:[NSString class]]) ||
+        isCustomFunction) {
+        NSString *msg = [NSString stringWithFormat:@"%@", resultValue];
         ALERT_TIP(@"Got Result!", msg, @"Ok", nil);
     }
     else {
-        NSString *msg = [NSString stringWithFormat:@"%@", resultNumber];
+        NSString *msg = [NSString stringWithFormat:@"%@", resultValue];
         ALERT_TIP(@"Some error happened", msg, @"Ok", nil);
     }
     

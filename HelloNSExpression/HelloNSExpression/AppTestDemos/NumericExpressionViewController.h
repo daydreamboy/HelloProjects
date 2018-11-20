@@ -1,5 +1,5 @@
 //
-//  AlgorithmExpressionViewController.h
+//  NumericExpressionViewController.h
 //  HelloNSExpression
 //
 //  Created by wesley_chen on 2018/11/11.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AlgorithmExpressionViewController : UIViewController
+@interface NumericExpressionViewController : UIViewController
 
 @end

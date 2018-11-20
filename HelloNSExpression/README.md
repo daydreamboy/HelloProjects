@@ -73,24 +73,147 @@ NSNumber *resultOfSqrt = [sqrtExpression expressionValueWithObject:nil context:n
 
 #### （1）Statistics
 
+| Function | Arguments                                             | Returns             | Availability |
+| -------- | ----------------------------------------------------- | ------------------- | ------------ |
+| average: | @[[NSExpression expressionForConstantValue:@[@1,@2]]] | NSNumber            |              |
+| sum:     | @[[NSExpression expressionForConstantValue:@[@1,@2]]] | NSNumber            |              |
+| count:   | @[[NSExpression expressionForConstantValue:@[@1,@2]]] | NSNumber            |              |
+| min:     | @[[NSExpression expressionForConstantValue:@[@1,@2]]] | NSNumber            |              |
+| max:     | @[[NSExpression expressionForConstantValue:@[@1,@2]]] | NSNumber            |              |
+| median:  | @[[NSExpression expressionForConstantValue:@[@1,@2]]] | NSNumber            |              |
+| mode:    | @[[NSExpression expressionForConstantValue:@[@1,@2]]] | NSArray<NSNumber *> |              |
+| stddev:  | @[[NSExpression expressionForConstantValue:@[@1,@2]]] | NSNumber            |              |
+
+
+
+* average，求平均数
+* sum，求总和
+* count，求个数
+* min，求最小值
+* max，求最大值
+* median，求中位数。排序后，取中间的数，如果两个，则取它们的平均值。
+  * 例如1, 2, 4, 7的中位数[^2]是3，即(2 + 4) / 2 = 3。
+  * 例如13, 13, 13, 13, 14, 14, 16, 18, 21的中位数[^2]是14。
+* mode，求众数。取出现次数最多的数。
+  * 例如13, 13, 13, 13, 14, 14, 16, 18, 21的众数[^2]是13。
+  * 如果出现次数最多的数有多个，这里mode函数求众数的方式是，按照数组顺序，取第一个。
+
+* stddev，求标准差。
+
+
+
+#### （2）Basic Arithmetic
+
+| Function       | Arguments                                                    | Returns  | Availability |
+| -------------- | ------------------------------------------------------------ | -------- | ------------ |
+| add:to:        | @[[NSExpression expressionForConstantValue:@(X)], [NSExpression expressionForConstantValue:@(Y)]] | NSNumber |              |
+| from:subtract: | @[[NSExpression expressionForConstantValue:@(X)], [NSExpression expressionForConstantValue:@(Y)]] | NSNumber |              |
+| multiply:by:   | @[[NSExpression expressionForConstantValue:@(X)], [NSExpression expressionForConstantValue:@(Y)]] | NSNumber |              |
+| divide:by:     | @[[NSExpression expressionForConstantValue:@(X)], [NSExpression expressionForConstantValue:@(Y)]] | NSNumber |              |
+| modulus:by:    | @[[NSExpression expressionForConstantValue:@(X)], [NSExpression expressionForConstantValue:@(Y)]] | NSNumber |              |
+| abs:           | @[[NSExpression expressionForConstantValue:@(X)]]            | NSNumber |              |
+
+
+
+#### （3）Advanced Arithmetic
+
+| Function       | Arguments                                                    | Returns  | Availability |
+| -------------- | ------------------------------------------------------------ | -------- | ------------ |
+| sqrt:          | @[[NSExpression expressionForConstantValue:@(X)]]            | NSNumber |              |
+| log:           | @[[NSExpression expressionForConstantValue:@(X)]]            | NSNumber |              |
+| ln:            | @[[NSExpression expressionForConstantValue:@(X)]]            | NSNumber |              |
+| raise:toPower: | @[[NSExpression expressionForConstantValue:@(X)], [NSExpression expressionForConstantValue:@(Y)]] | NSNumber |              |
+| exp:           | @[[NSExpression expressionForConstantValue:@(X)]]            | NSNumber |              |
+
+
+
+#### （4）Bounding Functions
+
 | Function | Arguments（NSArray<NSExpression *>中的NSExpression含义） | Returns  | Availability |
 | -------- | -------------------------------------------------------- | -------- | ------------ |
-| average: | NSArrary<NSNumber *>                                     | NSNumber |              |
-| sum:     |                                                          |          |              |
-| count:   |                                                          |          |              |
-| min:     |                                                          |          |              |
-| max:     |                                                          |          |              |
-| median:  |                                                          |          |              |
-| mode:    |                                                          |          |              |
-| stddev:  |                                                          |          |              |
+| ceiling: | @[[NSExpression expressionForConstantValue:@(X)]]        | NSNumber |              |
+| trunc:   | @[[NSExpression expressionForConstantValue:@(X)]]        | NSNumber |              |
+
+
+
+#### （5）Functions Shadowing `math.h` Functions
+
+| Function | Arguments                                         | Returns  | Availability |
+| -------- | ------------------------------------------------- | -------- | ------------ |
+| floor:   | @[[NSExpression expressionForConstantValue:@(X)]] | NSNumber |              |
+
+
+
+#### （6）Random Functions
+
+| Function | Arguments（NSArray<NSExpression *>中的NSExpression含义） | Returns  | Availability    |
+| -------- | -------------------------------------------------------- | -------- | --------------- |
+| random   | @[]                                                      | NSNumber |                 |
+| random:  | @[[NSExpression expressionForConstantValue:@(X)]]        | NSNumber | iOS 11.4-不支持 |
 
 
 
 
 
+#### （7）Binary Arithmetic
 
+| Function         | Arguments                                                    | Returns              | Availability |
+| ---------------- | ------------------------------------------------------------ | -------------------- | ------------ |
+| bitwiseAnd:with: | @[[NSExpression expressionForConstantValue:@(X)], [NSExpression expressionForConstantValue:@(Y)]] | NSNumber (NSInteger) |              |
+| bitwiseOr:with:  | @[[NSExpression expressionForConstantValue:@(X)], [NSExpression expressionForConstantValue:@(Y)]] | NSNumber (NSInteger) |              |
+| bitwiseXor:with: | @[[NSExpression expressionForConstantValue:@(X)], [NSExpression expressionForConstantValue:@(Y)]] | NSNumber (NSInteger) |              |
+| leftshift:by:    | @[[NSExpression expressionForConstantValue:@(X)], [NSExpression expressionForConstantValue:@(Y)]] | NSNumber (NSInteger) |              |
+| rightshift:by:   | @[[NSExpression expressionForConstantValue:@(X)], [NSExpression expressionForConstantValue:@(Y)]] | NSNumber (NSInteger) |              |
+| onesComplement:  | @[[NSExpression expressionForConstantValue:@(2)]]            | NSNumber (NSInteger) |              |
+
+
+
+
+
+#### （8）Date Functions
+
+| Function | Arguments（NSArray<NSExpression *>中的NSExpression含义） | Returns | Availability |
+| -------- | -------------------------------------------------------- | ------- | ------------ |
+| now      | @[]                                                      | NSDate  |              |
+
+* now，arguments参数可以为nil，防止warning，传入空的数组
+
+
+
+#### （9）String Functions
+
+| Function   | Arguments                                           | Returns  | Availability |
+| ---------- | --------------------------------------------------- | -------- | ------------ |
+| lowercase: | @[[NSExpression expressionForConstantValue:@"ABC"]] | NSString |              |
+| uppercase: | @[[NSExpression expressionForConstantValue:@"abc"]] | NSString |              |
+
+
+
+#### （10）No-op
+
+| Function | Arguments | Returns | Availability |
+| -------- | --------- | ------- | ------------ |
+| noindex: |           |         |              |
+
+
+
+### 3、使用自定义函数表达式
+
+
+
+
+
+### 4、方程式计算[^3]
+
+例子
+
+
+
+
+
+### References
 
 [^1]: https://nshipster.com/nsexpression/ 
-
-
-
+[^2]: https://www.purplemath.com/modules/meanmode.htm
+[^3]: https://stackoverflow.com/a/19873034
+[^4]: https://spin.atomicobject.com/2015/03/24/evaluate-string-expressions-ios-objective-c-swift/
