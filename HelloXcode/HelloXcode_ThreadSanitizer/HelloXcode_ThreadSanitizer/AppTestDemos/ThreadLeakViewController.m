@@ -19,9 +19,9 @@
     [super viewDidLoad];
     
 //    [self test_thread_leak];
-//    [self test_case_1_not_thread_leak];
+    [self test_case_1_not_thread_leak];
 //    [self test_case_2_not_thread_leak];
-    [self test_case_3_not_thread_leak];
+//    [self test_case_3_not_thread_leak];
 }
 
 #pragma mark - Test Methods
@@ -44,6 +44,7 @@ void *run()
     pthread_create(&thread, NULL, run, NULL);
     sleep(1);
     pthread_join(thread, NULL); // Correct
+    NSLog(@"test_case_1_not_thread_leak");
 }
 
 - (void)test_case_2_not_thread_leak {
