@@ -53,6 +53,35 @@ Address Sanitizer支持检查的类型，如下
 
 
 
+#### （2）Thread Sanitizer
+
+Xcode打开Thread Sanitizer（简称TSan）设置，如下
+
+![](images/Turn On Thread Sanitizer.png)
+
+Thread Sanitizer支持检查的情况，如下
+
+* Data Races
+  * Detects unsynchronized access to mutable state across multiple threads.（一般指存在多线程访问可读写的变量）
+
+* Swift Access Races
+  * Detects when multiple threads call a mutating method on the same structure, or pass a shared variable as `inout` without synchronization.
+
+* Races on Collections and Other APIs
+  * Detects when a thread accesses a mutable object while another thread writes to that object, causing a data race.（容器类mutable版本，存在多线程访问的问题）
+
+> 上面三种情况，都可以归纳为Data Races。文档定义Data Races的行为是，multiple threads access the same memory without synchronization and at least one access is a write，即存在多个线程读访问相同的内存，并且至少有一个线程是写访问。
+
+
+
+* Uninitialized Mutexes
+  * Detects when a mutex is used before it's initialized.（一般指mutex使用前没有初始化）
+
+* Thread Leaks
+  * Detects when threads aren't closed after use.
+
+> 经测试，Xcode 9.4.1 (9F2000)，没有检测到上面两种情况。
+
 
 
 ### Reference

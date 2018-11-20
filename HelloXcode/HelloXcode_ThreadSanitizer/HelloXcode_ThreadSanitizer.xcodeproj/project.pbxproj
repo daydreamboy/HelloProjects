@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F9D159621A3AA35008B1407 /* UninitializedMutexViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D159521A3AA35008B1407 /* UninitializedMutexViewController.m */; };
+		4F9D159921A3B64A008B1407 /* ThreadLeakViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D159821A3B64A008B1407 /* ThreadLeakViewController.m */; };
 		4FBB4DC921A262BB000E9F61 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBB4DC821A262BB000E9F61 /* AppDelegate.m */; };
 		4FBB4DD121A262BC000E9F61 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FBB4DD021A262BC000E9F61 /* Assets.xcassets */; };
 		4FBB4DD421A262BC000E9F61 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FBB4DD221A262BC000E9F61 /* LaunchScreen.storyboard */; };
@@ -18,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F9D159421A3AA35008B1407 /* UninitializedMutexViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UninitializedMutexViewController.h; sourceTree = "<group>"; };
+		4F9D159521A3AA35008B1407 /* UninitializedMutexViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UninitializedMutexViewController.m; sourceTree = "<group>"; };
+		4F9D159721A3B64A008B1407 /* ThreadLeakViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThreadLeakViewController.h; sourceTree = "<group>"; };
+		4F9D159821A3B64A008B1407 /* ThreadLeakViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThreadLeakViewController.m; sourceTree = "<group>"; };
 		4FBB4DC421A262BB000E9F61 /* HelloXcode_ThreadSanitizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloXcode_ThreadSanitizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FBB4DC721A262BB000E9F61 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FBB4DC821A262BB000E9F61 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -87,6 +93,10 @@
 				4FBB4DFD21A26996000E9F61 /* HelloXcode_ThreadSanitizer-Bridging-Header.h */,
 				4FBB4E0021A26A42000E9F61 /* RaceOnCollectionContainersViewController.h */,
 				4FBB4E0121A26A42000E9F61 /* RaceOnCollectionContainersViewController.m */,
+				4F9D159421A3AA35008B1407 /* UninitializedMutexViewController.h */,
+				4F9D159521A3AA35008B1407 /* UninitializedMutexViewController.m */,
+				4F9D159721A3B64A008B1407 /* ThreadLeakViewController.h */,
+				4F9D159821A3B64A008B1407 /* ThreadLeakViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -162,9 +172,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FBB4DD721A262BC000E9F61 /* main.m in Sources */,
+				4F9D159921A3B64A008B1407 /* ThreadLeakViewController.m in Sources */,
 				4FBB4DC921A262BB000E9F61 /* AppDelegate.m in Sources */,
 				4FBB4E0221A26A42000E9F61 /* RaceOnCollectionContainersViewController.m in Sources */,
 				4FBB4DF121A262FC000E9F61 /* RootViewController.m in Sources */,
+				4F9D159621A3AA35008B1407 /* UninitializedMutexViewController.m in Sources */,
 				4FBB4DFC21A2646B000E9F61 /* DataRaceViewController.m in Sources */,
 				4FBB4DFF21A26997000E9F61 /* SwiftAccessRacesViewController.swift in Sources */,
 			);

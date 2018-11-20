@@ -10,6 +10,8 @@
 
 #import "DataRaceViewController.h"
 #import "RaceOnCollectionContainersViewController.h"
+#import "UninitializedMutexViewController.h"
+#import "ThreadLeakViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -34,11 +36,15 @@
     _titles = @[
         @"Data race",
         @"Races on Collections and Other APIs",
+        @"Uninitialized mutex",
+        @"Thread leak",
         @"call a test method",
     ];
     _classes = @[
         [DataRaceViewController class],
         [RaceOnCollectionContainersViewController class],
+        [UninitializedMutexViewController class],
+        [ThreadLeakViewController class],
         @"testMethod",
     ];
 }
