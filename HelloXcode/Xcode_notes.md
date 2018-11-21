@@ -37,7 +37,7 @@ Address Sanitizer支持检查的类型，如下
   * Detects when stack variable memory is accessed after its declaring function returns.
   * 开启这个功能，需要单独打开下面这个Detect use of stack after return设置
 
-![](images/Turn on Detect use of stack after return.png)
+![](images/Turn On Detect use of stack after return.png)
 
 * Use of Out-of-Scope Stack Memory
   * Detects when variables are accessed outside of their declared scope.（访问栈上作用域之外的变量）
@@ -58,6 +58,12 @@ Address Sanitizer支持检查的类型，如下
 Xcode打开Thread Sanitizer（简称TSan）设置，如下
 
 ![](images/Turn On Thread Sanitizer.png)
+
+目前TSan仅支持模拟器，不支持设备。
+
+> TSan is supported only for 64-bit macOS and 64-bit iOS and tvOS simulators (watchOS is not supported). You cannot use TSan when running apps on a device.
+
+
 
 Thread Sanitizer支持检查的情况，如下
 
@@ -81,6 +87,24 @@ Thread Sanitizer支持检查的情况，如下
   * Detects when threads aren't closed after use.
 
 > 经测试，Xcode 9.4.1 (9F2000)，没有检测到上面两种情况。
+
+
+
+#### （3）Main Thread Checker
+
+Xcode默认打开Main Thread Checker设置，如下
+
+![](images/Turn On Main Thread Checker.png)
+
+​        文档上描述，Main Thread Checker设置，用于检测非主线程中更新UI的操作，同时指出非主线程中更新UI，会导致视图错误、数据损坏以及crash等问题。
+
+> Updating UI on a thread other than the main thread is a common mistake that can result in missed UI updates, visual defects, data corruptions, and crashes.
+
+​        注意：这里只是禁止非主线程更新UI，但是非主线程绘图还是可以的。异步刷新方式，就是采用非主线程绘图，然后主线程更新UI。
+
+​       `libMainThreadChecker.dylib`提供Main Thread Checker功能，由于是动态库，不要重新编译，就可以使用Main Thread Checker功能。`libMainThreadChecker.dylib`位于**/Applications/Xcode.app/Contents/Developer/usr/lib/libMainThreadChecker.dylib**
+
+> lipo -info libMainThreadChecker.dylib，检查发现libMainThreadChecker.dylib只有模拟器架构的。
 
 
 
