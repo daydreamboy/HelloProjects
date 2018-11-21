@@ -73,10 +73,11 @@ NS_AVAILABLE_IOS(5_0)
 
  @param string the JSON formatted string
  @param options the NSJSONReadingOptions
- @param objectClass the class, and only for NSDictionary/NSArray/NSMutableDictionary/NSMutableArray
+ @param objectClass the class, and only for NSDictionary/NSArray/NSMutableDictionary/NSMutableArray/nil.
+                    Pass nil, the return object type is not determined by the objectClass.
  @return the JSON object. If the string is not JSON formatted, return nil. If the JSON object not match the objectClass, return nil.
  */
-+ (nullable id)JSONObjectWithString:(NSString *)string options:(NSJSONReadingOptions)options objectClass:(Class)objectClass;
++ (nullable id)JSONObjectWithString:(NSString *)string options:(NSJSONReadingOptions)options objectClass:(nullable Class)objectClass;
 
 #pragma mark - Data to Object
 
@@ -97,10 +98,11 @@ NS_AVAILABLE_IOS(5_0)
 
  @param data the JSON formatted data
  @param options the NSJSONReadingOptions
- @param objectClass the class, and only for NSDictionary/NSArray/NSMutableDictionary/NSMutableArray
+ @param objectClass the class, and only for NSDictionary/NSArray/NSMutableDictionary/NSMutableArray/nil.
+                    Pass nil, the return object type is not determined by the objectClass.
  @return the JSON object. If the string is not JSON formatted, return nil. If the JSON object not match the objectClass, return nil.
  */
-+ (nullable id)JSONObjectWithData:(NSData *)data options:(NSJSONReadingOptions)options objectClass:(Class)objectClass;
++ (nullable id)JSONObjectWithData:(NSData *)data options:(NSJSONReadingOptions)options objectClass:(nullable Class)objectClass;
 
 #pragma mark - JSON Escaped String
 

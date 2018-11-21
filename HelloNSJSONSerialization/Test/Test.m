@@ -137,6 +137,26 @@
     XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:dict printOptions:kNilOptions filterInvalidObjects:YES], @"{\"null\":null}");
 }
 
+#pragma mark > Safe JSON Object
+
+- (void)test_safeJSONObjectWithObject {
+    
+}
+
+#pragma mark - String to Object
+
+#pragma mark > to NSDictionary/NSArray
+
+- (void)test_JSONArrayWithString {
+    
+}
+
+- (void)test_JSONDictWithString {
+    
+}
+
+#pragma mark > to NSMutableDictionary/NSMutableArray
+
 - (void)test_JSONMutableDictWithString {
     NSDictionary *dict;
     NSString *jsonString;
@@ -165,6 +185,86 @@
     NSLog(@"mutuable dictionary: %@", dictM);
 }
 
+- (void)test_JSONMutableArrayWithString {
+    
+}
+
+#pragma mark > to id
+
+- (void)test_JSONObjectWithString_options_objectClass {
+    
+}
+
+#pragma mark - Data to Object
+
+#pragma mark > to NSDictionary/NSArray
+
+- (void)test_JSONDictWithData {
+    
+}
+
+- (void)test_JSONArrayWithData {
+    
+}
+
+#pragma mark > to NSMutableDictionary/NSMutableArray
+
+- (void)test_JSONMutableDictWithData {
+    
+}
+
+- (void)test_JSONMutableArrayWithData {
+    
+}
+
+#pragma mark > to id
+
+- (void)test_JSONObjectWithData_options_objectClass {
+    id value;
+    NSData *data;
+    
+    // Case 1
+    data = [STR_OF_JSON({ "key": "value" }) dataUsingEncoding:NSUTF8StringEncoding];
+    value = [WCJSONTool JSONObjectWithData:data options:NSJSONReadingMutableLeaves objectClass:[@[] class]];
+    XCTAssertNil(value);
+    
+    // Case 2
+    data = [STR_OF_JSON({ "key": "value" }) dataUsingEncoding:NSUTF8StringEncoding];
+    value = [WCJSONTool JSONObjectWithData:data options:NSJSONReadingMutableLeaves objectClass:[NSArray class]];
+    XCTAssertNil(value);
+    
+    // Case 3
+    data = [STR_OF_JSON({ "key": "value" }) dataUsingEncoding:NSUTF8StringEncoding];
+    value = [WCJSONTool JSONObjectWithData:data options:NSJSONReadingMutableLeaves objectClass:[NSMutableDictionary class]];
+    XCTAssertNil(value);
+    
+    // Case 4
+    data = [STR_OF_JSON({ "key": "value" }) dataUsingEncoding:NSUTF8StringEncoding];
+    value = [WCJSONTool JSONObjectWithData:data options:NSJSONReadingMutableLeaves objectClass:[NSDictionary class]];
+    XCTAssertNotNil(value);
+    XCTAssertTrue([value isKindOfClass:[NSDictionary class]]);
+    
+    // Case 5
+    data = [STR_OF_JSON({ "key": "value" }) dataUsingEncoding:NSUTF8StringEncoding];
+    value = [WCJSONTool JSONObjectWithData:data options:NSJSONReadingMutableContainers objectClass:[NSMutableDictionary class]];
+    XCTAssertNotNil(value);
+    XCTAssertTrue([value isKindOfClass:[NSMutableDictionary class]]);
+    
+    // Case 6
+    data = [STR_OF_JSON({ "key": "value" }) dataUsingEncoding:NSUTF8StringEncoding];
+    value = [WCJSONTool JSONObjectWithData:data options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves objectClass:nil];
+    XCTAssertNotNil(value);
+    XCTAssertTrue([value isKindOfClass:[NSMutableDictionary class]]);
+    
+    // Case 7
+    data = [STR_OF_JSON([ "1", "2" ]) dataUsingEncoding:NSUTF8StringEncoding];
+    value = [WCJSONTool JSONObjectWithData:data options:NSJSONReadingMutableContainers | NSJSONReadingMutableLeaves objectClass:nil];
+    XCTAssertNotNil(value);
+    XCTAssertTrue([value isKindOfClass:[NSMutableArray class]]);
+}
+
+#pragma mark - JSON Escaped String
+
 - (void)test_JSONEscapedStringWithString {
     NSString *string;
     NSString *outputString;
@@ -192,9 +292,43 @@
                               "action": "wangwang://p2pconversation/sendText?text=dGhpcyBpcyBhIGV4YW1wbGU=&toLongId=Y250YW9iYW9rYW5nYXJvbzg1NjcyMTU=&asLocal=1&asReceiver=1"
                           }
                           ]
-    );
+                         );
     outputString = [WCJSONTool JSONEscapedStringWithString:string];
     NSLog(@"%@", outputString);
+}
+
+#pragma mark - Assistant Methods
+
+#pragma mark > Key Path Query
+
+- (void)test_arrayOfJSONObject_usingKeyPath {
+    
+}
+
+- (void)test_dictionaryOfJSONObject_usingKeyPath {
+    
+}
+
+- (void)test_stringOfJSONObject_usingKeyPath {
+    
+}
+
+- (void)test_integerOfJSONObject_usingKeyPath {
+    
+}
+
+- (void)test_numberOfJSONObject_usingKeyPath {
+    
+}
+- (void)test_boolOfJSONObject_usingKeyPath {
+    
+}
+- (void)test_nullOfJSONObject_usingKeyPath {
+    
+}
+
+- (void)test_valueOfJSONObject_usingKeyPath {
+    
 }
 
 #pragma mark - 

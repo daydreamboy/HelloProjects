@@ -129,13 +129,7 @@
 
 #pragma mark > to id
 
-/**
- Convert the JSON formatted string to NSArray or NSDictionary object
- 
- @param string the JSON formatted string
- @return If the string is not JSON formatted, return nil.
- */
-+ (nullable id)JSONObjectWithString:(NSString *)string options:(NSJSONReadingOptions)options objectClass:(Class)objectClass {
++ (nullable id)JSONObjectWithString:(NSString *)string options:(NSJSONReadingOptions)options objectClass:(nullable Class)objectClass {
     return [self JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:options objectClass:objectClass];
 }
 
@@ -163,12 +157,16 @@
 
 #pragma mark > to id
 
-+ (nullable id)JSONObjectWithData:(NSData *)data options:(NSJSONReadingOptions)options objectClass:(Class)objectClass {
-    if (![data isKindOfClass:[NSData class]] && (
-        [NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSArray class])] ||
-        [NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSMutableArray class])] ||
-        [NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSDictionary class])] ||
-        [NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSMutableDictionary class])])
++ (nullable id)JSONObjectWithData:(NSData *)data options:(NSJSONReadingOptions)options objectClass:(nullable Class)objectClass {
+    if (![data isKindOfClass:[NSData class]]) {
+        return nil;
+    }
+    
+    if (objectClass &&
+        ![NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSArray class])] &&
+        ![NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSMutableArray class])] &&
+        ![NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSDictionary class])] &&
+        ![NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSMutableDictionary class])]
         ) {
         return nil;
     }
@@ -180,8 +178,13 @@
             NSLog(@"[%@] error parsing JSON: %@", NSStringFromClass([self class]), error);
         }
         
-        if ([JSONObject isKindOfClass:objectClass]) {
+        if (objectClass == nil) {
             return JSONObject;
+        }
+        else {
+            if ([JSONObject isKindOfClass:objectClass]) {
+                return JSONObject;
+            }
         }
     }
     @catch (NSException *exception) {
