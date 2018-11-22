@@ -17,7 +17,8 @@
 #define STR_OF_JSON(...) @#__VA_ARGS__
 
 @interface Test : XCTestCase
-
+@property (nonatomic, strong) id JSONObject1;
+@property (nonatomic, strong) id JSONObject2;
 @end
 
 @implementation Test
@@ -25,6 +26,16 @@
 - (void)setUp {
     [super setUp];
     NSLog(@"\n");
+    
+    NSString *path;
+    
+    path = [[NSBundle bundleForClass:[self class]] pathForResource:@"data1" ofType:@"json"];
+    self.JSONObject1 = [WCJSONTool JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingMutableContainers objectClass:nil];
+    XCTAssertNotNil(self.JSONObject1);
+    
+    path = [[NSBundle bundleForClass:[self class]] pathForResource:@"data2" ofType:@"json"];
+    self.JSONObject2 = [WCJSONTool JSONObjectWithData:[NSData dataWithContentsOfFile:path] options:NSJSONReadingMutableContainers objectClass:nil];
+    XCTAssertNotNil(self.JSONObject2);
 }
 
 - (void)tearDown {
@@ -302,33 +313,123 @@
 #pragma mark > Key Path Query
 
 - (void)test_arrayOfJSONObject_usingKeyPath {
+    NSArray *arr = [WCJSONTool arrayOfJSONObject:self.JSONObject1 usingKeyPath:@"xValue.msglist"];
     
+    XCTAssertTrue([arr isKindOfClass:[NSArray class]]);
 }
 
 - (void)test_dictionaryOfJSONObject_usingKeyPath {
+    NSDictionary *dict = [WCJSONTool dictionaryOfJSONObject:self.JSONObject1 usingKeyPath:@"xValue.msglist.[0]"];
     
+    XCTAssertTrue([dict isKindOfClass:[NSDictionary class]]);
 }
 
 - (void)test_stringOfJSONObject_usingKeyPath {
+    NSString *str = [WCJSONTool stringOfJSONObject:self.JSONObject1 usingKeyPath:@""];
     
+    XCTAssertNil(str);
 }
 
 - (void)test_integerOfJSONObject_usingKeyPath {
+    NSInteger n;
     
+    // Case
+    n = [WCJSONTool integerOfJSONObject:self.JSONObject1 usingKeyPath:@"xValue.page"];
+    XCTAssertTrue(n == 1);
+    
+    // Case
+    n = [WCJSONTool integerOfJSONObject:self.JSONObject1 usingKeyPath:@"xValue.pageSize"];
+    XCTAssertTrue(n == 20);
 }
 
 - (void)test_numberOfJSONObject_usingKeyPath {
-    
+    XCTAssertEqualObjects(@(88), [WCJSONTool numberOfJSONObject:self.JSONObject1 usingKeyPath:@"xValue.msgreplyList.2471.number-key"]);
 }
+
 - (void)test_boolOfJSONObject_usingKeyPath {
+    NSString *JSONString;
+    NSObject *JSONObject;
     
+    // Case
+    XCTAssertTrue([WCJSONTool boolOfJSONObject:self.JSONObject1 usingKeyPath:@"xValue.msgreplyList.2471.true-key"]);
+    // Case
+    XCTAssertFalse([WCJSONTool boolOfJSONObject:self.JSONObject1 usingKeyPath:@"xValue.msgreplyList.2471.false-key"]);
+    // Case
+    XCTAssertFalse([WCJSONTool boolOfJSONObject:self.JSONObject1 usingKeyPath:@"xValue.msgreplyList.2471.none-exist-key"]);
+    
+    // Case
+    JSONString = @"{\"true-key\": true, \"false-key\": false}";
+    JSONObject = [NSJSONSerialization JSONObjectWithData:[JSONString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+    
+    XCTAssertTrue([WCJSONTool boolOfJSONObject:JSONObject usingKeyPath:@"true-key"]);
+    XCTAssertFalse([WCJSONTool boolOfJSONObject:JSONObject usingKeyPath:@"false-key"]);
+    XCTAssertFalse([WCJSONTool boolOfJSONObject:JSONObject usingKeyPath:@"none-exist-key"]);
 }
+
 - (void)test_nullOfJSONObject_usingKeyPath {
-    
+    XCTAssertEqualObjects([NSNull null], [WCJSONTool nullOfJSONObject:self.JSONObject1 usingKeyPath:@"xValue.msgreplyList.2471.null-key"]);
 }
 
 - (void)test_valueOfJSONObject_usingKeyPath {
+    NSString *JSONString;
+    NSObject *JSONObject;
+    id value;
     
+    // Case
+    JSONString = @"{\"true-key\": true, \"false-key\": false}";
+    JSONObject = [NSJSONSerialization JSONObjectWithData:[JSONString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"true-key"];
+    XCTAssertEqualObjects(@(1), value);
+    
+    // Case
+    JSONString = @"[123, 456]";
+    JSONObject = [NSJSONSerialization JSONObjectWithData:[JSONString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"[1]"];
+    XCTAssertEqualObjects(@(456), value);
+    
+    // Case
+    value = [WCJSONTool valueOfJSONObject:@[@(123), @(456)] usingKeyPath:@"[2]"];
+    XCTAssertNil(value);
+    
+    // Case
+    XCTAssertNil([WCJSONTool valueOfJSONObject:nil usingKeyPath:@"[1]"]);
+    
+    // Case
+    XCTAssertNil([WCJSONTool valueOfJSONObject:nil usingKeyPath:@""]);
+    
+    // Case: invalidJSONObject
+    JSONObject = @{ @(123): @"we" };
+    XCTAssertNil([WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"123"]);
+}
+
+#pragma mark > Print JSON string
+
+- (void)test_printJSONStringFromJSONObject {
+    id JSONObject;
+    
+    // Case
+    JSONObject = @{
+        @"ret": @{
+            @"code": @(101),
+            @"msg": @"token error."
+        },
+        @"data": @"",
+        @"cookies": @""
+    };
+
+    [WCJSONTool printJSONStringFromJSONObject:JSONObject];
+
+    // Case
+    JSONObject = @{
+        @"ret": @{
+            @"code": @(0),
+            @"msg": @""
+        },
+        @"data": @"{\"driverTeachNote\":\"点击拨打电话按钮后，会有400专线联系您，请注意接听。\",\"orderOverCallLimitTimes\":\"3600\",\"waitCallBackNote2\":\"稍后请接听滴滴400来电与对方联系\",\"statusUrl\":\"http://10.10.35.9:8080/callback-mobile-protect/MobileProtect/Tencent/statusNotify.htm\",\"recordUrl\":\"http://10.10.35.9:8080/callback-mobile-protect/MobileProtect/Tencent/recordURLNotify.htm\",\"waitCallBackNote\":\"请准备接听•••\",\"waitCallBackNote3\":\"对方不会看到您的手机号\",\"isSupportMP\":1,\"mobileNameNote\":\"滴滴接驾专线\",\"cityId\":7,\"accessSign\":\"eJxFkFFPgzAQx78LrxrXQks7kz3gRnBmmhHATV*aSgvWKTDoOsH43WWMxXv8-e7yv7sfK15FN7yqlGBcM6cW1q0FrOsBy*9K1ZLxTMu6xzae2gBcpJF1o8rixAHE0HYA*JdKyEKrTJ3nKEQEA*ISCAhEY0uj8t49*sl8GS5WC-8uIEFEfcV3MX0OTdLG2Ue37*hcla9vW-c930xzaT94y9wzbVeGyfq4vzqKl-Q*KhA4pNkTNRNReRPyaYJmvSF6i5vZJUzs2HBkHwnRaVGEHXeUWn3JgWMHQLevkfM0LQ*FZrqt5PCV3z*m0lkx\",\"mpType\":\"258:2\",\"waitDriverNote2\":\"为保护您的手机号码不被泄漏，司机将通过400电话联系您，千万记得接听哦～\",\"waitDriverNote1\":\"请注意接听滴滴400电话\",\"checkStatuswaitTimes\":\"50\",\"driverZhiboZTeachNote\":\"直拨司机教育文案\",\"hangupUrl\":\"http://10.10.35.9:8080/callback-mobile-protect/MobileProtect/Tencent/callDetailNotify.htm\",\"mobileBillUrl\":\"\",\"callAuthNote2\":\"网络电话授权提醒文案\",\"tripNote\":\"为避免骚扰，行程结束后无法联系对方，如有特殊情况，请呼叫滴滴客服\",\"callAuthNote3\":\"滴滴想使用您的麦克风文案\",\"callAuthNote1\":\"网络电话授权提醒标题\"}",
+        @"cookies": @""
+    };
+
+    [WCJSONTool printJSONStringFromJSONObject:JSONObject];
 }
 
 #pragma mark - 

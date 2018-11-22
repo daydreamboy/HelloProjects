@@ -142,8 +142,18 @@ NS_AVAILABLE_IOS(5_0)
  @param JSONObject a NSDictionary or a NSArray
  @param keyPath a key or a keyPath separated by `.`, such as @"key1.key2.[1].key3"
  @return return nil, if the keyPath not match the JSONObject
+ @note If keyPath is nil, or empty string, will return the original JSONObject
  */
 + (nullable id)valueOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath;
+
+#pragma mark > Print JSON string
+
+/**
+ Print JSON format string with a JSON Object
+
+ @param JSONObject the JSON Object (e.g. NSDictionary/NSArray/NSString/NSNumber/NSNull)
+ */
++ (void)printJSONStringFromJSONObject:(id)JSONObject;
 
 @end
 

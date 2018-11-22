@@ -292,10 +292,7 @@
         if ([key hasPrefix:@"["] && [key hasSuffix:@"]"]) {
             // Note: handle NSArray container
             if (![NSPREDICATE(@"^\\[(0|[1-9]\\d*)\\]$") evaluateWithObject:key]) {
-#if DEBUG
-                NSString *reason = [NSString stringWithFormat:@"%@ is not a subscript of NSArray", key];
-                @throw [NSException exceptionWithName:NSInvalidArgumentException reason:reason userInfo:nil];
-#endif
+                NSLog(@"Error: %@ is not a subscript of NSArray", key);
                 return nil;
             }
             
@@ -303,12 +300,12 @@
             NSArray *arr = (NSArray *)value;
             
             if (![arr isKindOfClass:[NSArray class]]) {
-                NSLog(@"Warning: Expected a NSArray but not %@", arr);
+                NSLog(@"Error: Expected a NSArray but not %@", arr);
                 return nil;
             }
             
             if (subscript >= arr.count) {
-                NSLog(@"Warning: subscript %@ is out of bounds [0..%ld]", key, (long)arr.count - 1);
+                NSLog(@"Error: subscript %@ is out of bounds [0..%ld]", key, (long)arr.count - 1);
                 return nil;
             }
             
@@ -319,7 +316,7 @@
             NSDictionary *dict = (NSDictionary *)value;
             
             if (![dict isKindOfClass:[NSDictionary class]]) {
-                NSLog(@"Warning: Expected a NSDictionary but not %@", dict);
+                NSLog(@"Error: Expected a NSDictionary but not %@", dict);
                 return nil;
             }
             
@@ -329,6 +326,13 @@
     }
     
     return value;
+}
+
+#pragma mark > Print JSON string
+
++ (void)printJSONStringFromJSONObject:(id)JSONObject {
+    NSString *JSONString = [self JSONStringWithObject:JSONObject printOptions:NSJSONWritingPrettyPrinted filterInvalidObjects:YES];
+    NSLog(@"\n%@\n", JSONString);
 }
 
 @end

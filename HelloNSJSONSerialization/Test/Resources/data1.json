@@ -1,0 +1,50 @@
+{
+    "xCode":"9999",
+    "":"empty",
+    "xMessage":"返回成功",
+    "xValue":{
+        "page":1,
+        "pageSize":"20",
+        "cursor":"1432289705",
+        "msgreplyList":{
+            "2471":{
+                "id":"2471",
+                "sex":"女",
+                "author":"416565332",
+                "imageUrl":"http://quc.qhimg.com/dm/150_150_100/t01100fa270f40f0e4a.jpg",
+                "title":"",
+                "notify":"",
+                "level":"1",
+                "userName":"fengye_xiao",
+                "layer":"2",
+                "create_time":"05-25 16:08",
+                "status":"1",
+                "content":"Hfdchutedggtrdchvuttdtchvhbjdrsthbkbudrxfvjbuctchbkhhxtchvuchbknkftdhbknicrxbkjictchotsrcjpuftcnotchbkbjctdrxhovtxubohogydrtblhydrstihuf5tub",
+                "null-key": null,
+                "number-key": 88,
+                "true-key": true,
+                "false-key": false
+            }
+        },
+        "msglist":[
+                   {
+                   "id":"2426",
+                   "comments_on":"0",
+                   "sex":"男",
+                   "author":"1315051265",
+                   "support":"0",
+                   "imageUrl":"http://quc.qhimg.com/dm/150_150_100/t00df551a583a87f4e9.jpg",
+                   "notify":"",
+                   "title":"",
+                   "level":"0",
+                   "ctime":"1432289705",
+                   "against":"0",
+                   "layer":"1",
+                   "userName":"helloworld178",
+                   "create_time":"05-22 18:15",
+                   "content":"y"
+                   }
+                   ],
+        "total":"22"
+    }
+}

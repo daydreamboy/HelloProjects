@@ -19,6 +19,8 @@
 		4F70BC0C203012BD0017C99B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70BC0B203012BD0017C99B /* main.m */; };
 		4F70BC1520301C600017C99B /* WCJSONTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70BC1420301C600017C99B /* WCJSONTool.m */; };
 		4F70BC36203025CE0017C99B /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70BC35203025CE0017C99B /* Test.m */; };
+		4F71139B21A64FEE00DCB8FA /* data2.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F71139921A64FEE00DCB8FA /* data2.json */; };
+		4F71139C21A64FEE00DCB8FA /* data1.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F71139A21A64FEE00DCB8FA /* data1.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		4F70BC33203025CE0017C99B /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F70BC35203025CE0017C99B /* Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		4F70BC37203025CE0017C99B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F71139921A64FEE00DCB8FA /* data2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data2.json; sourceTree = "<group>"; };
+		4F71139A21A64FEE00DCB8FA /* data1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data1.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,11 +135,21 @@
 		4F70BC34203025CE0017C99B /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				4F71139821A64F7200DCB8FA /* Resources */,
 				4F70BC35203025CE0017C99B /* Test.m */,
 				4F4588CB215CD56A005A52C8 /* Tests_NSJSONSerialization.m */,
 				4F70BC37203025CE0017C99B /* Info.plist */,
 			);
 			path = Test;
+			sourceTree = "<group>";
+		};
+		4F71139821A64F7200DCB8FA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4F71139921A64FEE00DCB8FA /* data2.json */,
+				4F71139A21A64FEE00DCB8FA /* data1.json */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -230,6 +244,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F71139C21A64FEE00DCB8FA /* data1.json in Resources */,
+				4F71139B21A64FEE00DCB8FA /* data2.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
