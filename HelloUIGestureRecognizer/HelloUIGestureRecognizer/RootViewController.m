@@ -14,6 +14,7 @@
 #import "DetectSwipeUsingUIPanGestureRecognizerViewController.h"
 #import "DragDownAndScaleImageViewViewController.h"
 #import "TapGestureVSButtonClickViewController.h"
+#import "DifferentTapGesturesOnParentChildViewViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -42,6 +43,7 @@
         @"Detect swipe using UIPanGestureRecognizer",
         @"Drag down and scale image",
         @"Tap gesture vs. button UIControlEventTouchUpInside",
+        @"Different tap gestures on parent view and child view",
         @"call a test method",
     ];
     _classes = @[
@@ -51,6 +53,7 @@
         [DetectSwipeUsingUIPanGestureRecognizerViewController class],
         [DragDownAndScaleImageViewViewController class],
         [TapGestureVSButtonClickViewController class],
+        [DifferentTapGesturesOnParentChildViewViewController class],
         @"testMethod",
     ];
 }

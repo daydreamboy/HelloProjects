@@ -17,6 +17,7 @@
 		4F671A391F944F5B0031E9C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F671A381F944F5B0031E9C9 /* Assets.xcassets */; };
 		4F671A3C1F944F5B0031E9C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F671A3A1F944F5B0031E9C9 /* LaunchScreen.storyboard */; };
 		4F671A491F944FAD0031E9C9 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F671A481F944FAD0031E9C9 /* RootViewController.m */; };
+		4F7113B221A6B03700DCB8FA /* DifferentTapGesturesOnParentChildViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7113B121A6B03700DCB8FA /* DifferentTapGesturesOnParentChildViewViewController.m */; };
 		4F8FDA2D20EB566300C766D4 /* DragDownAndScaleImageViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FDA2C20EB566300C766D4 /* DragDownAndScaleImageViewViewController.m */; };
 		4F8FDA3020EB571300C766D4 /* Xcode.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8FDA2F20EB571300C766D4 /* Xcode.png */; };
 		4FFAF8BB214975D500843530 /* TapGestureVSButtonClickViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFAF8BA214975D500843530 /* TapGestureVSButtonClickViewController.m */; };
@@ -42,6 +43,8 @@
 		4F671A3D1F944F5B0031E9C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F671A471F944FAD0031E9C9 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F671A481F944FAD0031E9C9 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		4F7113B021A6B03700DCB8FA /* DifferentTapGesturesOnParentChildViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DifferentTapGesturesOnParentChildViewViewController.h; sourceTree = "<group>"; };
+		4F7113B121A6B03700DCB8FA /* DifferentTapGesturesOnParentChildViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DifferentTapGesturesOnParentChildViewViewController.m; sourceTree = "<group>"; };
 		4F8FDA2B20EB566300C766D4 /* DragDownAndScaleImageViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragDownAndScaleImageViewViewController.h; sourceTree = "<group>"; };
 		4F8FDA2C20EB566300C766D4 /* DragDownAndScaleImageViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DragDownAndScaleImageViewViewController.m; sourceTree = "<group>"; };
 		4F8FDA2F20EB571300C766D4 /* Xcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Xcode.png; sourceTree = "<group>"; };
@@ -126,6 +129,8 @@
 				4F8FDA2C20EB566300C766D4 /* DragDownAndScaleImageViewViewController.m */,
 				4FFAF8B9214975D500843530 /* TapGestureVSButtonClickViewController.h */,
 				4FFAF8BA214975D500843530 /* TapGestureVSButtonClickViewController.m */,
+				4F7113B021A6B03700DCB8FA /* DifferentTapGesturesOnParentChildViewViewController.h */,
+				4F7113B121A6B03700DCB8FA /* DifferentTapGesturesOnParentChildViewViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -215,6 +220,7 @@
 				4FFAF8BB214975D500843530 /* TapGestureVSButtonClickViewController.m in Sources */,
 				4F8FDA2D20EB566300C766D4 /* DragDownAndScaleImageViewViewController.m in Sources */,
 				4F66F76B21986133007DA8FD /* WCViewControllerTool.m in Sources */,
+				4F7113B221A6B03700DCB8FA /* DifferentTapGesturesOnParentChildViewViewController.m in Sources */,
 				4F49902E1F9D9D6600D313B5 /* DragViewRestrictedViewController.m in Sources */,
 				4F4990261F9D987F00D313B5 /* DragViewDemo1UsingUIPanGestureRecognizerViewController.m in Sources */,
 				4F49902B1F9D99C400D313B5 /* DragViewDemo2UsingUIPanGestureRecognizerViewController.m in Sources */,
