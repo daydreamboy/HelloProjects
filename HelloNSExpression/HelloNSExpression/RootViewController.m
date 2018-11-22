@@ -11,6 +11,7 @@
 #import "NumericExpressionViewController.h"
 #import "LogicalExpressionViewController.h"
 #import "PredefinedFunctionsExpressionViewController.h"
+#import "FormulaCalculationViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -33,15 +34,17 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"Numeric Expression",
-        @"Logical Expression (NSPredicate)",
+        @"Numeric expression",
+        @"Logical expression (NSPredicate)",
         @"Functions expression",
+        @"Formula expression",
         @"call a test method",
     ];
     _classes = @[
         [NumericExpressionViewController class],
         [LogicalExpressionViewController class],
         [PredefinedFunctionsExpressionViewController class],
+        [FormulaCalculationViewController class],
         @"testMethod",
     ];
 }

@@ -14,6 +14,7 @@
 		4F66F77121987054007DA8FD /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F66F76D21987054007DA8FD /* RootViewController.m */; };
 		4F66F775219870CE007DA8FD /* NumericExpressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F66F774219870CE007DA8FD /* NumericExpressionViewController.m */; };
 		4F66F77821987F91007DA8FD /* PredefinedFunctionsExpressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F66F77721987F91007DA8FD /* PredefinedFunctionsExpressionViewController.m */; };
+		4F71139F21A65B7E00DCB8FA /* FormulaCalculationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F71139E21A65B7E00DCB8FA /* FormulaCalculationViewController.m */; };
 		4F9D159D21A4473F008B1407 /* WCStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D159C21A4473F008B1407 /* WCStringTool.m */; };
 		4F9D15A021A45AF0008B1407 /* LogicalExpressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D159F21A45AF0008B1407 /* LogicalExpressionViewController.m */; };
 		4F9D15A421A45E88008B1407 /* NSNumber+CustomFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D15A321A45E88008B1407 /* NSNumber+CustomFunction.m */; };
@@ -34,6 +35,8 @@
 		4F66F774219870CE007DA8FD /* NumericExpressionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NumericExpressionViewController.m; sourceTree = "<group>"; };
 		4F66F77621987F91007DA8FD /* PredefinedFunctionsExpressionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PredefinedFunctionsExpressionViewController.h; sourceTree = "<group>"; };
 		4F66F77721987F91007DA8FD /* PredefinedFunctionsExpressionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PredefinedFunctionsExpressionViewController.m; sourceTree = "<group>"; };
+		4F71139D21A65B7E00DCB8FA /* FormulaCalculationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FormulaCalculationViewController.h; sourceTree = "<group>"; };
+		4F71139E21A65B7E00DCB8FA /* FormulaCalculationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FormulaCalculationViewController.m; sourceTree = "<group>"; };
 		4F9D159B21A4473F008B1407 /* WCStringTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStringTool.h; sourceTree = "<group>"; };
 		4F9D159C21A4473F008B1407 /* WCStringTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCStringTool.m; sourceTree = "<group>"; };
 		4F9D159E21A45AF0008B1407 /* LogicalExpressionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogicalExpressionViewController.h; sourceTree = "<group>"; };
@@ -98,6 +101,8 @@
 				4F9D159F21A45AF0008B1407 /* LogicalExpressionViewController.m */,
 				4F66F77621987F91007DA8FD /* PredefinedFunctionsExpressionViewController.h */,
 				4F66F77721987F91007DA8FD /* PredefinedFunctionsExpressionViewController.m */,
+				4F71139D21A65B7E00DCB8FA /* FormulaCalculationViewController.h */,
+				4F71139E21A65B7E00DCB8FA /* FormulaCalculationViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -200,6 +205,7 @@
 				4F9D159D21A4473F008B1407 /* WCStringTool.m in Sources */,
 				4F9D15A721A465D6008B1407 /* NSString+CustomFunction.m in Sources */,
 				4F66F754219851DE007DA8FD /* AppDelegate.m in Sources */,
+				4F71139F21A65B7E00DCB8FA /* FormulaCalculationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

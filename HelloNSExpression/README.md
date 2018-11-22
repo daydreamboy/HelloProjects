@@ -203,7 +203,7 @@ NSNumber *resultOfSqrt = [sqrtExpression expressionValueWithObject:nil context:n
 
 
 
-### 4、方程式计算[^3]
+### 4、公式计算[^3]
 
 例子
 
