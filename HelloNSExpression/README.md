@@ -64,8 +64,8 @@ NSNumber *resultOfSqrt = [sqrtExpression expressionValueWithObject:nil context:n
 注意：
 
 * 不同函数名，要求这里的obj是不同的类型。例如`average:`需要obj是一个NSArray<NSNumber *>，而`sqrt:`需要obj是一个NSNumber。
-
 * `- (id)expressionValueWithObject:(id)object context:(NSMutableDictionary *)context;`的作用是，获取表达式的值，其返回值类型是id类型。不同函数表达式用这个方法获取的返回值是不一样的。例如`average:`的返回值是NSNumber，而`max:`的返回值是NSArray<NSNumber *>。
+* 除了`+[NSExpression expressionForFunction:arguments:]`方法，`+[NSExpression expressionWithFormat:]`方法的format参数，也可以使用预定义函数。
 
 
 
@@ -199,15 +199,78 @@ NSNumber *resultOfSqrt = [sqrtExpression expressionValueWithObject:nil context:n
 
 ### 3、使用自定义函数表达式
 
+​       使用自定义函数。必须使用特定关键字`FUNCTION`或`function`，定义如下格式的字符串
 
+```c
+FUNCTION(arg0, '<custom function name>', arg1, arg2, ...)
+```
+
+上面这种形式，可以理解为运行时调用是，
+
+```objective-c
+[arg0 performSelector:<custom function name> withObject1:arg1 withObject2:arg2];
+```
+
+* arg0，可以是数字（e.g. 4）或者字符串（e.g. 'abcd'）。
+
+* '\<custom function name\>'，是自定义函数签名（e.g. 'factorial'、'gaussianWithMean:andVariance:'）
+* arg1，自定义函数的第一个参数。可以是数字（e.g. 4）或者字符串（e.g. 'abcd'）。
+* arg2，自定义函数的第二个参数。可以是数字（e.g. 4）或者字符串（e.g. 'abcd'）。
+
+
+
+#### （1）定义NSNumber和NSString的分类方法
+
+​            自定义函数的实现，是通过NSNumber和NSString的分类方法实现的。
+
+
+
+#### （2）使用`+[NSExpression expressionWithFormat:]`方法调用自定义函数
+
+​      `+[NSExpression expressionWithFormat:]`方法支持自定义函数字符串，但是`+[NSExpression expressionForFunction:arguments:]`方法不支持。
+
+
+
+举个例子，如下
+
+定义分类方法
+
+```objective-c
+@implementation NSNumber (CustomFunction)
+
+- (NSNumber *)factorial {
+    return @(tgamma([self doubleValue] + 1));
+}
+
+@end
+```
+
+
+
+使用`+[NSExpression expressionWithFormat:]`方法
+
+```objective-c
+NSString *formatString = [NSString stringWithString:@"FUNCTION(4, 'factorial')"];
+NSExpression *expression = [NSExpression expressionWithFormat:formatString];
+NSNumber *result = [expression expressionValueWithObject:nil context:nil];
+```
 
 
 
 ### 4、公式计算[^3]
 
-例子
+​           `+[NSExpression expressionWithFormat:]`方法的format参数支持变量(e.g. x)存在字符串中，然后`-[NSExpression expressionValueWithObject:context:]`的object参数可以提供该变量的值。这样可以完成一个简单的公式计算。
 
 
+
+举个例子，如下
+
+```objective-c
+NSString *formatString = [NSString stringWithString:@"sqrt(x)"];
+NSExpression *expression = [NSExpression expressionWithFormat:formatString];
+NSDictionary *variables = @{@"x", @2};
+NSNumber *result = [expression expressionValueWithObject:variables context:nil];
+```
 
 
 
