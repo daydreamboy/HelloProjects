@@ -108,8 +108,96 @@ Xcode默认打开Main Thread Checker设置，如下
 
 
 
+#### （4）Undefined Behavior Sanitizer
+
+Xcode打开Undefined Behavior Sanitizer（简称UBSan）设置，如下
+
+![](images/Turn On Undefined Behavior Sanitizer.png)
+
+
+
+UBSan支持检查的类型以及对于编译器flags，如下
+
+| UBSan check                                                  | Compiler flags                                               |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [Misaligned Pointer](dash-apple-api://load?topic_id=2872636&language=occ) | `-fsanitize=alignment`                                       |
+| [Invalid Boolean](dash-apple-api://load?topic_id=2872637&language=occ) | `-fsanitize=bool`                                            |
+| [Out-of-Bounds Array Access](dash-apple-api://load?topic_id=2880310&language=occ) | `-fsanitize=bounds`                                          |
+| [Invalid Enumeration Value](dash-apple-api://load?topic_id=2881022&language=occ) | `-fsanitize=enum`                                            |
+| [Dynamic Type Violation](dash-apple-api://load?topic_id=2872638&language=occ) | `-fsanitize=vptr`                                            |
+| [Invalid Float Cast](dash-apple-api://load?topic_id=2872639&language=occ) | `-fsanitize=float-cast-overflow `                            |
+| [Division by Zero](dash-apple-api://load?topic_id=2872666&language=occ) | `-fsanitize=integer-divide-by-zero `<br/>`-fsanitize=float-divide-by-zero` |
+| [Nonnull Variable Assignment Violation](dash-apple-api://load?topic_id=2891419&language=occ) |                                                              |
+| [Nonnull Argument Violation](dash-apple-api://load?topic_id=2872667&language=occ) | `-fsanitize=nonnull-attribute `<br/>`-fsanitize=nullability-arg` |
+| [Nonnull Return Value Violation](dash-apple-api://load?topic_id=2872668&language=occ) | `-fsanitize=returns-nonnull-attribute `<br/>`-fsanitize=nullability-return` |
+| [Nonnull Variable Assignment Violation](dash-apple-api://load?topic_id=2891419&language=occ) | `-fsanitize=nullability-assign`                              |
+| [Null Reference Creation and Null Pointer Dereference](dash-apple-api://load?topic_id=2872669&language=occ) | `-fsanitize=null `                                           |
+| [Invalid Object Size](dash-apple-api://load?topic_id=2872670&language=occ) | `-fsanitize=object-size `                                    |
+| [Invalid Shift](dash-apple-api://load?topic_id=2872671&language=occ) | `-fsanitize=shift `                                          |
+| [Integer Overflow](dash-apple-api://load?topic_id=2872672&language=occ) | `-fsanitize=signed-integer-overflow`                         |
+| [Reaching of Unreachable Point](dash-apple-api://load?topic_id=2872673&language=occ) | `-fsanitize=unreachable`                                     |
+| [Invalid Variable-Length Array](dash-apple-api://load?topic_id=2872674&language=occ) | `-fsanitize=vla-bound`                                       |
+
+
+
+* Misaligned Pointer
+
+​        通过指针来存取值，一般需要按照值的类型来对齐内存地址。例如int32_t的大小是4 bytes，该值存放的内存地址应该是4的倍数。如果代码中指针指向的地址不遵守这种对齐规则，则称为Misaligned Pointer。
+
+​       举个Misaligned Integer Pointer Assignment in C的例子，如下
+
+```objective-c
+- (void)test_Misaligned_Integer_Pointer_Assignment_in_C {
+    int8_t *buffer = malloc(64);
+    printf("%s: %p\n", [NSStringFromSelector(_cmd) UTF8String], buffer);
+    int32_t *pointer = (int32_t *)(buffer + 1);
+    *pointer = 42; // Error: misaligned integer pointer assignment
+    printf("%d\n", *pointer); // Error: misaligned integer pointer access
+}
+```
+
+​     buffer是分配64 bytes的首地址，malloc保证返回内存对齐的地址[^3]，因此buffer是内存对齐的，而pointer是buffer+1，并不是内存对齐的。使用pointer指针来存整型值42，以及取值，都会触发UBSan的警告。
+
+> 尽管打印的值也是正确的，但这种内存不对齐会影响性能，而且会有Undefined Behavior
+
+​     如果明确要存取不对齐的内存地址，可以直接使用`memcpy`函数。另外，结构体指针还可以使用`__attribute__((packed))`来允许不对齐的地址。
+
+​     举个Misaligned Structure Pointer Assignment in C的例子，如下
+
+```objective-c
+- (void)test_Misaligned_Structure_Pointer_Assignment_in_C {
+    struct A {
+        int32_t i32;
+        int64_t i64;
+    } /* __attribute__((packed)) */;
+    
+    int8_t *buffer = malloc(32);
+    printf("%s: %p\n", [NSStringFromSelector(_cmd) UTF8String], buffer);
+    struct A *pointer = (struct A *)(buffer + 1);
+    pointer->i32 = 7; // Error: pointer is misaligned
+    pointer->i64 = 8; // Error: pointer is misaligned
+}
+```
+
+​        比较明显，pointer也是Misaligned Pointer。这里i32字段，编译器会自动按照8对齐并且4 byte后面再增加4个byte padding，这样保证i64能满足按8对齐。但是pointer地址没有对齐，导致pointer->i32和pointer->i64都是misaligned。
+
+​        在结构体定义处，标记`__attribute__((packed))`，可以禁止编译器在结构体成员之间增加padding，这样i32内存大小是4 bytes，对于pointer->i32和pointer->i64的内存地址不对齐，UBSan不会再报错提示。
+
+
+
+
+
+
+
+
+
+
+
+
+
 ### Reference
 
 [^1]: https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/DynamicLibraries/100-Articles/LoggingDynamicLoaderEvents.html
 [^2]: https://developer.apple.com/documentation/code_diagnostics 
 
+[^3]: https://stackoverflow.com/questions/8575822/which-guarantees-does-malloc-make-about-memory-alignment 
