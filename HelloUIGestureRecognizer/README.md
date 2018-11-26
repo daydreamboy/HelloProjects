@@ -19,7 +19,7 @@ TapGesture的响应事件要比UIButton的UIControlEventTouchUpInside优先级�
 如果父视图需要知道子视图的点击事件，则可以用下面两种方式：
 
 * 父视图的手势，实现delegate的gestureRecognizerShouldBegin:方法
-* 父视图实现touchBegin/.../touchEnd方法
+* 父视图实现touchBegin/.../touchEnd方法，自己判断touchUpInside事件
 
 
 
