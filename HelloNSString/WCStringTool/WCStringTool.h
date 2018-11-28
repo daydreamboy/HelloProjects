@@ -96,7 +96,18 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)stringFromUIGestureRecognizerState:(UIGestureRecognizerState)state;
 
-#pragma mark - Handle String As Url (Use WCURLTool instead)
+#pragma mark - Handle String As Url (for checking url strictly, use WCURLTool instead)
+
+/**
+ Get key value pairs from url-like string
+
+ @param urlString the url-like string which contains ?key1=value1&key2=value2
+ @return the key value pairs
+ @discussion
+    1. The urlString expected has different keys. If have the same key, the return result is not determined.
+    2. This method not validates the urlString, pass malformed string may get the wrong result.
+ */
++ (nullable NSDictionary *)keyValuePairsWithUrlString:(NSString *)urlString;
 
 #pragma mark - Handle String As Plain
 

@@ -182,7 +182,35 @@
     }
 }
 
-#pragma mark - Handle String As Url (Use WCURLTool instead)
+#pragma mark - Handle String As Url (for checking url strictly, use WCURLTool instead)
+
++ (nullable NSDictionary *)keyValuePairsWithUrlString:(NSString *)urlString {
+    if (![urlString isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    NSRange range = [urlString rangeOfString:@"?"];
+    if (range.location == NSNotFound || range.length == 0 || range.location == urlString.length - 1) {
+        return nil;
+    }
+    
+    NSString *queryString = [urlString substringFromIndex:range.location + 1];
+    
+    NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
+    NSArray *queryComponents = [queryString componentsSeparatedByString:@"&"];
+    
+    for (NSString *keyValuePair in queryComponents) {
+        NSArray *pairComponents = [keyValuePair componentsSeparatedByString:@"="];
+        NSString *key = [pairComponents firstObject];
+        NSString *value = [pairComponents lastObject];
+        
+        if (key && value) {
+            dictM[key] = value;
+        }
+    }
+    
+    return dictM;
+}
 
 #pragma mark - Handle String As Plain
 

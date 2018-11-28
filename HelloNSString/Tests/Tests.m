@@ -177,6 +177,12 @@
 }
 */
 
+#pragma mark - Handle String As Url (for checking url strictly, use WCURLTool instead)
+
+- (void)test_keyValuePairsWithUrlString {
+    // TODO:
+}
+
 #pragma mark - Handle String As Plain
 
 #pragma mark > URL Encode/Decode
@@ -396,8 +402,6 @@
     substring = [WCStringTool firstSubstringWithString:originalString substringInCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@"0123456789"]];
     XCTAssertNil(substring);
 }
-
-#pragma mark - Handle String As Plain
 
 #pragma mark > String Validation
 
