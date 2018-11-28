@@ -19,7 +19,18 @@
 		4F53C98F2004A911003F79F6 /* PerformDispatchBlockOnThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53C98E2004A911003F79F6 /* PerformDispatchBlockOnThreadViewController.m */; };
 		4F53C9922004AFE8003F79F6 /* KeepThreadLongAliveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53C9912004AFE8003F79F6 /* KeepThreadLongAliveViewController.m */; };
 		4F9578E51FDF8A40009693CF /* WCThreadTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578E41FDF8A40009693CF /* WCThreadTool.m */; };
+		4FA9918A21AECD1200E928D8 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA9918921AECD1200E928D8 /* Tests.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4FA9918C21AECD1200E928D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B37F3061F83C4A500809F00 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B37F30D1F83C4A500809F00;
+			remoteInfo = HelloThread;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2B37F30E1F83C4A500809F00 /* HelloThread.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloThread.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,10 +56,20 @@
 		4F53C9912004AFE8003F79F6 /* KeepThreadLongAliveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeepThreadLongAliveViewController.m; sourceTree = "<group>"; };
 		4F9578E31FDF8A3F009693CF /* WCThreadTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCThreadTool.h; sourceTree = "<group>"; };
 		4F9578E41FDF8A40009693CF /* WCThreadTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCThreadTool.m; sourceTree = "<group>"; };
+		4FA9918721AECD1100E928D8 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FA9918921AECD1200E928D8 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		4FA9918B21AECD1200E928D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		2B37F30B1F83C4A500809F00 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FA9918421AECD1100E928D8 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -62,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				2B37F3101F83C4A500809F00 /* HelloThread */,
+				4FA9918821AECD1200E928D8 /* Tests */,
 				2B37F30F1F83C4A500809F00 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -70,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				2B37F30E1F83C4A500809F00 /* HelloThread.app */,
+				4FA9918721AECD1100E928D8 /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -135,6 +158,15 @@
 			path = WCThreadTool;
 			sourceTree = "<group>";
 		};
+		4FA9918821AECD1200E928D8 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4FA9918921AECD1200E928D8 /* Tests.m */,
+				4FA9918B21AECD1200E928D8 /* Info.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -155,6 +187,24 @@
 			productReference = 2B37F30E1F83C4A500809F00 /* HelloThread.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4FA9918621AECD1100E928D8 /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FA9919021AECD1200E928D8 /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				4FA9918321AECD1100E928D8 /* Sources */,
+				4FA9918421AECD1100E928D8 /* Frameworks */,
+				4FA9918521AECD1100E928D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4FA9918D21AECD1200E928D8 /* PBXTargetDependency */,
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = 4FA9918721AECD1100E928D8 /* Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -167,6 +217,11 @@
 					2B37F30D1F83C4A500809F00 = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+					};
+					4FA9918621AECD1100E928D8 = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2B37F30D1F83C4A500809F00;
 					};
 				};
 			};
@@ -184,6 +239,7 @@
 			projectRoot = "";
 			targets = (
 				2B37F30D1F83C4A500809F00 /* HelloThread */,
+				4FA9918621AECD1100E928D8 /* Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -195,6 +251,13 @@
 			files = (
 				2B37F31E1F83C4A500809F00 /* LaunchScreen.storyboard in Resources */,
 				2B37F31B1F83C4A500809F00 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FA9918521AECD1100E928D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -218,7 +281,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FA9918321AECD1100E928D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FA9918A21AECD1200E928D8 /* Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4FA9918D21AECD1200E928D8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2B37F30D1F83C4A500809F00 /* HelloThread */;
+			targetProxy = 4FA9918C21AECD1200E928D8 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2B37F31C1F83C4A500809F00 /* LaunchScreen.storyboard */ = {
@@ -362,6 +441,42 @@
 			};
 			name = Release;
 		};
+		4FA9918E21AECD1200E928D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloThread.app/HelloThread";
+			};
+			name = Debug;
+		};
+		4FA9918F21AECD1200E928D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloThread.app/HelloThread";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -379,6 +494,15 @@
 			buildConfigurations = (
 				2B37F3251F83C4A500809F00 /* Debug */,
 				2B37F3261F83C4A500809F00 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FA9919021AECD1200E928D8 /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FA9918E21AECD1200E928D8 /* Debug */,
+				4FA9918F21AECD1200E928D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
