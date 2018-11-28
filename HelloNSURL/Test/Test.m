@@ -180,6 +180,63 @@
     XCTAssertTrue(NSEqualRanges(components.rangeOfQuery, NSMakeRange(0, 0)));
     XCTAssertTrue(NSEqualRanges(components.rangeOfFragment, [urlString rangeOfString:@"Related"]));
     
+    // Case 6
+    urlString = @"wangx://ut/card?page=Page_Message&event=2101&arg1=&arg2=&arg3=&flags=k1,k2,k3&cardtype=1001";
+    components = [WCURLTool URLComponentsWithUrlString:urlString];
+    
+    XCTAssertEqualObjects(components.queryKeyValues[@"page"], @"Page_Message");
+    XCTAssertEqualObjects(components.queryKeyValues[@"event"], @"2101");
+    XCTAssertEqualObjects(components.queryKeyValues[@"arg1"], @"");
+    XCTAssertEqualObjects(components.queryKeyValues[@"arg2"], @"");
+    XCTAssertEqualObjects(components.queryKeyValues[@"arg3"], @"");
+    XCTAssertEqualObjects(components.queryKeyValues[@"flags"], @"k1,k2,k3");
+    XCTAssertEqualObjects(components.queryKeyValues[@"cardtype"], @"1001");
+    
+    // Case 7
+    urlString = @"wangwang://hongbao/query?hongbaoId=13314001535794922&hongbaoType=0&sender=cntaobaoqn店铺测试账号001:晨凉&note=恭喜发财，大吉大利！&hongbaoSubType=0";
+    components = [WCURLTool URLComponentsWithUrlString:urlString];
+    
+    XCTAssertEqualObjects(components.queryKeyValues[@"hongbaoId"], @"13314001535794922");
+    XCTAssertEqualObjects(components.queryKeyValues[@"hongbaoType"], @"0");
+    XCTAssertEqualObjects(components.queryKeyValues[@"sender"], @"cntaobaoqn店铺测试账号001:晨凉");
+    XCTAssertEqualObjects(components.queryKeyValues[@"note"], @"恭喜发财，大吉大利！");
+    XCTAssertEqualObjects(components.queryKeyValues[@"hongbaoSubType"], @"0");
+    
+    // Case 8
+    urlString = @"http://m.cp.360.cn/news/mobile/150410515.html?act=1&reffer=ios&titleRight=share&empty=";
+    components = [WCURLTool URLComponentsWithUrlString:urlString];
+    
+    XCTAssertEqualObjects(components.queryKeyValues[@"act"], @"1");
+    XCTAssertEqualObjects(components.queryKeyValues[@"reffer"], @"ios");
+    XCTAssertEqualObjects(components.queryKeyValues[@"titleRight"], @"share");
+    XCTAssertEqualObjects(components.queryKeyValues[@"empty"], @"");
+    
+    // Case 9
+    urlString = @"wangxs://multiaction/and?multi=%5B%22wangx%3A%2F%2Fh5%2Fopen%3Furl%3Dhttp%253a%252f%252fwww.taobao.com%22%2C%22wangx%3A%2F%2Fmenu%2Fdismiss%3Fmenuname%3DMenuNameForShowType%26container%3DpopBubble%26strategy%3Dtransient%26bubbleBizType%3Dtest%26conversationId%3Dcnhhupanww%E5%BA%97%E9%93%BA%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7003%22%5D";
+    components = [WCURLTool URLComponentsWithUrlString:urlString];
+    
+    XCTAssertEqualObjects(components.queryKeyValues[@"multi"], @"%5B%22wangx%3A%2F%2Fh5%2Fopen%3Furl%3Dhttp%253a%252f%252fwww.taobao.com%22%2C%22wangx%3A%2F%2Fmenu%2Fdismiss%3Fmenuname%3DMenuNameForShowType%26container%3DpopBubble%26strategy%3Dtransient%26bubbleBizType%3Dtest%26conversationId%3Dcnhhupanww%E5%BA%97%E9%93%BA%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7003%22%5D");
+    
+    // Case 10
+    urlString = @"https://qngateway.taobao.com/gw/wwjs/multi.resource.emoticon.query?id=144";
+    components = [WCURLTool URLComponentsWithUrlString:urlString];
+    
+    XCTAssertEqualObjects(components.queryKeyValues[@"id"], @"144");
+    
+    // Case 11
+    urlString = @"http://interface.im.taobao.com/mobileimweb/fileupload/downloadPriFile.do?type=0&fileId=8f3371144e1317eabc789ea175644e57.jpg&suffix=jpg&width=750&height=555&mediaSize=516784&fromId=cntaobaowc%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B71000&thumb_width=80&thumb_height=80";
+    components = [WCURLTool URLComponentsWithUrlString:urlString];
+    
+    XCTAssertEqualObjects(components.queryKeyValues[@"type"], @"0");
+    XCTAssertEqualObjects(components.queryKeyValues[@"fileId"], @"8f3371144e1317eabc789ea175644e57.jpg");
+    XCTAssertEqualObjects(components.queryKeyValues[@"suffix"], @"jpg");
+    XCTAssertEqualObjects(components.queryKeyValues[@"width"], @"750");
+    XCTAssertEqualObjects(components.queryKeyValues[@"height"], @"555");
+    XCTAssertEqualObjects(components.queryKeyValues[@"mediaSize"], @"516784");
+    XCTAssertEqualObjects(components.queryKeyValues[@"fromId"], @"cntaobaowc%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B71000");
+    XCTAssertEqualObjects(components.queryKeyValues[@"thumb_width"], @"80");
+    XCTAssertEqualObjects(components.queryKeyValues[@"thumb_height"], @"80");
+    
     // Abnormal Case 1
     urlString = @"http://a:80/b/c/d;p?key1=#jumpLocation";
     components = [WCURLTool URLComponentsWithUrlString:urlString];
