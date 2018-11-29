@@ -40,6 +40,7 @@
 		4F93835520C6E83000568EE1 /* UseYYLabelWithAttachmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F93835420C6E83000568EE1 /* UseYYLabelWithAttachmentViewController.m */; };
 		4F93836120C6EA2C00568EE1 /* YYTextExampleHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F93836020C6EA2C00568EE1 /* YYTextExampleHelper.m */; };
 		4F93836B20C6EB4200568EE1 /* dribbble64_imageio.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F93836A20C6EB4200568EE1 /* dribbble64_imageio.png */; };
+		4FA253FE21AEE4DF00E4C6FC /* TextAlignmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA253FD21AEE4DF00E4C6FC /* TextAlignmentViewController.m */; };
 		4FAF51C021500F2B006A7509 /* YYDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAF511121500F2B006A7509 /* YYDiskCache.m */; };
 		4FAF51C121500F2B006A7509 /* YYCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAF511321500F2B006A7509 /* YYCache.m */; };
 		4FAF51C221500F2B006A7509 /* YYKVStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAF511721500F2B006A7509 /* YYKVStorage.m */; };
@@ -181,6 +182,8 @@
 		4F93835F20C6EA2B00568EE1 /* YYTextExampleHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTextExampleHelper.h; sourceTree = "<group>"; };
 		4F93836020C6EA2C00568EE1 /* YYTextExampleHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYTextExampleHelper.m; sourceTree = "<group>"; };
 		4F93836A20C6EB4200568EE1 /* dribbble64_imageio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dribbble64_imageio.png; sourceTree = "<group>"; };
+		4FA253FC21AEE4DF00E4C6FC /* TextAlignmentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextAlignmentViewController.h; sourceTree = "<group>"; };
+		4FA253FD21AEE4DF00E4C6FC /* TextAlignmentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextAlignmentViewController.m; sourceTree = "<group>"; };
 		4FAF511121500F2B006A7509 /* YYDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYDiskCache.m; sourceTree = "<group>"; };
 		4FAF511221500F2B006A7509 /* YYKVStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYKVStorage.h; sourceTree = "<group>"; };
 		4FAF511321500F2B006A7509 /* YYCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYCache.m; sourceTree = "<group>"; };
@@ -443,6 +446,8 @@
 				4F1D7DCA2122B2D20021023C /* LabelWithMaximumLinesViewController.m */,
 				4F517B2B212E90C9008CE69F /* LabelWithHyphenationViewController.h */,
 				4F517B2C212E90C9008CE69F /* LabelWithHyphenationViewController.m */,
+				4FA253FC21AEE4DF00E4C6FC /* TextAlignmentViewController.h */,
+				4FA253FD21AEE4DF00E4C6FC /* TextAlignmentViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -885,6 +890,7 @@
 				4F52D18721188860004EE254 /* UseMPMShareLinkViewViewController.m in Sources */,
 				4FAF51C921500F2B006A7509 /* YYFrameImage.m in Sources */,
 				4FAF520821500F2B006A7509 /* YYSentinel.m in Sources */,
+				4FA253FE21AEE4DF00E4C6FC /* TextAlignmentViewController.m in Sources */,
 				4FAF51D521500F2B006A7509 /* YYTextContainerView.m in Sources */,
 				4FAF51F321500F2B006A7509 /* UIControl+YYAdd.m in Sources */,
 				4FAF51DF21500F2B006A7509 /* YYTextUtilities.m in Sources */,
