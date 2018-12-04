@@ -36,7 +36,7 @@
         gradient.frame = view.bounds;
         gradient.colors = @[(id)[[UIColor whiteColor] CGColor], (id)[[UIColor blackColor] CGColor]];
         gradient.startPoint = CGPointZero;
-        gradient.startPoint = CGPointMake(1, 1);
+        gradient.endPoint = CGPointMake(1, 1);
         [view.layer insertSublayer:gradient atIndex:0];
         
         _view1 = view;

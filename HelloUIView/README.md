@@ -20,7 +20,7 @@
 
 第一步，使用UIBezierPath确定一个封闭矩形，而且左上角和右上角是圆角。
 
-```
+```objective-c
 UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds byRoundingCorners:(UIRectCornerTopLeft | UIRectCornerTopRight) cornerRadii:CGSizeMake(30, 30)];
 ```
 >
@@ -28,7 +28,7 @@ UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:view.bounds byR
 
 第二步，使用CAShapeLayer创建mask layer
 
-```
+```objective-c
 CAShapeLayer *maskLayer = [CAShapeLayer layer];
 maskLayer.frame = view.bounds;
 maskLayer.path = maskPath.CGPath;
@@ -42,7 +42,7 @@ mask layer虽然指定path，但是这个path不会截取layer的矩形形状，
 
 第三步，将mask layer赋值到mask属性
 
-```
+```objective-c
 UIView *view = [[UIView alloc] initWithFrame:CGRectMake(10, 100, 100, 100)];
 view.backgroundColor = [UIColor greenColor];
 view.layer.mask = maskLayer;

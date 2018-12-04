@@ -102,6 +102,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)checkViewVisibleToUserWithView:(UIView *)view;
 
+#pragma mark - Add Layers
+
++ (UIView *)addGradientLayerWithView:(UIView *)view startLeftColor:(UIColor *)startLeftColor endRightColor:(UIColor *)endRightColor;
+
 #pragma mark - Assistant Methods
 
 #pragma mark > CGRect

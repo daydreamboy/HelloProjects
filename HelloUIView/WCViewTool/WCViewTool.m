@@ -253,6 +253,28 @@
     return YES;
 }
 
+#pragma mark - Add Layers
+
++ (UIView *)addGradientLayerWithView:(UIView *)view startLeftColor:(UIColor *)startLeftColor endRightColor:(UIColor *)endRightColor {
+    if (![view isKindOfClass:[UIView class]] || ![startLeftColor isKindOfClass:[UIColor class]] || ![endRightColor isKindOfClass:[UIColor class]]) {
+        return view;
+    }
+    
+    UIColor *startColor = startLeftColor;
+    UIColor *finalColor = endRightColor;
+    
+    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+    gradientLayer.colors = @[(__bridge id)startColor.CGColor, (__bridge id)finalColor.CGColor];
+    gradientLayer.locations = @[ @0.0, @1.0 ];
+    gradientLayer.startPoint = CGPointMake(0, 0.5);
+    gradientLayer.endPoint = CGPointMake(1.0, 0.5);
+    gradientLayer.masksToBounds = YES;
+    gradientLayer.frame = view.bounds;
+    [view.layer insertSublayer:gradientLayer atIndex:0];
+    
+    return view;
+}
+
 #pragma mark - Assistant Methods
 
 #pragma mark > CGRect
