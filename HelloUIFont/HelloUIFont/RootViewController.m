@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 #import "GetAllFontNamesViewController.h"
+#import "SystemFontViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -32,10 +33,12 @@
     // MARK: Configure titles and classes for table view
     _titles = @[
         @"Get all font names",
+        @"Get system font",
         @"call a test method",
     ];
     _classes = @[
         [GetAllFontNamesViewController class],
+        [SystemFontViewController class],
         @"testMethod",
     ];
 }

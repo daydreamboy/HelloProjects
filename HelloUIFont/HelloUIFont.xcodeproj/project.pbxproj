@@ -13,6 +13,8 @@
 		4F6B552F21AFF0F7009843E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6B552E21AFF0F7009843E6 /* main.m */; };
 		4F6B553721AFF121009843E6 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6B553521AFF121009843E6 /* RootViewController.m */; };
 		4F6B553B21AFF1C9009843E6 /* GetAllFontNamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6B553A21AFF1C9009843E6 /* GetAllFontNamesViewController.m */; };
+		4F8AD8F421B0DAF1005DE01F /* WCFontTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8AD8F321B0DAF1005DE01F /* WCFontTool.m */; };
+		4F8AD8F721B0EB65005DE01F /* SystemFontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8AD8F621B0EB65005DE01F /* SystemFontViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +29,10 @@
 		4F6B553621AFF121009843E6 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F6B553921AFF1C9009843E6 /* GetAllFontNamesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAllFontNamesViewController.h; sourceTree = "<group>"; };
 		4F6B553A21AFF1C9009843E6 /* GetAllFontNamesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAllFontNamesViewController.m; sourceTree = "<group>"; };
+		4F8AD8F221B0DAF1005DE01F /* WCFontTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCFontTool.h; sourceTree = "<group>"; };
+		4F8AD8F321B0DAF1005DE01F /* WCFontTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCFontTool.m; sourceTree = "<group>"; };
+		4F8AD8F521B0EB65005DE01F /* SystemFontViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemFontViewController.h; sourceTree = "<group>"; };
+		4F8AD8F621B0EB65005DE01F /* SystemFontViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemFontViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +49,7 @@
 		4F6B551321AFF0F5009843E6 = {
 			isa = PBXGroup;
 			children = (
+				4F8AD8F121B0DADE005DE01F /* WCFontTool */,
 				4F6B551E21AFF0F5009843E6 /* HelloUIFont */,
 				4F6B551D21AFF0F5009843E6 /* Products */,
 			);
@@ -77,8 +84,19 @@
 			children = (
 				4F6B553921AFF1C9009843E6 /* GetAllFontNamesViewController.h */,
 				4F6B553A21AFF1C9009843E6 /* GetAllFontNamesViewController.m */,
+				4F8AD8F521B0EB65005DE01F /* SystemFontViewController.h */,
+				4F8AD8F621B0EB65005DE01F /* SystemFontViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F8AD8F121B0DADE005DE01F /* WCFontTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F8AD8F221B0DAF1005DE01F /* WCFontTool.h */,
+				4F8AD8F321B0DAF1005DE01F /* WCFontTool.m */,
+			);
+			path = WCFontTool;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,7 +168,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F8AD8F421B0DAF1005DE01F /* WCFontTool.m in Sources */,
 				4F6B552F21AFF0F7009843E6 /* main.m in Sources */,
+				4F8AD8F721B0EB65005DE01F /* SystemFontViewController.m in Sources */,
 				4F6B553B21AFF1C9009843E6 /* GetAllFontNamesViewController.m in Sources */,
 				4F6B553721AFF121009843E6 /* RootViewController.m in Sources */,
 				4F6B552121AFF0F6009843E6 /* AppDelegate.m in Sources */,
