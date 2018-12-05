@@ -198,8 +198,8 @@
 
 + (NSString *)patternOfQueryItems {
     // @see https://stackoverflow.com/a/46885117
-    //       1        2
-    return @"(?:^|[?&])([^=&]*)=([^=&]*)";
+    //                 1        2
+    return @"(?:^|[?&])([^=&]*)=([^&]*)";
 }
 
 + (NSString *)patternOfPathExtension {

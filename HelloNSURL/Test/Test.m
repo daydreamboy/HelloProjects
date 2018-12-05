@@ -237,6 +237,26 @@
     XCTAssertEqualObjects(components.queryKeyValues[@"thumb_width"], @"80");
     XCTAssertEqualObjects(components.queryKeyValues[@"thumb_height"], @"80");
     
+    // Case 12: base64 string
+    urlString = @"wangx://p2pconversation/sendText?text=aHR0cHM6Ly9kZXRhaWwudG1hbGwuY29tL2l0ZW0uaHRtP2lkPTU3MzY2NjQ2MDM1NSZhbGlfcmVmaWQ9YTNfNDIwNDMyXzEwMDY6MTExMDgxNzMyMjpOOiVFOSU5QiU4NiVFNiU4OCU5MCVFNyU4MSVCNjpmYzc4NjljYjZlM2M3OGU4ZjJkYjZkYjg4NTNkNzViZSZhbGlfdHJhY2tpZD0xX2ZjNzg2OWNiNmUzYzc4ZThmMmRiNmRiODg1M2Q3NWJlJnNwbT1hMjMwci4xLjE0LjE=&toLongId=amFjaw==";
+    components = [WCURLTool URLComponentsWithUrlString:urlString];
+    
+    XCTAssertEqualObjects(components.scheme, @"wangx");
+    XCTAssertEqualObjects(components.host, @"p2pconversation");
+    XCTAssertEqualObjects(components.path, @"/sendText");
+    XCTAssertEqualObjects(components.queryKeyValues[@"text"], @"aHR0cHM6Ly9kZXRhaWwudG1hbGwuY29tL2l0ZW0uaHRtP2lkPTU3MzY2NjQ2MDM1NSZhbGlfcmVmaWQ9YTNfNDIwNDMyXzEwMDY6MTExMDgxNzMyMjpOOiVFOSU5QiU4NiVFNiU4OCU5MCVFNyU4MSVCNjpmYzc4NjljYjZlM2M3OGU4ZjJkYjZkYjg4NTNkNzViZSZhbGlfdHJhY2tpZD0xX2ZjNzg2OWNiNmUzYzc4ZThmMmRiNmRiODg1M2Q3NWJlJnNwbT1hMjMwci4xLjE0LjE=");
+    XCTAssertEqualObjects(components.queryKeyValues[@"toLongId"], @"amFjaw==");
+    
+    // Case 13: base64 string
+    urlString = @"wangx://p2pconversation/sendText?&toLongId=amFjaw==&text=aHR0cHM6Ly9kZXRhaWwudG1hbGwuY29tL2l0ZW0uaHRtP2lkPTU3MzY2NjQ2MDM1NSZhbGlfcmVmaWQ9YTNfNDIwNDMyXzEwMDY6MTExMDgxNzMyMjpOOiVFOSU5QiU4NiVFNiU4OCU5MCVFNyU4MSVCNjpmYzc4NjljYjZlM2M3OGU4ZjJkYjZkYjg4NTNkNzViZSZhbGlfdHJhY2tpZD0xX2ZjNzg2OWNiNmUzYzc4ZThmMmRiNmRiODg1M2Q3NWJlJnNwbT1hMjMwci4xLjE0LjE=";
+    components = [WCURLTool URLComponentsWithUrlString:urlString];
+    
+    XCTAssertEqualObjects(components.scheme, @"wangx");
+    XCTAssertEqualObjects(components.host, @"p2pconversation");
+    XCTAssertEqualObjects(components.path, @"/sendText");
+    XCTAssertEqualObjects(components.queryKeyValues[@"text"], @"aHR0cHM6Ly9kZXRhaWwudG1hbGwuY29tL2l0ZW0uaHRtP2lkPTU3MzY2NjQ2MDM1NSZhbGlfcmVmaWQ9YTNfNDIwNDMyXzEwMDY6MTExMDgxNzMyMjpOOiVFOSU5QiU4NiVFNiU4OCU5MCVFNyU4MSVCNjpmYzc4NjljYjZlM2M3OGU4ZjJkYjZkYjg4NTNkNzViZSZhbGlfdHJhY2tpZD0xX2ZjNzg2OWNiNmUzYzc4ZThmMmRiNmRiODg1M2Q3NWJlJnNwbT1hMjMwci4xLjE0LjE=");
+    XCTAssertEqualObjects(components.queryKeyValues[@"toLongId"], @"amFjaw==");
+    
     // Abnormal Case 1
     urlString = @"http://a:80/b/c/d;p?key1=#jumpLocation";
     components = [WCURLTool URLComponentsWithUrlString:urlString];
@@ -309,7 +329,7 @@
     
     XCTAssertTrue([components.queryItems count] == 1);
     XCTAssertEqualObjects([components.queryItems[0] name], @"");
-    XCTAssertEqualObjects([components.queryItems[0] value], @"");
+    XCTAssertEqualObjects([components.queryItems[0] value], @"=");
     XCTAssertNil(components.pathExtension);
     XCTAssertTrue(components.queryKeyValues.count == 1);
     

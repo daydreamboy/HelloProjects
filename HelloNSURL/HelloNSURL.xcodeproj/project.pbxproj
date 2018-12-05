@@ -16,6 +16,7 @@
 		4F7D8F04210A0EC200145B00 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8F03210A0EC200145B00 /* main.m */; };
 		4F7D8F0D210A0EF500145B00 /* WCURLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8F0C210A0EF500145B00 /* WCURLTool.m */; };
 		4F7D9000210DAFC200145B00 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8FFF210DAFC200145B00 /* Test.m */; };
+		4F812DB721B825DB0085ACF9 /* WCURLTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8F0C210A0EF500145B00 /* WCURLTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -234,6 +235,7 @@
 			files = (
 				4F4588C9215CC273005A52C8 /* Tests_NSURL.m in Sources */,
 				4F7D9000210DAFC200145B00 /* Test.m in Sources */,
+				4F812DB721B825DB0085ACF9 /* WCURLTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
