@@ -119,6 +119,8 @@ NS_AVAILABLE_IOS(5_0)
 
 #pragma mark > Key Path Query
 
+#pragma mark >> For JSON Object
+
 + (nullable NSArray *)arrayOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath;
 + (nullable NSDictionary *)dictionaryOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath;
 + (nullable NSString *)stringOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath;
@@ -137,14 +139,26 @@ NS_AVAILABLE_IOS(5_0)
 + (nullable NSNull *)nullOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath;
 
 /**
- Get value using keyPath
+ Get value using keyPath from JSON object
 
  @param JSONObject a NSDictionary or a NSArray
- @param keyPath a key or a keyPath separated by `.`, such as @"key1.key2.[1].key3"
+ @param keyPath a key or a keyPath separated by `.` or `[x]`, e.g. @"hash[key]", @"array[0]"
  @return return nil, if the keyPath not match the JSONObject
- @note If keyPath is nil, or empty string, will return the original JSONObject
+ @note If keyPath is empty string, will return the original JSONObject
  */
 + (nullable id)valueOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath;
+
+#pragma mark >> For KVC Object
+
+/**
+ Get value using keyPath from KVC object
+
+ @param KVCObject a KVC-compliant object
+ @param keyPath a key or a keyPath separated by `.` or `[x]`, e.g. @"hash[key]", @"array[0]"
+ @return return nil, if the keyPath not match the KVCObject
+ @note If keyPath is empty string, will return the original KVCObject
+ */
++ (nullable id)valueOfKVCObject:(id)KVCObject usingKeyPath:(NSString *)keyPath;
 
 #pragma mark > Print JSON string
 

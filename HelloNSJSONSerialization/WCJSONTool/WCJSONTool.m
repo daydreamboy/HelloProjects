@@ -218,6 +218,8 @@
 
 #pragma mark > Key Path Query
 
+#pragma mark >> For JSON Object
+
 + (nullable NSArray *)arrayOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath {
     NSArray *arr = [self valueOfJSONObject:JSONObject usingKeyPath:keyPath];
     return [arr isKindOfClass:[NSArray class]] ? arr : nil;
@@ -264,65 +266,79 @@
 }
 
 + (nullable id)valueOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath {
-    if (!JSONObject || ![keyPath isKindOfClass:[NSString class]]) {
-        return nil;
-    }
-    
-    if (keyPath.length == 0) {
-        return JSONObject;
-    }
-    
     // An object that may be converted to JSON must have the following properties:
     // • The top level object is an NSArray or NSDictionary.
     // • All objects are instances of NSString, NSNumber, NSArray, NSDictionary, or NSNull.
     // • All dictionary keys are instances of NSString.
     // • Numbers are not NaN or infinity.
     // @sa https://developer.apple.com/library/ios/documentation/Foundation/Reference/NSJSONSerialization_Class/index.html#//apple_ref/occ/clm/NSJSONSerialization/isValidJSONObject:
-    if (![NSJSONSerialization isValidJSONObject:JSONObject]) {
+    if (JSONObject && ![NSJSONSerialization isValidJSONObject:JSONObject]) {
         return nil;
     }
     
-    NSArray *parts = [keyPath componentsSeparatedByString:@"."];
-    NSMutableArray *keys = [NSMutableArray arrayWithArray:parts];
+    return [self valueOfKVCObject:JSONObject usingKeyPath:keyPath];
+}
+
+#pragma mark >> For KVC Object
+
++ (nullable id)valueOfKVCObject:(id)KVCObject usingKeyPath:(NSString *)keyPath {
+    if (!KVCObject || ![keyPath isKindOfClass:[NSString class]]) {
+        return nil;
+    }
     
-    id value = JSONObject;
+    if (keyPath.length == 0) {
+        return KVCObject;
+    }
+    
+    NSArray *parts = [keyPath componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@".[]"]];
+    NSMutableArray *keys = [NSMutableArray arrayWithArray:parts];
+    // Note: remove all empty string
+    [keys removeObject:@""];
+    
+    id value = KVCObject;
     while (keys.count) {
         NSString *key = [keys firstObject];
         
-        if ([key hasPrefix:@"["] && [key hasSuffix:@"]"]) {
+        if ([value isKindOfClass:[NSArray class]]) {
             // Note: handle NSArray container
-            if (![NSPREDICATE(@"^\\[(0|[1-9]\\d*)\\]$") evaluateWithObject:key]) {
+            if (![NSPREDICATE(@"0|[1-9]\\d*") evaluateWithObject:key]) {
                 NSLog(@"Error: %@ is not a subscript of NSArray", key);
                 return nil;
             }
             
-            NSUInteger subscript = [[key substringWithRange:NSMakeRange(1, key.length - 2)] integerValue];
+            NSInteger subscript = [key integerValue];
             NSArray *arr = (NSArray *)value;
             
-            if (![arr isKindOfClass:[NSArray class]]) {
-                NSLog(@"Error: Expected a NSArray but not %@", arr);
-                return nil;
-            }
-            
-            if (subscript >= arr.count) {
+            if (subscript < 0 || subscript >= arr.count) {
                 NSLog(@"Error: subscript %@ is out of bounds [0..%ld]", key, (long)arr.count - 1);
                 return nil;
             }
             
             value = arr[subscript];
         }
-        else {
+        else if ([value isKindOfClass:[NSDictionary class]]) {
             // Note: handle NSDictionary container
             NSDictionary *dict = (NSDictionary *)value;
             
-            if (![dict isKindOfClass:[NSDictionary class]]) {
-                NSLog(@"Error: Expected a NSDictionary but not %@", dict);
-                return nil;
-            }
-            
             value = dict[key];
         }
-        [keys removeObject:key];
+        else if ([value isKindOfClass:[NSObject class]]) {
+            // Note: handle custom container
+            NSObject *KVCObject = (NSObject *)value;
+            @try {
+                value = [KVCObject valueForKey:key];
+            }
+            @catch (NSException *e) {
+                NSLog(@"Error: object %@ is not KVC compliant for key `%@`", KVCObject, key);
+                return nil;
+            }
+        }
+        else {
+            NSLog(@"Error: unsupported object %@", KVCObject);
+            return nil;
+        }
+        
+        [keys removeObjectAtIndex:0];
     }
     
     return value;

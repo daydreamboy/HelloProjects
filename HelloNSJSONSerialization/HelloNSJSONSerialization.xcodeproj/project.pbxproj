@@ -21,6 +21,7 @@
 		4F70BC36203025CE0017C99B /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70BC35203025CE0017C99B /* Test.m */; };
 		4F71139B21A64FEE00DCB8FA /* data2.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F71139921A64FEE00DCB8FA /* data2.json */; };
 		4F71139C21A64FEE00DCB8FA /* data1.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F71139A21A64FEE00DCB8FA /* data1.json */; };
+		4F97EA2521B9239600921599 /* Human.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97EA2421B9239600921599 /* Human.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		4F70BC37203025CE0017C99B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F71139921A64FEE00DCB8FA /* data2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data2.json; sourceTree = "<group>"; };
 		4F71139A21A64FEE00DCB8FA /* data1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data1.json; sourceTree = "<group>"; };
+		4F97EA2321B9239600921599 /* Human.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Human.h; sourceTree = "<group>"; };
+		4F97EA2421B9239600921599 /* Human.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Human.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +142,8 @@
 				4F70BC35203025CE0017C99B /* Test.m */,
 				4F4588CB215CD56A005A52C8 /* Tests_NSJSONSerialization.m */,
 				4F70BC37203025CE0017C99B /* Info.plist */,
+				4F97EA2321B9239600921599 /* Human.h */,
+				4F97EA2421B9239600921599 /* Human.m */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -270,6 +275,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F4588CA215CD21C005A52C8 /* WCJSONTool.m in Sources */,
+				4F97EA2521B9239600921599 /* Human.m in Sources */,
 				4F70BC36203025CE0017C99B /* Test.m in Sources */,
 				4F4588CC215CD56A005A52C8 /* Tests_NSJSONSerialization.m in Sources */,
 			);
