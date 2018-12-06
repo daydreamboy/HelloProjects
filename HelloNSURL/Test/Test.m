@@ -248,7 +248,7 @@
     XCTAssertEqualObjects(components.queryKeyValues[@"toLongId"], @"amFjaw==");
     
     // Case 13: base64 string
-    urlString = @"wangx://p2pconversation/sendText?&toLongId=amFjaw==&text=aHR0cHM6Ly9kZXRhaWwudG1hbGwuY29tL2l0ZW0uaHRtP2lkPTU3MzY2NjQ2MDM1NSZhbGlfcmVmaWQ9YTNfNDIwNDMyXzEwMDY6MTExMDgxNzMyMjpOOiVFOSU5QiU4NiVFNiU4OCU5MCVFNyU4MSVCNjpmYzc4NjljYjZlM2M3OGU4ZjJkYjZkYjg4NTNkNzViZSZhbGlfdHJhY2tpZD0xX2ZjNzg2OWNiNmUzYzc4ZThmMmRiNmRiODg1M2Q3NWJlJnNwbT1hMjMwci4xLjE0LjE=";
+    urlString = @"wangx://p2pconversation/sendText?toLongId=amFjaw==&text=aHR0cHM6Ly9kZXRhaWwudG1hbGwuY29tL2l0ZW0uaHRtP2lkPTU3MzY2NjQ2MDM1NSZhbGlfcmVmaWQ9YTNfNDIwNDMyXzEwMDY6MTExMDgxNzMyMjpOOiVFOSU5QiU4NiVFNiU4OCU5MCVFNyU4MSVCNjpmYzc4NjljYjZlM2M3OGU4ZjJkYjZkYjg4NTNkNzViZSZhbGlfdHJhY2tpZD0xX2ZjNzg2OWNiNmUzYzc4ZThmMmRiNmRiODg1M2Q3NWJlJnNwbT1hMjMwci4xLjE0LjE=";
     components = [WCURLTool URLComponentsWithUrlString:urlString];
     
     XCTAssertEqualObjects(components.scheme, @"wangx");
