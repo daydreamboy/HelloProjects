@@ -8,19 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Person : NSObject
-@property NSString *firstName;
-@property NSString *lastName;
-@property NSNumber *age;
-@end
-
-#pragma mark -
-
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-
 @property (strong, nonatomic) UIWindow *window;
-
-+ (NSArray *)people;
-
 @end
 

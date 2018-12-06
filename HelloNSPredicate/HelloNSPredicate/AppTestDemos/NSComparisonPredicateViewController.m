@@ -7,7 +7,7 @@
 //
 
 #import "NSComparisonPredicateViewController.h"
-#import "AppDelegate.h"
+#import "Person.h"
 
 @interface NSComparisonPredicateViewController ()
 
@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSArray *people = [AppDelegate people];
+    NSArray *people = [Person people];
 
 /*
  // Flags(s) that can be passed to the factory to indicate that a operator operating on strings should do so in a case insensitive fashion.

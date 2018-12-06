@@ -7,7 +7,7 @@
 //
 
 #import "StringComparisonViewController.h"
-#import "AppDelegate.h"
+#import "Person.h"
 
 #ifndef NSPREDICATE
 #define NSPREDICATE(expression) ([NSPredicate predicateWithFormat:@"SELF MATCHES %@", expression])
@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
  
-    NSArray *people = [AppDelegate people];
+    NSArray *people = [Person people];
 
     // Note:
     // BEGINSWITH

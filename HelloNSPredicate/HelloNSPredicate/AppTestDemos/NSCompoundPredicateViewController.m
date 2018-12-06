@@ -7,7 +7,7 @@
 //
 
 #import "NSCompoundPredicateViewController.h"
-#import "AppDelegate.h"
+#import "Person.h"
 
 @interface NSCompoundPredicateViewController ()
 
@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSArray *people = [AppDelegate people];
+    NSArray *people = [Person people];
     
     // Note:
     // AND, &&

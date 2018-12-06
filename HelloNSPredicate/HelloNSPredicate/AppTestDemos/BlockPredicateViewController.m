@@ -7,7 +7,7 @@
 //
 
 #import "BlockPredicateViewController.h"
-#import "AppDelegate.h"
+#import "Person.h"
 
 @interface BlockPredicateViewController ()
 
@@ -17,7 +17,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSArray *people = [AppDelegate people];
+    NSArray *people = [Person people];
     
     // Note: NSPredicates created with predicateWithBlock: cannot be used for Core Data fetch requests backed by a SQLite store.
     // @see http://nshipster.com/nspredicate/

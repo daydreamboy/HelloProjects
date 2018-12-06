@@ -7,7 +7,7 @@
 //
 
 #import "SubstitutionViewController.h"
-#import "AppDelegate.h"
+#import "Person.h"
 
 @interface SubstitutionViewController ()
 
@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSArray *people = [AppDelegate people];
+    NSArray<Person *> *people = [Person people];
     
     NSString *variable = @"age";
     

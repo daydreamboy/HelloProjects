@@ -7,7 +7,7 @@
 //
 
 #import "BasicComparisonViewController.h"
-#import "AppDelegate.h"
+#import "Person.h"
 
 @interface BasicComparisonViewController ()
 
@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSArray *people = [AppDelegate people];
+    NSArray *people = [Person people];
     
     // Note: basic comparisons
     // =, ==

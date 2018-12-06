@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F6F908821B6C3E800A949EC /* Tests_NSPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F908721B6C3E800A949EC /* Tests_NSPredicate.m */; };
+		4F6F909121B6C45B00A949EC /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F909021B6C45B00A949EC /* Person.m */; };
+		4F6F909221B6C4D700A949EC /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F909021B6C45B00A949EC /* Person.m */; };
 		4F9E6ABC1F63DF4800DB315D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6ABB1F63DF4800DB315D /* main.m */; };
 		4F9E6ABF1F63DF4800DB315D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6ABE1F63DF4800DB315D /* AppDelegate.m */; };
 		4F9E6AC71F63DF4800DB315D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F9E6AC61F63DF4800DB315D /* Assets.xcassets */; };
@@ -22,7 +25,22 @@
 		4F9E6AEF1F64481700DB315D /* BlockPredicateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6AEE1F64481700DB315D /* BlockPredicateViewController.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4F6F908A21B6C3E800A949EC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F9E6AAF1F63DF4800DB315D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F9E6AB61F63DF4800DB315D;
+			remoteInfo = HelloNSPredicate;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		4F6F908521B6C3E700A949EC /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F6F908721B6C3E800A949EC /* Tests_NSPredicate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSPredicate.m; sourceTree = "<group>"; };
+		4F6F908921B6C3E800A949EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F6F908F21B6C45B00A949EC /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		4F6F909021B6C45B00A949EC /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		4F9E6AB71F63DF4800DB315D /* HelloNSPredicate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSPredicate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F9E6ABB1F63DF4800DB315D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F9E6ABD1F63DF4800DB315D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +69,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4F6F908221B6C3E700A949EC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4F9E6AB41F63DF4800DB315D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -61,10 +86,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F6F908621B6C3E700A949EC /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4F6F908721B6C3E800A949EC /* Tests_NSPredicate.m */,
+				4F6F908F21B6C45B00A949EC /* Person.h */,
+				4F6F909021B6C45B00A949EC /* Person.m */,
+				4F6F908921B6C3E800A949EC /* Info.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		4F9E6AAE1F63DF4800DB315D = {
 			isa = PBXGroup;
 			children = (
 				4F9E6AB91F63DF4800DB315D /* HelloNSPredicate */,
+				4F6F908621B6C3E700A949EC /* Tests */,
 				4F9E6AB81F63DF4800DB315D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -73,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				4F9E6AB71F63DF4800DB315D /* HelloNSPredicate.app */,
+				4F6F908521B6C3E700A949EC /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -127,6 +165,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4F6F908421B6C3E700A949EC /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F6F908E21B6C3E800A949EC /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				4F6F908121B6C3E700A949EC /* Sources */,
+				4F6F908221B6C3E700A949EC /* Frameworks */,
+				4F6F908321B6C3E700A949EC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F6F908B21B6C3E800A949EC /* PBXTargetDependency */,
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = 4F6F908521B6C3E700A949EC /* Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		4F9E6AB61F63DF4800DB315D /* HelloNSPredicate */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4F9E6ACE1F63DF4800DB315D /* Build configuration list for PBXNativeTarget "HelloNSPredicate" */;
@@ -153,6 +209,11 @@
 				LastUpgradeCheck = 0830;
 				ORGANIZATIONNAME = wesley_chen;
 				TargetAttributes = {
+					4F6F908421B6C3E700A949EC = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 4F9E6AB61F63DF4800DB315D;
+					};
 					4F9E6AB61F63DF4800DB315D = {
 						CreatedOnToolsVersion = 8.3.3;
 						ProvisioningStyle = Automatic;
@@ -173,11 +234,19 @@
 			projectRoot = "";
 			targets = (
 				4F9E6AB61F63DF4800DB315D /* HelloNSPredicate */,
+				4F6F908421B6C3E700A949EC /* Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4F6F908321B6C3E700A949EC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4F9E6AB51F63DF4800DB315D /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -190,6 +259,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4F6F908121B6C3E700A949EC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F6F909121B6C45B00A949EC /* Person.m in Sources */,
+				4F6F908821B6C3E800A949EC /* Tests_NSPredicate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4F9E6AB31F63DF4800DB315D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -200,6 +278,7 @@
 				4F9E6AEC1F64408500DB315D /* NSComparisonPredicateViewController.m in Sources */,
 				4F9E6ABF1F63DF4800DB315D /* AppDelegate.m in Sources */,
 				4F9E6ADD1F63EF8E00DB315D /* BasicComparisonViewController.m in Sources */,
+				4F6F909221B6C4D700A949EC /* Person.m in Sources */,
 				4F9E6ABC1F63DF4800DB315D /* main.m in Sources */,
 				4F9E6AD71F63DFCA00DB315D /* RootViewController.m in Sources */,
 				4F9E6AE01F63F30600DB315D /* BasicCompoundViewController.m in Sources */,
@@ -209,6 +288,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4F6F908B21B6C3E800A949EC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F9E6AB61F63DF4800DB315D /* HelloNSPredicate */;
+			targetProxy = 4F6F908A21B6C3E800A949EC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4F9E6AC81F63DF4800DB315D /* LaunchScreen.storyboard */ = {
@@ -222,6 +309,62 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4F6F908C21B6C3E800A949EC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloNSPredicate.app/HelloNSPredicate";
+			};
+			name = Debug;
+		};
+		4F6F908D21B6C3E800A949EC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloNSPredicate.app/HelloNSPredicate";
+			};
+			name = Release;
+		};
 		4F9E6ACC1F63DF4800DB315D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -337,6 +480,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4F6F908E21B6C3E800A949EC /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F6F908C21B6C3E800A949EC /* Debug */,
+				4F6F908D21B6C3E800A949EC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4F9E6AB21F63DF4800DB315D /* Build configuration list for PBXProject "HelloNSPredicate" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

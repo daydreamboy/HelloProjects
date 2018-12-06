@@ -7,7 +7,7 @@
 //
 
 #import "AggregateOperationViewController.h"
-#import "AppDelegate.h"
+#import "Person.h"
 
 #define STR_BOOL(yesOrNo) ((yesOrNo) ? @"YES" : @"NO")
 
@@ -20,7 +20,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSArray *people = [AppDelegate people];
+    NSArray *people = [Person people];
     
     // @see http://nshipster.com/nspredicate/
     // Note:
