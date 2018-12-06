@@ -180,7 +180,33 @@
 #pragma mark - Handle String As Url (for checking url strictly, use WCURLTool instead)
 
 - (void)test_keyValuePairsWithUrlString {
-    // TODO:
+    NSString *urlString;
+    NSDictionary *output;
+    
+    // Case 1
+    urlString = @"wangx://p2pconversation/sendText?toLongId=amFjaw==&text=aHR0cHM6Ly9kZXRhaWwudG1hbGwuY29tL2l0ZW0uaHRtP2lkPTU3MzY2NjQ2MDM1NSZhbGlfcmVmaWQ9YTNfNDIwNDMyXzEwMDY6MTExMDgxNzMyMjpOOiVFOSU5QiU4NiVFNiU4OCU5MCVFNyU4MSVCNjpmYzc4NjljYjZlM2M3OGU4ZjJkYjZkYjg4NTNkNzViZSZhbGlfdHJhY2tpZD0xX2ZjNzg2OWNiNmUzYzc4ZThmMmRiNmRiODg1M2Q3NWJlJnNwbT1hMjMwci4xLjE0LjE=";
+    output = [WCStringTool keyValuePairsWithUrlString:urlString];
+    XCTAssertTrue([output isKindOfClass:[NSDictionary class]]);
+    XCTAssertEqualObjects(output[@"text"], @"aHR0cHM6Ly9kZXRhaWwudG1hbGwuY29tL2l0ZW0uaHRtP2lkPTU3MzY2NjQ2MDM1NSZhbGlfcmVmaWQ9YTNfNDIwNDMyXzEwMDY6MTExMDgxNzMyMjpOOiVFOSU5QiU4NiVFNiU4OCU5MCVFNyU4MSVCNjpmYzc4NjljYjZlM2M3OGU4ZjJkYjZkYjg4NTNkNzViZSZhbGlfdHJhY2tpZD0xX2ZjNzg2OWNiNmUzYzc4ZThmMmRiNmRiODg1M2Q3NWJlJnNwbT1hMjMwci4xLjE0LjE=");
+    XCTAssertEqualObjects(output[@"toLongId"], @"amFjaw==");
+    
+    // Case 2
+    urlString = @"?toLongId=amFjaw==&text=aHR0cHM6Ly9kZXRhaWwudG1hbGwuY29tL2l0ZW0uaHRtP2lkPTU3MzY2NjQ2MDM1NSZhbGlfcmVmaWQ9YTNfNDIwNDMyXzEwMDY6MTExMDgxNzMyMjpOOiVFOSU5QiU4NiVFNiU4OCU5MCVFNyU4MSVCNjpmYzc4NjljYjZlM2M3OGU4ZjJkYjZkYjg4NTNkNzViZSZhbGlfdHJhY2tpZD0xX2ZjNzg2OWNiNmUzYzc4ZThmMmRiNmRiODg1M2Q3NWJlJnNwbT1hMjMwci4xLjE0LjE=";
+    output = [WCStringTool keyValuePairsWithUrlString:urlString];
+    XCTAssertTrue([output isKindOfClass:[NSDictionary class]]);
+    XCTAssertEqualObjects(output[@"text"], @"aHR0cHM6Ly9kZXRhaWwudG1hbGwuY29tL2l0ZW0uaHRtP2lkPTU3MzY2NjQ2MDM1NSZhbGlfcmVmaWQ9YTNfNDIwNDMyXzEwMDY6MTExMDgxNzMyMjpOOiVFOSU5QiU4NiVFNiU4OCU5MCVFNyU4MSVCNjpmYzc4NjljYjZlM2M3OGU4ZjJkYjZkYjg4NTNkNzViZSZhbGlfdHJhY2tpZD0xX2ZjNzg2OWNiNmUzYzc4ZThmMmRiNmRiODg1M2Q3NWJlJnNwbT1hMjMwci4xLjE0LjE=");
+    XCTAssertEqualObjects(output[@"toLongId"], @"amFjaw==");
+    
+    // Case 3
+    urlString = @"wangx://p2pconversation/sendText?abc";
+    output = [WCStringTool keyValuePairsWithUrlString:urlString];
+    XCTAssertTrue([output isKindOfClass:[NSDictionary class]]);
+    XCTAssertTrue(output.count == 0);
+    
+    // Case 4
+    urlString = @"wangx://p2pconversation/sendText";
+    output = [WCStringTool keyValuePairsWithUrlString:urlString];
+    XCTAssertNil(output);
 }
 
 #pragma mark - Handle String As Plain
