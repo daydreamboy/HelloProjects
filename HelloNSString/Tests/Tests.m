@@ -207,6 +207,18 @@
     urlString = @"wangx://p2pconversation/sendText";
     output = [WCStringTool keyValuePairsWithUrlString:urlString];
     XCTAssertNil(output);
+    
+    // Case 5
+    urlString = @"wangx://p2pconversation/sendText?&";
+    output = [WCStringTool keyValuePairsWithUrlString:urlString];
+    XCTAssertTrue([output isKindOfClass:[NSDictionary class]]);
+    XCTAssertTrue(output.count == 0);
+    
+    // Case 6
+    urlString = @"wangx://p2pconversation/sendText?&&&";
+    output = [WCStringTool keyValuePairsWithUrlString:urlString];
+    XCTAssertTrue([output isKindOfClass:[NSDictionary class]]);
+    XCTAssertTrue(output.count == 0);
 }
 
 #pragma mark - Handle String As Plain
