@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "WCArrayTool.h"
 
 @interface Tests : XCTestCase
 
@@ -16,24 +17,46 @@
 
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    NSLog(@"\n");
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    NSLog(@"\n");
     [super tearDown];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)test_arrayWithArray_moveItemAtIndex_toIndex {
+    NSArray *array;
+    NSArray *output;
+    NSArray *expected;
+    
+    // Case 1
+    output = [WCArrayTool arrayWithArray:array moveItemAtIndex:0 toIndex:0];
+    XCTAssertNil(output);
+    
+    // Case 2
+    array = @[ @1, @2, @3, @4 ];
+    output = [WCArrayTool arrayWithArray:array moveItemAtIndex:0 toIndex:0];
+    
+    XCTAssertEqualObjects(output, array);
+    
+    // Case 3
+    array =  @[ @1, @2, @3, @4 ];
+    output = [WCArrayTool arrayWithArray:array moveItemAtIndex:0 toIndex:3];
+    expected =  @[ @2, @3, @4, @1 ];
+    XCTAssertEqualObjects(output, expected);
+    
+    // Case 4
+    array =  @[ @1, @2, @3, @4 ];
+    output = [WCArrayTool arrayWithArray:array moveItemAtIndex:3 toIndex:0];
+    expected = @[ @4, @1, @2, @3 ];
+    XCTAssertEqualObjects(output, expected);
+    
+    // Case 5
+    array =  @[ @1, @2, @3, @4 ];
+    output = [WCArrayTool arrayWithArray:array moveItemAtIndex:3 toIndex:2];
+    expected = @[ @1, @2, @4, @3 ];
+    XCTAssertEqualObjects(output, expected);
 }
 
 @end
