@@ -29,7 +29,7 @@
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         CGFloat paddingH = 20;
         UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(paddingH, 100, screenSize.width - 2 * paddingH, 30)];
-        textField.inputView =
+        textField.inputView = 
         
         _textField = textField;
     }

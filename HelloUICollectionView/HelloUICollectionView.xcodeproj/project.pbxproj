@@ -50,6 +50,8 @@
 		4FA5AC1820FD955D0098A138 /* EmotionGroupIcon_7@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FA5AC1020FD955D0098A138 /* EmotionGroupIcon_7@2x.png */; };
 		4FA5AC1920FD955D0098A138 /* EmotionGroupIcon_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FA5AC1120FD955D0098A138 /* EmotionGroupIcon_2@2x.png */; };
 		4FA5AC1C20FD97E80098A138 /* WCHorizontalSliderViewUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA5AC1B20FD97E80098A138 /* WCHorizontalSliderViewUtility.m */; };
+		4FAA229721BE45DE001F97B6 /* CollectionViewFlowLayoutDraggable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAA229621BE45DE001F97B6 /* CollectionViewFlowLayoutDraggable.m */; };
+		4FAA229A21BE50BE001F97B6 /* DraggableLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAA229921BE50BE001F97B6 /* DraggableLayoutViewController.m */; };
 		4FB1D4B420CC0D5700DBA776 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1D4B320CC0D5700DBA776 /* AppDelegate.m */; };
 		4FB1D4BC20CC0D5900DBA776 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FB1D4BB20CC0D5900DBA776 /* Assets.xcassets */; };
 		4FB1D4BF20CC0D5900DBA776 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FB1D4BD20CC0D5900DBA776 /* LaunchScreen.storyboard */; };
@@ -138,6 +140,10 @@
 		4FA5AC1120FD955D0098A138 /* EmotionGroupIcon_2@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "EmotionGroupIcon_2@2x.png"; sourceTree = "<group>"; };
 		4FA5AC1A20FD97E80098A138 /* WCHorizontalSliderViewUtility.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCHorizontalSliderViewUtility.h; sourceTree = "<group>"; };
 		4FA5AC1B20FD97E80098A138 /* WCHorizontalSliderViewUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCHorizontalSliderViewUtility.m; sourceTree = "<group>"; };
+		4FAA229521BE45DE001F97B6 /* CollectionViewFlowLayoutDraggable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewFlowLayoutDraggable.h; sourceTree = "<group>"; };
+		4FAA229621BE45DE001F97B6 /* CollectionViewFlowLayoutDraggable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewFlowLayoutDraggable.m; sourceTree = "<group>"; };
+		4FAA229821BE50BE001F97B6 /* DraggableLayoutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DraggableLayoutViewController.h; sourceTree = "<group>"; };
+		4FAA229921BE50BE001F97B6 /* DraggableLayoutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DraggableLayoutViewController.m; sourceTree = "<group>"; };
 		4FB1D4AF20CC0D5700DBA776 /* HelloUICollectionView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUICollectionView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FB1D4B220CC0D5700DBA776 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FB1D4B320CC0D5700DBA776 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -346,6 +352,8 @@
 				4F7D8EE22109AFC400145B00 /* UseWCCrossDirectionEmotionPickerViewViewController.m */,
 				4F961B9F213280C9009402F3 /* ManyRoundedImageViewViewController.h */,
 				4F961BA0213280C9009402F3 /* ManyRoundedImageViewViewController.m */,
+				4FAA229821BE50BE001F97B6 /* DraggableLayoutViewController.h */,
+				4FAA229921BE50BE001F97B6 /* DraggableLayoutViewController.m */,
 				4F961BA221328B66009402F3 /* FPSLabel.h */,
 				4F961BA321328B67009402F3 /* FPSLabel.m */,
 				4F748FDA20F6072C001CF507 /* Header&Footer */,
@@ -362,6 +370,8 @@
 				4FB8A3ED20CF68B500300954 /* CollectionViewFlowLayoutLeftAligned.m */,
 				4F97DB3420CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.h */,
 				4F97DB3520CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m */,
+				4FAA229521BE45DE001F97B6 /* CollectionViewFlowLayoutDraggable.h */,
+				4FAA229621BE45DE001F97B6 /* CollectionViewFlowLayoutDraggable.m */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -520,10 +530,12 @@
 				4FA5ABED20FC40280098A138 /* MPMLightPopoverView.m in Sources */,
 				4FB1D4DA20CC324100DBA776 /* PagableCollectionViewViewController.m in Sources */,
 				4FA5ABF020FC93FF0098A138 /* WCSeparatorFlowLayout.m in Sources */,
+				4FAA229A21BE50BE001F97B6 /* DraggableLayoutViewController.m in Sources */,
 				4FB1D4D720CC2CBD00DBA776 /* MyCustomCollectionViewCell.m in Sources */,
 				4F65BFA320F87D6B00CE86EB /* WCEmotionFooterView.m in Sources */,
 				4F83D3BC20CECAB800F2FE80 /* DifferentSizeCellViewController.m in Sources */,
 				4F748FE020F6076E001CF507 /* SupplementaryViewFooter.m in Sources */,
+				4FAA229721BE45DE001F97B6 /* CollectionViewFlowLayoutDraggable.m in Sources */,
 				4FB8A3EE20CF68B500300954 /* CollectionViewFlowLayoutLeftAligned.m in Sources */,
 				4F97DB2F20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m in Sources */,
 			);
