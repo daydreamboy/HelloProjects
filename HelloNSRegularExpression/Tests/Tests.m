@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "WCRegularExpressionTool.h"
 
 @interface Tests : XCTestCase
 
@@ -489,6 +490,102 @@
     for (NSString *match in matchStrings) {
         NSLog(@"%@", match);
     }
+}
+
+#pragma mark -
+
+- (void)test_enumerateMatchesInString_pattern_usingBlock {
+    NSString *string;
+    NSMutableArray<NSString *> *output;
+    
+    // Case 1
+    output = [NSMutableArray array];
+    string = @"$a$b,${a},$!{b}c";
+    BOOL status = [WCRegularExpressionTool enumerateMatchesInString:string pattern:@"\\$!?(?:\\{([a-zA-Z0-9_-]+)\\}|([a-zA-Z0-9_-]+))" usingBlock:^(NSTextCheckingResult * _Nonnull result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        if (result.numberOfRanges == 3) {
+            NSRange rangeOfMatchString = result.range;
+            NSRange rangeOfCaptureString1 = [result rangeAtIndex:1];
+            NSRange rangeOfCaptureString2 = [result rangeAtIndex:2];
+            
+            NSString *matchString;
+            NSString *captureString1;
+            NSString *captureString2;
+            
+            if (rangeOfMatchString.location != NSNotFound) {
+                matchString = [string substringWithRange:result.range];
+            }
+            
+            if (rangeOfCaptureString1.location != NSNotFound) {
+                captureString1 = [string substringWithRange:rangeOfCaptureString1];
+            }
+            
+            if (rangeOfCaptureString2.location != NSNotFound) {
+                captureString2 = [string substringWithRange:rangeOfCaptureString2];
+            }
+            
+            if (captureString1.length) {
+                [output addObject:captureString1];
+            }
+            
+            if (captureString2.length) {
+                [output addObject:captureString2];
+            }
+            
+            NSLog(@"matchString: %@, captureString1: %@, captureString2: %@", matchString, captureString1, captureString2);
+        }
+    }];
+    
+    XCTAssertTrue(status);
+    XCTAssertTrue(output.count == 4);
+    XCTAssertEqualObjects(output[0], @"a");
+    XCTAssertEqualObjects(output[1], @"b");
+    XCTAssertEqualObjects(output[2], @"a");
+    XCTAssertEqualObjects(output[3], @"b");
+}
+
+- (void)test_stringByReplacingMatchesInString_pattern_captureGroupBindingBlock {
+    NSString *pattern = @"\\$!?(?:\\{([a-zA-Z0-9_-]+)\\}|([a-zA-Z0-9_-]+))";
+    NSString *string;
+    NSString *output;
+    NSDictionary *bindings;
+    
+    // Case 1
+    bindings = @{
+                 @"a": @"A",
+                 @"b": @"B"
+                 };
+    string = @"$a$b,${a},$!{b}c";
+    output = [WCRegularExpressionTool stringByReplacingMatchesInString:string pattern:pattern captureGroupBindingBlock:^NSString * _Nonnull(NSString * _Nonnull matchString, NSArray<NSString *> * _Nonnull captureGroupStrings) {
+        
+        for (NSString *captureGroupString in captureGroupStrings) {
+            if (bindings[captureGroupString]) {
+                NSLog(@"Replace %@ to %@", matchString, bindings[captureGroupString]);
+                return bindings[captureGroupString];
+            }
+        }
+        
+        return nil;
+    }];
+    XCTAssertEqualObjects(output, @"AB,A,Bc");
+    
+    // Case 2
+    bindings = @{
+                 @"a": @"A",
+                 @"b": @"B"
+                 };
+    string = @"a$a$b,${a},$!{b}c";
+    output = [WCRegularExpressionTool stringByReplacingMatchesInString:string pattern:pattern captureGroupBindingBlock:^NSString * _Nonnull(NSString * _Nonnull matchString, NSArray<NSString *> * _Nonnull captureGroupStrings) {
+        
+        for (NSString *captureGroupString in captureGroupStrings) {
+            if (bindings[captureGroupString]) {
+                NSLog(@"Replace %@ to %@", matchString, bindings[captureGroupString]);
+                return bindings[captureGroupString];
+            }
+        }
+        
+        return nil;
+    }];
+    XCTAssertEqualObjects(output, @"aAB,A,Bc");
 }
 
 @end

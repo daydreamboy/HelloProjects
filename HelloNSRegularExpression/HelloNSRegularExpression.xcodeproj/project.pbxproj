@@ -17,6 +17,7 @@
 		4F4588C7215CBE12005A52C8 /* WCRegularExpressionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4588C6215CBE12005A52C8 /* WCRegularExpressionTool.m */; };
 		4F7D9012210DE92F00145B00 /* EmoticonInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D9011210DE92E00145B00 /* EmoticonInfo.plist */; };
 		4F7D9013210DE93D00145B00 /* EmoticonInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D9011210DE92E00145B00 /* EmoticonInfo.plist */; };
+		4FAA229C21BEA770001F97B6 /* Tests_NSRegularExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAA229B21BEA770001F97B6 /* Tests_NSRegularExpression.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		4F4588C5215CBE12005A52C8 /* WCRegularExpressionTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCRegularExpressionTool.h; sourceTree = "<group>"; };
 		4F4588C6215CBE12005A52C8 /* WCRegularExpressionTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCRegularExpressionTool.m; sourceTree = "<group>"; };
 		4F7D9011210DE92E00145B00 /* EmoticonInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = EmoticonInfo.plist; sourceTree = "<group>"; };
+		4FAA229B21BEA770001F97B6 /* Tests_NSRegularExpression.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSRegularExpression.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				4F20CB252061073200C4463B /* Tests.m */,
+				4FAA229B21BEA770001F97B6 /* Tests_NSRegularExpression.m */,
 				4F20CB272061073200C4463B /* Info.plist */,
 			);
 			path = Tests;
@@ -254,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F20CB262061073200C4463B /* Tests.m in Sources */,
+				4FAA229C21BEA770001F97B6 /* Tests_NSRegularExpression.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

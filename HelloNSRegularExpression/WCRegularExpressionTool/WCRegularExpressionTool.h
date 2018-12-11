@@ -34,6 +34,19 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)enumerateMatchesInString:(NSString *)string pattern:(NSString *)pattern usingBlock:(void (^)(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop))block;
 
+/**
+ Replace multiple matched strings
+
+ @param string the original string to regular expression search
+ @param pattern the pattern of regular expression
+ @param captureGroupBindingBlock the block for replace matched string.
+        - matchString, the matched string
+        - captureGroupStrings, the array of capture group strings. If capture group match failed, its capture group string is empty string.
+        Return the replacement string to replce the matched string. Return nil if not replace.
+ @return the replaced string. If parameters checking failed, return the original string.
+ */
++ (nullable NSString *)stringByReplacingMatchesInString:(NSString *)string pattern:(NSString *)pattern captureGroupBindingBlock:(nullable NSString *(^)(NSString *matchString, NSArray<NSString *> *captureGroupStrings))captureGroupBindingBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END
