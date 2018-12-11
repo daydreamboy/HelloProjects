@@ -538,6 +538,166 @@
     XCTAssertNil(value);
 }
 
+- (void)test_valueOfKVCObject_usingKeyPath_bindings {
+    NSObject *object;
+    NSDictionary *bindings;
+    id value;
+    
+    // Example 1
+    // Case 1
+    object = [Human new];
+    bindings = @{
+                 @"a": @"hands"
+                 };
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a" bindings:bindings];
+    XCTAssertTrue([(NSObject *)value isKindOfClass:[NSArray class]]);
+    XCTAssertTrue([(NSArray *)value count] == 2);
+    
+    // Case 2
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a[0]" bindings:bindings];
+    XCTAssertTrue([value isKindOfClass:[Hand class]]);
+    
+    // Case 3
+    bindings = @{
+                 @"a": @"hands",
+                 @"c": @"name"
+                 };
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a[0].$c" bindings:bindings];
+    XCTAssertEqualObjects(value, @"Left Hand");
+    bindings = @{
+                 @"a": @"hands",
+                 @"b": @"1",
+                 @"c": @"name"
+                  };
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a[$b][$c]" bindings:bindings];
+    XCTAssertEqualObjects(value, @"Right Hand");
+    
+    // Case 4
+    bindings = @{
+                 @"a": @"hands",
+                 @"b": @"0",
+                 @"c": @"fingers"
+                  };
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a[$b].$c" bindings:bindings];
+    XCTAssertTrue([value count] == 5);
+    
+    // Case 5
+    bindings = @{
+                 @"a": @"hands",
+                 @"b": @"0",
+                 @"c": @"fingers"
+                  };
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a[0].$c[0]" bindings:bindings];
+    XCTAssertTrue([(NSObject *)value isKindOfClass:[Finger class]]);
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a[0].$c[$b].name" bindings:bindings];
+    XCTAssertEqualObjects(value, @"Thumb");
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a[0].$c[0].index" bindings:bindings];
+    XCTAssertEqualObjects(value, @(1));
+    
+    // Example 2
+    object = @{
+               @"human": [Human new],
+               @"array": @[
+                       [Human new]
+                       ]
+               };
+    bindings = @{
+                 @"a": @"hands",
+                 @"b": @"0",
+                 @"c": @"human"
+                  };
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"[$c].$a" bindings:bindings];
+    XCTAssertTrue([(NSObject *)value isKindOfClass:[NSArray class]]);
+    XCTAssertTrue([(NSArray *)value count] == 2);
+    
+    // Case 2
+    bindings = @{
+                 @"a": @"hands",
+                 @"b": @"0",
+                 @"c": @"human"
+                  };
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"[$c].$a[0]" bindings:bindings];
+    XCTAssertTrue([value isKindOfClass:[Hand class]]);
+    
+    // Case 3
+    bindings = @{
+                 @"a": @"hands",
+                 @"b": @"name",
+                 @"c": @"human"
+                  };
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$c.$a[0].$b" bindings:bindings];
+    XCTAssertEqualObjects(value, @"Left Hand");
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$c.$a[1].$b" bindings:bindings];
+    XCTAssertEqualObjects(value, @"Right Hand");
+    
+    // Case 4
+    bindings = @{
+                 @"a": @"hands",
+                 @"b": @"0",
+                 @"c": @"name"
+                  };
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"array.$b.$a[$b].fingers" bindings:bindings];
+    XCTAssertTrue([value count] == 5);
+    
+    // Case 5
+    bindings = @{
+                 @"a": @"hands",
+                 @"b": @"0",
+                 @"c": @"name"
+                  };
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"array[0].$a[0].fingers[0]" bindings:bindings];
+    XCTAssertTrue([(NSObject *)value isKindOfClass:[Finger class]]);
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"array[0].$a[0].fingers[0].$c" bindings:bindings];
+    XCTAssertEqualObjects(value, @"Thumb");
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"array[0].$a[0].fingers[0].index" bindings:bindings];
+    XCTAssertEqualObjects(value, @(1));
+    
+    // Case 6
+    object = @{
+               @"human": [Human new],
+               @"array": @[
+                       [Human new]
+                       ]
+               };
+    bindings = @{
+                 @"a": @"hu",
+                 @"b": @"man",
+                 @"c": @"name"
+                 };
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a$b.hands[0].fingers[0].name" bindings:bindings];
+    XCTAssertEqualObjects(value, @"Thumb");
+    
+    // Case 7
+    object = @{
+               @"human": [Human new],
+               @"array": @[
+                       [Human new]
+                       ]
+               };
+    bindings = @{
+                 @"a": @"hu"
+                 };
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"${a}man.hands[0].fingers[0].name" bindings:bindings];
+    XCTAssertEqualObjects(value, @"Thumb");
+    
+    // Case 8
+    object = @{
+               @"human": [Human new],
+               @"array": @[
+                       [Human new]
+                       ]
+               };
+    bindings = @{
+                 @"b": @"man"
+                 };
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"hu$b.hands[0].fingers[0].name" bindings:bindings];
+    XCTAssertEqualObjects(value, @"Thumb");
+    
+    // Abnormal Case
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"Hand" bindings:bindings];
+    XCTAssertNil(value);
+}
+
 #pragma mark > Print JSON string
 
 - (void)test_printJSONStringFromJSONObject {

@@ -160,6 +160,18 @@ NS_AVAILABLE_IOS(5_0)
  */
 + (nullable id)valueOfKVCObject:(id)KVCObject usingKeyPath:(NSString *)keyPath;
 
+/**
+ Get value using keyPath from KVC object with bindings
+
+ @param KVCObject a KVC-compliant object
+ @param keyPath a key or a keyPath which supports template variables, e.g. @"A$b$c.$d" => @"ABC.D", @"A$b${c}D.$e" => @"ABCD.E"
+ @param bindings the map for template variables
+ @return If keyPath is empty string, will return the original KVCObject
+ @discussion 1. the keyPath with variables must separated by `.[]`
+             2. the pattern for template variables is @"\\$(?:\\{([a-zA-Z0-9_-]+)\\}|([a-zA-Z0-9_-]+))";
+ */
++ (nullable id)valueOfKVCObject:(id)KVCObject usingKeyPath:(NSString *)keyPath bindings:(nullable NSDictionary *)bindings;
+
 #pragma mark > Print JSON string
 
 /**
