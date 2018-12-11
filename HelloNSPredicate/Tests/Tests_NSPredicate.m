@@ -28,6 +28,45 @@
     [super tearDown];
 }
 
+#pragma mark - Format String Syntax
+
+- (void)test_string_contants {
+    NSArray<Person *> *people = [Person people];
+    NSArray<Person *> *output;
+    NSPredicate *predicate;
+    
+    // Case 1: single quotes
+    predicate = [NSPredicate predicateWithFormat:@"lastName like 'Smith'"];
+    output = [people filteredArrayUsingPredicate:predicate];
+    for (Person *p in output) {
+        XCTAssertTrue([p.lastName isEqualToString:@"Smith"]);
+    }
+    
+    // Case 2: double quotes
+    predicate = [NSPredicate predicateWithFormat:@"lastName LIKE \"Smith\""];
+    output = [people filteredArrayUsingPredicate:predicate];
+    for (Person *p in output) {
+        XCTAssertTrue([p.lastName isEqualToString:@"Smith"]);
+    }
+    
+    // Case 3: auto double quotes
+    predicate = [NSPredicate predicateWithFormat:@"lastName LIKE %@", @"Smith"];
+    output = [people filteredArrayUsingPredicate:predicate];
+    for (Person *p in output) {
+        XCTAssertTrue([p.lastName isEqualToString:@"Smith"]);
+    }
+    
+    // Abnormal Case 1:
+    predicate = [NSPredicate predicateWithFormat:@"lastName LIKE '%@'", @"Smith"];
+    output = [people filteredArrayUsingPredicate:predicate];
+    XCTAssertTrue(output.count == 0);
+    
+    // Abnormal Case 2:
+    predicate = [NSPredicate predicateWithFormat:@"lastName LIKE \"%@\"", @"Smith"];
+    output = [people filteredArrayUsingPredicate:predicate];
+    XCTAssertTrue(output.count == 0);
+}
+
 - (void)test_substitution {
     NSArray<Person *> *people = [Person people];
     NSArray<Person *> *output;
@@ -114,6 +153,23 @@
     
     predicate = [NSPredicate predicateWithFormat:@"$a[0] > 1"];
     trueOrFalse = [predicate evaluateWithObject:nil substitutionVariables:@{ @"a": @[ @2 ] }];
+    XCTAssertTrue(trueOrFalse);
+    NSLog(@"%@", STR_OF_BOOL(trueOrFalse));
+    
+    predicate = [NSPredicate predicateWithFormat:@"$a[$b] > 1"];
+    trueOrFalse = [predicate evaluateWithObject:nil substitutionVariables:@{ @"a": @[ @2 ], @"b": @0 }];
+    XCTAssertTrue(trueOrFalse);
+    NSLog(@"%@", STR_OF_BOOL(trueOrFalse));
+    
+    predicate = [NSPredicate predicateWithFormat:@"$a[$b] == 'ABC'"];
+    trueOrFalse = [predicate evaluateWithObject:nil substitutionVariables:@{ @"a": @{ @"a": @"ABC" }, @"b": @"a" }];
+    XCTAssertTrue(trueOrFalse);
+    NSLog(@"%@", STR_OF_BOOL(trueOrFalse));
+    
+    Person *p = [Person new];
+    p.firstName = @"Lily";
+    predicate = [NSPredicate predicateWithFormat:@"$a[$b].firstName == 'Lily'"];
+    trueOrFalse = [predicate evaluateWithObject:nil substitutionVariables:@{ @"a": @{ @"a": p }, @"b": @"a" }];
     XCTAssertTrue(trueOrFalse);
     NSLog(@"%@", STR_OF_BOOL(trueOrFalse));
 }
