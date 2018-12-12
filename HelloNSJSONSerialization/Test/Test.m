@@ -693,7 +693,17 @@
     value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"hu$b.hands[0].fingers[0].name" bindings:bindings];
     XCTAssertEqualObjects(value, @"Thumb");
     
-    // Abnormal Case
+    
+    // Case 9
+    bindings = @{
+                 @"!bar": @{
+                         @"foo": @"a"
+                         }
+                 };
+    value = [WCJSONTool valueOfKVCObject:bindings usingKeyPath:@"!bar.foo" bindings:bindings];
+    XCTAssertEqualObjects(value, @"a");
+    
+    // Abnormal Case 1
     value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"Hand" bindings:bindings];
     XCTAssertNil(value);
 }

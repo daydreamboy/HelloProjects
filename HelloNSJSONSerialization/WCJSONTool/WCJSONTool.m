@@ -302,7 +302,7 @@
     while (keys.count) {
         NSString *key = [keys firstObject];;
         
-        if (bindings) {
+        if (bindings && [key rangeOfString:@"$"].location != NSNotFound) {
             key = [WCJSONTool stringByReplacingMatchesInString:key pattern:@"\\$(?:\\{([a-zA-Z0-9_-]+)\\}|([a-zA-Z0-9_-]+))" captureGroupBindingBlock:^NSString *(NSString *matchString, NSArray<NSString *> *captureGroupStrings) {
                 for (NSString *captureGroupString in captureGroupStrings) {
                     if (bindings[captureGroupString]) {
