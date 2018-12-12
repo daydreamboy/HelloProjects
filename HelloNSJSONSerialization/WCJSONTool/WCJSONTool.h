@@ -165,7 +165,7 @@ NS_AVAILABLE_IOS(5_0)
 
  @param KVCObject a KVC-compliant object
  @param keyPath a key or a keyPath which supports template variables, e.g. @"A$b$c.$d" => @"ABC.D", @"A$b${c}D.$e" => @"ABCD.E"
- @param bindings the map for template variables
+ @param bindings the map for template variables. Pass nil to not parse template variables.
  @return If keyPath is empty string, will return the original KVCObject
  @discussion 1. the keyPath with variables must separated by `.[]`
              2. the pattern for template variables is @"\\$(?:\\{([a-zA-Z0-9_-]+)\\}|([a-zA-Z0-9_-]+))";

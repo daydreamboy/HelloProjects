@@ -300,17 +300,19 @@
     
     id value = KVCObject;
     while (keys.count) {
-        NSString *templateKey = [keys firstObject];;
+        NSString *key = [keys firstObject];;
         
-        NSString *key = [WCJSONTool stringByReplacingMatchesInString:templateKey pattern:@"\\$(?:\\{([a-zA-Z0-9_-]+)\\}|([a-zA-Z0-9_-]+))" captureGroupBindingBlock:^NSString *(NSString *matchString, NSArray<NSString *> *captureGroupStrings) {
-            for (NSString *captureGroupString in captureGroupStrings) {
-                if (bindings[captureGroupString]) {
-                    //NSLog(@"Replace %@ to %@", matchString, bindings[captureGroupString]);
-                    return bindings[captureGroupString];
+        if (bindings) {
+            key = [WCJSONTool stringByReplacingMatchesInString:key pattern:@"\\$(?:\\{([a-zA-Z0-9_-]+)\\}|([a-zA-Z0-9_-]+))" captureGroupBindingBlock:^NSString *(NSString *matchString, NSArray<NSString *> *captureGroupStrings) {
+                for (NSString *captureGroupString in captureGroupStrings) {
+                    if (bindings[captureGroupString]) {
+                        //NSLog(@"Replace %@ to %@", matchString, bindings[captureGroupString]);
+                        return bindings[captureGroupString];
+                    }
                 }
-            }
-            return nil;
-        }];
+                return nil;
+            }];
+        }
         
         if ([value isKindOfClass:[NSArray class]]) {
             // Note: handle NSArray container
@@ -386,6 +388,9 @@
                 if (captureRange.location != NSNotFound) {
                     NSString *captureGroupString = [WCJSONTool substringWithString:string range:captureRange];
                     [captureGroupStrings addObject:captureGroupString ?: @""];
+                }
+                else {
+                    [captureGroupStrings addObject:@""];
                 }
             }
             
