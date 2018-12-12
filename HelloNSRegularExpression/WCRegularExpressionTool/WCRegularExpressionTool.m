@@ -51,6 +51,8 @@
     }
 }
 
+#pragma mark - Replace Matched String
+
 + (nullable NSString *)stringByReplacingMatchesInString:(NSString *)string pattern:(NSString *)pattern captureGroupBindingBlock:(nullable NSString *(^)(NSString *matchString, NSArray<NSString *> *captureGroupStrings))captureGroupBindingBlock {
     
     if (!captureGroupBindingBlock) {
@@ -71,6 +73,9 @@
                     NSString *captureGroupString = [WCRegularExpressionTool substringWithString:string range:captureRange];
                     [captureGroupStrings addObject:captureGroupString ?: @""];
                 }
+                else {
+                    [captureGroupStrings addObject:@""];
+                }
             }
             
             NSString *replacementString = captureGroupBindingBlock(matchString, captureGroupStrings);
@@ -86,6 +91,33 @@
     }
     
     return [WCRegularExpressionTool replaceCharactersInRangesWithString:string ranges:ranges replacementStrings:replacementStrings replacementRanges:nil];
+}
+
+#pragma mark - Get Matched String
+
++ (nullable NSString *)firstMatchedStringInString:(NSString *)string pattern:(NSString *)pattern {
+    NSTextCheckingResult *match = [self firstMatchInString:string pattern:pattern];
+    if (!match) {
+        return nil;
+    }
+    
+    return [WCRegularExpressionTool substringWithString:string range:match.range];
+}
+
+#pragma mark - Validate Pattern
+
++ (BOOL)checkPatternWithString:(NSString *)string error:(inout NSError * _Nullable *)error {
+    if (![string isKindOfClass:[NSString class]] || string.length == 0) {
+        return NO;
+    }
+    
+    NSError *errorL = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:string options:kNilOptions error:&errorL];
+    if (error) {
+        *error = errorL;
+    }
+    
+    return regex ? YES : NO;
 }
 
 #pragma mark - Utility

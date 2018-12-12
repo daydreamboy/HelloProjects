@@ -544,12 +544,13 @@
 }
 
 - (void)test_stringByReplacingMatchesInString_pattern_captureGroupBindingBlock {
-    NSString *pattern = @"\\$!?(?:\\{([a-zA-Z0-9_-]+)\\}|([a-zA-Z0-9_-]+))";
+    NSString *pattern;
     NSString *string;
     NSString *output;
     NSDictionary *bindings;
     
     // Case 1
+    pattern = @"\\$!?(?:\\{([a-zA-Z0-9_-]+)\\}|([a-zA-Z0-9_-]+))";
     bindings = @{
                  @"a": @"A",
                  @"b": @"B"
@@ -586,6 +587,103 @@
         return nil;
     }];
     XCTAssertEqualObjects(output, @"aAB,A,Bc");
+    
+    // Case 3
+    bindings = @{
+                 @"a": @"A",
+                 @"a-a": @"A",
+                 @"b": @"B"
+                 };
+    string = @"a$a-a$b,${a},$!{b}c";
+    output = [WCRegularExpressionTool stringByReplacingMatchesInString:string pattern:pattern captureGroupBindingBlock:^NSString * _Nonnull(NSString * _Nonnull matchString, NSArray<NSString *> * _Nonnull captureGroupStrings) {
+        
+        for (NSString *captureGroupString in captureGroupStrings) {
+            if (bindings[captureGroupString]) {
+                NSLog(@"Replace %@ to %@", matchString, bindings[captureGroupString]);
+                return bindings[captureGroupString];
+            }
+        }
+        
+        return nil;
+    }];
+    XCTAssertEqualObjects(output, @"aAB,A,Bc");
+    
+    // Case 3
+    pattern = @"\\$!?(?:\\{([a-zA-Z0-9_\\-\\.\\[\\]\\$]+)\\}|([a-zA-Z0-9_-]+))";
+    bindings = @{
+                 @"a": @"A",
+                 @"b": @"B"
+                 };
+    string = @"${foo[$i]}";
+    output = [WCRegularExpressionTool stringByReplacingMatchesInString:string pattern:pattern captureGroupBindingBlock:^NSString * _Nonnull(NSString * _Nonnull matchString, NSArray<NSString *> * _Nonnull captureGroupStrings) {
+        
+        NSString *captureGroupString;
+        
+        if (captureGroupStrings.count == 2) {
+            
+            if ([captureGroupStrings[0] length]) {
+                // match ${a}
+                
+                captureGroupString = captureGroupStrings[0];
+                if (bindings[captureGroupString]) {
+                    NSLog(@"Replace %@ to %@", matchString, bindings[captureGroupString]);
+                    return bindings[captureGroupString];
+                }
+            }
+            else if ([captureGroupStrings[1] length]) {
+                // match $a
+                
+                captureGroupString = captureGroupStrings[0];
+                if (bindings[captureGroupString]) {
+                    NSLog(@"Replace %@ to %@", matchString, bindings[captureGroupString]);
+                    return bindings[captureGroupString];
+                }
+            }
+        }
+        
+        return nil;
+    }];
+    XCTAssertEqualObjects(output, @"aAB,A,Bc");
+}
+
+- (void)test_checkPatternWithString_error {
+    NSString *pattern;
+    NSString *string;
+    NSString *output;
+    BOOL valid;
+    
+    // Case 1
+    pattern = @"\\$!?(?:\\{([a-zA-Z0-9_-.]+)\\}|([a-zA-Z0-9_-]+))";
+    valid = [WCRegularExpressionTool checkPatternWithString:pattern error:nil];
+    XCTAssertFalse(valid);
+    
+    // Case 2:
+    pattern = @"\\$!?(?:\\{([a-zA-Z0-9_-\\.]+)\\}|([a-zA-Z0-9_-]+))";
+    valid = [WCRegularExpressionTool checkPatternWithString:pattern error:nil];
+    XCTAssertFalse(valid);
+    
+    // Case 3
+    pattern = @"\\$!?(?:\\{([a-zA-Z0-9_\\-\\.]+)\\}|([a-zA-Z0-9_-]+))";
+    valid = [WCRegularExpressionTool checkPatternWithString:pattern error:nil];
+    XCTAssertTrue(valid);
+    
+    // Case 4
+    pattern = @"a-z";
+    valid = [WCRegularExpressionTool checkPatternWithString:pattern error:nil];
+    XCTAssertTrue(valid);
+    
+    string = @"a-z";
+    pattern = @"a-z";
+    output = [WCRegularExpressionTool firstMatchedStringInString:string pattern:pattern];
+    XCTAssertEqualObjects(output, @"a-z");
+    
+    string = @"b";
+    output = [WCRegularExpressionTool firstMatchedStringInString:string pattern:pattern];
+    XCTAssertNil(output);
+    
+    string = @"B";
+    output = [WCRegularExpressionTool firstMatchedStringInString:string pattern:pattern];
+    XCTAssertNil(output);
 }
 
 @end

@@ -34,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)enumerateMatchesInString:(NSString *)string pattern:(NSString *)pattern usingBlock:(void (^)(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop))block;
 
+#pragma mark - Replace Matched String
+
 /**
  Replace multiple matched strings
 
@@ -46,6 +48,28 @@ NS_ASSUME_NONNULL_BEGIN
  @return the replaced string. If parameters checking failed, return the original string.
  */
 + (nullable NSString *)stringByReplacingMatchesInString:(NSString *)string pattern:(NSString *)pattern captureGroupBindingBlock:(nullable NSString *(^)(NSString *matchString, NSArray<NSString *> *captureGroupStrings))captureGroupBindingBlock;
+
+#pragma mark - Get Matched String
+
+/**
+ Get the first matched string
+
+ @param string the original string
+ @param pattern the pattern of regular expression
+ @return the first matched string. Return nil if not matched.
+ */
++ (nullable NSString *)firstMatchedStringInString:(NSString *)string pattern:(NSString *)pattern;
+
+#pragma mark - Validate Pattern
+
+/**
+ Check a string if valid regular expression
+
+ @param string the pattern
+ @param error the NSError
+ @return Return YES if string is a valid regular expression. Return NO if string is not a valid regular expression.
+ */
++ (BOOL)checkPatternWithString:(NSString *)string error:(inout NSError * _Nullable *)error;
 
 @end
 
