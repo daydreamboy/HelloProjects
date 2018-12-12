@@ -75,6 +75,14 @@ static BOOL sEnableLogging;
 
 + (nullable NSString *)stringByReplacingMatchesInString:(NSString *)string pattern:(NSString *)pattern captureGroupBindingBlock:(nullable NSString *(^)(NSString *matchString, NSArray<NSString *> *captureGroupStrings))captureGroupBindingBlock {
     
+    if (![string isKindOfClass:[NSString class]] || string.length == 0) {
+        return nil;
+    }
+    
+    if (![pattern isKindOfClass:[NSString class]] || pattern.length == 0) {
+        return nil;
+    }
+    
     if (!captureGroupBindingBlock) {
         return string;
     }
@@ -109,6 +117,50 @@ static BOOL sEnableLogging;
     if (!status) {
         return string;
     }
+    
+    return [WCRegularExpressionTool replaceCharactersInRangesWithString:string ranges:ranges replacementStrings:replacementStrings replacementRanges:nil];
+}
+
++ (nullable NSString *)stringByReplacingMatchesInString:(NSString *)string regularExpression:(NSRegularExpression *)regex captureGroupBindingBlock:(nullable NSString *(^)(NSString *matchString, NSArray<NSString *> *captureGroupStrings))captureGroupBindingBlock {
+    
+    if (![string isKindOfClass:[NSString class]] || string.length == 0) {
+        return nil;
+    }
+    
+    if (![regex isKindOfClass:[NSRegularExpression class]]) {
+        return nil;
+    }
+    
+    if (!captureGroupBindingBlock) {
+        return string;
+    }
+    
+    NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
+    NSMutableArray<NSString *> *replacementStrings = [NSMutableArray array];
+    [regex enumerateMatchesInString:string options:kNilOptions range:NSMakeRange(0, string.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        NSRange matchRange = result.range;
+        if (matchRange.location != NSNotFound && matchRange.length > 0) {
+            NSString *matchString = [WCRegularExpressionTool substringWithString:string range:matchRange];
+            
+            NSMutableArray *captureGroupStrings = [NSMutableArray array];
+            for (NSInteger i = 1; i < result.numberOfRanges; i++) {
+                NSRange captureRange = [result rangeAtIndex:i];
+                if (captureRange.location != NSNotFound) {
+                    NSString *captureGroupString = [WCRegularExpressionTool substringWithString:string range:captureRange];
+                    [captureGroupStrings addObject:captureGroupString ?: @""];
+                }
+                else {
+                    [captureGroupStrings addObject:@""];
+                }
+            }
+            
+            NSString *replacementString = captureGroupBindingBlock(matchString, captureGroupStrings);
+            if ([replacementString isKindOfClass:[NSString class]]) {
+                [ranges addObject:[NSValue valueWithRange:matchRange]];
+                [replacementStrings addObject:replacementString];
+            }
+        }
+    }];
     
     return [WCRegularExpressionTool replaceCharactersInRangesWithString:string ranges:ranges replacementStrings:replacementStrings replacementRanges:nil];
 }

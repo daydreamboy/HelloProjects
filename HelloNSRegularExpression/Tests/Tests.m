@@ -612,6 +612,73 @@
     XCTAssertEqualObjects(output, @"aAB,A,Bc");
 }
 
+- (void)test_stringByReplacingMatchesInString_regularExpression_captureGroupBindingBlock {
+    
+    NSString *string;
+    NSString *output;
+    NSDictionary *bindings;
+    NSString *pattern = @"\\$!?(?:\\{([a-zA-Z0-9_-]+)\\}|([a-zA-Z0-9_-]+))";
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:kNilOptions error:nil];
+    
+    // Case 1
+    bindings = @{
+                 @"a": @"A",
+                 @"b": @"B"
+                 };
+    string = @"$a$b,${a},$!{b}c";
+    output = [WCRegularExpressionTool stringByReplacingMatchesInString:string regularExpression:regex captureGroupBindingBlock:^NSString * _Nonnull(NSString * _Nonnull matchString, NSArray<NSString *> * _Nonnull captureGroupStrings) {
+        
+        for (NSString *captureGroupString in captureGroupStrings) {
+            if (bindings[captureGroupString]) {
+                NSLog(@"Replace %@ to %@", matchString, bindings[captureGroupString]);
+                return bindings[captureGroupString];
+            }
+        }
+        
+        return nil;
+    }];
+    XCTAssertEqualObjects(output, @"AB,A,Bc");
+    
+    // Case 2
+    bindings = @{
+                 @"a": @"A",
+                 @"b": @"B"
+                 };
+    string = @"a$a$b,${a},$!{b}c";
+    output = [WCRegularExpressionTool stringByReplacingMatchesInString:string regularExpression:regex captureGroupBindingBlock:^NSString * _Nonnull(NSString * _Nonnull matchString, NSArray<NSString *> * _Nonnull captureGroupStrings) {
+        
+        for (NSString *captureGroupString in captureGroupStrings) {
+            if (bindings[captureGroupString]) {
+                NSLog(@"Replace %@ to %@", matchString, bindings[captureGroupString]);
+                return bindings[captureGroupString];
+            }
+        }
+        
+        return nil;
+    }];
+    XCTAssertEqualObjects(output, @"aAB,A,Bc");
+    
+    // Case 3
+    bindings = @{
+                 @"a": @"A",
+                 @"a-a": @"A",
+                 @"b": @"B"
+                 };
+    string = @"a$a-a$b,${a},$!{b}c";
+    output = [WCRegularExpressionTool stringByReplacingMatchesInString:string regularExpression:regex captureGroupBindingBlock:^NSString * _Nonnull(NSString * _Nonnull matchString, NSArray<NSString *> * _Nonnull captureGroupStrings) {
+        
+        for (NSString *captureGroupString in captureGroupStrings) {
+            if (bindings[captureGroupString]) {
+                NSLog(@"Replace %@ to %@", matchString, bindings[captureGroupString]);
+                return bindings[captureGroupString];
+            }
+        }
+        
+        return nil;
+    }];
+    XCTAssertEqualObjects(output, @"aAB,A,Bc");
+}
+
 #pragma mark > Specific Substitutions
 
 - (void)test_substituteTemplateStringWithString_bindings {
