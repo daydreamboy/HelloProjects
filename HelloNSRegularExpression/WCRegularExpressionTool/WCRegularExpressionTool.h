@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WCRegularExpressionTool : NSObject
 
+@property (nonatomic, assign, class) BOOL enableLogging;
+
+#pragma mark - Get NSTextCheckingResult
+
 /**
  Get the first match in the string
 
@@ -48,6 +52,17 @@ NS_ASSUME_NONNULL_BEGIN
  @return the replaced string. If parameters checking failed, return the original string.
  */
 + (nullable NSString *)stringByReplacingMatchesInString:(NSString *)string pattern:(NSString *)pattern captureGroupBindingBlock:(nullable NSString *(^)(NSString *matchString, NSArray<NSString *> *captureGroupStrings))captureGroupBindingBlock;
+
+#pragma mark > Specific Substitutions
+
+/**
+ Velocity Template Variable Substitution
+
+ @param string the template string
+ @param bindings the bindings
+ @return the substituted string
+ */
++ (nullable NSString *)substituteTemplateStringWithString:(NSString *)string bindings:(NSDictionary *)bindings;
 
 #pragma mark - Get Matched String
 

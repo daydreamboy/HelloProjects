@@ -18,6 +18,7 @@
 - (void)setUp {
     [super setUp];
     NSLog(@"\n");
+    [WCRegularExpressionTool setEnableLogging:YES];
 }
 
 - (void)tearDown {
@@ -492,7 +493,7 @@
     }
 }
 
-#pragma mark -
+#pragma mark - Get NSTextCheckingResult
 
 - (void)test_enumerateMatchesInString_pattern_usingBlock {
     NSString *string;
@@ -542,6 +543,8 @@
     XCTAssertEqualObjects(output[2], @"a");
     XCTAssertEqualObjects(output[3], @"b");
 }
+
+#pragma mark - Replace Matched String
 
 - (void)test_stringByReplacingMatchesInString_pattern_captureGroupBindingBlock {
     NSString *pattern;
@@ -607,44 +610,217 @@
         return nil;
     }];
     XCTAssertEqualObjects(output, @"aAB,A,Bc");
-    
-    // Case 3
-    pattern = @"\\$!?(?:\\{([a-zA-Z0-9_\\-\\.\\[\\]\\$]+)\\}|([a-zA-Z0-9_-]+))";
-    bindings = @{
-                 @"a": @"A",
-                 @"b": @"B"
-                 };
-    string = @"${foo[$i]}";
-    output = [WCRegularExpressionTool stringByReplacingMatchesInString:string pattern:pattern captureGroupBindingBlock:^NSString * _Nonnull(NSString * _Nonnull matchString, NSArray<NSString *> * _Nonnull captureGroupStrings) {
-        
-        NSString *captureGroupString;
-        
-        if (captureGroupStrings.count == 2) {
-            
-            if ([captureGroupStrings[0] length]) {
-                // match ${a}
-                
-                captureGroupString = captureGroupStrings[0];
-                if (bindings[captureGroupString]) {
-                    NSLog(@"Replace %@ to %@", matchString, bindings[captureGroupString]);
-                    return bindings[captureGroupString];
-                }
-            }
-            else if ([captureGroupStrings[1] length]) {
-                // match $a
-                
-                captureGroupString = captureGroupStrings[0];
-                if (bindings[captureGroupString]) {
-                    NSLog(@"Replace %@ to %@", matchString, bindings[captureGroupString]);
-                    return bindings[captureGroupString];
-                }
-            }
-        }
-        
-        return nil;
-    }];
-    XCTAssertEqualObjects(output, @"aAB,A,Bc");
 }
+
+#pragma mark > Specific Substitutions
+
+- (void)test_substituteTemplateStringWithString_bindings {
+    NSString *string;
+    NSString *output;
+    NSDictionary *bindings;
+    
+    // Case 1: Variable
+    bindings = @{
+                 @"w1": @"is",
+                 @"first-word": @"The",
+                 @"a_1": @"ark",
+                 @"ing": @"ing",
+                 };
+    string = @"$first-word d$a_1 $w1 someth${ing}.";
+    output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
+    XCTAssertEqualObjects(output, @"The dark is something.");
+    
+    // Case 2: Subscript
+    bindings = @{
+                 @"i": @"bar",
+                 @"foo": @{
+                         @"bar": @"da"
+                         },
+                 @"s": @"some",
+                 @"ing": @"ing",
+                 };
+    string = @"The ${foo[$i]}rk is something.";
+    output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
+    XCTAssertEqualObjects(output, @"The dark is something.");
+    
+    bindings = @{
+                 @"foo": @{
+                         @"0": @"e",
+                         },
+                 @"foos": @[
+                         @"e"
+                         ],
+                 };
+    string = @"Th$foo[0] dark is som${foos[0]}thing.";
+    output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
+    XCTAssertEqualObjects(output, @"The dark is something.");
+    
+    bindings = @{
+                 @"foo": @{
+                         @"bar": @{
+                                 @"0": @"e",
+                                 }
+                         },
+                 @"foos": @[
+                         @{
+                             @"bar": @{
+                                     @"0": @"e",
+                                     }
+                         }
+                         ],
+                 };
+    string = @"Th$foo[bar][0] dark is som${foos[0][bar][0]}thing.";
+    output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
+    XCTAssertEqualObjects(output, @"The dark is something.");
+    
+    // Case 3: Dot Reference
+    bindings = @{
+                 @"foo": @{
+                         @"bar": @{
+                                 @"0": @"e",
+                                 }
+                         },
+                 @"foos": @[
+                         @{
+                             @"bar": @{
+                                     @"0": @"e",
+                                     }
+                             }
+                         ],
+                 };
+    string = @"Th$foo.bar.0 dark is som${foos.0.bar.0}thing.";
+    output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
+    XCTAssertEqualObjects(output, @"The dark is something.");
+    
+    // Case 4: Catenate With Reserved Characters
+    bindings = @{
+                 @"word": @"word",
+                 @"hello": @"hello",
+                 @"world": @"world",
+                 };
+    string = @"Hello_${word}-like is not ${hello}_${world}.";
+    output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
+    XCTAssertEqualObjects(output, @"Hello_word-like is not hello_world.");
+    
+    // Case 5: Silent Notation
+    bindings = @{
+                 @"I'm not foo": @"far",
+                 };
+    string = @"The $!{foo[$!i]}rk is something.";
+    output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
+    XCTAssertEqualObjects(output, @"The rk is something.");
+    
+    bindings = @{
+                 @"foo": @[
+                         @"da"
+                         ],
+                 };
+    string = @"The ${foo[$!i]}rk is something.";
+    output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
+    XCTAssertEqualObjects(output, @"The ${foo[$!i]}rk is something.");
+    
+    string = @"Th$!c_1 d$!a-1 $!w1 someth$!{ing}.";
+    output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
+    XCTAssertEqualObjects(output, @"Th d  someth.");
+    
+    // Special Case
+    bindings = @{
+                 @"foo": @{
+                         @"bar": @"is",
+                         @"!bar": @"is",
+                         }
+                 };
+    string = @"The dark ${foo[!bar]} something.";
+    output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
+    XCTAssertEqualObjects(output, @"The dark is something.");
+    
+    bindings = @{
+                 @"foo": @{
+                         @"bar": @"is",
+                         @"!bar": @"is",
+                         }
+                 };
+    string = @"The dark $!foo.$!bar something.";
+    output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
+    XCTAssertEqualObjects(output, @"The dark  something.");
+    
+    bindings = @{
+                 @"foo": @{
+                         @"bar": @"is",
+                         @"!bar": @"is",
+                         }
+                 };
+    string = @"The dark $!foo.$bar something.";
+    output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
+    XCTAssertEqualObjects(output, @"The dark  something.");
+    
+    bindings = @{
+                 @"foo": @{
+                         @"bar": @"is",
+                         @"!bar": @"is",
+                         }
+                 };
+    string = @"The dark $foo.$!bar something.";
+    output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
+    XCTAssertEqualObjects(output, @"The dark $foo.$!bar something.");
+    
+    bindings = @{
+                 @"foo": @{
+                         @"bar": @"is",
+                         @"!bar": @"is",
+                         }
+                 };
+    string = @"The dark $foo.$bar something.";
+    output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
+    XCTAssertEqualObjects(output, @"The dark $foo.$bar something.");
+    
+    // Abnormal Case 1: missing fields
+    bindings = @{
+                 @"$first": @"The",
+                 @"$foo": @"da",
+                 };
+    string = @"$first ${foo[$i]}rk is something.";
+    output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
+    XCTAssertEqualObjects(output, @"$first ${foo[$i]}rk is something.");
+    
+    // Abnormal Case 2: field's type not matches string type
+    bindings = @{
+                 @"array": @"I'm not an array",
+                 @"map": @"I'm not a map",
+                 @"key": @10,
+                 };
+    string = @"The first element `$array[0]` of array is same as the value `$map[key]` of $key in the map";
+    output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
+    XCTAssertEqualObjects(output, @"The first element `$array[0]` of array is same as the value `$map[key]` of $key in the map");
+    
+    // Abnormal Case 3: not correct variable names
+    bindings = @{
+                 @"_first": @"The",
+                 @"@end": @"something",
+                 @"is": @"is",
+                 @"isA": @"isA"
+                 };
+    string = @"$_first dark ${${is}A} $@end.";
+    output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
+    XCTAssertEqualObjects(output, @"$_first dark ${isA} $@end.");
+    
+    // Abnormal Case 4: silent notation not correct
+    bindings = @{
+                 @"is": @"is",
+                 };
+    string = @"$_first dark ${$is} $@end.";
+    output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
+    XCTAssertEqualObjects(output, @"$_first dark ${is} $@end.");
+    
+    bindings = @{
+                 @"!is": @"is",
+                 };
+    string = @"The dark $!!is something.";
+    output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
+    XCTAssertEqualObjects(output, @"The dark $!!is something.");
+}
+
+#pragma mark - Validate Pattern
 
 - (void)test_checkPatternWithString_error {
     NSString *pattern;
