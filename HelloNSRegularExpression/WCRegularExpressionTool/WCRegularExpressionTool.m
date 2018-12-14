@@ -384,7 +384,7 @@ static BOOL sEnableLogging;
         NSString *key = [keys firstObject];
         
         if (bindings && [key rangeOfString:@"$"].location != NSNotFound) {
-            key = [WCRegularExpressionTool stringByReplacingMatchesInString:key pattern:@"\\$(?:\\{([a-zA-Z]+[a-zA-Z0-9_-]*)\\}|([a-zA-Z]+[a-zA-Z0-9_-]*))" captureGroupBindingBlock:^NSString *(NSString *matchString, NSArray<NSString *> *captureGroupStrings) {
+            key = [WCRegularExpressionTool stringByReplacingMatchesInString:key pattern:@"\\$!?(?:\\{([a-zA-Z]+[a-zA-Z0-9_-]*)\\}|([a-zA-Z]+[a-zA-Z0-9_-]*))" captureGroupBindingBlock:^NSString *(NSString *matchString, NSArray<NSString *> *captureGroupStrings) {
                 for (NSString *captureGroupString in captureGroupStrings) {
                     if (bindings[captureGroupString]) {
                         WCLog(@"Info: Replace %@ to %@", matchString, bindings[captureGroupString]);

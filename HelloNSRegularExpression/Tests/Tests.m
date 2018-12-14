@@ -786,6 +786,26 @@
     output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
     XCTAssertEqualObjects(output, @"The ${foo[$!i]}rk is something.");
     
+    bindings = @{
+                 @"foo": @[
+                         @"da"
+                         ],
+                 @"i": @"0"
+                 };
+    string = @"The ${foo[$!i]}rk is something.";
+    output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
+    XCTAssertEqualObjects(output, @"The dark is something.");
+    
+    bindings = @{
+                 @"foo": @[
+                         @"da"
+                         ],
+                 @"i": @"0"
+                 };
+    string = @"The ${foo.$!i}rk is something.";
+    output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
+    XCTAssertEqualObjects(output, @"The dark is something.");
+    
     string = @"Th$!c_1 d$!a-1 $!w1 someth$!{ing}.";
     output = [WCRegularExpressionTool substituteTemplateStringWithString:string bindings:bindings];
     XCTAssertEqualObjects(output, @"Th d  someth.");
