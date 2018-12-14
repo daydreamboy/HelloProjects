@@ -949,4 +949,112 @@
     XCTAssertNil(output);
 }
 
+#pragma mark - Greedy vs. Reluctant vs. Possessive
+
+- (void)test_greedy_mode {
+    NSString *string;
+    NSString *pattern;
+    
+    string = @"xfooxxxxxxfoo";
+    pattern = @".*foo";
+    [WCRegularExpressionTool enumerateMatchesInString:string pattern:pattern usingBlock:^(NSTextCheckingResult * _Nonnull result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        NSString *matchString = [string substringWithRange:result.range];
+        
+        NSLog(@"matchString: %@", matchString);
+    }];
+}
+
+- (void)test_reluctant_mode {
+    NSString *string;
+    NSString *pattern;
+    
+    string = @"xfooxxxxxxfoo";
+    pattern = @".*?foo";
+    [WCRegularExpressionTool enumerateMatchesInString:string pattern:pattern usingBlock:^(NSTextCheckingResult * _Nonnull result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        NSString *matchString = [string substringWithRange:result.range];
+        
+        NSLog(@"matchString: %@", matchString);
+    }];
+}
+
+- (void)test_possessive_mode {
+    NSString *string;
+    NSString *pattern;
+    BOOL haveOneMatchAtLess;
+    
+    // Case 1
+    string = @"xfooxxxxxxfoo";
+    pattern = @".*+foo";
+    haveOneMatchAtLess = [WCRegularExpressionTool enumerateMatchesInString:string pattern:pattern usingBlock:^(NSTextCheckingResult * _Nonnull result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        NSString *matchString = [string substringWithRange:result.range];
+        
+        NSLog(@"matchString: %@", matchString);
+    }];
+    XCTAssertFalse(haveOneMatchAtLess);
+    
+    // Case 2
+    string = @"xfoo";
+    pattern = @".*+foo";
+    haveOneMatchAtLess = [WCRegularExpressionTool enumerateMatchesInString:string pattern:pattern usingBlock:^(NSTextCheckingResult * _Nonnull result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        NSString *matchString = [string substringWithRange:result.range];
+        
+        NSLog(@"matchString: %@", matchString);
+    }];
+    XCTAssertFalse(haveOneMatchAtLess);
+    
+    // Case 3
+    string = @"xfoo";
+    pattern = @".*+foo";
+    haveOneMatchAtLess = [WCRegularExpressionTool enumerateMatchesInString:string pattern:pattern usingBlock:^(NSTextCheckingResult * _Nonnull result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        NSString *matchString = [string substringWithRange:result.range];
+        
+        NSLog(@"matchString: %@", matchString);
+    }];
+    XCTAssertFalse(haveOneMatchAtLess);
+    
+    // Case 4
+    string = @"\"abc\"";
+    pattern = @"\\\"[^\"]*+\\\"";
+    haveOneMatchAtLess = [WCRegularExpressionTool enumerateMatchesInString:string pattern:pattern usingBlock:^(NSTextCheckingResult * _Nonnull result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        NSString *matchString = [string substringWithRange:result.range];
+        
+        NSLog(@"matchString: %@", matchString);
+        XCTAssertEqualObjects(matchString, @"\"abc\"");
+    }];
+    XCTAssertTrue(haveOneMatchAtLess);
+    
+    // Case 5
+    string = @"\"abc\"";
+    pattern = @"\\\"[^\"]*\\\"";
+    haveOneMatchAtLess = [WCRegularExpressionTool enumerateMatchesInString:string pattern:pattern usingBlock:^(NSTextCheckingResult * _Nonnull result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        NSString *matchString = [string substringWithRange:result.range];
+        
+        NSLog(@"matchString: %@", matchString);
+        XCTAssertEqualObjects(matchString, @"\"abc\"");
+    }];
+    XCTAssertTrue(haveOneMatchAtLess);
+    
+    // Case 6
+    string = @"\"abc\"x";
+    pattern = @"\\\".*+\\\"";
+    haveOneMatchAtLess = [WCRegularExpressionTool enumerateMatchesInString:string pattern:pattern usingBlock:^(NSTextCheckingResult * _Nonnull result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        NSString *matchString = [string substringWithRange:result.range];
+        
+        NSLog(@"matchString: %@", matchString);
+        XCTAssertEqualObjects(matchString, @"\"abc\"");
+    }];
+    XCTAssertFalse(haveOneMatchAtLess);
+    
+    // Case 7
+    string = @"\"abc\"x";
+    pattern = @"\\\".*\\\"";
+    haveOneMatchAtLess = [WCRegularExpressionTool enumerateMatchesInString:string pattern:pattern usingBlock:^(NSTextCheckingResult * _Nonnull result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        NSString *matchString = [string substringWithRange:result.range];
+        
+        NSLog(@"matchString: %@", matchString);
+        XCTAssertEqualObjects(matchString, @"\"abc\"");
+    }];
+    XCTAssertTrue(haveOneMatchAtLess);
+}
+
 @end

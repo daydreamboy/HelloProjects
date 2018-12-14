@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
         - result, the match result
         - flags
         - stop, set *stop = YES to break the traverse
- @return the status. YES if the block called successfully; NO if parameters are wrong and block not called
+ @return the flag if match at less once. YES if the string has at less one match; NO if parameters are wrong or the string have no matches.
  */
 + (BOOL)enumerateMatchesInString:(NSString *)string pattern:(NSString *)pattern usingBlock:(void (^)(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop))block;
 

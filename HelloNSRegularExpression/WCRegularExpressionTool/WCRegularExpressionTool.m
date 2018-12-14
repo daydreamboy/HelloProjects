@@ -46,28 +46,32 @@ static BOOL sEnableLogging;
 }
 
 + (BOOL)enumerateMatchesInString:(NSString *)string pattern:(NSString *)pattern usingBlock:(void (^)(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop))block {
+    __block BOOL matched = NO;
+    
     if (![string isKindOfClass:[NSString class]] || string.length == 0 || ![pattern isKindOfClass:[NSString class]] || pattern.length == 0) {
-        return NO;
+        return matched;
     }
     
     NSError *error = nil;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:kNilOptions error:&error];
     if (error) {
-        return NO;
+        return matched;
     }
     
     if (block) {
         // Note: string should not nil
         [regex enumerateMatchesInString:string options:kNilOptions range:NSMakeRange(0, string.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+            matched = YES;
+            
             BOOL shouldStop = NO;
             block(result, flags, &shouldStop);
             *stop = shouldStop;
         }];
         
-        return YES;
+        return matched;
     }
     else {
-        return NO;
+        return matched;
     }
 }
 
