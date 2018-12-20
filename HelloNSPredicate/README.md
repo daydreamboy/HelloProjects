@@ -99,9 +99,22 @@ format string中允许内置的保留关键字（Reserved Keys），如下
 
 #### （3）布尔值符号（Boolean Value Predicates）
 
+| 关键字           | 含义        | format string示例                                    |
+| ---------------- | ----------- | ---------------------------------------------------- |
+| `TRUEPREDICATE`  | 总是true值  | @"TRUEPREDICATE"<br/>@"(1 < 0) \|\| TRUEPREDICATE"   |
+| `FALSEPREDICATE` | 总是false值 | @"FALSEPREDICATE"<br/>@"(1 < 0) \|\| FALSEPREDICATE" |
 
 
-#### （4）复合符号（Compound）
+
+#### （4）复合符号（Compound Predicates）
+
+| 关键字      | 含义   | format string示例                                 |
+| ----------- | ------ | ------------------------------------------------- |
+| `AND`, `&&` | 逻辑与 | @"(1 < 0) && (1 > 0)"<br/>@"(1 < 0) AND (1 > 0)"  |
+| `OR`, `||`  | 逻辑或 | @"(1 < 0) \|\| (1 > 0)"<br/>@"(1 < 0) OR (1 > 0)" |
+| `NOT`, `!`  | 逻辑非 | @"!(1 < 0)"<br/>@"NOT(1 < 0)"                     |
+
+
 
 
 
