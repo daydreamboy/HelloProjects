@@ -61,4 +61,16 @@
     XCTAssertThrows([string substringWithRange:NSMakeRange(4, 0)]);
 }
 
+- (void)test_ {
+    NSString *string;
+    NSRange range;
+    
+    // Case 1
+    string = @"abcd";
+    range = [string rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"[,]"]];
+    XCTAssertTrue(range.location == NSNotFound);
+    
+    
+}
+
 @end

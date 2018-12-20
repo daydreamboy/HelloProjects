@@ -697,6 +697,38 @@
     XCTAssertTrue([WCStringTool checkStringContainsChineseCharactersWithString:string]);
 }
 
+- (void)test_checkStringContainsAllCharactersWithString_allCharacters {
+    NSString *string;
+    NSString *allCharacters;
+    BOOL result;
+    
+    // Case 1
+    string = @"abcd";
+    allCharacters = @"[,]";
+    result = [WCStringTool checkStringContainsAllCharactersWithString:string allCharacters:allCharacters];
+    XCTAssertFalse(result);
+    
+    string = @"abcd[";
+    allCharacters = @"[,]";
+    result = [WCStringTool checkStringContainsAllCharactersWithString:string allCharacters:allCharacters];
+    XCTAssertFalse(result);
+    
+    string = @"abcd[,";
+    allCharacters = @"[,]";
+    result = [WCStringTool checkStringContainsAllCharactersWithString:string allCharacters:allCharacters];
+    XCTAssertFalse(result);
+    
+    string = @"abcd[,]";
+    allCharacters = @"[,]";
+    result = [WCStringTool checkStringContainsAllCharactersWithString:string allCharacters:allCharacters];
+    XCTAssertTrue(result);
+    
+    string = @"abcd[,]";
+    allCharacters = @"[,][,]";
+    result = [WCStringTool checkStringContainsAllCharactersWithString:string allCharacters:allCharacters];
+    XCTAssertTrue(result);
+}
+
 #pragma mark > Split String
 
 - (void)test_componentsWithString_gapRanges {

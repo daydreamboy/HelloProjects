@@ -681,6 +681,42 @@
     return containsChineseCharacter;
 }
 
++ (BOOL)checkStringContainsAllCharactersWithString:(NSString *)string allCharacters:(NSString *)allCharacters {
+    if (![string isKindOfClass:[NSString class]] || string.length == 0) {
+        return NO;
+    }
+    
+    if (![allCharacters isKindOfClass:[NSString class]] || allCharacters.length == 0) {
+        return NO;
+    }
+    
+    __block NSMutableDictionary *buckets = [NSMutableDictionary dictionary];
+    [allCharacters enumerateSubstringsInRange:NSMakeRange(0, allCharacters.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+        NSString *character = substring;
+        buckets[character] = @(NO);
+    }];
+    
+    [string enumerateSubstringsInRange:NSMakeRange(0, string.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+        
+        NSString *character = substring;
+        if (buckets[character]) {
+            buckets[character] = @(YES);
+        }
+    }];
+    
+    __block BOOL containsAllCharacters = YES;
+    [allCharacters enumerateSubstringsInRange:NSMakeRange(0, allCharacters.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+        NSString *character = substring;
+        // Note: the character is not hit
+        if ([buckets[character] boolValue] == NO) {
+            containsAllCharacters = NO;
+            *stop = YES;
+        }
+    }];
+    
+    return containsAllCharacters;
+}
+
 #pragma mark > String Generation
 
 + (NSString *)randomStringWithLength:(NSUInteger)length {

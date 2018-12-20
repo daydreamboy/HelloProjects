@@ -313,6 +313,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)checkStringContainsChineseCharactersWithString:(NSString *)string;
 
+/**
+ Check string if contains all characters
+
+ @param string the string to check
+ @param allCharacters the all characters which expected appear simultaneously in the string
+ @return YES if string contains the all characters
+ */
++ (BOOL)checkStringContainsAllCharactersWithString:(NSString *)string allCharacters:(NSString *)allCharacters;
+
 #pragma mark > String Generation
 
 /**
