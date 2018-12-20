@@ -497,12 +497,15 @@
 
 - (void)test_enumerateMatchesInString_pattern_usingBlock {
     NSString *string;
-    NSMutableArray<NSString *> *output;
+    NSString *pattern;
+    NSMutableArray *output;
+    BOOL status;
     
     // Case 1
     output = [NSMutableArray array];
     string = @"$a$b,${a},$!{b}c";
-    BOOL status = [WCRegularExpressionTool enumerateMatchesInString:string pattern:@"\\$!?(?:\\{([a-zA-Z0-9_-]+)\\}|([a-zA-Z0-9_-]+))" usingBlock:^(NSTextCheckingResult * _Nonnull result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+    pattern = @"\\$!?(?:\\{([a-zA-Z]+[a-zA-Z0-9_-]*)\\}|([a-zA-Z]+[a-zA-Z0-9_-]*))";
+    status = [WCRegularExpressionTool enumerateMatchesInString:string pattern:pattern usingBlock:^(NSTextCheckingResult * _Nonnull result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
         if (result.numberOfRanges == 3) {
             NSRange rangeOfMatchString = result.range;
             NSRange rangeOfCaptureString1 = [result rangeAtIndex:1];
@@ -542,6 +545,320 @@
     XCTAssertEqualObjects(output[1], @"b");
     XCTAssertEqualObjects(output[2], @"a");
     XCTAssertEqualObjects(output[3], @"b");
+    
+    // Case 2
+    output = [NSMutableArray array];
+    string = @"index[start,end]";
+    pattern = @"([a-zA-Z]+[a-zA-Z0-9_\\-\\.]*)\\[([a-zA-Z]+[a-zA-Z0-9_\\-\\.]*),([a-zA-Z]+[a-zA-Z0-9_\\-\\.]*)\\]";
+    status = [WCRegularExpressionTool enumerateMatchesInString:string pattern:pattern usingBlock:^(NSTextCheckingResult * _Nonnull result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        if (result.numberOfRanges == 4) {
+            NSRange rangeOfMatchString = result.range;
+            NSRange rangeOfCaptureString1 = [result rangeAtIndex:1];
+            NSRange rangeOfCaptureString2 = [result rangeAtIndex:2];
+            NSRange rangeOfCaptureString3 = [result rangeAtIndex:3];
+            
+            NSString *matchString = rangeOfMatchString.location != NSNotFound ? [string substringWithRange:result.range] : nil;
+            NSString *captureString1 = rangeOfCaptureString1.location != NSNotFound ? [string substringWithRange:rangeOfCaptureString1] : nil;
+            NSString *captureString2 = rangeOfCaptureString2.location != NSNotFound ? [string substringWithRange:rangeOfCaptureString2] : nil;
+            NSString *captureString3 = rangeOfCaptureString3.location != NSNotFound ? [string substringWithRange:rangeOfCaptureString3] : nil;
+            
+            if (captureString1.length) {
+                [output addObject:captureString1];
+            }
+            
+            if (captureString2.length) {
+                [output addObject:captureString2];
+            }
+            
+            if (captureString3.length) {
+                [output addObject:captureString3];
+            }
+            
+            NSLog(@"matchString: %@, captureString1: %@, captureString2: %@, captureString3: %@", matchString, captureString1, captureString2, captureString3);
+        }
+    }];
+    
+    XCTAssertTrue(status);
+    XCTAssertTrue(output.count == 3);
+    XCTAssertEqualObjects(output[0], @"index");
+    XCTAssertEqualObjects(output[1], @"start");
+    XCTAssertEqualObjects(output[2], @"end");
+    
+    // Case 3
+    output = [NSMutableArray array];
+    string = @"index[start,]";
+    pattern = @"([a-zA-Z]+[a-zA-Z0-9_\\-\\.]*)\\[([a-zA-Z0-9]+[a-zA-Z0-9_\\-\\.]*)?,([a-zA-Z0-9]+[a-zA-Z0-9_\\-\\.]*)?\\]";
+    status = [WCRegularExpressionTool enumerateMatchesInString:string pattern:pattern usingBlock:^(NSTextCheckingResult * _Nonnull result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        if (result.numberOfRanges == 4) {
+            NSRange rangeOfMatchString = result.range;
+            NSRange rangeOfCaptureString1 = [result rangeAtIndex:1];
+            NSRange rangeOfCaptureString2 = [result rangeAtIndex:2];
+            NSRange rangeOfCaptureString3 = [result rangeAtIndex:3];
+            
+            NSString *matchString = rangeOfMatchString.location != NSNotFound ? [string substringWithRange:result.range] : nil;
+            NSString *captureString1 = rangeOfCaptureString1.location != NSNotFound ? [string substringWithRange:rangeOfCaptureString1] : nil;
+            NSString *captureString2 = rangeOfCaptureString2.location != NSNotFound ? [string substringWithRange:rangeOfCaptureString2] : nil;
+            NSString *captureString3 = rangeOfCaptureString3.location != NSNotFound ? [string substringWithRange:rangeOfCaptureString3] : nil;
+            
+            if (captureString1.length) {
+                [output addObject:captureString1];
+            }
+            else {
+                [output addObject:[NSNull null]];
+            }
+            
+            if (captureString2.length) {
+                [output addObject:captureString2];
+            }
+            else {
+                [output addObject:[NSNull null]];
+            }
+            
+            if (captureString3.length) {
+                [output addObject:captureString3];
+            }
+            else {
+                [output addObject:[NSNull null]];
+            }
+            
+            NSLog(@"matchString: %@, captureString1: %@, captureString2: %@, captureString3: %@", matchString, captureString1, captureString2, captureString3);
+        }
+    }];
+    
+    XCTAssertTrue(status);
+    XCTAssertTrue(output.count == 3);
+    XCTAssertEqualObjects(output[0], @"index");
+    XCTAssertEqualObjects(output[1], @"start");
+    XCTAssertEqualObjects(output[2], [NSNull null]);
+    
+    // Case 4
+    output = [NSMutableArray array];
+    string = @"index[,end]";
+    pattern = @"([a-zA-Z]+[a-zA-Z0-9_\\-\\.]*)\\[([a-zA-Z0-9]+[a-zA-Z0-9_\\-\\.]*)?,([a-zA-Z0-9]+[a-zA-Z0-9_\\-\\.]*)?\\]";
+    status = [WCRegularExpressionTool enumerateMatchesInString:string pattern:pattern usingBlock:^(NSTextCheckingResult * _Nonnull result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        if (result.numberOfRanges == 4) {
+            NSRange rangeOfMatchString = result.range;
+            NSRange rangeOfCaptureString1 = [result rangeAtIndex:1];
+            NSRange rangeOfCaptureString2 = [result rangeAtIndex:2];
+            NSRange rangeOfCaptureString3 = [result rangeAtIndex:3];
+            
+            NSString *matchString = rangeOfMatchString.location != NSNotFound ? [string substringWithRange:result.range] : nil;
+            NSString *captureString1 = rangeOfCaptureString1.location != NSNotFound ? [string substringWithRange:rangeOfCaptureString1] : nil;
+            NSString *captureString2 = rangeOfCaptureString2.location != NSNotFound ? [string substringWithRange:rangeOfCaptureString2] : nil;
+            NSString *captureString3 = rangeOfCaptureString3.location != NSNotFound ? [string substringWithRange:rangeOfCaptureString3] : nil;
+            
+            if (captureString1.length) {
+                [output addObject:captureString1];
+            }
+            else {
+                [output addObject:[NSNull null]];
+            }
+            
+            if (captureString2.length) {
+                [output addObject:captureString2];
+            }
+            else {
+                [output addObject:[NSNull null]];
+            }
+            
+            if (captureString3.length) {
+                [output addObject:captureString3];
+            }
+            else {
+                [output addObject:[NSNull null]];
+            }
+            
+            NSLog(@"matchString: %@, captureString1: %@, captureString2: %@, captureString3: %@", matchString, captureString1, captureString2, captureString3);
+        }
+    }];
+    
+    XCTAssertTrue(status);
+    XCTAssertTrue(output.count == 3);
+    XCTAssertEqualObjects(output[0], @"index");
+    XCTAssertEqualObjects(output[1], [NSNull null]);
+    XCTAssertEqualObjects(output[2], @"end");
+    
+    // Case 5
+    output = [NSMutableArray array];
+    string = @"index[,]";
+    pattern = @"([a-zA-Z]+[a-zA-Z0-9_\\-\\.]*)\\[([a-zA-Z0-9]+[a-zA-Z0-9_\\-\\.]*)?,([a-zA-Z0-9]+[a-zA-Z0-9_\\-\\.]*)?\\]";
+    status = [WCRegularExpressionTool enumerateMatchesInString:string pattern:pattern usingBlock:^(NSTextCheckingResult * _Nonnull result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        if (result.numberOfRanges == 4) {
+            NSRange rangeOfMatchString = result.range;
+            NSRange rangeOfCaptureString1 = [result rangeAtIndex:1];
+            NSRange rangeOfCaptureString2 = [result rangeAtIndex:2];
+            NSRange rangeOfCaptureString3 = [result rangeAtIndex:3];
+            
+            NSString *matchString = rangeOfMatchString.location != NSNotFound ? [string substringWithRange:result.range] : nil;
+            NSString *captureString1 = rangeOfCaptureString1.location != NSNotFound ? [string substringWithRange:rangeOfCaptureString1] : nil;
+            NSString *captureString2 = rangeOfCaptureString2.location != NSNotFound ? [string substringWithRange:rangeOfCaptureString2] : nil;
+            NSString *captureString3 = rangeOfCaptureString3.location != NSNotFound ? [string substringWithRange:rangeOfCaptureString3] : nil;
+            
+            if (captureString1.length) {
+                [output addObject:captureString1];
+            }
+            else {
+                [output addObject:[NSNull null]];
+            }
+            
+            if (captureString2.length) {
+                [output addObject:captureString2];
+            }
+            else {
+                [output addObject:[NSNull null]];
+            }
+            
+            if (captureString3.length) {
+                [output addObject:captureString3];
+            }
+            else {
+                [output addObject:[NSNull null]];
+            }
+            
+            NSLog(@"matchString: %@, captureString1: %@, captureString2: %@, captureString3: %@", matchString, captureString1, captureString2, captureString3);
+        }
+    }];
+    
+    XCTAssertTrue(status);
+    XCTAssertTrue(output.count == 3);
+    XCTAssertEqualObjects(output[0], @"index");
+    XCTAssertEqualObjects(output[1], [NSNull null]);
+    XCTAssertEqualObjects(output[2], [NSNull null]);
+    
+    // Case 6
+    output = [NSMutableArray array];
+    string = @"index[1,]";
+    pattern = @"([a-zA-Z]+[a-zA-Z0-9_\\-\\.]*)\\[([a-zA-Z0-9]+[a-zA-Z0-9_\\-\\.]*)?,([a-zA-Z0-9]+[a-zA-Z0-9_\\-\\.]*)?\\]";
+    status = [WCRegularExpressionTool enumerateMatchesInString:string pattern:pattern usingBlock:^(NSTextCheckingResult * _Nonnull result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        if (result.numberOfRanges == 4) {
+            NSRange rangeOfMatchString = result.range;
+            NSRange rangeOfCaptureString1 = [result rangeAtIndex:1];
+            NSRange rangeOfCaptureString2 = [result rangeAtIndex:2];
+            NSRange rangeOfCaptureString3 = [result rangeAtIndex:3];
+            
+            NSString *matchString = rangeOfMatchString.location != NSNotFound ? [string substringWithRange:result.range] : nil;
+            NSString *captureString1 = rangeOfCaptureString1.location != NSNotFound ? [string substringWithRange:rangeOfCaptureString1] : nil;
+            NSString *captureString2 = rangeOfCaptureString2.location != NSNotFound ? [string substringWithRange:rangeOfCaptureString2] : nil;
+            NSString *captureString3 = rangeOfCaptureString3.location != NSNotFound ? [string substringWithRange:rangeOfCaptureString3] : nil;
+            
+            if (captureString1.length) {
+                [output addObject:captureString1];
+            }
+            else {
+                [output addObject:[NSNull null]];
+            }
+            
+            if (captureString2.length) {
+                [output addObject:captureString2];
+            }
+            else {
+                [output addObject:[NSNull null]];
+            }
+            
+            if (captureString3.length) {
+                [output addObject:captureString3];
+            }
+            else {
+                [output addObject:[NSNull null]];
+            }
+            
+            NSLog(@"matchString: %@, captureString1: %@, captureString2: %@, captureString3: %@", matchString, captureString1, captureString2, captureString3);
+        }
+    }];
+    
+    XCTAssertTrue(status);
+    XCTAssertTrue(output.count == 3);
+    XCTAssertEqualObjects(output[0], @"index");
+    XCTAssertEqualObjects(output[1], @"1");
+    XCTAssertEqualObjects(output[2], [NSNull null]);
+    
+    // Abnormal Case 1
+    output = [NSMutableArray array];
+    string = @"index[,,]";
+    pattern = @"([a-zA-Z]+[a-zA-Z0-9_\\-\\.]*)\\[([a-zA-Z0-9]+[a-zA-Z0-9_\\-\\.]*)?,([a-zA-Z0-9]+[a-zA-Z0-9_\\-\\.]*)?\\]";
+    status = [WCRegularExpressionTool enumerateMatchesInString:string pattern:pattern usingBlock:^(NSTextCheckingResult * _Nonnull result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        if (result.numberOfRanges == 4) {
+            NSRange rangeOfMatchString = result.range;
+            NSRange rangeOfCaptureString1 = [result rangeAtIndex:1];
+            NSRange rangeOfCaptureString2 = [result rangeAtIndex:2];
+            NSRange rangeOfCaptureString3 = [result rangeAtIndex:3];
+            
+            NSString *matchString = rangeOfMatchString.location != NSNotFound ? [string substringWithRange:result.range] : nil;
+            NSString *captureString1 = rangeOfCaptureString1.location != NSNotFound ? [string substringWithRange:rangeOfCaptureString1] : nil;
+            NSString *captureString2 = rangeOfCaptureString2.location != NSNotFound ? [string substringWithRange:rangeOfCaptureString2] : nil;
+            NSString *captureString3 = rangeOfCaptureString3.location != NSNotFound ? [string substringWithRange:rangeOfCaptureString3] : nil;
+            
+            if (captureString1.length) {
+                [output addObject:captureString1];
+            }
+            else {
+                [output addObject:[NSNull null]];
+            }
+            
+            if (captureString2.length) {
+                [output addObject:captureString2];
+            }
+            else {
+                [output addObject:[NSNull null]];
+            }
+            
+            if (captureString3.length) {
+                [output addObject:captureString3];
+            }
+            else {
+                [output addObject:[NSNull null]];
+            }
+            
+            NSLog(@"matchString: %@, captureString1: %@, captureString2: %@, captureString3: %@", matchString, captureString1, captureString2, captureString3);
+        }
+    }];
+    
+    XCTAssertFalse(status);
+    XCTAssertTrue(output.count == 0);
+    
+    // Abnormal Case 2
+    output = [NSMutableArray array];
+    string = @"[a,]";
+    pattern = @"([a-zA-Z]+[a-zA-Z0-9_\\-\\.]*)\\[([a-zA-Z0-9]+[a-zA-Z0-9_\\-\\.]*)?,([a-zA-Z0-9]+[a-zA-Z0-9_\\-\\.]*)?\\]";
+    status = [WCRegularExpressionTool enumerateMatchesInString:string pattern:pattern usingBlock:^(NSTextCheckingResult * _Nonnull result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        if (result.numberOfRanges == 4) {
+            NSRange rangeOfMatchString = result.range;
+            NSRange rangeOfCaptureString1 = [result rangeAtIndex:1];
+            NSRange rangeOfCaptureString2 = [result rangeAtIndex:2];
+            NSRange rangeOfCaptureString3 = [result rangeAtIndex:3];
+            
+            NSString *matchString = rangeOfMatchString.location != NSNotFound ? [string substringWithRange:result.range] : nil;
+            NSString *captureString1 = rangeOfCaptureString1.location != NSNotFound ? [string substringWithRange:rangeOfCaptureString1] : nil;
+            NSString *captureString2 = rangeOfCaptureString2.location != NSNotFound ? [string substringWithRange:rangeOfCaptureString2] : nil;
+            NSString *captureString3 = rangeOfCaptureString3.location != NSNotFound ? [string substringWithRange:rangeOfCaptureString3] : nil;
+            
+            if (captureString1.length) {
+                [output addObject:captureString1];
+            }
+            else {
+                [output addObject:[NSNull null]];
+            }
+            
+            if (captureString2.length) {
+                [output addObject:captureString2];
+            }
+            else {
+                [output addObject:[NSNull null]];
+            }
+            
+            if (captureString3.length) {
+                [output addObject:captureString3];
+            }
+            else {
+                [output addObject:[NSNull null]];
+            }
+            
+            NSLog(@"matchString: %@, captureString1: %@, captureString2: %@, captureString3: %@", matchString, captureString1, captureString2, captureString3);
+        }
+    }];
+    
+    XCTAssertFalse(status);
+    XCTAssertTrue(output.count == 0);
 }
 
 #pragma mark - Replace Matched String

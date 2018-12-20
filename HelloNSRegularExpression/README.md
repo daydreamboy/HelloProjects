@@ -65,21 +65,21 @@ XCTAssertFalse(valid);
 | `^`          | 总是匹配一行的起始处。这里的`^`作用不同于`[^pattern]`中的`^` | 例如`^Hello`匹配"Hello there"中的"Hello"，但不匹配"He said Hello"中的"Hello" |
 | `$`          | 总是匹配一行的结束处。                                       | 例如`the end$`匹配"It was the end"的"the end"，但不匹配"the end was near"的"the end" |
 | `*`          | 匹配该符号之前的一个字符，0次或者1次以上（Match as many times as possible.） | 例如`12*3`匹配"13", "123", "1223", "122223", 和"1222222223"  |
-| `+`          | 匹配该符号之前的一个字符，至少1次及以上（Match as many times as possible.） | 例如`12+3`匹配"123", "1223", "122223", "1222222223"，但不匹配"13" |
-| `?`          | 匹配该符号之前的一个字符，0次或者1次。优先1次。              | 例如`12?3`匹配"13", "123"，但不匹配"1223"                    |
-| `{n}`        | 匹配该符号之前的一个字符，仅n次（Match as many times as possible.） | 例如`He[Ll]{2}o`仅匹配"HeLLo", "Hello", "HelLo"和"HeLlo"     |
-| `{n,}`       | 匹配该符号之前的一个字符，至少n次及以上（Match as many times as possible.） | 例如`He[Ll]{2,}o`匹配"HeLLo"和 "HellLLLllo"，但不匹配"Helo"和"Heo" |
-| `{n,m}`      | 匹配该符号之前的一个字符，仅n到m次，包括n和m次（Match as many times as possible.） | 例如`10{1,2}1`匹配"101"和"1001"，但不匹配"10001"             |
+| `+`          | 匹配该符号之前的一个元素，至少1次及以上（Match as many times as possible.） | 例如`12+3`匹配"123", "1223", "122223", "1222222223"，但不匹配"13" |
+| `?`          | 匹配该符号之前的一个元素，0次或者1次。优先1次。              | 例如`12?3`匹配"13", "123"，但不匹配"1223"                    |
+| `{n}`        | 匹配该符号之前的一个元素，仅n次（Match as many times as possible.） | 例如`He[Ll]{2}o`仅匹配"HeLLo", "Hello", "HelLo"和"HeLlo"     |
+| `{n,}`       | 匹配该符号之前的一个元素，至少n次及以上（Match as many times as possible.） | 例如`He[Ll]{2,}o`匹配"HeLLo"和 "HellLLLllo"，但不匹配"Helo"和"Heo" |
+| `{n,m}`      | 匹配该符号之前的一个元素，仅n到m次，包括n和m次（Match as many times as possible.） | 例如`10{1,2}1`匹配"101"和"1001"，但不匹配"10001"             |
 
 
 ##### 应用`?`（reluctant quantifier）的操作符
 
 | 操作符   | 含义                                                         | 示例 |
 | -------- | ------------------------------------------------------------ | ---- |
-| `*?`     | 匹配该符号之前的一个字符，0次或者1次以上（Match as few times as possible.） |      |
-| `+?`     | 匹配该符号之前的一个字符，至少1次及以上（Match as few times as possible.） |      |
-| `??`     | 匹配该符号之前的一个字符，0次或者1次。优先0次。              |      |
-| `{n}?`   | 匹配该符号之前的一个字符，仅n次（Match as few times as possible.） |      |
+| `*?`     | 匹配该符号之前的一个元素，0次或者1次以上（Match as few times as possible.） |      |
+| `+?`     | 匹配该符号之前的一个元素，至少1次及以上（Match as few times as possible.） |      |
+| `??`     | 匹配该符号之前的一个元素，0次或者1次。优先0次。              |      |
+| `{n}?`   | 匹配该符号之前的一个元素，仅n次（Match as few times as possible.） |      |
 | `{n,}?`  | Match at least n times, but no more than required for an overall pattern match. |      |
 | `{n,m}?` | Match between n and m times. Match as few times as possible, but not less than n. |      |
 
