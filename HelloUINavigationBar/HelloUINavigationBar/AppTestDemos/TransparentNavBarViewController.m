@@ -7,6 +7,7 @@
 //
 
 #import "TransparentNavBarViewController.h"
+#import "WCNavigationBarTool.h"
 
 @interface TransparentNavBarViewController ()
 
@@ -23,22 +24,14 @@
     [super viewWillAppear:animated];
     
     UINavigationBar *navigationBar = self.navigationController.navigationBar;
-    
-    navigationBar.barTintColor = [UIColor redColor];
-//    navigationBar.translucent = NO;
-    [navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    navigationBar.shadowImage = [UIImage new];
+    [WCNavigationBarTool setNavBar:navigationBar transparent:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
     UINavigationBar *navigationBar = self.navigationController.navigationBar;
-    
-    navigationBar.barTintColor = nil;
-//    navigationBar.translucent = YES;
-    [navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
-    navigationBar.shadowImage = nil;
+    [WCNavigationBarTool setNavBar:navigationBar transparent:NO];
 }
 
 @end

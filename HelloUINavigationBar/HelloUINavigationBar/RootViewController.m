@@ -13,6 +13,8 @@
 #import "TransparentNavBarViewController.h"
 #import "SolidColoredNavBarViewController.h"
 #import "HideBackArrowViewController.h"
+#import "PositionBarButtonItemViewController.h"
+#import "WCNavigationBar.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -40,7 +42,7 @@
         @"Transparent nav bar",
         @"Solid colored nav bar",
         @"Hide back arrow",
-        @"call a test method",
+        @"Negative width for UIBarButtonSystemItemFixedSpace",
     ];
     _classes = @[
         [ColorizeHairLineOfNavBarViewController class],
@@ -48,7 +50,7 @@
         [TransparentNavBarViewController class],
         [SolidColoredNavBarViewController class],
         [HideBackArrowViewController class],
-        @"testMethod",
+        @"presentNavController",
     ];
 }
 
@@ -101,10 +103,13 @@
     }
 }
 
-#pragma mark - Test Methods
+#pragma mark -
 
-- (void)testMethod {
-    NSLog(@"test something");
+- (void)presentNavController {
+    UINavigationController *navController = [[UINavigationController alloc] initWithNavigationBarClass:[WCNavigationBar class] toolbarClass:nil];
+    PositionBarButtonItemViewController *rootViewController = [PositionBarButtonItemViewController new];
+    [navController pushViewController:rootViewController animated:NO];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 @end

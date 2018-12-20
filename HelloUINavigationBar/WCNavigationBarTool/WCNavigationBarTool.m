@@ -54,8 +54,12 @@ SYNTHESIZE_ASSOCIATED_OBJ(wnbt_shadowImageView, setWnbt_shadowImageView, UIView 
 @implementation WCNavigationBarTool
 
 + (void)setNavBar:(UINavigationBar *)navigationBar hairLineColor:(UIColor *)color {
+    
+    if (![navigationBar isKindOfClass:[UINavigationBar class]] || ![color isKindOfClass:[UIColor class]]) {
+        return;
+    }
+    
     if (color) {
-        
         CGFloat alpha = CGColorGetAlpha(color.CGColor);
         if (alpha == (CGFloat)0.0) {
             if (SYSTEM_VERSION_LESS_THAN(@"11.0")) {
@@ -101,6 +105,25 @@ SYNTHESIZE_ASSOCIATED_OBJ(wnbt_shadowImageView, setWnbt_shadowImageView, UIView 
         else {
             navigationBar.shadowImage = nil;
         }
+    }
+}
+
++ (void)setNavBar:(UINavigationBar *)navigationBar transparent:(BOOL)transparent {
+    
+    if (![navigationBar isKindOfClass:[UINavigationBar class]]) {
+        return;
+    }
+    
+    navigationBar.barTintColor = nil;
+    navigationBar.translucent = YES;
+    
+    if (transparent) {
+        [navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+        navigationBar.shadowImage = [UIImage new];
+    }
+    else {
+        [navigationBar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+        navigationBar.shadowImage = nil;
     }
 }
 
