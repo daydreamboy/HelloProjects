@@ -38,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param size the size
  @param cornerRadius the corner radius. Pass 0 to not cornered
  @return the image with color and corner radius
+ @see https://stackoverflow.com/questions/2835448/how-to-draw-a-rounded-rectangle-in-core-graphics-quartz-2d
  */
 + (nullable UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size cornerRadius:(CGFloat)cornerRadius;
 
