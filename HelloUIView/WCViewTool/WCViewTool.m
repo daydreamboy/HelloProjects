@@ -260,17 +260,48 @@
         return view;
     }
     
-    UIColor *startColor = startLeftColor;
-    UIColor *finalColor = endRightColor;
+    BOOL found = NO;
+    for (CALayer *layer in [view.layer sublayers]) {
+        if ([layer isKindOfClass:[CAGradientLayer class]] && [layer.name isEqualToString:[NSString stringWithFormat:@"gradientLayer_%p", layer]]) {
+            found = YES;
+            break;
+        }
+    }
     
-    CAGradientLayer *gradientLayer = [CAGradientLayer layer];
-    gradientLayer.colors = @[(__bridge id)startColor.CGColor, (__bridge id)finalColor.CGColor];
-    gradientLayer.locations = @[ @0.0, @1.0 ];
-    gradientLayer.startPoint = CGPointMake(0, 0.5);
-    gradientLayer.endPoint = CGPointMake(1.0, 0.5);
-    gradientLayer.masksToBounds = YES;
-    gradientLayer.frame = view.bounds;
-    [view.layer insertSublayer:gradientLayer atIndex:0];
+    if (!found) {
+        UIColor *startColor = startLeftColor;
+        UIColor *finalColor = endRightColor;
+        
+        CAGradientLayer *gradientLayer = [CAGradientLayer layer];
+        gradientLayer.name = [NSString stringWithFormat:@"gradientLayer_%p", gradientLayer];
+        gradientLayer.colors = @[(__bridge id)startColor.CGColor, (__bridge id)finalColor.CGColor];
+        gradientLayer.locations = @[ @0.0, @1.0 ];
+        gradientLayer.startPoint = CGPointMake(0, 0.5);
+        gradientLayer.endPoint = CGPointMake(1.0, 0.5);
+        gradientLayer.masksToBounds = YES;
+        gradientLayer.frame = view.bounds;
+        [view.layer insertSublayer:gradientLayer atIndex:0];
+    }
+    
+    return view;
+}
+
++ (UIView *)removeGradientLayerWithView:(UIView *)view {
+    if (![view isKindOfClass:[UIView class]]) {
+        return view;
+    }
+    
+    CAGradientLayer *gradientLayer;
+    for (CALayer *layer in [view.layer sublayers]) {
+        if ([layer isKindOfClass:[CAGradientLayer class]] && [layer.name isEqualToString:[NSString stringWithFormat:@"gradientLayer_%p", layer]]) {
+            gradientLayer = (CAGradientLayer *)layer;
+            break;
+        }
+    }
+    
+    if (!gradientLayer) {
+        [gradientLayer removeFromSuperlayer];
+    }
     
     return view;
 }

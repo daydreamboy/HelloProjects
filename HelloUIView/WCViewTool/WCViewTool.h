@@ -104,7 +104,24 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Add Layers
 
+/**
+ Add gradient layer with left color and right color
+
+ @param view the view to add
+ @param startLeftColor the left color
+ @param endRightColor the right color
+ @return the original view
+ @discussion This method only add a gradient layer once when called mutiple times. To remove it use +[WCViewTool removeGradientLayerWithView:]
+ */
 + (UIView *)addGradientLayerWithView:(UIView *)view startLeftColor:(UIColor *)startLeftColor endRightColor:(UIColor *)endRightColor;
+
+/**
+ Remove gradient layer which added by +[WCViewTool addGradientLayerWithView:startLeftColor:endRightColor:]
+
+ @param view the view to remove
+ @return the original view
+ */
++ (UIView *)removeGradientLayerWithView:(UIView *)view;
 
 #pragma mark - Assistant Methods
 
