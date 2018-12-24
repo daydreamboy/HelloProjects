@@ -27,5 +27,23 @@
 
 
 
+### 2、UICollectionView自适应内容的高度
 
 
+
+设置UICollectionView的高度自适应内容的高度，有两种方法
+
+（1）从UICollectionView的`collectionViewLayout.collectionViewContentSize`获取高度[^1]，然后设置frame。
+
+​       示例代码，见**AutoFitHeightCollectionViewViewController**
+
+
+
+（2）使用AutoLayout，`self.verticalLayoutConstraint.constant = self.collectionView.collectionViewLayout.collectionViewContentSize.height`[^2]
+
+
+
+## References
+
+[^1]: https://stackoverflow.com/a/1378864
+[^2]: https://stackoverflow.com/a/20829728

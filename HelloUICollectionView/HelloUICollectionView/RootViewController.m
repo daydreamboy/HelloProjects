@@ -20,6 +20,7 @@
 #import "UseWCCrossDirectionEmotionPickerViewViewController.h"
 #import "ManyRoundedImageViewViewController.h"
 #import "DraggableLayoutViewController.h"
+#import "AutoFitHeightCollectionViewViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -54,6 +55,7 @@
         @"Use WCCrossDirectionEmotionPickerView",
         @"Many rounded image view in UICollectionView",
         @"Drag cell",
+        @"Auto fit content height",
     ];
     _classes = @[
         [FlowLayoutViewController class],
@@ -68,6 +70,7 @@
         [UseWCCrossDirectionEmotionPickerViewViewController class],
         [ManyRoundedImageViewViewController class],
         [DraggableLayoutViewController class],
+        [AutoFitHeightCollectionViewViewController class],
     ];
 }
 
