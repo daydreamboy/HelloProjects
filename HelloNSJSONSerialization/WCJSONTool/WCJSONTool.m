@@ -8,6 +8,8 @@
 
 #import "WCJSONTool.h"
 
+#define NSPREDICATE(expression)    ([NSPredicate predicateWithFormat:@"SELF MATCHES %@", expression])
+
 @implementation WCJSONTool
 
 #pragma mark - Object to String
@@ -219,22 +221,19 @@
 #pragma mark >> For JSON Object
 
 + (nullable NSArray *)arrayOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath {
-    NSArray *arr = [self valueOfJSONObject:JSONObject usingKeyPath:keyPath];
-    return [arr isKindOfClass:[NSArray class]] ? arr : nil;
+    return [self valueOfJSONObject:JSONObject usingKeyPath:keyPath objectClass:[NSArray class]];
 }
 
 + (nullable NSDictionary *)dictionaryOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath {
-    NSDictionary *dict = [self valueOfJSONObject:JSONObject usingKeyPath:keyPath];
-    return [dict isKindOfClass:[NSDictionary class]] ? dict : nil;
+    return [self valueOfJSONObject:JSONObject usingKeyPath:keyPath objectClass:[NSDictionary class]];
 }
 
 + (nullable NSString *)stringOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath {
-    NSString *str = [self valueOfJSONObject:JSONObject usingKeyPath:keyPath];
-    return [str isKindOfClass:[NSString class]] ? str : nil;
+    return [self valueOfJSONObject:JSONObject usingKeyPath:keyPath objectClass:[NSString class]];
 }
 
 + (NSInteger)integerOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath {
-    id obj = [self valueOfJSONObject:JSONObject usingKeyPath:keyPath];
+    id obj = [self valueOfJSONObject:JSONObject usingKeyPath:keyPath objectClass:nil];
     if ([obj isKindOfClass:[NSString class]]) {
         return [obj integerValue];
     }
@@ -246,12 +245,11 @@
 }
 
 + (nullable NSNumber *)numberOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath {
-    NSNumber *number = [self valueOfJSONObject:JSONObject usingKeyPath:keyPath];
-    return [number isKindOfClass:[NSNumber class]] ? number : nil;
+    return [self valueOfJSONObject:JSONObject usingKeyPath:keyPath objectClass:[NSNumber class]];
 }
 
 + (BOOL)boolOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath {
-    NSNumber *number = [self valueOfJSONObject:JSONObject usingKeyPath:keyPath];
+    NSNumber *number = [self valueOfJSONObject:JSONObject usingKeyPath:keyPath objectClass:nil];
     if (![number isKindOfClass:[NSNumber class]]) {
         return NO;
     }
@@ -259,11 +257,10 @@
 }
 
 + (nullable NSNull *)nullOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath {
-    NSNull *null = [self valueOfJSONObject:JSONObject usingKeyPath:keyPath];
-    return [null isKindOfClass:[NSNull class]] ? null : nil;
+    return [self valueOfJSONObject:JSONObject usingKeyPath:keyPath objectClass:[NSNull class]];
 }
 
-+ (nullable id)valueOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath {
++ (nullable id)valueOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath objectClass:(nullable Class)objectClass {
     // An object that may be converted to JSON must have the following properties:
     // • The top level object is an NSArray or NSDictionary.
     // • All objects are instances of NSString, NSNumber, NSArray, NSDictionary, or NSNull.
@@ -274,17 +271,16 @@
         return nil;
     }
     
-    return [self valueOfKVCObject:JSONObject usingKeyPath:keyPath];
+    return [self valueOfKVCObject:JSONObject usingKeyPath:keyPath objectClass:objectClass];
 }
 
 #pragma mark >> For KVC Object
 
-+ (nullable id)valueOfKVCObject:(id)KVCObject usingKeyPath:(NSString *)keyPath {
-    return [self valueOfKVCObject:KVCObject usingKeyPath:keyPath bindings:nil];
++ (nullable id)valueOfKVCObject:(id)KVCObject usingKeyPath:(NSString *)keyPath objectClass:(nullable Class)objectClass {
+    return [self valueOfKVCObject:KVCObject usingKeyPath:keyPath bindings:nil objectClass:objectClass];
 }
 
-+ (nullable id)valueOfKVCObject:(id)KVCObject usingKeyPath:(NSString *)keyPath bindings:(nullable NSDictionary *)bindings {
-#define NSPREDICATE(expression)    ([NSPredicate predicateWithFormat:@"SELF MATCHES %@", expression])
++ (nullable id)valueOfKVCObject:(id)KVCObject usingKeyPath:(NSString *)keyPath bindings:(nullable NSDictionary *)bindings objectClass:(nullable Class)objectClass {
     if (!KVCObject || ![keyPath isKindOfClass:[NSString class]]) {
         return nil;
     }
@@ -356,8 +352,75 @@
         [keys removeObjectAtIndex:0];
     }
     
-    return value;
-#undef NSPREDICATE
+    return (objectClass == nil || [value isKindOfClass:objectClass]) ? value : nil;
+}
+
+#pragma mark >> For NSArray/NSDictionary
+
++ (nullable id)valueOfCollectionObject:(id)collectionObject usingBracketsPath:(NSString *)bracketsPath objectClass:(nullable Class)objectClass {
+    if (![bracketsPath isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    if (!collectionObject || !([collectionObject isKindOfClass:[NSArray class]] || [collectionObject isKindOfClass:[NSDictionary class]])) {
+        return nil;
+    }
+    
+    if (bracketsPath.length == 0) {
+        return collectionObject;
+    }
+    
+    if (![NSPREDICATE(@"(\\[.+\\])+") evaluateWithObject:bracketsPath]) {
+        return nil;
+    }
+    
+    NSArray *parts = [bracketsPath componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"[]"]];
+    NSMutableArray *keys = [NSMutableArray arrayWithArray:parts];
+    // Note: remove all empty string
+    [keys removeObject:@""];
+    
+    id value = collectionObject;
+    while (keys.count) {
+        NSString *key = [keys firstObject];;
+        
+        if ([value isKindOfClass:[NSArray class]]) {
+            // Note: handle NSArray container
+            if (![NSPREDICATE(@"0|[1-9]\\d*") evaluateWithObject:key]) {
+                NSLog(@"Error: %@ is not a subscript of NSArray", key);
+                return nil;
+            }
+            
+            NSInteger subscript = [key integerValue];
+            NSArray *arr = (NSArray *)value;
+            
+            if (subscript < 0 || subscript >= arr.count) {
+                NSLog(@"Error: subscript %@ is out of bounds [0..%ld]", key, (long)arr.count - 1);
+                return nil;
+            }
+            
+            value = arr[subscript];
+        }
+        else if ([value isKindOfClass:[NSDictionary class]]) {
+            if (![NSPREDICATE(@"'.+'") evaluateWithObject:key]) {
+                NSLog(@"Error: %@ is not a subscript of NSDictionary, and must be quoted by `'`", key);
+                return nil;
+            }
+            
+            // Note: handle NSDictionary container
+            NSDictionary *dict = (NSDictionary *)value;
+            
+            NSString *subscript = [key stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"'"]];
+            value = dict[subscript];
+        }
+        else {
+            NSLog(@"Error: get value failed from object %@", collectionObject);
+            return nil;
+        }
+        
+        [keys removeObjectAtIndex:0];
+    }
+    
+    return (objectClass == nil || [value isKindOfClass:objectClass]) ? value : nil;
 }
 
 #pragma mark > Print JSON string

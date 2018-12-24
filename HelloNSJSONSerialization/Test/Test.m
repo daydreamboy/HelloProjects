@@ -326,9 +326,9 @@
 }
 
 - (void)test_stringOfJSONObject_usingKeyPath {
-    NSString *str = [WCJSONTool stringOfJSONObject:self.JSONObject1 usingKeyPath:@""];
+    id object = [WCJSONTool stringOfJSONObject:self.JSONObject1 usingKeyPath:@""];
     
-    XCTAssertNil(str);
+    XCTAssertEqualObjects(object, self.JSONObject1);
 }
 
 - (void)test_integerOfJSONObject_usingKeyPath {
@@ -384,9 +384,9 @@
         }
     );
     JSONObject = [NSJSONSerialization JSONObjectWithData:[JSONString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
-    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"true-key"];
+    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"true-key" objectClass:nil];
     XCTAssertEqualObjects(value, @(1));
-    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"[true-key]"];
+    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"[true-key]" objectClass:nil];
     XCTAssertEqualObjects(value, @(1));
     
     // Case 2: root is list
@@ -397,9 +397,9 @@
         ]
     );
     JSONObject = [NSJSONSerialization JSONObjectWithData:[JSONString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
-    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"[1]"];
+    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"[1]" objectClass:nil];
     XCTAssertEqualObjects(value, @(456));
-    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"1"];
+    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"1" objectClass:nil];
     XCTAssertEqualObjects(value, @(456));
     
     
@@ -413,13 +413,13 @@
         }
     );
     JSONObject = [NSJSONSerialization JSONObjectWithData:[JSONString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
-    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"a.b"];
+    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"a.b" objectClass:nil];
     XCTAssertEqualObjects(value, @"B");
-    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"a[b]"];
+    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"a[b]" objectClass:nil];
     XCTAssertEqualObjects(value, @"B");
-    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"a[1]"];
+    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"a[1]" objectClass:nil];
     XCTAssertEqualObjects(value, @"C");
-    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"a.1"];
+    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"a.1" objectClass:nil];
     XCTAssertEqualObjects(value, @"C");
     
     // Case 4
@@ -431,10 +431,10 @@
         }
     );
     JSONObject = [NSJSONSerialization JSONObjectWithData:[JSONString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
-    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"a[0]"];
+    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"a[0]" objectClass:nil];
     XCTAssertEqualObjects(value, @"B");
     
-    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"a.0"];
+    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"a.0" objectClass:nil];
     XCTAssertEqualObjects(value, @"B");
     
     // Case 5
@@ -448,23 +448,23 @@
         ]
     );
     JSONObject = [NSJSONSerialization JSONObjectWithData:[JSONString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
-    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"[0].a[0]"];
+    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"[0].a[0]" objectClass:nil];
     XCTAssertEqualObjects(value, @"B");
-    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"0.a.0"];
+    value = [WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"0.a.0" objectClass:nil];
     XCTAssertEqualObjects(value, @"B");
     
-    value = [WCJSONTool valueOfJSONObject:@[@(123), @(456)] usingKeyPath:@"[2]"];
+    value = [WCJSONTool valueOfJSONObject:@[@(123), @(456)] usingKeyPath:@"[2]" objectClass:nil];
     XCTAssertNil(value);
     
     // Case
-    XCTAssertNil([WCJSONTool valueOfJSONObject:nil usingKeyPath:@"[1]"]);
+    XCTAssertNil([WCJSONTool valueOfJSONObject:nil usingKeyPath:@"[1]" objectClass:nil]);
     
     // Case
-    XCTAssertNil([WCJSONTool valueOfJSONObject:nil usingKeyPath:@""]);
+    XCTAssertNil([WCJSONTool valueOfJSONObject:nil usingKeyPath:@"" objectClass:nil]);
     
     // Case: invalidJSONObject
     JSONObject = @{ @(123): @"we" };
-    XCTAssertNil([WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"123"]);
+    XCTAssertNil([WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"123" objectClass:nil]);
 }
 
 - (void)test_valueOfKVCObject_usingKeyPath {
@@ -474,30 +474,30 @@
     // Example 1
     // Case 1
     object = [Human new];
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"hands"];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"hands" objectClass:nil];
     XCTAssertTrue([(NSObject *)value isKindOfClass:[NSArray class]]);
     XCTAssertTrue([(NSArray *)value count] == 2);
     
     // Case 2
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"hands[0]"];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"hands[0]" objectClass:nil];
     XCTAssertTrue([value isKindOfClass:[Hand class]]);
     
     // Case 3
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"hands[0].name"];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"hands[0].name" objectClass:nil];
     XCTAssertEqualObjects(value, @"Left Hand");
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"hands[1][name]"];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"hands[1][name]" objectClass:nil];
     XCTAssertEqualObjects(value, @"Right Hand");
     
     // Case 4
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"hands[0].fingers"];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"hands[0].fingers" objectClass:nil];
     XCTAssertTrue([value count] == 5);
     
     // Case 5
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"hands[0].fingers[0]"];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"hands[0].fingers[0]" objectClass:nil];
     XCTAssertTrue([(NSObject *)value isKindOfClass:[Finger class]]);
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"hands[0].fingers[0].name"];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"hands[0].fingers[0].name" objectClass:nil];
     XCTAssertEqualObjects(value, @"Thumb");
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"hands[0].fingers[0].index"];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"hands[0].fingers[0].index" objectClass:nil];
     XCTAssertEqualObjects(value, @(1));
     
     // Example 2
@@ -507,34 +507,34 @@
                        [Human new]
                    ]
                };
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"[human].hands"];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"[human].hands" objectClass:nil];
     XCTAssertTrue([(NSObject *)value isKindOfClass:[NSArray class]]);
     XCTAssertTrue([(NSArray *)value count] == 2);
     
     // Case 2
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"[human].hands[0]"];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"[human].hands[0]" objectClass:nil];
     XCTAssertTrue([value isKindOfClass:[Hand class]]);
     
     // Case 3
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"human.hands[0].name"];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"human.hands[0].name" objectClass:nil];
     XCTAssertEqualObjects(value, @"Left Hand");
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"human.hands[1][name]"];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"human.hands[1][name]" objectClass:nil];
     XCTAssertEqualObjects(value, @"Right Hand");
     
     // Case 4
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"array.0.hands[0].fingers"];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"array.0.hands[0].fingers" objectClass:nil];
     XCTAssertTrue([value count] == 5);
     
     // Case 5
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"array[0].hands[0].fingers[0]"];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"array[0].hands[0].fingers[0]" objectClass:nil];
     XCTAssertTrue([(NSObject *)value isKindOfClass:[Finger class]]);
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"array[0].hands[0].fingers[0].name"];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"array[0].hands[0].fingers[0].name" objectClass:nil];
     XCTAssertEqualObjects(value, @"Thumb");
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"array[0].hands[0].fingers[0].index"];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"array[0].hands[0].fingers[0].index" objectClass:nil];
     XCTAssertEqualObjects(value, @(1));
     
     // Abnormal Case
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"Hand"];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"Hand" objectClass:nil];
     XCTAssertNil(value);
 }
 
@@ -549,12 +549,12 @@
     bindings = @{
                  @"a": @"hands"
                  };
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a" bindings:bindings];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a" bindings:bindings objectClass:nil];
     XCTAssertTrue([(NSObject *)value isKindOfClass:[NSArray class]]);
     XCTAssertTrue([(NSArray *)value count] == 2);
     
     // Case 2
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a[0]" bindings:bindings];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a[0]" bindings:bindings objectClass:nil];
     XCTAssertTrue([value isKindOfClass:[Hand class]]);
     
     // Case 3
@@ -562,14 +562,14 @@
                  @"a": @"hands",
                  @"c": @"name"
                  };
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a[0].$c" bindings:bindings];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a[0].$c" bindings:bindings objectClass:nil];
     XCTAssertEqualObjects(value, @"Left Hand");
     bindings = @{
                  @"a": @"hands",
                  @"b": @"1",
                  @"c": @"name"
                   };
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a[$b][$c]" bindings:bindings];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a[$b][$c]" bindings:bindings objectClass:nil];
     XCTAssertEqualObjects(value, @"Right Hand");
     
     // Case 4
@@ -578,7 +578,7 @@
                  @"b": @"0",
                  @"c": @"fingers"
                   };
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a[$b].$c" bindings:bindings];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a[$b].$c" bindings:bindings objectClass:nil];
     XCTAssertTrue([value count] == 5);
     
     // Case 5
@@ -587,11 +587,11 @@
                  @"b": @"0",
                  @"c": @"fingers"
                   };
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a[0].$c[0]" bindings:bindings];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a[0].$c[0]" bindings:bindings objectClass:nil];
     XCTAssertTrue([(NSObject *)value isKindOfClass:[Finger class]]);
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a[0].$c[$b].name" bindings:bindings];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a[0].$c[$b].name" bindings:bindings objectClass:nil];
     XCTAssertEqualObjects(value, @"Thumb");
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a[0].$c[0].index" bindings:bindings];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a[0].$c[0].index" bindings:bindings objectClass:nil];
     XCTAssertEqualObjects(value, @(1));
     
     // Example 2
@@ -606,7 +606,7 @@
                  @"b": @"0",
                  @"c": @"human"
                   };
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"[$c].$a" bindings:bindings];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"[$c].$a" bindings:bindings objectClass:nil];
     XCTAssertTrue([(NSObject *)value isKindOfClass:[NSArray class]]);
     XCTAssertTrue([(NSArray *)value count] == 2);
     
@@ -616,7 +616,7 @@
                  @"b": @"0",
                  @"c": @"human"
                   };
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"[$c].$a[0]" bindings:bindings];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"[$c].$a[0]" bindings:bindings objectClass:nil];
     XCTAssertTrue([value isKindOfClass:[Hand class]]);
     
     // Case 3
@@ -625,9 +625,9 @@
                  @"b": @"name",
                  @"c": @"human"
                   };
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$c.$a[0].$b" bindings:bindings];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$c.$a[0].$b" bindings:bindings objectClass:nil];
     XCTAssertEqualObjects(value, @"Left Hand");
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$c.$a[1].$b" bindings:bindings];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$c.$a[1].$b" bindings:bindings objectClass:nil];
     XCTAssertEqualObjects(value, @"Right Hand");
     
     // Case 4
@@ -636,7 +636,7 @@
                  @"b": @"0",
                  @"c": @"name"
                   };
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"array.$b.$a[$b].fingers" bindings:bindings];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"array.$b.$a[$b].fingers" bindings:bindings objectClass:nil];
     XCTAssertTrue([value count] == 5);
     
     // Case 5
@@ -645,11 +645,11 @@
                  @"b": @"0",
                  @"c": @"name"
                   };
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"array[0].$a[0].fingers[0]" bindings:bindings];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"array[0].$a[0].fingers[0]" bindings:bindings objectClass:nil];
     XCTAssertTrue([(NSObject *)value isKindOfClass:[Finger class]]);
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"array[0].$a[0].fingers[0].$c" bindings:bindings];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"array[0].$a[0].fingers[0].$c" bindings:bindings objectClass:nil];
     XCTAssertEqualObjects(value, @"Thumb");
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"array[0].$a[0].fingers[0].index" bindings:bindings];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"array[0].$a[0].fingers[0].index" bindings:bindings objectClass:nil];
     XCTAssertEqualObjects(value, @(1));
     
     // Case 6
@@ -664,7 +664,7 @@
                  @"b": @"man",
                  @"c": @"name"
                  };
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a$b.hands[0].fingers[0].name" bindings:bindings];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"$a$b.hands[0].fingers[0].name" bindings:bindings objectClass:nil];
     XCTAssertEqualObjects(value, @"Thumb");
     
     // Case 7
@@ -677,7 +677,7 @@
     bindings = @{
                  @"a": @"hu"
                  };
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"${a}man.hands[0].fingers[0].name" bindings:bindings];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"${a}man.hands[0].fingers[0].name" bindings:bindings objectClass:nil];
     XCTAssertEqualObjects(value, @"Thumb");
     
     // Case 8
@@ -690,7 +690,7 @@
     bindings = @{
                  @"b": @"man"
                  };
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"hu$b.hands[0].fingers[0].name" bindings:bindings];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"hu$b.hands[0].fingers[0].name" bindings:bindings objectClass:nil];
     XCTAssertEqualObjects(value, @"Thumb");
     
     
@@ -700,11 +700,49 @@
                          @"foo": @"a"
                          }
                  };
-    value = [WCJSONTool valueOfKVCObject:bindings usingKeyPath:@"!bar.foo" bindings:bindings];
+    value = [WCJSONTool valueOfKVCObject:bindings usingKeyPath:@"!bar.foo" bindings:bindings objectClass:nil];
     XCTAssertEqualObjects(value, @"a");
     
     // Abnormal Case 1
-    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"Hand" bindings:bindings];
+    value = [WCJSONTool valueOfKVCObject:object usingKeyPath:@"Hand" bindings:bindings objectClass:nil];
+    XCTAssertNil(value);
+}
+
+#pragma mark >> For NSArray/NSDictionary
+
+- (void)test_valueOfCollectionObject_usingBracketsPath {
+    id object;
+    id value;
+    NSString *path;
+    
+    // Case 1
+    object = @[
+               @{
+                   @"title": @"A"
+                   }
+               ];
+    path = @"[0]['title']";
+    value = [WCJSONTool valueOfCollectionObject:object usingBracketsPath:path objectClass:nil];
+    XCTAssertEqualObjects(value, @"A");
+    
+    // Case 2
+    object = @{
+               @"title": @[
+                       @"A"
+                       ]
+               };
+    path = @"['title'][0]";
+    value = [WCJSONTool valueOfCollectionObject:object usingBracketsPath:path objectClass:nil];
+    XCTAssertEqualObjects(value, @"A");
+    
+    // Abnormal Case 1
+    object = @{
+               @"title": @[
+                       @"A"
+                       ]
+               };
+    path = @"['title'}[0]";
+    value = [WCJSONTool valueOfCollectionObject:object usingBracketsPath:path objectClass:nil];
     XCTAssertNil(value);
 }
 

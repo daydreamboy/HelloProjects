@@ -143,10 +143,11 @@ NS_AVAILABLE_IOS(5_0)
 
  @param JSONObject a NSDictionary or a NSArray
  @param keyPath a key or a keyPath separated by `.` or `[x]`, e.g. @"hash[key]", @"array[0]"
+ @param objectClass the expected class of the returned value
  @return return nil, if the keyPath not match the JSONObject
  @note If keyPath is empty string, will return the original JSONObject
  */
-+ (nullable id)valueOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath;
++ (nullable id)valueOfJSONObject:(id)JSONObject usingKeyPath:(NSString *)keyPath objectClass:(nullable Class)objectClass;
 
 #pragma mark >> For KVC Object
 
@@ -155,10 +156,11 @@ NS_AVAILABLE_IOS(5_0)
 
  @param KVCObject a KVC-compliant object
  @param keyPath a key or a keyPath separated by `.` or `[x]`, e.g. @"hash[key]", @"array[0]"
+ @param objectClass the expected class of the returned value
  @return return nil, if the keyPath not match the KVCObject
  @note If keyPath is empty string, will return the original KVCObject
  */
-+ (nullable id)valueOfKVCObject:(id)KVCObject usingKeyPath:(NSString *)keyPath;
++ (nullable id)valueOfKVCObject:(id)KVCObject usingKeyPath:(NSString *)keyPath objectClass:(nullable Class)objectClass;
 
 /**
  Get value using keyPath from KVC object with bindings
@@ -166,11 +168,26 @@ NS_AVAILABLE_IOS(5_0)
  @param KVCObject a KVC-compliant object
  @param keyPath a key or a keyPath which supports template variables, e.g. @"A$b$c.$d" => @"ABC.D", @"A$b${c}D.$e" => @"ABCD.E"
  @param bindings the map for template variables. Pass nil to not parse template variables.
+ @param objectClass the expected class of the returned value
  @return If keyPath is empty string, will return the original KVCObject
  @discussion 1. the keyPath with variables must separated by `.[]`
              2. the pattern for template variables is @"\\$(?:\\{([a-zA-Z0-9_-]+)\\}|([a-zA-Z0-9_-]+))";
  */
-+ (nullable id)valueOfKVCObject:(id)KVCObject usingKeyPath:(NSString *)keyPath bindings:(nullable NSDictionary *)bindings;
++ (nullable id)valueOfKVCObject:(id)KVCObject usingKeyPath:(NSString *)keyPath bindings:(nullable NSDictionary *)bindings objectClass:(nullable Class)objectClass;
+
+#pragma mark >> For NSArray/NSDictionary
+
+/**
+ Get value from NSArray/NSDictionary with bracket path
+
+ @param collectionObject the NSArray/NSDictionary
+ @param bracketsPath the path separated by [], e.g. [0]['key1'][1]['key2']
+ @param objectClass the expected class of the returned value
+ @return Return nil if the value not at the bracket path
+ @discussion The bracketsPath has only two types of subscript, integer or string quoted by `'`. If not match the format, return nil.
+ @note If keyPath is empty string, will return the original JSONObject
+ */
++ (nullable id)valueOfCollectionObject:(id)collectionObject usingBracketsPath:(NSString *)bracketsPath objectClass:(nullable Class)objectClass;
 
 #pragma mark > Print JSON string
 
