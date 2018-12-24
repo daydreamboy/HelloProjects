@@ -27,9 +27,19 @@ NS_ASSUME_NONNULL_BEGIN
 
  @param color the UIColor
  @param size the size
- @return the new image
+ @return the image with the color
  */
 + (nullable UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
+
+/**
+ Get an image with pure color and corner radius
+
+ @param color the UIColor
+ @param size the size
+ @param cornerRadius the corner radius. Pass 0 to not cornered
+ @return the image with color and corner radius
+ */
++ (nullable UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size cornerRadius:(CGFloat)cornerRadius;
 
 /**
  Get a alpha version of UIImage

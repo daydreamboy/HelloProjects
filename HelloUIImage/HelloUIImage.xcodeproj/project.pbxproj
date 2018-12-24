@@ -35,6 +35,7 @@
 		4F9909A6219C6BF000606B97 /* CropImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9909A5219C6BF000606B97 /* CropImageViewController.m */; };
 		4F9909A8219C6C3D00606B97 /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F9909A7219C6C3D00606B97 /* 12.jpg */; };
 		4F9909AC219C6CD000606B97 /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9909AB219C6CD000606B97 /* WCViewTool.m */; };
+		4FA7A82E21D0F503008A350C /* CreateImageWithColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA7A82D21D0F503008A350C /* CreateImageWithColorViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,8 @@
 		4F9909A7219C6C3D00606B97 /* 12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 12.jpg; sourceTree = "<group>"; };
 		4F9909AA219C6CD000606B97 /* WCViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCViewTool.h; sourceTree = "<group>"; };
 		4F9909AB219C6CD000606B97 /* WCViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewTool.m; sourceTree = "<group>"; };
+		4FA7A82C21D0F503008A350C /* CreateImageWithColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateImageWithColorViewController.h; sourceTree = "<group>"; };
+		4FA7A82D21D0F503008A350C /* CreateImageWithColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateImageWithColorViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,8 @@
 				4F6061D22134F5A300D049DF /* ScaleImageViewController.m */,
 				4F9909A4219C6BF000606B97 /* CropImageViewController.h */,
 				4F9909A5219C6BF000606B97 /* CropImageViewController.m */,
+				4FA7A82C21D0F503008A350C /* CreateImageWithColorViewController.h */,
+				4FA7A82D21D0F503008A350C /* CreateImageWithColorViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 				4F9909AC219C6CD000606B97 /* WCViewTool.m in Sources */,
 				4F6061CD2134F57C00D049DF /* RootViewController.m in Sources */,
 				4F6061D72134F5A300D049DF /* CreateOnePixelHeightLineViewController.m in Sources */,
+				4FA7A82E21D0F503008A350C /* CreateImageWithColorViewController.m in Sources */,
 				4F9909A6219C6BF000606B97 /* CropImageViewController.m in Sources */,
 				4F636E612134F2F1003DE979 /* AppDelegate.m in Sources */,
 				4F6061D62134F5A300D049DF /* CreateImageWithAlphaViewController.m in Sources */,

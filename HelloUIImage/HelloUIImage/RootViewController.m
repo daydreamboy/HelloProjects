@@ -13,6 +13,7 @@
 #import "CreateImageWithAlphaViewController.h"
 #import "ScaleImageViewController.h"
 #import "CropImageViewController.h"
+#import "CreateImageWithColorViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -40,6 +41,7 @@
         @"Create an alpha version of UIImage",
         @"Scale image with new size",
         @"Crop an image",
+        @"Create image with color",
     ];
     _classes = @[
         [CreateOnePixelHeightLineViewController class],
@@ -47,6 +49,7 @@
         [CreateImageWithAlphaViewController class],
         [ScaleImageViewController class],
         [CropImageViewController class],
+        [CreateImageWithColorViewController class],
     ];
 }
 
