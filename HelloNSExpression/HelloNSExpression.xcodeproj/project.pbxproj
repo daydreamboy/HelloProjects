@@ -17,6 +17,8 @@
 		4F71139F21A65B7E00DCB8FA /* FormulaCalculationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F71139E21A65B7E00DCB8FA /* FormulaCalculationViewController.m */; };
 		4F7113A721A6913300DCB8FA /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7113A621A6913300DCB8FA /* Tests.m */; };
 		4F7113AF21A6915700DCB8FA /* Test_NSExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7113AE21A6915700DCB8FA /* Test_NSExpression.m */; };
+		4F7C4C2A21D2423F00B0AB11 /* NSNumber+CustomFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D15A321A45E88008B1407 /* NSNumber+CustomFunction.m */; };
+		4F7C4C2B21D2423F00B0AB11 /* NSString+CustomFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D15A621A465D6008B1407 /* NSString+CustomFunction.m */; };
 		4F9D159D21A4473F008B1407 /* WCStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D159C21A4473F008B1407 /* WCStringTool.m */; };
 		4F9D15A021A45AF0008B1407 /* LogicalExpressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D159F21A45AF0008B1407 /* LogicalExpressionViewController.m */; };
 		4F9D15A421A45E88008B1407 /* NSNumber+CustomFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D15A321A45E88008B1407 /* NSNumber+CustomFunction.m */; };
@@ -278,6 +280,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F7C4C2A21D2423F00B0AB11 /* NSNumber+CustomFunction.m in Sources */,
+				4F7C4C2B21D2423F00B0AB11 /* NSString+CustomFunction.m in Sources */,
 				4F7113AF21A6915700DCB8FA /* Test_NSExpression.m in Sources */,
 				4F7113A721A6913300DCB8FA /* Tests.m in Sources */,
 			);

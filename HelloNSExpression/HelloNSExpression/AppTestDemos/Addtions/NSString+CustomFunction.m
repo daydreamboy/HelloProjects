@@ -18,4 +18,8 @@
     return [NSString stringWithFormat:@"%@%@", self, anotherString];
 }
 
+- (NSString *)uppercase {
+    return [self uppercaseString];
+}
+
 @end

@@ -12,5 +12,6 @@
 
 - (NSString *)characterStringAtIndex:(NSNumber *)index;
 - (NSString *)concatString:(NSString *)anotherString;
+- (NSString *)uppercase;
 
 @end
