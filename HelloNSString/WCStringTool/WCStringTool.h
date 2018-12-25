@@ -117,6 +117,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param string the whole string
  @param range the range.
  @return the substring. Return nil if the range is invalid, e.g. location out of the string index [0..string.length]
+ @discussion If the location is string.length, the length is 0, return an empty string, but the length is > 0, return nil.
  */
 + (nullable NSString *)substringWithString:(NSString *)string range:(NSRange)range;
 
