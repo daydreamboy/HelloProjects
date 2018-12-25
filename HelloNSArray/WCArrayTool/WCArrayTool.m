@@ -12,7 +12,7 @@
 
 #pragma mark - Modification
 
-+ (NSArray *)arrayWithArray:(NSArray *)array moveItemAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
++ (nullable NSArray *)arrayWithArray:(NSArray *)array moveItemAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
     if (![array isKindOfClass:[NSArray class]]) {
         return array;
     }
@@ -25,6 +25,49 @@
     }
     
     return [NSArray arrayWithArray:arrayM];
+}
+
++ (nullable NSArray *)subarrayWithArray:(NSArray *)array range:(NSRange)range {
+    if (![array isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
+    
+    if (range.location == NSNotFound) {
+        return nil;
+    }
+    
+    if (range.location <= array.count) {
+        if (range.length <= array.count - range.location) {
+            return [array subarrayWithRange:range];
+        }
+        else {
+            return nil;;
+        }
+    }
+    else {
+        return nil;
+    }
+}
+
++ (nullable NSArray *)subarrayWithArray:(NSArray *)array atLocation:(NSUInteger)location length:(NSUInteger)length {
+    if (![array isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
+    
+    if (location <= array.count) {
+        if (length <= array.count - location) {
+            return [array subarrayWithRange:NSMakeRange(location, length)];
+        }
+        else if (location < array.count || (array.count == location && length == 0)) {
+            return [array subarrayWithRange:NSMakeRange(location, array.count - location)];
+        }
+        else {
+            return nil;
+        }
+    }
+    else {
+        return nil;
+    }
 }
 
 @end

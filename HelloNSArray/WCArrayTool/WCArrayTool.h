@@ -22,8 +22,32 @@ NS_ASSUME_NONNULL_BEGIN
  @param toIndex the to index
  @return the modificated array after movement
  @see https://stackoverflow.com/questions/4349669/nsmutablearray-move-object-from-index-to-index
+ @discussion The item move to the toIndex, and the original item will move to the next position
  */
-+ (NSArray *)arrayWithArray:(NSArray *)array moveItemAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
++ (nullable NSArray *)arrayWithArray:(NSArray *)array moveItemAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
+
+#pragma mark - Subarray
+
+/**
+ Get subarray from the array with range
+
+ @param array the original array
+ @param range the range for the subarray. The valid range.location is [0, array.count].
+ @return the subarray. Return nil if the range is invalid, e.g. location out of [0, array.count].
+ @discussion If the location is array.count, the length is 0, return an empty array, but the length is > 0, return nil.
+ */
++ (nullable NSArray *)subarrayWithArray:(NSArray *)array range:(NSRange)range;
+
+/**
+ Get subarray from the array with location and length
+
+ @param array the original array
+ @param location the location. The valid location is [0, array.count].
+ @param length the length. If the length > string.length - location, will return the subarray from location to the end
+ @return the subarray. Return nil if the range is invalid, e.g. location out of [0, array.count].
+ @discussion If the location is array.count, the length is 0, return an empty array, but the length is > 0, return nil.
+ */
++ (nullable NSArray *)subarrayWithArray:(NSArray *)array atLocation:(NSUInteger)location length:(NSUInteger)length;
 
 @end
 
