@@ -296,6 +296,7 @@
 - (void)test_substringWithString_atLocation_length {
     // Case 1
     NSString *string;
+    NSString *output;
     string = @"2014-11-07 18:36:04";
     
     XCTAssertEqualObjects(@"11-07", [WCStringTool substringWithString:string atLocation:5 length:5]);
@@ -320,13 +321,17 @@
     string = @"123";
     XCTAssertEqualObjects(@"123", [WCStringTool substringWithString:string atLocation:0 length:3]);
     XCTAssertEqualObjects(@"23", [WCStringTool substringWithString:string atLocation:1 length:2]);
+    
+    string = @"123";
+    output = [WCStringTool substringWithString:string atLocation:0 length:4];
+    XCTAssertEqualObjects(string, @"123");
 }
 
 - (void)test_substringWithString_range {
     NSString *string;
     NSString *substring;
     
-    // Case
+    // Case 1
     string = @"2014-11-07 18:36:04";
     substring = [WCStringTool substringWithString:string range:NSMakeRange(5, 5)];
     XCTAssertEqualObjects(substring, @"11-07");
@@ -340,9 +345,13 @@
     substring = [WCStringTool substringWithString:string range:NSMakeRange(string.length, 1)];
     XCTAssertNil(substring);
     
-    // Case
+    // Case 2
     substring = [WCStringTool substringWithString:@"abc" range:NSMakeRange(0, 1)];
     XCTAssertEqualObjects(substring, @"a");
+    
+    // Abnormal Case 1
+    substring = [WCStringTool substringWithString:@"abc" range:NSMakeRange(0, 4)];
+    XCTAssertNil(substring);
     
     // Case
     substring = [WCStringTool substringWithString:@"" range:NSMakeRange(0, 1)];
