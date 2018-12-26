@@ -15,6 +15,10 @@
     return @(tgamma([self doubleValue] + 1));
 }
 
+- (NSNumber *)pow:(NSNumber *)n {
+    return @(pow([self doubleValue], [n doubleValue]));
+}
+
 // @see https://spin.atomicobject.com/2015/03/24/evaluate-string-expressions-ios-objective-c-swift/
 - (NSNumber *)squareAndSubtractFive {
     return @(self.doubleValue * self.doubleValue - 5);

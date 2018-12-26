@@ -10,6 +10,7 @@
 
 @interface NSNumber (CustomFunction)
 - (NSNumber *)factorial;
+- (NSNumber *)pow:(NSNumber *)pow;
 - (NSNumber *)squareAndSubtractFive;
 - (NSNumber*)gaussianWithMean:(NSNumber*)mean andVariance:(NSNumber*)variance;
 @end
