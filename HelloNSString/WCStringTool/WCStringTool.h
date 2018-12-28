@@ -427,6 +427,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @param string the hex string with foramt @"#RRGGBB" or @"#RRGGBBAA"
  @return the UIColor object. return nil if string is not valid.
+ @discussion If the hex string not prefixed with `#`, use WCColorTool instead.
  */
 + (nullable UIColor *)colorFromHexString:(NSString *)string;
 
