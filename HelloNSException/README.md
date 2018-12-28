@@ -1,10 +1,8 @@
-## HelloNSException
+# HelloNSException
 
 [TOC]
 
----
-
-### 1、如何分析Crash Reports[^1]
+## 1、如何分析Crash Reports[^1]
 
 #### （1）Report的Header部分
 
@@ -221,6 +219,76 @@ typedef struct { void *ptr1, void *ptr2 } data_t;
 所以，+4是可以看做是new_data->ptr2，这样可以推测new_data->ptr2被赋值时产生的crash，那么解引用应该发生在new_data。实际上，这时r1地址是0x00000000，加上4后也是一个无效的地址，对这个地址进行取值就会出现crash问题。
 
 
+
+
+
+## 2、常见Crash类型防护
+
+
+
+常见crash类型，有下面几种
+
+* nil参数 
+
+* mutable容器快速枚举时，被修改（可以被try-catch） 
+
+* NaN参数 
+
+CALayer的position(x,y)不允许有NaN值，否则会出现crash。（具体见HelloIssueUI_CALayerPositionNaNCrash） 
+
+
+
+### （1）参数为nil导致crash的API
+
+
+
+#### NSString
+
+| 方法签名                                                     | 说明                       |
+| ------------------------------------------------------------ | -------------------------- |
+| `-[NSString hasPrefix:]`                                     |                            |
+| `-[NSString appendString:]`                                  |                            |
+| `-[NSMutableString replaceOccurrencesOfString:withString:options:range:]` | `withString:`参数不能为nil |
+
+
+
+#### NSAttributedString
+
+| 方法签名                                           | 说明                           |
+| -------------------------------------------------- | ------------------------------ |
+| `-[NSAttributedString initWithString:attributes:]` | `initWithString:`参数不能为nil |
+
+
+
+#### NSURL
+
+| 方法签名                    | 说明 |
+| --------------------------- | ---- |
+| `+[NSURL fileURLWithPath:]` |      |
+
+
+
+#### NSRegularExpression
+
+| 方法签名                                                     | 说明                                    |
+| ------------------------------------------------------------ | --------------------------------------- |
+| `-[NSRegularExpression enumerateMatchesInString:options:range:usingBlock:]` | `enumerateMatchesInString`参数不能为nil |
+
+
+
+#### GCD
+
+| 方法签名                           | 说明                |
+| ---------------------------------- | ------------------- |
+| `dispatch_async(<not nil>, {...})` | 第一个参数不能为nil |
+
+
+
+#### 
+
+
+
+## Reference
 
 [^1]: https://www.plausible.coop/blog/?p=176 "Exploring iOS Crash Reports"
 
