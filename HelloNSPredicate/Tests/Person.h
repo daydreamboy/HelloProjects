@@ -13,6 +13,7 @@
 @property NSString *firstName;
 @property NSString *lastName;
 @property NSNumber *age;
+@property (assign) BOOL isMale;
 
 + (NSArray<Person *> *)people;
 

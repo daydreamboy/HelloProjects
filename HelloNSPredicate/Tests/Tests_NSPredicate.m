@@ -30,7 +30,32 @@
 
 #pragma mark - Format String Syntax
 
-- (void)test_string_contants {
+- (void)test_sytnax_attributes {
+    NSPredicate *predicate;
+    BOOL trueOrFalse;
+    
+    Person *person = [Person new];
+    person.lastName = @"Smith";
+    predicate = [NSPredicate predicateWithFormat:@"lastName like 'Smith'"];
+    trueOrFalse = [predicate evaluateWithObject:person];
+    XCTAssertTrue(trueOrFalse);
+    
+    person.lastName = @"Smmith";
+    predicate = [NSPredicate predicateWithFormat:@"lastName like 'Smith'"];
+    trueOrFalse = [predicate evaluateWithObject:person];
+    XCTAssertFalse(trueOrFalse);
+}
+
+- (void)test_syntax_SELF {
+    NSPredicate *predicate;
+    BOOL trueOrFalse;
+    
+    predicate = [NSPredicate predicateWithFormat:@"SELF like a"];
+    trueOrFalse = [predicate evaluateWithObject:@"a"];
+    XCTAssertTrue(trueOrFalse);
+}
+
+- (void)test_sytnax_string_contants {
     NSArray<Person *> *people = [Person people];
     NSArray<Person *> *output;
     NSPredicate *predicate;
@@ -65,6 +90,217 @@
     predicate = [NSPredicate predicateWithFormat:@"lastName LIKE \"%@\"", @"Smith"];
     output = [people filteredArrayUsingPredicate:predicate];
     XCTAssertTrue(output.count == 0);
+}
+
+- (void)test_syntax_dynamic_property_name {
+    NSPredicate *predicate;
+    
+    NSString *attributeName = @"firstName";
+    NSString *attributeValue = @"Adam";
+    
+    // Case 1
+    predicate = [NSPredicate predicateWithFormat:@"%@ like %@", attributeName, attributeValue];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"\"firstName\" LIKE \"Adam\"");
+    
+    // Case 2
+    predicate = [NSPredicate predicateWithFormat:@"%K like %@", attributeName, attributeValue];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"firstName LIKE \"Adam\"");
+    
+    // Case 3
+    predicate = [NSPredicate predicateWithFormat:@"'%K' like '%@'", attributeName, attributeValue];
+    XCTAssertNotEqualObjects(predicate.predicateFormat, @"'%K' like '%@'");
+    XCTAssertEqualObjects(predicate.predicateFormat, @"\"%K\" LIKE \"%@\"");
+    
+    // Case 4
+    predicate = [NSPredicate predicateWithFormat:@"\"%K\" like \"%@\"", attributeName, attributeValue];
+    XCTAssertNotEqualObjects(predicate.predicateFormat, @"'%K' like '%@'");
+    XCTAssertEqualObjects(predicate.predicateFormat, @"\"%K\" LIKE \"%@\"");
+    
+    // Case 5
+    @try {
+        // Error: %k will make an exception
+        predicate = [NSPredicate predicateWithFormat:@"%k like %@", attributeName, attributeValue];
+    }
+    @catch (NSException *e) {
+        NSLog(@"an exception occurred: %@", e);
+        XCTAssertTrue(YES);
+    }
+}
+
+- (void)test_syntax_wildcard_star {
+    BOOL trueOrFalse;
+    NSPredicate *predicate;
+    NSString *formatString;
+    NSString *evaluatedString;
+    
+    NSString *prefix = @"prefix";
+    NSString *suffix = @"suffix";
+    evaluatedString = @"prefixxxxxxsuffix";
+    
+    // Case 1
+    predicate = [NSPredicate predicateWithFormat:@"SELF like[c] 'prefix*suffix'"];
+    trueOrFalse = [predicate evaluateWithObject:evaluatedString];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"SELF LIKE[c] \"prefix*suffix\"");
+    XCTAssertTrue(trueOrFalse);
+    
+    // Case 2
+    predicate = [NSPredicate predicateWithFormat:@"SELF like[c] \"prefix*suffix\""];
+    trueOrFalse = [predicate evaluateWithObject:evaluatedString];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"SELF LIKE[c] \"prefix*suffix\"");
+    XCTAssertTrue(trueOrFalse);
+    
+    // Case 3
+    predicate = [NSPredicate predicateWithFormat:@"SELF like[c] %@*%@", prefix, suffix];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"SELF LIKE[c] \"prefix\" * \"suffix\"");
+    @try {
+        trueOrFalse = [predicate evaluateWithObject:evaluatedString];
+    }
+    @catch (NSException *e) {
+        NSLog(@"an exception occurred: %@", e);
+    }
+    
+    // Case 4
+    formatString = [[prefix stringByAppendingString:@"*"] stringByAppendingString:suffix];
+    predicate = [NSPredicate predicateWithFormat:@"SELF like[c] %@", formatString];
+    trueOrFalse = [predicate evaluateWithObject:evaluatedString];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"SELF LIKE[c] \"prefix*suffix\"");
+    XCTAssertTrue(trueOrFalse);
+}
+
+- (void)test_syntax_wildcard_question_mark {
+    BOOL trueOrFalse;
+    NSPredicate *predicate;
+    NSString *formatString;
+    NSString *evaluatedString1;
+    NSString *evaluatedString2;
+    
+    NSString *prefix = @"prefix";
+    NSString *suffix = @"suffix";
+    evaluatedString1 = @"prefixxsuffix";
+    evaluatedString2 = @"prefixsuffix";
+    
+    // Case 1
+    predicate = [NSPredicate predicateWithFormat:@"SELF like[c] 'prefix?suffix'"];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"SELF LIKE[c] \"prefix?suffix\"");
+    
+    trueOrFalse = [predicate evaluateWithObject:evaluatedString1];
+    XCTAssertTrue(trueOrFalse);
+    
+    trueOrFalse = [predicate evaluateWithObject:evaluatedString2];
+    XCTAssertFalse(trueOrFalse);
+    
+    // Case 2
+    predicate = [NSPredicate predicateWithFormat:@"SELF like[c] \"prefix?suffix\""];
+    trueOrFalse = [predicate evaluateWithObject:evaluatedString1];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"SELF LIKE[c] \"prefix?suffix\"");
+    XCTAssertTrue(trueOrFalse);
+    
+    // Case 3
+    @try {
+        predicate = [NSPredicate predicateWithFormat:@"SELF like[c] %@?%@", prefix, suffix];
+    }
+    @catch (NSException *e) {
+        NSLog(@"an exception occurred: %@", e);
+    }
+    
+    // Case 4
+    formatString = [[prefix stringByAppendingString:@"?"] stringByAppendingString:suffix];
+    predicate = [NSPredicate predicateWithFormat:@"SELF like[c] %@", formatString];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"SELF LIKE[c] \"prefix?suffix\"");
+    
+    trueOrFalse = [predicate evaluateWithObject:evaluatedString1];
+    XCTAssertTrue(trueOrFalse);
+    
+    trueOrFalse = [predicate evaluateWithObject:evaluatedString2];
+    XCTAssertFalse(trueOrFalse);
+}
+
+- (void)test_syntax_boolean_values_YES_NO {
+    BOOL boolValue;
+    NSPredicate *predicate;
+    BOOL trueOrFalse;
+    
+    Person *person = [Person new];
+    
+    // Case 1
+    boolValue = YES;
+    person.isMale = YES;
+    predicate = [NSPredicate predicateWithFormat:@"isMale == %@", @(boolValue)];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"isMale == 1");
+    trueOrFalse = [predicate evaluateWithObject:person];
+    XCTAssertTrue(trueOrFalse);
+    
+    // Case 2
+    boolValue = NO;
+    person.isMale = YES;
+    predicate = [NSPredicate predicateWithFormat:@"isMale == %@", @(boolValue)];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"isMale == 0");
+    trueOrFalse = [predicate evaluateWithObject:person];
+    XCTAssertFalse(trueOrFalse);
+    
+    // Case 3
+    person.isMale = YES;
+    predicate = [NSPredicate predicateWithFormat:@"isMale == YES"];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"isMale == 1");
+    trueOrFalse = [predicate evaluateWithObject:person];
+    XCTAssertTrue(trueOrFalse);
+    
+    // Case 4
+    person.isMale = NO;
+    predicate = [NSPredicate predicateWithFormat:@"isMale == NO"];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"isMale == 0");
+    trueOrFalse = [predicate evaluateWithObject:person];
+    XCTAssertTrue(trueOrFalse);
+    
+    // Case 5
+    person.isMale = YES;
+    predicate = [NSPredicate predicateWithFormat:@"isMale == yes"];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"isMale == 1");
+    trueOrFalse = [predicate evaluateWithObject:person];
+    XCTAssertTrue(trueOrFalse);
+    
+    // Case 6
+    person.isMale = NO;
+    predicate = [NSPredicate predicateWithFormat:@"isMale == no"];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"isMale == 0");
+    trueOrFalse = [predicate evaluateWithObject:person];
+    XCTAssertTrue(trueOrFalse);
+}
+
+- (void)test_syntax_boolean_values_true_false {
+    NSPredicate *predicate;
+    BOOL trueOrFalse;
+    
+    Person *person;
+    person = [Person new];
+    
+    // Case 1
+    person.isMale = NO;
+    predicate = [NSPredicate predicateWithFormat:@"isMale == false"];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"isMale == 0");
+    trueOrFalse = [predicate evaluateWithObject:person];
+    XCTAssertTrue(trueOrFalse);
+    
+    // Case 2
+    person.isMale = YES;
+    predicate = [NSPredicate predicateWithFormat:@"isMale == true"];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"isMale == 1");
+    trueOrFalse = [predicate evaluateWithObject:person];
+    XCTAssertTrue(trueOrFalse);
+    
+    // Case 3
+    person.isMale = NO;
+    predicate = [NSPredicate predicateWithFormat:@"isMale == FALSE"];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"isMale == 0");
+    trueOrFalse = [predicate evaluateWithObject:person];
+    XCTAssertTrue(trueOrFalse);
+    
+    // Case 4
+    person.isMale = YES;
+    predicate = [NSPredicate predicateWithFormat:@"isMale == TRUE"];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"isMale == 1");
+    trueOrFalse = [predicate evaluateWithObject:person];
+    XCTAssertTrue(trueOrFalse);
 }
 
 - (void)test_substitution {
