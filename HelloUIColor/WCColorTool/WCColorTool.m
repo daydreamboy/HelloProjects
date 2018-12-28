@@ -10,14 +10,24 @@
 
 @implementation WCColorTool
 
-/*!
- *  Get a random color for debug
- */
+#pragma mark - Color Creation
+
++ (nullable UIColor *)alphaColorWithColor:(UIColor *)color alpha:(CGFloat)alpha {
+    if (![color isKindOfClass:[UIColor class]]) {
+        return nil;
+    }
+    
+    UIColor *newColor = [UIColor colorWithCGColor:color.CGColor];
+    
+    return [newColor colorWithAlphaComponent:alpha];
+}
+
 + (UIColor *)randomColor{
     CGFloat red = arc4random() % 255 / 255.0f;
     CGFloat green = arc4random() % 255 / 255.0f;
     CGFloat blue = arc4random() % 255 / 255.0f;
     UIColor *color = [UIColor colorWithRed:red green:green blue:blue alpha:1];
+    
     return color;
 }
 
@@ -27,52 +37,19 @@
     CGFloat blue = arc4random() % 255 / 255.0f;
     CGFloat alpha = arc4random() % 10 / 10.0f;
     UIColor *color = [UIColor colorWithRed:red green:green blue:blue alpha:alpha];
+    
     return color;
 }
 
-/*!
- *  Exchange two colors with progress
- *
- *  @param fromColor the fromColor will be transited to the toColor
- *  @param toColor   the toColor will be transited to the fromColor
- *  @param progress  the progress of transition between 0..1
- *
- *  @return a NSArray of two transited colors on progress
- */
-+ (NSArray *)transitionColorsFromColor:(UIColor *)fromColor toColor:(UIColor *)toColor onProgress:(CGFloat)progress {
-    CGFloat fromRed, fromGreen, fromBlue, fromAlpha, toRed, toGreen, toBlue, toAlpha;
-    
-    [self componentsOfRed:&fromRed green:&fromGreen blue:&fromBlue alpha:&fromAlpha fromColor:fromColor];
-    [self componentsOfRed:&toRed green:&toGreen blue:&toBlue alpha:&toAlpha fromColor:toColor];
-    
-    CGFloat ratio = (progress < 0 ? 0 : (progress > 1 ? 1 : progress));
-    
-    UIColor *transitionColorOfFromColor = [UIColor colorWithRed:fromRed * ratio + toRed * (1 - ratio)
-                                                          green:fromGreen * ratio + toGreen * (1 - ratio)
-                                                           blue:fromBlue * ratio + toBlue  * (1 - ratio)
-                                                          alpha:fromAlpha * ratio + toAlpha  * (1 - ratio)];
-    
-    UIColor *transitionColorOfToColor = [UIColor colorWithRed:fromRed * (1 - ratio) + toRed * ratio
-                                                        green:fromGreen * (1 - ratio) + toGreen * ratio
-                                                         blue:fromBlue * (1 - ratio) + toBlue * ratio
-                                                        alpha:fromAlpha * (1 - ratio) + toAlpha * ratio];
-    
-    return @[transitionColorOfFromColor, transitionColorOfToColor];
-}
-
-/*!
- *  Set alpha component of a UIColor
- *
- *  @param alpha a CGFloat included between 0..1
- */
-+ (UIColor *)alphaColorWithColor:(UIColor *)color alpha:(CGFloat)alpha {
-    return [color colorWithAlphaComponent:alpha];
-}
-
-#pragma mark - Color Convertion
+#pragma mark - Color Conversion
 
 #pragma mark > UIColor to NSString
-+ (NSString *)RGBAHexStringFromUIColor:(UIColor *)color {
+
++ (nullable NSString *)RGBAHexStringFromUIColor:(UIColor *)color {
+    if (![color isKindOfClass:[UIColor class]]) {
+        return nil;
+    }
+    
     CGFloat r, g, b, a;
     [self componentsOfRed:&r green:&g blue:&b alpha:&a fromColor:color];
     
@@ -84,7 +61,11 @@
             ];
 }
 
-+ (NSString *)RGBHexStringFromUIColor:(UIColor *)color {
++ (nullable NSString *)RGBHexStringFromUIColor:(UIColor *)color {
+    if (![color isKindOfClass:[UIColor class]]) {
+        return nil;
+    }
+    
     CGFloat r, g, b, a;
     [self componentsOfRed:&r green:&g blue:&b alpha:&a fromColor:color];
     
@@ -97,7 +78,7 @@
 
 #pragma mark > NSString to UIColor
 
-+ (UIColor *)colorWithHexString:(NSString *)string {
++ (nullable UIColor *)colorWithHexString:(NSString *)string {
     if (![string isKindOfClass:[NSString class]]) {
         return nil;
     }
@@ -125,10 +106,42 @@
     return [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:a / 255.0];
 }
 
-#pragma mark - Color Checks
+#pragma mark - Assistant Methods
 
-// @see https://stackoverflow.com/a/31565930
-+ (BOOL)isClearWithColor:(UIColor *)color {
+#pragma mark > Others
+
++ (nullable NSArray *)transitionColorsFromColor:(UIColor *)fromColor toColor:(UIColor *)toColor onProgress:(CGFloat)progress {
+    if (![fromColor isKindOfClass:[UIColor class]] || ![toColor isKindOfClass:[UIColor class]]) {
+        return nil;
+    }
+    
+    CGFloat fromRed, fromGreen, fromBlue, fromAlpha, toRed, toGreen, toBlue, toAlpha;
+    
+    [self componentsOfRed:&fromRed green:&fromGreen blue:&fromBlue alpha:&fromAlpha fromColor:fromColor];
+    [self componentsOfRed:&toRed green:&toGreen blue:&toBlue alpha:&toAlpha fromColor:toColor];
+    
+    CGFloat ratio = (progress < 0 ? 0 : (progress > 1 ? 1 : progress));
+    
+    UIColor *transitionColorOfFromColor = [UIColor colorWithRed:fromRed * ratio + toRed * (1 - ratio)
+                                                          green:fromGreen * ratio + toGreen * (1 - ratio)
+                                                           blue:fromBlue * ratio + toBlue  * (1 - ratio)
+                                                          alpha:fromAlpha * ratio + toAlpha  * (1 - ratio)];
+    
+    UIColor *transitionColorOfToColor = [UIColor colorWithRed:fromRed * (1 - ratio) + toRed * ratio
+                                                        green:fromGreen * (1 - ratio) + toGreen * ratio
+                                                         blue:fromBlue * (1 - ratio) + toBlue * ratio
+                                                        alpha:fromAlpha * (1 - ratio) + toAlpha * ratio];
+    
+    return @[transitionColorOfFromColor, transitionColorOfToColor];
+}
+
+#pragma mark > Color Checks
+
++ (BOOL)checkColorClearWithColor:(UIColor *)color {
+    if (![color isKindOfClass:[UIColor class]]) {
+        return NO;
+    }
+    
     CGFloat alpha = CGColorGetAlpha(color.CGColor);
     if (alpha == (CGFloat)0.0) {
         return YES;
