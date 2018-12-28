@@ -54,6 +54,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable UIColor *)colorWithHexString:(NSString *)string;
 
+/**
+ Convert hex string to UIColor with the specific prefix
+
+ @param string the hex string with foramt @"<prefix>RRGGBB" or @"<prefix>RRGGBBAA"
+ @param prefix the prefix. For safety, prefix not allow the `%` character
+ @return the UIColor object. return nil if string is not valid.
+ @discussion If the prefix contains `%` character, will return nil.
+ */
++ (nullable UIColor *)colorWithHexString:(NSString *)string prefix:(nullable NSString *)prefix;
+
 #pragma mark - Assistant Methods
 
 #pragma mark > Color Checks

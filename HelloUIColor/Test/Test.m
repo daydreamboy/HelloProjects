@@ -25,11 +25,55 @@
     [super tearDown];
 }
 
-- (void)test_WCColorTool_RGBHexStringFromUIColor {
+- (void)test_RGBHexStringFromUIColor {
     NSString *hexString;
     hexString = [WCColorTool RGBHexStringFromUIColor:[UIColor colorWithRed:0.188235 green:0.411765 blue:0.7171647 alpha:1]];
     NSLog(@"%@", hexString);
     XCTAssertEqualObjects(hexString, @"#3069B7");
+}
+
+#pragma mark - Color Conversion
+
+#pragma mark > NSString to UIColor
+
+- (void)test_colorWithHexString_prefix {
+    NSString *hexString;
+    UIColor *output;
+    
+    // Case 1
+    hexString = @"#FF0000";
+    output = [WCColorTool colorWithHexString:hexString prefix:@"#"];
+    XCTAssertEqualObjects(output, [UIColor redColor]);
+    
+    // Case 2
+    hexString = @"#FF0000";
+    output = [WCColorTool colorWithHexString:hexString prefix:@"#"];
+    XCTAssertNotEqualObjects(output, [UIColor greenColor]);
+    
+    // Case 3
+    hexString = @"#FF0000FF";
+    output = [WCColorTool colorWithHexString:hexString prefix:@"#"];
+    XCTAssertNotEqualObjects(output, [UIColor greenColor]);
+    
+    // Case 4
+    hexString = @"##FF0000";
+    output = [WCColorTool colorWithHexString:hexString prefix:@"##"];
+    XCTAssertEqualObjects(output, [UIColor redColor]);
+    
+    // Case 5
+    hexString = @"FF0000";
+    output = [WCColorTool colorWithHexString:hexString prefix:nil];
+    XCTAssertEqualObjects(output, [UIColor redColor]);
+    
+    // Case 6
+    hexString = @"FF0000FF";
+    output = [WCColorTool colorWithHexString:hexString prefix:nil];
+    XCTAssertEqualObjects(output, [UIColor redColor]);
+    
+    // Case 7
+    hexString = @"FF0000";
+    output = [WCColorTool colorWithHexString:hexString prefix:@""];
+    XCTAssertEqualObjects(output, [UIColor redColor]);
 }
 
 @end
