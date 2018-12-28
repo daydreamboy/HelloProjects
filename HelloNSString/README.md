@@ -12,22 +12,6 @@
 
 
 
-
-
-## 2、NSString参数为nil导致crash的API
-
-
-
-| 方法签名                 | 说明                |
-| ------------------------ | ------------------- |
-| `-[NSString hasPrefix:]` | 第一个参数不能为nil |
-
-
-
-
-
-
-
 ## References
 
 [^1]: https://www.objc.io/issues/9-strings/string-parsing/
