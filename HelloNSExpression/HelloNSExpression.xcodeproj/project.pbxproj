@@ -14,9 +14,16 @@
 		4F66F77121987054007DA8FD /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F66F76D21987054007DA8FD /* RootViewController.m */; };
 		4F66F775219870CE007DA8FD /* NumericExpressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F66F774219870CE007DA8FD /* NumericExpressionViewController.m */; };
 		4F66F77821987F91007DA8FD /* PredefinedFunctionsExpressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F66F77721987F91007DA8FD /* PredefinedFunctionsExpressionViewController.m */; };
+		4F6FDB7C21D4A2AF000F8633 /* NSArray+CustomFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6FDB7B21D4A2AF000F8633 /* NSArray+CustomFunction.m */; };
 		4F71139F21A65B7E00DCB8FA /* FormulaCalculationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F71139E21A65B7E00DCB8FA /* FormulaCalculationViewController.m */; };
 		4F7113A721A6913300DCB8FA /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7113A621A6913300DCB8FA /* Tests.m */; };
 		4F7113AF21A6915700DCB8FA /* Test_NSExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7113AE21A6915700DCB8FA /* Test_NSExpression.m */; };
+		4F72B29821D71F19000B68F2 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F72B29721D71F19000B68F2 /* Person.m */; };
+		4F72B29B21D721C9000B68F2 /* NSDictionary+CustomFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F72B29A21D721C9000B68F2 /* NSDictionary+CustomFunction.m */; };
+		4F72B2A521D75D81000B68F2 /* Job.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F72B2A421D75D81000B68F2 /* Job.m */; };
+		4F72B2AB21D76DD2000B68F2 /* WCExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F72B2AA21D76DD2000B68F2 /* WCExpression.m */; };
+		4F72B2BD21D7A2A2000B68F2 /* NSNumber+WCExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F72B2BC21D7A2A2000B68F2 /* NSNumber+WCExpression.m */; };
+		4F72B2C021D7A334000B68F2 /* NSString+WCExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F72B2BF21D7A334000B68F2 /* NSString+WCExpression.m */; };
 		4F7C4C2A21D2423F00B0AB11 /* NSNumber+CustomFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D15A321A45E88008B1407 /* NSNumber+CustomFunction.m */; };
 		4F7C4C2B21D2423F00B0AB11 /* NSString+CustomFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D15A621A465D6008B1407 /* NSString+CustomFunction.m */; };
 		4F9D159D21A4473F008B1407 /* WCStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D159C21A4473F008B1407 /* WCStringTool.m */; };
@@ -49,12 +56,27 @@
 		4F66F774219870CE007DA8FD /* NumericExpressionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NumericExpressionViewController.m; sourceTree = "<group>"; };
 		4F66F77621987F91007DA8FD /* PredefinedFunctionsExpressionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PredefinedFunctionsExpressionViewController.h; sourceTree = "<group>"; };
 		4F66F77721987F91007DA8FD /* PredefinedFunctionsExpressionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PredefinedFunctionsExpressionViewController.m; sourceTree = "<group>"; };
+		4F6FDB7A21D4A2AF000F8633 /* NSArray+CustomFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSArray+CustomFunction.h"; sourceTree = "<group>"; };
+		4F6FDB7B21D4A2AF000F8633 /* NSArray+CustomFunction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSArray+CustomFunction.m"; sourceTree = "<group>"; };
 		4F71139D21A65B7E00DCB8FA /* FormulaCalculationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FormulaCalculationViewController.h; sourceTree = "<group>"; };
 		4F71139E21A65B7E00DCB8FA /* FormulaCalculationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FormulaCalculationViewController.m; sourceTree = "<group>"; };
 		4F7113A421A6913300DCB8FA /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F7113A621A6913300DCB8FA /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		4F7113A821A6913300DCB8FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F7113AE21A6915700DCB8FA /* Test_NSExpression.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_NSExpression.m; sourceTree = "<group>"; };
+		4F72B29621D71F19000B68F2 /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		4F72B29721D71F19000B68F2 /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		4F72B29921D721C9000B68F2 /* NSDictionary+CustomFunction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+CustomFunction.h"; sourceTree = "<group>"; };
+		4F72B29A21D721C9000B68F2 /* NSDictionary+CustomFunction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+CustomFunction.m"; sourceTree = "<group>"; };
+		4F72B2A321D75D81000B68F2 /* Job.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Job.h; sourceTree = "<group>"; };
+		4F72B2A421D75D81000B68F2 /* Job.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Job.m; sourceTree = "<group>"; };
+		4F72B2A821D76DD2000B68F2 /* WCExpression_Testing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCExpression_Testing.h; sourceTree = "<group>"; };
+		4F72B2A921D76DD2000B68F2 /* WCExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCExpression.h; sourceTree = "<group>"; };
+		4F72B2AA21D76DD2000B68F2 /* WCExpression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCExpression.m; sourceTree = "<group>"; };
+		4F72B2BB21D7A2A2000B68F2 /* NSNumber+WCExpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+WCExpression.h"; sourceTree = "<group>"; };
+		4F72B2BC21D7A2A2000B68F2 /* NSNumber+WCExpression.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+WCExpression.m"; sourceTree = "<group>"; };
+		4F72B2BE21D7A334000B68F2 /* NSString+WCExpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+WCExpression.h"; sourceTree = "<group>"; };
+		4F72B2BF21D7A334000B68F2 /* NSString+WCExpression.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+WCExpression.m"; sourceTree = "<group>"; };
 		4F9D159B21A4473F008B1407 /* WCStringTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStringTool.h; sourceTree = "<group>"; };
 		4F9D159C21A4473F008B1407 /* WCStringTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCStringTool.m; sourceTree = "<group>"; };
 		4F9D159E21A45AF0008B1407 /* LogicalExpressionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogicalExpressionViewController.h; sourceTree = "<group>"; };
@@ -86,6 +108,7 @@
 		4F66F746219851DE007DA8FD = {
 			isa = PBXGroup;
 			children = (
+				4F72B2A721D76DAE000B68F2 /* WCExpression */,
 				4F66F751219851DE007DA8FD /* HelloNSExpression */,
 				4F7113A521A6913300DCB8FA /* Tests */,
 				4F66F750219851DE007DA8FD /* Products */,
@@ -120,7 +143,7 @@
 		4F66F76E21987054007DA8FD /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F9D15A121A45E41008B1407 /* Addtions */,
+				4F9D15A121A45E41008B1407 /* CustomFunctions */,
 				4F9D159A21A4472B008B1407 /* Tools */,
 				4F66F773219870CE007DA8FD /* NumericExpressionViewController.h */,
 				4F66F774219870CE007DA8FD /* NumericExpressionViewController.m */,
@@ -144,6 +167,16 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		4F72B2A721D76DAE000B68F2 /* WCExpression */ = {
+			isa = PBXGroup;
+			children = (
+				4F72B2A821D76DD2000B68F2 /* WCExpression_Testing.h */,
+				4F72B2A921D76DD2000B68F2 /* WCExpression.h */,
+				4F72B2AA21D76DD2000B68F2 /* WCExpression.m */,
+			);
+			path = WCExpression;
+			sourceTree = "<group>";
+		};
 		4F9D159A21A4472B008B1407 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,15 +186,27 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
-		4F9D15A121A45E41008B1407 /* Addtions */ = {
+		4F9D15A121A45E41008B1407 /* CustomFunctions */ = {
 			isa = PBXGroup;
 			children = (
 				4F9D15A221A45E88008B1407 /* NSNumber+CustomFunction.h */,
 				4F9D15A321A45E88008B1407 /* NSNumber+CustomFunction.m */,
 				4F9D15A521A465D6008B1407 /* NSString+CustomFunction.h */,
 				4F9D15A621A465D6008B1407 /* NSString+CustomFunction.m */,
+				4F6FDB7A21D4A2AF000F8633 /* NSArray+CustomFunction.h */,
+				4F6FDB7B21D4A2AF000F8633 /* NSArray+CustomFunction.m */,
+				4F72B29921D721C9000B68F2 /* NSDictionary+CustomFunction.h */,
+				4F72B29A21D721C9000B68F2 /* NSDictionary+CustomFunction.m */,
+				4F72B29621D71F19000B68F2 /* Person.h */,
+				4F72B29721D71F19000B68F2 /* Person.m */,
+				4F72B2A321D75D81000B68F2 /* Job.h */,
+				4F72B2A421D75D81000B68F2 /* Job.m */,
+				4F72B2BB21D7A2A2000B68F2 /* NSNumber+WCExpression.h */,
+				4F72B2BC21D7A2A2000B68F2 /* NSNumber+WCExpression.m */,
+				4F72B2BE21D7A334000B68F2 /* NSString+WCExpression.h */,
+				4F72B2BF21D7A334000B68F2 /* NSString+WCExpression.m */,
 			);
-			path = Addtions;
+			path = CustomFunctions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,16 +308,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F72B2AB21D76DD2000B68F2 /* WCExpression.m in Sources */,
+				4F72B2BD21D7A2A2000B68F2 /* NSNumber+WCExpression.m in Sources */,
 				4F9D15A021A45AF0008B1407 /* LogicalExpressionViewController.m in Sources */,
 				4F66F762219851E0007DA8FD /* main.m in Sources */,
+				4F6FDB7C21D4A2AF000F8633 /* NSArray+CustomFunction.m in Sources */,
 				4F9D15A421A45E88008B1407 /* NSNumber+CustomFunction.m in Sources */,
 				4F66F77821987F91007DA8FD /* PredefinedFunctionsExpressionViewController.m in Sources */,
 				4F66F775219870CE007DA8FD /* NumericExpressionViewController.m in Sources */,
+				4F72B29821D71F19000B68F2 /* Person.m in Sources */,
+				4F72B2C021D7A334000B68F2 /* NSString+WCExpression.m in Sources */,
 				4F66F77121987054007DA8FD /* RootViewController.m in Sources */,
+				4F72B29B21D721C9000B68F2 /* NSDictionary+CustomFunction.m in Sources */,
 				4F9D159D21A4473F008B1407 /* WCStringTool.m in Sources */,
 				4F9D15A721A465D6008B1407 /* NSString+CustomFunction.m in Sources */,
 				4F66F754219851DE007DA8FD /* AppDelegate.m in Sources */,
 				4F71139F21A65B7E00DCB8FA /* FormulaCalculationViewController.m in Sources */,
+				4F72B2A521D75D81000B68F2 /* Job.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

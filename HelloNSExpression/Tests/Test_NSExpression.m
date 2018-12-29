@@ -8,6 +8,8 @@
 
 #import <XCTest/XCTest.h>
 #import "NSNumber+CustomFunction.h"
+#import "NSArray+CustomFunction.h"
+#import "Person.h"
 
 @interface Test_NSExpression : XCTestCase
 
@@ -33,109 +35,45 @@
     XCTAssertThrows([NSExpression expressionForFunction:@"factorial" arguments:arguments]);
 }
 
-- (void)test_formatString_function {
+- (void)test_expressionWithFormat {
     NSString *formatString;
-    NSDictionary *variables;
     NSExpression *mathExpression;
     id value;
     
     // Case 1
-    formatString = @"FUNCTION(3, 'factorial')";
+    formatString = @"1 + 1";
     mathExpression = [NSExpression expressionWithFormat:formatString];
     value = [mathExpression expressionValueWithObject:nil context:nil];
-    XCTAssertEqualObjects(value, @6);
+    XCTAssertEqualObjects(value, @2);
     
     // Case 2
-    formatString = @"FUNCTION(a, 'factorial')";
-    variables = @{
-                  @"a": @3
-                  };
-    mathExpression = [NSExpression expressionWithFormat:formatString];
-    value = [mathExpression expressionValueWithObject:variables context:nil];
-    XCTAssertEqualObjects(value, @6);
-
-    // Case 2
-    formatString = @"1 + FUNCTION(a, 'factorial')";
-    variables = @{
-                  @"a": @3
-                  };
-    mathExpression = [NSExpression expressionWithFormat:formatString];
-    value = [mathExpression expressionValueWithObject:variables context:nil];
-    XCTAssertEqualObjects(value, @7);
-    
-    // Case 2
-    formatString = @"FUNCTION(FUNCTION(3, 'factorial'), 'factorial')";
-    mathExpression = [NSExpression expressionWithFormat:formatString];
-    value = [mathExpression expressionValueWithObject:variables context:nil];
-    XCTAssertEqualObjects(value, @720);
-    
-    // Case 2
-    formatString = @"FUNCTION(2, 'pow:', FUNCTION(3, 'factorial'))";
-    mathExpression = [NSExpression expressionWithFormat:formatString];
-    value = [mathExpression expressionValueWithObject:variables context:nil];
-    XCTAssertEqualObjects(value, @64);
-    
-    // Case 2
-    formatString = @"FUNCTION(2, 'pow:', FUNCTION(FUNCTION(2, 'factorial'), 'factorial'))";
-    mathExpression = [NSExpression expressionWithFormat:formatString];
-    value = [mathExpression expressionValueWithObject:variables context:nil];
-    XCTAssertEqualObjects(value, @4);
+    formatString = @"%@ + %@";
+    mathExpression = [NSExpression expressionWithFormat:formatString, @1, @1];
+    value = [mathExpression expressionValueWithObject:nil context:nil];
+    XCTAssertEqualObjects(value, @2);
+    XCTAssertEqualObjects(mathExpression.description, @"1 + 1");
     
     // Case 3
-    formatString = @"FUNCTION(a, 'uppercase')";
-    mathExpression = [NSExpression expressionWithFormat:formatString];
-    value = [mathExpression expressionValueWithObject:nil context:nil];
-    XCTAssertNil(value);
+    formatString = @"%@ + %@";
+    mathExpression = [NSExpression expressionWithFormat:formatString, @"1", @"1"];
+    @try {
+        value = [mathExpression expressionValueWithObject:nil context:nil];
+    }
+    @catch (NSException *e) {
+        XCTAssertTrue(YES);
+    }
+    XCTAssertEqualObjects(mathExpression.description, @"\"1\" + \"1\"");
     
-    // Case 4
-    formatString = @"FUNCTION(a, 'uppercase')";
-    variables = @{
-                  @"a": @"a"
-                  };
-    mathExpression = [NSExpression expressionWithFormat:formatString];
-    value = [mathExpression expressionValueWithObject:variables context:nil];
-    XCTAssertEqualObjects(value, @"A");
-    
-    // Case 5
-    formatString = @"FUNCTION('a', 'uppercase')";
-    mathExpression = [NSExpression expressionWithFormat:formatString];
-    value = [mathExpression expressionValueWithObject:nil context:nil];
-    XCTAssertEqualObjects(value, @"A");
-    
-    // Case 5
-    formatString = @"'FUNCTION('a', 'uppercase')'";
-    XCTAssertThrows([NSExpression expressionWithFormat:formatString]);
-    
-    // Case 5
-    formatString = @"1 + FUNCTION('a', 'uppercase')";
-    mathExpression = [NSExpression expressionWithFormat:formatString];
-    XCTAssertThrows([mathExpression expressionValueWithObject:nil context:nil]);
-    
-    // Case 6
-    formatString = @"FUNCTION('a', 'uppercaseString')";
-    mathExpression = [NSExpression expressionWithFormat:formatString];
-    value = [mathExpression expressionValueWithObject:nil context:nil];
-    XCTAssertEqualObjects(value, @"A");
-    
-    // Case 7
-    formatString = @"FUNCTION('abc', 'characterStringAtIndex:', a)";
-    variables = @{
-                  @"a": @1
-                  };
-    mathExpression = [NSExpression expressionWithFormat:formatString];
-    value = [mathExpression expressionValueWithObject:variables context:nil];
-    XCTAssertEqualObjects(value, @"b");
-    
-    // Case 8
-    formatString = @"FUNCTION('abc', func, a)";
-    variables = @{
-                  @"a": @1,
-                  @"func": @"characterStringAtIndex:"
-                  };
-    XCTAssertThrows([NSExpression expressionWithFormat:formatString]);
+    @try {
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:formatString, @"1", @"1"];
+        XCTAssertEqualObjects(predicate.predicateFormat, @"\"1\" + \"1\"");
+    }
+    @catch (NSException *e) {
+        XCTAssertTrue(YES);
+    }
 }
 
-- (void)test_expressionValueWithObject {
+- (void)test_expressionWithFormat_2 {
     NSString *formatString;
     NSDictionary *variables;
     NSExpression *mathExpression;
@@ -230,5 +168,249 @@
                   };
     XCTAssertThrows([mathExpression expressionValueWithObject:variables context:nil]);
 }
+
+- (void)test_expressionValueWithObject {
+    NSString *formatString;
+    NSExpression *mathExpression;
+    id value;
+    
+    // Case 1
+    formatString = @"'A'";
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:nil context:nil];
+    XCTAssertEqualObjects(value, @"A");
+    
+    // Case 2
+    formatString = @"A";
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:nil context:nil];
+    XCTAssertNil(value);
+    
+    // Case 3
+    formatString = @"1";
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:nil context:nil];
+    XCTAssertEqualObjects(value, @1);
+    
+    // Case 4
+    formatString = @"-1";
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:nil context:nil];
+    XCTAssertEqualObjects(value, @(-1));
+}
+
+- (void)test_formatString_function_for_number_object_1 {
+    NSString *formatString;
+    NSDictionary *variables;
+    NSExpression *mathExpression;
+    id value;
+    
+    // Case 1
+    formatString = @"FUNCTION(3, 'factorial')";
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:nil context:nil];
+    XCTAssertEqualObjects(value, @6);
+    
+    // Case 2
+    formatString = @"FUNCTION(a, 'factorial')";
+    variables = @{
+                  @"a": @3
+                  };
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @6);
+
+    // Case 2
+    formatString = @"1 + FUNCTION(a, 'factorial')";
+    variables = @{
+                  @"a": @3
+                  };
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @7);
+}
+
+- (void)test_formatString_function_for_string_object_1 {
+    NSString *formatString;
+    NSDictionary *variables;
+    NSExpression *mathExpression;
+    id value;
+    
+    // Case 3
+    formatString = @"FUNCTION(a, 'uppercase')";
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:nil context:nil];
+    XCTAssertNil(value);
+    
+    // Case 4
+    formatString = @"FUNCTION(a, 'uppercase')";
+    variables = @{
+                  @"a": @"a"
+                  };
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @"A");
+    
+    // Case 5
+    formatString = @"FUNCTION('a', 'uppercase')";
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:nil context:nil];
+    XCTAssertEqualObjects(value, @"A");
+    
+    // Case 6
+    formatString = @"FUNCTION('a', 'uppercaseString')";
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:nil context:nil];
+    XCTAssertEqualObjects(value, @"A");
+    
+    // Case 7
+    formatString = @"FUNCTION('abc', 'characterStringAtIndex:', a)";
+    variables = @{
+                  @"a": @1
+                  };
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @"b");
+}
+
+- (void)test_formatString_function_for_array_object_1 {
+    NSString *formatString;
+    NSDictionary *variables;
+    NSExpression *mathExpression;
+    id value;
+    
+    // Case 1
+    formatString = @"FUNCTION(a, 'elementAtIndex:', 0)";
+    variables = @{
+                  @"a": @[ @1, @2 ]
+                  };
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @1);
+}
+
+- (void)test_formatString_function_for_dictionary_object_1 {
+    NSString *formatString;
+    NSDictionary *variables;
+    NSExpression *mathExpression;
+    id value;
+    
+    // Case 1
+    formatString = @"FUNCTION(a, 'elementForKey:', b)";
+    variables = @{
+                  @"a": @{
+                          @"key": @"value"
+                          },
+                  @"b": @"key"
+                  };
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @"value");
+}
+
+- (void)test_formatString_function_for_customized_object_1 {
+    NSString *formatString;
+    NSDictionary *variables;
+    NSExpression *mathExpression;
+    id value;
+    
+    Person *person = [[Person alloc] initWithName:@"Lily"];
+    
+    // Case 1
+    formatString = @"FUNCTION(a, 'name')";
+    variables = @{
+                  @"a": person
+                  };
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @"Lily");
+    
+    // Case 2
+    formatString = @"FUNCTION(a, 'setName:', 'Lucy')";
+    variables = @{
+                  @"a": person
+                  };
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @"Lucy");
+    XCTAssertEqualObjects(person.name, @"Lucy");
+    
+    formatString = @"FUNCTION(a, 'name')";
+    variables = @{
+                  @"a": person
+                  };
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @"Lucy");
+}
+
+- (void)test_formatString_function_for_customized_object_2 {
+    NSString *formatString;
+    NSDictionary *variables;
+    NSExpression *mathExpression;
+    id value;
+    
+    Person *person = [[Person alloc] initWithName:@"Lily"];
+    Job *job = [[Job alloc] initWithName:@"Teacher"];
+    
+    // Case 1
+    formatString = @"FUNCTION(a, 'setJob:', b)";
+    variables = @{
+                  @"a": person,
+                  @"b": job
+                  };
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects([(Job *)value name], @"Teacher");
+}
+
+- (void)test_formatString_function_exception_1 {
+    NSString *formatString;
+    NSDictionary *variables;
+    NSExpression *mathExpression;
+    
+    // Case 5
+    formatString = @"'FUNCTION('a', 'uppercase')'";
+    XCTAssertThrows([NSExpression expressionWithFormat:formatString]);
+    
+    // Case 5
+    formatString = @"1 + FUNCTION('a', 'uppercase')";
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    XCTAssertThrows([mathExpression expressionValueWithObject:nil context:nil]);
+    
+    // Case 8
+    formatString = @"FUNCTION('abc', func, a)";
+    variables = @{
+                  @"a": @1,
+                  @"func": @"characterStringAtIndex:"
+                  };
+    XCTAssertThrows([NSExpression expressionWithFormat:formatString]);
+}
+
+- (void)test_formatString_function_nested_1 {
+    NSString *formatString;
+    NSDictionary *variables;
+    NSExpression *mathExpression;
+    id value;
+    
+    // Case 2
+    formatString = @"FUNCTION(FUNCTION(3, 'factorial'), 'factorial')";
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @720);
+    
+    // Case 2
+    formatString = @"FUNCTION(2, 'pow:', FUNCTION(3, 'factorial'))";
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @64);
+    
+    // Case 2
+    formatString = @"FUNCTION(2, 'pow:', FUNCTION(FUNCTION(2, 'factorial'), 'factorial'))";
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @4);
+}
+
 
 @end
