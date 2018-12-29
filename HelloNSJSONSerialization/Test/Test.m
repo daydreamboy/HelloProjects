@@ -725,6 +725,12 @@
     value = [WCJSONTool valueOfCollectionObject:object usingBracketsPath:path objectClass:nil];
     XCTAssertEqualObjects(value, @"A");
     
+    value = [WCJSONTool valueOfCollectionObject:object usingBracketsPath:path objectClass:[NSString class]];
+    XCTAssertEqualObjects(value, @"A");
+    
+    value = [WCJSONTool valueOfCollectionObject:object usingBracketsPath:path objectClass:[NSNumber class]];
+    XCTAssertNil(value);
+    
     // Case 2
     object = @{
                @"title": @[
@@ -734,6 +740,10 @@
     path = @"['title'][0]";
     value = [WCJSONTool valueOfCollectionObject:object usingBracketsPath:path objectClass:nil];
     XCTAssertEqualObjects(value, @"A");
+    
+    path = @"['title']";
+    value = [WCJSONTool valueOfCollectionObject:object usingBracketsPath:path objectClass:[NSArray class]];
+    XCTAssertEqualObjects(value, @[ @"A" ]);
     
     // Abnormal Case 1
     object = @{
