@@ -25,6 +25,7 @@
     [super tearDown];
 }
 
+// Demo for Regular Expression
 - (void)test_scanKeyValuePairsWithString {
     NSString *string;
     NSDictionary *output;
@@ -51,6 +52,7 @@
     NSLog(@"This result never output: %@", output);
 }
 
+// Demo for Regular Expression
 - (void)test_scanKeyValuePairsWithString_error {
     NSString *string;
     NSDictionary *output;
@@ -63,6 +65,7 @@
     XCTAssertNil(output);
 }
 
+// Demo for Parser
 - (void)test_parse_error {
     NSString *string;
     NSDictionary *output;
@@ -83,11 +86,45 @@
     XCTAssertEqualObjects(output[@"backgroundColor"], [UIColor redColor]);
     XCTAssertEqualObjects(output[@"textColor"], [UIColor blueColor]);
     
+    // Case 3
+    string = @"backgroundColor = (255,0,0)\
+    textColor = (0,0,255)";
+    output = [self parse:string error:&error];
+    XCTAssert([output isKindOfClass:[NSDictionary class]]);
+    XCTAssertEqualObjects(output[@"backgroundColor"], [UIColor redColor]);
+    XCTAssertEqualObjects(output[@"textColor"], [UIColor blueColor]);
+    
+    // Case 4
+    string = @"backgroundColor = (255,0,0)textColor = (0,0,255)";
+    output = [self parse:string error:&error];
+    XCTAssert([output isKindOfClass:[NSDictionary class]]);
+    XCTAssertEqualObjects(output[@"backgroundColor"], [UIColor redColor]);
+    XCTAssertEqualObjects(output[@"textColor"], [UIColor blueColor]);
+    
     // Abnormal Case 1
     // Error: `2` is unexpected character and make scanner can't scan it
     string = @"backgroundColor = #ff0000backgroundColor2 = #0000ff";
     output = [self parse:string error:&error];
     XCTAssertNil(output);
+}
+
+// Demo for tokenization
+- (void)test_tokenize {
+    NSString *string;
+    NSArray *output;
+    NSArray *expected;
+    
+    string = @"myConstant = 100\n"
+            @"\nmyView.left = otherView.right * 2 + 10\n"
+            @"viewController.view.centerX + myConstant <= self.view.centerX";
+    
+    output = [self tokenize:string];
+    expected = @[@"myConstant", @"=", @100, @"myView", @".", @"left",
+                 @"=", @"otherView", @".", @"right", @"*", @2, @"+",
+                 @10, @"viewController", @".", @"view", @".",
+                 @"centerX", @"+", @"myConstant", @"<=", @"self",
+                 @".", @"view", @".", @"centerX"];
+    XCTAssertEqualObjects(output, expected);
 }
 
 #pragma mark - Example Functions
@@ -224,6 +261,71 @@
     else {
         return NO;
     }
+}
+
+- (NSArray<NSString *> *)tokenizeWithString:(NSString *)string {
+    NSScanner *scanner = [NSScanner scannerWithString:string];
+    NSMutableArray *tokens = [NSMutableArray array];
+    NSArray *operators = @[ @"=", @"+", @"*", @">=", @"<=", @".", @"(", @")", @"," ];
+    
+    while (![scanner isAtEnd]) {
+        for (NSString *operator in operators) {
+            if ([scanner scanString:operator intoString:NULL]) {
+                [tokens addObject:operator];
+            }
+        }
+        
+        NSString *result = nil;
+        if ([scanner scanCharactersFromSet:[NSCharacterSet letterCharacterSet] intoString:&result]) {
+            [tokens addObject:result];
+        }
+        
+        if ([scanner scanString:@"'" intoString:NULL]) {
+            NSString *outString;
+            NSCharacterSet *charactersToBeSkipped = scanner.charactersToBeSkipped;
+            scanner.charactersToBeSkipped = nil;
+            [scanner scanUpToString:@"'" intoString:&outString];
+            [scanner scanString:@"'" intoString:NULL];
+            scanner.charactersToBeSkipped = charactersToBeSkipped;
+            
+            [tokens addObject:[NSString stringWithFormat:@"'%@'", outString]];
+        }
+        
+        double doubleResult = 0;
+        if ([scanner scanDouble:&doubleResult]) {
+            [tokens addObject:@(doubleResult)];
+        }
+        
+        NSLog(@"left string: %@", [scanner.string substringFromIndex:scanner.scanLocation]);
+    }
+    
+    return tokens;
+}
+
+- (NSArray<NSString *> *)tokenize:(NSString *)string {
+    NSScanner *scanner = [NSScanner scannerWithString:string];
+    NSMutableArray *tokens = [NSMutableArray array];
+    NSArray *operators = @[ @"=", @"+", @"*", @">=", @"<=", @"." ];
+    
+    while (![scanner isAtEnd]) {
+        for (NSString *operator in operators) {
+            if ([scanner scanString:operator intoString:NULL]) {
+                [tokens addObject:operator];
+            }
+        }
+        
+        NSString *result = nil;
+        if ([scanner scanCharactersFromSet:[NSCharacterSet letterCharacterSet] intoString:&result]) {
+            [tokens addObject:result];
+        }
+        
+        double doubleResult = 0;
+        if ([scanner scanDouble:&doubleResult]) {
+            [tokens addObject:@(doubleResult)];
+        }
+    }
+    
+    return tokens;
 }
 
 @end

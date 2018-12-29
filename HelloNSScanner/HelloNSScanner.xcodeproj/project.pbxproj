@@ -15,6 +15,7 @@
 		4F6FDB6621D47C96000F8633 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6FDB6521D47C96000F8633 /* main.m */; };
 		4F6FDB7321D47CA7000F8633 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6FDB7221D47CA7000F8633 /* Tests.m */; };
 		4F72B29221D61A63000B68F2 /* WCColorTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F72B29121D61A63000B68F2 /* WCColorTool.m */; };
+		4F72B2A221D753C6000B68F2 /* Tests_NSScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F72B2A121D753C6000B68F2 /* Tests_NSScanner.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		4F6FDB7421D47CA7000F8633 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F72B29021D61A63000B68F2 /* WCColorTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCColorTool.h; sourceTree = "<group>"; };
 		4F72B29121D61A63000B68F2 /* WCColorTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCColorTool.m; sourceTree = "<group>"; };
+		4F72B2A121D753C6000B68F2 /* Tests_NSScanner.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSScanner.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				4F6FDB7221D47CA7000F8633 /* Tests.m */,
+				4F72B2A121D753C6000B68F2 /* Tests_NSScanner.m */,
 				4F6FDB7421D47CA7000F8633 /* Info.plist */,
 			);
 			path = Tests;
@@ -228,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F6FDB7321D47CA7000F8633 /* Tests.m in Sources */,
+				4F72B2A221D753C6000B68F2 /* Tests_NSScanner.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
