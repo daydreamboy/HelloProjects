@@ -493,6 +493,19 @@
     }
 }
 
+- (void)test_pattern_1 {
+    NSString *pattern;
+    NSString *matchString;
+    
+    // pattern from https://www.objc.io/issues/9-strings/string-parsing/
+    pattern = @"(\\w+) = #(\\p{Hex_Digit}{6})";
+    
+    // Case 1
+    matchString = @"backgroundColor = #ff0000\
+                    textColor = #0000ff";
+    [self runRegexWithPattern:pattern matchString:matchString];
+}
+
 #pragma mark - Get NSTextCheckingResult
 
 - (void)test_enumerateMatchesInString_pattern_usingBlock {
