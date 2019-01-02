@@ -30,7 +30,7 @@ NSScanner的用法大概分三个步骤，如下
 | 属性                    | 说明                                                         |
 | ----------------------- | ------------------------------------------------------------ |
 | `scanLocation`          | 下个将要扫描的字符位置                                       |
-| `caseSensitive`         | 是否区分大小写。默认是NO。                                   |
+| `caseSensitive`         | 是否区分大小写。默认是NO。这个属性仅适用于`scanString:intoString:`和`scanUpToString:intoString:`方法[^2]。`scanCharactersFromSet:intoString`和`scanUpToCharactersFromSet:intoString:`总是区分大小写。 |
 | `charactersToBeSkipped` | 扫描过程需要跳过匹配的字符。默认是`whitespaceAndNewlineCharacterSet`。 |
 | `locale`                | 本地化设置。影响如何匹配数值。默认是nil。                    |
 | `isAtEnd`               | 用于查询scanner是否扫描到末尾                                |
@@ -78,6 +78,53 @@ ScanUpToXXX系列方法，函数签名的共性和上面的ScanXXX系列方法�
 
 
 
+### 3、NSScanner的API[^2]
+
+​        NSScanner的API有15种，基本有一样的签名模式，有个参数用于取扫描结果，返回YES，如果扫描匹配成功，否则返回NO。有两种匹配方式，字符串匹配和数值匹配。
+
+
+
+#### （1）字符串匹配
+
+* **scanString:intoString: / scanCharactersFromSet:intoString:**
+
+扫描并匹配字符串或字符集，匹配成功，结果放入intoString参数。
+
+
+
+* **scanUpToString:intoString: / scanUpToCharactersFromSet:intoString:**
+
+扫描字符，当匹配到字符串或字符集时停止，将已扫描的字符串放入intoString参数。如果没有匹配到字符串或字符集，则整个字符串放入intoString参数。
+
+
+
+#### （2）数值匹配
+
+* **scanDouble: / scanFloat: / scanDecimal:**
+
+扫描浮点数，out参数放入double、float或者NSDecimal实例。
+
+
+
+* **scanInteger: / scanInt: / scanLongLong: / scanUnsignedLongLong:**
+
+扫描整型数，out参数放入NSInteger、int、long long或者unsigned long long。
+
+
+
+* **scanHexDouble: / scanHexFloat:**
+
+扫描十六进制浮点数，out参数放入double、float。数值必须以0x或0X开头。
+
+
+
+* **scanHexInt: / scanHexLongLong:**
+
+扫描十六进制整型数，out参数放入unsigned int、unsigned long long。数值以0x或0X开头是可选的。
+
+
+
 ## References
 
 [^1]: https://developer.apple.com/documentation/foundation/nsscanner?language=objc 
+[^2]: https://nshipster.com/nsscanner/ 
