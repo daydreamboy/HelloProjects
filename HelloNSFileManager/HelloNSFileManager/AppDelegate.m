@@ -64,7 +64,7 @@
     NSLog(@"fileNames: %@", fileNames);
     
     NSString *filePath3 = [NSString stringWithFormat:@"%@/test/test.txt", directoryPath];
-    BOOL succeeded = [WCFileManagerTool createNewFileAtPath:filePath3];
+    BOOL succeeded = [WCFileManagerTool createNewFileAtPath:filePath3 overwrite:YES];
     if (succeeded) {
         NSLog(@"Ok");
     }

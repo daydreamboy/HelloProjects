@@ -21,6 +21,8 @@
 #   define WCLog(fmt, ...)
 #endif
 
+#define CheckErrorAndBreak(error) { if (error) { break; } }
+
 NSFileAttributeKey const WCFileName = @"WCFileName";
 
 @implementation WCFileManagerTool
@@ -29,56 +31,84 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
 
 #pragma mark > File Creation
 
-+ (BOOL)createNewFileAtPath:(NSString *)path content:(NSString *)content {
++ (BOOL)createNewFileAtPath:(NSString *)path content:(NSString *)content overwrite:(BOOL)overwrite {
+    if (![path isKindOfClass:[NSString class]] || ![content isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    
+    NSError *error;
+    BOOL success = NO;
+    
+    path = [path stringByExpandingTildeInPath];
     NSString *parentFolderPath = [path stringByDeletingLastPathComponent];
     NSString *directoryPath = [parentFolderPath hasPrefix:@"/"]
-    ? parentFolderPath
-    : [NSString stringWithFormat:@"%@/%@", [[NSFileManager defaultManager] currentDirectoryPath], parentFolderPath];
+        ? parentFolderPath
+        : [NSString stringWithFormat:@"%@/%@", [[NSFileManager defaultManager] currentDirectoryPath], parentFolderPath];
+    NSString *filePath = [directoryPath stringByAppendingPathComponent:[path lastPathComponent]];
     
-    if (![[NSFileManager defaultManager] fileExistsAtPath:directoryPath isDirectory:NULL]) {
-        // The directoryPath doesn't exist, just create the directory
-        if (![[NSFileManager defaultManager] createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:nil]) {
-            // The parent folder is created failed, if not just ignore creating the file
-            return NO;
+    do {
+        if (![[NSFileManager defaultManager] fileExistsAtPath:directoryPath isDirectory:NULL]) {
+            success = [[NSFileManager defaultManager] createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:&error];
+            CheckErrorAndBreak(error);
         }
-    }
+        
+        if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
+            if (overwrite) {
+                success = [[NSFileManager defaultManager] createFileAtPath:filePath contents:[content dataUsingEncoding:NSUTF8StringEncoding] attributes:nil];
+                if (!success) {
+                    // @sa http://stackoverflow.com/questions/1860070/more-detailed-error-from-createfileatpath
+                    WCLog(@"Error code: %d - message: %s", errno, strerror(errno));
+                }
+            }
+        }
+        else {
+            success = [[NSFileManager defaultManager] createFileAtPath:filePath contents:[content dataUsingEncoding:NSUTF8StringEncoding] attributes:nil];
+            if (!success) {
+                // @sa http://stackoverflow.com/questions/1860070/more-detailed-error-from-createfileatpath
+                WCLog(@"Error code: %d - message: %s", errno, strerror(errno));
+            }
+        }
+    } while (NO);
     
-    BOOL isFileCreated = [[NSFileManager defaultManager] createFileAtPath:path contents:[content dataUsingEncoding:NSUTF8StringEncoding] attributes:nil];
-    
-    if (!isFileCreated) {
-        // @sa http://stackoverflow.com/questions/1860070/more-detailed-error-from-createfileatpath
-        WCLog(@"Error code: %d - message: %s", errno, strerror(errno));
-    }
-    
-    return isFileCreated;
+    return success;
 }
 
-+ (BOOL)createNewFileAtPath:(NSString *)path {
-    return [self createNewFileAtPath:path content:nil];
++ (BOOL)createNewFileAtPath:(NSString *)path overwrite:(BOOL)overwrite {
+    return [self createNewFileAtPath:path content:@"" overwrite:overwrite];
 }
 
-+ (BOOL)copyFileAtPath:(NSString *)filePath toDirectoryPath:(NSString *)directoryPath {
++ (BOOL)copyFileAtPath:(NSString *)filePath toDirectoryPath:(NSString *)directoryPath overwrite:(BOOL)overwrite {
     NSString *fileName = [filePath lastPathComponent];
     NSString *destPath = [directoryPath stringByAppendingPathComponent:fileName];
-    return [self copyFileAtPath:filePath toPath:destPath];
+    return [self copyFileAtPath:filePath toPath:destPath overwrite:overwrite];
 }
 
-+ (BOOL)copyFileAtPath:(NSString *)filePath toPath:(NSString *)destPath {
-#define CheckErrorAndBreak(error) { if (error) { break; } }
++ (BOOL)copyFileAtPath:(NSString *)filePath toPath:(NSString *)destPath overwrite:(BOOL)overwrite {
     NSError *error;
-    BOOL success;
+    BOOL success = NO;
     
     do {
         NSString *directoryPath = [destPath stringByDeletingLastPathComponent];
         success = [[NSFileManager defaultManager] createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:&error];
         CheckErrorAndBreak(error);
         
-        success = [[NSFileManager defaultManager] copyItemAtPath:filePath toPath:destPath error:&error];
-        CheckErrorAndBreak(error);
+        if ([[NSFileManager defaultManager] fileExistsAtPath:destPath]) {
+            if (overwrite) {
+                success = [[NSFileManager defaultManager] removeItemAtPath:destPath error:&error];
+                CheckErrorAndBreak(error);
+                
+                success = [[NSFileManager defaultManager] copyItemAtPath:filePath toPath:destPath error:&error];
+                CheckErrorAndBreak(error);
+            }
+        }
+        else {
+            success = [[NSFileManager defaultManager] copyItemAtPath:filePath toPath:destPath error:&error];
+            CheckErrorAndBreak(error);
+        }
+        
     } while (NO);
     
     return success;
-#undef CheckErrorAndBreak
 }
 
 + (BOOL)moveFileAtPath:(NSString *)filePath toDirectoryPath:(NSString *)directoryPath {
@@ -88,7 +118,6 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
 }
 
 + (BOOL)moveFileAtPath:(NSString *)filePath toPath:(NSString *)destPath {
-#define CheckErrorAndBreak(error) { if (error) { break; } }
     NSError *error;
     BOOL success;
     
@@ -102,7 +131,6 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
     } while (NO);
     
     return success;
-#undef CheckErrorAndBreak
 }
 
 #pragma mark > File Deletion
@@ -115,11 +143,14 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
         return NO;
     }
     
+    NSError *error;
+    BOOL success = NO;
+    
     if ([[NSFileManager defaultManager] isDeletableFileAtPath:path]) {
-        return [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+        success = [[NSFileManager defaultManager] removeItemAtPath:path error:&error];
     }
     
-    return NO;
+    return success;
 }
 
 #pragma mark > File Check

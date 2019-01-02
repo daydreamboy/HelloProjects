@@ -29,7 +29,7 @@ FOUNDATION_EXPORT NSFileAttributeKey const WCFileName;
           <br/>2. the new file will overwrite the existing file.
  @note stringByExpandingTildeInPath expand  '~' decided by current environment, so '~' is NOT the same path always.
  */
-+ (BOOL)createNewFileAtPath:(NSString *)path content:(NSString *)content;
++ (BOOL)createNewFileAtPath:(NSString *)path content:(NSString *)content overwrite:(BOOL)overwrite;
 
 /**
  Create an empty file. And if the parent folders is not existing, create them if needed.
@@ -37,9 +37,19 @@ FOUNDATION_EXPORT NSFileAttributeKey const WCFileName;
  @param path the path of a file
  @return YES if created successfully, or NO if it failed
  */
-+ (BOOL)createNewFileAtPath:(NSString *)path;
-+ (BOOL)copyFileAtPath:(NSString *)filePath toDirectoryPath:(NSString *)directoryPath;
-+ (BOOL)copyFileAtPath:(NSString *)filePath toPath:(NSString *)destPath;
++ (BOOL)createNewFileAtPath:(NSString *)path overwrite:(BOOL)overwrite;
+
++ (BOOL)copyFileAtPath:(NSString *)filePath toDirectoryPath:(NSString *)directoryPath overwrite:(BOOL)overwrite;
+
+/**
+ Copy a file from source path to destination path
+
+ @param filePath the source file path
+ @param destPath the destination file path
+ @param overwrite YES, will overwrite the existing one. NO, will not overwrite if have an existing one.
+ @return YES if copy successufully, NO if failed.
+ */
++ (BOOL)copyFileAtPath:(NSString *)filePath toPath:(NSString *)destPath overwrite:(BOOL)overwrite;
 
 #pragma mark > File Deletion
 
