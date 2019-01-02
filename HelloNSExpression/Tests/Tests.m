@@ -152,7 +152,7 @@
     [mathExpression.functionNameMapping setObject:@"factorial" forKey:@"my_factorial"];
     value = [mathExpression expressionValueWithObject:nil context:nil];
     XCTAssertEqualObjects(value, @6);
-    
+
     // Case 2
     formatString = @"FUNCTION(a, 'factorial')";
     variables = @{
@@ -163,7 +163,7 @@
     [mathExpression.functionNameMapping setObject:@"factorial" forKey:@"my_factorial"];
     value = [mathExpression expressionValueWithObject:variables context:nil];
     XCTAssertEqualObjects(value, @6);
-    
+
     // Case 3
     formatString = @"1 + FUNCTION(a, 'my_pow:', 2)";
     variables = @{
@@ -175,7 +175,7 @@
     value = [mathExpression expressionValueWithObject:variables context:nil];
     XCTAssertEqualObjects(value, @10);
     
-    // TODO: fix crash
+    // Case 4: function missing arguments
     formatString = @"1 + FUNCTION(a, 'my_pow:')";
     variables = @{
                   @"a": @3
@@ -184,7 +184,7 @@
     [mathExpression.categoryMethodPrefixTable setObject:@"exp_" forKey:NSStringFromClass([NSNumber class])];
     [mathExpression.functionNameMapping setObject:@"pow:" forKey:@"my_pow:"];
     value = [mathExpression expressionValueWithObject:variables context:nil];
-    XCTAssertEqualObjects(value, @10);
+    XCTAssertNil(value);
 }
 
 - (void)test_formatString_function_for_string_object_1 {
@@ -355,5 +355,6 @@
                  @")"];
     XCTAssertEqualObjects(output, expected);
 }
+
 
 @end

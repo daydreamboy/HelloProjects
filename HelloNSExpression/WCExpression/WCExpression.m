@@ -18,20 +18,33 @@
 @property (nonatomic, strong, readwrite) NSMutableDictionary<NSString *, NSString *> *categoryMethodPrefixTable;
 @property (nonatomic, strong, readwrite) NSMutableDictionary<NSString *, NSString *> *functionNameMapping;
 @property (nonatomic, strong) NSArray *operators;
+@property (nonatomic, copy) void (^log)(NSString *, ...);
 @end
 
 @implementation WCExpression
 
 + (instancetype)expressionWithFormat:(NSString *)format, ... {
     WCExpression *instance = [WCExpression new];
-    
+    __weak typeof(instance) weak_instance = instance;
     va_list args;
     va_start(args, format);
     NSExpression *expression = [NSExpression expressionWithFormat:format arguments:args];
     instance.formatString = [expression description];
     instance.categoryMethodPrefixTable = [NSMutableDictionary dictionary];
     instance.functionNameMapping = [NSMutableDictionary dictionary];
+    instance.log = ^(NSString *format, ...) {
+        if (weak_instance.enableLogging) {
+            va_list args2;
+            va_start(args2, format);
+            NSLogv(format, args2);
+            va_end(args2);
+        }
+    };
     va_end(args);
+    
+#if DEBUG
+    instance.enableLogging = YES;
+#endif
     
     return instance;
 }
@@ -102,7 +115,7 @@
             [tokens addObject:@(doubleResult)];
         }
         else {
-            NSLog(@"not hit. left string: %@", [scanner.string substringFromIndex:scanner.scanLocation]);
+            self.log(@"[DEBUG] not hit. left string: `%@`", [scanner.string substringFromIndex:scanner.scanLocation]);
         }
     }
     
@@ -133,57 +146,33 @@
                         
                         // Format: FUNCTION (arg1, arg2, ...)
                         if (functionComponents.count >= 5) {
-                            id arg1 = functionComponents[2];
-                            NSString *arg2 = functionComponents[4];
-                            NSString *functionName = [arg2 stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\""]];
-                            NSString *keyForPrefix;
+                            [self renameFunctionIfNeeded:functionComponents variables:variables];
                             
+                            // Check function signature
+                            NSString *functionName = functionComponents[4];
+                            NSUInteger numberOfArguments = [functionName componentsSeparatedByString:@":"].count - 1;
                             
-                            // 1. do function name mapping
-                            if (self.functionNameMapping[functionName]) {
-                                if ([functionName componentsSeparatedByString:@":"].count == [self.functionNameMapping[functionName] componentsSeparatedByString:@":"].count) {
-                                    arg2 = [NSString stringWithFormat:@"\"%@\"", self.functionNameMapping[functionName]];
-                                    functionComponents[4] = arg2;
+                            NSUInteger count = 0;
+                            // 0           1    2    3    4
+                            // `FUNCTION`, `(`, `a`, `,`, `"my_pow:"`, ...
+                            for (NSInteger i = 5; i < functionComponents.count; i++) {
+                                if ([functionComponents[i] isKindOfClass:[NSString class]] && (
+                                    [functionComponents[i] isEqualToString:@","] ||
+                                    [functionComponents[i] isEqualToString:@")"])) {
+                                    continue;
                                 }
                                 else {
-                                    NSLog(@"[Warning] %@ not matches %@, ignore mapping", self.functionNameMapping[arg2], arg2);
+                                    count++;
                                 }
                             }
-                            
-                            // 2. do prefixing
-                            if ([arg1 isKindOfClass:[NSString class]]) {
-                                // string
-                                keyForPrefix = NSStringFromClass([NSString class]);
-                            }
-                            else if ([arg1 isKindOfClass:[NSNumber class]]) {
-                                // number
-                                keyForPrefix = NSStringFromClass([NSNumber class]);
-                            }
-                            else if ([arg1 isKindOfClass:[NSObject class]]) {
-                                // variable
-                                id object;
-                                @try {
-                                    object = [variables valueForKey:arg1];
-                                }
-                                @catch (NSException *e) {
-                                    NSLog(@"[Warning] key `%@` not exists in %@", arg1, variables);
-                                }
-                                if (object) {
-                                    keyForPrefix = NSStringFromClass([object class]);
-                                }
-                            }
-                            else {
-                                // unknown identifier
-                                NSLog(@"[Error] unknown identifier: %@", arg1);
-                            }
-                            
-                            if (keyForPrefix && self.categoryMethodPrefixTable[keyForPrefix]) {
-                                NSString *prefixedFunctionName = [NSString stringWithFormat:@"\"%@%@\"", self.categoryMethodPrefixTable[keyForPrefix], [arg2 stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\""]]];
-                                functionComponents[4] = prefixedFunctionName;
+                            if (count != numberOfArguments) {
+                                self.log(@"[Error] functionName not match number of arguments: %@, expect %@ args but %@ args", functionName, @(numberOfArguments), @(count));
+                                return nil;
                             }
                         }
                         else {
-                            NSLog(@"[Error] functionComponents is malformed: %@", functionComponents);
+                            self.log(@"[Error] functionComponents is malformed: %@", functionComponents);
+                            return nil;
                         }
                     }
                     else {
@@ -194,7 +183,7 @@
                     NSExpression *expression = [NSExpression expressionWithFormat:expressionString];
                     id expressionValue = [expression expressionValueWithObject:variables context:nil];
                     if (expressionValue == nil) {
-                        NSLog(@"syntax error: %@", expressionString);
+                        self.log(@"[Error] syntax error: %@", expressionString);
                         return nil;
                     }
                     else if ([expressionValue isKindOfClass:[NSString class]]) {
@@ -234,16 +223,65 @@
         NSExpression *expression = [NSExpression expressionWithFormat:plainExpressionString];
         id expressionValue = [expression expressionValueWithObject:variables context:nil];
         if (expressionValue == nil) {
-            NSLog(@"syntax error: %@", plainExpressionString);
+            self.log(@"[Error] syntax error: %@", plainExpressionString);
             return nil;
         }
         else {
-            NSLog(@"get value: %@", expressionValue);
             return expressionValue;
         }
     }
     
     return nil;
+}
+
+- (void)renameFunctionIfNeeded:(NSMutableArray *)functionComponents variables:(id)variables {
+    id arg1 = functionComponents[2];
+    NSString *arg2 = functionComponents[4];
+    NSString *functionName = [arg2 stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\""]];
+    NSString *keyForPrefix;
+    
+    // 1. do function name mapping
+    if (self.functionNameMapping[functionName]) {
+        if ([functionName componentsSeparatedByString:@":"].count == [self.functionNameMapping[functionName] componentsSeparatedByString:@":"].count) {
+            arg2 = [NSString stringWithFormat:@"\"%@\"", self.functionNameMapping[functionName]];
+            functionComponents[4] = arg2;
+        }
+        else {
+            self.log(@"[Warning] %@ not matches %@, ignore mapping", self.functionNameMapping[arg2], arg2);
+        }
+    }
+    
+    // 2. do prefixing
+    if ([arg1 isKindOfClass:[NSString class]]) {
+        // string
+        keyForPrefix = NSStringFromClass([NSString class]);
+    }
+    else if ([arg1 isKindOfClass:[NSNumber class]]) {
+        // number
+        keyForPrefix = NSStringFromClass([NSNumber class]);
+    }
+    else if ([arg1 isKindOfClass:[NSObject class]]) {
+        // variable
+        id object;
+        @try {
+            object = [variables valueForKey:arg1];
+        }
+        @catch (NSException *e) {
+            self.log(@"[Warning] key `%@` not exists in %@", arg1, variables);
+        }
+        if (object) {
+            keyForPrefix = NSStringFromClass([object class]);
+        }
+    }
+    else {
+        // unknown identifier
+        self.log(@"[Error] unknown identifier: %@", arg1);
+    }
+    
+    if (keyForPrefix && self.categoryMethodPrefixTable[keyForPrefix]) {
+        NSString *prefixedFunctionName = [NSString stringWithFormat:@"\"%@%@\"", self.categoryMethodPrefixTable[keyForPrefix], [arg2 stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\""]]];
+        functionComponents[4] = prefixedFunctionName;
+    }
 }
 
 @end
