@@ -32,6 +32,7 @@
     WCExpression *mathExpression;
     id expected;
     id value;
+    id variables;
     
     // Case 1
     formatString = @"1 + 1";
@@ -70,6 +71,25 @@
     mathExpression = [WCExpression expressionWithFormat:formatString];
     value = [mathExpression expressionValueWithObject:nil context:nil];
     XCTAssertEqualObjects(value, @4);
+    
+    // Case 5
+    formatString = @"array[0] + 1";
+    variables = @{
+                  @"array": @[ @1, @2, @3 ],
+                  };
+    mathExpression = [WCExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @2);
+    
+    // Case 6
+    formatString = @"array[index] + 1";
+    variables = @{
+                  @"array": @[ @1, @2, @3 ],
+                  @"index": @1
+                  };
+    mathExpression = [WCExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @3);
 }
 
 - (void)test_formatString_function_for_number_object_1 {

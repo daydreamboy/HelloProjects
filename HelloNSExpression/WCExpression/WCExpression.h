@@ -38,7 +38,21 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) BOOL enableLogging;
 
+/**
+ Get an expression with format string
+
+ @param format the format string
+ @return the instance of WCExpression
+ */
 + (instancetype)expressionWithFormat:(NSString *)format, ...;
+
+/**
+ Get value of the expression
+
+ @param object the object to bind, e.g. NSDictionary
+ @param context the context
+ @return the value which evaluate the expression. Return nil if the expression is malformed.
+ */
 - (nullable id)expressionValueWithObject:(nullable id)object context:(nullable NSMutableDictionary *)context;
 
 @end

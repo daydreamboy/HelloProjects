@@ -66,6 +66,8 @@
               @"=<",
               @"<<",
               @">>",
+              @"[",
+              @"]",
               @"+",
               @"-",
               @"*",
@@ -217,7 +219,9 @@
             }
         }
         else if (stack.count > 1) {
-            plainExpressionString = [stack componentsJoinedByString:@" "];
+            // @see https://stackoverflow.com/a/586529
+            NSArray *tokens = [[stack reverseObjectEnumerator] allObjects];
+            plainExpressionString = [tokens componentsJoinedByString:@" "];
         }
         
         NSExpression *expression = [NSExpression expressionWithFormat:plainExpressionString];
