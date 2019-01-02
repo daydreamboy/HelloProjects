@@ -36,7 +36,19 @@
 		4F9909A8219C6C3D00606B97 /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F9909A7219C6C3D00606B97 /* 12.jpg */; };
 		4F9909AC219C6CD000606B97 /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9909AB219C6CD000606B97 /* WCViewTool.m */; };
 		4FA7A82E21D0F503008A350C /* CreateImageWithColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA7A82D21D0F503008A350C /* CreateImageWithColorViewController.m */; };
+		4FBC72DD21DCC08E001B0F53 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBC72DC21DCC08E001B0F53 /* Tests.m */; };
+		4FBC72E521DCC0A1001B0F53 /* Tests_UIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBC72E421DCC0A1001B0F53 /* Tests_UIImage.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4FBC72DF21DCC08E001B0F53 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F636E542134F2F1003DE979 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F636E5B2134F2F1003DE979;
+			remoteInfo = HelloUIImage;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4F58CEF32176503D00D0FD17 /* 11.heic */ = {isa = PBXFileReference; lastKnownFileType = file; path = 11.heic; sourceTree = "<group>"; };
@@ -80,10 +92,21 @@
 		4F9909AB219C6CD000606B97 /* WCViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewTool.m; sourceTree = "<group>"; };
 		4FA7A82C21D0F503008A350C /* CreateImageWithColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateImageWithColorViewController.h; sourceTree = "<group>"; };
 		4FA7A82D21D0F503008A350C /* CreateImageWithColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateImageWithColorViewController.m; sourceTree = "<group>"; };
+		4FBC72DA21DCC08D001B0F53 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FBC72DC21DCC08E001B0F53 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		4FBC72DE21DCC08E001B0F53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FBC72E421DCC0A1001B0F53 /* Tests_UIImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_UIImage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		4F636E592134F2F1003DE979 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FBC72D721DCC08D001B0F53 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -149,6 +172,7 @@
 			children = (
 				4F6061DA2134F5B300D049DF /* WCImageTool */,
 				4F636E5E2134F2F1003DE979 /* HelloUIImage */,
+				4FBC72DB21DCC08E001B0F53 /* Tests */,
 				4F636E5D2134F2F1003DE979 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -157,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				4F636E5C2134F2F1003DE979 /* HelloUIImage.app */,
+				4FBC72DA21DCC08D001B0F53 /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -188,6 +213,16 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
+		4FBC72DB21DCC08E001B0F53 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4FBC72DC21DCC08E001B0F53 /* Tests.m */,
+				4FBC72E421DCC0A1001B0F53 /* Tests_UIImage.m */,
+				4FBC72DE21DCC08E001B0F53 /* Info.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -208,6 +243,24 @@
 			productReference = 4F636E5C2134F2F1003DE979 /* HelloUIImage.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4FBC72D921DCC08D001B0F53 /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FBC72E321DCC08E001B0F53 /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				4FBC72D621DCC08D001B0F53 /* Sources */,
+				4FBC72D721DCC08D001B0F53 /* Frameworks */,
+				4FBC72D821DCC08D001B0F53 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4FBC72E021DCC08E001B0F53 /* PBXTargetDependency */,
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = 4FBC72DA21DCC08D001B0F53 /* Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -219,6 +272,10 @@
 				TargetAttributes = {
 					4F636E5B2134F2F1003DE979 = {
 						CreatedOnToolsVersion = 9.4;
+					};
+					4FBC72D921DCC08D001B0F53 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 4F636E5B2134F2F1003DE979;
 					};
 				};
 			};
@@ -236,6 +293,7 @@
 			projectRoot = "";
 			targets = (
 				4F636E5B2134F2F1003DE979 /* HelloUIImage */,
+				4FBC72D921DCC08D001B0F53 /* Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -266,6 +324,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FBC72D821DCC08D001B0F53 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -287,7 +352,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FBC72D621DCC08D001B0F53 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FBC72DD21DCC08E001B0F53 /* Tests.m in Sources */,
+				4FBC72E521DCC0A1001B0F53 /* Tests_UIImage.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4FBC72E021DCC08E001B0F53 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F636E5B2134F2F1003DE979 /* HelloUIImage */;
+			targetProxy = 4FBC72DF21DCC08E001B0F53 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4F636E6A2134F2F3003DE979 /* LaunchScreen.storyboard */ = {
@@ -443,6 +525,44 @@
 			};
 			name = Release;
 		};
+		4FBC72E121DCC08E001B0F53 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloUIImage.app/HelloUIImage";
+			};
+			name = Debug;
+		};
+		4FBC72E221DCC08E001B0F53 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloUIImage.app/HelloUIImage";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -460,6 +580,15 @@
 			buildConfigurations = (
 				4F636E732134F2F3003DE979 /* Debug */,
 				4F636E742134F2F3003DE979 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FBC72E321DCC08E001B0F53 /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FBC72E121DCC08E001B0F53 /* Debug */,
+				4FBC72E221DCC08E001B0F53 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
