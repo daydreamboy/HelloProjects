@@ -61,7 +61,7 @@
     XCTAssertThrows([string substringWithRange:NSMakeRange(4, 0)]);
 }
 
-- (void)test_ {
+- (void)test_rangeOfCharacterFromSet {
     NSString *string;
     NSRange range;
     
@@ -69,8 +69,21 @@
     string = @"abcd";
     range = [string rangeOfCharacterFromSet:[NSCharacterSet characterSetWithCharactersInString:@"[,]"]];
     XCTAssertTrue(range.location == NSNotFound);
+}
+
+- (void)test_componentsSeparatedByString {
+    NSString *string;
+    NSUInteger count;
     
+    // Case 1
+    string = @"pow";
+    count = [string componentsSeparatedByString:@":"].count;
+    XCTAssert(count == 1);
     
+    // Case 2
+    string = @"pow:";
+    count = [string componentsSeparatedByString:@":"].count;
+    XCTAssert(count == 2);
 }
 
 @end
