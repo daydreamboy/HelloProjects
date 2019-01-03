@@ -8,6 +8,8 @@
 
 #import <XCTest/XCTest.h>
 #import "Person.h"
+#import "NSNumber+NSPredicate.h"
+#import "NSString+NSPredicate.h"
 
 // BOOL to string
 #define STR_OF_BOOL(yesOrNo)     ((yesOrNo) ? @"YES" : @"NO")
@@ -300,6 +302,102 @@
     predicate = [NSPredicate predicateWithFormat:@"isMale == TRUE"];
     XCTAssertEqualObjects(predicate.predicateFormat, @"isMale == 1");
     trueOrFalse = [predicate evaluateWithObject:person];
+    XCTAssertTrue(trueOrFalse);
+}
+
+- (void)test_syntax_KVC {
+    NSPredicate *predicate;
+    BOOL trueOrFalse;
+    id binding;
+    
+    // Case 1
+    binding = @{
+                @"a": @[ @1, @2, @3 ]
+                };
+    predicate = [NSPredicate predicateWithFormat:@"a.@count == 3"];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"a.@count == 3");
+    trueOrFalse = [predicate evaluateWithObject:binding];
+    XCTAssertTrue(trueOrFalse);
+    
+    // Case 2
+    Person *person = [Person new];
+    person.isMale = YES;
+    person.firstName = @"Lee";
+    
+    binding = @{
+                @"a": person
+                };
+    predicate = [NSPredicate predicateWithFormat:@"a.isMale == YES"];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"a.isMale == 1");
+    trueOrFalse = [predicate evaluateWithObject:binding];
+    XCTAssertTrue(trueOrFalse);
+    
+    // Case 3
+    predicate = [NSPredicate predicateWithFormat:@"a.firstName == 'Lee'"];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"a.firstName == \"Lee\"");
+    trueOrFalse = [predicate evaluateWithObject:binding];
+    XCTAssertTrue(trueOrFalse);
+
+    // Case 4
+    predicate = [NSPredicate predicateWithFormat:@"a.firstName.length == 3"];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"a.firstName.length == 3");
+    trueOrFalse = [predicate evaluateWithObject:binding];
+    XCTAssertTrue(trueOrFalse);
+}
+
+- (void)test_syntax_FUNCTION {
+    NSPredicate *predicate;
+    BOOL trueOrFalse;
+    id binding;
+    
+    binding = @{
+                @"a": @2
+                };
+    
+    // Case 1
+    predicate = [NSPredicate predicateWithFormat:@"FUNCTION(a, \"pow:\", 3) == 8"];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"FUNCTION(a, \"pow:\" , 3) == 8");
+    trueOrFalse = [predicate evaluateWithObject:binding];
+    XCTAssertTrue(trueOrFalse);
+    
+    // Case 2
+    predicate = [NSPredicate predicateWithFormat:@"FUNCTION('a', 'uppercase') == 'A'"];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"FUNCTION(\"a\", \"uppercase\") == \"A\"");
+    trueOrFalse = [predicate evaluateWithObject:binding];
+    XCTAssertTrue(trueOrFalse);
+}
+
+- (void)test_syntax_aggregate_operations_array {
+    NSPredicate *predicate;
+    BOOL trueOrFalse;
+    id binding;
+    
+    binding = @{
+                @"a": @[ @1, @2, @3 ]
+                };
+    
+    // Case 1
+    predicate = [NSPredicate predicateWithFormat:@"a[SIZE] == 3"];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"a[SIZE] == 3");
+    trueOrFalse = [predicate evaluateWithObject:binding];
+    XCTAssertTrue(trueOrFalse);
+    
+    // Case 2
+    predicate = [NSPredicate predicateWithFormat:@"a[FIRST] == 1"];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"a[FIRST] == 1");
+    trueOrFalse = [predicate evaluateWithObject:binding];
+    XCTAssertTrue(trueOrFalse);
+    
+    // Case 3
+    predicate = [NSPredicate predicateWithFormat:@"a[LAST] == 3"];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"a[LAST] == 3");
+    trueOrFalse = [predicate evaluateWithObject:binding];
+    XCTAssertTrue(trueOrFalse);
+    
+    // Case 4
+    predicate = [NSPredicate predicateWithFormat:@"a[1] == 2"];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"a[1] == 2");
+    trueOrFalse = [predicate evaluateWithObject:binding];
     XCTAssertTrue(trueOrFalse);
 }
 
@@ -647,10 +745,32 @@
     XCTAssertFalse(trueOrFalse);
 }
 
-- (void)test {
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"$a == 1"];
-    BOOL trueOrFalse = [predicate evaluateWithObject:nil substitutionVariables:@{ @"a": @2 }];
-    NSLog(@"%@", STR_OF_BOOL(trueOrFalse));
+- (void)test_substitutionVariables {
+    NSPredicate *predicate;
+    BOOL trueOrFalse;
+    id binding;
+    
+    // Case 1
+    predicate = [NSPredicate predicateWithFormat:@"$a == 1"];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"$a == 1");
+    trueOrFalse = [predicate evaluateWithObject:nil substitutionVariables:@{ @"a": @2 }];
+    XCTAssertFalse(trueOrFalse);
+    
+    // Case 2
+    predicate = [NSPredicate predicateWithFormat:@"$a == 1"];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"$a == 1");
+    trueOrFalse = [predicate evaluateWithObject:nil substitutionVariables:@{ @"a": @1 }];
+    XCTAssertTrue(trueOrFalse);
+    
+    // Case 3
+    binding = @{
+                @"a": @1
+                };
+    predicate = [NSPredicate predicateWithFormat:@"$a == 1"];
+    predicate = [predicate predicateWithSubstitutionVariables:@{ @"a": @"a" }];
+    XCTAssertEqualObjects(predicate.predicateFormat, @"\"a\" == 1");
+    trueOrFalse = [predicate evaluateWithObject:binding substitutionVariables:@{ @"a": @"a" }];
+    XCTAssertFalse(trueOrFalse);
 }
 
 - (void)test_exception {

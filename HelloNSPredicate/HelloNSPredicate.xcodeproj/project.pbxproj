@@ -23,6 +23,8 @@
 		4F9E6AE91F643DFD00DB315D /* NSCompoundPredicateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6AE81F643DFD00DB315D /* NSCompoundPredicateViewController.m */; };
 		4F9E6AEC1F64408500DB315D /* NSComparisonPredicateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6AEB1F64408500DB315D /* NSComparisonPredicateViewController.m */; };
 		4F9E6AEF1F64481700DB315D /* BlockPredicateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9E6AEE1F64481700DB315D /* BlockPredicateViewController.m */; };
+		4FA8CB8621DDA76D00FA7ED5 /* NSString+NSPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA8CB8521DDA76D00FA7ED5 /* NSString+NSPredicate.m */; };
+		4FBC72E821DCF025001B0F53 /* NSNumber+NSPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBC72E721DCF025001B0F53 /* NSNumber+NSPredicate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,10 @@
 		4F9E6AEB1F64408500DB315D /* NSComparisonPredicateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSComparisonPredicateViewController.m; sourceTree = "<group>"; };
 		4F9E6AED1F64481700DB315D /* BlockPredicateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockPredicateViewController.h; sourceTree = "<group>"; };
 		4F9E6AEE1F64481700DB315D /* BlockPredicateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockPredicateViewController.m; sourceTree = "<group>"; };
+		4FA8CB8421DDA76D00FA7ED5 /* NSString+NSPredicate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+NSPredicate.h"; sourceTree = "<group>"; };
+		4FA8CB8521DDA76D00FA7ED5 /* NSString+NSPredicate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+NSPredicate.m"; sourceTree = "<group>"; };
+		4FBC72E621DCF025001B0F53 /* NSNumber+NSPredicate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+NSPredicate.h"; sourceTree = "<group>"; };
+		4FBC72E721DCF025001B0F53 /* NSNumber+NSPredicate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+NSPredicate.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +99,10 @@
 				4F6F908F21B6C45B00A949EC /* Person.h */,
 				4F6F909021B6C45B00A949EC /* Person.m */,
 				4F6F908921B6C3E800A949EC /* Info.plist */,
+				4FBC72E621DCF025001B0F53 /* NSNumber+NSPredicate.h */,
+				4FBC72E721DCF025001B0F53 /* NSNumber+NSPredicate.m */,
+				4FA8CB8421DDA76D00FA7ED5 /* NSString+NSPredicate.h */,
+				4FA8CB8521DDA76D00FA7ED5 /* NSString+NSPredicate.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -263,7 +273,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FBC72E821DCF025001B0F53 /* NSNumber+NSPredicate.m in Sources */,
 				4F6F909121B6C45B00A949EC /* Person.m in Sources */,
+				4FA8CB8621DDA76D00FA7ED5 /* NSString+NSPredicate.m in Sources */,
 				4F6F908821B6C3E800A949EC /* Tests_NSPredicate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
