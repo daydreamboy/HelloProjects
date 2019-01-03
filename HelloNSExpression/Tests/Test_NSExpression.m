@@ -77,6 +77,25 @@
     NSString *formatString;
     NSDictionary *variables;
     NSExpression *mathExpression;
+    id value;
+    
+    // Case 1
+    formatString = @"x.@count";//@"x[SIZE]";
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    variables = @{
+                  @"x": @[
+                          @"1",
+                          @2
+                          ],
+                  };
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @2);
+}
+
+- (void)test_expressionWithFormat_exception {
+    NSString *formatString;
+    NSDictionary *variables;
+    NSExpression *mathExpression;
     NSNumber *number;
     
     // Case 1
@@ -173,6 +192,7 @@
     NSString *formatString;
     NSExpression *mathExpression;
     id value;
+    id binding;
     
     // Case 1
     formatString = @"'A'";
@@ -308,6 +328,88 @@
     XCTAssertEqualObjects(value, @"value");
 }
 
+- (void)test_formatString_function_for_key_path_1 {
+    NSString *formatString;
+    NSDictionary *variables;
+    NSExpression *mathExpression;
+    id value;
+    
+    // Case 1
+    formatString = @"FUNCTION(a.b.c, 'characterStringAtIndex:', b[0][0])";
+    variables = @{
+                  @"a": @{
+                          @"b": @{
+                                  @"c": @"value"
+                                  }
+                          },
+                  @"b": @[
+                          @[ @0 ]
+                          ]
+                  };
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @"v");
+    
+    // Case 2
+    formatString = @"FUNCTION(a.b.c, 'characterStringAtIndex:', b[c][0])";
+    variables = @{
+                  @"a": @{
+                          @"b": @{
+                                  @"c": @"value"
+                                  }
+                          },
+                  @"b": @[
+                          @[ @0 ]
+                          ],
+                  @"c": @0
+                  };
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @"v");
+    
+    // Case 3
+    formatString = @"FUNCTION(a.b, 'pow:', 2) + a.c + (a.d)[0] + 1";
+    variables = @{
+                  @"a": @{
+                          @"b": @2,
+                          @"c": @3,
+                          @"d": @[
+                                  @1
+                                  ]
+                          }
+                  };
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @9);
+    
+    // Case 4
+    formatString = @"FUNCTION(a.b, 'pow:', 2) + a.c + a.d[0] + 1";
+    variables = @{
+                  @"a": @{
+                          @"b": @2,
+                          @"c": @3,
+                          @"d": @[
+                                  @1
+                                  ]
+                          }
+                  };
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    XCTAssertThrows([mathExpression expressionValueWithObject:variables context:nil]);
+    
+    // Case 5
+    formatString = @"FUNCTION(a.b, 'pow:', 2) + a.c + a.d.0 + 1";
+    variables = @{
+                  @"a": @{
+                          @"b": @2,
+                          @"c": @3,
+                          @"d": @[
+                                  @1
+                                  ]
+                          }
+                  };
+    XCTAssertThrows([NSExpression expressionWithFormat:formatString]);
+}
+
 - (void)test_formatString_function_for_customized_object_1 {
     NSString *formatString;
     NSDictionary *variables;
@@ -368,23 +470,35 @@
     NSString *formatString;
     NSDictionary *variables;
     NSExpression *mathExpression;
+    id binding;
+    id value;
     
-    // Case 5
+    // Case 1
     formatString = @"'FUNCTION('a', 'uppercase')'";
     XCTAssertThrows([NSExpression expressionWithFormat:formatString]);
     
-    // Case 5
+    // Case 2
     formatString = @"1 + FUNCTION('a', 'uppercase')";
     mathExpression = [NSExpression expressionWithFormat:formatString];
     XCTAssertThrows([mathExpression expressionValueWithObject:nil context:nil]);
     
-    // Case 8
+    // Case 3
     formatString = @"FUNCTION('abc', func, a)";
     variables = @{
                   @"a": @1,
                   @"func": @"characterStringAtIndex:"
                   };
     XCTAssertThrows([NSExpression expressionWithFormat:formatString]);
+    
+    // Case 4: Crash
+    /*
+    binding = @{
+                @"a": @"abcd"
+                };
+    formatString = @"FUNCTION(a, 'length')";
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:binding context:nil];
+     */
 }
 
 - (void)test_formatString_function_nested_1 {

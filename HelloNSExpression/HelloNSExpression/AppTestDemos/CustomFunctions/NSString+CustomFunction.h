@@ -14,4 +14,9 @@
 - (NSString *)concatString:(NSString *)anotherString;
 - (NSString *)uppercase;
 
+#pragma mark - Malformed
+
+- (NSUInteger)len;
+- (NSString *)charAtIndex:(NSInteger)index;
+
 @end

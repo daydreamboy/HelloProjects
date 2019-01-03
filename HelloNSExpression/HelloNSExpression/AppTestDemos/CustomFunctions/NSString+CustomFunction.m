@@ -22,4 +22,14 @@
     return [self uppercaseString];
 }
 
+#pragma mark - Malformed
+
+- (NSUInteger)len {
+    return [self length];
+}
+
+- (NSString *)charAtIndex:(NSInteger)index {
+    return [self substringWithRange:NSMakeRange(index, 1)];
+}
+
 @end

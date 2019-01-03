@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The format string
  */
-@property (nonatomic, copy, readonly) NSString *formatString;
+@property (nonatomic, copy, readonly, nullable) NSString *formatString;
 
 /**
  The prefix for class category methods. Default is empty.
@@ -54,6 +54,11 @@ NS_ASSUME_NONNULL_BEGIN
  @return the value which evaluate the expression. Return nil if the expression is malformed.
  */
 - (nullable id)expressionValueWithObject:(nullable id)object context:(nullable NSMutableDictionary *)context;
+
+#pragma mark - Deprecated
+
++ (instancetype)new NS_UNAVAILABLE; ///< Use expressionWithFormat: instead
+- (instancetype)init NS_UNAVAILABLE; ///< Use expressionWithFormat: instead
 
 @end
 

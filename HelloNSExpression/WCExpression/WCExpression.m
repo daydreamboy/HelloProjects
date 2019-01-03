@@ -7,6 +7,7 @@
 //
 
 #import "WCExpression.h"
+#import <objc/runtime.h>
 
 #ifndef NSPREDICATE
 #define NSPREDICATE(expression)    ([NSPredicate predicateWithFormat:@"SELF MATCHES %@", expression])
@@ -24,35 +25,54 @@
 @implementation WCExpression
 
 + (instancetype)expressionWithFormat:(NSString *)format, ... {
-    WCExpression *instance = [WCExpression new];
-    __weak typeof(instance) weak_instance = instance;
-    va_list args;
-    va_start(args, format);
-    NSExpression *expression = [NSExpression expressionWithFormat:format arguments:args];
+    WCExpression *instance = [[WCExpression alloc] initInternally];
+    NSExpression *expression;
+    @try {
+        va_list args;
+        va_start(args, format);
+        expression = [NSExpression expressionWithFormat:format arguments:args];
+        va_end(args);
+    }
+    @catch (NSException *e) {
+        instance.log(@"[Error] format argument is not correct, exception: %@", e);
+    }
+    
     instance.formatString = [expression description];
-    instance.categoryMethodPrefixTable = [NSMutableDictionary dictionary];
-    instance.functionNameMapping = [NSMutableDictionary dictionary];
-    instance.log = ^(NSString *format, ...) {
-        if (weak_instance.enableLogging) {
-            va_list args2;
-            va_start(args2, format);
-            NSLogv(format, args2);
-            va_end(args2);
-        }
-    };
-    va_end(args);
-    
-#if DEBUG
-    instance.enableLogging = YES;
-#endif
-    
     return instance;
 }
 
-- (nullable id)expressionValueWithObject:(nullable id)object context:(nullable NSMutableDictionary *)context {
-    NSArray<NSString *> *tokens = [self tokenizeWithFormatString:self.formatString];
+// @see https://agilewarrior.wordpress.com/2016/04/07/objective-c-object-initialization/
+- (instancetype)initInternally {
+    self = [super init];
+    if (self) {
+        __weak typeof(self) weak_self = self;
+        _categoryMethodPrefixTable = [NSMutableDictionary dictionary];
+        _functionNameMapping = [NSMutableDictionary dictionary];
+        _log = ^(NSString *format, ...) {
+            if (weak_self.enableLogging) {
+                va_list args;
+                va_start(args, format);
+                NSLogv(format, args);
+                va_end(args);
+            }
+        };
+#if DEBUG
+        _enableLogging = YES;
+#endif
+    }
     
-    return [self evaluateWithTokens:tokens variables:object];
+    return self;
+}
+
+- (nullable id)expressionValueWithObject:(nullable id)object context:(nullable NSMutableDictionary *)context {
+    if (self.formatString) {
+        NSArray<NSString *> *tokens = [self tokenizeWithFormatString:self.formatString];
+        
+        return [self evaluateWithTokens:tokens binding:object];
+    }
+    else {
+        return nil;
+    }
 }
 
 #pragma mark - Getters
@@ -90,6 +110,10 @@
     NSScanner *scanner = [NSScanner scannerWithString:string];
     NSMutableArray *tokens = [NSMutableArray array];
     
+    NSMutableCharacterSet *variableCharacterSet = [NSMutableCharacterSet letterCharacterSet];
+    [variableCharacterSet formUnionWithCharacterSet:[NSCharacterSet decimalDigitCharacterSet]];
+    [variableCharacterSet formUnionWithCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@".[]"]];
+    
     while (![scanner isAtEnd]) {
         for (NSString *operator in self.operators) {
             if ([scanner scanString:operator intoString:NULL]) {
@@ -100,8 +124,13 @@
         double doubleResult = 0;
         
         NSString *result = nil;
-        if ([scanner scanCharactersFromSet:[NSCharacterSet letterCharacterSet] intoString:&result]) {
-            [tokens addObject:result];
+        NSUInteger previousLocation = scanner.scanLocation;
+        if ([scanner scanCharactersFromSet:[NSCharacterSet letterCharacterSet] intoString:NULL]) {
+            scanner.scanLocation = previousLocation;
+            
+            if ([scanner scanCharactersFromSet:variableCharacterSet intoString:&result]) {
+                [tokens addObject:result];
+            }
         }
         else if ([scanner scanString:@"\"" intoString:NULL]) {
             NSString *outString;
@@ -124,7 +153,7 @@
     return tokens;
 }
 
-- (nullable id)evaluateWithTokens:(NSArray<NSString *> *)tokens variables:(id)variables {
+- (nullable id)evaluateWithTokens:(NSArray<NSString *> *)tokens binding:(id)binding {
     NSMutableArray *stack = [NSMutableArray arrayWithCapacity:tokens.count];
     
     for (NSInteger i = 0; i < tokens.count; i++) {
@@ -148,27 +177,9 @@
                         
                         // Format: FUNCTION (arg1, arg2, ...)
                         if (functionComponents.count >= 5) {
-                            [self renameFunctionIfNeeded:functionComponents variables:variables];
-                            
-                            // Check function signature
-                            NSString *functionName = functionComponents[4];
-                            NSUInteger numberOfArguments = [functionName componentsSeparatedByString:@":"].count - 1;
-                            
-                            NSUInteger count = 0;
-                            // 0           1    2    3    4
-                            // `FUNCTION`, `(`, `a`, `,`, `"my_pow:"`, ...
-                            for (NSInteger i = 5; i < functionComponents.count; i++) {
-                                if ([functionComponents[i] isKindOfClass:[NSString class]] && (
-                                    [functionComponents[i] isEqualToString:@","] ||
-                                    [functionComponents[i] isEqualToString:@")"])) {
-                                    continue;
-                                }
-                                else {
-                                    count++;
-                                }
-                            }
-                            if (count != numberOfArguments) {
-                                self.log(@"[Error] functionName not match number of arguments: %@, expect %@ args but %@ args", functionName, @(numberOfArguments), @(count));
+                            [self renameFunctionIfNeeded:functionComponents binding:binding];
+                            BOOL valid = [self validateFunction:functionComponents variables:binding];
+                            if (!valid) {
                                 return nil;
                             }
                         }
@@ -182,10 +193,15 @@
                     }
                     
                     NSString *expressionString = [functionComponents componentsJoinedByString:@" "];
-                    NSExpression *expression = [NSExpression expressionWithFormat:expressionString];
-                    id expressionValue = [expression expressionValueWithObject:variables context:nil];
+                    id expressionValue = nil;
+                    @try {
+                        NSExpression *expression = [NSExpression expressionWithFormat:expressionString];
+                        expressionValue = [expression expressionValueWithObject:binding context:nil];
+                    }
+                    @catch (NSException *e) {
+                        self.log(@"[Error] syntax error: %@, exception: %@", expressionString, e);
+                    }
                     if (expressionValue == nil) {
-                        self.log(@"[Error] syntax error: %@", expressionString);
                         return nil;
                     }
                     else if ([expressionValue isKindOfClass:[NSString class]]) {
@@ -224,21 +240,22 @@
             plainExpressionString = [tokens componentsJoinedByString:@" "];
         }
         
-        NSExpression *expression = [NSExpression expressionWithFormat:plainExpressionString];
-        id expressionValue = [expression expressionValueWithObject:variables context:nil];
-        if (expressionValue == nil) {
-            self.log(@"[Error] syntax error: %@", plainExpressionString);
-            return nil;
+        id expressionValue = nil;
+        @try {
+            NSExpression *expression = [NSExpression expressionWithFormat:plainExpressionString];
+            expressionValue = [expression expressionValueWithObject:binding context:nil];
         }
-        else {
-            return expressionValue;
+        @catch (NSException *e) {
+            self.log(@"[Error] syntax error: %@, exception: %@", plainExpressionString, e);
         }
+        
+        return expressionValue;
     }
     
     return nil;
 }
 
-- (void)renameFunctionIfNeeded:(NSMutableArray *)functionComponents variables:(id)variables {
+- (void)renameFunctionIfNeeded:(NSMutableArray *)functionComponents binding:(id)binding {
     id arg1 = functionComponents[2];
     NSString *arg2 = functionComponents[4];
     NSString *functionName = [arg2 stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\""]];
@@ -268,10 +285,10 @@
         // variable
         id object;
         @try {
-            object = [variables valueForKey:arg1];
+            object = [binding valueForKey:arg1];
         }
         @catch (NSException *e) {
-            self.log(@"[Warning] key `%@` not exists in %@", arg1, variables);
+            self.log(@"[Warning] key `%@` not exists in %@", arg1, binding);
         }
         if (object) {
             keyForPrefix = NSStringFromClass([object class]);
@@ -286,6 +303,88 @@
         NSString *prefixedFunctionName = [NSString stringWithFormat:@"\"%@%@\"", self.categoryMethodPrefixTable[keyForPrefix], [arg2 stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\""]]];
         functionComponents[4] = prefixedFunctionName;
     }
+}
+
+- (BOOL)validateFunction:(NSMutableArray *)functionComponents variables:(id)variables {
+    // Format: FUNCTION (arg1, arg2, ...)
+    if (functionComponents.count < 5) {
+        return NO;
+    }
+    
+    // Check function signature
+    id arg1 = functionComponents[2];
+    id arg2 = functionComponents[4];
+    
+    if (![arg1 isKindOfClass:[NSObject class]]) {
+        return NO;
+    }
+    
+    if (![arg2 isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    
+    id sender = nil;
+    if ([arg1 isKindOfClass:[NSString class]]) {
+        if ([arg1 hasPrefix:@"\""] && [arg1 hasSuffix:@"\""]) {
+            sender = [arg1 stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\""]];
+        }
+        else {
+            @try {
+                sender = ([arg1 rangeOfString:@"."].location != NSNotFound) ? [variables valueForKeyPath:arg1] : [variables valueForKey:arg1];
+            }
+            @catch (NSException *e) {
+                self.log(@"[Error] exception: %@", e);
+                return NO;
+            }
+        }
+    }
+    else {
+        sender = arg1;
+    }
+    
+    NSString *functionName = [arg2 stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"\""]];
+    NSUInteger numberOfArguments = [functionName componentsSeparatedByString:@":"].count - 1;
+    
+    NSUInteger count = 0;
+    // 0           1    2    3    4
+    // `FUNCTION`, `(`, `a`, `,`, `"my_pow:"`, ...
+    for (NSInteger i = 5; i < functionComponents.count; i++) {
+        if ([functionComponents[i] isKindOfClass:[NSString class]] && (
+            [functionComponents[i] isEqualToString:@","] ||
+            [functionComponents[i] isEqualToString:@")"])) {
+            continue;
+        }
+        else {
+            count++;
+        }
+    }
+    if (count != numberOfArguments) {
+        self.log(@"[Error] functionName not match number of arguments: %@, expect %@ args but %@ args", functionName, @(numberOfArguments), @(count));
+        return NO;
+    }
+    
+    if (![sender respondsToSelector:NSSelectorFromString(functionName)]) {
+        return NO;
+    }
+    
+    NSMethodSignature *signature = [sender methodSignatureForSelector:NSSelectorFromString(functionName)];
+    if (count != signature.numberOfArguments - 2) {
+        return NO;
+    }
+    
+    const char *returnType = signature.methodReturnType;
+    if (strcmp(returnType, "@") != 0) {
+        return NO;
+    }
+    
+    for (NSInteger i = 2; i < signature.numberOfArguments; i++) {
+        const char *argumentType = [signature getArgumentTypeAtIndex:i];
+        if (strcmp(argumentType, "@") != 0) {
+            return NO;
+        }
+    }
+    
+    return YES;
 }
 
 @end

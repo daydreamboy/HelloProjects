@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WCExpression ()
 - (NSArray<NSString *> *)tokenizeWithFormatString:(NSString *)string;
-- (nullable id)evaluateWithTokens:(NSArray<NSString *> *)tokens variables:(id)variables;
+- (nullable id)evaluateWithTokens:(NSArray<NSString *> *)tokens binding:(id)variables;
 @end
 
 NS_ASSUME_NONNULL_END
