@@ -45,4 +45,13 @@
     XCTAssertNil(URL);
 }
 
+- (void)test_pathExtension {
+    NSString *url;
+    NSURL *URL;
+    
+    url = @"http://xx/xxx.gif?suffix=jpg";
+    URL = [NSURL URLWithString:url];
+    XCTAssertEqualObjects([URL pathExtension], @"gif");
+}
+
 @end
