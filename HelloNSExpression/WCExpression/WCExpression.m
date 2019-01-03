@@ -86,15 +86,12 @@
               @"=<",
               @"<<",
               @">>",
-              @"[",
-              @"]",
               @"+",
               @"-",
               @"*",
               @"/",
               @">",
               @"<",
-              @".",
               @"(",
               @")",
               @"&",
@@ -162,12 +159,14 @@
             NSMutableArray *functionComponents = [NSMutableArray array];
             [functionComponents insertObject:element atIndex:0];
             
+            // Note: rewind to match (...)
             do {
                 id elementAtTop = [stack firstObject];
                 [stack removeObjectAtIndex:0];
                 
                 if ([elementAtTop isKindOfClass:[NSString class]] && [elementAtTop isEqualToString:@"("]) {
                     
+                    // Note: look ahead one more step to check FUNCTION
                     id nextElementAtTop = [stack firstObject];
                     if ([nextElementAtTop isKindOfClass:[NSString class]] && [nextElementAtTop isEqualToString:@"FUNCTION"]) {
                         [stack removeObjectAtIndex:0];
@@ -178,7 +177,7 @@
                         // Format: FUNCTION (arg1, arg2, ...)
                         if (functionComponents.count >= 5) {
                             [self renameFunctionIfNeeded:functionComponents binding:binding];
-                            BOOL valid = [self validateFunction:functionComponents variables:binding];
+                            BOOL valid = [self validateFunction:functionComponents binding:binding];
                             if (!valid) {
                                 return nil;
                             }
@@ -305,7 +304,7 @@
     }
 }
 
-- (BOOL)validateFunction:(NSMutableArray *)functionComponents variables:(id)variables {
+- (BOOL)validateFunction:(NSMutableArray *)functionComponents binding:(id)binding {
     // Format: FUNCTION (arg1, arg2, ...)
     if (functionComponents.count < 5) {
         return NO;
@@ -330,7 +329,7 @@
         }
         else {
             @try {
-                sender = ([arg1 rangeOfString:@"."].location != NSNotFound) ? [variables valueForKeyPath:arg1] : [variables valueForKey:arg1];
+                sender = ([arg1 rangeOfString:@"."].location != NSNotFound) ? [binding valueForKeyPath:arg1] : [binding valueForKey:arg1];
             }
             @catch (NSException *e) {
                 self.log(@"[Error] exception: %@", e);
