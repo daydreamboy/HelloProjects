@@ -22,8 +22,8 @@
 		4F72B29B21D721C9000B68F2 /* NSDictionary+CustomFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F72B29A21D721C9000B68F2 /* NSDictionary+CustomFunction.m */; };
 		4F72B2A521D75D81000B68F2 /* Job.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F72B2A421D75D81000B68F2 /* Job.m */; };
 		4F72B2AB21D76DD2000B68F2 /* WCExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F72B2AA21D76DD2000B68F2 /* WCExpression.m */; };
-		4F72B2BD21D7A2A2000B68F2 /* NSNumber+WCExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F72B2BC21D7A2A2000B68F2 /* NSNumber+WCExpression.m */; };
-		4F72B2C021D7A334000B68F2 /* NSString+WCExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F72B2BF21D7A334000B68F2 /* NSString+WCExpression.m */; };
+		4F72B2BD21D7A2A2000B68F2 /* NSNumber+Exp.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F72B2BC21D7A2A2000B68F2 /* NSNumber+Exp.m */; };
+		4F72B2C021D7A334000B68F2 /* NSString+Exp.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F72B2BF21D7A334000B68F2 /* NSString+Exp.m */; };
 		4F7C4C2A21D2423F00B0AB11 /* NSNumber+CustomFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D15A321A45E88008B1407 /* NSNumber+CustomFunction.m */; };
 		4F7C4C2B21D2423F00B0AB11 /* NSString+CustomFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D15A621A465D6008B1407 /* NSString+CustomFunction.m */; };
 		4F9D159D21A4473F008B1407 /* WCStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D159C21A4473F008B1407 /* WCStringTool.m */; };
@@ -73,10 +73,10 @@
 		4F72B2A821D76DD2000B68F2 /* WCExpression_Testing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCExpression_Testing.h; sourceTree = "<group>"; };
 		4F72B2A921D76DD2000B68F2 /* WCExpression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCExpression.h; sourceTree = "<group>"; };
 		4F72B2AA21D76DD2000B68F2 /* WCExpression.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCExpression.m; sourceTree = "<group>"; };
-		4F72B2BB21D7A2A2000B68F2 /* NSNumber+WCExpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+WCExpression.h"; sourceTree = "<group>"; };
-		4F72B2BC21D7A2A2000B68F2 /* NSNumber+WCExpression.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+WCExpression.m"; sourceTree = "<group>"; };
-		4F72B2BE21D7A334000B68F2 /* NSString+WCExpression.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+WCExpression.h"; sourceTree = "<group>"; };
-		4F72B2BF21D7A334000B68F2 /* NSString+WCExpression.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+WCExpression.m"; sourceTree = "<group>"; };
+		4F72B2BB21D7A2A2000B68F2 /* NSNumber+Exp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNumber+Exp.h"; sourceTree = "<group>"; };
+		4F72B2BC21D7A2A2000B68F2 /* NSNumber+Exp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+Exp.m"; sourceTree = "<group>"; };
+		4F72B2BE21D7A334000B68F2 /* NSString+Exp.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Exp.h"; sourceTree = "<group>"; };
+		4F72B2BF21D7A334000B68F2 /* NSString+Exp.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+Exp.m"; sourceTree = "<group>"; };
 		4F9D159B21A4473F008B1407 /* WCStringTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStringTool.h; sourceTree = "<group>"; };
 		4F9D159C21A4473F008B1407 /* WCStringTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCStringTool.m; sourceTree = "<group>"; };
 		4F9D159E21A45AF0008B1407 /* LogicalExpressionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogicalExpressionViewController.h; sourceTree = "<group>"; };
@@ -201,10 +201,10 @@
 				4F72B29721D71F19000B68F2 /* Person.m */,
 				4F72B2A321D75D81000B68F2 /* Job.h */,
 				4F72B2A421D75D81000B68F2 /* Job.m */,
-				4F72B2BB21D7A2A2000B68F2 /* NSNumber+WCExpression.h */,
-				4F72B2BC21D7A2A2000B68F2 /* NSNumber+WCExpression.m */,
-				4F72B2BE21D7A334000B68F2 /* NSString+WCExpression.h */,
-				4F72B2BF21D7A334000B68F2 /* NSString+WCExpression.m */,
+				4F72B2BB21D7A2A2000B68F2 /* NSNumber+Exp.h */,
+				4F72B2BC21D7A2A2000B68F2 /* NSNumber+Exp.m */,
+				4F72B2BE21D7A334000B68F2 /* NSString+Exp.h */,
+				4F72B2BF21D7A334000B68F2 /* NSString+Exp.m */,
 			);
 			path = CustomFunctions;
 			sourceTree = "<group>";
@@ -309,7 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F72B2AB21D76DD2000B68F2 /* WCExpression.m in Sources */,
-				4F72B2BD21D7A2A2000B68F2 /* NSNumber+WCExpression.m in Sources */,
+				4F72B2BD21D7A2A2000B68F2 /* NSNumber+Exp.m in Sources */,
 				4F9D15A021A45AF0008B1407 /* LogicalExpressionViewController.m in Sources */,
 				4F66F762219851E0007DA8FD /* main.m in Sources */,
 				4F6FDB7C21D4A2AF000F8633 /* NSArray+CustomFunction.m in Sources */,
@@ -317,7 +317,7 @@
 				4F66F77821987F91007DA8FD /* PredefinedFunctionsExpressionViewController.m in Sources */,
 				4F66F775219870CE007DA8FD /* NumericExpressionViewController.m in Sources */,
 				4F72B29821D71F19000B68F2 /* Person.m in Sources */,
-				4F72B2C021D7A334000B68F2 /* NSString+WCExpression.m in Sources */,
+				4F72B2C021D7A334000B68F2 /* NSString+Exp.m in Sources */,
 				4F66F77121987054007DA8FD /* RootViewController.m in Sources */,
 				4F72B29B21D721C9000B68F2 /* NSDictionary+CustomFunction.m in Sources */,
 				4F9D159D21A4473F008B1407 /* WCStringTool.m in Sources */,

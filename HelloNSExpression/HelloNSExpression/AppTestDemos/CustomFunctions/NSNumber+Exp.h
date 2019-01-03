@@ -1,5 +1,5 @@
 //
-//  NSNumber+WCExpression.h
+//  NSNumber+Exp.h
 //  HelloNSExpression
 //
 //  Created by wesley_chen on 2018/12/29.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSNumber (WCExpression)
+@interface NSNumber (Exp)
 - (NSNumber *)exp_factorial;
 - (NSNumber *)exp_pow:(NSNumber *)pow;
 @end

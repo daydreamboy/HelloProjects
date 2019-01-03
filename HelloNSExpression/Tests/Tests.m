@@ -345,7 +345,7 @@
     id value;
     
     // Case 1
-    formatString =@"FUNCTION(a.b.c, 'characterStringAtIndex:', b[0][0])";
+    formatString = @"FUNCTION(a.b.c, 'characterStringAtIndex:', b[0][0])";
     variables = @{
                   @"a": @{
                           @"b": @{

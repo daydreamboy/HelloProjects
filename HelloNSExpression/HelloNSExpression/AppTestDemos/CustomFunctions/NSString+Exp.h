@@ -1,5 +1,5 @@
 //
-//  NSString+WCExpression.h
+//  NSString+Exp.h
 //  HelloNSExpression
 //
 //  Created by wesley_chen on 2018/12/29.
@@ -8,10 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSString (WCExpression)
+@interface NSString (Exp)
 
 - (NSString *)exp_characterStringAtIndex:(NSNumber *)index;
 - (NSString *)exp_concatString:(NSString *)anotherString;
 - (NSString *)exp_uppercase;
+- (NSNumber *)exp_length;
 
 @end
