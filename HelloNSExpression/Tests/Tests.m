@@ -479,6 +479,41 @@
     XCTAssertEqualObjects([(Job *)value name], @"Teacher");
 }
 
+- (void)test_formatString_function_nested_1 {
+    NSString *formatString;
+    NSDictionary *variables;
+    WCExpression *mathExpression;
+    id value;
+    
+    // Case 2
+    formatString = @"FUNCTION(FUNCTION(3, 'factorial'), 'factorial')";
+    mathExpression = [WCExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @720);
+    
+    // Case 2
+    formatString = @"FUNCTION(2, 'pow:', FUNCTION(3, 'factorial'))";
+    mathExpression = [WCExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @64);
+    
+    // Case 3
+    formatString = @"FUNCTION(a, 'pow:', FUNCTION(b, 'factorial'))";
+    variables = @{
+                  @"a": @2,
+                  @"b": @3
+                  };
+    mathExpression = [WCExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @64);
+    
+    // Case 4
+    formatString = @"FUNCTION(2, 'pow:', FUNCTION(FUNCTION(2, 'factorial'), 'factorial'))";
+    mathExpression = [WCExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @4);
+}
+
 #pragma mark - Internal Methods Testing
 
 - (void)test_tokenizeWithFormatString {

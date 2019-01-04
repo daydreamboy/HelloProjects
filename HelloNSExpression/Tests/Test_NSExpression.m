@@ -519,7 +519,17 @@
     value = [mathExpression expressionValueWithObject:variables context:nil];
     XCTAssertEqualObjects(value, @64);
     
-    // Case 2
+    // Case 3
+    formatString = @"FUNCTION(a, 'pow:', FUNCTION(b, 'factorial'))";
+    variables = @{
+                  @"a": @2,
+                  @"b": @3
+                  };
+    mathExpression = [NSExpression expressionWithFormat:formatString];
+    value = [mathExpression expressionValueWithObject:variables context:nil];
+    XCTAssertEqualObjects(value, @64);
+    
+    // Case 4
     formatString = @"FUNCTION(2, 'pow:', FUNCTION(FUNCTION(2, 'factorial'), 'factorial'))";
     mathExpression = [NSExpression expressionWithFormat:formatString];
     value = [mathExpression expressionValueWithObject:variables context:nil];
