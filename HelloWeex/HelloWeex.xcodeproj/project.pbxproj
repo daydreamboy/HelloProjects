@@ -126,7 +126,6 @@
 				4F26FCD11FBEE59B002A28AF /* Sources */,
 				4F26FCD21FBEE59B002A28AF /* Frameworks */,
 				4F26FCD31FBEE59B002A28AF /* Resources */,
-				6C0BA0B61A3A6385AFC3B0FB /* [CP] Embed Pods Frameworks */,
 				6ACB85E4C0273510EC74C665 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -196,26 +195,12 @@
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/native-bundle-main.js",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/wx_load_error@3x.png",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HelloWeex/Pods-HelloWeex-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6C0BA0B61A3A6385AFC3B0FB /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HelloWeex/Pods-HelloWeex-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		957F0D24B46E6FB24A592A83 /* [CP] Check Pods Manifest.lock */ = {

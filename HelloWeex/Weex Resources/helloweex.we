@@ -1,7 +1,7 @@
 <!-- Note: template for layout -->
 <template>
   <div>
-    <image class="thumbnail" src="http://image.coolapk.com/apk_logo/2015/0817/257251_1439790718_385.png"></image>
+    <image class="thumbnail" style="width:500px;height:500px" src="http://image.coolapk.com/apk_logo/2015/0817/257251_1439790718_385.png"></image>
     <text class="title" onclick="onClickTitle">Hello Weex</text>
   </div>
 </template>

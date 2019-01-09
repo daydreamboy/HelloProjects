@@ -34,7 +34,7 @@
     if (!_labelTip) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 64 + 10, screenSize.width, 20)];
-        label.text = @"http://192.168.199.157:8081/helloweex.js";
+        label.text = @"Input Weex Url here";
         label.textAlignment = NSTextAlignmentCenter;
         label.font = [UIFont systemFontOfSize:14];
         
