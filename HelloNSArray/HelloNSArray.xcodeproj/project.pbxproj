@@ -15,6 +15,7 @@
 		4F6F906921B6BF5600A949EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F906821B6BF5600A949EC /* main.m */; };
 		4F6F907621B6BF6300A949EC /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F907521B6BF6300A949EC /* Tests.m */; };
 		4F6F908021B6BF8900A949EC /* WCArrayTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F907F21B6BF8900A949EC /* WCArrayTool.m */; };
+		4F8BEC8621DF4772000EA7B7 /* Tests_NSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8BEC8521DF4772000EA7B7 /* Tests_NSArray.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		4F6F907721B6BF6300A949EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F6F907E21B6BF8900A949EC /* WCArrayTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCArrayTool.h; sourceTree = "<group>"; };
 		4F6F907F21B6BF8900A949EC /* WCArrayTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCArrayTool.m; sourceTree = "<group>"; };
+		4F8BEC8521DF4772000EA7B7 /* Tests_NSArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSArray.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				4F6F907521B6BF6300A949EC /* Tests.m */,
+				4F8BEC8521DF4772000EA7B7 /* Tests_NSArray.m */,
 				4F6F907721B6BF6300A949EC /* Info.plist */,
 			);
 			path = Tests;
@@ -227,6 +230,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F8BEC8621DF4772000EA7B7 /* Tests_NSArray.m in Sources */,
 				4F6F907621B6BF6300A949EC /* Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
