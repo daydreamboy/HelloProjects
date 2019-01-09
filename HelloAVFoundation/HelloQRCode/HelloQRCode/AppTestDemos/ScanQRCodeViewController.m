@@ -215,7 +215,9 @@
     NSLog(@"jump with detected string: %@", detectedString);
     CGSize screenSize = [[UIScreen mainScreen] bounds].size;
     CGFloat padding = 10;
-    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(padding, padding + 64, screenSize.width - 2 * padding, 200)];
+    
+    CGFloat startY = CGRectGetMaxY(self.navigationController.navigationBar.frame);
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(padding, startY + padding, screenSize.width - 2 * padding, 200)];
     textView.keyboardType = UIKeyboardTypeASCIICapable;
     textView.autocorrectionType = UITextAutocorrectionTypeNo;
     textView.autocapitalizationType = UITextAutocapitalizationTypeNone;
@@ -225,7 +227,7 @@
     textView.text = [detectedString copy];
     
     UIViewController *vc = [UIViewController new];
-    vc.title = @"Copyied in pasteboard!";
+    vc.title = @"Copied in pasteboard!";
     vc.automaticallyAdjustsScrollViewInsets = NO;
     vc.view.backgroundColor = [UIColor whiteColor];
     [vc.view addSubview:textView];
