@@ -15,6 +15,7 @@
 		4F4588E9215D052F005A52C8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4588E8215D052F005A52C8 /* main.m */; };
 		4F4588F6215D053F005A52C8 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4588F5215D053F005A52C8 /* Tests.m */; };
 		4F458913215D0635005A52C8 /* WCNumberTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F458912215D0635005A52C8 /* WCNumberTool.m */; };
+		4F52281D21E8A12C00D30BA2 /* Tests_NSNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52281C21E8A12C00D30BA2 /* Tests_NSNumber.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		4F4588F7215D053F005A52C8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F458911215D0635005A52C8 /* WCNumberTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCNumberTool.h; sourceTree = "<group>"; };
 		4F458912215D0635005A52C8 /* WCNumberTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCNumberTool.m; sourceTree = "<group>"; };
+		4F52281C21E8A12C00D30BA2 /* Tests_NSNumber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSNumber.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				4F4588F5215D053F005A52C8 /* Tests.m */,
+				4F52281C21E8A12C00D30BA2 /* Tests_NSNumber.m */,
 				4F4588F7215D053F005A52C8 /* Info.plist */,
 			);
 			path = Tests;
@@ -228,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F4588F6215D053F005A52C8 /* Tests.m in Sources */,
+				4F52281D21E8A12C00D30BA2 /* Tests_NSNumber.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

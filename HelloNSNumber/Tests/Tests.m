@@ -37,4 +37,41 @@
     NSLog(@"8! = %@", [WCNumberTool factorialWithNumber:@(8)]);
 }
 
+- (void)test_checkNumberAsBooleanWithNumber {
+    NSNumber *number;
+    BOOL isBooleanNumber;
+    
+    // Case 1
+    number = @1;
+    isBooleanNumber = [WCNumberTool checkNumberAsBooleanWithNumber:number];
+    XCTAssertFalse(isBooleanNumber);
+    
+    number = @0;
+    isBooleanNumber = [WCNumberTool checkNumberAsBooleanWithNumber:number];
+    XCTAssertFalse(isBooleanNumber);
+    
+    // Case 1
+    number = @YES;
+    isBooleanNumber = [WCNumberTool checkNumberAsBooleanWithNumber:number];
+    XCTAssertTrue(isBooleanNumber);
+    
+    number = @(NO);
+    isBooleanNumber = [WCNumberTool checkNumberAsBooleanWithNumber:number];
+    XCTAssertTrue(isBooleanNumber);
+    
+    // Case 1
+    number = @3.14;
+    isBooleanNumber = [WCNumberTool checkNumberAsBooleanWithNumber:number];
+    XCTAssertFalse(isBooleanNumber);
+    
+    // Case 1
+    number = @('a');
+    isBooleanNumber = [WCNumberTool checkNumberAsBooleanWithNumber:number];
+    XCTAssertFalse(isBooleanNumber);
+    
+    number = [NSNumber numberWithChar:'b'];
+    isBooleanNumber = [WCNumberTool checkNumberAsBooleanWithNumber:number];
+    XCTAssertFalse(isBooleanNumber);
+}
+
 @end

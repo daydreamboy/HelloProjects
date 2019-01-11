@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface WCNumberTool : NSObject
 
 /**
@@ -17,6 +19,17 @@
  @return the factorial value
  @see http://nshipster.cn/nsexpression/
  */
-+ (NSNumber *)factorialWithNumber:(NSNumber *)number;
++ (nullable NSNumber *)factorialWithNumber:(NSNumber *)number;
+
+/**
+ Check a number if wrap a boolean
+
+ @param number the number
+ @return YES if the number wraps a boolean, NO if not
+ @see https://stackoverflow.com/a/30223989
+ */
++ (BOOL)checkNumberAsBooleanWithNumber:(NSNumber *)number;
 
 @end
+
+NS_ASSUME_NONNULL_END
