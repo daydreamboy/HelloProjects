@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "WCJSONTool.h"
+#import "WCJSONTool_Testing.h"
 #import "Human.h"
 
 // >= `11.0`
@@ -204,7 +205,15 @@
 #pragma mark > to id
 
 - (void)test_JSONObjectWithString_options_objectClass {
+    NSString *JSONString;
+    id object;
+    id expected;
     
+    // Case
+    JSONString = @"{\"delivery\":{\"from\":\"浙江嘉兴\",\"to\":\"浙江杭州\",\"areaId\":\"330100\",\"extras\":{},\"overseaContraBandFlag\":\"false\",\"addressWeexUrl\":\"https:\/\/market.m.taobao.com\/apps\/market\/detailrax\/address-picker.html?spm=a2116h.app.0.0.16d957e9nDYOzv&wh_weex=true\"}}";
+    object = [WCJSONTool JSONObjectWithString:JSONString options:NSJSONReadingAllowFragments objectClass:nil];
+    XCTAssertTrue([object isKindOfClass:[NSDictionary class]]);
+    NSLog(@"%@", object);
 }
 
 #pragma mark - Data to Object
@@ -784,6 +793,190 @@
     };
 
     [WCJSONTool printJSONStringFromJSONObject:JSONObject];
+}
+
+#pragma mark > Print Objective-C literal string
+
+- (void)test_literalStringWithJSONObject_startIndentLength_indentLength_ordered {
+    id JSONObject;
+    NSString *output;
+    
+    // Case 1
+    JSONObject = @{
+                   @"str": @"a",
+                   @"num": @3,
+                   @"bool": @YES,
+                   @"null": [NSNull null],
+                   @"float": @3.14,
+                   @"dict": @{
+                     @"key": @"value",
+                     @"another dict": @{
+                             @"k": @{
+                                     @"kk": @"vv"
+                                     }
+                     }
+                   }
+                 };
+    output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:0 indentLength:2 ordered:NO];
+    printf("%s\n", [output UTF8String]);
+    printf("----------------------------------\n");
+    
+    // Case 2
+    JSONObject = @{
+                   @"arr": @[
+                     @"a",
+                     @3,
+                     @3.14,
+                     [NSNull null],
+                     @YES,
+                     @[
+                         @"b",
+                         @4,
+                     ],
+                   ]
+                 };
+    output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:2 indentLength:4 ordered:YES];
+    printf("%s\n", [output UTF8String]);
+    printf("----------------------------------\n");
+    
+    // Case 3
+    JSONObject = @[
+                   @"a",
+                   @3,
+                   @3.14,
+                   [NSNull null],
+                   @YES,
+                   @[
+                       @"b",
+                       @4,
+                       ],
+                   @{
+                       @"dict": @{
+                               @"key": @"value"
+                               }
+                       }
+                   ];
+    output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:0 indentLength:4 ordered:YES];
+    printf("%s\n", [output UTF8String]);
+    printf("----------------------------------\n");
+    
+    // Case 4
+    JSONObject = @[
+                   @"a",
+                   @3,
+                   @3.14,
+                   [NSNull null],
+                   @YES,
+                   @[
+                       @"b",
+                       @4,
+                       @[
+                           @"c",
+                           @[
+                               @"d"
+                               ]
+                           ],
+                       ],
+                   ];
+    output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:0 indentLength:4 ordered:YES];
+    printf("%s\n", [output UTF8String]);
+    printf("----------------------------------\n");
+    
+    // Case 5
+    JSONObject = @3.14;
+    output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:0 indentLength:4 ordered:YES];
+    printf("%s\n", [output UTF8String]);
+    printf("----------------------------------\n");
+    
+    // Case 6
+    JSONObject = @"string";
+    output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:0 indentLength:4 ordered:YES];
+    printf("%s\n", [output UTF8String]);
+    printf("----------------------------------\n");
+    
+    // Case 7
+    JSONObject = @YES;
+    output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:0 indentLength:4 ordered:YES];
+    printf("%s\n", [output UTF8String]);
+    printf("----------------------------------\n");
+    
+    // Case 8
+    JSONObject = [NSNull null];
+    output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:0 indentLength:4 ordered:YES];
+    printf("%s\n", [output UTF8String]);
+    printf("----------------------------------\n");
+    
+    // Abnormal Case 1
+    JSONObject = @[
+                   @"a",
+                   [NSDate date],
+                   ];
+    output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:0 indentLength:2 ordered:YES];
+    printf("%s\n", [output UTF8String]);
+    printf("----------------------------------\n");
+    
+    // Abnormal Case 2
+    JSONObject = @[
+                   [NSDate date],
+                   [NSData data],
+                   ];
+    output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:0 indentLength:2 ordered:YES];
+    printf("%s\n", [output UTF8String]);
+    printf("----------------------------------\n");
+    
+    // Abnormal Case 3
+    JSONObject = @{
+                   @"key": @"value",
+                   @"date": [NSDate date],
+                   @3: @"number"
+                   };
+    output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:0 indentLength:2 ordered:YES];
+    printf("%s\n", [output UTF8String]);
+    printf("----------------------------------\n");
+    
+    // Abnormal Case 4
+    JSONObject = [NSDate date];
+    output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:0 indentLength:2 ordered:YES];
+    XCTAssertNil(output);
+    printf("%s\n", [output UTF8String]);
+    printf("----------------------------------\n");
+}
+
+#pragma mark - Internal Testing
+
+- (void)test_literalStringWithJSONObject_indentLevel_startIndentLength_indentLength_ordered_isRootContainer {
+    id JSONObject;
+    NSString *output;
+    
+    JSONObject = @{
+                   @"str": @"a",
+                   @"num": @3,
+                   @"bool": @YES,
+                   @"null": [NSNull null],
+                   @"float": @3.14,
+                   @"dict": @{
+                     @"key": @"value",
+                   }
+                 };
+    output = [WCJSONTool literalStringWithJSONObject:JSONObject indentLevel:0 startIndentLength:2 indentLength:2 ordered:YES isRootContainer:YES];
+    printf("%s\n", [output UTF8String]);
+    
+    //
+    JSONObject = @{
+                   @"arr": @[
+                     @"a",
+                     @3,
+                     @3.14,
+                     [NSNull null],
+                     @YES,
+                     @[
+                         @"b",
+                         @4,
+                     ],
+                   ]
+                 };
+    output = [WCJSONTool literalStringWithJSONObject:JSONObject indentLevel:0 startIndentLength:2 indentLength:4 ordered:YES isRootContainer:YES];
+    printf("%s\n", [output UTF8String]);
 }
 
 #pragma mark -

@@ -198,6 +198,29 @@ NS_AVAILABLE_IOS(5_0)
  */
 + (void)printJSONStringFromJSONObject:(id)JSONObject;
 
+#pragma mark > Objective-C literal string
+
+/**
+ Get Objective-C literal string from JSON object
+
+ @param JSONObject the JSON object
+ @param startIndentLength the length of indent space for starting
+ @param indentLength the length of indent space at every level
+ @param ordered If YES, the dictionary keys are ordered, or not if NO.
+ @return the Objective-C literal string
+ @discussion 1. This method will keep boolean NSNumber as @YES/@NO, and numeric NSNumber as @(N).
+             Other type values are kept as Objective-C literal constant value.
+             2. 
+ */
++ (nullable NSString *)literalStringWithJSONObject:(id)JSONObject startIndentLength:(NSUInteger)startIndentLength indentLength:(NSUInteger)indentLength ordered:(BOOL)ordered;
+
+/**
+ Print the JSON object as Objective-C literal string
+
+ @param JSONObject the JSON object
+ */
++ (void)printLiteralStringFromJSONObject:(id)JSONObject;
+
 @end
 
 NS_ASSUME_NONNULL_END

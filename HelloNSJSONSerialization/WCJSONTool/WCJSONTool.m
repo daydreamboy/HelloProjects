@@ -430,6 +430,92 @@
     NSLog(@"\n%@\n", JSONString);
 }
 
+#pragma mark > Objective-C literal string
+
++ (nullable NSString *)literalStringWithJSONObject:(id)JSONObject startIndentLength:(NSUInteger)startIndentLength indentLength:(NSUInteger)indentLength ordered:(BOOL)ordered {
+    return [self literalStringWithJSONObject:JSONObject indentLevel:0 startIndentLength:startIndentLength indentLength:indentLength ordered:ordered isRootContainer:YES];
+}
+
++ (void)printLiteralStringFromJSONObject:(id)JSONObject {
+    NSString *literalString = [self literalStringWithJSONObject:JSONObject startIndentLength:0 indentLength:2 ordered:YES];
+    NSLog(@"\n%@\n", literalString);
+}
+
+#pragma mark ::
+
++ (nullable NSString *)literalStringWithJSONObject:(id)JSONObject indentLevel:(NSUInteger)indentLevel startIndentLength:(NSUInteger)startIndentLength indentLength:(NSUInteger)indentLength ordered:(BOOL)ordered isRootContainer:(BOOL)isRootContainer {
+    
+    if ([JSONObject isKindOfClass:[NSNumber class]]) {
+        if ([WCJSONTool checkNumberAsBooleanWithNumber:JSONObject]) {
+            return [NSString stringWithFormat:@"%@", [(NSNumber *)JSONObject boolValue] ? @"@YES": @"@NO"];
+        }
+        else {
+            return [NSString stringWithFormat:@"@(%@)", [(NSNumber *)JSONObject stringValue]];
+        }
+    }
+    else if ([JSONObject isKindOfClass:[NSString class]]) {
+        return [NSString stringWithFormat:@"@\"%@\"", JSONObject];
+    }
+    else if ([JSONObject isKindOfClass:[NSNull class]]) {
+        return @"[NSNull null]";
+    }
+    else if ([JSONObject isKindOfClass:[NSDictionary class]] || [JSONObject isKindOfClass:[NSArray class]]) {
+        // @see https://stackoverflow.com/a/4608137
+        NSString *indentSpaceForContainer = [@"" stringByPaddingToLength:indentLevel * indentLength + startIndentLength withString:@" " startingAtIndex:0];
+        NSString *indentSpaceForElement = [@"" stringByPaddingToLength:(indentLevel + 1) * indentLength + startIndentLength withString:@" " startingAtIndex:0];
+        
+        NSMutableString *stringM = [NSMutableString stringWithCapacity:1000];
+        if (isRootContainer) {
+            [stringM appendString:[@"" stringByPaddingToLength:startIndentLength withString:@" " startingAtIndex:0]];
+        }
+        __block BOOL isFirstElement = YES;
+        
+        if ([JSONObject isKindOfClass:[NSDictionary class]]) {
+            // @see https://stackoverflow.com/a/2556306
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self isKindOfClass: %@", [NSString class]];
+            NSArray *filteredKeys = [[(NSDictionary *)JSONObject allKeys] filteredArrayUsingPredicate:predicate];
+            NSArray *keys = ordered ? ([filteredKeys sortedArrayUsingSelector:@selector(compare:)]) : filteredKeys;
+            
+            [stringM appendString:@"@{\n"];
+            [keys enumerateObjectsUsingBlock:^(id  _Nonnull key, NSUInteger idx, BOOL * _Nonnull stop) {
+                if ([key isKindOfClass:[NSString class]]) {
+                    id value = [(NSDictionary *)JSONObject objectForKey:key];
+                    NSString *literalString = [self literalStringWithJSONObject:value indentLevel:indentLevel + 1 startIndentLength:startIndentLength indentLength:indentLength ordered:ordered isRootContainer:NO];
+                    if (literalString) {
+                        if (!isFirstElement) {
+                            [stringM appendString:@",\n"];
+                        }
+                        [stringM appendFormat:@"%@@\"%@\" : %@", indentSpaceForElement, key, literalString];
+                        isFirstElement = NO;
+                    }
+                }
+            }];
+            [stringM appendFormat:@"\n%@}", indentSpaceForContainer];
+        }
+        else {
+            [stringM appendString:@"@[\n"];
+            [(NSArray *)JSONObject enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                NSString *literalString = [self literalStringWithJSONObject:obj indentLevel:indentLevel + 1 startIndentLength:startIndentLength indentLength:indentLength ordered:ordered isRootContainer:NO];
+                if (literalString) {
+                    if (!isFirstElement) {
+                        [stringM appendString:@",\n"];
+                    }
+                    [stringM appendFormat:@"%@%@", indentSpaceForElement, literalString];
+                    isFirstElement = NO;
+                }
+            }];
+            [stringM appendFormat:@"\n%@]", indentSpaceForContainer];
+        }
+        
+        return stringM;
+    }
+    else {
+        return nil;
+    }
+}
+
+#pragma mark ::
+
 #pragma mark - Utility Methods
 
 + (nullable NSString *)stringByReplacingMatchesInString:(NSString *)string pattern:(NSString *)pattern captureGroupBindingBlock:(nullable NSString *(^)(NSString *matchString, NSArray<NSString *> *captureGroupStrings))captureGroupBindingBlock {
@@ -639,6 +725,16 @@
     }];
     
     return stringM;
+}
+
++ (BOOL)checkNumberAsBooleanWithNumber:(NSNumber *)number {
+    if (![number isKindOfClass:[NSNumber class]]) {
+        return NO;
+    }
+    
+    CFTypeID boolID = CFBooleanGetTypeID(); // the type ID of CFBoolean
+    CFTypeID numID = CFGetTypeID((__bridge CFTypeRef)(number)); // the type ID of num
+    return numID == boolID;
 }
 
 #pragma mark - Private Utility Functions

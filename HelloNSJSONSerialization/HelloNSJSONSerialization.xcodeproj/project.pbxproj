@@ -42,6 +42,7 @@
 		4F2DF699205BAD3F0097EF50 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F2DF69A205BAD3F0097EF50 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F4588CB215CD56A005A52C8 /* Tests_NSJSONSerialization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSJSONSerialization.m; sourceTree = "<group>"; };
+		4F52282121E8A99500D30BA2 /* WCJSONTool_Testing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCJSONTool_Testing.h; sourceTree = "<group>"; };
 		4F53314A208746F10016F650 /* theme.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = theme.plist; sourceTree = "<group>"; };
 		4F70BBF9203012BD0017C99B /* HelloNSJSONSerialization.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSJSONSerialization.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F70BBFC203012BD0017C99B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -131,6 +132,7 @@
 			children = (
 				4F70BC1320301C600017C99B /* WCJSONTool.h */,
 				4F70BC1420301C600017C99B /* WCJSONTool.m */,
+				4F52282121E8A99500D30BA2 /* WCJSONTool_Testing.h */,
 			);
 			path = WCJSONTool;
 			sourceTree = "<group>";
