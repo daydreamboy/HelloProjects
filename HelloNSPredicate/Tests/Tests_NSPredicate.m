@@ -51,10 +51,27 @@
 - (void)test_syntax_SELF {
     NSPredicate *predicate;
     BOOL trueOrFalse;
+    NSArray *array;
+    NSArray *output;
     
-    predicate = [NSPredicate predicateWithFormat:@"SELF like a"];
+    // Case 1
+    predicate = [NSPredicate predicateWithFormat:@"SELF like 'a'"];
     trueOrFalse = [predicate evaluateWithObject:@"a"];
     XCTAssertTrue(trueOrFalse);
+    
+    // Case 2
+    // @see https://stackoverflow.com/a/18378811
+    array = @[ @"123", @456, [NSArray array] ];
+    predicate = [NSPredicate predicateWithFormat:@"self isKindOfClass: %@", [NSNumber class]];
+    output = [array filteredArrayUsingPredicate:predicate];
+    XCTAssertEqualObjects(output, @[ @456 ]);
+    
+    // Case 3
+    // @see https://stackoverflow.com/a/8065935 (Deprecated. use isKindOfClass: instead)
+    array = @[ @"123", @456, [NSArray array] ];
+    predicate = [NSPredicate predicateWithFormat: @"class == %@", [@0 class]]; // Don't use [NSNumber class]
+    output = [array filteredArrayUsingPredicate:predicate];
+    XCTAssertEqualObjects(output, @[ @456 ]);
 }
 
 - (void)test_sytnax_string_contants {
@@ -894,6 +911,27 @@
     trueOrFalse = [predicate evaluateWithObject:nil substitutionVariables:@{ @"a": @{ @"a": p }, @"b": @"a" }];
     XCTAssertTrue(trueOrFalse);
     NSLog(@"%@", STR_OF_BOOL(trueOrFalse));
+}
+
+- (void)test_predicateWithBlock {
+    NSArray *array;
+    NSArray *output;
+    NSArray *expected;
+    
+    // Case 1
+    // @see https://stackoverflow.com/a/18377992
+    array = @[
+              @1,
+              @"a",
+              [NSDate date],
+              @{},
+              @"b",
+              ];
+    output = [array filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id  _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+        return [evaluatedObject isKindOfClass:[NSString class]];
+    }]];
+    expected = @[ @"a", @"b" ];
+    XCTAssertEqualObjects(output, expected);
 }
 
 @end
