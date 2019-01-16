@@ -1,14 +1,33 @@
 //
-//  WCViewControllerTool.m
-//  HelloUIGestureRecognizer
+//  WCAlertTool.m
+//  HelloUIAlertController
 //
-//  Created by wesley_chen on 2018/11/11.
-//  Copyright © 2018 wesley_chen. All rights reserved.
+//  Created by wesley_chen on 2019/1/16.
+//  Copyright © 2019 wesley_chen. All rights reserved.
 //
 
-#import "WCViewControllerTool.h"
+#import "WCAlertTool.h"
 
-@implementation WCViewControllerTool
+
+@implementation WCAlertTool
+
++ (void)presentAlertWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle cancelButtonDidClickBlock:(nullable void (^)(void))cancelButtonDidClickBlock {
+    if ([UIAlertController class]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelButtonTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            if (cancelButtonDidClickBlock) {
+                cancelButtonDidClickBlock();
+            }
+        }];
+        [alert addAction:cancelAction];
+        UIViewController *topViewController = [WCAlertTool topViewControllerOnWindow:[UIApplication sharedApplication].keyWindow];
+        [topViewController presentViewController:alert animated:YES completion:nil];
+    }
+}
+
+#pragma mark - Utility
+
+#pragma mark > WCViewControllerTool
 
 + (nullable UIViewController *)topViewControllerOnWindow:(UIWindow *)window {
     if (![window isKindOfClass:[UIWindow class]]) {

@@ -7,7 +7,7 @@
 //
 
 #import "TapGestureVSButtonClickViewController.h"
-#import "WCViewControllerTool.h"
+#import "WCAlertTool.h"
 
 @interface TapGestureVSButtonClickViewController () <UIGestureRecognizerDelegate>
 @property (nonatomic, strong) UIButton *button;
@@ -35,12 +35,12 @@
 - (void)viewTapped:(UITapGestureRecognizer *)recognizer {
     UIView *tappedView = recognizer.view;
     NSString *msg = [NSString stringWithFormat:@"%@", tappedView];
-    [self presentAlertWithTitle:@"view tapped" msg:msg cancel:@"Ok"];
+    [WCAlertTool presentAlertWithTitle:@"view tapped" message:msg cancelButtonTitle:@"Ok" cancelButtonDidClickBlock:nil];
 }
 
 - (void)buttonClicked:(id)sender {
     NSString *msg = [NSString stringWithFormat:@"%@", sender];
-    [self presentAlertWithTitle:@"button clicked" msg:msg cancel:@"Ok"];
+    [WCAlertTool presentAlertWithTitle:@"button clicked" message:msg cancelButtonTitle:@"Ok" cancelButtonDidClickBlock:nil];
 }
 
 #pragma mark - Getters
@@ -74,24 +74,11 @@
 #pragma mark - UIGestureRecognizerDelegate
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
-    // Note: check touch.view if the button
+    // Note: check touch.view if the button, if YES, not trigger this gesture
     if (self.switchEnableCheckButton.on && (touch.view == self.button)) {
         return NO;
     }
     return YES;
-}
-
-#pragma mark -
-
-- (void)presentAlertWithTitle:(NSString *)title msg:(NSString *)msg cancel:(NSString *)cancel {
-    if ([UIAlertController class]) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:(title) message:(msg) preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:(cancel) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-        }];
-        [alert addAction:cancelAction];
-        UIViewController *topViewController = [WCViewControllerTool topViewControllerOnWindow:[UIApplication sharedApplication].keyWindow];
-        [topViewController presentViewController:alert animated:YES completion:nil];
-    }
 }
 
 @end

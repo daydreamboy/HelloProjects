@@ -15,6 +15,8 @@
 #import "DragDownAndScaleImageViewViewController.h"
 #import "TapGestureVSButtonClickViewController.h"
 #import "DifferentTapGesturesOnParentChildViewViewController.h"
+#import "GestureRecognizerVSControlEventsViewController.h"
+#import "UseCancelsTouchesInViewViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -44,6 +46,8 @@
         @"Drag down and scale image",
         @"Tap gesture vs. button UIControlEventTouchUpInside",
         @"Different tap gestures on parent view and child view",
+        @"UIGestureRecognizer VS UIControlEvents",
+        @"Use cancelsTouchesInView",
         @"call a test method",
     ];
     _classes = @[
@@ -54,6 +58,8 @@
         [DragDownAndScaleImageViewViewController class],
         [TapGestureVSButtonClickViewController class],
         [DifferentTapGesturesOnParentChildViewViewController class],
+        [GestureRecognizerVSControlEventsViewController class],
+        [UseCancelsTouchesInViewViewController class],
         @"testMethod",
     ];
 }

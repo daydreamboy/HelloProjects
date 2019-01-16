@@ -8,8 +8,31 @@
 
 #import "DifferentTapGesturesOnParentChildViewViewController.h"
 
+@interface MyParentView : UIView
+
+@end
+
+@implementation MyParentView
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    NSLog(@"%@: %@", self, NSStringFromSelector(_cmd));
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesEnded:touches withEvent:event];
+    NSLog(@"%@: %@", self, NSStringFromSelector(_cmd));
+}
+
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesCancelled:touches withEvent:event];
+    NSLog(@"%@: %@", self, NSStringFromSelector(_cmd));
+}
+
+@end
+
 @interface DifferentTapGesturesOnParentChildViewViewController () <UIGestureRecognizerDelegate>
-@property (nonatomic, strong) UIView *parentView;
+@property (nonatomic, strong) MyParentView *parentView;
 @property (nonatomic, strong) UIView *childView;
 @end
 
@@ -27,7 +50,7 @@
 
 - (UIView *)parentView {
     if (!_parentView) {
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 60, 200, 200)];
+        MyParentView *view = [[MyParentView alloc] initWithFrame:CGRectMake(0, 60, 200, 200)];
         view.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:0.4];
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(parentViewTapped:)];
         tapGesture.cancelsTouchesInView = NO;
