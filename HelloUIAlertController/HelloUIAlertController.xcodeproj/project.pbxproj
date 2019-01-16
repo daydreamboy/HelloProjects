@@ -15,6 +15,7 @@
 		4F4513CA2123CEF30065028A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4513C42123CEF30065028A /* RootViewController.m */; };
 		4F4513CB2123CEF30065028A /* TabledAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4513C72123CEF30065028A /* TabledAlertController.m */; };
 		4F4513CF2123D5660065028A /* WCAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4513CE2123D5660065028A /* WCAlertController.m */; };
+		4F4DC06621EECE360066E96A /* WCAlertTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4DC06521EECE360066E96A /* WCAlertTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,8 @@
 		4F4513C82123CEF30065028A /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F4513CD2123D5660065028A /* WCAlertController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAlertController.h; sourceTree = "<group>"; };
 		4F4513CE2123D5660065028A /* WCAlertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAlertController.m; sourceTree = "<group>"; };
+		4F4DC06421EECE360066E96A /* WCAlertTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAlertTool.h; sourceTree = "<group>"; };
+		4F4DC06521EECE360066E96A /* WCAlertTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAlertTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +52,7 @@
 		4F4513A12123CE9D0065028A = {
 			isa = PBXGroup;
 			children = (
+				4F4DC06321EECE070066E96A /* WCAlertTool */,
 				4F4513CC2123D5490065028A /* WCAlertController */,
 				4F4513AC2123CE9D0065028A /* HelloUIAlertController */,
 				4F4513AB2123CE9D0065028A /* Products */,
@@ -96,6 +100,15 @@
 				4F4513CE2123D5660065028A /* WCAlertController.m */,
 			);
 			path = WCAlertController;
+			sourceTree = "<group>";
+		};
+		4F4DC06321EECE070066E96A /* WCAlertTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F4DC06421EECE360066E96A /* WCAlertTool.h */,
+				4F4DC06521EECE360066E96A /* WCAlertTool.m */,
+			);
+			path = WCAlertTool;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -169,6 +182,7 @@
 			files = (
 				4F4513BD2123CE9F0065028A /* main.m in Sources */,
 				4F4513CB2123CEF30065028A /* TabledAlertController.m in Sources */,
+				4F4DC06621EECE360066E96A /* WCAlertTool.m in Sources */,
 				4F4513AF2123CE9E0065028A /* AppDelegate.m in Sources */,
 				4F4513CF2123D5660065028A /* WCAlertController.m in Sources */,
 				4F4513CA2123CEF30065028A /* RootViewController.m in Sources */,
