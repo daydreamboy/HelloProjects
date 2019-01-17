@@ -10,11 +10,11 @@ UIGestureRecognizer和UIControlEvents都可以用于处理某个控件的事件�
 
 简单分析如下
 
-| 区分点               | UIGestureRecognizer                                          | UIControlEvents                                           | 说明                                                         |
-| -------------------- | ------------------------------------------------------------ | --------------------------------------------------------- | ------------------------------------------------------------ |
-| 产生事件的对象不同   | UIView对象的事件                                             | UIControl对象的事件                                       | UIControl继承自UIView                                        |
-| 事件回调的优先级     | 高                                                           | 低                                                        | 同一个控件的UIGestureRecognizer回调方法早于UIControlEvents事件回调方法 |
-| 是否经过touchEnd方法 | UIGestureRecognizer内部判断是否是该手势并直接触发对应的回调方法 | UIControl在touchEnd方法中判断事件类型并触发对应的回调方法 |                                                              |
+| 区分点                   | UIGestureRecognizer                                          | UIControlEvents                                              | 说明                                                         |
+| ------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 产生事件的对象不同       | UIView对象的事件                                             | UIControl对象的事件                                          | UIControl继承自UIView                                        |
+| 事件回调的优先级         | 高                                                           | 低                                                           | 同一个控件的UIGestureRecognizer回调方法早于UIControlEvents事件回调方法 |
+| 是否经过touchesEnded方法 | UIGestureRecognizer内部判断是否是该手势并直接触发对应的回调方法 | UIControl在touchesEnded方法中判断事件类型并触发对应的回调方法 |                                                              |
 
 
 
@@ -48,7 +48,7 @@ UIControlEvents事件的回调方法，调用栈如下
 
 
 
-举个UIControl控件例子
+举个UIControl控件的例子
 
 ​       UIButton有UIControlEventTouchUpInside事件，如果再添加一个UITapGestureRecognizer，由于UITapGestureRecognizer优先级高于UIControlEventTouchUpInside，并且`cancelsTouchesInView`默认为YES，则UIControlEventTouchUpInside事件的回调方法不触发，只触发UITapGestureRecognizer的回调方法。
 
@@ -64,7 +64,22 @@ UIControlEvents事件的回调方法，调用栈如下
 
 当`cancelsTouchesInView`为NO，手势识别成功后，自定义UIView的touchesEnd:withEvent:会被调用
 
-示例代码见**UseCancelsTouchesInViewViewController**
+示例代码见**UseCancelsTouchesInView1ViewController**
+
+
+
+举个非UIControl控件的例子
+
+​         UICollectionView不是继承自UIControl，但是collectionView:didSelectItemAtIndexPath:方法触发是通过touchesEnd:withEvent:（可以看调用栈）。当前UICollectionView自身或者父视图添加了UITapGestureRecognizer，如果`cancelsTouchesInView`设置为YES，则collectionView:didSelectItemAtIndexPath:方法不会被触发。如果`cancelsTouchesInView`设置为NO，则先触发手势回调方法，再触发collectionView:didSelectItemAtIndexPath:方法。
+
+示例代码见**UseCancelsTouchesInView2ViewController**
+
+
+
+注意
+
+> 1. 如果需要UICollectionView能响应点击，而它的父视图，除UICollectionView之外的区域也能响应点击，而且两者是独立，不同时触发，就不要采用父视图添加手势的方法。尽管可以使用手势的delegate方法来判断要不是手势响应，但不是最佳实践方法。最佳实践是，和响应点击的front视图的平级后面添加一个backend视图，在这个视图添加手势或UIButton。
+> 2. 尽管UICollectionView内部也有手势，但是没有UITapGestureRecognizer手势。
 
 
 

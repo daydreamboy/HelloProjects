@@ -1,5 +1,5 @@
 //
-//  DifferentTapGesturesOnParentChildViewViewController.h
+//  TapGesturesBothOnParentChildViewViewController.h
 //  HelloUIGestureRecognizer
 //
 //  Created by wesley_chen on 2018/11/22.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DifferentTapGesturesOnParentChildViewViewController : UIViewController
+@interface TapGesturesBothOnParentChildViewViewController : UIViewController
 
 @end

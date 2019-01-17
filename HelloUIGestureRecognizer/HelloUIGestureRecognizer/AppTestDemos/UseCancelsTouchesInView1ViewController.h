@@ -1,5 +1,5 @@
 //
-//  UseCancelsTouchesInViewViewController.h
+//  UseCancelsTouchesInView1ViewController.h
 //  HelloUIGestureRecognizer
 //
 //  Created by wesley_chen on 2019/1/16.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UseCancelsTouchesInViewViewController : UIViewController
+@interface UseCancelsTouchesInView1ViewController : UIViewController
 
 @end

@@ -13,10 +13,10 @@
 #import "DragViewRestrictedViewController.h"
 #import "DetectSwipeUsingUIPanGestureRecognizerViewController.h"
 #import "DragDownAndScaleImageViewViewController.h"
-#import "TapGestureVSButtonClickViewController.h"
-#import "DifferentTapGesturesOnParentChildViewViewController.h"
+#import "TapGesturesBothOnParentChildViewViewController.h"
 #import "GestureRecognizerVSControlEventsViewController.h"
-#import "UseCancelsTouchesInViewViewController.h"
+#import "UseCancelsTouchesInView1ViewController.h"
+#import "UseCancelsTouchesInView2ViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -44,10 +44,10 @@
         @"Drag up view and increase height",
         @"Detect swipe using UIPanGestureRecognizer",
         @"Drag down and scale image",
-        @"Tap gesture vs. button UIControlEventTouchUpInside",
-        @"Different tap gestures on parent view and child view",
-        @"UIGestureRecognizer VS UIControlEvents",
-        @"Use cancelsTouchesInView",
+        @"Tap gestures both on parent view and child view",
+        @"UIGestureRecognizer vs. UIControlEvents",
+        @"Use cancelsTouchesInView (UIbutton example)",
+        @"Use cancelsTouchesInView (UICollectionView example)",
         @"call a test method",
     ];
     _classes = @[
@@ -56,10 +56,10 @@
         [DragViewRestrictedViewController class],
         [DetectSwipeUsingUIPanGestureRecognizerViewController class],
         [DragDownAndScaleImageViewViewController class],
-        [TapGestureVSButtonClickViewController class],
-        [DifferentTapGesturesOnParentChildViewViewController class],
+        [TapGesturesBothOnParentChildViewViewController class],
         [GestureRecognizerVSControlEventsViewController class],
-        [UseCancelsTouchesInViewViewController class],
+        [UseCancelsTouchesInView1ViewController class],
+        [UseCancelsTouchesInView2ViewController class],
         @"testMethod",
     ];
 }

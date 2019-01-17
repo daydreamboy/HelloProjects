@@ -1,12 +1,12 @@
 //
-//  UseCancelsTouchesInViewViewController.m
+//  UseCancelsTouchesInView1ViewController.m
 //  HelloUIGestureRecognizer
 //
 //  Created by wesley_chen on 2019/1/16.
 //  Copyright © 2019 wesley_chen. All rights reserved.
 //
 
-#import "UseCancelsTouchesInViewViewController.h"
+#import "UseCancelsTouchesInView1ViewController.h"
 #import "WCAlertTool.h"
 
 @interface MyView : UIView
@@ -33,14 +33,14 @@
 
 @end
 
-@interface UseCancelsTouchesInViewViewController ()
+@interface UseCancelsTouchesInView1ViewController ()
 @property (nonatomic, strong) MyView *myView;
 @property (nonatomic, strong) UILabel *labelTip;
 @property (nonatomic, strong) UISwitch *switchEnableUIControlEventTouchUpInside;
 @property (nonatomic, strong) UITapGestureRecognizer *gestureTap;
 @end
 
-@implementation UseCancelsTouchesInViewViewController
+@implementation UseCancelsTouchesInView1ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
