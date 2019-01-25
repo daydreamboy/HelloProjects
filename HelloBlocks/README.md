@@ -41,3 +41,25 @@
 
 
 
+### 2、使用Block常见问题
+
+#### （1）block为nil时调用会crash
+
+```objective-c
+__weak MyObject *weak_object;
+{
+    MyObject *object;
+    object = [MyObject new];
+    object.block = ^{
+        NSLog(@"object");
+    };
+    weak_object = object;
+}
+
+weak_object.block(); // Crash
+```
+
+安全方式：调用block，判断block是否为nil。
+
+
+
