@@ -200,7 +200,7 @@
 
 #pragma mark - Frame Adjustment
 
-+ (BOOL)frameToFitAllSubviewsWithView:(UIView *)view {
++ (BOOL)makeViewFrameToFitAllSubviewsWithView:(UIView *)view {
     if (![view isKindOfClass:[UIView class]]) {
         return NO;
     }
@@ -402,6 +402,28 @@
     
     CGRect centeredRect = CGRectMake(origin.x, origin.y, size.width, size.height);
     return centeredRect;
+}
+
++ (CGRect)changeFrame:(CGRect)frame newX:(CGFloat)newX newY:(CGFloat)newY newWidth:(CGFloat)newWidth newHeight:(CGFloat)newHeight {
+    CGRect newFrame = frame;
+    
+    if (!isnan(newX)) {
+        newFrame.origin.x = newX;
+    }
+    
+    if (!isnan(newY)) {
+        newFrame.origin.y = newY;
+    }
+    
+    if (!isnan(newWidth)) {
+        newFrame.size.width = newWidth;
+    }
+    
+    if (!isnan(newHeight)) {
+        newFrame.size.height = newHeight;
+    }
+    
+    return newFrame;
 }
 
 #pragma mark > CGSize

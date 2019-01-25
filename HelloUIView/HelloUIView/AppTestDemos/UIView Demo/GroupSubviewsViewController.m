@@ -65,7 +65,7 @@
         subview2.backgroundColor = [UIColor greenColor];
         [view addSubview:subview2];
         
-        [WCViewTool frameToFitAllSubviewsWithView:view];
+        [WCViewTool makeViewFrameToFitAllSubviewsWithView:view];
         
         _containerView2 = view;
     }

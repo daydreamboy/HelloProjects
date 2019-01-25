@@ -88,7 +88,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return YES if the operation is success. NO if the view has no subviews.
  @see https://stackoverflow.com/a/21107340
  */
-+ (BOOL)frameToFitAllSubviewsWithView:(UIView *)view;
++ (BOOL)makeViewFrameToFitAllSubviewsWithView:(UIView *)view;
 
 #pragma mark - Visibility
 
@@ -156,6 +156,26 @@ NS_ASSUME_NONNULL_BEGIN
  @return the centered rect. Return CGRectZero if the `size` or `rect` have zero width or zero height.
  */
 + (CGRect)centeredRectInRectWithSize:(CGSize)size inRect:(CGRect)rect;
+
+/**
+ Change frame with new x, y, width or height.
+ 
+ @discussion Set NAN to not change. See +[WCViewTool changeFrame:newX:newY:newWidth:newHeight:] for details.
+ */
+#define FrameSet(frame, x, y, width, height) ([WCViewTool changeFrame:(frame) newX:(x) newY:(y) newWidth:(width) newHeight:(height)])
+
+/**
+ Change frame with new x, y, width or height.
+ For convenience, use macro FrameSet(frame, x, y, width, height) instead.
+ 
+ @param frame the frame
+ @param newX the new x to set. Set NAN to not change
+ @param newY the new y to set. Set NAN to not change
+ @param newWidth the new width to set. Set NAN to not change
+ @param newHeight the new height to set. Set NAN to not change
+ @return the new frame
+ */
++ (CGRect)changeFrame:(CGRect)frame newX:(CGFloat)newX newY:(CGFloat)newY newWidth:(CGFloat)newWidth newHeight:(CGFloat)newHeight;
 
 #pragma mark > CGSize
 

@@ -114,4 +114,28 @@
     XCTAssertTrue(CGRectEqualToRect(centeredRect, CGRectMake(superRect.origin.x + (superRect.size.width - centeredRectSize.width) / 2.0, superRect.origin.y + (superRect.size.height - centeredRectSize.height) / 2.0, centeredRectSize.width, centeredRectSize.height)));
 }
 
+- (void)test_FrameSet {
+    CGSize size;
+    CGRect frame;
+    CGRect output;
+    
+    // Case 1
+    size = CGSizeMake(200, 200);
+    frame = CGRectMake(10, 10, 100, 100);
+    output = FrameSet(frame, NAN, NAN, size.width, size.height);
+    XCTAssertTrue(output.size.width == 200 && output.size.height == 200);
+    
+    // Case 2
+    size = CGSizeMake(200, 200);
+    frame = CGRectMake(10, 10, 100, 100);
+    output = FrameSet(frame, NAN, NAN, size.width, NAN);
+    XCTAssertTrue(output.size.width == 200 && output.size.height == 100);
+    
+    // Case 3
+    size = CGSizeMake(200, 200);
+    frame = CGRectMake(10, 10, 100, 100);
+    output = FrameSet(frame, 20, 30, NAN, NAN);
+    XCTAssertTrue(output.origin.x == 20 && output.origin.y == 30 && output.size.width == 100 && output.size.height == 100);
+}
+
 @end
