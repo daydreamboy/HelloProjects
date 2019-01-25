@@ -11,6 +11,7 @@
 #import "BlockTypesViewController.h"
 #import "CheckBlockObjectViewController.h"
 #import "GetBlockSignatureViewController.h"
+#import "WeakStrongDanceViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -36,12 +37,14 @@
         @"Block types (global/malloc/stack)",
         @"Check object if block",
         @"Get block signature",
+        @"Use weak-strong dance",
         @"call a test method",
     ];
     _classes = @[
         [BlockTypesViewController class],
         [CheckBlockObjectViewController class],
         [GetBlockSignatureViewController class],
+        [WeakStrongDanceViewController class],
         @"testMethod",
     ];
 }

@@ -18,8 +18,20 @@
 		4F3782861FC45314002BA02D /* CheckBlockObjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3782831FC45314002BA02D /* CheckBlockObjectViewController.m */; };
 		4F3782871FC45314002BA02D /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3782851FC45314002BA02D /* RootViewController.m */; };
 		4F37828B1FC458F6002BA02D /* WCBlockTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F37828A1FC458F6002BA02D /* WCBlockTool.m */; };
+		4F6F013621FA14F8008D669E /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F013521FA14F8008D669E /* Tests.m */; };
+		4F74C2B521FAAAC500A87393 /* WeakStrongDanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F74C2B421FAAAC500A87393 /* WeakStrongDanceViewController.m */; };
 		4F887DBB201EC1FE00A844BD /* Block1.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F887DBA201EC1FE00A844BD /* Block1.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4F6F013821FA14F8008D669E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F3782601FC44F12002BA02D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F3782671FC44F12002BA02D;
+			remoteInfo = HelloBlocks;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4F1A28B9201CB6F7009EEF1B /* GetBlockSignatureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetBlockSignatureViewController.h; sourceTree = "<group>"; };
@@ -43,11 +55,23 @@
 		4F3782851FC45314002BA02D /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F3782891FC458F6002BA02D /* WCBlockTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCBlockTool.h; sourceTree = "<group>"; };
 		4F37828A1FC458F6002BA02D /* WCBlockTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCBlockTool.m; sourceTree = "<group>"; };
+		4F6F013321FA14F8008D669E /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F6F013521FA14F8008D669E /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		4F6F013721FA14F8008D669E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F74C2B321FAAAC500A87393 /* WeakStrongDanceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WeakStrongDanceViewController.h; sourceTree = "<group>"; };
+		4F74C2B421FAAAC500A87393 /* WeakStrongDanceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeakStrongDanceViewController.m; sourceTree = "<group>"; };
 		4F887DBA201EC1FE00A844BD /* Block1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Block1.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		4F3782651FC44F12002BA02D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F6F013021FA14F8008D669E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -61,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				4F37826A1FC44F12002BA02D /* HelloBlocks */,
+				4F6F013421FA14F8008D669E /* Tests */,
 				4F3782691FC44F12002BA02D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -69,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				4F3782681FC44F12002BA02D /* HelloBlocks.app */,
+				4F6F013321FA14F8008D669E /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -99,6 +125,8 @@
 				4F3782831FC45314002BA02D /* CheckBlockObjectViewController.m */,
 				4F1A28B9201CB6F7009EEF1B /* GetBlockSignatureViewController.h */,
 				4F1A28BA201CB6F7009EEF1B /* GetBlockSignatureViewController.m */,
+				4F74C2B321FAAAC500A87393 /* WeakStrongDanceViewController.h */,
+				4F74C2B421FAAAC500A87393 /* WeakStrongDanceViewController.m */,
 				4F1A28BF201CC11C009EEF1B /* StackBlocks.h */,
 				4F1A28C0201CC11C009EEF1B /* StackBlocks.m */,
 				4F1A28C5201CC159009EEF1B /* GlobalAndMallocBlocks.h */,
@@ -115,6 +143,15 @@
 				4F37828A1FC458F6002BA02D /* WCBlockTool.m */,
 			);
 			path = WCBlockTool;
+			sourceTree = "<group>";
+		};
+		4F6F013421FA14F8008D669E /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4F6F013521FA14F8008D669E /* Tests.m */,
+				4F6F013721FA14F8008D669E /* Info.plist */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,6 +174,24 @@
 			productReference = 4F3782681FC44F12002BA02D /* HelloBlocks.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4F6F013221FA14F8008D669E /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F6F013C21FA14F8008D669E /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				4F6F012F21FA14F8008D669E /* Sources */,
+				4F6F013021FA14F8008D669E /* Frameworks */,
+				4F6F013121FA14F8008D669E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F6F013921FA14F8008D669E /* PBXTargetDependency */,
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = 4F6F013321FA14F8008D669E /* Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -149,6 +204,11 @@
 					4F3782671FC44F12002BA02D = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+					};
+					4F6F013221FA14F8008D669E = {
+						CreatedOnToolsVersion = 9.4.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 4F3782671FC44F12002BA02D;
 					};
 				};
 			};
@@ -166,6 +226,7 @@
 			projectRoot = "";
 			targets = (
 				4F3782671FC44F12002BA02D /* HelloBlocks */,
+				4F6F013221FA14F8008D669E /* Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -177,6 +238,13 @@
 			files = (
 				4F3782781FC44F12002BA02D /* LaunchScreen.storyboard in Resources */,
 				4F3782751FC44F12002BA02D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F6F013121FA14F8008D669E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,11 +264,28 @@
 				4F1A28C1201CC11C009EEF1B /* StackBlocks.m in Sources */,
 				4F37826D1FC44F12002BA02D /* AppDelegate.m in Sources */,
 				4F1A28BE201CB912009EEF1B /* BlockTypesViewController.m in Sources */,
+				4F74C2B521FAAAC500A87393 /* WeakStrongDanceViewController.m in Sources */,
 				4F3782871FC45314002BA02D /* RootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4F6F012F21FA14F8008D669E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F6F013621FA14F8008D669E /* Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4F6F013921FA14F8008D669E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F3782671FC44F12002BA02D /* HelloBlocks */;
+			targetProxy = 4F6F013821FA14F8008D669E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4F3782761FC44F12002BA02D /* LaunchScreen.storyboard */ = {
@@ -344,6 +429,42 @@
 			};
 			name = Release;
 		};
+		4F6F013A21FA14F8008D669E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloBlocks.app/HelloBlocks";
+			};
+			name = Debug;
+		};
+		4F6F013B21FA14F8008D669E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloBlocks.app/HelloBlocks";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -361,6 +482,15 @@
 			buildConfigurations = (
 				4F37827F1FC44F12002BA02D /* Debug */,
 				4F3782801FC44F12002BA02D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F6F013C21FA14F8008D669E /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F6F013A21FA14F8008D669E /* Debug */,
+				4F6F013B21FA14F8008D669E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
