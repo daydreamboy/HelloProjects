@@ -24,7 +24,28 @@ NS_ASSUME_NONNULL_BEGIN
  @see https://stackoverflow.com/questions/4349669/nsmutablearray-move-object-from-index-to-index
  @discussion The item move to the toIndex, and the original item will move to the next position
  */
-+ (nullable NSArray *)arrayWithArray:(NSArray *)array moveItemAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
++ (nullable NSArray *)moveObjectWithArray:(NSArray *)array fromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
+
+/**
+ Get a shuffled array
+
+ @param array the original array
+ @return the shuffled array. If the original array is empty or has one element, will return the original array.
+ @discussion This method not use -[NSArray(GameplayKit) shuffledArray] because it needs import the GameplayKit frameworks
+             and it's only avaiable on iOS 10+.
+ @see https://stackoverflow.com/a/56656
+ */
++ (nullable NSArray *)shuffledArrayWithArray:(NSArray *)array;
+
+/**
+ Insert an array of objects at the index
+
+ @param array the original array
+ @param objects the objects to insert
+ @param index the index
+ @return the new array
+ */
++ (nullable NSArray *)insertObjectsWithArray:(NSArray *)array objects:(NSArray *)objects atIndex:(NSUInteger)index;
 
 #pragma mark - Subarray
 

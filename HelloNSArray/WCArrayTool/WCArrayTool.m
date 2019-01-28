@@ -7,12 +7,18 @@
 //
 
 #import "WCArrayTool.h"
+#import <UIKit/UIKit.h>
+
+// >= `version`
+#ifndef SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+#endif
 
 @implementation WCArrayTool
 
 #pragma mark - Modification
 
-+ (nullable NSArray *)arrayWithArray:(NSArray *)array moveItemAtIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
++ (nullable NSArray *)moveObjectWithArray:(NSArray *)array fromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
     if (![array isKindOfClass:[NSArray class]]) {
         return array;
     }
@@ -26,6 +32,53 @@
     
     return [NSArray arrayWithArray:arrayM];
 }
+
++ (nullable NSArray *)shuffledArrayWithArray:(NSArray *)array {
+    if (![array isKindOfClass:[NSArray class]]) {
+        return array;
+    }
+    
+    if (array.count <= 1) {
+        return array;
+    }
+    
+    NSMutableArray *arrayM = [NSMutableArray arrayWithArray:array];
+    
+    NSUInteger count = arrayM.count;
+    for (NSUInteger i = 0; i < count - 1; ++i) {
+        NSInteger remainingCount = count - i;
+        NSInteger exchangeIndex = i + arc4random_uniform((u_int32_t )remainingCount);
+        [arrayM exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
+    }
+    
+    return arrayM;
+}
+
++ (nullable NSArray *)insertObjectsWithArray:(NSArray *)array objects:(NSArray *)objects atIndex:(NSUInteger)index {
+    if (![array isKindOfClass:[NSArray class]] || ![objects isKindOfClass:[NSArray class]]) {
+        return array;
+    }
+    
+    if (index > array.count) {
+        return array;
+    }
+    
+    if (objects.count == 0) {
+        return array;
+    }
+    
+    
+    NSMutableArray *arrayM = [NSMutableArray arrayWithCapacity:array.count + objects.count];
+    NSArray *frontItems = [array subarrayWithRange:NSMakeRange(0, index)];
+    NSArray *rearItems = [array subarrayWithRange:NSMakeRange(index, array.count - index)];
+    [arrayM addObjectsFromArray:frontItems];
+    [arrayM addObjectsFromArray:objects];
+    [arrayM addObjectsFromArray:rearItems];
+    
+    return arrayM;
+}
+
+#pragma mark - Subarray
 
 + (nullable NSArray *)subarrayWithArray:(NSArray *)array range:(NSRange)range {
     if (![array isKindOfClass:[NSArray class]]) {
