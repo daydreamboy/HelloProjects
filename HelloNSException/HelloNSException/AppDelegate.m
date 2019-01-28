@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 
 #import "RootViewController.h"
+#import "WCUncaughtExceptionTool.h"
+#import "UncaughtExceptionHandler.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) RootViewController *rootViewController;
@@ -18,6 +20,8 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    //    [WCUncaughtExceptionTool installUncaughtExceptionHandler];
+    InstallUncaughtExceptionHandler();
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     self.rootViewController = [RootViewController new];

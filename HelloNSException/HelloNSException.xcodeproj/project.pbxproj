@@ -8,7 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		4F58CEFA217717DF00D0FD17 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F58CEF5217717DF00D0FD17 /* RootViewController.m */; };
-		4F58CEFE2177189900D0FD17 /* MakeACrashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F58CEFD2177189900D0FD17 /* MakeACrashViewController.m */; };
+		4F5B08EA21FEABEF00EE7C2E /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B08E221FEABEF00EE7C2E /* BaseTableViewController.m */; };
+		4F5B08EB21FEABEF00EE7C2E /* DisplayTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B08E521FEABEF00EE7C2E /* DisplayTextViewController.m */; };
+		4F5B08EC21FEABEF00EE7C2E /* UseExceptionHanderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B08E621FEABEF00EE7C2E /* UseExceptionHanderViewController.m */; };
+		4F5B08ED21FEABEF00EE7C2E /* UseSignalHandlerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B08E921FEABEF00EE7C2E /* UseSignalHandlerViewController.m */; };
+		4F5B08F521FEAC4100EE7C2E /* UncaughtExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B08EF21FEAC4100EE7C2E /* UncaughtExceptionHandler.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4F5B08F621FEAC4100EE7C2E /* WCUncaughtExceptionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B08F321FEAC4100EE7C2E /* WCUncaughtExceptionTool.m */; };
+		4F5B08F721FEAC4100EE7C2E /* WCCrashCaseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B08F421FEAC4100EE7C2E /* WCCrashCaseTool.m */; };
+		4F5B08FB21FEADAF00EE7C2E /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5B08F921FEADAF00EE7C2E /* Reveal.framework */; };
+		4F5B08FD21FEAE0300EE7C2E /* WCDebugKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5B08F821FEADAF00EE7C2E /* WCDebugKit.framework */; };
+		4F5B08FF21FEAE2800EE7C2E /* WCDebugKit.framework in Copy Files (1 item) */ = {isa = PBXBuildFile; fileRef = 4F5B08F821FEADAF00EE7C2E /* WCDebugKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4F5B090321FEB2D500EE7C2E /* WCExceptionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B090221FEB2D500EE7C2E /* WCExceptionTool.m */; };
 		4F746927214E42B30079F654 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F746926214E42B30079F654 /* AppDelegate.m */; };
 		4F74692F214E42B50079F654 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F74692E214E42B50079F654 /* Assets.xcassets */; };
 		4F746932214E42B50079F654 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F746930214E42B50079F654 /* LaunchScreen.storyboard */; };
@@ -27,11 +37,41 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		4F5B08FE21FEAE1800EE7C2E /* Copy Files (1 item) */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4F5B08FF21FEAE2800EE7C2E /* WCDebugKit.framework in Copy Files (1 item) */,
+			);
+			name = "Copy Files (1 item)";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		4F58CEF5217717DF00D0FD17 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F58CEF6217717DF00D0FD17 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		4F58CEFC2177189900D0FD17 /* MakeACrashViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MakeACrashViewController.h; sourceTree = "<group>"; };
-		4F58CEFD2177189900D0FD17 /* MakeACrashViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MakeACrashViewController.m; sourceTree = "<group>"; };
+		4F5B08E221FEABEF00EE7C2E /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
+		4F5B08E321FEABEF00EE7C2E /* UseSignalHandlerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseSignalHandlerViewController.h; sourceTree = "<group>"; };
+		4F5B08E421FEABEF00EE7C2E /* DisplayTextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DisplayTextViewController.h; sourceTree = "<group>"; };
+		4F5B08E521FEABEF00EE7C2E /* DisplayTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DisplayTextViewController.m; sourceTree = "<group>"; };
+		4F5B08E621FEABEF00EE7C2E /* UseExceptionHanderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseExceptionHanderViewController.m; sourceTree = "<group>"; };
+		4F5B08E721FEABEF00EE7C2E /* BaseTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseTableViewController.h; sourceTree = "<group>"; };
+		4F5B08E821FEABEF00EE7C2E /* UseExceptionHanderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseExceptionHanderViewController.h; sourceTree = "<group>"; };
+		4F5B08E921FEABEF00EE7C2E /* UseSignalHandlerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UseSignalHandlerViewController.m; sourceTree = "<group>"; };
+		4F5B08EE21FEAC4100EE7C2E /* UncaughtExceptionHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UncaughtExceptionHandler.h; sourceTree = "<group>"; };
+		4F5B08EF21FEAC4100EE7C2E /* UncaughtExceptionHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UncaughtExceptionHandler.m; sourceTree = "<group>"; };
+		4F5B08F121FEAC4100EE7C2E /* WCCrashCaseTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCCrashCaseTool.h; sourceTree = "<group>"; };
+		4F5B08F221FEAC4100EE7C2E /* WCUncaughtExceptionTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCUncaughtExceptionTool.h; sourceTree = "<group>"; };
+		4F5B08F321FEAC4100EE7C2E /* WCUncaughtExceptionTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCUncaughtExceptionTool.m; sourceTree = "<group>"; };
+		4F5B08F421FEAC4100EE7C2E /* WCCrashCaseTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCCrashCaseTool.m; sourceTree = "<group>"; };
+		4F5B08F821FEADAF00EE7C2E /* WCDebugKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WCDebugKit.framework; path = HelloNSException/WCDebugKit.framework; sourceTree = "<group>"; };
+		4F5B08F921FEADAF00EE7C2E /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reveal.framework; path = HelloNSException/Reveal.framework; sourceTree = "<group>"; };
+		4F5B090121FEB2D500EE7C2E /* WCExceptionTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCExceptionTool.h; sourceTree = "<group>"; };
+		4F5B090221FEB2D500EE7C2E /* WCExceptionTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCExceptionTool.m; sourceTree = "<group>"; };
 		4F746922214E42B30079F654 /* HelloNSException.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSException.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F746925214E42B30079F654 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F746926214E42B30079F654 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -50,6 +90,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F5B08FD21FEAE0300EE7C2E /* WCDebugKit.framework in Frameworks */,
+				4F5B08FB21FEADAF00EE7C2E /* Reveal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,18 +108,55 @@
 		4F58CEF7217717DF00D0FD17 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F58CEFC2177189900D0FD17 /* MakeACrashViewController.h */,
-				4F58CEFD2177189900D0FD17 /* MakeACrashViewController.m */,
+				4F5B08E721FEABEF00EE7C2E /* BaseTableViewController.h */,
+				4F5B08E221FEABEF00EE7C2E /* BaseTableViewController.m */,
+				4F5B08E421FEABEF00EE7C2E /* DisplayTextViewController.h */,
+				4F5B08E521FEABEF00EE7C2E /* DisplayTextViewController.m */,
+				4F5B08E821FEABEF00EE7C2E /* UseExceptionHanderViewController.h */,
+				4F5B08E621FEABEF00EE7C2E /* UseExceptionHanderViewController.m */,
+				4F5B08E321FEABEF00EE7C2E /* UseSignalHandlerViewController.h */,
+				4F5B08E921FEABEF00EE7C2E /* UseSignalHandlerViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F5B08F021FEAC4100EE7C2E /* WCUncaughtExceptionTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F5B08F121FEAC4100EE7C2E /* WCCrashCaseTool.h */,
+				4F5B08F221FEAC4100EE7C2E /* WCUncaughtExceptionTool.h */,
+				4F5B08F321FEAC4100EE7C2E /* WCUncaughtExceptionTool.m */,
+				4F5B08F421FEAC4100EE7C2E /* WCCrashCaseTool.m */,
+			);
+			path = WCUncaughtExceptionTool;
+			sourceTree = "<group>";
+		};
+		4F5B08FC21FEAE0300EE7C2E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4F5B090021FEB2BD00EE7C2E /* WCExceptionTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F5B090121FEB2D500EE7C2E /* WCExceptionTool.h */,
+				4F5B090221FEB2D500EE7C2E /* WCExceptionTool.m */,
+			);
+			path = WCExceptionTool;
 			sourceTree = "<group>";
 		};
 		4F746919214E42B30079F654 = {
 			isa = PBXGroup;
 			children = (
+				4F5B090021FEB2BD00EE7C2E /* WCExceptionTool */,
+				4F5B08F921FEADAF00EE7C2E /* Reveal.framework */,
+				4F5B08F821FEADAF00EE7C2E /* WCDebugKit.framework */,
 				4F746924214E42B30079F654 /* HelloNSException */,
 				4F746940214E42C50079F654 /* Tests */,
 				4F746923214E42B30079F654 /* Products */,
+				4F5B08FC21FEAE0300EE7C2E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -93,6 +172,9 @@
 		4F746924214E42B30079F654 /* HelloNSException */ = {
 			isa = PBXGroup;
 			children = (
+				4F5B08EE21FEAC4100EE7C2E /* UncaughtExceptionHandler.h */,
+				4F5B08EF21FEAC4100EE7C2E /* UncaughtExceptionHandler.m */,
+				4F5B08F021FEAC4100EE7C2E /* WCUncaughtExceptionTool */,
 				4F58CEF7217717DF00D0FD17 /* AppTestDemos */,
 				4F746925214E42B30079F654 /* AppDelegate.h */,
 				4F746926214E42B30079F654 /* AppDelegate.m */,
@@ -126,6 +208,7 @@
 				4F74691E214E42B30079F654 /* Sources */,
 				4F74691F214E42B30079F654 /* Frameworks */,
 				4F746920214E42B30079F654 /* Resources */,
+				4F5B08FE21FEAE1800EE7C2E /* Copy Files (1 item) */,
 			);
 			buildRules = (
 			);
@@ -215,10 +298,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F58CEFE2177189900D0FD17 /* MakeACrashViewController.m in Sources */,
 				4F746935214E42B50079F654 /* main.m in Sources */,
+				4F5B08F621FEAC4100EE7C2E /* WCUncaughtExceptionTool.m in Sources */,
+				4F5B08F521FEAC4100EE7C2E /* UncaughtExceptionHandler.m in Sources */,
+				4F5B08EB21FEABEF00EE7C2E /* DisplayTextViewController.m in Sources */,
+				4F5B08EC21FEABEF00EE7C2E /* UseExceptionHanderViewController.m in Sources */,
+				4F5B08F721FEAC4100EE7C2E /* WCCrashCaseTool.m in Sources */,
 				4F58CEFA217717DF00D0FD17 /* RootViewController.m in Sources */,
 				4F746927214E42B30079F654 /* AppDelegate.m in Sources */,
+				4F5B08ED21FEABEF00EE7C2E /* UseSignalHandlerViewController.m in Sources */,
+				4F5B090321FEB2D500EE7C2E /* WCExceptionTool.m in Sources */,
+				4F5B08EA21FEABEF00EE7C2E /* BaseTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,10 +459,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QVRKK2EEDF;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HelloNSException",
+				);
 				INFOPLIST_FILE = HelloNSException/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					Reveal,
+					"-lz",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloNSException;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -386,10 +486,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QVRKK2EEDF;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/HelloNSException",
+				);
 				INFOPLIST_FILE = HelloNSException/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-framework",
+					Reveal,
+					"-lz",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloNSException;
 				PRODUCT_NAME = "$(TARGET_NAME)";

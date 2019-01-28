@@ -6,9 +6,14 @@
 //
 //
 
-#import "RootViewController.h"
 
-#import "MakeACrashViewController.h"
+#import "RootViewController.h"
+#include <sys/signal.h>
+#import "WCUncaughtExceptionTool.h"
+#import "WCCrashCaseTool.h"
+#import "DisplayTextViewController.h"
+#import "UseExceptionHanderViewController.h"
+#import "UseSignalHandlerViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -28,16 +33,26 @@
 
 - (void)prepareForInit {
     self.title = @"AppTest";
-
+    
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"Make a crash",
-        @"call a test method",
-    ];
+                @"View Exception Log",
+                @"View Signal Log",
+                @"Check current exception handler",
+                @"Check current signal handler",
+                @"Use exception handler",
+                @"Use signal handler",
+                @"call a test method",
+                ];
     _classes = @[
-        [MakeACrashViewController class],
-        @"testMethod",
-    ];
+                 @"openExceptionLog",
+                 @"openSignalLog",
+                 @"checkCurrentExceptionHandler",
+                 @"checkCurrentSignalHandler",
+                 [UseExceptionHanderViewController class],
+                 [UseSignalHandlerViewController class],
+                 @"testMethod",
+                 ];
 }
 
 #pragma mark -
@@ -54,14 +69,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *sCellIdentifier = @"RootViewController_sCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
-
+    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-
+    
     cell.textLabel.text = _titles[indexPath.row];
-
+    
     return cell;
 }
 
@@ -89,10 +104,70 @@
     }
 }
 
+- (void)openExceptionLog {
+    DisplayTextViewController *vc = [[DisplayTextViewController alloc] initWithFilePath:ExceptionLogFilePath];
+    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)openSignalLog {
+    DisplayTextViewController *vc = [[DisplayTextViewController alloc] initWithFilePath:SignalLogFilePath];
+    
+    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)checkCurrentExceptionHandler {
+    NSString *message = @"";
+    NSUncaughtExceptionHandler *exceptionHandler = NSGetUncaughtExceptionHandler();
+    
+    if (exceptionHandler) {
+        message = [NSString stringWithFormat:@"current exception handler is: %p", exceptionHandler];
+    }
+    else {
+        message = @"not set exception handler";
+    }
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:message delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alert show];
+#pragma GCC diagnostic pop
+}
+
+- (void)checkCurrentSignalHandler {
+    NSString *message = @"";
+    
+    // https://stackoverflow.com/questions/28529257/how-to-get-current-signal-handler-on-ios
+    signal_handler_t current_handler = signal(SIGABRT, SIG_IGN);
+    if (current_handler) {
+        message = [NSString stringWithFormat:@"current signal handler is: %p", current_handler];
+    }
+    else {
+        message = @"not set signal handler";
+    }
+    // Note: restore handler for SIGABRT
+    signal(SIGABRT, current_handler);
+    
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:message delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [alert show];
+#pragma GCC diagnostic pop
+}
+
 #pragma mark - Test Methods
 
 - (void)testMethod {
     NSLog(@"test something");
+    //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Unhandled exception", nil)
+    //                                                    message:@"test"
+    //                                                   delegate:nil
+    //                                          cancelButtonTitle:NSLocalizedString(@"Quit", nil)
+    //                                          otherButtonTitles:NSLocalizedString(@"Continue", nil), nil];
+    //    [alert show];
+    
+    [WCCrashCaseTool makeCrashWithNilParameter];
 }
 
 @end
