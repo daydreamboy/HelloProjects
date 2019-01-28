@@ -64,7 +64,7 @@
 
 @interface WCHorizontalPageBrowserViewController () <WCHorizontalPageBrowserViewDataSource, WCHorizontalPageBrowserViewDelegate, UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) WCHorizontalPageBrowserView *pageBrowserView;
-@property (nonatomic, strong) NSArray<WCHorizontalPageBrowserItem *> *pageData;
+@property (nonatomic, strong) NSMutableArray<WCHorizontalPageBrowserItem *> *pageList;
 @property (nonatomic, strong) id <SDWebImageOperation> imageDownload;
 @property (nonatomic, strong) AFURLSessionManager *sessionManager;
 @property (nonatomic, strong) NSURL *cacheFolderURL;
@@ -78,6 +78,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        _pageList = [NSMutableArray array];
         [self setupCacheFolder];
     }
     return self;
@@ -88,16 +89,12 @@
     
     NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
     self.sessionManager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-    
-    if ([self.dataSource respondsToSelector:@selector(itemsInHorizontalPageBrowserViewController:)]) {
-        self.pageData = [self.dataSource itemsInHorizontalPageBrowserViewController:self];
-    }
-    
     [self.view addSubview:self.pageBrowserView];
+    [self reloadPageData];
     
     if (self.initialPageIndex) {
         NSInteger index = [self.initialPageIndex integerValue];
-        if (0 <= index && index < self.pageData.count) {
+        if (0 <= index && index < self.pageList.count) {
             [self.pageBrowserView setCurrentPage:index animated:NO];
         }
     }
@@ -109,9 +106,9 @@
     [super viewDidAppear:animated];
     
     NSInteger index = self.pageBrowserView.indexOfCurrentPage;
-    if (0 <= index && index < self.pageData.count) {
+    if (0 <= index && index < self.pageList.count) {
         WCBaseHorizontalPage *page = [self.pageBrowserView pageAtIndex:index];
-        WCHorizontalPageBrowserItem *item = self.pageData[index];
+        WCHorizontalPageBrowserItem *item = self.pageList[index];
         if ([page isKindOfClass:[WCVideoPlayerPage class]] && item.autoPlayVideo) {
             WCVideoPlayerPage *videoPlayerPage = (WCVideoPlayerPage *)page;
             if (item.autoPlayVideo) {
@@ -124,6 +121,11 @@
                     [videoPlayerPage playIfReady];
                 }
             }
+        }
+        
+        if (self.pageDidDisplayBlock) {
+            WCHorizontalPageBrowserItem *item = self.pageList[index];;
+            self.pageDidDisplayBlock(item, index);
         }
     }
 }
@@ -149,18 +151,10 @@
 
 #pragma mark - Public Methods
 
-- (instancetype)initWithPageData:(NSArray<WCHorizontalPageBrowserItem *> *)pageData {
-    self = [super init];
-    if (self) {
-        _pageData = pageData;
-    }
-    return self;
-}
-
 - (void)setCurrentPageAtIndex:(NSInteger)index animated:(BOOL)animated {
-    // Note: viewDidLoad not called, pageData is not ready, so just keep the index as initialPageIndex
+    // Note: viewDidLoad not called, pageList is not ready, so just keep the index as initialPageIndex
     if (self.isViewLoaded) {
-        if (0 <= index && index < self.pageData.count) {
+        if (0 <= index && index < self.pageList.count) {
             [self.pageBrowserView setCurrentPage:index animated:animated];
         }
     }
@@ -178,6 +172,16 @@
     else {
        [viewController presentViewController:self animated:NO completion:nil];
     }
+}
+
+- (void)reloadPageData {
+    if ([self.dataSource respondsToSelector:@selector(itemsInHorizontalPageBrowserViewController:)]) {
+        NSArray<WCHorizontalPageBrowserItem *> *items = [self.dataSource itemsInHorizontalPageBrowserViewController:self];
+        [self.pageList removeAllObjects];
+        [self.pageList addObjectsFromArray:items];
+    }
+    
+    [self.pageBrowserView reloadData];
 }
 
 #pragma mark - Getters
@@ -213,12 +217,12 @@
 #pragma mark - WCHorizontalPageBrowserViewDataSource
 
 - (NSInteger)numberOfPagesHorizontalPageBrowserView:(WCHorizontalPageBrowserView *)horizontalPageBrowserView {
-    return self.pageData.count;
+    return self.pageList.count;
 }
 
 - (WCBaseHorizontalPage *)horizontalPageBrowserView:(WCHorizontalPageBrowserView *)horizontalPageBrowserView pageForItemAtIndex:(NSInteger)index {
     WCBaseHorizontalPage *page;
-    WCHorizontalPageBrowserItem *item = self.pageData[index];
+    WCHorizontalPageBrowserItem *item = self.pageList[index];
     
     if (item.type == WCHorizontalPageBrowserItemLocalImage) {
         page = [horizontalPageBrowserView dequeueReusablePageWithReuseIdentifier:NSStringFromClass([WCZoomableImagePage class]) forIndex:index];
@@ -257,7 +261,7 @@
         NSURLRequest *request = [NSURLRequest requestWithURL:item.URL];
         NSURLSessionDownloadTask *downloadTask = [_sessionManager downloadTaskWithRequest:request progress:^(NSProgress * _Nonnull downloadProgress) {
             // Note: dispatch to main thread
-            NSLog(@"progress: %f", downloadProgress.fractionCompleted);
+//            NSLog(@"progress: %f", downloadProgress.fractionCompleted);
         } destination:^NSURL * _Nonnull(NSURL * _Nonnull targetPath, NSURLResponse * _Nonnull response) {
             return [self.cacheFolderURL URLByAppendingPathComponent:[WCStringTool MD5WithString:item.URL.absoluteString]];
         } completionHandler:^(NSURLResponse * _Nonnull response, NSURL * _Nullable filePath, NSError * _Nullable error) {
@@ -305,7 +309,7 @@
 - (void)horizontalPageBrowserView:(WCHorizontalPageBrowserView *)horizontalPageBrowserView didScrollToPage:(WCBaseHorizontalPage *)page forItemAtIndex:(NSInteger)index {
     
     if ([page isKindOfClass:[WCVideoPlayerPage class]]) {
-        WCHorizontalPageBrowserItem *item = self.pageData[index];
+        WCHorizontalPageBrowserItem *item = self.pageList[index];
         
         WCVideoPlayerPage *videoPlayerPage = (WCVideoPlayerPage *)page;
         if (videoPlayerPage.readyToPlay && item.autoPlayVideo) {
@@ -313,6 +317,15 @@
                 [videoPlayerPage play];
             }
         }
+    }
+    
+    if (self.pageDidDisplayBlock) {
+        WCHorizontalPageBrowserItem *item = nil;
+        if (0 <= index && index < self.pageList.count) {
+            item = self.pageList[index];
+        }
+        
+        self.pageDidDisplayBlock(item, index);
     }
 }
 

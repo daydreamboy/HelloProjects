@@ -13,6 +13,7 @@
 		4F48FC3220F62EC200DB26EE /* NestedCollectionViewCrossDirectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F48FC3120F62EC200DB26EE /* NestedCollectionViewCrossDirectionViewController.m */; };
 		4F48FC3620F631A300DB26EE /* WCCrossDirectionEmotionPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F48FC3520F631A300DB26EE /* WCCrossDirectionEmotionPickerView.m */; };
 		4F48FC3920F634CB00DB26EE /* WCEmotionVerticalLayoutPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F48FC3820F634CB00DB26EE /* WCEmotionVerticalLayoutPage.m */; };
+		4F5B090721FF07E700EE7C2E /* WCArrayTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B090621FF07E700EE7C2E /* WCArrayTool.m */; };
 		4F5F8F9920ECA160002FFC03 /* WCVideoPlayerPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F8F9820ECA160002FFC03 /* WCVideoPlayerPage.m */; };
 		4F65BFA020F87D4F00CE86EB /* WCEmotionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F65BF9F20F87D4F00CE86EB /* WCEmotionHeaderView.m */; };
 		4F65BFA320F87D6B00CE86EB /* WCEmotionFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F65BFA220F87D6B00CE86EB /* WCEmotionFooterView.m */; };
@@ -79,6 +80,8 @@
 		4F48FC3520F631A300DB26EE /* WCCrossDirectionEmotionPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCCrossDirectionEmotionPickerView.m; sourceTree = "<group>"; };
 		4F48FC3720F634CB00DB26EE /* WCEmotionVerticalLayoutPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCEmotionVerticalLayoutPage.h; sourceTree = "<group>"; };
 		4F48FC3820F634CB00DB26EE /* WCEmotionVerticalLayoutPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCEmotionVerticalLayoutPage.m; sourceTree = "<group>"; };
+		4F5B090521FF07E700EE7C2E /* WCArrayTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCArrayTool.h; sourceTree = "<group>"; };
+		4F5B090621FF07E700EE7C2E /* WCArrayTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCArrayTool.m; sourceTree = "<group>"; };
 		4F5F8F9720ECA160002FFC03 /* WCVideoPlayerPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCVideoPlayerPage.h; sourceTree = "<group>"; };
 		4F5F8F9820ECA160002FFC03 /* WCVideoPlayerPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCVideoPlayerPage.m; sourceTree = "<group>"; };
 		4F65BF9E20F87D4F00CE86EB /* WCEmotionHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCEmotionHeaderView.h; sourceTree = "<group>"; };
@@ -216,6 +219,15 @@
 			path = WCCrossDirectionEmotionPickerView;
 			sourceTree = "<group>";
 		};
+		4F5B090421FF07B900EE7C2E /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F5B090521FF07E700EE7C2E /* WCArrayTool.h */,
+				4F5B090621FF07E700EE7C2E /* WCArrayTool.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		4F748FDA20F6072C001CF507 /* Header&Footer */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,13 +326,14 @@
 		4FB1D4B120CC0D5700DBA776 /* HelloUICollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				4F82DF6020E68D6E007035FC /* Resources */,
+				4F5B090421FF07B900EE7C2E /* Tools */,
 				4FB1D4C820CC0D7F00DBA776 /* AppTestDemos */,
 				4FB1D4B220CC0D5700DBA776 /* AppDelegate.h */,
 				4FB1D4B320CC0D5700DBA776 /* AppDelegate.m */,
 				4FB1D4CC20CC0D8400DBA776 /* RootViewController.h */,
 				4FB1D4CD20CC0D8400DBA776 /* RootViewController.m */,
 				4FB1D4BB20CC0D5900DBA776 /* Assets.xcassets */,
+				4F82DF6020E68D6E007035FC /* Resources */,
 				4FB1D4BD20CC0D5900DBA776 /* LaunchScreen.storyboard */,
 				4FB1D4C020CC0D5900DBA776 /* Info.plist */,
 				4FB1D4C120CC0D5900DBA776 /* main.m */,
@@ -540,6 +553,7 @@
 				4FB1D4D720CC2CBD00DBA776 /* MyCustomCollectionViewCell.m in Sources */,
 				4F65BFA320F87D6B00CE86EB /* WCEmotionFooterView.m in Sources */,
 				4F83D3BC20CECAB800F2FE80 /* DifferentSizeCellViewController.m in Sources */,
+				4F5B090721FF07E700EE7C2E /* WCArrayTool.m in Sources */,
 				4F748FE020F6076E001CF507 /* SupplementaryViewFooter.m in Sources */,
 				4FAA229721BE45DE001F97B6 /* CollectionViewFlowLayoutDraggable.m in Sources */,
 				4FB8A3EE20CF68B500300954 /* CollectionViewFlowLayoutLeftAligned.m in Sources */,

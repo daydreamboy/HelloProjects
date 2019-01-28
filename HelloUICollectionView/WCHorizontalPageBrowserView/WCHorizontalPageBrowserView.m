@@ -228,7 +228,7 @@ typedef NS_ENUM(NSUInteger, WCHorizontalPageBrowserViewScrollDirection) {
     CGFloat pageWidth = CGRectGetWidth(self.collectionView.frame);
     self.indexOfCurrentPage = floor((self.collectionView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     
-    NSLog(@"scrollViewDidScroll: %ld", self.indexOfCurrentPage);
+//    NSLog(@"scrollViewDidScroll: %ld", self.indexOfCurrentPage);
     
     //[self updateLastContentOffsetWithScrollView:scrollView];
 }

@@ -9,6 +9,13 @@
 #import "UseWCHorizontalPageBrowserViewControllerViewController.h"
 #import "WCHorizontalPageBrowserViewController.h"
 #import <AFNetworking/AFNetworking.h>
+#import "WCArrayTool.h"
+
+#define weakify(object) \
+__weak __typeof__(object) object##_weak_ = object;
+
+#define strongify(object) \
+__typeof__(object) object = object##_weak_;
 
 @interface UseWCHorizontalPageBrowserViewControllerViewController () <WCHorizontalPageBrowserViewControllerDataSource>
 @property (nonatomic, strong) WCHorizontalPageBrowserViewController *pageBrowserViewController;
@@ -47,12 +54,39 @@
     // remote videos
     item = [WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://card-data.oss-cn-hangzhou.aliyuncs.com/demo.mp4"] type:WCHorizontalPageBrowserItemRemoteVideo];
     [_items addObject:item];
-    
+
     item = [WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://static-tb.dingtalk.com/ddmedia/iAEEAqNtcDQDBgQABQAG2gAjhAGkC7qKCAKqhUvSE__W2c1oUAPPAAABZV9W4qYEzgAB_98HzgAHNDcIAA.mp4"] type:WCHorizontalPageBrowserItemRemoteVideo];
     //item.autoPlayVideo = NO;
     [_items addObject:item];
     
     [self.view addSubview:self.imageViewToOpen];
+    
+    weakify(self);
+    _pageBrowserViewController.pageDidDisplayBlock = ^(WCHorizontalPageBrowserItem * _Nonnull item, NSInteger index) {
+        strongify(self);
+        if (index == 0) {
+            NSLog(@"the first page did show");
+            NSArray *newItems = [self createItemsRandomly];
+            for (NSInteger i = 0; i < newItems.count; i++) {
+                [self.items insertObject:newItems[i] atIndex:0];
+            }
+            NSInteger currentPageIndex = [self.items indexOfObject:item];
+            [self.pageBrowserViewController reloadPageData];
+            [self.pageBrowserViewController setCurrentPageAtIndex:currentPageIndex animated:NO];
+        }
+        else if (index == self.items.count - 1) {
+            NSLog(@"the last page did show");
+            NSArray *newItems = [self createItemsRandomly];
+            [self.items addObjectsFromArray:newItems];
+            NSInteger currentPageIndex = [self.items indexOfObject:item];
+            
+            [self.pageBrowserViewController reloadPageData];
+            [self.pageBrowserViewController setCurrentPageAtIndex:currentPageIndex animated:NO];
+        }
+        else {
+            NSLog(@"the %@ page did show", @(index));
+        }
+    };
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -65,6 +99,37 @@
 //
 //        [self presentViewController:_pageBrowserViewController animated:YES completion:nil];
 //    }
+}
+
+#pragma mark -
+
+- (NSArray<WCHorizontalPageBrowserItem *> *)createItemsRandomly {
+    NSMutableArray *items = [NSMutableArray array];
+    
+    WCHorizontalPageBrowserItem *item;
+    
+    // local images
+    [items addObject:[WCHorizontalPageBrowserItem itemWithURL:[[NSBundle mainBundle] URLForResource:@"1" withExtension:@"jpg"] type:WCHorizontalPageBrowserItemLocalImage]];
+    [items addObject:[WCHorizontalPageBrowserItem itemWithURL:[[NSBundle mainBundle] URLForResource:@"2" withExtension:@"jpg"] type:WCHorizontalPageBrowserItemLocalImage]];
+    [items addObject:[WCHorizontalPageBrowserItem itemWithURL:[[NSBundle mainBundle] URLForResource:@"3" withExtension:@"jpg"] type:WCHorizontalPageBrowserItemLocalImage]];
+    
+    // remote images
+    [items addObject:[WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/242ce817-97a3-48fe-9acd-b1bf97930b01/09-posterization-opt.jpg"] type:WCHorizontalPageBrowserItemRemoteImage]];
+    [items addObject:[WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"http://kb4images.com/images/image/37185176-image.jpg"] type:WCHorizontalPageBrowserItemRemoteImage]];
+    [items addObject:[WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350"] type:WCHorizontalPageBrowserItemRemoteImage]];
+    [items addObject:[WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://user-images.githubusercontent.com/883386/35498466-1375b88a-04d7-11e8-8f8e-9d202da6a6b3.jpg"] type:WCHorizontalPageBrowserItemRemoteImage]];
+    
+    // remote videos
+    item = [WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://card-data.oss-cn-hangzhou.aliyuncs.com/demo.mp4"] type:WCHorizontalPageBrowserItemRemoteVideo];
+    [items addObject:item];
+
+    item = [WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://static-tb.dingtalk.com/ddmedia/iAEEAqNtcDQDBgQABQAG2gAjhAGkC7qKCAKqhUvSE__W2c1oUAPPAAABZV9W4qYEzgAB_98HzgAHNDcIAA.mp4"] type:WCHorizontalPageBrowserItemRemoteVideo];
+    item.autoPlayVideo = YES;
+    [items addObject:item];
+    
+    NSArray *newItems = [WCArrayTool shuffledArrayWithArray:items];
+    
+    return [newItems subarrayWithRange:NSMakeRange(0, 3)];;
 }
 
 #pragma mark - Getters
@@ -133,7 +198,7 @@
 }
 
 - (void)imageViewToOpenTapped:(id)sender {
-    [_pageBrowserViewController setCurrentPageAtIndex:7 animated:NO];
+    [_pageBrowserViewController setCurrentPageAtIndex:0 animated:NO];
     [_pageBrowserViewController.view addSubview:self.buttonDismiss];
     [_pageBrowserViewController.view addSubview:self.buttonScrollToPage];
     

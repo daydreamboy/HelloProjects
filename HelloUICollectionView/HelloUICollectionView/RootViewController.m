@@ -51,7 +51,7 @@
         @"Separators between cells (solution 2)",
         @"Cell highlight and selection",
         @"Supplementary view of section",
-        @"Horizontal page browser",
+        @"Horizontal page browser (WCHorizontalPageBrowserViewControllerViewController)",
         @"Use WCCrossDirectionEmotionPickerView",
         @"Many rounded image view in UICollectionView",
         @"Drag cell",

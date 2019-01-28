@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 typedef NS_ENUM(NSUInteger, WCHorizontalPageBrowserItemType) {
     WCHorizontalPageBrowserItemLocalImage,
     WCHorizontalPageBrowserItemRemoteImage,
@@ -35,9 +37,10 @@ typedef NS_ENUM(NSUInteger, WCHorizontalPageBrowserItemType) {
 @interface WCHorizontalPageBrowserViewController : UIViewController
 
 @property (nonatomic, weak) id<WCHorizontalPageBrowserViewControllerDataSource> dataSource;
+@property (nonatomic, copy) void (^pageDidDisplayBlock)(WCHorizontalPageBrowserItem *item, NSInteger index);
 
-- (instancetype)initWithPageData:(NSArray<WCHorizontalPageBrowserItem *> *)pageData;
 - (void)setCurrentPageAtIndex:(NSInteger)index animated:(BOOL)animated;
+- (void)reloadPageData;
 
 /**
  Show from a specific rect which of a UIImageView
@@ -49,3 +52,5 @@ typedef NS_ENUM(NSUInteger, WCHorizontalPageBrowserItemType) {
 - (void)showInRect:(CGRect)rect fromViewController:(UIViewController *)viewController animated:(BOOL)animated;
 
 @end
+
+NS_ASSUME_NONNULL_END
