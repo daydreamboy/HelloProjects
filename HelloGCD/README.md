@@ -1,11 +1,10 @@
-# HelloGCD
---
+# GCD (Grand  Central Dispatch)
+[TOC]
 
-TOC
-
-## Dispatch Queue
+## 1、Dispatch Queue
 
 ![App Queues](images/App Queues.png)
+
 
 
 ### 1. Queue的分类
@@ -23,6 +22,8 @@ TOC
 * Default priority (default-qos)
 * Low priority (utility-qos)
 * Background (background-qos)
+
+
 
 ### 2. 创建私有队列
 
@@ -56,6 +57,8 @@ dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0)
 dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0)
 ```
 
+
+
 ### 4. 添加上下文数据到队列
 
 （1）使用dispatch\_set\_context和dispatch\_get\_context
@@ -73,6 +76,8 @@ dispatch_get_specific
 dispatch_queue_get_specific
 ```
 
+
+
 ### 5. 获取当前队列
 
 （1）使用dispatch\_get\_current\_queue()获取对象比较
@@ -86,6 +91,8 @@ dispatch_async(queue, ^{
     NSLog(@"Will crash here: %@", dispatch_get_current_queue());
 });
 ```
+
+
 
 （2）使用[NSOperationQueue currentQueue].underlyingQueue获取对象比较[^1]
 
@@ -111,6 +118,8 @@ dispatch_async(queue, ^{
 });
 ```
 
+
+
 （3）获取queue的label进行比较[^2]
 
 `dispatch_queue_get_label`带一个参数queue，取出该queue的label。如果传入常量DISPATCH\_CURRENT\_QUEUE\_LABEL，则取出当前queue的label。
@@ -132,6 +141,8 @@ dispatch_async(queue1, ^{
 
 和上面的两种方法不一样，不是直接取出queue对象，而是取出queue的label。通过比较label，来判断block中是否在特定的queue中执行。缺点是，queue的label并不是唯一标识，允许存在重复的情况。
 
+
+
 （4）获取queue的context data进行比较
 
 queue可以设置context data，在block中获取context data，达到判断是否是当前queue的目的。
@@ -152,17 +163,23 @@ dispatch\_queue\_set\_specific可以设置多个key-value数据。context data�
 >
 设置context data的另一种方式，dispatch\_set\_context和dispatch\_get\_context，支持对所有dispatch_object设置，dispatch_queue是dispatch_object的一种。缺点：1. 不能取当前queue的context data，必须指定queue参数。2. 不支持key-value形式，只能设置一个context data。
 
+
+
 ### 5\. Add task to a queue (AddTaskToQueueViewController)
 
 * 同步/异步：`dispatch_sync` or `dispatch_async`
 * 回调是block/function：`dispatch_async` or `dispatch_async_f`
 * Dead Lock示例
 
+
+
 ### 6\. Barrier block
 
 * 使用`dispatch_barrier_async`提交barrier block到concurrent queue（created by dispatch_queue_create）。
 * barrier block执行前会等之前的任务执行完，barrier block执行过程中会阻塞后面的任务，当barrier block执行结束后才执行后面的任务
 * `dispatch_barrier_async`提交barrier block到serial queue或者global concurrent queue，则退化到`dispatch_async` (from `dispatch_barrier_async` apple doc)
+
+
 
 ### 7\. Add completion block to a queue
 
@@ -175,6 +192,8 @@ dispatch\_queue\_set\_specific可以设置多个key-value数据。context data�
         });
     });
 ```
+
+
 
 ### 8\. Concurrent loop using `dispatch_apply`
 
@@ -211,15 +230,20 @@ dispatch\_queue\_set\_specific可以设置多个key-value数据。context data�
 
 * use `DISPATCH_QUEUE_SERIAL_INACTIVE` or `DISPATCH_QUEUE_CONCURRENT_INACTIVE`
 
-## Dispatch Source
+
+
+## 2、Dispatch Source
 
 see HelloGCD project
 
 
-## GCD Issues
+
+## 3、GCD Issues
+
 
 
 References
 --
+
 [^1]: https://stackoverflow.com/a/29708852
 [^2]: https://stackoverflow.com/a/38271884
