@@ -52,7 +52,7 @@ __typeof__(object) object = object##_weak_;
     [_items addObject:[WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://user-images.githubusercontent.com/883386/35498466-1375b88a-04d7-11e8-8f8e-9d202da6a6b3.jpg"] type:WCHorizontalPageBrowserItemRemoteImage]];
     
     // remote videos
-    item = [WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://card-data.oss-cn-hangzhou.aliyuncs.com/demo.mp4"] type:WCHorizontalPageBrowserItemRemoteVideo];
+    item = [WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/daydreamboy/NetFiles/master/demo.mp4"] type:WCHorizontalPageBrowserItemRemoteVideo];
     [_items addObject:item];
 
     item = [WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://static-tb.dingtalk.com/ddmedia/iAEEAqNtcDQDBgQABQAG2gAjhAGkC7qKCAKqhUvSE__W2c1oUAPPAAABZV9W4qYEzgAB_98HzgAHNDcIAA.mp4"] type:WCHorizontalPageBrowserItemRemoteVideo];
@@ -120,7 +120,7 @@ __typeof__(object) object = object##_weak_;
     [items addObject:[WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://user-images.githubusercontent.com/883386/35498466-1375b88a-04d7-11e8-8f8e-9d202da6a6b3.jpg"] type:WCHorizontalPageBrowserItemRemoteImage]];
     
     // remote videos
-    item = [WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://card-data.oss-cn-hangzhou.aliyuncs.com/demo.mp4"] type:WCHorizontalPageBrowserItemRemoteVideo];
+    item = [WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/daydreamboy/NetFiles/master/demo.mp4"] type:WCHorizontalPageBrowserItemRemoteVideo];
     [items addObject:item];
 
     item = [WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://static-tb.dingtalk.com/ddmedia/iAEEAqNtcDQDBgQABQAG2gAjhAGkC7qKCAKqhUvSE__W2c1oUAPPAAABZV9W4qYEzgAB_98HzgAHNDcIAA.mp4"] type:WCHorizontalPageBrowserItemRemoteVideo];
@@ -198,7 +198,7 @@ __typeof__(object) object = object##_weak_;
 }
 
 - (void)imageViewToOpenTapped:(id)sender {
-    [_pageBrowserViewController setCurrentPageAtIndex:0 animated:NO];
+    [_pageBrowserViewController setCurrentPageAtIndex:2 animated:NO];
     [_pageBrowserViewController.view addSubview:self.buttonDismiss];
     [_pageBrowserViewController.view addSubview:self.buttonScrollToPage];
     
