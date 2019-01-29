@@ -27,6 +27,7 @@
 		2B63BF37200FA22600A5D8D2 /* FadeInCellRowByRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63BF2C200FA22600A5D8D2 /* FadeInCellRowByRowViewController.m */; };
 		2B63BF38200FA22600A5D8D2 /* GroupedTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63BF30200FA22600A5D8D2 /* GroupedTableViewViewController.m */; };
 		2B63BF39200FA22600A5D8D2 /* PlainTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63BF31200FA22600A5D8D2 /* PlainTableViewViewController.m */; };
+		4F441A292200373200E51A42 /* AnimationInCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F441A282200373200E51A42 /* AnimationInCellViewController.m */; };
 		4F9489CA20104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9489C920104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.m */; };
 		4F9489DB2010C66C0030BC4A /* PlainTableViewWithFullSeparatorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9489DA2010C66C0030BC4A /* PlainTableViewWithFullSeparatorsViewController.m */; };
 		4F948A1B2010DC6C0030BC4A /* TableViewHeaderWithExtendedViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F948A1A2010DC6C0030BC4A /* TableViewHeaderWithExtendedViewViewController.m */; };
@@ -82,6 +83,8 @@
 		2B63BF31200FA22600A5D8D2 /* PlainTableViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlainTableViewViewController.m; sourceTree = "<group>"; };
 		2B63BF32200FA22600A5D8D2 /* GroupedTableViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupedTableViewViewController.h; sourceTree = "<group>"; };
 		2B63BF33200FA22600A5D8D2 /* PlainTableViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainTableViewViewController.h; sourceTree = "<group>"; };
+		4F441A272200373200E51A42 /* AnimationInCellViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationInCellViewController.h; sourceTree = "<group>"; };
+		4F441A282200373200E51A42 /* AnimationInCellViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationInCellViewController.m; sourceTree = "<group>"; };
 		4F9489C820104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlainTableViewRemoveRedundantSeparatorsViewController.h; sourceTree = "<group>"; };
 		4F9489C920104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlainTableViewRemoveRedundantSeparatorsViewController.m; sourceTree = "<group>"; };
 		4F9489D92010C66C0030BC4A /* PlainTableViewWithFullSeparatorsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlainTableViewWithFullSeparatorsViewController.h; sourceTree = "<group>"; };
@@ -197,6 +200,8 @@
 				4FB55FC020E92EAC002DEF76 /* HorizontalTableViewViewController.m */,
 				4FA85D3921818EDE007AC0E8 /* LoadMoreViewController.h */,
 				4FA85D3A21818EDE007AC0E8 /* LoadMoreViewController.m */,
+				4F441A272200373200E51A42 /* AnimationInCellViewController.h */,
+				4F441A282200373200E51A42 /* AnimationInCellViewController.m */,
 			);
 			path = section4;
 			sourceTree = "<group>";
@@ -384,6 +389,7 @@
 				2B63BF38200FA22600A5D8D2 /* GroupedTableViewViewController.m in Sources */,
 				4FAAA5A11FA4804600A80328 /* main.m in Sources */,
 				2B63BF37200FA22600A5D8D2 /* FadeInCellRowByRowViewController.m in Sources */,
+				4F441A292200373200E51A42 /* AnimationInCellViewController.m in Sources */,
 				4F9489CA20104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.m in Sources */,
 				4F948A222011C5CC0030BC4A /* WCExpandableHeaderView.m in Sources */,
 				2B63BF1F200FA11200A5D8D2 /* InsertMeViewController.m in Sources */,

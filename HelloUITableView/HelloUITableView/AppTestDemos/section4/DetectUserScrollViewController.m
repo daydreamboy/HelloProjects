@@ -11,7 +11,7 @@
 @interface DetectUserScrollViewController () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *listData;
-@property (nonatomic, strong) UIView *hudTip;
+@property (nonatomic, strong) UILabel *hudTip;
 @end
 
 @implementation DetectUserScrollViewController
@@ -38,11 +38,14 @@
     _tableView.dataSource = self;
     [self.view addSubview:_tableView];
     
-    CGFloat side = 200;
-    _hudTip = [[UIView alloc] initWithFrame:CGRectMake((screenSize.width - side) / 2.0, (screenSize.height - side) / 2.0, side, side)];
-    _hudTip.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+    _hudTip = [[UILabel alloc] initWithFrame:CGRectZero];
+    _hudTip.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.9];
     _hudTip.userInteractionEnabled = NO;
-    _hudTip.hidden = YES;
+    _hudTip.layer.cornerRadius = 3;
+    _hudTip.layer.masksToBounds = YES;
+    _hudTip.alpha = 0;
+    _hudTip.textColor = [UIColor whiteColor];
+    _hudTip.font = [UIFont boldSystemFontOfSize:25];
     
     [self.view addSubview:_hudTip];
 }
@@ -77,10 +80,25 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
     NSLog(@"User begin dragging");
+    
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    self.hudTip.alpha = 1;
+    self.hudTip.text = @"User begin dragging";
+    [self.hudTip sizeToFit];
+    self.hudTip.center = CGPointMake(screenSize.width / 2.0, screenSize.height / 2.0);
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     NSLog(@"User end dragging and is decelerate: %@", decelerate ? @"YES" : @"NO");
+    
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    self.hudTip.alpha = 1;
+    self.hudTip.text = @"User end dragging";
+    [self.hudTip sizeToFit];
+    self.hudTip.center = CGPointMake(screenSize.width / 2.0, screenSize.height / 2.0);
+    [UIView animateWithDuration:1.5 animations:^{
+        self.hudTip.alpha = 0;
+    }];
 }
 
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
