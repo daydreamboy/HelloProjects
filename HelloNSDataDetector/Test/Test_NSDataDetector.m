@@ -75,6 +75,15 @@
 //    detector
 }
 
+- (void)test_check_email {
+    NSString *mail = @"so@so.com";
+    NSDataDetector *dataDetector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:nil];
+    NSTextCheckingResult *firstMatch = [dataDetector firstMatchInString:mail options:0 range:NSMakeRange(0, mail.length)];
+    BOOL result = [firstMatch.URL isKindOfClass:[NSURL class]] && [firstMatch.URL.scheme isEqualToString:@"mailto"];
+    NSLog(@"result: %@", result ? @"YES" : @"NO");
+    XCTAssertTrue(result);
+}
+
 - (void)test_MPMDataDetector {
     NSString *string;
     MPMDataDetectorCheckResultType types = MPMDataDetectorCheckResultTypePhoneNumber | MPMDataDetectorCheckResultTypeLink | MPMDataDetectorCheckResultTypeEmoticon;
