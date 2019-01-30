@@ -1,23 +1,23 @@
 //
-//  ViewController.m
+//  UseNSCacheViewController.m
 //  HelloNSCache
 //
-//  Created by wesley_chen on 2018/7/28.
-//  Copyright © 2018 wesley_chen. All rights reserved.
+//  Created by wesley_chen on 2019/1/30.
+//  Copyright © 2019 wesley_chen. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "UseNSCacheViewController.h"
 
-@interface ViewController () <NSCacheDelegate>
+@interface UseNSCacheViewController () <NSCacheDelegate>
 @property (nonatomic, strong) NSCache *cache;
 @end
 
-@implementation ViewController
+@implementation UseNSCacheViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.cache = [NSCache new];
-    [self test_cost_of_NSCache];
+    [self test_countLimit_of_NSCache];
 }
 
 - (void)test_countLimit_of_NSCache {

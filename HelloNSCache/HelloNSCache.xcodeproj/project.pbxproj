@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F55EDBB2201526100DE70BB /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F55EDB92201526000DE70BB /* RootViewController.m */; };
+		4F55EDCD22017B8700DE70BB /* UseNSCacheViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F55EDCC22017B8700DE70BB /* UseNSCacheViewController.m */; };
 		4F7D8F81210B7F2A00145B00 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8F80210B7F2A00145B00 /* AppDelegate.m */; };
-		4F7D8F84210B7F2A00145B00 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8F83210B7F2A00145B00 /* ViewController.m */; };
-		4F7D8F87210B7F2A00145B00 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D8F85210B7F2A00145B00 /* Main.storyboard */; };
 		4F7D8F89210B7F2B00145B00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D8F88210B7F2B00145B00 /* Assets.xcassets */; };
 		4F7D8F8C210B7F2B00145B00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D8F8A210B7F2B00145B00 /* LaunchScreen.storyboard */; };
 		4F7D8F8F210B7F2B00145B00 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8F8E210B7F2B00145B00 /* main.m */; };
@@ -27,12 +27,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F55EDB82201526000DE70BB /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		4F55EDB92201526000DE70BB /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		4F55EDCB22017B8700DE70BB /* UseNSCacheViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseNSCacheViewController.h; sourceTree = "<group>"; };
+		4F55EDCC22017B8700DE70BB /* UseNSCacheViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseNSCacheViewController.m; sourceTree = "<group>"; };
 		4F7D8F7C210B7F2A00145B00 /* HelloNSCache.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSCache.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F7D8F7F210B7F2A00145B00 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F7D8F80210B7F2A00145B00 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		4F7D8F82210B7F2A00145B00 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		4F7D8F83210B7F2A00145B00 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		4F7D8F86210B7F2A00145B00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4F7D8F88210B7F2B00145B00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4F7D8F8B210B7F2B00145B00 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F7D8F8D210B7F2B00145B00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,6 +61,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F55EDB52201526000DE70BB /* AppTestDemos */ = {
+			isa = PBXGroup;
+			children = (
+				4F55EDCB22017B8700DE70BB /* UseNSCacheViewController.h */,
+				4F55EDCC22017B8700DE70BB /* UseNSCacheViewController.m */,
+			);
+			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
 		4F7D8F73210B7F2900145B00 = {
 			isa = PBXGroup;
 			children = (
@@ -81,11 +91,11 @@
 		4F7D8F7E210B7F2A00145B00 /* HelloNSCache */ = {
 			isa = PBXGroup;
 			children = (
+				4F55EDB52201526000DE70BB /* AppTestDemos */,
+				4F55EDB82201526000DE70BB /* RootViewController.h */,
+				4F55EDB92201526000DE70BB /* RootViewController.m */,
 				4F7D8F7F210B7F2A00145B00 /* AppDelegate.h */,
 				4F7D8F80210B7F2A00145B00 /* AppDelegate.m */,
-				4F7D8F82210B7F2A00145B00 /* ViewController.h */,
-				4F7D8F83210B7F2A00145B00 /* ViewController.m */,
-				4F7D8F85210B7F2A00145B00 /* Main.storyboard */,
 				4F7D8F88210B7F2B00145B00 /* Assets.xcassets */,
 				4F7D8F8A210B7F2B00145B00 /* LaunchScreen.storyboard */,
 				4F7D8F8D210B7F2B00145B00 /* Info.plist */,
@@ -185,7 +195,6 @@
 			files = (
 				4F7D8F8C210B7F2B00145B00 /* LaunchScreen.storyboard in Resources */,
 				4F7D8F89210B7F2B00145B00 /* Assets.xcassets in Resources */,
-				4F7D8F87210B7F2A00145B00 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,9 +212,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F7D8F84210B7F2A00145B00 /* ViewController.m in Sources */,
+				4F55EDCD22017B8700DE70BB /* UseNSCacheViewController.m in Sources */,
 				4F7D8F8F210B7F2B00145B00 /* main.m in Sources */,
 				4F7D8F81210B7F2A00145B00 /* AppDelegate.m in Sources */,
+				4F55EDBB2201526100DE70BB /* RootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,14 +238,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		4F7D8F85210B7F2A00145B00 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				4F7D8F86210B7F2A00145B00 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		4F7D8F8A210B7F2B00145B00 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
