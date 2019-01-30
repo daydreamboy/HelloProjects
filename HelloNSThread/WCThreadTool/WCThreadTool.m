@@ -17,28 +17,33 @@
 
 - (void)WCThreadTool_callBlock {
     dispatch_block_t block = (id)self;
-    block();
+    if (block) {
+        block();
+    }
 }
 
 - (void)WCThreadTool_callBlockWithObject:(id)object {
     void (^block)(id) = (id)self;
-    block(object);
+    if (block) {
+        block(object);
+    }
 }
 
 @end
 
 @implementation WCThreadTool
 
-+ (void)performBlock:(dispatch_block_t)block onThread:(NSThread *)thread {
-    if (block && thread) {
++ (void)performBlock:(dispatch_block_t)block onThread:(NSThread *)thread waitUntilDone:(BOOL)waitUntilDone {
+    if (block && [thread isKindOfClass:[NSThread class]]) {
         dispatch_block_t blockCopy = [block copy];
-        [blockCopy performSelector:@selector(WCThreadTool_callBlock) onThread:thread withObject:nil waitUntilDone:YES];
+        [blockCopy performSelector:@selector(WCThreadTool_callBlock) onThread:thread withObject:nil waitUntilDone:waitUntilDone];
     }
 }
 
-+ (void)performBlock:(void (^)(id))block onThread:(NSThread *)thread withObject:(id)object {
-    if (block && thread) {
-        [[block copy] performSelector:@selector(WCThreadTool_callBlockWithObject:) onThread:thread withObject:object waitUntilDone:NO];
++ (void)performBlock:(void (^)(id))block onThread:(NSThread *)thread withObject:(id)object waitUntilDone:(BOOL)waitUntilDone {
+    if (block && [thread isKindOfClass:[NSThread class]]) {
+        dispatch_block_t blockCopy = [block copy];
+        [blockCopy performSelector:@selector(WCThreadTool_callBlockWithObject:) onThread:thread withObject:object waitUntilDone:waitUntilDone];
     }
 }
 
