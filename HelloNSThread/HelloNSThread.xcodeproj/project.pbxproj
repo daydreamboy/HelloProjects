@@ -33,7 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		2B37F30E1F83C4A500809F00 /* HelloThread.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloThread.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B37F30E1F83C4A500809F00 /* HelloNSThread.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSThread.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B37F3111F83C4A500809F00 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		2B37F3121F83C4A500809F00 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2B37F31A1F83C4A500809F00 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,7 +82,8 @@
 		2B37F3051F83C4A500809F00 = {
 			isa = PBXGroup;
 			children = (
-				2B37F3101F83C4A500809F00 /* HelloThread */,
+				4F9578E21FDF8A2D009693CF /* WCThreadTool */,
+				2B37F3101F83C4A500809F00 /* HelloNSThread */,
 				4FA9918821AECD1200E928D8 /* Tests */,
 				2B37F30F1F83C4A500809F00 /* Products */,
 			);
@@ -91,16 +92,15 @@
 		2B37F30F1F83C4A500809F00 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2B37F30E1F83C4A500809F00 /* HelloThread.app */,
+				2B37F30E1F83C4A500809F00 /* HelloNSThread.app */,
 				4FA9918721AECD1100E928D8 /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2B37F3101F83C4A500809F00 /* HelloThread */ = {
+		2B37F3101F83C4A500809F00 /* HelloNSThread */ = {
 			isa = PBXGroup;
 			children = (
-				4F9578E21FDF8A2D009693CF /* WCThreadTool */,
 				2BA4F8541F83D27F00AE2BAD /* AppTestDemos */,
 				2B37F3111F83C4A500809F00 /* AppDelegate.h */,
 				2B37F3121F83C4A500809F00 /* AppDelegate.m */,
@@ -111,7 +111,7 @@
 				2B37F31F1F83C4A500809F00 /* Info.plist */,
 				2B37F3201F83C4A500809F00 /* main.m */,
 			);
-			path = HelloThread;
+			path = HelloNSThread;
 			sourceTree = "<group>";
 		};
 		2BA4F8541F83D27F00AE2BAD /* AppTestDemos */ = {
@@ -170,9 +170,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2B37F30D1F83C4A500809F00 /* HelloThread */ = {
+		2B37F30D1F83C4A500809F00 /* HelloNSThread */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2B37F3241F83C4A500809F00 /* Build configuration list for PBXNativeTarget "HelloThread" */;
+			buildConfigurationList = 2B37F3241F83C4A500809F00 /* Build configuration list for PBXNativeTarget "HelloNSThread" */;
 			buildPhases = (
 				2B37F30A1F83C4A500809F00 /* Sources */,
 				2B37F30B1F83C4A500809F00 /* Frameworks */,
@@ -182,9 +182,9 @@
 			);
 			dependencies = (
 			);
-			name = HelloThread;
+			name = HelloNSThread;
 			productName = HelloThread;
-			productReference = 2B37F30E1F83C4A500809F00 /* HelloThread.app */;
+			productReference = 2B37F30E1F83C4A500809F00 /* HelloNSThread.app */;
 			productType = "com.apple.product-type.application";
 		};
 		4FA9918621AECD1100E928D8 /* Tests */ = {
@@ -225,7 +225,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2B37F3091F83C4A500809F00 /* Build configuration list for PBXProject "HelloThread" */;
+			buildConfigurationList = 2B37F3091F83C4A500809F00 /* Build configuration list for PBXProject "HelloNSThread" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -238,7 +238,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2B37F30D1F83C4A500809F00 /* HelloThread */,
+				2B37F30D1F83C4A500809F00 /* HelloNSThread */,
 				4FA9918621AECD1100E928D8 /* Tests */,
 			);
 		};
@@ -294,7 +294,7 @@
 /* Begin PBXTargetDependency section */
 		4FA9918D21AECD1200E928D8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2B37F30D1F83C4A500809F00 /* HelloThread */;
+			target = 2B37F30D1F83C4A500809F00 /* HelloNSThread */;
 			targetProxy = 4FA9918C21AECD1200E928D8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -420,7 +420,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = HelloThread/Info.plist;
+				INFOPLIST_FILE = HelloNSThread/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloThread;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -433,7 +433,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = HelloThread/Info.plist;
+				INFOPLIST_FILE = HelloNSThread/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloThread;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -455,7 +455,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloThread.app/HelloThread";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloNSThread.app/HelloNSThread";
 			};
 			name = Debug;
 		};
@@ -473,14 +473,14 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloThread.app/HelloThread";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloNSThread.app/HelloNSThread";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2B37F3091F83C4A500809F00 /* Build configuration list for PBXProject "HelloThread" */ = {
+		2B37F3091F83C4A500809F00 /* Build configuration list for PBXProject "HelloNSThread" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2B37F3221F83C4A500809F00 /* Debug */,
@@ -489,7 +489,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2B37F3241F83C4A500809F00 /* Build configuration list for PBXNativeTarget "HelloThread" */ = {
+		2B37F3241F83C4A500809F00 /* Build configuration list for PBXNativeTarget "HelloNSThread" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2B37F3251F83C4A500809F00 /* Debug */,
