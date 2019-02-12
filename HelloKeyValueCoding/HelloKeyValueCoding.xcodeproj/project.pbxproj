@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F5640AE22127B570039D6F6 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5640AD22127B570039D6F6 /* Tests.m */; };
 		4F83D38920CE119E00F2FE80 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F83D38820CE119E00F2FE80 /* AppDelegate.m */; };
 		4F83D39120CE119F00F2FE80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F83D39020CE119F00F2FE80 /* Assets.xcassets */; };
 		4F83D39420CE119F00F2FE80 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F83D39220CE119F00F2FE80 /* LaunchScreen.storyboard */; };
@@ -15,7 +16,20 @@
 		4F83D3A320CE11C800F2FE80 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F83D3A120CE11C800F2FE80 /* RootViewController.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4F5640B022127B570039D6F6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F83D37C20CE119E00F2FE80 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F83D38320CE119E00F2FE80;
+			remoteInfo = HelloKeyValueCoding;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		4F5640AB22127B570039D6F6 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F5640AD22127B570039D6F6 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		4F5640AF22127B570039D6F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F83D38420CE119E00F2FE80 /* HelloKeyValueCoding.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloKeyValueCoding.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F83D38720CE119E00F2FE80 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F83D38820CE119E00F2FE80 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -30,6 +44,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4F5640A822127B570039D6F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4F83D38120CE119E00F2FE80 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -40,10 +61,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F5640AC22127B570039D6F6 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4F5640AD22127B570039D6F6 /* Tests.m */,
+				4F5640AF22127B570039D6F6 /* Info.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		4F83D37B20CE119E00F2FE80 = {
 			isa = PBXGroup;
 			children = (
 				4F83D38620CE119E00F2FE80 /* HelloKeyValueCoding */,
+				4F5640AC22127B570039D6F6 /* Tests */,
 				4F83D38520CE119E00F2FE80 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -52,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				4F83D38420CE119E00F2FE80 /* HelloKeyValueCoding.app */,
+				4F5640AB22127B570039D6F6 /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -84,6 +116,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4F5640AA22127B570039D6F6 /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F5640B422127B570039D6F6 /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				4F5640A722127B570039D6F6 /* Sources */,
+				4F5640A822127B570039D6F6 /* Frameworks */,
+				4F5640A922127B570039D6F6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F5640B122127B570039D6F6 /* PBXTargetDependency */,
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = 4F5640AB22127B570039D6F6 /* Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		4F83D38320CE119E00F2FE80 /* HelloKeyValueCoding */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4F83D39A20CE119F00F2FE80 /* Build configuration list for PBXNativeTarget "HelloKeyValueCoding" */;
@@ -110,6 +160,10 @@
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = wesley_chen;
 				TargetAttributes = {
+					4F5640AA22127B570039D6F6 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 4F83D38320CE119E00F2FE80;
+					};
 					4F83D38320CE119E00F2FE80 = {
 						CreatedOnToolsVersion = 9.4;
 					};
@@ -129,11 +183,19 @@
 			projectRoot = "";
 			targets = (
 				4F83D38320CE119E00F2FE80 /* HelloKeyValueCoding */,
+				4F5640AA22127B570039D6F6 /* Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4F5640A922127B570039D6F6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4F83D38220CE119E00F2FE80 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -146,6 +208,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4F5640A722127B570039D6F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F5640AE22127B570039D6F6 /* Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4F83D38020CE119E00F2FE80 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -159,6 +229,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		4F5640B122127B570039D6F6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F83D38320CE119E00F2FE80 /* HelloKeyValueCoding */;
+			targetProxy = 4F5640B022127B570039D6F6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		4F83D39220CE119F00F2FE80 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -171,6 +249,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4F5640B222127B570039D6F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloKeyValueCoding.app/HelloKeyValueCoding";
+			};
+			name = Debug;
+		};
+		4F5640B322127B570039D6F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloKeyValueCoding.app/HelloKeyValueCoding";
+			};
+			name = Release;
+		};
 		4F83D39820CE119F00F2FE80 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -316,6 +430,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4F5640B422127B570039D6F6 /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F5640B222127B570039D6F6 /* Debug */,
+				4F5640B322127B570039D6F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4F83D37F20CE119E00F2FE80 /* Build configuration list for PBXProject "HelloKeyValueCoding" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
