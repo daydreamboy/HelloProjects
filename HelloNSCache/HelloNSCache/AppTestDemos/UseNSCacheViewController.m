@@ -17,7 +17,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.cache = [NSCache new];
-    [self test_countLimit_of_NSCache];
+//    [self test_countLimit_of_NSCache];
+    [self test_totalCostLimit_of_NSCache];
 }
 
 - (void)test_countLimit_of_NSCache {
@@ -28,8 +29,6 @@
     
     [self.cache setObject:@"3" forKey:@"3" cost:3];
     [self.cache setObject:@"2" forKey:@"2" cost:2];
-    
-    
     [self.cache setObject:@"1" forKey:@"1" cost:1];
     
     string = [self.cache objectForKey:@"3"];
@@ -50,7 +49,6 @@
     
     [self.cache setObject:@"3" forKey:@"3" cost:3];
     [self.cache setObject:@"2" forKey:@"2" cost:2];
-    
     [self.cache setObject:@"1" forKey:@"1" cost:1];
     
     string = [self.cache objectForKey:@"3"];
