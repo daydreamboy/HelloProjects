@@ -102,6 +102,70 @@
     XCTAssertEqualObjects(output, expected);
 }
 
+- (void)test_collapsedArrayWithArray_keyPaths {
+    id item1;
+    id item2;
+    id item3;
+    
+    NSArray *uniqueArray;
+    NSMutableArray *redundantArray;
+    
+    // Case 1:
+    redundantArray = [NSMutableArray array];
+    
+    item1 = @"item1";
+    [redundantArray addObject:item1];
+    
+    item2 = @"item1";
+    [redundantArray addObject:item2];
+    
+    item3 = [item1 mutableCopy];
+    [redundantArray addObject:item3];
+    
+    uniqueArray = [WCArrayTool collapsedArrayWithArray:redundantArray keyPaths:nil];
+    XCTAssertTrue(uniqueArray.count == 1);
+    
+    // Case 2:
+    redundantArray = [NSMutableArray array];
+    
+    item1 = [NSString stringWithFormat:@"%@", @"item1"];
+    [redundantArray addObject:item1];
+    
+    item2 = [NSString stringWithFormat:@"%@", @"item1"];
+    [redundantArray addObject:item2];
+    
+    item3 = item1;
+    [redundantArray addObject:item3];
+    
+    uniqueArray = [WCArrayTool collapsedArrayWithArray:redundantArray keyPaths:nil];
+    XCTAssertTrue(uniqueArray.count == 1);
+    
+    // Case 3:
+    redundantArray = [NSMutableArray array];
+    
+    item1 = [NSString stringWithFormat:@"%@", @"item1"];
+    [redundantArray addObject:item1];
+    
+    item2 = [NSString stringWithFormat:@"%@", @"item2"];
+    [redundantArray addObject:item2];
+    
+    item3 = item1;
+    [redundantArray addObject:item3];
+    
+    uniqueArray = [WCArrayTool collapsedArrayWithArray:redundantArray keyPaths:nil];
+    XCTAssertTrue(uniqueArray.count == 2);
+    
+    // Case 4:
+    redundantArray = [NSMutableArray array];
+    
+    [redundantArray addObject:@"item1"];
+    [redundantArray addObject:@"item2"];
+    [redundantArray addObject:[@"item1" copy]];
+    
+    uniqueArray = [WCArrayTool collapsedArrayWithArray:redundantArray keyPaths:nil];
+    XCTAssertTrue(uniqueArray.count == 2);
+}
+
 #pragma mark - Subarray
 
 - (void)test_subarrayWithArray_range {
@@ -166,6 +230,30 @@
     
     output = [WCArrayTool subarrayWithArray:array atLocation:4 length:2];
     XCTAssertNil(output);
+}
+
+#pragma mark - Assistant Methods
+
+- (void)test_arrayWithLetters {
+    // Case 1: uppercase letters
+    NSArray *uppercaseLetters = [WCArrayTool arrayWithLetters:YES];
+    
+    NSUInteger i = 0;
+    for (char ch = 'A'; ch <= 'Z'; ch++) {
+        NSString *letter = [NSString stringWithFormat:@"%c", ch];
+        XCTAssertEqualObjects(uppercaseLetters[i], letter);
+        i++;
+    }
+    
+    // Case 2: lowercase letters
+    NSArray *lowercaseLetters = [WCArrayTool arrayWithLetters:NO];
+    
+    NSUInteger j = 0;
+    for (char ch = 'a'; ch <= 'z'; ch++) {
+        NSString *letter = [NSString stringWithFormat:@"%c", ch];
+        XCTAssertEqualObjects(lowercaseLetters[j], letter);
+        j++;
+    }
 }
 
 @end

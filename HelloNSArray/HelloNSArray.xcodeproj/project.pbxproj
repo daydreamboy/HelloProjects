@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F5640A62212785C0039D6F6 /* WCArrayTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F907F21B6BF8900A949EC /* WCArrayTool.m */; };
 		4F6F905B21B6BF5300A949EC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F905A21B6BF5300A949EC /* AppDelegate.m */; };
 		4F6F905E21B6BF5400A949EC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F905D21B6BF5400A949EC /* ViewController.m */; };
 		4F6F906121B6BF5400A949EC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F6F905F21B6BF5400A949EC /* Main.storyboard */; };
@@ -230,6 +231,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F5640A62212785C0039D6F6 /* WCArrayTool.m in Sources */,
 				4F8BEC8621DF4772000EA7B7 /* Tests_NSArray.m in Sources */,
 				4F6F907621B6BF6300A949EC /* Tests.m in Sources */,
 			);

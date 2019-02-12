@@ -47,6 +47,20 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSArray *)insertObjectsWithArray:(NSArray *)array objects:(NSArray *)objects atIndex:(NSUInteger)index;
 
+/**
+ Remove duplicated element in the array by the combination of the key paths (or properties).
+
+ @param array the array to deduplicate
+ @param keyPaths the key path array.
+ \ If nil or empty, deduplicate the same elements by NSArray's containsObject: method.
+ \ If key path not exist, return nil.
+ \ If the key path is not NSString, return the nil.
+ @return the deduplicated array. Return nil if some error occur.
+ @see https://stackoverflow.com/questions/7491805/nsarray-remove-objects-with-duplicate-properties
+ @discussion For the duplicated elements by the order in the array, the first element to get, the others to ignore.
+ */
++ (nullable NSArray *)collapsedArrayWithArray:(NSArray *)array keyPaths:(nullable NSArray<NSString *> *)keyPaths;
+
 #pragma mark - Subarray
 
 /**
@@ -69,6 +83,17 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion If the location is array.count, the length is 0, return an empty array, but the length is > 0, return nil.
  */
 + (nullable NSArray *)subarrayWithArray:(NSArray *)array atLocation:(NSUInteger)location length:(NSUInteger)length;
+
+#pragma mark - Assistant Methods
+
+/**
+ Get an array of letters with uppercase or lowercase
+
+ @param isUppercase YES, uppercase or NO, lowercase
+ @return the array of letters
+ @note the array of letters can be used as index, e.g. UITableView's index
+ */
++ (NSArray *)arrayWithLetters:(BOOL)isUppercase;
 
 @end
 

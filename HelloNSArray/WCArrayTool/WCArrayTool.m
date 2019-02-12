@@ -78,6 +78,64 @@
     return arrayM;
 }
 
++ (nullable NSArray *)collapsedArrayWithArray:(NSArray *)array keyPaths:(nullable NSArray<NSString *> *)keyPaths {
+    if (![array isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
+    
+    if (keyPaths && ![keyPaths isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
+    
+    NSMutableArray *arrM = [NSMutableArray arrayWithArray:array];
+    
+    if (keyPaths.count) {
+        NSMutableSet *lookup = [[NSMutableSet alloc] init];
+        
+        for (NSInteger index = 0; index < [arrM count]; index++) {
+            NSMutableString *identifier = [NSMutableString string];
+            NSObject *element = arrM[index];
+            
+            for (NSString *keyPath in keyPaths) {
+                @try {
+                    if ([keyPath containsString:@"."]) {
+                        [identifier appendFormat:@"_%@", [element valueForKeyPath:keyPath]];
+                    }
+                    else {
+                        [identifier appendFormat:@"_%@", [element valueForKey:keyPath]];
+                    }
+                }
+                @catch(NSException *e) {
+#if DEBUG
+                    NSLog(@"[%@] an exception occurred: %@", NSStringFromClass(self), e);
+#endif
+                    return nil;
+                }
+            }
+            
+            if ([lookup containsObject:identifier]) {
+                [arrM removeObjectAtIndex:index];
+            }
+            else {
+                [lookup addObject:identifier];
+            }
+        }
+        
+        return arrM;
+    }
+    else {
+        NSMutableArray *arrM = [NSMutableArray array];
+        
+        for (id object in array) {
+            if (![arrM containsObject:object]) {
+                [arrM addObject:object];
+            }
+        }
+        
+        return arrM;
+    }
+}
+
 #pragma mark - Subarray
 
 + (nullable NSArray *)subarrayWithArray:(NSArray *)array range:(NSRange)range {
@@ -120,6 +178,27 @@
     }
     else {
         return nil;
+    }
+}
+
+#pragma mark - Assistant Methods
+
++ (NSArray *)arrayWithLetters:(BOOL)isUppercase {
+    if (isUppercase) {
+        static NSArray *uppercaseLetters;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            uppercaseLetters = [@"A B C D E F G H I J K L M N O P Q R S T U V W X Y Z" componentsSeparatedByString:@" "];
+        });
+        return uppercaseLetters;
+    }
+    else {
+        static NSArray *lowercaseLetters;
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            lowercaseLetters = [@"a b c d e f g h i j k l m n o p q r s t u v w x y z" componentsSeparatedByString:@" "];
+        });
+        return lowercaseLetters;
     }
 }
 
