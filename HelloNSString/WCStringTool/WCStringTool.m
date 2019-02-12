@@ -102,13 +102,13 @@
 
 #pragma mark > Others
 
-+ (NSString *)softHyphenatedStringWithString:(NSString *)string error:(out NSError **)error {
++ (nullable NSString *)softHyphenatedStringWithString:(NSString *)string error:(out NSError **)error {
     NSLocale *locale = [NSLocale localeWithLocaleIdentifier:@"en_US"];
     
     return [self softHyphenatedStringWithString:string locale:locale error:error];
 }
 
-+ (NSString *)softHyphenatedStringWithString:(NSString *)string locale:(NSLocale *)locale error:(out NSError **)error {
++ (nullable NSString *)softHyphenatedStringWithString:(NSString *)string locale:(NSLocale *)locale error:(out NSError **)error {
     if (![string isKindOfClass:[NSString class]] || ![locale isKindOfClass:[NSLocale class]]) {
         return nil;
     }
@@ -159,6 +159,26 @@
         if (error != NULL) { *error = nil; }
         
         return stringM;
+    }
+}
+
++ (nullable NSString *)interpolatedStringWithCamelCaseString:(NSString *)string separator:(nullable NSString *)separator {
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    if (separator && ![separator isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    if (!separator) {
+        return string;
+    }
+    else {
+        NSString *template = [NSString stringWithFormat:@"$1%@$2", separator];
+        NSRegularExpression *regexp = [NSRegularExpression regularExpressionWithPattern:@"([a-z])([A-Z])" options:kNilOptions error:NULL];
+        NSString *newString = [regexp stringByReplacingMatchesInString:string options:kNilOptions range:NSMakeRange(0, string.length) withTemplate:template];
+        return newString;
     }
 }
 

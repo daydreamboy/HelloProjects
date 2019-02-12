@@ -131,6 +131,33 @@
     NSLog(@"---------------------------------");
 }
 
+#pragma mark - Handle String As Text In UILabel
+
+- (void)test_interpolatedStringWithCamelCaseString_separator {
+    NSString *string;
+    NSString *output;
+    
+    // Case 1
+    string = @"ThisStringIsJoined";
+    output = [WCStringTool interpolatedStringWithCamelCaseString:string separator:@" "];
+    XCTAssertEqualObjects(output, @"This String Is Joined");
+    
+    // Case 2
+    string = @"HelloHTMLGoodbye";
+    output = [WCStringTool interpolatedStringWithCamelCaseString:string separator:@" "];
+    XCTAssertEqualObjects(output, @"Hello HTMLGoodbye");
+    
+    // Case 3
+    string = @"ILoveObjectiveC";
+    output = [WCStringTool interpolatedStringWithCamelCaseString:string separator:@" "];
+    XCTAssertEqualObjects(output, @"ILove Objective C");
+    
+    // Case 3
+    string = @"ThisStringIsJoined";
+    output = [WCStringTool interpolatedStringWithCamelCaseString:string separator:@"_"];
+    XCTAssertEqualObjects(output, @"This_String_Is_Joined");
+}
+
 #pragma mark - Handle String As JSON
 
 #pragma mark > JSON String to id/NSArray/NSDictionary
@@ -219,6 +246,17 @@
     output = [WCStringTool keyValuePairsWithUrlString:urlString];
     XCTAssertTrue([output isKindOfClass:[NSDictionary class]]);
     XCTAssertTrue(output.count == 0);
+    
+    // Case 7
+    urlString = @"abc?key1=A&key2=B";
+    output = [WCStringTool keyValuePairsWithUrlString:urlString];
+    XCTAssertTrue([output isKindOfClass:[NSDictionary class]]);
+    XCTAssertTrue(output.count == 2);
+    
+    // Case 8
+    urlString = @"abc@key1=A#key2=B";
+    output = [WCStringTool keyValuePairsWithUrlString:urlString];
+    XCTAssertNil(output);
 }
 
 #pragma mark - Handle String As Plain

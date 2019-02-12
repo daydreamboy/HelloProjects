@@ -78,7 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param error the error. If the locale not support hyphenation, the error is not nil and return nil.
  @return the hyphenated string which has invisible hyphenation (unichar 0x00AD)
  */
-+ (NSString *)softHyphenatedStringWithString:(NSString *)string error:(out NSError * _Nullable * _Nullable)error;
++ (nullable NSString *)softHyphenatedStringWithString:(NSString *)string error:(out NSError * _Nullable * _Nullable)error;
 
 /**
  Get a hyphenated string which can rendered in UILabel
@@ -90,7 +90,17 @@ NS_ASSUME_NONNULL_BEGIN
  
  @see https://stackoverflow.com/a/19856111
  */
-+ (NSString *)softHyphenatedStringWithString:(NSString *)string locale:(NSLocale *)locale error:(out NSError * _Nullable * _Nullable)error;
++ (nullable NSString *)softHyphenatedStringWithString:(NSString *)string locale:(NSLocale *)locale error:(out NSError * _Nullable * _Nullable)error;
+
+/**
+ Interpolate separator into camel case string
+
+ @param string the string expected to be camel case
+ @param separator the separator
+ @return the interpolated string
+ @see https://stackoverflow.com/questions/7322498/insert-or-split-string-at-uppercase-letters-objective-c
+ */
++ (nullable NSString *)interpolatedStringWithCamelCaseString:(NSString *)string separator:(nullable NSString *)separator;
 
 #pragma mark - NSStringFromXXX
 
@@ -177,7 +187,7 @@ NS_ASSUME_NONNULL_BEGIN
  @note for checking url strictly, use WCURLTool instead
  @discussion
  1. The urlString expected has different keys. If have the same key, the return result is not determined.
- 2. This method not validates the urlString, pass malformed string may get the wrong result. e.g. abc?key1=A&key2=B
+ 2. This method not validates the urlString, pass malformed string may get the wrong result. e.g. abc@key1=A#key2=B
  */
 + (nullable NSDictionary *)keyValuePairsWithUrlString:(NSString *)urlString;
 
