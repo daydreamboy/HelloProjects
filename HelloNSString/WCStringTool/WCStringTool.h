@@ -139,7 +139,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark > Split String
 
-+ (NSArray<NSString *> *)componentsWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters;
+/**
+ Split string into components by multiple delimeters
+
+ @param string the original string
+ @param delimeters the multiple delimeters. Split the string with delimeters by the order of the array.
+ @return the components after spliting
+ @discussion If have multiple delimeters, will split the string one by one, and the order of the delimeters
+ array will affect the return result.
+ */
++ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters;
 
 /**
  Split string into components by multiple gap ranges

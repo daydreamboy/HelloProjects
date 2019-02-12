@@ -249,11 +249,17 @@
 
 #pragma mark > Split String
 
-+ (NSArray<NSString *> *)componentsWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters {
++ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters {
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
     NSMutableArray *strings = [NSMutableArray arrayWithObject:string];
     NSArray *components = [self splitStringWithComponents:strings delimeters:[delimeters mutableCopy]];
     return components;
 }
+
+#pragma mark ::
 
 + (NSMutableArray<NSString *> *)splitStringWithComponents:(NSMutableArray<NSString *> *)components delimeters:(NSMutableArray<NSString *> *)delimeters {
     if (delimeters.count) {
@@ -274,6 +280,8 @@
         return components;
     }
 }
+
+#pragma mark ::
 
 + (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string gapRanges:(NSArray<NSValue *> *)gapRanges {
     if (![string isKindOfClass:[NSString class]] || ![gapRanges isKindOfClass:[NSArray class]]) {
