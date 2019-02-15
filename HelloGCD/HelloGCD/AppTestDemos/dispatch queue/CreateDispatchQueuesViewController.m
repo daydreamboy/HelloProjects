@@ -57,7 +57,7 @@
     // http://stackoverflow.com/questions/5756605/ios-get-pointer-from-nsstring-containing-address
     NSString *address = textField.text;
     
-    NSObject *object;
+    __unsafe_unretained NSObject *object;
     sscanf([address cStringUsingEncoding:NSUTF8StringEncoding], "%p", &object);
     
     NSString *debugDescriton = [object debugDescription];
