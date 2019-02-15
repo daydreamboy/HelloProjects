@@ -41,7 +41,61 @@
 
 
 
-### 2、使用Block常见问题
+### 2、Block定义的返回值类型是可选
+
+Block定义时，[官方文档](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Blocks/Articles/bxDeclaringCreating.html)指出，返回值类型是可选的
+
+> If you don’t explicitly declare the return value of a block expression, it can be automatically inferred from the contents of the block. If the return type is inferred and the parameter list is `void`, then you can omit the `(void)` parameter list as well. If or when multiple return statements are present, they must exactly match (using casting if necessary).
+
+根据上面描述总结一下
+
+* 没有指定返回值类型，编译器会自动推断返回值类型
+* 当有多个return语句时，最好指定返回值类型。没有指定返回值类型，可能不能正确自动推断，导致编译出错
+* 当参数列表为void，可以去掉void描述
+
+
+
+举个例子
+
+```objective-c
+float (^oneFrom)(float);
+
+// Note: OK, only one return statement
+oneFrom = ^(float aFloat) {
+    float result = aFloat - 1.0;
+    return result;
+};
+
+// Note: OK, specify return type is best
+oneFrom = ^float(float aFloat) {
+    float result = aFloat - 1.0;
+    return result;
+};
+
+// Compiler Error: can't deduce the return type
+oneFrom = ^(float aFloat) {
+    float result = aFloat - 1.0;
+    if (aFloat > 3) {
+        return aFloat - 3.0; // Note: this is double
+    }
+    return result;
+};
+
+// OK
+oneFrom = ^float(float aFloat) {
+    float result = aFloat - 1.0;
+    if (aFloat > 3) {
+        return aFloat - 3.0; // Note: this is double
+    }
+    return result;
+};
+```
+
+示例代码见**Tests_Block.m**
+
+
+
+### 3、使用Block常见问题
 
 #### （1）block为nil时调用会crash
 

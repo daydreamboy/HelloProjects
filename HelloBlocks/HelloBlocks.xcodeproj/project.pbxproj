@@ -22,6 +22,7 @@
 		4F74C2B521FAAAC500A87393 /* WeakStrongDanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F74C2B421FAAAC500A87393 /* WeakStrongDanceViewController.m */; };
 		4F74C2BE21FAE83800A87393 /* Tests_BlockIssue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F74C2BD21FAE83800A87393 /* Tests_BlockIssue.m */; };
 		4F887DBB201EC1FE00A844BD /* Block1.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F887DBA201EC1FE00A844BD /* Block1.m */; };
+		4F986B0422165F7D0096026E /* Tests_Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F986B0322165F7D0096026E /* Tests_Block.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		4F74C2B421FAAAC500A87393 /* WeakStrongDanceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeakStrongDanceViewController.m; sourceTree = "<group>"; };
 		4F74C2BD21FAE83800A87393 /* Tests_BlockIssue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_BlockIssue.m; sourceTree = "<group>"; };
 		4F887DBA201EC1FE00A844BD /* Block1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Block1.m; sourceTree = "<group>"; };
+		4F986B0322165F7D0096026E /* Tests_Block.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_Block.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				4F6F013521FA14F8008D669E /* Tests.m */,
+				4F986B0322165F7D0096026E /* Tests_Block.m */,
 				4F74C2BD21FAE83800A87393 /* Tests_BlockIssue.m */,
 				4F6F013721FA14F8008D669E /* Info.plist */,
 			);
@@ -278,6 +281,7 @@
 			files = (
 				4F6F013621FA14F8008D669E /* Tests.m in Sources */,
 				4F74C2BE21FAE83800A87393 /* Tests_BlockIssue.m in Sources */,
+				4F986B0422165F7D0096026E /* Tests_Block.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
