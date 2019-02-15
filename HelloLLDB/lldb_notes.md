@@ -1816,19 +1816,19 @@ nm命令可以输出.o文件的二进制符号。除了代码，还有一些特�
 
 #### 1. 不能使用stringWithFormat
 
-```
+```shell
 (lldb) po [NSString stringWithFormat:@"%@", @"123"]
 error: too many arguments to method call, expected 1, have 2
 ```
 
-解决方法：使用initWithFormat方法
+解决方法：使用initWithFormat方法[^2]
 
-```
+```shell
 (lldb) po [[NSString alloc] initWithFormat:@"%@", @"123"]
 123
 ```
 
-https://stackoverflow.com/questions/19448101/stringwithformat-not-working-in-lldb
+
 
 
 
@@ -1836,4 +1836,7 @@ https://stackoverflow.com/questions/19448101/stringwithformat-not-working-in-lld
 
 [^1]: https://www.mikeash.com/pyblog/friday-qa-2011-12-16-disassembling-the-assembly-part-1.html
 
- 
+[^2]:https://stackoverflow.com/questions/19448101/stringwithformat-not-working-in-lldb
+
+
+
