@@ -54,4 +54,34 @@
     XCTAssertTrue([result toInt32] == 15);
 }
 
+- (void)test_undefined {
+    JSValue *result;
+    
+    JSContext *context = [[JSContext alloc] init];
+    context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
+        NSLog(@"JS Error: %@", exception);
+    };
+    
+    // Case 1
+    result = [context evaluateScript:@"var a = 'hello'"]; // execute code
+    NSLog(@"%@", result);
+    XCTAssertTrue(result.isUndefined);
+    XCTAssertEqualObjects([result toString], @"undefined");
+    XCTAssertEqualObjects([context[@"a"] toString], @"hello");
+    
+    // Case 2
+    result = [context evaluateScript:@"b = 'hello'"]; // get value
+    NSLog(@"%@", result);
+    XCTAssertFalse(result.isUndefined);
+    XCTAssertEqualObjects([result toString], @"hello");
+    XCTAssertEqualObjects([context[@"b"] toString], @"hello");
+    
+    // Case 3
+    result = [context evaluateScript:@"b"]; // get value
+    NSLog(@"%@", result);
+    XCTAssertFalse(result.isUndefined);
+    XCTAssertEqualObjects([result toString], @"hello");
+    XCTAssertEqualObjects([context[@"b"] toString], @"hello");
+}
+
 @end

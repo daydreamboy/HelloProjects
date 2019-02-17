@@ -70,22 +70,39 @@
     XCTAssertEqualObjects([result toString], @"annyeonghasaeyo!");
 }
 
-- (void)test_block_capture_recyle {
-    
+- (void)test_block_retain_recycle {
+    // TODO: check retain recycle
     __weak JSContext *weak_context;
     {
         JSContext *context = [[JSContext alloc] init];
         [context evaluateScript:@"var triple = function(value) { return value * 3 }"];
         JSValue *result = [context evaluateScript:@"triple(10)"];
         context[@"detriple"] = ^double(double num) {
-//            return [result toInt32] / 3.0;
-            return 3.14;
+            return [result toInt32] / 3.0;
         };
         
         weak_context = context;
     }
     
     XCTAssertNotNil(weak_context);
+}
+
+- (void)test_block_retain_recycle_solution {
+    __weak JSContext *weak_context;
+    {
+        JSContext *context = [[JSContext alloc] init];
+        [context evaluateScript:@"var triple = function(value) { return value * 3 }"];
+        [context evaluateScript:@"var result = triple(10)"];
+        context[@"detriple"] = ^double(double num) {
+            JSValue *result = [JSContext currentContext][@"result"];
+            return [result toInt32] / 3.0;
+        };
+        
+        weak_context = context;
+    }
+    
+    // TODO: check nil
+    //XCTAssertNil(weak_context);
 }
 
 @end

@@ -15,7 +15,11 @@
 		4F5E8BA522151D0C00269853 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E8BA322151D0C00269853 /* RootViewController.m */; };
 		4F5E8BB022151D5A00269853 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E8BAF22151D5A00269853 /* Tests.m */; };
 		4F5E8BB822151D7200269853 /* Tests_JSContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E8BB722151D7200269853 /* Tests_JSContext.m */; };
+		4F828E702219254500D9CD51 /* mustache.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F828E6F2219254500D9CD51 /* mustache.js */; };
+		4F828E73221939DD00D9CD51 /* MyPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F828E72221939DD00D9CD51 /* MyPoint.m */; };
 		4F986B02221591650096026E /* Tests_JSValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F986B01221591650096026E /* Tests_JSValue.m */; };
+		4F986B072216C3950096026E /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F986B062216C3950096026E /* Person.m */; };
+		4F986B092216C54B0096026E /* Tests_JSExport.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F986B082216C54B0096026E /* Tests_JSExport.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +48,13 @@
 		4F5E8BAF22151D5A00269853 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		4F5E8BB122151D5A00269853 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F5E8BB722151D7200269853 /* Tests_JSContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_JSContext.m; sourceTree = "<group>"; };
+		4F828E6F2219254500D9CD51 /* mustache.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = mustache.js; sourceTree = "<group>"; };
+		4F828E71221939DD00D9CD51 /* MyPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPoint.h; sourceTree = "<group>"; };
+		4F828E72221939DD00D9CD51 /* MyPoint.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPoint.m; sourceTree = "<group>"; };
 		4F986B01221591650096026E /* Tests_JSValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_JSValue.m; sourceTree = "<group>"; };
+		4F986B052216C3950096026E /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		4F986B062216C3950096026E /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		4F986B082216C54B0096026E /* Tests_JSExport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_JSExport.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +103,7 @@
 				4F5E8BA322151D0C00269853 /* RootViewController.m */,
 				4F5E8B922215125D00269853 /* Assets.xcassets */,
 				4F5E8B942215125D00269853 /* LaunchScreen.storyboard */,
+				4F828E6E2219254500D9CD51 /* Resources */,
 				4F5E8B972215125D00269853 /* Info.plist */,
 				4F5E8B982215125D00269853 /* main.m */,
 			);
@@ -114,9 +125,22 @@
 				4F5E8BAF22151D5A00269853 /* Tests.m */,
 				4F5E8BB722151D7200269853 /* Tests_JSContext.m */,
 				4F986B01221591650096026E /* Tests_JSValue.m */,
+				4F986B082216C54B0096026E /* Tests_JSExport.m */,
 				4F5E8BB122151D5A00269853 /* Info.plist */,
+				4F986B052216C3950096026E /* Person.h */,
+				4F986B062216C3950096026E /* Person.m */,
+				4F828E71221939DD00D9CD51 /* MyPoint.h */,
+				4F828E72221939DD00D9CD51 /* MyPoint.m */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		4F828E6E2219254500D9CD51 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4F828E6F2219254500D9CD51 /* mustache.js */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F5E8B962215125D00269853 /* LaunchScreen.storyboard in Resources */,
+				4F828E702219254500D9CD51 /* mustache.js in Resources */,
 				4F5E8B932215125D00269853 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -229,8 +254,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F828E73221939DD00D9CD51 /* MyPoint.m in Sources */,
 				4F5E8BB822151D7200269853 /* Tests_JSContext.m in Sources */,
+				4F986B092216C54B0096026E /* Tests_JSExport.m in Sources */,
 				4F5E8BB022151D5A00269853 /* Tests.m in Sources */,
+				4F986B072216C3950096026E /* Person.m in Sources */,
 				4F986B02221591650096026E /* Tests_JSValue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
