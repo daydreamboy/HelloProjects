@@ -56,7 +56,7 @@
     [context evaluateScript:@"function multiply(value1, value2) { return value1 * value2 "];
 }
 
-- (void)test_block {
+- (void)test_block_as_JS_function {
     JSContext *context = [[JSContext alloc] init];
     context[@"simplifyString"] = ^(NSString *input) {
         NSMutableString *mutableString = [input mutableCopy];
@@ -103,6 +103,41 @@
     
     // TODO: check nil
     //XCTAssertNil(weak_context);
+}
+
+- (void)test_JSContext_currentArguments {
+    JSContext *context = [[JSContext alloc] init];
+    context[@"changeColor"] = ^{
+        NSArray<JSValue *> *args = [JSContext currentArguments];
+        if (args.count == 3) {
+            int32_t r = [args[0] toInt32];
+            int32_t g = [args[1] toInt32];
+            int32_t b = [args[2] toInt32];
+            
+            NSLog(@"args: %@", args);
+            XCTAssertTrue(r == 255);
+            XCTAssertTrue(g == 1);
+            XCTAssertTrue(b == 2);
+        }
+        else if (args.count == 4) {
+            int32_t r = [args[0] toInt32];
+            int32_t g = [args[1] toInt32];
+            int32_t b = [args[2] toInt32];
+            int32_t a = [args[3] toInt32];
+            
+            NSLog(@"args: %@", args);
+            XCTAssertTrue(r == 255);
+            XCTAssertTrue(g == 1);
+            XCTAssertTrue(b == 2);
+            XCTAssertTrue(a == 255);
+        }
+        else {
+            NSLog(@"paramters of changeColor function is error");
+        }
+    };
+    
+    [context evaluateScript:@"changeColor(255, 1, 2);"];
+    [context evaluateScript:@"changeColor(255, 1, 2, 255);"];
 }
 
 @end

@@ -188,6 +188,51 @@ XCTAssertEqualObjects([result toString], @"annyeonghasaeyo!");
 
 
 
+​       block注入方式，相当于把block变成JavaScript侧的函数。如果JavaScript侧的函数，需要带可变参数列表，可以在block中通过`[JSContext currentArguments]`，该方法返回`NSArray<JSValue *> *`。
+
+举个例子
+
+```objective-c
+JSContext *context = [[JSContext alloc] init];
+context[@"changeColor"] = ^{
+    NSArray<JSValue *> *args = [JSContext currentArguments];
+    if (args.count == 3) {
+        int32_t r = [args[0] toInt32];
+        int32_t g = [args[1] toInt32];
+        int32_t b = [args[2] toInt32];
+
+        NSLog(@"args: %@", args);
+        XCTAssertTrue(r == 255);
+        XCTAssertTrue(g == 1);
+        XCTAssertTrue(b == 2);
+    }
+    else if (args.count == 4) {
+        int32_t r = [args[0] toInt32];
+        int32_t g = [args[1] toInt32];
+        int32_t b = [args[2] toInt32];
+        int32_t a = [args[3] toInt32];
+
+        NSLog(@"args: %@", args);
+        XCTAssertTrue(r == 255);
+        XCTAssertTrue(g == 1);
+        XCTAssertTrue(b == 2);
+        XCTAssertTrue(a == 255);
+    }
+    else {
+        NSLog(@"paramters of changeColor function is error");
+    }
+};
+
+[context evaluateScript:@"changeColor(255, 1, 2);"];
+[context evaluateScript:@"changeColor(255, 1, 2, 255);"];
+```
+
+可见block注入方式，在native侧不需要声明参数，JavaScript侧函数支持参数传入不同个数。
+
+示例代码见**Tests_JSContext.m**
+
+
+
 #### b. JSExport
 
 ​       JSExport是一个协议，自定义的类实现该协议，JavaScriptCore可以自动将该类的属性、实例方法以及类方法导入到JavaScript环境中。
@@ -347,6 +392,12 @@ NSLog(@"pointValue: %@", pointValue);
 注意(TODO)：
 
 > 1. Each JavaScript value is also associated (indirectly via the [`context`](dash-apple-api://load?request_key=hcqUnxSEQa#dash_1451518) property) with a specific [`JSVirtualMachine`](dash-apple-api://load?topic_id=1451743&language=occ) object representing the underlying set of execution resources for its context. You can pass `JSValue` instances only to methods on `JSValue` and [`JSContext`](dash-apple-api://load?topic_id=1451359&language=occ) instances hosted by the same virtual machine—attempting to pass a value to a different virtual machine raises an Objective-C exception.
+
+
+
+## 5、WebView中JavaScript和native交互
+
+
 
 
 
