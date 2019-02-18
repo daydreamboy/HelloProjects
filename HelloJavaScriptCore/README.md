@@ -399,6 +399,43 @@ NSLog(@"pointValue: %@", pointValue);
 
 
 
+### （1）UIWebView获取JSContext[^4]
+
+```objective-c
+JSContext *context = [self.webView valueForKeyPath:@"documentView.webView.mainFrame.javaScriptContext"];
+```
+
+​       在`-[UIWebViewDelegate webViewDidFinishLoad:]`中，通过KVC，可以获取UIWebView的JSContext，并将native代码（block、JSExport导出的类等）注入到JavaScript环境中。
+
+示例代码见**UseJSContextOfUIWebViewViewController**，代码参考简书[这篇文章](https://www.jianshu.com/p/4db513ed2c1a)
+
+
+
+注意
+
+>  为确保页面加载完成，在`-[UIWebViewDelegate webViewDidFinishLoad:]`中，才执行注入[^5]。
+
+
+
+### （2）WKWebView使用WKUserScript
+
+​        WKWebView和UIWebView不一样，不能使用KVC方式获取JSContext[^6]。但是WebKit.framework提供*WKUserScript*用于封装JavaScript代码。如下
+
+```objective-c
+WKUserContentController *userContentController = [WKUserContentController new];
+
+NSString *JSSourceCode = @"window.webkit.messageHandlers.welcome.postMessage({msg: 'Welcome to use WKWebView'});";
+WKUserScript *JSCode = [[WKUserScript alloc] initWithSource:JSSourceCode injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:YES];
+[userContentController addUserScript:JSCode];
+
+WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
+configuration.userContentController = userContentController;
+
+WKWebView *webView = [[WKWebView alloc] initWithFrame:frame configuration:configuration];
+```
+
+示例代码见**JSCallNativeInWKWebViewViewController**
+
 
 
 ## References
@@ -407,4 +444,6 @@ NSLog(@"pointValue: %@", pointValue);
 
 [^2]:https://developer.apple.com/documentation/javascriptcore/jsexport?language=objc
 [^3]:https://www.bignerdranch.com/blog/javascriptcore-and-ios-7/
-
+[^4]:https://stackoverflow.com/a/21719420
+[^5]:https://stackoverflow.com/questions/21714365/uiwebview-javascript-losing-reference-to-ios-jscontext-namespace-object
+[^6]:https://stackoverflow.com/questions/25792131/how-to-get-jscontext-from-wkwebview

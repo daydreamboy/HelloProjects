@@ -18,6 +18,7 @@
 		4F828E73221939DD00D9CD51 /* MyPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F828E72221939DD00D9CD51 /* MyPoint.m */; };
 		4F828E76221A5AB100D9CD51 /* UseJSContextOfUIWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F828E75221A5AB000D9CD51 /* UseJSContextOfUIWebViewViewController.m */; };
 		4F828E78221A5D5900D9CD51 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F828E77221A5D5800D9CD51 /* index.html */; };
+		4F828EA7221AB37A00D9CD51 /* JSCallNativeInWKWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F828EA6221AB37A00D9CD51 /* JSCallNativeInWKWebViewViewController.m */; };
 		4F986B02221591650096026E /* Tests_JSValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F986B01221591650096026E /* Tests_JSValue.m */; };
 		4F986B072216C3950096026E /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F986B062216C3950096026E /* Person.m */; };
 		4F986B092216C54B0096026E /* Tests_JSExport.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F986B082216C54B0096026E /* Tests_JSExport.m */; };
@@ -53,6 +54,8 @@
 		4F828E74221A5AB000D9CD51 /* UseJSContextOfUIWebViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseJSContextOfUIWebViewViewController.h; sourceTree = "<group>"; };
 		4F828E75221A5AB000D9CD51 /* UseJSContextOfUIWebViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseJSContextOfUIWebViewViewController.m; sourceTree = "<group>"; };
 		4F828E77221A5D5800D9CD51 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		4F828EA5221AB37A00D9CD51 /* JSCallNativeInWKWebViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSCallNativeInWKWebViewViewController.h; sourceTree = "<group>"; };
+		4F828EA6221AB37A00D9CD51 /* JSCallNativeInWKWebViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSCallNativeInWKWebViewViewController.m; sourceTree = "<group>"; };
 		4F986B01221591650096026E /* Tests_JSValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_JSValue.m; sourceTree = "<group>"; };
 		4F986B052216C3950096026E /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		4F986B062216C3950096026E /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
@@ -117,6 +120,8 @@
 			children = (
 				4F828E74221A5AB000D9CD51 /* UseJSContextOfUIWebViewViewController.h */,
 				4F828E75221A5AB000D9CD51 /* UseJSContextOfUIWebViewViewController.m */,
+				4F828EA5221AB37A00D9CD51 /* JSCallNativeInWKWebViewViewController.h */,
+				4F828EA6221AB37A00D9CD51 /* JSCallNativeInWKWebViewViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -251,6 +256,7 @@
 				4F828E76221A5AB100D9CD51 /* UseJSContextOfUIWebViewViewController.m in Sources */,
 				4F5E8B8B2215125B00269853 /* AppDelegate.m in Sources */,
 				4F5E8BA522151D0C00269853 /* RootViewController.m in Sources */,
+				4F828EA7221AB37A00D9CD51 /* JSCallNativeInWKWebViewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

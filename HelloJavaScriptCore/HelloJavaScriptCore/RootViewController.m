@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 #import "UseJSContextOfUIWebViewViewController.h"
+#import "JSCallNativeInWKWebViewViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -32,10 +33,12 @@
     // MARK: Configure titles and classes for table view
     _titles = @[
         @"Use JSContext in UIWebView",
+        @"JavaScript call native in WKWebView",
         @"call a test method",
     ];
     _classes = @[
         [UseJSContextOfUIWebViewViewController class],
+        [JSCallNativeInWKWebViewViewController class],
         @"testMethod",
     ];
 }
