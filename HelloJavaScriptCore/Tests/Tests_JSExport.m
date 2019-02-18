@@ -153,4 +153,28 @@ extern void RHJSContextMakeClassAvailable(JSContext *context, Class class){
     [context evaluateScript:@"var point = MyPoint.makePointWithXY(3, 4);"];
 }
 
+- (void)test_JSValue_and_native_share_object {
+    JSContext *context = [[JSContext alloc] init];
+    JSValue *pointValue;
+    
+    MyPoint *point = [MyPoint new];
+    
+    // native side set initial value
+    point.x = 1;
+    context[@"point"] = point;
+    pointValue = context[@"point"];
+    NSLog(@"point: %@", point);
+    NSLog(@"pointValue: %@", pointValue);
+    
+    // native side change value
+    point.x = 2;
+    NSLog(@"point: %@", point);
+    NSLog(@"pointValue: %@", pointValue);
+    
+    // JavaScript side change value
+    [context evaluateScript:@"point.x = 3;"];
+    NSLog(@"point: %@", point);
+    NSLog(@"pointValue: %@", pointValue);
+}
+
 @end

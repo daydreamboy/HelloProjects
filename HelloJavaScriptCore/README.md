@@ -310,6 +310,40 @@ JSExportAs(makeMyPointWithXY, + (MyPoint *)makePoint2WithX:(double)x y:(double)y
 
 
 
+##### 共享对象
+
+​      通过JSExport方式注入到context的native对象，是native和JavaScript共享的对象。不管在native侧，还是JavaScript侧，修改该对象都会影响另一侧[^3]。
+
+举个例子
+
+```objective-c
+JSContext *context = [[JSContext alloc] init];
+JSValue *pointValue;
+
+MyPoint *point = [MyPoint new];
+
+// native side set initial value
+point.x = 1;
+context[@"point"] = point;
+pointValue = context[@"point"];
+NSLog(@"point: %@", point);
+NSLog(@"pointValue: %@", pointValue);
+
+// native side change value
+point.x = 2;
+NSLog(@"point: %@", point);
+NSLog(@"pointValue: %@", pointValue);
+
+// JavaScript side change value
+[context evaluateScript:@"point.x = 3;"];
+NSLog(@"point: %@", point);
+NSLog(@"pointValue: %@", pointValue);
+```
+
+这里的pointValue和point都指向同一个对象，在native或者JavaScript中修改该对象，都影响另一侧。
+
+
+
 注意(TODO)：
 
 > 1. Each JavaScript value is also associated (indirectly via the [`context`](dash-apple-api://load?request_key=hcqUnxSEQa#dash_1451518) property) with a specific [`JSVirtualMachine`](dash-apple-api://load?topic_id=1451743&language=occ) object representing the underlying set of execution resources for its context. You can pass `JSValue` instances only to methods on `JSValue` and [`JSContext`](dash-apple-api://load?topic_id=1451359&language=occ) instances hosted by the same virtual machine—attempting to pass a value to a different virtual machine raises an Objective-C exception.
@@ -321,6 +355,5 @@ JSExportAs(makeMyPointWithXY, + (MyPoint *)makePoint2WithX:(double)x y:(double)y
 [^1]:https://nshipster.com/javascriptcore/
 
 [^2]:https://developer.apple.com/documentation/javascriptcore/jsexport?language=objc
-
-
+[^3]:https://www.bignerdranch.com/blog/javascriptcore-and-ios-7/
 
