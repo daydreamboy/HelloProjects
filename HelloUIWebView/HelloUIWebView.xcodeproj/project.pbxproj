@@ -20,6 +20,9 @@
 		2BFCCA9D1F5447E700797DB5 /* WCScreenshotHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BFCCA9A1F5447E700797DB5 /* WCScreenshotHelper.m */; };
 		2BFCCAA11F544E4600797DB5 /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BFCCA9F1F544E4600797DB5 /* Photos.framework */; };
 		2BFCCAA21F544E4600797DB5 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BFCCAA01F544E4600797DB5 /* PhotosUI.framework */; };
+		4F7E6EC4213CE812007BB837 /* WCLegacyWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7E6EC3213CE812007BB837 /* WCLegacyWebView.m */; };
+		4FA4E26B218351BF002F407A /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA4E26A218351BF002F407A /* TestViewController.m */; };
+		4FBBDA46213C36E500F21DE5 /* LoadHtmlCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBBDA45213C36E500F21DE5 /* LoadHtmlCodeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +47,12 @@
 		2BFCCA9A1F5447E700797DB5 /* WCScreenshotHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCScreenshotHelper.m; sourceTree = "<group>"; };
 		2BFCCA9F1F544E4600797DB5 /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		2BFCCAA01F544E4600797DB5 /* PhotosUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotosUI.framework; path = System/Library/Frameworks/PhotosUI.framework; sourceTree = SDKROOT; };
+		4F7E6EC2213CE812007BB837 /* WCLegacyWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCLegacyWebView.h; sourceTree = "<group>"; };
+		4F7E6EC3213CE812007BB837 /* WCLegacyWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCLegacyWebView.m; sourceTree = "<group>"; };
+		4FA4E269218351BF002F407A /* TestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
+		4FA4E26A218351BF002F407A /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		4FBBDA44213C36E500F21DE5 /* LoadHtmlCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadHtmlCodeViewController.h; sourceTree = "<group>"; };
+		4FBBDA45213C36E500F21DE5 /* LoadHtmlCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadHtmlCodeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +71,7 @@
 		2BFCCA5C1F543E4800797DB5 = {
 			isa = PBXGroup;
 			children = (
+				4F7E6EC1213CE77B007BB837 /* WCLegacyWebView */,
 				2BFCCA671F543E4800797DB5 /* HelloUIWebView */,
 				2BFCCA661F543E4800797DB5 /* Products */,
 				2BFCCA9E1F544E4600797DB5 /* Frameworks */,
@@ -107,6 +117,10 @@
 				2BFCCA921F5447E700797DB5 /* Utility */,
 				2BFCCA801F543E9300797DB5 /* LoadLocalHtmlViewController.h */,
 				2BFCCA811F543E9300797DB5 /* LoadLocalHtmlViewController.m */,
+				4FBBDA44213C36E500F21DE5 /* LoadHtmlCodeViewController.h */,
+				4FBBDA45213C36E500F21DE5 /* LoadHtmlCodeViewController.m */,
+				4FA4E269218351BF002F407A /* TestViewController.h */,
+				4FA4E26A218351BF002F407A /* TestViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -156,6 +170,15 @@
 				2BFCCAA01F544E4600797DB5 /* PhotosUI.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4F7E6EC1213CE77B007BB837 /* WCLegacyWebView */ = {
+			isa = PBXGroup;
+			children = (
+				4F7E6EC2213CE812007BB837 /* WCLegacyWebView.h */,
+				4F7E6EC3213CE812007BB837 /* WCLegacyWebView.m */,
+			);
+			path = WCLegacyWebView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -232,11 +255,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BFCCA821F543E9300797DB5 /* LoadLocalHtmlViewController.m in Sources */,
+				4F7E6EC4213CE812007BB837 /* WCLegacyWebView.m in Sources */,
 				2BFCCA6D1F543E4800797DB5 /* AppDelegate.m in Sources */,
 				2BFCCA6A1F543E4800797DB5 /* main.m in Sources */,
+				4FA4E26B218351BF002F407A /* TestViewController.m in Sources */,
 				2BFCCA9B1F5447E700797DB5 /* UIView+StatusBar.m in Sources */,
 				2BFCCA9C1F5447E700797DB5 /* WCRuntimeHelper.m in Sources */,
 				2BFCCA851F543E9B00797DB5 /* RootViewController.m in Sources */,
+				4FBBDA46213C36E500F21DE5 /* LoadHtmlCodeViewController.m in Sources */,
 				2BFCCA9D1F5447E700797DB5 /* WCScreenshotHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
