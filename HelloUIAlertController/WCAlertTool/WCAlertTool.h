@@ -12,7 +12,22 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WCAlertTool : NSObject
+
 + (void)presentAlertWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle cancelButtonDidClickBlock:(nullable void (^)(void))cancelButtonDidClickBlock;
+
+/**
+ Show action sheet
+
+ @param title the title
+ @param message the message
+ @param cancelButtonTitle the title of cancel button
+ @param cancelButtonDidClickBlock the callback when cancel button did click
+ @param ... the pair list terminated by nil
+ - The first object is NSString which is button title
+ - The second object is block which called when button clicked
+ */
++ (void)presentActionSheetWithTitle:(NSString *)title message:(nullable NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle cancelButtonDidClickBlock:(nullable void (^)(void))cancelButtonDidClickBlock, ... NS_REQUIRES_NIL_TERMINATION;
+
 @end
 
 NS_ASSUME_NONNULL_END

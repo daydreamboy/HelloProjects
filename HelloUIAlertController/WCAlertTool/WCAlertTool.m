@@ -25,6 +25,52 @@
     }
 }
 
++ (void)presentActionSheetWithTitle:(NSString *)title message:(nullable NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle cancelButtonDidClickBlock:(nullable void (^)(void))cancelButtonDidClickBlock, ... {
+    if ([UIAlertController class]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelButtonTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+            if (cancelButtonDidClickBlock) {
+                cancelButtonDidClickBlock();
+            }
+        }];
+        [alert addAction:cancelAction];
+        
+        va_list args;
+        va_start(args, cancelButtonDidClickBlock);
+        
+        id firstArg = nil;
+        id secondArg = nil;
+        while ((firstArg = va_arg(args, id))) {
+            secondArg = va_arg(args, id);
+            
+            if (![firstArg isKindOfClass:[NSString class]]) {
+                break;
+            }
+            
+            void (^block)(void) = nil;
+            if ([WCAlertTool isBlock:secondArg]) {
+                block = secondArg;
+            }
+            
+            UIAlertAction *action = [UIAlertAction actionWithTitle:firstArg style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                if (block) {
+                    block();
+                }
+            }];
+            [alert addAction:action];
+            
+            if (secondArg == nil) {
+                break;
+            }
+        }
+        
+        va_end(args);
+        
+        UIViewController *topViewController = [WCAlertTool topViewControllerOnWindow:[UIApplication sharedApplication].keyWindow];
+        [topViewController presentViewController:alert animated:YES completion:nil];
+    }
+}
+
 #pragma mark - Utility
 
 #pragma mark > WCViewControllerTool
@@ -56,6 +102,21 @@
     else {
         return rootViewController;
     }
+}
+
+#pragma mark > Block
+
++ (BOOL)isBlock:(id _Nullable)block {
+    static Class blockClass;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        blockClass = [^{} class];
+        while ([blockClass superclass] != [NSObject class]) {
+            blockClass = [blockClass superclass];
+        }
+    });
+    
+    return [block isKindOfClass:blockClass];
 }
 
 @end
