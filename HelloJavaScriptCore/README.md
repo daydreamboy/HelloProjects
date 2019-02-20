@@ -159,7 +159,11 @@ native从JavaScript环境中获取值，目前有两种方式
 
 
 
-### （2）native将数据传递到JavaScript环境中
+### （2）native注入callback，JavaScript调用callback
+
+native将数据（block、类等）注入到JavaScript环境中，这里泛指为JavaScript callback或JS callback。JavaScript环境中，再使用这些callback（函数、类）触发native方法的调用。这样完成JavaScript到native通信。
+
+
 
 #### a. block注入方式
 
@@ -396,6 +400,15 @@ NSLog(@"pointValue: %@", pointValue);
 
 
 ## 5、WebView中JavaScript和native交互
+
+WebView（UIWebView和WKWebView）都提供执行JavaScript代码的接口，如下
+
+* UIWebView，`-[UIWebView stringByEvaluatingJavaScriptFromString]`
+* WKWebView，`-[WKWebView evaluateJavaScript:completionHandler:]`
+
+​       上面方式属于native从JavaScript环境中获取数据，只能单向通信，有一定局限性。
+
+​       实际上，WebView内部使用JavaScriptCore，但没有将相关对象（JSContext、JSVirtualMachine等）暴露出来。如果要完成双向通信，可以参考下面的方式。
 
 
 
