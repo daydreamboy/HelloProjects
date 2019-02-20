@@ -20,6 +20,7 @@
 		4F7D901A210E14D700145B00 /* MPMDataDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D9015210E13BE00145B00 /* MPMDataDetector.m */; };
 		4F7D901B210E14D700145B00 /* WCDataDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8F63210B70F800145B00 /* WCDataDetector.m */; };
 		4F7D901C210E14D700145B00 /* MPMStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D9018210E13F600145B00 /* MPMStringTool.m */; };
+		4FAEBBD9221D4B8E00C0B9D9 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAEBBD8221D4B8E00C0B9D9 /* Tests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		4F7D9015210E13BE00145B00 /* MPMDataDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMDataDetector.m; sourceTree = "<group>"; };
 		4F7D9017210E13F600145B00 /* MPMStringTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPMStringTool.h; sourceTree = "<group>"; };
 		4F7D9018210E13F600145B00 /* MPMStringTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPMStringTool.m; sourceTree = "<group>"; };
+		4FAEBBD8221D4B8E00C0B9D9 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,12 +122,11 @@
 		4F7D8F61210B70E400145B00 /* WCDataDetector */ = {
 			isa = PBXGroup;
 			children = (
-				4F7D9014210E13BC00145B00 /* MPMDataDetector.h */,
-				4F7D9015210E13BE00145B00 /* MPMDataDetector.m */,
 				4F7D8F62210B70F800145B00 /* WCDataDetector.h */,
 				4F7D8F63210B70F800145B00 /* WCDataDetector.m */,
-				4F7D9017210E13F600145B00 /* MPMStringTool.h */,
-				4F7D9018210E13F600145B00 /* MPMStringTool.m */,
+				4F7D9014210E13BC00145B00 /* MPMDataDetector.h */,
+				4F7D9015210E13BE00145B00 /* MPMDataDetector.m */,
+				4FAEBBDA221D53AD00C0B9D9 /* Tools */,
 			);
 			path = WCDataDetector;
 			sourceTree = "<group>";
@@ -133,10 +134,20 @@
 		4F7D8F6A210B712F00145B00 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				4FAEBBD8221D4B8E00C0B9D9 /* Tests.m */,
 				4F7D8F6B210B712F00145B00 /* Test_NSDataDetector.m */,
 				4F7D8F6D210B712F00145B00 /* Info.plist */,
 			);
 			path = Test;
+			sourceTree = "<group>";
+		};
+		4FAEBBDA221D53AD00C0B9D9 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F7D9017210E13F600145B00 /* MPMStringTool.h */,
+				4F7D9018210E13F600145B00 /* MPMStringTool.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +266,7 @@
 				4F7D901A210E14D700145B00 /* MPMDataDetector.m in Sources */,
 				4F7D901B210E14D700145B00 /* WCDataDetector.m in Sources */,
 				4F7D901C210E14D700145B00 /* MPMStringTool.m in Sources */,
+				4FAEBBD9221D4B8E00C0B9D9 /* Tests.m in Sources */,
 				4F7D8F6C210B712F00145B00 /* Test_NSDataDetector.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

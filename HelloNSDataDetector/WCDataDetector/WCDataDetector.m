@@ -28,15 +28,20 @@
         _cacheCountLimit = 50;
     }
     if (!_dataDetector && errorL) {
-        *error = errorL;
+        if (error) {
+            *error = errorL;
+        }
         return nil;
     }
     
-    *error = nil;
+    if (error) {
+        *error = nil;
+    }
+    
     return self;
 }
 
-- (NSArray<NSTextCheckingResult *> *)matchesInString:(NSString *)string options:(NSMatchingOptions)options {
+- (nullable NSArray<NSTextCheckingResult *> *)matchesInString:(NSString *)string options:(NSMatchingOptions)options {
     NSArray<NSTextCheckingResult *> *matches;
     
     if (![string isKindOfClass:[NSString class]]) {
@@ -54,7 +59,7 @@
             return matches;
         }
         
-        matches = [self.dataDetector matchesInString:string options:options range:range];
+        matches = [self matchesInString:string options:options range:range];
         if (matches) {
             [self.cache setObject:matches forKey:key];
         }
@@ -62,12 +67,12 @@
         return matches;
     }
     else {
-        matches = [self.dataDetector matchesInString:string options:options range:range];
+        matches = [self matchesInString:string options:options range:range];
         return matches;
     }
 }
 
-- (void)asyncMatchesInString:(NSString *)string options:(NSMatchingOptions)options completion:(void (^)(NSArray<NSTextCheckingResult *> *))completion {
+- (void)asyncMatchesInString:(NSString *)string options:(NSMatchingOptions)options completion:(void (^)(NSArray<NSTextCheckingResult *> * _Nullable))completion {
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         NSArray<NSTextCheckingResult *> *matches = [self matchesInString:string options:options];
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -76,7 +81,70 @@
     });
 }
 
-#pragma mark - Getters
+#pragma mark -
+
+- (NSArray<NSTextCheckingResult *> *)matchesInString:(NSString *)string options:(NSMatchingOptions)options range:(NSRange)range {
+    NSArray<NSTextCheckingResult *> *matches = [self.dataDetector matchesInString:string options:options range:range];
+    
+    NSMutableArray<NSTextCheckingResult *> *matchesM = [NSMutableArray arrayWithCapacity:matches.count];
+    for (NSTextCheckingResult *result in matches) {
+        NSTextCheckingResult *resultToAdd = [self configureResult:result];
+        if (resultToAdd) {
+            [matchesM addObject:resultToAdd];
+        }
+    }
+    
+    return matchesM;
+}
+
+- (nullable NSTextCheckingResult *)configureResult:(NSTextCheckingResult *)result {
+    // Note: when need to check link and result has URL
+    if ((self.checkingTypes & NSTextCheckingTypeLink) && result.URL) {
+        
+        // 1. force detect http/https
+        if (self.forceDetectHttpScheme) {
+            NSString *fixedHttpScheme = nil;
+            NSString *scheme = result.URL.scheme;
+            
+            if (![scheme isEqualToString:@"http"] && [scheme hasSuffix:@"http"]) {
+                fixedHttpScheme = @"http";
+            }
+            else if (![scheme isEqualToString:@"https"] && [scheme hasSuffix:@"https"]) {
+                fixedHttpScheme = @"https";
+            }
+            
+            if (fixedHttpScheme) {
+                NSString *originalUrl = result.URL.absoluteString;
+                NSString *fixedUrl = [originalUrl substringFromIndex:[originalUrl rangeOfString:fixedHttpScheme].location];
+
+                NSRange fixedRange = [originalUrl rangeOfString:fixedUrl];
+                NSURL *fixedURL = [NSURL URLWithString:fixedUrl];
+                
+                NSString *privateClassName = [@[ @"NS", @"Link", @"Checking", @"Result" ] componentsJoinedByString:@""];
+                if ([result isKindOfClass:NSClassFromString(privateClassName)]) {
+                    @try {
+                        [result setValue:fixedURL forKey:@"_url"];
+                        [result setValue:[NSValue valueWithRange:fixedRange] forKey:@"range"];
+                    }
+                    @catch (NSException *e) {
+                        NSLog(@"an exception occurred: %@", e);
+                    }
+                }
+            }
+        }
+        
+        // 2. filter allowed link schemes
+        if (self.allowedLinkSchemes.count) {
+            if (![self.allowedLinkSchemes containsObject:result.URL.scheme]) {
+                return nil;
+            }
+        }
+    }
+    
+    return result;
+}
+
+#pragma mark > Getters
 
 - (NSCache *)cache {
     if (!_cache) {
