@@ -38,5 +38,16 @@
  @discussion this method will internally call +[MPMStringTool substringWithString:atLocation:length:]
  */
 + (NSString *)substringWithString:(NSString *)string range:(NSRange)range;
+
+/**
+ Split string into components by character set
+
+ @param string the string to split
+ @param charactersSet the character set as separators
+ @param substringRanges the ranges of components
+ @return the components after spliting
+ */
++ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string charactersInSet:(NSCharacterSet *)charactersSet substringRangs:(inout NSMutableArray<NSValue *> *)substringRanges;
+
 @end
 

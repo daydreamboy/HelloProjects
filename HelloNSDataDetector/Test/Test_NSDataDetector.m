@@ -155,4 +155,25 @@
     }
 }
 
+- (void)test_ {
+    NSArray<NSTextCheckingResult *> *matches;
+    NSTextCheckingResult *result;
+    NSDataDetector *detector = [[NSDataDetector alloc] initWithTypes:NSTextCheckingTypeLink error:nil];
+    NSString *string;
+    
+    // Case 1
+    string = @"abchttps://www.google.com/";
+    matches = [detector matchesInString:string options:kNilOptions range:NSMakeRange(3, [@"https://www.google.com/" length])];
+    result = [matches firstObject];
+    XCTAssertTrue(result.range.location == 3);
+    XCTAssertTrue(result.range.length == 23);
+    
+    // Case 2
+    string = @"a中文https://www.google.com/ sdf";
+    matches = [detector matchesInString:string options:kNilOptions range:NSMakeRange(1, [@"中文https://www.google.com/" length])];
+    result = [matches firstObject];
+    XCTAssertTrue(result.range.location == 3);
+    XCTAssertTrue(result.range.length == 23);
+}
+
 @end

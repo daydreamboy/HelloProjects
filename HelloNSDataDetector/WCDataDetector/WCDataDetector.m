@@ -8,6 +8,7 @@
 
 #import "WCDataDetector.h"
 #import "MPMStringTool.h"
+#import "WCCharacterSetTool.h"
 
 @interface WCDataDetector ()
 @property (nonatomic, strong) NSDataDetector *dataDetector;
@@ -25,6 +26,7 @@
         _checkingTypes = checkingTypes;
         _dataDetector = [[NSDataDetector alloc] initWithTypes:checkingTypes error:&errorL];
         _enableCheckResultsCache = YES;
+        _enableStrictLinkUrl = YES;
         _cacheCountLimit = 50;
     }
     if (!_dataDetector && errorL) {
@@ -84,17 +86,83 @@
 #pragma mark -
 
 - (NSArray<NSTextCheckingResult *> *)matchesInString:(NSString *)string options:(NSMatchingOptions)options range:(NSRange)range {
-    NSArray<NSTextCheckingResult *> *matches = [self.dataDetector matchesInString:string options:options range:range];
-    
-    NSMutableArray<NSTextCheckingResult *> *matchesM = [NSMutableArray arrayWithCapacity:matches.count];
-    for (NSTextCheckingResult *result in matches) {
-        NSTextCheckingResult *resultToAdd = [self configureResult:result matchingString:string];
-        if (resultToAdd) {
-            [matchesM addObject:resultToAdd];
+    if (self.enableStrictLinkUrl) {
+        NSMutableArray<NSTextCheckingResult *> *arrM = [NSMutableArray array];
+        
+        NSCharacterSet *characterSet = [[WCCharacterSetTool URLAllowedCharacterSet] invertedSet];
+        NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
+        NSArray<NSString *> *components = [MPMStringTool componentsWithString:string charactersInSet:characterSet substringRangs:ranges];
+        
+        if (components.count == ranges.count) {
+            for (NSInteger i = 0; i < components.count; i++) {
+                NSRange componentRange = [ranges[i] rangeValue];
+                
+                NSArray<NSTextCheckingResult *> *matches = [self.dataDetector matchesInString:string options:options range:componentRange];
+                
+                NSMutableArray<NSTextCheckingResult *> *matchesM = [NSMutableArray arrayWithCapacity:matches.count];
+                for (NSTextCheckingResult *result in matches) {
+                    NSTextCheckingResult *resultToAdd = [self configureResult:result matchingString:string];
+                    if (resultToAdd) {
+                        [matchesM addObject:resultToAdd];
+                    }
+                }
+                
+                [arrM addObjectsFromArray:matchesM];
+            }
         }
+        else {
+            NSLog(@"should never hit this line. Check components array.");
+            NSArray<NSTextCheckingResult *> *matches = [self.dataDetector matchesInString:string options:options range:range];
+            [arrM addObjectsFromArray:matches];
+        }
+        
+        return arrM;
     }
+    else {
+        NSArray<NSTextCheckingResult *> *matches = [self.dataDetector matchesInString:string options:options range:range];
+        
+        NSMutableArray<NSTextCheckingResult *> *matchesM = [NSMutableArray arrayWithCapacity:matches.count];
+        for (NSTextCheckingResult *result in matches) {
+            NSTextCheckingResult *resultToAdd = [self configureResult:result matchingString:string];
+            if (resultToAdd) {
+                [matchesM addObject:resultToAdd];
+            }
+        }
+        
+        return matchesM;
+    }
+}
+
+- (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string charactersInSet:(NSCharacterSet *)charactersSet substringRangs:(inout NSMutableArray<NSValue *> *)substringRangs {
     
-    return matchesM;
+    NSMutableArray<NSString *> *substrings = [NSMutableArray array];
+    NSMutableArray<NSValue *> *substringRangeValues = [NSMutableArray array];
+    
+    __block NSMutableString *buffer = nil;
+    __block NSRange bufferRange = NSMakeRange(0, 0);
+    [string enumerateSubstringsInRange:NSMakeRange(0, string.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable character, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+        
+        if ([character rangeOfCharacterFromSet:charactersSet].location == NSNotFound) {
+            if (!buffer) {
+                buffer = [NSMutableString stringWithCapacity:string.length];
+                bufferRange.location = substringRange.location;
+            }
+            [buffer appendString:character];
+            bufferRange.length += character.length;
+        }
+        else {
+            if (buffer.length) {
+                [substrings addObject:buffer];
+                [substringRangeValues addObject:[NSValue valueWithRange:bufferRange]];
+            }
+            
+            // reset
+            buffer = nil;
+            bufferRange = NSMakeRange(0, 0);
+        }
+    }];
+    
+    return substrings;
 }
 
 - (void)safeSetResult:(NSTextCheckingResult *)result range:(NSRange)range URL:(NSURL *)URL {
@@ -112,7 +180,7 @@
     }
 }
 
-- (nullable NSTextCheckingResult *)configureResult:(NSTextCheckingResult *)result matchingString:(NSString *)matchingString {
+- (NSTextCheckingResult *)configureResult:(NSTextCheckingResult *)result matchingString:(NSString *)matchingString {
     // Note: when need to check link and result has URL
     if ((self.checkingTypes & NSTextCheckingTypeLink) && result.URL) {
         
@@ -166,6 +234,22 @@
     }
     
     return result;
+}
+
++ (NSCharacterSet *)URLAllowedCharacterSet {
+    static NSMutableCharacterSet *set;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        set = [NSMutableCharacterSet new];
+        [set formUnionWithCharacterSet:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+        [set formUnionWithCharacterSet:[NSCharacterSet URLHostAllowedCharacterSet]];
+        [set formUnionWithCharacterSet:[NSCharacterSet URLPasswordAllowedCharacterSet]];
+        [set formUnionWithCharacterSet:[NSCharacterSet URLPathAllowedCharacterSet]];
+        [set formUnionWithCharacterSet:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        [set formUnionWithCharacterSet:[NSCharacterSet URLUserAllowedCharacterSet]];
+        [set formUnionWithCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@"%"]];
+    });
+    return set;
 }
 
 #pragma mark > Getters

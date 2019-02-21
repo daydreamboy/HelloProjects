@@ -20,6 +20,7 @@
 		4F7D901A210E14D700145B00 /* MPMDataDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D9015210E13BE00145B00 /* MPMDataDetector.m */; };
 		4F7D901B210E14D700145B00 /* WCDataDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8F63210B70F800145B00 /* WCDataDetector.m */; };
 		4F7D901C210E14D700145B00 /* MPMStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D9018210E13F600145B00 /* MPMStringTool.m */; };
+		4F8C95A2221EB16D00869CE7 /* WCCharacterSetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C95A1221EB16D00869CE7 /* WCCharacterSetTool.m */; };
 		4FAEBBD9221D4B8E00C0B9D9 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAEBBD8221D4B8E00C0B9D9 /* Tests.m */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,8 @@
 		4F7D9015210E13BE00145B00 /* MPMDataDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMDataDetector.m; sourceTree = "<group>"; };
 		4F7D9017210E13F600145B00 /* MPMStringTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPMStringTool.h; sourceTree = "<group>"; };
 		4F7D9018210E13F600145B00 /* MPMStringTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPMStringTool.m; sourceTree = "<group>"; };
+		4F8C95A0221EB16D00869CE7 /* WCCharacterSetTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCCharacterSetTool.h; sourceTree = "<group>"; };
+		4F8C95A1221EB16D00869CE7 /* WCCharacterSetTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCCharacterSetTool.m; sourceTree = "<group>"; };
 		4FAEBBD8221D4B8E00C0B9D9 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -146,6 +149,8 @@
 			children = (
 				4F7D9017210E13F600145B00 /* MPMStringTool.h */,
 				4F7D9018210E13F600145B00 /* MPMStringTool.m */,
+				4F8C95A0221EB16D00869CE7 /* WCCharacterSetTool.h */,
+				4F8C95A1221EB16D00869CE7 /* WCCharacterSetTool.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -249,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F8C95A2221EB16D00869CE7 /* WCCharacterSetTool.m in Sources */,
 				4F7D9016210E13BE00145B00 /* MPMDataDetector.m in Sources */,
 				4F7D8F54210B702000145B00 /* main.m in Sources */,
 				4F7D9019210E13F600145B00 /* MPMStringTool.m in Sources */,

@@ -89,7 +89,7 @@
     XCTAssertEqualObjects(matchString, @"http://www.google.com/item.htm?id=1");
     
     // Case 4
-    string = @"http://www.google.com/item.htm?id=1中文中文中文 http://www.google.com/item.htm?id=2中文中文中文";
+    string = @"http://www.google.com/item.htm?id=1中文中文中文http://www.google.com/item.htm?id=2中文中文中文";
     matches = [dataDetector matchesInString:string options:kNilOptions];
     for (NSInteger i = 0; i < matches.count; i++) {
         result = matches[i];

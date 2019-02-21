@@ -34,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, readonly) NSTextCheckingTypes checkingTypes;
 
+#pragma mark > Porperties for NSTextCheckingTypeLink
+
 /**
  The allowed link scheme to detect when check type is NSTextCheckingTypeLink.
  
@@ -54,6 +56,16 @@ NS_ASSUME_NONNULL_BEGIN
  take `https://www.google.com/` as link, not the `fakehttps://www.google.com/中文`
  */
 @property (nonatomic, assign) BOOL forceDetectHttpScheme;
+
+/**
+ Enable strict link url which only allow URL-allowed characters in the url.
+ For example, `https://www.google.com/中文` will detect as `https://www.google.com/`
+ 
+ Default is YES
+ */
+@property (nonatomic, assign) BOOL enableStrictLinkUrl;
+
+#pragma mark -
 
 /**
  Get an instance
