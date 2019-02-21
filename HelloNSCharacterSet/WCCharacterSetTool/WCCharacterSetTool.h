@@ -20,6 +20,15 @@ NS_ASSUME_NONNULL_BEGIN
  @see https://stackoverflow.com/a/15742659
  */
 + (nullable NSArray<NSString *> *)charactersInCharacterSet:(NSCharacterSet *)characterSet;
+
+/**
+ Get a character set which contains characters allowed in http/https url
+
+ @return the singleton of NSCharacterSet
+ @discussion The charaters are !$%&'()*+,-./0123456789:;=?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]_abcdefghijklmnopqrstuvwxyz~
+ */
++ (NSCharacterSet *)URLAllowedCharacterSet;
+
 @end
 
 NS_ASSUME_NONNULL_END

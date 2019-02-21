@@ -26,7 +26,7 @@
 }
 
 // @see https://gist.github.com/daydreamboy/207fc752ee62dc329ec7a5577f5f4122
-- (void)test_WCCharacterSetTool_charactersInCharacterSet {
+- (void)test_charactersInCharacterSet {
     NSArray *array;
     NSString *string;
     
@@ -57,6 +57,14 @@
     
     // Case 6
     array = [WCCharacterSetTool charactersInCharacterSet:[NSCharacterSet URLPasswordAllowedCharacterSet]];
+    string = [array componentsJoinedByString:@""];
+    NSLog(@"%@", string);
+}
+
+- (void)test_URLAllowedCharacterSet {
+    NSArray *array;
+    NSString *string;
+    array = [WCCharacterSetTool charactersInCharacterSet:[WCCharacterSetTool URLAllowedCharacterSet]];
     string = [array componentsJoinedByString:@""];
     NSLog(@"%@", string);
 }
