@@ -383,6 +383,51 @@
     return componentsM;
 }
 
++ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string charactersInSet:(NSCharacterSet *)charactersSet substringRangs:(inout NSMutableArray<NSValue *> *)substringRanges {
+    
+    if (![string isKindOfClass:[NSString class]] || ![charactersSet isKindOfClass:[NSCharacterSet class]]) {
+        return nil;
+    }
+    
+    if (substringRanges && ![substringRanges isKindOfClass:[NSMutableArray class]]) {
+        return nil;
+    }
+    
+    NSMutableArray<NSString *> *substrings = [NSMutableArray array];
+    [substringRanges removeAllObjects];
+    
+    __block NSMutableString *buffer = nil;
+    __block NSRange bufferRange = NSMakeRange(0, 0);
+    [string enumerateSubstringsInRange:NSMakeRange(0, string.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable character, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+        
+        if ([character rangeOfCharacterFromSet:charactersSet].location == NSNotFound) {
+            if (!buffer) {
+                buffer = [NSMutableString stringWithCapacity:string.length];
+                bufferRange.location = substringRange.location;
+            }
+            [buffer appendString:character];
+            bufferRange.length += character.length;
+        }
+        else {
+            if (buffer.length) {
+                [substrings addObject:buffer];
+                [substringRanges addObject:[NSValue valueWithRange:bufferRange]];
+            }
+            
+            // reset
+            buffer = nil;
+            bufferRange = NSMakeRange(0, 0);
+        }
+    }];
+    
+    if (buffer.length) {
+        [substrings addObject:buffer];
+        [substringRanges addObject:[NSValue valueWithRange:bufferRange]];
+    }
+    
+    return substrings;
+}
+
 + (nullable NSDictionary<NSString *, NSString *> *)keyValuePairsWithString:(NSString *)string usingConnector:(NSString *)connector usingSeparator:(NSString *)separator {
     
     if (![string isKindOfClass:[NSString class]] ||

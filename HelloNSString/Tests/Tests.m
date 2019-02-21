@@ -131,6 +131,46 @@
     NSLog(@"---------------------------------");
 }
 
+- (void)test_componentsWithString_charactersInSet_substringRangs {
+    NSString *string;
+    NSArray *components;
+    NSMutableArray *componentRanges = [NSMutableArray array];
+    NSCharacterSet *characterSet = [[self URLAllowedCharacterSet] invertedSet];
+    
+    // Case 1
+    string = @"http://www.google.com/item.htm?id=1中文中文中文http://www.google.com/item.htm?id=2中文中文中文";
+    components = [WCStringTool componentsWithString:string charactersInSet:[self URLAllowedCharacterSet] substringRangs:componentRanges];
+    XCTAssertTrue(components.count == componentRanges.count);
+    for (NSInteger i = 0; i < components.count; i++) {
+        NSString *component = components[i];
+        NSRange range = [componentRanges[i] rangeValue];
+        NSString *substring = [string substringWithRange:range];
+        XCTAssertEqualObjects(component, substring);
+    }
+    
+    // Case 1
+    string = @"http://www.google.com/item.htm?id=1中文中文中文http://www.google.com/item.htm?id=2中文中文中文";
+    components = [WCStringTool componentsWithString:string charactersInSet:characterSet substringRangs:componentRanges];
+    XCTAssertTrue(components.count == componentRanges.count);
+    for (NSInteger i = 0; i < components.count; i++) {
+        NSString *component = components[i];
+        NSRange range = [componentRanges[i] rangeValue];
+        NSString *substring = [string substringWithRange:range];
+        XCTAssertEqualObjects(component, substring);
+    }
+    
+    // Case 2
+    string = @"http://www.google.com/item.htm?id=1 http://www.google.com/item.htm?id=2中文中文中文http://www.google.com/item.htm?id=%E6%B5%8B%E8%AF%95中文中文中文http://www.google.com/item.htm?id=3";
+    components = [WCStringTool componentsWithString:string charactersInSet:characterSet substringRangs:componentRanges];
+    XCTAssertTrue(components.count == componentRanges.count);
+    for (NSInteger i = 0; i < components.count; i++) {
+        NSString *component = components[i];
+        NSRange range = [componentRanges[i] rangeValue];
+        NSString *substring = [string substringWithRange:range];
+        XCTAssertEqualObjects(component, substring);
+    }
+}
+
 #pragma mark - Handle String As Text In UILabel
 
 - (void)test_interpolatedStringWithCamelCaseString_separator {
@@ -1719,6 +1759,22 @@
                                     NSRange enclosingRange, BOOL *stop) {
         NSLog(@"%@ %@", substring, NSStringFromRange(substringRange));
     }];
+}
+                  
+- (NSCharacterSet *)URLAllowedCharacterSet {
+    static NSMutableCharacterSet *set;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        set = [NSMutableCharacterSet new];
+        [set formUnionWithCharacterSet:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+        [set formUnionWithCharacterSet:[NSCharacterSet URLHostAllowedCharacterSet]];
+        [set formUnionWithCharacterSet:[NSCharacterSet URLPasswordAllowedCharacterSet]];
+        [set formUnionWithCharacterSet:[NSCharacterSet URLPathAllowedCharacterSet]];
+        [set formUnionWithCharacterSet:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        [set formUnionWithCharacterSet:[NSCharacterSet URLUserAllowedCharacterSet]];
+        [set formUnionWithCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@"%"]];
+    });
+    return set;
 }
 
 @end

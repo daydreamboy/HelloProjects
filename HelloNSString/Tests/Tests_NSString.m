@@ -86,4 +86,28 @@
     XCTAssert(count == 2);
 }
 
+- (void)test_commonPrefixWithString_options {
+    NSString *string1;
+    NSString *string2;
+    NSString *output;
+    
+    // Case 1
+    string1 = @"http://www.google.com/item.htm?id=1中文中文中文";
+    string2 = @"http://www.google.com/item.htm?id=1%E4%B8%AD%E6%96%87%E4%B8%AD%E6%96%87%E4%B8%AD%E6%96%87";
+    output = [string1 commonPrefixWithString:string2 options:kNilOptions];
+    XCTAssertEqualObjects(output, @"http://www.google.com/item.htm?id=1");
+    
+    // Case 2
+    string1 = @"abcdhttp://www.google.com/item.htm?id=1中文中文中文";
+    string2 = @"http://www.google.com/item.htm?id=1%E4%B8%AD%E6%96%87%E4%B8%AD%E6%96%87%E4%B8%AD%E6%96%87";
+    output = [string1 commonPrefixWithString:string2 options:kNilOptions];
+    XCTAssertEqualObjects(output, @"");
+    
+    // Case 2
+    string1 = @"abcdhttp://www.google.com/item.htm?id=1中文中文中文";
+    string2 = @"ehttp://www.google.com/item.htm?id=1%E4%B8%AD%E6%96%87%E4%B8%AD%E6%96%87%E4%B8%AD%E6%96%87";
+    output = [string1 commonPrefixWithString:string2 options:kNilOptions];
+    XCTAssertEqualObjects(output, @"");
+}
+
 @end

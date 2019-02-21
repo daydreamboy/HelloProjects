@@ -170,6 +170,16 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string gapRanges:(NSArray<NSValue *> *)gapRanges;
 
 /**
+ Split string into components by character set
+
+ @param string the string to split
+ @param charactersSet the character set as separators
+ @param substringRanges the ranges of components
+ @return the components after spliting. 
+ */
++ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string charactersInSet:(NSCharacterSet *)charactersSet substringRangs:(inout NSMutableArray<NSValue *> *)substringRanges;
+
+/**
  Get key/value pairs from the string with the specific connector and separator
 
  @param string the string contains key-value format
