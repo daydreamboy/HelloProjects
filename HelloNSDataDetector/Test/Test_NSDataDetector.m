@@ -8,7 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "MPMDataDetector.h"
-#import "WCDataDetector.h"
+#import "MPMDataDetector.h"
 
 @interface Test_NSDataDetector : XCTestCase
 
@@ -96,6 +96,63 @@
     // Case 2
     string = @"测试https://detail.tmall.com/item.htm?id=568371443233&spm=a223v.7835278.t0.1.3cbe2312nwviTo&pvid=be2a1b12-f24f-4050-9227-e7c3448fd8b8&scm=1007.12144.81309.9011_8949&utparam={%22x_hestia_source%22:%228949%22,%22x_mt%22:10,%22x_object_id%22:568371443233,%22x_object_type%22:%22item%22,%22x_pos%22:1,%22x_pvid%22:%22be2a1b12-f24f-4050-9227-e7c3448fd8b8%22,%22x_src%22:%228949%22}，/:^_^,这是表情";
     [self runMPMDataDetector:detector string:string];
+}
+
+
+- (void)test_check_http_or_https_links {
+    NSString *string;
+    NSString *matchString;
+    NSArray<MPMDataDetectorCheckResult *> *matches;
+    MPMDataDetectorCheckResult *result;
+    MPMDataDetector *dataDetector = [[MPMDataDetector alloc] initWithTypes:MPMDataDetectorCheckResultTypeLink error:nil];
+    
+    // Case 1
+    string = @"fakehttps://www.google.com/item.htm?id=1";
+    result = [[dataDetector matchesInString:string options:kNilOptions] firstObject];
+    matchString = [string substringWithRange:result.range];
+    XCTAssertEqualObjects(matchString, @"https://www.google.com/item.htm?id=1");
+    
+    // Case 2
+    string = @"fake http://www.google.com/item.htm?id=1";
+    result = [[dataDetector matchesInString:string options:kNilOptions] firstObject];
+    matchString = [string substringWithRange:result.range];
+    XCTAssertEqualObjects(matchString, @"http://www.google.com/item.htm?id=1");
+    
+    // Case 3
+    string = @"http://www.google.com/item.htm?id=1中文中文中文";
+    result = [[dataDetector matchesInString:string options:kNilOptions] firstObject];
+    matchString = [string substringWithRange:result.range];
+    XCTAssertEqualObjects(matchString, @"http://www.google.com/item.htm?id=1");
+    
+    // Case 4
+    string = @"http://www.google.com/item.htm?id=1中文中文中文 http://www.google.com/item.htm?id=2中文中文中文";
+    matches = [dataDetector matchesInString:string options:kNilOptions];
+    for (NSInteger i = 0; i < matches.count; i++) {
+        result = matches[i];
+        matchString = [string substringWithRange:result.range];
+        
+        if (i == 0) {
+            XCTAssertEqualObjects(matchString, @"http://www.google.com/item.htm?id=1");
+        }
+        else if (i == 1) {
+            XCTAssertEqualObjects(matchString, @"http://www.google.com/item.htm?id=2");
+        }
+    }
+    
+    // Case 4
+    string = @"fakehttps://www.google.com/item.htm?id=1 fakehttps://www.google.com/item.htm?id=2 ";
+    matches = [dataDetector matchesInString:string options:kNilOptions];
+    for (NSInteger i = 0; i < matches.count; i++) {
+        result = matches[i];
+        matchString = [string substringWithRange:result.range];
+        
+        if (i == 0) {
+            XCTAssertEqualObjects(matchString, @"https://www.google.com/item.htm?id=1");
+        }
+        else if (i == 1) {
+            XCTAssertEqualObjects(matchString, @"https://www.google.com/item.htm?id=2");
+        }
+    }
 }
 
 @end

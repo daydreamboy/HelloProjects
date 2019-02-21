@@ -12,6 +12,9 @@
 @end
 
 @implementation MPMDataDetectorCheckResult
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%@: %p>{%@}{%@}", NSStringFromClass([self class]), self, NSStringFromRange(_range), _matchString];
+}
 @end
 
 @interface MPMDataDetector ()
@@ -140,11 +143,13 @@
         MPMDataDetectorCheckResult *r = [MPMDataDetectorCheckResult new];
         r.range = result.range;
         r.matchString = [MPMStringTool substringWithString:string range:result.range];
+        r.URL = result.URL;
         if (result.resultType == NSTextCheckingTypePhoneNumber) {
             r.type = MPMDataDetectorCheckResultTypePhoneNumber;
         }
         else if (result.resultType == NSTextCheckingTypeLink) {
             r.type = MPMDataDetectorCheckResultTypeLink;
+            [self fixHttpUrlLink:r matchingString:string];
         }
         [arrM addObject:r];
     }
@@ -161,6 +166,53 @@
     }];
     
     return arr;
+}
+
+- (void)fixHttpUrlLink:(MPMDataDetectorCheckResult *)result matchingString:(NSString *)matchingString {
+    if (!result.matchString.length) {
+        return;
+    }
+    
+    NSString *fixedHttpScheme = nil;
+    NSURL *URL = [NSURL URLWithString:result.matchString];
+    NSString *scheme = URL.scheme;
+    
+    if (![scheme isEqualToString:@"http"] && [scheme hasSuffix:@"http"]) {
+        fixedHttpScheme = @"http";
+    }
+    else if (![scheme isEqualToString:@"https"] && [scheme hasSuffix:@"https"]) {
+        fixedHttpScheme = @"https";
+    }
+    
+    if (fixedHttpScheme) {
+        NSString *originalUrl = result.matchString;
+        
+        NSString *fixedUrl = [originalUrl substringFromIndex:[originalUrl rangeOfString:fixedHttpScheme].location];
+        NSRange subrange = [originalUrl rangeOfString:fixedUrl];
+        NSRange fixedRange = NSMakeRange(result.range.location + subrange.location, subrange.length);
+        
+        result.range = fixedRange;
+        result.matchString = fixedUrl;
+    }
+    
+    NSString *matchString = [MPMStringTool substringWithString:matchingString range:result.range];
+    
+    // when result.URL has been escaped, to take out its original url
+    if (![matchString isEqualToString:result.URL.absoluteString]) {
+        
+        NSString *fixedUrl = [matchString commonPrefixWithString:result.URL.absoluteString options:kNilOptions];
+        if (fixedUrl.length) {
+            NSString *originalUrl = result.URL.absoluteString;
+            NSRange subrange = [originalUrl rangeOfString:fixedUrl];
+            
+            NSRange fixedRange = NSMakeRange(result.range.location + subrange.location, subrange.length);
+            NSURL *fixedURL = [NSURL URLWithString:fixedUrl];
+            
+            result.range = fixedRange;
+            result.matchString = fixedUrl;
+            result.URL = fixedURL;
+        }
+    }
 }
 
 #pragma mark -

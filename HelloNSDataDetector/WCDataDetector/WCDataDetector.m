@@ -88,7 +88,7 @@
     
     NSMutableArray<NSTextCheckingResult *> *matchesM = [NSMutableArray arrayWithCapacity:matches.count];
     for (NSTextCheckingResult *result in matches) {
-        NSTextCheckingResult *resultToAdd = [self configureResult:result];
+        NSTextCheckingResult *resultToAdd = [self configureResult:result matchingString:string];
         if (resultToAdd) {
             [matchesM addObject:resultToAdd];
         }
@@ -97,11 +97,26 @@
     return matchesM;
 }
 
-- (nullable NSTextCheckingResult *)configureResult:(NSTextCheckingResult *)result {
+- (void)safeSetResult:(NSTextCheckingResult *)result range:(NSRange)range URL:(NSURL *)URL {
+    NSString *privateClassName = [@[ @"N", @"S", @"Link", @"Chec", @"king", @"Res", @"ult" ] componentsJoinedByString:@""];
+    if ([result isKindOfClass:NSClassFromString(privateClassName)]) {
+        @try {
+            if (URL) {
+                [result setValue:URL forKey:@"_url"];
+            }
+            [result setValue:[NSValue valueWithRange:range] forKey:@"range"];
+        }
+        @catch (NSException *e) {
+            NSLog(@"an exception occurred: %@", e);
+        }
+    }
+}
+
+- (nullable NSTextCheckingResult *)configureResult:(NSTextCheckingResult *)result matchingString:(NSString *)matchingString {
     // Note: when need to check link and result has URL
     if ((self.checkingTypes & NSTextCheckingTypeLink) && result.URL) {
         
-        // 1. force detect http/https
+        // 1. force detect http/https url link
         if (self.forceDetectHttpScheme) {
             NSString *fixedHttpScheme = nil;
             NSString *scheme = result.URL.scheme;
@@ -117,18 +132,27 @@
                 NSString *originalUrl = result.URL.absoluteString;
                 NSString *fixedUrl = [originalUrl substringFromIndex:[originalUrl rangeOfString:fixedHttpScheme].location];
 
-                NSRange fixedRange = [originalUrl rangeOfString:fixedUrl];
+                NSRange subrange = [originalUrl rangeOfString:fixedUrl];
+                NSRange fixedRange = NSMakeRange(result.range.location + subrange.location, subrange.length);
                 NSURL *fixedURL = [NSURL URLWithString:fixedUrl];
                 
-                NSString *privateClassName = [@[ @"NS", @"Link", @"Checking", @"Result" ] componentsJoinedByString:@""];
-                if ([result isKindOfClass:NSClassFromString(privateClassName)]) {
-                    @try {
-                        [result setValue:fixedURL forKey:@"_url"];
-                        [result setValue:[NSValue valueWithRange:fixedRange] forKey:@"range"];
-                    }
-                    @catch (NSException *e) {
-                        NSLog(@"an exception occurred: %@", e);
-                    }
+                [self safeSetResult:result range:fixedRange URL:fixedURL];
+            }
+            
+            NSString *matchString = [MPMStringTool substringWithString:matchingString range:result.range];
+            
+            // when result.URL has been escaped, to take out its original url
+            if (![matchString isEqualToString:result.URL.absoluteString]) {
+                
+                NSString *fixedUrl = [matchString commonPrefixWithString:result.URL.absoluteString options:kNilOptions];
+                if (fixedUrl.length) {
+                    NSString *originalUrl = result.URL.absoluteString;
+                    NSRange subrange = [originalUrl rangeOfString:fixedUrl];
+                    
+                    NSRange fixedRange = NSMakeRange(result.range.location + subrange.location, subrange.length);
+                    NSURL *fixedURL = [NSURL URLWithString:fixedUrl];
+                    
+                    [self safeSetResult:result range:fixedRange URL:fixedURL];
                 }
             }
         }

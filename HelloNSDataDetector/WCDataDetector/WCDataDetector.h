@@ -50,8 +50,8 @@ NS_ASSUME_NONNULL_BEGIN
  Default is NO.
  
  @discussion The NSDataDetector detects link any scheme starts with `://`, not only for `http://` or `https://`.
- So use this property to force detect `http/https` schemes, for example, @"fakehttps://www.google.com/" will
- take `https://www.google.com/` as link, not the `fakehttps://www.google.com/`
+ So use this property to force detect `http/https` schemes, for example, @"fakehttps://www.google.com/中文" will
+ take `https://www.google.com/` as link, not the `fakehttps://www.google.com/中文`
  */
 @property (nonatomic, assign) BOOL forceDetectHttpScheme;
 

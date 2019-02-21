@@ -20,6 +20,7 @@ typedef NS_OPTIONS(NSUInteger, MPMDataDetectorCheckResultType) {
 @property (nonatomic, assign) NSRange range;
 @property (nonatomic, assign) MPMDataDetectorCheckResultType type;
 @property (nonatomic, strong) NSString *matchString;
+@property (nonatomic, strong) NSURL *URL;
 @end
 
 @interface MPMDataDetector : NSObject
