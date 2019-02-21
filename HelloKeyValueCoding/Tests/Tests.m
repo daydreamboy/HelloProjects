@@ -33,11 +33,43 @@
 }
 
 - (void)test_valueForKeyPath_self {
+    NSString *name;
+    
     Person *p = [Person new];
     p.name = @"John";
     
-    NSString *name = [p valueForKeyPath:@"self.name"];
-    NSLog(@"%@", name);
+    name = [p valueForKeyPath:@"self.name"];
+    XCTAssertEqualObjects(name, @"John");
+    
+    name = [p valueForKey:@"name"];
+    XCTAssertEqualObjects(name, @"John");
+}
+
+- (void)test_setValue_forKey_or_setValue_forKeyPath {
+    Person *p = [Person new];
+    
+    [p setValue:@"John" forKey:@"name"];
+    XCTAssertEqualObjects(p.name, @"John");
+    
+    [p setValue:@"Jay" forKeyPath:@"self.name"];
+    XCTAssertEqualObjects(p.name, @"Jay");
+}
+
+#pragma mark - Exception
+
+- (void)test_valueForKey_or_valueForKeyPath_exception {
+    Person *p = [Person new];
+    p.name = @"John";
+    
+    XCTAssertThrows([p valueForKey:@"name2"]);
+    XCTAssertThrows([p valueForKeyPath:@"self.name2"]);
+}
+
+- (void)test_setValue_forKey_or_setValue_forKeyPath_exception {
+    Person *p = [Person new];
+    
+    XCTAssertThrows([p setValue:@"John" forKey:@"name2"]);
+    XCTAssertThrows([p setValue:@"Jay" forKeyPath:@"self.name2"]);
 }
 
 @end
