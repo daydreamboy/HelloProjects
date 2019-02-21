@@ -16,6 +16,7 @@
 		4F4513CB2123CEF30065028A /* TabledAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4513C72123CEF30065028A /* TabledAlertController.m */; };
 		4F4513CF2123D5660065028A /* WCAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4513CE2123D5660065028A /* WCAlertController.m */; };
 		4F4DC06621EECE360066E96A /* WCAlertTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4DC06521EECE360066E96A /* WCAlertTool.m */; };
+		4F8C95A7221EF43000869CE7 /* WCBlockTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C95A6221EF43000869CE7 /* WCBlockTool.m */; };
 		4FE3B7D2221CF624006790CD /* UseWCAlertToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE3B7D1221CF624006790CD /* UseWCAlertToolViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -36,6 +37,8 @@
 		4F4513CE2123D5660065028A /* WCAlertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAlertController.m; sourceTree = "<group>"; };
 		4F4DC06421EECE360066E96A /* WCAlertTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAlertTool.h; sourceTree = "<group>"; };
 		4F4DC06521EECE360066E96A /* WCAlertTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAlertTool.m; sourceTree = "<group>"; };
+		4F8C95A5221EF43000869CE7 /* WCBlockTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCBlockTool.h; sourceTree = "<group>"; };
+		4F8C95A6221EF43000869CE7 /* WCBlockTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCBlockTool.m; sourceTree = "<group>"; };
 		4FE3B7D0221CF624006790CD /* UseWCAlertToolViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseWCAlertToolViewController.h; sourceTree = "<group>"; };
 		4FE3B7D1221CF624006790CD /* UseWCAlertToolViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCAlertToolViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -110,10 +113,20 @@
 		4F4DC06321EECE070066E96A /* WCAlertTool */ = {
 			isa = PBXGroup;
 			children = (
+				4F8C95A4221EF41E00869CE7 /* Tools */,
 				4F4DC06421EECE360066E96A /* WCAlertTool.h */,
 				4F4DC06521EECE360066E96A /* WCAlertTool.m */,
 			);
 			path = WCAlertTool;
+			sourceTree = "<group>";
+		};
+		4F8C95A4221EF41E00869CE7 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F8C95A5221EF43000869CE7 /* WCBlockTool.h */,
+				4F8C95A6221EF43000869CE7 /* WCBlockTool.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,6 +201,7 @@
 				4FE3B7D2221CF624006790CD /* UseWCAlertToolViewController.m in Sources */,
 				4F4513BD2123CE9F0065028A /* main.m in Sources */,
 				4F4513CB2123CEF30065028A /* TabledAlertController.m in Sources */,
+				4F8C95A7221EF43000869CE7 /* WCBlockTool.m in Sources */,
 				4F4DC06621EECE360066E96A /* WCAlertTool.m in Sources */,
 				4F4513AF2123CE9E0065028A /* AppDelegate.m in Sources */,
 				4F4513CF2123D5660065028A /* WCAlertController.m in Sources */,

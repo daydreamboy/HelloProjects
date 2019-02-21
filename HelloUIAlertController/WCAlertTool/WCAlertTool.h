@@ -15,6 +15,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)presentAlertWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle cancelButtonDidClickBlock:(nullable void (^)(void))cancelButtonDidClickBlock;
 
+
+#pragma mark > Show Action Sheet
+
 /**
  Show action sheet
 
@@ -27,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
  - The second object is block which called when button clicked
  */
 + (void)presentActionSheetWithTitle:(NSString *)title message:(nullable NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle cancelButtonDidClickBlock:(nullable void (^)(void))cancelButtonDidClickBlock, ... NS_REQUIRES_NIL_TERMINATION;
+
++ (void)presentActionSheetWithTitle:(NSString *)title message:(nullable NSString *)message buttonTitles:(NSArray<NSString *> *)buttonTitles buttonDidClickBlocks:(NSArray *)buttonDidClickBlocks;
 
 @end
 

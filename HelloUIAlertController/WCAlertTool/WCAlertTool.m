@@ -7,7 +7,7 @@
 //
 
 #import "WCAlertTool.h"
-
+#import "WCBlockTool.h"
 
 @implementation WCAlertTool
 
@@ -48,7 +48,7 @@
             }
             
             void (^block)(void) = nil;
-            if ([WCAlertTool isBlock:secondArg]) {
+            if ([WCBlockTool isBlock:secondArg]) {
                 block = secondArg;
             }
             
@@ -65,6 +65,53 @@
         }
         
         va_end(args);
+        
+        UIViewController *topViewController = [WCAlertTool topViewControllerOnWindow:[UIApplication sharedApplication].keyWindow];
+        [topViewController presentViewController:alert animated:YES completion:nil];
+    }
+}
+
++ (void)presentActionSheetWithTitle:(NSString *)title message:(nullable NSString *)message buttonTitles:(NSArray<NSString *> *)buttonTitles buttonDidClickBlocks:(NSArray *)buttonDidClickBlocks {
+    if (![buttonTitles isKindOfClass:[NSArray class]] || ![buttonDidClickBlocks isKindOfClass:[NSArray class]]) {
+        return;
+    }
+    
+    if (buttonTitles.count != buttonDidClickBlocks.count) {
+        return;
+    }
+    
+    if ([UIAlertController class]) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleActionSheet];
+        
+        NSString *buttonTitle = [buttonTitles firstObject];
+        id block = [buttonDidClickBlocks firstObject];
+        
+        if ([buttonTitle isKindOfClass:[NSString class]] && [WCBlockTool isBlock:block]) {
+            void (^callback)(void) = block;
+            
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:buttonTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+                if (callback) {
+                    callback();
+                }
+            }];
+            [alert addAction:cancelAction];
+        }
+        
+        for (NSInteger i = 1; i < buttonTitles.count; i++) {
+            buttonTitle = buttonTitles[i];
+            block = buttonDidClickBlocks[i];
+            
+            if ([buttonTitle isKindOfClass:[NSString class]] && [WCBlockTool isBlock:block]) {
+                void (^callback)(void) = block;
+                
+                UIAlertAction *action = [UIAlertAction actionWithTitle:buttonTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                    if (callback) {
+                        callback();
+                    }
+                }];
+                [alert addAction:action];
+            }
+        }
         
         UIViewController *topViewController = [WCAlertTool topViewControllerOnWindow:[UIApplication sharedApplication].keyWindow];
         [topViewController presentViewController:alert animated:YES completion:nil];
@@ -102,21 +149,6 @@
     else {
         return rootViewController;
     }
-}
-
-#pragma mark > Block
-
-+ (BOOL)isBlock:(id _Nullable)block {
-    static Class blockClass;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        blockClass = [^{} class];
-        while ([blockClass superclass] != [NSObject class]) {
-            blockClass = [blockClass superclass];
-        }
-    });
-    
-    return [block isKindOfClass:blockClass];
 }
 
 @end
