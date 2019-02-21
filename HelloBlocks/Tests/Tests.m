@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "WCBlockTool.h"
 
 @interface Tests : XCTestCase
 
@@ -24,8 +25,21 @@
     [super tearDown];
 }
 
-- (void)test_retain_recycle {
+- (void)test_isBlock_crash_1 {
+    id object = [NSNull null];
+    void (^block)(void) = object;
+    [WCBlockTool isBlock:block]; // Crash for using Block_copy
+}
 
+- (void)test_isBlock {
+    id object = [NSNull null];
+    
+    if ([WCBlockTool isBlock:object]) { // OK
+        void (^block)(void) = object;
+        if (block) {
+            block();
+        }
+    }
 }
 
 @end

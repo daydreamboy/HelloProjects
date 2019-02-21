@@ -22,6 +22,7 @@
 		4F74C2B521FAAAC500A87393 /* WeakStrongDanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F74C2B421FAAAC500A87393 /* WeakStrongDanceViewController.m */; };
 		4F74C2BE21FAE83800A87393 /* Tests_BlockIssue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F74C2BD21FAE83800A87393 /* Tests_BlockIssue.m */; };
 		4F887DBB201EC1FE00A844BD /* Block1.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F887DBA201EC1FE00A844BD /* Block1.m */; };
+		4F8C95A3221EF1CF00869CE7 /* WCBlockTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F37828A1FC458F6002BA02D /* WCBlockTool.m */; };
 		4F986B0422165F7D0096026E /* Tests_Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F986B0322165F7D0096026E /* Tests_Block.m */; };
 /* End PBXBuildFile section */
 
@@ -279,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F8C95A3221EF1CF00869CE7 /* WCBlockTool.m in Sources */,
 				4F6F013621FA14F8008D669E /* Tests.m in Sources */,
 				4F74C2BE21FAE83800A87393 /* Tests_BlockIssue.m in Sources */,
 				4F986B0422165F7D0096026E /* Tests_Block.m in Sources */,

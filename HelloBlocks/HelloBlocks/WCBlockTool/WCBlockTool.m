@@ -61,8 +61,8 @@ struct Block_literal_s {
 
 @implementation WCBlockTool
 
-// @see https://gist.github.com/steipete/6ee378bd7d87f276f6e0
-+ (BOOL)isBlock:(id _Nullable)block {
+
++ (BOOL)isBlock:(id _Nullable)object {
     static Class blockClass;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -72,7 +72,7 @@ struct Block_literal_s {
         }
     });
     
-    return [block isKindOfClass:blockClass];
+    return [object isKindOfClass:blockClass];
 }
 
 @end

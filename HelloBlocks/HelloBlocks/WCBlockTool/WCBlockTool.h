@@ -9,7 +9,33 @@
 #import <Foundation/Foundation.h>
 
 @interface WCBlockTool : NSObject
-+ (BOOL)isBlock:(id _Nullable)block;
+
+/**
+ Check an object if a block
+
+ @param object the object to check
+ @return YES if the object is a block
+ @see https://gist.github.com/steipete/6ee378bd7d87f276f6e0
+ @discussion Don't convert object to block, before use this method to check
+ @code
+ 
+    // A wrong example,
+    id object = [NSNull null];
+    void (^block)(void) = object;
+    [WCBlockTool isBlock:block]; // Crash caused by _Block_copy
+ 
+    // A good example
+    id object = [NSNull null];
+    if ([WCBlockTool isBlock:object]) { // OK
+        void (^block)(void) = object;
+        if (block) {
+            block();
+        }
+    }
+ 
+ @endcode
+ */
++ (BOOL)isBlock:(id _Nullable)object;
 @end
 
 @interface WCBlockDescriptor : NSObject
