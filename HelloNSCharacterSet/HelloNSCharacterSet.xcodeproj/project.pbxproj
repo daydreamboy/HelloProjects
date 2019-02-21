@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F59157C221E9A0F00DE9453 /* WCCharacterSetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8FE9210DA5C200145B00 /* WCCharacterSetTool.m */; };
 		4F7D8FC9210D9B0F00145B00 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8FC8210D9B0F00145B00 /* AppDelegate.m */; };
 		4F7D8FD1210D9B1100145B00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D8FD0210D9B1100145B00 /* Assets.xcassets */; };
 		4F7D8FD4210D9B1100145B00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D8FD2210D9B1100145B00 /* LaunchScreen.storyboard */; };
@@ -237,6 +238,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F59157C221E9A0F00DE9453 /* WCCharacterSetTool.m in Sources */,
 				4F7D8FF2210DAB3D00145B00 /* Test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
