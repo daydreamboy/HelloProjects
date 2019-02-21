@@ -62,6 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
  For example, `https://www.google.com/中文` will detect as `https://www.google.com/`
  
  Default is YES
+ @discussion @allowedLinkSchemes and @forceDetectHttpScheme only works when @enableStrictLinkUrl is YES
  */
 @property (nonatomic, assign) BOOL enableStrictLinkUrl;
 
