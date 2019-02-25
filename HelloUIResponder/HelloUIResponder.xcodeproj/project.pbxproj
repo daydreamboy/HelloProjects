@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F8C95AA221FA44400869CE7 /* UseInputViewInUITextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C95A9221FA44400869CE7 /* UseInputViewInUITextFieldViewController.m */; };
+		4F8C95AE221FB0B900869CE7 /* WCAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C95AC221FB0B900869CE7 /* WCAlertController.m */; };
 		4FBA52EE2159D29D00711552 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBA52ED2159D29D00711552 /* AppDelegate.m */; };
 		4FBA52F62159D29F00711552 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FBA52F52159D29F00711552 /* Assets.xcassets */; };
 		4FBA52F92159D29F00711552 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FBA52F72159D29F00711552 /* LaunchScreen.storyboard */; };
@@ -16,6 +18,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F8C95A8221FA44400869CE7 /* UseInputViewInUITextFieldViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseInputViewInUITextFieldViewController.h; sourceTree = "<group>"; };
+		4F8C95A9221FA44400869CE7 /* UseInputViewInUITextFieldViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseInputViewInUITextFieldViewController.m; sourceTree = "<group>"; };
+		4F8C95AC221FB0B900869CE7 /* WCAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCAlertController.m; sourceTree = "<group>"; };
+		4F8C95AD221FB0B900869CE7 /* WCAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCAlertController.h; sourceTree = "<group>"; };
 		4FBA52E92159D29D00711552 /* HelloUIResponder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUIResponder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FBA52EC2159D29D00711552 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FBA52ED2159D29D00711552 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -40,6 +46,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F8C95AB221FA6ED00869CE7 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				4F8C95AD221FB0B900869CE7 /* WCAlertController.h */,
+				4F8C95AC221FB0B900869CE7 /* WCAlertController.m */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
 		4FBA52E02159D29D00711552 = {
 			isa = PBXGroup;
 			children = (
@@ -75,8 +90,11 @@
 		4FBA53022159DA5200711552 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F8C95AB221FA6ED00869CE7 /* Libraries */,
 				4FBA53092159DB3F00711552 /* GetContextMenuClickEventViewController.h */,
 				4FBA530A2159DB3F00711552 /* GetContextMenuClickEventViewController.m */,
+				4F8C95A8221FA44400869CE7 /* UseInputViewInUITextFieldViewController.h */,
+				4F8C95A9221FA44400869CE7 /* UseInputViewInUITextFieldViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -150,9 +168,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F8C95AA221FA44400869CE7 /* UseInputViewInUITextFieldViewController.m in Sources */,
 				4FBA530B2159DB3F00711552 /* GetContextMenuClickEventViewController.m in Sources */,
 				4FBA52FC2159D29F00711552 /* main.m in Sources */,
 				4FBA52EE2159D29D00711552 /* AppDelegate.m in Sources */,
+				4F8C95AE221FB0B900869CE7 /* WCAlertController.m in Sources */,
 				4FBA53082159DA5B00711552 /* RootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

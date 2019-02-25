@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 #import "GetContextMenuClickEventViewController.h"
+#import "UseInputViewInUITextFieldViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -32,10 +33,12 @@
     // MARK: Configure titles and classes for table view
     _titles = @[
         @"Get context menu click event (paste, ...)",
+        @"Use input view as keyboard",
         @"call a test method",
     ];
     _classes = @[
         [GetContextMenuClickEventViewController class],
+        [UseInputViewInUITextFieldViewController class],
         @"testMethod",
     ];
 }
