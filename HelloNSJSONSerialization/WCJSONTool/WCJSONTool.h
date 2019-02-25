@@ -63,8 +63,8 @@ NS_AVAILABLE_IOS(5_0)
 
 #pragma mark > to NSMutableDictionary/NSMutableArray
 
-+ (nullable NSMutableDictionary *)JSONMutableDictWithString:(NSString *)jsonString;
-+ (nullable NSMutableArray *)JSONMutableArrayWithString:(NSString *)jsonString;
++ (nullable NSMutableDictionary *)JSONMutableDictWithString:(NSString *)JSONString;
++ (nullable NSMutableArray *)JSONMutableArrayWithString:(NSString *)JSONString;
 
 #pragma mark > to id
 
