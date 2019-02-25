@@ -11,7 +11,14 @@
 
 @implementation WCAlertTool
 
-+ (void)presentAlertWithTitle:(NSString *)title message:(NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle cancelButtonDidClickBlock:(nullable void (^)(void))cancelButtonDidClickBlock {
+#pragma mark > Show Alert
+
++ (void)presentAlertWithTitle:(NSString *)title message:(nullable NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle cancelButtonDidClickBlock:(nullable void (^)(void))cancelButtonDidClickBlock, ... {
+    
+    if (![title isKindOfClass:[NSString class]]) {
+        return;
+    }
+    
     if ([UIAlertController class]) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelButtonTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
@@ -20,12 +27,56 @@
             }
         }];
         [alert addAction:cancelAction];
+        
+        va_list args;
+        va_start(args, cancelButtonDidClickBlock);
+        
+        id firstArg = nil;
+        id secondArg = nil;
+        while ((firstArg = va_arg(args, id))) {
+            secondArg = va_arg(args, id);
+            
+            if (![firstArg isKindOfClass:[NSString class]]) {
+                break;
+            }
+            
+            void (^block)(void) = nil;
+            if ([WCBlockTool isBlock:secondArg]) {
+                block = secondArg;
+            }
+            
+            UIAlertAction *action = [UIAlertAction actionWithTitle:firstArg style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+                if (block) {
+                    block();
+                }
+            }];
+            [alert addAction:action];
+            
+            if (secondArg == nil) {
+                break;
+            }
+        }
+        
+        va_end(args);
+        
         UIViewController *topViewController = [WCAlertTool topViewControllerOnWindow:[UIApplication sharedApplication].keyWindow];
         [topViewController presentViewController:alert animated:YES completion:nil];
     }
 }
 
++ (void)presentAlertWithTitle:(NSString *)title message:(nullable NSString *)message buttonTitles:(NSArray<NSString *> *)buttonTitles buttonDidClickBlocks:(NSArray *)buttonDidClickBlocks {
+    return [self presentAlertWithStyle:UIAlertControllerStyleAlert title:title message:message buttonTitles:buttonTitles buttonDidClickBlocks:buttonDidClickBlocks
+            ];
+}
+
+#pragma mark > Show Action Sheet
+
 + (void)presentActionSheetWithTitle:(NSString *)title message:(nullable NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle cancelButtonDidClickBlock:(nullable void (^)(void))cancelButtonDidClickBlock, ... {
+    
+    if (![title isKindOfClass:[NSString class]]) {
+        return;
+    }
+    
     if ([UIAlertController class]) {
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleActionSheet];
         UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelButtonTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
@@ -72,6 +123,13 @@
 }
 
 + (void)presentActionSheetWithTitle:(NSString *)title message:(nullable NSString *)message buttonTitles:(NSArray<NSString *> *)buttonTitles buttonDidClickBlocks:(NSArray *)buttonDidClickBlocks {
+    return [self presentAlertWithStyle:UIAlertControllerStyleActionSheet title:title message:message buttonTitles:buttonTitles buttonDidClickBlocks:buttonDidClickBlocks
+            ];
+}
+
+#pragma mark > Both
+
++ (void)presentAlertWithStyle:(UIAlertControllerStyle)style title:(NSString *)title message:(nullable NSString *)message buttonTitles:(NSArray<NSString *> *)buttonTitles buttonDidClickBlocks:(NSArray *)buttonDidClickBlocks {
     if (![buttonTitles isKindOfClass:[NSArray class]] || ![buttonDidClickBlocks isKindOfClass:[NSArray class]]) {
         return;
     }
@@ -80,8 +138,12 @@
         return;
     }
     
+    if (style != UIAlertControllerStyleActionSheet && style != UIAlertControllerStyleAlert) {
+        return;
+    }
+    
     if ([UIAlertController class]) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleActionSheet];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:style];
         
         NSString *buttonTitle = [buttonTitles firstObject];
         id block = [buttonDidClickBlocks firstObject];
