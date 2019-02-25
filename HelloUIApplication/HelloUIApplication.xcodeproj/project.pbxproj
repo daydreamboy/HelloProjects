@@ -13,6 +13,7 @@
 		4F1193521FF6328800B653F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1193511FF6328800B653F3 /* main.m */; };
 		4F11935A1FF632C900B653F3 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1193591FF632C900B653F3 /* RootViewController.m */; };
 		4F11935E1FF632CF00B653F3 /* SimulateMemoryWarningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F11935C1FF632CE00B653F3 /* SimulateMemoryWarningViewController.m */; };
+		4F7E2D7D222395E1007D190E /* WCApplicationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7E2D7C222395E1007D190E /* WCApplicationTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,8 @@
 		4F1193591FF632C900B653F3 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F11935C1FF632CE00B653F3 /* SimulateMemoryWarningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimulateMemoryWarningViewController.m; sourceTree = "<group>"; };
 		4F11935D1FF632CE00B653F3 /* SimulateMemoryWarningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulateMemoryWarningViewController.h; sourceTree = "<group>"; };
+		4F7E2D7B222395E1007D190E /* WCApplicationTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCApplicationTool.h; sourceTree = "<group>"; };
+		4F7E2D7C222395E1007D190E /* WCApplicationTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCApplicationTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +46,7 @@
 		4F1193361FF6328800B653F3 = {
 			isa = PBXGroup;
 			children = (
+				4F7E2D7A222395CD007D190E /* WCApplicationTool */,
 				4F1193411FF6328800B653F3 /* HelloUIApplication */,
 				4F1193401FF6328800B653F3 /* Products */,
 			);
@@ -79,6 +83,15 @@
 				4F11935C1FF632CE00B653F3 /* SimulateMemoryWarningViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F7E2D7A222395CD007D190E /* WCApplicationTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F7E2D7B222395E1007D190E /* WCApplicationTool.h */,
+				4F7E2D7C222395E1007D190E /* WCApplicationTool.m */,
+			);
+			path = WCApplicationTool;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,6 +164,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F7E2D7D222395E1007D190E /* WCApplicationTool.m in Sources */,
 				4F1193521FF6328800B653F3 /* main.m in Sources */,
 				4F11935E1FF632CF00B653F3 /* SimulateMemoryWarningViewController.m in Sources */,
 				4F1193441FF6328800B653F3 /* AppDelegate.m in Sources */,
