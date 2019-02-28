@@ -14,16 +14,29 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign, class) BOOL enableLogging;
 
-#pragma mark - Get NSTextCheckingResult
+#pragma mark - Get Matched CheckResult/String
 
 /**
  Get the first match in the string
 
  @param string the string to search
  @param pattern the regular expression
+ @param regex the regular expression to reuse. If not nil, use it first.
  @return the match result. Return nil if not match
  */
-+ (nullable NSTextCheckingResult *)firstMatchInString:(NSString *)string pattern:(NSString *)pattern;
++ (nullable NSTextCheckingResult *)firstMatchInString:(NSString *)string pattern:(nullable NSString *)pattern reusableRegex:(nullable NSRegularExpression *)regex;
+
+/**
+ Get the first matched string
+ 
+ @param string the original string
+ @param pattern the pattern of regular expression
+ @param regex the regular expression to reuse. If not nil, use it first.
+ @return the first matched string. Return nil if not matched.
+ */
++ (nullable NSString *)firstMatchedStringInString:(NSString *)string pattern:(nullable NSString *)pattern reusableRegex:(nullable NSRegularExpression *)regex;
+
+#pragma mark - Traverse Matched CheckResult/String
 
 /**
  Traverse matches in the string
@@ -78,16 +91,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSString *)substituteTemplateStringWithString:(NSString *)string bindings:(NSDictionary *)bindings;
 
-#pragma mark - Get Matched String
-
-/**
- Get the first matched string
-
- @param string the original string
- @param pattern the pattern of regular expression
- @return the first matched string. Return nil if not matched.
- */
-+ (nullable NSString *)firstMatchedStringInString:(NSString *)string pattern:(NSString *)pattern;
 
 #pragma mark - Validate Pattern
 

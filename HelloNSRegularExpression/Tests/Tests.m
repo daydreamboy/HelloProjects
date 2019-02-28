@@ -1267,15 +1267,15 @@
     
     string = @"a-z";
     pattern = @"a-z";
-    output = [WCRegularExpressionTool firstMatchedStringInString:string pattern:pattern];
+    output = [WCRegularExpressionTool firstMatchedStringInString:string pattern:pattern reusableRegex:nil];
     XCTAssertEqualObjects(output, @"a-z");
     
     string = @"b";
-    output = [WCRegularExpressionTool firstMatchedStringInString:string pattern:pattern];
+    output = [WCRegularExpressionTool firstMatchedStringInString:string pattern:pattern reusableRegex:nil];
     XCTAssertNil(output);
     
     string = @"B";
-    output = [WCRegularExpressionTool firstMatchedStringInString:string pattern:pattern];
+    output = [WCRegularExpressionTool firstMatchedStringInString:string pattern:pattern reusableRegex:nil];
     XCTAssertNil(output);
 }
 

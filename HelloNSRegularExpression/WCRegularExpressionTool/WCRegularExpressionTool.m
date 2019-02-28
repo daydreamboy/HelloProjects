@@ -28,21 +28,41 @@ static BOOL sEnableLogging;
     return sEnableLogging;
 }
 
-#pragma mark - Get NSTextCheckingResult
+#pragma mark - Get Matched CheckResult/String
 
-+ (nullable NSTextCheckingResult *)firstMatchInString:(NSString *)string pattern:(NSString *)pattern {
-    if (![string isKindOfClass:[NSString class]] || string.length == 0 || ![pattern isKindOfClass:[NSString class]] || pattern.length == 0) {
++ (nullable NSTextCheckingResult *)firstMatchInString:(NSString *)string pattern:(nullable NSString *)pattern reusableRegex:(nullable NSRegularExpression *)regex {
+    if (![string isKindOfClass:[NSString class]] || string.length == 0) {
+        return nil;
+    }
+    
+    if ((![pattern isKindOfClass:[NSString class]] || pattern.length == 0) && (![regex isKindOfClass:[NSRegularExpression class]])) {
         return nil;
     }
     
     NSError *error = nil;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:kNilOptions error:&error];
-    if (error) {
+    NSRegularExpression *regexL;
+    
+    if (![regex isKindOfClass:[NSRegularExpression class]]) {
+        regexL = [NSRegularExpression regularExpressionWithPattern:pattern options:kNilOptions error:&error];
+        if (error) {
+            return nil;
+        }
+    }
+    else {
+        regexL = regex;
+    }
+    
+    NSTextCheckingResult *match = [regexL firstMatchInString:string options:kNilOptions range:NSMakeRange(0, string.length)];
+    return match;
+}
+
++ (nullable NSString *)firstMatchedStringInString:(NSString *)string pattern:(nullable NSString *)pattern reusableRegex:(nullable NSRegularExpression *)regex {
+    NSTextCheckingResult *match = [self firstMatchInString:string pattern:pattern reusableRegex:regex];
+    if (!match) {
         return nil;
     }
     
-    NSTextCheckingResult *match = [regex firstMatchInString:string options:kNilOptions range:NSMakeRange(0, string.length)];
-    return match;
+    return [WCRegularExpressionTool substringWithString:string range:match.range];
 }
 
 + (BOOL)enumerateMatchesInString:(NSString *)string pattern:(NSString *)pattern usingBlock:(void (^)(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop))block {
@@ -194,17 +214,6 @@ static BOOL sEnableLogging;
         
         return nil;
     }];
-}
-
-#pragma mark - Get Matched String
-
-+ (nullable NSString *)firstMatchedStringInString:(NSString *)string pattern:(NSString *)pattern {
-    NSTextCheckingResult *match = [self firstMatchInString:string pattern:pattern];
-    if (!match) {
-        return nil;
-    }
-    
-    return [WCRegularExpressionTool substringWithString:string range:match.range];
 }
 
 #pragma mark - Validate Pattern
