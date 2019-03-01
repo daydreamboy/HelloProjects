@@ -12,6 +12,47 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WCRegularExpressionTool : NSObject
 
+/**
+ The match pattern
+ */
+@property (nonatomic, copy, readonly) NSString *pattern;
+
+/**
+ The match regular expression
+ */
+@property (nonatomic, copy, readonly, nullable) NSRegularExpression *regexp;
+
+/**
+ Enable cache the match results
+ 
+ Default is YES
+ */
+@property (nonatomic, assign) BOOL enableCache;
+
+- (instancetype)initWithPattern:(NSString *)pattern options:(NSRegularExpressionOptions)options;
+
+#pragma mark > Get first matched result/string
+
+- (nullable NSTextCheckingResult *)firstMatchInString:(NSString *)string;
+- (nullable NSTextCheckingResult *)firstMatchInString:(NSString *)string options:(NSMatchingOptions)options range:(NSRange)range;
+
+- (nullable NSString *)firstMatchedStringInString:(NSString *)string;
+- (nullable NSString *)firstMatchedStringInString:(NSString *)string options:(NSMatchingOptions)options range:(NSRange)range;
+
+#pragma mark > Traverse matched result/string
+
+- (BOOL)enumerateMatchesInString:(NSString *)string usingBlock:(void (^)(NSTextCheckingResult *_Nullable result, NSMatchingFlags flags, BOOL *stop))block;
+- (BOOL)enumerateMatchesInString:(NSString *)string options:(NSMatchingOptions)options range:(NSRange)range usingBlock:(void (^)(NSTextCheckingResult *_Nullable result, NSMatchingFlags flags, BOOL *stop))block;
+
+- (BOOL)enumerateMatchedStringsInString:(NSString *)string usingBlock:(void (^)(NSString * _Nullable matchedString, NSMatchingFlags flags, BOOL *stop))block;
+- (BOOL)enumerateMatchedStringsInString:(NSString *)string options:(NSMatchingOptions)options range:(NSRange)range usingBlock:(void (^)(NSString * _Nullable matchedString, NSMatchingFlags flags, BOOL *stop))block;
+
+#pragma mark > Replace matched string
+
+- (nullable NSString *)stringByReplacingMatchesInString:(NSString *)string captureGroupBindingBlock:(nullable NSString *(^)(NSString *matchString, NSArray<NSString *> *captureGroupStrings))captureGroupBindingBlock;
+
+#pragma mark - Class Methods
+
 @property (nonatomic, assign, class) BOOL enableLogging;
 
 #pragma mark - Get Matched CheckResult/String
@@ -66,20 +107,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSString *)stringByReplacingMatchesInString:(NSString *)string pattern:(NSString *)pattern captureGroupBindingBlock:(nullable NSString *(^)(NSString *matchString, NSArray<NSString *> *captureGroupStrings))captureGroupBindingBlock;
 
-/**
- Replace multiple matched strings with NSRegularExpression
-
- @param string the original string to regular expression search
- @param regex the NSRegularExpression
- @param captureGroupBindingBlock the block for replace matched string.
-        - matchString, the matched string
-        - captureGroupStrings, the array of capture group strings. If capture group match failed, its capture group string is empty string.
-        Return the replacement string to replce the matched string. Return nil if not replace.
- @return the replaced string. If parameters checking failed, return the original string.
- @discussion This method allows pass an instance of NSRegularExpression which can be created once by caller.
- */
-+ (nullable NSString *)stringByReplacingMatchesInString:(NSString *)string regularExpression:(NSRegularExpression *)regex captureGroupBindingBlock:(nullable NSString *(^)(NSString *matchString, NSArray<NSString *> *captureGroupStrings))captureGroupBindingBlock;
-
 #pragma mark > Specific Substitutions
 
 /**
@@ -90,7 +117,6 @@ NS_ASSUME_NONNULL_BEGIN
  @return the substituted string
  */
 + (nullable NSString *)substituteTemplateStringWithString:(NSString *)string bindings:(NSDictionary *)bindings;
-
 
 #pragma mark - Validate Pattern
 

@@ -948,7 +948,8 @@
     NSString *output;
     NSDictionary *bindings;
     NSString *pattern = @"\\$!?(?:\\{([a-zA-Z0-9_-]+)\\}|([a-zA-Z0-9_-]+))";
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:kNilOptions error:nil];
+    WCRegularExpressionTool *tool = [[WCRegularExpressionTool alloc] initWithPattern:pattern options:kNilOptions];
+    tool.enableCache = NO;
     
     // Case 1
     bindings = @{
@@ -956,7 +957,7 @@
                  @"b": @"B"
                  };
     string = @"$a$b,${a},$!{b}c";
-    output = [WCRegularExpressionTool stringByReplacingMatchesInString:string regularExpression:regex captureGroupBindingBlock:^NSString * _Nonnull(NSString * _Nonnull matchString, NSArray<NSString *> * _Nonnull captureGroupStrings) {
+    output = [tool stringByReplacingMatchesInString:string captureGroupBindingBlock:^NSString * _Nonnull(NSString * _Nonnull matchString, NSArray<NSString *> * _Nonnull captureGroupStrings) {
         
         for (NSString *captureGroupString in captureGroupStrings) {
             if (bindings[captureGroupString]) {
@@ -975,7 +976,7 @@
                  @"b": @"B"
                  };
     string = @"a$a$b,${a},$!{b}c";
-    output = [WCRegularExpressionTool stringByReplacingMatchesInString:string regularExpression:regex captureGroupBindingBlock:^NSString * _Nonnull(NSString * _Nonnull matchString, NSArray<NSString *> * _Nonnull captureGroupStrings) {
+    output = [tool stringByReplacingMatchesInString:string captureGroupBindingBlock:^NSString * _Nonnull(NSString * _Nonnull matchString, NSArray<NSString *> * _Nonnull captureGroupStrings) {
         
         for (NSString *captureGroupString in captureGroupStrings) {
             if (bindings[captureGroupString]) {
@@ -995,7 +996,7 @@
                  @"b": @"B"
                  };
     string = @"a$a-a$b,${a},$!{b}c";
-    output = [WCRegularExpressionTool stringByReplacingMatchesInString:string regularExpression:regex captureGroupBindingBlock:^NSString * _Nonnull(NSString * _Nonnull matchString, NSArray<NSString *> * _Nonnull captureGroupStrings) {
+    output = [tool stringByReplacingMatchesInString:string captureGroupBindingBlock:^NSString * _Nonnull(NSString * _Nonnull matchString, NSArray<NSString *> * _Nonnull captureGroupStrings) {
         
         for (NSString *captureGroupString in captureGroupStrings) {
             if (bindings[captureGroupString]) {

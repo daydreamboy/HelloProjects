@@ -7,8 +7,157 @@
 //
 
 #import "WCRegularExpressionTool.h"
+#import <CommonCrypto/CommonDigest.h>
+
+@interface WCRegularExpressionTool ()
+@property (nonatomic, copy, readwrite) NSString *pattern;
+@property (nonatomic, copy, readwrite, nullable) NSRegularExpression *regexp;
+@property (nonatomic, strong) NSCache *cache;
+@end
 
 @implementation WCRegularExpressionTool
+
+- (instancetype)initWithPattern:(NSString *)pattern options:(NSRegularExpressionOptions)options {
+    self = [super init];
+    if (self) {
+        _pattern = pattern;
+        if ([pattern isKindOfClass:[NSString class]] && pattern.length) {
+            _regexp = [NSRegularExpression regularExpressionWithPattern:pattern options:options error:nil];
+        }
+        _cache = [[NSCache alloc] init];
+        _enableCache = YES;
+    }
+    return self;
+}
+
+- (nullable NSTextCheckingResult *)firstMatchInString:(NSString *)string {
+    return [self firstMatchInString:string options:kNilOptions range:NSMakeRange(0, string.length)];
+}
+
+- (nullable NSTextCheckingResult *)firstMatchInString:(NSString *)string options:(NSMatchingOptions)options range:(NSRange)range {
+    if (![string isKindOfClass:[NSString class]] || string.length == 0) {
+        return nil;
+    }
+    
+    if (self.enableCache) {
+        NSString *key = [WCRegularExpressionTool MD5WithString:string];
+        NSTextCheckingResult *result = [self.cache objectForKey:key];
+        if (result) {
+            return result;
+        }
+        else {
+            NSTextCheckingResult *match = [self.regexp firstMatchInString:string options:options range:range];
+            [self.cache setObject:match forKey:key];
+            
+            return match;
+        }
+    }
+    else {
+        return [self.regexp firstMatchInString:string options:options range:range];
+    }
+}
+
+- (nullable NSString *)firstMatchedStringInString:(NSString *)string {
+    return [self firstMatchedStringInString:string options:kNilOptions range:NSMakeRange(0, string.length)];
+}
+
+- (nullable NSString *)firstMatchedStringInString:(NSString *)string options:(NSMatchingOptions)options range:(NSRange)range {
+    NSTextCheckingResult *match = [self firstMatchInString:string options:options range:range];
+    if (!match) {
+        return nil;
+    }
+    
+    return [WCRegularExpressionTool substringWithString:string range:match.range];
+}
+
+#pragma mark > Traverse matched result/string
+
+- (BOOL)enumerateMatchesInString:(NSString *)string usingBlock:(void (^)(NSTextCheckingResult *_Nullable result, NSMatchingFlags flags, BOOL *stop))block {
+    return [self enumerateMatchesInString:string options:kNilOptions range:NSMakeRange(0, string.length) usingBlock:block];
+}
+
+- (BOOL)enumerateMatchesInString:(NSString *)string options:(NSMatchingOptions)options range:(NSRange)range usingBlock:(void (^)(NSTextCheckingResult *_Nullable result, NSMatchingFlags flags, BOOL *stop))block {
+    __block BOOL matched = NO;
+    
+    if (![string isKindOfClass:[NSString class]] || string.length == 0) {
+        return matched;
+    }
+    
+    if (block) {
+        [self.regexp enumerateMatchesInString:string options:options range:range usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+            matched = YES;
+            
+            BOOL shouldStop = NO;
+            block(result, flags, &shouldStop);
+            *stop = shouldStop;
+        }];
+        
+        return matched;
+    }
+    else {
+        return matched;
+    }
+}
+
+- (BOOL)enumerateMatchedStringsInString:(NSString *)string usingBlock:(void (^)(NSString * _Nullable matchedString, NSMatchingFlags flags, BOOL *stop))block {
+    return [self enumerateMatchedStringsInString:string options:kNilOptions range:NSMakeRange(0, string.length) usingBlock:block];
+}
+
+- (BOOL)enumerateMatchedStringsInString:(NSString *)string options:(NSMatchingOptions)options range:(NSRange)range usingBlock:(void (^)(NSString * _Nullable matchedString, NSMatchingFlags flags, BOOL *stop))block {
+    return [self enumerateMatchesInString:string options:options range:range usingBlock:^(NSTextCheckingResult *result, NSMatchingFlags flags, BOOL *stop) {
+        if (block) {
+            NSString *matchedString = [WCRegularExpressionTool substringWithString:string range:result.range];
+            
+            BOOL shouldStop = NO;
+            block(matchedString, flags, &shouldStop);
+            *stop = shouldStop;
+        }
+    }];
+}
+
+- (nullable NSString *)stringByReplacingMatchesInString:(NSString *)string captureGroupBindingBlock:(nullable NSString *(^)(NSString *matchString, NSArray<NSString *> *captureGroupStrings))captureGroupBindingBlock {
+    
+    if (![string isKindOfClass:[NSString class]] || string.length == 0) {
+        return nil;
+    }
+    
+    if (!captureGroupBindingBlock) {
+        return string;
+    }
+    
+    NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
+    NSMutableArray<NSString *> *replacementStrings = [NSMutableArray array];
+    BOOL status = [self enumerateMatchesInString:string usingBlock:^(NSTextCheckingResult * _Nonnull result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        NSRange matchRange = result.range;
+        if (matchRange.location != NSNotFound && matchRange.length > 0) {
+            NSString *matchString = [WCRegularExpressionTool substringWithString:string range:matchRange];
+            
+            NSMutableArray *captureGroupStrings = [NSMutableArray array];
+            for (NSInteger i = 1; i < result.numberOfRanges; i++) {
+                NSRange captureRange = [result rangeAtIndex:i];
+                if (captureRange.location != NSNotFound) {
+                    NSString *captureGroupString = [WCRegularExpressionTool substringWithString:string range:captureRange];
+                    [captureGroupStrings addObject:captureGroupString ?: @""];
+                }
+                else {
+                    [captureGroupStrings addObject:@""];
+                }
+            }
+            
+            NSString *replacementString = captureGroupBindingBlock(matchString, captureGroupStrings);
+            if ([replacementString isKindOfClass:[NSString class]]) {
+                [ranges addObject:[NSValue valueWithRange:matchRange]];
+                [replacementStrings addObject:replacementString];
+            }
+        }
+    }];
+    
+    if (!status) {
+        return string;
+    }
+    
+    return [WCRegularExpressionTool replaceCharactersInRangesWithString:string ranges:ranges replacementStrings:replacementStrings replacementRanges:nil];
+}
 
 #define WCLog(fmt, ...) \
 do { \
@@ -141,50 +290,6 @@ static BOOL sEnableLogging;
     if (!status) {
         return string;
     }
-    
-    return [WCRegularExpressionTool replaceCharactersInRangesWithString:string ranges:ranges replacementStrings:replacementStrings replacementRanges:nil];
-}
-
-+ (nullable NSString *)stringByReplacingMatchesInString:(NSString *)string regularExpression:(NSRegularExpression *)regex captureGroupBindingBlock:(nullable NSString *(^)(NSString *matchString, NSArray<NSString *> *captureGroupStrings))captureGroupBindingBlock {
-    
-    if (![string isKindOfClass:[NSString class]] || string.length == 0) {
-        return nil;
-    }
-    
-    if (![regex isKindOfClass:[NSRegularExpression class]]) {
-        return nil;
-    }
-    
-    if (!captureGroupBindingBlock) {
-        return string;
-    }
-    
-    NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
-    NSMutableArray<NSString *> *replacementStrings = [NSMutableArray array];
-    [regex enumerateMatchesInString:string options:kNilOptions range:NSMakeRange(0, string.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
-        NSRange matchRange = result.range;
-        if (matchRange.location != NSNotFound && matchRange.length > 0) {
-            NSString *matchString = [WCRegularExpressionTool substringWithString:string range:matchRange];
-            
-            NSMutableArray *captureGroupStrings = [NSMutableArray array];
-            for (NSInteger i = 1; i < result.numberOfRanges; i++) {
-                NSRange captureRange = [result rangeAtIndex:i];
-                if (captureRange.location != NSNotFound) {
-                    NSString *captureGroupString = [WCRegularExpressionTool substringWithString:string range:captureRange];
-                    [captureGroupStrings addObject:captureGroupString ?: @""];
-                }
-                else {
-                    [captureGroupStrings addObject:@""];
-                }
-            }
-            
-            NSString *replacementString = captureGroupBindingBlock(matchString, captureGroupStrings);
-            if ([replacementString isKindOfClass:[NSString class]]) {
-                [ranges addObject:[NSValue valueWithRange:matchRange]];
-                [replacementStrings addObject:replacementString];
-            }
-        }
-    }];
     
     return [WCRegularExpressionTool replaceCharactersInRangesWithString:string ranges:ranges replacementStrings:replacementStrings replacementRanges:nil];
 }
@@ -452,6 +557,28 @@ static BOOL sEnableLogging;
     
     return value;
 #undef NSPREDICATE
+}
+
++ (nullable NSString *)MD5WithString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    if (string.length) {
+        const char *cStr = [string UTF8String];
+        unsigned char result[16];
+        CC_MD5(cStr, (unsigned int)strlen(cStr), result);
+        return [NSString stringWithFormat:
+                @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+                result[0], result[1], result[2], result[3],
+                result[4], result[5], result[6], result[7],
+                result[8], result[9], result[10], result[11],
+                result[12], result[13], result[14], result[15]
+                ];
+    }
+    else {
+        return nil;
+    }
 }
 
 #pragma mark - Private Utility Functions
