@@ -1289,6 +1289,41 @@
     }
 }
 
+#pragma mark > String Lowercase/Uppercase
+
++ (nullable NSString *)lowercaseStringWithString:(NSString *)string range:(NSRange)range {
+    return [self changeCaseStringWithString:string range:range isUppercase:NO];
+}
+
++ (nullable NSString *)uppercaseStringWithString:(NSString *)string range:(NSRange)range {
+    return [self changeCaseStringWithString:string range:range isUppercase:YES];
+}
+
++ (nullable NSString *)changeCaseStringWithString:(NSString *)string range:(NSRange)range isUppercase:(BOOL)isUppercase {
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    if (range.location > string.length) {
+        return nil;
+    }
+    
+    NSRange effectiveRange;
+    
+    // Note: Don't use location + length <= string.length, because if length is too large (e.g. NSUIntegerMax), location + length will become smaller (upper overflow)
+    if (range.length <= string.length - range.location) {
+        effectiveRange = range;
+    }
+    else {
+        effectiveRange = NSMakeRange(range.location, string.length - range.location);
+    }
+    
+    NSString *effectedString = [string substringWithRange:effectiveRange];
+    NSString *stringToReturn = [string stringByReplacingCharactersInRange:effectiveRange withString:isUppercase ? [effectedString uppercaseString] : [effectedString lowercaseString]];
+    
+    return stringToReturn;
+}
+
 #pragma mark - Handle String As HTML
 
 + (nullable NSString *)stripTagsWithHTMLString:(NSString *)htmlString {

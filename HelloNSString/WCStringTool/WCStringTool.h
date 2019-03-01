@@ -540,6 +540,36 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSInteger)occurrenceOfSubstringInString:(NSString *)string substring:(NSString *)substring;
 
+#pragma mark > String Lowercase/Uppercase
+
+/**
+ Lowercase substring with range
+
+ @param string the original string
+ @param range the range to lowercase
+ @return the new string
+ */
++ (nullable NSString *)lowercaseStringWithString:(NSString *)string range:(NSRange)range;
+
+/**
+ Uppercase substring with range
+
+ @param string the original string
+ @param range the range to uppercase
+ @return the new string
+ */
++ (nullable NSString *)uppercaseStringWithString:(NSString *)string range:(NSRange)range;
+
+/**
+ Change case of the substring with ranage
+
+ @param string the original string
+ @param range the range to change
+ @param isUppercase YES, uppercase; NO, lowercase
+ @return the new string
+ */
++ (nullable NSString *)changeCaseStringWithString:(NSString *)string range:(NSRange)range isUppercase:(BOOL)isUppercase;
+
 #pragma mark - Handle String As HTML
 
 /**

@@ -1355,6 +1355,58 @@
     NSLog(@"occurence of %%@ is %ld", [WCStringTool occurrenceOfSubstringInString:formatString substring:@"%@"]);
 }
 
+#pragma mark > String Lowercase/Uppercase
+
+- (void)test_lowercaseStringWithString_range {
+    NSString *string;
+    NSString *output;
+    
+    // Case 1
+    string = @"Module";
+    output = [WCStringTool lowercaseStringWithString:string range:NSMakeRange(0, 1)];
+    XCTAssertEqualObjects(output, @"module");
+    
+    // Case 2
+    string = @"MODULE";
+    output = [WCStringTool lowercaseStringWithString:string range:NSMakeRange(0, 2)];
+    XCTAssertEqualObjects(output, @"moDULE");
+    
+    // Case 3
+    string = @"MODULE";
+    output = [WCStringTool lowercaseStringWithString:string range:NSMakeRange(2, 2)];
+    XCTAssertEqualObjects(output, @"MOduLE");
+    
+    // Case 4
+    string = @"MODULE";
+    output = [WCStringTool lowercaseStringWithString:string range:NSMakeRange(1, NSUIntegerMax)];
+    XCTAssertEqualObjects(output, @"Module");
+}
+
+- (void)test_uppercaseStringWithString_range {
+    NSString *string;
+    NSString *output;
+    
+    // Case 1
+    string = @"module";
+    output = [WCStringTool uppercaseStringWithString:string range:NSMakeRange(0, 1)];
+    XCTAssertEqualObjects(output, @"Module");
+    
+    // Case 2
+    string = @"module";
+    output = [WCStringTool uppercaseStringWithString:string range:NSMakeRange(0, 2)];
+    XCTAssertEqualObjects(output, @"MOdule");
+    
+    // Case 3
+    string = @"module";
+    output = [WCStringTool uppercaseStringWithString:string range:NSMakeRange(2, 2)];
+    XCTAssertEqualObjects(output, @"moDUle");
+    
+    // Case 3
+    string = @"module";
+    output = [WCStringTool uppercaseStringWithString:string range:NSMakeRange(1, NSUIntegerMax)];
+    XCTAssertEqualObjects(output, @"mODULE");
+}
+
 #pragma mark - Handle String As HTML
 
 - (void)test_stripTagsWithHTMLString {
