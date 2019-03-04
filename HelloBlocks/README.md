@@ -8,68 +8,31 @@
 
 ## 2、Block类型
 
-在Xcode中debug时，会遇到下面三种类型的block：
+在Xcode中debug时，会遇到下面三种类型的block[^1]：
 
-<__NSGlobalBlock__: 0x112283240> 
+<\_\_NSGlobalBlock\_\_: 0x112283240> 
 
-<__NSMallocBlock__: 0x7fc4f4822190> 
+<\_\_NSMallocBlock\_\_: 0x7fc4f4822190> 
 
-<__NSStackBlock__: 0x7fff5e1c87e8> 
-
-
-
-1、ARC环境下 
+<\_\_NSStackBlock\_\_: 0x7fff5e1c87e8> 
 
 
 
-（1）block满足下面条件之一，属于global block 
-
-- block没有capture任何变量，只使用block中定义的变量或者block的参数 
-- block没有capture本地变量（包括self），但是允许capture全局变量（static或者non-static） 
-
-注意：block带参数，并不是capture变量的情况。 
-
-
-
-（2）block满足下面条件之一，属于malloc block 
-
-- block有capture本地变量（包括self等） 
-- block中使用__block变量 
+| Block类型    | ARC下满足条件                                                | MRC下满足条件                                                |
+| ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| Global Block | block满足下面条件之一，属于global block<br/>* block没有capture任何变量，只使用block中定义的变量或者block的参数<br/>* block没有capture本地变量（包括self），但是允许capture全局变量（static或者non-static）<br/>注意：block带参数，并不是capture变量的情况。 | block满足下面条件之一，属于global block<br/>* block没有capture任何变量，只使用block中定义的变量或者block的参数 |
+| Malloc Block | block满足下面条件之一，属于malloc block<br/>* block有capture本地变量（包括self等）<br/>* block中使用`__block`变量 | block满足下面条件之一，属于malloc block<br/>* 对stack block使用copy方法 |
+| Stack Block  | 目前ARC下不存在有stack block                                 | block满足下面条件之一，属于stack block<br/>* block有capture本地变量（包括self等）<br/>* block中使用`__block`变量 |
 
 
 
-补充：目前ARC下不存在有stack block。 
+注意：
+
+> MRC下将stack block传给ARC，block会立即释放，会导致EXC_BAD_ACCESS。 
 
 
 
-2、MRC环境下 
 
-（1）block满足下面条件之一，属于global block 
-
-- block没有capture任何变量，只使用block中定义的变量或者block的参数 
-
-
-
-（2）block满足下面条件之一，属于stack block 
-
-- block有capture本地变量（包括self等） 
-- block中使用__block变量 
-
-
-
-（3）block满足下面条件之一，属于malloc block 
-
-- 对stack block使用copy方法 
-
-
-
-值得注意的是，MRC下将stack block传给ARC，block会立即释放，会导致EXC_BAD_ACCESS。 
-
-
-
-参考资料 
-
-1、<https://www.cocoawithlove.com/2009/10/how-blocks-are-implemented-and.html> 
 
 
 
@@ -189,4 +152,8 @@ weak_object.block(); // Crash
 安全方式：调用block，判断block是否为nil。
 
 
+
+## References
+
+[^1]: https://www.cocoawithlove.com/2009/10/how-blocks-are-implemented-and.html
 
