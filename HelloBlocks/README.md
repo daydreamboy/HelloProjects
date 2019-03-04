@@ -1,8 +1,81 @@
-## HelloBlocks
+# Blocks
 
 [TOC]
 
-### 1、weak strong dance
+## 1、Block用法
+
+
+
+## 2、Block类型
+
+在Xcode中debug时，会遇到下面三种类型的block：
+
+<__NSGlobalBlock__: 0x112283240> 
+
+<__NSMallocBlock__: 0x7fc4f4822190> 
+
+<__NSStackBlock__: 0x7fff5e1c87e8> 
+
+
+
+1、ARC环境下 
+
+
+
+（1）block满足下面条件之一，属于global block 
+
+- block没有capture任何变量，只使用block中定义的变量或者block的参数 
+- block没有capture本地变量（包括self），但是允许capture全局变量（static或者non-static） 
+
+注意：block带参数，并不是capture变量的情况。 
+
+
+
+（2）block满足下面条件之一，属于malloc block 
+
+- block有capture本地变量（包括self等） 
+- block中使用__block变量 
+
+
+
+补充：目前ARC下不存在有stack block。 
+
+
+
+2、MRC环境下 
+
+（1）block满足下面条件之一，属于global block 
+
+- block没有capture任何变量，只使用block中定义的变量或者block的参数 
+
+
+
+（2）block满足下面条件之一，属于stack block 
+
+- block有capture本地变量（包括self等） 
+- block中使用__block变量 
+
+
+
+（3）block满足下面条件之一，属于malloc block 
+
+- 对stack block使用copy方法 
+
+
+
+值得注意的是，MRC下将stack block传给ARC，block会立即释放，会导致EXC_BAD_ACCESS。 
+
+
+
+参考资料 
+
+1、<https://www.cocoawithlove.com/2009/10/how-blocks-are-implemented-and.html> 
+
+
+
+
+
+## 3、weak strong dance
 
 ​       为了变量循环引用问题，ReactiveCocoa提供一对@weakify/@strongify宏，用于解决该问题。具体见[EXTScope.h](https://github.com/ReactiveCocoa/ReactiveObjC/blob/master/ReactiveObjC/extobjc/EXTScope.h#L83)。
 
@@ -41,7 +114,7 @@
 
 
 
-### 2、Block定义的返回值类型是可选
+## 4、Block定义的返回值类型是可选
 
 Block定义时，[官方文档](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Blocks/Articles/bxDeclaringCreating.html)指出，返回值类型是可选的
 
@@ -95,9 +168,9 @@ oneFrom = ^float(float aFloat) {
 
 
 
-### 3、使用Block常见问题
+## 5、使用Block常见问题
 
-#### （1）block为nil时调用会crash
+### （1）block为nil时调用会crash
 
 ```objective-c
 __weak MyObject *weak_object;

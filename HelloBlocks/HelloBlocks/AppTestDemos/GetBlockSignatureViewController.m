@@ -20,9 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    [self test_WCBlockDescriptor_initWithBlock];
-//    [self test_WCBlockDescriptor_isEqual];
-//    [self test_WCBlockDescriptor_blockSignatureTypes];
+    [self test_WCBlockDescriptor_initWithBlock];
+    [self test_WCBlockDescriptor_isEqual];
+    [self test_WCBlockDescriptor_blockSignatureTypes];
     [self test_WCBlockDescriptor_isEqualToSigature];
 }
 
