@@ -4,11 +4,13 @@
 
 ## 1、Block用法[^1]
 
-​        Objective 2.0引入了Block语法，我觉得和C中的函数指针差不多。学过C的函数指针后，理解Block的使用容易多了。 
+​        Objective 2.0引入了Block变量，这个和C中的函数指针差不多。如果了解C的函数指针，对理解Block的使用有一定帮助。 
+
+
 
 ### （1）声明block变量
 
-语法如下 
+举个例子
 
 ```objective-c
 void (^simpleBlock)(void); // Very similar with void (*simpleBlock)(void) which is in C
@@ -20,7 +22,7 @@ void (^simpleBlock)(void); // Very similar with void (*simpleBlock)(void) which 
 
 ### （2）定义block
 
-语法如下 
+举个例子
 
 ```objective-c
 ^{
@@ -32,7 +34,7 @@ void (^simpleBlock)(void); // Very similar with void (*simpleBlock)(void) which 
 
 ### （3）block变量赋值
 
-如下 
+举个例子
 
 ```objective-c
 simpleBlock = ^{
@@ -44,6 +46,8 @@ simpleBlock = ^{
 
 ### （4）声明并定义block变量
 
+举个例子
+
 ```objective-c
 void (^simpleBlock)(void) = ^{
     NSLog(@"This is a block");
@@ -52,11 +56,11 @@ void (^simpleBlock)(void) = ^{
 
 void (^simpleBlock)(void) = ^{    NSLog(@"This is a block");}
 
-
-
 ### （5）block变量调用
 
-block变量后跟着函数调用符（即一对括号，借用C++中术语:-)），就执行block中的代码了 
+block变量后跟着*函数调用符*，即一对括号，借用C++中术语，就可以执行block中的代码。
+
+举个例子
 
 ```objective-c
 simpleBlock(); // Execute code in simpleBlock block
