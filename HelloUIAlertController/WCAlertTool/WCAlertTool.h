@@ -13,17 +13,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WCAlertTool : NSObject
 
-#pragma mark > Show Alert
+/**
+ Show alert or action sheet
 
-+ (void)presentAlertWithTitle:(NSString *)title message:(nullable NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle cancelButtonDidClickBlock:(nullable void (^)(void))cancelButtonDidClickBlock, ... NS_REQUIRES_NIL_TERMINATION;
-
-+ (void)presentAlertWithTitle:(NSString *)title message:(nullable NSString *)message buttonTitles:(NSArray<NSString *> *)buttonTitles buttonDidClickBlocks:(NSArray *)buttonDidClickBlocks;
-
-#pragma mark > Show Action Sheet
+ @param style the style of alert or action sheet
+ @param title the title
+ @param message the message
+ @param buttonTitles the array of button titles. The first title is the canel button's.
+ @param buttonDidClickBlocks the array of button click blocks. The first block is the canel button's.
+ - the signature of block is void (^block)(void).
+ */
++ (void)presentAlertWithStyle:(UIAlertControllerStyle)style title:(NSString *)title message:(nullable NSString *)message buttonTitles:(NSArray<NSString *> *)buttonTitles buttonDidClickBlocks:(NSArray *)buttonDidClickBlocks;
 
 /**
- Show action sheet
+ Show alert or action sheet
 
+ @param style the style of alert or action sheet
  @param title the title
  @param message the message
  @param cancelButtonTitle the title of cancel button
@@ -32,22 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
  - The first object is NSString which is button title
  - The second object is block which called when button clicked
  */
-+ (void)presentActionSheetWithTitle:(NSString *)title message:(nullable NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle cancelButtonDidClickBlock:(nullable void (^)(void))cancelButtonDidClickBlock, ... NS_REQUIRES_NIL_TERMINATION;
-
-/**
- Show action sheet
-
- @param title the title
- @param message the message
- @param buttonTitles the array of button titles
- @param buttonDidClickBlocks the array of button click blocks
- - the signature of block is void (^block)(void).
- */
-+ (void)presentActionSheetWithTitle:(NSString *)title message:(nullable NSString *)message buttonTitles:(NSArray<NSString *> *)buttonTitles buttonDidClickBlocks:(NSArray *)buttonDidClickBlocks;
-
-#pragma mark > Both
-
-+ (void)presentAlertWithStyle:(UIAlertControllerStyle)style title:(NSString *)title message:(nullable NSString *)message buttonTitles:(NSArray<NSString *> *)buttonTitles buttonDidClickBlocks:(NSArray *)buttonDidClickBlocks;
++ (void)presentAlertWithStyle:(UIAlertControllerStyle)style title:(NSString *)title message:(nullable NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle cancelButtonDidClickBlock:(void (^)(void))cancelButtonDidClickBlock, ... NS_REQUIRES_NIL_TERMINATION;
 
 @end
 

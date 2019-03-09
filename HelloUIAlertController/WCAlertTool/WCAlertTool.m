@@ -8,126 +8,32 @@
 
 #import "WCAlertTool.h"
 #import "WCBlockTool.h"
+#import "WCMacroTool.h"
 
 @implementation WCAlertTool
 
-#pragma mark > Show Alert
-
-+ (void)presentAlertWithTitle:(NSString *)title message:(nullable NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle cancelButtonDidClickBlock:(nullable void (^)(void))cancelButtonDidClickBlock, ... {
++ (void)presentAlertWithStyle:(UIAlertControllerStyle)style title:(NSString *)title message:(nullable NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle cancelButtonDidClickBlock:(void (^)(void))cancelButtonDidClickBlock, ... {
     
-    if (![title isKindOfClass:[NSString class]]) {
+    if (![cancelButtonTitle isKindOfClass:[NSString class]] || ![WCBlockTool isBlock:cancelButtonDidClickBlock]) {
         return;
     }
     
-    if ([UIAlertController class]) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelButtonTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            if (cancelButtonDidClickBlock) {
-                cancelButtonDidClickBlock();
-            }
-        }];
-        [alert addAction:cancelAction];
-        
-        va_list args;
-        va_start(args, cancelButtonDidClickBlock);
-        
-        id firstArg = nil;
-        id secondArg = nil;
-        while ((firstArg = va_arg(args, id))) {
-            secondArg = va_arg(args, id);
-            
-            if (![firstArg isKindOfClass:[NSString class]]) {
-                break;
-            }
-            
-            void (^block)(void) = nil;
-            if ([WCBlockTool isBlock:secondArg]) {
-                block = secondArg;
-            }
-            
-            UIAlertAction *action = [UIAlertAction actionWithTitle:firstArg style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                if (block) {
-                    block();
-                }
-            }];
-            [alert addAction:action];
-            
-            if (secondArg == nil) {
-                break;
-            }
-        }
-        
-        va_end(args);
-        
-        UIViewController *topViewController = [WCAlertTool topViewControllerOnWindow:[UIApplication sharedApplication].keyWindow];
-        [topViewController presentViewController:alert animated:YES completion:nil];
-    }
-}
-
-+ (void)presentAlertWithTitle:(NSString *)title message:(nullable NSString *)message buttonTitles:(NSArray<NSString *> *)buttonTitles buttonDidClickBlocks:(NSArray *)buttonDidClickBlocks {
-    return [self presentAlertWithStyle:UIAlertControllerStyleAlert title:title message:message buttonTitles:buttonTitles buttonDidClickBlocks:buttonDidClickBlocks
-            ];
-}
-
-#pragma mark > Show Action Sheet
-
-+ (void)presentActionSheetWithTitle:(NSString *)title message:(nullable NSString *)message cancelButtonTitle:(NSString *)cancelButtonTitle cancelButtonDidClickBlock:(nullable void (^)(void))cancelButtonDidClickBlock, ... {
+    NSArray *args = NSArrayFromVaList(cancelButtonDidClickBlock);
     
-    if (![title isKindOfClass:[NSString class]]) {
+    if (args.count % 2 != 0) {
         return;
     }
     
-    if ([UIAlertController class]) {
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:message preferredStyle:UIAlertControllerStyleActionSheet];
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:cancelButtonTitle style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
-            if (cancelButtonDidClickBlock) {
-                cancelButtonDidClickBlock();
-            }
-        }];
-        [alert addAction:cancelAction];
-        
-        va_list args;
-        va_start(args, cancelButtonDidClickBlock);
-        
-        id firstArg = nil;
-        id secondArg = nil;
-        while ((firstArg = va_arg(args, id))) {
-            secondArg = va_arg(args, id);
-            
-            if (![firstArg isKindOfClass:[NSString class]]) {
-                break;
-            }
-            
-            void (^block)(void) = nil;
-            if ([WCBlockTool isBlock:secondArg]) {
-                block = secondArg;
-            }
-            
-            UIAlertAction *action = [UIAlertAction actionWithTitle:firstArg style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-                if (block) {
-                    block();
-                }
-            }];
-            [alert addAction:action];
-            
-            if (secondArg == nil) {
-                break;
-            }
-        }
-        
-        va_end(args);
-        
-        UIViewController *topViewController = [WCAlertTool topViewControllerOnWindow:[UIApplication sharedApplication].keyWindow];
-        [topViewController presentViewController:alert animated:YES completion:nil];
+    NSMutableArray *buttonTitles = [NSMutableArray arrayWithObject:cancelButtonTitle];
+    NSMutableArray *buttonDidClickBlocks = [NSMutableArray arrayWithObject:cancelButtonDidClickBlock];
+    
+    for (NSInteger i = 0; i < args.count; i = i + 2) {
+        [buttonTitles addObject:args[i]];
+        [buttonDidClickBlocks addObject:args[i + 1]];
     }
+    
+    [self presentAlertWithStyle:style title:title message:message buttonTitles:buttonTitles buttonDidClickBlocks:buttonDidClickBlocks];
 }
-
-+ (void)presentActionSheetWithTitle:(NSString *)title message:(nullable NSString *)message buttonTitles:(NSArray<NSString *> *)buttonTitles buttonDidClickBlocks:(NSArray *)buttonDidClickBlocks {
-    return [self presentAlertWithStyle:UIAlertControllerStyleActionSheet title:title message:message buttonTitles:buttonTitles buttonDidClickBlocks:buttonDidClickBlocks
-            ];
-}
-
-#pragma mark > Both
 
 + (void)presentAlertWithStyle:(UIAlertControllerStyle)style title:(NSString *)title message:(nullable NSString *)message buttonTitles:(NSArray<NSString *> *)buttonTitles buttonDidClickBlocks:(NSArray *)buttonDidClickBlocks {
     if (![buttonTitles isKindOfClass:[NSArray class]] || ![buttonDidClickBlocks isKindOfClass:[NSArray class]]) {

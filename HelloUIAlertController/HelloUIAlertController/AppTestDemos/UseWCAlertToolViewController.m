@@ -15,6 +15,7 @@
 @interface UseWCAlertToolViewController ()
 @property (nonatomic, strong) NSArray *sectionTitles;
 @property (nonatomic, strong) NSArray<NSArray<NSDictionary *> *> *classes;
+@property (nonatomic, assign) UIAlertControllerStyle currentStyle;
 @end
 
 @implementation UseWCAlertToolViewController
@@ -33,17 +34,17 @@
     
     // MARK: Configure sectionTitles and classes for table view
     NSArray<NSDictionary *> *section1 = @[
-          @{ kTitle: @"Show action sheet with cancel button", kClass: NSStringFromSelector(@selector(showActionSheetWithCancelButton)) },
-          @{ kTitle: @"show action with other button title", kClass: NSStringFromSelector(@selector(showActionSheetWithOtherButtonTitle)) },
-          @{ kTitle: @"show action with other button title and callback", kClass: NSStringFromSelector(@selector(showActionSheetWithOtherButtonTitleAndCallback)) },
-          @{ kTitle: @"show action with other buttons", kClass: NSStringFromSelector(@selector(showActionSheetWithOtherButtons)) },
+          @{ kTitle: @"Show with cancel button", kClass: NSStringFromSelector(@selector(showActionSheetWithCancelButton)) },
+          @{ kTitle: @"show with other button title", kClass: NSStringFromSelector(@selector(showActionSheetWithOtherButtonTitle)) },
+          @{ kTitle: @"show with other button title and callback", kClass: NSStringFromSelector(@selector(showActionSheetWithOtherButtonTitleAndCallback)) },
+          @{ kTitle: @"show with other buttons", kClass: NSStringFromSelector(@selector(showActionSheetWithOtherButtons)) },
     ];
 
     NSArray<NSDictionary *> *section2 = @[
-          @{ kTitle: @"Show action sheet with cancel button", kClass: NSStringFromSelector(@selector(showActionSheetWithCancelButton2)) },
-          @{ kTitle: @"show action with other button title", kClass: NSStringFromSelector(@selector(showActionSheetWithOtherButtonTitle2)) },
-          @{ kTitle: @"show action with other button title and callback", kClass: NSStringFromSelector(@selector(showActionSheetWithOtherButtonTitleAndCallback2)) },
-          @{ kTitle: @"show action with other buttons", kClass: NSStringFromSelector(@selector(showActionSheetWithOtherButtons2)) },
+          @{ kTitle: @"Show with cancel button", kClass: NSStringFromSelector(@selector(showActionSheetWithCancelButton2)) },
+          @{ kTitle: @"show with other button title", kClass: NSStringFromSelector(@selector(showActionSheetWithOtherButtonTitle2)) },
+          @{ kTitle: @"show with other button title and callback", kClass: NSStringFromSelector(@selector(showActionSheetWithOtherButtonTitleAndCallback2)) },
+          @{ kTitle: @"show with other buttons", kClass: NSStringFromSelector(@selector(showActionSheetWithOtherButtons2)) },
     ];
     
     _sectionTitles = @[
@@ -55,6 +56,32 @@
          section1,
          section2,
     ];
+    
+    _currentStyle = UIAlertControllerStyleAlert;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    UISwitch *switcher = [[UISwitch alloc] init];
+    switcher.on = NO;
+    [switcher addTarget:self action:@selector(switcherToggled:) forControlEvents:UIControlEventValueChanged];
+    
+    UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:switcher];
+    self.navigationItem.rightBarButtonItem = barItem;
+}
+
+#pragma mark - Actions
+
+- (void)switcherToggled:(UISwitch *)switcher {
+    switcher.on = !switcher.on;
+    
+    if (switcher.on) {
+        self.currentStyle = UIAlertControllerStyleActionSheet;
+    }
+    else {
+        self.currentStyle = UIAlertControllerStyleAlert;
+    }
 }
 
 #pragma mark -
@@ -123,19 +150,19 @@
 #pragma mark > by va_list
 
 - (void)showActionSheetWithCancelButton {
-    [WCAlertTool presentActionSheetWithTitle:@"This is an action sheet" message:@"some tip here" cancelButtonTitle:@"Ok" cancelButtonDidClickBlock:^{
+    [WCAlertTool presentAlertWithStyle:self.currentStyle title:@"This is a title" message:@"some tip here" cancelButtonTitle:@"Ok" cancelButtonDidClickBlock:^{
         NSLog(@"_cmd: %@, cancelButtonDidClick", NSStringFromSelector(_cmd));
     }, nil];
 }
 
 - (void)showActionSheetWithOtherButtonTitle {
-    [WCAlertTool presentActionSheetWithTitle:@"This is an action sheet" message:nil cancelButtonTitle:@"Ok" cancelButtonDidClickBlock:^{
+    [WCAlertTool presentAlertWithStyle:self.currentStyle title:@"This is a title" message:nil cancelButtonTitle:@"Ok" cancelButtonDidClickBlock:^{
         NSLog(@"_cmd: %@, cancelButtonDidClick", NSStringFromSelector(_cmd));
     }, @"button1", nil];
 }
 
 - (void)showActionSheetWithOtherButtonTitleAndCallback {
-    [WCAlertTool presentActionSheetWithTitle:@"This is an action sheet" message:@"" cancelButtonTitle:@"Ok" cancelButtonDidClickBlock:^{
+    [WCAlertTool presentAlertWithStyle:self.currentStyle title:@"This is a title" message:@"" cancelButtonTitle:@"Ok" cancelButtonDidClickBlock:^{
         NSLog(@"_cmd: %@, cancelButtonDidClick", NSStringFromSelector(_cmd));
     }, @"button1", ^{
         NSLog(@"_cmd: %@, button1DidClick", NSStringFromSelector(_cmd));
@@ -143,7 +170,7 @@
 }
 
 - (void)showActionSheetWithOtherButtons {
-    [WCAlertTool presentActionSheetWithTitle:@"This is an action sheet" message:@"some tip here" cancelButtonTitle:@"Ok" cancelButtonDidClickBlock:^{
+    [WCAlertTool presentAlertWithStyle:self.currentStyle title:@"This is a title" message:@"some tip here" cancelButtonTitle:@"Ok" cancelButtonDidClickBlock:^{
         NSLog(@"_cmd: %@, cancelButtonDidClick", NSStringFromSelector(_cmd));
     }, @"button1", ^{
         NSLog(@"_cmd: %@, button1DidClick", NSStringFromSelector(_cmd));
@@ -159,7 +186,7 @@
         NSLog(@"_cmd: %@, cancelButtonDidClick", NSStringFromSelector(_cmd));
     };
     
-    [WCAlertTool presentActionSheetWithTitle:@"This is an action sheet" message:@"some tip here" buttonTitles:@[ @"Ok" ] buttonDidClickBlocks:@[ block ]];
+    [WCAlertTool presentAlertWithStyle:self.currentStyle title:@"This is a title" message:@"some tip here" buttonTitles:@[ @"Ok" ] buttonDidClickBlocks:@[ block ]];
 }
 
 - (void)showActionSheetWithOtherButtonTitle2 {
@@ -169,7 +196,7 @@
     
     id block2 = [NSNull null];
     
-    [WCAlertTool presentActionSheetWithTitle:@"This is an action sheet" message:@"some tip here" buttonTitles:@[ @"Ok", @"button1" ] buttonDidClickBlocks:@[ block1, block2 ]];
+    [WCAlertTool presentAlertWithStyle:self.currentStyle title:@"This is a title" message:@"some tip here" buttonTitles:@[ @"Ok", @"button1" ] buttonDidClickBlocks:@[ block1, block2 ]];
 }
 
 - (void)showActionSheetWithOtherButtonTitleAndCallback2 {
@@ -181,7 +208,7 @@
         NSLog(@"_cmd: %@, button1DidClick", NSStringFromSelector(_cmd));
     };
     
-    [WCAlertTool presentActionSheetWithTitle:@"This is an action sheet" message:@"" buttonTitles:@[ @"Ok", @"button1" ] buttonDidClickBlocks:@[ block1, block2 ]];
+    [WCAlertTool presentAlertWithStyle:self.currentStyle title:@"This is a title" message:@"" buttonTitles:@[ @"Ok", @"button1" ] buttonDidClickBlocks:@[ block1, block2 ]];
 }
 
 - (void)showActionSheetWithOtherButtons2 {
@@ -200,7 +227,7 @@
     NSArray *buttonTitles = @[ @"Ok", @"button1", @"button2" ];
     NSArray *blocks = @[ block1, block2, block3 ];
     
-    [WCAlertTool presentActionSheetWithTitle:@"This is an action sheet" message:@"some tip here" buttonTitles:buttonTitles buttonDidClickBlocks:blocks];
+    [WCAlertTool presentAlertWithStyle:self.currentStyle title:@"This is a title" message:@"some tip here" buttonTitles:buttonTitles buttonDidClickBlocks:blocks];
 }
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F2A55F22233B772008648AB /* WCMacroToolBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2A55F12233B772008648AB /* WCMacroToolBackend.m */; };
 		4F4513AF2123CE9E0065028A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4513AE2123CE9E0065028A /* AppDelegate.m */; };
 		4F4513B72123CE9F0065028A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F4513B62123CE9F0065028A /* Assets.xcassets */; };
 		4F4513BA2123CE9F0065028A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F4513B82123CE9F0065028A /* LaunchScreen.storyboard */; };
@@ -21,6 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F2A55EF2233B75A008648AB /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
+		4F2A55F02233B772008648AB /* WCMacroToolBackend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroToolBackend.h; sourceTree = "<group>"; };
+		4F2A55F12233B772008648AB /* WCMacroToolBackend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMacroToolBackend.m; sourceTree = "<group>"; };
 		4F4513AA2123CE9D0065028A /* HelloUIAlertController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUIAlertController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F4513AD2123CE9D0065028A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F4513AE2123CE9E0065028A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -125,6 +129,9 @@
 			children = (
 				4F8C95A5221EF43000869CE7 /* WCBlockTool.h */,
 				4F8C95A6221EF43000869CE7 /* WCBlockTool.m */,
+				4F2A55EF2233B75A008648AB /* WCMacroTool.h */,
+				4F2A55F02233B772008648AB /* WCMacroToolBackend.h */,
+				4F2A55F12233B772008648AB /* WCMacroToolBackend.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -201,6 +208,7 @@
 				4FE3B7D2221CF624006790CD /* UseWCAlertToolViewController.m in Sources */,
 				4F4513BD2123CE9F0065028A /* main.m in Sources */,
 				4F4513CB2123CEF30065028A /* TabledAlertController.m in Sources */,
+				4F2A55F22233B772008648AB /* WCMacroToolBackend.m in Sources */,
 				4F8C95A7221EF43000869CE7 /* WCBlockTool.m in Sources */,
 				4F4DC06621EECE360066E96A /* WCAlertTool.m in Sources */,
 				4F4513AF2123CE9E0065028A /* AppDelegate.m in Sources */,
