@@ -18,6 +18,11 @@
 		4F54E6832238B4A0001A9BE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F54E6822238B4A0001A9BE2 /* Assets.xcassets */; };
 		4F54E6862238B4A0001A9BE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F54E6842238B4A0001A9BE2 /* LaunchScreen.storyboard */; };
 		4F54E6892238B4A0001A9BE2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F54E6882238B4A0001A9BE2 /* main.m */; };
+		4F650EA0223967DB002BA46F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F650E9F223967DB002BA46F /* AppDelegate.m */; };
+		4F650EA3223967DB002BA46F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F650EA2223967DB002BA46F /* ViewController.m */; };
+		4F650EA8223967DD002BA46F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F650EA7223967DD002BA46F /* Assets.xcassets */; };
+		4F650EAB223967DD002BA46F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F650EA9223967DD002BA46F /* LaunchScreen.storyboard */; };
+		4F650EAE223967DD002BA46F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F650EAD223967DD002BA46F /* main.m */; };
 		4FFE71A52236AC550020516E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE71A42236AC550020516E /* AppDelegate.m */; };
 		4FFE71AD2236AC560020516E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE71AC2236AC560020516E /* Assets.xcassets */; };
 		4FFE71B02236AC560020516E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE71AE2236AC560020516E /* LaunchScreen.storyboard */; };
@@ -45,6 +50,15 @@
 		4F54E6852238B4A0001A9BE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F54E6872238B4A0001A9BE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F54E6882238B4A0001A9BE2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4F650E9C223967DB002BA46F /* InitializeMethodInCategory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InitializeMethodInCategory.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F650E9E223967DB002BA46F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4F650E9F223967DB002BA46F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4F650EA1223967DB002BA46F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		4F650EA2223967DB002BA46F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		4F650EA7223967DD002BA46F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4F650EAA223967DD002BA46F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4F650EAC223967DD002BA46F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F650EAD223967DD002BA46F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4FFE71A02236AC550020516E /* HelloNSObject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSObject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FFE71A32236AC550020516E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FFE71A42236AC550020516E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -63,6 +77,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4F54E6742238B49F001A9BE2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F650E99223967DB002BA46F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -118,6 +139,21 @@
 			path = OrderOfCallInitializeMethodInNSObject;
 			sourceTree = "<group>";
 		};
+		4F650E9D223967DB002BA46F /* InitializeMethodInCategory */ = {
+			isa = PBXGroup;
+			children = (
+				4F650E9E223967DB002BA46F /* AppDelegate.h */,
+				4F650E9F223967DB002BA46F /* AppDelegate.m */,
+				4F650EA1223967DB002BA46F /* ViewController.h */,
+				4F650EA2223967DB002BA46F /* ViewController.m */,
+				4F650EA7223967DD002BA46F /* Assets.xcassets */,
+				4F650EA9223967DD002BA46F /* LaunchScreen.storyboard */,
+				4F650EAC223967DD002BA46F /* Info.plist */,
+				4F650EAD223967DD002BA46F /* main.m */,
+			);
+			path = InitializeMethodInCategory;
+			sourceTree = "<group>";
+		};
 		4FFE71972236AC550020516E = {
 			isa = PBXGroup;
 			children = (
@@ -125,6 +161,7 @@
 				4FFE71A22236AC550020516E /* HelloNSObject */,
 				4F54E65E2238A1C7001A9BE2 /* OrderOfCallLoadMethodInNSObject */,
 				4F54E6782238B49F001A9BE2 /* OrderOfCallInitializeMethodInNSObject */,
+				4F650E9D223967DB002BA46F /* InitializeMethodInCategory */,
 				4FFE71A12236AC550020516E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -135,6 +172,7 @@
 				4FFE71A02236AC550020516E /* HelloNSObject.app */,
 				4F54E65D2238A1C7001A9BE2 /* OrderOfCallLoadMethodInNSObject.app */,
 				4F54E6772238B49F001A9BE2 /* OrderOfCallInitializeMethodInNSObject.app */,
+				4F650E9C223967DB002BA46F /* InitializeMethodInCategory.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -189,6 +227,23 @@
 			productReference = 4F54E6772238B49F001A9BE2 /* OrderOfCallInitializeMethodInNSObject.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4F650E9B223967DB002BA46F /* InitializeMethodInCategory */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F650EB1223967DD002BA46F /* Build configuration list for PBXNativeTarget "InitializeMethodInCategory" */;
+			buildPhases = (
+				4F650E98223967DB002BA46F /* Sources */,
+				4F650E99223967DB002BA46F /* Frameworks */,
+				4F650E9A223967DB002BA46F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = InitializeMethodInCategory;
+			productName = InitializeMethodInCategory;
+			productReference = 4F650E9C223967DB002BA46F /* InitializeMethodInCategory.app */;
+			productType = "com.apple.product-type.application";
+		};
 		4FFE719F2236AC550020516E /* HelloNSObject */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4FFE71B62236AC560020516E /* Build configuration list for PBXNativeTarget "HelloNSObject" */;
@@ -221,6 +276,9 @@
 					4F54E6762238B49F001A9BE2 = {
 						CreatedOnToolsVersion = 9.4.1;
 					};
+					4F650E9B223967DB002BA46F = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
 					4FFE719F2236AC550020516E = {
 						CreatedOnToolsVersion = 9.4.1;
 					};
@@ -242,6 +300,7 @@
 				4FFE719F2236AC550020516E /* HelloNSObject */,
 				4F54E65C2238A1C7001A9BE2 /* OrderOfCallLoadMethodInNSObject */,
 				4F54E6762238B49F001A9BE2 /* OrderOfCallInitializeMethodInNSObject */,
+				4F650E9B223967DB002BA46F /* InitializeMethodInCategory */,
 			);
 		};
 /* End PBXProject section */
@@ -262,6 +321,15 @@
 			files = (
 				4F54E6862238B4A0001A9BE2 /* LaunchScreen.storyboard in Resources */,
 				4F54E6832238B4A0001A9BE2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F650E9A223967DB002BA46F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F650EAB223967DD002BA46F /* LaunchScreen.storyboard in Resources */,
+				4F650EA8223967DD002BA46F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,6 +365,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4F650E98223967DB002BA46F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F650EA3223967DB002BA46F /* ViewController.m in Sources */,
+				4F650EAE223967DD002BA46F /* main.m in Sources */,
+				4F650EA0223967DB002BA46F /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FFE719C2236AC550020516E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -322,6 +400,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				4F54E6852238B4A0001A9BE2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		4F650EA9223967DD002BA46F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F650EAA223967DD002BA46F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -398,6 +484,38 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.OrderOfCallInitializeMethodInNSObject;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4F650EAF223967DD002BA46F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = InitializeMethodInCategory/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.InitializeMethodInCategory;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4F650EB0223967DD002BA46F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = InitializeMethodInCategory/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.InitializeMethodInCategory;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -562,6 +680,15 @@
 			buildConfigurations = (
 				4F54E68B2238B4A0001A9BE2 /* Debug */,
 				4F54E68C2238B4A0001A9BE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F650EB1223967DD002BA46F /* Build configuration list for PBXNativeTarget "InitializeMethodInCategory" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F650EAF223967DD002BA46F /* Debug */,
+				4F650EB0223967DD002BA46F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
