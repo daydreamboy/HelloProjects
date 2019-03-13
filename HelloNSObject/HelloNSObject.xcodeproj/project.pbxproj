@@ -13,6 +13,11 @@
 		4F54E6692238A1C8001A9BE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F54E6682238A1C8001A9BE2 /* Assets.xcassets */; };
 		4F54E66C2238A1C8001A9BE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F54E66A2238A1C8001A9BE2 /* LaunchScreen.storyboard */; };
 		4F54E66F2238A1C8001A9BE2 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F54E66E2238A1C8001A9BE2 /* main.mm */; };
+		4F54E67B2238B49F001A9BE2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F54E67A2238B49F001A9BE2 /* AppDelegate.m */; };
+		4F54E67E2238B49F001A9BE2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F54E67D2238B49F001A9BE2 /* ViewController.m */; };
+		4F54E6832238B4A0001A9BE2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F54E6822238B4A0001A9BE2 /* Assets.xcassets */; };
+		4F54E6862238B4A0001A9BE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F54E6842238B4A0001A9BE2 /* LaunchScreen.storyboard */; };
+		4F54E6892238B4A0001A9BE2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F54E6882238B4A0001A9BE2 /* main.m */; };
 		4FFE71A52236AC550020516E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE71A42236AC550020516E /* AppDelegate.m */; };
 		4FFE71AD2236AC560020516E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE71AC2236AC560020516E /* Assets.xcassets */; };
 		4FFE71B02236AC560020516E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE71AE2236AC560020516E /* LaunchScreen.storyboard */; };
@@ -31,6 +36,15 @@
 		4F54E66B2238A1C8001A9BE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F54E66D2238A1C8001A9BE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F54E66E2238A1C8001A9BE2 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		4F54E6772238B49F001A9BE2 /* OrderOfCallInitializeMethodInNSObject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrderOfCallInitializeMethodInNSObject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F54E6792238B49F001A9BE2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4F54E67A2238B49F001A9BE2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4F54E67C2238B49F001A9BE2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		4F54E67D2238B49F001A9BE2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		4F54E6822238B4A0001A9BE2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4F54E6852238B4A0001A9BE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4F54E6872238B4A0001A9BE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F54E6882238B4A0001A9BE2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4FFE71A02236AC550020516E /* HelloNSObject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSObject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FFE71A32236AC550020516E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FFE71A42236AC550020516E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -42,6 +56,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		4F54E65A2238A1C7001A9BE2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F54E6742238B49F001A9BE2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -82,12 +103,28 @@
 			path = OrderOfCallLoadMethodInNSObject;
 			sourceTree = "<group>";
 		};
+		4F54E6782238B49F001A9BE2 /* OrderOfCallInitializeMethodInNSObject */ = {
+			isa = PBXGroup;
+			children = (
+				4F54E6792238B49F001A9BE2 /* AppDelegate.h */,
+				4F54E67A2238B49F001A9BE2 /* AppDelegate.m */,
+				4F54E67C2238B49F001A9BE2 /* ViewController.h */,
+				4F54E67D2238B49F001A9BE2 /* ViewController.m */,
+				4F54E6822238B4A0001A9BE2 /* Assets.xcassets */,
+				4F54E6842238B4A0001A9BE2 /* LaunchScreen.storyboard */,
+				4F54E6872238B4A0001A9BE2 /* Info.plist */,
+				4F54E6882238B4A0001A9BE2 /* main.m */,
+			);
+			path = OrderOfCallInitializeMethodInNSObject;
+			sourceTree = "<group>";
+		};
 		4FFE71972236AC550020516E = {
 			isa = PBXGroup;
 			children = (
 				4F54E6552238A08A001A9BE2 /* WCObjectTool */,
 				4FFE71A22236AC550020516E /* HelloNSObject */,
 				4F54E65E2238A1C7001A9BE2 /* OrderOfCallLoadMethodInNSObject */,
+				4F54E6782238B49F001A9BE2 /* OrderOfCallInitializeMethodInNSObject */,
 				4FFE71A12236AC550020516E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -97,6 +134,7 @@
 			children = (
 				4FFE71A02236AC550020516E /* HelloNSObject.app */,
 				4F54E65D2238A1C7001A9BE2 /* OrderOfCallLoadMethodInNSObject.app */,
+				4F54E6772238B49F001A9BE2 /* OrderOfCallInitializeMethodInNSObject.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -134,6 +172,23 @@
 			productReference = 4F54E65D2238A1C7001A9BE2 /* OrderOfCallLoadMethodInNSObject.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4F54E6762238B49F001A9BE2 /* OrderOfCallInitializeMethodInNSObject */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F54E68A2238B4A0001A9BE2 /* Build configuration list for PBXNativeTarget "OrderOfCallInitializeMethodInNSObject" */;
+			buildPhases = (
+				4F54E6732238B49F001A9BE2 /* Sources */,
+				4F54E6742238B49F001A9BE2 /* Frameworks */,
+				4F54E6752238B49F001A9BE2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OrderOfCallInitializeMethodInNSObject;
+			productName = OrderOfCallInitializeMethodInNSObject;
+			productReference = 4F54E6772238B49F001A9BE2 /* OrderOfCallInitializeMethodInNSObject.app */;
+			productType = "com.apple.product-type.application";
+		};
 		4FFE719F2236AC550020516E /* HelloNSObject */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4FFE71B62236AC560020516E /* Build configuration list for PBXNativeTarget "HelloNSObject" */;
@@ -163,6 +218,9 @@
 					4F54E65C2238A1C7001A9BE2 = {
 						CreatedOnToolsVersion = 9.4.1;
 					};
+					4F54E6762238B49F001A9BE2 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
 					4FFE719F2236AC550020516E = {
 						CreatedOnToolsVersion = 9.4.1;
 					};
@@ -183,6 +241,7 @@
 			targets = (
 				4FFE719F2236AC550020516E /* HelloNSObject */,
 				4F54E65C2238A1C7001A9BE2 /* OrderOfCallLoadMethodInNSObject */,
+				4F54E6762238B49F001A9BE2 /* OrderOfCallInitializeMethodInNSObject */,
 			);
 		};
 /* End PBXProject section */
@@ -194,6 +253,15 @@
 			files = (
 				4F54E66C2238A1C8001A9BE2 /* LaunchScreen.storyboard in Resources */,
 				4F54E6692238A1C8001A9BE2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F54E6752238B49F001A9BE2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F54E6862238B4A0001A9BE2 /* LaunchScreen.storyboard in Resources */,
+				4F54E6832238B4A0001A9BE2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +287,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4F54E6732238B49F001A9BE2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F54E67E2238B49F001A9BE2 /* ViewController.m in Sources */,
+				4F54E6892238B4A0001A9BE2 /* main.m in Sources */,
+				4F54E67B2238B49F001A9BE2 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FFE719C2236AC550020516E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -236,6 +314,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				4F54E66B2238A1C8001A9BE2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		4F54E6842238B4A0001A9BE2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F54E6852238B4A0001A9BE2 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -278,6 +364,40 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.OrderOfCallLoadMethodInNSObject;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4F54E68B2238B4A0001A9BE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = OrderOfCallInitializeMethodInNSObject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.OrderOfCallInitializeMethodInNSObject;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4F54E68C2238B4A0001A9BE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = OrderOfCallInitializeMethodInNSObject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.OrderOfCallInitializeMethodInNSObject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -433,6 +553,15 @@
 			buildConfigurations = (
 				4F54E6712238A1C8001A9BE2 /* Debug */,
 				4F54E6722238A1C8001A9BE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F54E68A2238B4A0001A9BE2 /* Build configuration list for PBXNativeTarget "OrderOfCallInitializeMethodInNSObject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F54E68B2238B4A0001A9BE2 /* Debug */,
+				4F54E68C2238B4A0001A9BE2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

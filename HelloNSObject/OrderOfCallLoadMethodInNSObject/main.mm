@@ -15,11 +15,6 @@
 + (void)load {
     NSLog(@"load method in BaseClass");
 }
-
-// must specify __attribute__((constructor)) for the function
-__attribute__((constructor)) void constructorLoad(void) {
-    NSLog(@"constructorLoad function");
-}
 @end
 
 @implementation BaseClass (Addition)
@@ -42,6 +37,11 @@ __attribute__((constructor)) void constructorLoad(void) {
 }
 @end
 
+// C constructor functions: must specify __attribute__((constructor)) for the function
+__attribute__((constructor)) void constructorLoad(void) {
+    NSLog(@"constructorLoad function");
+}
+
 // A C++ class
 class Math {
 public:
@@ -50,8 +50,9 @@ public:
     }
 };
 
-// A C++ static object
-static Math m = Math();
+// C++ global objects: on stack or on heap
+Math m = Math();
+Math *m2 = new Math();
 
 int main(int argc, char * argv[]) {
     @autoreleasepool {
