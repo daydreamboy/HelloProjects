@@ -1,7 +1,9 @@
 # Objective-C Runtime
 [TOC]
 
-## 1、NSObject
+## 1、Runtime介绍
+
+
 
 
 
@@ -28,6 +30,61 @@ NSLog(@"%@", debugDescriton);
 
 > 1. 这里的object指针需要标记为`__unsafe_unretained`，防止当超过object的作用域时，ARC将object引用计数减1，导致后面发生内存错误
 > 2. 即使标记`__unsafe_unretained`，当object指针的值不是一个合法对象内地地址时，调用`[object debugDescription]`会出现`EXC_BAD_ACCESS (code=1, address=0xXXX)`
+
+
+
+### （2）分类添加属性
+
+
+
+```objective-c
+// .h
+@interface NSString (Addition)
+
+@property (nonatomic, retain) NSString *defaultHashKey;
+- (void)printHashKey;
+
+@end
+
+// .m
+#import <objc/runtime.h>
+
+@implementation NSString (Addition)
+
+static char const * const ObjectTagKey = "ObjectTag";
+
+- (NSString *)defaultHashKey {
+    return objc_getAssociatedObject(self, ObjectTagKey);
+}
+
+- (void)setDefaultHashKey:(NSString *)hashKey {
+    objc_setAssociatedObject(self, ObjectTagKey, hashKey, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+- (void)printHashKey {
+    NSLog(@"the hash key is: %@", self.defaultHashKey);
+}
+
+@end
+```
+
+
+
+```objective-c
+#import "NSString+Addition.h"
+
+int main(int argc, const char * argv[]) {
+    @autoreleasepool {
+        
+        NSString *string = [NSString string] ;
+        string.defaultHashKey = @"Ciao";
+        [string printHashKey] ;
+    }
+    return 0;
+}
+```
+
+
 
 
 
