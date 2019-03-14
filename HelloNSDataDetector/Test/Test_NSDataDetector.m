@@ -55,17 +55,21 @@
     // Case 1
     string = @"http://www.baidu.com/测试连接";
     [self runDataDetector:detector string:string];
-    
+
     // Case 2
     string = @"测试www.google.com/search?newwindow=1&ei=SZdaW9WZC4He8AOOip_oCQ&q=%E4%B8%AD%E5%9B%BD&oq=%E4%B8%AD%E5%9B%BD&gs_l=psy-ab.3..0l10.84214383.84218699.0.84219033.17.16.0.0.0.0.388.1696.2-1j4.6.0....0...1c.1j4.64.psy-ab..12.4.1431.0..0i10k1j0i131k1j0i13k1j0i13i10k1.214.fgai0ZJ2g_k,这是链接";
     [self runDataDetector:detector string:string];
-    
+
     // Case 3
     string = @"测试www.google.com/search?newwindow=1&ei=SZdaW9WZC4He8AOOip_oCQ&q=%E4%B8%AD%E5%9B%BD&oq=%E4%B8%AD%E5%9B%BD&gs_l=psy-ab.3..0l10.84214383.84218699.0.84219033.17.16.0.0.0.0.388.1696.2-1j4.6.0....0...1c.1j4.64.psy-ab..12.4.1431.0..0i10k1j0i131k1j0i13k1j0i13i10k1.214.fgai0ZJ2g_k，这是链接";
     [self runDataDetector:detector string:string];
-    
+
     // Case 4
     string = @"测试https://detail.tmall.com/item.htm?id=568371443233&spm=a223v.7835278.t0.1.3cbe2312nwviTo&pvid=be2a1b12-f24f-4050-9227-e7c3448fd8b8&scm=1007.12144.81309.9011_8949&utparam={%22x_hestia_source%22:%228949%22,%22x_mt%22:10,%22x_object_id%22:568371443233,%22x_object_type%22:%22item%22,%22x_pos%22:1,%22x_pvid%22:%22be2a1b12-f24f-4050-9227-e7c3448fd8b8%22,%22x_src%22:%228949%22}";
+    [self runDataDetector:detector string:string];
+    
+    // Case 5
+    string = @"https://item.taobao.com/item.htm?spm=a230r.1.14.13.63956cb9lNHIdB&id=573299987166&ns=1&abbucket=15#detail";
     [self runDataDetector:detector string:string];
 }
 
