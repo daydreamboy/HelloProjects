@@ -256,47 +256,71 @@
     XCTAssertTrue([output isKindOfClass:[NSDictionary class]]);
     XCTAssertEqualObjects(output[@"text"], @"aHR0cHM6Ly9kZXRhaWwudG1hbGwuY29tL2l0ZW0uaHRtP2lkPTU3MzY2NjQ2MDM1NSZhbGlfcmVmaWQ9YTNfNDIwNDMyXzEwMDY6MTExMDgxNzMyMjpOOiVFOSU5QiU4NiVFNiU4OCU5MCVFNyU4MSVCNjpmYzc4NjljYjZlM2M3OGU4ZjJkYjZkYjg4NTNkNzViZSZhbGlfdHJhY2tpZD0xX2ZjNzg2OWNiNmUzYzc4ZThmMmRiNmRiODg1M2Q3NWJlJnNwbT1hMjMwci4xLjE0LjE=");
     XCTAssertEqualObjects(output[@"toLongId"], @"amFjaw==");
-    
+
     // Case 2
     urlString = @"?toLongId=amFjaw==&text=aHR0cHM6Ly9kZXRhaWwudG1hbGwuY29tL2l0ZW0uaHRtP2lkPTU3MzY2NjQ2MDM1NSZhbGlfcmVmaWQ9YTNfNDIwNDMyXzEwMDY6MTExMDgxNzMyMjpOOiVFOSU5QiU4NiVFNiU4OCU5MCVFNyU4MSVCNjpmYzc4NjljYjZlM2M3OGU4ZjJkYjZkYjg4NTNkNzViZSZhbGlfdHJhY2tpZD0xX2ZjNzg2OWNiNmUzYzc4ZThmMmRiNmRiODg1M2Q3NWJlJnNwbT1hMjMwci4xLjE0LjE=";
     output = [WCStringTool keyValuePairsWithUrlString:urlString];
     XCTAssertTrue([output isKindOfClass:[NSDictionary class]]);
     XCTAssertEqualObjects(output[@"text"], @"aHR0cHM6Ly9kZXRhaWwudG1hbGwuY29tL2l0ZW0uaHRtP2lkPTU3MzY2NjQ2MDM1NSZhbGlfcmVmaWQ9YTNfNDIwNDMyXzEwMDY6MTExMDgxNzMyMjpOOiVFOSU5QiU4NiVFNiU4OCU5MCVFNyU4MSVCNjpmYzc4NjljYjZlM2M3OGU4ZjJkYjZkYjg4NTNkNzViZSZhbGlfdHJhY2tpZD0xX2ZjNzg2OWNiNmUzYzc4ZThmMmRiNmRiODg1M2Q3NWJlJnNwbT1hMjMwci4xLjE0LjE=");
     XCTAssertEqualObjects(output[@"toLongId"], @"amFjaw==");
-    
+
     // Case 3
     urlString = @"wangx://p2pconversation/sendText?abc";
     output = [WCStringTool keyValuePairsWithUrlString:urlString];
     XCTAssertTrue([output isKindOfClass:[NSDictionary class]]);
     XCTAssertTrue(output.count == 0);
-    
+
     // Case 4
     urlString = @"wangx://p2pconversation/sendText";
     output = [WCStringTool keyValuePairsWithUrlString:urlString];
     XCTAssertNil(output);
-    
+
     // Case 5
     urlString = @"wangx://p2pconversation/sendText?&";
     output = [WCStringTool keyValuePairsWithUrlString:urlString];
     XCTAssertTrue([output isKindOfClass:[NSDictionary class]]);
     XCTAssertTrue(output.count == 0);
-    
+
     // Case 6
     urlString = @"wangx://p2pconversation/sendText?&&&";
     output = [WCStringTool keyValuePairsWithUrlString:urlString];
     XCTAssertTrue([output isKindOfClass:[NSDictionary class]]);
     XCTAssertTrue(output.count == 0);
-    
+
     // Case 7
     urlString = @"abc?key1=A&key2=B";
     output = [WCStringTool keyValuePairsWithUrlString:urlString];
     XCTAssertTrue([output isKindOfClass:[NSDictionary class]]);
     XCTAssertTrue(output.count == 2);
-    
+
     // Case 8
     urlString = @"abc@key1=A#key2=B";
     output = [WCStringTool keyValuePairsWithUrlString:urlString];
     XCTAssertNil(output);
+    
+    // Case 9
+    urlString = @"https://item.taobao.com/item.htm?spm=a230r.1.14.13.63956cb9lNHIdB&id=573299987166&ns=1&abbucket=15#detail";
+    output = [WCStringTool keyValuePairsWithUrlString:urlString];
+    XCTAssertTrue([output isKindOfClass:[NSDictionary class]]);
+    XCTAssertTrue(output.count == 4);
+    XCTAssertEqualObjects(output[@"spm"], @"a230r.1.14.13.63956cb9lNHIdB");
+    XCTAssertEqualObjects(output[@"id"], @"573299987166");
+    XCTAssertEqualObjects(output[@"ns"], @"1");
+    XCTAssertEqualObjects(output[@"abbucket"], @"15");
+    
+    // Case 10
+    urlString = @"wangwang://p2sconversation/package?serviceType=cloud_auto_reply&toId=cntaobao顾家家居旗舰店:海恬&number=3&bizType=1&sendChatMsg=#免费3D设计#&bizId=10974940&sign=D5CEA3CFCC64B73C0A5551EDBBD6EFAE1EF8DE33A77D5B9F4DCC97FC7B6DD8B4&fromId=cntaobaowc测试账号1000&questionText=#免费3D设计#";
+    output = [WCStringTool keyValuePairsWithUrlString:urlString];
+    XCTAssertTrue([output isKindOfClass:[NSDictionary class]]);
+    XCTAssertTrue(output.count == 9);
+    XCTAssertEqualObjects(output[@"serviceType"], @"cloud_auto_reply");
+    XCTAssertEqualObjects(output[@"toId"], @"cntaobao顾家家居旗舰店:海恬");
+    XCTAssertEqualObjects(output[@"number"], @"3");
+    XCTAssertEqualObjects(output[@"bizType"], @"1");
+    XCTAssertEqualObjects(output[@"sendChatMsg"], @"#免费3D设计#");
+    XCTAssertEqualObjects(output[@"sign"], @"D5CEA3CFCC64B73C0A5551EDBBD6EFAE1EF8DE33A77D5B9F4DCC97FC7B6DD8B4");
+    XCTAssertEqualObjects(output[@"fromId"], @"cntaobaowc测试账号1000");
+    XCTAssertEqualObjects(output[@"questionText"], @"#免费3D设计#");
 }
 
 #pragma mark - Handle String As Plain

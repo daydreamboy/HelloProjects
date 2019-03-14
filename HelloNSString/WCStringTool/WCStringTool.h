@@ -186,17 +186,18 @@ NS_ASSUME_NONNULL_BEGIN
  @param connector the connector sign which connects key and value
  @param separator the separator sign which separate the key value pairs
  @return the dictionary of the key value pairs
+ @discussion If parse url-like key values, use +[WCStringTool keyValuePairsWithUrlString:] instead.
  */
 + (nullable NSDictionary<NSString *, NSString *> *)keyValuePairsWithString:(NSString *)string usingConnector:(NSString *)connector usingSeparator:(NSString *)separator;
 
 /**
  Get key value pairs from url-like string
  
- @param urlString the url-like string which should contains a `?`, e.g. ?key1=value1&key2=value2
+ @param urlString the url-like string which should contains a `?`, e.g. ?key1=value1&key2=value2#jumpLocation
  @return the key value pairs
- @note for checking url strictly, use WCURLTool instead
+ @note For checking http/https URL strictly, use WCURLTool instead
  @discussion
- 1. The urlString expected has different keys. If have the same key, the return result is not determined.
+ 1. The urlString expected to have different keys. If have the same key, the return result is not determined.
  2. This method not validates the urlString, pass malformed string may get the wrong result. e.g. abc@key1=A#key2=B
  */
 + (nullable NSDictionary *)keyValuePairsWithUrlString:(NSString *)urlString;

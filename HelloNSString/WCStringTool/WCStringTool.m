@@ -463,6 +463,13 @@
         return nil;
     }
     
+    NSString *patternOfFragment = @"#([^#]+)$";
+    NSRange rangeOfFragment = [urlString rangeOfString:patternOfFragment options:NSRegularExpressionSearch];
+    if (rangeOfFragment.location != NSNotFound && rangeOfFragment.length) {
+        // Note: ommit the fragment (#fragment) if needed
+        urlString = [urlString stringByReplacingCharactersInRange:rangeOfFragment withString:@""];
+    }
+    
     NSError *error = nil;
     NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(?:\\?|&)([^=&]*)=([^&]*)" options:kNilOptions error:&error];
     if (error) {
