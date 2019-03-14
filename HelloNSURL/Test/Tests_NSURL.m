@@ -43,6 +43,11 @@
     url = @"http://akns-images.eonline.com/eol_images/Entire_Site/2018029/rs_1024x759-180129200032-1024.lupita-nyongo-angela-bassett-black-panther-premiere.ct.012918.jpg?fit=inside|900:auto";
     URL = [NSURL URLWithString:url];
     XCTAssertNil(URL);
+    
+    // Case 4
+    url = @"https://item.taobao.com/item.htm?spm=a230r.1.14.13.63956cb9lNHIdB&id=573299987166&ns=1&abbucket=15#detail";
+    URL = [NSURL URLWithString:url];
+    XCTAssertNotNil(URL);
 }
 
 - (void)test_pathExtension {

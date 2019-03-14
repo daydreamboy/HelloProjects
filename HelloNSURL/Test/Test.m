@@ -257,6 +257,33 @@
     XCTAssertEqualObjects(components.queryKeyValues[@"text"], @"aHR0cHM6Ly9kZXRhaWwudG1hbGwuY29tL2l0ZW0uaHRtP2lkPTU3MzY2NjQ2MDM1NSZhbGlfcmVmaWQ9YTNfNDIwNDMyXzEwMDY6MTExMDgxNzMyMjpOOiVFOSU5QiU4NiVFNiU4OCU5MCVFNyU4MSVCNjpmYzc4NjljYjZlM2M3OGU4ZjJkYjZkYjg4NTNkNzViZSZhbGlfdHJhY2tpZD0xX2ZjNzg2OWNiNmUzYzc4ZThmMmRiNmRiODg1M2Q3NWJlJnNwbT1hMjMwci4xLjE0LjE=");
     XCTAssertEqualObjects(components.queryKeyValues[@"toLongId"], @"amFjaw==");
     
+    // Case 14
+    urlString = @"https://item.taobao.com/item.htm?spm=a230r.1.14.13.63956cb9lNHIdB&id=573299987166&ns=1&abbucket=15#detail";
+    components = [WCURLTool URLComponentsWithUrlString:urlString];
+    
+    XCTAssertEqualObjects([components.queryItems[0] name], @"spm");
+    XCTAssertEqualObjects([components.queryItems[0] value], @"a230r.1.14.13.63956cb9lNHIdB");
+    XCTAssertEqualObjects([components.queryItems[1] name], @"id");
+    XCTAssertEqualObjects([components.queryItems[1] value], @"573299987166");
+    XCTAssertEqualObjects([components.queryItems[2] name], @"ns");
+    XCTAssertEqualObjects([components.queryItems[2] value], @"1");
+    XCTAssertEqualObjects([components.queryItems[3] name], @"abbucket");
+    XCTAssertEqualObjects([components.queryItems[3] value], @"15");
+    XCTAssertEqualObjects(components.pathExtension, @"htm");
+    XCTAssertTrue(components.queryKeyValues.count == 4);
+    
+    XCTAssertTrue(NSEqualRanges(components.rangeOfScheme, [urlString rangeOfString:@"https"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfUser, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPassword, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfHost, [urlString rangeOfString:@"item.taobao.com"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPort, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPath, [urlString rangeOfString:@"/item.htm"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfPathExtension, [urlString rangeOfString:@"htm"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfParameterString, NSMakeRange(0, 0)));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfQuery, [urlString rangeOfString:@"spm=a230r.1.14.13.63956cb9lNHIdB&id=573299987166&ns=1&abbucket=15"]));
+    XCTAssertTrue(NSEqualRanges(components.rangeOfFragment, [urlString rangeOfString:@"detail"]));
+    
+    
     // Abnormal Case 1
     urlString = @"http://a:80/b/c/d;p?key1=#jumpLocation";
     components = [WCURLTool URLComponentsWithUrlString:urlString];
@@ -499,6 +526,26 @@
     XCTAssertTrue(NSEqualRanges(components.rangeOfParameterString, NSMakeRange(0, 0)));
     XCTAssertTrue(NSEqualRanges(components.rangeOfQuery, [urlString rangeOfString:@"container=dialog&body={\"template\":{\"data\":{\"text\":\"http%3a%2f%2fwapp.wapa.taobao.com%2falicare%2fwangxin.html%3fhost%3dh5.wapa.taobao.com%26sid%3d1234567890\"},\"id\":20001},\"header\":{\"title\":\"test\"}}"]));
     XCTAssertTrue(NSEqualRanges(components.rangeOfFragment, NSMakeRange(0, 0)));
+    
+    // Abnormal Case 9
+    urlString = @"wangwang://p2sconversation/package?serviceType=cloud_auto_reply&toId=cntaobao顾家家居旗舰店:海恬&number=3&bizType=1&sendChatMsg=#免费3D设计#&bizId=10974940&sign=D5CEA3CFCC64B73C0A5551EDBBD6EFAE1EF8DE33A77D5B9F4DCC97FC7B6DD8B4&fromId=cntaobaowc测试账号1000&questionText=#免费3D设计#";
+    components = [WCURLTool URLComponentsWithUrlString:urlString];
+    
+    XCTAssertEqualObjects([components.queryItems[0] name], @"serviceType");
+    XCTAssertEqualObjects([components.queryItems[0] value], @"cloud_auto_reply");
+    XCTAssertEqualObjects([components.queryItems[1] name], @"toId");
+    XCTAssertEqualObjects([components.queryItems[1] value], @"cntaobao顾家家居旗舰店:海恬");
+    XCTAssertEqualObjects([components.queryItems[2] name], @"number");
+    XCTAssertEqualObjects([components.queryItems[2] value], @"3");
+    XCTAssertEqualObjects([components.queryItems[3] name], @"bizType");
+    XCTAssertEqualObjects([components.queryItems[3] value], @"1");
+    XCTAssertEqualObjects([components.queryItems[4] name], @"sendChatMsg");
+    XCTAssertEqualObjects([components.queryItems[4] value], @"");
+    
+    XCTAssertEqualObjects(components.query, @"serviceType=cloud_auto_reply&toId=cntaobao顾家家居旗舰店:海恬&number=3&bizType=1&sendChatMsg=");
+    XCTAssertEqualObjects(components.fragment, @"免费3D设计#&bizId=10974940&sign=D5CEA3CFCC64B73C0A5551EDBBD6EFAE1EF8DE33A77D5B9F4DCC97FC7B6DD8B4&fromId=cntaobaowc测试账号1000&questionText=#免费3D设计#");
+    XCTAssertNil(components.pathExtension);
+    XCTAssertTrue(components.queryKeyValues.count == 5);
 }
 
 - (void)test_patternOfPathExtension {
