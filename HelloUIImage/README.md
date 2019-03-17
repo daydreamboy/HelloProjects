@@ -62,6 +62,40 @@ void UIGraphicsBeginImageContext(CGSize size);
 
 
 
+### 3、UIImage常见问题
+
+#### （1）+[UIImage imageWithContentsOfFile:]方法懒加载图片文件
+
+​        `+[UIImage imageWithContentsOfFile:]`方法在调用时并不直接读文件，而是在渲染时才读取文件。如果在渲染之前删除UIImage对应的图片，则渲染失败显示一块黑色。
+
+示例代码，如下
+
+```objective-c
+NSData *data;
+
+NSString *newFilePath = [[self.class appDocumentsDirectory] stringByAppendingPathComponent:@"test.png"];
+NSString *filePath = [[NSBundle mainBundle] pathForResource:@"fake" ofType:@"png"];
+[[NSFileManager defaultManager] copyItemAtPath:filePath toPath:newFilePath error:nil];
+
+if ([[NSFileManager defaultManager] fileExistsAtPath:newFilePath]) {
+    UIImage *image = [UIImage imageWithContentsOfFile:newFilePath]; // ISSUE: the image file maybe delete afterward
+    data = UIImagePNGRepresentation(image);
+    XCTAssertNotNil(data);
+
+    [[NSFileManager defaultManager] removeItemAtPath:newFilePath error:nil];
+
+    XCTAssertNotNil(image);
+    data = UIImagePNGRepresentation(image);
+    XCTAssertNil(data);
+}
+```
+
+解决方法：`+[NSData dataWithContentsOfFile:]`方法提前将图片读取到内存。代码见**Tests_UIImage.m**
+
+
+
+
+
 ## References
 
 [^1]: https://developer.apple.com/documentation/uikit/drawing
