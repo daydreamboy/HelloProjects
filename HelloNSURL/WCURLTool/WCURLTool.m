@@ -176,6 +176,58 @@
 #undef NSRangeZero
 }
 
++ (nullable NSURL *)URLWithURL:(NSURL *)URL toAppendQueryKeyValues:(nullable NSDictionary<NSString *, NSString *> *)queryKeyValues {
+    if (![URL isKindOfClass:[NSURL class]]) {
+        return nil;
+    }
+    
+    if (queryKeyValues && ![queryKeyValues isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    
+    if (!queryKeyValues.count) {
+        return URL;
+    }
+    
+    NSMutableArray<NSURLQueryItem *> *itemsToAdd = [NSMutableArray array];
+    [queryKeyValues enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull value, BOOL * _Nonnull stop) {
+        if ([key isKindOfClass:[NSString class]] && [value isKindOfClass:[NSString class]] &&
+             key.length && value.length) {
+            [itemsToAdd addObject:[NSURLQueryItem queryItemWithName:key value:value]];
+        }
+    }];
+    
+    if (!itemsToAdd.count) {
+        return URL;
+    }
+    
+    NSURLComponents *components = [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
+    
+    NSMutableArray<NSURLQueryItem *> *queryKeyValuesM = [NSMutableArray arrayWithCapacity:components.queryItems.count + itemsToAdd.count];
+    [queryKeyValuesM addObjectsFromArray:components.queryItems];
+    [queryKeyValuesM addObjectsFromArray:itemsToAdd];
+    
+    components.queryItems = queryKeyValuesM;
+    
+    return components.URL;
+}
+
++ (nullable NSURL *)URLWithURL:(NSURL *)URL toAppendQueryKey:(NSString *)key value:(NSString *)value {
+    if (![URL isKindOfClass:[NSURL class]] || ![key isKindOfClass:[NSString class]] || ![value isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    NSURLComponents *components = [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
+    
+    NSMutableArray<NSURLQueryItem *> *queryKeyValuesM = [NSMutableArray arrayWithCapacity:components.queryItems.count + 1];
+    [queryKeyValuesM addObjectsFromArray:components.queryItems];
+    [queryKeyValuesM addObject:[NSURLQueryItem queryItemWithName:key value:value]];
+    
+    components.queryItems = queryKeyValuesM;
+    
+    return components.URL;
+}
+
 #pragma mark > Properties
 
 + (NSString *)patternOfURI {

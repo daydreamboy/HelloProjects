@@ -92,6 +92,18 @@ NS_AVAILABLE_IOS(8_0)
  */
 + (nullable WCURLComponents *)URLComponentsWithUrlString:(NSString *)urlString;
 
+/**
+ Get URL with new query key values
+
+ @param URL the original URL
+ @param queryKeyValues the query key values to append. The key value pairs' order is uncertained,
+        but always after the original URL's query string.
+ @return the modified URL
+ */
++ (nullable NSURL *)URLWithURL:(NSURL *)URL toAppendQueryKeyValues:(nullable NSDictionary<NSString *, NSString *> *)queryKeyValues;
+
++ (nullable NSURL *)URLWithURL:(NSURL *)URL toAppendQueryKey:(NSString *)key value:(NSString *)value;
+
 @end
 
 NS_ASSUME_NONNULL_END

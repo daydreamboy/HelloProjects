@@ -10,6 +10,14 @@
 #import "WCURLTool.h"
 #import "WCURLTool_Testing.h"
 
+/**
+ Safe get a NSURL from NSString
+
+ @param url NSString to expected
+ @discussion If the url is a not string or empty will get a nil
+ */
+#define NSURL_SAFE_NEW(url) (([(url) isKindOfClass:[NSString class]] && (url).length) ? [NSURL URLWithString:(url)] : nil)
+
 @interface Model : NSObject {
     @public
     NSString *_string2;
@@ -546,6 +554,49 @@
     XCTAssertEqualObjects(components.fragment, @"免费3D设计#&bizId=10974940&sign=D5CEA3CFCC64B73C0A5551EDBBD6EFAE1EF8DE33A77D5B9F4DCC97FC7B6DD8B4&fromId=cntaobaowc测试账号1000&questionText=#免费3D设计#");
     XCTAssertNil(components.pathExtension);
     XCTAssertTrue(components.queryKeyValues.count == 5);
+}
+
+- (void)test_URLWithURL_toAppendQueryKeyValues {
+    NSURL *output;
+    NSURL *URL;
+    NSDictionary *queryKeyValues;
+    
+    // Case 1
+    URL = NSURL_SAFE_NEW(@"https://gw.alicdn.com/imgextra/i4/O1CN01SnkvEd1T9lIh7osOD_!!0-amp.jpg_400x400q90_.heic");
+    queryKeyValues = nil;
+    output = [WCURLTool URLWithURL:URL toAppendQueryKeyValues:queryKeyValues];
+    XCTAssertEqualObjects(output, NSURL_SAFE_NEW(@"https://gw.alicdn.com/imgextra/i4/O1CN01SnkvEd1T9lIh7osOD_!!0-amp.jpg_400x400q90_.heic"));
+    
+    // Case 2
+    URL = NSURL_SAFE_NEW(@"https://gw.alicdn.com/imgextra/i4/O1CN01SnkvEd1T9lIh7osOD_!!0-amp.jpg_400x400q90_.heic");
+    queryKeyValues = @{
+                       @"imageType": @"thumb"
+                       };
+    output = [WCURLTool URLWithURL:URL toAppendQueryKeyValues:queryKeyValues];
+    XCTAssertEqualObjects(output, NSURL_SAFE_NEW(@"https://gw.alicdn.com/imgextra/i4/O1CN01SnkvEd1T9lIh7osOD_!!0-amp.jpg_400x400q90_.heic?imageType=thumb"));
+    
+    // Case 3
+    URL = NSURL_SAFE_NEW(@"https://gw.alicdn.com/imgextra/i4/O1CN01SnkvEd1T9lIh7osOD_!!0-amp.jpg_400x400q90_.heic");
+    queryKeyValues = @{
+                       @"imageType": @"thumb",
+                       @"source": @"web"
+                       };
+    output = [WCURLTool URLWithURL:URL toAppendQueryKeyValues:queryKeyValues];
+    XCTAssertEqualObjects(output, NSURL_SAFE_NEW(@"https://gw.alicdn.com/imgextra/i4/O1CN01SnkvEd1T9lIh7osOD_!!0-amp.jpg_400x400q90_.heic?source=web&imageType=thumb"));
+    
+    
+    // Case 4
+    URL = NSURL_SAFE_NEW(@"https://gw.alicdn.com/imgextra/i4/O1CN01SnkvEd1T9lIh7osOD_!!0-amp.jpg_400x400q90_.heic?spm=A");
+    queryKeyValues = @{
+                       @"imageType": @"thumb",
+                       @"source": @"web"
+                       };
+    output = [WCURLTool URLWithURL:URL toAppendQueryKeyValues:queryKeyValues];
+    XCTAssertEqualObjects(output, NSURL_SAFE_NEW(@"https://gw.alicdn.com/imgextra/i4/O1CN01SnkvEd1T9lIh7osOD_!!0-amp.jpg_400x400q90_.heic?spm=A&source=web&imageType=thumb"));
+}
+
+- (void)test_URLWithURLToAppendQueryKeyValue_key_value {
+    
 }
 
 - (void)test_patternOfPathExtension {
