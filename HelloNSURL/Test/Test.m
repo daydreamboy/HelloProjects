@@ -599,6 +599,23 @@
     
 }
 
+- (void)test_baseURLWithURL {
+    NSURL *URL;
+    NSString *mainUrl;
+    
+    // Case 1
+    URL = [NSURL URLWithString:@"http://captcha.360.cn/image.php?app=360licai&rand=24578508771437718641&dlist=100000&nt=WIFI&d=8F057C167279790D31398A7634773EE4&v=1&vn=1.0.0&ov=8.4&source=mpc_pay_licaiios"];
+    mainUrl = [WCURLTool baseURLWithURL:URL].absoluteString;
+    XCTAssertEqualObjects(mainUrl, @"http://captcha.360.cn/image.php");
+    XCTAssertNil(URL.baseURL);
+    
+    // Case 2
+    URL = [NSURL URLWithString:@"https://www.google.es/search?q=uiviewcontroller"];
+    mainUrl = [WCURLTool baseURLWithURL:URL].absoluteString;
+    XCTAssertEqualObjects(mainUrl, @"https://www.google.es/search");
+    XCTAssertNil(URL.baseURL);
+}
+
 - (void)test_patternOfPathExtension {
     NSString *patternOfPathExtension = WCURLTool.patternOfPathExtension;
     NSString *path;

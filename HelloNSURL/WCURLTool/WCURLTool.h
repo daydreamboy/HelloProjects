@@ -162,10 +162,10 @@ NS_AVAILABLE_IOS(8_0)
  Get the base part of NSURL without query parameters
 
  @param URL the original URL
- @return the base/main URL, e.g. `http://www.abc.com/foo/bar.cgi` => `http://www.abc.com/foo/bar.cgi?a=1&b=2`
+ @return the base URL, e.g. `http://www.abc.com/foo/bar.cgi` => `http://www.abc.com/foo/bar.cgi?a=1&b=2`
  @see http://stackoverflow.com/questions/4271916/url-minus-query-string-in-objective-c
  */
-+ (nullable NSURL *)mainURLWithURL:(NSURL *)URL;
++ (nullable NSURL *)baseURLWithURL:(NSURL *)URL;
 
 @end
 

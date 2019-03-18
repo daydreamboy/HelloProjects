@@ -264,7 +264,7 @@
     return components.URL;
 }
 
-+ (nullable NSURL *)mainURLWithURL:(NSURL *)URL {
++ (nullable NSURL *)baseURLWithURL:(NSURL *)URL {
     if (![URL isKindOfClass:[NSURL class]]) {
         return nil;
     }
