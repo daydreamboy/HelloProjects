@@ -228,6 +228,42 @@
     return components.URL;
 }
 
++ (nullable NSURL *)URLWithURL:(NSURL *)URL toAppendQueryKeyValueArray:(nullable NSArray<KeyValuePairType> *)queryKeyValueArray {
+    if (![URL isKindOfClass:[NSURL class]] || ![queryKeyValueArray isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
+    
+    if (!queryKeyValueArray.count) {
+        return URL;
+    }
+    
+    NSMutableArray<NSURLQueryItem *> *keyValuesToAdd = [NSMutableArray arrayWithCapacity:queryKeyValueArray.count];
+    for (KeyValuePairType pair in queryKeyValueArray) {
+        if (KeyValuePairValidate(pair)) {
+            NSString *key = KeyOfPair(pair);
+            NSString *value = ValueOfPair(pair);
+            if ([key isKindOfClass:[NSString class]] && [value isKindOfClass:[NSString class]] &&
+                key.length && value.length) {
+                [keyValuesToAdd addObject:[NSURLQueryItem queryItemWithName:key value:value]];
+            }
+        }
+    }
+    
+    if (!keyValuesToAdd.count) {
+        return URL;
+    }
+    
+    NSURLComponents *components = [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
+    
+    NSMutableArray<NSURLQueryItem *> *queryKeyValuesM = [NSMutableArray arrayWithCapacity:components.queryItems.count + queryKeyValueArray.count];
+    [queryKeyValuesM addObjectsFromArray:components.queryItems];
+    [queryKeyValuesM addObjectsFromArray:keyValuesToAdd];
+    
+    components.queryItems = queryKeyValuesM;
+    
+    return components.URL;
+}
+
 #pragma mark > Properties
 
 + (NSString *)patternOfURI {
