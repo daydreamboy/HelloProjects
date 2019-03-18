@@ -264,6 +264,25 @@
     return components.URL;
 }
 
++ (nullable NSURL *)mainURLWithURL:(NSURL *)URL {
+    if (![URL isKindOfClass:[NSURL class]]) {
+        return nil;
+    }
+    
+    if (([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending)) {
+        NSURLComponents *urlComponents = [[NSURLComponents alloc] initWithURL:URL resolvingAgainstBaseURL:NO];
+        urlComponents.query = nil;
+        
+        return urlComponents.URL;
+    }
+    else {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+        return [[NSURL alloc] initWithScheme:URL.scheme host:URL.host path:URL.path];
+#pragma GCC diagnostic pop
+    }
+}
+
 #pragma mark > Properties
 
 + (NSString *)patternOfURI {

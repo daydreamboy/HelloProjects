@@ -158,6 +158,15 @@ NS_AVAILABLE_IOS(8_0)
  */
 + (nullable NSURL *)URLWithURL:(NSURL *)URL toAppendQueryKeyValueArray:(nullable NSArray<KeyValuePairType> *)queryKeyValueArray;
 
+/**
+ Get the base part of NSURL without query parameters
+
+ @param URL the original URL
+ @return the base/main URL, e.g. `http://www.abc.com/foo/bar.cgi` => `http://www.abc.com/foo/bar.cgi?a=1&b=2`
+ @see http://stackoverflow.com/questions/4271916/url-minus-query-string-in-objective-c
+ */
++ (nullable NSURL *)mainURLWithURL:(NSURL *)URL;
+
 @end
 
 NS_ASSUME_NONNULL_END
