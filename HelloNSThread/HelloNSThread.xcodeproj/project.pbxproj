@@ -18,6 +18,8 @@
 		2BF7F44A1F83DB3500B27A0F /* UseOSAtomicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7F4491F83DB3500B27A0F /* UseOSAtomicViewController.m */; };
 		4F53C98F2004A911003F79F6 /* PerformDispatchBlockOnThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53C98E2004A911003F79F6 /* PerformDispatchBlockOnThreadViewController.m */; };
 		4F53C9922004AFE8003F79F6 /* KeepThreadLongAliveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53C9912004AFE8003F79F6 /* KeepThreadLongAliveViewController.m */; };
+		4F541AA922415D9F003331E0 /* UseNSRecursiveLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F541AA822415D9F003331E0 /* UseNSRecursiveLockViewController.m */; };
+		4F6E71A122420F2000478327 /* UseNSLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6E71A022420F2000478327 /* UseNSLockViewController.m */; };
 		4F9578E51FDF8A40009693CF /* WCThreadTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578E41FDF8A40009693CF /* WCThreadTool.m */; };
 		4FA9918A21AECD1200E928D8 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA9918921AECD1200E928D8 /* Tests.m */; };
 /* End PBXBuildFile section */
@@ -54,6 +56,10 @@
 		4F53C98E2004A911003F79F6 /* PerformDispatchBlockOnThreadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PerformDispatchBlockOnThreadViewController.m; sourceTree = "<group>"; };
 		4F53C9902004AFE8003F79F6 /* KeepThreadLongAliveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeepThreadLongAliveViewController.h; sourceTree = "<group>"; };
 		4F53C9912004AFE8003F79F6 /* KeepThreadLongAliveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeepThreadLongAliveViewController.m; sourceTree = "<group>"; };
+		4F541AA722415D9F003331E0 /* UseNSRecursiveLockViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseNSRecursiveLockViewController.h; sourceTree = "<group>"; };
+		4F541AA822415D9F003331E0 /* UseNSRecursiveLockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseNSRecursiveLockViewController.m; sourceTree = "<group>"; };
+		4F6E719F22420F2000478327 /* UseNSLockViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseNSLockViewController.h; sourceTree = "<group>"; };
+		4F6E71A022420F2000478327 /* UseNSLockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseNSLockViewController.m; sourceTree = "<group>"; };
 		4F9578E31FDF8A3F009693CF /* WCThreadTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCThreadTool.h; sourceTree = "<group>"; };
 		4F9578E41FDF8A40009693CF /* WCThreadTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCThreadTool.m; sourceTree = "<group>"; };
 		4FA9918721AECD1100E928D8 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +134,10 @@
 			children = (
 				2BF7F4481F83DB3500B27A0F /* UseOSAtomicViewController.h */,
 				2BF7F4491F83DB3500B27A0F /* UseOSAtomicViewController.m */,
+				4F541AA722415D9F003331E0 /* UseNSRecursiveLockViewController.h */,
+				4F541AA822415D9F003331E0 /* UseNSRecursiveLockViewController.m */,
+				4F6E719F22420F2000478327 /* UseNSLockViewController.h */,
+				4F6E71A022420F2000478327 /* UseNSLockViewController.m */,
 			);
 			path = lock;
 			sourceTree = "<group>";
@@ -270,12 +280,14 @@
 			files = (
 				4F53C98F2004A911003F79F6 /* PerformDispatchBlockOnThreadViewController.m in Sources */,
 				2BA4F85D1F83D31C00AE2BAD /* CreateThreadByNSObjectViewController.m in Sources */,
+				4F6E71A122420F2000478327 /* UseNSLockViewController.m in Sources */,
 				4F9578E51FDF8A40009693CF /* WCThreadTool.m in Sources */,
 				2BA4F8601F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m in Sources */,
 				2BF7F44A1F83DB3500B27A0F /* UseOSAtomicViewController.m in Sources */,
 				2BA4F85A1F83D30200AE2BAD /* CreateThreadByNSThreadViewController.m in Sources */,
 				2B37F3211F83C4A500809F00 /* main.m in Sources */,
 				2B37F3131F83C4A500809F00 /* AppDelegate.m in Sources */,
+				4F541AA922415D9F003331E0 /* UseNSRecursiveLockViewController.m in Sources */,
 				2B37F32F1F83C74100809F00 /* RootViewController.m in Sources */,
 				4F53C9922004AFE8003F79F6 /* KeepThreadLongAliveViewController.m in Sources */,
 			);

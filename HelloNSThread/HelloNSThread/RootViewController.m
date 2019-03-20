@@ -8,9 +8,15 @@
 
 #import "RootViewController.h"
 
+// Thread
 #import "CreateThreadByNSThreadViewController.h"
 #import "CreateThreadByNSObjectViewController.h"
 #import "CreateThreadByPOSIXViewController.h"
+#import "KeepThreadLongAliveViewController.h"
+#import "PerformDispatchBlockOnThreadViewController.h"
+
+// Lock
+#import "UseNSLockViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -37,14 +43,15 @@
 
     // MARK: Configure sectionTitles and classes for table view
     NSArray<NSDictionary *> *section1 = @[
-          @{ kTitle: @"Create thread using NSThread", kClass: @"CreateThreadByNSThreadViewController" },
-          @{ kTitle: @"Create thread using NSObject category", kClass: @"CreateThreadByNSObjectViewController" },
-          @{ kTitle: @"Create thread using pthread", kClass: @"CreateThreadByPOSIXViewController" },
-          @{ kTitle: @"Keep thread long alive", kClass: @"KeepThreadLongAliveViewController" },
-          @{ kTitle: @"Call block on thread", kClass: @"PerformDispatchBlockOnThreadViewController" },
+          @{ kTitle: @"Create thread using NSThread", kClass: [CreateThreadByNSThreadViewController class] },
+          @{ kTitle: @"Create thread using NSObject category", kClass: [CreateThreadByNSObjectViewController class] },
+          @{ kTitle: @"Create thread using pthread", kClass: [CreateThreadByPOSIXViewController class] },
+          @{ kTitle: @"Keep thread long alive", kClass: [KeepThreadLongAliveViewController class] },
+          @{ kTitle: @"Call block on thread", kClass: [PerformDispatchBlockOnThreadViewController class] },
     ];
 
     NSArray<NSDictionary *> *section2 = @[
+          @{ kTitle: @"Call block on thread", kClass: [UseNSLockViewController class] },
     ];
     
     NSArray<NSDictionary *> *section3 = @[
@@ -52,7 +59,7 @@
     
     _sectionTitles = @[
         @"Thread",
-        @"lock",
+        @"Lock",
         @"(TODO)"
     ];
     
@@ -87,31 +94,47 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *sCellIdentifier = @"RootViewController_sCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
-
+    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-
+    
     NSString *cellTitle = [_classes[indexPath.section][indexPath.row] objectForKey:kTitle];
     cell.textLabel.text = cellTitle;
-
+    
     return cell;
 }
 
 - (void)pushViewController:(NSDictionary *)dict {
-    NSString *viewControllerClass = dict[kClass];
-    NSAssert([viewControllerClass isKindOfClass:[NSString class]], @"%@ is not NSString", viewControllerClass);
+    id viewControllerClass = dict[kClass];
     
-    Class class = NSClassFromString(viewControllerClass);
-    if (class && [class isSubclassOfClass:[UIViewController class]]) {
-        
+    id class = viewControllerClass;
+    if ([class isKindOfClass:[NSString class]]) {
+        SEL selector = NSSelectorFromString(viewControllerClass);
+        if ([self respondsToSelector:selector]) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
+            [self performSelector:selector];
+#pragma GCC diagnostic pop
+        }
+        else {
+            NSAssert(NO, @"can't handle selector `%@`", viewControllerClass);
+        }
+    }
+    else if (class && [class isSubclassOfClass:[UIViewController class]]) {
         UIViewController *vc = [[class alloc] init];
         vc.title = dict[kTitle];
         
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
         [self.navigationController pushViewController:vc animated:YES];
     }
+}
+
+#pragma mark - Test Methods
+
+- (void)testMethod {
+    NSLog(@"test something");
 }
 
 @end

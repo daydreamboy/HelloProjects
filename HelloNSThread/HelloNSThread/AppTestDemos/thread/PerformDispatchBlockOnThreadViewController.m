@@ -48,7 +48,7 @@
         NSLog(@"block called on %@", [NSThread currentThread]);
     };
     
-    [WCThreadTool performBlock:block onThread:self.sharedThread];
+    [WCThreadTool performBlock:block onThread:self.sharedThread waitUntilDone:NO];
 }
 
 - (void)test_WCThreadTool_performBlock_onThread_withObject {
@@ -58,7 +58,7 @@
     };
     
     id param = @"an object";
-    [WCThreadTool performBlock:block onThread:self.sharedThread withObject:param];
+    [WCThreadTool performBlock:block onThread:self.sharedThread withObject:param waitUntilDone:NO];
 }
 
 @end
