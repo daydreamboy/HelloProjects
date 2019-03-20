@@ -21,11 +21,12 @@
     // TODO: Toggle the following lines to test
     
     //[self test_dispatch_group_wait];
-    //[self test_dispatch_group_notify];
+    [self test_dispatch_group_notify];
     //[self test_dispatch_group_enter_and_leave];
+    //[self test_dispatch_group_enter_and_leave_to_wait];
     //[self test_dispatch_group_empty_using_wait];
     //[self test_dispatch_group_empty_using_notify];
-    [self test_dispatch_group_issue];
+    //[self test_dispatch_group_issue];
 }
 
 - (void)test_dispatch_group_wait {
@@ -42,6 +43,7 @@
     dispatch_group_async(group, queue2, ^{
         
         [self doLongTimeTask];
+        //[self doForeverTask];
         NSLog(@"do task 2");
     });
     
@@ -86,7 +88,10 @@
     dispatch_group_notify(group, queue4, ^{
         NSLog(@"all tasks in group are finished");
     });
+    NSLog(@"notify is registered");
 }
+
+#pragma mark - Group Enter and Leave
 
 - (void)test_dispatch_group_enter_and_leave {
     dispatch_queue_t queue1 = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -121,6 +126,46 @@
         NSLog(@"all tasks in group are finished");
     });
 }
+
+- (void)test_dispatch_group_enter_and_leave_to_wait {
+    dispatch_queue_t queue1 = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_queue_t queue2 = dispatch_queue_create("com.example.queue1", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_queue_t queue3 = dispatch_queue_create("com.example.queue2", NULL);
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    dispatch_group_async(group, queue2, ^{
+        NSLog(@"do task 1");
+    });
+    
+    a_minic_of_dispatch_group_async(group, queue1, ^{
+        [self doLongTimeTask];
+        NSLog(@"do task 2");
+    });
+    
+    dispatch_group_enter(group);
+    dispatch_async(queue3, ^{
+        NSLog(@"do task 3");
+        [self doLongTimeTask];
+        [self doLongTimeTask];
+        
+        // Note: forget to leave
+        //dispatch_group_leave(group);
+        
+        NSLog(@"do task 3 completed");
+    });
+    
+    NSLog(@"start to wait");
+    long success = dispatch_group_wait(group, dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC));
+    if (success == 0) {
+        NSLog(@"all tasks in group are finished");
+    }
+    else {
+        NSLog(@"wait timeout");
+    }
+}
+
+#pragma mark -
 
 - (void)test_dispatch_group_empty_using_wait {
     dispatch_group_t group = dispatch_group_create();
@@ -191,6 +236,13 @@ a_minic_of_dispatch_group_async(dispatch_group_t group, dispatch_queue_t queue, 
     do {
         i++;
     } while (i < 1000000000L);
+}
+
+- (void)doForeverTask {
+    long i = 0;
+    do {
+        i++;
+    } while (1);
 }
 
 @end

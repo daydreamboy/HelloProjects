@@ -19,9 +19,10 @@
     
     // TODO: Toggle the following lines to test
     
-    [self test_semaphore_for_finite_resource_pool];
+    //[self test_semaphore_for_finite_resource_pool];
     //[self test_semaphore_for_completion_synchronization];
     //[self test_semaphore_crash];
+    //[self test_async_to_sync];
 }
 
 #pragma mark - Test Methods
@@ -101,6 +102,20 @@
     });
     
     NSLog(@"end of the method, and sema will be deallocated");
+}
+
+- (void)test_async_to_sync {
+    // @see https://stackoverflow.com/a/21191050
+    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSLog(@"do async work");
+        sleep(3);
+        dispatch_semaphore_signal(sema);
+    });
+    
+    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER); // the queue is waiting
+    NSLog(@"async work is done");
 }
 
 @end
