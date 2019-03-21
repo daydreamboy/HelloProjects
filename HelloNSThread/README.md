@@ -76,7 +76,7 @@ NSThread的`+[NSThread exit`]方法，用于当前线程退出。一般来说，
 
 ### （2）sleepUntilDate方法和sleepForTimeInterval方法
 
-NSThread支持线程休眠，可以使用+[NSThread sleepUntilDate:]方法和+[NSThread sleepForTimeInterval:]方法。举个伪代码，如下
+NSThread支持线程休眠，可以使用`+[NSThread sleepUntilDate:]`方法和`+[NSThread sleepForTimeInterval:]`方法。举个伪代码，如下
 
 ```objective-c
 - (void)longCode {
@@ -100,11 +100,58 @@ NSThread支持线程休眠，可以使用+[NSThread sleepUntilDate:]方法和+[N
 
 ## 3、NSLocking
 
-`NSLocking`是一个协议，NSLock、NSRecursiveLock、NS
+`NSLocking`是一个协议，NSLock、NSRecursiveLock、NSConditionLock都实现了该协议的lock和unlock方法。
 
 
 
+### （1）NSLock
 
+​        NSLock是最简单的锁，NSRecursiveLock和NSConditionLock在它的基础上增加了其他功能。这里介绍NSLock最基础的方法[^2]（NSRecursiveLock和NSConditionLock也同样适用）。
+
+* `[myLock lock]`（示例代码见**UseNSLockViewController**）
+
+  * 当前线程获取锁并且成功，当前线程继续执行；其他线程调用该方法，会被阻塞住，直到当前线程释放锁，其他线程才继续执行该方法后的代码。
+  * 当前线程获取锁但是失败，则当前线程会被阻塞
+
+* `[myLock unlock]`，获取锁的线程负责释放锁。
+
+  > 注意：其他没有获取锁的线程，释放锁则导致锁失效，线程同步存在问题。
+
+* `[myLock tryLock]`，当前线程尝试获取锁，获取成功返回YES；获取失败，则返回NO。（示例代码见**UseNSLockWithTryLockViewController**）
+
+  > tryLock方法和lock方法，区别在于当获取锁失败时，lock方法是阻塞的，而tryLock方法，无论获取锁成功还是失败，都不是阻塞的
+
+* `[myLock lockBeforeDate]`，当前线程在某个时间之前都是一直获取锁，而且是阻塞的。如果超过这个时间后或者在规定时间内成功获取到锁，当前线程继续执行。返回YES，在超时之前获取到锁；返回NO，时间超时。（示例代码见**UseNSLockWithTimeoutViewController**）
+
+
+
+tryLock方法和lockBeforeDate方法的编程范式，大致如下
+
+```objective-c
+if ([myLock tryLock]) {
+    // do something on shared data
+    [myLock unlock];
+}
+else {
+    // do other thing
+}
+
+NSTimeInterval timeInUSecond = 1 / 1000.0 / 1000.0 * 20;
+NSDate *deadline = [NSDate dateWithTimeInterval:timeInUSecond sinceDate:[NSDate date]];
+if ([myLock lockBeforeDate:deadline]) {
+    // do something on shared data
+    [myLock unlock];
+}
+else {
+    // do other thing
+}
+```
+
+
+
+注意：
+
+> NSLock的lock方法，不能在当前线程连续调用大于2次，否则当前线程会产生死锁。示例代码见**UseNSLockWithDeadlockViewController**。解决该方法，可以换成NSRecursiveLock。
 
 
 
@@ -122,3 +169,4 @@ NSThread支持线程休眠，可以使用+[NSThread sleepUntilDate:]方法和+[N
 ## References
 
 [^1]: [http://etutorials.org/Programming/Cocoa/Part+I+Introducing+Cocoa/Chapter+2.+Foundation/2.9+Threaded+Programming/](http://etutorials.org/Programming/Cocoa/Part+I+Introducing+Cocoa/Chapter+2.+Foundation/2.9+Threaded+Programming/)
+[^2]:http://softpixel.com/~cwright/programming/threads/threads.cocoa.php

@@ -16,6 +16,10 @@
 		2BA4F85D1F83D31C00AE2BAD /* CreateThreadByNSObjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4F85C1F83D31C00AE2BAD /* CreateThreadByNSObjectViewController.m */; };
 		2BA4F8601F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4F85F1F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m */; };
 		2BF7F44A1F83DB3500B27A0F /* UseOSAtomicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7F4491F83DB3500B27A0F /* UseOSAtomicViewController.m */; };
+		4F50C72D2243BB73002B00C9 /* MultiThreadExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50C72C2243BB73002B00C9 /* MultiThreadExampleViewController.m */; };
+		4F50C7302243CC25002B00C9 /* UseNSLockWithTryLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50C72F2243CC25002B00C9 /* UseNSLockWithTryLockViewController.m */; };
+		4F50C7332243D5F6002B00C9 /* UseNSLockWithTimeoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50C7322243D5F6002B00C9 /* UseNSLockWithTimeoutViewController.m */; };
+		4F50C7362243DC9B002B00C9 /* UseNSLockWithDeadlockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50C7352243DC9B002B00C9 /* UseNSLockWithDeadlockViewController.m */; };
 		4F53C98F2004A911003F79F6 /* PerformDispatchBlockOnThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53C98E2004A911003F79F6 /* PerformDispatchBlockOnThreadViewController.m */; };
 		4F53C9922004AFE8003F79F6 /* KeepThreadLongAliveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53C9912004AFE8003F79F6 /* KeepThreadLongAliveViewController.m */; };
 		4F541AA922415D9F003331E0 /* UseNSRecursiveLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F541AA822415D9F003331E0 /* UseNSRecursiveLockViewController.m */; };
@@ -52,6 +56,14 @@
 		2BA4F85F1F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateThreadByPOSIXViewController.m; sourceTree = "<group>"; };
 		2BF7F4481F83DB3500B27A0F /* UseOSAtomicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseOSAtomicViewController.h; sourceTree = "<group>"; };
 		2BF7F4491F83DB3500B27A0F /* UseOSAtomicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseOSAtomicViewController.m; sourceTree = "<group>"; };
+		4F50C72B2243BB73002B00C9 /* MultiThreadExampleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultiThreadExampleViewController.h; sourceTree = "<group>"; };
+		4F50C72C2243BB73002B00C9 /* MultiThreadExampleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiThreadExampleViewController.m; sourceTree = "<group>"; };
+		4F50C72E2243CC25002B00C9 /* UseNSLockWithTryLockViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseNSLockWithTryLockViewController.h; sourceTree = "<group>"; };
+		4F50C72F2243CC25002B00C9 /* UseNSLockWithTryLockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseNSLockWithTryLockViewController.m; sourceTree = "<group>"; };
+		4F50C7312243D5F6002B00C9 /* UseNSLockWithTimeoutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseNSLockWithTimeoutViewController.h; sourceTree = "<group>"; };
+		4F50C7322243D5F6002B00C9 /* UseNSLockWithTimeoutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseNSLockWithTimeoutViewController.m; sourceTree = "<group>"; };
+		4F50C7342243DC9B002B00C9 /* UseNSLockWithDeadlockViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseNSLockWithDeadlockViewController.h; sourceTree = "<group>"; };
+		4F50C7352243DC9B002B00C9 /* UseNSLockWithDeadlockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseNSLockWithDeadlockViewController.m; sourceTree = "<group>"; };
 		4F53C98D2004A911003F79F6 /* PerformDispatchBlockOnThreadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PerformDispatchBlockOnThreadViewController.h; sourceTree = "<group>"; };
 		4F53C98E2004A911003F79F6 /* PerformDispatchBlockOnThreadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PerformDispatchBlockOnThreadViewController.m; sourceTree = "<group>"; };
 		4F53C9902004AFE8003F79F6 /* KeepThreadLongAliveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeepThreadLongAliveViewController.h; sourceTree = "<group>"; };
@@ -136,8 +148,16 @@
 				2BF7F4491F83DB3500B27A0F /* UseOSAtomicViewController.m */,
 				4F541AA722415D9F003331E0 /* UseNSRecursiveLockViewController.h */,
 				4F541AA822415D9F003331E0 /* UseNSRecursiveLockViewController.m */,
+				4F50C72B2243BB73002B00C9 /* MultiThreadExampleViewController.h */,
+				4F50C72C2243BB73002B00C9 /* MultiThreadExampleViewController.m */,
 				4F6E719F22420F2000478327 /* UseNSLockViewController.h */,
 				4F6E71A022420F2000478327 /* UseNSLockViewController.m */,
+				4F50C72E2243CC25002B00C9 /* UseNSLockWithTryLockViewController.h */,
+				4F50C72F2243CC25002B00C9 /* UseNSLockWithTryLockViewController.m */,
+				4F50C7312243D5F6002B00C9 /* UseNSLockWithTimeoutViewController.h */,
+				4F50C7322243D5F6002B00C9 /* UseNSLockWithTimeoutViewController.m */,
+				4F50C7342243DC9B002B00C9 /* UseNSLockWithDeadlockViewController.h */,
+				4F50C7352243DC9B002B00C9 /* UseNSLockWithDeadlockViewController.m */,
 			);
 			path = lock;
 			sourceTree = "<group>";
@@ -278,16 +298,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F50C7332243D5F6002B00C9 /* UseNSLockWithTimeoutViewController.m in Sources */,
 				4F53C98F2004A911003F79F6 /* PerformDispatchBlockOnThreadViewController.m in Sources */,
 				2BA4F85D1F83D31C00AE2BAD /* CreateThreadByNSObjectViewController.m in Sources */,
 				4F6E71A122420F2000478327 /* UseNSLockViewController.m in Sources */,
 				4F9578E51FDF8A40009693CF /* WCThreadTool.m in Sources */,
 				2BA4F8601F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m in Sources */,
+				4F50C72D2243BB73002B00C9 /* MultiThreadExampleViewController.m in Sources */,
 				2BF7F44A1F83DB3500B27A0F /* UseOSAtomicViewController.m in Sources */,
 				2BA4F85A1F83D30200AE2BAD /* CreateThreadByNSThreadViewController.m in Sources */,
+				4F50C7362243DC9B002B00C9 /* UseNSLockWithDeadlockViewController.m in Sources */,
 				2B37F3211F83C4A500809F00 /* main.m in Sources */,
 				2B37F3131F83C4A500809F00 /* AppDelegate.m in Sources */,
 				4F541AA922415D9F003331E0 /* UseNSRecursiveLockViewController.m in Sources */,
+				4F50C7302243CC25002B00C9 /* UseNSLockWithTryLockViewController.m in Sources */,
 				2B37F32F1F83C74100809F00 /* RootViewController.m in Sources */,
 				4F53C9922004AFE8003F79F6 /* KeepThreadLongAliveViewController.m in Sources */,
 			);

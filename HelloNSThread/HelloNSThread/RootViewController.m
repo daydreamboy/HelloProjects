@@ -16,7 +16,11 @@
 #import "PerformDispatchBlockOnThreadViewController.h"
 
 // Lock
+#import "MultiThreadExampleViewController.h"
 #import "UseNSLockViewController.h"
+#import "UseNSLockWithTryLockViewController.h"
+#import "UseNSLockWithTimeoutViewController.h"
+#import "UseNSLockWithDeadlockViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -51,7 +55,11 @@
     ];
 
     NSArray<NSDictionary *> *section2 = @[
-          @{ kTitle: @"Call block on thread", kClass: [UseNSLockViewController class] },
+          @{ kTitle: @"MultiThread Example", kClass: [MultiThreadExampleViewController class] },
+          @{ kTitle: @"Use NSLock", kClass: [UseNSLockViewController class] },
+          @{ kTitle: @"Use NSLock with tryLock", kClass: [UseNSLockWithTryLockViewController class] },
+          @{ kTitle: @"Use NSLock with timeout", kClass: [UseNSLockWithTimeoutViewController class] },
+          @{ kTitle: @"Use NSLock to deadlock", kClass: [UseNSLockWithDeadlockViewController class] },
     ];
     
     NSArray<NSDictionary *> *section3 = @[

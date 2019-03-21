@@ -1,48 +1,45 @@
 //
-//  UseNSLockViewController.m
+//  MultiThreadExampleViewController.m
 //  HelloNSThread
 //
-//  Created by wesley_chen on 2019/3/20.
+//  Created by wesley_chen on 2019/3/21.
 //  Copyright © 2019 wesley_chen. All rights reserved.
 //
 
-#import "UseNSLockViewController.h"
+#import "MultiThreadExampleViewController.h"
 
-static NSLock *sLock;
-
-@interface MyObject2 : NSObject
+@interface MyObject1 : NSObject
 + (void)aMethod:(id)param;
 @end
 
-@implementation MyObject2
+@implementation MyObject1
 + (void)aMethod:(id)param {
     int x;
     for (x = 0; x < 50; ++x) {
-        [sLock lock];
         printf("Object Thread says x is %i\n", x);
         usleep(1);
-        [sLock unlock];
     }
 }
 @end
 
-@implementation UseNSLockViewController
+// Note: the example modified from http://softpixel.com/~cwright/programming/threads/threads.cocoa.php
+@interface MultiThreadExampleViewController ()
+
+@end
+
+@implementation MultiThreadExampleViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    sLock = [[NSLock alloc] init];
-    sLock.name = @"Use NSLock";
     
     int x;
-    [NSThread detachNewThreadSelector:@selector(aMethod:) toTarget:[MyObject2 class] withObject:nil];
+    [NSThread detachNewThreadSelector:@selector(aMethod:) toTarget:[MyObject1 class] withObject:nil];
     
     for(x = 0; x < 50; ++x) {
-        [sLock lock];
         printf("Main thread says x is %i\n", x);
         usleep(1);
         printf("Main thread lets go: %i\n",x);
         usleep(1);
-        [sLock unlock];
     }
 }
 
