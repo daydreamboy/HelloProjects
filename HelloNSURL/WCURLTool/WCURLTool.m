@@ -229,7 +229,7 @@
 }
 
 + (nullable NSURL *)URLWithURL:(NSURL *)URL toAppendQueryKeyValueArray:(nullable NSArray<KeyValuePairType> *)queryKeyValueArray {
-    if (![URL isKindOfClass:[NSURL class]] || ![queryKeyValueArray isKindOfClass:[NSArray class]]) {
+    if (![URL isKindOfClass:[NSURL class]] || (queryKeyValueArray && ![queryKeyValueArray isKindOfClass:[NSArray class]])) {
         return nil;
     }
     
@@ -260,6 +260,81 @@
     [queryKeyValuesM addObjectsFromArray:keyValuesToAdd];
     
     components.queryItems = queryKeyValuesM;
+    
+    return components.URL;
+}
+
++ (nullable NSURL *)URLWithURL:(NSURL *)URL replacedByQueryKeyValueArray:(nullable NSArray<KeyValuePairType> *)queryKeyValueArray scheme:(nullable NSString *)scheme reorder:(BOOL)reorder {
+    if (![URL isKindOfClass:[NSURL class]] ||
+        (queryKeyValueArray && ![queryKeyValueArray isKindOfClass:[NSArray class]]) ||
+        (scheme && ![scheme isKindOfClass:[NSString class]])) {
+        return nil;
+    }
+    
+    NSURLComponents *components = [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
+    NSMutableArray<NSURLQueryItem *> *queryKeyValuesM = [NSMutableArray arrayWithCapacity:components.queryItems.count + queryKeyValueArray.count];
+    
+    if (queryKeyValueArray.count) {
+        NSMutableArray<KeyValuePairType> *newKeyValues = [NSMutableArray arrayWithArray:queryKeyValueArray];
+        NSMutableArray<KeyValuePairType> *newKeyValuesToAppend = [NSMutableArray arrayWithArray:queryKeyValueArray];
+        
+        for (NSURLQueryItem *item in components.queryItems) {
+            NSURLQueryItem *itemToAdd = [NSURLQueryItem queryItemWithName:item.name value:item.value];
+            
+            for (KeyValuePairType pair in newKeyValues) {
+                if (KeyValuePairValidate(pair)) {
+                    NSString *key = pair[0];
+                    NSString *value = pair[1];
+
+                    // Note: if the key exists
+                    if ([key isKindOfClass:[NSString class]] && key.length && [item.name isEqualToString:key]) {
+                        
+                        if ([value isKindOfClass:[NSString class]] && value.length) {
+                            // to replace
+                            itemToAdd = [NSURLQueryItem queryItemWithName:key value:value];
+                            [newKeyValuesToAppend removeObject:pair];
+                            break;
+                        }
+                        else if ([value isKindOfClass:[NSNull class]]) {
+                            // to remove if value is NSNull
+                            itemToAdd = nil;
+                            [newKeyValuesToAppend removeObject:pair];
+                            break;
+                        }
+                    }
+                }
+            }
+            
+            if (itemToAdd) {
+                [queryKeyValuesM addObject:itemToAdd];
+            }
+        }
+        
+        for (KeyValuePairType pair in newKeyValuesToAppend) {
+            if (KeyValuePairValidate(pair)) {
+                NSString *key = KeyOfPair(pair);
+                NSString *value = ValueOfPair(pair);
+                if ([key isKindOfClass:[NSString class]] && [value isKindOfClass:[NSString class]] &&
+                    key.length && value.length) {
+                    [queryKeyValuesM addObject:[NSURLQueryItem queryItemWithName:key value:value]];
+                }
+            }
+        }
+    }
+    else {
+        [queryKeyValuesM addObjectsFromArray:components.queryItems];
+    }
+    
+    if (reorder) {
+        NSSortDescriptor *sorter1 = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(compare:)];
+        NSSortDescriptor *sorter2 = [NSSortDescriptor sortDescriptorWithKey:@"value" ascending:YES selector:@selector(compare:)];
+        [queryKeyValuesM sortUsingDescriptors:@[ sorter1, sorter2 ]];
+    }
+    
+    components.queryItems = queryKeyValuesM;
+    if (scheme.length) {
+        components.scheme = scheme;
+    }
     
     return components.URL;
 }

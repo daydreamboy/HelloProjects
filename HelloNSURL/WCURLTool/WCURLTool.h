@@ -22,7 +22,7 @@
 /**
  The type of key value pair
  */
-#define KeyValuePairType            NSArray *
+typedef NSArray * KeyValuePairType;
 /**
  Check object if a key value pair
 
@@ -157,6 +157,20 @@ NS_AVAILABLE_IOS(8_0)
  @return the modified URL
  */
 + (nullable NSURL *)URLWithURL:(NSURL *)URL toAppendQueryKeyValueArray:(nullable NSArray<KeyValuePairType> *)queryKeyValueArray;
+
+/**
+ Replace URL with new query key values and scheme
+
+ @param URL the original URL
+ @param queryKeyValueArray the new query key values to replace.
+ - If key is not NSString, the new key value is ignored
+ - If value is not NSString or [NSNull null], the new key value is ignored. If value is [NSNull null], to remove the key.
+ - If the key not exists in the original，the new key values will append to the URL if reorder is NO.
+ @param scheme the new scheme. If nil or empty, not change the original scheme
+ @param reorder the flag should be to reorder alphabetically. YES if ordered by key firstly and then by value, NO if keep the original order.
+ @return the new URL after replacement
+ */
++ (nullable NSURL *)URLWithURL:(NSURL *)URL replacedByQueryKeyValueArray:(nullable NSArray<KeyValuePairType> *)queryKeyValueArray scheme:(nullable NSString *)scheme reorder:(BOOL)reorder;
 
 /**
  Get the base part of NSURL without query parameters

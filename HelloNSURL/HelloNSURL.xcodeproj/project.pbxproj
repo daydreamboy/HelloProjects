@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4F4588C9215CC273005A52C8 /* Tests_NSURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4588C8215CC273005A52C8 /* Tests_NSURL.m */; };
+		4F5B35122244EAF3006A6501 /* Tests_NSURLComponents.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B35112244EAF3006A6501 /* Tests_NSURLComponents.m */; };
 		4F7D8EF6210A0EC100145B00 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8EF5210A0EC100145B00 /* AppDelegate.m */; };
 		4F7D8EF9210A0EC100145B00 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8EF8210A0EC100145B00 /* ViewController.m */; };
 		4F7D8EFC210A0EC100145B00 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D8EFA210A0EC100145B00 /* Main.storyboard */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		4F4588C8215CC273005A52C8 /* Tests_NSURL.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSURL.m; sourceTree = "<group>"; };
+		4F5B35112244EAF3006A6501 /* Tests_NSURLComponents.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSURLComponents.m; sourceTree = "<group>"; };
 		4F7D8EF1210A0EC100145B00 /* HelloNSURL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSURL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F7D8EF4210A0EC100145B00 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F7D8EF5210A0EC100145B00 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 			children = (
 				4F7D8FFF210DAFC200145B00 /* Test.m */,
 				4F4588C8215CC273005A52C8 /* Tests_NSURL.m */,
+				4F5B35112244EAF3006A6501 /* Tests_NSURLComponents.m */,
 				4F7D9001210DAFC200145B00 /* Info.plist */,
 			);
 			path = Test;
@@ -235,6 +238,7 @@
 			files = (
 				4F4588C9215CC273005A52C8 /* Tests_NSURL.m in Sources */,
 				4F7D9000210DAFC200145B00 /* Test.m in Sources */,
+				4F5B35122244EAF3006A6501 /* Tests_NSURLComponents.m in Sources */,
 				4F812DB721B825DB0085ACF9 /* WCURLTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
