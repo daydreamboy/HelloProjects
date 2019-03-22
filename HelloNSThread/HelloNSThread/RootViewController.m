@@ -21,6 +21,8 @@
 #import "UseNSLockWithTryLockViewController.h"
 #import "UseNSLockWithTimeoutViewController.h"
 #import "UseNSLockWithDeadlockViewController.h"
+#import "UseNSLockIssueWithUnpairLockUnlockViewController.h"
+#import "UseNSRecursiveLockViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -60,6 +62,8 @@
           @{ kTitle: @"Use NSLock with tryLock", kClass: [UseNSLockWithTryLockViewController class] },
           @{ kTitle: @"Use NSLock with timeout", kClass: [UseNSLockWithTimeoutViewController class] },
           @{ kTitle: @"Use NSLock to deadlock", kClass: [UseNSLockWithDeadlockViewController class] },
+          @{ kTitle: @"Use NSLock unpaired", kClass: [UseNSLockIssueWithUnpairLockUnlockViewController class] },
+          @{ kTitle: @"Use NSRecursiveLock", kClass: [UseNSRecursiveLockViewController class] },
     ];
     
     NSArray<NSDictionary *> *section3 = @[

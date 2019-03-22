@@ -38,6 +38,7 @@ static NSLock *sLock;
     
     for(x = 0; x < 50; ++x) {
         [sLock lock];
+        // Note: make two printf to be atomic
         printf("Main thread says x is %i\n", x);
         usleep(1);
         printf("Main thread lets go: %i\n",x);

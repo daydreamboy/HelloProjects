@@ -9,47 +9,44 @@
 #import "UseNSRecursiveLockViewController.h"
 
 @interface UseNSRecursiveLockViewController ()
-@property (nonatomic, strong) NSRecursiveLock *rcLock;
-@property (nonatomic, strong) NSMutableDictionary *dictM;
+@property (nonatomic, strong) NSRecursiveLock *rLock;
 @end
 
 @implementation UseNSRecursiveLockViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.rcLock = [[NSRecursiveLock alloc] init];
+    self.rLock = [[NSRecursiveLock alloc] init];
+    self.rLock.name = @"My Recursive Lock";
+    
+    // Note: random json data from https://www.json-generator.com/
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"randomJSON" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    id JSONObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+    
+    [NSThread detachNewThreadSelector:@selector(printJSONObjectRecursively:) toTarget:self withObject:JSONObject];
+    [NSThread detachNewThreadSelector:@selector(printJSONObjectRecursively:) toTarget:self withObject:JSONObject];
 }
 
-- (void)test_1_always_use_weak_object {
-//    self.dictM = [NSMutableDictionary dictionary];
-//
-//    self.dictM[@"object"] = @"1";
-//
-//    __weak typeof(object) weak_object = object;
-//    [NSThread detachNewThreadWithBlock:^{
-//        NSLog(@"1. %@ (%p)", weak_object, [NSThread currentThread]);
-//
-//        [NSThread sleepForTimeInterval:5];
-//
-//        NSLog(@"2. %@ (%p)", weak_object, [NSThread currentThread]); // Maybe nil
-//    }];
-//
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        for (NSInteger i = 0; i < 100; i++) {
-//            [NSThread detachNewThreadWithBlock:^{
-//                self.dictM[@"object"] = nil;
-//                NSLog(@"set nil (%p %d)", [NSThread currentThread], (int)i);
-//            }];
-//        }
-//    });
-}
-
-- (void)changeDictWithKey:(NSString *)key value:(NSString *)value {
-//    [self.rcLock lock];
-//    
-//    self.dictM[key] = value;
-//    
-//    [self.rcLock unlock];
+- (void)printJSONObjectRecursively:(id)JSONObject {
+    [self.rLock lock]; // Note: Ok, lock again without unlock is safe for the same thread
+    
+    if ([JSONObject isKindOfClass:[NSDictionary class]]) {
+        for (NSString *key in [(NSDictionary *)JSONObject allKeys]) {
+            [self printJSONObjectRecursively:JSONObject[key]];
+        }
+    }
+    else if ([JSONObject isKindOfClass:[NSArray class]]) {
+        for (id object in JSONObject) {
+            [self printJSONObjectRecursively:object];
+        }
+    }
+    else {
+        printf("Thread %p print: <%p: %s>\n", [NSThread currentThread], JSONObject, [JSONObject description].UTF8String);
+        usleep(1);
+    }
+    
+    [self.rLock unlock];
 }
 
 @end

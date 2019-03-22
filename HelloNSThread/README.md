@@ -115,7 +115,7 @@ NSThread支持线程休眠，可以使用`+[NSThread sleepUntilDate:]`方法和`
 
 * `[myLock unlock]`，获取锁的线程负责释放锁。
 
-  > 注意：其他没有获取锁的线程，释放锁则导致锁失效，线程同步存在问题。
+  > 注意：其他没有获取锁的线程，释放锁则导致锁失效，线程同步存在问题。示例代码见**UseNSLockIssueWithUnpairLockUnlockViewController**
 
 * `[myLock tryLock]`，当前线程尝试获取锁，获取成功返回YES；获取失败，则返回NO。（示例代码见**UseNSLockWithTryLockViewController**）
 
@@ -152,6 +152,57 @@ else {
 注意：
 
 > NSLock的lock方法，不能在当前线程连续调用大于2次，否则当前线程会产生死锁。示例代码见**UseNSLockWithDeadlockViewController**。解决该方法，可以换成NSRecursiveLock。
+
+
+
+### （2）NSRecursiveLock
+
+​        NSRecursiveLock和NSLock相比，它允许同一个线程连续调用lock方法多次而且不会死锁，当然unlock方法也需要配对使用。在某些递归调用，并且需要加锁的情况，NSRecursiveLock是更好的选择。
+
+举个例子，如下
+
+```objective-c
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.rLock = [[NSRecursiveLock alloc] init];
+    self.rLock.name = @"My Recursive Lock";
+    
+    // Note: random json data from https://www.json-generator.com/
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"randomJSON" ofType:@"json"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    id JSONObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
+    
+    [NSThread detachNewThreadSelector:@selector(printJSONObjectRecursively:) toTarget:self withObject:JSONObject];
+    [NSThread detachNewThreadSelector:@selector(printJSONObjectRecursively:) toTarget:self withObject:JSONObject];
+}
+
+- (void)printJSONObjectRecursively:(id)JSONObject {
+    [self.rLock lock]; // Note: Ok, lock again without unlock is safe for the same thread
+    
+    if ([JSONObject isKindOfClass:[NSDictionary class]]) {
+        for (NSString *key in [(NSDictionary *)JSONObject allKeys]) {
+            [self printJSONObjectRecursively:JSONObject[key]];
+        }
+    }
+    else if ([JSONObject isKindOfClass:[NSArray class]]) {
+        for (id object in JSONObject) {
+            [self printJSONObjectRecursively:object];
+        }
+    }
+    else {
+        printf("Thread %p print: <%p: %s>\n", [NSThread currentThread], JSONObject, [JSONObject description].UTF8String);
+        usleep(1);
+    }
+    
+    [self.rLock unlock];
+}
+```
+
+这里printJSONObjectRecursively:方法有一个递归调用，单个线程调用会递归，多个线程调用该方法需要同步（因为有个共享变量JSONObject），因此使用NSRecursiveLock是合适的。
+
+示例代码见**UseNSRecursiveLockViewController**
+
+
 
 
 
