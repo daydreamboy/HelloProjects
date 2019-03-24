@@ -351,6 +351,16 @@ CALayer的position(x,y)不允许有NaN值，否则会出现crash。（具体见H
 
 
 
+#### NSData
+
+| 方法签名                                          | 说明                                  |
+| ------------------------------------------------- | ------------------------------------- |
+| `+[NSData dataWithContentsOfFile:options:error:]` | `dataWithContentsOfFile`参数不能为nil |
+
+
+
+
+
 #### GCD
 
 | 方法签名                           | 说明                |
