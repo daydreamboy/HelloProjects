@@ -151,7 +151,7 @@ else {
 
 注意：
 
-> NSLock的lock方法，不能在当前线程连续调用大于2次，否则当前线程会产生死锁。示例代码见**UseNSLockWithDeadlockViewController**。解决该方法，可以换成NSRecursiveLock。
+> NSLock的lock方法，不能在当前线程连续调用大于2次，否则当前线程会产生死锁。示例代码见**UseNSLockWithDeadlockViewController**。解决方法：可以换成NSRecursiveLock。
 
 
 
@@ -204,6 +204,24 @@ else {
 
 
 
+### （3）NSConditionLock
+
+​        NSConditionLock提供根据某个条件进行加锁的能力，这里的条件对应的是NSConditionLock的condition属性，它是NSInteger类型。
+
+​        带有condition参数的和不带condition参数的API，对比如下
+
+| 有condition参数                  | 说明                                       | 对比              | 说明                     |
+| -------------------------------- | ------------------------------------------ | ----------------- | ------------------------ |
+| `lockWhenCondition:`             | 当满足条件时，尝试获取锁                   | `lock`            | 不受条件限制，尝试获取锁 |
+| `lockWhenCondition: beforeDate:` |                                            | `lockBeforeDate:` |                          |
+| `tryLockWhenCondition:`          |                                            | `tryLock`         |                          |
+| `unlockWithCondition:`           | 释放锁同时设置条件                         | `unlock`          |                          |
+| `initWithCondition:`             | 初始化条件的NSInteger值。如果不设置默认为0 | `init`            |                          |
+
+
+
+NSConditionLock比较适合生产者和消费者情况[^3]，示例代码见**UseNSConditionLockViewController**
+
 
 
 ## 4、常用技巧
@@ -221,3 +239,4 @@ else {
 
 [^1]: [http://etutorials.org/Programming/Cocoa/Part+I+Introducing+Cocoa/Chapter+2.+Foundation/2.9+Threaded+Programming/](http://etutorials.org/Programming/Cocoa/Part+I+Introducing+Cocoa/Chapter+2.+Foundation/2.9+Threaded+Programming/)
 [^2]:http://softpixel.com/~cwright/programming/threads/threads.cocoa.php
+[^3]:<http://mirror.informatimago.com/next/developer.apple.com/documentation/Cocoa/Conceptual/Multithreading/Tasks/usinglocks.html>
