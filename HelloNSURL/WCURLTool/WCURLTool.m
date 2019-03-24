@@ -264,7 +264,7 @@
     return components.URL;
 }
 
-+ (nullable NSURL *)URLWithURL:(NSURL *)URL replacedByQueryKeyValueArray:(nullable NSArray<KeyValuePairType> *)queryKeyValueArray scheme:(nullable NSString *)scheme reorder:(BOOL)reorder {
++ (nullable NSURL *)URLWithURL:(NSURL *)URL replacedByQueryKeyValueArray:(nullable NSArray<KeyValuePairType> *)queryKeyValueArray scheme:(nullable NSString *)scheme options:(WCURLQueryKeyValueReplacementOption)options {
     if (![URL isKindOfClass:[NSURL class]] ||
         (queryKeyValueArray && ![queryKeyValueArray isKindOfClass:[NSArray class]]) ||
         (scheme && ![scheme isKindOfClass:[NSString class]])) {
@@ -275,13 +275,12 @@
     NSMutableArray<NSURLQueryItem *> *queryKeyValuesM = [NSMutableArray arrayWithCapacity:components.queryItems.count + queryKeyValueArray.count];
     
     if (queryKeyValueArray.count) {
-        NSMutableArray<KeyValuePairType> *newKeyValues = [NSMutableArray arrayWithArray:queryKeyValueArray];
         NSMutableArray<KeyValuePairType> *newKeyValuesToAppend = [NSMutableArray arrayWithArray:queryKeyValueArray];
         
         for (NSURLQueryItem *item in components.queryItems) {
             NSURLQueryItem *itemToAdd = [NSURLQueryItem queryItemWithName:item.name value:item.value];
             
-            for (KeyValuePairType pair in newKeyValues) {
+            for (KeyValuePairType pair in queryKeyValueArray) {
                 if (KeyValuePairValidate(pair)) {
                     NSString *key = pair[0];
                     NSString *value = pair[1];
@@ -310,13 +309,16 @@
             }
         }
         
-        for (KeyValuePairType pair in newKeyValuesToAppend) {
-            if (KeyValuePairValidate(pair)) {
-                NSString *key = KeyOfPair(pair);
-                NSString *value = ValueOfPair(pair);
-                if ([key isKindOfClass:[NSString class]] && [value isKindOfClass:[NSString class]] &&
-                    key.length && value.length) {
-                    [queryKeyValuesM addObject:[NSURLQueryItem queryItemWithName:key value:value]];
+        if (!(options & WCURLQueryKeyValueReplacementOptionReplaceOnlyKeyExists)) {
+            // Note: append the key values when the keys not exist in the original URL
+            for (KeyValuePairType pair in newKeyValuesToAppend) {
+                if (KeyValuePairValidate(pair)) {
+                    NSString *key = KeyOfPair(pair);
+                    NSString *value = ValueOfPair(pair);
+                    if ([key isKindOfClass:[NSString class]] && [value isKindOfClass:[NSString class]] &&
+                        key.length && value.length) {
+                        [queryKeyValuesM addObject:[NSURLQueryItem queryItemWithName:key value:value]];
+                    }
                 }
             }
         }
@@ -325,7 +327,7 @@
         [queryKeyValuesM addObjectsFromArray:components.queryItems];
     }
     
-    if (reorder) {
+    if (options & WCURLQueryKeyValueReplacementOptionReorder) {
         NSSortDescriptor *sorter1 = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(compare:)];
         NSSortDescriptor *sorter2 = [NSSortDescriptor sortDescriptorWithKey:@"value" ascending:YES selector:@selector(compare:)];
         [queryKeyValuesM sortUsingDescriptors:@[ sorter1, sorter2 ]];

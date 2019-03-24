@@ -103,6 +103,13 @@ NS_AVAILABLE_IOS(8_0)
 
 @end
 
+typedef NS_OPTIONS(NSUInteger, WCURLQueryKeyValueReplacementOption) {
+    /*! Reorder key/values after replace */
+    WCURLQueryKeyValueReplacementOptionReorder = 1 << 0,
+    /*! Replace only key exists and not add to the URL when key not exists */
+    WCURLQueryKeyValueReplacementOptionReplaceOnlyKeyExists = 1 << 1,
+};
+
 NS_AVAILABLE_IOS(8_0)
 @interface WCURLTool : NSObject
 
@@ -128,6 +135,8 @@ NS_AVAILABLE_IOS(8_0)
  @return the WCURLComponents object. Return nil if the urlString is invalid (e.g. nil, malformed)
  */
 + (nullable WCURLComponents *)URLComponentsWithUrlString:(NSString *)urlString;
+
+#pragma mark - Get new URL
 
 /**
  Get URL with new query key values
@@ -159,24 +168,29 @@ NS_AVAILABLE_IOS(8_0)
 + (nullable NSURL *)URLWithURL:(NSURL *)URL toAppendQueryKeyValueArray:(nullable NSArray<KeyValuePairType> *)queryKeyValueArray;
 
 /**
- Replace URL with new query key values and scheme
+ Replace URL with query key values and scheme
 
  @param URL the original URL
- @param queryKeyValueArray the new query key values to replace.
- - If key is not NSString, the new key value is ignored
- - If value is not NSString or [NSNull null], the new key value is ignored. If value is [NSNull null], to remove the key.
- - If the key not exists in the original，the new key values will append to the URL if reorder is NO.
+ @param queryKeyValueArray the query key values to replace.
+ - If key is not NSString, the query key value is ignored
+ - If value is not NSString or [NSNull null], the query key value is ignored. If value is [NSNull null], to remove the key.
  @param scheme the new scheme. If nil or empty, not change the original scheme
- @param reorder the flag should be to reorder alphabetically. YES if ordered by key firstly and then by value, NO if keep the original order.
+ @param options the flags
+ - Default (kNilOption).
+   Keep the original order and the new key values (which the key not exists in the original URL) will add or append to the URL
+ - WCURLQueryKeyValueReplacementOptionReorder
+   Should be to reorder alphabetically, ordered by key firstly and then by value
+ - WCURLQueryKeyValueReplacementOptionReplaceOnlyKeyExists
+   Only when key exists to replace. If key not exists, the new key value not appends to the URL.
  @return the new URL after replacement
  */
-+ (nullable NSURL *)URLWithURL:(NSURL *)URL replacedByQueryKeyValueArray:(nullable NSArray<KeyValuePairType> *)queryKeyValueArray scheme:(nullable NSString *)scheme reorder:(BOOL)reorder;
++ (nullable NSURL *)URLWithURL:(NSURL *)URL replacedByQueryKeyValueArray:(nullable NSArray<KeyValuePairType> *)queryKeyValueArray scheme:(nullable NSString *)scheme options:(WCURLQueryKeyValueReplacementOption)options;
 
 /**
  Get the base part of NSURL without query parameters
 
  @param URL the original URL
- @return the base URL, e.g. `http://www.abc.com/foo/bar.cgi` => `http://www.abc.com/foo/bar.cgi?a=1&b=2`
+ @return the base URL, e.g. `http://www.abc.com/foo/bar.cgi?a=1&b=2` => `http://www.abc.com/foo/bar.cgi`
  @see http://stackoverflow.com/questions/4271916/url-minus-query-string-in-objective-c
  */
 + (nullable NSURL *)baseURLWithURL:(NSURL *)URL;

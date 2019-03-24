@@ -599,7 +599,7 @@
     
 }
 
-- (void)test_URLWithURL_replacedByQueryKeyValueArray_scheme_reorder {
+- (void)test_URLWithURL_replacedByQueryKeyValueArray_scheme_options {
     NSURL *URL;
     NSArray<KeyValuePairType> *pairs;
     NSURL *output;
@@ -614,15 +614,21 @@
               KeyValuePair(@"height", @"800"),
               KeyValuePair(@"imgResolution", nil),
               ];
-    output = [WCURLTool URLWithURL:URL replacedByQueryKeyValueArray:pairs scheme:nil reorder:NO];
+    // keep the original order and append the new key values
+    output = [WCURLTool URLWithURL:URL replacedByQueryKeyValueArray:pairs scheme:nil options:kNilOptions];
     XCTAssertEqualObjects(output.absoluteString, @"http://interface.im.taobao.com/mobileimweb/fileupload/getThumbnail.do?type=1&fileId=d18cd3c401bdfb4b1332b3f395c38025.jpg&suffix=jpg&width=500&height=800&mediaSize=183086&fromId=cntaobaowc%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B71000&toId=cntaobaoqn%E5%BA%97%E9%93%BA%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7001&thumb_width=300&thumb_height=200");
     
-    output = [WCURLTool URLWithURL:URL replacedByQueryKeyValueArray:pairs scheme:@"https" reorder:YES];
+    // reorder the key values
+    output = [WCURLTool URLWithURL:URL replacedByQueryKeyValueArray:pairs scheme:@"https" options:WCURLQueryKeyValueReplacementOptionReorder];
     XCTAssertEqualObjects(output.absoluteString, @"https://interface.im.taobao.com/mobileimweb/fileupload/getThumbnail.do?fileId=d18cd3c401bdfb4b1332b3f395c38025.jpg&fromId=cntaobaowc%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B71000&height=800&mediaSize=183086&suffix=jpg&thumb_height=200&thumb_width=300&toId=cntaobaoqn%E5%BA%97%E9%93%BA%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7001&type=1&width=500");
+    
+    // only replace when key exists
+    output = [WCURLTool URLWithURL:URL replacedByQueryKeyValueArray:pairs scheme:@"https" options:WCURLQueryKeyValueReplacementOptionReplaceOnlyKeyExists];
+    XCTAssertEqualObjects(output.absoluteString, @"https://interface.im.taobao.com/mobileimweb/fileupload/getThumbnail.do?type=1&fileId=d18cd3c401bdfb4b1332b3f395c38025.jpg&suffix=jpg&width=500&height=800&mediaSize=183086&fromId=cntaobaowc%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B71000&toId=cntaobaoqn%E5%BA%97%E9%93%BA%E6%B5%8B%E8%AF%95%E8%B4%A6%E5%8F%B7001");
     
     // Case 2
     URL = NSURL_SAFE_NEW(@"http://www.google.com/?suffix=png&suffix=jpg");
-    output = [WCURLTool URLWithURL:URL replacedByQueryKeyValueArray:nil scheme:nil reorder:YES];
+    output = [WCURLTool URLWithURL:URL replacedByQueryKeyValueArray:nil scheme:nil options:WCURLQueryKeyValueReplacementOptionReorder];
     XCTAssertEqualObjects(output.absoluteString, @"http://www.google.com/?suffix=jpg&suffix=png");
     
     // Case 3
@@ -631,7 +637,7 @@
               KeyValuePair(@"suffix1", [NSDate date]),
               KeyValuePair(@"suffix2", [NSNull null]),
               ];
-    output = [WCURLTool URLWithURL:URL replacedByQueryKeyValueArray:pairs scheme:nil reorder:YES];
+    output = [WCURLTool URLWithURL:URL replacedByQueryKeyValueArray:pairs scheme:nil options:WCURLQueryKeyValueReplacementOptionReorder];
     XCTAssertEqualObjects(output.absoluteString, @"http://www.google.com/?suffix1=png");
     
     // Case 4
@@ -639,7 +645,7 @@
     pairs = @[
               KeyValuePair(@"suffix", @"gif"),
               ];
-    output = [WCURLTool URLWithURL:URL replacedByQueryKeyValueArray:pairs scheme:nil reorder:YES];
+    output = [WCURLTool URLWithURL:URL replacedByQueryKeyValueArray:pairs scheme:nil options:WCURLQueryKeyValueReplacementOptionReorder];
     XCTAssertEqualObjects(output.absoluteString, @"http://www.google.com/?suffix=gif&suffix=gif");
 }
 
