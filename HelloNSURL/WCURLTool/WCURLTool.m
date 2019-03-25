@@ -347,10 +347,10 @@
     }
     
     if (([[[UIDevice currentDevice] systemVersion] compare:@"7.0" options:NSNumericSearch] != NSOrderedAscending)) {
-        NSURLComponents *urlComponents = [[NSURLComponents alloc] initWithURL:URL resolvingAgainstBaseURL:NO];
-        urlComponents.query = nil;
+        NSURLComponents *URLComponents = [[NSURLComponents alloc] initWithURL:URL resolvingAgainstBaseURL:NO];
+        URLComponents.query = nil;
         
-        return urlComponents.URL;
+        return URLComponents.URL;
     }
     else {
 #pragma GCC diagnostic push
@@ -358,6 +358,23 @@
         return [[NSURL alloc] initWithScheme:URL.scheme host:URL.host path:URL.path];
 #pragma GCC diagnostic pop
     }
+}
+
+#pragma mark - Query
+
++ (nullable NSArray<NSString *> *)URLWithURL:(NSURL *)URL valueForKey:(NSString *)key {
+    if (![URL isKindOfClass:[NSURL class]] ||
+        ![key isKindOfClass:[NSString class]] ||
+        ([key isKindOfClass:[NSString class]] && key.length == 0)) {
+        return nil;
+    }
+    
+    NSURLComponents *URLComponents = [[NSURLComponents alloc] initWithURL:URL resolvingAgainstBaseURL:NO];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"name LIKE %@", key];
+    NSArray<NSURLQueryItem *> *queryItems = [URLComponents.queryItems filteredArrayUsingPredicate:predicate];
+    NSArray<NSString *> *values = [queryItems valueForKeyPath:@"self.value"];
+    
+    return values;
 }
 
 #pragma mark > Properties

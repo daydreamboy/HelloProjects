@@ -666,6 +666,34 @@
     XCTAssertNil(URL.baseURL);
 }
 
+- (void)test_URLWithURL_valueForKey {
+    NSURL *URL;
+    NSString *value;
+    
+    // Case 1
+    URL = NSURL_SAFE_NEW(@"http://captcha.360.cn/image.php?app=360licai&rand=24578508771437718641&dlist=100000&nt=WIFI&d=8F057C167279790D31398A7634773EE4&v=1&vn=1.0.0&ov=8.4&source=mpc_pay_licaiios");
+    value = [[WCURLTool URLWithURL:URL valueForKey:@"app"] firstObject];
+    XCTAssertEqualObjects(value, @"360licai");
+    
+    value = [[WCURLTool URLWithURL:URL valueForKey:@"app2"] firstObject];
+    XCTAssertNil(value);
+    
+    value = [[WCURLTool URLWithURL:URL valueForKey:@""] firstObject];
+    XCTAssertNil(value);
+    
+    value = [[WCURLTool URLWithURL:URL valueForKey:@"source"] firstObject];
+    XCTAssertEqualObjects(value, @"mpc_pay_licaiios");
+    
+    // Case 2
+    URL = NSURL_SAFE_NEW(@"http://captcha.360.cn/image.php?app=360licai&rand=24578508771437718641&dlist=100000&nt=WIFI&d=8F057C167279790D31398A7634773EE4&v=1&vn=1.0.0&ov=8.4&source=mpc_pay_licaiios&vn=1.0.2");
+    
+    value = [[WCURLTool URLWithURL:URL valueForKey:@"vn"] firstObject];
+    XCTAssertEqualObjects(value, @"1.0.0");
+    
+    value = [[WCURLTool URLWithURL:URL valueForKey:@"vn"] lastObject];
+    XCTAssertEqualObjects(value, @"1.0.2");
+}
+
 - (void)test_patternOfPathExtension {
     NSString *patternOfPathExtension = WCURLTool.patternOfPathExtension;
     NSString *path;

@@ -195,6 +195,19 @@ NS_AVAILABLE_IOS(8_0)
  */
 + (nullable NSURL *)baseURLWithURL:(NSURL *)URL;
 
+#pragma mark - Query
+
+/**
+ Get value for key in query string
+
+ @param URL the original URL
+ @param key the key
+ @return the values for the key. Return nil if the key not exists.
+ @discussion Maybe many values for the same key
+ @see https://stackoverflow.com/a/26406426
+ */
++ (nullable NSArray<NSString *> *)URLWithURL:(NSURL *)URL valueForKey:(NSString *)key;
+
 @end
 
 NS_ASSUME_NONNULL_END
