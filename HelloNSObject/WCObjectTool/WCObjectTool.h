@@ -8,6 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface WCObjectTool : NSObject
 
+#pragma mark - Inspection
+
++ (void)dumpWithObject:(NSObject *)object;
++ (nullable NSString *)dumpedStringWithObject:(NSObject *)object;
+
 @end
+
+NS_ASSUME_NONNULL_END
