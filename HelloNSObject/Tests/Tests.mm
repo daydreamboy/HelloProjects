@@ -220,6 +220,54 @@ R"JSON([
     arr = nil;
     output = [WCObjectTool dumpedStringWithObject:arr];
     XCTAssertNil(output);
+
+    // Case 7
+    output = [WCObjectTool dumpedStringWithObject:@"1234"];
+    NSLog(@"%@", output);
+
+    // Case 8
+    output = [WCObjectTool dumpedStringWithObject:@(1234)];
+    NSLog(@"%@", output);
+
+    // Case 9
+    output = [WCObjectTool dumpedStringWithObject:@(3.14)];
+    NSLog(@"%@", output);
+
+    // Case 10
+    output = [WCObjectTool dumpedStringWithObject:@(3.14f)];
+    NSLog(@"%@", output);
+
+    output = [WCObjectTool dumpedStringWithObject:@(YES)];
+    NSLog(@"%@", output);
+
+    // Case 3: NSNull
+    output = [WCObjectTool dumpedStringWithObject:[NSNull null]];
+    NSLog(@"%@", output);
+
+    // Case 4: Customzied Object as root node
+    output = [WCObjectTool dumpedStringWithObject:[[Thing alloc] init]];
+    NSLog(@"%@", output);
+
+    output = [WCObjectTool dumpedStringWithObject:[[Person alloc] init]];
+    NSLog(@"%@", output);
+
+    // Case 5: Customzied Object nested in NSDictionary
+    dict = @{
+        @"thing": [[Thing alloc] init],
+        @"person": [[Person alloc] init],
+        @"key": @"value",
+    };
+    output = [WCObjectTool dumpedStringWithObject:dict];
+    NSLog(@"%@", output);
+
+    // Case 5: Customzied Object nested in NSArray
+    arr = @[
+        [[Thing alloc] init],
+        [[Person alloc] init],
+        @(1234)
+    ];
+    output = [WCObjectTool dumpedStringWithObject:arr];
+    NSLog(@"%@", output);
 }
 
 @end
