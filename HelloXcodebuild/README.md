@@ -34,9 +34,9 @@ build
 
 
 
-### （2）显示 build settings
+### （2）显示build settings
 
-Xcode的`-showBuildSettings`选项可以显示编译配置项。
+`xcodebuild`可以使用`-showBuildSettings`选项显示编译配置项。
 
 举个例子，如下
 
@@ -453,21 +453,103 @@ Build settings for action build and target HelloXcodebuildForApp:
 
 
 
+### （3）设置build settings
 
+build settings可以作为独立的选项传给`xcodebuild`命令。举个例子，如下
+
+```shell
+$ xcodebuild -scheme Test -destination 'platform=iOS Simulator,name=iPhone 8,OS=12.1' GCC_TREAT_WARNINGS_AS_ERRORS=NO
+```
+
+说明
+
+> 命令行中的build settings配置，优先级高于xcodebuild会读取.xcodeproj文件中的配置
 
 
 
 ## 2. 常用选项
 
-​           `xcodebuild`命令的选项非常多。常用选项，如下
+​         `xcodebuild`命令的选项非常多。使用`xcodebuild -help`打印完整的帮助信息，`xcodebuild -usage`打印简明的帮助信息
 
-| 选项                                             | 含义                                                         | 示例                                                   |
-| ------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------ |
-| 选项为空                                         | 默认在当前目录下生成build文件夹，存放编译产物，采用Release build configuration |                                                        |
-| `-scheme <scheme name>`                          | 指定scheme后，build文件夹生成在DerivedData路径下。scheme和target只能同时指定一个 |                                                        |
-| `-target <target name>`                          | 指定project下面需要编译哪个target，如果不指定，默认编译targets列表中的第一个target |                                                        |
-| `-configuration <build configuration>`           | 指定采用哪种build configuration（一般是Debug或者Release）编译target |                                                        |
-| `-destination 'platform=<platform>,name=<name>'` | 指定目标设备[^2]，如果不指定则是真机设备                     | `-destination 'platform=iOS Simulator,name=iPhone XR'` |
+​        常用选项，如下
+
+| 选项                                             | 含义                                                         | 说明                                                       |
+| ------------------------------------------------ | ------------------------------------------------------------ | ---------------------------------------------------------- |
+| 选项为空                                         | 默认在当前目录下生成build文件夹，存放编译产物，采用Release build configuration |                                                            |
+| `-project <name>.xcodeproj`                      | 指定某个`.xcodeproj`工程文件                                 |                                                            |
+| `-scheme <scheme name>`                          | 指定scheme后，build文件夹生成在DerivedData路径下。           | scheme和target只能同时指定一个                             |
+| `-target <target name>`                          | 指定project下面需要编译哪个target，如果不指定，默认编译targets列表中的第一个target |                                                            |
+| `-configuration <build configuration>`           | 指定采用哪种build configuration（一般是Debug或者Release）编译target |                                                            |
+| `-destination 'platform=<platform>,name=<name>'` | 指定目标设备[^2]，如果不指定则是真机设备。`-destination`     | 示例`-destination 'platform=iOS Simulator,name=iPhone XR'` |
+
+
+
+复杂的选项，下面详细介绍下
+
+### （1）`-destination`选项[^3]
+
+`-destination`选项的值是`'key1=value1,key2=value2'`形式。
+
+
+
+#### a. 常用键值对
+
+
+
+##### OS X和iOS通用的key值
+
+| key        | value                                                        | 示例 |
+| ---------- | ------------------------------------------------------------ | ---- |
+| `platform` | `OS X`, your Mac<br />`iOS`, a connected iOS device <br />`iOS Simulator` <br />`watchOS` <br />`watchOS Simulator` <br />`tvOS` <br />`tvOS Simulator` |      |
+
+
+
+##### OS X特有的key值
+
+| key    | value                | 示例                                                         |
+| ------ | -------------------- | ------------------------------------------------------------ |
+| `arch` | `x86_64`<br />`i386` | xcodebuild \\<br/>  -workspace MyMacApp.xcworkspace \\<br />
+  -scheme MyMacApp \\<br />
+  -destination 'platform=OS X,arch=x86_64' \\<br />
+  clean test |
+
+
+
+##### iOS/iOS Simulator特有的key值
+
+| key    | value                | 示例                                                         |
+| ------ | -------------------- | ------------------------------------------------------------ |
+| `id`   | UUID                 | xcodebuild \\<br/>-workspace MyApp.xcworkspace \\<br />
+  -scheme MyApp \\<br />
+  -destination 'platform=iOS,id=YOUR_PHONE_UUID' \\<br />
+  clean test |
+| `name` | 设备名               | xcodebuild \\<br/>  -workspace MyApp.xcworkspace \\<br />
+  -scheme MyApp \\<br />
+  -destination "platform=iOS,name=Gio's iPhone" \\<br />
+  clean test |
+| `OS`   | 系统版本或者`latest` | xcodebuild \\<br/>  -workspace MyApp.xcworkspace \\<br />
+  -scheme MyApp \\<br />
+  -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.1' \\<br/>
+  clean test |
+
+说明
+
+> 1. 模拟器设备的UUID和设备名，可以使用`xcrun simctl list`查询到
+> 2. 真机设备的UUID和设备名，可以使用`instruments -s devices`查询到
+> 3. 当platform=iOS或者platform=iOS Simulator时，必须指定`id`或者`name`
+> 4. 如果使用`name`时，xcodebuild找不到设备，则需要同时使用`OS`指定系统版本
+
+
+
+#### b. Generic形式
+
+`-destination`支持通用的设备，例如通用iOS设备则是`-destination generic/platform=iOS`
+
+
+
+#### c. 多个`-destination`选项
+
+xcodebuild允许多个`-destination`选项，这样可以编译多个目标设备上的产物。
 
 
 
@@ -481,3 +563,4 @@ References
 
 [^1]:https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW38
 [^2]: https://stackoverflow.com/a/34005020
+[^3]:<https://www.mokacoding.com/blog/xcodebuild-destination-options/>
