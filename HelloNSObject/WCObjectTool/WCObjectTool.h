@@ -14,8 +14,26 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Inspection
 
+#pragma mark > Dump
+
+/**
+ Dump an object with printf
+
+ @param object the NSObject
+ */
 + (void)dumpWithObject:(NSObject *)object;
+
+/**
+ Get the object's dumped string
+
+ @param object the NSObject
+ @return the dumped string
+ */
 + (nullable NSString *)dumpedStringWithObject:(NSObject *)object;
+
+#pragma mark > Runtime
+
++ (NSArray<NSString *> *)allClasses;
 
 @end
 

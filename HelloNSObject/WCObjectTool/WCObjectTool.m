@@ -7,6 +7,7 @@
 //
 
 #import "WCObjectTool.h"
+#import <objc/runtime.h>
 
 // 4 spaces for indentation
 #define INDENTATION @"    "
@@ -14,6 +15,8 @@
 @implementation WCObjectTool
 
 #pragma mark - Inspection
+
+#pragma mark > Dump
 
 + (void)dumpWithObject:(NSObject *)object {
     printf("%s\n", [[self dumpedStringWithObject:object] UTF8String]);
@@ -141,5 +144,17 @@ static NSString * JSONEscapedStringFromString(NSString *string) {
 }
 
 #pragma mark ::
+
+#pragma mark > Runtime
+
++ (NSArray<NSString *> *)allClasses {
+    unsigned int classesCount;
+    Class *classes = objc_copyClassList(&classesCount);
+    NSMutableArray *result = [NSMutableArray array];
+    for (unsigned int i = 0 ; i < classesCount; i++) {
+        [result addObject:NSStringFromClass(classes[i])];
+    }
+    return [result sortedArrayUsingSelector:@selector(compare:)];
+}
 
 @end
