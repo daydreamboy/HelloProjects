@@ -1,21 +1,22 @@
-## xcodebuild命令
+# xcodebuild命令
 
-### 1. 基本使用
-
-xcodebuild是Xcode使用的命令行工具。如果想自动化完成xcode支持GUI操作，则需要使用这个命令。
-
-xcodebuild在当前目录找xcodeproj文件，根据这个文件的配置输出相应的产物。
-
-xcodebuild在当前文件夹下生成build文件夹，它的结构和Xcode的DerivedData中结构是对应的。
+[TOC]
 
 
 
-### 2. 常用选项
+## 1. 基本使用
 
-* 选项为空    
-默认在当前目录下生成build文件夹，存放编译产物，采用Release build configuration。
+​       `xcodebuild`是Xcode相应的命令行工具，执行它相当于调用一组命令行。如果想自动化完成Xcode支持的GUI操作，则需要使用这个命令。
 
-以HelloXcodebuildForApp工程为例，build文件夹结构如下
+​       `xcodebuild`的工作方式是，xcodebuild在当前目录找`.xcodeproj`文件，根据这个文件的配置输出相应的产物。
+
+
+
+### （1）build文件夹
+
+​         `xcodebuild`会在当前`.xcodeproj`文件对应目录下生成build文件夹，它的结构和Xcode的DerivedData中结构是相同的。
+
+​        以HelloXcodebuildForApp工程为例，build文件夹结构如下
 
 ```
 build  
@@ -31,34 +32,13 @@ build
      |- HelloXcodebuildForApp.app.dSYM
 ```
 
-* -scheme \<scheme name\>    
-指定scheme后，build文件夹生成在DerivedData路径下，结构如下
 
-```
-build  
- |- Intermediates
- |   |- HelloXcodebuildForApp.build
- |       |- Debug-iphoneos
- |       |   |- HelloXcodebuildForApp.build (存放编译中间产物)
- |       |- Release-iphones
- |           |- HelloXcodebuildForApp.build (存放编译中间产物)
- |- Products
-     |- Debug-iphoneos
-     |   |- HelloXcodebuildForApp.app (单架构)
-     |- Release-iphones
-         |- HelloXcodebuildForApp.app (多结构)
-         |- HelloXcodebuildForApp.app.dSYM
-```
 
-scheme描述
+### （2）显示 build settings
 
-* -target \<target name\>    
-指定project下面需要编译哪个target，如果不指定，默认编译targets列表中的第一个target。
+Xcode的`-showBuildSettings`选项可以显示编译配置项。
 
-* -configuration \<build configuration\>    
-指定采用哪种build configuration（一般是Debug或者Release）编译target。
-
-* -showBuildSettings
+举个例子，如下
 
 ```
 Build settings for action build and target HelloXcodebuildForApp:
@@ -456,19 +436,48 @@ Build settings for action build and target HelloXcodebuildForApp:
     variant = normal
 ```
 
-上面比较常用的环境变量有
+上面比较常用的配置名有
 
-* CONFIGURATION，Debug或者Release
-* PROJECT_DIR，.xcodeproj文件所在的绝对路径
-* SRCROOT，和PROJECT_DIR一样的
-* PROJECT_NAME，和.xcodeproj文件名一致
-* TARGET\_TEMP\_DIR，编译时中间文件所在的文件夹路径
-* CURRENT\_ARCH，当前硬件架构，值有arm64、armv7、x86_64
+| 配置名            | 含义                                   |
+| ----------------- | -------------------------------------- |
+| CONFIGURATION     | Debug或者Release                       |
+| PROJECT_DIR       | .xcodeproj文件所在的绝对路径           |
+| SRCROOT           | 和PROJECT_DIR一样的                    |
+| PROJECT_NAME      | 和.xcodeproj文件名一致                 |
+| TARGET\_TEMP\_DIR | 编译时中间文件所在的文件夹路径         |
+| CURRENT\_ARCH     | 当前硬件架构，值有arm64、armv7、x86_64 |
 
-Xcode的环境变量，可以使用${var}或者$(var)取值。除了Xcode的<b>Build Settings</b>中使用上面的Xcode的环境变量，还可以使用inherited。
+说明
+
+> Xcode的环境变量，可以使用${var}或者$(var)取值。除了Xcode的<b>Build Settings</b>中使用上面的Xcode的环境变量，还可以使用inherited。
+
+
+
+
+
+
+
+## 2. 常用选项
+
+​           `xcodebuild`命令的选项非常多。常用选项，如下
+
+| 选项                                             | 含义                                                         | 示例                                                   |
+| ------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------ |
+| 选项为空                                         | 默认在当前目录下生成build文件夹，存放编译产物，采用Release build configuration |                                                        |
+| `-scheme <scheme name>`                          | 指定scheme后，build文件夹生成在DerivedData路径下。scheme和target只能同时指定一个 |                                                        |
+| `-target <target name>`                          | 指定project下面需要编译哪个target，如果不指定，默认编译targets列表中的第一个target |                                                        |
+| `-configuration <build configuration>`           | 指定采用哪种build configuration（一般是Debug或者Release）编译target |                                                        |
+| `-destination 'platform=<platform>,name=<name>'` | 指定目标设备[^2]，如果不指定则是真机设备                     | `-destination 'platform=iOS Simulator,name=iPhone XR'` |
+
+
+
+
+
+
 
 
 References
 --
 
-1. https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW38
+[^1]:https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW38
+[^2]: https://stackoverflow.com/a/34005020
