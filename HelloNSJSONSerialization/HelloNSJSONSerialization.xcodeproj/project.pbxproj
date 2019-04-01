@@ -18,7 +18,7 @@
 		4F70BC09203012BD0017C99B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F70BC07203012BD0017C99B /* LaunchScreen.storyboard */; };
 		4F70BC0C203012BD0017C99B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70BC0B203012BD0017C99B /* main.m */; };
 		4F70BC1520301C600017C99B /* WCJSONTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70BC1420301C600017C99B /* WCJSONTool.m */; };
-		4F70BC36203025CE0017C99B /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70BC35203025CE0017C99B /* Test.m */; };
+		4F70BC36203025CE0017C99B /* Test.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F70BC35203025CE0017C99B /* Test.mm */; };
 		4F71139B21A64FEE00DCB8FA /* data2.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F71139921A64FEE00DCB8FA /* data2.json */; };
 		4F71139C21A64FEE00DCB8FA /* data1.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F71139A21A64FEE00DCB8FA /* data1.json */; };
 		4F97EA2521B9239600921599 /* Human.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97EA2421B9239600921599 /* Human.m */; };
@@ -54,7 +54,7 @@
 		4F70BC1320301C600017C99B /* WCJSONTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCJSONTool.h; sourceTree = "<group>"; };
 		4F70BC1420301C600017C99B /* WCJSONTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCJSONTool.m; sourceTree = "<group>"; };
 		4F70BC33203025CE0017C99B /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F70BC35203025CE0017C99B /* Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
+		4F70BC35203025CE0017C99B /* Test.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Test.mm; sourceTree = "<group>"; };
 		4F70BC37203025CE0017C99B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F71139921A64FEE00DCB8FA /* data2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data2.json; sourceTree = "<group>"; };
 		4F71139A21A64FEE00DCB8FA /* data1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data1.json; sourceTree = "<group>"; };
@@ -141,7 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				4F71139821A64F7200DCB8FA /* Resources */,
-				4F70BC35203025CE0017C99B /* Test.m */,
+				4F70BC35203025CE0017C99B /* Test.mm */,
 				4F4588CB215CD56A005A52C8 /* Tests_NSJSONSerialization.m */,
 				4F70BC37203025CE0017C99B /* Info.plist */,
 				4F97EA2321B9239600921599 /* Human.h */,
@@ -278,7 +278,7 @@
 			files = (
 				4F97EA2521B9239600921599 /* Human.m in Sources */,
 				4F6938EA222FABDF0057BDFE /* WCJSONTool.m in Sources */,
-				4F70BC36203025CE0017C99B /* Test.m in Sources */,
+				4F70BC36203025CE0017C99B /* Test.mm in Sources */,
 				4F4588CC215CD56A005A52C8 /* Tests_NSJSONSerialization.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

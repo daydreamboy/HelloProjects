@@ -223,7 +223,7 @@
     NSLog(@"%@", object);
     
     // Case 3
-    JSONString = @"{\"feature\":{\"makeup\":\"false\",\"isVirtualRechargeItem\":\"false\",\"isDonateItem\":\"false\",\"bSeller\":\"true\",\"promotion2018\":\"true\",\"useMeiLiHuiPrice\":\"false\",\"o2O\":\"false\",\"showCommonBanner\":\"false\",\"tmall2018\":\"true\",\"sellCountAntiCreep\":\"true\",\"hideFavLink\":\"true\",\"nabundleItem\":\"false\",\"hasSku\":\"false\",\"bundleItem\":\"false\",\"taobao2018\":\"true\",\"hasCartRecommend\":\"false\",\"hasBrandScene\":\"false\",\"fmcgRecommend\":\"false\",\"superActTime\":\"false\",\"isXinxuan\":\"false\",\"notUseVip95CardBar\":\"false\",\"hasApparelIcon\":\"false\",\"openGradient\":\"true\",\"isCloudChanger\":\"false\",\"showshopRecommendItems\":\"true\",\"overSeaBuy\":\"false\",\"hasIntervalPrice\":\"true\",\"isDamai\":\"false\",\"waitForStart\":\"false\",\"newAddress\":\"true\",\"hideSMww\":\"false\",\"renovation\":\"false\",\"hasAddCartCoudan\":\"false\",\"showCuntaoTag\":\"true\",\"recommendReason\":\"false\",\"switchToOldApp\":\"false\",\"hideShopDsr\":\"false\",\"pricedCoupon\":\"false\",\"hasCoupon\":\"true\",\"buhuo\":\"false\",\"cainiaoNoramal\":\"true\",\"showNewPersonBag\":\"false\",\"showSku\":\"false\",\"showShopCard\":\"false\",\"showYaoDai\":\"false\",\"hideShareLink\":\"true\",\"showLiteAppRec\":\"false\",\"isCloudShopItem\":\"true\",\"showTmallApp\":\"false\",\"hasNewCombo\":\"false\",\"noShareGroup\":\"true\",\"hasAddTmallCartCoudan\":\"false\",\"useVip95CardStyle\":\"false\",\"multistage\":\"false\",\"hasQualification\":\"false\",\"isTspace\":\"false\",\"tmallAskAll\":\"true\",\"series\":\"false\",\"shareGroup\":\"false\",\"showSMww\":\"false\",\"includeSkuData\":\"true\"},\"trade\":{\"redirectUrl\":\"https:\/\/detail.m.tmall.com\/item.htm?id=587018648142&hybrid=true&ttid=201200@taobao_iphone_8.4.21.8765&\",\"buyEnable\":\"true\",\"cartEnable\":\"true\",\"cartParam\":{\"daogoubao_cloud_store_create\":\"1\",\"areaId\":\"330102\",\"o2o\":\"crm\",\"o2oShopId\":\"184261499\"},\"cartConfirmEnable\":\"true\",\"buyParam\":{\"daogoubao_cloud_store_create\":\"1\",\"areaId\":\"330102\",\"o2o\":\"crm\",\"o2oShopId\":\"184261499\"},\"useWap\":\"true\",\"tradeParams\":{},\"outerCartParam\":{\"cartFrom\":\"cloudstore\"},\"isWap\":\"false\",\"reason\":\"sugar:cloudshop\"},\"item\":{\"itemId\":\"587018648142\",\"title\":\"mj测试商品请不要拍D 自定义运费\",\"titleIcon\":\"\/\/img.alicdn.com\/tfs\/TB1SMG7nnvI8KJjSspjXXcgjXXa-78-36.png?getAvatar=avatar\",\"descType\":\"0\",\"infoText\":{},\"videos\":[],\"showShopActivitySize\":\"2\"},\"buyer\":{\"tmallMemberLevel\":\"0\"},\"price\":{\"price\":{\"priceText\":\"11.11\",\"priceTitle\":\"导购专属价\",\"showTitle\":\"true\",\"sugProm\":\"false\"},\"transmitPrice\":{\"priceText\":\"11.11\",\"priceTitle\":\"导购专属价\",\"showTitle\":\"true\",\"sugProm\":\"false\"},\"shopPromTitle\":\"促销\"},\"consumerProtection\":{\"channel4X\":{},\"passValue\":\"none\",\"items\":[]},\"resource\":{\"bonusData\":{\"linkUrl\":\"https:\/\/pages.tmall.com\/wow\/malldetail\/act\/detail-quan?wh_weex=true&wh_biz=tm\",\"shopcoupon\":{\"icon\":\"https:\/\/gw.alicdn.com\/tfs\/TB1VvTrtgmTBuNjy1XbXXaMrVXa-189-45.png?getAvatar=avatar\",\"title\":\"满100减10;满200减20\",\"iconText\":\"店铺优惠券\",\"useHuaBian\":\"true\",\"bgColor\":\"yellow\",\"bgImage\":\"https:\/\/gw.alicdn.com\/tfs\/TB1quYwk9tYBeNjSspkXXbU8VXa-145-32.png\"},\"linkWriting\":\"领券\"},\"entrances\":{\"cloudShopStoreInfo\":{\"icon\":\"https:\/\/img.alicdn.com\/tfs\/TB1UncZmXuWBuNjSspnXXX1NVXa-120-120.png\",\"text\":\"浙江省台州市椒江区浙江台州椒江洪家泰隆银行斜对面\",\"link\":\"http:\/\/market.m.taobao.com\/apps\/market\/brandshopdetail\/index.html?wh_weex=true&sellerId=2649119619&shopId=184261499\",\"linkText\":\"查看门店\",\"title\":\"婴缘坊洪家店(旷才)\"}},\"entrancesBizsContent\":\"\",\"share\":{\"name\":\"分享\",\"iconType\":\"1\",\"params\":{\"iconFont\":\"ꄪ\",\"iconColor\":\"#999999\"}},\"bonus\":{\"linkUrl\":\"https:\/\/pages.tmall.com\/wow\/malldetail\/act\/detail-quan?wh_weex=true&wh_biz=tm\",\"shopcoupon\":{\"icon\":\"https:\/\/gw.alicdn.com\/tfs\/TB1VvTrtgmTBuNjy1XbXXaMrVXa-189-45.png?getAvatar=avatar\",\"title\":\"满100减10;满200减20\",\"iconText\":\"店铺优惠券\",\"useHuaBian\":\"true\",\"bgColor\":\"yellow\",\"bgImage\":\"https:\/\/gw.alicdn.com\/tfs\/TB1quYwk9tYBeNjSspkXXbU8VXa-145-32.png\"},\"linkWriting\":\"领券\"},\"promsCalcInfo\":{\"cheapestMoney\":\"1111\",\"hasCoupon\":\"true\",\"needReqCouDan\":\"false\"},\"redpacketList\":[]},\"vertical\":{\"cuntao\":{\"slogan\":\"农村淘宝，好货到村\"},\"askAll\":{\"linkUrl\":\"\/\/h5.m.taobao.com\/wendajia\/question2017.html?refId=587018648142\",\"questNum\":\"0\",\"title\":\"问大家\",\"askIcon\":\"https:\/\/img.alicdn.com\/tps\/TB1tVU6PpXXXXXFaXXXXXXXXXXX-102-60.png\",\"askText\":\"宝贝好不好，问问已买的人\"},\"freshFood\":{\"nationalFlag\":\"\/\/g.alicdn.com\/mui\/flag-img\/circle@2x\/CN.png\"}},\"delivery\":{\"to\":\"上城区\",\"areaSell\":\"false\",\"areaId\":\"330102\",\"from\":\"北京\",\"completedTo\":\"浙江省 杭州市 上城区\",\"addressWeexUrl\":\"\/\/market.m.taobao.com\/apps\/market\/detailrax\/address-picker.html?spm=a2116h.app.0.0.16d957e9nDYOzv&wh_weex=true\",\"overseaContraBandFlag\":\"false\",\"postage\":\"快递: 9.9\"},\"skuCore\":{\"skuItem\":{\"showAddress\":\"false\",\"hideQuantity\":\"true\",\"location\":\"上城区\"},\"sku2info\":{\"0\":{\"price\":{\"priceMoney\":\"1111\",\"priceText\":\"11.11\",\"showTitle\":\"false\",\"sugProm\":\"false\"},\"quantity\":\"11\"}}},\"skuVertical\":{},\"debugData\":{},\"params\":{\"trackParams\":{\"shop_id\":\"130963546\",\"bizParams\":\"shopCouPon_current,taobaoShopRecommend_test,interaction_bar_contrast,video_flow_contrast\",\"detailabtestdetail\":\"5154_4504.7210_5409.7590_6343.4551_2235\"},\"aliAbTestTrackParams\":{\"mainPicVideo\":\"[{\\\"abtest\\\":\\\"4551_2235\\\",\\\"component\\\":\\\"item\\\",\\\"releaseId\\\":4551,\\\"module\\\":\\\"videos\\\",\\\"cm\\\":\\\"item_videos\\\",\\\"bucketId\\\":2235,\\\"trackConfigs\\\":\\\"[]\\\"}]\"}},\"traceDatas\":{\"dinamic+TB_detail_ask_all_two_questions\":{\"module\":\"tb_detail_ask_all_two_questions\"},\"dinamic+TB_detail_brand_info\":{\"module\":\"tb_detail_brand_info\"},\"dinamic+TB_detail_endorsement\":{\"module\":\"tb_detail_endorsement\"},\"dinamic+TB_detail_tip_presale\":{\"module\":\"tb_detail_tip_presale\"},\"dinamic+TB_detail_subInfo_superMarket\":{\"module\":\"tb_detail_subInfo_superMarket\"},\"dinamic+TB_detail_ask_all_no_question\":{\"module\":\"tb_detail_ask_all_no_question\"},\"dinamic+TB_detail_kernel_params\":{\"module\":\"tb_detail_kernel_params\"},\"dinamic_o2o+TB_detail_o2o\":{\"module\":\"TB_detail_o2o\"},\"dinamic+TB_detail_subInfo_jhs_normal\":{\"module\":\"tb_detail_subInfo_jhs_normal\"},\"dinamic+TB_detail_new_person_bag_banner\":{\"module\":\"tb_detail_new_person_bag_banner\"},\"dinamic+TB_detail_title_tmallMarket\":{\"module\":\"tb_detail_title_tmallMarket\"},\"dinamic+TB_detail_buyer_photo\":{\"module\":\"tb_detail_buyer_photo\"},\"dinamic+TB_detail_subInfo_preSellForTaobaoB\":{\"module\":\"tb_detail_subInfo_preSellForTaobaoB\"},\"dinamic+TB_detail_title_xinxuan\":{\"module\":\"tb_detail_title_xinxuan\"},\"dinamic+TB_detail_subInfo_preSellForTaobaoC\":{\"module\":\"tb_detail_subInfo_preSellForTaobaoC\"},\"dinamic+TB_detail_tmallfeature\":{\"module\":\"tb_detail_tmallfeature\"},\"dinamic+TB_detail_sub_logistics\":{\"module\":\"tb_detail_sub_logistics\"},\"dinamic+TB_detail_price_coupon\":{\"module\":\"tb_detail_price_coupon\"},\"dinamic+TB_detail_coupon\":{\"module\":\"tb_detail_coupon\"},\"dinamic+TB_detail_tip_presale2\":{\"module\":\"tb_detail_tip_presale2\"},\"dinamic+TB_detail_tip_price\":{\"module\":\"tb_detail_tip_price\"},\"dinamic+TB_detail_delivery\":{\"module\":\"tb_detail_delivery\"},\"dinamic+TB_detail_ship_time\":{\"module\":\"tb_detail_ship_time\"},\"dinamic+TB_detail_ask_all_aliMedical\":{\"module\":\"tb_detail_ask_all_aliMedical\"},\"dinamic+TB_detail_priced_coupon\":{\"module\":\"tb_detail_priced_coupon\"},\"dinamic+TB_detail_tax\":{\"module\":\"tb_detail_tax\"},\"dinamic+TB_detail_comment_empty\":{\"module\":\"tb_detail_comment_empty\"},\"dinamic+TB_detail_logistics\":{\"module\":\"tb_detail_logistics\"}},\"otherInfo\":{\"bucketId\":\"9\",\"systemTime\":\"1551150866304\"},\"hybrid\":{\"shopRecommendItems\":{\"url\":\"http:\/\/market.m.taobao.com\/apps\/market\/detailrax\/recommend-shop-bigpage.html?spm=a2116h.app.0.0.16d957e9U9efo0&wh_weex=true&selfRmdFlag=true&itemId=587018648142&sellerId=2649119619&detail_v=3.1.8\",\"height\":\"445\",\"hasSyncTask\":\"true\"}},\"extendedData\":{},\"layout\":{\"config\":{\"dependComponentConfigID\":\"TB1zppArcuYBuNkSmRyhA3A3pXa\",\"dependActionConfigID\":\"TB14S4Gi4SYBuNjSsphhA2GvVXa\",\"dependThemeConfigID\":\"TB1ElVHmKuSBuNjSszihA2q8pXa\"},\"hierarchyData\":{\"hierarchy\":{\"root\":\"detail\",\"structure\":{\"detailHome\":[\"detailInfo\",\"divisionDesc\",\"detailDesc\",\"divisionDescRecmd\",\"descRecmd\",\"divisionEnd\"],\"detail\":[\"navibar\",\"detailHome\"],\"naviTabs\":[\"naviTabInfo\",\"naviTabRate\",\"naviTabDesc\",\"naviTabDescRecmd\"],\"navibar\":[\"naviItemLeft\",\"naviItemCenter\",\"naviItemCustom\",\"naviItemRight\",\"naviTabs\"]}},\"components\":{\"naviItemCenter\":{\"name\":\"naviItemCenter\",\"type\":\"detailNaviItem\",\"payload\":{\"accessHint\":\"图片\",\"positionKey\":\"center\",\"value\":\"${item.images[0]}\",\"itemType\":\"2\"},\"actions\":[\"naviShowBigPic\",\"utNaviShowBigPic\"]},\"naviItemCustom\":{\"name\":\"naviItemCustom\",\"type\":\"detailNaviItem\",\"payload\":{\"accessHint\":\"购物车\",\"positionKey\":\"custom\",\"value\":\"ꁍ\",\"titleSizeRatio\":\"0.375\"},\"actions\":[\"utGotoCart\",\"openPageCart\"]},\"divisionDescRecmd\":{\"name\":\"divisionDescRecmd\",\"type\":\"division\",\"payload\":{\"iconUrl\":\"\/\/img.alicdn.com\/tps\/TB1PGyPOVXXXXa8aXXXXXXXXXXX\",\"height\":\"5\",\"displayType\":\"gone\",\"bgcolor\":\"0xf4f4f4\"},\"locatorId\":\"divisionDescRecmd\"},\"naviTabInfo\":{\"name\":\"naviTabInfo\",\"type\":\"detailNaviTabItem\",\"payload\":{\"iconUrl\":\"\/\/img.alicdn.com\/tps\/TB1ZGAeOFXXXXa6XXXXXXXXXXXX\",\"title\":\"宝贝\"},\"actions\":[\"gotoDetailInfo\",\"utClickDetailInfo\"],\"style\":\"tab\"},\"detailHome\":{\"name\":\"detailHome\",\"type\":\"detailHome\",\"locatorId\":\"detailHome\"},\"detailInfo\":{\"name\":\"detailInfo\",\"type\":\"detailInfo\",\"locatorId\":\"detailInfo\"},\"divisionEnd\":{\"name\":\"divisionEnd\",\"type\":\"division\",\"payload\":{\"title\":\"已经到底了\",\"displayType\":\"text\",\"fgcolor\":\"0x999999\"}},\"naviTabDescRecmd\":{\"name\":\"naviTabDescRecmd\",\"type\":\"detailNaviTabItem\",\"payload\":{\"iconUrl\":\"\/\/img.alicdn.com\/tps\/TB1ZGAeOFXXXXa6XXXXXXXXXXXX\",\"title\":\"推荐\"},\"actions\":[\"gotoDescRecommend\",\"utClickDescRecommend\"],\"style\":\"tab\"},\"naviTabs\":{\"name\":\"naviTabs\",\"type\":\"detailNaviTabs\"},\"navibar\":{\"name\":\"navibar\",\"type\":\"detailNavibar\"},\"naviItemLeft\":{\"name\":\"naviItemLeft\",\"type\":\"detailNaviItem\",\"payload\":{\"accessHint\":\"返回\",\"positionKey\":\"left\",\"value\":\"ꁽ\",\"titleSizeRatio\":\"0.375\",\"secondActions\":[{\"type\":\"go_detail_home\",\"eventToken\":\"${eventToken}\",\"domain\":\"detail\"}]},\"actions\":[\"gotoPreviewPage\"]},\"detailDesc\":{\"name\":\"detailDesc\",\"type\":\"detailDesc\",\"payload\":{\"userId\":\"${seller.userId}\",\"shopId\":\"${seller.shopId}\",\"itemId\":\"${item.itemId}\",\"moduleDescParams\":\"${item.moduleDescParams}\",\"taobaoDescUrl\":\"${item.taobaoDescUrl}\",\"taobaoPcDescUrl\":\"${item.taobaoPcDescUrl}\"},\"actions\":[\"utExposureDetailDesc\"],\"style\":\"detailDesc\"},\"naviTabRate\":{\"name\":\"naviTabRate\",\"type\":\"detailNaviTabItem\",\"payload\":{\"iconUrl\":\"\/\/img.alicdn.com\/tps\/TB1ZGAeOFXXXXa6XXXXXXXXXXXX\",\"title\":\"评价\",\"pageName\":\"Page_DetailComments\",\"secondActions\":[{\"type\":\"goto_rate_top\",\"eventToken\":\"${eventToken}\",\"domain\":\"detail\"}]},\"actions\":[\"gotoDetailRate\",\"utClickDetailRate\",\"utExposureDetailRate\"],\"style\":\"tab\"},\"divisionDesc\":{\"name\":\"divisionDesc\",\"type\":\"division\",\"payload\":{\"iconUrl\":\"\",\"title\":\"宝贝详情\",\"displayType\":\"text\",\"fgcolor\":\"0x666666\"},\"locatorId\":\"divisionDesc\"},\"naviTabDesc\":{\"name\":\"naviTabDesc\",\"type\":\"detailNaviTabItem\",\"payload\":{\"iconUrl\":\"\/\/img.alicdn.com\/tps\/TB1ZGAeOFXXXXa6XXXXXXXXXXXX\",\"title\":\"详情\"},\"actions\":[\"gotoDetailDesc\",\"utClickDetailDesc\"],\"style\":\"tab\"},\"descRecmd\":{\"name\":\"descRecmd\",\"type\":\"descRecmd\",\"payload\":{\"userId\":\"${seller.userId}\",\"itemId\":\"${item.itemId}\"},\"actions\":[\"utExposureDescRecommend\"],\"style\":\"shopRecommend\"},\"detail\":{\"name\":\"detail\",\"type\":\"detail\"},\"naviItemRight\":{\"name\":\"naviItemRight\",\"type\":\"detailNaviItem\",\"payload\":{\"accessHint\":\"更多\",\"positionKey\":\"right\",\"value\":\"ꁭ\",\"titleSizeRatio\":\"0.375\"},\"actions\":[\"showMenu\"]}},\"actions\":{\"utClickDetailInfo\":{\"type\":\"user_track\",\"event\":\"click\",\"params\":{\"trackNamePre\":\"Button-\",\"trackName\":\"GotoDetailHome\"}},\"openPageCartForInter\":{\"type\":\"open_url\",\"params\":{\"urlParams\":{\"itemId\":\"${item.itemId}\",\"cartfrom\":\"detail\"},\"url\":\"https:\/\/pages.tmall.com\/wow\/trade\/act\/cart?wh_weex=true\"}},\"utExposureDetailRate\":{\"type\":\"ut_exposure\",\"params\":{\"spm\":\"a2141.7631564.2737664\",\"trackPage\":\"Page_Detail_Show_Detail\"}},\"utExposureDescRecommend\":{\"type\":\"ut_exposure\",\"params\":{\"spm\":\"a2141.7631564.2737766\",\"trackPage\":\"Page_Detail_Show_Recommend\"}},\"openPageSearch\":{\"type\":\"open_url\",\"params\":{\"urlParams\":{\"tpId\":\"${vertical.supermarket.tpId}\",\"cartfrom\":\"tmall_supermarket\"},\"url\":\"https:\/\/s.m.tmall.com\/m\/searchbar.htm\"}},\"utGotoCart\":{\"type\":\"user_track\",\"params\":{\"trackNamePre\":\"Button-\",\"trackName\":\"ShoppingCart\"}},\"utClickDetailDesc\":{\"type\":\"user_track\",\"event\":\"click\",\"params\":{\"trackNamePre\":\"Button-\",\"trackName\":\"GotoDetailDesc\"}},\"naviShowBigPic\":{\"type\":\"show_big_pic\"},\"utClickDescRecommend\":{\"type\":\"user_track\",\"event\":\"click\",\"params\":{\"trackNamePre\":\"Button-\",\"trackName\":\"GotoShopRecommend\"}},\"gotoDetailRate\":{\"type\":\"locator\",\"event\":\"click\",\"params\":{\"locatorId\":\"divisionRate\"}},\"gotoUserTalk\":{\"type\":\"locator\",\"event\":\"click\",\"params\":{\"locatorId\":\"userSay\"}},\"gotoDescRecommend\":{\"type\":\"locator\",\"event\":\"click\",\"params\":{\"locatorId\":\"divisionDescRecmd\"}},\"utClickDetailRate\":{\"type\":\"user_track\",\"event\":\"click\",\"params\":{\"trackNamePre\":\"Button-\",\"trackName\":\"GotoDetailRate\"}},\"showMenu\":{\"type\":\"show_menu\"},\"utNaviShowBigPic\":{\"type\":\"user_track\",\"params\":{\"trackNamePre\":\"Button-\",\"trackName\":\"NaviShowBigPic\"}},\"utExposureDetailDesc\":{\"type\":\"ut_exposure\",\"params\":{\"spm\":\"a2141.7631564.1999077549\",\"trackPage\":\"Page_Detail_Show_ProductDetail\",\"scm\":\"\"}},\"openPageCart\":{\"type\":\"open_url\",\"params\":{\"urlParams\":{\"itemId\":\"${item.itemId}\",\"cartfrom\":\"detail\"},\"url\":\"https:\/\/h5.m.taobao.com\/awp\/base\/cart.htm\"}},\"gotoPreviewPage\":{\"type\":\"go_back\"},\"utGotoSearch\":{\"type\":\"user_track\",\"params\":{\"trackParams\":{\"tpId\":\"${vertical.supermarket.tpId}\"},\"trackNamePre\":\"Button-\",\"trackName\":\"Search\"}},\"gotoDetailInfo\":{\"type\":\"locator\",\"event\":\"click\",\"params\":{\"locatorId\":\"detailInfo\"}},\"gotoDetailDesc\":{\"type\":\"locator\",\"event\":\"click\",\"params\":{\"locatorId\":\"divisionDesc\"}}}},\"detailTemplateData\":{\"homePage\":[{\"key\":\"navi_bar\",\"ruleId\":\"\",\"id\":\"navi_bar\",\"ID\":\"navi_bar\"},{\"key\":\"pic_gallery\",\"ruleId\":\"\",\"id\":\"pic_gallery\",\"ID\":\"pic_gallery\"},{\"key\":\"sys_list\",\"ruleId\":\"\",\"children\":[{\"key\":\"dinamic\",\"ruleId\":\"TB_detail_cloud_brand_info\"},{\"key\":\"uniform_price\",\"ruleId\":\"TB_default\"},{\"key\":\"dinamic\",\"ruleId\":\"TB_detail_cloud_title_normal\"},{\"key\":\"dinamic\",\"ruleId\":\"TB_detail_brand_info\"},{\"key\":\"dinamic\",\"ruleId\":\"TB_detail_title_tmallMarket\"},{\"key\":\"dinamic\",\"ruleId\":\"TB_detail_title_xinxuan\"},{\"key\":\"dinamic\",\"ruleId\":\"TB_detail_kernel_params\"},{\"key\":\"dinamic\",\"ruleId\":\"TB_detail_barley\"},{\"key\":\"dinamic\",\"ruleId\":\"TB_detail_subInfo_default\"},{\"key\":\"dinamic\",\"ruleId\":\"TB_detail_logistics\"},{\"key\":\"dinamic\",\"ruleId\":\"TB_detail_product_props\"},{\"key\":\"dinamic\",\"ruleId\":\"TB_detail_cloud_shop\"}],\"id\":\"main_layout\",\"ID\":\"main_layout\"},{\"key\":\"bottom_bar\",\"ruleId\":\"TB_cloud_shop\",\"id\":\"bottom_bar\",\"ID\":\"bottom_bar\"}]}},\"modules\":[],\"rate\":{}}";
+    JSONString = @"{\"delivery\":{},\"trade\":{\"buyEnable\":true,\"cartEnable\":true},\"feature\":{},\"price\":{\"price\":{\"priceText\":\"0.01\"}},\"skuCore\":{\"sku2info\":{\"0\":{\"price\":{\"priceMoney\":1,\"priceText\":\"0.01\",\"priceTitle\":\"价格\"},\"quantity\":100}},\"skuItem\":{\"hideQuantity\":true}}}";
     object = [WCJSONTool JSONObjectWithString:JSONString options:NSJSONReadingAllowFragments objectClass:nil];
     XCTAssertTrue([object isKindOfClass:[NSDictionary class]]);
     NSLog(@"%@", object);
@@ -813,6 +813,7 @@
 - (void)test_literalStringWithJSONObject_startIndentLength_indentLength_ordered {
     id JSONObject;
     NSString *output;
+    NSString *expected;
     
     // Case 1
     JSONObject = @{
@@ -833,7 +834,24 @@
     output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:0 indentLength:2 ordered:NO];
     printf("%s\n", [output UTF8String]);
     printf("----------------------------------\n");
-    
+    expected = @""
+R"(@{
+  @"bool" : @YES,
+  @"num" : @(3),
+  @"float" : @(3.14),
+  @"dict" : @{
+    @"key" : @"value",
+    @"another dict" : @{
+      @"k" : @{
+        @"kk" : @"vv"
+      }
+    }
+  },
+  @"null" : [NSNull null],
+  @"str" : @"a"
+})";
+    XCTAssertEqualObjects(output, expected);
+
     // Case 2
     JSONObject = @{
                    @"arr": @[
@@ -851,7 +869,22 @@
     output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:2 indentLength:4 ordered:YES];
     printf("%s\n", [output UTF8String]);
     printf("----------------------------------\n");
-    
+    expected = @""
+R"(  @{
+      @"arr" : @[
+          @"a",
+          @(3),
+          @(3.14),
+          [NSNull null],
+          @YES,
+          @[
+              @"b",
+              @(4)
+          ]
+      ]
+  })";
+    XCTAssertEqualObjects(output, expected);
+
     // Case 3
     JSONObject = @[
                    @"a",
@@ -872,7 +905,25 @@
     output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:0 indentLength:4 ordered:YES];
     printf("%s\n", [output UTF8String]);
     printf("----------------------------------\n");
-    
+    expected = @""
+R"(@[
+    @"a",
+    @(3),
+    @(3.14),
+    [NSNull null],
+    @YES,
+    @[
+        @"b",
+        @(4)
+    ],
+    @{
+        @"dict" : @{
+            @"key" : @"value"
+        }
+    }
+])";
+    XCTAssertEqualObjects(output, expected);
+
     // Case 4
     JSONObject = @[
                    @"a",
@@ -894,30 +945,56 @@
     output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:0 indentLength:4 ordered:YES];
     printf("%s\n", [output UTF8String]);
     printf("----------------------------------\n");
-    
+    expected = @""
+R"(@[
+    @"a",
+    @(3),
+    @(3.14),
+    [NSNull null],
+    @YES,
+    @[
+        @"b",
+        @(4),
+        @[
+            @"c",
+            @[
+                @"d"
+            ]
+        ]
+    ]
+])";
+
     // Case 5
     JSONObject = @3.14;
     output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:0 indentLength:4 ordered:YES];
     printf("%s\n", [output UTF8String]);
     printf("----------------------------------\n");
+    expected = @R"(@(3.14))";
+    XCTAssertEqualObjects(output, expected);
     
     // Case 6
     JSONObject = @"string";
     output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:0 indentLength:4 ordered:YES];
     printf("%s\n", [output UTF8String]);
     printf("----------------------------------\n");
+    expected = @R"(@"string")";
+    XCTAssertEqualObjects(output, expected);
     
     // Case 7
     JSONObject = @YES;
     output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:0 indentLength:4 ordered:YES];
     printf("%s\n", [output UTF8String]);
     printf("----------------------------------\n");
+    expected = @R"(@YES)";
+    XCTAssertEqualObjects(output, expected);
     
     // Case 8
     JSONObject = [NSNull null];
     output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:0 indentLength:4 ordered:YES];
     printf("%s\n", [output UTF8String]);
     printf("----------------------------------\n");
+    expected = @R"([NSNull null])";
+    XCTAssertEqualObjects(output, expected);
     
     // Abnormal Case 1
     JSONObject = @[
@@ -927,6 +1004,11 @@
     output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:0 indentLength:2 ordered:YES];
     printf("%s\n", [output UTF8String]);
     printf("----------------------------------\n");
+    expected = @""
+R"(@[
+  @"a"
+])";
+    XCTAssertEqualObjects(output, expected);
     
     // Abnormal Case 2
     JSONObject = @[
@@ -936,6 +1018,11 @@
     output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:0 indentLength:2 ordered:YES];
     printf("%s\n", [output UTF8String]);
     printf("----------------------------------\n");
+    expected = @""
+R"(@[
+
+])";
+    XCTAssertEqualObjects(output, expected);
     
     // Abnormal Case 3
     JSONObject = @{
@@ -946,6 +1033,11 @@
     output = [WCJSONTool literalStringWithJSONObject:JSONObject startIndentLength:0 indentLength:2 ordered:YES];
     printf("%s\n", [output UTF8String]);
     printf("----------------------------------\n");
+    expected = @""
+R"(@{
+  @"key" : @"value"
+})";
+    XCTAssertEqualObjects(output, expected);
     
     // Abnormal Case 4
     JSONObject = [NSDate date];
@@ -953,6 +1045,7 @@
     XCTAssertNil(output);
     printf("%s\n", [output UTF8String]);
     printf("----------------------------------\n");
+    XCTAssertNil(output);
 }
 
 #pragma mark - Internal Testing
