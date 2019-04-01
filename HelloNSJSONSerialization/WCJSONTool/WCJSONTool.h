@@ -56,15 +56,10 @@ NS_AVAILABLE_IOS(5_0)
 
 #pragma mark - String to Object
 
-#pragma mark > to NSDictionary/NSArray
+#pragma mark > to NSDictionary/NSArray (also mutable version)
 
-+ (nullable NSArray *)JSONArrayWithString:(NSString *)string;
-+ (nullable NSDictionary *)JSONDictWithString:(NSString *)string;
-
-#pragma mark > to NSMutableDictionary/NSMutableArray
-
-+ (nullable NSMutableDictionary *)JSONMutableDictWithString:(NSString *)JSONString;
-+ (nullable NSMutableArray *)JSONMutableArrayWithString:(NSString *)JSONString;
++ (nullable NSArray *)JSONArrayWithString:(NSString *)string allowMutable:(BOOL)allowMutable;
++ (nullable NSDictionary *)JSONDictWithString:(NSString *)string allowMutable:(BOOL)allowMutable;
 
 #pragma mark > to id
 
@@ -81,15 +76,10 @@ NS_AVAILABLE_IOS(5_0)
 
 #pragma mark - Data to Object
 
-#pragma mark > to NSDictionary/NSArray
+#pragma mark > to NSDictionary/NSArray (also mutable version)
 
-+ (nullable NSDictionary *)JSONDictWithData:(NSData *)data;
-+ (nullable NSArray *)JSONArrayWithData:(NSData *)data;
-
-#pragma mark > to NSMutableDictionary/NSMutableArray
-
-+ (nullable NSMutableDictionary *)JSONMutableDictWithData:(NSData *)data;
-+ (nullable NSMutableArray *)JSONMutableArrayWithData:(NSData *)data;
++ (nullable NSDictionary *)JSONDictWithData:(NSData *)data allowMutable:(BOOL)allowMutable;
++ (nullable NSArray *)JSONArrayWithData:(NSData *)data allowMutable:(BOOL)allowMutable;
 
 #pragma mark > to id
 

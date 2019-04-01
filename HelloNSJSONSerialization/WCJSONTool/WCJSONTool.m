@@ -109,22 +109,22 @@
 
 #pragma mark > to NSDictionary/NSArray
 
-+ (nullable NSArray *)JSONArrayWithString:(NSString *)string {
-    return [self JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions objectClass:[NSArray class]];
++ (nullable NSArray *)JSONArrayWithString:(NSString *)string allowMutable:(BOOL)allowMutable {
+    if (allowMutable) {
+        return [self JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers objectClass:[NSMutableDictionary class]];
+    }
+    else {
+        return [self JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions objectClass:[NSArray class]];
+    }
 }
 
-+ (nullable NSDictionary *)JSONDictWithString:(NSString *)string {
-    return [self JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions objectClass:[NSDictionary class]];
-}
-
-#pragma mark > to NSMutableDictionary/NSMutableArray
-
-+ (nullable NSMutableDictionary *)JSONMutableDictWithString:(NSString *)string {
-    return [self JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers objectClass:[NSMutableDictionary class]];
-}
-
-+ (nullable NSMutableArray *)JSONMutableArrayWithString:(NSString *)string {
-    return [self JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers objectClass:[NSMutableArray class]];
++ (nullable NSDictionary *)JSONDictWithString:(NSString *)string allowMutable:(BOOL)allowMutable {
+    if (allowMutable) {
+        return [self JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers objectClass:[NSMutableArray class]];
+    }
+    else {
+        return [self JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions objectClass:[NSDictionary class]];
+    }
 }
 
 #pragma mark > to id
@@ -137,22 +137,22 @@
 
 #pragma mark > to NSDictionary/NSArray
 
-+ (nullable NSDictionary *)JSONDictWithData:(NSData *)data {
-    return [self JSONObjectWithData:data options:kNilOptions objectClass:[NSDictionary class]];
++ (nullable NSDictionary *)JSONDictWithData:(NSData *)data allowMutable:(BOOL)allowMutable {
+    if (allowMutable) {
+        return [self JSONObjectWithData:data options:NSJSONReadingMutableContainers objectClass:[NSMutableDictionary class]];
+    }
+    else {
+        return [self JSONObjectWithData:data options:kNilOptions objectClass:[NSDictionary class]];
+    }
 }
 
-+ (nullable NSArray *)JSONArrayWithData:(NSData *)data {
-    return [self JSONObjectWithData:data options:kNilOptions objectClass:[NSArray class]];
-}
-
-#pragma mark > to NSMutableDictionary/NSMutableArray
-
-+ (nullable NSMutableDictionary *)JSONMutableDictWithData:(NSData *)data {
-    return [self JSONObjectWithData:data options:NSJSONReadingMutableContainers objectClass:[NSMutableDictionary class]];
-}
-
-+ (nullable NSMutableArray *)JSONMutableArrayWithData:(NSData *)data {
-    return [self JSONObjectWithData:data options:NSJSONReadingMutableContainers objectClass:[NSMutableArray class]];
++ (nullable NSArray *)JSONArrayWithData:(NSData *)data allowMutable:(BOOL)allowMutable {
+    if (allowMutable) {
+        return [self JSONObjectWithData:data options:NSJSONReadingMutableContainers objectClass:[NSMutableArray class]];
+    }
+    else {
+        return [self JSONObjectWithData:data options:kNilOptions objectClass:[NSArray class]];
+    }
 }
 
 #pragma mark > to id

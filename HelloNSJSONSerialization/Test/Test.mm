@@ -183,7 +183,7 @@
              @"key": @"中文汉字"
              };
     jsonString = [WCJSONTool JSONStringWithObject:dict printOptions:kNilOptions];
-    dictM = [WCJSONTool JSONMutableDictWithString:jsonString];
+    dictM = (NSMutableDictionary *)[WCJSONTool JSONDictWithString:jsonString allowMutable:YES];
     XCTAssertTrue([dictM isKindOfClass:[NSMutableDictionary class]]);
     NSLog(@"mutuable dictionary: %@", dictM);
     
@@ -193,7 +193,7 @@
                              {"api":"mtop.taobao.amp2.im.msgAction","v":"1.0","needecode":true,"needsession":true,"params":{"sessionViewId":"0_U_1956212549#3_2554606548#3_1_1956212549#3","msgCode":"0_U_2554606548_1956212549_1539096778077_185571796986","map":{"op":"like"}}}
                              );
     
-    dictM = [WCJSONTool JSONMutableDictWithString:jsonString];
+    dictM = (NSMutableDictionary *)[WCJSONTool JSONDictWithString:jsonString allowMutable:YES];
     XCTAssertTrue([dictM isKindOfClass:[NSMutableDictionary class]]);
     NSLog(@"mutuable dictionary: %@", dictM);
 }
@@ -311,7 +311,7 @@
     string = @"wangx://menu/present/template?container=dialog&body={\"template\":{\"data\":{\"text\":\"http://www.taobao.com\"},\"id\":20001},\"header\":{\"title\":\"标题\"}}";
     
     NSString *JSONString = [NSString stringWithFormat:@"{\"action\": \"%@\" }", [WCJSONTool JSONEscapedStringWithString:string]];
-    NSDictionary *dict = [WCJSONTool JSONDictWithString:JSONString];
+    NSDictionary *dict = [WCJSONTool JSONDictWithString:JSONString allowMutable:NO];
     XCTAssertEqualObjects(dict[@"action"], string);
     
     // Case 3
