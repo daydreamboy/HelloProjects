@@ -270,11 +270,21 @@ R"JSON([
     NSLog(@"%@", output);
 }
 
-#pragma mark > Runtime
+#pragma mark - Runtime
+
+#pragma mark > Classes
 
 - (void)test_allClasses {
     NSArray<NSString *> *allClasses = [WCObjectTool allClasses];
     NSLog(@"%@", allClasses);
+}
+
+- (void)test_propertiesWithClass {
+    NSArray<NSString *> *output;
+    
+    // Case 1
+    output = [WCObjectTool propertiesWithClass:[NSString class]];
+    NSLog(@"%@", output);
 }
 
 @end

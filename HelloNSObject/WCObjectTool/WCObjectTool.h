@@ -31,9 +31,31 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSString *)dumpedStringWithObject:(NSObject *)object;
 
-#pragma mark > Runtime
+#pragma mark - Runtime
+
+#pragma mark > Classes
 
 + (NSArray<NSString *> *)allClasses;
+
+#pragma mark > Properties
+
+/**
+ Get all properties of the class
+
+ @param clz the class
+ @return the property string array.
+ @discussion the property string format is `@property (modifier1, modifier2, ...) type property_name`, e.g. @property (atomic, copy, readonly) NSString* description
+ */
++ (nullable NSArray<NSString *> *)propertiesWithClass:(Class)clz;
+
+/**
+ Get all properties of the instance
+
+ @param instance the object
+ @return the property string array.
+ @discussion see +[WCObjectTool propertiesWithClass:] for detail.
+ */
++ (nullable NSArray<NSString *> *)propertiesWithInstance:(id)instance;
 
 @end
 
