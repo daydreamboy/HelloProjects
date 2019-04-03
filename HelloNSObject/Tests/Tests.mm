@@ -287,4 +287,20 @@ R"JSON([
     NSLog(@"%@", output);
 }
 
+- (void)test_ivarsWithClass {
+    NSArray<NSString *> *output;
+    
+    // Case 1
+    output = [WCObjectTool ivarsWithClass:[NSString class]];
+    NSLog(@"%@", output);
+    XCTAssertNil(output);
+    
+    // Case 2
+    output = [WCObjectTool ivarsWithClass:[Person class]];
+    NSLog(@"%@", output);
+    XCTAssertTrue(output.count == 1);
+    XCTAssertEqualObjects(output[0], @"NSString* _name");
+}
+
+
 @end

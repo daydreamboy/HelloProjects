@@ -147,7 +147,7 @@ static NSString * JSONEscapedStringFromString(NSString *string) {
 
 #pragma mark - Runtime
 
-#pragma mark > Classes
+#pragma mark > Class
 
 + (NSArray<NSString *> *)allClasses {
     unsigned int classesCount;
@@ -160,7 +160,7 @@ static NSString * JSONEscapedStringFromString(NSString *string) {
 }
 
 
-#pragma mark > Properties
+#pragma mark > Property
 
 + (nullable NSArray<NSString *> *)propertiesWithClass:(Class)clz {
     if (clz == nil) {
@@ -231,6 +231,35 @@ static NSString * JSONEscapedStringFromString(NSString *string) {
     return [propertyString copy];
 }
 
+#pragma mark ::
+
+#pragma mark > Ivar
+
++ (nullable NSArray<NSString *> *)ivarsWithClass:(Class)clz {
+    if (clz == nil) {
+        return nil;
+    }
+    
+    unsigned int outCount;
+    Ivar *ivars = class_copyIvarList(clz, &outCount);
+    NSMutableArray *result = [NSMutableArray array];
+    for (unsigned int i = 0; i < outCount; i++) {
+        NSString *type = [self decodeType:ivar_getTypeEncoding(ivars[i])];
+        NSString *name = [NSString stringWithCString:ivar_getName(ivars[i]) encoding:NSUTF8StringEncoding];
+        NSString *ivarDescription = [NSString stringWithFormat:@"%@ %@", type, name];
+        [result addObject:ivarDescription];
+    }
+    free(ivars);
+    
+    return result.count ? [result copy] : nil;
+}
+
++ (nullable NSArray<NSString *> *)ivarsWithInstance:(id)instance {
+    return [self ivarsWithClass:[instance class]];
+}
+
+#pragma mark - Utility
+
 //https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html
 + (NSString *)decodeType:(const char *)cString {
     if (!strcmp(cString, @encode(id))) return @"id";
@@ -257,7 +286,5 @@ static NSString * JSONEscapedStringFromString(NSString *string) {
     }
     return result;
 }
-
-#pragma mark ::
 
 @end

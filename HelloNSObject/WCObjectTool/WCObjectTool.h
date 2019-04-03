@@ -33,11 +33,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Runtime
 
-#pragma mark > Classes
+#pragma mark > Class
 
 + (NSArray<NSString *> *)allClasses;
 
-#pragma mark > Properties
+#pragma mark > Property
 
 /**
  Get all properties of the class
@@ -56,6 +56,11 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion see +[WCObjectTool propertiesWithClass:] for detail.
  */
 + (nullable NSArray<NSString *> *)propertiesWithInstance:(id)instance;
+
+#pragma mark > Ivar
+
++ (nullable NSArray<NSString *> *)ivarsWithClass:(Class)clz;
++ (nullable NSArray<NSString *> *)ivarsWithInstance:(id)instance;
 
 @end
 
