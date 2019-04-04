@@ -12,6 +12,11 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, WCKeysMappingMode) {
+    WCKeysMappingModeIgnoreKeysIfNotSet,
+    WCKeysMappingModeKeepKeysIfNotSet,
+};
+
 @interface WCDictionaryTool : NSObject
 
 #pragma mark - Get Value for Key
@@ -63,18 +68,32 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Modification
 
 /**
- Remove object by key in NSDictionary or NSMutableDictionary
+ Remove object by key with NSDictionary or NSMutableDictionary
 
- @param dictionary the dictionary is NSDictionary or NSMutableDictionary
+ @param dictionary the original dictionary is NSDictionary or NSMutableDictionary
  @param key the key to remove
+ @param allowMutable YES to return mutable, or NO to return immutable
  @return the modified dictionary. The returned dictionary always a new dictionary. Return nil, if parameters are wrong.
  @discussion This method not modify key-values in the parameter `dictionary`
  */
-+ (nullable NSDictionary *)removeObjectWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key;
++ (nullable NSDictionary *)removeObjectWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key allowMutable:(BOOL)allowMutable;
 
-#pragma mark - Override Methods
+/**
+ Set object for key with NSDictionary or NSMutableDictionary
 
-+ (NSString *)debugDescriptionWithDictionary:(NSDictionary *)dictionary;
+ @param dictionary the original dictionary is NSDictionary or NSMutableDictionary
+ @param object the object to set. If nil, the key to remove.
+ @param key the key to set
+ @param allowMutable YES to return mutable, or NO to return immutable
+ @return the modified dictionary. The returned dictionary always a new dictionary. Return nil, if parameters are wrong.
+ @discussion This method not modify key-values in the parameter `dictionary`
+ */
++ (nullable NSDictionary *)setObjectWithDictionary:(NSDictionary *)dictionary object:(nullable id)object forKey:(NSString *)key allowMutable:(BOOL)allowMutable;
+
+#pragma mark - Conversion
+
++ (nullable NSDictionary<NSString *, id> *)transformDictionary:(NSDictionary<NSString *, id> *)dictionary usingKeysMapping:(NSDictionary<NSString *, NSString *> *)keysMapping mode:(WCKeysMappingMode)mode;
+
 
 @end
 

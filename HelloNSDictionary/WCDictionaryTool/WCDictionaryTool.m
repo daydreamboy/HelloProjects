@@ -8,6 +8,12 @@
 
 #import "WCDictionaryTool.h"
 
+#define NSPREDICATE(expression)   ([NSPredicate predicateWithFormat:@"SELF MATCHES %@", expression])
+
+#ifndef __FILE_NAME__
+#define __FILE_NAME__ ((strrchr(__FILE__, '/') ?: __FILE__ - 1) + 1)
+#endif
+
 @implementation WCDictionaryTool
 
 #pragma mark - Get Value for Key
@@ -55,10 +61,6 @@
 }
 
 #pragma mark - Safe Wrapping
-
-#ifndef __FILE_NAME__
-#define __FILE_NAME__ ((strrchr(__FILE__, '/') ?: __FILE__ - 1) + 1)
-#endif
 
 + (NSDictionary *)dictionaryWithKeyAndValues:(id)firstKey, ... NS_REQUIRES_NIL_TERMINATION {
     NSDictionary *dict;
@@ -108,7 +110,7 @@
 
 #pragma mark - Modification
 
-+ (nullable NSDictionary *)removeObjectWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key {
++ (nullable NSDictionary *)removeObjectWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key allowMutable:(BOOL)allowMutable {
     if (![dictionary isKindOfClass:[NSDictionary class]] || ![key isKindOfClass:[NSString class]]) {
         return nil;
     }
@@ -117,21 +119,95 @@
     [dictM addEntriesFromDictionary:dictionary];
     [dictM removeObjectForKey:key];
         
-    return dictM;
+    return allowMutable ? dictM : [dictM copy];
 }
 
-#pragma mark - Override Methods
-
-+ (NSString *)debugDescriptionWithDictionary:(NSDictionary *)dictionary {
-    NSMutableString *stringM = [NSMutableString stringWithString:@"{\n"];
-    
-    for (id key in [dictionary allKeys]) {
-        id value = dictionary[key];
-        [stringM appendFormat:@"\t%@ : %@\n", key, value];
++ (nullable NSDictionary *)setObjectWithDictionary:(NSDictionary *)dictionary object:(nullable id)object forKey:(NSString *)key allowMutable:(BOOL)allowMutable {
+    if (![dictionary isKindOfClass:[NSDictionary class]] || ![key isKindOfClass:[NSString class]]) {
+        return nil;
     }
-    [stringM appendString:@"}\n"];
     
-    return stringM;
+    NSMutableDictionary *dictM = [NSMutableDictionary dictionaryWithCapacity:dictionary.count];
+    [dictM addEntriesFromDictionary:dictionary];
+    dictM[key] = object;
+    
+    return allowMutable ? dictM : [dictM copy];
+}
+
+#pragma mark - Conversion
+
++ (nullable NSDictionary<NSString *, id> *)transformDictionary:(NSDictionary<NSString *, id> *)dictionary usingKeysMapping:(NSDictionary<NSString *, NSString *> *)keysMapping mode:(WCKeysMappingMode)mode {
+    
+    if (![dictionary isKindOfClass:[NSDictionary class]] || ![keysMapping isKindOfClass:[NSDictionary class]] ||
+        (mode != WCKeysMappingModeIgnoreKeysIfNotSet && mode != WCKeysMappingModeKeepKeysIfNotSet)) {
+        return nil;
+    }
+    
+    NSMutableDictionary *newMap = [NSMutableDictionary dictionaryWithCapacity:dictionary.count];
+    
+    if (mode == WCKeysMappingModeIgnoreKeysIfNotSet) {
+        [keysMapping enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull originalKey, NSString * _Nonnull newKey, BOOL * _Nonnull stop) {
+            id value = nil;
+            @try {
+                if ([originalKey rangeOfString:@"."].location == NSNotFound) {
+                    value = [dictionary valueForKey:originalKey];
+                }
+                else {
+                    value = [dictionary valueForKeyPath:originalKey];
+                }
+            }
+            @catch (NSException *e) {
+                NSLog(@"an exception occurred: %@", e);
+            }
+            
+            if (value) {
+                if ([newKey rangeOfString:@"."].location == NSNotFound) {
+                    newMap[newKey] = value;
+                }
+                else if ([NSPREDICATE(@"(\\w+|\\[\\w+\\])(\\.(\\w+|\\[\\w+\\]))+") evaluateWithObject:newKey]) {
+                    // @see https://stackoverflow.com/a/4739777
+                    NSArray *components = [newKey componentsSeparatedByString:@"."];
+                    
+                    id currentContainer = newMap;
+                    for (NSInteger i = 0; i < components.count; i++) {
+                        NSString *pathComponent = components[i];
+                        if (i == components.count - 1) {
+                            if ([currentContainer isKindOfClass:[NSMutableDictionary class]]) {
+                                currentContainer[pathComponent] = value;
+                            }
+                        }
+                        else {
+                            if ([pathComponent hasPrefix:@"["] && [pathComponent hasSuffix:@"]"]) {
+                                
+                            }
+                            else {
+                                
+                            }
+                            
+                            if ([currentContainer isKindOfClass:[NSMutableDictionary class]]) {
+                                if (![currentContainer objectForKey:pathComponent]) {
+                                    currentContainer[pathComponent] = [NSMutableDictionary dictionary];
+                                }
+                                
+                                currentContainer = currentContainer[pathComponent];
+                            }
+                            else if ([currentContainer isKindOfClass:[NSMutableArray class]]) {
+                                
+                            }
+                            else {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        }];
+    }
+    else if (mode == WCKeysMappingModeKeepKeysIfNotSet) {
+        
+    }
+    
+    return newMap;
 }
 
 @end
