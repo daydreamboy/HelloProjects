@@ -59,8 +59,33 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark > Ivar
 
+/**
+ Get all ivars of the class
+
+ @param clz the class
+ @return the ivar string array.
+ @discussion the property string format is `type _ivar`, e.g. NSString* _name
+ */
 + (nullable NSArray<NSString *> *)ivarsWithClass:(Class)clz;
+
+/**
+ Get all ivars of the class
+ 
+ @param instance the object
+ @return the ivar string array.
+ @discussion see +[WCObjectTool ivarsWithClass:] for detail.
+ */
 + (nullable NSArray<NSString *> *)ivarsWithInstance:(id)instance;
+
+#pragma mark > Class Method
+
++ (nullable NSArray<NSString *> *)classMethodsWithClass:(Class)clz;
++ (nullable NSArray<NSString *> *)classMethodsWithInstance:(id)instance;
+
+#pragma mark > Instance Method
+
++ (nullable NSArray<NSString *> *)instanceMethodsWithClass:(Class)clz;
++ (nullable NSArray<NSString *> *)instanceMethodsWithInstance:(id)instance;
 
 @end
 

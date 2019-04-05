@@ -279,6 +279,8 @@ R"JSON([
     NSLog(@"%@", allClasses);
 }
 
+#pragma mark > Property
+
 - (void)test_propertiesWithClass {
     NSArray<NSString *> *output;
     
@@ -286,6 +288,8 @@ R"JSON([
     output = [WCObjectTool propertiesWithClass:[NSString class]];
     NSLog(@"%@", output);
 }
+
+#pragma mark > Ivar
 
 - (void)test_ivarsWithClass {
     NSArray<NSString *> *output;
@@ -302,5 +306,24 @@ R"JSON([
     XCTAssertEqualObjects(output[0], @"NSString* _name");
 }
 
+#pragma mark > Class Method
+
+- (void)test_classMethodsWithClass {
+    NSArray<NSString *> *output;
+    
+    // Case 1
+    output = [WCObjectTool classMethodsWithClass:[NSString class]];
+    NSLog(@"%@", output);
+}
+
+#pragma mark > Instance Method
+
+- (void)test_instanceMethodsWithClass {
+    NSArray<NSString *> *output;
+    
+    // Case 1
+    output = [WCObjectTool instanceMethodsWithClass:[NSString class]];
+    NSLog(@"%@", output);
+}
 
 @end

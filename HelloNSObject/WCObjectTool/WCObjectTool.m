@@ -258,21 +258,66 @@ static NSString * JSONEscapedStringFromString(NSString *string) {
     return [self ivarsWithClass:[instance class]];
 }
 
+#pragma mark > Class Method
+
++ (nullable NSArray<NSString *> *)classMethodsWithClass:(Class)clz {
+    return [self methodsForClass:object_getClass(clz) typeFormat:@"+"];
+}
+
++ (nullable NSArray<NSString *> *)classMethodsWithInstance:(id)instance {
+    return [self classMethodsWithClass:[instance class]];
+}
+
+#pragma mark > Instance Method
+
++ (nullable NSArray<NSString *> *)instanceMethodsWithClass:(Class)clz {
+    return [self methodsForClass:clz typeFormat:@"-"];
+}
+
++ (nullable NSArray<NSString *> *)instanceMethodsWithInstance:(id)instance {
+    return [self instanceMethodsWithClass:[instance class]];
+}
+
 #pragma mark - Utility
 
 //https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html
 + (NSString *)decodeType:(const char *)cString {
-    if (!strcmp(cString, @encode(id))) return @"id";
+    if (!strcmp(cString, @encode(id))) return @"id"; // "@"
     if (!strcmp(cString, @encode(void))) return @"void";
-    if (!strcmp(cString, @encode(float))) return @"float";
-    if (!strcmp(cString, @encode(int))) return @"int";
     if (!strcmp(cString, @encode(BOOL))) return @"BOOL";
-    if (!strcmp(cString, @encode(char *))) return @"char *";
+    if (!strcmp(cString, @encode(float))) return @"float";
     if (!strcmp(cString, @encode(double))) return @"double";
-    if (!strcmp(cString, @encode(Class))) return @"class";
-    if (!strcmp(cString, @encode(SEL))) return @"SEL";
-    if (!strcmp(cString, @encode(unsigned int))) return @"unsigned int";
+    if (!strcmp(cString, @encode(Class))) return @"class"; // "#"
+    if (!strcmp(cString, @encode(SEL))) return @"SEL"; // ":"
+    
+    if (!strcmp(cString, @encode(char))) return @"char"; // "c"
+    if (!strcmp(cString, @encode(short))) return @"short"; // "s"
+    if (!strcmp(cString, @encode(int))) return @"int"; // "i"
+    if (!strcmp(cString, @encode(long))) return @"long"; // "q"
+    
+    if (!strcmp(cString, @encode(unsigned char))) return @"unsigned char"; // "C"
+    if (!strcmp(cString, @encode(unsigned short))) return @"unsigned short"; // "S"
+    if (!strcmp(cString, @encode(unsigned int))) return @"unsigned int"; // "I"
     if (!strcmp(cString, @encode(unsigned long))) return @"unsigned long"; // "Q"
+    
+    if (!strcmp(cString, @encode(long double))) return @"long double"; // "D"
+    
+    if (!strcmp(cString, @encode(char *))) return @"char *"; // "^c"
+    if (!strcmp(cString, @encode(void *))) return @"void *"; // "^v"
+    if (!strcmp(cString, @encode(int *))) return @"int *"; // "^i"
+    if (!strcmp(cString, @encode(long *))) return @"long *"; // "^q"
+    if (!strcmp(cString, @encode(float *))) return @"float *"; // "^f"
+    if (!strcmp(cString, @encode(double *))) return @"double *"; // "^d"
+    if (!strcmp(cString, @encode(BOOL *))) return @"BOOL *"; // "^B"
+    
+    if (!strcmp(cString, @encode(const char *))) return @"const char *"; // "r*"
+    
+    // function pointer, e.g. IMP, char (*)(long), ....
+    if (!strcmp(cString, @encode(IMP))) return @"IMP"; // "^?"
+    
+    // block, e.g. dispatch_block_t, void (^)(void), ...
+    if (!strcmp(cString, @encode(dispatch_block_t))) return @"dispatch_block_t"; // "@?"
+    
     
     //@TODO: do handle bitmasks
     NSString *result = [NSString stringWithCString:cString encoding:NSUTF8StringEncoding];
@@ -285,6 +330,38 @@ static NSString * JSONEscapedStringFromString(NSString *string) {
         }
     }
     return result;
+}
+
++ (nullable NSArray *)methodsForClass:(Class)clz typeFormat:(NSString *)type {
+    if (clz == nil) {
+        return nil;
+    }
+    
+    unsigned int outCount;
+    Method *methods = class_copyMethodList(clz, &outCount);
+    NSMutableArray *result = [NSMutableArray array];
+    for (unsigned int i = 0; i < outCount; i++) {
+        NSString *methodDescription = [NSString stringWithFormat:@"%@ (%@)%@",
+                                       type,
+                                       [self decodeType:method_copyReturnType(methods[i])],
+                                       NSStringFromSelector(method_getName(methods[i]))];
+        
+        NSInteger args = method_getNumberOfArguments(methods[i]);
+        NSMutableArray *selParts = [[methodDescription componentsSeparatedByString:@":"] mutableCopy];
+        NSInteger offset = 2; //1-st arg is object (@), 2-nd is SEL (:)
+        
+        for (NSInteger idx = offset; idx < args; idx++) {
+            NSString *returnType = [self decodeType:method_copyArgumentType(methods[i], (unsigned int)idx)];
+            selParts[idx - offset] = [NSString stringWithFormat:@"%@:(%@)arg%d",
+                                      selParts[idx - offset],
+                                      returnType,
+                                      (int)(idx - 2)];
+        }
+        [result addObject:[selParts componentsJoinedByString:@" "]];
+    }
+    free(methods);
+    
+    return result.count ? [result copy] : nil;
 }
 
 @end
