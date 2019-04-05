@@ -10,6 +10,11 @@
 
 #define NSPREDICATE(expression)    ([NSPredicate predicateWithFormat:@"SELF MATCHES %@", expression])
 
+// >= `11.0`
+#ifndef IOS11_OR_LATER
+#define IOS11_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"11.0" options:NSNumericSearch] != NSOrderedAscending)
+#endif
+
 @implementation WCJSONTool
 
 #pragma mark - Object to String
@@ -426,7 +431,14 @@
 #pragma mark > Print JSON string
 
 + (void)printJSONStringFromJSONObject:(id)JSONObject {
-    NSString *JSONString = [self JSONStringWithObject:JSONObject printOptions:NSJSONWritingPrettyPrinted filterInvalidObjects:YES];
+    NSJSONWritingOptions options = NSJSONWritingPrettyPrinted;
+    if (IOS11_OR_LATER) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+        options |= NSJSONWritingSortedKeys;
+#pragma GCC diagnostic pop
+    }
+    NSString *JSONString = [self JSONStringWithObject:JSONObject printOptions:options filterInvalidObjects:YES];
     NSLog(@"\n%@\n", JSONString);
 }
 
