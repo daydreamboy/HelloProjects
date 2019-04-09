@@ -150,10 +150,10 @@ static NSString * JSONEscapedStringFromString(NSString *string) {
 #pragma mark > Class
 
 + (NSArray<NSString *> *)allClasses {
-    unsigned int classesCount;
-    Class *classes = objc_copyClassList(&classesCount);
-    NSMutableArray *result = [NSMutableArray array];
-    for (unsigned int i = 0 ; i < classesCount; i++) {
+    unsigned int outCount;
+    Class *classes = objc_copyClassList(&outCount);
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:(NSUInteger)outCount];
+    for (unsigned int i = 0 ; i < outCount; i++) {
         [result addObject:NSStringFromClass(classes[i])];
     }
     return [result sortedArrayUsingSelector:@selector(compare:)];
@@ -175,63 +175,14 @@ static NSString * JSONEscapedStringFromString(NSString *string) {
     }
     free(properties);
     
+    [result sortUsingSelector:@selector(compare:)];
+    
     return result.count ? [result copy] : nil;
 }
 
 + (nullable NSArray<NSString *> *)propertiesWithInstance:(id)instance {
     return [self propertiesWithClass:[instance class]];
 }
-
-#pragma mark ::
-
-+ (NSString *)formattedPropery:(objc_property_t)prop {
-    unsigned int attrCount;
-    objc_property_attribute_t *attrs = property_copyAttributeList(prop, &attrCount);
-    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-    for (unsigned int idx = 0; idx < attrCount; idx++) {
-        NSString *name = [NSString stringWithCString:attrs[idx].name encoding:NSUTF8StringEncoding];
-        NSString *value = [NSString stringWithCString:attrs[idx].value encoding:NSUTF8StringEncoding];
-        [attributes setObject:value forKey:name];
-    }
-    free(attrs);
-    
-    NSMutableString *propertyString = [NSMutableString stringWithFormat:@"@property "];
-    NSMutableArray *attrsArray = [NSMutableArray array];
-    
-    //https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html#//apple_ref/doc/uid/TP40008048-CH101-SW5
-    [attrsArray addObject:[attributes objectForKey:@"N"] ? @"nonatomic" : @"atomic"];
-    
-    if ([attributes objectForKey:@"&"]) {
-        [attrsArray addObject:@"strong"];
-    }
-    else if ([attributes objectForKey:@"C"]) {
-        [attrsArray addObject:@"copy"];
-    }
-    else if ([attributes objectForKey:@"W"]) {
-        [attrsArray addObject:@"weak"];
-    }
-    else {
-        [attrsArray addObject:@"assign"];
-    }
-    
-    if ([attributes objectForKey:@"R"]) {
-        [attrsArray addObject:@"readonly"];
-    }
-    
-    if ([attributes objectForKey:@"G"]) {
-        [attrsArray addObject:[NSString stringWithFormat:@"getter=%@", [attributes objectForKey:@"G"]]];
-    }
-    
-    if ([attributes objectForKey:@"S"]) {
-        [attrsArray addObject:[NSString stringWithFormat:@"setter=%@", [attributes objectForKey:@"G"]]];
-    }
-    
-    [propertyString appendFormat:@"(%@) %@ %@", [attrsArray componentsJoinedByString:@", "], [self decodeType:[[attributes objectForKey:@"T"] cStringUsingEncoding:NSUTF8StringEncoding]], [NSString stringWithCString:property_getName(prop) encoding:NSUTF8StringEncoding]];
-    
-    return [propertyString copy];
-}
-
-#pragma mark ::
 
 #pragma mark > Ivar
 
@@ -250,6 +201,8 @@ static NSString * JSONEscapedStringFromString(NSString *string) {
         [result addObject:ivarDescription];
     }
     free(ivars);
+    
+    [result sortUsingSelector:@selector(compare:)];
     
     return result.count ? [result copy] : nil;
 }
@@ -276,6 +229,79 @@ static NSString * JSONEscapedStringFromString(NSString *string) {
 
 + (nullable NSArray<NSString *> *)instanceMethodsWithInstance:(id)instance {
     return [self instanceMethodsWithClass:[instance class]];
+}
+
+#pragma mark > Protocol
+
++ (nullable NSArray<NSString *> *)protocolsWithClass:(Class)clz {
+    if (clz == nil) {
+        return nil;
+    }
+    
+    unsigned int outCount;
+    Protocol * const *protocols = class_copyProtocolList(clz, &outCount);
+    
+    NSMutableArray *result = [NSMutableArray array];
+    for (unsigned int i = 0; i < outCount; i++) {
+        unsigned int adoptedCount;
+        Protocol * const *adoptedProtocols = protocol_copyProtocolList(protocols[i], &adoptedCount);
+        NSString *protocolName = [NSString stringWithCString:protocol_getName(protocols[i]) encoding:NSUTF8StringEncoding];
+        
+        NSMutableArray *adoptedProtocolNames = [NSMutableArray array];
+        for (unsigned int idx = 0; idx < adoptedCount; idx++) {
+            [adoptedProtocolNames addObject:[NSString stringWithCString:protocol_getName(adoptedProtocols[idx]) encoding:NSUTF8StringEncoding]];
+        }
+        NSString *protocolDescription = protocolName;
+        
+        if (adoptedProtocolNames.count) {
+            protocolDescription = [NSString stringWithFormat:@"%@ <%@>", protocolName, [adoptedProtocolNames componentsJoinedByString:@", "]];
+        }
+        [result addObject:protocolDescription];
+        free((void *)adoptedProtocols);
+    }
+    free((void *)protocols);
+    [result sortUsingSelector:@selector(compare:)];
+    
+    return result.count ? [result copy] : nil;
+}
+
++ (nullable NSArray<NSString *> *)protocolsWithInstance:(id)instance {
+    return [self protocolsWithClass:[instance class]];
+}
+
++ (nullable NSDictionary<NSString *, NSArray *> *)descriptionForProtocolName:(NSString *)protocolName {
+    return [self descriptionForProtocol:NSProtocolFromString(protocolName)];
+}
+
++ (nullable NSDictionary<NSString *, NSArray *> *)descriptionForProtocol:(Protocol *)protocol {
+    if (protocol == NULL) {
+        return nil;
+    }
+    
+    NSMutableDictionary *methodsAndProperties = [NSMutableDictionary dictionary];
+    
+    NSArray *requiredMethods = [[[self class] formattedMethodsForProtocol:protocol required:YES instance:NO] arrayByAddingObjectsFromArray:[[self class]formattedMethodsForProtocol:protocol required:YES instance:YES]];
+    
+    NSArray *optionalMethods = [[[self class] formattedMethodsForProtocol:protocol required:NO instance:NO] arrayByAddingObjectsFromArray:[[self class]formattedMethodsForProtocol:protocol required:NO instance:YES]];
+
+    unsigned int propertiesCount;
+    NSMutableArray *propertyDescriptions = [NSMutableArray array];
+    objc_property_t *properties = protocol_copyPropertyList(protocol, &propertiesCount);
+    for (unsigned int i = 0; i < propertiesCount; i++) {
+        [propertyDescriptions addObject:[self formattedPropery:properties[i]]];
+    }
+    
+    if (requiredMethods.count) {
+        [methodsAndProperties setObject:requiredMethods forKey:@"@required"];
+    }
+    if (optionalMethods.count) {
+        [methodsAndProperties setObject:optionalMethods forKey:@"@optional"];
+    } if (propertyDescriptions.count) {
+        [methodsAndProperties setObject:[propertyDescriptions copy] forKey:@"@properties"];
+    }
+    
+    free(properties);
+    return methodsAndProperties.count ? [methodsAndProperties copy ] : nil;
 }
 
 #pragma mark - Utility
@@ -361,7 +387,74 @@ static NSString * JSONEscapedStringFromString(NSString *string) {
     }
     free(methods);
     
+    [result sortUsingSelector:@selector(compare:)];
+    
     return result.count ? [result copy] : nil;
+}
+
++ (NSString *)formattedPropery:(objc_property_t)property {
+    unsigned int attrCount;
+    objc_property_attribute_t *attrs = property_copyAttributeList(property, &attrCount);
+    NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
+    for (unsigned int idx = 0; idx < attrCount; idx++) {
+        NSString *name = [NSString stringWithCString:attrs[idx].name encoding:NSUTF8StringEncoding];
+        NSString *value = [NSString stringWithCString:attrs[idx].value encoding:NSUTF8StringEncoding];
+        [attributes setObject:value forKey:name];
+    }
+    free(attrs);
+    
+    NSMutableString *propertyString = [NSMutableString stringWithFormat:@"@property "];
+    NSMutableArray *attrsArray = [NSMutableArray array];
+    
+    //https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtPropertyIntrospection.html#//apple_ref/doc/uid/TP40008048-CH101-SW5
+    [attrsArray addObject:[attributes objectForKey:@"N"] ? @"nonatomic" : @"atomic"];
+    
+    if ([attributes objectForKey:@"&"]) {
+        [attrsArray addObject:@"strong"];
+    }
+    else if ([attributes objectForKey:@"C"]) {
+        [attrsArray addObject:@"copy"];
+    }
+    else if ([attributes objectForKey:@"W"]) {
+        [attrsArray addObject:@"weak"];
+    }
+    else {
+        [attrsArray addObject:@"assign"];
+    }
+    
+    if ([attributes objectForKey:@"R"]) {
+        [attrsArray addObject:@"readonly"];
+    }
+    
+    if ([attributes objectForKey:@"G"]) {
+        [attrsArray addObject:[NSString stringWithFormat:@"getter=%@", [attributes objectForKey:@"G"]]];
+    }
+    
+    if ([attributes objectForKey:@"S"]) {
+        [attrsArray addObject:[NSString stringWithFormat:@"setter=%@", [attributes objectForKey:@"G"]]];
+    }
+    
+    [propertyString appendFormat:@"(%@) %@ %@", [attrsArray componentsJoinedByString:@", "], [self decodeType:[[attributes objectForKey:@"T"] cStringUsingEncoding:NSUTF8StringEncoding]], [NSString stringWithCString:property_getName(property) encoding:NSUTF8StringEncoding]];
+    
+    return [propertyString copy];
+}
+
++ (NSArray *)formattedMethodsForProtocol:(Protocol *)protocol required:(BOOL)required instance:(BOOL)instance {
+    unsigned int methodCount;
+    struct objc_method_description *methods = protocol_copyMethodDescriptionList(protocol, required, instance, &methodCount);
+    NSMutableArray *methodsDescription = [NSMutableArray array];
+    for (unsigned int i = 0; i < methodCount; i++) {
+        [methodsDescription addObject:
+         [NSString stringWithFormat:@"%@ (%@)%@",
+          instance ? @"-" : @"+",
+#warning return correct type
+          // TODO: return correct type
+          @"void",
+          NSStringFromSelector(methods[i].name)]];
+    }
+    
+    free(methods);
+    return  [methodsDescription copy];
 }
 
 @end

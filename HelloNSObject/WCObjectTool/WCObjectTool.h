@@ -87,6 +87,22 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable NSArray<NSString *> *)instanceMethodsWithClass:(Class)clz;
 + (nullable NSArray<NSString *> *)instanceMethodsWithInstance:(id)instance;
 
+#pragma mark > Protocol
+
++ (nullable NSArray<NSString *> *)protocolsWithClass:(Class)clz;
++ (nullable NSArray<NSString *> *)protocolsWithInstance:(id)instance;
+
++ (nullable NSDictionary<NSString *, NSArray *> *)descriptionForProtocolName:(NSString *)protocolName;
+
+/**
+ Get methods signatures declared in protocol
+
+ @param protocol the protocol to inspect
+ @return the map of method signatures in protocol. The keys are @required, @optional, @properties
+ */
++ (nullable NSDictionary<NSString *, NSArray *> *)descriptionForProtocol:(Protocol *)protocol;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

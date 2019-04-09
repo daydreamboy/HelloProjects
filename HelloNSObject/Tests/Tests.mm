@@ -326,4 +326,23 @@ R"JSON([
     NSLog(@"%@", output);
 }
 
+#pragma mark > Protocol
+
+- (void)test_protocolsWithClass {
+    NSArray<NSString *> *output;
+    
+    // Case 1
+    output = [WCObjectTool protocolsWithClass:[NSString class]];
+    NSLog(@"%@", output);
+}
+
+- (void)test_descriptionForProtocol {
+    NSDictionary<NSString *, NSArray *> *output;
+    
+    // Case 1
+    output = [WCObjectTool descriptionForProtocolName:@"NSCopying"];
+    NSLog(@"%@", output);
+}
+
 @end
+
