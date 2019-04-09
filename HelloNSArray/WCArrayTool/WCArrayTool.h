@@ -61,6 +61,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSArray *)collapsedArrayWithArray:(NSArray *)array keyPaths:(nullable NSArray<NSString *> *)keyPaths;
 
+/**
+ Remove object at the index and return the modified one
+
+ @param array the original array
+ @param index the index of object to remove
+ @param allowMutable YES if return a mutable array. NO if return an immutable array.
+ @return the modified array. NSArray or NSMutableArray
+ */
++ (nullable NSArray *)removeObjectAtIndexWithArray:(NSArray *)array atIndex:(NSUInteger)index allowMutable:(BOOL)allowMutable;
+
 #pragma mark - Subarray
 
 /**

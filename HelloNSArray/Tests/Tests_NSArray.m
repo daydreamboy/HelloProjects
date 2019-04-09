@@ -24,7 +24,7 @@
     [super tearDown];
 }
 
-- (void)testExample {
+- (void)test_valueForKey {
     NSArray *arr;
     NSArray *output;
     NSArray *expected;
@@ -57,6 +57,19 @@
                  @"value5"
                  ];
     XCTAssertEqualObjects(output, expected);
+}
+
+
+- (void)test_NSMutableArray {
+    NSMutableArray *arrM;
+    NSArray *output;
+    NSArray *expected;
+    
+    // Case 1
+    arrM = [NSMutableArray arrayWithCapacity:3];
+    arrM[1] = @"1";
+    NSLog(@"%@", arrM);
+    //XCTAssertEqualObjects(output, expected);
 }
 
 @end

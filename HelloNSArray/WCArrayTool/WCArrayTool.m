@@ -136,6 +136,22 @@
     }
 }
 
++ (nullable NSArray *)removeObjectAtIndexWithArray:(NSArray *)array atIndex:(NSUInteger)index allowMutable:(BOOL)allowMutable {
+    if (![array isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
+    
+    if (index >= array.count) {
+        return nil;
+    }
+    
+    NSMutableArray *arrM = [NSMutableArray arrayWithCapacity:array.count];
+    [arrM addObjectsFromArray:array];
+    [arrM removeObjectAtIndex:index];
+    
+    return allowMutable ? arrM : [arrM copy];
+}
+
 #pragma mark - Subarray
 
 + (nullable NSArray *)subarrayWithArray:(NSArray *)array range:(NSRange)range {
