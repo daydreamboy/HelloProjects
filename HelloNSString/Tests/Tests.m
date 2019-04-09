@@ -321,6 +321,13 @@
     XCTAssertEqualObjects(output[@"sign"], @"D5CEA3CFCC64B73C0A5551EDBBD6EFAE1EF8DE33A77D5B9F4DCC97FC7B6DD8B4");
     XCTAssertEqualObjects(output[@"fromId"], @"cntaobaowc测试账号1000");
     XCTAssertEqualObjects(output[@"questionText"], @"#免费3D设计#");
+    
+    // Case 11
+    urlString = @"wangwang://h5/open?url=https%3A//detail.tmall.com/item.htm?id%3D588030695393%26o2oGuideId%3D4112631319%26storeId%3D184261499%26buyerId%3D3488920881%26needDot%3Dfalse%26cloudstoreSource%3Ddaogou";
+    output = [WCStringTool keyValuePairsWithUrlString:urlString];
+    XCTAssertTrue([output isKindOfClass:[NSDictionary class]]);
+    XCTAssertTrue(output.count == 1);
+    XCTAssertEqualObjects(output[@"url"], @"https%3A//detail.tmall.com/item.htm?id%3D588030695393%26o2oGuideId%3D4112631319%26storeId%3D184261499%26buyerId%3D3488920881%26needDot%3Dfalse%26cloudstoreSource%3Ddaogou");
 }
 
 #pragma mark - Handle String As Plain
@@ -914,7 +921,7 @@
     NSString *string;
     NSArray *args;
     
-    // case 1
+    // Case 1
     args = @[
              @"He",
              @"llo",
@@ -926,7 +933,7 @@
     NSLog(@"%@", string);
     XCTAssertEqualObjects(string, @"Hello, world!");
     
-    // case 2
+    // Case 2
     args = @[
              @(1),
              @"2",
@@ -938,8 +945,7 @@
     NSLog(@"%@", string);
     XCTAssertEqualObjects(string, @"12.1 = 12.1");
     
-    
-    // case 3
+    // Case 3
     args = @[
              @"a",
              @"b",
@@ -948,6 +954,23 @@
     string = [WCStringTool stringWithFormat:@"%@%@" arguments:args];
     NSLog(@"%@", string);
     XCTAssertEqualObjects(string, @"ab");
+    
+    // Abnormal Case 1
+    args = @[
+             @"a",
+             @"b",
+             @"c"
+             ];
+    string = [WCStringTool stringWithFormat:@"Hello" arguments:args];
+    NSLog(@"%@", string);
+    XCTAssertEqualObjects(string, @"Hello");
+    
+    // Abnormal Case 2
+    args = @[
+             ];
+    string = [WCStringTool stringWithFormat:@"Hello" arguments:args];
+    NSLog(@"%@", string);
+    XCTAssertEqualObjects(string, @"Hello");
 }
 
 - (void)test_insertSeparatorWithString_separator_atInterval {

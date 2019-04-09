@@ -854,15 +854,12 @@
         return nil;
     }
     
-    if (arguments.count > 10) {
-#if DEBUG
-        @throw [NSException exceptionWithName:NSRangeException reason:@"Maximum of 10 arguments allowed" userInfo:@{@"collection": arguments}];
-#else
-        return nil;
-#endif
+    if (arguments.count > 20) {
+        return @"";
     }
-    NSArray *args = [arguments arrayByAddingObjectsFromArray:@[@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X"]];
-    return [NSString stringWithFormat:format, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9]];
+    
+    NSArray *args = [arguments arrayByAddingObjectsFromArray:@[@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X",@"X"]];
+    return [NSString stringWithFormat:format, args[0], args[1], args[2], args[3], args[4], args[5], args[6], args[7], args[8], args[9], args[10], args[11], args[12], args[13], args[14], args[15], args[16], args[17], args[18], args[19]];
 }
 
 + (nullable NSString *)collapseAdjacentCharactersWithString:(NSString *)string characters:(NSString *)characters {

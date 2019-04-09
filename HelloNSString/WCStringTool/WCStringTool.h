@@ -391,7 +391,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param arguments the array of argument which are objects, and the length of arguments should not > 10
  @return the formatted string
  @see https://stackoverflow.com/questions/1058736/how-to-create-a-nsstring-from-a-format-string-like-xxx-yyy-and-a-nsarr
- @warning If the length of arguments > 10, this method will throw an exception when DEBUG = 1.
+ @warning If the length of arguments > 20, this method will return an empty string.
  */
 + (nullable NSString *)stringWithFormat:(NSString *)format arguments:(NSArray *)arguments;
 
