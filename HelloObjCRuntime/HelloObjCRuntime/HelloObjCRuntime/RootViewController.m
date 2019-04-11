@@ -17,7 +17,10 @@
 #import "CreateClassAtRuntimeViewController.h"
 #import "SimpleDynamicSubclassViewController.h"
 #import "InterceptDoesNotRecognizeSelectorViewController.h"
+#import "CreateDynamicParamModelViewController.h"
+#import "SkipUnsafeMethodViewController.h"
 #import "SetIVarDirectlyViewController.h"
+#import "ObtainWeakVariableViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -52,21 +55,22 @@
         @"Create dynamic delegates",
         @"Skip unsafe method",
         @"Set ivar directly",
+        @"Obtain weak variable by objc_loadWeakRetained()",
     ];
     _classes = @[
-        @"GetPropertiesOfClassViewController",
-        @"CheckNSObjectIsaVariableViewController",
-        @"SwizzleMethodByBlockViewController",
-        @"SwizzleMethodByMethodViewController",
-        @"IsaSwizzlingViewController",
-        @"IsaSwizzlingIssueViewController",
-        @"CreateClassAtRuntimeViewController",
-        @"SimpleDynamicSubclassViewController",
-        @"InterceptDoesNotRecognizeSelectorViewController",
-        @"CreateDynamicParamModelViewController",
-        @"SkipUnsafeMethodViewController",
-//        @"CreateDynamicDelegateViewController.xib",
-        @"SetIVarDirectlyViewController",
+        [GetPropertiesOfClassViewController class],
+        [CheckNSObjectIsaVariableViewController class],
+        [SwizzleMethodByBlockViewController class],
+        [SwizzleMethodByMethodViewController class],
+        [IsaSwizzlingViewController class],
+        [IsaSwizzlingIssueViewController class],
+        [CreateClassAtRuntimeViewController class],
+        [SimpleDynamicSubclassViewController class],
+        [InterceptDoesNotRecognizeSelectorViewController class],
+        [CreateDynamicParamModelViewController class],
+        [SkipUnsafeMethodViewController class],
+        [SetIVarDirectlyViewController class],
+        [ObtainWeakVariableViewController class],
     ];
 }
 
@@ -95,24 +99,34 @@
     return cell;
 }
 
-- (void)pushViewController:(NSString *)viewControllerClass {
-    NSAssert([viewControllerClass isKindOfClass:[NSString class]], @"%@ is not NSString", viewControllerClass);
+- (void)pushViewController:(id)viewControllerClass {
     
-    BOOL useXib = NO;
-    NSString *className = viewControllerClass;
-    if ([className hasSuffix:@".xib"]) {
-        className = [className stringByDeletingPathExtension];
-        useXib = YES;
+    id class = viewControllerClass;
+    if ([class isKindOfClass:[NSString class]]) {
+        SEL selector = NSSelectorFromString(viewControllerClass);
+        if ([self respondsToSelector:selector]) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
+            [self performSelector:selector];
+#pragma GCC diagnostic pop
+        }
+        else {
+            NSAssert(NO, @"can't handle selector `%@`", viewControllerClass);
+        }
     }
-    
-    Class class = NSClassFromString(className);
-    if (class && [class isSubclassOfClass:[UIViewController class]]) {
-        UIViewController *vc = useXib ? [[class alloc] initWithNibName:className bundle:nil] : [[class alloc] init];
+    else if (class && [class isSubclassOfClass:[UIViewController class]]) {
+        UIViewController *vc = [[class alloc] init];
         vc.title = _titles[[_classes indexOfObject:viewControllerClass]];
         
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
         [self.navigationController pushViewController:vc animated:YES];
     }
+}
+
+#pragma mark - Test Methods
+
+- (void)testMethod {
+    NSLog(@"test something");
 }
 
 @end

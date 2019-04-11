@@ -33,6 +33,7 @@
 		4F3525A12005ED6900891B09 /* CrashMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35259F2005ED6900891B09 /* CrashMaker.m */; };
 		4F53C97B20046B59003F79F6 /* UncatchExceptionGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53C97A20046B59003F79F6 /* UncatchExceptionGuard.m */; };
 		4F53C97E20047483003F79F6 /* SkipUnsafeMethodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53C97D20047483003F79F6 /* SkipUnsafeMethodViewController.m */; };
+		4F5D3785225F9816007A8D4C /* ObtainWeakVariableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5D3784225F9816007A8D4C /* ObtainWeakVariableViewController.m */; };
 		4FA0D24320732BEB00002607 /* SetIVarDirectlyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA0D24220732BEB00002607 /* SetIVarDirectlyViewController.m */; };
 		4FF5FA341FFD27BF00C095C1 /* CreateDynamicParamModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF5FA2F1FFD27BF00C095C1 /* CreateDynamicParamModelViewController.m */; };
 		4FF5FA351FFD27BF00C095C1 /* PublicModelsForSomeSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF5FA311FFD27BF00C095C1 /* PublicModelsForSomeSDK.m */; };
@@ -114,6 +115,8 @@
 		4F53C97A20046B59003F79F6 /* UncatchExceptionGuard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UncatchExceptionGuard.m; sourceTree = "<group>"; };
 		4F53C97C20047483003F79F6 /* SkipUnsafeMethodViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SkipUnsafeMethodViewController.h; sourceTree = "<group>"; };
 		4F53C97D20047483003F79F6 /* SkipUnsafeMethodViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SkipUnsafeMethodViewController.m; sourceTree = "<group>"; };
+		4F5D3783225F9816007A8D4C /* ObtainWeakVariableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObtainWeakVariableViewController.h; sourceTree = "<group>"; };
+		4F5D3784225F9816007A8D4C /* ObtainWeakVariableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObtainWeakVariableViewController.m; sourceTree = "<group>"; };
 		4FA0D24120732BEB00002607 /* SetIVarDirectlyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetIVarDirectlyViewController.h; sourceTree = "<group>"; };
 		4FA0D24220732BEB00002607 /* SetIVarDirectlyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetIVarDirectlyViewController.m; sourceTree = "<group>"; };
 		4FF5FA2F1FFD27BF00C095C1 /* CreateDynamicParamModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateDynamicParamModelViewController.m; sourceTree = "<group>"; };
@@ -231,6 +234,8 @@
 				2B2EAAA01E97E4EB00DBCC0D /* AllModelsProtocol.h */,
 				4FA0D24120732BEB00002607 /* SetIVarDirectlyViewController.h */,
 				4FA0D24220732BEB00002607 /* SetIVarDirectlyViewController.m */,
+				4F5D3783225F9816007A8D4C /* ObtainWeakVariableViewController.h */,
+				4F5D3784225F9816007A8D4C /* ObtainWeakVariableViewController.m */,
 				4FF5FA2E1FFD27BF00C095C1 /* CreateDynamicParamModel */,
 			);
 			path = AppTestDemos;
@@ -372,6 +377,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -482,6 +488,7 @@
 				2BE8BEC21E6F000A004CD034 /* IsaSwizzlingViewController.m in Sources */,
 				2B6E6B951DF91DD10045BD98 /* main.m in Sources */,
 				4F53C97B20046B59003F79F6 /* UncatchExceptionGuard.m in Sources */,
+				4F5D3785225F9816007A8D4C /* ObtainWeakVariableViewController.m in Sources */,
 				4FF5FA3C1FFD362500C095C1 /* WCCrashTool.m in Sources */,
 				2B2EAA9E1E97CC2700DBCC0D /* CreateDynamicDelegateViewController.m in Sources */,
 				2BA23BD31E73E3F1000DBE48 /* SimpleDynamicSubclassViewController.m in Sources */,
