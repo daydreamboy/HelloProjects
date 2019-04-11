@@ -23,10 +23,10 @@ typedef struct a {
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self test_subclass_NSString_dynamically_with_inline_style];
+    //[self test_subclass_NSString_dynamically_with_inline_style];
     
-//    [self test_struct_list_a];
-//    [self test_struct_list_b];
+    [self test_struct_list_a];
+    [self test_struct_list_b];
 }
 
 #pragma mark - Test Methods
