@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4F03AEB9208E1DD500186DE1 /* GenericSelectionExpressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F03AEB8208E1DD500186DE1 /* GenericSelectionExpressionViewController.m */; };
 		4F53314520872BDD0016F650 /* NaNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53314420872BDD0016F650 /* NaNViewController.m */; };
+		4F5C35E4223B5C5400C08119 /* Tests_C.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5C35E3223B5C5400C08119 /* Tests_C.m */; };
 		4F641A0B209056F7009B41E5 /* NamespacedGlobalVarsAndFuncsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F641A0A209056F7009B41E5 /* NamespacedGlobalVarsAndFuncsViewController.m */; };
 		4F641A0E209058CE009B41E5 /* NamespacedDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F641A0D209058CE009B41E5 /* NamespacedDefines.m */; };
 		4F714A9521952DC6006CB8C4 /* SynthesizePropertyBothSetterGetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F714A9421952DC6006CB8C4 /* SynthesizePropertyBothSetterGetterViewController.m */; };
@@ -27,11 +28,24 @@
 		4FC2CF9E2031B84F00A416DC /* Cpp11FeatureRawStringViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FC2CF9D2031B84F00A416DC /* Cpp11FeatureRawStringViewController.mm */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4F5C35E6223B5C5400C08119 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FC2CF712031B10300A416DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4FC2CF782031B10300A416DC;
+			remoteInfo = HelloSyntaxSugar;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		4F03AEB7208E1DD500186DE1 /* GenericSelectionExpressionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenericSelectionExpressionViewController.h; sourceTree = "<group>"; };
 		4F03AEB8208E1DD500186DE1 /* GenericSelectionExpressionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenericSelectionExpressionViewController.m; sourceTree = "<group>"; };
 		4F53314320872BDD0016F650 /* NaNViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NaNViewController.h; sourceTree = "<group>"; };
 		4F53314420872BDD0016F650 /* NaNViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NaNViewController.m; sourceTree = "<group>"; };
+		4F5C35E1223B5C5400C08119 /* Tests_C.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests_C.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F5C35E3223B5C5400C08119 /* Tests_C.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_C.m; sourceTree = "<group>"; };
+		4F5C35E5223B5C5400C08119 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F641A09209056F7009B41E5 /* NamespacedGlobalVarsAndFuncsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NamespacedGlobalVarsAndFuncsViewController.h; sourceTree = "<group>"; };
 		4F641A0A209056F7009B41E5 /* NamespacedGlobalVarsAndFuncsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NamespacedGlobalVarsAndFuncsViewController.m; sourceTree = "<group>"; };
 		4F641A0C209058CE009B41E5 /* NamespacedDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NamespacedDefines.h; sourceTree = "<group>"; };
@@ -66,6 +80,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4F5C35DE223B5C5400C08119 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FC2CF762031B10300A416DC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -76,6 +97,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F5C35E2223B5C5400C08119 /* Tests_C */ = {
+			isa = PBXGroup;
+			children = (
+				4F5C35E3223B5C5400C08119 /* Tests_C.m */,
+				4F5C35E5223B5C5400C08119 /* Info.plist */,
+			);
+			path = Tests_C;
+			sourceTree = "<group>";
+		};
 		4FBB4E0A21A2E6CD000E9F61 /* DummyClasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -93,6 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				4FC2CF7B2031B10300A416DC /* HelloSyntaxSugar */,
+				4F5C35E2223B5C5400C08119 /* Tests_C */,
 				4FC2CF7A2031B10300A416DC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -101,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				4FC2CF792031B10300A416DC /* HelloSyntaxSugar.app */,
+				4F5C35E1223B5C5400C08119 /* Tests_C.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -152,6 +184,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4F5C35E0223B5C5400C08119 /* Tests_C */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F5C35EA223B5C5400C08119 /* Build configuration list for PBXNativeTarget "Tests_C" */;
+			buildPhases = (
+				4F5C35DD223B5C5400C08119 /* Sources */,
+				4F5C35DE223B5C5400C08119 /* Frameworks */,
+				4F5C35DF223B5C5400C08119 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F5C35E7223B5C5400C08119 /* PBXTargetDependency */,
+			);
+			name = Tests_C;
+			productName = Tests_C;
+			productReference = 4F5C35E1223B5C5400C08119 /* Tests_C.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		4FC2CF782031B10300A416DC /* HelloSyntaxSugar */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4FC2CF8F2031B10400A416DC /* Build configuration list for PBXNativeTarget "HelloSyntaxSugar" */;
@@ -178,6 +228,10 @@
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = wesley_chen;
 				TargetAttributes = {
+					4F5C35E0223B5C5400C08119 = {
+						CreatedOnToolsVersion = 9.4.1;
+						TestTargetID = 4FC2CF782031B10300A416DC;
+					};
 					4FC2CF782031B10300A416DC = {
 						CreatedOnToolsVersion = 9.3;
 					};
@@ -197,11 +251,19 @@
 			projectRoot = "";
 			targets = (
 				4FC2CF782031B10300A416DC /* HelloSyntaxSugar */,
+				4F5C35E0223B5C5400C08119 /* Tests_C */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4F5C35DF223B5C5400C08119 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FC2CF772031B10300A416DC /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -214,6 +276,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4F5C35DD223B5C5400C08119 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F5C35E4223B5C5400C08119 /* Tests_C.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FC2CF752031B10300A416DC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -239,6 +309,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		4F5C35E7223B5C5400C08119 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4FC2CF782031B10300A416DC /* HelloSyntaxSugar */;
+			targetProxy = 4F5C35E6223B5C5400C08119 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		4FC2CF872031B10400A416DC /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -251,6 +329,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4F5C35E8223B5C5400C08119 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests_C/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wc.Tests-C";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloSyntaxSugar.app/HelloSyntaxSugar";
+			};
+			name = Debug;
+		};
+		4F5C35E9223B5C5400C08119 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests_C/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.wc.Tests-C";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloSyntaxSugar.app/HelloSyntaxSugar";
+			};
+			name = Release;
+		};
 		4FC2CF8D2031B10400A416DC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -396,6 +512,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4F5C35EA223B5C5400C08119 /* Build configuration list for PBXNativeTarget "Tests_C" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F5C35E8223B5C5400C08119 /* Debug */,
+				4F5C35E9223B5C5400C08119 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4FC2CF742031B10300A416DC /* Build configuration list for PBXProject "HelloSyntaxSugar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

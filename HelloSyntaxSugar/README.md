@@ -202,6 +202,19 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 
 
 
+#### （2）template
+
+template在Objective-C++是关键词，不能作为参数使用，否则编译器（Xcode 10）会报错。举个例子
+
+```objective-c
+- (void)callDelegateOfHookHandleWithTemplate:(TemplateModel *)template data:(DataModel *)data nameSpace:(NSString *)nameSpace { // error: expected identifier; 'template' is a keyword in Objective-C++
+}
+```
+
+
+
+
+
 
 
 ## References

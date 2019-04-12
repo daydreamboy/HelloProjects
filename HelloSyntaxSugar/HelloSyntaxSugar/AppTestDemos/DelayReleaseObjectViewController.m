@@ -46,11 +46,14 @@
 }
 
 - (void)test_bad_delay_release {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wimplicit-retain-self"
     NSLog(@"start to dealloc");
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // Crash: EXC_BAD_ACCESS
         _myObject = nil;
     });
+#pragma GCC diagnostic pop
 }
 
 - (void)test_delay_release_not_work {
