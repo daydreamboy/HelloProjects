@@ -16,7 +16,6 @@
 		4F63BAD3225C8BE0008B59D4 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63BAD0225C8BE0008B59D4 /* Demo1ViewController.m */; };
 		4F63BADB225C8C1D008B59D4 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63BADA225C8C1D008B59D4 /* Tests.m */; };
 		4F63BAE5225C8D44008B59D4 /* WCDateTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63BAE4225C8D44008B59D4 /* WCDateTool.m */; };
-		4F63BAE6225CA3D4008B59D4 /* WCDateTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63BAE4225C8D44008B59D4 /* WCDateTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -241,7 +240,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F63BAE6225CA3D4008B59D4 /* WCDateTool.m in Sources */,
 				4F63BADB225C8C1D008B59D4 /* Tests.m in Sources */,
 				4F0BF821225CFC20004ED90D /* Tests_NSDate.m in Sources */,
 			);

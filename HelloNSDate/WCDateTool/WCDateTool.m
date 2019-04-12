@@ -22,13 +22,6 @@
 @end
 
 @implementation WCDateComponents
-- (NSInteger)nearestHour {
-    NSTimeInterval aTimeInterval = [self.date timeIntervalSinceReferenceDate] + 60 * 30;
-    NSDate *newDate = [NSDate dateWithTimeIntervalSinceReferenceDate:aTimeInterval];
-    NSDateComponents *components = [[WCDateTool currentCalendar] components:NSCalendarUnitHour fromDate:newDate];
-
-    return components.hour;
-}
 @end
 
 @implementation WCDateTool
@@ -80,6 +73,13 @@
     newComponents.minute = components.minute;
     newComponents.second = components.second;
     newComponents.nthWeekday = components.weekdayOrdinal;
+    newComponents.nearestHour = ({
+        NSTimeInterval aTimeInterval = [date timeIntervalSinceReferenceDate] + 60 * 30;
+        NSDate *newDate = [NSDate dateWithTimeIntervalSinceReferenceDate:aTimeInterval];
+        NSDateComponents *components = [[self currentCalendar] components:NSCalendarUnitHour fromDate:newDate];
+        
+        components.hour;
+    });
     
     return newComponents;
 }
@@ -115,6 +115,7 @@
             break;
         case WCDateComponentTypeWeekOfYear:
             unit = NSCalendarUnitWeekOfYear;
+            break;
         default:
             break;
     }
@@ -168,5 +169,46 @@
 }
 
 #pragma mark ::
+
+#pragma mark - Adjust Date
+
++ (nullable NSDate *)dateWithDate:(NSDate *)date offset:(NSInteger)offset dateComponentType:(WCDateComponentType)dateComponentType {
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    
+    switch (dateComponentType) {
+        case WCDateComponentTypeYear:
+            dateComponents.year = offset;
+            break;
+        case WCDateComponentTypeMonth:
+            dateComponents.month = offset;
+            break;
+        case WCDateComponentTypeDay:
+            dateComponents.day = offset;
+            break;
+        case WCDateComponentTypeHour:
+            dateComponents.hour = offset;
+            break;
+        case WCDateComponentTypeMinute:
+            dateComponents.minute = offset;
+            break;
+        case WCDateComponentTypeSecond:
+            dateComponents.second = offset;
+            break;
+        case WCDateComponentTypeWeekday:
+            dateComponents.weekday = offset;
+            break;
+        case WCDateComponentTypeWeekOfMonth:
+            dateComponents.weekOfMonth = offset;
+            break;
+        case WCDateComponentTypeWeekOfYear:
+            dateComponents.weekdayOrdinal = offset;
+            break;
+        default:
+            return nil;
+    }
+    
+    NSDate *newDate = [[self currentCalendar] dateByAddingComponents:dateComponents toDate:date options:kNilOptions];
+    return newDate;
+}
 
 @end

@@ -39,23 +39,38 @@ typedef NS_ENUM(NSUInteger, WCWeekday) {
 NS_AVAILABLE_IOS(8_0)
 @interface WCDateComponents : NSObject
 
+/**
+ The date
+ */
 @property (nonatomic, strong, readonly) NSDate *date;
 
 @property (nonatomic, assign) NSInteger year;
 @property (nonatomic, assign) NSInteger month;
+@property (nonatomic, assign) NSInteger day;
 
+/**
+ The ordinal week in the year
+ */
 @property (nonatomic, assign) NSInteger weekOfYear;
+
+/**
+ The ordinal week in the month
+ */
 @property (nonatomic, assign) NSInteger weekOfMonth;
 
-@property (nonatomic, assign) NSInteger day;
-@property (nonatomic, assign) WCWeekday weekday;
-
+/**
+ The nearst hour, e.g 12:54:03's nearst hour is 1
+ */
 @property (nonatomic, assign) NSInteger nearestHour;
 @property (nonatomic, assign) NSInteger hour;
 @property (nonatomic, assign) NSInteger minute;
 @property (nonatomic, assign) NSInteger second;
 
-@property (nonatomic, assign) NSInteger nthWeekday; // e.g. 2nd Tuesday of the month == 2
+@property (nonatomic, assign) WCWeekday weekday;
+/**
+ The nth weekday in the month, e.g. nthWeekday == 2 and weekday == WCWeekdayFriday is for the second Friday of the month.
+ */
+@property (nonatomic, assign) NSInteger nthWeekday;
 @end
 
 NS_AVAILABLE_IOS(8_0)
@@ -86,9 +101,13 @@ NS_AVAILABLE_IOS(8_0)
 
 + (nullable WCDateComponents *)dateComponentsWithDate:(nullable NSDate *)date;
 
-#pragma mark - Date Comparison
+#pragma mark - Date Component Comparison
 
 + (BOOL)sameDateComponentWithDate:(NSDate *)date anotherDate:(NSDate *)anotherDate dateComponentType:(WCDateComponentType)dateComponentType;
+
+#pragma mark - Adjust Date
+
++ (nullable NSDate *)dateWithDate:(NSDate *)date offset:(NSInteger)offset dateComponentType:(WCDateComponentType)dateComponentType;
 
 @end
 
