@@ -35,7 +35,7 @@
         _listArr = array;
     }
     
-    UIBarButtonItem *moveButton = [[UIBarButtonItem alloc] initWithTitle:@"Move" style:UIBarButtonItemStyleBordered target:self action:@selector(toggleMove)];
+    UIBarButtonItem *moveButton = [[UIBarButtonItem alloc] initWithTitle:@"Move" style:UIBarButtonItemStylePlain target:self action:@selector(toggleMove)];
     self.navigationItem.rightBarButtonItem = moveButton;
 }
 

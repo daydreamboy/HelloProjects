@@ -163,7 +163,7 @@
 /*!
  *  Move to the focused UITextField visible
  *
- *  @param notification
+ *  @param notification the NSNotification object
  *  @warning iOS 6- available
  */
 - (void)textFieldTextDidBeginEditing__:(NSNotification *)notification {

@@ -41,7 +41,7 @@
 //    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
     
-    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStyleBordered target:self action:@selector(itemDeleteClicked:)];
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStylePlain target:self action:@selector(itemDeleteClicked:)];
     deleteButton.enabled = _tableView.indexPathsForSelectedRows.count ? YES : NO;
     self.navigationItem.rightBarButtonItem = deleteButton;
     _itemDelete = deleteButton;

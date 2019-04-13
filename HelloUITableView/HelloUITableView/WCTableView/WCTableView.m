@@ -106,7 +106,7 @@ static const char * const SeparatorInsetObjectTag = "SeparatorInsetObjectTag";
 /*!
  *  Set custom table view header
  *
- *  @param tableHeaderView 
+ *  @param tableHeaderView the header view
  *  @warning must set contentInset: method before call this method
  */
 - (void)setTableHeaderView:(UIView *)tableHeaderView {

@@ -136,7 +136,7 @@ static NSString *WCTableViewSectionInfoObjectTag = @"WCExpandableHeaderViewDeleg
         [CATransaction begin];
         [info.tableView beginUpdates];
         [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-            _buttonIndicator.transform = CGAffineTransformMakeRotation(M_PI);
+            self.buttonIndicator.transform = CGAffineTransformMakeRotation(M_PI);
         } completion:nil];
         [CATransaction setCompletionBlock:^{
             if ([info.expandableHeaderView_delegate respondsToSelector:@selector(sectionDidExpandAtIndex:expandableHeaderView:)]) {
@@ -168,7 +168,7 @@ static NSString *WCTableViewSectionInfoObjectTag = @"WCExpandableHeaderViewDeleg
             [CATransaction begin];
             [info.tableView beginUpdates];
             [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
-                _buttonIndicator.transform = CGAffineTransformMakeRotation(-2 * M_PI);
+                self.buttonIndicator.transform = CGAffineTransformMakeRotation(-2 * M_PI);
             } completion:nil];
             [CATransaction setCompletionBlock:^{
                 if ([info.expandableHeaderView_delegate respondsToSelector:@selector(sectionDidCollapseAtIndex:expandableHeaderView:)]) {

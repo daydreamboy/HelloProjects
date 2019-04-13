@@ -30,7 +30,7 @@
         _listArr = array;
     }
     
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithTitle:@"Add" style:UIBarButtonItemStyleBordered target:self action:@selector(toggleEdit:)];
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithTitle:@"Add" style:UIBarButtonItemStylePlain target:self action:@selector(toggleEdit:)];
     self.navigationItem.rightBarButtonItem = addButton;
 }
 
