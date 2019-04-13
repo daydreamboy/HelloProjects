@@ -23,7 +23,7 @@
 #import "DetectUserScrollViewController.h"
 #import "HorizontalTableViewViewController.h"
 #import "LoadMoreViewController.h"
-#import "AnimationInCellViewController.h"
+#import "ShowContextMenuInCellViewController.h"
 
 #import "MoveMeViewController.h"
 #import "DeleteMeViewController.h"
@@ -81,7 +81,7 @@
           @{ kTitle: @"Detect user scrolling", kClass: [DetectUserScrollViewController class] },
           @{ kTitle: @"Horizontal table view", kClass: [HorizontalTableViewViewController class] },
           @{ kTitle: @"Table view load more", kClass: [LoadMoreViewController class] },
-          @{ kTitle: @"Animation in cell", kClass: [AnimationInCellViewController class] },
+          @{ kTitle: @"Show context menu in cell", kClass: [ShowContextMenuInCellViewController class] },
     ];
     
     NSArray<NSDictionary *> *section5 = @[

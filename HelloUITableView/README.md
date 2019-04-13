@@ -1,10 +1,10 @@
-## HelloUITableView
+# 关于UITableView
 
 [TOC]
 
-### 1、关于contentInset
+## 1、关于contentInset
 
-#### （1）contentInset被系统自动设置
+### （1）contentInset被系统自动设置
 
 官方文档，描述如下
 
@@ -39,7 +39,7 @@ iOS 7+UIViewController有`automaticallyAdjustsScrollViewInsets`属性，可以�
 
 
 
-#### （2）设置contentInset会触发scrollViewDidScroll:方法[^3]
+### （2）设置contentInset会触发scrollViewDidScroll:方法[^3]
 
 iOS 8+上，当UIScrollView或者UITableView设置过delegate，然后再设置contentInset会立即触发scrollViewDidScroll:方法。这个可能会导致一些问题，举个例子，如下
 
@@ -98,16 +98,22 @@ iOS 8+上，当UIScrollView或者UITableView设置过delegate，然后再设置c
 
 说明
 >viewDidAppear可以打印contentInset检查
-## UITableView Tips
 
-1\. Plain Table的数据没有显示超出屏幕时，去除下面多余的分隔线
+
+## 2、UITableView Tips
+
+### （1）Plain Table的数据没有显示超出屏幕时，去除下面多余的分隔线
 
 ```
 tableView.tableFooterView = [UIView new];
 ```
 Grouped Table不存在上面问题，即使没有显示全部屏幕，也没有多余的分隔线
 
-2\. table header view添加扩展view，用于解决table view header下拉时空白
+示例代码见**PlainTableViewRemoveRedundantSeparatorsViewController**
+
+
+
+### （2）Table header view添加扩展view，用于解决Table view header下拉时空白
 
 ```
 - (void)didMoveToSuperview {
@@ -120,7 +126,11 @@ Grouped Table不存在上面问题，即使没有显示全部屏幕，也没有�
 }
 ```
 
-3\. 将Plain Table的section设置成不浮动的，类似Grouped Table[^1]
+示例代码见**TableViewHeaderWithExtendedViewViewController**
+
+
+
+### （3）将Plain Table的section设置成不浮动的，类似Grouped Table[^1]
 
 ```
 CGFloat dummyViewHeight = 40;
@@ -128,6 +138,31 @@ UIView *dummyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableVie
 self.tableView.tableHeaderView = dummyView;
 self.tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0);
 ```
+
+示例代码见**PlainTableViewWithNonFloatSectionViewController**
+
+
+
+### （4）TableView的cell添加上下文菜单
+
+TableViewDelegate提供下面三个方法，用于提供cell的上下文菜单，而且
+
+```objective-c
+ - (BOOL)tableView:(UITableView *)tableView shouldShowMenuForRowAtIndexPath:(NSIndexPath *)indexPath; // 用于是否显示context menu
+ - (BOOL)tableView:(UITableView *)tableView canPerformAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender; // 用于是否显示context menu中特定菜单
+ - (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender; // 响应context menu中特定菜单的点击
+```
+
+说明
+
+> 1. 实现三个方法，可以简单显示系统默认的context menu。如果需要自定义菜单，则使用UIMenuController，示例代码参考HelloUITableViewCell
+> 2. 上面三个方法的action参数，如果是以下划线开头的，则是系统私有方法，需要额外注意。例如action为@selector(_share:)，在canPerformAction:方法中，可以控制share菜单是否显示，但是share菜单的点击并不会回调到performAction:方法中。
+
+
+
+
+
+
 
 
 
