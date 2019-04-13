@@ -6,7 +6,7 @@
 
 ### （1）NSDate的概念
 
-官方文档指出，NSDate代表独立于任意日（）历或时区的一个特定时间点
+官方文档指出，NSDate代表独立于任意日历或时区的一个特定时间点
 
 > A representation of a specific point in time, independent of any calendar or time zone.
 

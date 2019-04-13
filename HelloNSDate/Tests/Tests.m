@@ -210,71 +210,89 @@
     formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     NSDate *date = [formatter dateFromString:@"2019-04-20 12:54:03"];
     
-    // Case 1
+    // Case 1: year
     date1 = date;
-    date2 = [WCDateTool dateWithDate:date1 offset:1 dateComponentType:WCDateComponentTypeWeekOfYear];
+    date2 = [WCDateTool dateWithDate:date1 offset:1 dateComponentType:WCDateComponentTypeYear];
     isSame = [WCDateTool sameDateComponentWithDate:date1 anotherDate:date2 dateComponentType:WCDateComponentTypeYear];
     XCTAssertFalse(isSame);
     dateComponents = [WCDateTool dateComponentsWithDate:date2];
-    XCTAssertTrue(dateComponents.year = 2020);
+    XCTAssertTrue(dateComponents.year == 2020);
     
-    // Case 2
-    date2 = [WCDateTool dateWithDate:date1 offset:1 dateComponentType:WCDateComponentTypeWeekOfMonth];
+    // Case 2: month
+    date1 = date;
+    date2 = [WCDateTool dateWithDate:date1 offset:-1 dateComponentType:WCDateComponentTypeMonth];
     isSame = [WCDateTool sameDateComponentWithDate:date1 anotherDate:date2 dateComponentType:WCDateComponentTypeMonth];
-    XCTAssertTrue(isSame);
+    XCTAssertFalse(isSame);
+    dateComponents = [WCDateTool dateComponentsWithDate:date2];
+    XCTAssertTrue(dateComponents.month == 3);
     
+    // Case 3: day
+    date1 = date;
+    date2 = [WCDateTool dateWithDate:date1 offset:-1 dateComponentType:WCDateComponentTypeDay];
     isSame = [WCDateTool sameDateComponentWithDate:date1 anotherDate:date2 dateComponentType:WCDateComponentTypeDay];
-    XCTAssertTrue(isSame);
+    XCTAssertFalse(isSame);
+    dateComponents = [WCDateTool dateComponentsWithDate:date2];
+    XCTAssertTrue(dateComponents.day == 19);
     
+    // Case 4: hour
+    date1 = date;
+    date2 = [WCDateTool dateWithDate:date1 offset:1 dateComponentType:WCDateComponentTypeHour];
     isSame = [WCDateTool sameDateComponentWithDate:date1 anotherDate:date2 dateComponentType:WCDateComponentTypeHour];
-    XCTAssertTrue(isSame);
+    XCTAssertFalse(isSame);
+    dateComponents = [WCDateTool dateComponentsWithDate:date2];
+    XCTAssertTrue(dateComponents.hour == 13);
     
+    // Case 5: minute
+    date1 = date;
+    date2 = [WCDateTool dateWithDate:date1 offset:6 dateComponentType:WCDateComponentTypeMinute];
     isSame = [WCDateTool sameDateComponentWithDate:date1 anotherDate:date2 dateComponentType:WCDateComponentTypeMinute];
-    XCTAssertTrue(isSame);
+    XCTAssertFalse(isSame);
+    dateComponents = [WCDateTool dateComponentsWithDate:date2];
+    XCTAssertTrue(dateComponents.minute == 0);
     
-    isSame = [WCDateTool sameDateComponentWithDate:date1 anotherDate:date2 dateComponentType:WCDateComponentTypeSecond];
-    XCTAssertTrue(isSame);
-    
-    isSame = [WCDateTool sameDateComponentWithDate:date1 anotherDate:date2 dateComponentType:WCDateComponentTypeWeekday];
-    XCTAssertTrue(isSame);
-    
-    isSame = [WCDateTool sameDateComponentWithDate:date1 anotherDate:date2 dateComponentType:WCDateComponentTypeWeekOfMonth];
-    XCTAssertTrue(isSame);
-    
-    isSame = [WCDateTool sameDateComponentWithDate:date1 anotherDate:date2 dateComponentType:WCDateComponentTypeWeekOfYear];
-    XCTAssertTrue(isSame);
-    
-    // Case 2
-    date1 = [NSDate date];
-    sleep(1);
-    date2 = [NSDate date];
-    
-    isSame = [WCDateTool sameDateComponentWithDate:date1 anotherDate:date2 dateComponentType:WCDateComponentTypeYear];
-    XCTAssertTrue(isSame);
-    
-    isSame = [WCDateTool sameDateComponentWithDate:date1 anotherDate:date2 dateComponentType:WCDateComponentTypeMonth];
-    XCTAssertTrue(isSame);
-    
-    isSame = [WCDateTool sameDateComponentWithDate:date1 anotherDate:date2 dateComponentType:WCDateComponentTypeDay];
-    XCTAssertTrue(isSame);
-    
-    isSame = [WCDateTool sameDateComponentWithDate:date1 anotherDate:date2 dateComponentType:WCDateComponentTypeHour];
-    XCTAssertTrue(isSame);
-    
-    isSame = [WCDateTool sameDateComponentWithDate:date1 anotherDate:date2 dateComponentType:WCDateComponentTypeMinute];
-    XCTAssertTrue(isSame);
-    
+    // Case 6: second
+    date1 = date;
+    date2 = [WCDateTool dateWithDate:date1 offset:57 dateComponentType:WCDateComponentTypeSecond];
     isSame = [WCDateTool sameDateComponentWithDate:date1 anotherDate:date2 dateComponentType:WCDateComponentTypeSecond];
     XCTAssertFalse(isSame);
+    dateComponents = [WCDateTool dateComponentsWithDate:date2];
+    XCTAssertTrue(dateComponents.second == 0);
     
+    // Case 4: weekday
+    date1 = date;
+    date2 = [WCDateTool dateWithDate:date1 offset:-1 dateComponentType:WCDateComponentTypeWeekday];
     isSame = [WCDateTool sameDateComponentWithDate:date1 anotherDate:date2 dateComponentType:WCDateComponentTypeWeekday];
-    XCTAssertTrue(isSame);
+    XCTAssertFalse(isSame);
     
-    isSame = [WCDateTool sameDateComponentWithDate:date1 anotherDate:date2 dateComponentType:WCDateComponentTypeWeekOfMonth];
-    XCTAssertTrue(isSame);
+    dateComponents = [WCDateTool dateComponentsWithDate:date1];
+    XCTAssertTrue(dateComponents.weekday == WCWeekdaySaturday);
     
+    dateComponents = [WCDateTool dateComponentsWithDate:date2];
+    XCTAssertTrue(dateComponents.weekday == WCWeekdayFriday);
+    
+    // Case 4: week of the year
+    date1 = date;
+    date2 = [WCDateTool dateWithDate:date1 offset:-1 dateComponentType:WCDateComponentTypeWeekOfYear];
     isSame = [WCDateTool sameDateComponentWithDate:date1 anotherDate:date2 dateComponentType:WCDateComponentTypeWeekOfYear];
-    XCTAssertTrue(isSame);
+    XCTAssertFalse(isSame);
+    
+    dateComponents = [WCDateTool dateComponentsWithDate:date1];
+    XCTAssertTrue(dateComponents.weekOfYear == 16);
+    
+    dateComponents = [WCDateTool dateComponentsWithDate:date2];
+    XCTAssertTrue(dateComponents.weekOfYear == 15);
+    
+    // Case 5: week of the month
+    date1 = date;
+    date2 = [WCDateTool dateWithDate:date1 offset:1 dateComponentType:WCDateComponentTypeWeekOfMonth];
+    isSame = [WCDateTool sameDateComponentWithDate:date1 anotherDate:date2 dateComponentType:WCDateComponentTypeWeekOfMonth];
+    XCTAssertFalse(isSame);
+    
+    dateComponents = [WCDateTool dateComponentsWithDate:date1];
+    XCTAssertTrue(dateComponents.weekOfMonth == 3);
+    
+    dateComponents = [WCDateTool dateComponentsWithDate:date2];
+    XCTAssertTrue(dateComponents.weekOfMonth == 4);
 }
 
 @end

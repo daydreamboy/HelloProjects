@@ -8,10 +8,6 @@
 
 #import "WCDateTool.h"
 
-#ifndef SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO
-#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
-#endif
-
 @interface WCDateTool ()
 + (NSCalendar *)currentCalendar;
 @end
@@ -47,6 +43,10 @@
     
     return [sDateFormatter stringFromDate:date];
 }
+
+#pragma mark - Date Components
+
+#pragma mark > Get components of date
 
 + (nullable WCDateComponents *)dateComponentsWithDate:(nullable NSDate *)date {
     if (date && ![date isKindOfClass:[NSDate class]]) {
@@ -84,7 +84,7 @@
     return newComponents;
 }
 
-#pragma mark - Date Comparison
+#pragma mark > Date components comparison
 
 + (BOOL)sameDateComponentWithDate:(NSDate *)date anotherDate:(NSDate *)anotherDate dateComponentType:(WCDateComponentType)dateComponentType {
     NSCalendarUnit unit = NSNotFound;
@@ -152,17 +152,7 @@
     static unsigned componentFlags;
     
     if (!componentFlags) {
-        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"8.0")) {
-            componentFlags = (NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitWeekday | NSCalendarUnitWeekdayOrdinal | NSCalendarUnitQuarter  | NSCalendarUnitWeekOfMonth | NSCalendarUnitWeekOfYear);
-        }
-        else {
-            // Contants deprecated in iOS 8+
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-            componentFlags = (NSEraCalendarUnit | NSYearCalendarUnit| NSMonthCalendarUnit  | NSDayCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit |
-                              NSWeekCalendarUnit | NSWeekdayCalendarUnit | NSWeekdayOrdinalCalendarUnit | NSQuarterCalendarUnit | NSWeekOfMonthCalendarUnit | NSWeekOfYearCalendarUnit);
-#pragma GCC diagnostic pop
-        }
+        componentFlags = (NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitWeekday | NSCalendarUnitWeekdayOrdinal | NSCalendarUnitQuarter  | NSCalendarUnitWeekOfMonth | NSCalendarUnitWeekOfYear);
     }
     
     return componentFlags;
@@ -170,7 +160,7 @@
 
 #pragma mark ::
 
-#pragma mark - Adjust Date
+#pragma mark > Adjust date by components
 
 + (nullable NSDate *)dateWithDate:(NSDate *)date offset:(NSInteger)offset dateComponentType:(WCDateComponentType)dateComponentType {
     NSDateComponents *dateComponents = [[NSDateComponents alloc] init];

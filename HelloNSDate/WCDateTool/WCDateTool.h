@@ -37,6 +37,9 @@ typedef NS_ENUM(NSUInteger, WCWeekday) {
 };
 
 NS_AVAILABLE_IOS(8_0)
+/**
+ The date components which contains year/month/data/...
+ */
 @interface WCDateComponents : NSObject
 
 /**
@@ -59,7 +62,7 @@ NS_AVAILABLE_IOS(8_0)
 @property (nonatomic, assign) NSInteger weekOfMonth;
 
 /**
- The nearst hour, e.g 12:54:03's nearst hour is 1
+ The nearest hour, e.g 12:54:03's nearst hour is 1
  */
 @property (nonatomic, assign) NSInteger nearestHour;
 @property (nonatomic, assign) NSInteger hour;
@@ -95,18 +98,40 @@ NS_AVAILABLE_IOS(8_0)
  */
 + (nullable NSString *)stringFromDate:(NSDate *)date format:(nullable NSString *)format;
 
-#pragma mark - Components of Date (without time zone)
+#pragma mark - Date Components
 
-#pragma mark > Get component of date
+#pragma mark > Get components of date
 
+/**
+ Get the components of date
+
+ @param date the NSDate
+ @return the WCDateComponents object
+ */
 + (nullable WCDateComponents *)dateComponentsWithDate:(nullable NSDate *)date;
 
-#pragma mark - Date Component Comparison
+#pragma mark > Date components comparison
 
+/**
+ Check date components equality
+
+ @param date the date
+ @param anotherDate the other date
+ @param dateComponentType the type of date components
+ @return return YES if date componnets is same, otherwise return NO
+ */
 + (BOOL)sameDateComponentWithDate:(NSDate *)date anotherDate:(NSDate *)anotherDate dateComponentType:(WCDateComponentType)dateComponentType;
 
-#pragma mark - Adjust Date
+#pragma mark > Adjust date by components
 
+/**
+ Get a new date by modifying the date components
+
+ @param date the original date
+ @param offset the offset
+ @param dateComponentType the date component type to modify
+ @return the new date
+ */
 + (nullable NSDate *)dateWithDate:(NSDate *)date offset:(NSInteger)offset dateComponentType:(WCDateComponentType)dateComponentType;
 
 @end
