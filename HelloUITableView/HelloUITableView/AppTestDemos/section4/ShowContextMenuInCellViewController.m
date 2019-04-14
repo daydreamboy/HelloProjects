@@ -97,6 +97,11 @@
 
 - (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender {
     NSLog(@"performAction: %@", NSStringFromSelector(action));
+    
+    if (action == @selector(paste:)) {
+        NSString *text = self.listData[indexPath.section][indexPath.row];
+        [UIPasteboard generalPasteboard].string = text;
+    }
 }
 
 #pragma mark - UITableViewDataSource

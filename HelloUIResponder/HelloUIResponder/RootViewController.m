@@ -10,6 +10,9 @@
 
 #import "GetContextMenuClickEventViewController.h"
 #import "UseInputViewInUITextFieldViewController.h"
+#import "TableViewCellShowContextMenuViewController.h"
+#import "UseUIMenuControllerViewController.h"
+#import "UIMenuControllerKeepKeyboardShowViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -34,11 +37,17 @@
     _titles = @[
         @"Get context menu click event (paste, ...)",
         @"Use input view as keyboard",
+        @"Show context menu and keep keyboard not hide",
+        @"Use UIMenuController",
+        @"UIMenuController keep keyboard show",
         @"call a test method",
     ];
     _classes = @[
         [GetContextMenuClickEventViewController class],
         [UseInputViewInUITextFieldViewController class],
+        [TableViewCellShowContextMenuViewController class],
+        [UseUIMenuControllerViewController class],
+        [UIMenuControllerKeepKeyboardShowViewController class],
         @"testMethod",
     ];
 }
