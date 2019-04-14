@@ -21,6 +21,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable id)currentFirstResponder;
 
+// TODO
+// https://stackoverflow.com/questions/1823317/get-the-current-first-responder-without-using-a-private-api
+- (id)findFirstResponder;
+
 @end
 
 NS_ASSUME_NONNULL_END
