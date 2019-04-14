@@ -28,4 +28,10 @@
     }
 }
 
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    // Note: relinquish the overrideNextResponder if the long press on the UITextField
+    _overrideNextResponder = nil;
+}
+
 @end

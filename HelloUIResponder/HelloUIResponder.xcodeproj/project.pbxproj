@@ -12,6 +12,8 @@
 		2B6AE1A822632E0000226F9A /* UIMenuControllerKeepKeyboardShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6AE1A722632E0000226F9A /* UIMenuControllerKeepKeyboardShowViewController.m */; };
 		2B6AE1AC2263304500226F9A /* HipsterLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6AE1AB2263304500226F9A /* HipsterLabel.m */; };
 		2B6AE1B2226341E400226F9A /* MyTextFieldWithOverrideNexResponder.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6AE1B1226341E400226F9A /* MyTextFieldWithOverrideNexResponder.m */; };
+		2B6AE1B522635AC300226F9A /* TableViewCellShowCustomContextMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6AE1B422635AC300226F9A /* TableViewCellShowCustomContextMenuViewController.m */; };
+		2B6AE1B822635CEC00226F9A /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6AE1B722635CEC00226F9A /* MyTableViewCell.m */; };
 		2BA442C92261D3190016C876 /* TableViewCellShowContextMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA442C82261D3190016C876 /* TableViewCellShowContextMenuViewController.m */; };
 		4F8C95AA221FA44400869CE7 /* UseInputViewInUITextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C95A9221FA44400869CE7 /* UseInputViewInUITextFieldViewController.m */; };
 		4F8C95AE221FB0B900869CE7 /* WCAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C95AC221FB0B900869CE7 /* WCAlertController.m */; };
@@ -34,6 +36,10 @@
 		2B6AE1AB2263304500226F9A /* HipsterLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HipsterLabel.m; sourceTree = "<group>"; };
 		2B6AE1B0226341E400226F9A /* MyTextFieldWithOverrideNexResponder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTextFieldWithOverrideNexResponder.h; sourceTree = "<group>"; };
 		2B6AE1B1226341E400226F9A /* MyTextFieldWithOverrideNexResponder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTextFieldWithOverrideNexResponder.m; sourceTree = "<group>"; };
+		2B6AE1B322635AC300226F9A /* TableViewCellShowCustomContextMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCellShowCustomContextMenuViewController.h; sourceTree = "<group>"; };
+		2B6AE1B422635AC300226F9A /* TableViewCellShowCustomContextMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCellShowCustomContextMenuViewController.m; sourceTree = "<group>"; };
+		2B6AE1B622635CEC00226F9A /* MyTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell.h; sourceTree = "<group>"; };
+		2B6AE1B722635CEC00226F9A /* MyTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell.m; sourceTree = "<group>"; };
 		2BA442C72261D3190016C876 /* TableViewCellShowContextMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCellShowContextMenuViewController.h; sourceTree = "<group>"; };
 		2BA442C82261D3190016C876 /* TableViewCellShowContextMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCellShowContextMenuViewController.m; sourceTree = "<group>"; };
 		4F8C95A8221FA44400869CE7 /* UseInputViewInUITextFieldViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseInputViewInUITextFieldViewController.h; sourceTree = "<group>"; };
@@ -80,6 +86,8 @@
 				2B6AE1AB2263304500226F9A /* HipsterLabel.m */,
 				2B6AE1B0226341E400226F9A /* MyTextFieldWithOverrideNexResponder.h */,
 				2B6AE1B1226341E400226F9A /* MyTextFieldWithOverrideNexResponder.m */,
+				2B6AE1B622635CEC00226F9A /* MyTableViewCell.h */,
+				2B6AE1B722635CEC00226F9A /* MyTableViewCell.m */,
 			);
 			path = DummyClass;
 			sourceTree = "<group>";
@@ -137,6 +145,8 @@
 				4F8C95A9221FA44400869CE7 /* UseInputViewInUITextFieldViewController.m */,
 				2BA442C72261D3190016C876 /* TableViewCellShowContextMenuViewController.h */,
 				2BA442C82261D3190016C876 /* TableViewCellShowContextMenuViewController.m */,
+				2B6AE1B322635AC300226F9A /* TableViewCellShowCustomContextMenuViewController.h */,
+				2B6AE1B422635AC300226F9A /* TableViewCellShowCustomContextMenuViewController.m */,
 				2B6A79F52263121A009EFFF4 /* UseUIMenuControllerViewController.h */,
 				2B6A79F62263121A009EFFF4 /* UseUIMenuControllerViewController.m */,
 				2B6AE1A622632E0000226F9A /* UIMenuControllerKeepKeyboardShowViewController.h */,
@@ -215,7 +225,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F8C95AA221FA44400869CE7 /* UseInputViewInUITextFieldViewController.m in Sources */,
+				2B6AE1B822635CEC00226F9A /* MyTableViewCell.m in Sources */,
 				2B6A79F72263121A009EFFF4 /* UseUIMenuControllerViewController.m in Sources */,
+				2B6AE1B522635AC300226F9A /* TableViewCellShowCustomContextMenuViewController.m in Sources */,
 				4FBA530B2159DB3F00711552 /* GetContextMenuClickEventViewController.m in Sources */,
 				4FBA52FC2159D29F00711552 /* main.m in Sources */,
 				2B6AE1B2226341E400226F9A /* MyTextFieldWithOverrideNexResponder.m in Sources */,

@@ -81,6 +81,22 @@ UITextField <- UILabel <- UIView <- ... <- UIWindow <- UIApplication
 
 
 
+3、UITableViewCell的上下文菜单
+
+UITableViewCell的上下文菜单可以用两种方式实现
+
+* 实现UITableViewDelegate下面三个方法，并且自定义UITableViewCell实现menu action方法（示例代码见**TableViewCellShowCustomContextMenuViewController**）
+
+  >  \- (BOOL)tableView:(UITableView *)tableView shouldShowMenuForRowAtIndexPath:(NSIndexPath *)indexPath;
+  >
+  >  \- (BOOL)tableView:(UITableView *)tableView canPerformAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender;
+  >
+  >  \- (void)tableView:(UITableView *)tableView performAction:(SEL)action forRowAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender;
+
+* UITableViewCell按照上面普通UIView的方式，然后UITableViewCell自己添加长按手势，并显示UIMenuController
+
+
+
 
 
 ## References

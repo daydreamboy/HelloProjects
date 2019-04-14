@@ -23,6 +23,8 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.label];
     [self.view addSubview:self.textField];
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    [self.view addGestureRecognizer:tapGesture];
 }
 
 #pragma mark - Getters
@@ -63,6 +65,8 @@
     return _textField;
 }
 
+#pragma mark - Actions
+
 - (void)labelLongPressed:(UILongPressGestureRecognizer *)recognizer {
     UIView *targetView = recognizer.view;
     UIView *targetSuperView = targetView.superview;
@@ -79,12 +83,13 @@
                 
                 if ([self.textField isFirstResponder]) {
                     self.textField.overrideNextResponder = self.label;
-                    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(menuDidHide:) name:UIMenuControllerDidHideMenuNotification object:nil];
+                    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleMenuControllerDidHideMenuNotification:) name:UIMenuControllerDidHideMenuNotification object:nil];
+                    
                     NSLog(@"change nextResponder for textField");
                 }
                 else {
                     BOOL success = [targetView becomeFirstResponder];
-                    NSLog(@"%@", success ? @"YES" : @"NO");
+                    NSLog(@"becomeFirstResponder: %@", success ? @"YES" : @"NO");
                 }
                 
                 [menuController setMenuVisible:YES animated:YES];
@@ -93,9 +98,13 @@
     }
 }
 
+- (void)viewTapped:(UITapGestureRecognizer *)recognizer {
+    [self.view endEditing:YES];
+}
+
 #pragma mark - NSNotfication
 
-- (void)menuDidHide:(NSNotification*)notification {
+- (void)handleMenuControllerDidHideMenuNotification:(NSNotification*)notification {
     NSLog(@"menuDidHide");
     self.textField.overrideNextResponder = nil;
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIMenuControllerDidHideMenuNotification object:nil];
