@@ -35,4 +35,34 @@
     NSLog(@"%@", localDate);
 }
 
+- (void)test_stringFromDate {
+    // @see https://stackoverflow.com/a/8523294
+    NSString *output;
+    NSDate *date;
+    
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    date = [formatter dateFromString:@"2019-04-20 12:54:03"];
+    
+    // Case 1
+    formatter.dateFormat = @"dd";
+    output = [formatter stringFromDate:date];
+    XCTAssertEqualObjects(output, @"20");
+    
+    // Case 2
+    formatter.dateFormat = @"MMM";
+    output = [formatter stringFromDate:date];
+    XCTAssertEqualObjects(output, @"Apr");
+    
+    // Case 3
+    formatter.dateFormat = @"MM";
+    output = [formatter stringFromDate:date];
+    XCTAssertEqualObjects(output, @"04");
+    
+    // Case 4
+    formatter.dateFormat = @"yy";
+    output = [formatter stringFromDate:date];
+    XCTAssertEqualObjects(output, @"19");
+}
+
 @end
