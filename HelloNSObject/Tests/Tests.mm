@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <UIKit/UIKit.h>
 #import "WCObjectTool.h"
 #import "Thing.h"
 #import "Person.h"
@@ -341,6 +342,27 @@ R"JSON([
     
     // Case 1
     output = [WCObjectTool descriptionForProtocolName:@"NSCopying"];
+    NSLog(@"%@", output);
+}
+
+#pragma mark > Class Hierarchy
+
+- (void)test_classHierarchyWithClass {
+    NSArray<NSString *> *output;
+    
+    // Case 1
+    output = [WCObjectTool classHierarchyWithClass:[UIView class]];
+    XCTAssertTrue(output.count == 3);
+    XCTAssertEqualObjects(output[0], @"UIView");
+    XCTAssertEqualObjects(output[1], @"UIResponder");
+    XCTAssertEqualObjects(output[2], @"NSObject");
+}
+
+- (void)test_printClassHierarchyWithClass {
+    NSString *output;
+    
+    // Case 1
+    output = [WCObjectTool printClassHierarchyWithClass:[UIView class]];
     NSLog(@"%@", output);
 }
 

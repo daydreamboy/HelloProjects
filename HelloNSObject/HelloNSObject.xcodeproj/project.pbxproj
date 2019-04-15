@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F3ADDE322649BFA0044D0FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3ADDE222649BFA0044D0FB /* UIKit.framework */; };
 		4F54E6582238A0BB001A9BE2 /* WCObjectTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F54E6572238A0BB001A9BE2 /* WCObjectTool.m */; };
 		4F54E6612238A1C7001A9BE2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F54E6602238A1C7001A9BE2 /* AppDelegate.m */; };
 		4F54E6642238A1C7001A9BE2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F54E6632238A1C7001A9BE2 /* ViewController.m */; };
@@ -44,6 +45,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F3ADDE222649BFA0044D0FB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4F54E6562238A0BB001A9BE2 /* WCObjectTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCObjectTool.h; sourceTree = "<group>"; };
 		4F54E6572238A0BB001A9BE2 /* WCObjectTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCObjectTool.m; sourceTree = "<group>"; };
 		4F54E65D2238A1C7001A9BE2 /* OrderOfCallLoadMethodInNSObject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrderOfCallLoadMethodInNSObject.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F3ADDE322649BFA0044D0FB /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -128,6 +131,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F3ADDE122649BFA0044D0FB /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4F3ADDE222649BFA0044D0FB /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4F54E6552238A08A001A9BE2 /* WCObjectTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +224,7 @@
 				4F650E9D223967DB002BA46F /* InitializeMethodInCategory */,
 				4F5B652F2249DD4600D40218 /* Tests */,
 				4FFE71A12236AC550020516E /* Products */,
+				4F3ADDE122649BFA0044D0FB /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

@@ -304,6 +304,47 @@ static NSString * JSONEscapedStringFromString(NSString *string) {
     return methodsAndProperties.count ? [methodsAndProperties copy ] : nil;
 }
 
+#pragma mark > Class Hierarchy
+
++ (nullable NSArray<NSString *> *)classHierarchyWithClass:(Class)clz {
+    if (clz == NULL) {
+        return nil;
+    }
+    
+    NSMutableArray<NSString *> *classNames = [NSMutableArray arrayWithCapacity:10];
+    getSuper(clz, classNames);
+    
+    return classNames;
+}
+
++ (nullable NSArray<NSString *> *)classHierarchyWithInstance:(id)instance {
+    return [self classHierarchyWithClass:[instance class]];
+}
+
++ (nullable NSString *)printClassHierarchyWithClass:(Class)clz {
+    if (clz == NULL) {
+        return nil;
+    }
+    
+    NSArray<NSString *> *classNames = [self classHierarchyWithClass:clz];
+    return [classNames componentsJoinedByString:@" -> "];
+}
+
++ (nullable NSString *)printClassHierarchyWithInstance:(id)instance {
+    return [self printClassHierarchyWithClass:[instance class]];
+}
+
+#pragma mark ::
+
+static void getSuper(Class class, NSMutableArray *result) {
+    if (class != NULL) {
+        [result addObject:NSStringFromClass(class)];
+        if ([class superclass]) { getSuper([class superclass], result); }
+    }
+}
+
+#pragma mark ::
+
 #pragma mark - Utility
 
 //https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html

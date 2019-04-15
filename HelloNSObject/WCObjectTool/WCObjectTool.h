@@ -102,6 +102,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSDictionary<NSString *, NSArray *> *)descriptionForProtocol:(Protocol *)protocol;
 
+#pragma mark > Class Hierarchy
+
++ (nullable NSArray<NSString *> *)classHierarchyWithClass:(Class)clz;
++ (nullable NSArray<NSString *> *)classHierarchyWithInstance:(id)instance;
+
++ (nullable NSString *)printClassHierarchyWithClass:(Class)clz;
++ (nullable NSString *)printClassHierarchyWithInstance:(id)instance;
 
 @end
 
