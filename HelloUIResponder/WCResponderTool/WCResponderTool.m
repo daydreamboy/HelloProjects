@@ -27,4 +27,43 @@ static __weak id sCurrentFirstResponder;
     return sCurrentFirstResponder;
 }
 
++ (nullable id)findFirstResponder {
+    id currentFirstResponder = nil;
+    NSArray *windows = [UIApplication sharedApplication].windows;
+    
+    currentFirstResponder = [self findFirstResponderWithView:[UIApplication sharedApplication].keyWindow];
+    if (currentFirstResponder) {
+        return currentFirstResponder;
+    }
+    
+    for (UIWindow *window in windows) {
+        if (window != [UIApplication sharedApplication].keyWindow) {
+            currentFirstResponder = [self findFirstResponderWithView:window];
+            if (currentFirstResponder) {
+                return currentFirstResponder;
+            }
+        }
+    }
+    
+    return currentFirstResponder;
+}
+
+#pragma mark ::
+
++ (id)findFirstResponderWithView:(UIView *)view {
+    if (view.isFirstResponder) {
+        return view;
+    }
+    
+    NSArray *subviews = [view subviews];
+    for (UIView *subview in subviews) {
+        id responder = [self findFirstResponderWithView:subview];
+        if (responder) return responder;
+    }
+    
+    return nil;
+}
+
+#pragma mark ::
+
 @end

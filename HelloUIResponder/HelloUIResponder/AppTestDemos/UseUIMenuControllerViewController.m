@@ -13,6 +13,7 @@
 @interface UseUIMenuControllerViewController ()
 @property (nonatomic, strong) HipsterLabel *label;
 @property (nonatomic, strong) UITextField *textField;
+@property (nonatomic, strong) NSTimer *timerCheckFirstResponder;
 @end
 
 @implementation UseUIMenuControllerViewController
@@ -23,6 +24,27 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.label];
     [self.view addSubview:self.textField];
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+    [self.view addGestureRecognizer:tapGesture];
+    
+    if (@available(iOS 10.0, *)) {
+        self.timerCheckFirstResponder = [NSTimer scheduledTimerWithTimeInterval:1.5 repeats:YES block:^(NSTimer * _Nonnull timer) {
+            id currentResponder = [WCResponderTool currentFirstResponder];
+            NSLog(@"currentResponder: %@", currentResponder);
+            
+            id currentResponder2 = [WCResponderTool findFirstResponder];
+            NSLog(@"currentResponder2: %@", currentResponder2);
+        }];
+    }
+    else {
+        // Fallback on earlier versions
+    }
+}
+
+- (void)dealloc {
+    [_timerCheckFirstResponder invalidate];
+    _timerCheckFirstResponder = nil;
 }
 
 #pragma mark - Getters
@@ -63,6 +85,8 @@
     return _textField;
 }
 
+#pragma mark - Actions
+
 - (void)labelLongPressed:(UILongPressGestureRecognizer *)recognizer {
     UIView *targetView = recognizer.view;
     UIView *targetSuperView = targetView.superview;
@@ -86,6 +110,10 @@
             }
         }
     }
+}
+
+- (void)viewTapped:(UITapGestureRecognizer *)recognizer {
+    [self.view endEditing:YES];
 }
 
 @end
