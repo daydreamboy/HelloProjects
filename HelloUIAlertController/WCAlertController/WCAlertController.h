@@ -8,13 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
-
 /**
- A alert controller for show without UIViewController
+ A subclass of UIAlertController which supports to show without presented on a view controller
  
  @see https://stackoverflow.com/a/30941356
+ @discussion The alert controller presented on an internal window
  */
 @interface WCAlertController : UIAlertController
+
+/**
+ Show the alert controller with animation
+ */
 - (void)show;
+
+/**
+ Show the alert controller
+
+ @param animated YES if animated
+ */
 - (void)show:(BOOL)animated;
 @end

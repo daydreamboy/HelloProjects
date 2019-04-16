@@ -11,6 +11,8 @@
 #import "TabledAlertController.h"
 #import "WCAlertController.h"
 #import "UseWCAlertToolViewController.h"
+#import "AlertWithTextViewController.h"
+#import "AlertWithTextFieldViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -37,12 +39,16 @@
         @"Show alert without view controller",
         @"Show action sheet without view controller",
         @"show alert/actionSheet by WCAlertTool",
+        @"alert with text",
+        @"alert with UITextField",
     ];
     _classes = @[
         @"showTabledActionSheet",
         @"showGlobalAlert",
         @"showGlobalActionSheet",
         [UseWCAlertToolViewController class],
+        [AlertWithTextViewController class],
+        [AlertWithTextFieldViewController class],
     ];
 }
 
