@@ -1,73 +1,14 @@
-## HelloLLDB
-
-1. lldb手册
-2. lldbinit配置
-3. lldb快捷键
-4. lldb类型格式（Type Formatting）
-5. Call Convention
-6. Python调试脚本
-7. 符号解释
-8. 运行时trap
-9. lldb常见问题
-
-------
+# HelloLLDB
 
 [TOC]
 
+
+
 ## 1、lldb手册
 
-1. print
-2. po（print object）
-3. print/\<fmt\>
-4. expression
-5. continue
-6. thread
-	 * thread step-over (next)
-	 * thread step-in（step）
-	 * thread return
-	 * thread list
-	 * thread step-out（finish）
-7. type
-	 * type summary
-8. finish
-9. frame
-	 * frame info
-	 * frame select
-	 * frame variable
-10. command
-	 * command alias
-	 * command regex
-	 * command script
-11. process
-	 * process load
-	 * process launch
-12. script
-13. breakpoint
-	 * breakpoint set
-	 * breakpoint list
-	 * breakpoint enable/disable
-	 * breakpoint delete
-	 * breakpoint command add/delete/list
-	 * breakpoint modify
-14. memory
-15. register
-	 * register read
-	 * register write
-16. lldb attach进程
-17. target
-18. help
-19. source
-20. TODO
-21. image
-	 * image list
-	 * image dump
-	 * image lookup
-22. run
-
-----------------------
 
 
-### 1、print
+### 1. print
 
 格式：print \<expression\>    
 简写：p     
@@ -79,7 +20,9 @@
 (__NSArrayI *) $4 = 0x00000001028010f0 @"2 elements"
 ```
 
-### 2、po（print object）
+
+
+### 2. po（print object）
 
 格式：po \<expression\>    
 简写：po    
@@ -94,7 +37,9 @@ bar
 )
 ```
 
-### 3、print/\<fmt\>
+
+
+### 3. print/\<fmt\>
 
 格式：    
 
@@ -116,7 +61,10 @@ bar
 (char) $8 = 0b00010000
 ```
 
-### 4、expression
+
+
+### 4. expression
+
 格式：expression <expression>    
 简写：e    
 说明：expression是比较复杂的命令，后面可以加选项。     
@@ -234,13 +182,17 @@ Derek Selander
 ```
 > 0x94000100是NSUTF16LittleEndianStringEncoding的值
 
-### 5、continue
+
+
+### 5. continue
 
 格式：continue    
 简写：c     
 continue不带参数，是process continue的别名。debug时，代表当前进程恢复执行
 
-### 6、thread
+
+
+### 6. thread
 
 #### （1）thread step-over (next)
 
@@ -248,6 +200,8 @@ continue不带参数，是process continue的别名。debug时，代表当前进
 简写：n，next    
 说明：当前线程单步执行
 n不带参数。debug时，代表单步执行
+
+
 
 #### （2）thread step-in（step）
 
@@ -257,11 +211,15 @@ n不带参数。debug时，代表单步执行
 
 * step -a0，忽略lldb设置，总是单步进入
 
+
+
 #### （3）thread return
 
 格式：thread return \<optional retVal\>    
 说明：当前线程中止后面的执行，提前返回到函数入口。thread return带一个可选的返回值，如果执行，当前函数立即返回，剩下的代码不会执行。  
 注意：和finish不一样，finish是执行完当前函数才返回。由于提前返回，可能有ARC相关内存问题
+
+
 
 #### （4）thread list
 
@@ -280,12 +238,16 @@ Process 15767 stopped
   thread #8: tid = 0x5bfa15, 0x0000000115fa5562 libsystem_kernel.dylib`__workq_kernreturn + 10
 ```
 
+
+
 #### （5）thread step-out（finish）
 
 格式：thread step-out    
 简写：finish    
 说明：debug时，代表执行完当前函数或者方法，然后跳到调用处，这时可以查看RAX寄存器    
 参考资料：https://www.objc.io/issues/19-debugging/lldb-debugging/
+
+
 
 #### （6）thread info
 
@@ -303,12 +265,14 @@ thread #1: tid = 0x1ba0d4, 0x000000010dc05280 libclang_rt.asan_iossim_dynamic.dy
 
 
 
-### 7、type
+### 7. type
 
 格式：type \<subcommand\>    
 说明：type命令用于定义LLDB环境中的类型以及输出格式    
 
-####（1）type summary
+
+
+#### （1）type summary
 
 格式：type summary \<subcommand\>  
 说明：用于显示某种类型的描述信息。常用子命令有add、clear等    
@@ -333,11 +297,17 @@ thread #1: tid = 0x1ba0d4, 0x000000010dc05280 libclang_rt.asan_iossim_dynamic.dy
 (SuperView *) $2 = 0x00007fb4fac15130
 ```
 
-### 8、TODO
 
-### 9、frame
 
-####（1）frame info
+### 8. TODO
+
+
+
+### 9. frame
+
+
+
+#### （1）frame info
 
 格式：frame info    
 说明：显示当前执行点的信息，例如对应源文件的行号等
@@ -347,7 +317,9 @@ thread #1: tid = 0x1ba0d4, 0x000000010dc05280 libclang_rt.asan_iossim_dynamic.dy
 frame #0: 0x0000000100000ecf flow_control`main(argc=1, argv=0x00007fff5fbff7e0) + 63 at main.m:25
 ```
 
-####（2）frame select
+
+
+#### （2）frame select
 
 格式：frame select <frame No.>    
 说明：查看特定的frame。frame info只显示第0个frame。这里的序号，对应thread backtrace输出的frame序号。
@@ -362,7 +334,9 @@ libdispatch.dylib`_dispatch_client_callout:
     0x115b15343 <+14>: retq 
 ```
 
-####（3）frame variable
+
+
+#### （3）frame variable
 
 格式：frame variable    
 说明：查看当前frame的所有变量   
@@ -374,9 +348,13 @@ libdispatch.dylib`_dispatch_client_callout:
 
 * frame variable -F self，查看特定变量的值
 
-### 10、command
 
-####（1）command alias
+
+### 10. command
+
+
+
+#### （1）command alias
 
 格式：command alias \<alias name\> \<command\>/\<expr\>    
 说明：command alias的作用是，定义命令或者表达式的别名，用于简化输入的命令
@@ -414,7 +392,9 @@ command alias -H "Print value in ObjC context in hexadecimal" -h "Print
 in hex" -- cpx expression -f x -l objc --
 ```
 
-####（2）command regex
+
+
+#### （2）command regex
 
 格式：command regex \<alias name\> 's/\<regexp\>/\<subst\>/'    
 说明：command regex命令，根据regex抽取参数，同时替换到subst中。这样构成接收动态参数的命令subst。
@@ -448,7 +428,9 @@ command regex getcls 's/(([0-9]|\$|\@|\[).*)/cpo [%1 class]/' 's/
 (.+)/expression -l swift -O -- type(of: %1)/'
 ```
 
-####（3）command script
+
+
+#### （3）command script
 
 格式：command script \<subcommand\>    
 说明：command script命令，后面跟着几种子命令。例如import、list等
@@ -474,12 +456,16 @@ command regex getcls 's/(([0-9]|\$|\@|\[).*)/cpo [%1 class]/' 's/
 >
 -f，指定python函数名，同时指定lldb命令名称
 
-### 11、process
+
+
+### 11. process
 
 格式：process \<subcommand\>    
 说明：用于和当前进程交互
 
-####（1）process load
+
+
+#### （1）process load
 
 格式：process load \<path/to/image\>    
 说明：加载动态库到当前进程中
@@ -498,7 +484,9 @@ Loading "MessageUI.framework/MessageUI"...ok
 Image 1 loaded.
 ```
 
-####（2）process launch
+
+
+#### （2）process launch
 
 格式：process launch [options]    
 说明：当target命令设置可执行文件后，process launch启动当前可执行文件
@@ -511,7 +499,8 @@ Image 1 loaded.
 -e，将stderr定向到/dev/ttys027文件
 
 
-### 12、script
+
+### 12. script
 
 格式：script \<python script\>    
 说明：script用于执行python代码
@@ -521,7 +510,11 @@ Image 1 loaded.
 (lldb) script print (sys.version)
 ```
 
-### 13、breakpoint
+
+
+### 13. breakpoint
+
+
 
 #### （1）breakpoint set
 
@@ -625,6 +618,8 @@ Breakpoint 1: where = HookingSwift`HookingSwift.CopyrightImageGenerator.(origina
 
 注意：上面的命令方式，仅在当前debug session中生效，并没有同步到Xcode的breakpoint中
 
+
+
 #### （2）breakpoint list
 
 格式：breakpoint list    
@@ -639,6 +634,8 @@ Current breakpoints:
 
   1.1: where = DebuggerDance`main + 27 at main.m:16, address = 0x000000010a3f6cab, resolved, hit count = 1
 ```
+
+
 
 #### （3）breakpoint enable/disable
 
@@ -655,6 +652,8 @@ Current breakpoints:
 
   1.1: where = DebuggerDance`main + 27 at main.m:16, address = 0x000000010a3f6cab, unresolved, hit count = 1
 ```
+
+
 
 #### （4）breakpoint delete
 
@@ -684,6 +683,8 @@ No breakpoints currently set.
 About to delete all breakpoints, do you want to do that?: [Y/n] Y
 All breakpoints removed. (3 breakpoints)
 ```
+
+
 
 #### （5）breakpoint command add/delete/list
 
@@ -725,6 +726,8 @@ Condition: i == 99
   1.1: where = DebuggerDance`isEven + 16 at main.m:4, address = 0x00000001083b5d00, resolved, hit count = 0 
 ```
 
+
+
 #### （6）breakpoint modify
 
 格式：breakpoint modify [options]    
@@ -737,12 +740,16 @@ Condition: i == 99
 class]]"
 ```
 
+
+
 ### 14. memory
 
 格式：memory \<subcommand\> [options]       
 说明：常用子命令有read等
 
-#### (1) memory read
+
+
+#### （1）memory read
 
 格式：memory read [options] \<memory address\>      
 简写: x/\<fmt\> \<memory address\>          
@@ -842,12 +849,16 @@ memory read -c1 -fx 0x00000001000089f0
 
 >
 
-### 15、register
+
+
+### 15. register
 
 格式：register \<subcommand\> [options]    
 说明：子命令有read和write两个
 
-#### (1) register read
+
+
+#### （1）register read
 
 格式：register read [options] \<register name\>    
 常用选项： 
@@ -878,7 +889,9 @@ memory read -c1 -fx 0x00000001000089f0
 
 包括General Purpose Registers、Floating Point Registers和Exception State Registers。
 
-#### (2) register write
+
+
+#### （2）register write
 
 格式：register write \<register name\> \<value\>
 
@@ -888,7 +901,9 @@ memory read -c1 -fx 0x00000001000089f0
 
 修改rip寄存器，必须在进入函数的第一行指令时，用于跳转到其他函数。0x100008a70是另一个函数的加载地址，函数加载地址，可以使用image -rvn \<function name\>搜索出来。
 
-### 16、lldb attach进程
+
+
+### 16. lldb attach进程
 
 格式：lldb -n \<process name\>
 
@@ -904,7 +919,9 @@ error: attach failed: cannot attach to process due to System Integrity Protectio
 * 重启macOS，屏幕变黑时，按住⌘+R直到出现Logo
 * Utilities -> Terminal，输入`csrutil disable; reboot`
 
-### 17、target
+
+
+### 17. target
 
 lldb中有target概念，指的是调试的目标，可以存在多个调试目标。直接输入lldb，进入lldb调试，没有任何target。
 
@@ -955,7 +972,9 @@ Current targets:
 * target #1: /Applications/Xcode.app/Contents/MacOS/Xcode ( arch=x86_64-apple-macosx, platform=host )
 ```
 
-### 18、help
+
+
+### 18. help
 
 格式：help \<command\> \<subcommand\>     
 说明：查看命令的帮助信息，subcommand是可选的
@@ -993,19 +1012,25 @@ Command Options Usage:
 >
 结合command alias命令的-H和-h参数，可以自定义该命令的help信息。具体见command alias的用法。
 
-### 19、source
 
 
-### 20、TODO
+### 19. source
 
 
-### 21、image
+
+### 20. TODO
+
+
+
+### 21. image
 
 格式：image \<subcommand\>    
 说明：image是target module的简写    
 常用子命令：list、lookup、dump等
 
-#### (1) image list
+
+
+#### （1）image list
 
 列出所有module
 
@@ -1036,7 +1061,9 @@ binary file path，二进制文件的文件路径
 [  0] /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 10.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/Frameworks/UIKit.framework
 ```
 
-#### (2) image dump
+
+
+#### （2）image dump
 
 格式：image dump \<subcommand\>   
 
@@ -1089,7 +1116,9 @@ Index   UserID DSX Type            File Address/Value Load Address       Size   
 (lldb) image dump symfile Registers
 ```
 
-#### (3) image lookup
+
+
+#### （3） image lookup
 
 格式：image lookup [options] \<regex\>
 
@@ -1164,7 +1193,9 @@ Blocks一行，range表示函数的加载地址范围，[0x1095bb380-0x1095bb3cf
         Summary: libsystem_c.dylib`getenv
 ```
 
-### 22、run
+
+
+### 22. run
 
 ```
 (lldb) run
@@ -1172,9 +1203,11 @@ Blocks一行，range表示函数的加载地址范围，[0x1095bb380-0x1095bb3cf
 
 说明：不编译app，直接重新启动app
 
-## 2. lldbinit配置
 
-<b>（1）加载.lldbinit文件</b>
+
+## 2、lldbinit配置
+
+### （1）加载.lldbinit文件
 
 LLDB使用.lldbinit-[context]文件，来初始化一些LLDB配置。LLDB按照下面顺序，查找.lldbinit-[context]文件
 
@@ -1194,7 +1227,9 @@ Executing commands in '/Users/wesley_chen/.lldbinit'.
 (lldb) ...
 ```
 
-<b>（2）.lldbinit文件的配置项</b>
+
+
+### （2）.lldbinit文件的配置项
 
 * 配置LLDB显示汇编代码，用Intel形式
 
@@ -1216,7 +1251,9 @@ Intel格式和AT&T格式的区别
 settings set target.skip-prologue false
 ```
 
-<b>（3）配置lldb常用快捷命令</b>
+
+
+### （3）配置lldb常用快捷命令
 
 在.lldbinit文件中，还可以配置一些常用命令的别名，缩短键入命令的长度。
 
@@ -1350,13 +1387,17 @@ in NSObject:
 		- (id) description; (0x10d7a0dae)
 ```
 
-## 3. lldb快捷键
+
+
+## 3、lldb快捷键
 
 * `^ + c`，暂停当前进程
 * `^ + d`，结束输入
 * (lldb) ⏎，直接执行上次输入的命令
 
-## 4. lldb类型格式（Type Formatting）
+
+
+## 4、lldb类型格式（Type Formatting）
 
 lldb的很多命令，可以按照一定类型和格式输出，例如expression、memory read等。这些命令的选项通常有-G和-f。
 
@@ -1399,7 +1440,8 @@ varformats.html)
 GBD格式的size修饰符，参考[http://visualgdb.com/gdbreference/commands/x](http://visualgdb.com/gdbreference/commands/x)
 
 
-## 5. Call Convention
+
+## 5、Call Convention
 
 #### x86_64
 
@@ -1530,7 +1572,9 @@ ret过程，和call对应。将栈顶的值（函数返回后的地址）pop出�
 pop RIP
 ```
 
-## 6. ptrace
+
+
+## 6、ptrace
 
 ptrace函数位于<sys/ptrace.h>
 
@@ -1548,7 +1592,9 @@ lldb -n helloptrace
 error: attach failed: lost connection
 ```
 
-## 7. Hooking Functions
+
+
+## 7、Hooking Functions
 
 #### Hooking c functions
 
@@ -1663,11 +1709,15 @@ override func viewDidLoad() {
 }
 ```
 
-## 8. Python调试脚本
+
+
+## 8、Python调试脚本
 
 Xcode的lldb提供一个python模块，也名为lldb。它位于/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/Resources/Python/lldb
 
-#### 1、导入python脚本或者模块
+
+
+### 1. 导入python脚本或者模块
 通过command script import命令，可以导入python脚本或者模块到lldb环境中。只有导入到lldb才可以执行python函数。
 
 ```
@@ -1680,7 +1730,9 @@ Xcode的lldb提供一个python模块，也名为lldb。它位于/Applications/Xc
 (lldb) command script import ~/lldb/helloworld.py
 ```
 
-#### 2、执行python代码
+
+
+### 2. 执行python代码
 
 通过script命令，可以执行python代码。
 >
@@ -1693,11 +1745,13 @@ Xcode的lldb提供一个python模块，也名为lldb。它位于/Applications/Xc
 [GCC 4.2.1 Compatible Apple LLVM 9.0.0 (clang-900.0.31)]
 ```
 
-#### 3、调试相关的python方法
+
+
+### 3. 调试相关的python方法
 
 这里不详细介绍python的语法，而是列举一些和调试相关的python方法，方便解决python调试脚本中的问题。
 
-（1）help方法    
+#### （1）help方法    
 
 格式：help (class/class.method)   
 说明：在python交互式环境中，可以查看类以及方法的帮助信息
@@ -1722,7 +1776,7 @@ HandleCommand(self, *args) unbound lldb.SBDebugger method
     HandleCommand(self, str command)
 ```
 
-（2）\_\_class\_\_方法
+#### （2）\_\_class\_\_方法
 
 格式：object.\_\_class\_\_    
 说明：获取对象的类型
@@ -1735,7 +1789,7 @@ HandleCommand(self, *args) unbound lldb.SBDebugger method
 <type 'str'>
 ```
 
-（3）dir方法 
+#### （3）dir方法 
 
 格式：dir ([object/class/module])   
 说明：在python交互式环境中，可以查看对象、类以及模块的属性。参数可以为为空，则输出当前scope的属性。
@@ -1753,7 +1807,9 @@ NameError: name 'helloworld' is not defined
 >
 使用dir可以检查module是否导入在当前环境中。
 
-#### 4、建立python方法的别名
+
+
+### 4. 建立python方法的别名
 
 直接使用script命令执行python方法，比较麻烦，可能需要import模块以及多次执行script命令。command script add命令（具体见command script命令）可以为python方法建立别名，这样在lldb环境中直接使用别名调用python方法。
 
@@ -1767,13 +1823,15 @@ NameError: name 'helloworld' is not defined
 error: unable to execute script function
 ```
 
-#### 5、python脚本断点调试
+
+
+### 5. python脚本断点调试
 
 
 
-#### 6、自定义lldb的python脚本
+### 6. 自定义lldb的python脚本
 
-（1）\_\_lldb\_init\_module方法
+#### （1）\_\_lldb\_init\_module方法
 
 lldb模块提供一个\_\_lldb\_init\_module方法，自定义的python脚本在导入lldb环境时，会自动执行该方法。因此，可以在\_\_lldb\_init\_module方法中做一些初始化工作。
 
@@ -1786,13 +1844,15 @@ def __lldb_init_module(debugger, internal_dict):
 
 debugger是SBDebugger实例，它的HandleCommand方法，相当于在lldb环境中执行命令。
 
-（2）~/.lldbinit文件
+#### （2）~/.lldbinit文件
 
 可以直接配置~/.lldbinit文件，这样lldb启动自动加载需要的python脚本。具体见<b>lldbinit配置</b>。
 
 ```
 command script import ~/lldb/helloworld.py
 ```
+
+
 
 ## 9、符号解释
 
@@ -1814,7 +1874,7 @@ nm命令可以输出.o文件的二进制符号。除了代码，还有一些特�
 
 ## 11、lldb常见问题
 
-#### 1. 不能使用stringWithFormat
+### 1. 不能使用stringWithFormat
 
 ```shell
 (lldb) po [NSString stringWithFormat:@"%@", @"123"]
