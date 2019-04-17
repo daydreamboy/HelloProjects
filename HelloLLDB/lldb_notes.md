@@ -1404,25 +1404,27 @@ lldb的很多命令，可以按照一定类型和格式输出，例如expression
 * -G，采用GDB格式。如果-f和-G同时存在，一般优先采用GDB格式
 * -f，采用LLDB格式。
 
-| GBD格式(-G) | LLDB格式(-f) |
-|------------|--------------|
-| x: hexadecimal | B: boolean
-| d: decimal | b: binary |
-| u: unsigned decimal | y: bytes |
-| o: octal | Y: bytes with ASCII |
-| t: binary | c: character |
-| a: address | C: printable character |
-| c: character constant | F: complex float |
-| f: float | s: c-string |
-| s: string | i: decimal |
-| | E: enumeration |
-| | x: hex |
-| | f: float |
-| | o: octal |
-| | O: OSType |
-| | U: unicode16 |
-| | u: unsigned decimal |
-| | p: pointer |
+| GBD格式(-G)           | LLDB格式(-f)           |
+| --------------------- | ---------------------- |
+| x: hexadecimal        | B: boolean             |
+| d: decimal            | b: binary              |
+| u: unsigned decimal   | y: bytes               |
+| o: octal              | Y: bytes with ASCII    |
+| t: binary             | c: character           |
+| a: address            | C: printable character |
+| c: character constant | F: complex float       |
+| f: float              | s: c-string            |
+| s: string             | i: decimal             |
+|                       | E: enumeration         |
+|                       | x: hex                 |
+|                       | f: float               |
+|                       | o: octal               |
+|                       | O: OSType              |
+|                       | U: unicode16           |
+|                       | u: unsigned decimal    |
+|                       | p: pointer             |
+
+
 
 | GBD格式(-G)的size修饰符 | 大小 |
 |-----------------------|-----|
