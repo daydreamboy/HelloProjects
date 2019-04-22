@@ -15,6 +15,10 @@
 		2BC57D681D30BB290094953E /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC57D671D30BB290094953E /* RootViewController.m */; };
 		2BC57D6B1D30C2B70094953E /* CenterAttributedPlaceholderVerticallyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC57D6A1D30C2B70094953E /* CenterAttributedPlaceholderVerticallyViewController.m */; };
 		2BD55BBF1D83132900AF2DEB /* CenterTextAndPlaceholderHorizontallyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BD55BBE1D83132900AF2DEB /* CenterTextAndPlaceholderHorizontallyViewController.m */; };
+		4F6C713F226DA45D00A4E7A6 /* WCTextFieldTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C713E226DA45D00A4E7A6 /* WCTextFieldTool.m */; };
+		4F6C7142226DBA1000A4E7A6 /* CheckSelectedRangeOfTextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C7141226DBA1000A4E7A6 /* CheckSelectedRangeOfTextFieldViewController.m */; };
+		4F6C7163226DE62500A4E7A6 /* WCWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C7162226DE62500A4E7A6 /* WCWeakProxy.m */; };
+		4F6C7166226DEA6B00A4E7A6 /* ChangeTextProgrammaticallyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C7165226DEA6B00A4E7A6 /* ChangeTextProgrammaticallyViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +37,14 @@
 		2BC57D6A1D30C2B70094953E /* CenterAttributedPlaceholderVerticallyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterAttributedPlaceholderVerticallyViewController.m; sourceTree = "<group>"; };
 		2BD55BBD1D83132900AF2DEB /* CenterTextAndPlaceholderHorizontallyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CenterTextAndPlaceholderHorizontallyViewController.h; sourceTree = "<group>"; };
 		2BD55BBE1D83132900AF2DEB /* CenterTextAndPlaceholderHorizontallyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CenterTextAndPlaceholderHorizontallyViewController.m; sourceTree = "<group>"; };
+		4F6C713D226DA45D00A4E7A6 /* WCTextFieldTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCTextFieldTool.h; sourceTree = "<group>"; };
+		4F6C713E226DA45D00A4E7A6 /* WCTextFieldTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCTextFieldTool.m; sourceTree = "<group>"; };
+		4F6C7140226DBA1000A4E7A6 /* CheckSelectedRangeOfTextFieldViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckSelectedRangeOfTextFieldViewController.h; sourceTree = "<group>"; };
+		4F6C7141226DBA1000A4E7A6 /* CheckSelectedRangeOfTextFieldViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckSelectedRangeOfTextFieldViewController.m; sourceTree = "<group>"; };
+		4F6C7161226DE62500A4E7A6 /* WCWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCWeakProxy.h; sourceTree = "<group>"; };
+		4F6C7162226DE62500A4E7A6 /* WCWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCWeakProxy.m; sourceTree = "<group>"; };
+		4F6C7164226DEA6B00A4E7A6 /* ChangeTextProgrammaticallyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChangeTextProgrammaticallyViewController.h; sourceTree = "<group>"; };
+		4F6C7165226DEA6B00A4E7A6 /* ChangeTextProgrammaticallyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChangeTextProgrammaticallyViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +61,7 @@
 		2B0A91DD1AFCAB4300416EDB = {
 			isa = PBXGroup;
 			children = (
+				4F6C713C226DA44200A4E7A6 /* WCTextFieldTool */,
 				2B0A91E81AFCAB4300416EDB /* HelloUITextField */,
 				2B0A91E71AFCAB4300416EDB /* Products */,
 			);
@@ -65,6 +78,7 @@
 		2B0A91E81AFCAB4300416EDB /* HelloUITextField */ = {
 			isa = PBXGroup;
 			children = (
+				4F6C7160226DE60600A4E7A6 /* WCWeakProxy */,
 				2BC57D621D30BB220094953E /* AppTestDemos */,
 				2B0A91ED1AFCAB4300416EDB /* AppDelegate.h */,
 				2B0A91EE1AFCAB4300416EDB /* AppDelegate.m */,
@@ -95,8 +109,30 @@
 				2BC57D6A1D30C2B70094953E /* CenterAttributedPlaceholderVerticallyViewController.m */,
 				2BD55BBD1D83132900AF2DEB /* CenterTextAndPlaceholderHorizontallyViewController.h */,
 				2BD55BBE1D83132900AF2DEB /* CenterTextAndPlaceholderHorizontallyViewController.m */,
+				4F6C7140226DBA1000A4E7A6 /* CheckSelectedRangeOfTextFieldViewController.h */,
+				4F6C7141226DBA1000A4E7A6 /* CheckSelectedRangeOfTextFieldViewController.m */,
+				4F6C7164226DEA6B00A4E7A6 /* ChangeTextProgrammaticallyViewController.h */,
+				4F6C7165226DEA6B00A4E7A6 /* ChangeTextProgrammaticallyViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F6C713C226DA44200A4E7A6 /* WCTextFieldTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F6C713D226DA45D00A4E7A6 /* WCTextFieldTool.h */,
+				4F6C713E226DA45D00A4E7A6 /* WCTextFieldTool.m */,
+			);
+			path = WCTextFieldTool;
+			sourceTree = "<group>";
+		};
+		4F6C7160226DE60600A4E7A6 /* WCWeakProxy */ = {
+			isa = PBXGroup;
+			children = (
+				4F6C7161226DE62500A4E7A6 /* WCWeakProxy.h */,
+				4F6C7162226DE62500A4E7A6 /* WCWeakProxy.m */,
+			);
+			path = WCWeakProxy;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,9 +207,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BC57D6B1D30C2B70094953E /* CenterAttributedPlaceholderVerticallyViewController.m in Sources */,
+				4F6C7142226DBA1000A4E7A6 /* CheckSelectedRangeOfTextFieldViewController.m in Sources */,
 				2B0A91EF1AFCAB4300416EDB /* AppDelegate.m in Sources */,
 				2BC57D651D30BB220094953E /* Demo1ViewController.m in Sources */,
+				4F6C7163226DE62500A4E7A6 /* WCWeakProxy.m in Sources */,
+				4F6C713F226DA45D00A4E7A6 /* WCTextFieldTool.m in Sources */,
 				2BD55BBF1D83132900AF2DEB /* CenterTextAndPlaceholderHorizontallyViewController.m in Sources */,
+				4F6C7166226DEA6B00A4E7A6 /* ChangeTextProgrammaticallyViewController.m in Sources */,
 				2B0A91EC1AFCAB4300416EDB /* main.m in Sources */,
 				2BC57D681D30BB290094953E /* RootViewController.m in Sources */,
 			);

@@ -11,6 +11,7 @@
 #import "Demo1ViewController.h"
 #import "CenterAttributedPlaceholderVerticallyViewController.h"
 #import "CenterTextAndPlaceholderHorizontallyViewController.h"
+#import "CheckSelectedRangeOfTextFieldViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -36,11 +37,13 @@
         @"UITextField's events",
         @"center vertically UITextField's attributedPlaceholder",
         @"center horizontally UITextField's text and placeholder",
+        @"Check selected range of text field",
     ];
     _classes = @[
         [Demo1ViewController class],
         [CenterAttributedPlaceholderVerticallyViewController class],
         [CenterTextAndPlaceholderHorizontallyViewController class],
+        [CheckSelectedRangeOfTextFieldViewController class],
     ];
 }
 

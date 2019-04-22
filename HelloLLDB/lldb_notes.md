@@ -12,10 +12,10 @@
 
 格式：print \<expression\>    
 简写：p     
-说明：print是expression --的别名，后面不能加选项    
+说明：print是**expression --**的别名，后面不能加选项    
 例子：    
 
-```
+```shell
 (lldb) p @[@"foo", @"bar"]
 (__NSArrayI *) $4 = 0x00000001028010f0 @"2 elements"
 ```
@@ -26,10 +26,10 @@
 
 格式：po \<expression\>    
 简写：po    
-说明：po是expression -O --的别名，用于调用对象的debugDescription方法    
+说明：po是**expression -O --**的别名，用于调用对象的debugDescription方法    
 例子：
 
-```
+```shell
 (lldb) e -O -- $4
 <__NSArrayI 0x1028010f0>(
 foo,
@@ -50,7 +50,7 @@ bar
 
 例子：
 
-```
+```shell
 (lldb) p 16
 (int) $5 = 16
 (lldb) p/x 16
@@ -75,7 +75,7 @@ bar
 
 * expression -i 0 -- \<expression\>，lldb中执行expression默认不会触发断点。-i0（或者-i 0）强制执行expression触发断点。
 
-```
+```shell
 (lldb) expr -i 0 -- [self areaNbr]
 ```
 
@@ -89,7 +89,7 @@ https://stackoverflow.com/questions/35861198/xcode-not-stopping-on-breakpoint-in
 
 * 执行表达式
 
-```
+```shell
 (lldb) e int $a = 2
 (lldb) e $a
 (int) $a = 2
@@ -110,7 +110,7 @@ Monday
 
 * expression对方法的返回值严格检查，需要加上返回值类型
 
-```
+```shell
 (lldb) e [[$array objectAtIndex:0] uppercaseString]
 error: no known method '-uppercaseString'; cast the message send to the method's return type
 (lldb) e (NSString *)[[$array objectAtIndex:0] uppercaseString]
@@ -119,7 +119,7 @@ error: no known method '-uppercaseString'; cast the message send to the method's
 
 * 执行简单的代码片段
 
-```
+```shell
 (lldb) e char *$str = (char *)malloc(8)
 (lldb) e $str
 (char *) $str = 0x0000000100100020 <no value available>
@@ -143,7 +143,7 @@ error: reading memory as characters of size 4 is not supported
 
 * 设置UIView的frame
 
-```
+```shell
 e [v setFrame:(CGRect){0, 0, 100, 100}] 
 ```
 
@@ -153,7 +153,7 @@ https://stackoverflow.com/questions/27533709/how-to-set-the-frame-of-a-uiview-at
 
 * 打印Objective-C方法的字符串
 
-```
+```shell
 (lldb) po (char *)$x1
 "_parseEventsArrayFromEvent:"
 
@@ -163,7 +163,7 @@ https://stackoverflow.com/questions/27533709/how-to-set-the-frame-of-a-uiview-at
 
 * expression -lobjc -O -- (unichar *)$rax，打印unichar类型的字符串
 
-```
+```shell
 (lldb) expression -lobjc -O -- (char *)$rax
 "D"
 
@@ -188,7 +188,7 @@ Derek Selander
 
 格式：continue    
 简写：c     
-continue不带参数，是process continue的别名。debug时，代表当前进程恢复执行
+continue不带参数，是**process continue**的别名。debug时，代表当前进程恢复执行
 
 
 
@@ -226,7 +226,7 @@ n不带参数。debug时，代表单步执行
 格式：thread list     
 说明：列出当前所有线程
 
-```
+```shell
 (lldb) thread list
 Process 15767 stopped
 * thread #1: tid = 0x5bf9ba, 0x000000010ff0cf10 Commons`__34+[UnixSignalHandler sharedHandler]_block_invoke((null)=0x0000000113cc8470) at UnixSignalHandler.m:68, queue = 'com.apple.main-thread', stop reason = breakpoint 1.1
@@ -255,7 +255,7 @@ Process 15767 stopped
 
 说明：显示当前thread信息
 
-```
+```shell
 (lldb) thread info
 thread #1: tid = 0x1ba0d4, 0x000000010dc05280 libclang_rt.asan_iossim_dynamic.dylib`__asan::AsanDie(), queue = 'com.apple.main-thread', stop reason = Use of deallocated memory
 ```
@@ -279,7 +279,7 @@ thread #1: tid = 0x1ba0d4, 0x000000010dc05280 libclang_rt.asan_iossim_dynamic.dy
 
 * type summary add，向某种类型添加描述信息summary
 
-```
+```shell
 (lldb) p superView
 (SuperView *) $0 = 0x00007fb4fac15130
 (lldb) type summary add SuperView --summary-string "This is a SuperView"
@@ -289,7 +289,7 @@ thread #1: tid = 0x1ba0d4, 0x000000010dc05280 libclang_rt.asan_iossim_dynamic.dy
 
 * type summary clear，清除所有summary信息
 
-```
+```shell
 (lldb) p superView
 (SuperView *) $1 = 0x00007fb4fac15130 This is a SuperView
 (lldb) type summary clear
@@ -312,7 +312,7 @@ thread #1: tid = 0x1ba0d4, 0x000000010dc05280 libclang_rt.asan_iossim_dynamic.dy
 格式：frame info    
 说明：显示当前执行点的信息，例如对应源文件的行号等
 
-```
+```shell
 (lldb) frame info
 frame #0: 0x0000000100000ecf flow_control`main(argc=1, argv=0x00007fff5fbff7e0) + 63 at main.m:25
 ```
@@ -324,7 +324,7 @@ frame #0: 0x0000000100000ecf flow_control`main(argc=1, argv=0x00007fff5fbff7e0) 
 格式：frame select <frame No.>    
 说明：查看特定的frame。frame info只显示第0个frame。这里的序号，对应thread backtrace输出的frame序号。
 
-```
+```shell
 (lldb) frame select 1
 frame #1: 0x0000000115b1533d libdispatch.dylib`_dispatch_client_callout + 8
 libdispatch.dylib`_dispatch_client_callout:
@@ -341,7 +341,7 @@ libdispatch.dylib`_dispatch_client_callout:
 格式：frame variable    
 说明：查看当前frame的所有变量   
 
-```
+```shell
 (lldb) frame variable
 (__block_literal_1 *)  = 0x0000000113cc8470
 ```
@@ -361,7 +361,7 @@ libdispatch.dylib`_dispatch_client_callout:
 
 定义别名Yay_Autolayout
 
-```
+```shell
 command alias -- Yay_Autolayout expression -l objc -O --
 [[[[[UIApplication sharedApplication] keyWindow] rootViewController]
 view] recursiveDescription]
@@ -371,7 +371,7 @@ view] recursiveDescription]
 
 定义别名Yay\_Autolayout，同时提供help信息。-H对应help Yay\_Autolayout的输出；-h对应直接help的输出
 
-```
+```shell
 command alias -H "Yay_Autolayout will get the root view and recursively
 dump all the subviews and their frames" -h "Recursively dump views" --
 Yay_Autolayout expression -l objc -O -- [[[[[UIApplication
@@ -381,13 +381,13 @@ recursiveDescription]
 
 定义别名cpo，并接收一个参数。注意：使用command alias只能支持一个参数，而且在末尾拼接。如果动态参数在命令中间，需要使用command regex命令。
 
-```
+```shell
 command alias cpo expression -l objc -O --
 ```
 
 定义别名cpx，接收一个参数
 
-```
+```shell
 command alias -H "Print value in ObjC context in hexadecimal" -h "Print
 in hex" -- cpx expression -f x -l objc --
 ```
@@ -401,7 +401,7 @@ in hex" -- cpx expression -f x -l objc --
 
 定义别名rlook，它接收一个按照(.+)匹配的参数%1，构成命令image lookup -rn \<%1\>
 
-```
+```shell
 command regex rlook 's/(.+)/image lookup -rn %1/'
 
 // rlook FOO => image lookup -rn FOO
@@ -409,7 +409,7 @@ command regex rlook 's/(.+)/image lookup -rn %1/'
 
 定义别名tv，它接收一个参数，执行一段代码
 
-```
+```shell
 command regex -- tv 's/(.+)/expression -l objc -O -- @import
 QuartzCore; [%1 setHidden:!(BOOL)[%1 isHidden]]; (void)[CATransaction
 flush];/'
@@ -417,13 +417,13 @@ flush];/'
 
 定义别名getcls，它接收以0-9或者@或者[开头的字符串，构成命令cpo [%1 class]，cpo是另一个命令或者别名
 
-```
+```shell
 command regex getcls 's/(([0-9]|\$|\@|\[).*)/cpo [%1 class]/'
 ```
 
 定义别名getcls，定义两个regex，执行两个命令cpo [%1 class]和expression -l swift -O -- type(of: %1)
 
-```
+```shell
 command regex getcls 's/(([0-9]|\$|\@|\[).*)/cpo [%1 class]/' 's/
 (.+)/expression -l swift -O -- type(of: %1)/'
 ```
@@ -437,20 +437,20 @@ command regex getcls 's/(([0-9]|\$|\@|\[).*)/cpo [%1 class]/' 's/
 
 * command script import，导入自定义的python脚本，指定脚本的路径。
 
-```
+```shell
 (lldb) command script import /usr/local/opt/chisel/libexec/fblldb.py
 (lldb) command script import "/Users/wesley_chen/lldb/Scripts/Live Debug/subl.py"
 ```
 
 如果预置的脚本在/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/Resources/Python/lldb下面，可直接使用下面方式
 
-```
+```shell
 (lldb) command script import lldb.macosx.heap
 ```
 
 * command script add，添加python函数作为一个lldb命令
 
-```
+```shell
 (lldb) command script add -f helloworld.your_first_command yay
 ```
 >
@@ -470,7 +470,7 @@ command regex getcls 's/(([0-9]|\$|\@|\[).*)/cpo [%1 class]/' 's/
 格式：process load \<path/to/image\>    
 说明：加载动态库到当前进程中
 
-```
+```shell
 (lldb) process load /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS\ 10.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/Frameworks/Speech.framework/Speech
 Loading "/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 10.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/Frameworks/Speech.framework/Speech"...ok
 Image 0 loaded.
@@ -478,7 +478,7 @@ Image 0 loaded.
 
 还可以省略完整的路径，采用xxx.framework/xxx格式，如下
 
-```
+```shell
 (lldb) process load MessageUI.framework/MessageUI
 Loading "MessageUI.framework/MessageUI"...ok
 Image 1 loaded.
@@ -491,7 +491,7 @@ Image 1 loaded.
 格式：process launch [options]    
 说明：当target命令设置可执行文件后，process launch启动当前可执行文件
 
-```
+```shell
 (lldb) process launch -e /dev/ttys027 --
 ```
 
@@ -505,7 +505,7 @@ Image 1 loaded.
 格式：script \<python script\>    
 说明：script用于执行python代码
 
-```
+```shell
 (lldb) script import sys
 (lldb) script print (sys.version)
 ```
@@ -525,7 +525,7 @@ Image 1 loaded.
 * -o \<boolean\> (--one-shot \<boolean\>)，设置一次性断点，当触发断点，断点自动删除掉
 * -S \<selector\> (--selector \<selector\>)，根据Objective-C的selector（例如"-[ViewController viewDidLoad]"）设置断点
 
-```
+```shell
 (lldb) breakpoint set -S -[RegisterWithSixParamtersViewController\ viewDidLoad]
 (lldb) breakpoint set -S "-[RegisterWithSixParamtersViewController viewDidLoad]"
 ```
@@ -535,7 +535,7 @@ Tips:
 
 * -K \<boolean\> (--skip-prologue \<boolean\>)，触发断点时是否自动跳过prologue。默认是跳过的，可以设置false，这样触发断点时总是停在汇编第一条指令处。
 
-```
+```shell
 (lldb) br set -K false -S '-[RegisterWithSixParamtersViewController methodWithArg3:arg4:arg5:arg6:]'
 ```
 
@@ -543,7 +543,7 @@ Tips:
 
 匹配特定的符号
 
-```
+```shell
 (lldb) rb SwiftTestClass.name.setter
 (lldb) rb name\.setter
 (lldb) rb '\-\[UIViewController\ '
@@ -551,25 +551,25 @@ Tips:
 
 匹配所有的符号
 
-```
+```shell
 (lldb) rb .
 ```
 
 * -s (--shlib) \<module\>，匹配在特定module中所有的符号
 
-```
+```shell
 (lldb) rb . -s UIKit
 ```
 
 匹配在特定module中所有的符号，而且断点是一次性的
 
-```
+```shell
 (lldb) rb . -s UIKit -o
 ```
 
 * breakpoint set -f \<filename\.m> -l \<line number\>，指定文件和行号，设置断点
 
-```
+```shell
 (lldb) breakpoint set -f YWEmoticonGroupIndexController.m -l 232
 Breakpoint 18: where = YWExtensionForEmotionFMWK`-[YWEmoticonGroupIndexController setupNavBar] + 780 at YWEmoticonGroupIndexController.m:232, address = 0x00000001227ec9fc
 ```
@@ -581,7 +581,7 @@ WARNING:  Unable to resolve breakpoint to any actual locations.
 
 * 指定C函数的符号，设置断点
 
-```
+```shell
 (lldb) b isEven
 Breakpoint 3: where = DebuggerDance`isEven + 16 at main.m:4, address = 0x000000010a3f6d00
 (lldb) br s -F isEven
@@ -590,12 +590,12 @@ Breakpoint 4: where = DebuggerDance`isEven + 16 at main.m:4, address = 0x0000000
 
 * breakpoint set -F \<OC method\>, 指定OC方法的符号，设置断点
 
-```
+```shell
 (lldb) br set -F "-[YWEmoticonGroupIndexController setupNavBar]"
 Breakpoint 14: where = YWExtensionForEmotionFMWK`-[YWEmoticonGroupIndexController setupNavBar] at YWEmoticonGroupIndexController.m:215, address = 0x000000011dc005dc
 ```
 
-```
+```shell
 (lldb) breakpoint set -F "-[NSArray objectAtIndex:]"
 Breakpoint 5: where = CoreFoundation`-[NSArray objectAtIndex:], address = 0x000000010ac7a950
 (lldb) b -[NSArray objectAtIndex:]
@@ -608,7 +608,7 @@ Breakpoint 8: where = CoreFoundation`+[NSSet setWithObject:], address = 0x000000
 
 * 指定函数的内存地址，设置断点
 
-```
+```shell
 (lldb) b 0x00000001034643f0
 Breakpoint 1: where = HookingSwift`HookingSwift.CopyrightImageGenerator.(originalImage in _71AD57F3ABD678B113CF3AD05D01FF41).getter : Swift.Optional<__ObjC.UIImage> at CopyrightImageGenerator.swift:36, address = 0x00000001034643f0
 ```
@@ -627,7 +627,7 @@ Breakpoint 1: where = HookingSwift`HookingSwift.CopyrightImageGenerator.(origina
 说明：显示当前所有文件的断点（包括多个target）    
 例子：
 
-```
+```shell
 (lldb) br li
 Current breakpoints:
 1: file = '/Users/arig/Desktop/DebuggerDance/DebuggerDance/main.m', line = 16, locations = 1, resolved = 1, hit count = 1
@@ -643,7 +643,7 @@ Current breakpoints:
 说明：启用和禁用某个断点
 例子：
 
-```
+```shell
 (lldb) br dis 1
 1 breakpoints disabled.
 (lldb) br li
@@ -662,7 +662,7 @@ Current breakpoints:
 
 * 删除特定断点
 
-```
+```shell
 (lldb) br del 1
 1 breakpoints deleted; 0 breakpoint locations disabled.
 (lldb) br li
@@ -671,14 +671,14 @@ No breakpoints currently set.
 
 * 删除断点的location
 
-```
+```shell
 (lldb) br delete 1.8
 0 breakpoints deleted; 1 breakpoint locations disabled.
 ```
 
 * 删除全部断点
 
-```
+```shell
 (lldb) br delete
 About to delete all breakpoints, do you want to do that?: [Y/n] Y
 All breakpoints removed. (3 breakpoints)
@@ -693,7 +693,7 @@ All breakpoints removed. (3 breakpoints)
 
 * 设置断点，触发后继续执行 （实际上，添加空的脚本）
 
-```
+```shell
 (lldb) breakpoint command add 1
 Enter your debugger command(s).  Type 'DONE' to end.
 > continue
