@@ -25,6 +25,9 @@
 		4F35263A2008B9EB00891B09 /* AttachedBubbleWithRightArrowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3526392008B9EB00891B09 /* AttachedBubbleWithRightArrowViewController.m */; };
 		4F35263D2008BEA100891B09 /* AttachedBubbleBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35263C2008BEA100891B09 /* AttachedBubbleBaseViewController.m */; };
 		4F3526402008D68F00891B09 /* AttachedBubbleWithGradientColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35263F2008D68F00891B09 /* AttachedBubbleWithGradientColorViewController.m */; };
+		4F64C3C120ED1118008A2A1A /* CreateCircleProgressViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C3C020ED1118008A2A1A /* CreateCircleProgressViewViewController.m */; };
+		4F64C3C520ED114F008A2A1A /* WCCirlcleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C3C420ED114F008A2A1A /* WCCirlcleProgressView.m */; };
+		4F64C3C920ED13A7008A2A1A /* LayerWithProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C3C820ED13A7008A2A1A /* LayerWithProgress.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +66,12 @@
 		4F35263C2008BEA100891B09 /* AttachedBubbleBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttachedBubbleBaseViewController.m; sourceTree = "<group>"; };
 		4F35263E2008D68F00891B09 /* AttachedBubbleWithGradientColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttachedBubbleWithGradientColorViewController.h; sourceTree = "<group>"; };
 		4F35263F2008D68F00891B09 /* AttachedBubbleWithGradientColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttachedBubbleWithGradientColorViewController.m; sourceTree = "<group>"; };
+		4F64C3BF20ED1118008A2A1A /* CreateCircleProgressViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateCircleProgressViewViewController.h; sourceTree = "<group>"; };
+		4F64C3C020ED1118008A2A1A /* CreateCircleProgressViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateCircleProgressViewViewController.m; sourceTree = "<group>"; };
+		4F64C3C320ED114F008A2A1A /* WCCirlcleProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCCirlcleProgressView.h; sourceTree = "<group>"; };
+		4F64C3C420ED114F008A2A1A /* WCCirlcleProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCCirlcleProgressView.m; sourceTree = "<group>"; };
+		4F64C3C720ED13A7008A2A1A /* LayerWithProgress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerWithProgress.h; sourceTree = "<group>"; };
+		4F64C3C820ED13A7008A2A1A /* LayerWithProgress.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LayerWithProgress.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +121,7 @@
 		2B0FD6061FC99E1E0022E59D /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F64C3C220ED1137008A2A1A /* Views */,
 				4F35262E2008B96A00891B09 /* ExamplesOfWCAttachedBubbleView */,
 				2B0FD6081FC99E1E0022E59D /* CreatePDFGraphicsContext1ViewController.h */,
 				2B0FD6071FC99E1E0022E59D /* CreatePDFGraphicsContext1ViewController.m */,
@@ -121,6 +131,8 @@
 				2B7B0B941FCAA60400CB7388 /* CreateBitmapGraphicsContext1ViewController.m */,
 				2B7B0B961FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.h */,
 				2B7B0B971FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.m */,
+				4F64C3BF20ED1118008A2A1A /* CreateCircleProgressViewViewController.h */,
+				4F64C3C020ED1118008A2A1A /* CreateCircleProgressViewViewController.m */,
 				4F3525EF20064D9200891B09 /* CreateAttachedBubbleLayerViewController.h */,
 				4F3525F020064D9200891B09 /* CreateAttachedBubbleLayerViewController.m */,
 				4F3525F820077D6200891B09 /* ExamplesOfWAttachedBubbleViewViewController.h */,
@@ -155,6 +167,17 @@
 				4F35263F2008D68F00891B09 /* AttachedBubbleWithGradientColorViewController.m */,
 			);
 			path = ExamplesOfWCAttachedBubbleView;
+			sourceTree = "<group>";
+		};
+		4F64C3C220ED1137008A2A1A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4F64C3C320ED114F008A2A1A /* WCCirlcleProgressView.h */,
+				4F64C3C420ED114F008A2A1A /* WCCirlcleProgressView.m */,
+				4F64C3C720ED13A7008A2A1A /* LayerWithProgress.h */,
+				4F64C3C820ED13A7008A2A1A /* LayerWithProgress.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,6 +256,7 @@
 				2B0FD6091FC99E1E0022E59D /* CreatePDFGraphicsContext1ViewController.m in Sources */,
 				4F35263A2008B9EB00891B09 /* AttachedBubbleWithRightArrowViewController.m in Sources */,
 				4F3526402008D68F00891B09 /* AttachedBubbleWithGradientColorViewController.m in Sources */,
+				4F64C3C920ED13A7008A2A1A /* LayerWithProgress.m in Sources */,
 				4F3526312008B99C00891B09 /* AttachedBubbleWithUpArrowViewController.m in Sources */,
 				2B0FD60F1FC99F0E0022E59D /* CreatePDFGraphicsContext2ViewController.m in Sources */,
 				2B7B0B981FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.m in Sources */,
@@ -243,6 +267,8 @@
 				2B0FD5F21FC99DFC0022E59D /* AppDelegate.m in Sources */,
 				2B0FD60C1FC99E280022E59D /* RootViewController.m in Sources */,
 				4F3526372008B9DD00891B09 /* AttachedBubbleWithLeftArrowViewController.m in Sources */,
+				4F64C3C520ED114F008A2A1A /* WCCirlcleProgressView.m in Sources */,
+				4F64C3C120ED1118008A2A1A /* CreateCircleProgressViewViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

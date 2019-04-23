@@ -14,6 +14,7 @@
 #import "CreateBitmapGraphicsContext2ViewController.h"
 #import "CreateAttachedBubbleLayerViewController.h"
 #import "ExamplesOfWAttachedBubbleViewViewController.h"
+#import "CreateCircleProgressViewViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -42,7 +43,7 @@
         @"Create Bitmap graphics context by UIGraphicsBeginImageContextWithOptions",
         @"Create bubble layer",
         @"Examples of WCAttachedBubbleView",
-        @"CGRectNull",
+        @"CreateCircleProgressViewViewController",
         @"call a test method",
     ];
     _classes = @[
@@ -52,6 +53,7 @@
         [CreateBitmapGraphicsContext2ViewController class],
         [CreateAttachedBubbleLayerViewController class],
         [ExamplesOfWAttachedBubbleViewViewController class],
+        [CreateCircleProgressViewViewController class],
         @"testMethod",
     ];
 }
