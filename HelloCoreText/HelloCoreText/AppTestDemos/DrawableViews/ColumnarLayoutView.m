@@ -23,8 +23,26 @@
     // Divide the columns equally across the frame's width
     CGFloat columnWidth = CGRectGetWidth(self.bounds) / columnCount;
     for (column = 0; column < columnCount - 1; column++) {
-        CGRectDivide(<#CGRect rect#>, <#CGRect * _Nonnull slice#>, <#CGRect * _Nonnull remainder#>, <#CGFloat amount#>, <#CGRectEdge edge#>)
+        CGRectDivide(columnRects[column], &columnRects[column], &columnRects[column + 1], columnWidth, CGRectMinXEdge);
     }
+    
+    // Inset all columns by a few pixels of margin
+    for (column = 0; column < columnCount; column++) {
+        columnRects[column] = CGRectInset(columnRects[column], 8.0, 15.0);
+    }
+    
+    // Create an array of layout paths, one for each column
+    CFMutableArrayRef array = CFArrayCreateMutable(kCFAllocatorDefault, columnCount, &kCFTypeArrayCallBacks);
+    
+    for (column = 0; column < columnCount; column++) {
+        CGMutablePathRef path = CGPathCreateMutable();
+        CGPathAddRect(path, NULL, columnRects[column]);
+        CFArrayInsertValueAtIndex(array, column, path);
+        CFRelease(path);
+    }
+    free(columnRects);
+    
+    return array;
 }
 
 @end
