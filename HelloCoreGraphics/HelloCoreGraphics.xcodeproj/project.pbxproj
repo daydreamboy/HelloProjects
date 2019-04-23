@@ -25,10 +25,22 @@
 		4F35263A2008B9EB00891B09 /* AttachedBubbleWithRightArrowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3526392008B9EB00891B09 /* AttachedBubbleWithRightArrowViewController.m */; };
 		4F35263D2008BEA100891B09 /* AttachedBubbleBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35263C2008BEA100891B09 /* AttachedBubbleBaseViewController.m */; };
 		4F3526402008D68F00891B09 /* AttachedBubbleWithGradientColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35263F2008D68F00891B09 /* AttachedBubbleWithGradientColorViewController.m */; };
+		4F577727226F36A400AA0896 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F577726226F36A400AA0896 /* Tests.m */; };
+		4F57772F226F37BB00AA0896 /* Tests_CGGeometry.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F57772E226F37BB00AA0896 /* Tests_CGGeometry.m */; };
 		4F64C3C120ED1118008A2A1A /* CreateCircleProgressViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C3C020ED1118008A2A1A /* CreateCircleProgressViewViewController.m */; };
 		4F64C3C520ED114F008A2A1A /* WCCirlcleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C3C420ED114F008A2A1A /* WCCirlcleProgressView.m */; };
 		4F64C3C920ED13A7008A2A1A /* LayerWithProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C3C820ED13A7008A2A1A /* LayerWithProgress.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4F577729226F36A400AA0896 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B0FD5E51FC99DFC0022E59D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B0FD5EC1FC99DFC0022E59D;
+			remoteInfo = HelloCoreGraphics;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2B0FD5ED1FC99DFC0022E59D /* HelloCoreGraphics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloCoreGraphics.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -66,6 +78,10 @@
 		4F35263C2008BEA100891B09 /* AttachedBubbleBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttachedBubbleBaseViewController.m; sourceTree = "<group>"; };
 		4F35263E2008D68F00891B09 /* AttachedBubbleWithGradientColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttachedBubbleWithGradientColorViewController.h; sourceTree = "<group>"; };
 		4F35263F2008D68F00891B09 /* AttachedBubbleWithGradientColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttachedBubbleWithGradientColorViewController.m; sourceTree = "<group>"; };
+		4F577724226F36A400AA0896 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F577726226F36A400AA0896 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		4F577728226F36A400AA0896 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F57772E226F37BB00AA0896 /* Tests_CGGeometry.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_CGGeometry.m; sourceTree = "<group>"; };
 		4F64C3BF20ED1118008A2A1A /* CreateCircleProgressViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateCircleProgressViewViewController.h; sourceTree = "<group>"; };
 		4F64C3C020ED1118008A2A1A /* CreateCircleProgressViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateCircleProgressViewViewController.m; sourceTree = "<group>"; };
 		4F64C3C320ED114F008A2A1A /* WCCirlcleProgressView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCCirlcleProgressView.h; sourceTree = "<group>"; };
@@ -82,6 +98,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4F577721226F36A400AA0896 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -89,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				2B0FD5EF1FC99DFC0022E59D /* HelloCoreGraphics */,
+				4F577725226F36A400AA0896 /* Tests */,
 				2B0FD5EE1FC99DFC0022E59D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -97,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				2B0FD5ED1FC99DFC0022E59D /* HelloCoreGraphics.app */,
+				4F577724226F36A400AA0896 /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -169,6 +194,16 @@
 			path = ExamplesOfWCAttachedBubbleView;
 			sourceTree = "<group>";
 		};
+		4F577725226F36A400AA0896 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4F577726226F36A400AA0896 /* Tests.m */,
+				4F57772E226F37BB00AA0896 /* Tests_CGGeometry.m */,
+				4F577728226F36A400AA0896 /* Info.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		4F64C3C220ED1137008A2A1A /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +235,24 @@
 			productReference = 2B0FD5ED1FC99DFC0022E59D /* HelloCoreGraphics.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4F577723226F36A400AA0896 /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F57772D226F36A400AA0896 /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				4F577720226F36A400AA0896 /* Sources */,
+				4F577721226F36A400AA0896 /* Frameworks */,
+				4F577722226F36A400AA0896 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F57772A226F36A400AA0896 /* PBXTargetDependency */,
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = 4F577724226F36A400AA0896 /* Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -212,6 +265,11 @@
 					2B0FD5EC1FC99DFC0022E59D = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+					};
+					4F577723226F36A400AA0896 = {
+						CreatedOnToolsVersion = 10.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2B0FD5EC1FC99DFC0022E59D;
 					};
 				};
 			};
@@ -229,6 +287,7 @@
 			projectRoot = "";
 			targets = (
 				2B0FD5EC1FC99DFC0022E59D /* HelloCoreGraphics */,
+				4F577723226F36A400AA0896 /* Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -240,6 +299,13 @@
 			files = (
 				2B0FD5FD1FC99DFC0022E59D /* LaunchScreen.storyboard in Resources */,
 				2B0FD5FA1FC99DFC0022E59D /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F577722226F36A400AA0896 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,7 +338,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4F577720226F36A400AA0896 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F577727226F36A400AA0896 /* Tests.m in Sources */,
+				4F57772F226F37BB00AA0896 /* Tests_CGGeometry.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4F57772A226F36A400AA0896 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2B0FD5EC1FC99DFC0022E59D /* HelloCoreGraphics */;
+			targetProxy = 4F577729226F36A400AA0896 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2B0FD5FB1FC99DFC0022E59D /* LaunchScreen.storyboard */ = {
@@ -418,6 +501,45 @@
 			};
 			name = Release;
 		};
+		4F57772B226F36A400AA0896 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloCoreGraphics.app/HelloCoreGraphics";
+			};
+			name = Debug;
+		};
+		4F57772C226F36A400AA0896 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloCoreGraphics.app/HelloCoreGraphics";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -435,6 +557,15 @@
 			buildConfigurations = (
 				2B0FD6041FC99DFC0022E59D /* Debug */,
 				2B0FD6051FC99DFC0022E59D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F57772D226F36A400AA0896 /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F57772B226F36A400AA0896 /* Debug */,
+				4F57772C226F36A400AA0896 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
