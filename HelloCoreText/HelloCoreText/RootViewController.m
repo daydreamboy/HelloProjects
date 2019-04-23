@@ -14,6 +14,8 @@
 #import "DrawStringWithSimpleLayoutV1ViewController.h"
 #import "DrawStringWithSimpleLayoutV2ViewController.h"
 #import "BorderedTextViewController.h"
+#import "UseCTFrameViewController.h"
+#import "UseCTLineViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -36,6 +38,8 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
+        @"Use CTFrame",
+        @"Use CTLine",
         @"Simple draw string in UIView (v1)",
         @"Simple draw string in UIView (v2)",
         @"Draw string from markup string",
@@ -45,12 +49,14 @@
         @"call a test method",
     ];
     _classes = @[
-        @"SimpleDrawStringInViewV1ViewController",
-        @"SimpleDrawStringInViewV2ViewController",
-        @"DrawStringFromSimpleMarkupV1ViewController",
-        @"DrawStringWithSimpleLayoutV1ViewController",
-        @"DrawStringWithSimpleLayoutV2ViewController",
-        @"BorderedTextViewController",
+        [UseCTFrameViewController class],
+        [UseCTLineViewController class],
+        [SimpleDrawStringInViewV1ViewController class],
+        [SimpleDrawStringInViewV2ViewController class],
+        [DrawStringFromSimpleMarkupV1ViewController class],
+        [DrawStringWithSimpleLayoutV1ViewController class],
+        [DrawStringWithSimpleLayoutV2ViewController class],
+        [BorderedTextViewController class],
         @"testMethod",
     ];
 }
@@ -69,30 +75,21 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *sCellIdentifier = @"RootViewController_sCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
-
+    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-
+    
     cell.textLabel.text = _titles[indexPath.row];
-
+    
     return cell;
 }
 
-- (void)pushViewController:(NSString *)viewControllerClass {
-    NSAssert([viewControllerClass isKindOfClass:[NSString class]], @"%@ is not NSString", viewControllerClass);
+- (void)pushViewController:(id)viewControllerClass {
     
-    Class class = NSClassFromString(viewControllerClass);
-    if (class && [class isSubclassOfClass:[UIViewController class]]) {
-        
-        UIViewController *vc = [[class alloc] init];
-        vc.title = _titles[[_classes indexOfObject:viewControllerClass]];
-        
-        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    else {
+    id class = viewControllerClass;
+    if ([class isKindOfClass:[NSString class]]) {
         SEL selector = NSSelectorFromString(viewControllerClass);
         if ([self respondsToSelector:selector]) {
 #pragma GCC diagnostic push
@@ -103,6 +100,13 @@
         else {
             NSAssert(NO, @"can't handle selector `%@`", viewControllerClass);
         }
+    }
+    else if (class && [class isSubclassOfClass:[UIViewController class]]) {
+        UIViewController *vc = [[class alloc] init];
+        vc.title = _titles[[_classes indexOfObject:viewControllerClass]];
+        
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
