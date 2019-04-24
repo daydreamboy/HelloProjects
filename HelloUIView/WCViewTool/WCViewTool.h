@@ -84,11 +84,25 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Adjust the frame of the view to fit its all subviews
 
- @param view the view whose frame should fit its all subviews and it expect to has at less one subview
+ @param superView the super view whose frame should fit its all subviews and it expect to has at less one subview
  @return YES if the operation is success. NO if the view has no subviews.
  @see https://stackoverflow.com/a/21107340
  */
-+ (BOOL)makeViewFrameToFitAllSubviewsWithView:(UIView *)view;
++ (BOOL)makeViewFrameToFitAllSubviewsWithSuperView:(UIView *)superView;
+
+/**
+ Center the grouped subviews
+
+ @param subviews the subviews which expected to group. Maybe not all subviews of a super view.
+ @param centerPoint the center point of the grouped area
+ @param groupViewsRect the rect of the grouped area after relayout. Pass NULL if not need.
+ @return YES if the operation is success, or return NO.
+ @discussion
+ 1. The subviews keep the original frame, after call this method will adjust the subview positions
+ 2. This method maybe work same as +[WCViewTool makeViewFrameToFitAllSubviewsWithSuperView:],
+ but more efficient than it for not creating a wrapper view
+ */
++ (BOOL)makeSubviewsIntoGroup:(NSArray *)subviews centeredAtPoint:(CGPoint)centerPoint groupViewsRect:(inout nullable CGRect *)groupViewsRect;
 
 #pragma mark - Visibility
 

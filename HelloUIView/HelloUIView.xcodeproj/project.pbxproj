@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4F0B4F1E205269D9003B241E /* HitTestInViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0B4F1D205269D9003B241E /* HitTestInViewViewController.m */; };
+		4F4EDC3E22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4EDC3D22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.m */; };
 		4F517BB7212FD41C008CE69F /* BlurAnyViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F517BB6212FD41C008CE69F /* BlurAnyViewViewController.m */; };
 		4F517BB9212FD500008CE69F /* dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F517BB8212FD500008CE69F /* dog.jpg */; };
 		4F63EFE41FE10068000AFD6F /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63EFE31FE10068000AFD6F /* WCViewTool.m */; };
@@ -21,7 +22,7 @@
 		4F961BB12133ABE2009402F3 /* UIView+UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F961BB02133ABE2009402F3 /* UIView+UserInfo.m */; };
 		4F961BB42133ABF5009402F3 /* UIView+Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F961BB32133ABF5009402F3 /* UIView+Position.m */; };
 		4F983BD81FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F983BD71FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m */; };
-		4FA301272151328C005A5344 /* GroupSubviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA301262151328C005A5344 /* GroupSubviewsViewController.m */; };
+		4FA301272151328C005A5344 /* GroupSubviewsByWrapperViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA301262151328C005A5344 /* GroupSubviewsByWrapperViewViewController.m */; };
 		4FAAA5671FA45FE700A80328 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAA5661FA45FE700A80328 /* AppDelegate.m */; };
 		4FAAA56F1FA45FE700A80328 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FAAA56E1FA45FE700A80328 /* Assets.xcassets */; };
 		4FAAA5721FA45FE700A80328 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FAAA5701FA45FE700A80328 /* LaunchScreen.storyboard */; };
@@ -56,6 +57,8 @@
 /* Begin PBXFileReference section */
 		4F0B4F1C205269D9003B241E /* HitTestInViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HitTestInViewViewController.h; sourceTree = "<group>"; };
 		4F0B4F1D205269D9003B241E /* HitTestInViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HitTestInViewViewController.m; sourceTree = "<group>"; };
+		4F4EDC3C22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupSubviewsByRelayoutSubviewsViewController.h; sourceTree = "<group>"; };
+		4F4EDC3D22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupSubviewsByRelayoutSubviewsViewController.m; sourceTree = "<group>"; };
 		4F517BB5212FD41C008CE69F /* BlurAnyViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlurAnyViewViewController.h; sourceTree = "<group>"; };
 		4F517BB6212FD41C008CE69F /* BlurAnyViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlurAnyViewViewController.m; sourceTree = "<group>"; };
 		4F517BB8212FD500008CE69F /* dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dog.jpg; sourceTree = "<group>"; };
@@ -81,8 +84,8 @@
 		4F961BB32133ABF5009402F3 /* UIView+Position.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Position.m"; sourceTree = "<group>"; };
 		4F983BD61FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchThroughPartRegionOfViewViewController.h; sourceTree = "<group>"; };
 		4F983BD71FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TouchThroughPartRegionOfViewViewController.m; sourceTree = "<group>"; };
-		4FA301252151328C005A5344 /* GroupSubviewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupSubviewsViewController.h; sourceTree = "<group>"; };
-		4FA301262151328C005A5344 /* GroupSubviewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupSubviewsViewController.m; sourceTree = "<group>"; };
+		4FA301252151328C005A5344 /* GroupSubviewsByWrapperViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupSubviewsByWrapperViewViewController.h; sourceTree = "<group>"; };
+		4FA301262151328C005A5344 /* GroupSubviewsByWrapperViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupSubviewsByWrapperViewViewController.m; sourceTree = "<group>"; };
 		4FAAA5621FA45FE700A80328 /* HelloUIView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUIView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FAAA5651FA45FE700A80328 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FAAA5661FA45FE700A80328 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -199,8 +202,10 @@
 				4F517BB6212FD41C008CE69F /* BlurAnyViewViewController.m */,
 				4F961BAA2132FB0F009402F3 /* TraverseSubviewsInViewViewController.h */,
 				4F961BAB2132FB0F009402F3 /* TraverseSubviewsInViewViewController.m */,
-				4FA301252151328C005A5344 /* GroupSubviewsViewController.h */,
-				4FA301262151328C005A5344 /* GroupSubviewsViewController.m */,
+				4FA301252151328C005A5344 /* GroupSubviewsByWrapperViewViewController.h */,
+				4FA301262151328C005A5344 /* GroupSubviewsByWrapperViewViewController.m */,
+				4F4EDC3C22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.h */,
+				4F4EDC3D22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.m */,
 			);
 			path = "UIView Demo";
 			sourceTree = "<group>";
@@ -320,7 +325,7 @@
 		4FAAA55A1FA45FE700A80328 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = wesley_chen;
 				TargetAttributes = {
 					4F67684B21746BB900B371A7 = {
@@ -391,12 +396,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F4EDC3E22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.m in Sources */,
 				4FB43AEC200DA27300D5D92D /* GradientView.m in Sources */,
 				4F517BB7212FD41C008CE69F /* BlurAnyViewViewController.m in Sources */,
 				4FAAA5751FA45FE700A80328 /* main.m in Sources */,
 				4FB43AF6200DA28100D5D92D /* DrawRadialGradientViewViewController.m in Sources */,
 				4FB43AE6200DA22F00D5D92D /* WCTouchThroughView.m in Sources */,
-				4FA301272151328C005A5344 /* GroupSubviewsViewController.m in Sources */,
+				4FA301272151328C005A5344 /* GroupSubviewsByWrapperViewViewController.m in Sources */,
 				4F983BD81FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m in Sources */,
 				4FB43AC2200A476700D5D92D /* MappingRectFromViewToViewViewController.m in Sources */,
 				4FAAA5841FA461E500A80328 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.m in Sources */,
@@ -491,6 +497,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -498,6 +505,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -546,6 +554,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -553,6 +562,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

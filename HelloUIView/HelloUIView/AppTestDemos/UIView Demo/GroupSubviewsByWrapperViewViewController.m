@@ -1,21 +1,21 @@
 //
-//  GroupSubviewsViewController.m
+//  GroupSubviewsByWrapperViewViewController.m
 //  HelloUIView
 //
 //  Created by wesley_chen on 2018/9/18.
 //  Copyright © 2018 wesley_chen. All rights reserved.
 //
 
-#import "GroupSubviewsViewController.h"
+#import "GroupSubviewsByWrapperViewViewController.h"
 #import "WCViewTool.h"
 #import "UIView+Position.h"
 
-@interface GroupSubviewsViewController ()
+@interface GroupSubviewsByWrapperViewViewController ()
 @property (nonatomic, strong) UIView *containerView1;
 @property (nonatomic, strong) UIView *containerView2;
 @end
 
-@implementation GroupSubviewsViewController
+@implementation GroupSubviewsByWrapperViewViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,6 +36,8 @@
 - (UIView *)containerView1 {
     if (!_containerView1) {
         UIView *view = [UIView new];
+        view.layer.borderColor = [UIColor purpleColor].CGColor;
+        view.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
         
         UIView *subview1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
         subview1.backgroundColor = [UIColor redColor];
@@ -56,6 +58,8 @@
 - (UIView *)containerView2 {
     if (!_containerView2) {
         UIView *view = [UIView new];
+        view.layer.borderColor = [UIColor purpleColor].CGColor;
+        view.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
         
         UIView *subview1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
         subview1.backgroundColor = [UIColor redColor];
@@ -65,13 +69,12 @@
         subview2.backgroundColor = [UIColor greenColor];
         [view addSubview:subview2];
         
-        [WCViewTool makeViewFrameToFitAllSubviewsWithView:view];
+        [WCViewTool makeViewFrameToFitAllSubviewsWithSuperView:view];
         
         _containerView2 = view;
     }
     
     return _containerView2;
 }
-
 
 @end

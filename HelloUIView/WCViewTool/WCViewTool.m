@@ -200,12 +200,12 @@
 
 #pragma mark - Frame Adjustment
 
-+ (BOOL)makeViewFrameToFitAllSubviewsWithView:(UIView *)view {
-    if (![view isKindOfClass:[UIView class]]) {
++ (BOOL)makeViewFrameToFitAllSubviewsWithSuperView:(UIView *)superView {
+    if (![superView isKindOfClass:[UIView class]]) {
         return NO;
     }
     
-    NSArray *subviews = [view subviews];
+    NSArray *subviews = [superView subviews];
     if (subviews.count == 0) {
         return NO;
     }
@@ -223,13 +223,46 @@
     }
     
     // 3 - move frame to negate the previous movement
-    CGRect newFrame = CGRectOffset(view.frame, fix.x, fix.y);
+    CGRect newFrame = CGRectOffset(superView.frame, fix.x, fix.y);
     newFrame.size = r.size;
     
-    view.frame = newFrame;
+    superView.frame = newFrame;
     
     return YES;
 }
+
++ (BOOL)makeSubviewsIntoGroup:(NSArray *)subviews centeredAtPoint:(CGPoint)centerPoint groupViewsRect:(inout nullable CGRect *)groupViewsRect {
+    if (![subviews isKindOfClass:[NSArray class]]) {
+        return NO;
+    }
+    
+    if (subviews.count == 0) {
+        return NO;
+    }
+    
+    // 1 - calculate original group rect
+    CGRect originalGroupRect = CGRectZero;
+    for (UIView *v in subviews) {
+        originalGroupRect = CGRectUnion(originalGroupRect, v.frame);
+    }
+    
+    // 2 - get the movement according to the center point
+    CGVector movement = CGVectorMake(centerPoint.x - CGRectGetMidX(originalGroupRect), centerPoint.y - CGRectGetMidY(originalGroupRect));
+    
+    // 3 - adjust group rect
+    CGRect newGroupRect = CGRectOffset(originalGroupRect, movement.dx, movement.dy);
+    if (groupViewsRect) {
+        *groupViewsRect = newGroupRect;
+    }
+    
+    // 4 - adjust subviews
+    for (UIView *v in subviews) {
+        v.frame = CGRectOffset(v.frame, movement.dx, movement.dy);
+    }
+    
+    return YES;
+}
+
 
 #pragma mark - Visibility
 

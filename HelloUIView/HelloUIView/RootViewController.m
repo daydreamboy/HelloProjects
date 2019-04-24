@@ -23,7 +23,8 @@
 #import "TouchThroughToUnderneathViewViewController.h"
 #import "BlurAnyViewViewController.h"
 #import "TraverseSubviewsInViewViewController.h"
-#import "GroupSubviewsViewController.h"
+#import "GroupSubviewsByWrapperViewViewController.h"
+#import "GroupSubviewsByRelayoutSubviewsViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -56,7 +57,8 @@
           @{ kTitle: @"Demonstrate HitTest", kClass: [HitTestInViewViewController class] },
           @{ kTitle: @"Blur a view", kClass: [BlurAnyViewViewController class] },
           @{ kTitle: @"Traverse view hierachy", kClass: [TraverseSubviewsInViewViewController class] },
-          @{ kTitle: @"Group all subviews", kClass: [GroupSubviewsViewController class] },
+          @{ kTitle: @"Group all subviews by wrapper view", kClass: [GroupSubviewsByWrapperViewViewController class] },
+          @{ kTitle: @"Group all subviews by relayout subviews", kClass: [GroupSubviewsByRelayoutSubviewsViewController class] },
     ];
 
     NSArray<NSDictionary *> *section2 = @[

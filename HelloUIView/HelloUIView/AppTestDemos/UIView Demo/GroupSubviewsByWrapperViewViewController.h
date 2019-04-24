@@ -1,5 +1,5 @@
 //
-//  GroupSubviewsViewController.h
+//  GroupSubviewsByWrapperViewViewController.h
 //  HelloUIView
 //
 //  Created by wesley_chen on 2018/9/18.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GroupSubviewsViewController : UIViewController
+@interface GroupSubviewsByWrapperViewViewController : UIViewController
 
 @end
