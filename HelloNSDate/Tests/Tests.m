@@ -44,9 +44,16 @@
     WCDumpObject(output2);
     
     // Case 2: timestamp for logging
-    output1 = [WCDateTool stringFromCurrentDateWithFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'ZZ"];
-    output2 = [WCDateTool stringFromCurrentDateWithFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'ZZZZZ"];
+    output1 = [WCDateTool stringFromCurrentDateWithFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'ZZ"]; // ZZ for +0800
     WCDumpObject(output1);
+    
+    output1 = [WCDateTool stringFromCurrentDateWithFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'ZZ"]; // ZZ for +0800
+    WCDumpObject(output1);
+    
+    output2 = [WCDateTool stringFromCurrentDateWithFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'ZZZZ"]; // ZZZZ for GMT+08:00
+    WCDumpObject(output2);
+    
+    output2 = [WCDateTool stringFromCurrentDateWithFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'ZZZZZ"]; // ZZZZZ for +08:00
     WCDumpObject(output2);
     
     // Case 3:
