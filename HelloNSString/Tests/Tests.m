@@ -1551,6 +1551,33 @@
     NSLog(@"%d = %@", INT8_MIN, [WCStringTool binaryStringFromInt8:INT8_MIN]);
 }
 
+#pragma mark - Handle String As Number
+
+- (void)test_removeTrailZerosWithNumberString {
+    NSString *string;
+    NSString *output;
+    
+    // Case 1
+    string = @"1000";
+    output = [WCStringTool removeTrailZerosWithNumberString:string];
+    XCTAssertEqualObjects(output, @"1000");
+    
+    // Case 2
+    string = @"10.000";
+    output = [WCStringTool removeTrailZerosWithNumberString:string];
+    XCTAssertEqualObjects(output, @"10");
+
+    // Case 3
+    string = @"10.0100";
+    output = [WCStringTool removeTrailZerosWithNumberString:string];
+    XCTAssertEqualObjects(output, @"10.01");
+
+    // Case 3
+    string = @"10.1234";
+    output = [WCStringTool removeTrailZerosWithNumberString:string];
+    XCTAssertEqualObjects(output, @"10.1234");
+}
+
 #pragma mark - Cryption
 
 #pragma mark > MD5

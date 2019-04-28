@@ -1422,6 +1422,31 @@
     return folderPath;
 }
 
+#pragma mark - Handle String As Number
+
++ (nullable NSString *)removeTrailZerosWithNumberString:(NSString *)numberString {
+    if (![numberString isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    if ([numberString rangeOfString:@"."].location == NSNotFound) {
+        return numberString;
+    }
+    
+    NSRange range = NSMakeRange(0, 0);
+    range = [numberString rangeOfString:@"0*$" options:NSRegularExpressionSearch];
+    if (range.location != NSNotFound && range.length) {
+        numberString = [numberString stringByReplacingCharactersInRange:range withString:@""];
+    }
+    
+    range = [numberString rangeOfString:@"\\.$" options:NSRegularExpressionSearch];
+    if (range.location != NSNotFound && range.length) {
+        numberString = [numberString stringByReplacingCharactersInRange:range withString:@""];
+    }
+    
+    return numberString;
+}
+
 #pragma mark - Cryption
 
 #pragma mark > MD5

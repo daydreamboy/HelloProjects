@@ -606,6 +606,22 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSString *)pathWithSubpath:(NSString *)subpath inDirectory:(NSSearchPathDirectory)systemDirectory;
 
+#pragma mark - Handle String As Number
+
+/**
+ Remove trailing zeros after decimal dot if needed
+
+ @param numberString the number string
+ @return the new number string
+ @see https://stackoverflow.com/a/14985235
+ @discussion for examples as follows
+ 1000    -> 1000
+ 10.000  -> 10 (without point in result)
+ 10.0100 -> 10.01
+ 10.1234 -> 10.1234
+ */
++ (nullable NSString *)removeTrailZerosWithNumberString:(NSString *)numberString;
+
 #pragma mark - Encryption
 
 #pragma mark > MD5
