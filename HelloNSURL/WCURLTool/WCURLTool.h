@@ -110,6 +110,11 @@ typedef NS_OPTIONS(NSUInteger, WCURLQueryKeyValueReplacementOption) {
     WCURLQueryKeyValueReplacementOptionReplaceOnlyKeyExists = 1 << 1,
 };
 
+typedef NS_OPTIONS(NSUInteger, WCURLQueryKeyValueAppendOption) {
+    /*! Append key/values only if the key not exists */
+    WCURLQueryKeyValueAppendOptionAppendOnlyKeyNotExists = 1 << 0,
+};
+
 NS_AVAILABLE_IOS(8_0)
 @interface WCURLTool : NSObject
 
@@ -136,7 +141,7 @@ NS_AVAILABLE_IOS(8_0)
  */
 + (nullable WCURLComponents *)URLComponentsWithUrlString:(NSString *)urlString;
 
-#pragma mark - Get new URL
+#pragma mark - Append/Replace Key Values
 
 /**
  Get URL with new query key values
@@ -144,9 +149,10 @@ NS_AVAILABLE_IOS(8_0)
  @param URL the original URL
  @param queryKeyValues the query key values to append. The key value pairs' order is uncertained,
         but always after the original URL's query string.
+ @param options the options. See +[WCURLTool URLWithURL:toAppendQueryKeyValueArray:options:] for detail.
  @return the modified URL
  */
-+ (nullable NSURL *)URLWithURL:(NSURL *)URL toAppendQueryKeyValues:(nullable NSDictionary<NSString *, NSString *> *)queryKeyValues;
++ (nullable NSURL *)URLWithURL:(NSURL *)URL toAppendQueryKeyValues:(nullable NSDictionary<NSString *, NSString *> *)queryKeyValues options:(WCURLQueryKeyValueAppendOption)options;
 
 /**
  Get URL with a new query key value
@@ -154,18 +160,25 @@ NS_AVAILABLE_IOS(8_0)
  @param URL the original URL
  @param key the key
  @param value the value
+ @param options the options. See +[WCURLTool URLWithURL:toAppendQueryKeyValueArray:options:] for detail.
  @return the modified URL
  */
-+ (nullable NSURL *)URLWithURL:(NSURL *)URL toAppendQueryKey:(NSString *)key value:(NSString *)value;
++ (nullable NSURL *)URLWithURL:(NSURL *)URL toAppendQueryKey:(NSString *)key value:(NSString *)value options:(WCURLQueryKeyValueAppendOption)options;
 
 /**
  Get URL with an array of query key values
-
+ 
  @param URL the original URL
  @param queryKeyValueArray the array of KeyValuePairType objects
+ @param options the options
+ - kNilOption
+   Append the key value even if the same key exists
+ - WCURLQueryKeyValueAppendOptionAppendOnlyKeyNotExists
+   Append the key value only if the key not exists
  @return the modified URL
+ @see https://stackoverflow.com/a/19517418
  */
-+ (nullable NSURL *)URLWithURL:(NSURL *)URL toAppendQueryKeyValueArray:(nullable NSArray<KeyValuePairType> *)queryKeyValueArray;
++ (nullable NSURL *)URLWithURL:(NSURL *)URL toAppendQueryKeyValueArray:(nullable NSArray<KeyValuePairType> *)queryKeyValueArray options:(WCURLQueryKeyValueAppendOption)options;
 
 /**
  Replace URL with query key values and scheme
@@ -186,6 +199,8 @@ NS_AVAILABLE_IOS(8_0)
  */
 + (nullable NSURL *)URLWithURL:(NSURL *)URL replacedByQueryKeyValueArray:(nullable NSArray<KeyValuePairType> *)queryKeyValueArray scheme:(nullable NSString *)scheme options:(WCURLQueryKeyValueReplacementOption)options;
 
+#pragma mark - Remove All Key Values
+
 /**
  Get the base part of NSURL without query parameters
 
@@ -195,7 +210,17 @@ NS_AVAILABLE_IOS(8_0)
  */
 + (nullable NSURL *)baseURLWithURL:(NSURL *)URL;
 
-#pragma mark - Query
+#pragma mark - Sort Key Values
+
+/**
+ Sort the key values by the key and value
+
+ @param URL the original URL
+ @return the new URL after sort
+ */
++ (nullable NSURL *)sortKeyValuesWithURL:(NSURL *)URL;
+
+#pragma mark - Query Key Value
 
 /**
  Get value for key in query string

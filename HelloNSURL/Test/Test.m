@@ -556,7 +556,7 @@
     XCTAssertTrue(components.queryKeyValues.count == 5);
 }
 
-- (void)test_URLWithURL_toAppendQueryKeyValues {
+- (void)test_URLWithURL_toAppendQueryKeyValues_options {
     NSURL *output;
     NSURL *URL;
     NSDictionary *queryKeyValues;
@@ -564,7 +564,7 @@
     // Case 1
     URL = NSURL_SAFE_NEW(@"https://gw.alicdn.com/imgextra/i4/O1CN01SnkvEd1T9lIh7osOD_!!0-amp.jpg_400x400q90_.heic");
     queryKeyValues = nil;
-    output = [WCURLTool URLWithURL:URL toAppendQueryKeyValues:queryKeyValues];
+    output = [WCURLTool URLWithURL:URL toAppendQueryKeyValues:queryKeyValues options:kNilOptions];
     XCTAssertEqualObjects(output, NSURL_SAFE_NEW(@"https://gw.alicdn.com/imgextra/i4/O1CN01SnkvEd1T9lIh7osOD_!!0-amp.jpg_400x400q90_.heic"));
     
     // Case 2
@@ -572,7 +572,7 @@
     queryKeyValues = @{
                        @"imageType": @"thumb"
                        };
-    output = [WCURLTool URLWithURL:URL toAppendQueryKeyValues:queryKeyValues];
+    output = [WCURLTool URLWithURL:URL toAppendQueryKeyValues:queryKeyValues options:kNilOptions];
     XCTAssertEqualObjects(output, NSURL_SAFE_NEW(@"https://gw.alicdn.com/imgextra/i4/O1CN01SnkvEd1T9lIh7osOD_!!0-amp.jpg_400x400q90_.heic?imageType=thumb"));
     
     // Case 3
@@ -581,9 +581,8 @@
                        @"imageType": @"thumb",
                        @"source": @"web"
                        };
-    output = [WCURLTool URLWithURL:URL toAppendQueryKeyValues:queryKeyValues];
+    output = [WCURLTool URLWithURL:URL toAppendQueryKeyValues:queryKeyValues options:kNilOptions];
     XCTAssertEqualObjects(output, NSURL_SAFE_NEW(@"https://gw.alicdn.com/imgextra/i4/O1CN01SnkvEd1T9lIh7osOD_!!0-amp.jpg_400x400q90_.heic?source=web&imageType=thumb"));
-    
     
     // Case 4
     URL = NSURL_SAFE_NEW(@"https://gw.alicdn.com/imgextra/i4/O1CN01SnkvEd1T9lIh7osOD_!!0-amp.jpg_400x400q90_.heic?spm=A");
@@ -591,11 +590,20 @@
                        @"imageType": @"thumb",
                        @"source": @"web"
                        };
-    output = [WCURLTool URLWithURL:URL toAppendQueryKeyValues:queryKeyValues];
+    output = [WCURLTool URLWithURL:URL toAppendQueryKeyValues:queryKeyValues options:kNilOptions];
     XCTAssertEqualObjects(output, NSURL_SAFE_NEW(@"https://gw.alicdn.com/imgextra/i4/O1CN01SnkvEd1T9lIh7osOD_!!0-amp.jpg_400x400q90_.heic?spm=A&source=web&imageType=thumb"));
+    
+    // Case 5
+    URL = NSURL_SAFE_NEW(@"https://gw.alicdn.com/imgextra/i4/O1CN01SnkvEd1T9lIh7osOD_!!0-amp.jpg_400x400q90_.heic?spm=A&imageType=thumb");
+    queryKeyValues = @{
+                       @"spm": @"B",
+                       @"source": @"web"
+                       };
+    output = [WCURLTool URLWithURL:URL toAppendQueryKeyValues:queryKeyValues options:WCURLQueryKeyValueAppendOptionAppendOnlyKeyNotExists];
+    XCTAssertEqualObjects(output, NSURL_SAFE_NEW(@"https://gw.alicdn.com/imgextra/i4/O1CN01SnkvEd1T9lIh7osOD_!!0-amp.jpg_400x400q90_.heic?spm=A&imageType=thumb&source=web"));
 }
 
-- (void)test_URLWithURLToAppendQueryKeyValue_key_value {
+- (void)test_URLWithURLToAppendQueryKeyValue_key_value_options {
     
 }
 

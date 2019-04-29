@@ -176,7 +176,9 @@
 #undef NSRangeZero
 }
 
-+ (nullable NSURL *)URLWithURL:(NSURL *)URL toAppendQueryKeyValues:(nullable NSDictionary<NSString *, NSString *> *)queryKeyValues {
+#pragma mark - Append/Replace Key Values
+
++ (nullable NSURL *)URLWithURL:(NSURL *)URL toAppendQueryKeyValues:(nullable NSDictionary<NSString *, NSString *> *)queryKeyValues options:(WCURLQueryKeyValueAppendOption)options {
     if (![URL isKindOfClass:[NSURL class]]) {
         return nil;
     }
@@ -189,11 +191,11 @@
         return URL;
     }
     
-    NSMutableArray<NSURLQueryItem *> *itemsToAdd = [NSMutableArray array];
+    NSMutableArray<KeyValuePairType> *itemsToAdd = [NSMutableArray array];
     [queryKeyValues enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull value, BOOL * _Nonnull stop) {
         if ([key isKindOfClass:[NSString class]] && [value isKindOfClass:[NSString class]] &&
              key.length && value.length) {
-            [itemsToAdd addObject:[NSURLQueryItem queryItemWithName:key value:value]];
+            [itemsToAdd addObject:KeyValuePair(key, value)];
         }
     }];
     
@@ -201,34 +203,18 @@
         return URL;
     }
     
-    NSURLComponents *components = [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
-    
-    NSMutableArray<NSURLQueryItem *> *queryKeyValuesM = [NSMutableArray arrayWithCapacity:components.queryItems.count + itemsToAdd.count];
-    [queryKeyValuesM addObjectsFromArray:components.queryItems];
-    [queryKeyValuesM addObjectsFromArray:itemsToAdd];
-    
-    components.queryItems = queryKeyValuesM;
-    
-    return components.URL;
+    return [self URLWithURL:URL toAppendQueryKeyValueArray:itemsToAdd options:options];
 }
 
-+ (nullable NSURL *)URLWithURL:(NSURL *)URL toAppendQueryKey:(NSString *)key value:(NSString *)value {
++ (nullable NSURL *)URLWithURL:(NSURL *)URL toAppendQueryKey:(NSString *)key value:(NSString *)value options:(WCURLQueryKeyValueAppendOption)options {
     if (![URL isKindOfClass:[NSURL class]] || ![key isKindOfClass:[NSString class]] || ![value isKindOfClass:[NSString class]]) {
         return nil;
     }
     
-    NSURLComponents *components = [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
-    
-    NSMutableArray<NSURLQueryItem *> *queryKeyValuesM = [NSMutableArray arrayWithCapacity:components.queryItems.count + 1];
-    [queryKeyValuesM addObjectsFromArray:components.queryItems];
-    [queryKeyValuesM addObject:[NSURLQueryItem queryItemWithName:key value:value]];
-    
-    components.queryItems = queryKeyValuesM;
-    
-    return components.URL;
+    return [self URLWithURL:URL toAppendQueryKeyValueArray:@[KeyValuePair(key, value)] options:options];
 }
 
-+ (nullable NSURL *)URLWithURL:(NSURL *)URL toAppendQueryKeyValueArray:(nullable NSArray<KeyValuePairType> *)queryKeyValueArray {
++ (nullable NSURL *)URLWithURL:(NSURL *)URL toAppendQueryKeyValueArray:(nullable NSArray<KeyValuePairType> *)queryKeyValueArray options:(WCURLQueryKeyValueAppendOption)options {
     if (![URL isKindOfClass:[NSURL class]] || (queryKeyValueArray && ![queryKeyValueArray isKindOfClass:[NSArray class]])) {
         return nil;
     }
@@ -256,8 +242,25 @@
     NSURLComponents *components = [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
     
     NSMutableArray<NSURLQueryItem *> *queryKeyValuesM = [NSMutableArray arrayWithCapacity:components.queryItems.count + queryKeyValueArray.count];
-    [queryKeyValuesM addObjectsFromArray:components.queryItems];
-    [queryKeyValuesM addObjectsFromArray:keyValuesToAdd];
+    
+    if (options == WCURLQueryKeyValueAppendOptionAppendOnlyKeyNotExists) {
+        NSArray *keysToRemove = [components.queryItems valueForKey:@"name"];
+        
+        NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(NSURLQueryItem * _Nullable evaluatedObject, NSDictionary<NSString *,id> * _Nullable bindings) {
+            // return YES if keep the item in the filtered array
+            return ![keysToRemove containsObject:evaluatedObject.name];
+        }];
+        [keyValuesToAdd filterUsingPredicate:predicate];
+        
+        [queryKeyValuesM addObjectsFromArray:components.queryItems];
+        if (keyValuesToAdd.count) {
+            [queryKeyValuesM addObjectsFromArray:keyValuesToAdd];
+        }
+    }
+    else {
+        [queryKeyValuesM addObjectsFromArray:components.queryItems];
+        [queryKeyValuesM addObjectsFromArray:keyValuesToAdd];
+    }
     
     components.queryItems = queryKeyValuesM;
     
@@ -341,6 +344,8 @@
     return components.URL;
 }
 
+#pragma mark - Remove All Key Values
+
 + (nullable NSURL *)baseURLWithURL:(NSURL *)URL {
     if (![URL isKindOfClass:[NSURL class]]) {
         return nil;
@@ -360,7 +365,29 @@
     }
 }
 
-#pragma mark - Query
+#pragma mark - Sort Key Values
+
++ (nullable NSURL *)sortKeyValuesWithURL:(NSURL *)URL {
+    if (![URL isKindOfClass:[NSURL class]]) {
+        return nil;
+    }
+    
+    NSURLComponents *components = [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
+    if (!components.queryItems.count) {
+        return URL;
+    }
+    
+    NSMutableArray<NSURLQueryItem *> *queryKeyValuesM = [NSMutableArray arrayWithArray:components.queryItems];
+    
+    NSSortDescriptor *sorter1 = [NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES selector:@selector(compare:)];
+    NSSortDescriptor *sorter2 = [NSSortDescriptor sortDescriptorWithKey:@"value" ascending:YES selector:@selector(compare:)];
+    [queryKeyValuesM sortUsingDescriptors:@[ sorter1, sorter2 ]];
+    components.queryItems = queryKeyValuesM;
+    
+    return components.URL;
+}
+
+#pragma mark - Query Key Value
 
 + (nullable NSArray<NSString *> *)URLWithURL:(NSURL *)URL valueForKey:(NSString *)key {
     if (![URL isKindOfClass:[NSURL class]] ||
