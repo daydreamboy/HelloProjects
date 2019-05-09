@@ -48,6 +48,17 @@
     url = @"https://item.taobao.com/item.htm?spm=a230r.1.14.13.63956cb9lNHIdB&id=573299987166&ns=1&abbucket=15#detail";
     URL = [NSURL URLWithString:url];
     XCTAssertNotNil(URL);
+    
+    // Case 5
+    url = @"https://shop.m.taobao.com/shop/shop_index.htm?shopId=117297345#list?catId=1320425474";
+    URL = [NSURL URLWithString:url];
+    XCTAssertNotNil(URL);
+    XCTAssertEqualObjects(URL.fragment, @"list?catId=1320425474");
+    
+    // Case 5
+    url = @"http://www.google.com/item.htm?id=1中文中文中文";
+    URL = [NSURL URLWithString:url];
+    XCTAssertNil(URL);
 }
 
 - (void)test_pathExtension {

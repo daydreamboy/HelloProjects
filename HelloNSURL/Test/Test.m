@@ -291,6 +291,15 @@
     XCTAssertTrue(NSEqualRanges(components.rangeOfQuery, [urlString rangeOfString:@"spm=a230r.1.14.13.63956cb9lNHIdB&id=573299987166&ns=1&abbucket=15"]));
     XCTAssertTrue(NSEqualRanges(components.rangeOfFragment, [urlString rangeOfString:@"detail"]));
     
+    // Case 15
+    urlString = @"https://shop.m.taobao.com/shop/shop_index.htm?shopId=117297345#list?catId=1320425474";
+    components = [WCURLTool URLComponentsWithUrlString:urlString];
+    
+    XCTAssertEqualObjects([components.queryItems[0] name], @"shopId");
+    XCTAssertEqualObjects([components.queryItems[0] value], @"117297345");
+    XCTAssertEqualObjects(components.pathExtension, @"htm");
+    XCTAssertEqualObjects(components.fragment, @"list?catId=1320425474");
+    XCTAssertTrue(components.queryKeyValues.count == 1);
     
     // Abnormal Case 1
     urlString = @"http://a:80/b/c/d;p?key1=#jumpLocation";
