@@ -13,7 +13,7 @@
  Get a character set which contains characters allowed in http/https url
 
  @return the singleton of NSCharacterSet
- @discussion The charaters are !$%&'()*+,-./0123456789:;=?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[]_abcdefghijklmnopqrstuvwxyz~
+ @discussion The charaters are !"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
  */
 + (NSCharacterSet *)URLAllowedCharacterSet;
 

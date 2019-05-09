@@ -206,23 +206,6 @@
                 
                 [self safeSetResult:result range:fixedRange URL:fixedURL];
             }
-            
-            NSString *matchString = [MPMStringTool substringWithString:matchingString range:result.range];
-            
-            // when result.URL has been escaped, to take out its original url
-            if (![matchString isEqualToString:result.URL.absoluteString]) {
-                
-                NSString *fixedUrl = [matchString commonPrefixWithString:result.URL.absoluteString options:kNilOptions];
-                if (fixedUrl.length) {
-                    NSString *originalUrl = result.URL.absoluteString;
-                    NSRange subrange = [originalUrl rangeOfString:fixedUrl];
-                    
-                    NSRange fixedRange = NSMakeRange(result.range.location + subrange.location, subrange.length);
-                    NSURL *fixedURL = [NSURL URLWithString:fixedUrl];
-                    
-                    [self safeSetResult:result range:fixedRange URL:fixedURL];
-                }
-            }
         }
         
         // 2. filter allowed link schemes

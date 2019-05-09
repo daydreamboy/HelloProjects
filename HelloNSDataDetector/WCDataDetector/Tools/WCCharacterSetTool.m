@@ -20,7 +20,8 @@
         [set formUnionWithCharacterSet:[NSCharacterSet URLPathAllowedCharacterSet]];
         [set formUnionWithCharacterSet:[NSCharacterSet URLQueryAllowedCharacterSet]];
         [set formUnionWithCharacterSet:[NSCharacterSet URLUserAllowedCharacterSet]];
-        [set formUnionWithCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@"%"]];
+        // Note: add unsafe characters ("<>#%{}|\^~[]`), @see https://perishablepress.com/stop-using-unsafe-characters-in-urls/
+        [set formUnionWithCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@"\"<>#%{}|\\^~[]`"]];
     });
     return set;
 }
