@@ -742,25 +742,25 @@
     path = @"";
     result = [WCURLTool firstMatchInString:path pattern:patternOfPathExtension];
     extension = [WCURLTool substringWithString:path range:[result rangeAtIndex:1]];
-    XCTAssertEqualObjects(@"", extension);
+    XCTAssertEqualObjects(extension, @"");
     
     // Case 2
     path = @"/";
     result = [WCURLTool firstMatchInString:path pattern:patternOfPathExtension];
     extension = [WCURLTool substringWithString:path range:[result rangeAtIndex:1]];
-    XCTAssertEqualObjects(@"", extension);
+    XCTAssertEqualObjects(extension, @"");
     
     // Case 3
     path = @"/a";
     result = [WCURLTool firstMatchInString:path pattern:patternOfPathExtension];
     extension = [WCURLTool substringWithString:path range:[result rangeAtIndex:1]];
-    XCTAssertEqualObjects(@"", extension);
+    XCTAssertEqualObjects(extension, @"");
     
     // Case 4
     path = @"/a.";
     result = [WCURLTool firstMatchInString:path pattern:patternOfPathExtension];
     extension = [WCURLTool substringWithString:path range:[result rangeAtIndex:1]];
-    XCTAssertEqualObjects(@"", extension);
+    XCTAssertEqualObjects(extension, @"");
     
     // Case 5
     path = nil;
@@ -815,6 +815,25 @@
     result = [WCURLTool firstMatchInString:path pattern:patternOfPathExtension];
     extension = [WCURLTool substringWithString:path range:[result rangeAtIndex:1]];
     XCTAssertEqualObjects(extension, @"jpg");
+}
+
+- (void)test_patternOfURI {
+    NSString *patternOfPathExtension = WCURLTool.patternOfURI;
+    NSString *url;
+    NSTextCheckingResult *result;
+    NSString *URI;
+    
+    // Case 1
+    url = @"https://aone.alibaba-inc.com/project/853267/issue?spm=a2o8d.corp_prod_issue_detail.0.0.4a8466a747k4YN#filter/filterType=Advanced&advancedFilters=[{%22type%22:%22list%22,%22leftParentheses%22:%22false%22,%22fieldName%22:%22statusId%22,%22condition%22:%22include%22,%22value%22:%2228+30+32%22,%22rightParentheses%22:%22false%22,%22andOr%22:%22AND%22},{%22type%22:%22list%22,%22leftParentheses%22:%22false%22,%22fieldName%22:%22priorityId%22,%22condition%22:%22include%22,%22value%22:%2294+95%22,%22rightParentheses%22:%22false%22,%22andOr%22:%22AND%22},{%22type%22:%22dateTime%22,%22leftParentheses%22:%22false%22,%22fieldName%22:%22createDate%22,%22condition%22:%22morethanEqual%22,%22value%22:%222019-05-05%22,%22rightParentheses%22:%22false%22,%22andOr%22:%22AND%22},{%22type%22:%22dateTime%22,%22leftParentheses%22:%22false%22,%22fieldName%22:%22createDate%22,%22condition%22:%22lessthanEqual%22,%22value%22:%222019-05-09%22,%22rightParentheses%22:%22false%22,%22andOr%22:%22AND%22},{%22type%22:%22Module%22,%22leftParentheses%22:%22false%22,%22fieldName%22:%22Module%22,%22condition%22:%22exclude%22,%22value%22:%22129611%22,%22rightParentheses%22:%22false%22,%22andOr%22:%22AND%22}]";
+    result = [WCURLTool firstMatchInString:url pattern:patternOfPathExtension];
+    URI = [WCURLTool substringWithString:url range:result.range];
+    XCTAssertEqualObjects(URI, @"https://aone.alibaba-inc.com/project/853267/issue?spm=a2o8d.corp_prod_issue_detail.0.0.4a8466a747k4YN#filter/filterType=Advanced&advancedFilters=[{%22type%22:%22list%22,%22leftParentheses%22:%22false%22,%22fieldName%22:%22statusId%22,%22condition%22:%22include%22,%22value%22:%2228+30+32%22,%22rightParentheses%22:%22false%22,%22andOr%22:%22AND%22},{%22type%22:%22list%22,%22leftParentheses%22:%22false%22,%22fieldName%22:%22priorityId%22,%22condition%22:%22include%22,%22value%22:%2294+95%22,%22rightParentheses%22:%22false%22,%22andOr%22:%22AND%22},{%22type%22:%22dateTime%22,%22leftParentheses%22:%22false%22,%22fieldName%22:%22createDate%22,%22condition%22:%22morethanEqual%22,%22value%22:%222019-05-05%22,%22rightParentheses%22:%22false%22,%22andOr%22:%22AND%22},{%22type%22:%22dateTime%22,%22leftParentheses%22:%22false%22,%22fieldName%22:%22createDate%22,%22condition%22:%22lessthanEqual%22,%22value%22:%222019-05-09%22,%22rightParentheses%22:%22false%22,%22andOr%22:%22AND%22},{%22type%22:%22Module%22,%22leftParentheses%22:%22false%22,%22fieldName%22:%22Module%22,%22condition%22:%22exclude%22,%22value%22:%22129611%22,%22rightParentheses%22:%22false%22,%22andOr%22:%22AND%22}]");
+    
+    // Case 2
+    url = @"http://www.google.com/item.htm?id=1中文中文中文";
+    result = [WCURLTool firstMatchInString:url pattern:patternOfPathExtension];
+    URI = [WCURLTool substringWithString:url range:result.range];
+    XCTAssertEqualObjects(URI, @"http://www.google.com/item.htm?id=1中文中文中文");
 }
 
 - (void)test_NSString_substringWithRange {
