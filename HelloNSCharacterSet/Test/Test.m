@@ -66,6 +66,7 @@
     NSString *string;
     array = [WCCharacterSetTool charactersInCharacterSet:[WCCharacterSetTool URLAllowedCharacterSet]];
     string = [array componentsJoinedByString:@""];
+    XCTAssertEqualObjects(string, @"!\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~");
     NSLog(@"%@", string);
 }
 
