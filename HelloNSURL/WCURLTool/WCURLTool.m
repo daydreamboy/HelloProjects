@@ -421,7 +421,7 @@
 + (NSString *)patternOfPathComponent {
     // @see https://stackoverflow.com/a/39811696
     //       1              2
-    return @"(\\/[^;]{1,});?([^;]+)?";
+    return @"(\\/[^;]{0,});?([^;]+)?";
 }
 
 + (NSString *)patternOfQueryItems {
