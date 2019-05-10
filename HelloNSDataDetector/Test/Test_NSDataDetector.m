@@ -28,13 +28,15 @@
 
 #pragma mark -
 
-- (void)runDataDetector:(NSDataDetector *)dataDetector string:(NSString *)string {
+- (NSArray<NSTextCheckingResult *> *)runDataDetector:(NSDataDetector *)dataDetector string:(NSString *)string {
     NSLog(@"-----------------------------------");
     NSArray<NSTextCheckingResult *> *arr = [dataDetector matchesInString:string options:kNilOptions range:NSMakeRange(0, string.length)];
     for (NSTextCheckingResult *checkResult in arr) {
         NSLog(@"%@", [string substringWithRange:checkResult.range]);
     }
     NSLog(@"-----------------------------------");
+    
+    return arr;
 }
 
 - (NSArray<MPMDataDetectorCheckResult *> *)runMPMDataDetector:(MPMDataDetector *)dataDetector string:(NSString *)string {
@@ -52,6 +54,10 @@
 
 - (void)test_check_hyperlink1 {
     NSString *string;
+    NSString *matchString;
+    NSArray<NSTextCheckingResult *> *matches;
+    NSTextCheckingResult *result;
+    
     NSDataDetector *detector = [[NSDataDetector alloc] initWithTypes:NSTextCheckingTypeLink error:nil];
     
     // Case 1
@@ -81,6 +87,13 @@
     // Case 7
     string = @"https://aone.alibaba-inc.com/project/853267/issue?spm=a2o8d.corp_prod_issue_detail.0.0.4a8466a747k4YN#filter/filterType=Advanced&advancedFilters=[{%22type%22:%22list%22,%22leftParentheses%22:%22false%22,%22fieldName%22:%22statusId%22,%22condition%22:%22include%22,%22value%22:%2228+30+32%22,%22rightParentheses%22:%22false%22,%22andOr%22:%22AND%22},{%22type%22:%22list%22,%22leftParentheses%22:%22false%22,%22fieldName%22:%22priorityId%22,%22condition%22:%22include%22,%22value%22:%2294+95%22,%22rightParentheses%22:%22false%22,%22andOr%22:%22AND%22},{%22type%22:%22dateTime%22,%22leftParentheses%22:%22false%22,%22fieldName%22:%22createDate%22,%22condition%22:%22morethanEqual%22,%22value%22:%222019-05-05%22,%22rightParentheses%22:%22false%22,%22andOr%22:%22AND%22},{%22type%22:%22dateTime%22,%22leftParentheses%22:%22false%22,%22fieldName%22:%22createDate%22,%22condition%22:%22lessthanEqual%22,%22value%22:%222019-05-09%22,%22rightParentheses%22:%22false%22,%22andOr%22:%22AND%22},{%22type%22:%22Module%22,%22leftParentheses%22:%22false%22,%22fieldName%22:%22Module%22,%22condition%22:%22exclude%22,%22value%22:%22129611%22,%22rightParentheses%22:%22false%22,%22andOr%22:%22AND%22}]";
     [self runDataDetector:detector string:string];
+    
+    // Case 8
+    string = @"https://aone.alibaba-inc.com/project/853267/issue?spm=a2o8d.corp_prod_issue_detail.0.0.4a8466a747k4YN#filter/filterType=Advanced&advancedFilters=[{}]";
+    matches = [self runDataDetector:detector string:string];
+    result = [matches firstObject];
+    matchString = [string substringWithRange:result.range];
+    XCTAssertEqualObjects(matchString, @"https://aone.alibaba-inc.com/project/853267/issue?spm=a2o8d.corp_prod_issue_detail.0.0.4a8466a747k4YN#filter/filterType=Advanced&advancedFilters=[{}");
 }
 
 - (void)test_check_hyperlink2 {
