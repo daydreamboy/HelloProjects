@@ -165,21 +165,6 @@
     return substrings;
 }
 
-- (void)safeSetResult:(NSTextCheckingResult *)result range:(NSRange)range URL:(NSURL *)URL {
-    NSString *privateClassName = [@[ @"N", @"S", @"Link", @"Chec", @"king", @"Res", @"ult" ] componentsJoinedByString:@""];
-    if ([result isKindOfClass:NSClassFromString(privateClassName)]) {
-        @try {
-            if (URL) {
-                [result setValue:URL forKey:@"_url"];
-            }
-            [result setValue:[NSValue valueWithRange:range] forKey:@"range"];
-        }
-        @catch (NSException *e) {
-            NSLog(@"an exception occurred: %@", e);
-        }
-    }
-}
-
 - (NSTextCheckingResult *)configureResult:(NSTextCheckingResult *)result matchingString:(NSString *)matchingString {
     // Note: when need to check link and result has URL
     if ((self.checkingTypes & NSTextCheckingTypeLink) && result.URL) {
@@ -204,7 +189,8 @@
                 NSRange fixedRange = NSMakeRange(result.range.location + subrange.location, subrange.length);
                 NSURL *fixedURL = [NSURL URLWithString:fixedUrl];
                 
-                [self safeSetResult:result range:fixedRange URL:fixedURL];
+                result = [NSTextCheckingResult linkCheckingResultWithRange:fixedRange URL:fixedURL];
+                //[self safeSetResult:result range:fixedRange URL:fixedURL];
             }
         }
         
@@ -231,6 +217,23 @@
     }
     
     return _cache;
+}
+
+#pragma mark - Legacy Methods
+
+- (void)safeSetResult:(NSTextCheckingResult *)result range:(NSRange)range URL:(NSURL *)URL {
+    NSString *privateClassName = [@[ @"N", @"S", @"Link", @"Chec", @"king", @"Res", @"ult" ] componentsJoinedByString:@""];
+    if ([result isKindOfClass:NSClassFromString(privateClassName)]) {
+        @try {
+            if (URL) {
+                [result setValue:URL forKey:@"_url"];
+            }
+            [result setValue:[NSValue valueWithRange:range] forKey:@"range"];
+        }
+        @catch (NSException *e) {
+            NSLog(@"an exception occurred: %@", e);
+        }
+    }
 }
 
 @end
