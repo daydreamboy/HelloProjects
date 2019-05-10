@@ -37,13 +37,15 @@
     NSLog(@"-----------------------------------");
 }
 
-- (void)runMPMDataDetector:(MPMDataDetector *)dataDetector string:(NSString *)string {
+- (NSArray<MPMDataDetectorCheckResult *> *)runMPMDataDetector:(MPMDataDetector *)dataDetector string:(NSString *)string {
     NSLog(@"-----------------------------------");
     NSArray<MPMDataDetectorCheckResult *> *arr = [dataDetector matchesInString:string options:kNilOptions];
     for (MPMDataDetectorCheckResult *checkResult in arr) {
         NSLog(@"%@", [string substringWithRange:checkResult.range]);
     }
     NSLog(@"-----------------------------------");
+    
+    return arr;
 }
 
 #pragma mark -
@@ -97,7 +99,10 @@
 }
 
 - (void)test_MPMDataDetector {
+    MPMDataDetectorCheckResult *result;
     NSString *string;
+    NSString *matchString;
+    
     MPMDataDetectorCheckResultType types = MPMDataDetectorCheckResultTypePhoneNumber | MPMDataDetectorCheckResultTypeLink | MPMDataDetectorCheckResultTypeEmoticon;
     MPMDataDetector *detector = [[MPMDataDetector alloc] initWithTypes:types error:nil];
  
@@ -107,7 +112,9 @@
     
     // Case 2
     string = @"测试https://detail.tmall.com/item.htm?id=568371443233&spm=a223v.7835278.t0.1.3cbe2312nwviTo&pvid=be2a1b12-f24f-4050-9227-e7c3448fd8b8&scm=1007.12144.81309.9011_8949&utparam={%22x_hestia_source%22:%228949%22,%22x_mt%22:10,%22x_object_id%22:568371443233,%22x_object_type%22:%22item%22,%22x_pos%22:1,%22x_pvid%22:%22be2a1b12-f24f-4050-9227-e7c3448fd8b8%22,%22x_src%22:%228949%22}，/:^_^,这是表情";
-    [self runMPMDataDetector:detector string:string];
+    NSArray<MPMDataDetectorCheckResult *> *matches = [self runMPMDataDetector:detector string:string];
+    result = [matches firstObject];
+    matchString = [string substringWithRange:result.range];
 }
 
 

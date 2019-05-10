@@ -103,8 +103,26 @@
 }
 
 - (NSArray<MPMDataDetectorCheckResult *> *)searchMatchesInString:(NSString *)string options:(NSMatchingOptions)options range:(NSRange)range {
-    NSArray<NSTextCheckingResult *> *results = [self.dataDetector matchesInString:string options:options range:range];
-    NSArray *arr = [self convertNSTextCheckingResultsToMPMDataDetectorCheckResults:results string:string];
+    NSMutableArray<NSTextCheckingResult *> *resultsM = [NSMutableArray array];
+    
+    NSCharacterSet *characterSet = [[self.class URLAllowedCharacterSet] invertedSet];
+    NSMutableArray<NSValue *> *ranges = [NSMutableArray array];
+    NSArray<NSString *> *components = [MPMStringTool componentsWithString:string charactersInSet:characterSet substringRangs:ranges];
+    if (components.count == ranges.count) {
+        for (NSInteger i = 0; i < components.count; i++) {
+            NSRange componentRange = [ranges[i] rangeValue];
+            
+            NSArray<NSTextCheckingResult *> *matches = [self.dataDetector matchesInString:string options:options range:componentRange];
+            [resultsM addObjectsFromArray:matches];
+        }
+    }
+    else {
+        NSLog(@"should never hit this line. Check components array.");
+        NSArray<NSTextCheckingResult *> *results = [self.dataDetector matchesInString:string options:options range:range];
+        [resultsM addObjectsFromArray:results];
+    }
+    
+    NSArray *arr = [self convertNSTextCheckingResultsToMPMDataDetectorCheckResults:resultsM string:string];
 
     if (self.checkingTypes & MPMDataDetectorCheckResultTypeEmoticon) {
         NSMutableArray *arrM = [NSMutableArray array];
@@ -243,6 +261,22 @@
     }
     
     return _emoticonDetector;
+}
+
++ (NSCharacterSet *)URLAllowedCharacterSet {
+    static NSMutableCharacterSet *set;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        set = [NSMutableCharacterSet new];
+        [set formUnionWithCharacterSet:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+        [set formUnionWithCharacterSet:[NSCharacterSet URLHostAllowedCharacterSet]];
+        [set formUnionWithCharacterSet:[NSCharacterSet URLPasswordAllowedCharacterSet]];
+        [set formUnionWithCharacterSet:[NSCharacterSet URLPathAllowedCharacterSet]];
+        [set formUnionWithCharacterSet:[NSCharacterSet URLQueryAllowedCharacterSet]];
+        [set formUnionWithCharacterSet:[NSCharacterSet URLUserAllowedCharacterSet]];
+        [set formUnionWithCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@"\"<>#%{}|\\^~[]`"]];
+    });
+    return set;
 }
 
 @end
