@@ -23,4 +23,11 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)proxyWithTarget:(id)target;
 @end
 
+/**
+ Convenient macro to create a wrapper for the target
+
+ @param target the original target
+ */
+#define WCWeakProxy_NEW(target) ([WCWeakProxy proxyWithTarget:target])
+
 NS_ASSUME_NONNULL_END
