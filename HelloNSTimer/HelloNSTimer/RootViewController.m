@@ -10,6 +10,7 @@
 
 #import "UseScheduledRepeatedTimerViewController.h"
 #import "UseTimerInNonMainThreadViewController.h"
+#import "UseWCTimerInMainThreadViewController.h"
 
 // issues
 #import "TimerRetainCycleViewController.h"
@@ -42,6 +43,7 @@
     NSArray<NSDictionary *> *section1 = @[
           @{ kTitle: @"Use scheduled repeated timer in main thread", kClass: [UseScheduledRepeatedTimerViewController class] },
           @{ kTitle: @"Use scheduled repeated timer in non-main thread", kClass: [UseTimerInNonMainThreadViewController class] },
+          @{ kTitle: @"Use WCTimer in main thread", kClass: [UseWCTimerInMainThreadViewController class] },
     ];
 
     NSArray<NSDictionary *> *section2 = @[

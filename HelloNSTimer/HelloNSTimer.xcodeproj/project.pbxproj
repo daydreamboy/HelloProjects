@@ -18,6 +18,8 @@
 		4F8F441F22881B69000A0BE1 /* TimerRetainCycleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F441D22881B69000A0BE1 /* TimerRetainCycleViewController.m */; };
 		4F8F442222881C78000A0BE1 /* TimerRetainCycleWithWeakSelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F442122881C78000A0BE1 /* TimerRetainCycleWithWeakSelfViewController.m */; };
 		4F8F4425228822F7000A0BE1 /* TimerInNonMainTheadNotFiredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F4424228822F7000A0BE1 /* TimerInNonMainTheadNotFiredViewController.m */; };
+		4F8F442922884BE5000A0BE1 /* WCTimer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F442822884BE5000A0BE1 /* WCTimer.m */; };
+		4F8F442C22885455000A0BE1 /* UseWCTimerInMainThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F442B22885455000A0BE1 /* UseWCTimerInMainThreadViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +44,11 @@
 		4F8F442122881C78000A0BE1 /* TimerRetainCycleWithWeakSelfViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimerRetainCycleWithWeakSelfViewController.m; sourceTree = "<group>"; };
 		4F8F4423228822F7000A0BE1 /* TimerInNonMainTheadNotFiredViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimerInNonMainTheadNotFiredViewController.h; sourceTree = "<group>"; };
 		4F8F4424228822F7000A0BE1 /* TimerInNonMainTheadNotFiredViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimerInNonMainTheadNotFiredViewController.m; sourceTree = "<group>"; };
+		4F8F442722884BE5000A0BE1 /* WCTimer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCTimer.h; sourceTree = "<group>"; };
+		4F8F442822884BE5000A0BE1 /* WCTimer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCTimer.m; sourceTree = "<group>"; };
+		4F8F442A22885455000A0BE1 /* UseWCTimerInMainThreadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseWCTimerInMainThreadViewController.h; sourceTree = "<group>"; };
+		4F8F442B22885455000A0BE1 /* UseWCTimerInMainThreadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCTimerInMainThreadViewController.m; sourceTree = "<group>"; };
+		4F8F442E228854CC000A0BE1 /* WCMacroBlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroBlock.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +65,7 @@
 		4F5A533522801397006388F2 = {
 			isa = PBXGroup;
 			children = (
+				4F8F442622884BD0000A0BE1 /* WCTimer */,
 				4F5A534022801397006388F2 /* HelloNSTimer */,
 				4F5A533F22801397006388F2 /* Products */,
 			);
@@ -74,6 +82,7 @@
 		4F5A534022801397006388F2 /* HelloNSTimer */ = {
 			isa = PBXGroup;
 			children = (
+				4F8F442D228854AC000A0BE1 /* Tools */,
 				4F5A5359228013BF006388F2 /* AppTestDemos */,
 				4F5A534122801397006388F2 /* AppDelegate.h */,
 				4F5A534222801397006388F2 /* AppDelegate.m */,
@@ -95,6 +104,8 @@
 				4F8F4413228812F6000A0BE1 /* UseScheduledRepeatedTimerViewController.m */,
 				4F8F441522881578000A0BE1 /* UseTimerInNonMainThreadViewController.h */,
 				4F8F441622881578000A0BE1 /* UseTimerInNonMainThreadViewController.m */,
+				4F8F442A22885455000A0BE1 /* UseWCTimerInMainThreadViewController.h */,
+				4F8F442B22885455000A0BE1 /* UseWCTimerInMainThreadViewController.m */,
 				4F8F441C22881B4E000A0BE1 /* Issues */,
 			);
 			path = AppTestDemos;
@@ -120,6 +131,23 @@
 				4F8F4424228822F7000A0BE1 /* TimerInNonMainTheadNotFiredViewController.m */,
 			);
 			path = Issues;
+			sourceTree = "<group>";
+		};
+		4F8F442622884BD0000A0BE1 /* WCTimer */ = {
+			isa = PBXGroup;
+			children = (
+				4F8F442722884BE5000A0BE1 /* WCTimer.h */,
+				4F8F442822884BE5000A0BE1 /* WCTimer.m */,
+			);
+			path = WCTimer;
+			sourceTree = "<group>";
+		};
+		4F8F442D228854AC000A0BE1 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F8F442E228854CC000A0BE1 /* WCMacroBlock.h */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,7 +224,9 @@
 				4F8F441F22881B69000A0BE1 /* TimerRetainCycleViewController.m in Sources */,
 				4F8F4425228822F7000A0BE1 /* TimerInNonMainTheadNotFiredViewController.m in Sources */,
 				4F8F4414228812F6000A0BE1 /* UseScheduledRepeatedTimerViewController.m in Sources */,
+				4F8F442922884BE5000A0BE1 /* WCTimer.m in Sources */,
 				4F5A535C228013BF006388F2 /* RootViewController.m in Sources */,
+				4F8F442C22885455000A0BE1 /* UseWCTimerInMainThreadViewController.m in Sources */,
 				4F8F441722881578000A0BE1 /* UseTimerInNonMainThreadViewController.m in Sources */,
 				4F8F441B22881B48000A0BE1 /* WCWeakProxy.m in Sources */,
 				4F5A534322801397006388F2 /* AppDelegate.m in Sources */,

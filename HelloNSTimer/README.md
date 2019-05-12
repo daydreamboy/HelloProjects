@@ -274,6 +274,81 @@ NSTimer的API提供三种创建NSTimer对象的方式，如下
 
 ### （2）创建非主线程的NSTimer
 
+​      创建非主线程的NSTimer的目的在于触发timer的回调是在非主线程执行。如果直接在非主线程创建scheduled NSTimer，timer的回调不会触发。原因是非主线程的NSRunLoop都不是运行状态。测试代码,如下
+
+```objective-c
+@interface TimerInNonMainTheadNotFiredViewController ()
+@property (nonatomic, weak) NSTimer *timerInNonMainThread;
+@end
+
+@implementation TimerInNonMainTheadNotFiredViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSLog(@"NSTimer will be scheduled...");
+        self.timerInNonMainThread = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
+        NSLog(@"NSTimer scheduled...");
+    });
+}
+
+- (void)dealloc {
+    [_timerInNonMainThread invalidate];
+}
+
+- (void)timerFired:(NSTimer *)timer {
+    NSLog(@"%@: The timer is fired.", NSStringFromSelector(_cmd));
+    NSLog(@"The current thread: %@, is main thread: %@", [NSThread currentThread], [NSThread isMainThread] ? @"YES" : @"NO");
+}
+
+@end
+```
+
+
+
+这个文章[^3]给出创建非主线程的NSTimer的方法。示例代码，如下
+
+```objective-c
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    __weak typeof(self) weak_self = self;
+    //weakify(self);
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        //strongify(self);
+        NSLog(@"NSTimer will be scheduled...");
+        weak_self.timerInNonMainThread = [NSTimer scheduledTimerWithTimeInterval:1 target:WCWeakProxy_NEW(weak_self) selector:@selector(timerFired:) userInfo:nil repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:weak_self.timerInNonMainThread forMode:NSDefaultRunLoopMode];
+        NSLog(@"NSTimer scheduled...");
+        [[NSRunLoop currentRunLoop] run];
+        NSLog(@"block task is over...");
+    });
+}
+
+- (void)dealloc {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self.timerInNonMainThread invalidate]; // Don't use weakSelf in dealloc
+    });
+}
+
+- (void)timerFired:(NSTimer *)timer {
+    NSLog(@"%@: The timer is fired.", NSStringFromSelector(_cmd));
+    NSLog(@"The current thread: %@, is main thread: %@", [NSThread currentThread], [NSThread isMainThread] ? @"YES" : @"NO");
+}
+```
+
+
+
+值得注意的是
+
+* NSTimer的创建和调用invalidate方法，必须在同一个线程，所以dealloc中也使用次线程调用invalidate方法。
+* dispatch_async的block，由于NSRunLoop的run方法一直没有返回，所以block中不能强持有self，避免导致循环引用。实际上，当调用invalidate方法后，block才被执行，NSLog(@"block task is over…")才被打印出来。
+
+
+
+## 3、实现WCTimer
+
 
 
 
@@ -284,6 +359,5 @@ NSTimer的API提供三种创建NSTimer对象的方式，如下
 
 [^1]:<http://www.acttos.org/2016/08/NSTimer-and-GCD-Timer-in-iOS/>
 [^2]: <https://stackoverflow.com/questions/42930241/nstimer-with-weak-self-why-is-dealloc-not-called/42931729>
-
-
+[^3]: <http://danielemargutti.com/2018/02/22/the-secret-world-of-nstimer/>
 
