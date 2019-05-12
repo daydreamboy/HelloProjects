@@ -12,8 +12,12 @@
 		4F5A534E22801398006388F2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F5A534C22801398006388F2 /* LaunchScreen.storyboard */; };
 		4F5A535122801398006388F2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5A535022801398006388F2 /* main.m */; };
 		4F5A535C228013BF006388F2 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5A5358228013BF006388F2 /* RootViewController.m */; };
-		4F5A535D228013BF006388F2 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5A535A228013BF006388F2 /* Demo1ViewController.m */; };
-		4F5A5360228013F9006388F2 /* UseTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5A535F228013F9006388F2 /* UseTimerViewController.m */; };
+		4F8F4414228812F6000A0BE1 /* UseScheduledRepeatedTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F4413228812F6000A0BE1 /* UseScheduledRepeatedTimerViewController.m */; };
+		4F8F441722881578000A0BE1 /* UseTimerInNonMainThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F441622881578000A0BE1 /* UseTimerInNonMainThreadViewController.m */; };
+		4F8F441B22881B48000A0BE1 /* WCWeakProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F441922881B48000A0BE1 /* WCWeakProxy.m */; };
+		4F8F441F22881B69000A0BE1 /* TimerRetainCycleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F441D22881B69000A0BE1 /* TimerRetainCycleViewController.m */; };
+		4F8F442222881C78000A0BE1 /* TimerRetainCycleWithWeakSelfViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F442122881C78000A0BE1 /* TimerRetainCycleWithWeakSelfViewController.m */; };
+		4F8F4425228822F7000A0BE1 /* TimerInNonMainTheadNotFiredViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8F4424228822F7000A0BE1 /* TimerInNonMainTheadNotFiredViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,10 +30,18 @@
 		4F5A535022801398006388F2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F5A5357228013BF006388F2 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F5A5358228013BF006388F2 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		4F5A535A228013BF006388F2 /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
-		4F5A535B228013BF006388F2 /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
-		4F5A535E228013F9006388F2 /* UseTimerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseTimerViewController.h; sourceTree = "<group>"; };
-		4F5A535F228013F9006388F2 /* UseTimerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseTimerViewController.m; sourceTree = "<group>"; };
+		4F8F4412228812F6000A0BE1 /* UseScheduledRepeatedTimerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseScheduledRepeatedTimerViewController.h; sourceTree = "<group>"; };
+		4F8F4413228812F6000A0BE1 /* UseScheduledRepeatedTimerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseScheduledRepeatedTimerViewController.m; sourceTree = "<group>"; };
+		4F8F441522881578000A0BE1 /* UseTimerInNonMainThreadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseTimerInNonMainThreadViewController.h; sourceTree = "<group>"; };
+		4F8F441622881578000A0BE1 /* UseTimerInNonMainThreadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseTimerInNonMainThreadViewController.m; sourceTree = "<group>"; };
+		4F8F441922881B48000A0BE1 /* WCWeakProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCWeakProxy.m; sourceTree = "<group>"; };
+		4F8F441A22881B48000A0BE1 /* WCWeakProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCWeakProxy.h; sourceTree = "<group>"; };
+		4F8F441D22881B69000A0BE1 /* TimerRetainCycleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimerRetainCycleViewController.m; sourceTree = "<group>"; };
+		4F8F441E22881B69000A0BE1 /* TimerRetainCycleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimerRetainCycleViewController.h; sourceTree = "<group>"; };
+		4F8F442022881C78000A0BE1 /* TimerRetainCycleWithWeakSelfViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimerRetainCycleWithWeakSelfViewController.h; sourceTree = "<group>"; };
+		4F8F442122881C78000A0BE1 /* TimerRetainCycleWithWeakSelfViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimerRetainCycleWithWeakSelfViewController.m; sourceTree = "<group>"; };
+		4F8F4423228822F7000A0BE1 /* TimerInNonMainTheadNotFiredViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimerInNonMainTheadNotFiredViewController.h; sourceTree = "<group>"; };
+		4F8F4424228822F7000A0BE1 /* TimerInNonMainTheadNotFiredViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimerInNonMainTheadNotFiredViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +79,7 @@
 				4F5A534222801397006388F2 /* AppDelegate.m */,
 				4F5A5357228013BF006388F2 /* RootViewController.h */,
 				4F5A5358228013BF006388F2 /* RootViewController.m */,
+				4F8F441822881B33000A0BE1 /* Libraries */,
 				4F5A534A22801398006388F2 /* Assets.xcassets */,
 				4F5A534C22801398006388F2 /* LaunchScreen.storyboard */,
 				4F5A534F22801398006388F2 /* Info.plist */,
@@ -78,12 +91,35 @@
 		4F5A5359228013BF006388F2 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F5A535A228013BF006388F2 /* Demo1ViewController.m */,
-				4F5A535B228013BF006388F2 /* Demo1ViewController.h */,
-				4F5A535E228013F9006388F2 /* UseTimerViewController.h */,
-				4F5A535F228013F9006388F2 /* UseTimerViewController.m */,
+				4F8F4412228812F6000A0BE1 /* UseScheduledRepeatedTimerViewController.h */,
+				4F8F4413228812F6000A0BE1 /* UseScheduledRepeatedTimerViewController.m */,
+				4F8F441522881578000A0BE1 /* UseTimerInNonMainThreadViewController.h */,
+				4F8F441622881578000A0BE1 /* UseTimerInNonMainThreadViewController.m */,
+				4F8F441C22881B4E000A0BE1 /* Issues */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F8F441822881B33000A0BE1 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				4F8F441A22881B48000A0BE1 /* WCWeakProxy.h */,
+				4F8F441922881B48000A0BE1 /* WCWeakProxy.m */,
+			);
+			path = Libraries;
+			sourceTree = "<group>";
+		};
+		4F8F441C22881B4E000A0BE1 /* Issues */ = {
+			isa = PBXGroup;
+			children = (
+				4F8F441E22881B69000A0BE1 /* TimerRetainCycleViewController.h */,
+				4F8F441D22881B69000A0BE1 /* TimerRetainCycleViewController.m */,
+				4F8F442022881C78000A0BE1 /* TimerRetainCycleWithWeakSelfViewController.h */,
+				4F8F442122881C78000A0BE1 /* TimerRetainCycleWithWeakSelfViewController.m */,
+				4F8F4423228822F7000A0BE1 /* TimerInNonMainTheadNotFiredViewController.h */,
+				4F8F4424228822F7000A0BE1 /* TimerInNonMainTheadNotFiredViewController.m */,
+			);
+			path = Issues;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,10 +191,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F8F442222881C78000A0BE1 /* TimerRetainCycleWithWeakSelfViewController.m in Sources */,
 				4F5A535122801398006388F2 /* main.m in Sources */,
-				4F5A5360228013F9006388F2 /* UseTimerViewController.m in Sources */,
-				4F5A535D228013BF006388F2 /* Demo1ViewController.m in Sources */,
+				4F8F441F22881B69000A0BE1 /* TimerRetainCycleViewController.m in Sources */,
+				4F8F4425228822F7000A0BE1 /* TimerInNonMainTheadNotFiredViewController.m in Sources */,
+				4F8F4414228812F6000A0BE1 /* UseScheduledRepeatedTimerViewController.m in Sources */,
 				4F5A535C228013BF006388F2 /* RootViewController.m in Sources */,
+				4F8F441722881578000A0BE1 /* UseTimerInNonMainThreadViewController.m in Sources */,
+				4F8F441B22881B48000A0BE1 /* WCWeakProxy.m in Sources */,
 				4F5A534322801397006388F2 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

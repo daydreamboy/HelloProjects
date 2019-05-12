@@ -1,8 +1,8 @@
 //
-//  UseTimerViewController.h
+//  UseTimerInNonMainThreadViewController.h
 //  HelloNSTimer
 //
-//  Created by wesley_chen on 2019/5/6.
+//  Created by wesley_chen on 2019/5/12.
 //  Copyright © 2019 wesley_chen. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UseTimerViewController : UIViewController
+@interface UseTimerInNonMainThreadViewController : UIViewController
 
 @end
 

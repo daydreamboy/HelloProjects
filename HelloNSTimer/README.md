@@ -62,7 +62,26 @@
   >
   > If it was configured with target and user info objects, the receiver removes its strong references to those objects as well.
 
+* NSTimer的invalidate方法调用后，该NSTimer对象不能再次复用
+
+  > Once invalidated, timer objects cannot be reused.
+
 * NSTimer需要一个live状态的NSRunLoop，即一个RunLoop一直保持运行，用于执行timer事件。主线程中NSRunLoop总是运行中，但是其他线程中的NSRunLoop默认不是运行状态，需要手动调用run方法，让NSRunLoop运行起来[^1]。
+
+
+
+根据Timer是否是重复定时还是一次定时，以及是否自动schedule（见下面"*（3）Timer的三种创建方式*"小节），可以将Timer划分下面四类
+
+| Repeated | Scheduled | Timer类型                    |
+| -------- | --------- | ---------------------------- |
+| NO       | NO        | 一次定时的NonScheduled Timer |
+| NO       | YES       | 一次定时的Scheduled Timer    |
+| YES      | NO        | 重复定时的NonScheduled Timer |
+| YES      | YES       | 重复定时的Scheduled Timer    |
+
+
+
+> 重复定时的Scheduled Timer，示例代码见**UseScheduledRepeatedTimerViewController**
 
 
 
@@ -71,17 +90,13 @@
 NSTimer的API提供三种创建NSTimer对象的方式，如下
 
 * 使用`+[scheduledTimerWithTimeInterval:XXX]`系列方法
-  * 类方法创建NSTimer对象，并将NSTimer对象加入到当前线程的RunLoop的default mode（NSDefaultRunLoopMode）中。
+  * 类方法创建NSTimer对象（Scheduled Timer），并将NSTimer对象加入到当前线程的RunLoop的default mode（NSDefaultRunLoopMode）中。
 
 * 使用`+[timerWithTimeInterval:XXX]`系列方法
-  * 类方法创建NSTimer对象，需要手动调用NSRunLoop的`-[NSRunLoop addTimer:forMode:]`方法，将NSTimer对象加入到
+  * 类方法创建NSTimer对象（NonScheduled Timer），需要手动调用NSRunLoop的`-[NSRunLoop addTimer:forMode:]`方法，将NSTimer对象加入到当前线程的RunLoop的default mode（NSDefaultRunLoopMode）中。
 * 使用`-[initWithFireDate:XXX]`系列方法
 
-
-
-
-
-
+  * 实例方法创建NSTimer对象（NonScheduled Timer），也需要手动调用NSRunLoop的`-[NSRunLoop addTimer:forMode:]`方法，将NSTimer对象加入到当前线程的RunLoop的default mode（NSDefaultRunLoopMode）中。
 
 
 
@@ -89,22 +104,186 @@ NSTimer的API提供三种创建NSTimer对象的方式，如下
 
 ### （4）Timer的tolerance属性
 
+​        iOS 7和macOS 10.9开始，NSTimer提供tolerance属性。目的在于系统利用该属性来优化节约能耗和提高timer响应度。指定tolerance属性，timer触发在**[指定时间,指定时间+tolerance]**这个区间触发。如果是重复定时timer，则下次触发时间是**触发时间+interval**，不会加上tolerance。tolerance属性，默认是0，但是系统保留对特定的timer设置tolerance属性的权利。
+
+​        对应的官方描述，如下
+
+> In iOS 7 and later and macOS 10.9 and later, you can specify a tolerance for a timer ([`tolerance`](dash-apple-api://load?request_key=hcaODPrPmP#dash_1415085)). This flexibility in when a timer fires improves the system's ability to optimize for increased power savings and responsiveness. The timer may fire at any time between its scheduled fire date and the scheduled fire date plus the tolerance. The timer doesn't fire before the scheduled fire date. For repeating timers, the next fire date is calculated from the original fire date regardless of tolerance applied at individual fire times, to avoid drift. The default value is zero, which means no additional tolerance is applied. The system reserves the right to apply a small amount of tolerance to certain timers regardless of the value of the [`tolerance`](dash-apple-api://load?request_key=hcaODPrPmP#dash_1415085) property.
+
+​        可能会遇到一个问题：该设置tolerance为多少。官方文档，推荐设置tolerance为interval属性的10%，即如果重复定时timer的interval为1s，则tolerance设置100ms。
+
+> As the user of the timer, you can determine the appropriate tolerance for a timer. A general rule, set the tolerance to at least 10% of the interval, for a repeating timer.
+
+​        如果对是否设置tolerance属性抱着没有什么关系的态度，官方文档又强调即使设置很小的tolerance也会对应用使用系统的能耗有明显改善影响。如果对定时任务不要求那么实时，可以设置tolerance=interval*10%。
+
+> Even a small amount of tolerance has significant positive impact on the power usage of your application.
+
+
+
+## 2、使用NSTimer常见问题
+
+​        由于NSTimer的实现机制以及较晚提供block回调方式的API，导致使用NSTimer会遇到一些问题，这里列举常见问题。
+
+### （1）循环引用问题
+
+使用重复定时的NSTimer，经常会遇见循环引用问题。常见代码如下
+
+```objective-c
+@interface TimerRetainCycleViewController ()
+@property (nonatomic, strong) NSTimer *timer;
+@end
+
+@implementation TimerRetainCycleViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerFired:) userInfo:nil repeats:YES];
+}
+
+- (void)dealloc {
+    NSLog(@"the bellow timer invalidate never called, because dealloc never called");
+    [_timer invalidate];
+}
+
+- (void)timerFired:(NSTimer *)timer {
+    NSLog(@"timerFired");
+}
+
+@end
+```
+
+示例代码见TimerRetainCycleViewController
+
+
+
+​      如果将target传入weakSelf，将timer的属性修饰符换成weak是否解决循环引用问题呢？如下面代码所示。当然不行，原因这篇SO[^2]上有解释
+
+```objective-c
+@interface TimerRetainCycleWithWeakSelfViewController ()
+@property (nonatomic, weak) NSTimer *timer;
+@end
+
+@implementation TimerRetainCycleWithWeakSelfViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    __weak typeof(self) weak_self = self;
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:weak_self selector:@selector(timerFired:) userInfo:nil repeats:YES];
+}
+
+- (void)dealloc {
+    NSLog(@"the bellow timer invalidate never called, because dealloc never called");
+    [_timer invalidate];
+}
+
+- (void)timerFired:(NSTimer *)timer {
+    NSLog(@"timerFired");
+}
+
+@end
+```
+
+
+
+针对上面循环引用问题，有几种解法[^2]
+
+#### 1. 使用block方式的API
+
+大致代码如下
+
+```objective-c
+@interface ViewController ()
+@property (nonatomic, weak) NSTimer *timer;
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    typeof(self) __weak weakSelf = self;
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:2 repeats:YES block:^(NSTimer * timer) {
+        [weakSelf timerTigger];
+    }];
+}
+
+- (void)timerTigger {
+    NSLog(@"timer fired");
+}
+
+- (void)dealloc {
+    [self.timer invalidate];
+}
+
+@end
+```
+
+
+
+注意：NSTimer的带block参数的API，例如`+[NSTimer scheduledTimerWithTimeInterval:repeats:block:]`，都在iOS 10+才有，低版本系统不能使用。
+
+
+
+#### 2. 使用GCD方式的timer
+
+示例代码参考**CreateTimerDispatchSourceViewController**
+
+
+
+#### 3. 不要在dealloc中调用NSTimer的invalidate方法
+
+大致代码如下
+
+```objective-c
+@interface ViewController ()
+@property (nonatomic, weak) NSTimer *timer;
+@end
+
+@implementation ViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerTigger:) userInfo:nil repeats:true];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+
+    [self.timer invalidate];
+}
+
+- (void)timerTigger:(NSTimer *)timer {
+    NSLog(@"do something");
+}
+
+@end
+```
+
+​        这种方式有一定局限性，即适用于可以在dealloc中调用invalidate方法之外的场景中，比如viewDidDisappear触发时就不需要timer定时了。
+
+
+
+#### 4. 使用Wrapper类弱引用target对象（e.g. WCWeakProxy）
+
+​       利用@property(weak)在对象释放时，也将weak属性进行引用解除，达到属性对象被释放的目的。WCWeakProxy参考YYKit代码，根据这个方式进行实现。
+
+示例代码见**UseScheduledRepeatedTimerViewController**
+
+
+
+### （2）创建非主线程的NSTimer
 
 
 
 
-
-
-NSTimer提供两种方式创建Timer，如下
-
-* scheduled方式，使用`+[scheduledTimerWithTimeInterval:XXX]`系列方法，返回timer对象。该方式无需手动加到当前 调用fire方法触发timer，RunLoop自动会触发timer的回调。
-* 非scheduled方式，使用`+[timerWithTimeInterval:XXX]`或者`-[]`
 
 
 
 ## References
 
 [^1]:<http://www.acttos.org/2016/08/NSTimer-and-GCD-Timer-in-iOS/>
+[^2]: <https://stackoverflow.com/questions/42930241/nstimer-with-weak-self-why-is-dealloc-not-called/42931729>
 
 
 
