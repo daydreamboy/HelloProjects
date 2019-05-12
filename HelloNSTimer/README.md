@@ -349,9 +349,19 @@ NSTimer的API提供三种创建NSTimer对象的方式，如下
 
 ## 3、实现WCTimer
 
+​      为了解决上面常见问题，基于GCD的dispatch_source timer，实现WCTimer。另外，可以参考Swift版本的[Timer](<https://github.com/malcommac/Repeat>)。
+
+创建WCTimer的API，如下
+
+```objective-c
++ (instancetype)timerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats queue:(nullable dispatch_queue_t)queue block:(void (^)(WCTimer *timer))block;
+```
+
+​       和NSTimer的`+ [NSTimer scheduledTimerWithTimeInterval:repeats:block:]`相比，多了一个queue参数，用于指定block在哪个queue中执行。
 
 
 
+注意：不同于scheduled timer，需要调用`-[WCTimer start]`让timer开始运行。
 
 
 
