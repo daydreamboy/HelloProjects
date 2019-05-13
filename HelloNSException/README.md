@@ -359,13 +359,21 @@ CALayer的position(x,y)不允许有NaN值，否则会出现crash。（具体见H
 
 
 
-
-
 #### GCD
 
 | 方法签名                           | 说明                |
 | ---------------------------------- | ------------------- |
 | `dispatch_async(<not nil>, {...})` | 第一个参数不能为nil |
+
+
+
+#### UIGestureRecognizer
+
+| 方法签名                                                 | 说明          |
+| -------------------------------------------------------- | ------------- |
+| `-[UIGestureRecognizer requireGestureRecognizerToFail:]` | 参数不能为nil |
+
+
 
 
 
