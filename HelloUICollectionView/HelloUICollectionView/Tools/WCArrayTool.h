@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface WCArrayTool : NSObject
 
 @end
@@ -34,3 +36,5 @@
  */
 + (nullable NSArray *)insertObjectsWithArray:(NSArray *)array objects:(NSArray *)objects atIndex:(NSUInteger)index;
 @end
+
+NS_ASSUME_NONNULL_END

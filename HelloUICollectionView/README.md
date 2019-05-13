@@ -1,10 +1,8 @@
-## HelloUICollectionView
+# 使用UICollectionView
 
 [TOC]
 
----
-
-### 1、Flow Layout
+## 1、Flow Layout
 
 ​       UICollectionView布局是Flow Layout（流式布局），放置item按照row（水平方向）或者column（垂直方向）的顺序。`UICollectionViewFlowLayout`类实现了这种方式，如果需要其他自定义功能则可以实现其子类。
 
@@ -16,7 +14,7 @@
 
 
 
-#### （1）UICollectionViewFlowLayout的几个重要属性
+### （1）UICollectionViewFlowLayout的几个重要属性
 
 | 属性名                  | 说明                                 |
 | ----------------------- | ------------------------------------ |
@@ -27,7 +25,7 @@
 
 
 
-### 2、UICollectionView自适应内容的高度
+## 2、UICollectionView自适应内容的高度
 
 
 
@@ -40,6 +38,14 @@
 
 
 （2）使用AutoLayout，`self.verticalLayoutConstraint.constant = self.collectionView.collectionViewLayout.collectionViewContentSize.height`[^2]
+
+
+
+## 3、UICollectionView特效实现
+
+* <https://www.raywenderlich.com/7246-expanding-cells-in-ios-collection-views>
+
+* <https://www.raywenderlich.com/527-custom-uicollectionviewlayout-tutorial-with-parallax>
 
 
 
