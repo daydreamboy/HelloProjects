@@ -1010,6 +1010,29 @@
     NSLog(@"-----------------------------");
 }
 
+- (void)test_truncatedStringWithString_limitedToLength_truncatingStyle_separator {
+    NSString *inputString;
+    NSString *output;
+    
+    // Case 1
+    inputString = @"Hello, World!";
+    output = [WCStringTool truncatedStringWithString:inputString limitedToLength:5 truncatingStyle:WCStringTruncatingStyleTrail separator:nil];
+    XCTAssertTrue(output.length == 5);
+    XCTAssertEqualObjects(output, @"He...");
+    
+    // Case 2
+    inputString = @"Hello, World!";
+    output = [WCStringTool truncatedStringWithString:inputString limitedToLength:5 truncatingStyle:WCStringTruncatingStyleHead separator:nil];
+    XCTAssertTrue(output.length == 5);
+    XCTAssertEqualObjects(output, @"...d!");
+    
+    // Case 3
+    inputString = @"Hello, World!";
+    output = [WCStringTool truncatedStringWithString:inputString limitedToLength:5 truncatingStyle:WCStringTruncatingStyleMiddle separator:nil];
+    XCTAssertTrue(output.length == 5);
+    XCTAssertEqualObjects(output, @"H...!");
+}
+
 #pragma mark > String Modification
 
 - (void)test_replaceCharactersInRangesWithString_ranges_replacementStrings_replacementRanges {

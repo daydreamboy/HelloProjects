@@ -916,6 +916,40 @@
     return interpolatedString;
 }
 
++ (nullable NSString *)truncatedStringWithString:(NSString *)string limitedToLength:(NSUInteger)length truncatingStyle:(WCStringTruncatingStyle)truncatingStyle separator:(nullable NSString *)separator {
+    
+    if (![string isKindOfClass:[NSString class]] || (truncatingStyle != WCStringTruncatingStyleNone && truncatingStyle != WCStringTruncatingStyleHead && truncatingStyle != WCStringTruncatingStyleTrail && truncatingStyle != WCStringTruncatingStyleMiddle)) {
+        return nil;
+    }
+    
+    if (string.length <= length || truncatingStyle == WCStringTruncatingStyleNone) {
+        return string;
+    }
+    
+    NSString *separatorL = separator ?: @"...";
+    NSUInteger separatorLength = separatorL.length;
+    NSUInteger showedLength = length - separatorLength;
+    
+    switch (truncatingStyle) {
+        case WCStringTruncatingStyleHead: {
+            return [NSString stringWithFormat:@"%@%@", separatorL, [self substringWithString:string atLocation:string.length - showedLength length:NSUIntegerMax]];
+        }
+        case WCStringTruncatingStyleMiddle: {
+            NSUInteger frontCharsLength = ceil(showedLength / 2.0);
+            NSUInteger backCharsLength = floor(showedLength / 2.0);
+            
+            return [NSString stringWithFormat:@"%@%@%@", [self substringWithString:string atLocation:0 length:frontCharsLength], separatorL, [self substringWithString:string atLocation:string.length - backCharsLength length:NSUIntegerMax]];
+        }
+        case WCStringTruncatingStyleTrail: {
+            return [NSString stringWithFormat:@"%@%@", [self substringWithString:string atLocation:0 length:showedLength], separatorL];
+        }
+        case WCStringTruncatingStyleNone:
+        default: {
+            return string;
+        }
+    }
+}
+
 #pragma mark > String Modification
 
 + (nullable NSString *)replaceCharactersInRangesWithString:(NSString *)string ranges:(NSArray<NSValue *> *)ranges replacementStrings:(NSArray<NSString *> *)replacementStrings replacementRanges:(inout nullable NSMutableArray<NSValue *> *)replacementRanges {

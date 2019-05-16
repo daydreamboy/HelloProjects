@@ -110,4 +110,25 @@
     XCTAssertEqualObjects(output, @"");
 }
 
+- (void)test {
+#define STR_OF_JSON(...) @#__VA_ARGS__
+    NSString *string;
+    
+    string = STR_OF_JSON({
+        "url" : "https:\/\/ossgw.alicdn.com\/rapid-oss-bucket\/publish\/1557840001032\/alimp_message_imba_default.zip"
+    });
+    
+    NSError *jsonError = nil;
+    id jsonObject = [NSJSONSerialization JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:0 error:&jsonError];
+    if(!jsonError && jsonObject){
+        
+    }
+    else {
+        
+    }
+    
+    string = @"https:\/\/ossgw.alicdn.com\/rapid-oss-bucket\/publish\/1557840001032\/alimp_message_imba_default.zip";
+    NSLog(@"%@", string);
+}
+
 @end

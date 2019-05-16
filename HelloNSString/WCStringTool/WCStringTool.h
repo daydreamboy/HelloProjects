@@ -11,6 +11,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, WCStringTruncatingStyle) {
+    WCStringTruncatingStyleNone,
+    WCStringTruncatingStyleHead,
+    WCStringTruncatingStyleMiddle,
+    WCStringTruncatingStyleTrail,
+};
+
 @interface WCStringTool : NSObject
 
 #pragma mark - Handle String As Text In UILabel
@@ -413,6 +420,18 @@ NS_ASSUME_NONNULL_BEGIN
  @return the inserted string. Return the original string if the interval <=0.
  */
 + (nullable NSString *)insertSeparatorWithString:(NSString *)string separator:(NSString *)separator atInterval:(NSInteger)interval;
+
+/**
+ Truncate string with style and separator
+
+ @param string the original string
+ @param length the maximum length. If the original string's length exceed the maximum length, truncate the original string
+ @param truncatingStyle the truncating style
+ @param separator the separator. If nil, use `...` by default
+ @return the truncated string
+ @see https://stackoverflow.com/a/5723274
+ */
++ (nullable NSString *)truncatedStringWithString:(NSString *)string limitedToLength:(NSUInteger)length truncatingStyle:(WCStringTruncatingStyle)truncatingStyle separator:(nullable NSString *)separator;
 
 #pragma mark > String Modification
 
