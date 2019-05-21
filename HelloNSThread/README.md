@@ -235,8 +235,18 @@ NSConditionLock比较适合生产者和消费者情况[^3]，示例代码见**Us
 
 
 
+### （2）选择同步策略[^4]
+
+
+
+
+
 ## References
 
 [^1]: [http://etutorials.org/Programming/Cocoa/Part+I+Introducing+Cocoa/Chapter+2.+Foundation/2.9+Threaded+Programming/](http://etutorials.org/Programming/Cocoa/Part+I+Introducing+Cocoa/Chapter+2.+Foundation/2.9+Threaded+Programming/)
 [^2]:http://softpixel.com/~cwright/programming/threads/threads.cocoa.php
 [^3]:<http://mirror.informatimago.com/next/developer.apple.com/documentation/Cocoa/Conceptual/Multithreading/Tasks/usinglocks.html>
+[^4]: <http://www.lukeparham.com/blog/2018/6/3/comparing-synchronization-strategies>
+
+
+

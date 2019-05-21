@@ -16,6 +16,10 @@
 		2BA4F85D1F83D31C00AE2BAD /* CreateThreadByNSObjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4F85C1F83D31C00AE2BAD /* CreateThreadByNSObjectViewController.m */; };
 		2BA4F8601F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4F85F1F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m */; };
 		2BF7F44A1F83DB3500B27A0F /* UseOSAtomicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7F4491F83DB3500B27A0F /* UseOSAtomicViewController.m */; };
+		4F4FCEF72293D2730063E9B7 /* CacheWithoutLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FCEF62293D2730063E9B7 /* CacheWithoutLock.m */; };
+		4F4FCEFA2293D4000063E9B7 /* CacheWithNSRecursiveLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FCEF92293D4000063E9B7 /* CacheWithNSRecursiveLock.m */; };
+		4F4FCEFD2293D4DC0063E9B7 /* CacheWithPthread_rwlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FCEFC2293D4DC0063E9B7 /* CacheWithPthread_rwlock.m */; };
+		4F4FCEFF2293D6F10063E9B7 /* Tests_synchronize_concurrent_reads_single_write.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FCEFE2293D6F10063E9B7 /* Tests_synchronize_concurrent_reads_single_write.m */; };
 		4F50C72D2243BB73002B00C9 /* MultiThreadExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50C72C2243BB73002B00C9 /* MultiThreadExampleViewController.m */; };
 		4F50C7302243CC25002B00C9 /* UseNSLockWithTryLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50C72F2243CC25002B00C9 /* UseNSLockWithTryLockViewController.m */; };
 		4F50C7332243D5F6002B00C9 /* UseNSLockWithTimeoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50C7322243D5F6002B00C9 /* UseNSLockWithTimeoutViewController.m */; };
@@ -28,6 +32,12 @@
 		4F6580112247AC4400FFBAEE /* UseNSConditionLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6580102247AC4400FFBAEE /* UseNSConditionLockViewController.m */; };
 		4F6E71A122420F2000478327 /* UseNSLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6E71A022420F2000478327 /* UseNSLockViewController.m */; };
 		4F9578E51FDF8A40009693CF /* WCThreadTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578E41FDF8A40009693CF /* WCThreadTool.m */; };
+		4F96ECBB2293011700442F65 /* Tests_synchronize_concurrent_writes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F96ECBA2293011700442F65 /* Tests_synchronize_concurrent_writes.m */; };
+		4F96ECBF2293022200442F65 /* CacheWithNSLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F96ECBE2293022200442F65 /* CacheWithNSLock.m */; };
+		4F96ECC22293024F00442F65 /* CacheWithKeywordSynchronized.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F96ECC12293024F00442F65 /* CacheWithKeywordSynchronized.m */; };
+		4F96ECC5229302DE00442F65 /* CacheWithCPPScopedMutex.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F96ECC4229302DE00442F65 /* CacheWithCPPScopedMutex.mm */; };
+		4F96ECC82293035C00442F65 /* CacheWithSerialQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F96ECC72293035C00442F65 /* CacheWithSerialQueue.m */; };
+		4F96ECCB2293037000442F65 /* CacheWithConcurrentQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F96ECCA2293037000442F65 /* CacheWithConcurrentQueue.m */; };
 		4FA9918A21AECD1200E928D8 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA9918921AECD1200E928D8 /* Tests.m */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +69,15 @@
 		2BA4F85F1F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateThreadByPOSIXViewController.m; sourceTree = "<group>"; };
 		2BF7F4481F83DB3500B27A0F /* UseOSAtomicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseOSAtomicViewController.h; sourceTree = "<group>"; };
 		2BF7F4491F83DB3500B27A0F /* UseOSAtomicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseOSAtomicViewController.m; sourceTree = "<group>"; };
+		4F4FCEF42293A9220063E9B7 /* ScopedMutex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScopedMutex.h; sourceTree = "<group>"; };
+		4F4FCEF52293D2730063E9B7 /* CacheWithoutLock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheWithoutLock.h; sourceTree = "<group>"; };
+		4F4FCEF62293D2730063E9B7 /* CacheWithoutLock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheWithoutLock.m; sourceTree = "<group>"; };
+		4F4FCEF82293D4000063E9B7 /* CacheWithNSRecursiveLock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheWithNSRecursiveLock.h; sourceTree = "<group>"; };
+		4F4FCEF92293D4000063E9B7 /* CacheWithNSRecursiveLock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheWithNSRecursiveLock.m; sourceTree = "<group>"; };
+		4F4FCEFB2293D4DC0063E9B7 /* CacheWithPthread_rwlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheWithPthread_rwlock.h; sourceTree = "<group>"; };
+		4F4FCEFC2293D4DC0063E9B7 /* CacheWithPthread_rwlock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheWithPthread_rwlock.m; sourceTree = "<group>"; };
+		4F4FCEFE2293D6F10063E9B7 /* Tests_synchronize_concurrent_reads_single_write.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_synchronize_concurrent_reads_single_write.m; sourceTree = "<group>"; };
+		4F4FCF002293D7DA0063E9B7 /* Cache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cache.h; sourceTree = "<group>"; };
 		4F50C72B2243BB73002B00C9 /* MultiThreadExampleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultiThreadExampleViewController.h; sourceTree = "<group>"; };
 		4F50C72C2243BB73002B00C9 /* MultiThreadExampleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiThreadExampleViewController.m; sourceTree = "<group>"; };
 		4F50C72E2243CC25002B00C9 /* UseNSLockWithTryLockViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseNSLockWithTryLockViewController.h; sourceTree = "<group>"; };
@@ -82,6 +101,17 @@
 		4F6E71A022420F2000478327 /* UseNSLockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseNSLockViewController.m; sourceTree = "<group>"; };
 		4F9578E31FDF8A3F009693CF /* WCThreadTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCThreadTool.h; sourceTree = "<group>"; };
 		4F9578E41FDF8A40009693CF /* WCThreadTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCThreadTool.m; sourceTree = "<group>"; };
+		4F96ECBA2293011700442F65 /* Tests_synchronize_concurrent_writes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_synchronize_concurrent_writes.m; sourceTree = "<group>"; };
+		4F96ECBD2293022200442F65 /* CacheWithNSLock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheWithNSLock.h; sourceTree = "<group>"; };
+		4F96ECBE2293022200442F65 /* CacheWithNSLock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheWithNSLock.m; sourceTree = "<group>"; };
+		4F96ECC02293024F00442F65 /* CacheWithKeywordSynchronized.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheWithKeywordSynchronized.h; sourceTree = "<group>"; };
+		4F96ECC12293024F00442F65 /* CacheWithKeywordSynchronized.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheWithKeywordSynchronized.m; sourceTree = "<group>"; };
+		4F96ECC3229302DE00442F65 /* CacheWithCPPScopedMutex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheWithCPPScopedMutex.h; sourceTree = "<group>"; };
+		4F96ECC4229302DE00442F65 /* CacheWithCPPScopedMutex.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = CacheWithCPPScopedMutex.mm; sourceTree = "<group>"; };
+		4F96ECC62293035C00442F65 /* CacheWithSerialQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheWithSerialQueue.h; sourceTree = "<group>"; };
+		4F96ECC72293035C00442F65 /* CacheWithSerialQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheWithSerialQueue.m; sourceTree = "<group>"; };
+		4F96ECC92293037000442F65 /* CacheWithConcurrentQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheWithConcurrentQueue.h; sourceTree = "<group>"; };
+		4F96ECCA2293037000442F65 /* CacheWithConcurrentQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheWithConcurrentQueue.m; sourceTree = "<group>"; };
 		4FA9918721AECD1100E928D8 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FA9918921AECD1200E928D8 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		4FA9918B21AECD1200E928D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -144,6 +174,7 @@
 		2BA4F8541F83D27F00AE2BAD /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F96ECB9229300CD00442F65 /* synchronize */,
 				2BA4F8561F83D27F00AE2BAD /* thread */,
 				2BA4F8551F83D27F00AE2BAD /* lock */,
 			);
@@ -209,10 +240,45 @@
 			path = WCThreadTool;
 			sourceTree = "<group>";
 		};
+		4F96ECB9229300CD00442F65 /* synchronize */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = synchronize;
+			sourceTree = "<group>";
+		};
+		4F96ECBC229301CE00442F65 /* Caches */ = {
+			isa = PBXGroup;
+			children = (
+				4F4FCEF52293D2730063E9B7 /* CacheWithoutLock.h */,
+				4F4FCEF62293D2730063E9B7 /* CacheWithoutLock.m */,
+				4F96ECBD2293022200442F65 /* CacheWithNSLock.h */,
+				4F96ECBE2293022200442F65 /* CacheWithNSLock.m */,
+				4F4FCEF82293D4000063E9B7 /* CacheWithNSRecursiveLock.h */,
+				4F4FCEF92293D4000063E9B7 /* CacheWithNSRecursiveLock.m */,
+				4F96ECC02293024F00442F65 /* CacheWithKeywordSynchronized.h */,
+				4F96ECC12293024F00442F65 /* CacheWithKeywordSynchronized.m */,
+				4F96ECC3229302DE00442F65 /* CacheWithCPPScopedMutex.h */,
+				4F96ECC4229302DE00442F65 /* CacheWithCPPScopedMutex.mm */,
+				4F96ECC62293035C00442F65 /* CacheWithSerialQueue.h */,
+				4F96ECC72293035C00442F65 /* CacheWithSerialQueue.m */,
+				4F96ECC92293037000442F65 /* CacheWithConcurrentQueue.h */,
+				4F96ECCA2293037000442F65 /* CacheWithConcurrentQueue.m */,
+				4F4FCEFB2293D4DC0063E9B7 /* CacheWithPthread_rwlock.h */,
+				4F4FCEFC2293D4DC0063E9B7 /* CacheWithPthread_rwlock.m */,
+				4F4FCEF42293A9220063E9B7 /* ScopedMutex.h */,
+				4F4FCF002293D7DA0063E9B7 /* Cache.h */,
+			);
+			path = Caches;
+			sourceTree = "<group>";
+		};
 		4FA9918821AECD1200E928D8 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				4F96ECBC229301CE00442F65 /* Caches */,
 				4FA9918921AECD1200E928D8 /* Tests.m */,
+				4F96ECBA2293011700442F65 /* Tests_synchronize_concurrent_writes.m */,
+				4F4FCEFE2293D6F10063E9B7 /* Tests_synchronize_concurrent_reads_single_write.m */,
 				4FA9918B21AECD1200E928D8 /* Info.plist */,
 			);
 			path = Tests;
@@ -345,7 +411,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F96ECC82293035C00442F65 /* CacheWithSerialQueue.m in Sources */,
+				4F96ECCB2293037000442F65 /* CacheWithConcurrentQueue.m in Sources */,
+				4F96ECBB2293011700442F65 /* Tests_synchronize_concurrent_writes.m in Sources */,
+				4F4FCEFD2293D4DC0063E9B7 /* CacheWithPthread_rwlock.m in Sources */,
 				4FA9918A21AECD1200E928D8 /* Tests.m in Sources */,
+				4F96ECC5229302DE00442F65 /* CacheWithCPPScopedMutex.mm in Sources */,
+				4F4FCEFA2293D4000063E9B7 /* CacheWithNSRecursiveLock.m in Sources */,
+				4F96ECC22293024F00442F65 /* CacheWithKeywordSynchronized.m in Sources */,
+				4F4FCEF72293D2730063E9B7 /* CacheWithoutLock.m in Sources */,
+				4F4FCEFF2293D6F10063E9B7 /* Tests_synchronize_concurrent_reads_single_write.m in Sources */,
+				4F96ECBF2293022200442F65 /* CacheWithNSLock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
