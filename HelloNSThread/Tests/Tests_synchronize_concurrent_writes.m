@@ -15,6 +15,8 @@
 #import "CacheWithCPPScopedMutex.h"
 #import "CacheWithoutLock.h"
 #import "CacheWithPthread_rwlock.h"
+#import "CacheWithSemaphore.h"
+#import "CacheWithPthread_mutex.h"
 
 #import <dispatch/dispatch.h>
 
@@ -102,6 +104,16 @@
 
 - (void)test_CacheWithoutLock {
     CacheWithoutLock *cache = [CacheWithoutLock new];
+    [self benchmarkWithCache:cache];
+}
+
+- (void)test_CacheWithSemaphore {
+    CacheWithSemaphore *cache = [CacheWithSemaphore new];
+    [self benchmarkWithCache:cache];
+}
+
+- (void)test_CacheWithPthread_mutex {
+    CacheWithPthread_mutex *cache = [CacheWithPthread_mutex new];
     [self benchmarkWithCache:cache];
 }
 

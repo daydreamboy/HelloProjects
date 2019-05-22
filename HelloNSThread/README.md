@@ -235,7 +235,23 @@ NSConditionLock比较适合生产者和消费者情况[^3]，示例代码见**Us
 
 
 
-### （2）选择同步策略[^4]
+### （2）同步工具[^4]
+
+
+
+| 方式                                   | 说明 |
+| -------------------------------------- | ---- |
+| Atomic Operations                      |      |
+| Memory Barriers and Volatile Variables |      |
+| Locks                                  |      |
+| Conditions                             |      |
+| Perform Selector Routines              |      |
+
+
+
+
+
+### （3）测试锁的性能[^5]
 
 
 
@@ -246,7 +262,8 @@ NSConditionLock比较适合生产者和消费者情况[^3]，示例代码见**Us
 [^1]: [http://etutorials.org/Programming/Cocoa/Part+I+Introducing+Cocoa/Chapter+2.+Foundation/2.9+Threaded+Programming/](http://etutorials.org/Programming/Cocoa/Part+I+Introducing+Cocoa/Chapter+2.+Foundation/2.9+Threaded+Programming/)
 [^2]:http://softpixel.com/~cwright/programming/threads/threads.cocoa.php
 [^3]:<http://mirror.informatimago.com/next/developer.apple.com/documentation/Cocoa/Conceptual/Multithreading/Tasks/usinglocks.html>
-[^4]: <http://www.lukeparham.com/blog/2018/6/3/comparing-synchronization-strategies>
+[^4]: <https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/ThreadSafety/ThreadSafety.html>
+[^5]: <http://www.lukeparham.com/blog/2018/6/3/comparing-synchronization-strategies>
 
 
 

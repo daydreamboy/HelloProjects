@@ -17,10 +17,12 @@
 		2BA4F8601F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4F85F1F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m */; };
 		2BF7F44A1F83DB3500B27A0F /* UseOSAtomicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7F4491F83DB3500B27A0F /* UseOSAtomicViewController.m */; };
 		4F4F054D2294EFBA002BD87A /* Tests_benchmarking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F054C2294EFBA002BD87A /* Tests_benchmarking.m */; };
+		4F4F05502294F8B7002BD87A /* CacheWithSemaphore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F054F2294F8B7002BD87A /* CacheWithSemaphore.m */; };
+		4F4F05532294FB34002BD87A /* CacheWithPthread_mutex.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F05522294FB34002BD87A /* CacheWithPthread_mutex.m */; };
 		4F4FCEF72293D2730063E9B7 /* CacheWithoutLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FCEF62293D2730063E9B7 /* CacheWithoutLock.m */; };
 		4F4FCEFA2293D4000063E9B7 /* CacheWithNSRecursiveLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FCEF92293D4000063E9B7 /* CacheWithNSRecursiveLock.m */; };
 		4F4FCEFD2293D4DC0063E9B7 /* CacheWithPthread_rwlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FCEFC2293D4DC0063E9B7 /* CacheWithPthread_rwlock.m */; };
-		4F4FCEFF2293D6F10063E9B7 /* Tests_synchronize_concurrent_reads_single_write.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FCEFE2293D6F10063E9B7 /* Tests_synchronize_concurrent_reads_single_write.m */; };
+		4F4FCEFF2293D6F10063E9B7 /* Tests_synchronize_concurrent_reads_writes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FCEFE2293D6F10063E9B7 /* Tests_synchronize_concurrent_reads_writes.m */; };
 		4F50C72D2243BB73002B00C9 /* MultiThreadExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50C72C2243BB73002B00C9 /* MultiThreadExampleViewController.m */; };
 		4F50C7302243CC25002B00C9 /* UseNSLockWithTryLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50C72F2243CC25002B00C9 /* UseNSLockWithTryLockViewController.m */; };
 		4F50C7332243D5F6002B00C9 /* UseNSLockWithTimeoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50C7322243D5F6002B00C9 /* UseNSLockWithTimeoutViewController.m */; };
@@ -71,6 +73,10 @@
 		2BF7F4481F83DB3500B27A0F /* UseOSAtomicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseOSAtomicViewController.h; sourceTree = "<group>"; };
 		2BF7F4491F83DB3500B27A0F /* UseOSAtomicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseOSAtomicViewController.m; sourceTree = "<group>"; };
 		4F4F054C2294EFBA002BD87A /* Tests_benchmarking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_benchmarking.m; sourceTree = "<group>"; };
+		4F4F054E2294F8B7002BD87A /* CacheWithSemaphore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheWithSemaphore.h; sourceTree = "<group>"; };
+		4F4F054F2294F8B7002BD87A /* CacheWithSemaphore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheWithSemaphore.m; sourceTree = "<group>"; };
+		4F4F05512294FB34002BD87A /* CacheWithPthread_mutex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheWithPthread_mutex.h; sourceTree = "<group>"; };
+		4F4F05522294FB34002BD87A /* CacheWithPthread_mutex.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheWithPthread_mutex.m; sourceTree = "<group>"; };
 		4F4FCEF42293A9220063E9B7 /* ScopedMutex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScopedMutex.h; sourceTree = "<group>"; };
 		4F4FCEF52293D2730063E9B7 /* CacheWithoutLock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheWithoutLock.h; sourceTree = "<group>"; };
 		4F4FCEF62293D2730063E9B7 /* CacheWithoutLock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheWithoutLock.m; sourceTree = "<group>"; };
@@ -78,7 +84,7 @@
 		4F4FCEF92293D4000063E9B7 /* CacheWithNSRecursiveLock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheWithNSRecursiveLock.m; sourceTree = "<group>"; };
 		4F4FCEFB2293D4DC0063E9B7 /* CacheWithPthread_rwlock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheWithPthread_rwlock.h; sourceTree = "<group>"; };
 		4F4FCEFC2293D4DC0063E9B7 /* CacheWithPthread_rwlock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheWithPthread_rwlock.m; sourceTree = "<group>"; };
-		4F4FCEFE2293D6F10063E9B7 /* Tests_synchronize_concurrent_reads_single_write.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_synchronize_concurrent_reads_single_write.m; sourceTree = "<group>"; };
+		4F4FCEFE2293D6F10063E9B7 /* Tests_synchronize_concurrent_reads_writes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_synchronize_concurrent_reads_writes.m; sourceTree = "<group>"; };
 		4F4FCF002293D7DA0063E9B7 /* Cache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cache.h; sourceTree = "<group>"; };
 		4F50C72B2243BB73002B00C9 /* MultiThreadExampleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultiThreadExampleViewController.h; sourceTree = "<group>"; };
 		4F50C72C2243BB73002B00C9 /* MultiThreadExampleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiThreadExampleViewController.m; sourceTree = "<group>"; };
@@ -268,6 +274,10 @@
 				4F96ECCA2293037000442F65 /* CacheWithConcurrentQueue.m */,
 				4F4FCEFB2293D4DC0063E9B7 /* CacheWithPthread_rwlock.h */,
 				4F4FCEFC2293D4DC0063E9B7 /* CacheWithPthread_rwlock.m */,
+				4F4F05512294FB34002BD87A /* CacheWithPthread_mutex.h */,
+				4F4F05522294FB34002BD87A /* CacheWithPthread_mutex.m */,
+				4F4F054E2294F8B7002BD87A /* CacheWithSemaphore.h */,
+				4F4F054F2294F8B7002BD87A /* CacheWithSemaphore.m */,
 				4F4FCEF42293A9220063E9B7 /* ScopedMutex.h */,
 				4F4FCF002293D7DA0063E9B7 /* Cache.h */,
 			);
@@ -280,7 +290,7 @@
 				4F96ECBC229301CE00442F65 /* Caches */,
 				4FA9918921AECD1200E928D8 /* Tests.m */,
 				4F96ECBA2293011700442F65 /* Tests_synchronize_concurrent_writes.m */,
-				4F4FCEFE2293D6F10063E9B7 /* Tests_synchronize_concurrent_reads_single_write.m */,
+				4F4FCEFE2293D6F10063E9B7 /* Tests_synchronize_concurrent_reads_writes.m */,
 				4F4F054C2294EFBA002BD87A /* Tests_benchmarking.m */,
 				4FA9918B21AECD1200E928D8 /* Info.plist */,
 			);
@@ -417,14 +427,16 @@
 				4F96ECC82293035C00442F65 /* CacheWithSerialQueue.m in Sources */,
 				4F96ECCB2293037000442F65 /* CacheWithConcurrentQueue.m in Sources */,
 				4F96ECBB2293011700442F65 /* Tests_synchronize_concurrent_writes.m in Sources */,
+				4F4F05532294FB34002BD87A /* CacheWithPthread_mutex.m in Sources */,
 				4F4FCEFD2293D4DC0063E9B7 /* CacheWithPthread_rwlock.m in Sources */,
 				4FA9918A21AECD1200E928D8 /* Tests.m in Sources */,
 				4F96ECC5229302DE00442F65 /* CacheWithCPPScopedMutex.mm in Sources */,
 				4F4F054D2294EFBA002BD87A /* Tests_benchmarking.m in Sources */,
 				4F4FCEFA2293D4000063E9B7 /* CacheWithNSRecursiveLock.m in Sources */,
 				4F96ECC22293024F00442F65 /* CacheWithKeywordSynchronized.m in Sources */,
+				4F4F05502294F8B7002BD87A /* CacheWithSemaphore.m in Sources */,
 				4F4FCEF72293D2730063E9B7 /* CacheWithoutLock.m in Sources */,
-				4F4FCEFF2293D6F10063E9B7 /* Tests_synchronize_concurrent_reads_single_write.m in Sources */,
+				4F4FCEFF2293D6F10063E9B7 /* Tests_synchronize_concurrent_reads_writes.m in Sources */,
 				4F96ECBF2293022200442F65 /* CacheWithNSLock.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

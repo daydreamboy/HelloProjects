@@ -1,5 +1,5 @@
 //
-//  Tests_synchronize_concurrent_reads_single_write.m
+//  Tests_synchronize_concurrent_reads_writes.m
 //  Tests
 //
 //  Created by wesley_chen on 2019/5/21.
@@ -15,16 +15,18 @@
 #import "CacheWithCPPScopedMutex.h"
 #import "CacheWithoutLock.h"
 #import "CacheWithPthread_rwlock.h"
+#import "CacheWithSemaphore.h"
+#import "CacheWithPthread_mutex.h"
 
 #import <dispatch/dispatch.h>
 
 #define ITERATIONS 10000
 
-@interface Tests_synchronize_concurrent_reads_single_write : XCTestCase
+@interface Tests_synchronize_concurrent_reads_writes : XCTestCase
 
 @end
 
-@implementation Tests_synchronize_concurrent_reads_single_write
+@implementation Tests_synchronize_concurrent_reads_writes
 
 - (void)setUp {
     NSLog(@"\n");
@@ -110,6 +112,16 @@
 
 - (void)test_CacheWithoutLock {
     CacheWithoutLock *cache = [CacheWithoutLock new];
+    [self benchmarkWithCache:cache];
+}
+
+- (void)test_CacheWithSemaphore {
+    CacheWithSemaphore *cache = [CacheWithSemaphore new];
+    [self benchmarkWithCache:cache];
+}
+
+- (void)test_CacheWithPthread_mutex {
+    CacheWithPthread_mutex *cache = [CacheWithPthread_mutex new];
     [self benchmarkWithCache:cache];
 }
 
