@@ -62,7 +62,7 @@
     dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
     CFTimeInterval endTime = CACurrentMediaTime();
     
-    NSLog(@"Total time for inserting %@ times: averaged %g ns", @(ITERATIONS), (((endTime - startTime) * 1000000000)) / ITERATIONS);
+    NSLog(@"Total time for %@ iterations: %g ns", @(ITERATIONS), ((endTime - startTime) * 1000000));
     
     // Make sure the values were added correctly
     for (NSString *key in keys) {

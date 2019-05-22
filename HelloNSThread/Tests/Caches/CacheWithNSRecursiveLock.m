@@ -18,7 +18,7 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _lock = [[NSLock alloc] init];
+        _lock = [[NSRecursiveLock alloc] init];
         _cache = [NSMutableDictionary dictionary];
     }
     return self;
