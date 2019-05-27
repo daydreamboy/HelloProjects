@@ -192,7 +192,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4F32D09120FDF3BA00D68A32 /* Subclass Pages */ = {
+		4F32D09120FDF3BA00D68A32 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
 				4F82DF5D20E68ABC007035FC /* WCZoomableImagePage.h */,
@@ -202,7 +202,7 @@
 				4F48FC3720F634CB00DB26EE /* WCEmotionVerticalLayoutPage.h */,
 				4F48FC3820F634CB00DB26EE /* WCEmotionVerticalLayoutPage.m */,
 			);
-			path = "Subclass Pages";
+			path = Pages;
 			sourceTree = "<group>";
 		};
 		4F48FC3320F6318D00DB26EE /* WCCrossDirectionEmotionPickerView */ = {
@@ -233,6 +233,17 @@
 			path = Tools;
 			sourceTree = "<group>";
 		};
+		4F519A1A229C18D9004C548A /* WCHorizontalPageBrowserViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4F519A15229BE182004C548A /* Tools */,
+				4F32D09120FDF3BA00D68A32 /* Pages */,
+				4F8767AE20EA5FAD00F2B02F /* WCHorizontalPageBrowserViewController.h */,
+				4F8767AF20EA5FAD00F2B02F /* WCHorizontalPageBrowserViewController.m */,
+			);
+			path = WCHorizontalPageBrowserViewController;
+			sourceTree = "<group>";
+		};
 		4F5B090421FF07B900EE7C2E /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,10 +267,6 @@
 		4F82DF4F20E6796F007035FC /* WCHorizontalPageBrowserView */ = {
 			isa = PBXGroup;
 			children = (
-				4F519A15229BE182004C548A /* Tools */,
-				4F32D09120FDF3BA00D68A32 /* Subclass Pages */,
-				4F8767AE20EA5FAD00F2B02F /* WCHorizontalPageBrowserViewController.h */,
-				4F8767AF20EA5FAD00F2B02F /* WCHorizontalPageBrowserViewController.m */,
 				4F82DF5020E6799B007035FC /* WCHorizontalPageBrowserView.h */,
 				4F82DF5120E6799B007035FC /* WCHorizontalPageBrowserView.m */,
 				4F82DF5320E67A06007035FC /* WCBaseHorizontalPage.h */,
@@ -320,6 +327,7 @@
 		4FB1D4A620CC0D5700DBA776 = {
 			isa = PBXGroup;
 			children = (
+				4F519A1A229C18D9004C548A /* WCHorizontalPageBrowserViewController */,
 				4FA5ABFA20FCBC720098A138 /* WCHorizontalSliderView */,
 				4F48FC3320F6318D00DB26EE /* WCCrossDirectionEmotionPickerView */,
 				4F82DF4F20E6796F007035FC /* WCHorizontalPageBrowserView */,
