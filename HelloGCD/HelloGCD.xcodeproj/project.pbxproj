@@ -40,11 +40,24 @@
 		2BE3503D1F837497008C3B4F /* CreateDataBufferDispatchSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE3503C1F837497008C3B4F /* CreateDataBufferDispatchSourceViewController.m */; };
 		4F01E34B1FDE238700E290BD /* ExampleOfBatchDownloadImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F01E3491FDE238700E290BD /* ExampleOfBatchDownloadImagesViewController.m */; };
 		4F06A3A62064E05E00DDDAF1 /* DispatchOnceIssueCallStackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F06A3A52064E05E00DDDAF1 /* DispatchOnceIssueCallStackViewController.m */; };
+		4F82BB1C2297C6D20020C78A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F82BB1B2297C6D20020C78A /* Tests.m */; };
+		4F82BB272297C74F0020C78A /* Tests_issues.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F82BB262297C74F0020C78A /* Tests_issues.m */; };
+		4F82BB2B2297C7920020C78A /* CacheWithConcurrentQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F82BB292297C7920020C78A /* CacheWithConcurrentQueue.m */; };
 		4F9578E81FDF8CC2009693CF /* GetCurrentQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578E71FDF8CC2009693CF /* GetCurrentQueueViewController.m */; };
 		4F9578EC1FDF8D11009693CF /* WCGCDTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578EB1FDF8D11009693CF /* WCGCDTool.m */; };
 		4F9578EF1FDFC37F009693CF /* SetMultipleContextDataToQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578EE1FDFC37F009693CF /* SetMultipleContextDataToQueueViewController.m */; };
 		4F9578F21FDFD94D009693CF /* NSValueWithDispatchQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578F11FDFD94D009693CF /* NSValueWithDispatchQueueViewController.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4F82BB1E2297C6D20020C78A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2B23909B1DE053E000E5E107 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2B2390A21DE053E000E5E107;
+			remoteInfo = HelloGCD;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		2B2390A31DE053E000E5E107 /* HelloGCD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloGCD.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -111,6 +124,13 @@
 		4F01E34A1FDE238700E290BD /* ExampleOfBatchDownloadImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleOfBatchDownloadImagesViewController.h; sourceTree = "<group>"; };
 		4F06A3A42064E05E00DDDAF1 /* DispatchOnceIssueCallStackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DispatchOnceIssueCallStackViewController.h; sourceTree = "<group>"; };
 		4F06A3A52064E05E00DDDAF1 /* DispatchOnceIssueCallStackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DispatchOnceIssueCallStackViewController.m; sourceTree = "<group>"; };
+		4F82BB192297C6D20020C78A /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F82BB1B2297C6D20020C78A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		4F82BB1D2297C6D20020C78A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F82BB262297C74F0020C78A /* Tests_issues.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_issues.m; sourceTree = "<group>"; };
+		4F82BB282297C7600020C78A /* Cache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cache.h; sourceTree = "<group>"; };
+		4F82BB292297C7920020C78A /* CacheWithConcurrentQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheWithConcurrentQueue.m; sourceTree = "<group>"; };
+		4F82BB2A2297C7920020C78A /* CacheWithConcurrentQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheWithConcurrentQueue.h; sourceTree = "<group>"; };
 		4F9578E61FDF8CC2009693CF /* GetCurrentQueueViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetCurrentQueueViewController.h; sourceTree = "<group>"; };
 		4F9578E71FDF8CC2009693CF /* GetCurrentQueueViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetCurrentQueueViewController.m; sourceTree = "<group>"; };
 		4F9578EA1FDF8D11009693CF /* WCGCDTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCGCDTool.h; sourceTree = "<group>"; };
@@ -136,14 +156,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4F82BB162297C6D20020C78A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		2B23909A1DE053E000E5E107 = {
 			isa = PBXGroup;
 			children = (
+				4F9578E91FDF8CFF009693CF /* WCGCDTool */,
 				2B2390A51DE053E000E5E107 /* HelloGCD */,
 				2BE350281F811684008C3B4F /* HelloGCDForMac */,
+				4F82BB1A2297C6D20020C78A /* Tests */,
 				2B2390A41DE053E000E5E107 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -153,6 +182,7 @@
 			children = (
 				2B2390A31DE053E000E5E107 /* HelloGCD.app */,
 				2BE350271F811684008C3B4F /* HelloGCDForMac.app */,
+				4F82BB192297C6D20020C78A /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -160,7 +190,6 @@
 		2B2390A51DE053E000E5E107 /* HelloGCD */ = {
 			isa = PBXGroup;
 			children = (
-				4F9578E91FDF8CFF009693CF /* WCGCDTool */,
 				2B2390A91DE053E000E5E107 /* AppDelegate.h */,
 				2B2390AA1DE053E000E5E107 /* AppDelegate.m */,
 				2B2390B21DE053E000E5E107 /* Assets.xcassets */,
@@ -296,6 +325,19 @@
 			path = "GCD issues";
 			sourceTree = "<group>";
 		};
+		4F82BB1A2297C6D20020C78A /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4F82BB282297C7600020C78A /* Cache.h */,
+				4F82BB1B2297C6D20020C78A /* Tests.m */,
+				4F82BB262297C74F0020C78A /* Tests_issues.m */,
+				4F82BB2A2297C7920020C78A /* CacheWithConcurrentQueue.h */,
+				4F82BB292297C7920020C78A /* CacheWithConcurrentQueue.m */,
+				4F82BB1D2297C6D20020C78A /* Info.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 		4F9578E91FDF8CFF009693CF /* WCGCDTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -342,6 +384,24 @@
 			productReference = 2BE350271F811684008C3B4F /* HelloGCDForMac.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4F82BB182297C6D20020C78A /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F82BB202297C6D20020C78A /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				4F82BB152297C6D20020C78A /* Sources */,
+				4F82BB162297C6D20020C78A /* Frameworks */,
+				4F82BB172297C6D20020C78A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F82BB1F2297C6D20020C78A /* PBXTargetDependency */,
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = 4F82BB192297C6D20020C78A /* Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -361,6 +421,11 @@
 						DevelopmentTeam = QVRKK2EEDF;
 						ProvisioningStyle = Automatic;
 					};
+					4F82BB182297C6D20020C78A = {
+						CreatedOnToolsVersion = 10.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2B2390A21DE053E000E5E107;
+					};
 				};
 			};
 			buildConfigurationList = 2B23909E1DE053E000E5E107 /* Build configuration list for PBXProject "HelloGCD" */;
@@ -368,6 +433,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -378,6 +444,7 @@
 			targets = (
 				2B2390A21DE053E000E5E107 /* HelloGCD */,
 				2BE350261F811684008C3B4F /* HelloGCDForMac */,
+				4F82BB182297C6D20020C78A /* Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -398,6 +465,13 @@
 			files = (
 				2BE350331F811684008C3B4F /* Assets.xcassets in Resources */,
 				2BE350361F811684008C3B4F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F82BB172297C6D20020C78A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,7 +525,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4F82BB152297C6D20020C78A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F82BB2B2297C7920020C78A /* CacheWithConcurrentQueue.m in Sources */,
+				4F82BB1C2297C6D20020C78A /* Tests.m in Sources */,
+				4F82BB272297C74F0020C78A /* Tests_issues.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4F82BB1F2297C6D20020C78A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2B2390A21DE053E000E5E107 /* HelloGCD */;
+			targetProxy = 4F82BB1E2297C6D20020C78A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2B2390B41DE053E000E5E107 /* LaunchScreen.storyboard */ = {
@@ -623,6 +715,69 @@
 			};
 			name = Release;
 		};
+		4F82BB212297C6D20020C78A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloGCD.app/HelloGCD";
+			};
+			name = Debug;
+		};
+		4F82BB222297C6D20020C78A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloGCD.app/HelloGCD";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -649,6 +804,15 @@
 			buildConfigurations = (
 				2BE350391F811684008C3B4F /* Debug */,
 				2BE3503A1F811684008C3B4F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F82BB202297C6D20020C78A /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F82BB212297C6D20020C78A /* Debug */,
+				4F82BB222297C6D20020C78A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
