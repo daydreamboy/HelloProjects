@@ -12,36 +12,10 @@
 #import "WCVideoPlayerPage.h"
 #import "WCHorizontalPageBrowserViewController.h"
 #import "WCZoomTransitionAnimator.h"
+#import "WCStringTool.h"
+#import "WCMacroTool.h"
 #import <SDWebImage/SDWebImageManager.h>
 #import <AFNetworking/AFNetworking.h>
-#import <CommonCrypto/CommonDigest.h>
-
-@interface WCStringTool : NSObject
-@end
-
-@interface WCStringTool ()
-+ (NSString *)MD5WithString:(NSString *)string;
-@end
-
-@implementation WCStringTool
-+ (NSString *)MD5WithString:(NSString *)string {
-    if (string.length) {
-        const char *cStr = [string UTF8String];
-        unsigned char result[16];
-        CC_MD5(cStr, (unsigned int)strlen(cStr), result);
-        return [NSString stringWithFormat:
-                @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
-                result[0], result[1], result[2], result[3],
-                result[4], result[5], result[6], result[7],
-                result[8], result[9], result[10], result[11],
-                result[12], result[13], result[14], result[15]
-                ];
-    }
-    else {
-        return nil;
-    }
-}
-@end
 
 @implementation WCHorizontalPageBrowserItem
 
@@ -62,7 +36,7 @@
 
 @end
 
-@interface WCHorizontalPageBrowserViewController () <WCHorizontalPageBrowserViewDataSource, WCHorizontalPageBrowserViewDelegate, UIViewControllerTransitioningDelegate>
+@interface WCHorizontalPageBrowserViewController () <WCHorizontalPageBrowserViewDataSource, WCHorizontalPageBrowserViewDelegate, WCZoomableImagePageDelegate, UIViewControllerTransitioningDelegate>
 @property (nonatomic, strong) WCHorizontalPageBrowserView *pageBrowserView;
 @property (nonatomic, strong) NSMutableArray<WCHorizontalPageBrowserItem *> *pageList;
 @property (nonatomic, strong) id <SDWebImageOperation> imageDownload;
@@ -128,6 +102,10 @@
             self.pageDidDisplayBlock(item, index);
         }
     }
+}
+
+- (void)dealloc {
+    NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
 }
 
 #pragma mark - Actions
@@ -228,8 +206,14 @@
         page = [horizontalPageBrowserView dequeueReusablePageWithReuseIdentifier:NSStringFromClass([WCZoomableImagePage class]) forIndex:index];
         
         WCZoomableImagePage *zoomableImagePage = (WCZoomableImagePage *)page;
+        [zoomableImagePage resetPage];
+        zoomableImagePage.delegate = self;
         zoomableImagePage.scaleToFit = YES;
-        [self.backgroundTapGesture requireGestureRecognizerToFail:zoomableImagePage.doubleTapGesture];
+        
+        // FIX: zoomableImagePage.doubleTapGesture is nil, cause requireGestureRecognizerToFail to crash
+        if (zoomableImagePage.doubleTapGesture) {
+            [self.backgroundTapGesture requireGestureRecognizerToFail:zoomableImagePage.doubleTapGesture];
+        }
         
         NSData *data = [NSData dataWithContentsOfURL:item.URL];
         UIImage *image = [UIImage imageWithData:data];
@@ -241,12 +225,23 @@
     else if (item.type == WCHorizontalPageBrowserItemRemoteImage) {
         page = [horizontalPageBrowserView dequeueReusablePageWithReuseIdentifier:NSStringFromClass([WCZoomableImagePage class]) forIndex:index];
         WCZoomableImagePage *zoomableImagePage = (WCZoomableImagePage *)page;
+        [zoomableImagePage resetPage];
+        zoomableImagePage.delegate = self;
         zoomableImagePage.scaleToFit = YES;
-        [self.backgroundTapGesture requireGestureRecognizerToFail:zoomableImagePage.doubleTapGesture];
+        [zoomableImagePage startActivityIndicatorView];
         
+        // FIX: zoomableImagePage.doubleTapGesture is nil, cause requireGestureRecognizerToFail to crash
+        if (zoomableImagePage.doubleTapGesture) {
+            [self.backgroundTapGesture requireGestureRecognizerToFail:zoomableImagePage.doubleTapGesture];
+        }
+        
+        weakify(zoomableImagePage);
         self.imageDownload = [[SDWebImageManager sharedManager] loadImageWithURL:item.URL options:SDWebImageAvoidAutoSetImage progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
             
         } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
+            strongify(zoomableImagePage);
+            
+            [zoomableImagePage stopActivityIndicatorView];
             
             if (image) {
                 [zoomableImagePage displayImage:image];
@@ -327,6 +322,17 @@
         
         self.pageDidDisplayBlock(item, index);
     }
+}
+
+#pragma mark - WCZoomableImagePageDelegate
+
+- (void)WCZoomableImagePage:(WCZoomableImagePage *)page imageViewDidLongPressed:(UIImageView *)imageView {
+//    MPMHorizontalPageBrowserItem *item = [page.mpm_associatedWeakUserInfo objectForKey:@"item"];
+//
+//    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"保存图片到相册", nil];
+//    actionSheet.mpm_associatedUserObject = imageView.image;
+//    [actionSheet.mpm_associatedWeakUserInfo setObject:item forKey:@"item"];
+//    [actionSheet showInView:[[UIApplication sharedApplication] keyWindow]];
 }
 
 #pragma mark - UIViewControllerTransitioningDelegate

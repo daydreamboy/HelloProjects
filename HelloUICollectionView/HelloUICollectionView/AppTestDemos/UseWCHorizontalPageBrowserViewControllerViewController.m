@@ -108,28 +108,28 @@ __typeof__(object) object = object##_weak_;
     
     WCHorizontalPageBrowserItem *item;
     
-    // local images
-    [items addObject:[WCHorizontalPageBrowserItem itemWithURL:[[NSBundle mainBundle] URLForResource:@"1" withExtension:@"jpg"] type:WCHorizontalPageBrowserItemLocalImage]];
-    [items addObject:[WCHorizontalPageBrowserItem itemWithURL:[[NSBundle mainBundle] URLForResource:@"2" withExtension:@"jpg"] type:WCHorizontalPageBrowserItemLocalImage]];
-    [items addObject:[WCHorizontalPageBrowserItem itemWithURL:[[NSBundle mainBundle] URLForResource:@"3" withExtension:@"jpg"] type:WCHorizontalPageBrowserItemLocalImage]];
-    
-    // remote images
-    [items addObject:[WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/242ce817-97a3-48fe-9acd-b1bf97930b01/09-posterization-opt.jpg"] type:WCHorizontalPageBrowserItemRemoteImage]];
+//    // local images
+//    [items addObject:[WCHorizontalPageBrowserItem itemWithURL:[[NSBundle mainBundle] URLForResource:@"1" withExtension:@"jpg"] type:WCHorizontalPageBrowserItemLocalImage]];
+//    [items addObject:[WCHorizontalPageBrowserItem itemWithURL:[[NSBundle mainBundle] URLForResource:@"2" withExtension:@"jpg"] type:WCHorizontalPageBrowserItemLocalImage]];
+//    [items addObject:[WCHorizontalPageBrowserItem itemWithURL:[[NSBundle mainBundle] URLForResource:@"3" withExtension:@"jpg"] type:WCHorizontalPageBrowserItemLocalImage]];
+//
+//    // remote images
+//    [items addObject:[WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://cloud.netlifyusercontent.com/assets/344dbf88-fdf9-42bb-adb4-46f01eedd629/242ce817-97a3-48fe-9acd-b1bf97930b01/09-posterization-opt.jpg"] type:WCHorizontalPageBrowserItemRemoteImage]];
     [items addObject:[WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"http://kb4images.com/images/image/37185176-image.jpg"] type:WCHorizontalPageBrowserItemRemoteImage]];
-    [items addObject:[WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350"] type:WCHorizontalPageBrowserItemRemoteImage]];
-    [items addObject:[WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://user-images.githubusercontent.com/883386/35498466-1375b88a-04d7-11e8-8f8e-9d202da6a6b3.jpg"] type:WCHorizontalPageBrowserItemRemoteImage]];
-    
-    // remote videos
-    item = [WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/daydreamboy/NetFiles/master/demo.mp4"] type:WCHorizontalPageBrowserItemRemoteVideo];
-    [items addObject:item];
-
-    item = [WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://static-tb.dingtalk.com/ddmedia/iAEEAqNtcDQDBgQABQAG2gAjhAGkC7qKCAKqhUvSE__W2c1oUAPPAAABZV9W4qYEzgAB_98HzgAHNDcIAA.mp4"] type:WCHorizontalPageBrowserItemRemoteVideo];
-    item.autoPlayVideo = YES;
-    [items addObject:item];
+//    [items addObject:[WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350"] type:WCHorizontalPageBrowserItemRemoteImage]];
+//    [items addObject:[WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://user-images.githubusercontent.com/883386/35498466-1375b88a-04d7-11e8-8f8e-9d202da6a6b3.jpg"] type:WCHorizontalPageBrowserItemRemoteImage]];
+//
+//    // remote videos
+//    item = [WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/daydreamboy/NetFiles/master/demo.mp4"] type:WCHorizontalPageBrowserItemRemoteVideo];
+//    [items addObject:item];
+//
+//    item = [WCHorizontalPageBrowserItem itemWithURL:[NSURL URLWithString:@"https://static-tb.dingtalk.com/ddmedia/iAEEAqNtcDQDBgQABQAG2gAjhAGkC7qKCAKqhUvSE__W2c1oUAPPAAABZV9W4qYEzgAB_98HzgAHNDcIAA.mp4"] type:WCHorizontalPageBrowserItemRemoteVideo];
+//    item.autoPlayVideo = YES;
+//    [items addObject:item];
     
     NSArray *newItems = [WCArrayTool shuffledArrayWithArray:items];
-    
-    return [newItems subarrayWithRange:NSMakeRange(0, 3)];;
+    return newItems;
+    //return [newItems subarrayWithRange:NSMakeRange(0, 3)];
 }
 
 #pragma mark - Getters

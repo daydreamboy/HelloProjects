@@ -13,6 +13,7 @@
 		4F48FC3220F62EC200DB26EE /* NestedCollectionViewCrossDirectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F48FC3120F62EC200DB26EE /* NestedCollectionViewCrossDirectionViewController.m */; };
 		4F48FC3620F631A300DB26EE /* WCCrossDirectionEmotionPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F48FC3520F631A300DB26EE /* WCCrossDirectionEmotionPickerView.m */; };
 		4F48FC3920F634CB00DB26EE /* WCEmotionVerticalLayoutPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F48FC3820F634CB00DB26EE /* WCEmotionVerticalLayoutPage.m */; };
+		4F519A18229BE2AB004C548A /* WCStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F519A17229BE2AB004C548A /* WCStringTool.m */; };
 		4F5B090721FF07E700EE7C2E /* WCArrayTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B090621FF07E700EE7C2E /* WCArrayTool.m */; };
 		4F5F8F9920ECA160002FFC03 /* WCVideoPlayerPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F8F9820ECA160002FFC03 /* WCVideoPlayerPage.m */; };
 		4F65BFA020F87D4F00CE86EB /* WCEmotionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F65BF9F20F87D4F00CE86EB /* WCEmotionHeaderView.m */; };
@@ -80,6 +81,9 @@
 		4F48FC3520F631A300DB26EE /* WCCrossDirectionEmotionPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCCrossDirectionEmotionPickerView.m; sourceTree = "<group>"; };
 		4F48FC3720F634CB00DB26EE /* WCEmotionVerticalLayoutPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCEmotionVerticalLayoutPage.h; sourceTree = "<group>"; };
 		4F48FC3820F634CB00DB26EE /* WCEmotionVerticalLayoutPage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCEmotionVerticalLayoutPage.m; sourceTree = "<group>"; };
+		4F519A16229BE2AB004C548A /* WCStringTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStringTool.h; sourceTree = "<group>"; };
+		4F519A17229BE2AB004C548A /* WCStringTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCStringTool.m; sourceTree = "<group>"; };
+		4F519A19229BE499004C548A /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
 		4F5B090521FF07E700EE7C2E /* WCArrayTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCArrayTool.h; sourceTree = "<group>"; };
 		4F5B090621FF07E700EE7C2E /* WCArrayTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCArrayTool.m; sourceTree = "<group>"; };
 		4F5F8F9720ECA160002FFC03 /* WCVideoPlayerPage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCVideoPlayerPage.h; sourceTree = "<group>"; };
@@ -219,6 +223,16 @@
 			path = WCCrossDirectionEmotionPickerView;
 			sourceTree = "<group>";
 		};
+		4F519A15229BE182004C548A /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F519A16229BE2AB004C548A /* WCStringTool.h */,
+				4F519A17229BE2AB004C548A /* WCStringTool.m */,
+				4F519A19229BE499004C548A /* WCMacroTool.h */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		4F5B090421FF07B900EE7C2E /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +256,7 @@
 		4F82DF4F20E6796F007035FC /* WCHorizontalPageBrowserView */ = {
 			isa = PBXGroup;
 			children = (
+				4F519A15229BE182004C548A /* Tools */,
 				4F32D09120FDF3BA00D68A32 /* Subclass Pages */,
 				4F8767AE20EA5FAD00F2B02F /* WCHorizontalPageBrowserViewController.h */,
 				4F8767AF20EA5FAD00F2B02F /* WCHorizontalPageBrowserViewController.m */,
@@ -545,6 +560,7 @@
 				4FB1D4B420CC0D5700DBA776 /* AppDelegate.m in Sources */,
 				4F961BA421328B67009402F3 /* FPSLabel.m in Sources */,
 				4FA5AC1C20FD97E80098A138 /* WCHorizontalSliderViewUtility.m in Sources */,
+				4F519A18229BE2AB004C548A /* WCStringTool.m in Sources */,
 				4F961BA1213280C9009402F3 /* ManyRoundedImageViewViewController.m in Sources */,
 				4FA5ABED20FC40280098A138 /* MPMLightPopoverView.m in Sources */,
 				4FB1D4DA20CC324100DBA776 /* PagableCollectionViewViewController.m in Sources */,

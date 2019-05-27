@@ -172,6 +172,7 @@
 @interface WCZoomableImagePage ()
 @property (nonatomic, strong) WDKImageZoomView *imageZoomView;
 @property (nonatomic, strong) UILongPressGestureRecognizer *longPressGesture;
+@property (nonatomic, strong, readwrite) UIActivityIndicatorView *activityIndicatorView;
 @end
 
 @implementation WCZoomableImagePage
@@ -186,6 +187,10 @@
         
         _longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(imageViewLongPressed:)];
         [_imageZoomView addGestureRecognizer:_longPressGesture];
+        
+        _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        _activityIndicatorView.center = CGPointMake(CGRectGetWidth(frame) / 2.0, CGRectGetHeight(frame) / 2.0);
+        [self addSubview:_activityIndicatorView];
     }
     return self;
 }
@@ -199,18 +204,34 @@
     [_imageZoomView resetImageZoomView];
 }
 
+- (void)startActivityIndicatorView {
+    self.activityIndicatorView.hidden = NO;
+    [self.activityIndicatorView startAnimating];
+}
+
+- (void)stopActivityIndicatorView {
+    [self.activityIndicatorView stopAnimating];
+}
+
+- (void)resetPage {
+    [self.imageZoomView displayImage:nil];
+    [self.activityIndicatorView stopAnimating];
+    self.activityIndicatorView.hidden = YES;
+}
+
 - (UITapGestureRecognizer *)doubleTapGesture {
     return _imageZoomView.doubleTapGesture;
 }
 
+#pragma mark - Action
+
 - (void)imageViewLongPressed:(UILongPressGestureRecognizer *)recognizer {
     if (recognizer.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
-//        if ([self.delegate respondsToSelector:@selector(MPMZoomableImagePage:imageViewDidLongPressed:)]) {
-//
-//            WDKImageZoomView *view = (WDKImageZoomView *)recognizer.view;
-//            [self.delegate MPMZoomableImagePage:self imageViewDidLongPressed:view.imageView];
-//        }
+        if ([self.delegate respondsToSelector:@selector(WCZoomableImagePage:imageViewDidLongPressed:)]) {
+            
+            WDKImageZoomView *view = (WDKImageZoomView *)recognizer.view;
+            [self.delegate WCZoomableImagePage:self imageViewDidLongPressed:view.imageView];
+        }
     }
 }
 

@@ -8,6 +8,12 @@
 
 #import "WCBaseHorizontalPage.h"
 
+@class WCZoomableImagePage;
+
+@protocol WCZoomableImagePageDelegate <NSObject>
+- (void)WCZoomableImagePage:(WCZoomableImagePage *)page imageViewDidLongPressed:(UIImageView *)imageView;;
+@end
+
 @interface WCZoomableImagePage : WCBaseHorizontalPage
 
 /**
@@ -21,8 +27,14 @@
  The gesture for double tapping to zoom in
  */
 @property (nonatomic, strong, readonly) UITapGestureRecognizer *doubleTapGesture;
+@property (nonatomic, weak) id<WCZoomableImagePageDelegate> delegate;
+@property (nonatomic, strong, readonly) UIActivityIndicatorView *activityIndicatorView;
 
 - (instancetype)initWithFrame:(CGRect)frame;
 - (void)displayImage:(UIImage *)image;
 - (void)resetZoomableImagePage;
+- (void)startActivityIndicatorView;
+- (void)stopActivityIndicatorView;
+- (void)resetPage;
+
 @end
