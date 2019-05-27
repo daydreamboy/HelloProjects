@@ -247,6 +247,7 @@
                 [zoomableImagePage displayImage:image];
             }
             else {
+                NSLog(@"remote video download failed, %@", imageURL);
             }
         }];
     }
