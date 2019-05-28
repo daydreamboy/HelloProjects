@@ -16,6 +16,7 @@
 #import "WCMacroTool.h"
 #import <SDWebImage/SDWebImageManager.h>
 #import <AFNetworking/AFNetworking.h>
+#import <MBProgressHUD/MBProgressHUD.h>
 
 @implementation WCHorizontalPageBrowserItem
 
@@ -236,10 +237,12 @@
         }
         
         weakify(zoomableImagePage);
+        weakify(self);
         self.imageDownload = [[SDWebImageManager sharedManager] loadImageWithURL:item.URL options:SDWebImageAvoidAutoSetImage progress:^(NSInteger receivedSize, NSInteger expectedSize, NSURL * _Nullable targetURL) {
             
         } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
             strongify(zoomableImagePage);
+            strongify(self);
             
             [zoomableImagePage stopActivityIndicatorView];
             
@@ -248,6 +251,17 @@
             }
             else {
                 NSLog(@"remote video download failed, %@", imageURL);
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+                hud.mode = MBProgressHUDModeText;
+                
+                // Set the label text.
+                hud.label.text = NSLocalizedString(@"remote video download failed", @"HUD loading title");
+                // You can also adjust other label properties if needed.
+                // hud.label.font = [UIFont italicSystemFontOfSize:16.f];
+                
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [hud hideAnimated:YES];
+                });
             }
         }];
     }

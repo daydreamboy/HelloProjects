@@ -18,7 +18,7 @@ __weak __typeof__(object) object##_weak_ = object;
 __typeof__(object) object = object##_weak_;
 
 @interface UseWCHorizontalPageBrowserViewControllerViewController () <WCHorizontalPageBrowserViewControllerDataSource>
-@property (nonatomic, strong) WCHorizontalPageBrowserViewController *pageBrowserViewController;
+@property (nonatomic, weak) WCHorizontalPageBrowserViewController *pageBrowserViewController;
 @property (nonatomic, strong) NSMutableArray<WCHorizontalPageBrowserItem *> *items;
 @property (nonatomic, assign) BOOL present;
 @property (nonatomic, strong) UIButton *buttonScrollToPage;
@@ -32,9 +32,6 @@ __typeof__(object) object = object##_weak_;
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.present = YES;
-    
-    _pageBrowserViewController = [WCHorizontalPageBrowserViewController new];
-    _pageBrowserViewController.dataSource = self;
     
     _items = [NSMutableArray array];
     
@@ -60,33 +57,6 @@ __typeof__(object) object = object##_weak_;
     [_items addObject:item];
     
     [self.view addSubview:self.imageViewToOpen];
-    
-    weakify(self);
-    _pageBrowserViewController.pageDidDisplayBlock = ^(WCHorizontalPageBrowserItem * _Nonnull item, NSInteger index) {
-        strongify(self);
-        if (index == 0) {
-            NSLog(@"the first page did show");
-            NSArray *newItems = [self createItemsRandomly];
-            for (NSInteger i = 0; i < newItems.count; i++) {
-                [self.items insertObject:newItems[i] atIndex:0];
-            }
-            NSInteger currentPageIndex = [self.items indexOfObject:item];
-            [self.pageBrowserViewController reloadPageData];
-            [self.pageBrowserViewController setCurrentPageAtIndex:currentPageIndex animated:NO];
-        }
-        else if (index == self.items.count - 1) {
-            NSLog(@"the last page did show");
-            NSArray *newItems = [self createItemsRandomly];
-            [self.items addObjectsFromArray:newItems];
-            NSInteger currentPageIndex = [self.items indexOfObject:item];
-            
-            [self.pageBrowserViewController reloadPageData];
-            [self.pageBrowserViewController setCurrentPageAtIndex:currentPageIndex animated:NO];
-        }
-        else {
-            NSLog(@"the %@ page did show", @(index));
-        }
-    };
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -198,12 +168,43 @@ __typeof__(object) object = object##_weak_;
 }
 
 - (void)imageViewToOpenTapped:(id)sender {
-    [_pageBrowserViewController setCurrentPageAtIndex:2 animated:NO];
-    [_pageBrowserViewController.view addSubview:self.buttonDismiss];
-    [_pageBrowserViewController.view addSubview:self.buttonScrollToPage];
+    WCHorizontalPageBrowserViewController *pageBrowserViewController = [WCHorizontalPageBrowserViewController new];
+    pageBrowserViewController.dataSource = self;
+    
+    [pageBrowserViewController setCurrentPageAtIndex:2 animated:NO];
+    [pageBrowserViewController.view addSubview:self.buttonDismiss];
+    [pageBrowserViewController.view addSubview:self.buttonScrollToPage];
+    self.pageBrowserViewController = pageBrowserViewController;
+    
+    weakify(self);
+    pageBrowserViewController.pageDidDisplayBlock = ^(WCHorizontalPageBrowserItem * _Nonnull item, NSInteger index) {
+        strongify(self);
+        if (index == 0) {
+            NSLog(@"the first page did show");
+            NSArray *newItems = [self createItemsRandomly];
+            for (NSInteger i = 0; i < newItems.count; i++) {
+                [self.items insertObject:newItems[i] atIndex:0];
+            }
+            NSInteger currentPageIndex = [self.items indexOfObject:item];
+            [self.pageBrowserViewController reloadPageData];
+            [self.pageBrowserViewController setCurrentPageAtIndex:currentPageIndex animated:NO];
+        }
+        else if (index == self.items.count - 1) {
+            NSLog(@"the last page did show");
+            NSArray *newItems = [self createItemsRandomly];
+            [self.items addObjectsFromArray:newItems];
+            NSInteger currentPageIndex = [self.items indexOfObject:item];
+            
+            [self.pageBrowserViewController reloadPageData];
+            [self.pageBrowserViewController setCurrentPageAtIndex:currentPageIndex animated:NO];
+        }
+        else {
+            NSLog(@"the %@ page did show", @(index));
+        }
+    };
     
     CGRect rectInWindow = [self.view convertRect:self.imageViewToOpen.frame toView:nil];
-    [_pageBrowserViewController showInRect:rectInWindow fromViewController:self animated:YES];
+    [pageBrowserViewController showInRect:rectInWindow fromViewController:self animated:YES];
 }
 
 @end
