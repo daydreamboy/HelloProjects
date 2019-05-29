@@ -32,7 +32,7 @@
 
 - (void)test_use_generic_collection_class {
     NSMutableSet<Cat *> *cats = [NSMutableSet set];
-    // Note: this will get a warning
+    // Note: this will get a warning: Incompatible pointer types sending 'NSObject *' to parameter of type 'Cat * _Nonnull'
     [cats addObject:[NSObject new]];
 }
 

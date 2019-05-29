@@ -10,6 +10,6 @@
 #import "Animal.h"
 
 @interface RestrictedGenericPetHotel<__covariant ObjectType: Animal *> : NSObject
-- (void)checkinPet:(Animal *)animal withName:(NSString *)name;
-- (Animal *)checkoutPetWithName:(NSString *)name;
+- (void)checkinPet:(ObjectType)animal withName:(NSString *)name;
+- (ObjectType)checkoutPetWithName:(NSString *)name;
 @end

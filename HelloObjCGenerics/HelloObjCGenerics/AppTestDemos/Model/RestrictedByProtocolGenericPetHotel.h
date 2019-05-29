@@ -10,6 +10,6 @@
 #import "Swim.h"
 
 @interface RestrictedByProtocolGenericPetHotel<__covariant ObjectType: id<Swim>> : NSObject
-- (void)checkinPet:(id<Swim>)animal withName:(NSString *)name;
-- (id<Swim>)checkoutPetWithName:(NSString *)name;
+- (void)checkinPet:(ObjectType)animal withName:(NSString *)name;
+- (ObjectType)checkoutPetWithName:(NSString *)name;
 @end

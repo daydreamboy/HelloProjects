@@ -123,8 +123,6 @@
 				4F2FE1A91FAF13A40074690D /* DefineGenericCategoryViewController.m */,
 				4F2FE19C1FAF10D10074690D /* UseProtocolRestrictGenericClassViewController.h */,
 				4F2FE19D1FAF10D10074690D /* UseProtocolRestrictGenericClassViewController.m */,
-				4F2FE19F1FAF110E0074690D /* RestrictedByProtocolGenericPetHotel.h */,
-				4F2FE1A01FAF110E0074690D /* RestrictedByProtocolGenericPetHotel.m */,
 				4FD217E02179C29500FB23DD /* UseKindOfViewController.h */,
 				4FD217E12179C29500FB23DD /* UseKindOfViewController.m */,
 			);
@@ -143,6 +141,8 @@
 				4FD217D42179C1EC00FB23DD /* Duck.m */,
 				4FD217D52179C1EC00FB23DD /* RestrictedGenericPetHotel.h */,
 				4FD217CF2179C1EC00FB23DD /* RestrictedGenericPetHotel.m */,
+				4F2FE19F1FAF110E0074690D /* RestrictedByProtocolGenericPetHotel.h */,
+				4F2FE1A01FAF110E0074690D /* RestrictedByProtocolGenericPetHotel.m */,
 				4FD217D62179C1EC00FB23DD /* Animal.h */,
 				4FD217CC2179C1EC00FB23DD /* Animal.m */,
 				4FD217D82179C1EC00FB23DD /* Cat.h */,

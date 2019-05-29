@@ -50,8 +50,8 @@ GenericPetHotel<Cat *> *catHotel = [[GenericPetHotel<Cat *> alloc] init];
 #import "Animal.h"
 
 @interface RestrictedGenericPetHotel<__covariant ObjectType: Animal *> : NSObject
-- (void)checkinPet:(Animal *)animal withName:(NSString *)name;
-- (Animal *)checkoutPetWithName:(NSString *)name;
+- (void)checkinPet:(ObjectType)animal withName:(NSString *)name;
+- (ObjectType)checkoutPetWithName:(NSString *)name;
 @end
 ```
 
@@ -61,8 +61,8 @@ GenericPetHotel<Cat *> *catHotel = [[GenericPetHotel<Cat *> alloc] init];
 #import "Swim.h"
 
 @interface RestrictedByProtocolGenericPetHotel<__covariant ObjectType: id<Swim>> : NSObject
-- (void)checkinPet:(id<Swim>)animal withName:(NSString *)name;
-- (id<Swim>)checkoutPetWithName:(NSString *)name;
+- (void)checkinPet:(ObjectType)animal withName:(NSString *)name;
+- (ObjectType)checkoutPetWithName:(NSString *)name;
 @end
 ```
 
@@ -92,6 +92,16 @@ RestrictedGenericPetHotel<Cat *> *catHotel3 = [RestrictedGenericPetHotel new];
 - (ObjectType)giveMeACat;
 @end
 ```
+
+
+
+> 协议的泛型，Objective-C好像不支持[^5]。例如
+>
+> ```objective-c
+> @protocol ItemsStore<__covariant ObjectType> <NSObject> // Compiler Error
+> - (NSArray <ObjectType> *)items;
+> @end
+> ```
 
 
 
@@ -152,4 +162,6 @@ __unused UIButton *b3 = [self.moreLooseSubviews objectAtIndex:0];
 [^2]: https://stackoverflow.com/questions/32673975/is-there-a-way-to-use-objecttype-in-a-category-on-nsarray
 [^3]: http://www.russbishop.net/objective-c-generics
 [^4]: https://stackoverflow.com/a/33799210 
+
+[^5]:https://stackoverflow.com/a/38302218
 
