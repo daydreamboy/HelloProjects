@@ -23,6 +23,9 @@
 		4F573291224B134500EFB1CF /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F573290224B134500EFB1CF /* Person.m */; };
 		4F5B65312249DD4600D40218 /* Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B65302249DD4600D40218 /* Tests.mm */; };
 		4F5B65382249DDAE00D40218 /* WCObjectTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F54E6572238A0BB001A9BE2 /* WCObjectTool.m */; };
+		4F5B710D229D64710061A9D0 /* KeyedSubscriptingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B710C229D64710061A9D0 /* KeyedSubscriptingObject.m */; };
+		4F5B7110229D64840061A9D0 /* IndexedSubscriptingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B710F229D64840061A9D0 /* IndexedSubscriptingObject.m */; };
+		4F5B7115229D686C0061A9D0 /* Tests_NSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B7114229D686C0061A9D0 /* Tests_NSObject.m */; };
 		4F650EA0223967DB002BA46F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F650E9F223967DB002BA46F /* AppDelegate.m */; };
 		4F650EA3223967DB002BA46F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F650EA2223967DB002BA46F /* ViewController.m */; };
 		4F650EA8223967DD002BA46F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F650EA7223967DD002BA46F /* Assets.xcassets */; };
@@ -73,6 +76,11 @@
 		4F5B652E2249DD4600D40218 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F5B65302249DD4600D40218 /* Tests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Tests.mm; sourceTree = "<group>"; };
 		4F5B65322249DD4600D40218 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F5B710B229D64710061A9D0 /* KeyedSubscriptingObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyedSubscriptingObject.h; sourceTree = "<group>"; };
+		4F5B710C229D64710061A9D0 /* KeyedSubscriptingObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyedSubscriptingObject.m; sourceTree = "<group>"; };
+		4F5B710E229D64840061A9D0 /* IndexedSubscriptingObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndexedSubscriptingObject.h; sourceTree = "<group>"; };
+		4F5B710F229D64840061A9D0 /* IndexedSubscriptingObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndexedSubscriptingObject.m; sourceTree = "<group>"; };
+		4F5B7114229D686C0061A9D0 /* Tests_NSObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSObject.m; sourceTree = "<group>"; };
 		4F650E9C223967DB002BA46F /* InitializeMethodInCategory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InitializeMethodInCategory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F650E9E223967DB002BA46F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F650E9F223967DB002BA46F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -185,6 +193,10 @@
 				4F57328D224B133400EFB1CF /* Thing.m */,
 				4F57328F224B134500EFB1CF /* Person.h */,
 				4F573290224B134500EFB1CF /* Person.m */,
+				4F5B710B229D64710061A9D0 /* KeyedSubscriptingObject.h */,
+				4F5B710C229D64710061A9D0 /* KeyedSubscriptingObject.m */,
+				4F5B710E229D64840061A9D0 /* IndexedSubscriptingObject.h */,
+				4F5B710F229D64840061A9D0 /* IndexedSubscriptingObject.m */,
 			);
 			path = DummyClasses;
 			sourceTree = "<group>";
@@ -194,6 +206,7 @@
 			children = (
 				4F57328B224B131C00EFB1CF /* DummyClasses */,
 				4F5B65302249DD4600D40218 /* Tests.mm */,
+				4F5B7114229D686C0061A9D0 /* Tests_NSObject.m */,
 				4F5B65322249DD4600D40218 /* Info.plist */,
 			);
 			path = Tests;
@@ -462,8 +475,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F5B710D229D64710061A9D0 /* KeyedSubscriptingObject.m in Sources */,
 				4F57328E224B133400EFB1CF /* Thing.m in Sources */,
 				4F5B65382249DDAE00D40218 /* WCObjectTool.m in Sources */,
+				4F5B7110229D64840061A9D0 /* IndexedSubscriptingObject.m in Sources */,
+				4F5B7115229D686C0061A9D0 /* Tests_NSObject.m in Sources */,
 				4F573291224B134500EFB1CF /* Person.m in Sources */,
 				4F5B65312249DD4600D40218 /* Tests.mm in Sources */,
 			);
