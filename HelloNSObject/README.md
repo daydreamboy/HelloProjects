@@ -52,7 +52,38 @@
 
 
 
+## 2、Object Subscripting[^1]
+
+​        Xcode 4.4开始支持对象下标访问方式，即除了NSMutableDictionary和NSMutableArray之外，任意自定义类都可以使用`[]`来访问。
+
+​        自定义类通过实现特定的方法，能支持索引下标和键下标。
+
+### （1）索引下标的实现方法
+
+```objective-c
+@interface IndexedSubscriptingObject<__covariant ObjectType> : NSObject
+- (nullable ObjectType)objectAtIndexedSubscript:(NSUInteger)index;
+- (void)setObject:(nullable ObjectType)object atIndexedSubscript:(NSUInteger)index;
+@end
+```
+
+
+
+### （2）键下标的实现方法
+
+```objective-c
+@interface KeyedSubscriptingObject<__covariant KeyType, __covariant ObjectType> : NSObject
+- (nullable ObjectType)objectForKeyedSubscript:(KeyType)key;
+- (void)setObject:(nullable ObjectType)object forKeyedSubscript:(KeyType)key;
+@end
+```
 
 
 
 
+
+
+
+## References
+
+[^1]:<https://nshipster.com/object-subscripting/>
