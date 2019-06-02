@@ -1031,6 +1031,18 @@
     output = [WCStringTool truncatedStringWithString:inputString limitedToLength:5 truncatingStyle:WCStringTruncatingStyleMiddle separator:nil];
     XCTAssertTrue(output.length == 5);
     XCTAssertEqualObjects(output, @"H...!");
+    
+    // Case 4
+    inputString = @"Hello, World!";
+    output = [WCStringTool truncatedStringWithString:inputString limitedToLength:5 truncatingStyle:WCStringTruncatingStyleNone separator:nil];
+    XCTAssertTrue(output.length == 13);
+    XCTAssertEqualObjects(output, @"Hello, World!");
+    
+    // Case 5
+    inputString = @"Hello";
+    output = [WCStringTool truncatedStringWithString:inputString limitedToLength:5 truncatingStyle:WCStringTruncatingStyleMiddle separator:nil];
+    XCTAssertTrue(output.length == 5);
+    XCTAssertEqualObjects(output, @"Hello");
 }
 
 #pragma mark > String Modification

@@ -33,21 +33,22 @@
     type = [NSString stringWithUTF8String:[number objCType]];
     XCTAssertEqualObjects(type, @"i");
     
-    // Case 1
+    // Case 2
     number = @YES;
     type = [NSString stringWithUTF8String:[number objCType]];
     XCTAssertEqualObjects(type, @"c");
     
-    // Case 1
+    // Case 3
     number = @3.14;
     type = [NSString stringWithUTF8String:[number objCType]];
     XCTAssertEqualObjects(type, @"d");
     
-    // Case 1
+    // Case 4
     number = @('a');
     type = [NSString stringWithUTF8String:[number objCType]];
     XCTAssertEqualObjects(type, @"c");
     
+    // Case 5
     number = [NSNumber numberWithChar:'b'];
     type = [NSString stringWithUTF8String:[number objCType]];
     XCTAssertEqualObjects(type, @"c");
@@ -88,6 +89,16 @@
     
     const char *s1 = @encode(bool);
     const char *s2 = @encode(BOOL);
+}
+
+- (void)test_stringValue {
+    NSString *output;
+    NSNumber *number;
+    
+    // Case 1
+    number = @(YES);
+    output = [number stringValue];
+    XCTAssertEqualObjects(output, @"1");
 }
 
 @end
