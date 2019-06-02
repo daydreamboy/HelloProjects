@@ -40,14 +40,25 @@ OptionParser.new do |opts|
     options[:library] << lib
   end
 
+  opts.on("-nNAME", "--name=NAME", "Name to say hello to") do |n|
+    options[:name] = n
+  end
+
 end.parse!
 
 # Note: get options
 p options[:verbose]
 p options[:list]
 
+puts "Get all options:"
+p options
+puts "\n"
+
+puts "Get all arguments:"
 # Note: get arguments
 p ARGV
+puts "\n"
+
 p ARGV[0]
 
 p __FILE__
