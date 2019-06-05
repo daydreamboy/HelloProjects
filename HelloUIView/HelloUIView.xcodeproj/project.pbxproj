@@ -11,6 +11,9 @@
 		4F4EDC3E22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4EDC3D22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.m */; };
 		4F517BB7212FD41C008CE69F /* BlurAnyViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F517BB6212FD41C008CE69F /* BlurAnyViewViewController.m */; };
 		4F517BB9212FD500008CE69F /* dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F517BB8212FD500008CE69F /* dog.jpg */; };
+		4F60E70322A7C85600C27087 /* WCResizableImageLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E70222A7C85600C27087 /* WCResizableImageLayer.m */; };
+		4F60E70622A7DBFB00C27087 /* StretchImageInLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E70522A7DBFB00C27087 /* StretchImageInLayerViewController.m */; };
+		4F60E70822A7DD6800C27087 /* stretchableImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F60E70722A7DD6700C27087 /* stretchableImage.png */; };
 		4F63EFE41FE10068000AFD6F /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63EFE31FE10068000AFD6F /* WCViewTool.m */; };
 		4F63EFE71FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63EFE61FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m */; };
 		4F67684F21746BBA00B371A7 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F67684E21746BBA00B371A7 /* Tests.m */; };
@@ -62,6 +65,11 @@
 		4F517BB5212FD41C008CE69F /* BlurAnyViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlurAnyViewViewController.h; sourceTree = "<group>"; };
 		4F517BB6212FD41C008CE69F /* BlurAnyViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlurAnyViewViewController.m; sourceTree = "<group>"; };
 		4F517BB8212FD500008CE69F /* dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dog.jpg; sourceTree = "<group>"; };
+		4F60E70122A7C85600C27087 /* WCResizableImageLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCResizableImageLayer.h; sourceTree = "<group>"; };
+		4F60E70222A7C85600C27087 /* WCResizableImageLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCResizableImageLayer.m; sourceTree = "<group>"; };
+		4F60E70422A7DBFB00C27087 /* StretchImageInLayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StretchImageInLayerViewController.h; sourceTree = "<group>"; };
+		4F60E70522A7DBFB00C27087 /* StretchImageInLayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StretchImageInLayerViewController.m; sourceTree = "<group>"; };
+		4F60E70722A7DD6700C27087 /* stretchableImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stretchableImage.png; sourceTree = "<group>"; };
 		4F63EFE21FE10068000AFD6F /* WCViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCViewTool.h; sourceTree = "<group>"; };
 		4F63EFE31FE10068000AFD6F /* WCViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewTool.m; sourceTree = "<group>"; };
 		4F63EFE51FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObserveViewGeometryChangeEventViewController.h; sourceTree = "<group>"; };
@@ -139,6 +147,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F60E70022A7C84900C27087 /* WCResizableImageLayer */ = {
+			isa = PBXGroup;
+			children = (
+				4F60E70122A7C85600C27087 /* WCResizableImageLayer.h */,
+				4F60E70222A7C85600C27087 /* WCResizableImageLayer.m */,
+			);
+			path = WCResizableImageLayer;
+			sourceTree = "<group>";
+		};
 		4F63EFE11FE10053000AFD6F /* WCViewTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +198,8 @@
 				4F86CF9E206CBFD10080A9E1 /* AddBorderToImageViewController.m */,
 				4F86CF9A206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.h */,
 				4F86CF9B206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.m */,
+				4F60E70422A7DBFB00C27087 /* StretchImageInLayerViewController.h */,
+				4F60E70522A7DBFB00C27087 /* StretchImageInLayerViewController.m */,
 			);
 			path = "CALayer Demo";
 			sourceTree = "<group>";
@@ -213,6 +232,7 @@
 		4FAAA5591FA45FE700A80328 = {
 			isa = PBXGroup;
 			children = (
+				4F60E70022A7C84900C27087 /* WCResizableImageLayer */,
 				4F63EFE11FE10053000AFD6F /* WCViewTool */,
 				4FAAA5641FA45FE700A80328 /* HelloUIView */,
 				4F67684D21746BBA00B371A7 /* Tests */,
@@ -272,6 +292,7 @@
 		4FD7BE12206BBC3100368A46 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F60E70722A7DD6700C27087 /* stretchableImage.png */,
 				4F517BB8212FD500008CE69F /* dog.jpg */,
 				4FD7BE13206BBC3100368A46 /* aliwx_card_bubble_right_bg@2x.png */,
 				4FD7BE14206BBC3100368A46 /* aliwx_card_bubble_right_bg@3x.png */,
@@ -373,6 +394,7 @@
 				4F517BB9212FD500008CE69F /* dog.jpg in Resources */,
 				4FD7BE19206BBC3100368A46 /* aliwx_card_bubble_left_bg@3x.png in Resources */,
 				4FD7BE17206BBC3100368A46 /* aliwx_card_bubble_right_bg@2x.png in Resources */,
+				4F60E70822A7DD6800C27087 /* stretchableImage.png in Resources */,
 				4FAAA5721FA45FE700A80328 /* LaunchScreen.storyboard in Resources */,
 				4FAAA56F1FA45FE700A80328 /* Assets.xcassets in Resources */,
 				4FD7BE1A206BBC3100368A46 /* aliwx_card_bubble_left_bg@2x.png in Resources */,
@@ -409,6 +431,7 @@
 				4F86CF9C206CBE840080A9E1 /* TwoAdjacentShadowBorderViewController.m in Sources */,
 				4F86CF9F206CBFD10080A9E1 /* AddBorderToImageViewController.m in Sources */,
 				4FB43AF5200DA28100D5D92D /* DrawGradientViewViewController.m in Sources */,
+				4F60E70322A7C85600C27087 /* WCResizableImageLayer.m in Sources */,
 				4FB43AF7200DA28100D5D92D /* UseCAGradientLayerWithTwoColorsViewController.m in Sources */,
 				4FD7BE11206BBA9400368A46 /* AddShadowBorderToImageViewController.m in Sources */,
 				4F961BB12133ABE2009402F3 /* UIView+UserInfo.m in Sources */,
@@ -420,6 +443,7 @@
 				4F961BAC2132FB0F009402F3 /* TraverseSubviewsInViewViewController.m in Sources */,
 				4F0B4F1E205269D9003B241E /* HitTestInViewViewController.m in Sources */,
 				4F961BB42133ABF5009402F3 /* UIView+Position.m in Sources */,
+				4F60E70622A7DBFB00C27087 /* StretchImageInLayerViewController.m in Sources */,
 				4F7CB04920EF96CD00ABDED4 /* TouchThroughToUnderneathViewViewController.m in Sources */,
 				4F63EFE71FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m in Sources */,
 			);

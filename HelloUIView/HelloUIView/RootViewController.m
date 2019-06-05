@@ -16,6 +16,8 @@
 #import "DrawRadialGradientViewViewController.h"
 #import "UseCAGradientLayerWithTwoColorsViewController.h"
 #import "UseCAGradientLayerWithMultipleColorsViewController.h"
+#import "StretchImageInLayerViewController.h"
+
 #import "HitTestInViewViewController.h"
 #import "AddShadowBorderToImageViewController.h"
 #import "AddBorderToImageViewController.h"
@@ -70,6 +72,7 @@
           @{ kTitle: @"Add shadow border to image", kClass: [AddShadowBorderToImageViewController class] },
           @{ kTitle: @"Add border to image", kClass: [AddBorderToImageViewController class] },
           @{ kTitle: @"Two adjacent shadow border", kClass: [TwoAdjacentShadowBorderViewController class] },
+          @{ kTitle: @"Stretch image by CALayer", kClass: [StretchImageInLayerViewController class] },
     ];
     
     _sectionTitles = @[
