@@ -88,11 +88,16 @@
           // TODO
     ];
     
+    NSArray<NSDictionary *> *section6 = @[
+          // TODO
+    ];
+    
     _sectionTitles = @[
         @"System Default TableViews",
         @"System Compatible TableViews (both iOS 10- and iOS 11+)",
         @"System Editable TableViews",
         @"UITableView customizations",
+        @"UITableView issues",
         @"WCTableView",
     ];
     
@@ -102,6 +107,7 @@
          section3,
          section4,
          section5,
+         section6,
     ];
 }
 
