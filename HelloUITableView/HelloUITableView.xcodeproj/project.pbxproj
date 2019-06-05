@@ -29,6 +29,7 @@
 		4F60E71B22A7E64400C27087 /* WCTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E71422A7E64300C27087 /* WCTableView.m */; };
 		4F60E71C22A7E64400C27087 /* WCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E71522A7E64300C27087 /* WCTableViewCell.m */; };
 		4F60E71D22A7E64400C27087 /* UITableViewCell+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E71622A7E64300C27087 /* UITableViewCell+Addition.m */; };
+		4F60E72022A7E72200C27087 /* ShowEmptyTipViewInUITableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E71F22A7E72200C27087 /* ShowEmptyTipViewInUITableViewViewController.m */; };
 		4F9489CA20104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9489C920104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.m */; };
 		4F9489DB2010C66C0030BC4A /* PlainTableViewWithFullSeparatorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9489DA2010C66C0030BC4A /* PlainTableViewWithFullSeparatorsViewController.m */; };
 		4F948A1B2010DC6C0030BC4A /* TableViewHeaderWithExtendedViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F948A1A2010DC6C0030BC4A /* TableViewHeaderWithExtendedViewViewController.m */; };
@@ -88,6 +89,8 @@
 		4F60E71622A7E64300C27087 /* UITableViewCell+Addition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+Addition.m"; sourceTree = "<group>"; };
 		4F60E71722A7E64300C27087 /* UITableView+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Addition.h"; sourceTree = "<group>"; };
 		4F60E71822A7E64300C27087 /* WCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTableViewController.h; sourceTree = "<group>"; };
+		4F60E71E22A7E72100C27087 /* ShowEmptyTipViewInUITableViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowEmptyTipViewInUITableViewViewController.h; sourceTree = "<group>"; };
+		4F60E71F22A7E72200C27087 /* ShowEmptyTipViewInUITableViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowEmptyTipViewInUITableViewViewController.m; sourceTree = "<group>"; };
 		4F9489C820104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlainTableViewRemoveRedundantSeparatorsViewController.h; sourceTree = "<group>"; };
 		4F9489C920104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlainTableViewRemoveRedundantSeparatorsViewController.m; sourceTree = "<group>"; };
 		4F9489D92010C66C0030BC4A /* PlainTableViewWithFullSeparatorsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlainTableViewWithFullSeparatorsViewController.h; sourceTree = "<group>"; };
@@ -188,6 +191,8 @@
 				4FA85D3A21818EDE007AC0E8 /* LoadMoreViewController.m */,
 				2BA442CA2261DFD60016C876 /* ShowContextMenuInCellViewController.h */,
 				2BA442CB2261DFD60016C876 /* ShowContextMenuInCellViewController.m */,
+				4F60E71E22A7E72100C27087 /* ShowEmptyTipViewInUITableViewViewController.h */,
+				4F60E71F22A7E72200C27087 /* ShowEmptyTipViewInUITableViewViewController.m */,
 			);
 			path = section4;
 			sourceTree = "<group>";
@@ -393,6 +398,7 @@
 				4F60E71B22A7E64400C27087 /* WCTableView.m in Sources */,
 				2B63BF39200FA22600A5D8D2 /* PlainTableViewViewController.m in Sources */,
 				2B63BF38200FA22600A5D8D2 /* GroupedTableViewViewController.m in Sources */,
+				4F60E72022A7E72200C27087 /* ShowEmptyTipViewInUITableViewViewController.m in Sources */,
 				4FAAA5A11FA4804600A80328 /* main.m in Sources */,
 				2B63BF37200FA22600A5D8D2 /* FadeInCellRowByRowViewController.m in Sources */,
 				4F9489CA20104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.m in Sources */,

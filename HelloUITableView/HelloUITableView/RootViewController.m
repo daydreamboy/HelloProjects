@@ -12,6 +12,7 @@
 #import "ScrollTopBottomCellsToFadeInViewController.h"
 #import "PlainTableViewViewController.h"
 #import "GroupedTableViewViewController.h"
+
 #import "CompatiblePlainTableViewViewController.h"
 #import "CompatibleGroupedTableViewViewController.h"
 
@@ -24,6 +25,7 @@
 #import "HorizontalTableViewViewController.h"
 #import "LoadMoreViewController.h"
 #import "ShowContextMenuInCellViewController.h"
+#import "ShowEmptyTipViewInUITableViewViewController.h"
 
 #import "MoveMeViewController.h"
 #import "DeleteMeViewController.h"
@@ -82,6 +84,7 @@
           @{ kTitle: @"Horizontal table view", kClass: [HorizontalTableViewViewController class] },
           @{ kTitle: @"Table view load more", kClass: [LoadMoreViewController class] },
           @{ kTitle: @"Show context menu in cell", kClass: [ShowContextMenuInCellViewController class] },
+          @{ kTitle: @"Show empty tip in table view", kClass: [ShowEmptyTipViewInUITableViewViewController class] },
     ];
     
     NSArray<NSDictionary *> *section5 = @[
