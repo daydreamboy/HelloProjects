@@ -82,4 +82,32 @@ typedef struct StructTypeA {
     printf("----------------------------\n");
 }
 
+- (void)test_goto {
+    int d = 1;
+    
+    do {
+        int a = 1;
+        int b = 3;
+        if (a == 1) {
+            if (b != 2) {
+                goto defaultCase;
+            }
+            break; // Note: if b == 2, skip the default case
+        }
+        else if (a == 2) {
+            if (b != 3) {
+                goto defaultCase;
+            }
+            break; // Note: if b == 3, skip the default case
+        }
+        defaultCase: {
+            int c = 4; // Note: declare variable must in the code block when using goto label
+            printf("%d\n", c);
+            d += c;
+        }
+    } while (0);
+    
+    XCTAssertTrue(d == 5);
+}
+
 @end
