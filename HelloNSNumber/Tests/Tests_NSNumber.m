@@ -7,6 +7,9 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <dispatch/dispatch.h>
+
+extern uint64_t dispatch_benchmark(size_t count, void (^block)(void));
 
 @interface Tests_NSNumber : XCTestCase
 
@@ -99,6 +102,28 @@
     number = @(YES);
     output = [number stringValue];
     XCTAssertEqualObjects(output, @"1");
+}
+
+- (void)test_NSInteger_vs_NSNumber {
+    __block NSNumber *numberValue;
+    __block NSInteger intValue;
+    
+    __block int i1 = 0;
+    uint64_t t1 = dispatch_benchmark(1000000, ^{
+        @autoreleasepool {
+            NSNumber *number = [NSNumber numberWithInt:i1];
+            numberValue = number;
+            i1++;
+        }
+    });
+    NSLog(@"Avg. Runtime: %llu ns", t1);
+    
+    __block int i2 = 0;
+    uint64_t t2 = dispatch_benchmark(1000000, ^{
+        intValue = i2;
+        i2++;
+    });
+    NSLog(@"Avg. Runtime: %llu ns", t2);
 }
 
 @end
