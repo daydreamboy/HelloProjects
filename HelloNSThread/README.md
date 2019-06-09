@@ -249,11 +249,88 @@ NSConditionLock比较适合生产者和消费者情况[^3]，示例代码见**Us
 
 
 
-
-
 ### （3）测试锁的性能[^5]
 
+参考文章[^5]提供的测试方式，针对两种场景（并发写、并发写和读），测试下面几种同步方式的性能。
 
+* NSLock
+* NSRecursiveLock
+* @synchronized
+* 串行dispatch_queue
+* 并行dispatch_queue（使用dispatch_barrier_async写）
+* C++封装pthread_mutex_t的scoped锁
+* pthread读写锁（pthread_rwlock_t）
+* 信号量（dispatch_semaphore_t）
+* 互斥量（pthread_mutex_t）
+
+
+
+并发写，测试数据（iPhone 6s）
+
+| 同步方式                                           | 平均耗时(ns) |
+| -------------------------------------------------- | ------------ |
+| NSLock                                             | **8024**     |
+| NSRecursiveLock                                    | **5571**     |
+| @synchronized                                      | **9907**     |
+| 串行dispatch_queue                                 | **8997**     |
+| 并行dispatch_queue（使用dispatch_barrier_async写） | **3106**     |
+| C++封装pthread_mutex_t的scoped锁                   | **11108**    |
+| pthread读写锁（pthread_rwlock_t）                  | **7420**     |
+| 信号量（dispatch_semaphore_t）                     | **6628**     |
+| 互斥量（pthread_mutex_t）                          | **10437**    |
+
+示例代码见Tests_synchronize_concurrent_writes.m
+
+
+
+并发写和读，测试数据（iPhone 6s）
+
+| 同步方式                                           | 平均耗时(ns) |
+| -------------------------------------------------- | ------------ |
+| NSLock                                             | **218967**   |
+| NSRecursiveLock                                    | **207352**   |
+| @synchronized                                      | **258328**   |
+| 串行dispatch_queue                                 | **163020**   |
+| 并行dispatch_queue（使用dispatch_barrier_async写） | **48184**    |
+| C++封装pthread_mutex_t的scoped锁                   | **116567**   |
+| pthread读写锁（pthread_rwlock_t）                  | **80099**    |
+| 信号量（dispatch_semaphore_t）                     | **173966**   |
+| 互斥量（pthread_mutex_t）                          | **102997**   |
+
+示例代码见Tests_synchronize_concurrent_reads_writes.m
+
+
+
+### （4）dispatch_benchmark[^6]
+
+GCD提供dispatch_benchmark函数，这个函数不是public API，属于私有API，但是可以用于测试。
+
+dispatch_benchmark函数的签名，如下
+
+`uint64_t dispatch_benchmark(size_t count, void (^block)(void));`
+
+> 第一个参数count，是执行block的总次数
+>
+> 第二个参数block，是放置测试代码
+>
+> 返回值，是执行block的平均时间
+>
+> 注意：block中一般可以使用@autoreleasepool块释放每次block产生的对象，减少footprint
+
+编程范式，如下
+
+```objective-c
+extern uint64_t dispatch_benchmark(size_t count, void (^block)(void));
+
+uint64_t t_0 = dispatch_benchmark(iterations, ^{
+    @autoreleasepool {
+        // Test code
+    }
+});
+NSLog(@"Avg. Runtime: %llu ns", t_0);
+```
+
+示例代码见Tests_benchmarking.m
 
 
 
@@ -264,6 +341,8 @@ NSConditionLock比较适合生产者和消费者情况[^3]，示例代码见**Us
 [^3]:<http://mirror.informatimago.com/next/developer.apple.com/documentation/Cocoa/Conceptual/Multithreading/Tasks/usinglocks.html>
 [^4]: <https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/Multithreading/ThreadSafety/ThreadSafety.html>
 [^5]: <http://www.lukeparham.com/blog/2018/6/3/comparing-synchronization-strategies>
+
+[^6]: https://nshipster.com/benchmarking/
 
 
 
