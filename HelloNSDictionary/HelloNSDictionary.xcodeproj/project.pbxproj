@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F4F863F22AAA1CC005F70DF /* Tests_CFDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F863E22AAA1CC005F70DF /* Tests_CFDictionary.m */; };
 		4F7D8E552107583E00145B00 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8E512107583D00145B00 /* Demo1ViewController.m */; };
 		4F7D8E562107583E00145B00 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8E542107583E00145B00 /* RootViewController.m */; };
 		4F7D8E5A21075AE000145B00 /* WCThreadSafeDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8E5921075AE000145B00 /* WCThreadSafeDictionary.m */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F4F863E22AAA1CC005F70DF /* Tests_CFDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_CFDictionary.m; sourceTree = "<group>"; };
 		4F7D8E512107583D00145B00 /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
 		4F7D8E522107583D00145B00 /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
 		4F7D8E532107583D00145B00 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				4F95A3D121395033003B0E69 /* Tests.m */,
+				4F4F863E22AAA1CC005F70DF /* Tests_CFDictionary.m */,
 				4F95A3D321395033003B0E69 /* Info.plist */,
 			);
 			path = Tests;
@@ -251,6 +254,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F4F863F22AAA1CC005F70DF /* Tests_CFDictionary.m in Sources */,
 				4F95A3D221395033003B0E69 /* Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
