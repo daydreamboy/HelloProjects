@@ -8,15 +8,31 @@
 
 #import <Foundation/Foundation.h>
 
-@interface WCThreadSafeDictionary : NSMutableDictionary
-- (instancetype)init;
-- (instancetype)initWithCapacity:(NSUInteger)capacity;
-- (NSDictionary *)initWithContentsOfFile:(NSString *)path;
-- (instancetype)initWithCoder:(NSCoder *)decoder;
-- (instancetype)initWithObjects:(const id [])objects forKeys:(const id<NSCopying> [])keys count:(NSUInteger)count;
+NS_ASSUME_NONNULL_BEGIN
+
+typedef NS_ENUM(NSUInteger, WCThreadSafeDictionaryKeyValueMode) {
+    WCThreadSafeDictionaryKeyValueModeObjectToObject,
+    WCThreadSafeDictionaryKeyValueModePrimitiveToObject,
+    WCThreadSafeDictionaryKeyValueModeObjectToPrimitive,
+    WCThreadSafeDictionaryKeyValueModePrimitiveToPrimitive,
+};
+
+@interface WCThreadSafeDictionary : NSObject
+
+- (instancetype)initWithKeyValueMode:(WCThreadSafeDictionaryKeyValueMode)mode;
++ (instancetype)dictionary;
+
+- (nullable const void *)objectForKey:(const void *)key;
+- (void)setObject:(nullable const void *)object forKey:(const void *)key;
+- (void)removeAllObjects;
+- (void)removeObjectForKey:(const void *)key;
 - (NSUInteger)count;
-- (id)objectForKey:(id)key;
-- (NSEnumerator *)keyEnumerator;
-- (void)setObject:(id)object forKey:(id<NSCopying>)key;
-- (void)removeObjectForKey:(id)key;
+
+#pragma mark - Subscripting
+
+- (nullable const void *)objectForKeyedSubscript:(const void *)key;
+- (void)setObject:(nullable const void *)object forKeyedSubscript:(const void *)key;
+
 @end
+
+NS_ASSUME_NONNULL_END
