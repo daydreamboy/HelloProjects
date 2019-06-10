@@ -11,6 +11,7 @@
 		4F7D8E552107583E00145B00 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8E512107583D00145B00 /* Demo1ViewController.m */; };
 		4F7D8E562107583E00145B00 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8E542107583E00145B00 /* RootViewController.m */; };
 		4F7D8E5A21075AE000145B00 /* WCThreadSafeDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8E5921075AE000145B00 /* WCThreadSafeDictionary.m */; };
+		4F82AB7B22AEBDF000298EEF /* Tests_WCThreadSafeDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F82AB7A22AEBDF000298EEF /* Tests_WCThreadSafeDictionary.m */; };
 		4F92607A20C531E200F37DF5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F92607920C531E200F37DF5 /* AppDelegate.m */; };
 		4F92608220C531E400F37DF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F92608120C531E400F37DF5 /* Assets.xcassets */; };
 		4F92608520C531E400F37DF5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F92608320C531E400F37DF5 /* LaunchScreen.storyboard */; };
@@ -37,6 +38,7 @@
 		4F7D8E542107583E00145B00 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F7D8E5821075AE000145B00 /* WCThreadSafeDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCThreadSafeDictionary.h; sourceTree = "<group>"; };
 		4F7D8E5921075AE000145B00 /* WCThreadSafeDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCThreadSafeDictionary.m; sourceTree = "<group>"; };
+		4F82AB7A22AEBDF000298EEF /* Tests_WCThreadSafeDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_WCThreadSafeDictionary.m; sourceTree = "<group>"; };
 		4F92607520C531E200F37DF5 /* HelloNSDictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSDictionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F92607820C531E200F37DF5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F92607920C531E200F37DF5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				4F95A3D121395033003B0E69 /* Tests.m */,
+				4F82AB7A22AEBDF000298EEF /* Tests_WCThreadSafeDictionary.m */,
 				4F4F863E22AAA1CC005F70DF /* Tests_CFDictionary.m */,
 				4F95A3D321395033003B0E69 /* Info.plist */,
 			);
@@ -255,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F4F863F22AAA1CC005F70DF /* Tests_CFDictionary.m in Sources */,
+				4F82AB7B22AEBDF000298EEF /* Tests_WCThreadSafeDictionary.m in Sources */,
 				4F95A3D221395033003B0E69 /* Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
