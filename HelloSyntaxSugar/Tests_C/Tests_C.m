@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "WCTuple.h"
 
 typedef struct StructTypeA {
     int field1;
@@ -109,5 +110,12 @@ typedef struct StructTypeA {
     
     XCTAssertTrue(d == 5);
 }
+
+- (void)test_tuple {
+}
+
+//- (id)methodWithReturnTuple {
+//    return Tuple(@1, @"string", 2);
+//}
 
 @end

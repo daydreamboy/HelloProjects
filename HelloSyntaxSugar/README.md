@@ -1,9 +1,9 @@
-## HelloSyntaxSugar
+# HelloSyntaxSugar
 
 [TOC]
 
 
-### 1、char字面常量，存放多个字符
+## 1、char字面常量，存放多个字符
 
 char字面常量，存放多个字符。例如'abc'、'abcd'、'abcde'等。
 
@@ -35,7 +35,7 @@ printf("'ABC'  = %02x%02x%02x%02x = %08x\n", ptr[0], ptr[1], ptr[2], ptr[3], val
 
 
 
-### 2、C++ 11支持Raw String
+## 2、C++ 11支持Raw String
 
 C++ 11支持Raw String，在.mm文件中可以使用R"\<LANG\>(raw string)\<LANG\>"语法，用于直接写非转义的C字符串。如下
 
@@ -70,7 +70,7 @@ static NSString *jsonString = @R"JSON(
 
 
 
-### 3、表示NaN
+## 3、表示NaN
 
 math.h头文件提供NaN（Not A Number），有时候需要这种特殊值来占位或者其他用途。
 
@@ -107,7 +107,7 @@ NSLog(@"%@", NSStringFromCGRect(rect)); // {{nan, nan}, {nan, nan}}
 
 
 
-### 4、延迟释放对象
+## 4、延迟释放对象
 
 ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/)提到一种简便的延迟释放对象的方法，举个例子，如下。详见`DelayReleaseObjectViewController`
 
@@ -127,7 +127,7 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 
 
 
-### 5、手动synthesize @property
+## 5、手动synthesize @property
 
 #### （1）同时实现setter和getter方法，需要手动synthesize @property
 
@@ -188,7 +188,7 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 
 
 
-### 6、\_\_attribute\_\_ ((\_\_cleanup\_\_(\<callback\>)))的用法
+## 6、\_\_attribute\_\_ ((\_\_cleanup\_\_(\<callback\>)))的用法
 
 
 
@@ -196,7 +196,7 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 
 
 
-### 7、Objective-C常见关键词
+## 7、Objective-C常见关键词
 
 #### （1）@package
 
@@ -212,6 +212,43 @@ template在Objective-C++是关键词，不能作为参数使用，否则编译�
 ```
 
 
+
+## 8、分析selector
+
+在objc.h头文件中，SEL被定义为结构体指针。注释上说SEL是opaque类型，即对外不透明的。
+
+```objective-c
+/// An opaque type that represents a method selector.
+typedef struct objc_selector *SEL;
+```
+
+查看objc-sel.mm的[sel_getName函数源码](https://github.com/opensource-apple/objc4/blob/master/runtime/objc-sel.mm#L118)，可以看出SEL指向的实际是C字符串。
+
+```objective-c
+const char *sel_getName(SEL sel) 
+{
+    if (!sel) return "<null selector>";
+    return (const char *)(const void*)sel;
+}
+```
+
+如果强制将SEL类型转成char *，则Xcode会给出一个warning，如下
+
+```objective-c
+string = (char *)selector; // Cast of type 'SEL' to 'char *' is deprecated; use sel_getName instead
+XCTAssertTrue(strcmp("compare:", string) == 0);
+```
+
+
+
+解决方法1：参考warning提示，使用sel_getName函数获取C字符串，注意返回值类型是const char *
+
+解决方法2：参考源码的方式，两次类型转换，可以消除warning（Xcode 10.2），如下
+
+```objective-c
+string = (const char *)(const void*)selector; // Note: no warning here
+XCTAssertTrue(strcmp("compare:", string) == 0);
+```
 
 
 
