@@ -7,14 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "MPMSharedContext.h"
+#import "WCSharedContext.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WrongContextManager : NSObject
 
 + (instancetype)sharedInstance;
-- (nullable id<MPMSharedContext>)objectForKeyedSubscript:(NSString *)key;
+- (nullable id<WCSharedContext>)objectForKeyedSubscript:(NSString *)key;
 
 @end
 

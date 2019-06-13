@@ -1,17 +1,19 @@
 //
-//  MPMSharedContextManager.m
+//  WCSharedContextManager.m
 //  Tests
 //
 //  Created by wesley_chen on 2019/6/12.
 //  Copyright © 2019 wesley_chen. All rights reserved.
 //
 
-#import "MPMSharedContextManager.h"
+#import "WCSharedContextManager.h"
 
-#define OpaqueSharedContextClass    MPMOpaqueSharedContext
-#define OpaqueContextItemClass      MPMOpaqueContextItem
+#define OpaqueSharedContextClass    WCOpaqueSharedContext
+#define OpaqueContextItemClass      WCOpaqueContextItem
 
-@interface OpaqueContextItemClass : NSObject <MPMContextItem>
+#pragma mark -
+
+@interface OpaqueContextItemClass : NSObject <WCContextItem>
 @end
 
 @implementation OpaqueContextItemClass
@@ -32,7 +34,9 @@
 
 @end
 
-@interface OpaqueSharedContextClass : NSObject <MPMSharedContext>
+#pragma mark -
+
+@interface OpaqueSharedContextClass : NSObject <WCSharedContext>
 @property (nonatomic, copy) NSString *name;
 @end
 
@@ -54,7 +58,7 @@
     return self;
 }
 
-#pragma mark - List Semantic
+#pragma mark  List Semantic
 
 - (void)appendItemWithObject:(id)object {
     if (!object) {
@@ -66,8 +70,8 @@
     });
 }
 
-- (nullable id<MPMContextItem>)itemAtIndex:(NSUInteger)index {
-    __block id<MPMContextItem> item;
+- (nullable id<WCContextItem>)itemAtIndex:(NSUInteger)index {
+    __block id<WCContextItem> item;
     dispatch_sync(_list_queue, ^{
         if (index < [self->_list count]) {
             item = self->_list[index];
@@ -77,7 +81,7 @@
     return item;
 }
 
-- (NSArray<id<MPMContextItem>> *)allItems {
+- (NSArray<id<WCContextItem>> *)allItems {
     __block NSArray *list;
     
     dispatch_sync(_list_queue, ^{
@@ -87,7 +91,13 @@
     return list;
 }
 
-#pragma mark - Map Semantic
+- (void)removeAllItems {
+    dispatch_barrier_async(_list_queue, ^{
+        [self->_list removeAllObjects];
+    });
+}
+
+#pragma mark  Map Semantic
 
 - (void)setItemWithObject:(id)object forKey:(NSString *)key {
     if (!object || ![key isKindOfClass:[NSString class]]) {
@@ -99,12 +109,12 @@
     });
 }
 
-- (nullable id<MPMContextItem>)itemForKey:(NSString *)key {
+- (nullable id<WCContextItem>)itemForKey:(NSString *)key {
     if (![key isKindOfClass:[NSString class]]) {
         return nil;
     }
     
-    __block id<MPMContextItem> item;
+    __block id<WCContextItem> item;
     dispatch_sync(_map_queue, ^{
         item = self->_map[key];
     });
@@ -114,16 +124,18 @@
 
 @end
 
-@implementation MPMSharedContextManager {
+#pragma mark -
+
+@implementation WCSharedContextManager {
     NSMutableDictionary *_storage;
     dispatch_queue_t _internal_queue;
 }
 
 + (instancetype)sharedInstance {
     static dispatch_once_t onceToken;
-    static MPMSharedContextManager *sInstance;
+    static WCSharedContextManager *sInstance;
     dispatch_once(&onceToken, ^{
-        sInstance = [[MPMSharedContextManager alloc] init];
+        sInstance = [[WCSharedContextManager alloc] init];
     });
     
     return sInstance;
@@ -138,12 +150,12 @@
     return self;
 }
 
-- (nullable id<MPMSharedContext>)objectForKeyedSubscript:(NSString *)key {
+- (nullable id<WCSharedContext>)objectForKeyedSubscript:(NSString *)key {
     if (![key isKindOfClass:[NSString class]]) {
         return nil;
     }
     
-    __block id<MPMSharedContext> context;
+    __block id<WCSharedContext> context;
     dispatch_barrier_sync(_internal_queue, ^{
         context = self->_storage[key];
         if (!context) {

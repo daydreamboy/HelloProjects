@@ -10,12 +10,12 @@
 
 #define OpaqueSharedContextClass WrongOpaqueSharedContext
 
-@interface OpaqueSharedContextClass : NSObject <MPMSharedContext>
+@interface OpaqueSharedContextClass : NSObject <WCSharedContext>
 @property (nonatomic, copy) NSString *name;
 @end
 
 @implementation OpaqueSharedContextClass
-// Note: not implements MPMSharedContext
+// Note: not implements WCSharedContext
 @end
 
 @implementation WrongContextManager {
@@ -42,12 +42,12 @@
     return self;
 }
 
-- (nullable id<MPMSharedContext>)objectForKeyedSubscript:(NSString *)key {
+- (nullable id<WCSharedContext>)objectForKeyedSubscript:(NSString *)key {
     if (![key isKindOfClass:[NSString class]]) {
         return nil;
     }
     
-    __block id<MPMSharedContext> context;
+    __block id<WCSharedContext> context;
     dispatch_sync(_internal_queue, ^{ // ERROR: dispatch_sync used here is not thread safe
         context = self->_storage[key];
         if (!context) {

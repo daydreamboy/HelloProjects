@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "MPMSharedContextManager.h"
+#import "WCSharedContextManager.h"
 #import "WrongContextManager.h"
 
 #define ITERATIONS 10000
@@ -42,7 +42,7 @@
     CFTimeInterval startTime = CACurrentMediaTime();
     for (int i = 0; i < ITERATIONS; i++) {
         dispatch_group_async(group, dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), ^{
-            id<MPMSharedContext> context = [MPMSharedContextManager sharedInstance][keys[i]];
+            id<WCSharedContext> context = [WCSharedContextManager sharedInstance][keys[i]];
             context.name = keys[i];
         });
     }
@@ -54,7 +54,7 @@
     
     // Make sure the values were added correctly
     for (NSString *key in keys) {
-        id<MPMSharedContext> context = [MPMSharedContextManager sharedInstance][key];
+        id<WCSharedContext> context = [WCSharedContextManager sharedInstance][key];
         XCTAssertEqualObjects(context.name, key);
     }
 }
@@ -76,7 +76,7 @@
     startTime = CACurrentMediaTime();
     for (int i = 0; i < ITERATIONS; i++) {
         dispatch_group_async(group, dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), ^{
-            id<MPMSharedContext> context = [MPMSharedContextManager sharedInstance][keys[i]];
+            id<WCSharedContext> context = [WCSharedContextManager sharedInstance][keys[i]];
             context.name = keys[i];
         });
     }
@@ -88,7 +88,7 @@
     
     // Make sure the values were added correctly
     for (NSString *key in keys) {
-        id<MPMSharedContext> context = [MPMSharedContextManager sharedInstance][key];
+        id<WCSharedContext> context = [WCSharedContextManager sharedInstance][key];
         XCTAssertEqualObjects(context.name, key);
     }
     
@@ -102,7 +102,7 @@
             
             // Note: let the front 5 contexts to set key/value and append value
             for (NSInteger j = 0; j < 5; j++) {
-                id<MPMSharedContext> context = [MPMSharedContextManager sharedInstance][keys[j]];
+                id<WCSharedContext> context = [WCSharedContextManager sharedInstance][keys[j]];
                 
                 [context setItemWithObject:values[i] forKey:keys[i]];
                 [context appendItemWithObject:values[i]]; // Note: append value concurrently, so index not match the value
@@ -121,9 +121,9 @@
         NSString *value = values[i];
         
         for (NSInteger j = 0; j < 5; j++) {
-            id<MPMSharedContext> context = [MPMSharedContextManager sharedInstance][keys[j]];
+            id<WCSharedContext> context = [WCSharedContextManager sharedInstance][keys[j]];
             
-            id<MPMContextItem> item = [context itemForKey:key];
+            id<WCContextItem> item = [context itemForKey:key];
             
             NSString *valueInMap = item.object;
             XCTAssertEqualObjects(valueInMap, value);
@@ -136,9 +136,9 @@
     
     for (NSInteger j = 0; j < 5; j++) {
         NSString *key = [NSString stringWithFormat:@"key%d", (int)j];
-        id<MPMSharedContext> context = [MPMSharedContextManager sharedInstance][key];
+        id<WCSharedContext> context = [WCSharedContextManager sharedInstance][key];
         
-        id<MPMContextItem> item = [context itemForKey:key];
+        id<WCContextItem> item = [context itemForKey:key];
 
         XCTAssertTrue(item.timestamp > lastTimestamps[j]);
         lastTimestamps[j] = item.timestamp;
@@ -162,7 +162,7 @@
     CFTimeInterval startTime = CACurrentMediaTime();
     for (int i = 0; i < ITERATIONS; i++) {
         dispatch_group_async(group, dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), ^{
-            id<MPMSharedContext> context = [WrongContextManager sharedInstance][keys[i]];
+            id<WCSharedContext> context = [WrongContextManager sharedInstance][keys[i]];
             context.name = keys[i];
         });
     }
@@ -174,7 +174,7 @@
     
     // Make sure the values were added correctly
     for (NSString *key in keys) {
-        id<MPMSharedContext> context = [WrongContextManager sharedInstance][key];
+        id<WCSharedContext> context = [WrongContextManager sharedInstance][key];
         XCTAssertEqualObjects(context.name, key);
     }
 }

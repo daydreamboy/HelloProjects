@@ -23,7 +23,7 @@
 		4F4FCEFA2293D4000063E9B7 /* CacheWithNSRecursiveLock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FCEF92293D4000063E9B7 /* CacheWithNSRecursiveLock.m */; };
 		4F4FCEFD2293D4DC0063E9B7 /* CacheWithPthread_rwlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FCEFC2293D4DC0063E9B7 /* CacheWithPthread_rwlock.m */; };
 		4F4FCEFF2293D6F10063E9B7 /* Tests_synchronize_concurrent_reads_writes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FCEFE2293D6F10063E9B7 /* Tests_synchronize_concurrent_reads_writes.m */; };
-		4F5005C822B0E33D0026CB16 /* MPMSharedContextManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5005C722B0E33D0026CB16 /* MPMSharedContextManager.m */; };
+		4F5005C822B0E33D0026CB16 /* WCSharedContextManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5005C722B0E33D0026CB16 /* WCSharedContextManager.m */; };
 		4F5005CA22B0E36E0026CB16 /* Tests_SharedContextManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5005C922B0E36E0026CB16 /* Tests_SharedContextManager.m */; };
 		4F5005CD22B0E3E70026CB16 /* WrongContextManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5005CC22B0E3E70026CB16 /* WrongContextManager.m */; };
 		4F50C72D2243BB73002B00C9 /* MultiThreadExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50C72C2243BB73002B00C9 /* MultiThreadExampleViewController.m */; };
@@ -89,12 +89,12 @@
 		4F4FCEFC2293D4DC0063E9B7 /* CacheWithPthread_rwlock.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheWithPthread_rwlock.m; sourceTree = "<group>"; };
 		4F4FCEFE2293D6F10063E9B7 /* Tests_synchronize_concurrent_reads_writes.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_synchronize_concurrent_reads_writes.m; sourceTree = "<group>"; };
 		4F4FCF002293D7DA0063E9B7 /* Cache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cache.h; sourceTree = "<group>"; };
-		4F5005C622B0E33D0026CB16 /* MPMSharedContextManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPMSharedContextManager.h; sourceTree = "<group>"; };
-		4F5005C722B0E33D0026CB16 /* MPMSharedContextManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPMSharedContextManager.m; sourceTree = "<group>"; };
+		4F5005C622B0E33D0026CB16 /* WCSharedContextManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCSharedContextManager.h; sourceTree = "<group>"; };
+		4F5005C722B0E33D0026CB16 /* WCSharedContextManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCSharedContextManager.m; sourceTree = "<group>"; };
 		4F5005C922B0E36E0026CB16 /* Tests_SharedContextManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_SharedContextManager.m; sourceTree = "<group>"; };
 		4F5005CB22B0E3E70026CB16 /* WrongContextManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WrongContextManager.h; sourceTree = "<group>"; };
 		4F5005CC22B0E3E70026CB16 /* WrongContextManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WrongContextManager.m; sourceTree = "<group>"; };
-		4F5005CE22B0E5D80026CB16 /* MPMSharedContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPMSharedContext.h; sourceTree = "<group>"; };
+		4F5005CE22B0E5D80026CB16 /* WCSharedContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCSharedContext.h; sourceTree = "<group>"; };
 		4F50C72B2243BB73002B00C9 /* MultiThreadExampleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MultiThreadExampleViewController.h; sourceTree = "<group>"; };
 		4F50C72C2243BB73002B00C9 /* MultiThreadExampleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultiThreadExampleViewController.m; sourceTree = "<group>"; };
 		4F50C72E2243CC25002B00C9 /* UseNSLockWithTryLockViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseNSLockWithTryLockViewController.h; sourceTree = "<group>"; };
@@ -155,6 +155,7 @@
 		2B37F3051F83C4A500809F00 = {
 			isa = PBXGroup;
 			children = (
+				4F5005C522B0E3180026CB16 /* SharedContext */,
 				4F9578E21FDF8A2D009693CF /* WCThreadTool */,
 				2B37F3101F83C4A500809F00 /* HelloNSThread */,
 				4FA9918821AECD1200E928D8 /* Tests */,
@@ -240,16 +241,14 @@
 			path = thread;
 			sourceTree = "<group>";
 		};
-		4F5005C522B0E3180026CB16 /* ContextManager */ = {
+		4F5005C522B0E3180026CB16 /* SharedContext */ = {
 			isa = PBXGroup;
 			children = (
-				4F5005C622B0E33D0026CB16 /* MPMSharedContextManager.h */,
-				4F5005C722B0E33D0026CB16 /* MPMSharedContextManager.m */,
-				4F5005CE22B0E5D80026CB16 /* MPMSharedContext.h */,
-				4F5005CB22B0E3E70026CB16 /* WrongContextManager.h */,
-				4F5005CC22B0E3E70026CB16 /* WrongContextManager.m */,
+				4F5005C622B0E33D0026CB16 /* WCSharedContextManager.h */,
+				4F5005C722B0E33D0026CB16 /* WCSharedContextManager.m */,
+				4F5005CE22B0E5D80026CB16 /* WCSharedContext.h */,
 			);
-			path = ContextManager;
+			path = SharedContext;
 			sourceTree = "<group>";
 		};
 		4F5B350E224482A2006A6501 /* Resources */ = {
@@ -308,7 +307,8 @@
 		4FA9918821AECD1200E928D8 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				4F5005C522B0E3180026CB16 /* ContextManager */,
+				4F5005CB22B0E3E70026CB16 /* WrongContextManager.h */,
+				4F5005CC22B0E3E70026CB16 /* WrongContextManager.m */,
 				4F96ECBC229301CE00442F65 /* Caches */,
 				4FA9918921AECD1200E928D8 /* Tests.m */,
 				4F96ECBA2293011700442F65 /* Tests_synchronize_concurrent_writes.m */,
@@ -452,7 +452,7 @@
 				4F96ECBB2293011700442F65 /* Tests_synchronize_concurrent_writes.m in Sources */,
 				4F5005CA22B0E36E0026CB16 /* Tests_SharedContextManager.m in Sources */,
 				4F4F05532294FB34002BD87A /* CacheWithPthread_mutex.m in Sources */,
-				4F5005C822B0E33D0026CB16 /* MPMSharedContextManager.m in Sources */,
+				4F5005C822B0E33D0026CB16 /* WCSharedContextManager.m in Sources */,
 				4F4FCEFD2293D4DC0063E9B7 /* CacheWithPthread_rwlock.m in Sources */,
 				4FA9918A21AECD1200E928D8 /* Tests.m in Sources */,
 				4F96ECC5229302DE00442F65 /* CacheWithCPPScopedMutex.mm in Sources */,
