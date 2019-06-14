@@ -250,6 +250,70 @@ string = (const char *)(const void*)selector; // Note: no warning here
 XCTAssertTrue(strcmp("compare:", string) == 0);
 ```
 
+示例代码，见Tests_selector.m
+
+
+
+## 9、分析IMP
+
+​      IMP在objc.h中定义为一个函数指针，值得注意的是，它有两种函数签名。一般OBJC_OLD_DISPATCH_PROTOTYPES宏不会生效，它的签名是`void (*IMP)(void /* id, SEL, ... */ )`
+
+```objective-c
+/// A pointer to the function of a method implementation. 
+#if !OBJC_OLD_DISPATCH_PROTOTYPES
+typedef void (*IMP)(void /* id, SEL, ... */ ); 
+#else
+typedef id _Nullable (*IMP)(id _Nonnull, SEL _Nonnull, ...); 
+#endif
+```
+
+
+
+注释上说IMP对应方法的实现，
+
+// TODO
+
+示例代码，见Tests_IMP.m
+
+
+
+## 10、分析weak变量
+
+
+
+### （1）不能在dealloc中使用weak变量
+
+```objective-c
+@implementation Tests_weak
+
+- (void)dealloc {
+    __weak typeof(self) weak_self = self; // ERROR: crash here
+    NSLog(@"%@", weak_self);
+}
+
+#pragma mark -
+
+- (void)test_weak_cause_crash_in_dealloc {
+    {
+        Tests_weak *object = [[Tests_weak alloc] init];
+        NSLog(@"%@", object);
+    }
+    // Note: release the object after the end of code block
+}
+
+@end
+```
+
+控制台出现下面提示，如下
+
+```
+objc[26150]: Cannot form weak reference to instance (0x600000ebc4c0) of class Tests_weak. It is possible that this object was over-released, or is in the process of deallocation.
+```
+
+提示信息"Cannot form weak reference to instance..."在**weak_register_no_lock**方法中，可以查看weak_register_no_lock的[源码](<https://github.com/opensource-apple/objc4/blob/master/runtime/objc-weak.mm#L377>)。
+
+具体分析，见HelloObjCRuntime的README.md
+
 
 
 

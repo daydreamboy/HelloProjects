@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		4F03AEB9208E1DD500186DE1 /* GenericSelectionExpressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F03AEB8208E1DD500186DE1 /* GenericSelectionExpressionViewController.m */; };
+		4F49A52622B27D010030F49D /* Tests_IMP.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F49A52522B27D010030F49D /* Tests_IMP.m */; };
+		4F4F2B2A22B37B67009C7864 /* Tests_weak.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F2B2922B37B67009C7864 /* Tests_weak.m */; };
 		4F53314520872BDD0016F650 /* NaNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53314420872BDD0016F650 /* NaNViewController.m */; };
 		4F55810F22AA5C9800961935 /* WCTupleClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F55810E22AA5C9800961935 /* WCTupleClass.m */; };
 		4F5C35E4223B5C5400C08119 /* Tests_C.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5C35E3223B5C5400C08119 /* Tests_C.m */; };
@@ -51,6 +53,8 @@
 /* Begin PBXFileReference section */
 		4F03AEB7208E1DD500186DE1 /* GenericSelectionExpressionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenericSelectionExpressionViewController.h; sourceTree = "<group>"; };
 		4F03AEB8208E1DD500186DE1 /* GenericSelectionExpressionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenericSelectionExpressionViewController.m; sourceTree = "<group>"; };
+		4F49A52522B27D010030F49D /* Tests_IMP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_IMP.m; sourceTree = "<group>"; };
+		4F4F2B2922B37B67009C7864 /* Tests_weak.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_weak.m; sourceTree = "<group>"; };
 		4F53314320872BDD0016F650 /* NaNViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NaNViewController.h; sourceTree = "<group>"; };
 		4F53314420872BDD0016F650 /* NaNViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NaNViewController.m; sourceTree = "<group>"; };
 		4F55810D22AA5C9800961935 /* WCTupleClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCTupleClass.h; sourceTree = "<group>"; };
@@ -138,6 +142,8 @@
 			children = (
 				4F75003D22B2690F00083EC9 /* Tests_OC.m */,
 				4F75004522B26CA600083EC9 /* Tests_selector.m */,
+				4F49A52522B27D010030F49D /* Tests_IMP.m */,
+				4F4F2B2922B37B67009C7864 /* Tests_weak.m */,
 				4F75003F22B2690F00083EC9 /* Info.plist */,
 			);
 			path = Tests_OC;
@@ -359,6 +365,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F75004622B26CA600083EC9 /* Tests_selector.m in Sources */,
+				4F4F2B2A22B37B67009C7864 /* Tests_weak.m in Sources */,
+				4F49A52622B27D010030F49D /* Tests_IMP.m in Sources */,
 				4F75003E22B2690F00083EC9 /* Tests_OC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
