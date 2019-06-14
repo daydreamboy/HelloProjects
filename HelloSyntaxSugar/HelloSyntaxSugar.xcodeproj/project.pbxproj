@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		4F03AEB9208E1DD500186DE1 /* GenericSelectionExpressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F03AEB8208E1DD500186DE1 /* GenericSelectionExpressionViewController.m */; };
-		4F49A52622B27D010030F49D /* Tests_IMP.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F49A52522B27D010030F49D /* Tests_IMP.m */; };
-		4F4F2B2A22B37B67009C7864 /* Tests_weak.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F2B2922B37B67009C7864 /* Tests_weak.m */; };
 		4F53314520872BDD0016F650 /* NaNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53314420872BDD0016F650 /* NaNViewController.m */; };
 		4F55810F22AA5C9800961935 /* WCTupleClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F55810E22AA5C9800961935 /* WCTupleClass.m */; };
 		4F5C35E4223B5C5400C08119 /* Tests_C.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5C35E3223B5C5400C08119 /* Tests_C.m */; };
@@ -17,8 +15,6 @@
 		4F641A0E209058CE009B41E5 /* NamespacedDefines.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F641A0D209058CE009B41E5 /* NamespacedDefines.m */; };
 		4F714A9521952DC6006CB8C4 /* SynthesizePropertyBothSetterGetterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F714A9421952DC6006CB8C4 /* SynthesizePropertyBothSetterGetterViewController.m */; };
 		4F714A98219535F5006CB8C4 /* GCCAttributeCleanupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F714A97219535F5006CB8C4 /* GCCAttributeCleanupViewController.m */; };
-		4F75003E22B2690F00083EC9 /* Tests_OC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75003D22B2690F00083EC9 /* Tests_OC.m */; };
-		4F75004622B26CA600083EC9 /* Tests_selector.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75004522B26CA600083EC9 /* Tests_selector.m */; };
 		4F793B242174CF57000067AF /* DelayReleaseObjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F793B232174CF57000067AF /* DelayReleaseObjectViewController.m */; };
 		4FBB4E0921A2E6C4000E9F61 /* SynthesizePropertyDerivedFromBaseClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBB4E0821A2E6C4000E9F61 /* SynthesizePropertyDerivedFromBaseClassViewController.m */; };
 		4FBB4E0D21A2E707000E9F61 /* MyEmoticonGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBB4E0C21A2E707000E9F61 /* MyEmoticonGroupModel.m */; };
@@ -41,20 +37,11 @@
 			remoteGlobalIDString = 4FC2CF782031B10300A416DC;
 			remoteInfo = HelloSyntaxSugar;
 		};
-		4F75004022B2690F00083EC9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 4FC2CF712031B10300A416DC /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 4FC2CF782031B10300A416DC;
-			remoteInfo = HelloSyntaxSugar;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4F03AEB7208E1DD500186DE1 /* GenericSelectionExpressionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenericSelectionExpressionViewController.h; sourceTree = "<group>"; };
 		4F03AEB8208E1DD500186DE1 /* GenericSelectionExpressionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenericSelectionExpressionViewController.m; sourceTree = "<group>"; };
-		4F49A52522B27D010030F49D /* Tests_IMP.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_IMP.m; sourceTree = "<group>"; };
-		4F4F2B2922B37B67009C7864 /* Tests_weak.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_weak.m; sourceTree = "<group>"; };
 		4F53314320872BDD0016F650 /* NaNViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NaNViewController.h; sourceTree = "<group>"; };
 		4F53314420872BDD0016F650 /* NaNViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NaNViewController.m; sourceTree = "<group>"; };
 		4F55810D22AA5C9800961935 /* WCTupleClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCTupleClass.h; sourceTree = "<group>"; };
@@ -71,10 +58,6 @@
 		4F714A9421952DC6006CB8C4 /* SynthesizePropertyBothSetterGetterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SynthesizePropertyBothSetterGetterViewController.m; sourceTree = "<group>"; };
 		4F714A96219535F5006CB8C4 /* GCCAttributeCleanupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GCCAttributeCleanupViewController.h; sourceTree = "<group>"; };
 		4F714A97219535F5006CB8C4 /* GCCAttributeCleanupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GCCAttributeCleanupViewController.m; sourceTree = "<group>"; };
-		4F75003B22B2690E00083EC9 /* Tests_OC.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests_OC.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F75003D22B2690F00083EC9 /* Tests_OC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_OC.m; sourceTree = "<group>"; };
-		4F75003F22B2690F00083EC9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4F75004522B26CA600083EC9 /* Tests_selector.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_selector.m; sourceTree = "<group>"; };
 		4F793B222174CF57000067AF /* DelayReleaseObjectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelayReleaseObjectViewController.h; sourceTree = "<group>"; };
 		4F793B232174CF57000067AF /* DelayReleaseObjectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelayReleaseObjectViewController.m; sourceTree = "<group>"; };
 		4FBB4E0721A2E6C4000E9F61 /* SynthesizePropertyDerivedFromBaseClassViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SynthesizePropertyDerivedFromBaseClassViewController.h; sourceTree = "<group>"; };
@@ -108,13 +91,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4F75003822B2690E00083EC9 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4FC2CF762031B10300A416DC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -137,18 +113,6 @@
 			path = Tests_C;
 			sourceTree = "<group>";
 		};
-		4F75003C22B2690F00083EC9 /* Tests_OC */ = {
-			isa = PBXGroup;
-			children = (
-				4F75003D22B2690F00083EC9 /* Tests_OC.m */,
-				4F75004522B26CA600083EC9 /* Tests_selector.m */,
-				4F49A52522B27D010030F49D /* Tests_IMP.m */,
-				4F4F2B2922B37B67009C7864 /* Tests_weak.m */,
-				4F75003F22B2690F00083EC9 /* Info.plist */,
-			);
-			path = Tests_OC;
-			sourceTree = "<group>";
-		};
 		4FBB4E0A21A2E6CD000E9F61 /* DummyClasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,7 +131,6 @@
 			children = (
 				4FC2CF7B2031B10300A416DC /* HelloSyntaxSugar */,
 				4F5C35E2223B5C5400C08119 /* Tests_C */,
-				4F75003C22B2690F00083EC9 /* Tests_OC */,
 				4FC2CF7A2031B10300A416DC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -177,7 +140,6 @@
 			children = (
 				4FC2CF792031B10300A416DC /* HelloSyntaxSugar.app */,
 				4F5C35E1223B5C5400C08119 /* Tests_C.xctest */,
-				4F75003B22B2690E00083EC9 /* Tests_OC.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -247,24 +209,6 @@
 			productReference = 4F5C35E1223B5C5400C08119 /* Tests_C.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		4F75003A22B2690E00083EC9 /* Tests_OC */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4F75004422B2690F00083EC9 /* Build configuration list for PBXNativeTarget "Tests_OC" */;
-			buildPhases = (
-				4F75003722B2690E00083EC9 /* Sources */,
-				4F75003822B2690E00083EC9 /* Frameworks */,
-				4F75003922B2690E00083EC9 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				4F75004122B2690F00083EC9 /* PBXTargetDependency */,
-			);
-			name = Tests_OC;
-			productName = Tests_OC;
-			productReference = 4F75003B22B2690E00083EC9 /* Tests_OC.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		4FC2CF782031B10300A416DC /* HelloSyntaxSugar */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4FC2CF8F2031B10400A416DC /* Build configuration list for PBXNativeTarget "HelloSyntaxSugar" */;
@@ -295,10 +239,6 @@
 						CreatedOnToolsVersion = 9.4.1;
 						TestTargetID = 4FC2CF782031B10300A416DC;
 					};
-					4F75003A22B2690E00083EC9 = {
-						CreatedOnToolsVersion = 10.2;
-						TestTargetID = 4FC2CF782031B10300A416DC;
-					};
 					4FC2CF782031B10300A416DC = {
 						CreatedOnToolsVersion = 9.3;
 					};
@@ -319,20 +259,12 @@
 			targets = (
 				4FC2CF782031B10300A416DC /* HelloSyntaxSugar */,
 				4F5C35E0223B5C5400C08119 /* Tests_C */,
-				4F75003A22B2690E00083EC9 /* Tests_OC */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4F5C35DF223B5C5400C08119 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4F75003922B2690E00083EC9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -357,17 +289,6 @@
 			files = (
 				4F55810F22AA5C9800961935 /* WCTupleClass.m in Sources */,
 				4F5C35E4223B5C5400C08119 /* Tests_C.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4F75003722B2690E00083EC9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4F75004622B26CA600083EC9 /* Tests_selector.m in Sources */,
-				4F4F2B2A22B37B67009C7864 /* Tests_weak.m in Sources */,
-				4F49A52622B27D010030F49D /* Tests_IMP.m in Sources */,
-				4F75003E22B2690F00083EC9 /* Tests_OC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,11 +322,6 @@
 			isa = PBXTargetDependency;
 			target = 4FC2CF782031B10300A416DC /* HelloSyntaxSugar */;
 			targetProxy = 4F5C35E6223B5C5400C08119 /* PBXContainerItemProxy */;
-		};
-		4F75004122B2690F00083EC9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 4FC2CF782031B10300A416DC /* HelloSyntaxSugar */;
-			targetProxy = 4F75004022B2690F00083EC9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -453,47 +369,6 @@
 					"@loader_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.wc.Tests-C";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloSyntaxSugar.app/HelloSyntaxSugar";
-			};
-			name = Release;
-		};
-		4F75004222B2690F00083EC9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Tests_OC/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.wc.Tests-OC";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloSyntaxSugar.app/HelloSyntaxSugar";
-			};
-			name = Debug;
-		};
-		4F75004322B2690F00083EC9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Tests_OC/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.wc.Tests-OC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloSyntaxSugar.app/HelloSyntaxSugar";
@@ -650,15 +525,6 @@
 			buildConfigurations = (
 				4F5C35E8223B5C5400C08119 /* Debug */,
 				4F5C35E9223B5C5400C08119 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4F75004422B2690F00083EC9 /* Build configuration list for PBXNativeTarget "Tests_OC" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4F75004222B2690F00083EC9 /* Debug */,
-				4F75004322B2690F00083EC9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
