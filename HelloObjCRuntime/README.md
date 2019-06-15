@@ -62,29 +62,25 @@ typedef id _Nullable (*IMP)(id _Nonnull, SEL _Nonnull, ...);
 举个例子，如下
 
 ```objective-c
-@implementation Test_IMP
-
-- (void)test:(NSInteger)arg {
-    printf("test called\n");
+- (NSInteger)anOCMethod:(NSInteger)arg {
+    printf("anOCMethod called\n");
+    return arg + 1;
 }
 
 - (void)test_check_IMP {
     IMP imp;
     
     // Case 1
-    imp = class_getMethodImplementation([Test_IMP class], @selector(test:));
+    imp = class_getMethodImplementation([Test_IMP class], @selector(anOCMethod:));
     imp();
     
     // Case 2
     typeof(self) object = [[[self class] alloc] init];
-    void (*func)(id, SEL, NSInteger) = (void (*)(id, SEL, NSInteger))imp;
-    func(object, @selector(test:), 5);
+    NSInteger (*func)(id, SEL, NSInteger) = (NSInteger (*)(id, SEL, NSInteger))imp;
+    NSInteger result = func(object, @selector(anOCMethod:), 5);
+    XCTAssertTrue(result == 6);
 }
-
-@end
 ```
-
-
 
 示例代码，见Test_IMP.m
 
