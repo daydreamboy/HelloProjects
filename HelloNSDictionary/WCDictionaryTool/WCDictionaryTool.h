@@ -90,10 +90,24 @@ typedef NS_ENUM(NSUInteger, WCKeysMappingMode) {
  */
 + (nullable NSDictionary *)setObjectWithDictionary:(NSDictionary *)dictionary object:(nullable id)object forKey:(NSString *)key allowMutable:(BOOL)allowMutable;
 
-#pragma mark - Conversion
+#pragma mark - Conversion (TODO)
 
 + (nullable NSDictionary<NSString *, id> *)transformDictionary:(NSDictionary<NSString *, id> *)dictionary usingKeysMapping:(NSDictionary<NSString *, NSString *> *)keysMapping mode:(WCKeysMappingMode)mode;
 
+#pragma mark - Two Dictionaries Operation
+
+#pragma mark > Merge
+
+/**
+ Merge two dictionaries
+
+ @param dictionary1 the dictionary 1, and allow nil
+ @param dictionary2 the dictionary 2, and allow nil
+ @param allowMutable YES to return a mutable dictionary, NO to return an immutable dictionary
+ @return the merged dictionary. Return nil if dictionary1 and dictionary2 are not NSDictionary object
+ @discussion This method simply merges two dictionaries, not merges recursively
+ */
++ (nullable NSDictionary *)mergedDictionaryWithDictionary1:(nullable NSDictionary *)dictionary1 dictionary2:(nullable NSDictionary *)dictionary2 allowMutable:(BOOL)allowMutable;
 
 @end
 
