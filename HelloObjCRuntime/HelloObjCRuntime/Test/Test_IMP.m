@@ -15,14 +15,6 @@
 
 @implementation Test_IMP
 
-- (void)setUp {
-    NSLog(@"\n");
-}
-
-- (void)tearDown {
-    NSLog(@"\n");
-}
-
 - (void)test:(NSInteger)arg {
     printf("test called\n");
 }

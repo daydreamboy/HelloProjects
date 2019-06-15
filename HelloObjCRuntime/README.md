@@ -1,9 +1,129 @@
 # Objective-C Runtime
 [TOC]
 
-## 1、Runtime介绍
+## 1、Runtime分析
+
+### （1）分析selector
+
+在objc.h头文件中，SEL被定义为结构体指针。注释上说SEL是opaque类型，即对外不透明的。
+
+```objective-c
+/// An opaque type that represents a method selector.
+typedef struct objc_selector *SEL;
+```
+
+查看objc-sel.mm的[sel_getName函数源码](https://github.com/opensource-apple/objc4/blob/master/runtime/objc-sel.mm#L118)，可以看出SEL指向的实际是C字符串。
+
+```objective-c
+const char *sel_getName(SEL sel) 
+{
+    if (!sel) return "<null selector>";
+    return (const char *)(const void*)sel;
+}
+```
+
+如果强制将SEL类型转成char *，则Xcode会给出一个warning，如下
+
+```objective-c
+string = (char *)selector; // Cast of type 'SEL' to 'char *' is deprecated; use sel_getName instead
+XCTAssertTrue(strcmp("compare:", string) == 0);
+```
 
 
+
+解决方法1：参考warning提示，使用sel_getName函数获取C字符串，注意返回值类型是const char *
+
+解决方法2：参考源码的方式，两次类型转换，可以消除warning（Xcode 10.2），如下
+
+```objective-c
+string = (const char *)(const void*)selector; // Note: no warning here
+XCTAssertTrue(strcmp("compare:", string) == 0);
+```
+
+示例代码，见Test_selector.m
+
+
+
+### （2）分析IMP
+
+​      IMP在objc.h中定义为一个函数指针，值得注意的是，它有两种函数签名。一般OBJC_OLD_DISPATCH_PROTOTYPES宏不会生效，它的签名是`void (*IMP)(void /* id, SEL, ... */ )`
+
+```objective-c
+/// A pointer to the function of a method implementation. 
+#if !OBJC_OLD_DISPATCH_PROTOTYPES
+typedef void (*IMP)(void /* id, SEL, ... */ ); 
+#else
+typedef id _Nullable (*IMP)(id _Nonnull, SEL _Nonnull, ...); 
+#endif
+```
+
+​        注释上说IMP对应方法的实现，实际上签名为`void (*)(void)`的函数指针可以转成任意签名的函数指针，然后调用这个函数指针，可以调用任意OC方法。
+
+举个例子，如下
+
+```objective-c
+@implementation Test_IMP
+
+- (void)test:(NSInteger)arg {
+    printf("test called\n");
+}
+
+- (void)test_check_IMP {
+    IMP imp;
+    
+    // Case 1
+    imp = class_getMethodImplementation([Test_IMP class], @selector(test:));
+    imp();
+    
+    // Case 2
+    typeof(self) object = [[[self class] alloc] init];
+    void (*func)(id, SEL, NSInteger) = (void (*)(id, SEL, NSInteger))imp;
+    func(object, @selector(test:), 5);
+}
+
+@end
+```
+
+
+
+示例代码，见Test_IMP.m
+
+
+
+### （3）分析weak变量
+
+不能在dealloc中使用weak变量
+
+```objective-c
+@implementation Test_weak
+
+- (void)dealloc {
+    __weak typeof(self) weak_self = self; // ERROR: crash here
+    NSLog(@"%@", weak_self);
+}
+
+#pragma mark -
+
+- (void)test_weak_cause_crash_in_dealloc {
+    {
+        Tests_weak *object = [[Tests_weak alloc] init];
+        NSLog(@"%@", object);
+    }
+    // Note: release the object after the end of code block
+}
+
+@end
+```
+
+控制台出现下面提示，如下
+
+```
+objc[26150]: Cannot form weak reference to instance (0x600000ebc4c0) of class Tests_weak. It is possible that this object was over-released, or is in the process of deallocation.
+```
+
+提示信息"Cannot form weak reference to instance..."在**weak_register_no_lock**方法中，可以查看weak_register_no_lock的[源码](<https://github.com/opensource-apple/objc4/blob/master/runtime/objc-weak.mm#L377>)。
+
+具体分析，见下面"dealloc中创建weak self变量导致Crash"和"获取weak变量返回nil"。
 
 
 
