@@ -140,7 +140,7 @@ Clang文档给出关于self的解释[^4]，如下
 
 ​        理解下文档上的意思，有下面几点
 
-* 在非init family方法中，self被认为是`objc_externally_retained`变量或者`__unsafe_unretained`变量，而且为了性能考虑，在非init family方法中，都不会retain和release self变量。所以self指向的对象，如果释放了，在非init family方法中，会产生EXC_BAD_ACCESS错误
+* 在非init family方法中，self被认为是`objc_externally_retained`变量或者`__unsafe_unretained`变量，而且为了性能考虑，在非init family方法中，都不会retain和release self变量。所以self指向的对象，如果释放了，在非init family方法中，访问self变量会产生EXC_BAD_ACCESS错误
 
   * Xcode（Xcode 10.2）的llvm并不支持objc_externally_retained变量修饰符，[这里]([http://clang.llvm.org/docs/AutomaticReferenceCounting.html#arc-misc-externally-retained](http://clang.llvm.org/docs/AutomaticReferenceCounting.html#arc-misc-externally-retained))给出测试的代码
 
@@ -150,13 +150,13 @@ Clang文档给出关于self的解释[^4]，如下
     > #endif
     > ```
 
-* 在init family方法中，self按照init family rules规则。文档这里介绍了init family rules，如下
+* 在init family方法中，self按照init family rules规则。文档这里[^5]介绍了init family rules，如下
 
   > Methods in the `init` family implicitly [consume](http://clang.llvm.org/docs/AutomaticReferenceCounting.html#arc-objects-operands-consumed) their `self` parameter and [return a retained object](http://clang.llvm.org/docs/AutomaticReferenceCounting.html#arc-object-operands-retained-return-values). Neither of these properties can be altered through attributes.
 
 意思是init family方法中，返回都是retained对象，即引用计数会加1。
 
-为了验证self的类型在不同方法的区分，使用CoreFoundation中的`CFGetRetainCount`函数检查retainCount
+​     为了验证self变量在不同方法中有不同的类型，使用CoreFoundation中的`CFGetRetainCount`函数检查retainCount
 
 > 在ARC下，Xcode编译器禁止使用NSObject的retainCount方法
 
@@ -179,11 +179,44 @@ Clang文档给出关于self的解释[^4]，如下
 }
 ```
 
-在initWithCaseName方法中self的引用计数加1，而setupWithSomething方法中self的引用计数不变。具体代码，见Test_retainCount.m。
+​       在initWithCaseName方法中self的引用计数加1，而setupWithSomething方法中self的引用计数不变。具体代码，见Test_retainCount.m。
 
 
 
+### （5）分析toll-free bridge转换
 
+​        对于基础对象类型，Objective-C的对象和CoreFoundation的对象是可以相互转换的。简单来说，CFTypeRef和id之间可以转换，CFStringRef和NSString之间可以转换，等等。
+
+以CFStringRef和NSString之间转换的为例，分析下它们的内存对象。
+
+```objective-c
+- (void)test {    
+    CFStringRef cfString = CFSTR("hello, world");
+    __unsafe_unretained NSString *nsString = (__bridge id)cfString;
+} // Note: make a breakpoint here
+```
+
+使用__unsafe_unretained为了去掉多余的retain和release调用，在arm64下使用汇编模式调试（Debug -> Debug Workflow -> Always Show Disassembly），如下
+
+```assembly
+Test`-[Test_bridge test]:
+    0x1050cdeac <+0>:  sub    sp, sp, #0x20             ; =0x20 
+    0x1050cdeb0 <+4>:  adrp   x8, 7
+    0x1050cdeb4 <+8>:  add    x8, x8, #0xe0             ; =0xe0 
+    0x1050cdeb8 <+12>: str    x0, [sp, #0x18]
+    0x1050cdebc <+16>: str    x1, [sp, #0x10]
+    0x1050cdec0 <+20>: str    x8, [sp, #0x8]
+    0x1050cdec4 <+24>: ldr    x8, [sp, #0x8]
+    0x1050cdec8 <+28>: str    x8, [sp]
+->  0x1050cdecc <+32>: add    sp, sp, #0x20             ; =0x20 
+    0x1050cded0 <+36>: ret    
+```
+
+在test函数调用结束时，查看sp寄存器的地址0x000000016b528de0，使用View Memory查看该地址，如下
+
+![](images/toll-free bridge.png)
+
+可以看出NSString*变量和CFStringRef变量的值是一样的，都指向同一个对象。
 
 
 
@@ -386,7 +419,7 @@ objc[49305]: Cannot form weak reference to instance (0x600000e0c340) of class My
 
 [^4]:[http://clang.llvm.org/docs/AutomaticReferenceCounting.html#self](http://clang.llvm.org/docs/AutomaticReferenceCounting.html#self)
 
-
+[^5]: [http://clang.llvm.org/docs/AutomaticReferenceCounting.html#semantics-of-init](http://clang.llvm.org/docs/AutomaticReferenceCounting.html#semantics-of-init)
 
 
 
