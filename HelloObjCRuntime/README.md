@@ -123,6 +123,70 @@ objc[26150]: Cannot form weak reference to instance (0x600000ebc4c0) of class Te
 
 
 
+### （4）分析self的类型
+
+self是Objective-C方法中很特殊的变量，在ARC环境下，self实际上有两种类型：
+
+* 在非init family方法中，self是`__unsafe_unretained`类型
+* 在init family方法中，self是`__strong`类型
+
+Clang文档给出关于self的解释[^4]，如下
+
+> The `self` parameter variable of an non-init Objective-C method is considered [externally-retained](http://clang.llvm.org/docs/AutomaticReferenceCounting.html#arc-misc-externally-retained) by the implementation. It is undefined behavior, or at least dangerous, to cause an object to be deallocated during a message send to that object. In an init method, `self` follows the :ref:`init family rules<arc.family.semantics.init>`.
+>
+> Rationale
+>
+> The cost of retaining `self` in all methods was found to be prohibitive, as it tends to be live across calls, preventing the optimizer from proving that the retain and release are unnecessary — for good reason, as it’s quite possible in theory to cause an object to be deallocated during its execution without this retain and release. Since it’s extremely uncommon to actually do so, even unintentionally, and since there’s no natural way for the programmer to remove this retain/release pair otherwise (as there is for other parameters by, say, making the variable `objc_externally_retained` or qualifying it with `__unsafe_unretained`), we chose to make this optimizing assumption and shift some amount of risk to the user.
+
+​        理解下文档上的意思，有下面几点
+
+* 在非init family方法中，self被认为是`objc_externally_retained`变量或者`__unsafe_unretained`变量，而且为了性能考虑，在非init family方法中，都不会retain和release self变量。所以self指向的对象，如果释放了，在非init family方法中，会产生EXC_BAD_ACCESS错误
+
+  * Xcode（Xcode 10.2）的llvm并不支持objc_externally_retained变量修饰符，[这里]([http://clang.llvm.org/docs/AutomaticReferenceCounting.html#arc-misc-externally-retained](http://clang.llvm.org/docs/AutomaticReferenceCounting.html#arc-misc-externally-retained))给出测试的代码
+
+    > ```objective-c
+    > #if __has_attribute(objc_externally_retained)
+    > // Use externally retained...
+    > #endif
+    > ```
+
+* 在init family方法中，self按照init family rules规则。文档这里介绍了init family rules，如下
+
+  > Methods in the `init` family implicitly [consume](http://clang.llvm.org/docs/AutomaticReferenceCounting.html#arc-objects-operands-consumed) their `self` parameter and [return a retained object](http://clang.llvm.org/docs/AutomaticReferenceCounting.html#arc-object-operands-retained-return-values). Neither of these properties can be altered through attributes.
+
+意思是init family方法中，返回都是retained对象，即引用计数会加1。
+
+为了验证self的类型在不同方法的区分，使用CoreFoundation中的`CFGetRetainCount`函数检查retainCount
+
+> 在ARC下，Xcode编译器禁止使用NSObject的retainCount方法
+
+
+
+```objective-c
+- (void)test_initMethods {
+    Test_retainCount *object = [[self class] alloc];
+    NSLog(@"%p retain count: %d", object, (int)CFGetRetainCount((__bridge CFTypeRef)(object)));
+    XCTAssertTrue(CFGetRetainCount((__bridge CFTypeRef)(object)) == 1);
+    
+    [object setupWithSomething];
+    NSLog(@"%p retain count: %d", object, (int)CFGetRetainCount((__bridge CFTypeRef)(object)));
+    XCTAssertTrue(CFGetRetainCount((__bridge CFTypeRef)(object)) == 1);
+    
+    object = [object initWithCaseName:@"test_initMethods"] ;
+    NSLog(@"%p retain count: %d", object, (int)CFGetRetainCount((__bridge CFTypeRef)(object)));
+    XCTAssertTrue(CFGetRetainCount((__bridge CFTypeRef)(object)) == 1);
+    ...
+}
+```
+
+在initWithCaseName方法中self的引用计数加1，而setupWithSomething方法中self的引用计数不变。具体代码，见Test_retainCount.m。
+
+
+
+
+
+
+
 ## 2、常用技巧
 
 ### （1）内存地址转成对象[^1]
@@ -320,7 +384,7 @@ objc[49305]: Cannot form weak reference to instance (0x600000e0c340) of class My
 [^2]:<https://www.jianshu.com/p/841f60876180>
 [^3]:<https://stackoverflow.com/questions/16122347/weak-property-is-set-to-nil-in-dealloc-but-propertys-ivar-is-not-nil>
 
-
+[^4]:[http://clang.llvm.org/docs/AutomaticReferenceCounting.html#self](http://clang.llvm.org/docs/AutomaticReferenceCounting.html#self)
 
 
 

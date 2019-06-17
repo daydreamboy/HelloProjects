@@ -37,6 +37,8 @@
 		4F53C97B20046B59003F79F6 /* UncatchExceptionGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53C97A20046B59003F79F6 /* UncatchExceptionGuard.m */; };
 		4F53C97E20047483003F79F6 /* SkipUnsafeMethodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53C97D20047483003F79F6 /* SkipUnsafeMethodViewController.m */; };
 		4F5D3785225F9816007A8D4C /* ObtainWeakVariableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5D3784225F9816007A8D4C /* ObtainWeakVariableViewController.m */; };
+		4F5F82FF22B793760000C130 /* Test_retainCount.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F82FE22B793760000C130 /* Test_retainCount.m */; };
+		4F5F830B22B7BCEB0000C130 /* MyObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F830A22B7BCEB0000C130 /* MyObject.m */; };
 		4FA0D24320732BEB00002607 /* SetIVarDirectlyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA0D24220732BEB00002607 /* SetIVarDirectlyViewController.m */; };
 		4FF5FA341FFD27BF00C095C1 /* CreateDynamicParamModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF5FA2F1FFD27BF00C095C1 /* CreateDynamicParamModelViewController.m */; };
 		4FF5FA351FFD27BF00C095C1 /* PublicModelsForSomeSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF5FA311FFD27BF00C095C1 /* PublicModelsForSomeSDK.m */; };
@@ -132,6 +134,9 @@
 		4F53C97D20047483003F79F6 /* SkipUnsafeMethodViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SkipUnsafeMethodViewController.m; sourceTree = "<group>"; };
 		4F5D3783225F9816007A8D4C /* ObtainWeakVariableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObtainWeakVariableViewController.h; sourceTree = "<group>"; };
 		4F5D3784225F9816007A8D4C /* ObtainWeakVariableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObtainWeakVariableViewController.m; sourceTree = "<group>"; };
+		4F5F82FE22B793760000C130 /* Test_retainCount.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_retainCount.m; sourceTree = "<group>"; };
+		4F5F830922B7BCEB0000C130 /* MyObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyObject.h; sourceTree = "<group>"; };
+		4F5F830A22B7BCEB0000C130 /* MyObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyObject.m; sourceTree = "<group>"; };
 		4FA0D24120732BEB00002607 /* SetIVarDirectlyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetIVarDirectlyViewController.h; sourceTree = "<group>"; };
 		4FA0D24220732BEB00002607 /* SetIVarDirectlyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetIVarDirectlyViewController.m; sourceTree = "<group>"; };
 		4FF5FA2F1FFD27BF00C095C1 /* CreateDynamicParamModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateDynamicParamModelViewController.m; sourceTree = "<group>"; };
@@ -279,12 +284,23 @@
 		4F4F2B3122B3B5CA009C7864 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				4F5F830822B7BCDA0000C130 /* DummyClass */,
 				4F4F2B3B22B3B623009C7864 /* Test_IMP.m */,
 				4F4F2B3C22B3B623009C7864 /* Test_selector.m */,
 				4F4F2B3D22B3B623009C7864 /* Test_weak.m */,
+				4F5F82FE22B793760000C130 /* Test_retainCount.m */,
 				4F4F2B3422B3B5CA009C7864 /* Info.plist */,
 			);
 			path = Test;
+			sourceTree = "<group>";
+		};
+		4F5F830822B7BCDA0000C130 /* DummyClass */ = {
+			isa = PBXGroup;
+			children = (
+				4F5F830922B7BCEB0000C130 /* MyObject.h */,
+				4F5F830A22B7BCEB0000C130 /* MyObject.m */,
+			);
+			path = DummyClass;
 			sourceTree = "<group>";
 		};
 		4FF5FA2E1FFD27BF00C095C1 /* CreateDynamicParamModel */ = {
@@ -574,9 +590,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F5F82FF22B793760000C130 /* Test_retainCount.m in Sources */,
 				4F4F2B3F22B3B623009C7864 /* Test_IMP.m in Sources */,
 				4F4F2B4022B3B623009C7864 /* Test_selector.m in Sources */,
 				4F4F2B4122B3B623009C7864 /* Test_weak.m in Sources */,
+				4F5F830B22B7BCEB0000C130 /* MyObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
