@@ -366,5 +366,50 @@ R"JSON([
     NSLog(@"%@", output);
 }
 
+- (void)test_checkIfSubclass_overridesSelector {
+    BOOL output;
+    
+    // Case 1
+    output = [WCObjectTool checkIfSubclass:[Person class] overridesSelector:@selector(init)];
+    XCTAssertTrue(output);
+    
+    // Case 2
+    output = [WCObjectTool checkIfSubclass:[Person class] overridesSelector:@selector(description)];
+    XCTAssertTrue(output);
+    
+    // Case 3
+    output = [WCObjectTool checkIfSubclass:[Person class] overridesSelector:@selector(debugDescription)];
+    XCTAssertTrue(output);
+    
+    // Case 4
+    output = [WCObjectTool checkIfSubclass:[Person class] overridesSelector:@selector(class)];
+    XCTAssertFalse(output);
+}
+
+- (void)test_checkIfObject_overridesSelector {
+    BOOL output;
+    Person *person = [Person new];
+    
+    // Case 1
+    output = [WCObjectTool checkIfObject:person overridesSelector:@selector(init)];
+    XCTAssertTrue(output);
+    
+    // Case 2
+    output = [WCObjectTool checkIfObject:person overridesSelector:@selector(description)];
+    XCTAssertTrue(output);
+    
+    // Case 3
+    output = [WCObjectTool checkIfObject:person overridesSelector:@selector(debugDescription)];
+    XCTAssertTrue(output);
+    
+    // Case 4
+    output = [WCObjectTool checkIfObject:person overridesSelector:@selector(class)];
+    XCTAssertFalse(output);
+}
+
+- (void)dummyMethod {
+    
+}
+
 @end
 

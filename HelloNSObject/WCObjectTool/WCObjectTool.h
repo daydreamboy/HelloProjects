@@ -110,6 +110,28 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable NSString *)printClassHierarchyWithClass:(Class)clz;
 + (nullable NSString *)printClassHierarchyWithInstance:(id)instance;
 
+#pragma mark > Check Method Override
+
+/**
+ Check object if overrides the method
+
+ @param object the object to check
+ @param selector the selector
+ @return YES if overrides, otherwise NO
+ @discussion This method internally calls the +[WCObjectTool checkIfSubclass:overridesSelector:]
+ */
++ (BOOL)checkIfObject:(id)object overridesSelector:(SEL)selector;
+
+/**
+ Check object if overrides the method
+
+ @param subclass the subclass to check
+ @param selector the selector
+ @return YES if overrides, otherwise NO
+ @see https://stackoverflow.com/a/28737576
+ */
++ (BOOL)checkIfSubclass:(Class)subclass overridesSelector:(SEL)selector;
+
 @end
 
 NS_ASSUME_NONNULL_END

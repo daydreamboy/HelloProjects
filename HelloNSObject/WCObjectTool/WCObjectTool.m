@@ -345,6 +345,28 @@ static void getSuper(Class class, NSMutableArray *result) {
 
 #pragma mark ::
 
++ (BOOL)checkIfObject:(id)object overridesSelector:(SEL)selector {
+    return [self checkIfSubclass:[object class] overridesSelector:selector];
+}
+
++ (BOOL)checkIfSubclass:(Class)subclass overridesSelector:(SEL)selector {
+    Class superClass = class_getSuperclass(subclass);
+    
+    BOOL isMethodOverridden = NO;
+    
+    while (superClass != Nil) {
+        isMethodOverridden = [superClass instancesRespondToSelector:selector] && ([subclass instanceMethodForSelector:selector] != [superClass instanceMethodForSelector:selector]);
+        
+        if (isMethodOverridden) {
+            break;
+        }
+        
+        superClass = [superClass superclass];
+    }
+    
+    return isMethodOverridden;
+}
+
 #pragma mark - Utility
 
 //https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/ocrtTypeEncodings.html

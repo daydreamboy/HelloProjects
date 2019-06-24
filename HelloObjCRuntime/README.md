@@ -299,6 +299,34 @@ int main(int argc, const char * argv[]) {
 
 
 
+### （3）判断一个类是否重写了父类方法[^6]
+
+​        通过比较子类和父类的selector对应的IMP地址是否是一样的，如果IMP地址不一样，则子类重写该selector对应的方法。
+
+```objective-c
++ (BOOL)checkIfSubclass:(Class)subclass overridesSelector:(SEL)selector {
+    Class superClass = class_getSuperclass(subclass);
+    
+    BOOL isMethodOverridden = NO;
+    
+    while (superClass != Nil) {
+        isMethodOverridden = [superClass instancesRespondToSelector:selector] && ([subclass instanceMethodForSelector:selector] != [superClass instanceMethodForSelector:selector]);
+        
+        if (isMethodOverridden) {
+            break;
+        }
+        
+        superClass = [superClass superclass];
+    }
+    
+    return isMethodOverridden;
+}
+```
+
+示例代码见WCObjectTool.m
+
+
+
 ## 3、常见Runtime问题
 
 主要列举Objective-C Runtime中遇到的特殊情况以及Crash问题。

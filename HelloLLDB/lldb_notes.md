@@ -1892,6 +1892,18 @@ error: too many arguments to method call, expected 1, have 2
 
 
 
+## 12、常用私有调试API
+
+
+
+| 私有API                             | 作用                               |
+| ----------------------------------- | ---------------------------------- |
+| -[NSObject _ivarDescription]        | 打印对象的所有ivar变量             |
+| -[NSObject _shortMethodDescription] | 打印对象的所有方法，不包括父类方法 |
+| -[NSObject _methodDescription]      | 打印对象的所有方法，包括父类方法   |
+
+
+
 
 
 ## References
