@@ -74,11 +74,11 @@ static NSString *jsonString = @R"JSON(
 
 math.h头文件提供NaN（Not A Number），有时候需要这种特殊值来占位或者其他用途。
 
-#### （1）NaN值的表示
+### （1）NaN值的表示
 
 使用NAN宏或者nan(NULL)返回一个NaN值
 
-#### （2）判断是否NaN
+### （2）判断是否NaN
 
 NaN相关函数
 
@@ -90,7 +90,7 @@ extern long double nanl(const char *);
 
 或者直接使用isnan(x)宏
 
-#### （3）打印NaN值
+### （3）打印NaN值
 
 NaN值的字符串输出总是nan。系统函数一般都处理过，然后输出成nan。
 
@@ -127,13 +127,18 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 
 
 
-## 5、手动synthesize @property
+## 5、使用@property
 
-#### （1）同时实现setter和getter方法，需要手动synthesize @property
+​      一般来说，定义@property会自动synthesize setter和getter方法，同时定义一个名为`_property`的实例变量。
 
-​         一般来说，定义@property会自动synthesize setter和getter方法，同时定义一个名为`_property`的实例变量。手动实现setter或getter方法，这个`_property`实例变量也是自动合成的。
+> 1. 手动实现setter或者getter方法，其中之一，这个`_property`实例变量也是自动合成的。
+> 2. 如果同时实现setter和getter方法，需要手动synthesize @property
 
-​        但是手动同时实现setter和getter方法，编译器不再自动合成`_property`实例变量，当用到`_property`实例变量会在编译时报错。
+
+
+### （1）手动synthesize @property         
+
+​        手动同时实现setter和getter方法，编译器不再自动合成`_property`实例变量，当用到`_property`实例变量会在编译时报错。
 
 举个例子，如下
 
@@ -163,7 +168,7 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 
 
 
-#### （2）子类和父类不共用一个实例变量，需要手动synthesize @property
+### （2）子类和父类不共用一个实例变量，需要手动synthesize @property
 
 ​        一般来说，父类定义@property后，自动合成的实例变量，继承父类的子类不能直接使用`_ivar`方式访问，但是可以通过`super`关键字来访问。但需要注意的是，子类重写了setter或getter方法，需要调用对应的super方法。
 
@@ -188,6 +193,24 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 
 
 
+### （3）Ivar在子类中访问[^3]
+
+* property合成的Ivar变量是private类型，不能在子类使用_ivar访问。
+
+  > 示例代码见Tests_AccessIvarOfProperty.m
+
+* 在父类的头文件.h中，显式声明Ivar变量，则子类可以使用_ivar访问。同时定义对应的属性，则子类可以使用self来访问Ivar变量
+
+  > 示例代码，见Tests_AccessPublicIvar.m
+
+  * 这种做法在.h头文件暴露了Ivar变量，可能子类也只是内部使用Ivar变量，所以可以使用扩展的方式。
+
+* 在父类的扩展头文件baseClass_internal.h中，显式声明Ivar变量同时标记为protected，子类的.m文件引入父类的头文件和扩展头文件xx_internal.h，可以访问Ivar变量。对外面暴露父类和子类的.h文件，不暴露父类的xx_internal.h
+
+  > 示例代码，见Tests_AccessPublicIvar.m
+
+
+
 ## 6、\_\_attribute\_\_ ((\_\_cleanup\_\_(\<callback\>)))的用法
 
 
@@ -198,11 +221,11 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 
 ## 7、Objective-C常见关键词
 
-#### （1）@package
+### （1）@package
 
 
 
-#### （2）template
+### （2）template
 
 template在Objective-C++是关键词，不能作为参数使用，否则编译器（Xcode 10）会报错。举个例子
 
@@ -218,3 +241,4 @@ template在Objective-C++是关键词，不能作为参数使用，否则编译�
 [1]: https://stackoverflow.com/questions/34574933/a-good-and-idiomatic-way-to-use-gcc-and-clang-attribute-cleanup-and-point
 [ 2 ]: http://echorand.me/site/notes/articles/c_cleanup/cleanup_attribute_c.html
 
+[^3]:http://blog.benjamin-encz.de/post/objective-c-backing-ivars-subclasses/
