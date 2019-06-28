@@ -41,10 +41,14 @@
 //    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
     
-    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStylePlain target:self action:@selector(itemDeleteClicked:)];
-    deleteButton.enabled = _tableView.indexPathsForSelectedRows.count ? YES : NO;
-    self.navigationItem.rightBarButtonItem = deleteButton;
-    _itemDelete = deleteButton;
+    UIBarButtonItem *deleteItem = [[UIBarButtonItem alloc] initWithTitle:@"Delete" style:UIBarButtonItemStylePlain target:self action:@selector(itemDeleteClicked:)];
+    deleteItem.enabled = _tableView.indexPathsForSelectedRows.count ? YES : NO;
+    
+    UIBarButtonItem *toggleItem = [[UIBarButtonItem alloc] initWithTitle:@"Toggle" style:UIBarButtonItemStylePlain target:self action:@selector(itemToggleClicked:)];
+    
+    self.navigationItem.rightBarButtonItems = @[ deleteItem, toggleItem ];
+    
+    _itemDelete = deleteItem;
 }
 
 #pragma mark - UITableViewDataSource
@@ -80,6 +84,26 @@
     return YES;
 }
 
+#pragma mark > Move
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    // After the move has completed, call this method
+    NSUInteger fromRow = fromIndexPath.row;
+    NSUInteger toRow = toIndexPath.row;
+    
+    id object = _listArr[fromRow];
+    [_listArr removeObjectAtIndex:fromRow];
+    [_listArr insertObject:object atIndex:toRow];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0) {
+        // No reorder control show at row 0
+        return NO;
+    }
+    return YES;
+}
+
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -103,6 +127,14 @@
         [_tableView deleteRowsAtIndexPaths:_tableView.indexPathsForSelectedRows withRowAnimation:UITableViewRowAnimationAutomatic];
         _itemDelete.enabled = _tableView.indexPathsForSelectedRows.count ? YES : NO;
     }
+}
+
+- (void)itemToggleClicked:(id)sender {
+    [UIView animateWithDuration:0.1 animations:^{
+        self.tableView.editing = !self.tableView.editing;
+    }];
+    // OR
+    //[self.tableView setEditing:!self.tableView.editing animated:YES];
 }
 
 @end

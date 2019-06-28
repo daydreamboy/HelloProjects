@@ -23,6 +23,7 @@
 		2B63BF38200FA22600A5D8D2 /* GroupedTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63BF30200FA22600A5D8D2 /* GroupedTableViewViewController.m */; };
 		2B63BF39200FA22600A5D8D2 /* PlainTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63BF31200FA22600A5D8D2 /* PlainTableViewViewController.m */; };
 		2BA442CC2261DFD60016C876 /* ShowContextMenuInCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA442CB2261DFD60016C876 /* ShowContextMenuInCellViewController.m */; };
+		4F5112BD22C39584005E5AAE /* CustomizeSelectMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5112BC22C39584005E5AAE /* CustomizeSelectMeViewController.m */; };
 		4F519A14229B907A004C548A /* CallReloadDataInsideCellForRowAtIndexPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F519A13229B907A004C548A /* CallReloadDataInsideCellForRowAtIndexPathViewController.m */; };
 		4F60E71922A7E64400C27087 /* UITableView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E71222A7E64300C27087 /* UITableView+Addition.m */; };
 		4F60E71A22A7E64400C27087 /* WCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E71322A7E64300C27087 /* WCTableViewController.m */; };
@@ -30,6 +31,8 @@
 		4F60E71C22A7E64400C27087 /* WCTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E71522A7E64300C27087 /* WCTableViewCell.m */; };
 		4F60E71D22A7E64400C27087 /* UITableViewCell+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E71622A7E64300C27087 /* UITableViewCell+Addition.m */; };
 		4F60E72022A7E72200C27087 /* ShowEmptyTipViewInUITableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E71F22A7E72200C27087 /* ShowEmptyTipViewInUITableViewViewController.m */; };
+		4F87FEB522C39C6F0002FF31 /* button_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F87FEB322C39C6E0002FF31 /* button_normal@2x.png */; };
+		4F87FEB622C39C6F0002FF31 /* button_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F87FEB422C39C6F0002FF31 /* button_selected@2x.png */; };
 		4F9489CA20104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9489C920104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.m */; };
 		4F9489DB2010C66C0030BC4A /* PlainTableViewWithFullSeparatorsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9489DA2010C66C0030BC4A /* PlainTableViewWithFullSeparatorsViewController.m */; };
 		4F948A1B2010DC6C0030BC4A /* TableViewHeaderWithExtendedViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F948A1A2010DC6C0030BC4A /* TableViewHeaderWithExtendedViewViewController.m */; };
@@ -77,6 +80,8 @@
 		2B63BF33200FA22600A5D8D2 /* PlainTableViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainTableViewViewController.h; sourceTree = "<group>"; };
 		2BA442CA2261DFD60016C876 /* ShowContextMenuInCellViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowContextMenuInCellViewController.h; sourceTree = "<group>"; };
 		2BA442CB2261DFD60016C876 /* ShowContextMenuInCellViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowContextMenuInCellViewController.m; sourceTree = "<group>"; };
+		4F5112BB22C39584005E5AAE /* CustomizeSelectMeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomizeSelectMeViewController.h; sourceTree = "<group>"; };
+		4F5112BC22C39584005E5AAE /* CustomizeSelectMeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomizeSelectMeViewController.m; sourceTree = "<group>"; };
 		4F519A12229B907A004C548A /* CallReloadDataInsideCellForRowAtIndexPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CallReloadDataInsideCellForRowAtIndexPathViewController.h; sourceTree = "<group>"; };
 		4F519A13229B907A004C548A /* CallReloadDataInsideCellForRowAtIndexPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CallReloadDataInsideCellForRowAtIndexPathViewController.m; sourceTree = "<group>"; };
 		4F60E70F22A7E64300C27087 /* WCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTableViewCell.h; sourceTree = "<group>"; };
@@ -91,6 +96,8 @@
 		4F60E71822A7E64300C27087 /* WCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTableViewController.h; sourceTree = "<group>"; };
 		4F60E71E22A7E72100C27087 /* ShowEmptyTipViewInUITableViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowEmptyTipViewInUITableViewViewController.h; sourceTree = "<group>"; };
 		4F60E71F22A7E72200C27087 /* ShowEmptyTipViewInUITableViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowEmptyTipViewInUITableViewViewController.m; sourceTree = "<group>"; };
+		4F87FEB322C39C6E0002FF31 /* button_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_normal@2x.png"; sourceTree = "<group>"; };
+		4F87FEB422C39C6F0002FF31 /* button_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button_selected@2x.png"; sourceTree = "<group>"; };
 		4F9489C820104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlainTableViewRemoveRedundantSeparatorsViewController.h; sourceTree = "<group>"; };
 		4F9489C920104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlainTableViewRemoveRedundantSeparatorsViewController.m; sourceTree = "<group>"; };
 		4F9489D92010C66C0030BC4A /* PlainTableViewWithFullSeparatorsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlainTableViewWithFullSeparatorsViewController.h; sourceTree = "<group>"; };
@@ -193,6 +200,8 @@
 				2BA442CB2261DFD60016C876 /* ShowContextMenuInCellViewController.m */,
 				4F60E71E22A7E72100C27087 /* ShowEmptyTipViewInUITableViewViewController.h */,
 				4F60E71F22A7E72200C27087 /* ShowEmptyTipViewInUITableViewViewController.m */,
+				4F5112BB22C39584005E5AAE /* CustomizeSelectMeViewController.h */,
+				4F5112BC22C39584005E5AAE /* CustomizeSelectMeViewController.m */,
 			);
 			path = section4;
 			sourceTree = "<group>";
@@ -294,6 +303,8 @@
 		4FAAA5B41FA4845A00A80328 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F87FEB322C39C6E0002FF31 /* button_normal@2x.png */,
+				4F87FEB422C39C6F0002FF31 /* button_selected@2x.png */,
 				4FAAA5B51FA4845A00A80328 /* calendar.png */,
 				4FAAA5B61FA4845A00A80328 /* ibooks.png */,
 			);
@@ -372,9 +383,11 @@
 				2B63BF1B200FA11200A5D8D2 /* dog.png in Resources */,
 				2B63BF1D200FA11200A5D8D2 /* bird.png in Resources */,
 				4FAAA59E1FA4804600A80328 /* LaunchScreen.storyboard in Resources */,
+				4F87FEB522C39C6F0002FF31 /* button_normal@2x.png in Resources */,
 				4FAAA5B71FA4845B00A80328 /* calendar.png in Resources */,
 				2B63BF22200FA11200A5D8D2 /* onebit.png in Resources */,
 				4FAAA59B1FA4804600A80328 /* Assets.xcassets in Resources */,
+				4F87FEB622C39C6F0002FF31 /* button_selected@2x.png in Resources */,
 				2B63BF23200FA11200A5D8D2 /* babelfish.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -402,6 +415,7 @@
 				4FAAA5A11FA4804600A80328 /* main.m in Sources */,
 				2B63BF37200FA22600A5D8D2 /* FadeInCellRowByRowViewController.m in Sources */,
 				4F9489CA20104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.m in Sources */,
+				4F5112BD22C39584005E5AAE /* CustomizeSelectMeViewController.m in Sources */,
 				4F948A222011C5CC0030BC4A /* WCExpandableHeaderView.m in Sources */,
 				2B63BF1F200FA11200A5D8D2 /* InsertMeViewController.m in Sources */,
 				2B63BF34200FA22600A5D8D2 /* CompatiblePlainTableViewViewController.m in Sources */,

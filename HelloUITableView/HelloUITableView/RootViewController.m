@@ -26,6 +26,7 @@
 #import "LoadMoreViewController.h"
 #import "ShowContextMenuInCellViewController.h"
 #import "ShowEmptyTipViewInUITableViewViewController.h"
+#import "CustomizeSelectMeViewController.h"
 
 #import "MoveMeViewController.h"
 #import "DeleteMeViewController.h"
@@ -85,6 +86,7 @@
           @{ kTitle: @"Table view load more", kClass: [LoadMoreViewController class] },
           @{ kTitle: @"Show context menu in cell", kClass: [ShowContextMenuInCellViewController class] },
           @{ kTitle: @"Show empty tip in table view", kClass: [ShowEmptyTipViewInUITableViewViewController class] },
+          @{ kTitle: @"Customize select mode of table view", kClass: [CustomizeSelectMeViewController class] },
     ];
     
     NSArray<NSDictionary *> *section5 = @[

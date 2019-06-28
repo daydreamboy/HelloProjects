@@ -81,6 +81,26 @@
     return @"Delete";
 }
 
+#pragma mark > Move
+
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+    // After the move has completed, call this method
+    NSUInteger fromRow = fromIndexPath.row;
+    NSUInteger toRow = toIndexPath.row;
+    
+    id object = _listArr[fromRow];
+    [_listArr removeObjectAtIndex:fromRow];
+    [_listArr insertObject:object atIndex:toRow];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0) {
+        // No reorder control show at row 0
+        return NO;
+    }
+    return YES;
+}
+
 #pragma mark - Action
 
 - (void)toggleEdit:(id)sender {

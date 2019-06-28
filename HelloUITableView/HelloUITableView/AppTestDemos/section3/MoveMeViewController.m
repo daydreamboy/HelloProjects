@@ -24,7 +24,8 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-//    _tableView.allowsMultipleSelectionDuringEditing = YES;
+    // Note: disable multiple select
+    //_tableView.allowsMultipleSelectionDuringEditing = YES;
     _tableView.allowsSelectionDuringEditing = YES;
     _tableView.allowsSelection = YES;
 //    _tableView.allowsMultipleSelection = YES;
@@ -75,6 +76,8 @@
     
     return cell;
 }
+
+#pragma mark > Move
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
     // After the move has completed, call this method

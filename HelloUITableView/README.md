@@ -160,6 +160,39 @@ TableViewDelegate提供下面三个方法，用于提供cell的上下文菜单�
 
 
 
+### （5）UITableView的编辑模式
+
+​        当设置UITableView的editing属性或者通过`-[UITableView setEditing:animated:]`方法设置为YES时，UITableView进入编辑模式。
+
+​        UITableView的delegate方法`-[UITableViewDelegate tableView:editingStyleForRowAtIndexPath:]`方法，用于控制编辑模式下显示样式，这个方法默认返回UITableViewCellEditingStyleDelete。
+
+​        UITableViewCellEditingStyle枚举值，如下
+
+```objective-c
+typedef NS_ENUM(NSInteger, UITableViewCellEditingStyle) {
+    UITableViewCellEditingStyleNone, // 多选
+    UITableViewCellEditingStyleDelete, // 删除
+    UITableViewCellEditingStyleInsert // 插入
+};
+```
+
+​        除了上面三种枚举类型（多选、删除、插入），UITableView的编辑模式还是支持移动，不过移动枚举值没有定义在UITableViewCellEditingStyle中，而是通过实现下面两个方法来支持移动方式，如下
+
+```objective-c
+-[UITableViewDelegate tableView:moveRowAtIndexPath:toIndexPath:] // 通知数据变更
+-[UITableViewDelegate tableView:canMoveRowAtIndexPath:] // 控制哪些indexPath可以移动
+```
+
+> 示例代码，见MoveMeViewController
+
+​        因此，UITableView的编辑模式，实际上支持四种方式：**多选**、**删除**、**插入**和**移动**。另外，前三种方式可以额外组合一个移动方式，即**多选 + 移动**、**删除 + 移动**、**插入 + 移动**。
+
+> 示例代码，见SelectMeViewController、DeleteMeViewController、InsertMeViewController
+
+
+
+
+
 
 
 
