@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4F0B4F1E205269D9003B241E /* HitTestInViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0B4F1D205269D9003B241E /* HitTestInViewViewController.m */; };
 		4F4EDC3E22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4EDC3D22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.m */; };
+		4F502DDE22CA46E100137BE1 /* WCDashLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F502DDD22CA46E100137BE1 /* WCDashLineView.m */; };
+		4F502DE122CA56DA00137BE1 /* DottedLineViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F502DE022CA56DA00137BE1 /* DottedLineViewViewController.m */; };
 		4F517BB7212FD41C008CE69F /* BlurAnyViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F517BB6212FD41C008CE69F /* BlurAnyViewViewController.m */; };
 		4F517BB9212FD500008CE69F /* dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F517BB8212FD500008CE69F /* dog.jpg */; };
 		4F60E70322A7C85600C27087 /* WCResizableImageLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E70222A7C85600C27087 /* WCResizableImageLayer.m */; };
@@ -62,6 +64,10 @@
 		4F0B4F1D205269D9003B241E /* HitTestInViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HitTestInViewViewController.m; sourceTree = "<group>"; };
 		4F4EDC3C22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupSubviewsByRelayoutSubviewsViewController.h; sourceTree = "<group>"; };
 		4F4EDC3D22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupSubviewsByRelayoutSubviewsViewController.m; sourceTree = "<group>"; };
+		4F502DDC22CA46E100137BE1 /* WCDashLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCDashLineView.h; sourceTree = "<group>"; };
+		4F502DDD22CA46E100137BE1 /* WCDashLineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCDashLineView.m; sourceTree = "<group>"; };
+		4F502DDF22CA56D900137BE1 /* DottedLineViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DottedLineViewViewController.h; sourceTree = "<group>"; };
+		4F502DE022CA56DA00137BE1 /* DottedLineViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DottedLineViewViewController.m; sourceTree = "<group>"; };
 		4F517BB5212FD41C008CE69F /* BlurAnyViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlurAnyViewViewController.h; sourceTree = "<group>"; };
 		4F517BB6212FD41C008CE69F /* BlurAnyViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlurAnyViewViewController.m; sourceTree = "<group>"; };
 		4F517BB8212FD500008CE69F /* dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dog.jpg; sourceTree = "<group>"; };
@@ -147,6 +153,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F502DDB22CA46BF00137BE1 /* WCDashLineView */ = {
+			isa = PBXGroup;
+			children = (
+				4F502DDC22CA46E100137BE1 /* WCDashLineView.h */,
+				4F502DDD22CA46E100137BE1 /* WCDashLineView.m */,
+			);
+			path = WCDashLineView;
+			sourceTree = "<group>";
+		};
 		4F60E70022A7C84900C27087 /* WCResizableImageLayer */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,6 +240,8 @@
 				4FA301262151328C005A5344 /* GroupSubviewsByWrapperViewViewController.m */,
 				4F4EDC3C22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.h */,
 				4F4EDC3D22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.m */,
+				4F502DDF22CA56D900137BE1 /* DottedLineViewViewController.h */,
+				4F502DE022CA56DA00137BE1 /* DottedLineViewViewController.m */,
 			);
 			path = "UIView Demo";
 			sourceTree = "<group>";
@@ -232,6 +249,7 @@
 		4FAAA5591FA45FE700A80328 = {
 			isa = PBXGroup;
 			children = (
+				4F502DDB22CA46BF00137BE1 /* WCDashLineView */,
 				4F60E70022A7C84900C27087 /* WCResizableImageLayer */,
 				4F63EFE11FE10053000AFD6F /* WCViewTool */,
 				4FAAA5641FA45FE700A80328 /* HelloUIView */,
@@ -420,6 +438,7 @@
 			files = (
 				4F4EDC3E22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.m in Sources */,
 				4FB43AEC200DA27300D5D92D /* GradientView.m in Sources */,
+				4F502DDE22CA46E100137BE1 /* WCDashLineView.m in Sources */,
 				4F517BB7212FD41C008CE69F /* BlurAnyViewViewController.m in Sources */,
 				4FAAA5751FA45FE700A80328 /* main.m in Sources */,
 				4FB43AF6200DA28100D5D92D /* DrawRadialGradientViewViewController.m in Sources */,
@@ -438,6 +457,7 @@
 				4FB43AEB200DA27300D5D92D /* RadialGradientView.m in Sources */,
 				4F63EFE41FE10068000AFD6F /* WCViewTool.m in Sources */,
 				4FAAA5811FA4601E00A80328 /* RootViewController.m in Sources */,
+				4F502DE122CA56DA00137BE1 /* DottedLineViewViewController.m in Sources */,
 				4FAAA5671FA45FE700A80328 /* AppDelegate.m in Sources */,
 				4FB43AF8200DA28100D5D92D /* UseCAGradientLayerWithMultipleColorsViewController.m in Sources */,
 				4F961BAC2132FB0F009402F3 /* TraverseSubviewsInViewViewController.m in Sources */,
