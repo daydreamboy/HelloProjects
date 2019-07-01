@@ -8,11 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		4F03AEB9208E1DD500186DE1 /* GenericSelectionExpressionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F03AEB8208E1DD500186DE1 /* GenericSelectionExpressionViewController.m */; };
+		4F4FF48722C7042B007B0833 /* ParentHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FF48622C7042B007B0833 /* ParentHandler.m */; };
+		4F4FF48922C70497007B0833 /* Tests_CategoryConflict.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FF48822C70497007B0833 /* Tests_CategoryConflict.m */; };
+		4F4FF48C22C70725007B0833 /* BaseClassA1.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FF48B22C70725007B0833 /* BaseClassA1.m */; };
+		4F4FF48F22C7075E007B0833 /* BaseClassA1+Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FF48E22C7075E007B0833 /* BaseClassA1+Category.m */; };
+		4F4FF49222C707E9007B0833 /* Tests_Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FF49122C707E9007B0833 /* Tests_Category.m */; };
+		4F4FF49622C7109A007B0833 /* DerivedClassB1.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FF49522C7109A007B0833 /* DerivedClassB1.m */; };
+		4F4FF49922C714A6007B0833 /* ChildHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FF49822C714A6007B0833 /* ChildHandler.m */; };
+		4F4FF49C22C751CF007B0833 /* RootHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FF49B22C751CF007B0833 /* RootHandler.m */; };
 		4F51128422C31102005E5AAE /* Tests_AccessIvarOfProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F51128322C31102005E5AAE /* Tests_AccessIvarOfProperty.m */; };
 		4F51129322C315D0005E5AAE /* Tests_AccessPublicIvar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F51129222C315D0005E5AAE /* Tests_AccessPublicIvar.m */; };
 		4F5112B622C375A0005E5AAE /* Tests_AccessIvarOfExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5112B522C375A0005E5AAE /* Tests_AccessIvarOfExtension.m */; };
 		4F5112BA22C3771E005E5AAE /* BaseClass3.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5112B922C3771E005E5AAE /* BaseClass3.m */; };
 		4F53314520872BDD0016F650 /* NaNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53314420872BDD0016F650 /* NaNViewController.m */; };
+		4F53472722C61AC6000710B9 /* NSObject+EventChaining.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53472622C61AC6000710B9 /* NSObject+EventChaining.m */; };
+		4F53472B22C630C4000710B9 /* Event.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F53472A22C630C4000710B9 /* Event.m */; };
 		4F55810F22AA5C9800961935 /* WCTupleClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F55810E22AA5C9800961935 /* WCTupleClass.m */; };
 		4F5C35E4223B5C5400C08119 /* Tests_C.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5C35E3223B5C5400C08119 /* Tests_C.m */; };
 		4F641A0B209056F7009B41E5 /* NamespacedGlobalVarsAndFuncsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F641A0A209056F7009B41E5 /* NamespacedGlobalVarsAndFuncsViewController.m */; };
@@ -53,6 +63,20 @@
 /* Begin PBXFileReference section */
 		4F03AEB7208E1DD500186DE1 /* GenericSelectionExpressionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GenericSelectionExpressionViewController.h; sourceTree = "<group>"; };
 		4F03AEB8208E1DD500186DE1 /* GenericSelectionExpressionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GenericSelectionExpressionViewController.m; sourceTree = "<group>"; };
+		4F4FF48522C7042B007B0833 /* ParentHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParentHandler.h; sourceTree = "<group>"; };
+		4F4FF48622C7042B007B0833 /* ParentHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParentHandler.m; sourceTree = "<group>"; };
+		4F4FF48822C70497007B0833 /* Tests_CategoryConflict.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_CategoryConflict.m; sourceTree = "<group>"; };
+		4F4FF48A22C70725007B0833 /* BaseClassA1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseClassA1.h; sourceTree = "<group>"; };
+		4F4FF48B22C70725007B0833 /* BaseClassA1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseClassA1.m; sourceTree = "<group>"; };
+		4F4FF48D22C7075E007B0833 /* BaseClassA1+Category.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BaseClassA1+Category.h"; sourceTree = "<group>"; };
+		4F4FF48E22C7075E007B0833 /* BaseClassA1+Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "BaseClassA1+Category.m"; sourceTree = "<group>"; };
+		4F4FF49122C707E9007B0833 /* Tests_Category.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_Category.m; sourceTree = "<group>"; };
+		4F4FF49422C7109A007B0833 /* DerivedClassB1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DerivedClassB1.h; sourceTree = "<group>"; };
+		4F4FF49522C7109A007B0833 /* DerivedClassB1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DerivedClassB1.m; sourceTree = "<group>"; };
+		4F4FF49722C714A6007B0833 /* ChildHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChildHandler.h; sourceTree = "<group>"; };
+		4F4FF49822C714A6007B0833 /* ChildHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChildHandler.m; sourceTree = "<group>"; };
+		4F4FF49A22C751CF007B0833 /* RootHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootHandler.h; sourceTree = "<group>"; };
+		4F4FF49B22C751CF007B0833 /* RootHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootHandler.m; sourceTree = "<group>"; };
 		4F51128122C31102005E5AAE /* Tests_OC.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests_OC.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F51128322C31102005E5AAE /* Tests_AccessIvarOfProperty.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_AccessIvarOfProperty.m; sourceTree = "<group>"; };
 		4F51128522C31102005E5AAE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -63,6 +87,11 @@
 		4F5112B922C3771E005E5AAE /* BaseClass3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseClass3.m; sourceTree = "<group>"; };
 		4F53314320872BDD0016F650 /* NaNViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NaNViewController.h; sourceTree = "<group>"; };
 		4F53314420872BDD0016F650 /* NaNViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NaNViewController.m; sourceTree = "<group>"; };
+		4F53472522C61AC6000710B9 /* NSObject+EventChaining.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+EventChaining.h"; sourceTree = "<group>"; };
+		4F53472622C61AC6000710B9 /* NSObject+EventChaining.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+EventChaining.m"; sourceTree = "<group>"; };
+		4F53472822C61B2C000710B9 /* EventChaining.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EventChaining.h; sourceTree = "<group>"; };
+		4F53472922C630C4000710B9 /* Event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		4F53472A22C630C4000710B9 /* Event.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Event.m; sourceTree = "<group>"; };
 		4F55810D22AA5C9800961935 /* WCTupleClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCTupleClass.h; sourceTree = "<group>"; };
 		4F55810E22AA5C9800961935 /* WCTupleClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCTupleClass.m; sourceTree = "<group>"; };
 		4F55811022AA5CB500961935 /* WCTuple.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCTuple.h; sourceTree = "<group>"; };
@@ -127,9 +156,51 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F4FF49022C70771007B0833 /* EventChaining */ = {
+			isa = PBXGroup;
+			children = (
+				4F4FF4A922C789C8007B0833 /* TestCase */,
+				4F53472522C61AC6000710B9 /* NSObject+EventChaining.h */,
+				4F53472622C61AC6000710B9 /* NSObject+EventChaining.m */,
+				4F53472822C61B2C000710B9 /* EventChaining.h */,
+				4F53472922C630C4000710B9 /* Event.h */,
+				4F53472A22C630C4000710B9 /* Event.m */,
+			);
+			path = EventChaining;
+			sourceTree = "<group>";
+		};
+		4F4FF49322C7106A007B0833 /* DummyClass */ = {
+			isa = PBXGroup;
+			children = (
+				4F4FF48A22C70725007B0833 /* BaseClassA1.h */,
+				4F4FF48B22C70725007B0833 /* BaseClassA1.m */,
+				4F4FF48D22C7075E007B0833 /* BaseClassA1+Category.h */,
+				4F4FF48E22C7075E007B0833 /* BaseClassA1+Category.m */,
+				4F4FF49422C7109A007B0833 /* DerivedClassB1.h */,
+				4F4FF49522C7109A007B0833 /* DerivedClassB1.m */,
+			);
+			path = DummyClass;
+			sourceTree = "<group>";
+		};
+		4F4FF4A922C789C8007B0833 /* TestCase */ = {
+			isa = PBXGroup;
+			children = (
+				4F4FF49A22C751CF007B0833 /* RootHandler.h */,
+				4F4FF49B22C751CF007B0833 /* RootHandler.m */,
+				4F4FF48522C7042B007B0833 /* ParentHandler.h */,
+				4F4FF48622C7042B007B0833 /* ParentHandler.m */,
+				4F4FF49722C714A6007B0833 /* ChildHandler.h */,
+				4F4FF49822C714A6007B0833 /* ChildHandler.m */,
+				4F4FF48822C70497007B0833 /* Tests_CategoryConflict.m */,
+			);
+			path = TestCase;
+			sourceTree = "<group>";
+		};
 		4F51128222C31102005E5AAE /* Tests_OC */ = {
 			isa = PBXGroup;
 			children = (
+				4F4FF49022C70771007B0833 /* EventChaining */,
+				4F53472422C619D3000710B9 /* Category */,
 				4F53472322C6197D000710B9 /* Ivar */,
 				4F51128522C31102005E5AAE /* Info.plist */,
 			);
@@ -147,6 +218,15 @@
 				4F5112B922C3771E005E5AAE /* BaseClass3.m */,
 			);
 			path = Ivar;
+			sourceTree = "<group>";
+		};
+		4F53472422C619D3000710B9 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				4F4FF49322C7106A007B0833 /* DummyClass */,
+				4F4FF49122C707E9007B0833 /* Tests_Category.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		4F5C35E2223B5C5400C08119 /* Tests_C */ = {
@@ -367,10 +447,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F53472B22C630C4000710B9 /* Event.m in Sources */,
 				4F5112B622C375A0005E5AAE /* Tests_AccessIvarOfExtension.m in Sources */,
+				4F4FF49222C707E9007B0833 /* Tests_Category.m in Sources */,
+				4F4FF49922C714A6007B0833 /* ChildHandler.m in Sources */,
+				4F4FF49622C7109A007B0833 /* DerivedClassB1.m in Sources */,
 				4F51129322C315D0005E5AAE /* Tests_AccessPublicIvar.m in Sources */,
 				4F51128422C31102005E5AAE /* Tests_AccessIvarOfProperty.m in Sources */,
+				4F4FF48C22C70725007B0833 /* BaseClassA1.m in Sources */,
 				4F5112BA22C3771E005E5AAE /* BaseClass3.m in Sources */,
+				4F4FF48922C70497007B0833 /* Tests_CategoryConflict.m in Sources */,
+				4F4FF49C22C751CF007B0833 /* RootHandler.m in Sources */,
+				4F53472722C61AC6000710B9 /* NSObject+EventChaining.m in Sources */,
+				4F4FF48722C7042B007B0833 /* ParentHandler.m in Sources */,
+				4F4FF48F22C7075E007B0833 /* BaseClassA1+Category.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

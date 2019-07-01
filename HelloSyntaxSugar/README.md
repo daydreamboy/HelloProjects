@@ -211,7 +211,42 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 
 
 
-## 6、\_\_attribute\_\_ ((\_\_cleanup\_\_(\<callback\>)))的用法
+## 6、使用Category
+
+​         Category方法的使用，一般是创建Category Class，定义新的方法（即分类方法），这样Primary Class也拥有这个方法。
+
+​        但是Category方法也存在覆盖Primary Class方法的情况，因此有两种情况：（1）分类方法不覆盖主类方法；（2）分类方法覆盖主类方法。
+
+| Primary Class | Category Class | 说明                                         |
+| ------------- | -------------- | -------------------------------------------- |
+| ✘             | ✔︎              | 使用分类方法                                 |
+| ✔︎             | ✔︎              | 总是使用分类方法，编译会有覆盖主类方法的警告 |
+
+
+
+如果子类中也定义分类方法，将有下面组合
+
+| Inheritance   | Primary Class | Category Class | 说明 |
+| ------------- | ------------- | -------------- | ---- |
+| BaseClass     | ✔︎             | ✔︎              |      |
+| DerivedClass1 | ✘             | ✔︎              |      |
+| DerivedClass2 | ✔︎             | ✘              |      |
+| DerivedClass3 | ✔︎             | ✔︎              |      |
+| DerivedClass4 | ✘             | ✘              |      |
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 7、\_\_attribute\_\_ ((\_\_cleanup\_\_(\<callback\>)))的用法
 
 
 
@@ -219,7 +254,7 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 
 
 
-## 7、Objective-C常见关键词
+## 8、Objective-C常见关键词
 
 ### （1）@package
 
