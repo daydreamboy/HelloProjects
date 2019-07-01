@@ -7,6 +7,7 @@
 //
 
 #import "HipsterLabel.h"
+#import "WCMenuItem.h"
 
 @implementation HipsterLabel
 
@@ -15,7 +16,9 @@
 }
 
 - (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
-    return (action == @selector(copy:) || action == @selector(customAction:));
+    return (action == @selector(copy:) ||
+            action == @selector(customAction:) ||
+            [NSStringFromSelector(action) hasPrefix:[WCMenuItem actionPrefix]]);
 }
 
 - (void)copy:(id)sender {

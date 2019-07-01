@@ -97,6 +97,12 @@ UITableViewCell的上下文菜单可以用两种方式实现
 
 
 
+## 3、使用WCMenuItem
+
+WCMenuItem支持block方式，获取firstResponder的UIView中无侵入写处理action的代码。
+
+示例代码，见
+
 
 
 ## References

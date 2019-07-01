@@ -14,6 +14,7 @@
 #import "UseUIMenuControllerViewController.h"
 #import "UIMenuControllerKeepKeyboardShowViewController.h"
 #import "TableViewCellShowCustomContextMenuViewController.h"
+#import "UseWCMenuItemViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -42,6 +43,7 @@
         @"UITableViewCell show custom context menu",
         @"Use UIMenuController",
         @"UIMenuController keep keyboard show",
+        @"Use WCMenuItem with block",
         @"call a test method",
     ];
     _classes = @[
@@ -51,6 +53,7 @@
         [TableViewCellShowCustomContextMenuViewController class],
         [UseUIMenuControllerViewController class],
         [UIMenuControllerKeepKeyboardShowViewController class],
+        [UseWCMenuItemViewController class],
         @"testMethod",
     ];
 }

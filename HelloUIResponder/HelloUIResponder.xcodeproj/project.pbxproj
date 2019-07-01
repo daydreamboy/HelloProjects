@@ -15,6 +15,8 @@
 		2B6AE1B522635AC300226F9A /* TableViewCellShowCustomContextMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6AE1B422635AC300226F9A /* TableViewCellShowCustomContextMenuViewController.m */; };
 		2B6AE1B822635CEC00226F9A /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6AE1B722635CEC00226F9A /* MyTableViewCell.m */; };
 		2BA442C92261D3190016C876 /* TableViewCellShowContextMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA442C82261D3190016C876 /* TableViewCellShowContextMenuViewController.m */; };
+		4F502DD122C9AEDD00137BE1 /* UseWCMenuItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F502DD022C9AEDD00137BE1 /* UseWCMenuItemViewController.m */; };
+		4F51129722C3569D005E5AAE /* WCMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F51129622C3569D005E5AAE /* WCMenuItem.m */; };
 		4F8C95AA221FA44400869CE7 /* UseInputViewInUITextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C95A9221FA44400869CE7 /* UseInputViewInUITextFieldViewController.m */; };
 		4F8C95AE221FB0B900869CE7 /* WCAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C95AC221FB0B900869CE7 /* WCAlertController.m */; };
 		4FBA52EE2159D29D00711552 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBA52ED2159D29D00711552 /* AppDelegate.m */; };
@@ -42,6 +44,10 @@
 		2B6AE1B722635CEC00226F9A /* MyTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell.m; sourceTree = "<group>"; };
 		2BA442C72261D3190016C876 /* TableViewCellShowContextMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCellShowContextMenuViewController.h; sourceTree = "<group>"; };
 		2BA442C82261D3190016C876 /* TableViewCellShowContextMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCellShowContextMenuViewController.m; sourceTree = "<group>"; };
+		4F502DCF22C9AEDD00137BE1 /* UseWCMenuItemViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseWCMenuItemViewController.h; sourceTree = "<group>"; };
+		4F502DD022C9AEDD00137BE1 /* UseWCMenuItemViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCMenuItemViewController.m; sourceTree = "<group>"; };
+		4F51129522C3569D005E5AAE /* WCMenuItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMenuItem.h; sourceTree = "<group>"; };
+		4F51129622C3569D005E5AAE /* WCMenuItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMenuItem.m; sourceTree = "<group>"; };
 		4F8C95A8221FA44400869CE7 /* UseInputViewInUITextFieldViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseInputViewInUITextFieldViewController.h; sourceTree = "<group>"; };
 		4F8C95A9221FA44400869CE7 /* UseInputViewInUITextFieldViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseInputViewInUITextFieldViewController.m; sourceTree = "<group>"; };
 		4F8C95AC221FB0B900869CE7 /* WCAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCAlertController.m; sourceTree = "<group>"; };
@@ -92,6 +98,15 @@
 			path = DummyClass;
 			sourceTree = "<group>";
 		};
+		4F51129422C35668005E5AAE /* WCMenuItem */ = {
+			isa = PBXGroup;
+			children = (
+				4F51129522C3569D005E5AAE /* WCMenuItem.h */,
+				4F51129622C3569D005E5AAE /* WCMenuItem.m */,
+			);
+			path = WCMenuItem;
+			sourceTree = "<group>";
+		};
 		4F8C95AB221FA6ED00869CE7 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +119,7 @@
 		4FBA52E02159D29D00711552 = {
 			isa = PBXGroup;
 			children = (
+				4F51129422C35668005E5AAE /* WCMenuItem */,
 				2B6A79F82263155B009EFFF4 /* WCResponderTool */,
 				4FBA52EB2159D29D00711552 /* HelloUIResponder */,
 				4FBA52EA2159D29D00711552 /* Products */,
@@ -151,6 +167,8 @@
 				2B6A79F62263121A009EFFF4 /* UseUIMenuControllerViewController.m */,
 				2B6AE1A622632E0000226F9A /* UIMenuControllerKeepKeyboardShowViewController.h */,
 				2B6AE1A722632E0000226F9A /* UIMenuControllerKeepKeyboardShowViewController.m */,
+				4F502DCF22C9AEDD00137BE1 /* UseWCMenuItemViewController.h */,
+				4F502DD022C9AEDD00137BE1 /* UseWCMenuItemViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -226,6 +244,8 @@
 			files = (
 				4F8C95AA221FA44400869CE7 /* UseInputViewInUITextFieldViewController.m in Sources */,
 				2B6AE1B822635CEC00226F9A /* MyTableViewCell.m in Sources */,
+				4F502DD122C9AEDD00137BE1 /* UseWCMenuItemViewController.m in Sources */,
+				4F51129722C3569D005E5AAE /* WCMenuItem.m in Sources */,
 				2B6A79F72263121A009EFFF4 /* UseUIMenuControllerViewController.m in Sources */,
 				2B6AE1B522635AC300226F9A /* TableViewCellShowCustomContextMenuViewController.m in Sources */,
 				4FBA530B2159DB3F00711552 /* GetContextMenuClickEventViewController.m in Sources */,
