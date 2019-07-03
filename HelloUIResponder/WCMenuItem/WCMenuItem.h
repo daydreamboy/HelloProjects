@@ -11,11 +11,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, WCMenuItemState) {
+    WCMenuItemStateNormal,
+    WCMenuItemStateSelected,
+};
+
 /**
- A subclass of UIMenuItem with action block
+ A subclass of UIMenuItem with following features
+   - action block
+   - togglable menu item
  
- @discussion Other ways, see (1) https://stackoverflow.com/a/9874092,
-    (2) https://github.com/steipete/PSMenuItem
+ @discussion This class used with WCMenuController in company
+ 
+ @see https://stackoverflow.com/a/9874092,
+ @see https://github.com/steipete/PSMenuItem
  */
 @interface WCMenuItem : UIMenuItem
 
@@ -49,6 +58,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, copy, class, readonly) NSString *actionPrefix;
 
+/**
+ The state of the menu item. See WCMenuItemState type
+ 
+ @discussion The state won't change internally, and set the state before call
+ -[WCMenuController setMenuVisible:animated:]
+ */
+@property (nonatomic, assign) WCMenuItemState state;
 
 /**
  The initialize method
@@ -59,21 +75,23 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (instancetype)initWithTitle:(NSString *)title block:(void (^)(WCMenuItem *menuItem))block;
 
-@end
+#pragma mark > State
 
 /**
- The tool class with WCMenuItem in company
+ Set the title for the state
+
+ @param title the title when the menu item is on some state
+ @param state the state
  */
-@interface WCMenuItemTool : NSObject
+- (void)setTitle:(NSString *)title forState:(WCMenuItemState)state;
 
 /**
- The helper method for register menu items with the target view
+ Get the title for the state
 
- @param targetView the target view which will become first responder
- @param menuItems the array of UIMenuController.menuItems
- @return YES if registers all successfully. NO if registers failed for one or more menu items
+ @param state the state
+ @return the title for the state
  */
-+ (BOOL)registerMenuItemsWithTargetView:(UIView *)targetView menuItems:(NSArray<WCMenuItem *> *)menuItems;
+- (NSString *)titleForState:(WCMenuItemState)state;
 
 @end
 

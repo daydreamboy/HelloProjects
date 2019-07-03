@@ -9,12 +9,13 @@
 #import "UseWCMenuItemViewController.h"
 #import "WCResponderTool.h"
 #import "HipsterLabel.h"
-#import "WCMenuItem.h"
+#import "WCMenuController.h"
 
 @interface UseWCMenuItemViewController ()
 @property (nonatomic, strong) HipsterLabel *label;
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, strong) NSTimer *timerCheckFirstResponder;
+@property (nonatomic, strong) NSArray<WCMenuItem *> *menuItems;
 @end
 
 @implementation UseWCMenuItemViewController
@@ -94,23 +95,13 @@
     
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         if (targetView && targetSuperView) {
-            UIMenuController *menuController = [UIMenuController sharedMenuController];
+            WCMenuController *menuController = [WCMenuController sharedMenuController];
             
             if (!menuController.menuVisible) {
                 [menuController setTargetRect:targetView.frame inView:targetSuperView];
                 
-                WCMenuItem *menuItemCopy = [[WCMenuItem alloc] initWithTitle:@"CustomCopy" block:^(WCMenuItem * _Nonnull menuItem) {
-                    NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
-                }];
-                
-                WCMenuItem *menuItemDelete = [[WCMenuItem alloc] initWithTitle:@"CustomDelete" block:^(WCMenuItem * _Nonnull menuItem) {
-                    NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
-                }];
-                
-                NSArray<WCMenuItem *> *menuItems = @[ menuItemCopy, menuItemDelete ];
-                
-                menuController.menuItems = menuItems;
-                [WCMenuItemTool registerMenuItemsWithTargetView:targetView menuItems:menuItems];
+                menuController.menuItems = self.menuItems;
+                [WCMenuController registerMenuItemsWithTargetView:targetView menuItems:self.menuItems];
                 
                 BOOL success = [targetView becomeFirstResponder];
                 NSLog(@"becomeFirstResponder: %@", success ? @"YES" : @"NO");
@@ -125,6 +116,26 @@
 
 - (void)viewTapped:(UITapGestureRecognizer *)recognizer {
     [self.view endEditing:YES];
+}
+
+#pragma mark - Getters
+
+- (NSArray<WCMenuItem *> *)menuItems {
+    if (!_menuItems) {
+        WCMenuItem *menuItemCopy = [[WCMenuItem alloc] initWithTitle:@"CustomCopy" block:^(WCMenuItem * _Nonnull menuItem) {
+            NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
+        }];
+        
+        WCMenuItem *menuItemEnable = [[WCMenuItem alloc] initWithTitle:@"Enable" block:^(WCMenuItem * _Nonnull menuItem) {
+            NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
+            menuItem.state = menuItem.state == WCMenuItemStateSelected ? WCMenuItemStateNormal : WCMenuItemStateSelected;
+        }];
+        [menuItemEnable setTitle:@"Disable" forState:WCMenuItemStateSelected];
+        
+        _menuItems = @[ menuItemCopy, menuItemEnable ];
+    }
+    
+    return _menuItems;
 }
 
 @end

@@ -7,13 +7,10 @@
 //
 
 #import "WCMenuItem.h"
-#import <objc/runtime.h>
-
+#import "WCMenuItem_Internal.h"
 
 @interface WCMenuItem ()
-
-@property (nonatomic, weak, readwrite, nullable) UIView *targetView;
-@property (nonatomic, weak, readwrite, nullable) UIMenuController *menuController;
+@property (nonatomic, strong) NSMutableDictionary<NSNumber *, NSString *> *mapStateToTitle;
 @end
 
 @implementation WCMenuItem
@@ -22,6 +19,8 @@
     self = [super initWithTitle:title action:NSSelectorFromString([NSString stringWithFormat:@"%@_%p:", [WCMenuItem actionPrefix], self])];
     if (self) {
         _block = block;
+        
+        [self setTitle:title forState:WCMenuItemStateNormal];
     }
     return self;
 }
@@ -30,43 +29,30 @@
     return @"WCMenuItem_action";
 }
 
+#pragma mark > State
+
+- (void)setTitle:(NSString *)title forState:(WCMenuItemState)state {
+    self.mapStateToTitle[@(state)] = title;
+}
+
+- (NSString *)titleForState:(WCMenuItemState)state {
+    return self.mapStateToTitle[@(state)];
+}
+
+#pragma mark - Getters
+
+- (NSMutableDictionary<NSNumber *, NSString *> *)mapStateToTitle {
+    if (!_mapStateToTitle) {
+        _mapStateToTitle = [NSMutableDictionary dictionary];
+    }
+    
+    return _mapStateToTitle;
+}
+
 #pragma mark -
 
 - (void)dealloc {
     NSLog(@"%@", self);
-}
-
-@end
-
-@implementation WCMenuItemTool
-
-+ (BOOL)registerMenuItemsWithTargetView:(UIView *)targetView menuItems:(NSArray<WCMenuItem *> *)menuItems {
-    if (![targetView isKindOfClass:[UIView class]] || ![menuItems isKindOfClass:[NSArray class]]) {
-        return NO;
-    }
-    
-    BOOL registerAllSuccess = YES;
-    
-    for (WCMenuItem *item in menuItems) {
-        if ([item isKindOfClass:[WCMenuItem class]]) {
-            __weak typeof(item) weak_item = item;
-            __weak typeof(targetView) weak_targetView = targetView;
-            
-            IMP imp = imp_implementationWithBlock(^(id self, SEL selector, id sender) {
-                item.targetView = weak_targetView;
-                item.menuController = sender;
-
-                !item.block ?: item.block(weak_item);
-            });
-            
-            BOOL success = class_addMethod([targetView class], NSSelectorFromString([NSString stringWithFormat:@"%@_%p:", [WCMenuItem actionPrefix], item]), imp, "v@:");
-            if (!success) {
-                registerAllSuccess = NO;
-            }
-        }
-    }
-    
-    return registerAllSuccess;
 }
 
 @end
