@@ -16,8 +16,8 @@
 		2B6AE1B822635CEC00226F9A /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B6AE1B722635CEC00226F9A /* MyTableViewCell.m */; };
 		2BA442C92261D3190016C876 /* TableViewCellShowContextMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA442C82261D3190016C876 /* TableViewCellShowContextMenuViewController.m */; };
 		4F502DD122C9AEDD00137BE1 /* UseWCMenuItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F502DD022C9AEDD00137BE1 /* UseWCMenuItemViewController.m */; };
-		4F51129722C3569D005E5AAE /* WCMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F51129622C3569D005E5AAE /* WCMenuItem.m */; };
-		4F7A5AED22CC7BA900E331FB /* WCMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7A5AEC22CC7BA900E331FB /* WCMenuController.m */; };
+		4F7A5AF522CCC86C00E331FB /* WCMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7A5AF122CCC86B00E331FB /* WCMenuController.m */; };
+		4F7A5AF622CCC86C00E331FB /* WCMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7A5AF222CCC86B00E331FB /* WCMenuItem.m */; };
 		4F8C95AA221FA44400869CE7 /* UseInputViewInUITextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C95A9221FA44400869CE7 /* UseInputViewInUITextFieldViewController.m */; };
 		4F8C95AE221FB0B900869CE7 /* WCAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C95AC221FB0B900869CE7 /* WCAlertController.m */; };
 		4FBA52EE2159D29D00711552 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBA52ED2159D29D00711552 /* AppDelegate.m */; };
@@ -47,11 +47,11 @@
 		2BA442C82261D3190016C876 /* TableViewCellShowContextMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCellShowContextMenuViewController.m; sourceTree = "<group>"; };
 		4F502DCF22C9AEDD00137BE1 /* UseWCMenuItemViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseWCMenuItemViewController.h; sourceTree = "<group>"; };
 		4F502DD022C9AEDD00137BE1 /* UseWCMenuItemViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCMenuItemViewController.m; sourceTree = "<group>"; };
-		4F51129522C3569D005E5AAE /* WCMenuItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMenuItem.h; sourceTree = "<group>"; };
-		4F51129622C3569D005E5AAE /* WCMenuItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMenuItem.m; sourceTree = "<group>"; };
-		4F7A5AEB22CC7BA900E331FB /* WCMenuController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMenuController.h; sourceTree = "<group>"; };
-		4F7A5AEC22CC7BA900E331FB /* WCMenuController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMenuController.m; sourceTree = "<group>"; };
-		4F7A5AEE22CC7C7100E331FB /* WCMenuItem_Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMenuItem_Internal.h; sourceTree = "<group>"; };
+		4F7A5AF022CCC86B00E331FB /* WCMenuItem_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCMenuItem_Internal.h; sourceTree = "<group>"; };
+		4F7A5AF122CCC86B00E331FB /* WCMenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCMenuController.m; sourceTree = "<group>"; };
+		4F7A5AF222CCC86B00E331FB /* WCMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCMenuItem.m; sourceTree = "<group>"; };
+		4F7A5AF322CCC86B00E331FB /* WCMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCMenuItem.h; sourceTree = "<group>"; };
+		4F7A5AF422CCC86B00E331FB /* WCMenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCMenuController.h; sourceTree = "<group>"; };
 		4F8C95A8221FA44400869CE7 /* UseInputViewInUITextFieldViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseInputViewInUITextFieldViewController.h; sourceTree = "<group>"; };
 		4F8C95A9221FA44400869CE7 /* UseInputViewInUITextFieldViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseInputViewInUITextFieldViewController.m; sourceTree = "<group>"; };
 		4F8C95AC221FB0B900869CE7 /* WCAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCAlertController.m; sourceTree = "<group>"; };
@@ -102,16 +102,16 @@
 			path = DummyClass;
 			sourceTree = "<group>";
 		};
-		4F51129422C35668005E5AAE /* WCMenuItem */ = {
+		4F7A5AEF22CCC86B00E331FB /* WCMenuController */ = {
 			isa = PBXGroup;
 			children = (
-				4F51129522C3569D005E5AAE /* WCMenuItem.h */,
-				4F51129622C3569D005E5AAE /* WCMenuItem.m */,
-				4F7A5AEE22CC7C7100E331FB /* WCMenuItem_Internal.h */,
-				4F7A5AEB22CC7BA900E331FB /* WCMenuController.h */,
-				4F7A5AEC22CC7BA900E331FB /* WCMenuController.m */,
+				4F7A5AF422CCC86B00E331FB /* WCMenuController.h */,
+				4F7A5AF122CCC86B00E331FB /* WCMenuController.m */,
+				4F7A5AF322CCC86B00E331FB /* WCMenuItem.h */,
+				4F7A5AF022CCC86B00E331FB /* WCMenuItem_Internal.h */,
+				4F7A5AF222CCC86B00E331FB /* WCMenuItem.m */,
 			);
-			path = WCMenuItem;
+			path = WCMenuController;
 			sourceTree = "<group>";
 		};
 		4F8C95AB221FA6ED00869CE7 /* Libraries */ = {
@@ -126,7 +126,7 @@
 		4FBA52E02159D29D00711552 = {
 			isa = PBXGroup;
 			children = (
-				4F51129422C35668005E5AAE /* WCMenuItem */,
+				4F7A5AEF22CCC86B00E331FB /* WCMenuController */,
 				2B6A79F82263155B009EFFF4 /* WCResponderTool */,
 				4FBA52EB2159D29D00711552 /* HelloUIResponder */,
 				4FBA52EA2159D29D00711552 /* Products */,
@@ -249,10 +249,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F7A5AF522CCC86C00E331FB /* WCMenuController.m in Sources */,
 				4F8C95AA221FA44400869CE7 /* UseInputViewInUITextFieldViewController.m in Sources */,
 				2B6AE1B822635CEC00226F9A /* MyTableViewCell.m in Sources */,
 				4F502DD122C9AEDD00137BE1 /* UseWCMenuItemViewController.m in Sources */,
-				4F51129722C3569D005E5AAE /* WCMenuItem.m in Sources */,
 				2B6A79F72263121A009EFFF4 /* UseUIMenuControllerViewController.m in Sources */,
 				2B6AE1B522635AC300226F9A /* TableViewCellShowCustomContextMenuViewController.m in Sources */,
 				4FBA530B2159DB3F00711552 /* GetContextMenuClickEventViewController.m in Sources */,
@@ -260,9 +260,9 @@
 				2B6AE1B2226341E400226F9A /* MyTextFieldWithOverrideNexResponder.m in Sources */,
 				2B6AE1AC2263304500226F9A /* HipsterLabel.m in Sources */,
 				2B6AE1A822632E0000226F9A /* UIMenuControllerKeepKeyboardShowViewController.m in Sources */,
-				4F7A5AED22CC7BA900E331FB /* WCMenuController.m in Sources */,
 				4FBA52EE2159D29D00711552 /* AppDelegate.m in Sources */,
 				4F8C95AE221FB0B900869CE7 /* WCAlertController.m in Sources */,
+				4F7A5AF622CCC86C00E331FB /* WCMenuItem.m in Sources */,
 				2B6A79FB226321D2009EFFF4 /* WCResponderTool.m in Sources */,
 				2BA442C92261D3190016C876 /* TableViewCellShowContextMenuViewController.m in Sources */,
 				4FBA53082159DA5B00711552 /* RootViewController.m in Sources */,
