@@ -1,10 +1,8 @@
-## iOS Label
+# iOS Label
 
 [TOC]
 
----
-
-### 1、对齐方式
+## 1、对齐方式
 
 iOS中UILabel的对齐方式，有下面几种
 

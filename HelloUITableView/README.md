@@ -191,7 +191,7 @@ typedef NS_ENUM(NSInteger, UITableViewCellEditingStyle) {
 
 
 
-
+​      当UITableView处于编辑模式，UITableViewCell对应在编辑模式下属性也会生效，例如editingAccessoryType、editingAccessoryView和shouldIndentWhileEditing。
 
 
 

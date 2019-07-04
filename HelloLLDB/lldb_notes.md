@@ -1892,6 +1892,12 @@ error: too many arguments to method call, expected 1, have 2
 
 
 
+### 2. Objective-C异常查看异常信息
+
+​       Xcode的Objective-C异常断点，实际上是**objc_exception_throw**函数的符号断点。使用`po $arg1`可以打印该C函数的参数[^3]
+
+
+
 ## 12、常用私有调试API
 
 
@@ -1912,5 +1918,5 @@ error: too many arguments to method call, expected 1, have 2
 
 [^2]:https://stackoverflow.com/questions/19448101/stringwithformat-not-working-in-lldb
 
-
+[^3]: https://www.natashatherobot.com/xcode-debugging-trick/
 
