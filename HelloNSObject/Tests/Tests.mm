@@ -384,6 +384,13 @@ R"JSON([
     // Case 4
     output = [WCObjectTool checkIfSubclass:[Person class] overridesSelector:@selector(class)];
     XCTAssertFalse(output);
+    
+    // Case 5
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wundeclared-selector"
+    output = [WCObjectTool checkIfSubclass:[Person class] overridesSelector:@selector(methodNotExist)];
+#pragma GCC diagnostic pop
+    XCTAssertFalse(output);
 }
 
 - (void)test_checkIfObject_overridesSelector {
@@ -404,6 +411,13 @@ R"JSON([
     
     // Case 4
     output = [WCObjectTool checkIfObject:person overridesSelector:@selector(class)];
+    XCTAssertFalse(output);
+    
+    // Case 5
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wundeclared-selector"
+    output = [WCObjectTool checkIfObject:person overridesSelector:@selector(methodNotExist)];
+#pragma GCC diagnostic pop
     XCTAssertFalse(output);
 }
 
