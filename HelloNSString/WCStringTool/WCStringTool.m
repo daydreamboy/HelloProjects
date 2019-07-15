@@ -428,147 +428,6 @@
     return substrings;
 }
 
-+ (nullable NSDictionary<NSString *, NSString *> *)keyValuePairsWithString:(NSString *)string usingConnector:(NSString *)connector usingSeparator:(NSString *)separator {
-    
-    if (![string isKindOfClass:[NSString class]] ||
-        ![connector isKindOfClass:[NSString class]] ||
-        ![separator isKindOfClass:[NSString class]]) {
-        return nil;
-    }
-    
-    NSMutableDictionary *keyValuePairsM = [NSMutableDictionary dictionary];
-    
-    NSArray *keyValuePairs = [string componentsSeparatedByString:separator];
-    for (NSString *keyValue in keyValuePairs) {
-        NSArray *pairComponents = [keyValue componentsSeparatedByString:connector];
-        
-        NSString *theKey = [pairComponents firstObject];
-        NSString *theValue = [pairComponents lastObject];
-        
-        if (theKey && theValue) {
-            keyValuePairsM[theKey] = theValue;
-        }
-    }
-    
-    return keyValuePairsM;
-}
-
-+ (nullable NSDictionary *)keyValuePairsWithUrlString:(NSString *)urlString {
-    if (![urlString isKindOfClass:[NSString class]]) {
-        return nil;
-    }
-    
-    NSRange range = [urlString rangeOfString:@"?"];
-    if (range.location == NSNotFound || range.length == 0 || range.location == urlString.length - 1) {
-        return nil;
-    }
-    
-    NSString *patternOfFragment = @"#([^#]+)$";
-    NSRange rangeOfFragment = [urlString rangeOfString:patternOfFragment options:NSRegularExpressionSearch];
-    if (rangeOfFragment.location != NSNotFound && rangeOfFragment.length) {
-        // Note: ommit the fragment (#fragment) if needed
-        urlString = [urlString stringByReplacingCharactersInRange:rangeOfFragment withString:@""];
-    }
-    
-    NSError *error = nil;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(?:\\?|&)([^=&]*)=([^&]*)" options:kNilOptions error:&error];
-    if (error) {
-        return nil;
-    }
-    
-    NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
-    [regex enumerateMatchesInString:urlString options:kNilOptions range:NSMakeRange(0, urlString.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
-        
-        NSTextCheckingResult *matchOfQueryItems = result;
-        
-        if (matchOfQueryItems.numberOfRanges == 3) {
-            NSRange keyRange = [matchOfQueryItems rangeAtIndex:1];
-            NSRange valueRange = [matchOfQueryItems rangeAtIndex:2];
-            
-            NSString *key = [self substringWithString:urlString range:keyRange];
-            NSString *value = [self substringWithString:urlString range:valueRange];
-            
-            if (key && value) {
-                dictM[key] = value;
-            }
-        }
-    }];
-    
-    return dictM;
-}
-
-#pragma mark > URL Encode/Decode
-
-+ (NSString *)URLEscapedStringWithString:(nullable NSString *)string {
-    if (![string isKindOfClass:[NSString class]]) {
-        return nil;
-    }
-    
-    static NSString * const kAFCharactersGeneralDelimitersToEncode = @":#[]@"; // does not include "?" or "/" due to RFC 3986 - Section 3.4
-    static NSString * const kAFCharactersSubDelimitersToEncode = @"!$&'()*+,;=";
-    
-    NSMutableCharacterSet * allowedCharacterSet = [[NSCharacterSet URLQueryAllowedCharacterSet] mutableCopy];
-    [allowedCharacterSet removeCharactersInString:[kAFCharactersGeneralDelimitersToEncode stringByAppendingString:kAFCharactersSubDelimitersToEncode]];
-    
-    // FIXME: https://github.com/AFNetworking/AFNetworking/pull/3028
-    // return [string stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacterSet];
-    
-    static NSUInteger const batchSize = 50;
-    
-    NSUInteger index = 0;
-    NSMutableString *escapedString = @"".mutableCopy;
-    
-    while (index < string.length) {
-        NSUInteger length = MIN(string.length - index, batchSize);
-        NSRange range = NSMakeRange(index, length);
-        
-        // To avoid breaking up character sequences such as 👴🏻👮🏽
-        range = [string rangeOfComposedCharacterSequencesForRange:range];
-        
-        NSString *substring = [string substringWithRange:range];
-        NSString *encoded = [substring stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacterSet];
-        [escapedString appendString:encoded];
-        
-        index += range.length;
-    }
-    
-    return escapedString;
-}
-
-+ (NSString *)URLUnescapedStringWithString:(nullable NSString *)string {
-    if (![string isKindOfClass:[NSString class]]) {
-        return nil;
-    }
-    
-    NSString *decodedString;
-    
-    if ([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) {
-        // iOS 9 or later
-        decodedString = CFBridgingRelease(
-                CFURLCreateStringByReplacingPercentEscapes(
-                    kCFAllocatorDefault,
-                    (__bridge CFStringRef)string,
-                    CFSTR("")
-                    )
-                );
-    }
-    else {
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-        decodedString = CFBridgingRelease(
-                CFURLCreateStringByReplacingPercentEscapesUsingEncoding(
-                    kCFAllocatorDefault,
-                    (__bridge CFStringRef)string,
-                    CFSTR(""),
-                    kCFStringEncodingUTF8
-                    )
-                );
-#pragma GCC diagnostic pop
-    }
-    
-    return decodedString;
-}
-
 #pragma mark > unichar
 
 + (NSString *)stringWithUnichar:(unichar)unichar {
@@ -1360,6 +1219,149 @@
     NSString *stringToReturn = [string stringByReplacingCharactersInRange:effectiveRange withString:isUppercase ? [effectedString uppercaseString] : [effectedString lowercaseString]];
     
     return stringToReturn;
+}
+
+#pragma mark - Handle String As Url/Url-like
+
++ (nullable NSDictionary<NSString *, NSString *> *)keyValuePairsWithString:(NSString *)string usingConnector:(NSString *)connector usingSeparator:(NSString *)separator {
+    
+    if (![string isKindOfClass:[NSString class]] ||
+        ![connector isKindOfClass:[NSString class]] ||
+        ![separator isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    NSMutableDictionary *keyValuePairsM = [NSMutableDictionary dictionary];
+    
+    NSArray *keyValuePairs = [string componentsSeparatedByString:separator];
+    for (NSString *keyValue in keyValuePairs) {
+        NSArray *pairComponents = [keyValue componentsSeparatedByString:connector];
+        
+        NSString *theKey = [pairComponents firstObject];
+        NSString *theValue = [pairComponents lastObject];
+        
+        if (theKey && theValue) {
+            keyValuePairsM[theKey] = theValue;
+        }
+    }
+    
+    return keyValuePairsM;
+}
+
++ (nullable NSDictionary *)keyValuePairsWithUrlString:(NSString *)urlString {
+    if (![urlString isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    NSRange range = [urlString rangeOfString:@"?"];
+    if (range.location == NSNotFound || range.length == 0 || range.location == urlString.length - 1) {
+        return nil;
+    }
+    
+    NSString *patternOfFragment = @"#([^#]+)$";
+    NSRange rangeOfFragment = [urlString rangeOfString:patternOfFragment options:NSRegularExpressionSearch];
+    if (rangeOfFragment.location != NSNotFound && rangeOfFragment.length) {
+        // Note: ommit the fragment (#fragment) if needed
+        urlString = [urlString stringByReplacingCharactersInRange:rangeOfFragment withString:@""];
+    }
+    
+    NSError *error = nil;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"(?:\\?|&)([^=&]*)=([^&]*)" options:kNilOptions error:&error];
+    if (error) {
+        return nil;
+    }
+    
+    NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
+    [regex enumerateMatchesInString:urlString options:kNilOptions range:NSMakeRange(0, urlString.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        
+        NSTextCheckingResult *matchOfQueryItems = result;
+        
+        if (matchOfQueryItems.numberOfRanges == 3) {
+            NSRange keyRange = [matchOfQueryItems rangeAtIndex:1];
+            NSRange valueRange = [matchOfQueryItems rangeAtIndex:2];
+            
+            NSString *key = [self substringWithString:urlString range:keyRange];
+            NSString *value = [self substringWithString:urlString range:valueRange];
+            
+            if (key && value) {
+                dictM[key] = value;
+            }
+        }
+    }];
+    
+    return dictM;
+}
+
+#pragma mark > URL Encode/Decode
+
++ (NSString *)URLEscapedStringWithString:(nullable NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    static NSString * const kAFCharactersGeneralDelimitersToEncode = @":#[]@"; // does not include "?" or "/" due to RFC 3986 - Section 3.4
+    static NSString * const kAFCharactersSubDelimitersToEncode = @"!$&'()*+,;=";
+    
+    NSMutableCharacterSet * allowedCharacterSet = [[NSCharacterSet URLQueryAllowedCharacterSet] mutableCopy];
+    [allowedCharacterSet removeCharactersInString:[kAFCharactersGeneralDelimitersToEncode stringByAppendingString:kAFCharactersSubDelimitersToEncode]];
+    
+    // FIXME: https://github.com/AFNetworking/AFNetworking/pull/3028
+    // return [string stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacterSet];
+    
+    static NSUInteger const batchSize = 50;
+    
+    NSUInteger index = 0;
+    NSMutableString *escapedString = @"".mutableCopy;
+    
+    while (index < string.length) {
+        NSUInteger length = MIN(string.length - index, batchSize);
+        NSRange range = NSMakeRange(index, length);
+        
+        // To avoid breaking up character sequences such as 👴🏻👮🏽
+        range = [string rangeOfComposedCharacterSequencesForRange:range];
+        
+        NSString *substring = [string substringWithRange:range];
+        NSString *encoded = [substring stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacterSet];
+        [escapedString appendString:encoded];
+        
+        index += range.length;
+    }
+    
+    return escapedString;
+}
+
++ (NSString *)URLUnescapedStringWithString:(nullable NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    NSString *decodedString;
+    
+    if ([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending) {
+        // iOS 9 or later
+        decodedString = CFBridgingRelease(
+                CFURLCreateStringByReplacingPercentEscapes(
+                    kCFAllocatorDefault,
+                    (__bridge CFStringRef)string,
+                    CFSTR("")
+                    )
+                );
+    }
+    else {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+        decodedString = CFBridgingRelease(
+                CFURLCreateStringByReplacingPercentEscapesUsingEncoding(
+                    kCFAllocatorDefault,
+                    (__bridge CFStringRef)string,
+                    CFSTR(""),
+                    kCFStringEncodingUTF8
+                    )
+                );
+#pragma GCC diagnostic pop
+    }
+    
+    return decodedString;
 }
 
 #pragma mark - Handle String As HTML

@@ -186,51 +186,6 @@ typedef NS_ENUM(NSUInteger, WCStringTruncatingStyle) {
  */
 + (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string charactersInSet:(NSCharacterSet *)charactersSet substringRangs:(inout NSMutableArray<NSValue *> *)substringRanges;
 
-/**
- Get key/value pairs from the string with the specific connector and separator
-
- @param string the string contains key-value format
- @param connector the connector sign which connects key and value
- @param separator the separator sign which separate the key value pairs
- @return the dictionary of the key value pairs
- @discussion If parse url-like key values, use +[WCStringTool keyValuePairsWithUrlString:] instead.
- */
-+ (nullable NSDictionary<NSString *, NSString *> *)keyValuePairsWithString:(NSString *)string usingConnector:(NSString *)connector usingSeparator:(NSString *)separator;
-
-/**
- Get key value pairs from url-like string
- 
- @param urlString the url-like string which should contains a `?`, e.g. ?key1=value1&key2=value2#jumpLocation
- @return the key value pairs
- @note For checking http/https URL strictly, use WCURLTool instead
- @discussion
- 1. The urlString expected to have different keys. If have the same key, the return result is not determined.
- 2. This method not validates the urlString, pass malformed string may get the wrong result. e.g. abc@key1=A#key2=B
- */
-+ (nullable NSDictionary *)keyValuePairsWithUrlString:(NSString *)urlString;
-
-#pragma mark > URL Encode/Decode
-
-/**
- Get a URL encoded string
-
- @param string the string
- @return the URL encoded string
- 
- @see AFPercentEscapedStringFromString function, https://github.com/AFNetworking/AFNetworking/blob/master/AFNetworking/AFURLRequestSerialization.m#L47
- */
-+ (nullable NSString *)URLEscapedStringWithString:(nullable NSString *)string;
-
-/**
- Get a URL decoded string with UTF-8 encoding
-
- @param string the string
- @return the URL decoded string
- 
- @see http://isobar.logdown.com/posts/211030-url-encode-decode-in-ios
- */
-+ (nullable NSString *)URLUnescapedStringWithString:(nullable NSString *)string;
-
 #pragma mark > unichar
 
 /**
@@ -589,6 +544,53 @@ typedef NS_ENUM(NSUInteger, WCStringTruncatingStyle) {
  @return the new string
  */
 + (nullable NSString *)changeCaseStringWithString:(NSString *)string range:(NSRange)range isUppercase:(BOOL)isUppercase;
+
+#pragma mark - Handle String As Url/Url-like
+
+/**
+ Get key/value pairs from the string with the specific connector and separator
+ 
+ @param string the string contains key-value format
+ @param connector the connector sign which connects key and value
+ @param separator the separator sign which separate the key value pairs
+ @return the dictionary of the key value pairs
+ @discussion If parse url-like key values, use +[WCStringTool keyValuePairsWithUrlString:] instead.
+ */
++ (nullable NSDictionary<NSString *, NSString *> *)keyValuePairsWithString:(NSString *)string usingConnector:(NSString *)connector usingSeparator:(NSString *)separator;
+
+/**
+ Get key value pairs from url-like string
+ 
+ @param urlString the url-like string which should contains a `?`, e.g. ?key1=value1&key2=value2#jumpLocation
+ @return the key value pairs
+ @note For checking http/https URL strictly, use WCURLTool instead
+ @discussion
+ 1. The urlString expected to have different keys. If have the same key, the return result is not determined.
+ 2. This method not validates the urlString, pass malformed string may get the wrong result. e.g. abc@key1=A#key2=B
+ */
++ (nullable NSDictionary *)keyValuePairsWithUrlString:(NSString *)urlString;
+
+#pragma mark > URL Encode/Decode
+
+/**
+ Get a URL encoded string
+ 
+ @param string the string
+ @return the URL encoded string
+ 
+ @see AFPercentEscapedStringFromString function, https://github.com/AFNetworking/AFNetworking/blob/master/AFNetworking/AFURLRequestSerialization.m#L47
+ */
++ (nullable NSString *)URLEscapedStringWithString:(nullable NSString *)string;
+
+/**
+ Get a URL decoded string with UTF-8 encoding
+ 
+ @param string the string
+ @return the URL decoded string
+ 
+ @see http://isobar.logdown.com/posts/211030-url-encode-decode-in-ios
+ */
++ (nullable NSString *)URLUnescapedStringWithString:(nullable NSString *)string;
 
 #pragma mark - Handle String As HTML
 
