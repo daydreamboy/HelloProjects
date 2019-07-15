@@ -7,12 +7,12 @@
 //
 
 #import "CustomizeSelectMeViewController.h"
-#import "WCViewTool.h"
 
 @interface CustomizeSelectMeCell : UITableViewCell
 @property (nonatomic, strong) UIColor *checkmarkTintColor;
 @property (nonatomic, strong, readonly) UIButton *checkmarkButton;
 @property (nonatomic, assign) UIEdgeInsets checkmarkButtonInsets;
+@property (nonatomic, assign) BOOL shitfContentViewWhileEditing;
 @end
 
 @interface CustomizeSelectMeCell ()
@@ -24,6 +24,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
+        _shitfContentViewWhileEditing = YES;
     }
     return self;
 }
@@ -71,20 +72,22 @@
             }
             
             UIEdgeInsets paddings = UIEdgeInsetsEqualToEdgeInsets(self.checkmarkButtonInsets, UIEdgeInsetsZero)
-                ? UIEdgeInsetsMake(
-                                   (CGRectGetHeight(self.bounds) - CGRectGetHeight(self.checkmarkButton.bounds)) / 2.0,
-                                   (CGRectGetWidth(cellEditControl.bounds) - CGRectGetWidth(self.checkmarkButton.bounds)) / 2.0,
-                                   (CGRectGetHeight(self.bounds) - CGRectGetHeight(self.checkmarkButton.bounds)) / 2.0,
-                                   (CGRectGetWidth(cellEditControl.bounds) - CGRectGetWidth(self.checkmarkButton.bounds)) / 2.0
-                                   )
-                : self.checkmarkButtonInsets;
+                                    ? UIEdgeInsetsMake(
+                                                       (CGRectGetHeight(self.bounds) - CGRectGetHeight(self.checkmarkButton.bounds)) / 2.0,
+                                                       (CGRectGetWidth(cellEditControl.bounds) - CGRectGetWidth(self.checkmarkButton.bounds)) / 2.0,
+                                                       (CGRectGetHeight(self.bounds) - CGRectGetHeight(self.checkmarkButton.bounds)) / 2.0,
+                                                       (CGRectGetWidth(cellEditControl.bounds) - CGRectGetWidth(self.checkmarkButton.bounds)) / 2.0
+                                                       )
+                                    : self.checkmarkButtonInsets;
 
             CGFloat offsetXForCheckmarkButton = self.isEditing ? paddings.left : (-(paddings.right + CGRectGetWidth(self.checkmarkButton.bounds)));
             if (isFirstLayoutSubviews) {
                 offsetXForCheckmarkButton = 0;//(-(paddings.right + CGRectGetWidth(self.checkmarkButton.bounds)));
             }
             
-            CGFloat offsetXForContentView = self.isEditing ? (paddings.left + paddings.right + CGRectGetWidth(self.checkmarkButton.bounds)) : 0;
+            CGFloat offsetXForContentView = (self.isEditing && self.shitfContentViewWhileEditing)
+                                            ? (paddings.left + paddings.right + CGRectGetWidth(self.checkmarkButton.bounds))
+                                            : 0;
             
             self.contentView.frame = CGRectMake(offsetXForContentView, 0, CGRectGetWidth(self.contentView.bounds), CGRectGetHeight(self.contentView.bounds));
             self.checkmarkButton.frame = CGRectMake(offsetXForCheckmarkButton, paddings.top, CGRectGetWidth(self.checkmarkButton.bounds), CGRectGetHeight(self.checkmarkButton.bounds));
@@ -142,10 +145,10 @@
     if (!_listArr) {
         NSString *path = [[NSBundle mainBundle] pathForResource:@"computers" ofType:@"plist"];
         NSMutableArray *array = [[NSMutableArray alloc] initWithContentsOfFile:path];
-        id firstObject = [array firstObject];
-        [array removeAllObjects];
-        [array addObject:firstObject];
-        _listArr = array;
+//        id firstObject = [array firstObject];
+//        [array removeAllObjects];
+//        [array addObject:firstObject];
+        _listArr = [array subarrayWithRange:NSMakeRange(0, 2)];
     }
 }
 
@@ -194,15 +197,23 @@
     //[cell.checkmarkButton addTarget:self action:@selector(buttonCheckmarkClicked:) forControlEvents:UIControlEventTouchUpInside];
     cell.checkmarkTintColor = [UIColor orangeColor];
     cell.checkmarkButtonInsets = UIEdgeInsetsMake(5, 10, 0, 20);
-    cell.editingAccessoryType = UITableViewCellAccessoryCheckmark;
+    //cell.editingAccessoryType = UITableViewCellAccessoryCheckmark;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = _listArr[indexPath.row];
+    if (indexPath.row % 2 == 0) {
+        cell.textLabel.textAlignment = NSTextAlignmentLeft;
+        cell.shitfContentViewWhileEditing = YES;
+    }
+    else {
+        cell.textLabel.textAlignment = NSTextAlignmentRight;
+        cell.shitfContentViewWhileEditing = NO;
+    }
     // Counterpart for return NO in - tableView:canEditRowAtIndexPath: method
     //cell.userInteractionEnabled = indexPath.row == 0 ? NO : YES;
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.backgroundColor = [UIColor greenColor];
-    button.frame = CGRectMake(300, 10, 40, 40);
+    button.frame = CGRectMake(300, 10, 30, 30);
     [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     [cell.contentView addSubview:button];

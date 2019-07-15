@@ -100,11 +100,13 @@ iOS 8+上，当UIScrollView或者UITableView设置过delegate，然后再设置c
 >viewDidAppear可以打印contentInset检查
 
 
+
+
 ## 2、UITableView Tips
 
 ### （1）Plain Table的数据没有显示超出屏幕时，去除下面多余的分隔线
 
-```
+```objective-c
 tableView.tableFooterView = [UIView new];
 ```
 Grouped Table不存在上面问题，即使没有显示全部屏幕，也没有多余的分隔线
@@ -115,7 +117,7 @@ Grouped Table不存在上面问题，即使没有显示全部屏幕，也没有�
 
 ### （2）Table header view添加扩展view，用于解决Table view header下拉时空白
 
-```
+```objective-c
 - (void)didMoveToSuperview {
     [super didMoveToSuperview];
     CGRect frame = self.bounds;
@@ -132,7 +134,7 @@ Grouped Table不存在上面问题，即使没有显示全部屏幕，也没有�
 
 ### （3）将Plain Table的section设置成不浮动的，类似Grouped Table[^1]
 
-```
+```objective-c
 CGFloat dummyViewHeight = 40;
 UIView *dummyView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, dummyViewHeight)];
 self.tableView.tableHeaderView = dummyView;
@@ -192,6 +194,27 @@ typedef NS_ENUM(NSInteger, UITableViewCellEditingStyle) {
 
 
 ​      当UITableView处于编辑模式，UITableViewCell对应在编辑模式下属性也会生效，例如editingAccessoryType、editingAccessoryView和shouldIndentWhileEditing。
+
+
+
+### （6）UITableViewCell上屏和离屏事件
+
+​      UITableViewDelegate提供`-tableView:didEndDisplayingCell:forRowAtIndexPath:`方法用于检测cell移除UITableView的事件。但是当某个cell被reload或者replace时，该方法会被调用，因此需要修正这种情况。
+
+示例代码，如下
+
+```objective-c
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([tableView.indexPathsForVisibleRows indexOfObject:indexPath] == NSNotFound) {
+        // This indeed is an indexPath no longer visible
+        // Do something to this non-visible cell...
+    }
+}
+```
+
+
+
+上屏事件（TODO）
 
 
 

@@ -23,6 +23,7 @@
 		2B63BF38200FA22600A5D8D2 /* GroupedTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63BF30200FA22600A5D8D2 /* GroupedTableViewViewController.m */; };
 		2B63BF39200FA22600A5D8D2 /* PlainTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63BF31200FA22600A5D8D2 /* PlainTableViewViewController.m */; };
 		2BA442CC2261DFD60016C876 /* ShowContextMenuInCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA442CB2261DFD60016C876 /* ShowContextMenuInCellViewController.m */; };
+		4F50647122DC2DA200C54420 /* DetectCellOffscreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50647022DC2DA200C54420 /* DetectCellOffscreenViewController.m */; };
 		4F5112BD22C39584005E5AAE /* CustomizeSelectMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5112BC22C39584005E5AAE /* CustomizeSelectMeViewController.m */; };
 		4F519A14229B907A004C548A /* CallReloadDataInsideCellForRowAtIndexPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F519A13229B907A004C548A /* CallReloadDataInsideCellForRowAtIndexPathViewController.m */; };
 		4F60E71922A7E64400C27087 /* UITableView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E71222A7E64300C27087 /* UITableView+Addition.m */; };
@@ -80,6 +81,8 @@
 		2B63BF33200FA22600A5D8D2 /* PlainTableViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainTableViewViewController.h; sourceTree = "<group>"; };
 		2BA442CA2261DFD60016C876 /* ShowContextMenuInCellViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowContextMenuInCellViewController.h; sourceTree = "<group>"; };
 		2BA442CB2261DFD60016C876 /* ShowContextMenuInCellViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowContextMenuInCellViewController.m; sourceTree = "<group>"; };
+		4F50646F22DC2DA200C54420 /* DetectCellOffscreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectCellOffscreenViewController.h; sourceTree = "<group>"; };
+		4F50647022DC2DA200C54420 /* DetectCellOffscreenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetectCellOffscreenViewController.m; sourceTree = "<group>"; };
 		4F5112BB22C39584005E5AAE /* CustomizeSelectMeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomizeSelectMeViewController.h; sourceTree = "<group>"; };
 		4F5112BC22C39584005E5AAE /* CustomizeSelectMeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomizeSelectMeViewController.m; sourceTree = "<group>"; };
 		4F519A12229B907A004C548A /* CallReloadDataInsideCellForRowAtIndexPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CallReloadDataInsideCellForRowAtIndexPathViewController.h; sourceTree = "<group>"; };
@@ -202,6 +205,8 @@
 				4F60E71F22A7E72200C27087 /* ShowEmptyTipViewInUITableViewViewController.m */,
 				4F5112BB22C39584005E5AAE /* CustomizeSelectMeViewController.h */,
 				4F5112BC22C39584005E5AAE /* CustomizeSelectMeViewController.m */,
+				4F50646F22DC2DA200C54420 /* DetectCellOffscreenViewController.h */,
+				4F50647022DC2DA200C54420 /* DetectCellOffscreenViewController.m */,
 			);
 			path = section4;
 			sourceTree = "<group>";
@@ -224,6 +229,13 @@
 				4F519A13229B907A004C548A /* CallReloadDataInsideCellForRowAtIndexPathViewController.m */,
 			);
 			path = section5;
+			sourceTree = "<group>";
+		};
+		4F53472222C613CC000710B9 /* WCEditingTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = WCEditingTableViewCell;
 			sourceTree = "<group>";
 		};
 		4F60E70E22A7E64300C27087 /* WCTableView */ = {
@@ -255,6 +267,7 @@
 		4FAAA5851FA4804600A80328 = {
 			isa = PBXGroup;
 			children = (
+				4F53472222C613CC000710B9 /* WCEditingTableViewCell */,
 				4F60E70E22A7E64300C27087 /* WCTableView */,
 				4F948A1F2011C5CC0030BC4A /* WCExpandableHeaderView */,
 				4FBB4E0321A29E21000E9F61 /* WCTableViewTool */,
@@ -425,6 +438,7 @@
 				4F948A252011C8590030BC4A /* PlainTableViewWithExpandableSectionHeaderViewController.m in Sources */,
 				2B63BF20200FA11200A5D8D2 /* DeleteMeViewController.m in Sources */,
 				4F948A1E2011A0AE0030BC4A /* PlainTableViewWithNonFloatSectionViewController.m in Sources */,
+				4F50647122DC2DA200C54420 /* DetectCellOffscreenViewController.m in Sources */,
 				4F60E71922A7E64400C27087 /* UITableView+Addition.m in Sources */,
 				4FAAA5931FA4804600A80328 /* AppDelegate.m in Sources */,
 				2B63BF21200FA11200A5D8D2 /* SelectMeViewController.m in Sources */,
