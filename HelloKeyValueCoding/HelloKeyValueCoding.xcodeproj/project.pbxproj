@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F4FEB8822DDB9A800C6B052 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FEB8622DDB97500C6B052 /* Person.m */; };
+		4F4FEB8A22DDBABE00C6B052 /* Tests_KVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FEB8922DDBABE00C6B052 /* Tests_KVC.m */; };
+		4F4FEB8D22DDBDB600C6B052 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FEB8C22DDBDB600C6B052 /* Transaction.m */; };
 		4F5640AE22127B570039D6F6 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5640AD22127B570039D6F6 /* Tests.m */; };
 		4F83D38920CE119E00F2FE80 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F83D38820CE119E00F2FE80 /* AppDelegate.m */; };
 		4F83D39120CE119F00F2FE80 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F83D39020CE119F00F2FE80 /* Assets.xcassets */; };
@@ -27,6 +30,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F4FEB8522DDB97500C6B052 /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		4F4FEB8622DDB97500C6B052 /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
+		4F4FEB8922DDBABE00C6B052 /* Tests_KVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_KVC.m; sourceTree = "<group>"; };
+		4F4FEB8B22DDBDB600C6B052 /* Transaction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
+		4F4FEB8C22DDBDB600C6B052 /* Transaction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
 		4F5640AB22127B570039D6F6 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F5640AD22127B570039D6F6 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		4F5640AF22127B570039D6F6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -61,10 +69,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F4FEB8422DDB95600C6B052 /* DummyClass */ = {
+			isa = PBXGroup;
+			children = (
+				4F4FEB8522DDB97500C6B052 /* Person.h */,
+				4F4FEB8622DDB97500C6B052 /* Person.m */,
+				4F4FEB8B22DDBDB600C6B052 /* Transaction.h */,
+				4F4FEB8C22DDBDB600C6B052 /* Transaction.m */,
+			);
+			path = DummyClass;
+			sourceTree = "<group>";
+		};
 		4F5640AC22127B570039D6F6 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				4F4FEB8422DDB95600C6B052 /* DummyClass */,
 				4F5640AD22127B570039D6F6 /* Tests.m */,
+				4F4FEB8922DDBABE00C6B052 /* Tests_KVC.m */,
 				4F5640AF22127B570039D6F6 /* Info.plist */,
 			);
 			path = Tests;
@@ -212,6 +233,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F4FEB8822DDB9A800C6B052 /* Person.m in Sources */,
+				4F4FEB8A22DDBABE00C6B052 /* Tests_KVC.m in Sources */,
+				4F4FEB8D22DDBDB600C6B052 /* Transaction.m in Sources */,
 				4F5640AE22127B570039D6F6 /* Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
