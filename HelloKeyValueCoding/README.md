@@ -24,13 +24,13 @@
 
 
 
-| 操作符 | 含义     | 返回值   | 示例                                                  |
-| ------ | -------- | -------- | ----------------------------------------------------- |
-| @avg   | 取平均数 | NSNumber | `[collectionObject valueForKeyPath:@"@avg.property"]` |
-| @count | 取个数   | NSNumber | `[collectionObject valueForKeyPath:@"@count"]`        |
-| @max   | 取最大数 | id       | `[collectionObject valueForKeyPath:@"@max.property"]` |
-| @min   | 取最小数 | id       | `[collectionObject valueForKeyPath:@"@min.property"]` |
-| @sum   | 取总数   | NSNumber | `[collectionObject valueForKeyPath:@"@sum.property"]` |
+| 操作符的使用格式                                 | 含义     | 返回值类型           |
+| ------------------------------------------------ | -------- | -------------------- |
+| [collectionObject valueForKeyPath:@avg.property] | 取平均数 | NSNumber             |
+| [collectionObject valueForKeyPath:@count]        | 取个数   | NSNumber             |
+| [collectionObject valueForKeyPath:@max.property] | 取最大数 | id，根据property确定 |
+| [collectionObject valueForKeyPath:@min.property] | 取最小数 | id，根据property确定 |
+| [collectionObject valueForKeyPath:@sum.property] | 取总数   | NSNumber             |
 
 
 
@@ -38,10 +38,10 @@
 
 
 
-| 操作符                  | 含义 | 示例 |
-| ----------------------- | ---- | ---- |
-| @distinctUnionOfObjects |      |      |
-| @unionOfObjects         |      |      |
+| 操作符的使用格式                                         | 含义                             | 返回值类型             |
+| -------------------------------------------------------- | -------------------------------- | ---------------------- |
+| [array valueForKeyPath:@distinctUnionOfObjects.property] | 将一维数组的property求不重复并集 | NSArray\<PropertyType> |
+| [array valueForKeyPath:@unionOfObjects.property]         | 将一维数组的property的并集       | NSArray\<PropertyType> |
 
 
 
@@ -49,15 +49,15 @@
 
 
 
-| 操作符                 | 含义 | 示例 |
-| :--------------------- | :--- | :--- |
-| @distinctUnionOfArrays |      |      |
-| @unionOfArrays         |      |      |
-| @distinctUnionOfSets   |      |      |
+| 操作符的使用格式                                             | 含义                                        | 返回值类型             |
+| :----------------------------------------------------------- | :------------------------------------------ | ---------------------- |
+| [arrayOfArrays valueForKeyPath:@distinctUnionOfArrays.property] | 将二维数组中所有元素的property求不重复并集  | NSArray\<PropertyType> |
+| [arrayOfArrays valueForKeyPath:@unionOfArrays.property]      | 将二维数组中所有元素的property求并集        | NSArray\<PropertyType> |
+| [setOfSets valueForKeyPath:@distinctUnionOfSets.property]    | 将二维集合(NSSet)中所有元素的property求并集 | NSSet\<PropertyType>   |
 
 
 
-
+## 2、KVC常见问题
 
 
 

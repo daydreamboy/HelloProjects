@@ -16,6 +16,8 @@
     transaction.amount = amount;
     transaction.date = date;
     
+    transaction.balance = [amount doubleValue];
+    
     return transaction;
 }
 

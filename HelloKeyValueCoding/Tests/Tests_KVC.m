@@ -82,6 +82,11 @@
     XCTAssertTrue([output isKindOfClass:[NSNumber class]]);
     XCTAssertEqualObjects(output, @(16));
     
+    // Case 2: keyPath supports primitive type
+    output = [self.transactions valueForKeyPath:@"@avg.balance"];
+    XCTAssertTrue([output isKindOfClass:[NSNumber class]]);
+    XCTAssertEqualObjects(output, @(16));
+    
     // Abnormal Case 1: property not found
     // @see https://stackoverflow.com/a/30135115
     XCTAssertThrowsSpecificNamed([self.transactionsMalformed valueForKeyPath:@"@avg.amount"], NSException, @"NSUnknownKeyException");
@@ -132,6 +137,78 @@
     output = [self.transactions valueForKeyPath:@"@sum.amount"];
     XCTAssertTrue([output isKindOfClass:[NSNumber class]]);
     XCTAssertEqualObjects(output, @(64));
+}
+
+#pragma mark > @distinctUnionOfObjects
+
+- (void)test_distinctUnionOfObjects {
+    NSArray *output;
+    id expected;
+    
+    // Case 1
+    output = [self.transactions valueForKeyPath:@"@distinctUnionOfObjects.payee"];
+    XCTAssertTrue([output isKindOfClass:[NSArray class]]);
+    
+    expected = [NSSet setWithArray:@[@"John", @"Lily", @"Lucy"]];
+    XCTAssertEqualObjects([NSSet setWithArray:output], expected);
+}
+
+#pragma mark > @unionOfObjects
+
+- (void)test_unionOfObjects {
+    NSArray *output;
+    id expected;
+    
+    // Case 1
+    output = [self.transactions valueForKeyPath:@"@unionOfObjects.payee"];
+    XCTAssertTrue([output isKindOfClass:[NSArray class]]);
+    
+    // @see https://stackoverflow.com/a/15732286
+    expected = [[NSCountedSet alloc] initWithArray:@[@"John", @"Lily", @"Lucy", @"Lily"]];
+    XCTAssertEqualObjects([[NSCountedSet alloc] initWithArray:output], expected);
+}
+
+#pragma mark > @distinctUnionOfArrays
+
+- (void)test_distinctUnionOfArrays {
+    NSArray *output;
+    id expected;
+    
+    // Case 1
+    output = [@[self.transactions,
+                @[
+                    [Transaction transactionWithPayee:@"John" amount:@(4) date:[NSDate dateWithTimeIntervalSince1970:20]],
+                    [Transaction transactionWithPayee:@"Lily" amount:@(30) date:[NSDate dateWithTimeIntervalSince1970:60]],
+                    [Transaction transactionWithPayee:@"Tom" amount:@(36) date:[NSDate dateWithTimeIntervalSince1970:20]],
+                    [Transaction transactionWithPayee:@"Sam" amount:@(9) date:[NSDate dateWithTimeIntervalSince1970:60]],
+                    ]
+                ]
+              valueForKeyPath:@"@distinctUnionOfArrays.payee"];
+    XCTAssertTrue([output isKindOfClass:[NSArray class]]);
+    
+    expected = [[NSCountedSet alloc] initWithArray:@[@"John", @"Lily", @"Lucy", @"Tom", @"Sam"]];
+    XCTAssertEqualObjects([[NSCountedSet alloc] initWithArray:output], expected);
+}
+
+#pragma mark > @unionOfArrays
+
+- (void)test_unionOfArrays {
+    NSArray *output;
+    id expected;
+    
+    // Case 1
+    output = [@[self.transactions,self.transactions] valueForKeyPath:@"@unionOfArrays.payee"];
+    XCTAssertTrue([output isKindOfClass:[NSArray class]]);
+    
+    // @see https://stackoverflow.com/a/15732286
+    expected = [[NSCountedSet alloc] initWithArray:@[@"John", @"Lily", @"Lucy", @"Lily", @"John", @"Lily", @"Lucy", @"Lily"]];
+    XCTAssertEqualObjects([[NSCountedSet alloc] initWithArray:output], expected);
+}
+
+#pragma mark > @distinctUnionOfSets
+
+- (void)test_distinctUnionOfSets {
+    
 }
 
 #pragma mark - Exception

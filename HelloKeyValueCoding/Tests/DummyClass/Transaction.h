@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *payee;   // To whom
 @property (nonatomic, strong) NSNumber *amount;  // How much
 @property (nonatomic, strong) NSDate *date;      // When
+@property (nonatomic, assign) double balance; // How much left
 
 + (instancetype)transactionWithPayee:(NSString *)payee amount:(NSNumber *)amount date:(NSDate *)date;
 
