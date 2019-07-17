@@ -254,6 +254,36 @@
     XCTAssertNil(output);
 }
 
+#pragma mark - Comparison
+
+- (void)test_compareArraysWithArray1_array2_considerOrder {
+    NSArray *array1;
+    NSArray *array2;
+    
+    // Case 1
+    XCTAssertFalse([WCArrayTool compareArraysWithArray1:array1 array2:array2 considerOrder:NO]);
+    
+    // Case 2
+    array1 = @[@"one", @"two", @"three"];
+    array2 = @[@"three", @"one", @"two"];
+    XCTAssertTrue([WCArrayTool compareArraysWithArray1:array1 array2:array2 considerOrder:NO]);
+    
+    // Case 3
+    array1 = @[@"one", @"one", @"two", @"three"];
+    array2 = @[@"three", @"one", @"one", @"two"];
+    XCTAssertTrue([WCArrayTool compareArraysWithArray1:array1 array2:array2 considerOrder:NO]);
+    
+    // Case 4
+    array1 = @[@"one", @"one", @"two", @"three"];
+    array2 = @[@"three", @"one", @"two"];
+    XCTAssertFalse([WCArrayTool compareArraysWithArray1:array1 array2:array2 considerOrder:NO]);
+    
+    // Case 5
+    array1 = @[@"one", @"two", @"three"];
+    array2 = @[@"three", @"one", @"two"];
+    XCTAssertFalse([WCArrayTool compareArraysWithArray1:array1 array2:array2 considerOrder:YES]);
+}
+
 #pragma mark - Assistant Methods
 
 - (void)test_arrayWithLetters {

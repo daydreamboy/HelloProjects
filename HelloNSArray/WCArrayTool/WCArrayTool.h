@@ -94,6 +94,20 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSArray *)subarrayWithArray:(NSArray *)array atLocation:(NSUInteger)location length:(NSUInteger)length;
 
+#pragma mark - Comparison
+
+/**
+ Compare elements of two arrays
+
+ @param array1 the first array
+ @param array2 the second array
+ @param considerOrder YES if consider the order, NO if not consider the order
+ @return YES if the array1 equals to the array2, NO if the array1 not equals to the array2 or the parameters are invalid.
+ @discussion The array allows multiple same elements
+ @see https://stackoverflow.com/a/15732286
+ */
++ (BOOL)compareArraysWithArray1:(NSArray *)array1 array2:(NSArray *)array2 considerOrder:(BOOL)considerOrder;
+
 #pragma mark - Assistant Methods
 
 /**

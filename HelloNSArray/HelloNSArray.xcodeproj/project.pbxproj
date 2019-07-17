@@ -16,7 +16,6 @@
 		4F6F906621B6BF5500A949EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F6F906421B6BF5500A949EC /* LaunchScreen.storyboard */; };
 		4F6F906921B6BF5600A949EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F906821B6BF5600A949EC /* main.m */; };
 		4F6F907621B6BF6300A949EC /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F907521B6BF6300A949EC /* Tests.m */; };
-		4F6F908021B6BF8900A949EC /* WCArrayTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F907F21B6BF8900A949EC /* WCArrayTool.m */; };
 		4F8BEC8621DF4772000EA7B7 /* Tests_NSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8BEC8521DF4772000EA7B7 /* Tests_NSArray.m */; };
 /* End PBXBuildFile section */
 
@@ -236,7 +235,6 @@
 				4F6F905E21B6BF5400A949EC /* ViewController.m in Sources */,
 				4F6F906921B6BF5600A949EC /* main.m in Sources */,
 				4F6F905B21B6BF5300A949EC /* AppDelegate.m in Sources */,
-				4F6F908021B6BF8900A949EC /* WCArrayTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

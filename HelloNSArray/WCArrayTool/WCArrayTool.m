@@ -200,6 +200,22 @@
     }
 }
 
+#pragma mark - Comparison
+
++ (BOOL)compareArraysWithArray1:(NSArray *)array1 array2:(NSArray *)array2 considerOrder:(BOOL)considerOrder {
+    
+    if (![array1 isKindOfClass:[NSArray class]] || ![array2 isKindOfClass:[NSArray class]]) {
+        return NO;
+    }
+    
+    if (considerOrder) {
+        return [array1 isEqualToArray:array2];
+    }
+    else {
+        return [[NSCountedSet setWithArray:array1] isEqualToSet:[NSCountedSet setWithArray:array2]];
+    }
+}
+
 #pragma mark - Assistant Methods
 
 + (NSArray *)arrayWithLetters:(BOOL)isUppercase {
