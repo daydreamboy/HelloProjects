@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F513ED622DECA93003698DA /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F513ED522DECA93003698DA /* Person.m */; };
 		4F5640A62212785C0039D6F6 /* WCArrayTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F907F21B6BF8900A949EC /* WCArrayTool.m */; };
 		4F6F905B21B6BF5300A949EC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F905A21B6BF5300A949EC /* AppDelegate.m */; };
 		4F6F905E21B6BF5400A949EC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F905D21B6BF5400A949EC /* ViewController.m */; };
@@ -30,6 +31,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F513ED422DECA93003698DA /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		4F513ED522DECA93003698DA /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		4F6F905621B6BF5300A949EC /* HelloNSArray.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSArray.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F6F905921B6BF5300A949EC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F6F905A21B6BF5300A949EC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -66,6 +69,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F513ED322DECA5E003698DA /* DummyClass */ = {
+			isa = PBXGroup;
+			children = (
+				4F513ED422DECA93003698DA /* Person.h */,
+				4F513ED522DECA93003698DA /* Person.m */,
+			);
+			path = DummyClass;
+			sourceTree = "<group>";
+		};
 		4F6F904D21B6BF5300A949EC = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +116,7 @@
 		4F6F907421B6BF6300A949EC /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				4F513ED322DECA5E003698DA /* DummyClass */,
 				4F6F907521B6BF6300A949EC /* Tests.m */,
 				4F8BEC8521DF4772000EA7B7 /* Tests_NSArray.m */,
 				4F6F907721B6BF6300A949EC /* Info.plist */,
@@ -233,6 +246,7 @@
 			files = (
 				4F5640A62212785C0039D6F6 /* WCArrayTool.m in Sources */,
 				4F8BEC8621DF4772000EA7B7 /* Tests_NSArray.m in Sources */,
+				4F513ED622DECA93003698DA /* Person.m in Sources */,
 				4F6F907621B6BF6300A949EC /* Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -91,6 +91,7 @@
     
     if (keyPaths.count) {
         NSMutableSet *lookup = [[NSMutableSet alloc] init];
+        NSMutableArray *toRemove = [NSMutableArray arrayWithCapacity:array.count];
         
         for (NSInteger index = 0; index < [arrM count]; index++) {
             NSMutableString *identifier = [NSMutableString string];
@@ -114,17 +115,19 @@
             }
             
             if ([lookup containsObject:identifier]) {
-                [arrM removeObjectAtIndex:index];
+                [toRemove addObject:element];
             }
             else {
                 [lookup addObject:identifier];
             }
         }
         
+        [arrM removeObjectsInArray:toRemove];
+        
         return arrM;
     }
     else {
-        NSMutableArray *arrM = [NSMutableArray array];
+        NSMutableArray *arrM = [NSMutableArray arrayWithCapacity:array.count];
         
         for (id object in array) {
             if (![arrM containsObject:object]) {

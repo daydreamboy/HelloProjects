@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "WCArrayTool.h"
+#import "Person.h"
 
 @interface Tests : XCTestCase
 
@@ -164,6 +165,27 @@
     
     uniqueArray = [WCArrayTool collapsedArrayWithArray:redundantArray keyPaths:nil];
     XCTAssertTrue(uniqueArray.count == 2);
+    
+    // Case 5
+    redundantArray = [NSMutableArray array];
+    [redundantArray addObject:[Person personWithFirstName:@"Lily" lastName:@"Smith" age:20]];
+    [redundantArray addObject:[Person personWithFirstName:@"Lily" lastName:@"Smith" age:20]];
+    [redundantArray addObject:[Person personWithFirstName:@"Lucy" lastName:@"Smith" age:22]];
+    [redundantArray addObject:[Person personWithFirstName:@"Sam" lastName:@"Olivier" age:26]];
+    [redundantArray addObject:[Person personWithFirstName:@"Laurence" lastName:@"Olivier" age:19]];
+    [redundantArray addObject:[Person personWithFirstName:@"Lucy" lastName:@"Olivier" age:22]];
+    
+    uniqueArray = [WCArrayTool collapsedArrayWithArray:redundantArray keyPaths:@[ @"firstName", @"lastName", @"age" ]];
+    XCTAssertTrue(uniqueArray.count == 5);
+    
+    uniqueArray = [WCArrayTool collapsedArrayWithArray:redundantArray keyPaths:@[ @"firstName" ]];
+    XCTAssertTrue(uniqueArray.count == 4);
+    
+    uniqueArray = [WCArrayTool collapsedArrayWithArray:redundantArray keyPaths:@[ @"lastName" ]];
+    XCTAssertTrue(uniqueArray.count == 2);
+    
+    uniqueArray = [WCArrayTool collapsedArrayWithArray:redundantArray keyPaths:@[ @"age" ]];
+    XCTAssertTrue(uniqueArray.count == 4);
 }
 
 #pragma mark - Subarray
