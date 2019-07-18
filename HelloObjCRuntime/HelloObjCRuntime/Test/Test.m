@@ -45,12 +45,14 @@
     output = [WCObjCRuntimeTool createSubclassWithClassName:nil baseClassName:nil protocolNames:nil selBlockPairs:nil];
     XCTAssertTrue(output != NULL);
     XCTAssertTrue([[NSString stringWithUTF8String:class_getName(output)] hasPrefix:@"NSObject_"]);
+    XCTAssertEqualObjects(NSStringFromClass([output superclass]), @"NSObject");
     
     // Case 2
     NSArray *protocolNames = @[ NSStringFromProtocol(@protocol(ProtocolA)), NSStringFromProtocol(@protocol(ProtocolB)) ];
     output = [WCObjCRuntimeTool createSubclassWithClassName:nil baseClassName:nil protocolNames:protocolNames selBlockPairs:nil];
     XCTAssertTrue(output != NULL);
     XCTAssertTrue([[NSString stringWithUTF8String:class_getName(output)] hasPrefix:@"NSObject_"]);
+    XCTAssertEqualObjects(NSStringFromClass([output superclass]), @"NSObject");
     XCTAssertTrue([output conformsToProtocol:@protocol(ProtocolA)]);
     XCTAssertTrue([output conformsToProtocol:@protocol(ProtocolB)]);
     XCTAssertFalse([output conformsToProtocol:@protocol(ProtocolC)]);
@@ -60,11 +62,11 @@
     output = [WCObjCRuntimeTool createSubclassWithClassName:className baseClassName:@"NSString" protocolNames:nil selBlockPairs:nil];
     XCTAssertTrue(output != NULL);
     XCTAssertEqualObjects([NSString stringWithUTF8String:class_getName(output)], className);
+    XCTAssertEqualObjects(NSStringFromClass([output superclass]), @"NSString");
     XCTAssertTrue(NSClassFromString(className));
     object = [[output alloc] init];
     XCTAssertTrue([object isKindOfClass:NSClassFromString(className)]);
     
-    // Note: use __strong to hold newClass object, because struct has no ARC
     output = [WCObjCRuntimeTool createSubclassWithClassName:@"MyCustomString" baseClassName:@"NSString" protocolNames:nil selBlockPairs:selBlockPair_list {
         @selector(description),
         selBlockPair_block ^id (id sender) {

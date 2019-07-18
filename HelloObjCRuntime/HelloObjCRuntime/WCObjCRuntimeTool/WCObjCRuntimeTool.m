@@ -24,7 +24,7 @@
     Class baseClass = baseClassName == nil ? NSClassFromString(@"NSObject") : NSClassFromString(baseClassName);
     NSString *subclassName = className == nil ? [NSString stringWithFormat:@"%s_%i_%i", class_getName(baseClass), arc4random(), arc4random()] : className;
     
-    Class newClass = objc_allocateClassPair(self, [subclassName UTF8String], 0);
+    Class newClass = objc_allocateClassPair(baseClass, [subclassName UTF8String], 0);
     
     // Note: recreate the same subclass will get NULL
     if (newClass != NULL) {
