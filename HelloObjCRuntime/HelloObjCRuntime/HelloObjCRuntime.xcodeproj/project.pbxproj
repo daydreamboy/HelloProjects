@@ -41,6 +41,8 @@
 		4F5F830B22B7BCEB0000C130 /* MyObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F830A22B7BCEB0000C130 /* MyObject.m */; };
 		4F9F07FA22B7E46C00A236C1 /* Test_bridge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9F07F922B7E46C00A236C1 /* Test_bridge.m */; };
 		4FA0D24320732BEB00002607 /* SetIVarDirectlyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA0D24220732BEB00002607 /* SetIVarDirectlyViewController.m */; };
+		4FD6C38A22E0168B00580099 /* WCObjCRuntimeTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C38922E0168B00580099 /* WCObjCRuntimeTool.m */; };
+		4FD6C3AE22E0653900580099 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD6C3AD22E0653900580099 /* Test.m */; };
 		4FF5FA341FFD27BF00C095C1 /* CreateDynamicParamModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF5FA2F1FFD27BF00C095C1 /* CreateDynamicParamModelViewController.m */; };
 		4FF5FA351FFD27BF00C095C1 /* PublicModelsForSomeSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF5FA311FFD27BF00C095C1 /* PublicModelsForSomeSDK.m */; };
 		4FF5FA381FFD27DB00C095C1 /* SomeSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF5FA371FFD27DB00C095C1 /* SomeSDK.m */; };
@@ -141,6 +143,9 @@
 		4F9F07F922B7E46C00A236C1 /* Test_bridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_bridge.m; sourceTree = "<group>"; };
 		4FA0D24120732BEB00002607 /* SetIVarDirectlyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SetIVarDirectlyViewController.h; sourceTree = "<group>"; };
 		4FA0D24220732BEB00002607 /* SetIVarDirectlyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetIVarDirectlyViewController.m; sourceTree = "<group>"; };
+		4FD6C38822E0168B00580099 /* WCObjCRuntimeTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCObjCRuntimeTool.h; sourceTree = "<group>"; };
+		4FD6C38922E0168B00580099 /* WCObjCRuntimeTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCObjCRuntimeTool.m; sourceTree = "<group>"; };
+		4FD6C3AD22E0653900580099 /* Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		4FF5FA2F1FFD27BF00C095C1 /* CreateDynamicParamModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateDynamicParamModelViewController.m; sourceTree = "<group>"; };
 		4FF5FA301FFD27BF00C095C1 /* PublicModelsForSomeSDK_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicModelsForSomeSDK_Internal.h; sourceTree = "<group>"; };
 		4FF5FA311FFD27BF00C095C1 /* PublicModelsForSomeSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicModelsForSomeSDK.m; sourceTree = "<group>"; };
@@ -186,6 +191,7 @@
 		2B6E6B871DF91DD10045BD98 = {
 			isa = PBXGroup;
 			children = (
+				4F780D2122DF74AC00274883 /* WCObjCRuntimeTool */,
 				2B6E6B921DF91DD10045BD98 /* HelloObjCRuntime */,
 				4F3525922005ED5100891B09 /* UnsafeFramework */,
 				4F4F2B3122B3B5CA009C7864 /* Test */,
@@ -292,6 +298,7 @@
 				4F4F2B3D22B3B623009C7864 /* Test_weak.m */,
 				4F5F82FE22B793760000C130 /* Test_retainCount.m */,
 				4F9F07F922B7E46C00A236C1 /* Test_bridge.m */,
+				4FD6C3AD22E0653900580099 /* Test.m */,
 				4F4F2B3422B3B5CA009C7864 /* Info.plist */,
 			);
 			path = Test;
@@ -304,6 +311,15 @@
 				4F5F830A22B7BCEB0000C130 /* MyObject.m */,
 			);
 			path = DummyClass;
+			sourceTree = "<group>";
+		};
+		4F780D2122DF74AC00274883 /* WCObjCRuntimeTool */ = {
+			isa = PBXGroup;
+			children = (
+				4FD6C38822E0168B00580099 /* WCObjCRuntimeTool.h */,
+				4FD6C38922E0168B00580099 /* WCObjCRuntimeTool.m */,
+			);
+			path = WCObjCRuntimeTool;
 			sourceTree = "<group>";
 		};
 		4FF5FA2E1FFD27BF00C095C1 /* CreateDynamicParamModel */ = {
@@ -571,6 +587,7 @@
 				2BA23B6A1E72FDD8000DBE48 /* CreateClassAtRuntimeViewController.m in Sources */,
 				2BA23BD61E7530C7000DBE48 /* InterceptCallByDynamicSubclassViewController.m in Sources */,
 				2BE8BEC21E6F000A004CD034 /* IsaSwizzlingViewController.m in Sources */,
+				4FD6C38A22E0168B00580099 /* WCObjCRuntimeTool.m in Sources */,
 				2B6E6B951DF91DD10045BD98 /* main.m in Sources */,
 				4F53C97B20046B59003F79F6 /* UncatchExceptionGuard.m in Sources */,
 				4F5D3785225F9816007A8D4C /* ObtainWeakVariableViewController.m in Sources */,
@@ -597,6 +614,7 @@
 				4F5F82FF22B793760000C130 /* Test_retainCount.m in Sources */,
 				4F4F2B3F22B3B623009C7864 /* Test_IMP.m in Sources */,
 				4F4F2B4022B3B623009C7864 /* Test_selector.m in Sources */,
+				4FD6C3AE22E0653900580099 /* Test.m in Sources */,
 				4F4F2B4122B3B623009C7864 /* Test_weak.m in Sources */,
 				4F5F830B22B7BCEB0000C130 /* MyObject.m in Sources */,
 			);
