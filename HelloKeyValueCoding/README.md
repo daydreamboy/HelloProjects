@@ -12,6 +12,8 @@
 
 ![](images/keypath.jpg)
 
+
+
 集合操作符（Collection Operator）根据行为，分为下面三种操作符
 
 * Aggregation Operator（聚合操作符），将一系列对象做聚合操作，得到单个对象。例如`@count`
@@ -49,11 +51,11 @@
 
 
 
-| 操作符的使用格式                                             | 含义                                        | 返回值类型             |
-| :----------------------------------------------------------- | :------------------------------------------ | ---------------------- |
-| [arrayOfArrays valueForKeyPath:@distinctUnionOfArrays.property] | 将二维数组中所有元素的property求不重复并集  | NSArray\<PropertyType> |
-| [arrayOfArrays valueForKeyPath:@unionOfArrays.property]      | 将二维数组中所有元素的property求并集        | NSArray\<PropertyType> |
-| [setOfSets valueForKeyPath:@distinctUnionOfSets.property]    | 将二维集合(NSSet)中所有元素的property求并集 | NSSet\<PropertyType>   |
+| 操作符的使用格式                                             | 含义                                              | 返回值类型             |
+| :----------------------------------------------------------- | :------------------------------------------------ | ---------------------- |
+| [arrayOfArrays valueForKeyPath:@distinctUnionOfArrays.property] | 将二维数组中所有元素的property求不重复并集        | NSArray\<PropertyType> |
+| [arrayOfArrays valueForKeyPath:@unionOfArrays.property]      | 将二维数组中所有元素的property求并集              | NSArray\<PropertyType> |
+| [setOfSets valueForKeyPath:@distinctUnionOfSets.property]    | 将二维集合(NSSet)中所有元素的property求不重复并集 | NSSet\<PropertyType>   |
 
 
 
