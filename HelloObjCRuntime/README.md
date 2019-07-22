@@ -329,9 +329,13 @@ int main(int argc, const char * argv[]) {
 
 ### （4）运行时创建类
 
+runtime.h中提供运行时创建类的API，主要分为三个步骤
 
+* 创建class以及它的metaClass，`objc_allocateClassPair()`
+* 添加方法和实例变量等
+* 注册class到运行时环境，`objc_registerClassPair()`
 
-
+示例代码，见WCObjCRuntimeTool
 
 
 
