@@ -137,6 +137,28 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (UIView *)removeGradientLayerWithView:(UIView *)view;
 
+#pragma mark - View State
+
+/**
+ Store all subviews' properties of the view
+ 
+ @param view the root view
+ @param properties the properties should be stored
+ @return the stored record map, the format is { view pointer => { property key => value } }.
+ @see https://stackoverflow.com/questions/14468449/the-selectedbackgroundview-modifies-the-contentview-subviews
+ */
++ (nullable NSDictionary<NSString *, NSDictionary *> *)storeAllSubviewStatesWithView:(UIView *)view properties:(NSArray<NSString *> *)properties;
+
+/**
+ Restore all subviews' properties of the view
+ 
+ @param view the root view
+ @param properties the properties should be restored. If nil or emtpy array,
+ restore all properties which stored by +[WCViewTool storeAllSubviewStatesWithView:properties:]
+ @return the stored record map. See +[WCViewTool storeAllSubviewStatesWithView:properties:] for detail.
+ */
++ (nullable NSDictionary<NSString *, NSDictionary *> *)restoreAllSubviewStatesWithView:(UIView *)view properties:(nullable NSArray<NSString *> *)properties;
+
 #pragma mark - Assistant Methods
 
 #pragma mark > CGRect

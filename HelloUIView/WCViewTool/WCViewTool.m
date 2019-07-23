@@ -8,6 +8,7 @@
 
 #import "WCViewTool.h"
 #import <AVFoundation/AVFoundation.h>
+#import <objc/runtime.h>
 
 #define PauseOnThisLineWhenAddedExceptionBreakpoint(shouldPause) \
 @try { \
@@ -337,6 +338,114 @@
     }
     
     return view;
+}
+
+#pragma mark - View State
+
+static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubviewStates;
+
++ (nullable NSDictionary<NSString *, NSDictionary *> *)storeAllSubviewStatesWithView:(UIView *)view properties:(NSArray<NSString *> *)properties {
+    if (![view isKindOfClass:[UIView class]] || ![properties isKindOfClass:[NSArray class]] || properties.count == 0) {
+        return nil;
+    }
+    
+    id associatedObject = objc_getAssociatedObject(view, kAssociatedKeySubviewStates);
+    
+    if (associatedObject && ![associatedObject isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    
+    if (associatedObject && [associatedObject isKindOfClass:[NSDictionary class]]) {
+        return associatedObject;
+    }
+    
+    NSMutableDictionary *recordMap = [NSMutableDictionary dictionary];
+    
+    __block BOOL stopFlag = NO;
+    [self enumerateSubviewsInView:view usingBlock:^(UIView * _Nonnull subview, BOOL * _Nonnull stop) {
+        @try {
+            NSMutableDictionary *stateM = [NSMutableDictionary dictionary];
+            for (NSString *property in properties) {
+                id value = nil;
+                if ([property rangeOfString:@"."].location != NSNotFound) {
+                    value = [subview valueForKeyPath:property];
+                }
+                else {
+                    value = [subview valueForKey:property];
+                }
+                
+                if (value) {
+                    stateM[property] = value;
+                }
+            }
+            
+            recordMap[[NSString stringWithFormat:@"%p", subview]] = stateM;
+        }
+        @catch (NSException *exception) {
+            *stop = YES;
+            stopFlag = YES;
+        }
+    }];
+    
+    if (stopFlag) {
+        return nil;
+    }
+    
+    objc_setAssociatedObject(view, kAssociatedKeySubviewStates, recordMap, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    return recordMap;
+}
+
++ (NSDictionary<NSString *, NSDictionary *> *)restoreAllSubviewStatesWithView:(UIView *)view properties:(nullable NSArray<NSString *> *)properties {
+    if (![view isKindOfClass:[UIView class]] || (properties && ![properties isKindOfClass:[NSArray class]])) {
+        return nil;
+    }
+    
+    id associatedObject = objc_getAssociatedObject(view, kAssociatedKeySubviewStates);
+    
+    if (!associatedObject || (associatedObject && ![associatedObject isKindOfClass:[NSDictionary class]])) {
+        return nil;
+    }
+    
+    NSMutableDictionary *recordMap = associatedObject;
+    
+    __block BOOL stopFlag = NO;
+    [self enumerateSubviewsInView:view usingBlock:^(UIView * _Nonnull subview, BOOL * _Nonnull stop) {
+        NSDictionary *stateM = recordMap[[NSString stringWithFormat:@"%p", subview]];
+        if ([stateM isKindOfClass:[NSDictionary class]]) {
+            NSArray *propertiesToRestore;
+            if (properties.count == 0) {
+                propertiesToRestore = [stateM allKeys];
+            }
+            else {
+                propertiesToRestore = properties;
+            }
+            
+            @try {
+                for (NSString *property in propertiesToRestore) {
+                    id value = stateM[property];
+                    if (value) {
+                        if ([property rangeOfString:@"."].location != NSNotFound) {
+                            [subview setValue:value forKeyPath:property];
+                        }
+                        else {
+                            [subview setValue:value forKey:property];
+                        }
+                    }
+                }
+            }
+            @catch (NSException *exception) {
+                *stop = YES;
+                stopFlag = YES;
+            }
+        }
+    }];
+    
+    if (stopFlag) {
+        return nil;
+    }
+    
+    return recordMap;
 }
 
 #pragma mark - Assistant Methods
