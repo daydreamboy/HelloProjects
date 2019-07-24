@@ -12,7 +12,7 @@
 @property (nonatomic, strong) UIColor *checkmarkTintColor;
 @property (nonatomic, strong, readonly) UIButton *checkmarkButton;
 @property (nonatomic, assign) UIEdgeInsets checkmarkButtonInsets;
-@property (nonatomic, assign) BOOL shitfContentViewWhileEditing;
+@property (nonatomic, assign) BOOL shiftContentViewWhileEditing;
 @end
 
 @interface CustomizeSelectMeCell ()
@@ -24,7 +24,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        _shitfContentViewWhileEditing = YES;
+        _shiftContentViewWhileEditing = YES;
     }
     return self;
 }
@@ -85,7 +85,7 @@
                 offsetXForCheckmarkButton = 0;//(-(paddings.right + CGRectGetWidth(self.checkmarkButton.bounds)));
             }
             
-            CGFloat offsetXForContentView = (self.isEditing && self.shitfContentViewWhileEditing)
+            CGFloat offsetXForContentView = (self.isEditing && self.shiftContentViewWhileEditing)
                                             ? (paddings.left + paddings.right + CGRectGetWidth(self.checkmarkButton.bounds))
                                             : 0;
             
@@ -202,11 +202,11 @@
     cell.textLabel.text = _listArr[indexPath.row];
     if (indexPath.row % 2 == 0) {
         cell.textLabel.textAlignment = NSTextAlignmentLeft;
-        cell.shitfContentViewWhileEditing = YES;
+        cell.shiftContentViewWhileEditing = YES;
     }
     else {
         cell.textLabel.textAlignment = NSTextAlignmentRight;
-        cell.shitfContentViewWhileEditing = NO;
+        cell.shiftContentViewWhileEditing = NO;
     }
     // Counterpart for return NO in - tableView:canEditRowAtIndexPath: method
     //cell.userInteractionEnabled = indexPath.row == 0 ? NO : YES;

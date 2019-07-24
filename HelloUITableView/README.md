@@ -2,9 +2,13 @@
 
 [TOC]
 
-## 1、关于contentInset
+## 1、UITableView常用属性介绍
 
-### （1）contentInset被系统自动设置
+
+
+### （1）contentInset
+
+#### a. contentInset被系统自动设置
 
 官方文档，描述如下
 
@@ -39,7 +43,7 @@ iOS 7+UIViewController有`automaticallyAdjustsScrollViewInsets`属性，可以�
 
 
 
-### （2）设置contentInset会触发scrollViewDidScroll:方法[^3]
+#### b. 设置contentInset会触发scrollViewDidScroll:方法[^3]
 
 iOS 8+上，当UIScrollView或者UITableView设置过delegate，然后再设置contentInset会立即触发scrollViewDidScroll:方法。这个可能会导致一些问题，举个例子，如下
 
@@ -98,6 +102,77 @@ iOS 8+上，当UIScrollView或者UITableView设置过delegate，然后再设置c
 
 说明
 >viewDidAppear可以打印contentInset检查
+
+
+
+### （2）Cell selection
+
+​     UITableView提供4种关于selection的属性，用于控制cell的点击高亮和选中，如下
+
+| 属性                                 | 默认值 | 说明                       |
+| ------------------------------------ | ------ | -------------------------- |
+| allowsSelection                      | YES    | 非编辑模式下，是否允许单选 |
+| allowsMultipleSelection              | NO     | 非编辑模式下，是否允许多选 |
+| allowsSelectionDuringEditing         | NO     | 编辑模式下，是否允许单选   |
+| allowsMultipleSelectionDuringEditing | NO     | 编辑模式下，是否允许多选   |
+
+
+
+#### a. Cell选中背景色有三种方式设置
+
+（1）cell的`selectionStyle`属性，如下
+
+```objective-c
+UITableViewCellSelectionStyleNone,
+UITableViewCellSelectionStyleBlue,
+UITableViewCellSelectionStyleGray,
+UITableViewCellSelectionStyleDefault 
+```
+
+​       当设置非UITableViewCellSelectionStyleNone类型时，cell在`setSelected:animated:`和`setHighlighted:animated:`方法中自动修改cell所有subview的背景色[^5]
+
+​       避免系统的修改，可以下面几种方法
+
+* 设置UITableViewCellSelectionStyleNone，系统不会调整高亮或选中的背景色。但是存在一个问题：UITableView处于编辑模式（单选或多选），左侧显示出来的checkmark总是不能被选中
+* 在`setSelected:animated:`和`setHighlighted:animated:`方法，在调用super方法后恢复cell所有subview的背景色，或者不调用super方法。
+
+示例代码如下
+
+```objective-c
+- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated {
+    [super setHighlighted:highlighted animated:animated];
+    if (highlighted) {
+        // Recover backgroundColor of subviews.
+    }
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+    if (selected) {
+        // Recover backgroundColor of subviews.
+    }
+}
+```
+
+
+
+（2）cell的`selectedBackgroundView`属性
+
+​        当设置非UITableViewCellSelectionStyleNone类型时，可以通过`selectedBackgroundView`属性赋值一个自定义view来设置选中和高亮的背景色
+
+
+
+注意
+
+> 设置Cell为UITableViewCellSelectionStyleNone，自定义selectedBackgroundView不会生效
+
+
+
+（3）自定义cell
+
+​        自定义cell，可以将`selectionStyle`属性设置为UITableViewCellSelectionStyleNone，防止显示系统样式和自动修改UI的行为，然后提供等价的配置方式。
+
+
 
 
 
@@ -222,6 +297,28 @@ typedef NS_ENUM(NSInteger, UITableViewCellEditingStyle) {
 
 
 
+## 3、UITableView常见问题
+
+
+
+### （1）selectRowAtIndexPath方法不触发didSelectRowAtIndexPath方法
+
+​       `selectRowAtIndexPath:indexPath:`调用不会触发`didSelectRowAtIndexPath:index:`[^4]，如果要触发，需要手动调用一下。
+
+```objective-c
+[[tableView delegate] tableView:tableView didSelectRowAtIndexPath:index];
+```
+
+官方文档描述，如下
+
+> Calling this method does not cause the delegate to receive a [`tableView:willSelectRowAtIndexPath:`](dash-apple-api://load?topic_id=1614943&language=occ) or [`tableView:didSelectRowAtIndexPath:`](dash-apple-api://load?topic_id=1614877&language=occ) message, nor does it send [`UITableViewSelectionDidChangeNotification`](dash-apple-api://load?request_key=hc8FRRfKne#dash_1614958) notifications to observers.
+
+
+
+
+
+
+
 References
 --
 
@@ -229,4 +326,9 @@ References
 
 [^2]: https://stackoverflow.com/a/45242206 
 [^3]: https://stackoverflow.com/questions/29364287/changing-uiscrollview-content-inset-triggers-scrollviewdidscroll
+
+[^4]: https://stackoverflow.com/questions/2305781/iphone-didselectrowatindexpath-not-invoked
+[^5]: https://stackoverflow.com/questions/14468449/the-selectedbackgroundview-modifies-the-contentview-subviews
+
+
 

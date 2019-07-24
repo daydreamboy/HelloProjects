@@ -28,6 +28,7 @@
 #import "ShowEmptyTipViewInUITableViewViewController.h"
 #import "CustomizeSelectMeViewController.h"
 #import "DetectCellOffscreenViewController.h"
+#import "CustomizeHighlightCellViewController.h"
 
 #import "MoveMeViewController.h"
 #import "DeleteMeViewController.h"
@@ -89,6 +90,7 @@
           @{ kTitle: @"Show empty tip in table view", kClass: [ShowEmptyTipViewInUITableViewViewController class] },
           @{ kTitle: @"Customize select mode of table view", kClass: [CustomizeSelectMeViewController class] },
           @{ kTitle: @"Detect cell offscreen event", kClass: [DetectCellOffscreenViewController class] },
+          @{ kTitle: @"Customize highlight cell", kClass: [CustomizeHighlightCellViewController class] },
     ];
     
     NSArray<NSDictionary *> *section5 = @[

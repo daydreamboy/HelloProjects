@@ -10,7 +10,6 @@
 		2B63BF1B200FA11200A5D8D2 /* dog.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B63BF0E200FA11200A5D8D2 /* dog.png */; };
 		2B63BF1C200FA11200A5D8D2 /* MoveMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63BF12200FA11200A5D8D2 /* MoveMeViewController.m */; };
 		2B63BF1D200FA11200A5D8D2 /* bird.png in Resources */ = {isa = PBXBuildFile; fileRef = 2B63BF13200FA11200A5D8D2 /* bird.png */; };
-		2B63BF1E200FA11200A5D8D2 /* computers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2B63BF14200FA11200A5D8D2 /* computers.plist */; };
 		2B63BF1F200FA11200A5D8D2 /* InsertMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63BF15200FA11200A5D8D2 /* InsertMeViewController.m */; };
 		2B63BF20200FA11200A5D8D2 /* DeleteMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63BF16200FA11200A5D8D2 /* DeleteMeViewController.m */; };
 		2B63BF21200FA11200A5D8D2 /* SelectMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63BF17200FA11200A5D8D2 /* SelectMeViewController.m */; };
@@ -26,6 +25,8 @@
 		4F50647122DC2DA200C54420 /* DetectCellOffscreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50647022DC2DA200C54420 /* DetectCellOffscreenViewController.m */; };
 		4F5112BD22C39584005E5AAE /* CustomizeSelectMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5112BC22C39584005E5AAE /* CustomizeSelectMeViewController.m */; };
 		4F519A14229B907A004C548A /* CallReloadDataInsideCellForRowAtIndexPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F519A13229B907A004C548A /* CallReloadDataInsideCellForRowAtIndexPathViewController.m */; };
+		4F521F7222E85A7F00035664 /* CustomizeHighlightCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F521F7122E85A7F00035664 /* CustomizeHighlightCellViewController.m */; };
+		4F521F7622E8675C00035664 /* computers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F521F7522E8675C00035664 /* computers.plist */; };
 		4F60E71922A7E64400C27087 /* UITableView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E71222A7E64300C27087 /* UITableView+Addition.m */; };
 		4F60E71A22A7E64400C27087 /* WCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E71322A7E64300C27087 /* WCTableViewController.m */; };
 		4F60E71B22A7E64400C27087 /* WCTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E71422A7E64300C27087 /* WCTableView.m */; };
@@ -60,7 +61,6 @@
 		2B63BF11200FA11200A5D8D2 /* DeleteMeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeleteMeViewController.h; sourceTree = "<group>"; };
 		2B63BF12200FA11200A5D8D2 /* MoveMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoveMeViewController.m; sourceTree = "<group>"; };
 		2B63BF13200FA11200A5D8D2 /* bird.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bird.png; sourceTree = "<group>"; };
-		2B63BF14200FA11200A5D8D2 /* computers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = computers.plist; sourceTree = "<group>"; };
 		2B63BF15200FA11200A5D8D2 /* InsertMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsertMeViewController.m; sourceTree = "<group>"; };
 		2B63BF16200FA11200A5D8D2 /* DeleteMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeleteMeViewController.m; sourceTree = "<group>"; };
 		2B63BF17200FA11200A5D8D2 /* SelectMeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectMeViewController.m; sourceTree = "<group>"; };
@@ -87,6 +87,9 @@
 		4F5112BC22C39584005E5AAE /* CustomizeSelectMeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomizeSelectMeViewController.m; sourceTree = "<group>"; };
 		4F519A12229B907A004C548A /* CallReloadDataInsideCellForRowAtIndexPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CallReloadDataInsideCellForRowAtIndexPathViewController.h; sourceTree = "<group>"; };
 		4F519A13229B907A004C548A /* CallReloadDataInsideCellForRowAtIndexPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CallReloadDataInsideCellForRowAtIndexPathViewController.m; sourceTree = "<group>"; };
+		4F521F7022E85A7F00035664 /* CustomizeHighlightCellViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomizeHighlightCellViewController.h; sourceTree = "<group>"; };
+		4F521F7122E85A7F00035664 /* CustomizeHighlightCellViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomizeHighlightCellViewController.m; sourceTree = "<group>"; };
+		4F521F7522E8675C00035664 /* computers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = computers.plist; sourceTree = "<group>"; };
 		4F60E70F22A7E64300C27087 /* WCTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTableViewCell.h; sourceTree = "<group>"; };
 		4F60E71022A7E64300C27087 /* WCTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCTableView.h; sourceTree = "<group>"; };
 		4F60E71122A7E64300C27087 /* UITableViewCell+Addition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewCell+Addition.h"; sourceTree = "<group>"; };
@@ -157,7 +160,6 @@
 				2B63BF17200FA11200A5D8D2 /* SelectMeViewController.m */,
 				2B63BF11200FA11200A5D8D2 /* DeleteMeViewController.h */,
 				2B63BF16200FA11200A5D8D2 /* DeleteMeViewController.m */,
-				2B63BF14200FA11200A5D8D2 /* computers.plist */,
 				2B63BF13200FA11200A5D8D2 /* bird.png */,
 				2B63BF19200FA11200A5D8D2 /* onebit.png */,
 				2B63BF1A200FA11200A5D8D2 /* babelfish.png */,
@@ -207,6 +209,8 @@
 				4F5112BC22C39584005E5AAE /* CustomizeSelectMeViewController.m */,
 				4F50646F22DC2DA200C54420 /* DetectCellOffscreenViewController.h */,
 				4F50647022DC2DA200C54420 /* DetectCellOffscreenViewController.m */,
+				4F521F7022E85A7F00035664 /* CustomizeHighlightCellViewController.h */,
+				4F521F7122E85A7F00035664 /* CustomizeHighlightCellViewController.m */,
 			);
 			path = section4;
 			sourceTree = "<group>";
@@ -316,6 +320,7 @@
 		4FAAA5B41FA4845A00A80328 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F521F7522E8675C00035664 /* computers.plist */,
 				4F87FEB322C39C6E0002FF31 /* button_normal@2x.png */,
 				4F87FEB422C39C6F0002FF31 /* button_selected@2x.png */,
 				4FAAA5B51FA4845A00A80328 /* calendar.png */,
@@ -391,13 +396,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B63BF1E200FA11200A5D8D2 /* computers.plist in Resources */,
 				4FAAA5B81FA4845B00A80328 /* ibooks.png in Resources */,
 				2B63BF1B200FA11200A5D8D2 /* dog.png in Resources */,
 				2B63BF1D200FA11200A5D8D2 /* bird.png in Resources */,
 				4FAAA59E1FA4804600A80328 /* LaunchScreen.storyboard in Resources */,
 				4F87FEB522C39C6F0002FF31 /* button_normal@2x.png in Resources */,
 				4FAAA5B71FA4845B00A80328 /* calendar.png in Resources */,
+				4F521F7622E8675C00035664 /* computers.plist in Resources */,
 				2B63BF22200FA11200A5D8D2 /* onebit.png in Resources */,
 				4FAAA59B1FA4804600A80328 /* Assets.xcassets in Resources */,
 				4F87FEB622C39C6F0002FF31 /* button_selected@2x.png in Resources */,
@@ -423,6 +428,7 @@
 				4FBB4E0621A29E32000E9F61 /* WCTableViewTool.m in Sources */,
 				4F60E71B22A7E64400C27087 /* WCTableView.m in Sources */,
 				2B63BF39200FA22600A5D8D2 /* PlainTableViewViewController.m in Sources */,
+				4F521F7222E85A7F00035664 /* CustomizeHighlightCellViewController.m in Sources */,
 				2B63BF38200FA22600A5D8D2 /* GroupedTableViewViewController.m in Sources */,
 				4F60E72022A7E72200C27087 /* ShowEmptyTipViewInUITableViewViewController.m in Sources */,
 				4FAAA5A11FA4804600A80328 /* main.m in Sources */,
