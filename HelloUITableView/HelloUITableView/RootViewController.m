@@ -8,14 +8,23 @@
 
 #import "RootViewController.h"
 
-#import "FadeInCellRowByRowViewController.h"
-#import "ScrollTopBottomCellsToFadeInViewController.h"
+// section 1
 #import "PlainTableViewViewController.h"
 #import "GroupedTableViewViewController.h"
 
+// section 2
 #import "CompatiblePlainTableViewViewController.h"
 #import "CompatibleGroupedTableViewViewController.h"
 
+// section 3
+#import "MoveMeViewController.h"
+#import "DeleteMeViewController.h"
+#import "SelectMeViewController.h"
+#import "InsertMeViewController.h"
+
+// section 4
+#import "FadeInCellRowByRowViewController.h"
+#import "ScrollTopBottomCellsToFadeInViewController.h"
 #import "PlainTableViewRemoveRedundantSeparatorsViewController.h"
 #import "PlainTableViewWithFullSeparatorsViewController.h"
 #import "TableViewHeaderWithExtendedViewViewController.h"
@@ -30,10 +39,8 @@
 #import "DetectCellOffscreenViewController.h"
 #import "CustomizeHighlightCellViewController.h"
 
-#import "MoveMeViewController.h"
-#import "DeleteMeViewController.h"
-#import "SelectMeViewController.h"
-#import "InsertMeViewController.h"
+// section 5
+#import "StaticCellHeightAboveiOS11IssuesViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -94,7 +101,7 @@
     ];
     
     NSArray<NSDictionary *> *section5 = @[
-          // TODO
+          @{ kTitle: @"Static cell height iOS11+", kClass: [StaticCellHeightAboveiOS11IssuesViewController class] },
     ];
     
     NSArray<NSDictionary *> *section6 = @[
