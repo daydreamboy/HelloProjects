@@ -1898,6 +1898,22 @@ error: too many arguments to method call, expected 1, have 2
 
 
 
+### 3. 查看异常抛出和捕获
+
+Xcode提供两种语言的异常断点：Objective-C和C++，这实际对应三种符号断点。
+
+| 符号                   | 含义     | 适用语言        | 说明                                     |
+| ---------------------- | -------- | --------------- | ---------------------------------------- |
+| `objc_exception_throw` | 异常抛出 | Objective-C     | NSException的raise方法通过该符号抛出异常 |
+| `__cxa_throw`          | 异常抛出 | C++             | C++的throw语句通过该符号抛出异常         |
+| `__cxa_begin_catch`    | 异常捕获 | Objective-C/C++ | @try@catch块的@catch部分                 |
+
+
+
+
+
+
+
 ## 12、常用私有调试API
 
 
