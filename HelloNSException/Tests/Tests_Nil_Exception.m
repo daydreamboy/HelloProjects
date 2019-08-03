@@ -42,4 +42,18 @@ static id nilObject = nil;
     XCTAssertThrows([[NSString alloc] initWithString:nilObject]);
 }
 
+- (void)test_nil_NSMutableArray_addObject {
+    // Note: set objc_exception_throw/__cxa_throw/__cxa_begin_catch as symbol breakpoint
+    @try {
+        NSMutableArray *arrM = [NSMutableArray array];
+        [arrM addObject:nilObject];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@", exception);
+    }
+    @finally {
+        NSLog(@"finally");
+    }
+}
+
 @end
