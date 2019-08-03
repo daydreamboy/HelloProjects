@@ -1906,9 +1906,37 @@ Xcode提供两种语言的异常断点：Objective-C和C++，这实际对应三�
 | ---------------------- | -------- | --------------- | ---------------------------------------- |
 | `objc_exception_throw` | 异常抛出 | Objective-C     | NSException的raise方法通过该符号抛出异常 |
 | `__cxa_throw`          | 异常抛出 | C++             | C++的throw语句通过该符号抛出异常         |
-| `__cxa_begin_catch`    | 异常捕获 | Objective-C/C++ | @try@catch块的@catch部分                 |
+| `__cxa_begin_catch`    | 异常捕获 | Objective-C/C++ | @try-@catch块或try-catch块的catch部分    |
 
 
+
+`objc_exception_throw`函数签名，如下
+
+```objective-c
+void objc_exception_throw(id exception)
+```
+
+对应源码，见https://github.com/opensource-apple/objc4/blob/master/runtime/objc-exception.mm#L66
+
+说明
+
+> `objc_exception_throw`函数调用了`__cxa_throw`函数，可以设置`__cxa_throw`符号断点，查看调用栈
+
+
+
+`__cxa_throw`函数签名[^4]，如下
+
+```c++
+void __cxa_throw(void* thrown_exception, struct std::type_info * tinfo, void (*dest)(void*));
+```
+
+
+
+`__cxa_begin_catch`函数签名[^4]，如下
+
+```c++
+void* __cxa_begin_catch(void* exceptionObject) throw();
+```
 
 
 
@@ -1936,3 +1964,4 @@ Xcode提供两种语言的异常断点：Objective-C和C++，这实际对应三�
 
 [^3]: https://www.natashatherobot.com/xcode-debugging-trick/
 
+[^4]:https://libcxxabi.llvm.org/spec.html
