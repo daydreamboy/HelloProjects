@@ -52,11 +52,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F8057B222F7076F0002AEF6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4FC8F82B203069AF00E32502 = {
 			isa = PBXGroup;
 			children = (
 				4FC8F836203069AF00E32502 /* HelloLLDB */,
 				4FC8F835203069AF00E32502 /* Products */,
+				4F8057B222F7076F0002AEF6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
