@@ -284,6 +284,75 @@
     XCTAssertFalse([WCArrayTool compareArraysWithArray1:array1 array2:array2 considerOrder:YES]);
 }
 
+#pragma mark - Sort
+
+- (void)test_sortArrayWithArray_ascending_keyPaths {
+    NSArray *output;
+    NSArray *array;
+    
+    // Case 1
+    array = @[ @5, @1, @4, @3, @2 ];
+    output = [WCArrayTool sortArrayWithArray:array ascending:YES keyPaths:nil];
+    XCTAssertTrue(output.count == 5);
+    for (NSInteger i = 0; i < output.count; i++) {
+        XCTAssertEqualObjects(output[i], @(i + 1));
+    }
+    
+    // Case 2
+    array = @[ @"A", @"C", @"B", @"D", @"E", @"a" ];
+    output = [WCArrayTool sortArrayWithArray:array ascending:NO keyPaths:nil];
+    XCTAssertTrue(output.count == 6);
+    
+    // Abnormal Case
+    array = @[ @5, @1, @4, @3, @2 ];
+    output = [WCArrayTool sortArrayWithArray:array ascending:YES keyPaths:@[ @"number" ]];
+    XCTAssertNil(output);
+    
+    // Case 2
+    array = @[
+              @{ @"number": @(5), @"dict": @{ @"str": @"A" } },
+              @{ @"number": @(1), @"dict": @{ @"str": @"C" } },
+              @{ @"number": @(4), @"dict": @{ @"str": @"B" }  },
+              @{ @"number": @(3), @"dict": @{ @"str": @"D" }  },
+              @{ @"number": @(2), @"dict": @{ @"str": @"E" }  }
+              ];
+    output = [WCArrayTool sortArrayWithArray:array ascending:YES keyPaths:@[ @"number" ]];
+    XCTAssertTrue(output.count == 5);
+    for (NSInteger i = 0; i < output.count; i++) {
+        NSDictionary *dict = output[i];
+        XCTAssertEqualObjects(dict[@"number"], @(i + 1));
+    }
+    
+    // Case 3
+    output = [WCArrayTool sortArrayWithArray:array ascending:YES keyPaths:@[ @"dict.str" ]];
+    XCTAssertTrue(output.count == 5);
+    for (NSInteger i = 0; i < output.count; i++) {
+        NSString *str = [output[i] valueForKeyPath:@"dict.str"];
+        char cStr[2] = { 'A' + i, '\0' };
+        XCTAssertEqualObjects(str, [NSString stringWithCString:cStr encoding:NSUTF8StringEncoding]);
+    }
+    
+    // Abnormal Case
+    output = [WCArrayTool sortArrayWithArray:array ascending:YES keyPaths:@[ @"number2" ]];
+    XCTAssertTrue(output.count == 5);
+    for (NSInteger i = 0; i < output.count; i++) {
+        NSDictionary *dict = output[i];
+        XCTAssertEqualObjects(dict[@"number"], [array[i] objectForKey:@"number"]);
+    }
+    
+    // Abnormal Case
+    array = @[
+              @{ @"number": @(5), @"dict": @{ @"str": @"A" } },
+              @{ @"number": @(1), @"dict": @{ @"str": @"C" } },
+              @{ @"number": @(4), @"dict": @{ @"str": @"B" }  },
+              @{ @"number": @(3), @"dict": @{ @"str": @"D" }  },
+              @{ @"number": @(2), @"dict": @{ @"str": @"E" }  },
+              @{ @"dict": @{ @"str": @"F" }  },
+              ];
+    output = [WCArrayTool sortArrayWithArray:array ascending:YES keyPaths:@[ @"number" ]];
+    XCTAssertTrue(output.count == 6);
+}
+
 #pragma mark - Assistant Methods
 
 - (void)test_arrayWithLetters {

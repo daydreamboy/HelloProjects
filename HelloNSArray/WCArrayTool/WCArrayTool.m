@@ -216,6 +216,42 @@
     }
 }
 
+#pragma mark - Sort
+
++ (nullable NSArray *)sortArrayWithArray:(NSArray *)array ascending:(BOOL)ascending keyPaths:(nullable NSArray<NSString *> *)keyPaths {
+    if (keyPaths && ![keyPaths isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
+    
+    if (!keyPaths || keyPaths.count == 0) {
+        keyPaths = @[ @"self" ];
+    }
+    
+    NSMutableArray<NSSortDescriptor *> *sorters = [NSMutableArray arrayWithCapacity:array.count];
+    for (NSString *keyPath in keyPaths) {
+        if ([keyPath isKindOfClass:[NSString class]] && keyPath.length) {
+            [sorters addObject:[NSSortDescriptor sortDescriptorWithKey:keyPath ascending:ascending]];
+        }
+    }
+    
+    if (sorters.count == 0) {
+        return array;
+    }
+    
+    NSArray *sortedArray;
+    
+    @try {
+        sortedArray = [array sortedArrayUsingDescriptors:sorters];
+    }
+    @catch (NSException *e) {
+#if DEBUG
+        NSLog(@"an exception occurred: %@", e);
+#endif
+    }
+    
+    return sortedArray;
+}
+
 #pragma mark - Assistant Methods
 
 + (NSArray *)arrayWithLetters:(BOOL)isUppercase {

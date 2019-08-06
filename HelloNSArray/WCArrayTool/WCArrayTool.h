@@ -108,6 +108,19 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)compareArraysWithArray1:(NSArray *)array1 array2:(NSArray *)array2 considerOrder:(BOOL)considerOrder;
 
+#pragma mark - Sort
+
+/**
+ Sort array by key path of the element
+
+ @param array the original array
+ @param ascending the order
+ @param keyPaths the array of key path. If nil, sort the array by itself. If the key not exists, the key ignored.
+ @return the sorted array
+ @discussion the element is not KVC compliant, return nil if catch the exception.
+ */
++ (nullable NSArray *)sortArrayWithArray:(NSArray *)array ascending:(BOOL)ascending keyPaths:(nullable NSArray<NSString *> *)keyPaths;
+
 #pragma mark - Assistant Methods
 
 /**
