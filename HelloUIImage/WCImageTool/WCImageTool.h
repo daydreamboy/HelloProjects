@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Image Generation
 
+#pragma mark > From Image
+
 /**
  Get an image with pure color
 
@@ -93,10 +95,22 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable UIImage *)imageWithImage:(UIImage *)image croppedToFrame:(CGRect)frame scaledToSize:(CGSize)size;
 
+#pragma mark > From Video
+
+
+
 #pragma mark - Image Modification
 
-+ (UIImage *)imageWithTemplateImage:(UIImage *)templateImage templateColor:(UIColor *)templateColor;
-+ (UIImage *)imageWithImage:(UIImage *)image replaceColorComponents:(CGFloat[6])components toColor:(UIColor *)color;
+/**
+ Get an image with tint color
+
+ @param image the image as template
+ @param tintColor the tint color
+ @return an image with tint color
+ */
++ (nullable UIImage *)imageWithImage:(UIImage *)image tintColor:(UIColor *)tintColor;
+
++ (UIImage *)imageWithImage:(UIImage *)image replaceColorComponents:(CGFloat[_Nonnull 6])components toColor:(UIColor *)color;
 
 /**
  Get a corner rounded image

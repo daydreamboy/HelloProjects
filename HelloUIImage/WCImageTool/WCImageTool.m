@@ -199,17 +199,15 @@
 
 #pragma mark - Image Modify
 
-/**
- Get an image with template color
- 
- @param templateColor the template color which is a pure color
- @return an image which is a template shadow applied with template color
- */
-+ (UIImage *)imageWithTemplateImage:(UIImage *)templateImage templateColor:(UIColor *)templateColor {
-    UIImage *newImage = [templateImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
++ (nullable UIImage *)imageWithImage:(UIImage *)image tintColor:(UIColor *)tintColor {
+    if (![image isKindOfClass:[UIImage class]] || ![tintColor isKindOfClass:[UIColor class]]) {
+        return nil;
+    }
+    
+    UIImage *newImage = [image imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
     UIGraphicsBeginImageContextWithOptions(newImage.size, NO, newImage.scale);
-    [templateColor set];
+    [tintColor set];
     [newImage drawInRect:CGRectMake(0, 0, newImage.size.width, newImage.size.height)];
     newImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
