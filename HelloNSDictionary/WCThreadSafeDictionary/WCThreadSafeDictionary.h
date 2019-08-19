@@ -10,28 +10,21 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, WCThreadSafeDictionaryKeyValueMode) {
-    WCThreadSafeDictionaryKeyValueModeObjectToObject,
-    WCThreadSafeDictionaryKeyValueModePrimitiveToObject,
-    WCThreadSafeDictionaryKeyValueModeObjectToPrimitive,
-    WCThreadSafeDictionaryKeyValueModePrimitiveToPrimitive,
-};
+@interface WCThreadSafeDictionary<__covariant KeyType, __covariant ObjectType> : NSObject
 
-@interface WCThreadSafeDictionary : NSObject
-
-- (instancetype)initWithKeyValueMode:(WCThreadSafeDictionaryKeyValueMode)mode;
+- (instancetype)init;
 + (instancetype)dictionary;
 
-- (nullable const void *)objectForKey:(const void *)key;
-- (void)setObject:(nullable const void *)object forKey:(const void *)key;
+- (nullable ObjectType)objectForKey:(KeyType)key;
+- (void)setObject:(nullable ObjectType)object forKey:(KeyType)key;
 - (void)removeAllObjects;
-- (void)removeObjectForKey:(const void *)key;
+- (void)removeObjectForKey:(KeyType)key;
 - (NSUInteger)count;
 
 #pragma mark - Subscripting
 
-- (nullable const void *)objectForKeyedSubscript:(const void *)key;
-- (void)setObject:(nullable const void *)object forKeyedSubscript:(const void *)key;
+- (nullable ObjectType)objectForKeyedSubscript:(KeyType)key;
+- (void)setObject:(nullable ObjectType)object forKeyedSubscript:(KeyType)key;
 
 @end
 

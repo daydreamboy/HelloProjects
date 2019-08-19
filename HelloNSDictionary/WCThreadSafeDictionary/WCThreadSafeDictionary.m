@@ -17,57 +17,38 @@
 
 #pragma mark - Public Methods
 
-- (instancetype)initWithKeyValueMode:(WCThreadSafeDictionaryKeyValueMode)mode {
+- (instancetype)init {
     self = [super init];
     if (self) {
         _internal_queue = dispatch_queue_create("WCThreadSafeDictionary Isolation Queue", DISPATCH_QUEUE_CONCURRENT);
-        
-        switch (mode) {
-            case WCThreadSafeDictionaryKeyValueModePrimitiveToObject: {
-                _storage = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, NULL, &kCFTypeDictionaryValueCallBacks);
-                break;
-            }
-            case WCThreadSafeDictionaryKeyValueModePrimitiveToPrimitive: {
-                _storage = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, NULL, NULL);
-                break;
-            }
-            case WCThreadSafeDictionaryKeyValueModeObjectToPrimitive: {
-                _storage = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, NULL);
-                break;
-            }
-            case WCThreadSafeDictionaryKeyValueModeObjectToObject:
-            default: {
-                _storage = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
-                break;
-            }
-        }
+        _storage = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
     }
     return self;
 }
 
 + (instancetype)dictionary {
-    return [[WCThreadSafeDictionary alloc] initWithKeyValueMode:WCThreadSafeDictionaryKeyValueModeObjectToObject];
+    return [[WCThreadSafeDictionary alloc] init];
 }
 
-- (nullable const void *)objectForKey:(const void *)key {
+- (nullable id)objectForKey:(id)key {
     if (key == nil) {
         return nil;
     }
     
-    __block const void *value;
+    __block id value;
     dispatch_sync(_internal_queue, ^{
-        value = CFDictionaryGetValue(self->_storage, key);
+        value = CFDictionaryGetValue(self->_storage, (__bridge const void *)(key));
     });
     return value;
 }
 
-- (void)setObject:(nullable const void *)object forKey:(const void *)key {
+- (void)setObject:(nullable id)object forKey:(id)key {
     dispatch_barrier_async(_internal_queue, ^{
         if (object) {
-            CFDictionarySetValue(self->_storage, key, object);
+            CFDictionarySetValue(self->_storage, (__bridge const void *)(key), (__bridge const void *)(object));
         }
         else {
-            CFDictionaryRemoveValue(self->_storage, key);
+            CFDictionaryRemoveValue(self->_storage, (__bridge const void *)(key));
         }
     });
 }
@@ -78,7 +59,7 @@
     });
 }
 
-- (void)removeObjectForKey:(const void *)key {
+- (void)removeObjectForKey:(id)key {
     if (key) {
         [self setObject:nil forKey:key];
     }
@@ -94,11 +75,11 @@
 
 #pragma mark - Subscripting
 
-- (nullable const void *)objectForKeyedSubscript:(const void *)key {
+- (nullable id)objectForKeyedSubscript:(id)key {
     return [self objectForKey:key];
 }
 
-- (void)setObject:(nullable const void *)object forKeyedSubscript:(const void *)key {
+- (void)setObject:(nullable id)object forKeyedSubscript:(id)key {
     [self setObject:object forKey:key];
 }
 

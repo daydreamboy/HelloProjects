@@ -39,14 +39,14 @@
     CFTimeInterval startTime = CACurrentMediaTime();
     for (int i = 0; i < ITERATIONS; i++) {
         dispatch_group_async(group, dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), ^{
-            [cache setObject:(__bridge const void * _Nullable)(values[i]) forKey:(__bridge const void * _Nonnull)(keys[i])];
+            cache[keys[i]] = values[i];
         });
     }
     
     for (int i = 0; i < ITERATIONS; i++) {
         __block id object;
         dispatch_group_async(group, dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), ^{
-            object = [cache objectForKey:(__bridge const void * _Nonnull)(keys[i])];
+            object = cache[keys[i]];
         });
     }
     
@@ -59,7 +59,7 @@
     for (NSString *key in keys) {
         NSInteger index = [keys indexOfObject:key];
         
-        NSString *string = [cache objectForKey:(__bridge const void * _Nonnull)(key)];
+        NSString *string = cache[key];
         XCTAssert([values[index] isEqualToString:string]);
     }
 }
