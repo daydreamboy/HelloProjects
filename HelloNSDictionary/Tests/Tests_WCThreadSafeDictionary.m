@@ -25,7 +25,7 @@
     NSLog(@"\n");
 }
 
-- (void)benchmarkWithCache:(WCThreadSafeDictionary *)cache {
+- (void)benchmarkWithCache:(WCThreadSafeDictionary<NSString *, NSString *> *)cache {
     NSMutableArray *keys = [NSMutableArray array];
     NSMutableArray *values = [NSMutableArray array];
     
@@ -66,9 +66,20 @@
 
 #pragma mark - Test Methods
 
-- (void)test_1 {
-    WCThreadSafeDictionary *cache = [WCThreadSafeDictionary dictionary];
+- (void)test_thread_safe {
+    WCThreadSafeDictionary<NSString *, NSString *> *cache = [WCThreadSafeDictionary dictionary];
     [self benchmarkWithCache:cache];
+}
+
+- (void)test_fast_enumeration {
+    WCThreadSafeDictionary<NSString *, NSString *> *dict = [WCThreadSafeDictionary dictionary];
+    dict[@"1"] = @"A";
+    dict[@"2"] = @"B";
+    dict[@"3"] = @"C";
+    for (NSString *key in dict) {
+        NSString *value = dict[key];
+        NSLog(@"%@", value);
+    }
 }
 
 @end

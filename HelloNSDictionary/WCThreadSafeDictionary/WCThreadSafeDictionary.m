@@ -83,4 +83,45 @@
     [self setObject:object forKey:key];
 }
 
+/*
+#pragma mark - Fast enumeration (NSFastEnumeration)
+
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id  _Nullable __unsafe_unretained [])buffer count:(NSUInteger)len {
+    __block NSUInteger count = 0;
+    
+    dispatch_sync(_internal_queue, ^{
+        unsigned long countOfItemsAlreadyEnumerated = state->state;
+        
+        if (countOfItemsAlreadyEnumerated == 0) {
+            state->mutationsPtr = &state->extra[0];
+        }
+        
+        long size = CFDictionaryGetCount(self->_storage);
+        
+        if (countOfItemsAlreadyEnumerated < size) {
+            CFTypeRef *keysTypeRef = (CFTypeRef *)malloc( size * sizeof(CFTypeRef) );
+            CFDictionaryGetKeysAndValues(self->_storage, (const void **)keysTypeRef, NULL);
+            const void **keys = (const void **)keysTypeRef;
+            
+            state->itemsPtr = (void *)keysTypeRef;
+            
+            // We must return how many items are in state->itemsPtr.
+            // We are returning all of our items at once so set count equal to the size of _list.
+            count = size;
+            countOfItemsAlreadyEnumerated = size;
+        }
+        else {
+            // We've already provided all our items.  Signal that we are finished by returning 0.
+            count = 0;
+        }
+        
+        // Update state->state with the new value of countOfItemsAlreadyEnumerated so that it is
+        // preserved for the next invocation.
+        state->state = countOfItemsAlreadyEnumerated;
+    });
+
+    return count;
+}
+ */
+
 @end

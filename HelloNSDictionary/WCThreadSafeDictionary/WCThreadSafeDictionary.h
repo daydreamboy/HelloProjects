@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WCThreadSafeDictionary<__covariant KeyType, __covariant ObjectType> : NSObject
+@interface WCThreadSafeDictionary<__covariant KeyType, __covariant ObjectType> : NSObject //<NSFastEnumeration>
 
 - (instancetype)init;
 + (instancetype)dictionary;
@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (nullable ObjectType)objectForKeyedSubscript:(KeyType)key;
 - (void)setObject:(nullable ObjectType)object forKeyedSubscript:(KeyType)key;
+
+//#pragma mark - Fast enumeration
 
 @end
 

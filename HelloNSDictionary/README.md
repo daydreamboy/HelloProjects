@@ -148,6 +148,20 @@ XCTAssertTrue(output1 == 10);
 
 
 
+## 2、实现Fast Enumeration
+
+
+
+https://developer.apple.com/library/archive/samplecode/FastEnumerationSample/Introduction/Intro.html
+
+https://www.mikeash.com/pyblog/friday-qa-2010-04-16-implementing-fast-enumeration.html
+
+
+
+
+
+
+
 
 
 ## Reference
