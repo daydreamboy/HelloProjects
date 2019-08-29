@@ -21,6 +21,7 @@
 		4F34A92021144E7500A2BBFF /* WCAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F34A91F21144E7500A2BBFF /* WCAudioPlayer.m */; };
 		4F34A9232114534800A2BBFF /* UseWCAudioPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F34A9222114534800A2BBFF /* UseWCAudioPlayerViewController.m */; };
 		4F34A9292114538400A2BBFF /* UIView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F34A9282114538400A2BBFF /* UIView+Addition.m */; };
+		4F4AFFE1213E87D70031856A /* piano2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4F4AFFE0213E87D70031856A /* piano2.wav */; };
 		4F52D1032117EB52004EE254 /* detodos.opus in Resources */ = {isa = PBXBuildFile; fileRef = 4F52D1012117EB52004EE254 /* detodos.opus */; };
 		4F52D1042117EB52004EE254 /* ehren-paper_lights-64.opus in Resources */ = {isa = PBXBuildFile; fileRef = 4F52D1022117EB52004EE254 /* ehren-paper_lights-64.opus */; };
 		4F52D1072117EB7C004EE254 /* PlayOPUSAudioFileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D1062117EB7C004EE254 /* PlayOPUSAudioFileViewController.m */; };
@@ -50,6 +51,7 @@
 		4F34A9222114534800A2BBFF /* UseWCAudioPlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCAudioPlayerViewController.m; sourceTree = "<group>"; };
 		4F34A9272114538400A2BBFF /* UIView+Addition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+Addition.h"; sourceTree = "<group>"; };
 		4F34A9282114538400A2BBFF /* UIView+Addition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+Addition.m"; sourceTree = "<group>"; };
+		4F4AFFE0213E87D70031856A /* piano2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = piano2.wav; sourceTree = "<group>"; };
 		4F52D1012117EB52004EE254 /* detodos.opus */ = {isa = PBXFileReference; lastKnownFileType = file; path = detodos.opus; sourceTree = "<group>"; };
 		4F52D1022117EB52004EE254 /* ehren-paper_lights-64.opus */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ehren-paper_lights-64.opus"; sourceTree = "<group>"; };
 		4F52D1052117EB7C004EE254 /* PlayOPUSAudioFileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayOPUSAudioFileViewController.h; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 		4F34A8F621130BB200A2BBFF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F4AFFE0213E87D70031856A /* piano2.wav */,
 				4F52D1012117EB52004EE254 /* detodos.opus */,
 				4F52D1022117EB52004EE254 /* ehren-paper_lights-64.opus */,
 				4F34A8F721130BB200A2BBFF /* voice2.amr */,
@@ -203,6 +206,7 @@
 				4F34A8FC21130BB200A2BBFF /* voice3.amr in Resources */,
 				4F52D1032117EB52004EE254 /* detodos.opus in Resources */,
 				4F34A8E32113039300A2BBFF /* LaunchScreen.storyboard in Resources */,
+				4F4AFFE1213E87D70031856A /* piano2.wav in Resources */,
 				4F34A8E02113039300A2BBFF /* Assets.xcassets in Resources */,
 				4F52D1042117EB52004EE254 /* ehren-paper_lights-64.opus in Resources */,
 			);

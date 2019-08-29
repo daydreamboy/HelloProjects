@@ -12,9 +12,25 @@
 
 @interface PlayOPUSAudioFileViewController ()
 @property (nonatomic, strong) WCAudioPlayer *audioPlayer;
+@property (nonatomic, strong) NSArray<NSString *> *audioFiles;
+@property (nonatomic, strong) UITableView *tableView;
 @end
 
 @implementation PlayOPUSAudioFileViewController
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        // @see http://www.kozco.com/tech/soundtests.html
+        _audioFiles = @[
+                        @"piano2.wav",
+                        @"voice1.amr",
+                        @"separatorSound.m4a",
+                        @"detodos.opus",
+                        ];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,6 +44,8 @@
         NSLog(@"not support format: %@", error);
     }
 }
+
+#pragma mark - Getters
 
 - (WCAudioPlayer *)audioPlayer {
     if (!_audioPlayer) {
