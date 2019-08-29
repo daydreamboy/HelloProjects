@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F17F73F2318365300004A26 /* Tests_WCThreadSafeArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F17F73E2318365300004A26 /* Tests_WCThreadSafeArray.m */; };
 		4F513ED622DECA93003698DA /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F513ED522DECA93003698DA /* Person.m */; };
 		4F5640A62212785C0039D6F6 /* WCArrayTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F907F21B6BF8900A949EC /* WCArrayTool.m */; };
 		4F6F905B21B6BF5300A949EC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F905A21B6BF5300A949EC /* AppDelegate.m */; };
@@ -17,6 +18,7 @@
 		4F6F906921B6BF5600A949EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F906821B6BF5600A949EC /* main.m */; };
 		4F6F907621B6BF6300A949EC /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F907521B6BF6300A949EC /* Tests.m */; };
 		4F8BEC8621DF4772000EA7B7 /* Tests_NSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8BEC8521DF4772000EA7B7 /* Tests_NSArray.m */; };
+		4FABAF88231821BB00064B57 /* WCThreadSafeArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FABAF87231821BB00064B57 /* WCThreadSafeArray.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +32,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F17F73E2318365300004A26 /* Tests_WCThreadSafeArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_WCThreadSafeArray.m; sourceTree = "<group>"; };
 		4F513ED422DECA93003698DA /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		4F513ED522DECA93003698DA /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		4F6F905621B6BF5300A949EC /* HelloNSArray.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSArray.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,6 +51,8 @@
 		4F6F907E21B6BF8900A949EC /* WCArrayTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCArrayTool.h; sourceTree = "<group>"; };
 		4F6F907F21B6BF8900A949EC /* WCArrayTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCArrayTool.m; sourceTree = "<group>"; };
 		4F8BEC8521DF4772000EA7B7 /* Tests_NSArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSArray.m; sourceTree = "<group>"; };
+		4FABAF86231821BB00064B57 /* WCThreadSafeArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCThreadSafeArray.h; sourceTree = "<group>"; };
+		4FABAF87231821BB00064B57 /* WCThreadSafeArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCThreadSafeArray.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +85,7 @@
 		4F6F904D21B6BF5300A949EC = {
 			isa = PBXGroup;
 			children = (
+				4FABAF852318219800064B57 /* WCThreadSafeArray */,
 				4F6F907D21B6BF7C00A949EC /* WCArrayTool */,
 				4F6F905821B6BF5300A949EC /* HelloNSArray */,
 				4F6F907421B6BF6300A949EC /* Tests */,
@@ -118,6 +124,7 @@
 				4F513ED322DECA5E003698DA /* DummyClass */,
 				4F6F907521B6BF6300A949EC /* Tests.m */,
 				4F8BEC8521DF4772000EA7B7 /* Tests_NSArray.m */,
+				4F17F73E2318365300004A26 /* Tests_WCThreadSafeArray.m */,
 				4F6F907721B6BF6300A949EC /* Info.plist */,
 			);
 			path = Tests;
@@ -130,6 +137,15 @@
 				4F6F907F21B6BF8900A949EC /* WCArrayTool.m */,
 			);
 			path = WCArrayTool;
+			sourceTree = "<group>";
+		};
+		4FABAF852318219800064B57 /* WCThreadSafeArray */ = {
+			isa = PBXGroup;
+			children = (
+				4FABAF86231821BB00064B57 /* WCThreadSafeArray.h */,
+				4FABAF87231821BB00064B57 /* WCThreadSafeArray.m */,
+			);
+			path = WCThreadSafeArray;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,6 +250,7 @@
 			files = (
 				4F6F905E21B6BF5400A949EC /* ViewController.m in Sources */,
 				4F6F906921B6BF5600A949EC /* main.m in Sources */,
+				4FABAF88231821BB00064B57 /* WCThreadSafeArray.m in Sources */,
 				4F6F905B21B6BF5300A949EC /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F17F73F2318365300004A26 /* Tests_WCThreadSafeArray.m in Sources */,
 				4F5640A62212785C0039D6F6 /* WCArrayTool.m in Sources */,
 				4F8BEC8621DF4772000EA7B7 /* Tests_NSArray.m in Sources */,
 				4F513ED622DECA93003698DA /* Person.m in Sources */,
