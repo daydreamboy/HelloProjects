@@ -15,13 +15,17 @@
     CFMutableDictionaryRef _storage;
 }
 
-#pragma mark - Public Methods
+#pragma mark - Initialize
 
 - (instancetype)init {
+    return [[WCThreadSafeDictionary alloc] initWithCapacity:0];
+}
+
+- (instancetype)initWithCapacity:(NSUInteger)capacity {
     self = [super init];
     if (self) {
         _internal_queue = dispatch_queue_create("WCThreadSafeDictionary Isolation Queue", DISPATCH_QUEUE_CONCURRENT);
-        _storage = CFDictionaryCreateMutable(kCFAllocatorDefault, 0, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+        _storage = CFDictionaryCreateMutable(kCFAllocatorDefault, (CFIndex)capacity, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
     }
     return self;
 }
@@ -29,6 +33,12 @@
 + (instancetype)dictionary {
     return [[WCThreadSafeDictionary alloc] init];
 }
+
++ (instancetype)dictionaryWithCapacity:(NSUInteger)capacity {
+    return [[WCThreadSafeDictionary alloc] initWithCapacity:capacity];
+}
+
+#pragma mark - Access
 
 - (nullable id)objectForKey:(id)key {
     if (key == nil) {
@@ -73,7 +83,7 @@
     return count;
 }
 
-#pragma mark - Subscripting
+#pragma mark - Subscript
 
 - (nullable id)objectForKeyedSubscript:(id)key {
     return [self objectForKey:key];

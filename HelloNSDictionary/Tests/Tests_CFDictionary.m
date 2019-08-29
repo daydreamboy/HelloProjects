@@ -29,7 +29,7 @@
     NSString *output2;
     
     // @see https://blog.spacemanlabs.com/2011/08/integers-in-your-collections-nsnumbers-not-my-friend/
-    // Casse 1: create dictionary with both non-retained keys and values
+    // Case 1: create dictionary with both non-retained keys and values
     dict = CFDictionaryCreateMutable(NULL, 0, NULL, NULL);
     
     // Setting values
@@ -100,6 +100,27 @@ static void MyCFDictionaryReleaseCallback(CFAllocatorRef allocator, const void *
     dict = NULL;
     
     XCTAssertEqualObjects(output, @"value");
+}
+
+- (void)test_CFMutableDictionaryRef_with {
+    CFMutableDictionaryRef dict;
+    NSInteger output1;
+    NSString *output2;
+    
+    dict = CFDictionaryCreateMutable(NULL, 2, &kCFTypeDictionaryKeyCallBacks, &kCFTypeDictionaryValueCallBacks);
+    
+    // Setting values more than capacity 2
+    CFDictionarySetValue(dict, CFSTR("key1"), CFSTR("value1"));
+    CFDictionarySetValue(dict, CFSTR("key2"), CFSTR("value2"));
+    CFDictionarySetValue(dict, CFSTR("key3"), CFSTR("value3"));
+    CFDictionarySetValue(dict, CFSTR("key4"), CFSTR("value4"));
+    CFDictionarySetValue(dict, CFSTR("key5"), CFSTR("value5"));
+    
+    CFDictionaryApplyFunction(dict, printDict, NULL);
+}
+
+static void printDict(const void *key, const void *value, void *context) {
+    NSLog(@"%@: %@", key, value);
 }
 
 @end
