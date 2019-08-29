@@ -271,9 +271,24 @@ template在Objective-C++是关键词，不能作为参数使用，否则编译�
 
 
 
+## 9、Objective-C常用方法命名方式
+
+
+
+| 格式                             | 作用                       | 说明 |
+| -------------------------------- | -------------------------- | ---- |
+|                                  |                            |      |
+|                                  |                            |      |
+| callDelelgateOf`protocol_method` | 调用delegate方法的包装方法 |      |
+
+
+
+
+
 ## References
 
 [1]: https://stackoverflow.com/questions/34574933/a-good-and-idiomatic-way-to-use-gcc-and-clang-attribute-cleanup-and-point
 [ 2 ]: http://echorand.me/site/notes/articles/c_cleanup/cleanup_attribute_c.html
 
 [^3]:http://blog.benjamin-encz.de/post/objective-c-backing-ivars-subclasses/
+
