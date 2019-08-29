@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F1D7DC6212175570021023C /* WCDyldTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1D7DC5212175570021023C /* WCDyldTool.m */; };
 		4F52D1B321198A36004EE254 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D1B221198A36004EE254 /* AppDelegate.m */; };
 		4F52D1BB21198A37004EE254 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F52D1BA21198A37004EE254 /* Assets.xcassets */; };
 		4F52D1BE21198A37004EE254 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F52D1BC21198A37004EE254 /* LaunchScreen.storyboard */; };
@@ -17,6 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F1D7DC4212175570021023C /* WCDyldTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCDyldTool.h; sourceTree = "<group>"; };
+		4F1D7DC5212175570021023C /* WCDyldTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCDyldTool.m; sourceTree = "<group>"; };
 		4F52D1AE21198A36004EE254 /* HelloDyldFunctions.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloDyldFunctions.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F52D1B121198A36004EE254 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F52D1B221198A36004EE254 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -43,9 +46,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F1D7DC3212175410021023C /* WCDyldTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F1D7DC4212175570021023C /* WCDyldTool.h */,
+				4F1D7DC5212175570021023C /* WCDyldTool.m */,
+				4F52D1D22119A6D1004EE254 /* WCThreadSafeMutableArray.h */,
+				4F52D1D32119A6D1004EE254 /* WCThreadSafeMutableArray.m */,
+			);
+			path = WCDyldTool;
+			sourceTree = "<group>";
+		};
 		4F52D1A521198A36004EE254 = {
 			isa = PBXGroup;
 			children = (
+				4F1D7DC3212175410021023C /* WCDyldTool */,
 				4F52D1B021198A36004EE254 /* HelloDyldFunctions */,
 				4F52D1AF21198A36004EE254 /* Products */,
 			);
@@ -88,8 +103,6 @@
 		4F52D1D12119A660004EE254 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				4F52D1D22119A6D1004EE254 /* WCThreadSafeMutableArray.h */,
-				4F52D1D32119A6D1004EE254 /* WCThreadSafeMutableArray.m */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -167,6 +180,7 @@
 				4F52D1D021198B40004EE254 /* DyldRegisterFuncForAddImageViewController.m in Sources */,
 				4F52D1B321198A36004EE254 /* AppDelegate.m in Sources */,
 				4F52D1D42119A6D1004EE254 /* WCThreadSafeMutableArray.m in Sources */,
+				4F1D7DC6212175570021023C /* WCDyldTool.m in Sources */,
 				4F52D1CC21198A63004EE254 /* RootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

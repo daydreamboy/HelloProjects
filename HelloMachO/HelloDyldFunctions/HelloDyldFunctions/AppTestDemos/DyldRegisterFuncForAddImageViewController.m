@@ -9,8 +9,10 @@
 #import "DyldRegisterFuncForAddImageViewController.h"
 #import "WCThreadSafeMutableArray.h"
 #import <mach-o/dyld.h>
+#import "WCDyldTool.h"
 
 static BOOL sRegistered = NO;
+// TODO: use more thread safe array
 static WCThreadSafeMutableArray *sArray;
 
 static void _onBinaryImageLoadedForOriginal(const struct mach_header* mh, intptr_t vmaddr_slide)
@@ -60,6 +62,10 @@ static void register_observe_binary_image_loaded(void)
 @end
 
 @implementation DyldRegisterFuncForAddImageViewController
+
++ (void)load {
+    [WCDyldTool registerDynamicLibraresDidLoad];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
