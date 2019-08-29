@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)init;
 - (instancetype)initWithCapacity:(NSUInteger)capacity;
++ (instancetype)dictionary;
 + (instancetype)dictionaryWithCapacity:(NSUInteger)capacity;
 + (instancetype)dictionaryWithDictionary:(WCOrderedDictionary<KeyType, ObjectType> *)dict;
 
@@ -37,8 +38,10 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Query
 
 - (nullable ObjectType)objectForKey:(KeyType)key;
-- (nullable ObjectType)valueForKey:(NSString *)key;
 - (NSUInteger)count;
+// TODO:
+- (NSString *)description;
+- (NSString *)debugDescription;
 
 #pragma mark - Subscript
 

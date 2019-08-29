@@ -37,4 +37,13 @@
     XCTAssertNil(value);
 }
 
+- (void)test_description {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    for (NSInteger i = 0; i < 100; i++) {
+        dict[[NSString stringWithFormat:@"%d", (int)i]] = @(i);
+    }
+    
+    NSLog(@"%@", dict);
+}
+
 @end

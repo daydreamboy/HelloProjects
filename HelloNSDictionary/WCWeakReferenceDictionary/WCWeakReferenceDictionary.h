@@ -24,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  The dictionary with more key/value's memory semantics
+ 
+ @discussion This dictionary is simular with NSMapTable, exclude the WCWeakableDictionaryKeyValueModeStrongToMixed
+ and WCWeakableDictionaryKeyValueModeWeakToMixed which allow the values are weak or strong partly.
  */
 @interface WCWeakReferenceDictionary<__covariant KeyType, __covariant ObjectType> : NSObject <NSFastEnumeration>
 
