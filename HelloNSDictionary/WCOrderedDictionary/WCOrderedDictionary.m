@@ -128,15 +128,156 @@
     return [_storage count];
 }
 
-//- (NSString *)description {
-//    
-//}
-//
-//- (NSString *)debugDescription {
-//    
-//}
+- (NSString *)description {
+    NSMutableString *stringM = [NSMutableString string];
+    traverse_object(stringM, self, 0, NO);
+    
+    return stringM;
+}
 
-#pragma mark - Subscript
+- (NSString *)debugDescription {
+    return [self description];
+}
+
+#pragma mark ::
+
+// 2 spaces for indentation
+#define INDENTATION @"  "
+
+static void traverse_object(NSMutableString *stringM, id object, NSUInteger depth, BOOL isValueForKey) {
+    
+    if (isValueForKey) {
+        // hanlde value if it has a counter-part key
+        [stringM appendString:@" : "];
+    }
+    else {
+        // handle indentation
+        for (NSUInteger i = 0; i < depth; i++) {
+            [stringM appendString:INDENTATION];
+        }
+    }
+    
+    if ([object isKindOfClass:[NSDictionary class]]) {
+        [stringM appendString:@"{\n"];
+        
+        NSArray *allKeys = [[object allKeys] sortedArrayUsingComparator:^NSComparisonResult(id _Nonnull key1, id _Nonnull key2) {
+            if ([[key1 description] compare:[key2 description]] == NSOrderedAscending) {
+                return NSOrderedAscending;
+            }
+            else if ([[key1 description] compare:[key2 description]] == NSOrderedDescending) {
+                return NSOrderedDescending;
+            }
+            else {
+                return NSOrderedSame;
+            }
+        }];
+        NSUInteger numberOfAllKeys = [allKeys count];
+        for (NSUInteger i = 0; i < numberOfAllKeys; i++) {
+            id key = allKeys[i];
+            traverse_object(stringM, key, depth + 1, NO);
+            
+            id value = [object objectForKey:key];
+            traverse_object(stringM, value, depth + 1, YES);
+            
+            // newline after one pair except last one
+            [stringM appendString:(i != numberOfAllKeys - 1 ? @",\n" : @"")];
+        }
+        
+        // revert the process of @"{"
+        [stringM appendString:@"\n"];
+        // handle indentation
+        for (NSUInteger i = 0; i < depth; i++) {
+            [stringM appendString:INDENTATION];
+        }
+        [stringM appendString:@"}"];
+    }
+    else if ([object isKindOfClass:[NSArray class]]) {
+        [stringM appendString:@"[\n"];
+        
+        NSUInteger numberOfAllItems = [object count];
+        for (NSUInteger i = 0; i < numberOfAllItems; i++) {
+            id item = object[i];
+            traverse_object(stringM, item, depth + 1, NO);
+            
+            // newline after one item except last one
+            [stringM appendString:(i != numberOfAllItems - 1 ? @",\n" : @"")];
+        }
+        
+        // revert the process of @"["
+        [stringM appendString:@"\n"];
+        // handle indentation
+        for (NSUInteger i = 0; i < depth; i++) {
+            [stringM appendString:INDENTATION];
+        }
+        [stringM appendString:@"]"];
+    }
+    else if ([object isKindOfClass:[NSString class]]) {
+        NSString *JSONEscapedString = JSONEscapedStringFromString((NSString *)object);
+        [stringM appendFormat:@"\"%@\"", JSONEscapedString];
+    }
+    else if ([object isKindOfClass:[NSNumber class]]) {
+        
+        // @sa http://stackoverflow.com/questions/2518761/get-type-of-nsnumber
+        if (object == (void *)kCFBooleanTrue || object == (void *)kCFBooleanFalse) {
+            // only convert @YES/@NO to true/false, not support @(true)/@(TRUE)
+            BOOL isTrue = [object boolValue];
+            [stringM appendString:(isTrue ? @"true" : @"false")];
+        }
+        else {
+            [stringM appendFormat:@"%@", [object stringValue]];
+        }
+    }
+    else if ([object isKindOfClass:[NSNull class]]) {
+        [stringM appendString:@"null"];
+    }
+    else if ([object isKindOfClass:[WCOrderedDictionary class]]) {
+        [stringM appendString:@"{\n"];
+        
+        NSArray *allKeys = [object allKeys];
+        NSUInteger numberOfAllKeys = [allKeys count];
+        for (NSUInteger i = 0; i < numberOfAllKeys; i++) {
+            id key = allKeys[i];
+            traverse_object(stringM, key, depth + 1, NO);
+            
+            id value = [object objectForKey:key];
+            traverse_object(stringM, value, depth + 1, YES);
+            
+            // newline after one pair except last one
+            [stringM appendString:(i != numberOfAllKeys - 1 ? @",\n" : @"")];
+        }
+        
+        // revert the process of @"{"
+        [stringM appendString:@"\n"];
+        // handle indentation
+        for (NSUInteger i = 0; i < depth; i++) {
+            [stringM appendString:INDENTATION];
+        }
+        [stringM appendString:@"}"];
+    }
+    else {
+        // call object's description method
+        [stringM appendFormat:@"\"<%@: %p>\"", NSStringFromClass([object class]), object];
+    }
+}
+
+// Convert NSString to JSON string
+static NSString * JSONEscapedStringFromString(NSString *string) {
+    NSMutableString *stringM = [NSMutableString stringWithString:string];
+    
+    [stringM replaceOccurrencesOfString:@"\"" withString:@"\\\"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"/" withString:@"\\/" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\n" withString:@"\\n" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\b" withString:@"\\b" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\f" withString:@"\\f" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\r" withString:@"\\r" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\t" withString:@"\\t" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    
+    return [NSString stringWithString:stringM];
+}
+
+#pragma mark ::
+
+#pragma mark - Subscript (e.g. dict[@"key"])
 
 - (nullable id)objectForKeyedSubscript:(id)key {
     return [self objectForKey:key];
@@ -144,6 +285,88 @@
 
 - (void)setObject:(nullable id)object forKeyedSubscript:(id)key {
     [self setObject:object forKey:key];
+}
+
+#pragma mark - Index (e.g. dict[1])
+
+__nullable WCOrderedDictionaryPair WCOrderedDictionaryPairMake(id key, id value) {
+    if (key && value) {
+        return [NSArray arrayWithObjects:key, value, nil];
+    }
+    else {
+        return nil;
+    }
+}
+
+- (nullable WCOrderedDictionaryPair)objectAtIndexedSubscript:(NSUInteger)index {
+    if (index < _orderedKeys.count) {
+        id key = _orderedKeys[index];
+        id value = _storage[key];
+        
+        return WCOrderedDictionaryPairMake(key, value);
+    }
+    else {
+        return nil;
+    }
+}
+
+- (void)setObject:(nullable WCOrderedDictionaryPair)object atIndexedSubscript:(NSUInteger)index {
+    if (index < _orderedKeys.count) {
+        
+        if ([object isKindOfClass:[NSArray class]] && object.count == 2) {
+            id key = [object firstObject];
+            id value = [object lastObject];
+            
+            _orderedKeys[index] = key;
+            _storage[key] = value;
+        }
+        else if (!object) {
+            id key = _orderedKeys[index];
+            
+            [_orderedKeys removeObjectAtIndex:index];
+            [_storage removeObjectForKey:key];
+        }
+    }
+}
+
+#pragma mark - Convert from NSDictionary
+
++ (nullable WCOrderedDictionary *)orderedDictionaryFromDictionary:(NSDictionary *)dictionary {
+    if (![dictionary isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    
+    WCOrderedDictionary *orderedDict = [[WCOrderedDictionary alloc] initWithCapacity:dictionary.count];
+    NSArray *allKeys = [[dictionary allKeys] sortedArrayUsingComparator:^NSComparisonResult(id _Nonnull key1, id _Nonnull key2) {
+        if ([key1 respondsToSelector:@selector(compare:)] && [key2 respondsToSelector:@selector(compare:)]) {
+            if ([key1 compare:key2] == NSOrderedAscending) {
+                return NSOrderedAscending;
+            }
+            else if ([key1 compare:key2] == NSOrderedDescending) {
+                return NSOrderedDescending;
+            }
+            else {
+                return NSOrderedSame;
+            }
+        }
+        else {
+            if ([[key1 description] compare:[key2 description]] == NSOrderedAscending) {
+                return NSOrderedAscending;
+            }
+            else if ([[key1 description] compare:[key2 description]] == NSOrderedDescending) {
+                return NSOrderedDescending;
+            }
+            else {
+                return NSOrderedSame;
+            }
+        }
+    }];
+    
+    for (NSString *key in allKeys) {
+        [orderedDict setObject:dictionary[key] forKey:key];
+    }
+    
+    return orderedDict;
 }
 
 #pragma mark - NSFastEnumeration

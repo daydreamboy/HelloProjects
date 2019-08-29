@@ -80,6 +80,8 @@
 
 
 
+示例代码，参考WCOrderedDictionary
+
 
 
 

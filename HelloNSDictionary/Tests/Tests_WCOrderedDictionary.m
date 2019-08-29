@@ -29,10 +29,39 @@
         dict[[NSString stringWithFormat:@"%d", (int)i]] = @(i);
     }
     
+    XCTAssertTrue(dict.count == 100);
+    
     NSUInteger count = 0;
     for (NSString *key in dict) {
         id value = dict[key];
         XCTAssertEqualObjects(value, @(count));
+        count++;
+    }
+}
+
+- (void)test_description {
+    WCOrderedDictionary *dict = [WCOrderedDictionary dictionary];
+    for (NSInteger i = 0; i < 100; i++) {
+        dict[[NSString stringWithFormat:@"%d", (int)i]] = @(i);
+    }
+    
+    NSLog(@"%@", dict);
+}
+
+- (void)test_orderedDictionaryFromDictionary {
+    WCOrderedDictionary *orderedDict;
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    for (NSInteger i = 0; i < 100; i++) {
+        dict[@(i)] = [NSString stringWithFormat:@"%d", (int)i];
+    }
+    
+    orderedDict = [WCOrderedDictionary orderedDictionaryFromDictionary:dict];
+    
+    NSUInteger count = 0;
+    for (NSNumber *key in orderedDict) {
+        id value = orderedDict[key];
+        id expectedValue = [NSString stringWithFormat:@"%d", (int)count];
+        XCTAssertEqualObjects(value, expectedValue);
         count++;
     }
 }
