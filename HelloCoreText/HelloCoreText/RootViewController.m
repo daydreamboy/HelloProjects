@@ -16,6 +16,7 @@
 #import "BorderedTextViewController.h"
 #import "UseCTFrameViewController.h"
 #import "UseCTLineViewController.h"
+#import "UseColumnarLayoutViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -40,6 +41,7 @@
     _titles = @[
         @"Use CTFrame",
         @"Use CTLine",
+        @"Use columnar layout",
         @"Simple draw string in UIView (v1)",
         @"Simple draw string in UIView (v2)",
         @"Draw string from markup string",
@@ -51,6 +53,7 @@
     _classes = @[
         [UseCTFrameViewController class],
         [UseCTLineViewController class],
+        [UseColumnarLayoutViewController class],
         [SimpleDrawStringInViewV1ViewController class],
         [SimpleDrawStringInViewV2ViewController class],
         [DrawStringFromSimpleMarkupV1ViewController class],

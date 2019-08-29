@@ -14,12 +14,22 @@
 - (void)drawRect:(CGRect)rect {
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    // Flip the context coordinates
-    CGContextTranslateCTM(context, 0, self.bounds.size.height);
-    CGContextScaleCTM(context, 1.0, -1.0);
+//    CGContextSetTextMatrix(context, CGAffineTransformMakeScale(1.0f, -1.0f));
     
-    // Set the text matrix
-    CGContextSetTextMatrix(context, CGAffineTransformIdentity);
+    CGPoint locationTextDrawn = CGContextGetTextPosition(context);
+    NSLog(@"%@", NSStringFromCGPoint(locationTextDrawn));
+
+    // Flip the context coordinates
+//    CGContextTranslateCTM(context, 0, self.bounds.size.height);
+//    CGContextScaleCTM(context, 1.0, -1.0);
+    
+    locationTextDrawn = CGContextGetTextPosition(context);
+    NSLog(@"%@", NSStringFromCGPoint(locationTextDrawn));
+    
+//    // Set the text matrix
+//    CGAffineTransform affineTransform = CGContextGetTextMatrix(context);
+//    affineTransform = CGAffineTransformTranslate(affineTransform, 0, -self.bounds.size.height);
+//    CGContextSetTextMatrix(context, affineTransform);
     
     CFStringRef textString = CFSTR("A text line drawed by CTLine.");
     // @see https://stackoverflow.com/a/10620714
@@ -37,7 +47,7 @@
     CTLineRef line = CTLineCreateWithAttributedString(attrString);
     
     // Set text position and draw the line into the graphics context
-    CGContextSetTextPosition(context, 10.0, 10.0); // origin: bottom-left
+//    CGContextSetTextPosition(context, 10.0, 5); // origin: bottom-left
     CTLineDraw(line, context);
     CFRelease(line);
     CFRelease(attrString);

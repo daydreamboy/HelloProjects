@@ -24,7 +24,7 @@
 
 - (LayoutALineView *)drawableView {
     if (!_drawableView) {
-        _drawableView = [[LayoutALineView alloc] initWithFrame:CGRectMake(0, 80, 300, 400)];
+        _drawableView = [[LayoutALineView alloc] initWithFrame:CGRectMake(0, 10, 300, 400)];
         _drawableView.backgroundColor = [UIColor whiteColor];
         _drawableView.layer.borderColor = [UIColor redColor].CGColor;
         _drawableView.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;

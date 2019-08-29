@@ -18,8 +18,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-    CTViewV2 *view = [[CTViewV2 alloc] initWithFrame:CGRectMake(0, 64, screenSize.width, screenSize.height - 64)];
+    CTViewV2 *view = [[CTViewV2 alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height - 64)];
     view.backgroundColor = [UIColor whiteColor];
+    view.layer.borderColor = [UIColor redColor].CGColor;
+    view.layer.borderWidth = 1.0;
     [self.view addSubview:view];
 }
 

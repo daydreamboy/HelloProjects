@@ -36,9 +36,11 @@
 		4F33FCD11FBAC2EC00DE9852 /* CTViewV5.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FCD01FBAC2EC00DE9852 /* CTViewV5.m */; };
 		4F33FCD41FBAD08E00DE9852 /* BorderedTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F33FCD31FBAD08E00DE9852 /* BorderedTextViewController.m */; };
 		4F509107226E28280018B141 /* UseCTFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F509106226E28280018B141 /* UseCTFrameViewController.m */; };
+		4F573C2B22754AF0006D7ECF /* ManualLineBreakView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F573C2A22754AF0006D7ECF /* ManualLineBreakView.m */; };
 		4F577719226EF6EF00AA0896 /* LayoutALineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F577718226EF6EF00AA0896 /* LayoutALineView.m */; };
 		4F57771C226EFBB900AA0896 /* UseCTLineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F57771B226EFBB900AA0896 /* UseCTLineViewController.m */; };
 		4F57771F226F019F00AA0896 /* ColumnarLayoutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F57771E226F019F00AA0896 /* ColumnarLayoutView.m */; };
+		4F6130CB2272B6080078AFA3 /* UseColumnarLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6130CA2272B6080078AFA3 /* UseColumnarLayoutViewController.m */; };
 		4F6C716A226E0A3F00A4E7A6 /* LayoutAParagraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C7169226E0A3F00A4E7A6 /* LayoutAParagraphView.m */; };
 /* End PBXBuildFile section */
 
@@ -95,12 +97,16 @@
 		4F33FCD31FBAD08E00DE9852 /* BorderedTextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BorderedTextViewController.m; sourceTree = "<group>"; };
 		4F509105226E28280018B141 /* UseCTFrameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCTFrameViewController.h; sourceTree = "<group>"; };
 		4F509106226E28280018B141 /* UseCTFrameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCTFrameViewController.m; sourceTree = "<group>"; };
+		4F573C2922754AF0006D7ECF /* ManualLineBreakView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ManualLineBreakView.h; sourceTree = "<group>"; };
+		4F573C2A22754AF0006D7ECF /* ManualLineBreakView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ManualLineBreakView.m; sourceTree = "<group>"; };
 		4F577717226EF6EF00AA0896 /* LayoutALineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayoutALineView.h; sourceTree = "<group>"; };
 		4F577718226EF6EF00AA0896 /* LayoutALineView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LayoutALineView.m; sourceTree = "<group>"; };
 		4F57771A226EFBB800AA0896 /* UseCTLineViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCTLineViewController.h; sourceTree = "<group>"; };
 		4F57771B226EFBB900AA0896 /* UseCTLineViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCTLineViewController.m; sourceTree = "<group>"; };
 		4F57771D226F019F00AA0896 /* ColumnarLayoutView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColumnarLayoutView.h; sourceTree = "<group>"; };
 		4F57771E226F019F00AA0896 /* ColumnarLayoutView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColumnarLayoutView.m; sourceTree = "<group>"; };
+		4F6130C92272B6080078AFA3 /* UseColumnarLayoutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseColumnarLayoutViewController.h; sourceTree = "<group>"; };
+		4F6130CA2272B6080078AFA3 /* UseColumnarLayoutViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseColumnarLayoutViewController.m; sourceTree = "<group>"; };
 		4F6C7168226E0A3F00A4E7A6 /* LayoutAParagraphView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayoutAParagraphView.h; sourceTree = "<group>"; };
 		4F6C7169226E0A3F00A4E7A6 /* LayoutAParagraphView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LayoutAParagraphView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -170,6 +176,8 @@
 				4F509106226E28280018B141 /* UseCTFrameViewController.m */,
 				4F57771A226EFBB800AA0896 /* UseCTLineViewController.h */,
 				4F57771B226EFBB900AA0896 /* UseCTLineViewController.m */,
+				4F6130C92272B6080078AFA3 /* UseColumnarLayoutViewController.h */,
+				4F6130CA2272B6080078AFA3 /* UseColumnarLayoutViewController.m */,
 				4F33FC8E1FB946C900DE9852 /* CTViewV1.h */,
 				4F33FC8F1FB946C900DE9852 /* CTViewV1.m */,
 				4F33FC911FB970FA00DE9852 /* CTViewV2.h */,
@@ -244,6 +252,8 @@
 				4F577718226EF6EF00AA0896 /* LayoutALineView.m */,
 				4F57771D226F019F00AA0896 /* ColumnarLayoutView.h */,
 				4F57771E226F019F00AA0896 /* ColumnarLayoutView.m */,
+				4F573C2922754AF0006D7ECF /* ManualLineBreakView.h */,
+				4F573C2A22754AF0006D7ECF /* ManualLineBreakView.m */,
 			);
 			path = DrawableViews;
 			sourceTree = "<group>";
@@ -274,7 +284,7 @@
 		4F33FC631FB941DD00DE9852 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = wesley_chen;
 				TargetAttributes = {
 					4F33FC6A1FB941DD00DE9852 = {
@@ -336,8 +346,10 @@
 				4F57771C226EFBB900AA0896 /* UseCTLineViewController.m in Sources */,
 				4F33FCC41FB9F29A00DE9852 /* DrawStringWithSimpleLayoutV2ViewController.m in Sources */,
 				4F33FCC71FB9F32200DE9852 /* MarkupParserV2SupportImage.m in Sources */,
+				4F573C2B22754AF0006D7ECF /* ManualLineBreakView.m in Sources */,
 				4F33FCB21FB990B000DE9852 /* CTColumnViewV1.m in Sources */,
 				4F33FCB51FB9936600DE9852 /* CTSettings.m in Sources */,
+				4F6130CB2272B6080078AFA3 /* UseColumnarLayoutViewController.m in Sources */,
 				4F577719226EF6EF00AA0896 /* LayoutALineView.m in Sources */,
 				4F33FCCA1FB9FDE200DE9852 /* CTColumnViewV2.m in Sources */,
 				4F33FC701FB941DD00DE9852 /* AppDelegate.m in Sources */,
@@ -379,6 +391,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -386,6 +399,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -434,6 +448,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -441,6 +456,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

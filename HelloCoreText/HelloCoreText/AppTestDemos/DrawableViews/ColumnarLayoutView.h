@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ColumnarLayoutView : UIView
-
+@property (nonatomic, strong) NSAttributedString *attributedString;
 @end
 
 NS_ASSUME_NONNULL_END
