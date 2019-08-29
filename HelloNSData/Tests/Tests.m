@@ -58,6 +58,11 @@
     XCTAssertTrue([WCDataTool checkMIMETypeWithData:data type:WCMIMETypeHeif].type == WCMIMETypeHeif);
 }
 
+- (void)test_saveToTmpWithData {
+    NSString *string = @"hello, world!";
+    [WCDataTool saveToTmpWithData:[string dataUsingEncoding:NSUTF8StringEncoding]];
+}
+
 - (void)test_float {
     long double f = 28.0 / (488.0 / 12.0);
     NSLog(@"%Lf", f);

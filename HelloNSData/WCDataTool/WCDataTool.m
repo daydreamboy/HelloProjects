@@ -1202,4 +1202,49 @@
     }
 }
 
+#pragma mark - Data Assistant
+
++ (BOOL)saveToTmpWithData:(NSData *)data {
+#if TARGET_OS_SIMULATOR
+    if (![data isKindOfClass:[NSData class]]) {
+        return NO;
+    }
+    
+    NSString *savedDirectory = @"/tmp";
+    NSString *prefix = @"tmp";
+    
+    BOOL isDirectory = NO;
+    BOOL isExists = [[NSFileManager defaultManager] fileExistsAtPath:savedDirectory isDirectory:&isDirectory];
+    if (isExists && isDirectory) {
+        static NSDateFormatter *sDateFormatter;
+        if (!sDateFormatter) {
+            sDateFormatter = [[NSDateFormatter alloc] init];
+            sDateFormatter.timeZone = [NSTimeZone systemTimeZone];
+        }
+        
+        sDateFormatter.dateFormat = @"yyyy-MM-dd.HH-mm-ssZZ";
+        
+        NSString *filePath = [savedDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"%@_%@_%u.data", prefix, [sDateFormatter stringFromDate:[NSDate date]], arc4random()]];
+        BOOL success = [data writeToFile:filePath atomically:YES];
+        if (success) {
+            NSLog(@"%@ saved to %@", data, filePath);
+            
+            return YES;
+        }
+        else {
+            NSLog(@"%@ failed saved to %@", data, filePath);
+        }
+    }
+    else {
+        NSLog(@"%@ not exists", savedDirectory);
+    }
+    
+    return NO;
+#else
+    NSLog(@"saveToTmpWithData only available on Simulator now");
+    
+    return NO;
+#endif
+}
+
 @end

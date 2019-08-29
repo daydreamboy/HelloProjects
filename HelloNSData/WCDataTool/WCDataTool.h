@@ -169,6 +169,17 @@ typedef NS_ENUM(NSUInteger, WCMIMEType) {
  */
 + (nullable NSString *)base64EncodedStringWithData:(NSData *)data;
 
+#pragma mark - Data Assistant
+
+/**
+ Save the data to /tmp
+
+ @param data the data to save
+ @return YES if save successfully, NO if save failed.
+ @warning This method only available on Simulator
+ */
++ (BOOL)saveToTmpWithData:(NSData *)data;
+
 @end
 
 NS_ASSUME_NONNULL_END
