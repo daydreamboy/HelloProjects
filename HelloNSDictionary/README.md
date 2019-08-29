@@ -150,11 +150,70 @@ XCTAssertTrue(output1 == 10);
 
 ## 2、实现Fast Enumeration
 
+集合类（NSDictionary、NSArray等）很多实现`NSFastEnumeration`协议，用于forin遍历。
+
+`NSFastEnumeration`协议，声明了一个方法，如下
+
+```objective-c
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id  _Nullable *)buffer count:(NSUInteger)len;
+```
+
+forin遍历，实际上是调用了上面这个方法。
 
 
-https://developer.apple.com/library/archive/samplecode/FastEnumerationSample/Introduction/Intro.html
 
-https://www.mikeash.com/pyblog/friday-qa-2010-04-16-implementing-fast-enumeration.html
+mikeash的[这篇文章](https://www.mikeash.com/pyblog/friday-qa-2010-04-16-implementing-fast-enumeration.html)提供forin语法经过编译器改写后的伪代码，如下
+
+```objective-c
+// declare all the local state needed
+NSFastEnumerationState state = { 0 };
+id stackbuf[16];
+BOOL firstLoop = YES;
+long mutationsPtrValue;
+    
+// outer loop
+NSUInteger count;
+while((count = [collection countByEnumeratingWithState: &state objects: stackbuf count: 16]))
+{
+    // check for mutation, but only after the first loop
+    // (note that I'm not sure whether the real compiler puts this
+    // in the inner loop or outer loop, and it could conceivably
+    // change from one compiler version to the next)
+    if(!firstLoop && mutationsPtrValue != *state.mutationsPtr)
+        @throw ..mutation exception...
+    firstLoop = NO;
+    mutationsPtrValue = *state.mutationsPtr;
+
+    // inner loop over the array returned by the NSFastEnumeration call
+    id obj;
+    for(NSUInteger index = 0; index < count; index++)
+    {
+        obj = state.itemsPtr[index];
+        // body
+    }
+}
+```
+
+
+
+> 这篇[文章](http://blog.leichunfeng.com/blog/2016/06/20/objective-c-fast-enumeration-implementation-principle/)提供使用clang来输出forin之后的代码
+
+
+
+​        通过上面的伪代码，可见当`countByEnumeratingWithState:objects:count:`方法返回0时，则退出while循环，因此在while循环退出之前，需要将遍历的数据全部给到while里面的for循环。因此，有两种方式：
+
+* 一次性将全部数据给到state.itemsPtr，while循环遍历2次
+* 部分数据给到state.itemsPtr，while循环遍历大于2次
+
+
+
+​      Apple官方提供了一个实现Fast Enumeration的[示例代码](https://developer.apple.com/library/archive/samplecode/FastEnumerationSample/Introduction/Intro.html)，提供上面两种方式，来实现`countByEnumeratingWithState:objects:count:`方法。这里不再赘述。
+
+
+
+注意：
+
+> 如果实现Fast Enumeration的集合类的backend是NSArray，则可以在`countByEnumeratingWithState:objects:count:`方法中调用NSArray`countByEnumeratingWithState:objects:count:`方法。示例代码，见WCOrderedDictionary
 
 
 
