@@ -33,6 +33,37 @@
     return [stringM copy];
 }
 
++ (nullable id)dumpedJSONObjectWithObject:(id)object {
+    if ([object isKindOfClass:[NSNumber class]] || [object isKindOfClass:[NSString class]] || object == [NSNull null]) {
+        return object;
+    }
+    else if ([object isKindOfClass:[NSArray class]]) {
+        NSMutableArray *arrM = [NSMutableArray array];
+        for (id element in (NSArray *)object) {
+            id item = [self dumpedJSONObjectWithObject:element];
+            if (item) {
+                [arrM addObject:item];
+            }
+        }
+        return arrM;
+    }
+    else if ([object isKindOfClass:[NSDictionary class]]) {
+        NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
+        [(NSDictionary *)object enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            if ([key isKindOfClass:[NSString class]]) {
+                id value = [self dumpedJSONObjectWithObject:obj];
+                if (value) {
+                    dictM[key] = value;
+                }
+            }
+        }];
+        return dictM;
+    }
+    else {
+        return [NSString stringWithFormat:@"<%@: %p>", NSStringFromClass([object class]), object];
+    }
+}
+
 #pragma mark ::
 
 static void traverse_object(NSMutableString *stringM, id object, NSUInteger depth, BOOL isValueForKey) {

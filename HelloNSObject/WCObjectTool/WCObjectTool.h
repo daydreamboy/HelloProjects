@@ -31,6 +31,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSString *)dumpedStringWithObject:(NSObject *)object;
 
+/**
+ Get the object's dumped JSON object
+
+ @param object the NSObject
+ @return the dumped JSON object
+ */
++ (nullable id)dumpedJSONObjectWithObject:(id)object;
+
 #pragma mark - Runtime
 
 #pragma mark > Class
