@@ -25,7 +25,7 @@
     [super tearDown];
 }
 
-- (void)test_objectWithDictionary_forKey_objectClass {
+- (void)test_objectWithDictionary_forKeyPath_objectClass {
     NSDictionary *dict;
     NSString *key;
     Class class;
@@ -33,7 +33,7 @@
     
     // Case 1
     dict = @{};
-    value = [WCDictionaryTool objectWithDictionary:dict forKey:@"b.a.b" objectClass:[NSString class]];
+    value = [WCDictionaryTool objectWithDictionary:dict forKeyPath:@"b.a.b" objectClass:[NSString class]];
     XCTAssertNil(value);
 }
 

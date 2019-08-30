@@ -20,44 +20,48 @@
 
 #pragma mark > keypath
 
-+ (nullable NSArray *)arrayWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key {
-    return [self objectWithDictionary:dictionary forKey:key objectClass:[NSArray class]];
++ (nullable NSArray *)arrayWithDictionary:(NSDictionary *)dictionary forKeyPath:(NSString *)keyPath {
+    return [self objectWithDictionary:dictionary forKeyPath:keyPath objectClass:[NSArray class]];
 }
 
-+ (nullable NSDictionary *)dictWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key {
-    return [self objectWithDictionary:dictionary forKey:key objectClass:[NSDictionary class]];
++ (nullable NSDictionary *)dictWithDictionary:(NSDictionary *)dictionary forKeyPath:(NSString *)keyPath {
+    return [self objectWithDictionary:dictionary forKeyPath:keyPath objectClass:[NSDictionary class]];
 }
 
-+ (nullable NSString *)stringWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key {
-    return [self objectWithDictionary:dictionary forKey:key objectClass:[NSString class]];
++ (nullable NSString *)stringWithDictionary:(NSDictionary *)dictionary forKeyPath:(NSString *)keyPath {
+    return [self objectWithDictionary:dictionary forKeyPath:keyPath objectClass:[NSString class]];
 }
 
-+ (nullable NSNumber *)numberWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key {
-    return [self objectWithDictionary:dictionary forKey:key objectClass:[NSNumber class]];
++ (nullable NSNumber *)numberWithDictionary:(NSDictionary *)dictionary forKeyPath:(NSString *)keyPath {
+    return [self objectWithDictionary:dictionary forKeyPath:keyPath objectClass:[NSNumber class]];
 }
 
-+ (nullable id)objectWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key objectClass:(Class)objectClass {
-    if (![key isKindOfClass:[NSString class]] || ![dictionary isKindOfClass:[NSDictionary class]]) {
++ (nullable id)objectWithDictionary:(NSDictionary *)dictionary forKeyPath:(NSString *)keyPath objectClass:(nullable Class)objectClass {
+    if (![keyPath isKindOfClass:[NSString class]] || ![dictionary isKindOfClass:[NSDictionary class]]) {
         return nil;
     }
     
-    if (![NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSArray class])] &&
-        ![NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSDictionary class])] &&
-        ![NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSString class])] &&
-        ![NSStringFromClass(objectClass) isEqualToString:NSStringFromClass([NSNumber class])]) {
-        return nil;
+    if (keyPath.length == 0) {
+        return dictionary;
     }
     
-    id object;
+    id object = nil;
     
-    if ([key rangeOfString:@"."].location == NSNotFound) {
-        object = dictionary[key];
+    @try {
+        if ([keyPath rangeOfString:@"."].location == NSNotFound) {
+            object = [dictionary valueForKey:keyPath];
+        }
+        else {
+            object = [dictionary valueForKeyPath:keyPath];
+        }
     }
-    else {
-        object = [dictionary valueForKeyPath:key];
+    @catch (NSException *exception) {
+#if DEBUG
+        NSLog(@"an exception occurred: %@", exception);
+#endif
     }
     
-    return [object isKindOfClass:objectClass] ? object : nil;
+    return (objectClass == nil || [object isKindOfClass:objectClass]) ? object : nil;
 }
 
 #pragma mark - Safe Wrapping

@@ -21,45 +21,54 @@ typedef NS_ENUM(NSUInteger, WCKeysMappingMode) {
 
 #pragma mark - Get Value for Key
 
-#pragma mark > keypath
+#pragma mark > keyPath
 
 /**
- Get a NSArray object in the dictionary for given key
+ Get a NSArray object in the dictionary for the given key/keyPath
 
  @param dictionary the dictionary
- @param key a key or a keypath using '.'
+ @param keyPath a key or a keypath using '.'
  @return If not found the NSArray object for the key, or the object is not NSArray, just return nil
  */
-+ (nullable NSArray *)arrayWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key;
++ (nullable NSArray *)arrayWithDictionary:(NSDictionary *)dictionary forKeyPath:(NSString *)keyPath;
 
 /**
- Get a NSDictionary object in the dictionary for given key
+ Get a NSDictionary object in the dictionary for the given key/keyPath
 
  @param dictionary the dictionary
- @param key a key or a keypath using '.'
+ @param keyPath a key or a keypath using '.'
  @return If not found the NSDictionary object for the key, or the object is not NSDictionary, just return nil
  */
-+ (nullable NSDictionary *)dictWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key;
++ (nullable NSDictionary *)dictWithDictionary:(NSDictionary *)dictionary forKeyPath:(NSString *)keyPath;
 
 /**
- Get a NSString object in the dictionary for given key
+ Get a NSString object in the dictionary for the given key/keyPath
 
  @param dictionary the dictionary
- @param key a key or a keypath using '.'
+ @param keyPath a key or a keypath using '.'
  @return If not found the NSString object for the key, or the object is not NSString, just return nil
  */
-+ (nullable NSString *)stringWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key;
++ (nullable NSString *)stringWithDictionary:(NSDictionary *)dictionary forKeyPath:(NSString *)keyPath;
 
 /**
- Get a NSNumber object in the dictionary for given key
+ Get a NSNumber object in the dictionary for the given key/keyPath
  
  @param dictionary the dictionary
- @param key a key or a keypath using '.'
+ @param keyPath a key or a keypath using '.'
  @return If not found the NSNumber object for the key, or the object is not NSNumber, just return nil
  */
-+ (nullable NSNumber *)numberWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key;
++ (nullable NSNumber *)numberWithDictionary:(NSDictionary *)dictionary forKeyPath:(NSString *)keyPath;
 
-+ (nullable id)objectWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key objectClass:(Class)objectClass;
+/**
+ Get a object in the dictionary for the given key/keyPath
+
+ @param dictionary the dictionary
+ @param keyPath a key or a keypath using '.'
+ @param objectClass the class type. Use [XXXClass class]
+ @return the object at the given key/keyPath. Return nil if the object not match the objectClass or the key/keyPath
+ not exists.
+ */
++ (nullable id)objectWithDictionary:(NSDictionary *)dictionary forKeyPath:(NSString *)keyPath objectClass:(nullable Class)objectClass;
 
 #pragma mark - Safe Wrapping
 
@@ -71,24 +80,24 @@ typedef NS_ENUM(NSUInteger, WCKeysMappingMode) {
  Remove object by key with NSDictionary or NSMutableDictionary
 
  @param dictionary the original dictionary is NSDictionary or NSMutableDictionary
- @param key the key to remove
+ @param keyPath the key to remove
  @param allowMutable YES to return mutable, or NO to return immutable
  @return the modified dictionary. The returned dictionary always a new dictionary. Return nil, if parameters are wrong.
  @discussion This method not modify key-values in the parameter `dictionary`
  */
-+ (nullable NSDictionary *)removeObjectWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)key allowMutable:(BOOL)allowMutable;
++ (nullable NSDictionary *)removeObjectWithDictionary:(NSDictionary *)dictionary forKey:(NSString *)keyPath allowMutable:(BOOL)allowMutable;
 
 /**
  Set object for key with NSDictionary or NSMutableDictionary
 
  @param dictionary the original dictionary is NSDictionary or NSMutableDictionary
  @param object the object to set. If nil, the key to remove.
- @param key the key to set
+ @param keyPath the key to set
  @param allowMutable YES to return mutable, or NO to return immutable
  @return the modified dictionary. The returned dictionary always a new dictionary. Return nil, if parameters are wrong.
  @discussion This method not modify key-values in the parameter `dictionary`
  */
-+ (nullable NSDictionary *)setObjectWithDictionary:(NSDictionary *)dictionary object:(nullable id)object forKey:(NSString *)key allowMutable:(BOOL)allowMutable;
++ (nullable NSDictionary *)setObjectWithDictionary:(NSDictionary *)dictionary object:(nullable id)object forKey:(NSString *)keyPath allowMutable:(BOOL)allowMutable;
 
 #pragma mark - Conversion (TODO)
 
