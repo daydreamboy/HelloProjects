@@ -9,6 +9,7 @@
 #import "WCThreadSafeArray.h"
 
 @implementation WCThreadSafeArray {
+@private
     dispatch_queue_t _internal_queue;
     CFMutableArrayRef _storage;
 }
@@ -63,33 +64,78 @@
 }
 
 - (void)replaceObjectAtIndex:(NSUInteger)index withObject:(id)object {
+    if (!object) {
+        return;
+    }
     
+    dispatch_barrier_async(_internal_queue, ^{
+        CFIndex count = CFArrayGetCount(self->_storage);
+        
+        if (index <= count) {
+            CFArraySetValueAtIndex(self->_storage, (CFIndex)index, (__bridge const void *)(object));
+        }
+    });
 }
 
 - (void)addObjectsFromArray:(WCThreadSafeArray<id> *)otherArray {
+    if (![otherArray isKindOfClass:[WCThreadSafeArray class]]) {
+        return;
+    }
     
+    dispatch_barrier_async(_internal_queue, ^{
+        CFIndex count = CFArrayGetCount(otherArray->_storage);
+        
+        if (count > 0) {
+            CFArrayAppendArray(self->_storage, otherArray->_storage, CFRangeMake(0, count));
+        }
+    });
 }
 
 - (void)setArray:(WCThreadSafeArray<id> *)otherArray {
+    if (![otherArray isKindOfClass:[WCThreadSafeArray class]]) {
+        return;
+    }
     
+    dispatch_barrier_async(_internal_queue, ^{
+        CFIndex count = CFArrayGetCount(otherArray->_storage);
+        
+        if (count > 0) {
+            CFArrayRemoveAllValues(self->_storage);
+            CFArrayAppendArray(self->_storage, otherArray->_storage, CFRangeMake(0, count));
+        }
+    });
 }
 
 #pragma mark - Remove
 
 - (void)removeAllObjects {
-    
+    dispatch_barrier_async(_internal_queue, ^{
+        CFIndex count = CFArrayGetCount(self->_storage);
+        
+        if (count) {
+            CFArrayRemoveAllValues(self->_storage);
+        }
+    });
 }
 
 - (void)removeLastObject {
-    
+    dispatch_barrier_async(_internal_queue, ^{
+        CFIndex count = CFArrayGetCount(self->_storage);
+        
+        if (count > 0) {
+            CFArrayRemoveValueAtIndex(self->_storage, (CFIndex)(count - 1));
+        }
+    });
 }
 
 - (void)removeObjectAtIndex:(NSUInteger)index {
-    
-}
-
-- (void)removeObject:(id)object inRange:(NSRange)range {
-    
+    dispatch_barrier_async(_internal_queue, ^{
+        CFIndex count = CFArrayGetCount(self->_storage);
+        
+        if (index <= count) {
+            CFArrayRemoveValueAtIndex(self->_storage, (CFIndex)index);
+        }
+    });
 }
 
 #pragma mark - Query
@@ -117,6 +163,20 @@
 
 #pragma mark - Sort
 
+- (void)exchangeObjectAtIndex:(NSUInteger)index1 withObjectAtIndex:(NSUInteger)index2 {
+    if (index1 == index2) {
+        return;
+    }
+    
+    dispatch_barrier_async(_internal_queue, ^{
+        CFIndex count = CFArrayGetCount(self->_storage);
+        
+        if (index1 <= count && index2 <= count) {
+            CFArrayExchangeValuesAtIndices(self->_storage, index1, index2);
+        }
+    });
+}
+
 - (void)sortUsingDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
     
 }
@@ -128,8 +188,7 @@
 }
 
 - (void)setObject:(id)object atIndexedSubscript:(NSUInteger)index {
-    
+    [self replaceObjectAtIndex:index withObject:object];
 }
-
 
 @end

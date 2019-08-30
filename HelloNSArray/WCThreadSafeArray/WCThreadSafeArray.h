@@ -32,7 +32,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeAllObjects;
 - (void)removeLastObject;
 - (void)removeObjectAtIndex:(NSUInteger)index;
-- (void)removeObject:(ObjectType)object inRange:(NSRange)range;
 
 #pragma mark - Query
 
@@ -41,6 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Sort
 
+- (void)exchangeObjectAtIndex:(NSUInteger)index1 withObjectAtIndex:(NSUInteger)index2;
 - (void)sortUsingDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors;
 
 #pragma mark - Subscript
