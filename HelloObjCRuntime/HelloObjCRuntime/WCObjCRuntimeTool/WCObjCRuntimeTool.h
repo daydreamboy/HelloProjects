@@ -10,6 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ The pair structure of the selector and block
+ 
+ @discussion the block use id (^)(id, ...) as signature without _cmd,
+ because the selector of the method is not available to block from document of
+ the imp_implementationWithBlock
+ */
 typedef struct selBlockPair {
     SEL sel;
     id (^__unsafe_unretained block)(id, ...);

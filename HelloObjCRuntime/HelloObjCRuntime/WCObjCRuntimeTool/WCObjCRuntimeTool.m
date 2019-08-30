@@ -38,6 +38,8 @@
         
         // Note: add an array of selBlockPairs to new class
         while (selBlockPairs && selBlockPairs->sel) {
+            // Note: the function must take at least two arguments—self and _cmd,
+            // the second and third characters must be “@:” (the first character is the return type)
             class_addMethod(newClass, selBlockPairs->sel, imp_implementationWithBlock(selBlockPairs->block), "@@:*");
             selBlockPairs++;
         }

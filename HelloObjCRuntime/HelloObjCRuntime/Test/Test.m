@@ -91,6 +91,29 @@
     [instance1OfMyCustomString performSelector:NSSelectorFromString(@"hello:") withObject:@"Andy"];
     [instance2OfMyCustomString performSelector:NSSelectorFromString(@"hello:") withObject:@"Judy"];
 #pragma GCC diagnostic pop
+    
+    // Case 4
+    className = @"MyString2";
+    output = [WCObjCRuntimeTool createSubclassWithClassName:className baseClassName:@"NSString" protocolNames:nil selBlockPairs:nil];
+    XCTAssertTrue(output != NULL);
+    XCTAssertEqualObjects([NSString stringWithUTF8String:class_getName(output)], className);
+    XCTAssertEqualObjects(NSStringFromClass([output superclass]), @"NSString");
+    XCTAssertTrue(NSClassFromString(className));
+    XCTAssertTrue([output isSubclassOfClass:[NSString class]]);
+    class_addMethod(object_getClass(output), NSSelectorFromString(@"classDescription"), imp_implementationWithBlock(^id(id sender) {
+        return @"MyString class method";
+    }), "@@:");
+    class_addMethod(output, NSSelectorFromString(@"instanceDescription:"), imp_implementationWithBlock(^id(id sender, NSString *p1) {
+        return @"MyString instance method";
+    }), "@@:@");
+    
+    NSString *instance3OfMyCustomString = [output new];
+    
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
+    XCTAssertEqualObjects([instance3OfMyCustomString performSelector:NSSelectorFromString(@"instanceDescription:") withObject:@"1"], @"MyString instance method");
+    XCTAssertEqualObjects([output performSelector:NSSelectorFromString(@"classDescription")], @"MyString class method");
+#pragma GCC diagnostic pop
 }
 
 

@@ -161,7 +161,11 @@
 #pragma mark > to NSDictionary/NSArray
 
 - (void)test_JSONArrayWithString {
+   NSString *string =  @"['wangx://p2sconversation/package?serviceType=cloud_auto_reply&bizType=3&bot_action=AddressSelectorAction&fromId=cntaobao朗风买家测试账号1&toId=cntaobaoqn店铺测试账号001:lf01&bizOrderId=551106310014950798&uuid=551106310014950798&mainAccountId=2256639331&deliverAddressId=9875797532&originalAddressId=9875797532&triggerType=automatic&api=mtop.taobao.dgw.richtext.click&need_encode=true&need_session=true','wangx://menu/dismiss?menuname=MenuNameForShowType&container=dialog&conversationId=cntaobaoqn店铺测试账号001:lf01&strategy=transient']";
     
+    id object = [WCJSONTool JSONObjectWithString:string options:kNilOptions objectClass:nil];
+    NSString *JSONString = [WCJSONTool JSONStringWithObject:object printOptions:NSJSONWritingSortedKeys | NSJSONWritingPrettyPrinted];
+    printf("%s\n", [JSONString UTF8String]);
 }
 
 - (void)test_JSONDictWithString {

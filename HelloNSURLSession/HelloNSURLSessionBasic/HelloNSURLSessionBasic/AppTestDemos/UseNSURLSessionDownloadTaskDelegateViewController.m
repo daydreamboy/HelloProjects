@@ -25,17 +25,12 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
+    UIBarButtonItem *rightBarItem = [[UIBarButtonItem alloc] initWithTitle:@"Download" style:UIBarButtonItemStylePlain target:self action:@selector(rightBarItemClicked:)];
+    self.navigationItem.rightBarButtonItem = rightBarItem;
+    
     [self.view addSubview:self.labelProgress];
     [self.view addSubview:self.progressView];
     [self.view addSubview:self.playerView];
-    
-    NSURLSessionConfiguration *defaultConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultConfiguration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
-    
-    NSURL *URL = [NSURL URLWithString:@"https://github.com/daydreamboy/NetFiles/raw/master/demo.mp4"];
-    NSURLSessionDownloadTask *dataTask = [defaultSession downloadTaskWithURL:URL];
-    
-    [dataTask resume];
 }
 
 #pragma mark - Getters
@@ -76,6 +71,18 @@
     }
     
     return _playerView;
+}
+
+#pragma mark - Actions
+
+- (void)rightBarItemClicked:(id)sender {
+    NSURLSessionConfiguration *defaultConfiguration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *defaultSession = [NSURLSession sessionWithConfiguration:defaultConfiguration delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+    
+    NSURL *URL = [NSURL URLWithString:@"https://github.com/daydreamboy/NetFiles/raw/master/demo.mp4"];
+    NSURLSessionDownloadTask *dataTask = [defaultSession downloadTaskWithURL:URL];
+    
+    [dataTask resume];
 }
 
 #pragma mark - NSURLSessionDownloadDelegate < NSURLSessionTaskDelegate < NSURLSessionDelegate

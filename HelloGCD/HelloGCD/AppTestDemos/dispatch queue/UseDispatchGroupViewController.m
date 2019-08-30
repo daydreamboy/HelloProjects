@@ -21,9 +21,9 @@
     // TODO: Toggle the following lines to test
     
     //[self test_dispatch_group_wait];
-    [self test_dispatch_group_notify];
+    //[self test_dispatch_group_notify];
     //[self test_dispatch_group_enter_and_leave];
-    //[self test_dispatch_group_enter_and_leave_to_wait];
+    [self test_dispatch_group_enter_and_leave_to_wait];
     //[self test_dispatch_group_empty_using_wait];
     //[self test_dispatch_group_empty_using_notify];
     //[self test_dispatch_group_issue];
@@ -150,7 +150,14 @@
         [self doLongTimeTask];
         
         // Note: forget to leave
-        //dispatch_group_leave(group);
+        dispatch_group_leave(group);
+        
+        @try {
+            dispatch_group_leave(group);
+        }
+        @catch (NSException *e) {
+            
+        }
         
         NSLog(@"do task 3 completed");
     });

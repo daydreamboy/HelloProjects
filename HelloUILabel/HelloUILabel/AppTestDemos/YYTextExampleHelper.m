@@ -38,10 +38,10 @@ static BOOL DebugEnabled = NO;
 + (void)setDebug:(BOOL)debug {
     YYTextDebugOption *debugOptions = [YYTextDebugOption new];
     if (debug) {
-        debugOptions.baselineColor = [UIColor redColor];
-        debugOptions.CTFrameBorderColor = [UIColor redColor];
-        debugOptions.CTLineFillColor = [UIColor colorWithRed:0.000 green:0.463 blue:1.000 alpha:0.180];
-        debugOptions.CGGlyphBorderColor = [UIColor colorWithRed:1.000 green:0.524 blue:0.000 alpha:0.200];
+        debugOptions.baselineColor = [UIColor greenColor];
+        debugOptions.CTFrameBorderColor = [UIColor brownColor];
+        debugOptions.CTLineFillColor = nil;//[UIColor colorWithRed:0.000 green:0.463 blue:1.000 alpha:0.180];
+        debugOptions.CGGlyphBorderColor = [UIColor orangeColor];
     } else {
         [debugOptions clear];
     }

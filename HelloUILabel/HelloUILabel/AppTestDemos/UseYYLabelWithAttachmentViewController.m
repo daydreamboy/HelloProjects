@@ -39,7 +39,7 @@
         UIImage *image = [UIImage imageNamed:@"dribbble64_imageio"];
         image = [UIImage imageWithCGImage:image.CGImage scale:2 orientation:UIImageOrientationUp];
         
-        NSMutableAttributedString *attachText = [NSMutableAttributedString attachmentStringWithContent:image contentMode:UIViewContentModeCenter attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+        NSMutableAttributedString *attachText = [NSMutableAttributedString attachmentStringWithContent:image contentMode:UIViewContentModeBottom attachmentSize:image.size alignToFont:font alignment:YYTextVerticalAlignmentTop];
         [text appendAttributedString:attachText];
         [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n" attributes:nil]];
     }
@@ -63,7 +63,7 @@
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 30, 80)];
         view.backgroundColor = [UIColor yellowColor];
         
-        NSMutableAttributedString *attachText = [NSMutableAttributedString attachmentStringWithContent:view contentMode:UIViewContentModeCenter attachmentSize:view.size alignToFont:font alignment:YYTextVerticalAlignmentCenter];
+        NSMutableAttributedString *attachText = [NSMutableAttributedString attachmentStringWithContent:view contentMode:UIViewContentModeCenter attachmentSize:view.size alignToFont:font alignment:YYTextVerticalAlignmentBottom];
         [text appendAttributedString:attachText];
         [text appendAttributedString:[[NSAttributedString alloc] initWithString:@"\n" attributes:nil]];
     }

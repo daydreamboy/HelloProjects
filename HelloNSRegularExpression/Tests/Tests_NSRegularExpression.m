@@ -118,4 +118,14 @@
     XCTAssertEqualObjects(output[3], @"b");
 }
 
+- (void)test_crash {
+    NSString *string = nil;
+    NSString *pattern = @"\\[(.+?)\\]";
+    
+    NSError *error;
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:kNilOptions error:&error];
+    [regex enumerateMatchesInString:string options:kNilOptions range:NSMakeRange(0, string.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+    }];
+}
+
 @end

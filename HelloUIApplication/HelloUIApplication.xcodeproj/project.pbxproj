@@ -13,8 +13,19 @@
 		4F1193521FF6328800B653F3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1193511FF6328800B653F3 /* main.m */; };
 		4F11935A1FF632C900B653F3 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1193591FF632C900B653F3 /* RootViewController.m */; };
 		4F11935E1FF632CF00B653F3 /* SimulateMemoryWarningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F11935C1FF632CE00B653F3 /* SimulateMemoryWarningViewController.m */; };
+		4F5998B923026C25001B0E09 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5998B823026C25001B0E09 /* Test.m */; };
 		4F7E2D7D222395E1007D190E /* WCApplicationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7E2D7C222395E1007D190E /* WCApplicationTool.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4F5998BB23026C25001B0E09 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F1193371FF6328800B653F3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F11933E1FF6328800B653F3;
+			remoteInfo = HelloUIApplication;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4F11933F1FF6328800B653F3 /* HelloUIApplication.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUIApplication.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -28,12 +39,22 @@
 		4F1193591FF632C900B653F3 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F11935C1FF632CE00B653F3 /* SimulateMemoryWarningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimulateMemoryWarningViewController.m; sourceTree = "<group>"; };
 		4F11935D1FF632CE00B653F3 /* SimulateMemoryWarningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulateMemoryWarningViewController.h; sourceTree = "<group>"; };
+		4F5998B623026C25001B0E09 /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F5998B823026C25001B0E09 /* Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
+		4F5998BA23026C25001B0E09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F7E2D7B222395E1007D190E /* WCApplicationTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCApplicationTool.h; sourceTree = "<group>"; };
 		4F7E2D7C222395E1007D190E /* WCApplicationTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCApplicationTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		4F11933C1FF6328800B653F3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F5998B323026C25001B0E09 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -48,6 +69,7 @@
 			children = (
 				4F7E2D7A222395CD007D190E /* WCApplicationTool */,
 				4F1193411FF6328800B653F3 /* HelloUIApplication */,
+				4F5998B723026C25001B0E09 /* Test */,
 				4F1193401FF6328800B653F3 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,6 +78,7 @@
 			isa = PBXGroup;
 			children = (
 				4F11933F1FF6328800B653F3 /* HelloUIApplication.app */,
+				4F5998B623026C25001B0E09 /* Test.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -83,6 +106,15 @@
 				4F11935C1FF632CE00B653F3 /* SimulateMemoryWarningViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F5998B723026C25001B0E09 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				4F5998B823026C25001B0E09 /* Test.m */,
+				4F5998BA23026C25001B0E09 /* Info.plist */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 		4F7E2D7A222395CD007D190E /* WCApplicationTool */ = {
@@ -114,6 +146,24 @@
 			productReference = 4F11933F1FF6328800B653F3 /* HelloUIApplication.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4F5998B523026C25001B0E09 /* Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F5998BF23026C25001B0E09 /* Build configuration list for PBXNativeTarget "Test" */;
+			buildPhases = (
+				4F5998B223026C25001B0E09 /* Sources */,
+				4F5998B323026C25001B0E09 /* Frameworks */,
+				4F5998B423026C25001B0E09 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F5998BC23026C25001B0E09 /* PBXTargetDependency */,
+			);
+			name = Test;
+			productName = Test;
+			productReference = 4F5998B623026C25001B0E09 /* Test.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -126,6 +176,11 @@
 					4F11933E1FF6328800B653F3 = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+					};
+					4F5998B523026C25001B0E09 = {
+						CreatedOnToolsVersion = 10.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 4F11933E1FF6328800B653F3;
 					};
 				};
 			};
@@ -143,6 +198,7 @@
 			projectRoot = "";
 			targets = (
 				4F11933E1FF6328800B653F3 /* HelloUIApplication */,
+				4F5998B523026C25001B0E09 /* Test */,
 			);
 		};
 /* End PBXProject section */
@@ -154,6 +210,13 @@
 			files = (
 				4F11934F1FF6328800B653F3 /* LaunchScreen.storyboard in Resources */,
 				4F11934C1FF6328800B653F3 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F5998B423026C25001B0E09 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,7 +235,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4F5998B223026C25001B0E09 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F5998B923026C25001B0E09 /* Test.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4F5998BC23026C25001B0E09 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F11933E1FF6328800B653F3 /* HelloUIApplication */;
+			targetProxy = 4F5998BB23026C25001B0E09 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4F11934D1FF6328800B653F3 /* LaunchScreen.storyboard */ = {
@@ -318,6 +397,45 @@
 			};
 			name = Release;
 		};
+		4F5998BD23026C25001B0E09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Test/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Test;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloUIApplication.app/HelloUIApplication";
+			};
+			name = Debug;
+		};
+		4F5998BE23026C25001B0E09 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Test/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Test;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloUIApplication.app/HelloUIApplication";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -335,6 +453,15 @@
 			buildConfigurations = (
 				4F1193561FF6328800B653F3 /* Debug */,
 				4F1193571FF6328800B653F3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F5998BF23026C25001B0E09 /* Build configuration list for PBXNativeTarget "Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F5998BD23026C25001B0E09 /* Debug */,
+				4F5998BE23026C25001B0E09 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

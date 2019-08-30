@@ -8,7 +8,6 @@
 
 #import <XCTest/XCTest.h>
 #import "MPMDataDetector.h"
-#import "MPMDataDetector.h"
 
 @interface Test_NSDataDetector : XCTestCase
 

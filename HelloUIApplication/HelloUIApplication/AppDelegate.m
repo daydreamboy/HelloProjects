@@ -26,6 +26,17 @@
     
     [self.window makeKeyAndVisible];
     
+    const char *homeDir = getenv("HOME");
+    
+    if (homeDir)
+        printf("Home directory is %s\n", homeDir);
+    else
+        printf("Couldn't figure it out.\n");
+    
+    NSArray * paths = NSSearchPathForDirectoriesInDomains (NSDesktopDirectory, NSUserDomainMask, YES);
+    NSString * desktopPath = [paths objectAtIndex:0];
+    NSLog(@"desktopPath: %@", desktopPath);
+    
     return YES;
 }
 
