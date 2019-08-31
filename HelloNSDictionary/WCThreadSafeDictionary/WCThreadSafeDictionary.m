@@ -22,7 +22,8 @@
 #pragma mark - Initialize
 
 - (instancetype)init {
-    return [[WCThreadSafeDictionary alloc] initWithCapacity:0];
+    self = [self initWithCapacity:0];
+    return self;
 }
 
 - (instancetype)initWithCapacity:(NSUInteger)capacity {
