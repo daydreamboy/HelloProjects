@@ -283,6 +283,46 @@ template在Objective-C++是关键词，不能作为参数使用，否则编译�
 
 
 
+## 10、系统常用宏
+
+
+
+### （1）NS_DESIGNATED_INITIALIZER
+
+​       `NS_DESIGNATED_INITIALIZER`宏用于标记初始化方法为designated initializer方法。定义和使用designated initializer方法，需要满足下面三个规则[^4]
+
+* 子类的designated initializer方法里，必须调用父类的designated initializer方法来初始化。例如NSObject的designated initializer方法是init方法
+* 任何便利初始化方法，都必须最终调用到designated initializer方法
+* A class with designated initializers must implement all of the designated initializers of the superclass.（TODO：待理解）
+
+​     简单来说，`NS_DESIGNATED_INITIALIZER`宏用于编译时检查子类是否正确初始化父类，如果存在问题，则给出警告。举个例子，如下
+
+```objective-c
+@interface WCThreadSafeArray<__covariant ObjectType> : NSObject
+- (instancetype)init;
+- (instancetype)initWithCapacity:(NSUInteger)capacity NS_DESIGNATED_INITIALIZER;
+@end
+  
+@implementation WCThreadSafeArray
+  
+- (instancetype)init { // WARNING: Convenience initializer missing a 'self' call to another initializer
+    return [[WCThreadSafeArray alloc] initWithCapacity:0];
+}
+
+- (instancetype)initWithCapacity:(NSUInteger)capacity {
+    self = [super init];
+    if (self) {
+      // do some initialization
+    }
+    return self;
+}
+@end
+```
+
+示例代码，违反上面第二条规则。
+
+
+
 
 
 ## References
@@ -291,4 +331,6 @@ template在Objective-C++是关键词，不能作为参数使用，否则编译�
 [ 2 ]: http://echorand.me/site/notes/articles/c_cleanup/cleanup_attribute_c.html
 
 [^3]:http://blog.benjamin-encz.de/post/objective-c-backing-ivars-subclasses/
+
+[^4]:https://useyourloaf.com/blog/xcode-6-objective-c-modernization/
 
