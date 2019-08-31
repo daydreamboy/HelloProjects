@@ -62,8 +62,6 @@
 
 - (void)test_NSMutableArray {
     NSMutableArray *arrM;
-    NSArray *output;
-    NSArray *expected;
     
     // Case 1
     arrM = [NSMutableArray arrayWithCapacity:3];

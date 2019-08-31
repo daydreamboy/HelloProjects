@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Initialize
 
 - (instancetype)init;
-- (instancetype)initWithCapacity:(NSUInteger)capacity;
+- (instancetype)initWithCapacity:(NSUInteger)capacity NS_DESIGNATED_INITIALIZER;
 + (instancetype)array;
 + (instancetype)arrayWithCapacity:(NSUInteger)capacity;
 
