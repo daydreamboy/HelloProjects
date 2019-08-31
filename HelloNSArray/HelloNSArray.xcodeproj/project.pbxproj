@@ -17,6 +17,7 @@
 		4F6F906621B6BF5500A949EC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F6F906421B6BF5500A949EC /* LaunchScreen.storyboard */; };
 		4F6F906921B6BF5600A949EC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F906821B6BF5600A949EC /* main.m */; };
 		4F6F907621B6BF6300A949EC /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F907521B6BF6300A949EC /* Tests.m */; };
+		4F86BDE0231A5D310011F173 /* Tests_CFArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86BDDF231A5D310011F173 /* Tests_CFArray.m */; };
 		4F8BEC8621DF4772000EA7B7 /* Tests_NSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8BEC8521DF4772000EA7B7 /* Tests_NSArray.m */; };
 		4FABAF88231821BB00064B57 /* WCThreadSafeArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FABAF87231821BB00064B57 /* WCThreadSafeArray.m */; };
 /* End PBXBuildFile section */
@@ -50,6 +51,7 @@
 		4F6F907721B6BF6300A949EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F6F907E21B6BF8900A949EC /* WCArrayTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCArrayTool.h; sourceTree = "<group>"; };
 		4F6F907F21B6BF8900A949EC /* WCArrayTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCArrayTool.m; sourceTree = "<group>"; };
+		4F86BDDF231A5D310011F173 /* Tests_CFArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_CFArray.m; sourceTree = "<group>"; };
 		4F8BEC8521DF4772000EA7B7 /* Tests_NSArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSArray.m; sourceTree = "<group>"; };
 		4FABAF86231821BB00064B57 /* WCThreadSafeArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCThreadSafeArray.h; sourceTree = "<group>"; };
 		4FABAF87231821BB00064B57 /* WCThreadSafeArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCThreadSafeArray.m; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 				4F6F907521B6BF6300A949EC /* Tests.m */,
 				4F8BEC8521DF4772000EA7B7 /* Tests_NSArray.m */,
 				4F17F73E2318365300004A26 /* Tests_WCThreadSafeArray.m */,
+				4F86BDDF231A5D310011F173 /* Tests_CFArray.m */,
 				4F6F907721B6BF6300A949EC /* Info.plist */,
 			);
 			path = Tests;
@@ -261,6 +264,7 @@
 			files = (
 				4F17F73F2318365300004A26 /* Tests_WCThreadSafeArray.m in Sources */,
 				4F5640A62212785C0039D6F6 /* WCArrayTool.m in Sources */,
+				4F86BDE0231A5D310011F173 /* Tests_CFArray.m in Sources */,
 				4F8BEC8621DF4772000EA7B7 /* Tests_NSArray.m in Sources */,
 				4F513ED622DECA93003698DA /* Person.m in Sources */,
 				4F6F907621B6BF6300A949EC /* Tests.m in Sources */,

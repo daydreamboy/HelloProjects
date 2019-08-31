@@ -14,6 +14,10 @@
     CFMutableArrayRef _storage;
 }
 
+- (void)dealloc {
+    CFRelease(self->_storage);
+}
+
 #pragma mark - Initialize
 
 - (instancetype)init {
@@ -161,6 +165,23 @@
     return object;
 }
 
+- (NSUInteger)indexOfObject:(id)object {
+    if (!object) {
+        return NSNotFound;
+    }
+    
+    __block NSUInteger index = NSNotFound;
+    dispatch_sync(_internal_queue, ^{
+        // Note: search forward for the object
+        CFIndex cfIndex = CFArrayGetFirstIndexOfValue(self->_storage, CFRangeMake(0, CFArrayGetCount(self->_storage)), (__bridge const void *)object);
+        if (cfIndex != -1) {
+            index = (NSUInteger)cfIndex;
+        }
+    });
+    
+    return index;
+}
+
 #pragma mark - Sort
 
 - (void)exchangeObjectAtIndex:(NSUInteger)index1 withObjectAtIndex:(NSUInteger)index2 {
@@ -178,7 +199,15 @@
 }
 
 - (void)sortUsingDescriptors:(NSArray<NSSortDescriptor *> *)sortDescriptors {
+    if (![sortDescriptors isKindOfClass:[NSArray class]] ||
+        ([sortDescriptors isKindOfClass:[NSArray class]] && sortDescriptors.count == 0)) {
+        return;
+    }
     
+    dispatch_barrier_async(_internal_queue, ^{
+        NSMutableArray *arrayObject = (__bridge id)self->_storage;
+        [arrayObject sortUsingDescriptors:sortDescriptors];
+    });
 }
 
 #pragma mark - Subscript

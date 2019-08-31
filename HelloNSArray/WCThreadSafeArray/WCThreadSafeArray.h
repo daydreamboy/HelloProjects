@@ -37,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (NSUInteger)count;
 - (nullable ObjectType)objectAtIndex:(NSUInteger)index;
+- (NSUInteger)indexOfObject:(ObjectType)object;
 
 #pragma mark - Sort
 
