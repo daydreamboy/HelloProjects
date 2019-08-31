@@ -15,6 +15,10 @@
     CFMutableDictionaryRef _storage;
 }
 
+- (void)dealloc {
+    CFRelease(self->_storage);
+}
+
 #pragma mark - Initialize
 
 - (instancetype)init {
