@@ -8,18 +8,19 @@
 
 #import "DyldRegisterFuncForAddImageViewController.h"
 #import "WCThreadSafeMutableArray.h"
+#import "WCThreadSafeArray.h"
 #import <mach-o/dyld.h>
 #import "WCDyldTool.h"
 
 static BOOL sRegistered = NO;
 // TODO: use more thread safe array
-static WCThreadSafeMutableArray *sArray;
+static WCThreadSafeArray *sArray;
 
 static void _onBinaryImageLoadedForOriginal(const struct mach_header* mh, intptr_t vmaddr_slide)
 {
-    NSLog(@"main thread: %@", [NSThread isMainThread] ? @"YES" : @"NO");
+//    NSLog(@"main thread: %@", [NSThread isMainThread] ? @"YES" : @"NO");
     NSLog(@"%p", mh);
-    [sArray addObject:(__bridge id)(mh)];
+//    [sArray addObject:(__bridge id)(mh)];
     if ([NSThread isMainThread]) {
         
     }
@@ -51,9 +52,11 @@ static void register_observe_binary_image_loaded(void)
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
+        printf("start\n");
         _dyld_register_func_for_add_image(&_onBinaryImageLoadedForOriginal);
+        printf("end\n");
         sRegistered = YES;
-        sArray = [[WCThreadSafeMutableArray alloc] init];
+        sArray = [[WCThreadSafeArray alloc] init];
     });
 }
 
@@ -64,7 +67,7 @@ static void register_observe_binary_image_loaded(void)
 @implementation DyldRegisterFuncForAddImageViewController
 
 + (void)load {
-    [WCDyldTool registerDynamicLibraresDidLoad];
+    //[WCDyldTool registerDynamicLibraresDidLoad];
 }
 
 - (void)viewDidLoad {

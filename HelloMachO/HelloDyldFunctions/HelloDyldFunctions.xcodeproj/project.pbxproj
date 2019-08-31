@@ -15,6 +15,7 @@
 		4F52D1CC21198A63004EE254 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D1C721198A63004EE254 /* RootViewController.m */; };
 		4F52D1D021198B40004EE254 /* DyldRegisterFuncForAddImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D1CF21198B40004EE254 /* DyldRegisterFuncForAddImageViewController.m */; };
 		4F52D1D42119A6D1004EE254 /* WCThreadSafeMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D1D32119A6D1004EE254 /* WCThreadSafeMutableArray.m */; };
+		4F7EA1EA231AA0DF001A0E63 /* WCThreadSafeArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EA1E8231AA0DF001A0E63 /* WCThreadSafeArray.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,8 @@
 		4F52D1CF21198B40004EE254 /* DyldRegisterFuncForAddImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DyldRegisterFuncForAddImageViewController.m; sourceTree = "<group>"; };
 		4F52D1D22119A6D1004EE254 /* WCThreadSafeMutableArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCThreadSafeMutableArray.h; sourceTree = "<group>"; };
 		4F52D1D32119A6D1004EE254 /* WCThreadSafeMutableArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCThreadSafeMutableArray.m; sourceTree = "<group>"; };
+		4F7EA1E8231AA0DF001A0E63 /* WCThreadSafeArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCThreadSafeArray.m; sourceTree = "<group>"; };
+		4F7EA1E9231AA0DF001A0E63 /* WCThreadSafeArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCThreadSafeArray.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +52,8 @@
 		4F1D7DC3212175410021023C /* WCDyldTool */ = {
 			isa = PBXGroup;
 			children = (
+				4F7EA1E9231AA0DF001A0E63 /* WCThreadSafeArray.h */,
+				4F7EA1E8231AA0DF001A0E63 /* WCThreadSafeArray.m */,
 				4F1D7DC4212175570021023C /* WCDyldTool.h */,
 				4F1D7DC5212175570021023C /* WCDyldTool.m */,
 				4F52D1D22119A6D1004EE254 /* WCThreadSafeMutableArray.h */,
@@ -181,6 +186,7 @@
 				4F52D1B321198A36004EE254 /* AppDelegate.m in Sources */,
 				4F52D1D42119A6D1004EE254 /* WCThreadSafeMutableArray.m in Sources */,
 				4F1D7DC6212175570021023C /* WCDyldTool.m in Sources */,
+				4F7EA1EA231AA0DF001A0E63 /* WCThreadSafeArray.m in Sources */,
 				4F52D1CC21198A63004EE254 /* RootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
