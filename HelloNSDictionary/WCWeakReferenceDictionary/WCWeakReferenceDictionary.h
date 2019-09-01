@@ -9,6 +9,17 @@
 #import <Foundation/Foundation.h>
 
 /**
+ WC_RESTRICT_SUBCLASSING
+ 
+ Disable the class for subclassing
+ */
+#if defined(__has_attribute) && __has_attribute(objc_subclassing_restricted)
+#define WC_RESTRICT_SUBCLASSING __attribute__((objc_subclassing_restricted))
+#else
+#define WC_RESTRICT_SUBCLASSING
+#endif
+
+/**
  The key/value's memory semantics
  */
 typedef NS_ENUM(NSUInteger, WCWeakableDictionaryKeyValueMode) {
@@ -25,6 +36,7 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion This dictionary is simular with NSMapTable, but use NSMutableDictionary instead of NSMapTable,
  for some reason see the http://cocoamine.net/blog/2013/12/13/nsmaptable-and-zeroing-weak-references/
  */
+WC_RESTRICT_SUBCLASSING
 @interface WCWeakReferenceDictionary<__covariant KeyType, __covariant ObjectType> : NSObject <NSFastEnumeration>
 
 /**

@@ -8,6 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ WC_RESTRICT_SUBCLASSING
+ 
+ Disable the class for subclassing
+ */
+#if defined(__has_attribute) && __has_attribute(objc_subclassing_restricted)
+#define WC_RESTRICT_SUBCLASSING __attribute__((objc_subclassing_restricted))
+#else
+#define WC_RESTRICT_SUBCLASSING
+#endif
+
 NS_ASSUME_NONNULL_BEGIN
 
 /**
@@ -16,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion For simplicity, WCThreadSafeDictionary not support fast enumeration (for-in)
  @warning The initialize methods is not thread safe
  */
+WC_RESTRICT_SUBCLASSING
 @interface WCThreadSafeDictionary<__covariant KeyType, __covariant ObjectType> : NSObject
 
 #pragma mark - Initialize

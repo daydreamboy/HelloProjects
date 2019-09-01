@@ -8,6 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ WC_RESTRICT_SUBCLASSING
+ 
+ Disable the class for subclassing
+ */
+#if defined(__has_attribute) && __has_attribute(objc_subclassing_restricted)
+#define WC_RESTRICT_SUBCLASSING __attribute__((objc_subclassing_restricted))
+#else
+#define WC_RESTRICT_SUBCLASSING
+#endif
+
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NSArray * WCOrderedDictionaryPair;
@@ -17,6 +28,7 @@ typedef NSArray * WCOrderedDictionaryPair;
  
  @discussion The WCOrderedDictionary is mutable and not thread safe.
  */
+WC_RESTRICT_SUBCLASSING
 @interface WCOrderedDictionary<__covariant KeyType, __covariant ObjectType> : NSObject <NSFastEnumeration>
 
 @property (nonatomic, readonly, copy) NSArray<KeyType> *allKeys;
