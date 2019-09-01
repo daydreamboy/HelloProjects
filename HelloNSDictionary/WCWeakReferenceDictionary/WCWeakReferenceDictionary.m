@@ -25,41 +25,32 @@
 @end
 
 @implementation WCWeakReferenceDictionary {
-    NSMapTable *_storage;
+    NSMutableDictionary *_storage;
 }
 
 #pragma mark - Getters
 
 - (NSArray *)allKeys {
-    NSMutableArray *keysM = [NSMutableArray arrayWithCapacity:_storage.count];
-    
-    NSEnumerator *enumerator = [_storage keyEnumerator];
-    id key;
-    while ((key = [enumerator nextObject])) {
-        [keysM addObject:key];
-    }
-    
-    return [keysM copy];
+    return [[_storage allKeys] copy];
 }
 
 - (NSArray *)allValues {
+    NSArray *values = [_storage allValues];
     NSMutableArray *valuesM = [NSMutableArray arrayWithCapacity:_storage.count];
     
-    NSEnumerator *enumerator = [_storage objectEnumerator];
-    id value;
-    while ((value = [enumerator nextObject])) {
-        if ([value isKindOfClass:[WCWeakReferenceHolder class]]) {
-            id object = ((WCWeakReferenceHolder *)value).object;
-            if (object) {
-                [valuesM addObject:object];
+    for (id object in values) {
+        if ([object isKindOfClass:[WCWeakReferenceHolder class]]) {
+            id realObject = [(WCWeakReferenceHolder *)object object];
+            if (realObject) {
+                [valuesM addObject:realObject];
             }
         }
         else {
-            [valuesM addObject:value];
+            [valuesM addObject:object];
         }
     }
     
-    return [valuesM copy];
+    return valuesM;
 }
 
 #pragma mark - Initialization
@@ -72,64 +63,16 @@
     return [[WCWeakReferenceDictionary alloc] initWithKeyValuMode:WCWeakableDictionaryKeyValueModeStrongToWeak capacity:capacity];
 }
 
-+ (WCWeakReferenceDictionary<id, id> *)weakToStrongObjectsDictionaryWithCapacity:(NSUInteger)capacity {
-    return [[WCWeakReferenceDictionary alloc] initWithKeyValuMode:WCWeakableDictionaryKeyValueModeWeakToStrong capacity:capacity];
-}
-
-+ (WCWeakReferenceDictionary<id, id> *)weakToWeakObjectsDictionaryWithCapacity:(NSUInteger)capacity {
-    return [[WCWeakReferenceDictionary alloc] initWithKeyValuMode:WCWeakableDictionaryKeyValueModeWeakToWeak capacity:capacity];
-}
-
 + (WCWeakReferenceDictionary<id, id> *)strongToMixedObjectsDictionaryWithCapacity:(NSUInteger)capacity {
-    return [[WCWeakReferenceDictionary alloc] initWithKeyValuMode:WCWeakableDictionaryKeyValueModeStrongToStrong capacity:capacity];
-}
-
-+ (WCWeakReferenceDictionary<id, id> *)weakToMixedObjectsDictionaryWithCapacity:(NSUInteger)capacity {
-    return [[WCWeakReferenceDictionary alloc] initWithKeyValuMode:WCWeakableDictionaryKeyValueModeStrongToStrong capacity:capacity];
+    return [[WCWeakReferenceDictionary alloc] initWithKeyValuMode:WCWeakableDictionaryKeyValueModeStrongToMixed capacity:capacity];
 }
 
 #pragma mark ::
 
 - (instancetype)initWithKeyValuMode:(WCWeakableDictionaryKeyValueMode)keyValueMode capacity:(NSUInteger)capacity {
     if (self = [super init]) {
-        NSPointerFunctionsOptions keyOptions;
-        NSPointerFunctionsOptions valueOptions;
-
-        switch (keyValueMode) {
-            case WCWeakableDictionaryKeyValueModeStrongToWeak:
-            default: {
-                keyOptions = NSPointerFunctionsStrongMemory;
-                valueOptions = NSPointerFunctionsWeakMemory;
-                break;
-            }
-            case WCWeakableDictionaryKeyValueModeStrongToStrong: {
-                keyOptions = NSPointerFunctionsStrongMemory;
-                valueOptions = NSPointerFunctionsStrongMemory;
-                break;
-            }
-            case WCWeakableDictionaryKeyValueModeWeakToStrong: {
-                keyOptions = NSPointerFunctionsWeakMemory;
-                valueOptions = NSPointerFunctionsStrongMemory;
-                break;
-            }
-            case WCWeakableDictionaryKeyValueModeWeakToWeak: {
-                keyOptions = NSPointerFunctionsWeakMemory;
-                valueOptions = NSPointerFunctionsWeakMemory;
-                break;
-            }
-            case WCWeakableDictionaryKeyValueModeStrongToMixed: {
-                keyOptions = NSPointerFunctionsStrongMemory;
-                valueOptions = NSPointerFunctionsStrongMemory;
-                break;
-            }
-            case WCWeakableDictionaryKeyValueModeWeakToMixed: {
-                keyOptions = NSPointerFunctionsStrongMemory;
-                valueOptions = NSPointerFunctionsStrongMemory;
-                break;
-            }
-        }
-        
-        _storage = [[NSMapTable alloc] initWithKeyOptions:keyOptions valueOptions:valueOptions capacity:capacity];
+        _keyValueMode = keyValueMode;
+        _storage = [NSMutableDictionary dictionaryWithCapacity:capacity];
     }
     return self;
 }
@@ -138,23 +81,19 @@
 
 #pragma mark - Add
 
-- (void)setObject:(nullable id)object forKey:(id)key {
+- (void)setObject:(nullable id)object forKey:(id)key weaklyHoldInMixedMode:(BOOL)weaklyHoldInMixedMode {
     if (key) {
         if (object) {
-            [_storage setObject:object forKey:key];
-        }
-        else {
-            [_storage removeObjectForKey:key];
-        }
-    }
-}
-
-- (void)setWeakReferenceObject:(nullable id)object forKey:(id)key {
-    if (key) {
-        if (object) {
-            if (self.keyValueMode == WCWeakableDictionaryKeyValueModeStrongToMixed ||
-                self.keyValueMode == WCWeakableDictionaryKeyValueModeWeakToMixed) {
+            if (self.keyValueMode == WCWeakableDictionaryKeyValueModeStrongToWeak) {
                 [_storage setObject:[WCWeakReferenceHolder weakReferenceHolderWithObject:object] forKey:key];
+            }
+            else if (self.keyValueMode == WCWeakableDictionaryKeyValueModeStrongToMixed) {
+                if (weaklyHoldInMixedMode) {
+                    [_storage setObject:[WCWeakReferenceHolder weakReferenceHolderWithObject:object] forKey:key];
+                }
+                else {
+                    [_storage setObject:object forKey:key];
+                }
             }
             else {
                 [_storage setObject:object forKey:key];
@@ -163,20 +102,6 @@
         else {
             [_storage removeObjectForKey:key];
         }
-    }
-}
-
-- (void)addEntriesFromDictionary:(WCWeakReferenceDictionary<id, id> *)otherDictionary {
-    if (![otherDictionary isKindOfClass:[WCWeakReferenceDictionary class]] ||
-        ([otherDictionary isKindOfClass:[WCWeakReferenceDictionary class]] && otherDictionary.count == 0)) {
-        return;
-    }
-    
-    NSArray *keys = [otherDictionary allKeys];
-    for (NSInteger i = 0; i < keys.count; i++) {
-        id key = keys[i];
-        id value = otherDictionary[key];
-        [self setObject:value forKey:key];
     }
 }
 
@@ -209,7 +134,16 @@
         return nil;
     }
     
-    return [_storage objectForKey:key];
+    id value = [_storage objectForKey:key];
+    
+    if (self.keyValueMode == WCWeakableDictionaryKeyValueModeStrongToWeak ||
+        self.keyValueMode == WCWeakableDictionaryKeyValueModeStrongToMixed) {
+        if ([value isKindOfClass:[WCWeakReferenceHolder class]]) {
+            return [(WCWeakReferenceHolder *)value object];
+        }
+    }
+    
+    return value;
 }
 
 - (NSUInteger)count {
@@ -217,8 +151,159 @@
 }
 
 - (NSDictionary<id, id> *)dictionaryRepresentation {
-    return [_storage dictionaryRepresentation];
+    return [_storage copy];
 }
+
+- (NSString *)description {
+    NSMutableString *stringM = [NSMutableString string];
+    traverse_object(stringM, self, 0, NO);
+    
+    return stringM;
+}
+
+#pragma mark ::
+
+// 2 spaces for indentation
+#define INDENTATION @"  "
+
+static void traverse_object(NSMutableString *stringM, id object, NSUInteger depth, BOOL isValueForKey) {
+    
+    if (isValueForKey) {
+        // hanlde value if it has a counter-part key
+        [stringM appendString:@" : "];
+    }
+    else {
+        // handle indentation
+        for (NSUInteger i = 0; i < depth; i++) {
+            [stringM appendString:INDENTATION];
+        }
+    }
+    
+    if ([object isKindOfClass:[NSDictionary class]]) {
+        [stringM appendString:@"{\n"];
+        
+        NSArray *allKeys = [[object allKeys] sortedArrayUsingComparator:^NSComparisonResult(id _Nonnull key1, id _Nonnull key2) {
+            if ([[key1 description] compare:[key2 description]] == NSOrderedAscending) {
+                return NSOrderedAscending;
+            }
+            else if ([[key1 description] compare:[key2 description]] == NSOrderedDescending) {
+                return NSOrderedDescending;
+            }
+            else {
+                return NSOrderedSame;
+            }
+        }];
+        NSUInteger numberOfAllKeys = [allKeys count];
+        for (NSUInteger i = 0; i < numberOfAllKeys; i++) {
+            id key = allKeys[i];
+            traverse_object(stringM, key, depth + 1, NO);
+            
+            id value = [object objectForKey:key];
+            traverse_object(stringM, value, depth + 1, YES);
+            
+            // newline after one pair except last one
+            [stringM appendString:(i != numberOfAllKeys - 1 ? @",\n" : @"")];
+        }
+        
+        // revert the process of @"{"
+        [stringM appendString:@"\n"];
+        // handle indentation
+        for (NSUInteger i = 0; i < depth; i++) {
+            [stringM appendString:INDENTATION];
+        }
+        [stringM appendString:@"}"];
+    }
+    else if ([object isKindOfClass:[NSArray class]]) {
+        [stringM appendString:@"[\n"];
+        
+        NSUInteger numberOfAllItems = [object count];
+        for (NSUInteger i = 0; i < numberOfAllItems; i++) {
+            id item = object[i];
+            traverse_object(stringM, item, depth + 1, NO);
+            
+            // newline after one item except last one
+            [stringM appendString:(i != numberOfAllItems - 1 ? @",\n" : @"")];
+        }
+        
+        // revert the process of @"["
+        [stringM appendString:@"\n"];
+        // handle indentation
+        for (NSUInteger i = 0; i < depth; i++) {
+            [stringM appendString:INDENTATION];
+        }
+        [stringM appendString:@"]"];
+    }
+    else if ([object isKindOfClass:[NSString class]]) {
+        NSString *JSONEscapedString = JSONEscapedStringFromString((NSString *)object);
+        [stringM appendFormat:@"\"%@\"", JSONEscapedString];
+    }
+    else if ([object isKindOfClass:[NSNumber class]]) {
+        
+        // @sa http://stackoverflow.com/questions/2518761/get-type-of-nsnumber
+        if (object == (void *)kCFBooleanTrue || object == (void *)kCFBooleanFalse) {
+            // only convert @YES/@NO to true/false, not support @(true)/@(TRUE)
+            BOOL isTrue = [object boolValue];
+            [stringM appendString:(isTrue ? @"true" : @"false")];
+        }
+        else {
+            [stringM appendFormat:@"%@", [object stringValue]];
+        }
+    }
+    else if ([object isKindOfClass:[WCWeakReferenceDictionary class]]) {
+        [stringM appendString:@"{\n"];
+        
+        NSArray *allKeys = [object allKeys];
+        NSUInteger numberOfAllKeys = [allKeys count];
+        for (NSUInteger i = 0; i < numberOfAllKeys; i++) {
+            id key = allKeys[i];
+            traverse_object(stringM, key, depth + 1, NO);
+            
+            id value = [object objectForKey:key];
+            if ([value isKindOfClass:[WCWeakReferenceHolder class]]) {
+                value = [(WCWeakReferenceHolder *)object object];
+            }
+            traverse_object(stringM, value, depth + 1, YES);
+            
+            // newline after one pair except last one
+            [stringM appendString:(i != numberOfAllKeys - 1 ? @",\n" : @"")];
+        }
+        
+        // revert the process of @"{"
+        [stringM appendString:@"\n"];
+        // handle indentation
+        for (NSUInteger i = 0; i < depth; i++) {
+            [stringM appendString:INDENTATION];
+        }
+        [stringM appendString:@"}"];
+    }
+    else if ([object isKindOfClass:[NSNull class]]) {
+        [stringM appendString:@"null"];
+    }
+    else if (object == nil) {
+        [stringM appendString:@"\"<nil>\""];
+    }
+    else {
+        // call object's description method
+        [stringM appendFormat:@"\"<%@: %p>\"", NSStringFromClass([object class]), object];
+    }
+}
+
+// Convert NSString to JSON string
+static NSString * JSONEscapedStringFromString(NSString *string) {
+    NSMutableString *stringM = [NSMutableString stringWithString:string];
+    
+    [stringM replaceOccurrencesOfString:@"\"" withString:@"\\\"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"/" withString:@"\\/" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\n" withString:@"\\n" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\b" withString:@"\\b" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\f" withString:@"\\f" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\r" withString:@"\\r" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\t" withString:@"\\t" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    
+    return [NSString stringWithString:stringM];
+}
+
+#pragma mark ::
 
 #pragma mark - Subscript
 
@@ -227,32 +312,13 @@
 }
 
 - (void)setObject:(nullable id)object forKeyedSubscript:(id)key {
-    [self setObject:object forKey:key];
+    [self setObject:object forKey:key weaklyHoldInMixedMode:NO];
 }
 
 #pragma mark - NSFastEnumeration
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id  _Nullable __unsafe_unretained [])buffer count:(NSUInteger)len {
-    NSUInteger count = 0;
-    
-    unsigned long countOfItemsAlreadyEnumerated = state->state;
-    
-    if (countOfItemsAlreadyEnumerated == 0) {
-        state->mutationsPtr = &state->extra[0];
-    }
-    
-    if (countOfItemsAlreadyEnumerated < _storage.count) {
-        __unsafe_unretained NSArray *keys = [self allKeys];
-        state->itemsPtr = &keys;
-        
-        count = _storage.count;
-        
-        countOfItemsAlreadyEnumerated = _storage.count;
-    }
-    
-    state->state = countOfItemsAlreadyEnumerated;
-    
-    return count;
+    return [_storage countByEnumeratingWithState:state objects:buffer count:len];
 }
 
 @end

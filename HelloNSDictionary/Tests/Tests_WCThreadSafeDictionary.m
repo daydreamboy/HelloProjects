@@ -72,6 +72,8 @@
 }
 
 - (void)test_fast_enumeration {
+    // Note: WCThreadSafeDictionary not support fast enumeration
+    /*
     WCThreadSafeDictionary<NSString *, NSString *> *dict = [WCThreadSafeDictionary dictionary];
     dict[@"1"] = @"A";
     dict[@"2"] = @"B";
@@ -80,6 +82,7 @@
         NSString *value = dict[key];
         NSLog(@"%@", value);
     }
+     */
 }
 
 @end

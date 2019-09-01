@@ -14,24 +14,21 @@
 typedef NS_ENUM(NSUInteger, WCWeakableDictionaryKeyValueMode) {
     WCWeakableDictionaryKeyValueModeStrongToStrong,
     WCWeakableDictionaryKeyValueModeStrongToWeak,
-    WCWeakableDictionaryKeyValueModeWeakToStrong,
-    WCWeakableDictionaryKeyValueModeWeakToWeak,
     WCWeakableDictionaryKeyValueModeStrongToMixed,
-    WCWeakableDictionaryKeyValueModeWeakToMixed,
 };
 
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- The dictionary with more key/value's memory semantics
+ The dictionary which can weakly/strongly or mixed hold the values
  
- @discussion This dictionary is simular with NSMapTable, exclude the WCWeakableDictionaryKeyValueModeStrongToMixed
- and WCWeakableDictionaryKeyValueModeWeakToMixed which allow the values are weak or strong partly.
+ @discussion This dictionary is simular with NSMapTable, but use NSMutableDictionary instead of NSMapTable,
+ for some reason see the http://cocoamine.net/blog/2013/12/13/nsmaptable-and-zeroing-weak-references/
  */
 @interface WCWeakReferenceDictionary<__covariant KeyType, __covariant ObjectType> : NSObject <NSFastEnumeration>
 
 /**
- The memory semantic mode of the key and value
+ The memory semantic mode of the key/value
  */
 @property (nonatomic, readonly) WCWeakableDictionaryKeyValueMode keyValueMode;
 
@@ -42,24 +39,33 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Get all values
+ 
+ @discussion The number of values maybe not equal to the number of keys
  */
 @property (nonatomic, readonly, copy) NSArray<ObjectType> *allValues;
 
 #pragma mark - Initialization
 
 + (WCWeakReferenceDictionary<KeyType, ObjectType> *)strongToStrongObjectsDictionaryWithCapacity:(NSUInteger)capacity;
-+ (WCWeakReferenceDictionary<KeyType, ObjectType> *)weakToStrongObjectsDictionaryWithCapacity:(NSUInteger)capacity;
 + (WCWeakReferenceDictionary<KeyType, ObjectType> *)strongToWeakObjectsDictionaryWithCapacity:(NSUInteger)capacity;
-+ (WCWeakReferenceDictionary<KeyType, ObjectType> *)weakToWeakObjectsDictionaryWithCapacity:(NSUInteger)capacity;
-
 + (WCWeakReferenceDictionary<KeyType, ObjectType> *)strongToMixedObjectsDictionaryWithCapacity:(NSUInteger)capacity;
-+ (WCWeakReferenceDictionary<KeyType, ObjectType> *)weakToMixedObjectsDictionaryWithCapacity:(NSUInteger)capacity;
 
 #pragma mark - Add
 
-- (void)setObject:(nullable ObjectType)object forKey:(KeyType)key;
-- (void)setWeakReferenceObject:(nullable ObjectType)object forKey:(KeyType)key;
-- (void)addEntriesFromDictionary:(WCWeakReferenceDictionary<KeyType, ObjectType> *)otherDictionary;
+/**
+ Set key/value according to the keyValueMode
+
+ @param object The object which strongly or weakly hold
+ @param key The key which always strongly hold
+ @param weaklyHoldInMixedMode The flag only for WCWeakableDictionaryKeyValueModeStrongToMixed mode.
+ If YES, the object weakly hold. If NO, the object strongly hold.
+ 
+ @discussion This method considers which keyValueMode is using:
+ - WCWeakableDictionaryKeyValueModeStrongToStrong, object strongly hold
+ - WCWeakableDictionaryKeyValueModeStrongToWeak, object weakly hold and ignore weaklyHoldInMixedMode paramter
+ - WCWeakableDictionaryKeyValueModeStrongToMixed, object weakly/strongly hold determined by weaklyHoldInMixedMode paramter
+ */
+- (void)setObject:(nullable ObjectType)object forKey:(KeyType)key weaklyHoldInMixedMode:(BOOL)weaklyHoldInMixedMode;
 
 #pragma mark - Remove
 
@@ -70,12 +76,32 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Query
 
 - (nullable ObjectType)objectForKey:(KeyType)key;
+
+/**
+ The count of the key/values
+
+ @return the number of the key/values
+ 
+ @discussion This method calculate the number of keys even though the values is nil after release.
+ Use -[WCWeakReferenceDictionary allValues] to check how many values still are alive.
+ */
 - (NSUInteger)count;
 - (NSDictionary<KeyType, ObjectType> *)dictionaryRepresentation;
+- (NSString *)description;
 
 #pragma mark - Subscript
 
 - (nullable ObjectType)objectForKeyedSubscript:(KeyType)key;
+
+/**
+ The subscript to set key/value
+
+ @param object The object which strongly or weakly hold
+ @param key The key which always strongly hold
+ 
+ @discussion This method works as -[setObject:object forKey:key objectWeakHoldInMixedMode:NO].
+ See -[WCWeakReferenceDictionary setObject:forKey:objectWeakHoldInMixedMode:] for detail.
+ */
 - (void)setObject:(nullable ObjectType)object forKeyedSubscript:(KeyType)key;
 
 @end

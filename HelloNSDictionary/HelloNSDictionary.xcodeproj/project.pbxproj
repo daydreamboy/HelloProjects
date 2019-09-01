@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F172406231BA5BD00483D53 /* Tests_WCWeakReferenceDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F172405231BA5BD00483D53 /* Tests_WCWeakReferenceDictionary.m */; };
 		4F4F863F22AAA1CC005F70DF /* Tests_CFDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F863E22AAA1CC005F70DF /* Tests_CFDictionary.m */; };
 		4F50591F230E7EAC004489C3 /* WCWeakReferenceDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50591E230E7EAC004489C3 /* WCWeakReferenceDictionary.m */; };
 		4F5F312723178555008ECB09 /* Tests_WCOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F312623178555008ECB09 /* Tests_WCOrderedDictionary.m */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F172405231BA5BD00483D53 /* Tests_WCWeakReferenceDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_WCWeakReferenceDictionary.m; sourceTree = "<group>"; };
 		4F4F863E22AAA1CC005F70DF /* Tests_CFDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_CFDictionary.m; sourceTree = "<group>"; };
 		4F50591D230E7EAC004489C3 /* WCWeakReferenceDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCWeakReferenceDictionary.h; sourceTree = "<group>"; };
 		4F50591E230E7EAC004489C3 /* WCWeakReferenceDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCWeakReferenceDictionary.m; sourceTree = "<group>"; };
@@ -166,9 +168,10 @@
 			isa = PBXGroup;
 			children = (
 				4F95A3D121395033003B0E69 /* Tests.m */,
-				4F82AB7A22AEBDF000298EEF /* Tests_WCThreadSafeDictionary.m */,
 				4F4F863E22AAA1CC005F70DF /* Tests_CFDictionary.m */,
+				4F82AB7A22AEBDF000298EEF /* Tests_WCThreadSafeDictionary.m */,
 				4F5F312623178555008ECB09 /* Tests_WCOrderedDictionary.m */,
+				4F172405231BA5BD00483D53 /* Tests_WCWeakReferenceDictionary.m */,
 				4F95A3D321395033003B0E69 /* Info.plist */,
 			);
 			path = Tests;
@@ -291,6 +294,7 @@
 				4F4F863F22AAA1CC005F70DF /* Tests_CFDictionary.m in Sources */,
 				4F5F312723178555008ECB09 /* Tests_WCOrderedDictionary.m in Sources */,
 				4F82AB7B22AEBDF000298EEF /* Tests_WCThreadSafeDictionary.m in Sources */,
+				4F172406231BA5BD00483D53 /* Tests_WCWeakReferenceDictionary.m in Sources */,
 				4F95A3D221395033003B0E69 /* Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -153,9 +153,12 @@ static void traverse_object(NSMutableString *stringM, id object, NSUInteger dept
     else if ([object isKindOfClass:[NSNull class]]) {
         [stringM appendString:@"null"];
     }
+    else if (object == nil) {
+        [stringM appendString:@"\"<nil>\""];
+    }
     else {
         // call object's description method
-        [stringM appendFormat:@"%@", object];
+        [stringM appendFormat:@"\"<%@: %p>\"", NSStringFromClass([object class]), object];
     }
 }
 
