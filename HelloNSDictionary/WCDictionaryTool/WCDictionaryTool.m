@@ -48,11 +48,11 @@
     id object = nil;
     
     @try {
-        if ([keyPath rangeOfString:@"."].location == NSNotFound) {
-            object = [dictionary valueForKey:keyPath];
+        if ([keyPath containsString:@"."]) {
+            object = [dictionary valueForKeyPath:keyPath];
         }
         else {
-            object = [dictionary valueForKeyPath:keyPath];
+            object = [dictionary valueForKey:keyPath];
         }
     }
     @catch (NSException *exception) {
