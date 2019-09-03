@@ -39,7 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable id)dumpedJSONObjectWithObject:(id)object;
 
-#pragma mark - Runtime
+#pragma mark - Runtime Query
 
 #pragma mark > Class
 
@@ -139,6 +139,43 @@ NS_ASSUME_NONNULL_BEGIN
  @see https://stackoverflow.com/a/28737576
  */
 + (BOOL)checkIfSubclass:(Class)subclass overridesSelector:(SEL)selector;
+
+#pragma mark - Runtime Modify
+
+#pragma mark > Swizzle Method
+
+/**
+ Exchange the IMPs of the two selectors
+
+ @param class the Class to modify
+ @param originalSelector the original selector which usually compiled in code
+ @param swizzledSelector the swizzled selector which usually created in runtime
+ @param block the IMP block which must match the signature of the `originalSelector`
+ @return YES if the operate successfull. NO if any error occurred internally.
+ @discussion The `swizzledSelector` parameter can be created by +[WCObjectTool swizzledSelectorWithSelector:]
+ */
++ (BOOL)exchangeIMPsWithClass:(Class)class originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector blockForSwizzledSelector:(id)block;
+
+/**
+ Replace IMP of original selector with block
+
+ @param class the Class to modify
+ @param originalSelector the original selector which usually compiled in code
+ @param block the IMP block which must match the signature of the `originalSelector`
+ @return YES if the operate successfull. NO if any error occurred internally.
+ @discussion This method internally call +[WCObjectTool exchangeIMPsWithClass:originalSelector:swizzledSelector:blockForSwizzledSelector:]
+ */
++ (BOOL)replaceIMPWithClass:(Class)class originalSelector:(SEL)originalSelector swizzledBlock:(id)block;
+
+#pragma mark > Swizzle Assistant Method
+
+/**
+ Return a random selector name for given selector
+ 
+ @param selector the original selector
+ @return the modified selector which created with prefix
+ */
++ (SEL)swizzledSelectorWithSelector:(SEL)selector;
 
 @end
 

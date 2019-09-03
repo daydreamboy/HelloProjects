@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F161AB2231E934000A22350 /* SwizzleMethodByBlockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F161AB0231E934000A22350 /* SwizzleMethodByBlockViewController.m */; };
+		4F161AB5231E935400A22350 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F161AB3231E935400A22350 /* RootViewController.m */; };
 		4F3ADDE322649BFA0044D0FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3ADDE222649BFA0044D0FB /* UIKit.framework */; };
 		4F54E6582238A0BB001A9BE2 /* WCObjectTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F54E6572238A0BB001A9BE2 /* WCObjectTool.m */; };
 		4F54E6612238A1C7001A9BE2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F54E6602238A1C7001A9BE2 /* AppDelegate.m */; };
@@ -48,6 +50,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F161AB0231E934000A22350 /* SwizzleMethodByBlockViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwizzleMethodByBlockViewController.m; sourceTree = "<group>"; };
+		4F161AB1231E934000A22350 /* SwizzleMethodByBlockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwizzleMethodByBlockViewController.h; sourceTree = "<group>"; };
+		4F161AB3231E935400A22350 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		4F161AB4231E935400A22350 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F3ADDE222649BFA0044D0FB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4F54E6562238A0BB001A9BE2 /* WCObjectTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCObjectTool.h; sourceTree = "<group>"; };
 		4F54E6572238A0BB001A9BE2 /* WCObjectTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCObjectTool.m; sourceTree = "<group>"; };
@@ -139,6 +145,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F161AAF231E92D400A22350 /* AppTestDemos */ = {
+			isa = PBXGroup;
+			children = (
+				4F161AB1231E934000A22350 /* SwizzleMethodByBlockViewController.h */,
+				4F161AB0231E934000A22350 /* SwizzleMethodByBlockViewController.m */,
+			);
+			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
 		4F3ADDE122649BFA0044D0FB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,8 +271,11 @@
 		4FFE71A22236AC550020516E /* HelloNSObject */ = {
 			isa = PBXGroup;
 			children = (
+				4F161AAF231E92D400A22350 /* AppTestDemos */,
 				4FFE71A32236AC550020516E /* AppDelegate.h */,
 				4FFE71A42236AC550020516E /* AppDelegate.m */,
+				4F161AB4231E935400A22350 /* RootViewController.h */,
+				4F161AB3231E935400A22350 /* RootViewController.m */,
 				4FFE71AC2236AC560020516E /* Assets.xcassets */,
 				4FFE71AE2236AC560020516E /* LaunchScreen.storyboard */,
 				4FFE71B12236AC560020516E /* Info.plist */,
@@ -500,8 +518,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F54E6582238A0BB001A9BE2 /* WCObjectTool.m in Sources */,
+				4F161AB2231E934000A22350 /* SwizzleMethodByBlockViewController.m in Sources */,
 				4FFE71B32236AC560020516E /* main.mm in Sources */,
 				4FFE71A52236AC550020516E /* AppDelegate.m in Sources */,
+				4F161AB5231E935400A22350 /* RootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

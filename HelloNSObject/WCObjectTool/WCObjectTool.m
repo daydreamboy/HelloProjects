@@ -179,7 +179,7 @@ static NSString * JSONEscapedStringFromString(NSString *string) {
 
 #pragma mark ::
 
-#pragma mark - Runtime
+#pragma mark - Runtime Query
 
 #pragma mark > Class
 
@@ -552,6 +552,55 @@ static void getSuper(Class class, NSMutableArray *result) {
     
     free(methods);
     return  [methodsDescription copy];
+}
+
+#pragma mark - Runtime Modify
+
+#pragma mark > Swizzle Method
+
++ (BOOL)exchangeIMPsWithClass:(Class)class originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector blockForSwizzledSelector:(id)block {
+    
+    if (class == NULL || !sel_isMapped(originalSelector) || !block) {
+        return NO;
+    }
+    
+    Method originalMethod = class_getInstanceMethod(class, originalSelector);
+    if (!originalMethod) {
+        return NO;
+    }
+    
+    IMP implementation = imp_implementationWithBlock(block);
+    if (implementation == NULL) {
+        return NO;
+    }
+    
+    // Note: create a new Method with swizzledSelector and block IMP
+    class_addMethod(class, swizzledSelector, implementation, method_getTypeEncoding(originalMethod));
+    Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
+    if (swizzledMethod == NULL) {
+        return NO;
+    }
+    
+    // Note: exchange the IMPs, so the final mapping is:
+    // originalMethod (originalSelector) -> block IMP
+    // swizzledMethod (swizzledSelector) -> IMP of the originalMethod
+    method_exchangeImplementations(originalMethod, swizzledMethod);
+    
+    return YES;
+}
+
++ (BOOL)replaceIMPWithClass:(Class)class originalSelector:(SEL)originalSelector swizzledBlock:(id)block {
+    return [self exchangeIMPsWithClass:class originalSelector:originalSelector swizzledSelector:[self swizzledSelectorWithSelector:originalSelector] blockForSwizzledSelector:block];
+}
+
+#pragma mark > Swizzle Assistant Method
+
++ (SEL)swizzledSelectorWithSelector:(SEL)selector {
+    if (selector == NULL) {
+        return NSSelectorFromString([NSString stringWithFormat:@"WCObjectTool_swizzle_%x", arc4random()]);
+    }
+    
+    return NSSelectorFromString([NSString stringWithFormat:@"WCObjectTool_swizzle_%@_%x", NSStringFromSelector(selector), arc4random()]);
 }
 
 @end
