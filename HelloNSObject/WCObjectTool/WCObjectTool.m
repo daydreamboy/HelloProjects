@@ -558,7 +558,7 @@ static void getSuper(Class class, NSMutableArray *result) {
 
 #pragma mark > Swizzle Method
 
-+ (BOOL)exchangeIMPsWithClass:(Class)class originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector blockForSwizzledSelector:(id)block {
++ (BOOL)exchangeIMPWithClass:(Class)class originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector swizzledBlock:(id)block {
     
     if (class == NULL || !sel_isMapped(originalSelector) || !block) {
         return NO;
@@ -569,28 +569,89 @@ static void getSuper(Class class, NSMutableArray *result) {
         return NO;
     }
     
-    IMP implementation = imp_implementationWithBlock(block);
-    if (implementation == NULL) {
+    IMP swizzledIMP = imp_implementationWithBlock(block);
+    if (swizzledIMP == NULL) {
         return NO;
     }
     
     // Note: create a new Method with swizzledSelector and block IMP
-    class_addMethod(class, swizzledSelector, implementation, method_getTypeEncoding(originalMethod));
+    BOOL success = class_addMethod(class, swizzledSelector, swizzledIMP, method_getTypeEncoding(originalMethod));
     Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);
     if (swizzledMethod == NULL) {
         return NO;
     }
     
-    // Note: exchange the IMPs, so the final mapping is:
-    // originalMethod (originalSelector) -> block IMP
-    // swizzledMethod (swizzledSelector) -> IMP of the originalMethod
-    method_exchangeImplementations(originalMethod, swizzledMethod);
+    if (success) {
+        // Note: exchange the IMPs, so the final mapping is:
+        // originalMethod (originalSelector) -> block IMP
+        // swizzledMethod (swizzledSelector) -> IMP of the originalMethod
+        method_exchangeImplementations(originalMethod, swizzledMethod);
+    }
+    else {
+        // Note: swizzledSelector's IMP already exist in the class, so set the new/recent IMP to the swizzledSelector
+        method_setImplementation(swizzledMethod, swizzledIMP);
+    }
     
     return YES;
 }
 
-+ (BOOL)replaceIMPWithClass:(Class)class originalSelector:(SEL)originalSelector swizzledBlock:(id)block {
-    return [self exchangeIMPsWithClass:class originalSelector:originalSelector swizzledSelector:[self swizzledSelectorWithSelector:originalSelector] blockForSwizzledSelector:block];
++ (BOOL)replaceIMPWithClass:(Class)class originalSelector:(SEL)originalSelector swizzledBlock:(id)block originalIMPPtr:(IMPPtr _Nullable)originalIMPPtr {
+    
+    if (class == NULL || !sel_isMapped(originalSelector) || !block) {
+        return NO;
+    }
+    
+    Method originalMethod = class_getInstanceMethod(class, originalSelector);
+    if (!originalMethod) {
+        return NO;
+    }
+    
+    IMP swizzledIMP = imp_implementationWithBlock(block);
+    if (swizzledIMP == NULL) {
+        return NO;
+    }
+    
+    if (class_addMethod(class, originalSelector, swizzledIMP, method_getTypeEncoding(originalMethod))) {
+        // Note: add new originalSelector -> swizzledIMP pair when originalSelector not exist in the class
+        
+        if (originalIMPPtr != NULL) {
+            *originalIMPPtr = method_getImplementation(originalMethod);
+        }
+        
+        return YES;
+    }
+    else {
+        // Note: change originalSelector -> oldIMP pair to originalSelector -> swizzledIMP pair
+        // when originalSelector already exists in the class
+        IMP originalIMP = method_setImplementation(originalMethod, swizzledIMP);
+        
+        if (originalIMPPtr != NULL) {
+            *originalIMPPtr = originalIMP;
+        }
+        
+        return YES;
+    }
+}
+
+/**
+ 
+ 
+ @param class the Class
+ @param originalSelector the original selector
+ @param swizzledSelector the swizzled selector
+ */
++ (BOOL)exchangeIMPForClass:(Class)class selector1:(SEL)selector1 selector2:(SEL)selector2 {
+    
+    if (class == NULL || !sel_isMapped(selector1) || !sel_isMapped(selector2)) {
+        return NO;
+    }
+    
+    Method originalMethod = class_getInstanceMethod(class, selector1);
+    Method swizzledMethod = class_getInstanceMethod(class, selector2);
+    
+    method_exchangeImplementations(originalMethod, swizzledMethod);
+    
+    return YES;
 }
 
 #pragma mark > Swizzle Assistant Method

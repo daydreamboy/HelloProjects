@@ -33,6 +33,7 @@
 		4F650EA8223967DD002BA46F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F650EA7223967DD002BA46F /* Assets.xcassets */; };
 		4F650EAB223967DD002BA46F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F650EA9223967DD002BA46F /* LaunchScreen.storyboard */; };
 		4F650EAE223967DD002BA46F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F650EAD223967DD002BA46F /* main.m */; };
+		4F7E7F86231ECE9700E91F0E /* SwizzleMethodByMethodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7E7F84231ECE9700E91F0E /* SwizzleMethodByMethodViewController.m */; };
 		4FFE71A52236AC550020516E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE71A42236AC550020516E /* AppDelegate.m */; };
 		4FFE71AD2236AC560020516E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE71AC2236AC560020516E /* Assets.xcassets */; };
 		4FFE71B02236AC560020516E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE71AE2236AC560020516E /* LaunchScreen.storyboard */; };
@@ -96,6 +97,8 @@
 		4F650EAA223967DD002BA46F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F650EAC223967DD002BA46F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F650EAD223967DD002BA46F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4F7E7F84231ECE9700E91F0E /* SwizzleMethodByMethodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwizzleMethodByMethodViewController.m; sourceTree = "<group>"; };
+		4F7E7F85231ECE9700E91F0E /* SwizzleMethodByMethodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwizzleMethodByMethodViewController.h; sourceTree = "<group>"; };
 		4FFE71A02236AC550020516E /* HelloNSObject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSObject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FFE71A32236AC550020516E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FFE71A42236AC550020516E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -148,6 +151,8 @@
 		4F161AAF231E92D400A22350 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F7E7F85231ECE9700E91F0E /* SwizzleMethodByMethodViewController.h */,
+				4F7E7F84231ECE9700E91F0E /* SwizzleMethodByMethodViewController.m */,
 				4F161AB1231E934000A22350 /* SwizzleMethodByBlockViewController.h */,
 				4F161AB0231E934000A22350 /* SwizzleMethodByBlockViewController.m */,
 			);
@@ -517,6 +522,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F7E7F86231ECE9700E91F0E /* SwizzleMethodByMethodViewController.m in Sources */,
 				4F54E6582238A0BB001A9BE2 /* WCObjectTool.m in Sources */,
 				4F161AB2231E934000A22350 /* SwizzleMethodByBlockViewController.m in Sources */,
 				4FFE71B32236AC560020516E /* main.mm in Sources */,

@@ -27,11 +27,23 @@
         ((void(*)(id, SEL, BOOL))objc_msgSend)(slf, swizzledSelector, animated);
     };
     
-    [WCObjectTool exchangeIMPsWithClass:[SwizzleMethodByBlockViewController class] originalSelector:originalSelector swizzledSelector:swizzledSelector blockForSwizzledSelector:swizzleBlock];
+    [WCObjectTool exchangeIMPWithClass:[SwizzleMethodByBlockViewController class] originalSelector:originalSelector swizzledSelector:swizzledSelector swizzledBlock:swizzleBlock];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    SEL originalSelector = NSSelectorFromString(@"viewWillAppear:");
+    SEL swizzledSelector = [WCObjectTool swizzledSelectorWithSelector:originalSelector];
+    
+    void (^swizzleBlock)(UIViewController *, BOOL) = ^(UIViewController *slf, BOOL animated) {
+        NSLog(@"swizzled block called");
+        // change method signature to match the swizzledSelector
+        ((void(*)(id, SEL, BOOL))objc_msgSend)(slf, swizzledSelector, animated);
+    };
+    
+    [WCObjectTool exchangeIMPWithClass:[SwizzleMethodByBlockViewController class] originalSelector:originalSelector swizzledSelector:swizzledSelector swizzledBlock:swizzleBlock];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     CGSize screenSize = [[UIScreen mainScreen] bounds].size;
     
