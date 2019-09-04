@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef IMP *IMPPtr;
+typedef IMP _Nonnull *IMPPtr;
 
 @interface WCObjectTool : NSObject
 
@@ -149,37 +149,37 @@ typedef IMP *IMPPtr;
 /**
  Exchange the IMP of the existing selector to another IMP of the selector
 
- @param class the Class to modify
- @param originalSelector the original selector which should exist, and usually compiled in code
- @param swizzledSelector the swizzled selector which usually created in runtime
+ @param cls the Class to modify
+ @param originalSelector the original selector whose IMP should exist
+ @param swizzledSelector the swizzled selector whose IMP exists or not
  @param block the swizzled block which must match the signature of the `originalSelector`
  @return YES if the operate successfull. NO if any error occurred internally.
  @discussion This method will create new selector (`swizzledSelector`) and its IMP if the IMP not exists. And
  replace the swizzled selector's IMP if the swizzled selector already has the previous one.
  */
-+ (BOOL)exchangeIMPWithClass:(Class)class originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector swizzledBlock:(id)block;
++ (BOOL)exchangeIMPWithClass:(Class)cls originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector swizzledBlock:(id)block;
 
 /**
  Replace or add the IMP of the original selector with block
 
- @param class the Class to modify
+ @param cls the Class to modify
  @param originalSelector the original selector whose IMP exists or not exists
  @param block the swizzled block which mapping to the `originalSelector` and must match the signature of the `originalSelector`
  @param originalIMPPtr the original IMP. If the `originalSelector` not exists, the IMP is the swizzled block.
  If the `originalSelector` exists, the IMP is the old IMP.
  @return YES if the operate successfull. NO if any error occurred internally.
  */
-+ (BOOL)replaceIMPWithClass:(Class)class originalSelector:(SEL)originalSelector swizzledBlock:(id)block originalIMPPtr:(IMPPtr _Nullable)originalIMPPtr;
++ (BOOL)replaceIMPWithClass:(Class)cls originalSelector:(SEL)originalSelector swizzledBlock:(id)block originalIMPPtr:(IMPPtr _Nullable)originalIMPPtr;
 
 /**
  Exchange the IMP for two existing selectors
 
- @param class the Class to modify
+ @param cls the Class to modify
  @param selector1 the selector1
  @param selector2 the selector2
  @return YES if the operate successfull. NO if any error occurred internally.
  */
-+ (BOOL)exchangeIMPForClass:(Class)class selector1:(SEL)selector1 selector2:(SEL)selector2;
++ (BOOL)exchangeIMPForClass:(Class)cls selector1:(SEL)selector1 selector2:(SEL)selector2;
 
 #pragma mark > Swizzle Assistant Method
 
