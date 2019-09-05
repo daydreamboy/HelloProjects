@@ -31,6 +31,7 @@
 		4F75A00B213130DD000DDE60 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A00A213130DD000DDE60 /* main.m */; };
 		4F75A03F21313133000DDE60 /* ContentModeOfUIImageViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A03B21313133000DDE60 /* ContentModeOfUIImageViewViewController.m */; };
 		4F75A04021313133000DDE60 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A03D21313133000DDE60 /* RootViewController.m */; };
+		4F843AB32320EB74001868D6 /* LayerFrameIssueOniOS13ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F843AB22320EB74001868D6 /* LayerFrameIssueOniOS13ViewController.m */; };
 		4F89C07521541606003C7F1F /* simulator.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F89C07421541605003C7F1F /* simulator.png */; };
 		4F961BA72132ED42009402F3 /* RoundedImageInUIImageViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F961BA62132ED42009402F3 /* RoundedImageInUIImageViewViewController.m */; };
 		4F961BA92132F1B6009402F3 /* cat.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F961BA82132F1B6009402F3 /* cat.jpg */; };
@@ -93,6 +94,8 @@
 		4F75A03C21313133000DDE60 /* ContentModeOfUIImageViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContentModeOfUIImageViewViewController.h; sourceTree = "<group>"; };
 		4F75A03D21313133000DDE60 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F75A03E21313133000DDE60 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		4F843AB12320EB74001868D6 /* LayerFrameIssueOniOS13ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerFrameIssueOniOS13ViewController.h; sourceTree = "<group>"; };
+		4F843AB22320EB74001868D6 /* LayerFrameIssueOniOS13ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LayerFrameIssueOniOS13ViewController.m; sourceTree = "<group>"; };
 		4F89C07421541605003C7F1F /* simulator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = simulator.png; sourceTree = "<group>"; };
 		4F961BA52132ED42009402F3 /* RoundedImageInUIImageViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RoundedImageInUIImageViewViewController.h; sourceTree = "<group>"; };
 		4F961BA62132ED42009402F3 /* RoundedImageInUIImageViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RoundedImageInUIImageViewViewController.m; sourceTree = "<group>"; };
@@ -207,6 +210,8 @@
 				4F6768432174478300B371A7 /* AspectRatioScaledImageViewInsideRectViewController2.m */,
 				4F6768452174479200B371A7 /* AspectRatioScaledImageViewInsideRectViewController3.h */,
 				4F6768462174479200B371A7 /* AspectRatioScaledImageViewInsideRectViewController3.m */,
+				4F843AB12320EB74001868D6 /* LayerFrameIssueOniOS13ViewController.h */,
+				4F843AB22320EB74001868D6 /* LayerFrameIssueOniOS13ViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -374,6 +379,7 @@
 				4F60621821358D2400D049DF /* MaskImageViewViewController.m in Sources */,
 				4F75A00B213130DD000DDE60 /* main.m in Sources */,
 				4F759FFD213130DB000DDE60 /* AppDelegate.m in Sources */,
+				4F843AB32320EB74001868D6 /* LayerFrameIssueOniOS13ViewController.m in Sources */,
 				4F60621321358D1A00D049DF /* WCImageViewTool.m in Sources */,
 				4F961BA72132ED42009402F3 /* RoundedImageInUIImageViewViewController.m in Sources */,
 				4F60621921358D2400D049DF /* AddShadowBorderToImageViewController.m in Sources */,

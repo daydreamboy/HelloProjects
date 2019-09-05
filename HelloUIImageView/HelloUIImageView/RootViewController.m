@@ -15,6 +15,7 @@
 #import "AspectRatioScaledImageViewInsideRectViewController1.h"
 #import "AspectRatioScaledImageViewInsideRectViewController2.h"
 #import "AspectRatioScaledImageViewInsideRectViewController3.h"
+#import "LayerFrameIssueOniOS13ViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -44,6 +45,7 @@
         @"Aspect ratio scaled image",
         @"Safe aspect ratio scaled image 1",
         @"Safe aspect ratio scaled image 2",
+        @"Layer frame issue on iOS 13+",
     ];
     _classes = @[
         [ContentModeOfUIImageViewViewController class],
@@ -53,6 +55,7 @@
         [AspectRatioScaledImageViewInsideRectViewController1 class],
         [AspectRatioScaledImageViewInsideRectViewController2 class],
         [AspectRatioScaledImageViewInsideRectViewController3 class],
+        [LayerFrameIssueOniOS13ViewController class],
         @"testMethod",
     ];
 }
