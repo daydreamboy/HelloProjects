@@ -18,7 +18,7 @@ int main(int argc, char * argv[]) {
     @autoreleasepool {
 #define QUOTE "\""
         
-        char foo[] = "He said " QUOTE "Hello there" QUOTE ".";
+      __unused char foo[] = "He said " QUOTE "Hello there" QUOTE ".";
         
 //    STR_OF_JSON_BEGIN(s)
 //{

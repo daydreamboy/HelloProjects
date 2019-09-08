@@ -16,7 +16,7 @@
 
 - (void)test {    
     CFStringRef cfString = CFSTR("hello, world");
-    __unsafe_unretained NSString *nsString = (__bridge id)cfString;
+    __unused __unsafe_unretained NSString *nsString = (__bridge id)cfString;
 }  // Note: make a breakpoint here
 
 @end
