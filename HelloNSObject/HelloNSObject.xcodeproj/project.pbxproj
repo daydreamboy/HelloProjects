@@ -15,6 +15,24 @@
 		4F110EF2231F5EDD006C9AFD /* MyObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F110EF0231F5EDD006C9AFD /* MyObject.m */; };
 		4F161AB2231E934000A22350 /* SwizzleMethodByBlockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F161AB0231E934000A22350 /* SwizzleMethodByBlockViewController.m */; };
 		4F161AB5231E935400A22350 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F161AB3231E935400A22350 /* RootViewController.m */; };
+		4F35B9FB2324FC32001637AB /* SetIVarDirectlyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9DA2324FC30001637AB /* SetIVarDirectlyViewController.m */; };
+		4F35B9FC2324FC32001637AB /* CreateDynamicDelegateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9DC2324FC30001637AB /* CreateDynamicDelegateViewController.m */; };
+		4F35BA002324FC32001637AB /* IsaSwizzlingIssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9E12324FC31001637AB /* IsaSwizzlingIssueViewController.m */; };
+		4F35BA012324FC32001637AB /* IsaSwizzlingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9E32324FC31001637AB /* IsaSwizzlingViewController.m */; };
+		4F35BA022324FC32001637AB /* CreateClassAtRuntimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9EA2324FC31001637AB /* CreateClassAtRuntimeViewController.m */; };
+		4F35BA032324FC32001637AB /* ObtainWeakVariableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9EB2324FC31001637AB /* ObtainWeakVariableViewController.m */; };
+		4F35BA042324FC32001637AB /* CreateDynamicParamModelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9F02324FC31001637AB /* CreateDynamicParamModelViewController.m */; };
+		4F35BA052324FC32001637AB /* SomeSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9F12324FC31001637AB /* SomeSDK.m */; };
+		4F35BA062324FC32001637AB /* PublicModelsForSomeSDK.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9F22324FC31001637AB /* PublicModelsForSomeSDK.m */; };
+		4F35BA072324FC32001637AB /* CreateDynamicDelegateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4F35B9F42324FC31001637AB /* CreateDynamicDelegateViewController.xib */; };
+		4F35BA092324FC32001637AB /* SimpleDynamicSubclassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9F82324FC32001637AB /* SimpleDynamicSubclassViewController.m */; };
+		4F35BA172324FDA1001637AB /* WCRTProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35BA0B2324FDA1001637AB /* WCRTProperty.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4F35BA182324FDA1001637AB /* NSObject+WCObjCRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35BA0C2324FDA1001637AB /* NSObject+WCObjCRuntime.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4F35BA192324FDA1001637AB /* WCRTIvar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35BA0F2324FDA1001637AB /* WCRTIvar.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4F35BA1A2324FDA1001637AB /* WCRTUnregisteredClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35BA102324FDA1001637AB /* WCRTUnregisteredClass.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4F35BA1B2324FDA1001637AB /* WCRTProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35BA132324FDA1001637AB /* WCRTProtocol.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4F35BA1C2324FDA1001637AB /* WCRTMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35BA142324FDA1001637AB /* WCRTMethod.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		4F35BA2D23250101001637AB /* Test_property.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35BA2C23250101001637AB /* Test_property.m */; };
 		4F3ADDE322649BFA0044D0FB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3ADDE222649BFA0044D0FB /* UIKit.framework */; };
 		4F54E6582238A0BB001A9BE2 /* WCObjectTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F54E6572238A0BB001A9BE2 /* WCObjectTool.m */; };
 		4F54E6612238A1C7001A9BE2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F54E6602238A1C7001A9BE2 /* AppDelegate.m */; };
@@ -29,11 +47,11 @@
 		4F54E6892238B4A0001A9BE2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F54E6882238B4A0001A9BE2 /* main.m */; };
 		4F57328E224B133400EFB1CF /* Thing.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F57328D224B133400EFB1CF /* Thing.m */; };
 		4F573291224B134500EFB1CF /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F573290224B134500EFB1CF /* Person.m */; };
-		4F5B65312249DD4600D40218 /* Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B65302249DD4600D40218 /* Tests.mm */; };
+		4F5B65312249DD4600D40218 /* Test.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B65302249DD4600D40218 /* Test.mm */; };
 		4F5B65382249DDAE00D40218 /* WCObjectTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F54E6572238A0BB001A9BE2 /* WCObjectTool.m */; };
 		4F5B710D229D64710061A9D0 /* KeyedSubscriptingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B710C229D64710061A9D0 /* KeyedSubscriptingObject.m */; };
 		4F5B7110229D64840061A9D0 /* IndexedSubscriptingObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B710F229D64840061A9D0 /* IndexedSubscriptingObject.m */; };
-		4F5B7115229D686C0061A9D0 /* Tests_NSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B7114229D686C0061A9D0 /* Tests_NSObject.m */; };
+		4F5B7115229D686C0061A9D0 /* Test_NSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B7114229D686C0061A9D0 /* Test_NSObject.m */; };
 		4F650EA0223967DB002BA46F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F650E9F223967DB002BA46F /* AppDelegate.m */; };
 		4F650EA3223967DB002BA46F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F650EA2223967DB002BA46F /* ViewController.m */; };
 		4F650EA8223967DD002BA46F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F650EA7223967DD002BA46F /* Assets.xcassets */; };
@@ -69,6 +87,42 @@
 		4F161AB1231E934000A22350 /* SwizzleMethodByBlockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwizzleMethodByBlockViewController.h; sourceTree = "<group>"; };
 		4F161AB3231E935400A22350 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F161AB4231E935400A22350 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		4F35B9D92324FC30001637AB /* ObtainWeakVariableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObtainWeakVariableViewController.h; sourceTree = "<group>"; };
+		4F35B9DA2324FC30001637AB /* SetIVarDirectlyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetIVarDirectlyViewController.m; sourceTree = "<group>"; };
+		4F35B9DB2324FC30001637AB /* CreateDynamicDelegateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateDynamicDelegateViewController.h; sourceTree = "<group>"; };
+		4F35B9DC2324FC30001637AB /* CreateDynamicDelegateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateDynamicDelegateViewController.m; sourceTree = "<group>"; };
+		4F35B9DD2324FC30001637AB /* IsaSwizzlingIssueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsaSwizzlingIssueViewController.h; sourceTree = "<group>"; };
+		4F35B9E12324FC31001637AB /* IsaSwizzlingIssueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IsaSwizzlingIssueViewController.m; sourceTree = "<group>"; };
+		4F35B9E22324FC31001637AB /* AllModelsProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllModelsProtocol.h; sourceTree = "<group>"; };
+		4F35B9E32324FC31001637AB /* IsaSwizzlingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IsaSwizzlingViewController.m; sourceTree = "<group>"; };
+		4F35B9E72324FC31001637AB /* SetIVarDirectlyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetIVarDirectlyViewController.h; sourceTree = "<group>"; };
+		4F35B9E82324FC31001637AB /* CreateClassAtRuntimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateClassAtRuntimeViewController.h; sourceTree = "<group>"; };
+		4F35B9EA2324FC31001637AB /* CreateClassAtRuntimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateClassAtRuntimeViewController.m; sourceTree = "<group>"; };
+		4F35B9EB2324FC31001637AB /* ObtainWeakVariableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObtainWeakVariableViewController.m; sourceTree = "<group>"; };
+		4F35B9ED2324FC31001637AB /* SomeSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SomeSDK.h; sourceTree = "<group>"; };
+		4F35B9EE2324FC31001637AB /* PublicModelsForSomeSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicModelsForSomeSDK.h; sourceTree = "<group>"; };
+		4F35B9EF2324FC31001637AB /* PublicModelsForSomeSDK_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicModelsForSomeSDK_Internal.h; sourceTree = "<group>"; };
+		4F35B9F02324FC31001637AB /* CreateDynamicParamModelViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateDynamicParamModelViewController.m; sourceTree = "<group>"; };
+		4F35B9F12324FC31001637AB /* SomeSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SomeSDK.m; sourceTree = "<group>"; };
+		4F35B9F22324FC31001637AB /* PublicModelsForSomeSDK.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicModelsForSomeSDK.m; sourceTree = "<group>"; };
+		4F35B9F32324FC31001637AB /* CreateDynamicParamModelViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateDynamicParamModelViewController.h; sourceTree = "<group>"; };
+		4F35B9F42324FC31001637AB /* CreateDynamicDelegateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CreateDynamicDelegateViewController.xib; sourceTree = "<group>"; };
+		4F35B9F62324FC32001637AB /* SimpleDynamicSubclassViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleDynamicSubclassViewController.h; sourceTree = "<group>"; };
+		4F35B9F72324FC32001637AB /* IsaSwizzlingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsaSwizzlingViewController.h; sourceTree = "<group>"; };
+		4F35B9F82324FC32001637AB /* SimpleDynamicSubclassViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleDynamicSubclassViewController.m; sourceTree = "<group>"; };
+		4F35BA0B2324FDA1001637AB /* WCRTProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCRTProperty.m; sourceTree = "<group>"; };
+		4F35BA0C2324FDA1001637AB /* NSObject+WCObjCRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+WCObjCRuntime.m"; sourceTree = "<group>"; };
+		4F35BA0D2324FDA1001637AB /* WCRTMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCRTMethod.h; sourceTree = "<group>"; };
+		4F35BA0E2324FDA1001637AB /* WCRTProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCRTProtocol.h; sourceTree = "<group>"; };
+		4F35BA0F2324FDA1001637AB /* WCRTIvar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCRTIvar.m; sourceTree = "<group>"; };
+		4F35BA102324FDA1001637AB /* WCRTUnregisteredClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCRTUnregisteredClass.m; sourceTree = "<group>"; };
+		4F35BA112324FDA1001637AB /* WCRTProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCRTProperty.h; sourceTree = "<group>"; };
+		4F35BA122324FDA1001637AB /* NSObject+WCObjCRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+WCObjCRuntime.h"; sourceTree = "<group>"; };
+		4F35BA132324FDA1001637AB /* WCRTProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCRTProtocol.m; sourceTree = "<group>"; };
+		4F35BA142324FDA1001637AB /* WCRTMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCRTMethod.m; sourceTree = "<group>"; };
+		4F35BA152324FDA1001637AB /* WCRTUnregisteredClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCRTUnregisteredClass.h; sourceTree = "<group>"; };
+		4F35BA162324FDA1001637AB /* WCRTIvar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCRTIvar.h; sourceTree = "<group>"; };
+		4F35BA2C23250101001637AB /* Test_property.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_property.m; sourceTree = "<group>"; };
 		4F3ADDE222649BFA0044D0FB /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		4F54E6562238A0BB001A9BE2 /* WCObjectTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCObjectTool.h; sourceTree = "<group>"; };
 		4F54E6572238A0BB001A9BE2 /* WCObjectTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCObjectTool.m; sourceTree = "<group>"; };
@@ -94,14 +148,14 @@
 		4F57328D224B133400EFB1CF /* Thing.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Thing.m; sourceTree = "<group>"; };
 		4F57328F224B134500EFB1CF /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		4F573290224B134500EFB1CF /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
-		4F5B652E2249DD4600D40218 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F5B65302249DD4600D40218 /* Tests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Tests.mm; sourceTree = "<group>"; };
+		4F5B652E2249DD4600D40218 /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F5B65302249DD4600D40218 /* Test.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Test.mm; sourceTree = "<group>"; };
 		4F5B65322249DD4600D40218 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F5B710B229D64710061A9D0 /* KeyedSubscriptingObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyedSubscriptingObject.h; sourceTree = "<group>"; };
 		4F5B710C229D64710061A9D0 /* KeyedSubscriptingObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyedSubscriptingObject.m; sourceTree = "<group>"; };
 		4F5B710E229D64840061A9D0 /* IndexedSubscriptingObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndexedSubscriptingObject.h; sourceTree = "<group>"; };
 		4F5B710F229D64840061A9D0 /* IndexedSubscriptingObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndexedSubscriptingObject.m; sourceTree = "<group>"; };
-		4F5B7114229D686C0061A9D0 /* Tests_NSObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSObject.m; sourceTree = "<group>"; };
+		4F5B7114229D686C0061A9D0 /* Test_NSObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_NSObject.m; sourceTree = "<group>"; };
 		4F650E9C223967DB002BA46F /* InitializeMethodInCategory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InitializeMethodInCategory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F650E9E223967DB002BA46F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F650E9F223967DB002BA46F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -167,6 +221,23 @@
 		4F161AAF231E92D400A22350 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F35B9EC2324FC31001637AB /* CreateDynamicParamModel */,
+				4F35B9E22324FC31001637AB /* AllModelsProtocol.h */,
+				4F35B9E82324FC31001637AB /* CreateClassAtRuntimeViewController.h */,
+				4F35B9EA2324FC31001637AB /* CreateClassAtRuntimeViewController.m */,
+				4F35B9DB2324FC30001637AB /* CreateDynamicDelegateViewController.h */,
+				4F35B9DC2324FC30001637AB /* CreateDynamicDelegateViewController.m */,
+				4F35B9F42324FC31001637AB /* CreateDynamicDelegateViewController.xib */,
+				4F35B9DD2324FC30001637AB /* IsaSwizzlingIssueViewController.h */,
+				4F35B9E12324FC31001637AB /* IsaSwizzlingIssueViewController.m */,
+				4F35B9F72324FC32001637AB /* IsaSwizzlingViewController.h */,
+				4F35B9E32324FC31001637AB /* IsaSwizzlingViewController.m */,
+				4F35B9D92324FC30001637AB /* ObtainWeakVariableViewController.h */,
+				4F35B9EB2324FC31001637AB /* ObtainWeakVariableViewController.m */,
+				4F35B9E72324FC31001637AB /* SetIVarDirectlyViewController.h */,
+				4F35B9DA2324FC30001637AB /* SetIVarDirectlyViewController.m */,
+				4F35B9F62324FC32001637AB /* SimpleDynamicSubclassViewController.h */,
+				4F35B9F82324FC32001637AB /* SimpleDynamicSubclassViewController.m */,
 				4F161AB1231E934000A22350 /* SwizzleMethodByBlockViewController.h */,
 				4F161AB0231E934000A22350 /* SwizzleMethodByBlockViewController.m */,
 				4F7E7F85231ECE9700E91F0E /* SwizzleMethodByCategoryMethodViewController.h */,
@@ -175,6 +246,39 @@
 				4FD758C32324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F35B9EC2324FC31001637AB /* CreateDynamicParamModel */ = {
+			isa = PBXGroup;
+			children = (
+				4F35B9ED2324FC31001637AB /* SomeSDK.h */,
+				4F35B9F12324FC31001637AB /* SomeSDK.m */,
+				4F35B9EE2324FC31001637AB /* PublicModelsForSomeSDK.h */,
+				4F35B9EF2324FC31001637AB /* PublicModelsForSomeSDK_Internal.h */,
+				4F35B9F22324FC31001637AB /* PublicModelsForSomeSDK.m */,
+				4F35B9F32324FC31001637AB /* CreateDynamicParamModelViewController.h */,
+				4F35B9F02324FC31001637AB /* CreateDynamicParamModelViewController.m */,
+			);
+			path = CreateDynamicParamModel;
+			sourceTree = "<group>";
+		};
+		4F35BA0A2324FDA1001637AB /* WCObjCRuntime */ = {
+			isa = PBXGroup;
+			children = (
+				4F35BA0E2324FDA1001637AB /* WCRTProtocol.h */,
+				4F35BA162324FDA1001637AB /* WCRTIvar.h */,
+				4F35BA0F2324FDA1001637AB /* WCRTIvar.m */,
+				4F35BA0B2324FDA1001637AB /* WCRTProperty.m */,
+				4F35BA132324FDA1001637AB /* WCRTProtocol.m */,
+				4F35BA152324FDA1001637AB /* WCRTUnregisteredClass.h */,
+				4F35BA102324FDA1001637AB /* WCRTUnregisteredClass.m */,
+				4F35BA112324FDA1001637AB /* WCRTProperty.h */,
+				4F35BA122324FDA1001637AB /* NSObject+WCObjCRuntime.h */,
+				4F35BA0C2324FDA1001637AB /* NSObject+WCObjCRuntime.m */,
+				4F35BA0D2324FDA1001637AB /* WCRTMethod.h */,
+				4F35BA142324FDA1001637AB /* WCRTMethod.m */,
+			);
+			path = WCObjCRuntime;
 			sourceTree = "<group>";
 		};
 		4F3ADDE122649BFA0044D0FB /* Frameworks */ = {
@@ -241,20 +345,21 @@
 			path = DummyClasses;
 			sourceTree = "<group>";
 		};
-		4F5B652F2249DD4600D40218 /* Tests */ = {
+		4F5B652F2249DD4600D40218 /* Test */ = {
 			isa = PBXGroup;
 			children = (
 				4F57328B224B131C00EFB1CF /* DummyClasses */,
-				4F5B65302249DD4600D40218 /* Tests.mm */,
+				4F5B65302249DD4600D40218 /* Test.mm */,
 				4F110EE8231F5E92006C9AFD /* Test_bridge.m */,
 				4F110EE7231F5E92006C9AFD /* Test_IMP.m */,
 				4F110EE9231F5E92006C9AFD /* Test_retainCount.m */,
 				4F110EE4231F5E92006C9AFD /* Test_selector.m */,
 				4F110EE5231F5E92006C9AFD /* Test_weak.m */,
-				4F5B7114229D686C0061A9D0 /* Tests_NSObject.m */,
+				4F5B7114229D686C0061A9D0 /* Test_NSObject.m */,
+				4F35BA2C23250101001637AB /* Test_property.m */,
 				4F5B65322249DD4600D40218 /* Info.plist */,
 			);
-			path = Tests;
+			path = Test;
 			sourceTree = "<group>";
 		};
 		4F650E9D223967DB002BA46F /* InitializeMethodInCategory */ = {
@@ -275,12 +380,13 @@
 		4FFE71972236AC550020516E = {
 			isa = PBXGroup;
 			children = (
+				4F35BA0A2324FDA1001637AB /* WCObjCRuntime */,
 				4F54E6552238A08A001A9BE2 /* WCObjectTool */,
 				4FFE71A22236AC550020516E /* HelloNSObject */,
 				4F54E65E2238A1C7001A9BE2 /* OrderOfCallLoadMethodInNSObject */,
 				4F54E6782238B49F001A9BE2 /* OrderOfCallInitializeMethodInNSObject */,
 				4F650E9D223967DB002BA46F /* InitializeMethodInCategory */,
-				4F5B652F2249DD4600D40218 /* Tests */,
+				4F5B652F2249DD4600D40218 /* Test */,
 				4FFE71A12236AC550020516E /* Products */,
 				4F3ADDE122649BFA0044D0FB /* Frameworks */,
 			);
@@ -293,7 +399,7 @@
 				4F54E65D2238A1C7001A9BE2 /* OrderOfCallLoadMethodInNSObject.app */,
 				4F54E6772238B49F001A9BE2 /* OrderOfCallInitializeMethodInNSObject.app */,
 				4F650E9C223967DB002BA46F /* InitializeMethodInCategory.app */,
-				4F5B652E2249DD4600D40218 /* Tests.xctest */,
+				4F5B652E2249DD4600D40218 /* Test.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -351,9 +457,9 @@
 			productReference = 4F54E6772238B49F001A9BE2 /* OrderOfCallInitializeMethodInNSObject.app */;
 			productType = "com.apple.product-type.application";
 		};
-		4F5B652D2249DD4600D40218 /* Tests */ = {
+		4F5B652D2249DD4600D40218 /* Test */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4F5B65372249DD4600D40218 /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildConfigurationList = 4F5B65372249DD4600D40218 /* Build configuration list for PBXNativeTarget "Test" */;
 			buildPhases = (
 				4F5B652A2249DD4600D40218 /* Sources */,
 				4F5B652B2249DD4600D40218 /* Frameworks */,
@@ -364,9 +470,9 @@
 			dependencies = (
 				4F5B65342249DD4600D40218 /* PBXTargetDependency */,
 			);
-			name = Tests;
+			name = Test;
 			productName = Tests;
-			productReference = 4F5B652E2249DD4600D40218 /* Tests.xctest */;
+			productReference = 4F5B652E2249DD4600D40218 /* Test.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		4F650E9B223967DB002BA46F /* InitializeMethodInCategory */ = {
@@ -447,7 +553,7 @@
 				4F54E65C2238A1C7001A9BE2 /* OrderOfCallLoadMethodInNSObject */,
 				4F54E6762238B49F001A9BE2 /* OrderOfCallInitializeMethodInNSObject */,
 				4F650E9B223967DB002BA46F /* InitializeMethodInCategory */,
-				4F5B652D2249DD4600D40218 /* Tests */,
+				4F5B652D2249DD4600D40218 /* Test */,
 			);
 		};
 /* End PBXProject section */
@@ -492,6 +598,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FFE71B02236AC560020516E /* LaunchScreen.storyboard in Resources */,
+				4F35BA072324FC32001637AB /* CreateDynamicDelegateViewController.xib in Resources */,
 				4FFE71AD2236AC560020516E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -532,9 +639,10 @@
 				4F110EEA231F5E92006C9AFD /* Test_selector.m in Sources */,
 				4F5B65382249DDAE00D40218 /* WCObjectTool.m in Sources */,
 				4F5B7110229D64840061A9D0 /* IndexedSubscriptingObject.m in Sources */,
-				4F5B7115229D686C0061A9D0 /* Tests_NSObject.m in Sources */,
+				4F5B7115229D686C0061A9D0 /* Test_NSObject.m in Sources */,
+				4F35BA2D23250101001637AB /* Test_property.m in Sources */,
 				4F573291224B134500EFB1CF /* Person.m in Sources */,
-				4F5B65312249DD4600D40218 /* Tests.mm in Sources */,
+				4F5B65312249DD4600D40218 /* Test.mm in Sources */,
 				4F110EEF231F5E92006C9AFD /* Test_retainCount.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -553,10 +661,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F35BA092324FC32001637AB /* SimpleDynamicSubclassViewController.m in Sources */,
+				4F35BA002324FC32001637AB /* IsaSwizzlingIssueViewController.m in Sources */,
+				4F35BA182324FDA1001637AB /* NSObject+WCObjCRuntime.m in Sources */,
+				4F35BA022324FC32001637AB /* CreateClassAtRuntimeViewController.m in Sources */,
 				4FD758C12324F10C00BC1C2F /* SwizzleMethodByCategoryMethodViewController.m in Sources */,
+				4F35BA1A2324FDA1001637AB /* WCRTUnregisteredClass.m in Sources */,
+				4F35BA062324FC32001637AB /* PublicModelsForSomeSDK.m in Sources */,
 				4FD758C42324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.m in Sources */,
+				4F35B9FB2324FC32001637AB /* SetIVarDirectlyViewController.m in Sources */,
+				4F35BA172324FDA1001637AB /* WCRTProperty.m in Sources */,
 				4F54E6582238A0BB001A9BE2 /* WCObjectTool.m in Sources */,
+				4F35BA032324FC32001637AB /* ObtainWeakVariableViewController.m in Sources */,
+				4F35BA1C2324FDA1001637AB /* WCRTMethod.m in Sources */,
+				4F35B9FC2324FC32001637AB /* CreateDynamicDelegateViewController.m in Sources */,
+				4F35BA042324FC32001637AB /* CreateDynamicParamModelViewController.m in Sources */,
+				4F35BA1B2324FDA1001637AB /* WCRTProtocol.m in Sources */,
+				4F35BA012324FC32001637AB /* IsaSwizzlingViewController.m in Sources */,
 				4F161AB2231E934000A22350 /* SwizzleMethodByBlockViewController.m in Sources */,
+				4F35BA052324FC32001637AB /* SomeSDK.m in Sources */,
+				4F35BA192324FDA1001637AB /* WCRTIvar.m in Sources */,
 				4FFE71B32236AC560020516E /* main.mm in Sources */,
 				4FFE71A52236AC550020516E /* AppDelegate.m in Sources */,
 				4F161AB5231E935400A22350 /* RootViewController.m in Sources */,
@@ -680,7 +804,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = Test/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -701,7 +825,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = Tests/Info.plist;
+				INFOPLIST_FILE = Test/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -911,7 +1035,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4F5B65372249DD4600D40218 /* Build configuration list for PBXNativeTarget "Tests" */ = {
+		4F5B65372249DD4600D40218 /* Build configuration list for PBXNativeTarget "Test" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4F5B65352249DD4600D40218 /* Debug */,

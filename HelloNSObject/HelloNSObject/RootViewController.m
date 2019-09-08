@@ -11,6 +11,7 @@
 #import "SwizzleMethodByBlockViewController.h"
 #import "SwizzleMethodByCategoryMethodViewController.h"
 #import "SwizzleMethodByCFunctionViewController.h"
+#import "CreateClassAtRuntimeViewController.h"
 
 //#import "GetPropertiesOfClassViewController.h"
 //#import "CheckNSObjectIsaVariableViewController.h"
@@ -49,6 +50,7 @@
         @"Swizzle method by block",
         @"Swizzle method by category method",
         @"Swizzle method by C function",
+        @"Create class at runtime",
 //        @"Get properties of a class",
 //        @"浅析NSObject的isa实例变量",
         
@@ -66,6 +68,7 @@
         [SwizzleMethodByBlockViewController class],
         [SwizzleMethodByCategoryMethodViewController class],
         [SwizzleMethodByCFunctionViewController class],
+        [CreateClassAtRuntimeViewController class],
 //        [GetPropertiesOfClassViewController class],
 //        [CheckNSObjectIsaVariableViewController class],
         
