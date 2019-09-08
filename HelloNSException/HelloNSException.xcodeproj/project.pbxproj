@@ -7,6 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F35BA1F2324FEEE001637AB /* SkipUnsafeMethodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35BA1E2324FEEE001637AB /* SkipUnsafeMethodViewController.m */; };
+		4F35BA222324FF45001637AB /* InterceptDoesNotRecognizeSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35BA202324FF45001637AB /* InterceptDoesNotRecognizeSelectorViewController.m */; };
+		4F35BA292324FF78001637AB /* WCCrashTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35BA232324FF78001637AB /* WCCrashTool.m */; };
+		4F35BA2A2324FF78001637AB /* MethodUnrecognizedGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35BA252324FF78001637AB /* MethodUnrecognizedGuard.m */; };
+		4F35BA2B2324FF78001637AB /* UncatchExceptionGuard.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35BA272324FF78001637AB /* UncatchExceptionGuard.m */; };
+		4F35BA3123250236001637AB /* WCObjectTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35BA3023250236001637AB /* WCObjectTool.m */; };
+		4F35BA3B23250299001637AB /* UnsafeFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F35BA3923250299001637AB /* UnsafeFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4F35BA3E23250299001637AB /* UnsafeFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F35BA3723250299001637AB /* UnsafeFramework.framework */; };
+		4F35BA3F23250299001637AB /* UnsafeFramework.framework in Copy Files (1 item) */ = {isa = PBXBuildFile; fileRef = 4F35BA3723250299001637AB /* UnsafeFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4F35BA45232502EE001637AB /* CrashMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F35BA43232502EE001637AB /* CrashMaker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4F35BA46232502EE001637AB /* CrashMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35BA44232502EE001637AB /* CrashMaker.m */; };
 		4F58CEFA217717DF00D0FD17 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F58CEF5217717DF00D0FD17 /* RootViewController.m */; };
 		4F5B08EA21FEABEF00EE7C2E /* BaseTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B08E221FEABEF00EE7C2E /* BaseTableViewController.m */; };
 		4F5B08EB21FEABEF00EE7C2E /* DisplayTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B08E521FEABEF00EE7C2E /* DisplayTextViewController.m */; };
@@ -28,6 +39,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		4F35BA3C23250299001637AB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F74691A214E42B30079F654 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F35BA3623250299001637AB;
+			remoteInfo = UnsafeFramework;
+		};
 		4F746944214E42C50079F654 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4F74691A214E42B30079F654 /* Project object */;
@@ -45,6 +63,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				4F5B08FF21FEAE2800EE7C2E /* WCDebugKit.framework in Copy Files (1 item) */,
+				4F35BA3F23250299001637AB /* UnsafeFramework.framework in Copy Files (1 item) */,
 			);
 			name = "Copy Files (1 item)";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,6 +71,23 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4F35BA1D2324FEEE001637AB /* SkipUnsafeMethodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkipUnsafeMethodViewController.h; sourceTree = "<group>"; };
+		4F35BA1E2324FEEE001637AB /* SkipUnsafeMethodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkipUnsafeMethodViewController.m; sourceTree = "<group>"; };
+		4F35BA202324FF45001637AB /* InterceptDoesNotRecognizeSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterceptDoesNotRecognizeSelectorViewController.m; sourceTree = "<group>"; };
+		4F35BA212324FF45001637AB /* InterceptDoesNotRecognizeSelectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InterceptDoesNotRecognizeSelectorViewController.h; sourceTree = "<group>"; };
+		4F35BA232324FF78001637AB /* WCCrashTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCCrashTool.m; sourceTree = "<group>"; };
+		4F35BA242324FF78001637AB /* MethodUnrecognizedGuard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MethodUnrecognizedGuard.h; sourceTree = "<group>"; };
+		4F35BA252324FF78001637AB /* MethodUnrecognizedGuard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MethodUnrecognizedGuard.m; sourceTree = "<group>"; };
+		4F35BA262324FF78001637AB /* UncatchExceptionGuard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UncatchExceptionGuard.h; sourceTree = "<group>"; };
+		4F35BA272324FF78001637AB /* UncatchExceptionGuard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UncatchExceptionGuard.m; sourceTree = "<group>"; };
+		4F35BA282324FF78001637AB /* WCCrashTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCCrashTool.h; sourceTree = "<group>"; };
+		4F35BA2F23250236001637AB /* WCObjectTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCObjectTool.h; sourceTree = "<group>"; };
+		4F35BA3023250236001637AB /* WCObjectTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCObjectTool.m; sourceTree = "<group>"; };
+		4F35BA3723250299001637AB /* UnsafeFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UnsafeFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F35BA3923250299001637AB /* UnsafeFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnsafeFramework.h; sourceTree = "<group>"; };
+		4F35BA3A23250299001637AB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F35BA43232502EE001637AB /* CrashMaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashMaker.h; sourceTree = "<group>"; };
+		4F35BA44232502EE001637AB /* CrashMaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrashMaker.m; sourceTree = "<group>"; };
 		4F58CEF5217717DF00D0FD17 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F58CEF6217717DF00D0FD17 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F5B08E221FEABEF00EE7C2E /* BaseTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseTableViewController.m; sourceTree = "<group>"; };
@@ -86,10 +122,18 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4F35BA3423250299001637AB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4F74691F214E42B30079F654 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F35BA3E23250299001637AB /* UnsafeFramework.framework in Frameworks */,
 				4F5B08FD21FEAE0300EE7C2E /* WCDebugKit.framework in Frameworks */,
 				4F5B08FB21FEADAF00EE7C2E /* Reveal.framework in Frameworks */,
 			);
@@ -105,9 +149,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F35BA2E2325020C001637AB /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F35BA2F23250236001637AB /* WCObjectTool.h */,
+				4F35BA3023250236001637AB /* WCObjectTool.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		4F35BA3823250299001637AB /* UnsafeFramework */ = {
+			isa = PBXGroup;
+			children = (
+				4F35BA43232502EE001637AB /* CrashMaker.h */,
+				4F35BA44232502EE001637AB /* CrashMaker.m */,
+				4F35BA3923250299001637AB /* UnsafeFramework.h */,
+				4F35BA3A23250299001637AB /* Info.plist */,
+			);
+			path = UnsafeFramework;
+			sourceTree = "<group>";
+		};
 		4F58CEF7217717DF00D0FD17 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F35BA212324FF45001637AB /* InterceptDoesNotRecognizeSelectorViewController.h */,
+				4F35BA202324FF45001637AB /* InterceptDoesNotRecognizeSelectorViewController.m */,
+				4F35BA1D2324FEEE001637AB /* SkipUnsafeMethodViewController.h */,
+				4F35BA1E2324FEEE001637AB /* SkipUnsafeMethodViewController.m */,
 				4F5B08E721FEABEF00EE7C2E /* BaseTableViewController.h */,
 				4F5B08E221FEABEF00EE7C2E /* BaseTableViewController.m */,
 				4F5B08E421FEABEF00EE7C2E /* DisplayTextViewController.h */,
@@ -123,10 +191,16 @@
 		4F5B08F021FEAC4100EE7C2E /* WCUncaughtExceptionTool */ = {
 			isa = PBXGroup;
 			children = (
+				4F35BA242324FF78001637AB /* MethodUnrecognizedGuard.h */,
+				4F35BA252324FF78001637AB /* MethodUnrecognizedGuard.m */,
+				4F35BA262324FF78001637AB /* UncatchExceptionGuard.h */,
+				4F35BA272324FF78001637AB /* UncatchExceptionGuard.m */,
+				4F35BA282324FF78001637AB /* WCCrashTool.h */,
+				4F35BA232324FF78001637AB /* WCCrashTool.m */,
 				4F5B08F121FEAC4100EE7C2E /* WCCrashCaseTool.h */,
+				4F5B08F421FEAC4100EE7C2E /* WCCrashCaseTool.m */,
 				4F5B08F221FEAC4100EE7C2E /* WCUncaughtExceptionTool.h */,
 				4F5B08F321FEAC4100EE7C2E /* WCUncaughtExceptionTool.m */,
-				4F5B08F421FEAC4100EE7C2E /* WCCrashCaseTool.m */,
 			);
 			path = WCUncaughtExceptionTool;
 			sourceTree = "<group>";
@@ -155,6 +229,7 @@
 				4F5B08F821FEADAF00EE7C2E /* WCDebugKit.framework */,
 				4F746924214E42B30079F654 /* HelloNSException */,
 				4F746940214E42C50079F654 /* Tests */,
+				4F35BA3823250299001637AB /* UnsafeFramework */,
 				4F746923214E42B30079F654 /* Products */,
 				4F5B08FC21FEAE0300EE7C2E /* Frameworks */,
 			);
@@ -165,6 +240,7 @@
 			children = (
 				4F746922214E42B30079F654 /* HelloNSException.app */,
 				4F74693F214E42C50079F654 /* Tests.xctest */,
+				4F35BA3723250299001637AB /* UnsafeFramework.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -172,6 +248,7 @@
 		4F746924214E42B30079F654 /* HelloNSException */ = {
 			isa = PBXGroup;
 			children = (
+				4F35BA2E2325020C001637AB /* Tools */,
 				4F5B08EE21FEAC4100EE7C2E /* UncaughtExceptionHandler.h */,
 				4F5B08EF21FEAC4100EE7C2E /* UncaughtExceptionHandler.m */,
 				4F5B08F021FEAC4100EE7C2E /* WCUncaughtExceptionTool */,
@@ -200,7 +277,37 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		4F35BA3223250299001637AB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F35BA3B23250299001637AB /* UnsafeFramework.h in Headers */,
+				4F35BA45232502EE001637AB /* CrashMaker.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
+		4F35BA3623250299001637AB /* UnsafeFramework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F35BA4023250299001637AB /* Build configuration list for PBXNativeTarget "UnsafeFramework" */;
+			buildPhases = (
+				4F35BA3223250299001637AB /* Headers */,
+				4F35BA3323250299001637AB /* Sources */,
+				4F35BA3423250299001637AB /* Frameworks */,
+				4F35BA3523250299001637AB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UnsafeFramework;
+			productName = UnsafeFramework;
+			productReference = 4F35BA3723250299001637AB /* UnsafeFramework.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		4F746921214E42B30079F654 /* HelloNSException */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4F746938214E42B50079F654 /* Build configuration list for PBXNativeTarget "HelloNSException" */;
@@ -213,6 +320,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4F35BA3D23250299001637AB /* PBXTargetDependency */,
 			);
 			name = HelloNSException;
 			productName = HelloNSException;
@@ -246,6 +354,9 @@
 				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = wesley_chen;
 				TargetAttributes = {
+					4F35BA3623250299001637AB = {
+						CreatedOnToolsVersion = 10.3;
+					};
 					4F746921214E42B30079F654 = {
 						CreatedOnToolsVersion = 9.4.1;
 					};
@@ -270,11 +381,19 @@
 			targets = (
 				4F746921214E42B30079F654 /* HelloNSException */,
 				4F74693E214E42C50079F654 /* Tests */,
+				4F35BA3623250299001637AB /* UnsafeFramework */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4F35BA3523250299001637AB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4F746920214E42B30079F654 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -294,6 +413,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4F35BA3323250299001637AB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F35BA46232502EE001637AB /* CrashMaker.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4F74691E214E42B30079F654 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -301,11 +428,17 @@
 				4F746935214E42B50079F654 /* main.m in Sources */,
 				4F5B08F621FEAC4100EE7C2E /* WCUncaughtExceptionTool.m in Sources */,
 				4F5B08F521FEAC4100EE7C2E /* UncaughtExceptionHandler.m in Sources */,
+				4F35BA2A2324FF78001637AB /* MethodUnrecognizedGuard.m in Sources */,
 				4F5B08EB21FEABEF00EE7C2E /* DisplayTextViewController.m in Sources */,
+				4F35BA222324FF45001637AB /* InterceptDoesNotRecognizeSelectorViewController.m in Sources */,
 				4F5B08EC21FEABEF00EE7C2E /* UseExceptionHanderViewController.m in Sources */,
 				4F5B08F721FEAC4100EE7C2E /* WCCrashCaseTool.m in Sources */,
 				4F58CEFA217717DF00D0FD17 /* RootViewController.m in Sources */,
 				4F746927214E42B30079F654 /* AppDelegate.m in Sources */,
+				4F35BA3123250236001637AB /* WCObjectTool.m in Sources */,
+				4F35BA2B2324FF78001637AB /* UncatchExceptionGuard.m in Sources */,
+				4F35BA292324FF78001637AB /* WCCrashTool.m in Sources */,
+				4F35BA1F2324FEEE001637AB /* SkipUnsafeMethodViewController.m in Sources */,
 				4F5B08ED21FEABEF00EE7C2E /* UseSignalHandlerViewController.m in Sources */,
 				4F5B090321FEB2D500EE7C2E /* WCExceptionTool.m in Sources */,
 				4F5B08EA21FEABEF00EE7C2E /* BaseTableViewController.m in Sources */,
@@ -324,6 +457,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		4F35BA3D23250299001637AB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F35BA3623250299001637AB /* UnsafeFramework */;
+			targetProxy = 4F35BA3C23250299001637AB /* PBXContainerItemProxy */;
+		};
 		4F746945214E42C50079F654 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4F746921214E42B30079F654 /* HelloNSException */;
@@ -343,6 +481,65 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4F35BA4123250299001637AB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QVRKK2EEDF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = UnsafeFramework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.UnsafeFramework;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4F35BA4223250299001637AB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QVRKK2EEDF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = UnsafeFramework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.UnsafeFramework;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		4F746936214E42B50079F654 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -546,6 +743,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4F35BA4023250299001637AB /* Build configuration list for PBXNativeTarget "UnsafeFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F35BA4123250299001637AB /* Debug */,
+				4F35BA4223250299001637AB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4F74691D214E42B30079F654 /* Build configuration list for PBXProject "HelloNSException" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
