@@ -197,6 +197,15 @@ typedef struct selBlockPair {
  */
 + (BOOL)exchangeIMPWithClass:(Class)cls selector1:(SEL)selector1 selector2:(SEL)selector2;
 
+/**
+ Exchange the IMP directly
+
+ @param cls the Class to modify
+ @param swizzledIMP the swizzled C function
+ @param originalSelector the original selector which should exist
+ @param originalIMPPtr the original C function
+ @return YES if the operate successfull. NO if any error occurred internally.
+ */
 + (BOOL)exchangeIMPWithClass:(Class)cls swizzledIMP:(IMP)swizzledIMP originalSelector:(SEL)originalSelector originalIMPPtr:(IMPPtr _Nonnull)originalIMPPtr;
 
 #pragma mark > Swizzle Assistant Method
