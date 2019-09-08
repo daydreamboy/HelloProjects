@@ -1,5 +1,5 @@
 //
-//  SwizzleMethodByMethodViewController.h
+//  SwizzleMethodByCategoryMethodViewController.h
 //  HelloObjCRuntime
 //
 //  Created by wesley chen on 3/6/17.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SwizzleMethodByMethodViewController : UIViewController
+@interface SwizzleMethodByCategoryMethodViewController : UIViewController
 
 @end

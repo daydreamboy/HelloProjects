@@ -633,14 +633,7 @@ static void getSuper(Class class, NSMutableArray *result) {
     }
 }
 
-/**
- 
- 
- @param class the Class
- @param originalSelector the original selector
- @param swizzledSelector the swizzled selector
- */
-+ (BOOL)exchangeIMPForClass:(Class)class selector1:(SEL)selector1 selector2:(SEL)selector2 {
++ (BOOL)exchangeIMPWithClass:(Class)class selector1:(SEL)selector1 selector2:(SEL)selector2 {
     
     if (class == NULL || !sel_isMapped(selector1) || !sel_isMapped(selector2)) {
         return NO;
@@ -652,6 +645,32 @@ static void getSuper(Class class, NSMutableArray *result) {
     method_exchangeImplementations(originalMethod, swizzledMethod);
     
     return YES;
+}
+
++ (BOOL)exchangeIMPWithClass:(Class)class swizzledIMP:(IMP)swizzledIMP originalSelector:(SEL)originalSelector originalIMPPtr:(IMPPtr)originalIMPPtr {
+    
+    if (class == NULL || swizzledIMP == NULL || !sel_isMapped(originalSelector)) {
+        return NO;
+    }
+    
+    IMP originalImp = NULL;
+    Method method = class_getInstanceMethod(class, originalSelector);
+    if (method) {
+        const char *type = method_getTypeEncoding(method);
+        // Note: add new method or replace the existing method
+        originalImp = class_replaceMethod(class, originalSelector, swizzledIMP, type);
+        if (!originalImp) {
+            // Note: if originalImp is nil, that's case which add new method, so get the
+            // originalSelector's IMP
+            originalImp = method_getImplementation(method);
+        }
+    }
+    
+    if (originalImp && originalIMPPtr) {
+        *originalIMPPtr = originalImp;
+    }
+    
+    return (originalImp != NULL);
 }
 
 #pragma mark > Swizzle Assistant Method

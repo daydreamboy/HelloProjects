@@ -45,4 +45,28 @@
     XCTAssertTrue(strcmp("compare:", string) == 0);
 }
 
+- (void)test_sel_isMapped {
+    BOOL output;
+    
+    // Note: sel_isMapped not work, the methodNotExist method has no implementation,
+    // but sel_isMapped returns YES
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wundeclared-selector"
+    output = sel_isMapped(@selector(methodNotExist));
+    XCTAssertTrue(output);
+#pragma GCC diagnostic pop
+    
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wnonnull"
+    output = sel_isMapped(nil);
+    XCTAssertFalse(output);
+#pragma GCC diagnostic pop
+    
+    output = sel_isMapped(@selector(test_sel_isMapped));
+    XCTAssertTrue(output);
+    
+    output = sel_isMapped(@selector(compare:));
+    XCTAssertTrue(output);
+}
+
 @end

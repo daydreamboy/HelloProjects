@@ -9,7 +9,8 @@
 #import "RootViewController.h"
 
 #import "SwizzleMethodByBlockViewController.h"
-#import "SwizzleMethodByMethodViewController.h"
+#import "SwizzleMethodByCategoryMethodViewController.h"
+#import "SwizzleMethodByCFunctionViewController.h"
 
 //#import "GetPropertiesOfClassViewController.h"
 //#import "CheckNSObjectIsaVariableViewController.h"
@@ -46,7 +47,8 @@
     // MARK: Configure titles and classes for table view
     _titles = @[
         @"Swizzle method by block",
-        @"Swizzle method by method",
+        @"Swizzle method by category method",
+        @"Swizzle method by C function",
 //        @"Get properties of a class",
 //        @"浅析NSObject的isa实例变量",
         
@@ -62,7 +64,8 @@
     ];
     _classes = @[
         [SwizzleMethodByBlockViewController class],
-        [SwizzleMethodByMethodViewController class],
+        [SwizzleMethodByCategoryMethodViewController class],
+        [SwizzleMethodByCFunctionViewController class],
 //        [GetPropertiesOfClassViewController class],
 //        [CheckNSObjectIsaVariableViewController class],
         

@@ -195,7 +195,9 @@ typedef struct selBlockPair {
  @param selector2 the selector2
  @return YES if the operate successfull. NO if any error occurred internally.
  */
-+ (BOOL)exchangeIMPForClass:(Class)cls selector1:(SEL)selector1 selector2:(SEL)selector2;
++ (BOOL)exchangeIMPWithClass:(Class)cls selector1:(SEL)selector1 selector2:(SEL)selector2;
+
++ (BOOL)exchangeIMPWithClass:(Class)cls swizzledIMP:(IMP)swizzledIMP originalSelector:(SEL)originalSelector originalIMPPtr:(IMPPtr _Nonnull)originalIMPPtr;
 
 #pragma mark > Swizzle Assistant Method
 

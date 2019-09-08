@@ -16,19 +16,37 @@
 
 @implementation SwizzleMethodByBlockViewController
 
-+ (void)load {
-    SEL originalSelector = NSSelectorFromString(@"viewWillAppear:");
-    SEL swizzledSelector = [WCObjectTool swizzledSelectorWithSelector:originalSelector];
-    
-    // swizzle block's arguments must match the swizzled selector
-    void (^swizzleBlock)(UIViewController *, BOOL) = ^(UIViewController *slf, BOOL animated) {
-        NSLog(@"swizzled block called");
-        // change method signature to match the swizzledSelector
-        ((void(*)(id, SEL, BOOL))objc_msgSend)(slf, swizzledSelector, animated);
-    };
-    
-    [WCObjectTool exchangeIMPWithClass:[SwizzleMethodByBlockViewController class] originalSelector:originalSelector swizzledSelector:swizzledSelector swizzledBlock:swizzleBlock];
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        SEL originalSelector = NSSelectorFromString(@"viewWillAppear:");
+        SEL swizzledSelector = [WCObjectTool swizzledSelectorWithSelector:originalSelector];
+        
+        // swizzle block's arguments must match the swizzled selector
+        void (^swizzleBlock)(UIViewController *, BOOL) = ^(UIViewController *slf, BOOL animated) {
+            NSLog(@"swizzled block1 called");
+            // change method signature to match the swizzledSelector
+            ((void(*)(id, SEL, BOOL))objc_msgSend)(slf, swizzledSelector, animated);
+        };
+        
+        [WCObjectTool exchangeIMPWithClass:[SwizzleMethodByBlockViewController class] originalSelector:originalSelector swizzledSelector:swizzledSelector swizzledBlock:swizzleBlock];
+    }
+    return self;
 }
+
+//+ (void)load {
+//    SEL originalSelector = NSSelectorFromString(@"viewWillAppear:");
+//    SEL swizzledSelector = [WCObjectTool swizzledSelectorWithSelector:originalSelector];
+//
+//    // swizzle block's arguments must match the swizzled selector
+//    void (^swizzleBlock)(UIViewController *, BOOL) = ^(UIViewController *slf, BOOL animated) {
+//        NSLog(@"swizzled block called");
+//        // change method signature to match the swizzledSelector
+//        ((void(*)(id, SEL, BOOL))objc_msgSend)(slf, swizzledSelector, animated);
+//    };
+//
+//    [WCObjectTool exchangeIMPWithClass:[SwizzleMethodByBlockViewController class] originalSelector:originalSelector swizzledSelector:swizzledSelector swizzledBlock:swizzleBlock];
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,7 +55,7 @@
     SEL swizzledSelector = [WCObjectTool swizzledSelectorWithSelector:originalSelector];
     
     void (^swizzleBlock)(UIViewController *, BOOL) = ^(UIViewController *slf, BOOL animated) {
-        NSLog(@"swizzled block called");
+        NSLog(@"swizzled block2 called");
         // change method signature to match the swizzledSelector
         ((void(*)(id, SEL, BOOL))objc_msgSend)(slf, swizzledSelector, animated);
     };
@@ -72,7 +90,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     NSLog(@"%@", NSStringFromSelector(_cmd));
-    NSLog(@"this is orignal viewWillAppear:");
+    NSLog(@"this is original viewWillAppear:");
 }
 
 #pragma mark - Test Methods
