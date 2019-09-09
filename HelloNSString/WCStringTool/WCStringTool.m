@@ -30,8 +30,8 @@
         return CGSizeZero;
     }
     
-    // Note: `\n` will count for a line, so strip it
-    NSString *singleLineString = [string stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    // Note: `\n` and `\r` will count for a line, so strip it
+    NSString *singleLineString = [[string stringByReplacingOccurrencesOfString:@"\n" withString:@""] stringByReplacingOccurrencesOfString:@"\r" withString:@""];
     CGSize textSize = [singleLineString sizeWithAttributes:attributes];
     
     return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
