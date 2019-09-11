@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 
+// section 1
 #import "GlobalConcurrentQueueViewController.h"
 #import "CreateDispatchQueuesViewController.h"
 #import "GetCommonQueuesViewController.h"
@@ -17,9 +18,15 @@
 #import "ConcurrentLoopViewController.h"
 #import "SuspendAndResumeQueueViewController.h"
 #import "UseDispatchSemaphoreViewController.h"
-#import "UseDispatchGroupViewController.h"
 #import "CreateQueueInactiveViewController.h"
-#import "ExampleOfBatchDownloadImagesViewController.h"
+#import "AddBarrierTaskToConcurrentQueueViewController.h"
+#import "GetCurrentQueueViewController.h"
+
+// section 2
+#import "UseDispatchGroupViewController.h"
+
+// section 3
+#import "CreateADispatchSourceViewController.h"
 #import "CreateTimerDispatchSourceViewController.h"
 #import "CreateReadDispatchSourceViewController.h"
 #import "CreateWriteDispatchSourceViewController.h"
@@ -27,6 +34,11 @@
 #import "CreateDataBufferDispatchSourceViewController.h"
 #import "UseDispatchBenchmarkViewController.h"
 #import "UseDispatchIOViewController.h"
+
+// section 4
+#import "ExampleOfBatchDownloadImagesViewController.h"
+
+// section 5
 #import "DispatchOnceIssueCallStackViewController.h"
 
 #define kTitle @"Title"
@@ -54,19 +66,22 @@
 
     // MARK: Configure sectionTitles and classes for table view
     NSArray<NSDictionary *> *section1 = @[
-          @{ kTitle: @"Get Global Concurrent Queues", kClass: @"GlobalConcurrentQueueViewController" },
-          @{ kTitle: @"Create Serial Dispatch Queues", kClass: @"CreateDispatchQueuesViewController" },
-          @{ kTitle: @"Get Common Queues", kClass: @"GetCommonQueuesViewController" },
-          @{ kTitle: @"Set Single Context Data to Queues", kClass: @"SetSingleContextDataToQueueViewController" },
-          @{ kTitle: @"Add Task to Queue", kClass: @"AddTaskToQueueViewController" },
-          @{ kTitle: @"Add barrier Task to Concurrent Queue", kClass: @"AddBarrierTaskToConcurrentQueueViewController" },
-          @{ kTitle: @"Add Completion Block to Queue", kClass: @"AddCompletionBlockToQueueViewController" },
-          @{ kTitle: @"Use Concurrent Loop", kClass: @"ConcurrentLoopViewController" },
-          @{ kTitle: @"Suspend & Resume Queue", kClass: @"SuspendAndResumeQueueViewController" },
-          @{ kTitle: @"Use dispatch semaphore", kClass: @"UseDispatchSemaphoreViewController" },
-          @{ kTitle: @"Use dispatch group", kClass: @"UseDispatchGroupViewController" },
-          @{ kTitle: @"Create queue inactive", kClass: @"CreateQueueInactiveViewController" },
-          @{ kTitle: @"Get Current Queue", kClass: @"GetCurrentQueueViewController" },
+          @{ kTitle: @"Get Global Concurrent Queues", kClass: [GlobalConcurrentQueueViewController class] },
+          @{ kTitle: @"Create Serial Dispatch Queues", kClass: [CreateDispatchQueuesViewController class] },
+          @{ kTitle: @"Get Common Queues", kClass: [GetCommonQueuesViewController class] },
+          @{ kTitle: @"Set Single Context Data to Queues", kClass: [SetSingleContextDataToQueueViewController class] },
+          @{ kTitle: @"Add Task to Queue", kClass: [AddTaskToQueueViewController class] },
+          @{ kTitle: @"Add barrier Task to Concurrent Queue", kClass: [AddBarrierTaskToConcurrentQueueViewController class] },
+          @{ kTitle: @"Add Completion Block to Queue", kClass: [AddCompletionBlockToQueueViewController class] },
+          @{ kTitle: @"Use Concurrent Loop", kClass: [ConcurrentLoopViewController class] },
+          @{ kTitle: @"Suspend & Resume Queue", kClass: [SuspendAndResumeQueueViewController class] },
+          @{ kTitle: @"Use dispatch semaphore", kClass: [UseDispatchSemaphoreViewController class] },
+          @{ kTitle: @"Create queue inactive", kClass: [CreateQueueInactiveViewController class] },
+          @{ kTitle: @"Get Current Queue", kClass: [GetCurrentQueueViewController class] },
+    ];
+    
+    NSArray<NSDictionary *> *section2 = @[
+          @{ kTitle: @"Use dispatch group", kClass: [UseDispatchGroupViewController class] },
     ];
    
     /*
@@ -81,27 +96,28 @@
      #define DISPATCH_SOURCE_TYPE_VNODE
      #define DISPATCH_SOURCE_TYPE_WRITE
      */
-    NSArray<NSDictionary *> *section2 = @[
-          @{ kTitle: @"Create a Dispatch Source", kClass: @"CreateADispatchSourceViewController" },
-          @{ kTitle: @"Create Timer Dispatch Source", kClass: @"CreateTimerDispatchSourceViewController" },
-          @{ kTitle: @"Create Read Dispatch Source", kClass: @"CreateReadDispatchSourceViewController" },
-          @{ kTitle: @"Create Write Dispatch Source", kClass: @"CreateWriteDispatchSourceViewController" },
-          @{ kTitle: @"Create VNODE Dispatch Source", kClass: @"CreateVNodeDispatchSourceViewController" },
-          @{ kTitle: @"Usage of Dispatch Data", kClass: @"CreateDataBufferDispatchSourceViewController" },
-          @{ kTitle: @"Usage of Dispatch Benchmark", kClass: @"UseDispatchBenchmarkViewController" },
-          @{ kTitle: @"Usage of Dispatch I/O (TODO)", kClass: @"UseDispatchIOViewController" },
-    ];
-    
     NSArray<NSDictionary *> *section3 = @[
-          @{ kTitle: @"Example Of Batch Download Images", kClass: @"ExampleOfBatchDownloadImagesViewController" },
+          @{ kTitle: @"Create a Dispatch Source", kClass: [CreateADispatchSourceViewController class] },
+          @{ kTitle: @"Create Timer Dispatch Source", kClass: [CreateTimerDispatchSourceViewController class] },
+          @{ kTitle: @"Create Read Dispatch Source", kClass: [CreateReadDispatchSourceViewController class] },
+          @{ kTitle: @"Create Write Dispatch Source", kClass: [CreateWriteDispatchSourceViewController class] },
+          @{ kTitle: @"Create VNODE Dispatch Source", kClass: [CreateVNodeDispatchSourceViewController class] },
+          @{ kTitle: @"Usage of Dispatch Data", kClass: [CreateDataBufferDispatchSourceViewController class] },
+          @{ kTitle: @"Usage of Dispatch Benchmark", kClass: [UseDispatchBenchmarkViewController class] },
+          @{ kTitle: @"Usage of Dispatch I/O (TODO)", kClass: [UseDispatchIOViewController class] },
     ];
     
     NSArray<NSDictionary *> *section4 = @[
-          @{ kTitle: @"Crash happen in dispatch_once", kClass: @"DispatchOnceIssueCallStackViewController" },
+          @{ kTitle: @"Example Of Batch Download Images", kClass: [ExampleOfBatchDownloadImagesViewController class] },
+    ];
+    
+    NSArray<NSDictionary *> *section5 = @[
+          @{ kTitle: @"Crash happen in dispatch_once", kClass: [DispatchOnceIssueCallStackViewController class] },
     ];
     
     _sectionTitles = @[
         @"dispatch queue",
+        @"dispatch group",
         @"dispatch source",
         @"operation queue",
         @"GCD issues"
@@ -111,7 +127,8 @@
          section1,
          section2,
          section3,
-         section4
+         section4,
+         section5,
     ];
 }
 
@@ -152,18 +169,34 @@
 }
 
 - (void)pushViewController:(NSDictionary *)dict {
-    NSString *viewControllerClass = dict[kClass];
-    NSAssert([viewControllerClass isKindOfClass:[NSString class]], @"%@ is not NSString", viewControllerClass);
+    id viewControllerClass = dict[kClass];
     
-    Class class = NSClassFromString(viewControllerClass);
-    if (class && [class isSubclassOfClass:[UIViewController class]]) {
-        
+    id class = viewControllerClass;
+    if ([class isKindOfClass:[NSString class]]) {
+        SEL selector = NSSelectorFromString(viewControllerClass);
+        if ([self respondsToSelector:selector]) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
+            [self performSelector:selector];
+#pragma GCC diagnostic pop
+        }
+        else {
+            NSAssert(NO, @"can't handle selector `%@`", viewControllerClass);
+        }
+    }
+    else if (class && [class isSubclassOfClass:[UIViewController class]]) {
         UIViewController *vc = [[class alloc] init];
         vc.title = dict[kTitle];
         
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
         [self.navigationController pushViewController:vc animated:YES];
     }
+}
+
+#pragma mark - Test Methods
+
+- (void)testMethod {
+    NSLog(@"test something");
 }
 
 @end

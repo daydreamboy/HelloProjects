@@ -219,6 +219,7 @@
 			children = (
 				4F06A3A32064E00300DDDAF1 /* GCD issues */,
 				2B401FD91E06E9A500D998FA /* dispatch queue */,
+				4FF514FD23290DFD006753C2 /* dispatch group */,
 				2B401FF21E06E9A500D998FA /* dispatch source */,
 				4F01E3481FDE238700E290BD /* operation queue */,
 			);
@@ -250,8 +251,6 @@
 				4F9578EE1FDFC37F009693CF /* SetMultipleContextDataToQueueViewController.m */,
 				2B401FEC1E06E9A500D998FA /* SuspendAndResumeQueueViewController.h */,
 				2B401FED1E06E9A500D998FA /* SuspendAndResumeQueueViewController.m */,
-				2B401FEE1E06E9A500D998FA /* UseDispatchGroupViewController.h */,
-				2B401FEF1E06E9A500D998FA /* UseDispatchGroupViewController.m */,
 				2B401FF01E06E9A500D998FA /* UseDispatchSemaphoreViewController.h */,
 				2B401FF11E06E9A500D998FA /* UseDispatchSemaphoreViewController.m */,
 				4F9578E61FDF8CC2009693CF /* GetCurrentQueueViewController.h */,
@@ -358,6 +357,15 @@
 				4FF514FA23289967006753C2 /* WCThreadSafeArray.m */,
 			);
 			path = WCThreadSafeArray;
+			sourceTree = "<group>";
+		};
+		4FF514FD23290DFD006753C2 /* dispatch group */ = {
+			isa = PBXGroup;
+			children = (
+				2B401FEE1E06E9A500D998FA /* UseDispatchGroupViewController.h */,
+				2B401FEF1E06E9A500D998FA /* UseDispatchGroupViewController.m */,
+			);
+			path = "dispatch group";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
