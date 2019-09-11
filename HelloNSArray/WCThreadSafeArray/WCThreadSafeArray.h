@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (instancetype)init;
 - (instancetype)initWithCapacity:(NSUInteger)capacity NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithPlaceholderObject:(id)object count:(NSUInteger)count NS_DESIGNATED_INITIALIZER;
 + (instancetype)array;
 + (instancetype)arrayWithCapacity:(NSUInteger)capacity;
 
@@ -38,6 +39,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSUInteger)count;
 - (nullable ObjectType)objectAtIndex:(NSUInteger)index;
 - (NSUInteger)indexOfObject:(ObjectType)object;
+- (NSArray *)arrayRepresentation;
 
 #pragma mark - Sort
 

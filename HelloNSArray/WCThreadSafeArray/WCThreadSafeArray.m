@@ -33,6 +33,18 @@
     return self;
 }
 
+- (instancetype)initWithPlaceholderObject:(id)object count:(NSUInteger)count {
+    self = [super init];
+    if (self) {
+        _internal_queue = dispatch_queue_create("WCThreadSafeArray Isolation Queue", DISPATCH_QUEUE_CONCURRENT);
+        _storage = CFArrayCreateMutable(kCFAllocatorDefault, (CFIndex)count, &kCFTypeArrayCallBacks);
+        for (NSUInteger i = 0; i < count; i++) {
+            CFArrayAppendValue(self->_storage, (__bridge const void *)(object));
+        }
+    }
+    return self;
+}
+
 + (instancetype)array {
     return [[WCThreadSafeArray alloc] initWithCapacity:0];
 }
@@ -180,6 +192,16 @@
     });
     
     return index;
+}
+
+- (NSArray *)arrayRepresentation {
+    __block NSArray *array;
+    dispatch_sync(_internal_queue, ^{
+        CFArrayRef arrayRef = CFArrayCreateCopy(kCFAllocatorDefault, self->_storage);
+        // Note: https://medium.com/@hadhi631/when-to-use-bridge-bridge-transfer-cfbridgingrelease-and-bridge-retained-cfbridgingretain-4b3d2fc932df
+        array = CFBridgingRelease(arrayRef);
+    });
+    return array;
 }
 
 #pragma mark - Sort
