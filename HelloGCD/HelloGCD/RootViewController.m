@@ -24,6 +24,7 @@
 
 // section 2
 #import "UseDispatchGroupViewController.h"
+#import "SafeDispatchGroupEnterAndLeaveViewController.h"
 
 // section 3
 #import "CreateADispatchSourceViewController.h"
@@ -82,6 +83,7 @@
     
     NSArray<NSDictionary *> *section2 = @[
           @{ kTitle: @"Use dispatch group", kClass: [UseDispatchGroupViewController class] },
+          @{ kTitle: @"Safe dispatch group enter and leave", kClass: [SafeDispatchGroupEnterAndLeaveViewController class] },
     ];
    
     /*

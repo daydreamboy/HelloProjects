@@ -48,6 +48,8 @@
 		4F9578EF1FDFC37F009693CF /* SetMultipleContextDataToQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578EE1FDFC37F009693CF /* SetMultipleContextDataToQueueViewController.m */; };
 		4F9578F21FDFD94D009693CF /* NSValueWithDispatchQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578F11FDFD94D009693CF /* NSValueWithDispatchQueueViewController.m */; };
 		4FF514FC23289967006753C2 /* WCThreadSafeArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF514FA23289967006753C2 /* WCThreadSafeArray.m */; };
+		4FF51500232911C1006753C2 /* SafeDispatchGroupEnterAndLeaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF514FF232911C1006753C2 /* SafeDispatchGroupEnterAndLeaveViewController.m */; };
+		4FF5150523291796006753C2 /* LoremIpsum.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF5150323291796006753C2 /* LoremIpsum.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +144,10 @@
 		4F9578F11FDFD94D009693CF /* NSValueWithDispatchQueueViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSValueWithDispatchQueueViewController.m; sourceTree = "<group>"; };
 		4FF514FA23289967006753C2 /* WCThreadSafeArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCThreadSafeArray.m; sourceTree = "<group>"; };
 		4FF514FB23289967006753C2 /* WCThreadSafeArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCThreadSafeArray.h; sourceTree = "<group>"; };
+		4FF514FE232911C1006753C2 /* SafeDispatchGroupEnterAndLeaveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SafeDispatchGroupEnterAndLeaveViewController.h; sourceTree = "<group>"; };
+		4FF514FF232911C1006753C2 /* SafeDispatchGroupEnterAndLeaveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SafeDispatchGroupEnterAndLeaveViewController.m; sourceTree = "<group>"; };
+		4FF5150323291796006753C2 /* LoremIpsum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoremIpsum.m; sourceTree = "<group>"; };
+		4FF5150423291796006753C2 /* LoremIpsum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoremIpsum.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +180,7 @@
 			children = (
 				4F9578E91FDF8CFF009693CF /* WCGCDTool */,
 				2B2390A51DE053E000E5E107 /* HelloGCD */,
+				4FF5150123291796006753C2 /* Library */,
 				2BE350281F811684008C3B4F /* HelloGCDForMac */,
 				4F82BB1A2297C6D20020C78A /* Tests */,
 				2B2390A41DE053E000E5E107 /* Products */,
@@ -217,11 +224,11 @@
 		2B2390BD1DE0541800E5E107 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F06A3A32064E00300DDDAF1 /* GCD issues */,
 				2B401FD91E06E9A500D998FA /* dispatch queue */,
 				4FF514FD23290DFD006753C2 /* dispatch group */,
 				2B401FF21E06E9A500D998FA /* dispatch source */,
 				4F01E3481FDE238700E290BD /* operation queue */,
+				4F06A3A32064E00300DDDAF1 /* GCD issues */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -364,8 +371,27 @@
 			children = (
 				2B401FEE1E06E9A500D998FA /* UseDispatchGroupViewController.h */,
 				2B401FEF1E06E9A500D998FA /* UseDispatchGroupViewController.m */,
+				4FF514FE232911C1006753C2 /* SafeDispatchGroupEnterAndLeaveViewController.h */,
+				4FF514FF232911C1006753C2 /* SafeDispatchGroupEnterAndLeaveViewController.m */,
 			);
 			path = "dispatch group";
+			sourceTree = "<group>";
+		};
+		4FF5150123291796006753C2 /* Library */ = {
+			isa = PBXGroup;
+			children = (
+				4FF5150223291796006753C2 /* LoremIpsum */,
+			);
+			path = Library;
+			sourceTree = "<group>";
+		};
+		4FF5150223291796006753C2 /* LoremIpsum */ = {
+			isa = PBXGroup;
+			children = (
+				4FF5150423291796006753C2 /* LoremIpsum.h */,
+				4FF5150323291796006753C2 /* LoremIpsum.m */,
+			);
+			path = LoremIpsum;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -504,7 +530,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				2B401FF51E06E9A500D998FA /* AddTaskToQueueViewController.m in Sources */,
+				4FF5150523291796006753C2 /* LoremIpsum.m in Sources */,
 				2B401FFE1E06E9A500D998FA /* UseDispatchSemaphoreViewController.m in Sources */,
+				4FF51500232911C1006753C2 /* SafeDispatchGroupEnterAndLeaveViewController.m in Sources */,
 				2B2390AB1DE053E000E5E107 /* AppDelegate.m in Sources */,
 				4FF514FC23289967006753C2 /* WCThreadSafeArray.m in Sources */,
 				4F9578E81FDF8CC2009693CF /* GetCurrentQueueViewController.m in Sources */,

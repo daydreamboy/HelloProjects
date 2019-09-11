@@ -12,8 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WCGCDGroupTaskInfo : NSObject
 @property (nonatomic, copy, nullable) NSString *groupName;
-@property (nonatomic, assign) dispatch_queue_t taskQueue;
-@property (nonatomic, assign) dispatch_queue_t completionQueue;
+@property (nonatomic, strong) dispatch_queue_t taskQueue;
+@property (nonatomic, strong) dispatch_queue_t completionQueue;
 @property (nonatomic, strong) NSArray<id> *dataArray;
 @end
 
@@ -42,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion This method executes runTaskBlock on groupTaskInfo.taskQueue, and executes
  allTaskCompletionBlock on groupTaskInfo.completionQueue
  */
-+ (BOOL)safeDispatchGroupEnterLeavePairWithGroupTaskInfo:(WCGCDGroupTaskInfo *)groupTaskInfo runTaskBlock:(void(^)(id data, void (^taskBlockFinished)(id processedData, NSError * _Nullable error)))singleTaskBlock allTaskCompletionBlock:(void (^)(NSArray *dataArray, NSArray *errorArray))allTaskCompletionBlock;
++ (BOOL)safeDispatchGroupEnterLeavePairWithGroupTaskInfo:(WCGCDGroupTaskInfo *)groupTaskInfo runTaskBlock:(void(^)(id data, NSUInteger index, void (^taskBlockFinished)(id processedData, NSError * _Nullable error)))singleTaskBlock allTaskCompletionBlock:(void (^)(NSArray *dataArray, NSArray *errorArray))allTaskCompletionBlock;
 
 @end
 

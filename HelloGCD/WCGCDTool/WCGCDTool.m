@@ -29,7 +29,7 @@
     return YES;
 }
 
-+ (BOOL)safeDispatchGroupEnterLeavePairWithGroupTaskInfo:(WCGCDGroupTaskInfo *)groupTaskInfo runTaskBlock:(void(^)(id data, void (^taskBlockFinished)(id processedData, NSError * _Nullable error)))runTaskBlock allTaskCompletionBlock:(void (^)(NSArray *dataArray, NSArray *errorArray))allTaskCompletionBlock  {
++ (BOOL)safeDispatchGroupEnterLeavePairWithGroupTaskInfo:(WCGCDGroupTaskInfo *)groupTaskInfo runTaskBlock:(void(^)(id data, NSUInteger index, void (^taskBlockFinished)(id processedData, NSError * _Nullable error)))runTaskBlock allTaskCompletionBlock:(void (^)(NSArray *dataArray, NSArray *errorArray))allTaskCompletionBlock  {
     
     if (![groupTaskInfo isKindOfClass:[WCGCDGroupTaskInfo class]]) {
         return NO;
@@ -57,7 +57,7 @@
     
     if (dataArray.count == 1) {
         dispatch_async(task_queue, ^{
-            runTaskBlock([dataArray firstObject], ^(id processedData, NSError * _Nullable error) {
+            runTaskBlock([dataArray firstObject], 0, ^(id processedData, NSError * _Nullable error) {
                 
                 if (processedData) {
                     processedDataArray[0] = processedData;
@@ -79,11 +79,11 @@
             dispatch_group_enter(group);
         }
         
-        __block NSUInteger index = 0;
+        NSUInteger index = 0;
         for (id data in dataArray) {
             __block BOOL taskBlockFinishedCalled = NO;
             dispatch_async(task_queue, ^{
-                runTaskBlock(data, ^(id processedData, NSError * _Nullable error) {
+                runTaskBlock(data, index, ^(id processedData, NSError * _Nullable error) {
                     
                     // Note: prevent this block called many times to cause the dispatch_group_leave
                     // not balance with dispatch_group_enter
