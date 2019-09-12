@@ -47,8 +47,9 @@
 		4F9578EC1FDF8D11009693CF /* WCGCDTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578EB1FDF8D11009693CF /* WCGCDTool.m */; };
 		4F9578EF1FDFC37F009693CF /* SetMultipleContextDataToQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578EE1FDFC37F009693CF /* SetMultipleContextDataToQueueViewController.m */; };
 		4F9578F21FDFD94D009693CF /* NSValueWithDispatchQueueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578F11FDFD94D009693CF /* NSValueWithDispatchQueueViewController.m */; };
+		4FD952F9232A392000A9E163 /* WCXCTestCaseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD952F7232A391F00A9E163 /* WCXCTestCaseTool.m */; };
+		4FD952FD232A394000A9E163 /* File.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD952FC232A394000A9E163 /* File.m */; };
 		4FF514FC23289967006753C2 /* WCThreadSafeArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF514FA23289967006753C2 /* WCThreadSafeArray.m */; };
-		4FF51500232911C1006753C2 /* SafeDispatchGroupEnterAndLeaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF514FF232911C1006753C2 /* SafeDispatchGroupEnterAndLeaveViewController.m */; };
 		4FF5150523291796006753C2 /* LoremIpsum.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF5150323291796006753C2 /* LoremIpsum.m */; };
 /* End PBXBuildFile section */
 
@@ -142,10 +143,12 @@
 		4F9578EE1FDFC37F009693CF /* SetMultipleContextDataToQueueViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SetMultipleContextDataToQueueViewController.m; sourceTree = "<group>"; };
 		4F9578F01FDFD94D009693CF /* NSValueWithDispatchQueueViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSValueWithDispatchQueueViewController.h; sourceTree = "<group>"; };
 		4F9578F11FDFD94D009693CF /* NSValueWithDispatchQueueViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSValueWithDispatchQueueViewController.m; sourceTree = "<group>"; };
+		4FD952F7232A391F00A9E163 /* WCXCTestCaseTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCXCTestCaseTool.m; sourceTree = "<group>"; };
+		4FD952F8232A391F00A9E163 /* WCXCTestCaseTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCXCTestCaseTool.h; sourceTree = "<group>"; };
+		4FD952FB232A394000A9E163 /* File.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = File.h; sourceTree = "<group>"; };
+		4FD952FC232A394000A9E163 /* File.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = File.m; sourceTree = "<group>"; };
 		4FF514FA23289967006753C2 /* WCThreadSafeArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCThreadSafeArray.m; sourceTree = "<group>"; };
 		4FF514FB23289967006753C2 /* WCThreadSafeArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCThreadSafeArray.h; sourceTree = "<group>"; };
-		4FF514FE232911C1006753C2 /* SafeDispatchGroupEnterAndLeaveViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SafeDispatchGroupEnterAndLeaveViewController.h; sourceTree = "<group>"; };
-		4FF514FF232911C1006753C2 /* SafeDispatchGroupEnterAndLeaveViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SafeDispatchGroupEnterAndLeaveViewController.m; sourceTree = "<group>"; };
 		4FF5150323291796006753C2 /* LoremIpsum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoremIpsum.m; sourceTree = "<group>"; };
 		4FF5150423291796006753C2 /* LoremIpsum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoremIpsum.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -337,6 +340,8 @@
 		4F82BB1A2297C6D20020C78A /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				4FD952FA232A392B00A9E163 /* DummyClass */,
+				4FD952F6232A38F100A9E163 /* Tools */,
 				4F82BB282297C7600020C78A /* Cache.h */,
 				4F82BB1B2297C6D20020C78A /* Tests.m */,
 				4F82BB262297C74F0020C78A /* Tests_issues.m */,
@@ -357,6 +362,24 @@
 			path = WCGCDTool;
 			sourceTree = "<group>";
 		};
+		4FD952F6232A38F100A9E163 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4FD952F8232A391F00A9E163 /* WCXCTestCaseTool.h */,
+				4FD952F7232A391F00A9E163 /* WCXCTestCaseTool.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		4FD952FA232A392B00A9E163 /* DummyClass */ = {
+			isa = PBXGroup;
+			children = (
+				4FD952FB232A394000A9E163 /* File.h */,
+				4FD952FC232A394000A9E163 /* File.m */,
+			);
+			path = DummyClass;
+			sourceTree = "<group>";
+		};
 		4FF514F923289967006753C2 /* WCThreadSafeArray */ = {
 			isa = PBXGroup;
 			children = (
@@ -371,8 +394,6 @@
 			children = (
 				2B401FEE1E06E9A500D998FA /* UseDispatchGroupViewController.h */,
 				2B401FEF1E06E9A500D998FA /* UseDispatchGroupViewController.m */,
-				4FF514FE232911C1006753C2 /* SafeDispatchGroupEnterAndLeaveViewController.h */,
-				4FF514FF232911C1006753C2 /* SafeDispatchGroupEnterAndLeaveViewController.m */,
 			);
 			path = "dispatch group";
 			sourceTree = "<group>";
@@ -532,7 +553,6 @@
 				2B401FF51E06E9A500D998FA /* AddTaskToQueueViewController.m in Sources */,
 				4FF5150523291796006753C2 /* LoremIpsum.m in Sources */,
 				2B401FFE1E06E9A500D998FA /* UseDispatchSemaphoreViewController.m in Sources */,
-				4FF51500232911C1006753C2 /* SafeDispatchGroupEnterAndLeaveViewController.m in Sources */,
 				2B2390AB1DE053E000E5E107 /* AppDelegate.m in Sources */,
 				4FF514FC23289967006753C2 /* WCThreadSafeArray.m in Sources */,
 				4F9578E81FDF8CC2009693CF /* GetCurrentQueueViewController.m in Sources */,
@@ -579,6 +599,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FD952FD232A394000A9E163 /* File.m in Sources */,
+				4FD952F9232A392000A9E163 /* WCXCTestCaseTool.m in Sources */,
 				4F82BB2B2297C7920020C78A /* CacheWithConcurrentQueue.m in Sources */,
 				4F82BB1C2297C6D20020C78A /* Tests.m in Sources */,
 				4F82BB272297C74F0020C78A /* Tests_issues.m in Sources */,
