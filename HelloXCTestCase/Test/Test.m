@@ -85,4 +85,27 @@ if (!object) { \
     }];
 }
 
+- (void)test_XCTestExpectation {
+    XCTestExpectation_BEGIN
+    
+    NSURL *URL = [NSURL URLWithString:@"https://www.baidu.com/"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL
+                                             cachePolicy:NSURLRequestReloadIgnoringCacheData
+                                         timeoutInterval:30];
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:[NSOperationQueue mainQueue]
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+                               NSString *responseString = [[NSString alloc] initWithData:data
+                                                                                encoding:NSUTF8StringEncoding];
+                               NSLog(@"%@", responseString);
+                               
+                               XCTestExpectation_FULFILL;
+                           }];
+#pragma GCC diagnostic pop
+    
+    XCTestExpectation_END(40);
+}
+
 @end

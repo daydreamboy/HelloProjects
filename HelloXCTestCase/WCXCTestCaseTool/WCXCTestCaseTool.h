@@ -11,6 +11,27 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ Start of the asychronous task
+ */
+#define XCTestExpectation_BEGIN \
+NSString *description__ = [NSString stringWithFormat:@"%s:%d", __FUNCTION__, __LINE__]; \
+XCTestExpectation *expectation__ = [self expectationWithDescription:description__]; \
+
+/**
+ End of the asychronous task
+
+ @param timeout the primitive integer of timeout
+ */
+#define XCTestExpectation_END(timeout) \
+[self waitForExpectationsWithTimeout:(timeout) handler:nil];
+
+/**
+ Mark the asychronous task fulfilled/finished
+ */
+#define XCTestExpectation_FULFILL \
+[expectation__ fulfill];
+
 @interface WCXCTestCaseTool : NSObject
 
 /**
