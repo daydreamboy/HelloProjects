@@ -283,7 +283,40 @@ template在Objective-C++是关键词，不能作为参数使用，否则编译�
 
 
 
+## 10、随机化处理[^4]
 
+
+
+经常使用的函数`arc4random`，一般用它来取模得到某个范围的随机值。
+
+```c
+uint32_t arc4random(void)
+```
+
+
+
+更简单的方式，使用`arc4random_uniform`函数
+
+```c
+uint32_t
+	 arc4random_uniform(uint32_t __upper_bound) __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_4_3);
+```
+
+它随机返回[0, N-1]的随机值
+
+
+
+除了获取随机的整型值，也可以通过`drand48`函数获得随机的浮点型数，但是用`srand48`函数必须初始化一次。
+
+```c
+srand48(time(0));
+double random = drand48();
+NSLog(@"%f", random);
+```
+
+
+
+> 示例代码，见Tests_Random.m
 
 
 
@@ -294,5 +327,7 @@ template在Objective-C++是关键词，不能作为参数使用，否则编译�
 
 [^3]:http://blog.benjamin-encz.de/post/objective-c-backing-ivars-subclasses/
 
-[^]:
+[^4]:https://nshipster.com/random/
+
+
 

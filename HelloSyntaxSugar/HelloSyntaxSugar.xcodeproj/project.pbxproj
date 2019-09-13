@@ -41,6 +41,7 @@
 		4FC2CF982031B12500A416DC /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC2CF962031B12500A416DC /* RootViewController.m */; };
 		4FC2CF9B2031B17700A416DC /* MultipleCharsInOneCharViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC2CF9A2031B17700A416DC /* MultipleCharsInOneCharViewController.m */; };
 		4FC2CF9E2031B84F00A416DC /* Cpp11FeatureRawStringViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FC2CF9D2031B84F00A416DC /* Cpp11FeatureRawStringViewController.mm */; };
+		4FE9F4A0232B36420096092F /* Tests_Random.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE9F49F232B36420096092F /* Tests_Random.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +130,7 @@
 		4FC2CF9A2031B17700A416DC /* MultipleCharsInOneCharViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MultipleCharsInOneCharViewController.m; sourceTree = "<group>"; };
 		4FC2CF9C2031B84F00A416DC /* Cpp11FeatureRawStringViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cpp11FeatureRawStringViewController.h; sourceTree = "<group>"; };
 		4FC2CF9D2031B84F00A416DC /* Cpp11FeatureRawStringViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Cpp11FeatureRawStringViewController.mm; sourceTree = "<group>"; };
+		4FE9F49F232B36420096092F /* Tests_Random.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_Random.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +201,7 @@
 		4F51128222C31102005E5AAE /* Tests_OC */ = {
 			isa = PBXGroup;
 			children = (
+				4FE9F49E232B36140096092F /* Random */,
 				4F4FF49022C70771007B0833 /* EventChaining */,
 				4F53472422C619D3000710B9 /* Category */,
 				4F53472322C6197D000710B9 /* Ivar */,
@@ -316,6 +319,14 @@
 				4F714A97219535F5006CB8C4 /* GCCAttributeCleanupViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4FE9F49E232B36140096092F /* Random */ = {
+			isa = PBXGroup;
+			children = (
+				4FE9F49F232B36420096092F /* Tests_Random.m */,
+			);
+			path = Random;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -450,6 +461,7 @@
 				4F53472B22C630C4000710B9 /* Event.m in Sources */,
 				4F5112B622C375A0005E5AAE /* Tests_AccessIvarOfExtension.m in Sources */,
 				4F4FF49222C707E9007B0833 /* Tests_Category.m in Sources */,
+				4FE9F4A0232B36420096092F /* Tests_Random.m in Sources */,
 				4F4FF49922C714A6007B0833 /* ChildHandler.m in Sources */,
 				4F4FF49622C7109A007B0833 /* DerivedClassB1.m in Sources */,
 				4F51129322C315D0005E5AAE /* Tests_AccessPublicIvar.m in Sources */,
