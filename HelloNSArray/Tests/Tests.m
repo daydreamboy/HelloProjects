@@ -26,6 +26,32 @@
     [super tearDown];
 }
 
+#pragma mark - Creation
+
+- (void)test_arrayWithPlaceholderObject_count_allowMutable {
+    id placeholder;
+    NSArray *output;
+    NSUInteger count = 100;
+    
+    // Case 1
+    placeholder = @"0";
+    output = [WCArrayTool arrayWithPlaceholderObject:placeholder count:count allowMutable:NO];
+    XCTAssertTrue(output.count == count);
+    
+    for (NSUInteger i = 0; i < count; ++i) {
+        XCTAssertEqualObjects(output[i], placeholder);
+    }
+    
+    // Case 2
+    placeholder = @0;
+    output = [WCArrayTool arrayWithPlaceholderObject:placeholder count:count allowMutable:NO];
+    XCTAssertTrue(output.count == count);
+    
+    for (NSUInteger i = 0; i < count; ++i) {
+        XCTAssertEqualObjects(output[i], placeholder);
+    }
+}
+
 #pragma mark - Modification
 
 - (void)test_moveObjectWithArray_fromIndex_toIndex {

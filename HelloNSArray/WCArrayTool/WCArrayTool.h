@@ -12,6 +12,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WCArrayTool : NSObject
 
+#pragma mark - Creation
+
+/**
+ Get an array with all same object and repeat N times
+
+ @param placeholderObject the placeholder object
+ @param count the size of the returned array
+ @param allowMutable YES to return a mutable array, or NO to return an immutable array
+ @return the array with all same objects and size is count
+ @see https://stackoverflow.com/questions/1071648/creating-an-nsarray-initialized-with-count-n-all-of-the-same-object
+ */
++ (nullable NSArray *)arrayWithPlaceholderObject:(id)placeholderObject count:(NSUInteger)count allowMutable:(BOOL)allowMutable;
+
 #pragma mark - Modification
 
 /**

@@ -16,6 +16,28 @@
 
 @implementation WCArrayTool
 
+#pragma mark - Creation
+
++ (nullable NSArray *)arrayWithPlaceholderObject:(id)placeholderObject count:(NSUInteger)count allowMutable:(BOOL)allowMutable {
+    if (!placeholderObject) {
+        return nil;
+    }
+    
+    if (count == 0) {
+        return allowMutable ? [NSMutableArray array] : [NSArray array];
+    }
+    
+    const void **buffer = malloc(sizeof(id) * count);
+    for (NSUInteger i = 0; i < count; ++i) {
+        buffer[i] = (__bridge const void *)placeholderObject;
+    }
+    // @see https://stackoverflow.com/a/10276091
+    NSArray *array = [NSArray arrayWithObjects:(__unsafe_unretained id *)(void *)buffer count:count];
+    free(buffer);
+    
+    return allowMutable ? [array mutableCopy] : array;
+}
+
 #pragma mark - Modification
 
 + (nullable NSArray *)moveObjectWithArray:(NSArray *)array fromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
