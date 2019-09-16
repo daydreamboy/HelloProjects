@@ -10,7 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#define WCContextItemObjectT    NSObject,NSCopying
+@protocol WCContextItemObjectT <NSObject, NSCopying>
+@end
 
 /**
  The item in the shared context
