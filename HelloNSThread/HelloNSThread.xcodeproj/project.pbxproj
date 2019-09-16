@@ -16,6 +16,7 @@
 		2BA4F85D1F83D31C00AE2BAD /* CreateThreadByNSObjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4F85C1F83D31C00AE2BAD /* CreateThreadByNSObjectViewController.m */; };
 		2BA4F8601F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4F85F1F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m */; };
 		2BF7F44A1F83DB3500B27A0F /* UseOSAtomicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7F4491F83DB3500B27A0F /* UseOSAtomicViewController.m */; };
+		4F161AAD231E0F0100A22350 /* WCServiceHubManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F161AAC231E0F0100A22350 /* WCServiceHubManager.m */; };
 		4F4F054D2294EFBA002BD87A /* Tests_benchmarking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F054C2294EFBA002BD87A /* Tests_benchmarking.m */; };
 		4F4F05502294F8B7002BD87A /* CacheWithSemaphore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F054F2294F8B7002BD87A /* CacheWithSemaphore.m */; };
 		4F4F05532294FB34002BD87A /* CacheWithPthread_mutex.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F05522294FB34002BD87A /* CacheWithPthread_mutex.m */; };
@@ -78,6 +79,9 @@
 		2BA4F85F1F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateThreadByPOSIXViewController.m; sourceTree = "<group>"; };
 		2BF7F4481F83DB3500B27A0F /* UseOSAtomicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseOSAtomicViewController.h; sourceTree = "<group>"; };
 		2BF7F4491F83DB3500B27A0F /* UseOSAtomicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseOSAtomicViewController.m; sourceTree = "<group>"; };
+		4F161AAB231E0F0100A22350 /* WCServiceHubManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCServiceHubManager.h; sourceTree = "<group>"; };
+		4F161AAC231E0F0100A22350 /* WCServiceHubManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCServiceHubManager.m; sourceTree = "<group>"; };
+		4F161AAE231E3EA700A22350 /* WCRouterService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCRouterService.h; sourceTree = "<group>"; };
 		4F4F054C2294EFBA002BD87A /* Tests_benchmarking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_benchmarking.m; sourceTree = "<group>"; };
 		4F4F054E2294F8B7002BD87A /* CacheWithSemaphore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheWithSemaphore.h; sourceTree = "<group>"; };
 		4F4F054F2294F8B7002BD87A /* CacheWithSemaphore.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheWithSemaphore.m; sourceTree = "<group>"; };
@@ -161,8 +165,9 @@
 		2B37F3051F83C4A500809F00 = {
 			isa = PBXGroup;
 			children = (
+				4F161AAA231E0E5600A22350 /* WCServiceHubManager */,
 				4F513F0A22DF2A36003698DA /* WCSingletonObject */,
-				4F5005C522B0E3180026CB16 /* SharedContext */,
+				4F5005C522B0E3180026CB16 /* WCSharedContext */,
 				4F9578E21FDF8A2D009693CF /* WCThreadTool */,
 				2B37F3101F83C4A500809F00 /* HelloNSThread */,
 				4FA9918821AECD1200E928D8 /* Tests */,
@@ -248,14 +253,24 @@
 			path = thread;
 			sourceTree = "<group>";
 		};
-		4F5005C522B0E3180026CB16 /* SharedContext */ = {
+		4F161AAA231E0E5600A22350 /* WCServiceHubManager */ = {
+			isa = PBXGroup;
+			children = (
+				4F161AAB231E0F0100A22350 /* WCServiceHubManager.h */,
+				4F161AAC231E0F0100A22350 /* WCServiceHubManager.m */,
+				4F161AAE231E3EA700A22350 /* WCRouterService.h */,
+			);
+			path = WCServiceHubManager;
+			sourceTree = "<group>";
+		};
+		4F5005C522B0E3180026CB16 /* WCSharedContext */ = {
 			isa = PBXGroup;
 			children = (
 				4F5005C622B0E33D0026CB16 /* WCSharedContextManager.h */,
 				4F5005C722B0E33D0026CB16 /* WCSharedContextManager.m */,
 				4F5005CE22B0E5D80026CB16 /* WCSharedContext.h */,
 			);
-			path = SharedContext;
+			path = WCSharedContext;
 			sourceTree = "<group>";
 		};
 		4F513F0A22DF2A36003698DA /* WCSingletonObject */ = {
@@ -456,6 +471,7 @@
 				4F541AA922415D9F003331E0 /* UseNSRecursiveLockViewController.m in Sources */,
 				4F50C7302243CC25002B00C9 /* UseNSLockWithTryLockViewController.m in Sources */,
 				2B37F32F1F83C74100809F00 /* RootViewController.m in Sources */,
+				4F161AAD231E0F0100A22350 /* WCServiceHubManager.m in Sources */,
 				4F53C9922004AFE8003F79F6 /* KeepThreadLongAliveViewController.m in Sources */,
 				4F50C7392243E096002B00C9 /* UseNSLockIssueWithUnpairLockUnlockViewController.m in Sources */,
 			);

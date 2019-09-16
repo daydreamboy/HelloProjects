@@ -13,7 +13,7 @@
 
 #pragma mark -
 
-@interface OpaqueContextItemClass : NSObject <WCContextItem>
+@interface OpaqueContextItemClass : NSObject <WCContextItem, NSCopying>
 @end
 
 @implementation OpaqueContextItemClass
@@ -30,6 +30,13 @@
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"ts: %f, %@", _timestamp, _object];
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+    OpaqueContextItemClass *copiedObject = [[OpaqueContextItemClass alloc] init];
+    copiedObject->_object = [self.object copy];
+    copiedObject->_timestamp = self.timestamp;
+    return copiedObject;
 }
 
 @end
@@ -74,7 +81,7 @@
     __block id<WCContextItem> item;
     dispatch_sync(_list_queue, ^{
         if (index < [self->_list count]) {
-            item = self->_list[index];
+            item = [self->_list[index] copy];
         }
     });
     
@@ -116,7 +123,7 @@
     
     __block id<WCContextItem> item;
     dispatch_sync(_map_queue, ^{
-        item = self->_map[key];
+        item = [self->_map[key] copy];
     });
     
     return item;
