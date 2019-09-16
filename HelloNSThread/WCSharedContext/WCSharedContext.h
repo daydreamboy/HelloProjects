@@ -24,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  The object which the item holds
+ 
+ @discussion the object confirms WCContextItemObjectT in fact,
+ but use id type only to avoid warning when use it to assign another type variable
  */
 @property (nonatomic, strong, readonly) id object;
 
