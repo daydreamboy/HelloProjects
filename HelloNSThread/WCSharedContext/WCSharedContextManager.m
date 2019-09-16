@@ -21,7 +21,7 @@
 @synthesize timestamp = _timestamp;
 @synthesize object = _object;
 
-+ (instancetype)itemWithObject:(id)object {
++ (instancetype)itemWithObject:(id<WCContextItemObjectT>)object {
     OpaqueContextItemClass *instance = [[OpaqueContextItemClass alloc] init];
     instance->_object = object;
     instance->_timestamp = [[NSDate date] timeIntervalSince1970];
@@ -34,7 +34,10 @@
 
 - (id)copyWithZone:(NSZone *)zone {
     OpaqueContextItemClass *copiedObject = [[OpaqueContextItemClass alloc] init];
-    copiedObject->_object = [self.object copy];
+    if ([self.object respondsToSelector:@selector(copyWithZone:)]) {
+        copiedObject->_object = [self.object copyWithZone:zone];
+    }
+    
     copiedObject->_timestamp = self.timestamp;
     return copiedObject;
 }
@@ -67,7 +70,7 @@
 
 #pragma mark  List Semantic
 
-- (void)appendItemWithObject:(id)object {
+- (void)appendItemWithObject:(id<WCContextItemObjectT>)object {
     if (!object) {
         return;
     }
@@ -106,7 +109,7 @@
 
 #pragma mark  Map Semantic
 
-- (void)setItemWithObject:(id)object forKey:(NSString *)key {
+- (void)setItemWithObject:(id<WCContextItemObjectT>)object forKey:(NSString *)key {
     if (!object || ![key isKindOfClass:[NSString class]]) {
         return;
     }
@@ -142,13 +145,13 @@
     static dispatch_once_t onceToken;
     static WCSharedContextManager *sInstance;
     dispatch_once(&onceToken, ^{
-        sInstance = [[WCSharedContextManager alloc] init];
+        sInstance = [[WCSharedContextManager alloc] initInternally];
     });
     
     return sInstance;
 }
 
-- (instancetype)init {
+- (instancetype)initInternally {
     self = [super init];
     if (self) {
         _storage = [NSMutableDictionary dictionary];

@@ -10,10 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#define WCContextItemObjectT    NSObject,NSCopying
+
 /**
  The item in the shared context
  */
-@protocol WCContextItem <NSObject>
+@protocol WCContextItem <NSObject, NSCopying>
 
 /**
  The timestamp of the item created
@@ -25,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, strong, readonly) id object;
 
-+ (instancetype)itemWithObject:(id)object;
++ (instancetype)itemWithObject:(id<WCContextItemObjectT>)object;
 - (NSString *)description;
 @end
 
@@ -37,14 +39,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - List Semantic
 
-- (void)appendItemWithObject:(id)object;
+- (void)appendItemWithObject:(id<WCContextItemObjectT>)object;
 - (nullable id<WCContextItem>)itemAtIndex:(NSUInteger)index;
 - (NSArray<id<WCContextItem>> *)allItems;
 - (void)removeAllItems;
 
 #pragma mark - Map Semantic
 
-- (void)setItemWithObject:(id)object forKey:(NSString *)key;
+- (void)setItemWithObject:(id<WCContextItemObjectT>)object forKey:(NSString *)key;
 - (nullable id<WCContextItem>)itemForKey:(NSString *)key;
 
 @end

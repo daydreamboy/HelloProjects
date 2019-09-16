@@ -25,7 +25,7 @@
 		4F4FCEFD2293D4DC0063E9B7 /* CacheWithPthread_rwlock.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FCEFC2293D4DC0063E9B7 /* CacheWithPthread_rwlock.m */; };
 		4F4FCEFF2293D6F10063E9B7 /* Tests_synchronize_concurrent_reads_writes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FCEFE2293D6F10063E9B7 /* Tests_synchronize_concurrent_reads_writes.m */; };
 		4F5005C822B0E33D0026CB16 /* WCSharedContextManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5005C722B0E33D0026CB16 /* WCSharedContextManager.m */; };
-		4F5005CA22B0E36E0026CB16 /* Tests_SharedContextManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5005C922B0E36E0026CB16 /* Tests_SharedContextManager.m */; };
+		4F5005CA22B0E36E0026CB16 /* Tests_WCSharedContextManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5005C922B0E36E0026CB16 /* Tests_WCSharedContextManager.m */; };
 		4F5005CD22B0E3E70026CB16 /* WrongContextManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5005CC22B0E3E70026CB16 /* WrongContextManager.m */; };
 		4F50C72D2243BB73002B00C9 /* MultiThreadExampleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50C72C2243BB73002B00C9 /* MultiThreadExampleViewController.m */; };
 		4F50C7302243CC25002B00C9 /* UseNSLockWithTryLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50C72F2243CC25002B00C9 /* UseNSLockWithTryLockViewController.m */; };
@@ -98,7 +98,7 @@
 		4F4FCF002293D7DA0063E9B7 /* Cache.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Cache.h; sourceTree = "<group>"; };
 		4F5005C622B0E33D0026CB16 /* WCSharedContextManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCSharedContextManager.h; sourceTree = "<group>"; };
 		4F5005C722B0E33D0026CB16 /* WCSharedContextManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCSharedContextManager.m; sourceTree = "<group>"; };
-		4F5005C922B0E36E0026CB16 /* Tests_SharedContextManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_SharedContextManager.m; sourceTree = "<group>"; };
+		4F5005C922B0E36E0026CB16 /* Tests_WCSharedContextManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_WCSharedContextManager.m; sourceTree = "<group>"; };
 		4F5005CB22B0E3E70026CB16 /* WrongContextManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WrongContextManager.h; sourceTree = "<group>"; };
 		4F5005CC22B0E3E70026CB16 /* WrongContextManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WrongContextManager.m; sourceTree = "<group>"; };
 		4F5005CE22B0E5D80026CB16 /* WCSharedContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCSharedContext.h; sourceTree = "<group>"; };
@@ -345,7 +345,7 @@
 				4F96ECBA2293011700442F65 /* Tests_synchronize_concurrent_writes.m */,
 				4F4FCEFE2293D6F10063E9B7 /* Tests_synchronize_concurrent_reads_writes.m */,
 				4F4F054C2294EFBA002BD87A /* Tests_benchmarking.m */,
-				4F5005C922B0E36E0026CB16 /* Tests_SharedContextManager.m */,
+				4F5005C922B0E36E0026CB16 /* Tests_WCSharedContextManager.m */,
 				4F513F0F22DF2AF6003698DA /* Tests_WCSingletonObject.m */,
 				4FA9918B21AECD1200E928D8 /* Info.plist */,
 			);
@@ -484,7 +484,7 @@
 				4F96ECC82293035C00442F65 /* CacheWithSerialQueue.m in Sources */,
 				4F96ECCB2293037000442F65 /* CacheWithConcurrentQueue.m in Sources */,
 				4F96ECBB2293011700442F65 /* Tests_synchronize_concurrent_writes.m in Sources */,
-				4F5005CA22B0E36E0026CB16 /* Tests_SharedContextManager.m in Sources */,
+				4F5005CA22B0E36E0026CB16 /* Tests_WCSharedContextManager.m in Sources */,
 				4F4F05532294FB34002BD87A /* CacheWithPthread_mutex.m in Sources */,
 				4F5005C822B0E33D0026CB16 /* WCSharedContextManager.m in Sources */,
 				4F4FCEFD2293D4DC0063E9B7 /* CacheWithPthread_rwlock.m in Sources */,
