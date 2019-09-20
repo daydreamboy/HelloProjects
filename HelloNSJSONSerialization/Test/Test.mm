@@ -223,14 +223,21 @@
     NSLog(@"%@", object);
     
     // Case 2
-    JSONString = @"all";
+    JSONString = @"\"all\"";
     
     object = [WCJSONTool JSONObjectWithString:JSONString options:NSJSONReadingAllowFragments objectClass:nil];
-    XCTAssertTrue([object isKindOfClass:[NSDictionary class]]);
+    XCTAssertTrue([object isKindOfClass:[NSString class]]);
     NSLog(@"%@", object);
     
     // Case 3
     JSONString = @"{\"delivery\":{},\"trade\":{\"buyEnable\":true,\"cartEnable\":true},\"feature\":{},\"price\":{\"price\":{\"priceText\":\"0.01\"}},\"skuCore\":{\"sku2info\":{\"0\":{\"price\":{\"priceMoney\":1,\"priceText\":\"0.01\",\"priceTitle\":\"价格\"},\"quantity\":100}},\"skuItem\":{\"hideQuantity\":true}}}";
+    object = [WCJSONTool JSONObjectWithString:JSONString options:NSJSONReadingAllowFragments objectClass:nil];
+    XCTAssertTrue([object isKindOfClass:[NSDictionary class]]);
+    NSLog(@"%@", object);
+    
+    // Case 4：\n
+    JSONString = @"{\"wxIdentity\":\"chatting-tmall\",\"wxOpt\":\"{\\\"height\\\":\\\"240\\\"}\",\"wxData\":\"{\\\"img\\\":\\\"http://gw.alicdn.com/mt/TB1PEudXR1D3KVjSZFyXXbuFpXa-100-100.png\\\",\\\"themeColor\\\":\\\"#999999\\\",\\\"srcIcon\\\":\\\"https://gw.alicdn.com/tfs/TB15UZ2jnZmx1VjSZFGXXax2XXa-26-26.png\\\",\\\"interact\\\":\\\"\\\",\\\"source\\\":\\\"淘宝人生\\\",\\\"title\\\":\\\"送给你一张心愿卡\\\",\\\"wxDisplayType\\\":\\\"淘宝人生\\\",\\\"url\\\":\\\"https://market.m.taobao.com/app/wireless-platform/c6_seclife/index.html?disableNav=YES&from=msgcard\\\",\\\"desc\\\":\\\"帮你实现你的心愿，快来领取这份礼物吧\n        \\\",\\\"wxDisplayName\\\":\\\"快来开启属于你的淘宝人生\\\"}\",\"wxTplUrl\":\"http://market.m.taobao.com/app/tb-chatting/feed-cards/tmall_card?wh_ttid=native\",\"wxDisplayType\":\"淘宝人生\",\"wxDisplayName\":\"您有一条淘宝人生信息\"}";
+    
     object = [WCJSONTool JSONObjectWithString:JSONString options:NSJSONReadingAllowFragments objectClass:nil];
     XCTAssertTrue([object isKindOfClass:[NSDictionary class]]);
     NSLog(@"%@", object);

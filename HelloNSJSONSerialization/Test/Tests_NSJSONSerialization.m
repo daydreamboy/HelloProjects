@@ -47,6 +47,32 @@
     }
 }
 
+- (void)test_NSJSONSerialization_issue_on_control_characters {
+    NSString *JSONString;
+    id JSONObject;
+    NSError *error = nil;
+    
+    // Abnormal Case：\n
+    JSONString = @"{\"wxIdentity\":\"chatting-tmall\",\"wxOpt\":\"{\\\"height\\\":\\\"240\\\"}\",\"wxData\":\"{\\\"img\\\":\\\"http://gw.alicdn.com/mt/TB1PEudXR1D3KVjSZFyXXbuFpXa-100-100.png\\\",\\\"themeColor\\\":\\\"#999999\\\",\\\"srcIcon\\\":\\\"https://gw.alicdn.com/tfs/TB15UZ2jnZmx1VjSZFGXXax2XXa-26-26.png\\\",\\\"interact\\\":\\\"\\\",\\\"source\\\":\\\"淘宝人生\\\",\\\"title\\\":\\\"送给你一张心愿卡\\\",\\\"wxDisplayType\\\":\\\"淘宝人生\\\",\\\"url\\\":\\\"https://market.m.taobao.com/app/wireless-platform/c6_seclife/index.html?disableNav=YES&from=msgcard\\\",\\\"desc\\\":\\\"帮你实现你的心愿，快来领取这份礼物吧\n        \\\",\\\"wxDisplayName\\\":\\\"快来开启属于你的淘宝人生\\\"}\",\"wxTplUrl\":\"http://market.m.taobao.com/app/tb-chatting/feed-cards/tmall_card?wh_ttid=native\",\"wxDisplayType\":\"淘宝人生\",\"wxDisplayName\":\"您有一条淘宝人生信息\"}";
+    
+    JSONObject = [NSJSONSerialization JSONObjectWithData:[JSONString dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+    XCTAssertNil(JSONObject);
+    NSLog(@"%@", error);
+}
+
+- (void)test_NSJSONSerialization_issue {
+    NSString *JSONString;
+    id JSONObject;
+    NSError *error = nil;
+    
+    // Abnormal Case：empty string
+    JSONString = @"";
+    
+    JSONObject = [NSJSONSerialization JSONObjectWithData:[JSONString dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:&error];
+    XCTAssertNil(JSONObject);
+    NSLog(@"%@", error);
+}
+
 - (void)test_NSJSONSerialization_NSJSONReadingAllowFragments {
     NSString *JSONString;
     NSData *data;

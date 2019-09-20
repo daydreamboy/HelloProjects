@@ -115,26 +115,32 @@
 #pragma mark > to NSDictionary/NSArray
 
 + (nullable NSArray *)JSONArrayWithString:(NSString *)string allowMutable:(BOOL)allowMutable {
-    if (allowMutable) {
-        return [self JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers objectClass:[NSMutableDictionary class]];
-    }
-    else {
-        return [self JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions objectClass:[NSArray class]];
-    }
+    return [self JSONObjectWithString:string options:(allowMutable ? NSJSONReadingMutableContainers : kNilOptions) objectClass:(allowMutable ? [NSMutableArray class] : [NSArray class])];
 }
 
 + (nullable NSDictionary *)JSONDictWithString:(NSString *)string allowMutable:(BOOL)allowMutable {
-    if (allowMutable) {
-        return [self JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:NSJSONReadingMutableContainers objectClass:[NSMutableArray class]];
-    }
-    else {
-        return [self JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions objectClass:[NSDictionary class]];
-    }
+    return [self JSONObjectWithString:string options:(allowMutable ? NSJSONReadingMutableContainers : kNilOptions) objectClass:(allowMutable ? [NSMutableDictionary class] : [NSDictionary class])];
 }
 
 #pragma mark > to id
 
 + (nullable id)JSONObjectWithString:(NSString *)string options:(NSJSONReadingOptions)options objectClass:(nullable Class)objectClass {
+    if (![string isKindOfClass:[NSString class]] || string.length == 0) {
+        return nil;
+    }
+    
+    // @see https://stackoverflow.com/a/11192483
+    NSCharacterSet *controlCharsterSet = [NSCharacterSet controlCharacterSet];
+    NSRange range = [string rangeOfCharacterFromSet:controlCharsterSet];
+    if (range.location != NSNotFound) {
+        NSMutableString *stringM = [NSMutableString stringWithString:string];
+        while (range.location != NSNotFound) {
+            [stringM deleteCharactersInRange:range];
+            range = [stringM rangeOfCharacterFromSet:controlCharsterSet];
+        }
+        return [self JSONObjectWithData:[stringM dataUsingEncoding:NSUTF8StringEncoding] options:options objectClass:objectClass];;
+    }
+    
     return [self JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:options objectClass:objectClass];
 }
 
