@@ -839,7 +839,7 @@
         }
         
         NSRange range = [value rangeValue];
-        if (range.location == NSNotFound || range.length == 0) {
+        if (range.location == NSNotFound) {
             return nil;
         }
         
@@ -854,7 +854,7 @@
     }
     
     // Note: sort the ranges by ascend
-    NSArray *sortedRanges = [ranges sortedArrayUsingComparator:^NSComparisonResult(NSValue * _Nonnull value1, NSValue * _Nonnull value2) {
+    NSMutableArray *sortedRanges = [[ranges sortedArrayUsingComparator:^NSComparisonResult(NSValue * _Nonnull value1, NSValue * _Nonnull value2) {
         NSComparisonResult result = NSOrderedSame;
         if (value1.rangeValue.location > value2.rangeValue.location) {
             result = NSOrderedDescending;
@@ -863,7 +863,9 @@
             result = NSOrderedAscending;
         }
         return result;
-    }];
+    }] mutableCopy];
+    
+    [sortedRanges removeObject:[NSValue valueWithRange:NSMakeRange(0, 0)]];
     
     NSRange previousRange = NSMakeRange(0, 0);
     for (NSInteger i = 0; i < sortedRanges.count; i++) {

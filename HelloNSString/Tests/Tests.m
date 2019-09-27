@@ -1281,6 +1281,18 @@
 
     outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:replacementRanges];
     XCTAssertEqualObjects(outputString, @"0123456789");
+    
+    // Case 11
+    inputString = @"0123456789";
+    ranges = @[
+               [NSValue valueWithRange:NSMakeRange(0, 0)],
+               ];
+    replacements = @[
+                     @"",
+                     ];
+    
+    outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:replacementRanges];
+    XCTAssertEqualObjects(outputString, @"0123456789");
 
     // Abnormal Case 1: range out of bounds
     inputString = @"0123456789";
