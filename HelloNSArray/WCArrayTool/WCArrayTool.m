@@ -89,7 +89,6 @@
         return array;
     }
     
-    
     NSMutableArray *arrayM = [NSMutableArray arrayWithCapacity:array.count + objects.count];
     NSArray *frontItems = [array subarrayWithRange:NSMakeRange(0, index)];
     NSArray *rearItems = [array subarrayWithRange:NSMakeRange(index, array.count - index)];
@@ -97,7 +96,7 @@
     [arrayM addObjectsFromArray:objects];
     [arrayM addObjectsFromArray:rearItems];
     
-    return arrayM;
+    return [arrayM copy];
 }
 
 + (nullable NSArray *)collapsedArrayWithArray:(NSArray *)array keyPaths:(nullable NSArray<NSString *> *)keyPaths {
