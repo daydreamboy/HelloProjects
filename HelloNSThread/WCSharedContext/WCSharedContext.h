@@ -37,6 +37,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  A shared context
+ 
+ @discussion WCSharedContext provides three sementics
+ - List
+ - Map
+ - Map, but value as List
+ The different sementics have their own APIs
  */
 @protocol WCSharedContext <NSObject>
 @property (nonatomic, copy, nullable) NSString *name;
@@ -46,12 +52,19 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)appendItemWithObject:(id<WCContextItemObjectT>)object;
 - (nullable id<WCContextItem>)itemAtIndex:(NSUInteger)index;
 - (NSArray<id<WCContextItem>> *)allItems;
-- (void)removeAllItems;
+- (void)cleanupForList;
 
 #pragma mark - Map Semantic
 
 - (void)setItemWithObject:(id<WCContextItemObjectT>)object forKey:(NSString *)key;
 - (nullable id<WCContextItem>)itemForKey:(NSString *)key;
+- (void)cleanupForMap;
+
+#pragma mark - Map Nesting List Semantic
+
+- (void)appendItemWithObject:(id<WCContextItemObjectT>)object forKey:(NSString *)key;
+- (nullable NSArray<id<WCContextItem>> *)itemListForKey:(NSString *)key;
+- (void)cleanupForMapNestingList;
 
 @end
 

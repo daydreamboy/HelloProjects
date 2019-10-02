@@ -31,6 +31,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (nullable id<WCSharedContext>)objectForKeyedSubscript:(NSString *)key;
 
+/**
+ Remove the shared context by key
+
+ @param key the key expected to be NSString. If not NSString, return NO
+ @return YES if operate successfully, or NO if fails.
+ */
+- (BOOL)removeSharedContextForKey:(NSString *)key;
+
 #pragma mark - Deprecated
 
 + (instancetype)new NS_UNAVAILABLE;

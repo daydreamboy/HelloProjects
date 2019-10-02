@@ -53,8 +53,10 @@
 @implementation OpaqueSharedContextClass {
     NSMutableDictionary *_map;
     NSMutableArray *_list;
+    NSMutableDictionary<NSString *, NSMutableArray *> *_map_nesting_list;
     dispatch_queue_t _map_queue;
     dispatch_queue_t _list_queue;
+    dispatch_queue_t _map_nesting_list_queue;
 }
 
 - (instancetype)init {
@@ -62,13 +64,15 @@
     if (self) {
         _map_queue = dispatch_queue_create("MPMOpaqueSharedContext.map.queue", DISPATCH_QUEUE_CONCURRENT);
         _list_queue = dispatch_queue_create("MPMOpaqueSharedContext.list.queue", DISPATCH_QUEUE_CONCURRENT);
+        _map_nesting_list_queue = dispatch_queue_create("MPMOpaqueSharedContext.map_nesting_list.queue", DISPATCH_QUEUE_CONCURRENT);
         _map = [NSMutableDictionary dictionaryWithCapacity:50];
         _list = [NSMutableArray arrayWithCapacity:50];
+        _map_nesting_list = [NSMutableDictionary dictionaryWithCapacity:50];
     }
     return self;
 }
 
-#pragma mark  List Semantic
+#pragma mark - List Semantic
 
 - (void)appendItemWithObject:(id<WCContextItemObjectT>)object {
     if (!object) {
@@ -101,13 +105,13 @@
     return list;
 }
 
-- (void)removeAllItems {
+- (void)cleanupForList {
     dispatch_barrier_async(_list_queue, ^{
         [self->_list removeAllObjects];
     });
 }
 
-#pragma mark  Map Semantic
+#pragma mark - Map Semantic
 
 - (void)setItemWithObject:(id<WCContextItemObjectT>)object forKey:(NSString *)key {
     if (!object || ![key isKindOfClass:[NSString class]]) {
@@ -130,6 +134,45 @@
     });
     
     return item;
+}
+
+- (void)cleanupForMap {
+    dispatch_barrier_async(_map_queue, ^{
+        [self->_map removeAllObjects];
+    });
+}
+
+#pragma mark - Map Nesting List Semantic
+
+- (void)appendItemWithObject:(id<WCContextItemObjectT>)object forKey:(NSString *)key {
+    if (!object || ![key isKindOfClass:[NSString class]]) {
+        return;
+    }
+    
+    dispatch_barrier_async(_map_nesting_list_queue, ^{
+        if (!self->_map_nesting_list[key]) {
+            self->_map_nesting_list[key] = [NSMutableArray arrayWithCapacity:50];
+        }
+        
+        [self->_map_nesting_list[key] addObject:[OpaqueContextItemClass itemWithObject:object]];
+    });
+}
+
+- (nullable NSArray<id<WCContextItem>> *)itemListForKey:(NSString *)key {
+    if (![key isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    __block id<WCContextItem> item;
+    dispatch_sync(_map_queue, ^{
+        item = [self->_map[key] copy];
+    });
+    
+    return item;
+}
+
+- (void)cleanupForMapNestingList {
+    
 }
 
 @end
@@ -175,6 +218,18 @@
     });
     
     return context;
+}
+
+- (BOOL)removeSharedContextForKey:(NSString *)key {
+    if (![key isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    
+    dispatch_barrier_async(_internal_queue, ^{
+        [self->_storage removeObjectForKey:key];
+    });
+    
+    return YES;
 }
 
 @end
