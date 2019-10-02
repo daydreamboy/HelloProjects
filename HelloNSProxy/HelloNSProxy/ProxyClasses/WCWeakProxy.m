@@ -29,7 +29,10 @@
 
 // Note: WCWeakProxy没有对应的方法，转发到对应的target对象上
 - (id)forwardingTargetForSelector:(SEL)selector {
-    return _target;
+    if ([_target respondsToSelector:selector]) {
+        return _target;
+    }
+    return nil;
 }
 
 - (void)dealloc {

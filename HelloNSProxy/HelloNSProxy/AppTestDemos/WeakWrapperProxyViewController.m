@@ -20,7 +20,9 @@
     
     // Note: 让timer持有weakProxy，这里weakProxy不会自动释放
     WCWeakProxy *weakProxy = [WCWeakProxy proxyWithTarget:self];
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:weakProxy selector:@selector(timerFired:) userInfo:nil repeats:YES];
+    SEL selector = @selector(timerFired:);
+    //selector = @selector(timerFired2:);
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:weakProxy selector:selector userInfo:nil repeats:YES];
     
     if ([weakProxy isKindOfClass:[WCWeakProxy class]]) {
         NSLog(@"YES");
