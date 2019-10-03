@@ -49,6 +49,7 @@
 		4F96ECC82293035C00442F65 /* CacheWithSerialQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F96ECC72293035C00442F65 /* CacheWithSerialQueue.m */; };
 		4F96ECCB2293037000442F65 /* CacheWithConcurrentQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F96ECCA2293037000442F65 /* CacheWithConcurrentQueue.m */; };
 		4FA9918A21AECD1200E928D8 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA9918921AECD1200E928D8 /* Tests.m */; };
+		4FE77AAA2344C230000EA68D /* CreateResidentThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE77AA92344C230000EA68D /* CreateResidentThreadViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +143,8 @@
 		4FA9918721AECD1100E928D8 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FA9918921AECD1200E928D8 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		4FA9918B21AECD1200E928D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FE77AA82344C230000EA68D /* CreateResidentThreadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateResidentThreadViewController.h; sourceTree = "<group>"; };
+		4FE77AA92344C230000EA68D /* CreateResidentThreadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateResidentThreadViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -249,6 +252,8 @@
 				4F53C9912004AFE8003F79F6 /* KeepThreadLongAliveViewController.m */,
 				4F53C98D2004A911003F79F6 /* PerformDispatchBlockOnThreadViewController.h */,
 				4F53C98E2004A911003F79F6 /* PerformDispatchBlockOnThreadViewController.m */,
+				4FE77AA82344C230000EA68D /* CreateResidentThreadViewController.h */,
+				4FE77AA92344C230000EA68D /* CreateResidentThreadViewController.m */,
 			);
 			path = thread;
 			sourceTree = "<group>";
@@ -463,6 +468,7 @@
 				2BA4F8601F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m in Sources */,
 				4F50C72D2243BB73002B00C9 /* MultiThreadExampleViewController.m in Sources */,
 				2BF7F44A1F83DB3500B27A0F /* UseOSAtomicViewController.m in Sources */,
+				4FE77AAA2344C230000EA68D /* CreateResidentThreadViewController.m in Sources */,
 				2BA4F85A1F83D30200AE2BAD /* CreateThreadByNSThreadViewController.m in Sources */,
 				4F513F0D22DF2A54003698DA /* WCSingletonObject.m in Sources */,
 				4F50C7362243DC9B002B00C9 /* UseNSLockWithDeadlockViewController.m in Sources */,

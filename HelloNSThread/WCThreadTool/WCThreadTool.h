@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WCThreadTool : NSObject
 
+#pragma mark - Execute Task on Thread
+
 /**
  call block on the specific NSThread
 
@@ -32,6 +34,28 @@ NS_ASSUME_NONNULL_BEGIN
  @param waitUntilDone see +[WCThreadTool performBlock:onThread:waitUntilDone:] for detail
  */
 + (void)performBlock:(void (^)(id))block onThread:(NSThread *)thread withObject:(id)object waitUntilDone:(BOOL)waitUntilDone;
+
+#pragma mark - Resident Thread
+
+/**
+ Create and start a resident thread
+
+ @param name the name of the thread
+ @param startImmediately YES if start the thread after created, or NO to start it later by -[NSThread start]
+ @return the thread which is resident, and use +[WCThreadTool stopResidentThread:] to stop it running.
+ @discussion the returned thread should be hold by yourself
+ */
++ (NSThread *)createResidentThreadWithName:(NSString *)name startImmediately:(BOOL)startImmediately;
+
+/**
+ Stop the resident thread
+
+ @param residentThread the resident thread created by +[WCThreadTool createResidentThreadWithName:startImmediately:]
+ @return YES if it operates succesfully, or NO if it fails
+ @discussion the residentThread not created by +[WCThreadTool createResidentThreadWithName:startImmediately:] will make
+ this method no effective.
+ */
++ (BOOL)stopResidentThread:(NSThread *)residentThread;
 
 @end
 

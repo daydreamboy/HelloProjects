@@ -98,6 +98,29 @@ NSThread支持线程休眠，可以使用`+[NSThread sleepUntilDate:]`方法和`
 
 
 
+### （3）常驻线程
+
+​        常驻线程，一般指存活于App生命周期级别。普通的NSThread，执行完一次任务后，就自动退出了。创建常驻的NSThread需要使用NSRunLoop来保活，每个NSThread都默认有一个NSRunLoop，但需要`+[NSRunLoop currentRunLoop]`显式来访问。
+
+伪代码，如下
+
+```objective-c
+// 
+NSThread *residentThread = [[NSThread alloc] initWithTarget:self selector:@selector(threadEntrance) object:nil];
+
+- (void)threadEntrance {
+  @autoreleasepool {
+    while (shouldExit) {
+      [[NSRunLoop currentRunLoop] run];
+    }
+  }
+}
+```
+
+> 示例代码，见WCThreadTool的+[WCThreadTool createResidentThreadWithName:startImmediately:]方法
+
+
+
 ## 3、NSLocking
 
 `NSLocking`是一个协议，NSLock、NSRecursiveLock、NSConditionLock都实现了该协议的lock和unlock方法。

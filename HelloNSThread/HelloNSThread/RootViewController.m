@@ -14,6 +14,7 @@
 #import "CreateThreadByPOSIXViewController.h"
 #import "KeepThreadLongAliveViewController.h"
 #import "PerformDispatchBlockOnThreadViewController.h"
+#import "CreateResidentThreadViewController.h"
 
 // Lock
 #import "MultiThreadExampleViewController.h"
@@ -55,6 +56,7 @@
           @{ kTitle: @"Create thread using pthread", kClass: [CreateThreadByPOSIXViewController class] },
           @{ kTitle: @"Keep thread long alive", kClass: [KeepThreadLongAliveViewController class] },
           @{ kTitle: @"Call block on thread", kClass: [PerformDispatchBlockOnThreadViewController class] },
+          @{ kTitle: @"Create resident thread", kClass: [CreateResidentThreadViewController class] },
     ];
 
     NSArray<NSDictionary *> *section2 = @[
