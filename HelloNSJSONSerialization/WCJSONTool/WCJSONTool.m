@@ -472,7 +472,7 @@
         }
     }
     else if ([JSONObject isKindOfClass:[NSString class]]) {
-        return [NSString stringWithFormat:@"@\"%@\"", JSONObject];
+        return [NSString stringWithFormat:@"@\"%@\"", JSONEscapedStringFromString(JSONObject)];
     }
     else if ([JSONObject isKindOfClass:[NSNull class]]) {
         return @"[NSNull null]";
@@ -530,6 +530,21 @@
     else {
         return nil;
     }
+}
+
+// Convert NSString to JSON string
+static NSString * JSONEscapedStringFromString(NSString *string) {
+    NSMutableString *stringM = [NSMutableString stringWithString:string];
+    
+    [stringM replaceOccurrencesOfString:@"\"" withString:@"\\\"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    //[stringM replaceOccurrencesOfString:@"/" withString:@"\\/" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\n" withString:@"\\n" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\b" withString:@"\\b" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\f" withString:@"\\f" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\r" withString:@"\\r" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\t" withString:@"\\t" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    
+    return [NSString stringWithString:stringM];
 }
 
 #pragma mark ::
