@@ -381,7 +381,15 @@ CALayer的position(x,y)不允许有NaN值，否则会出现crash。（具体见H
 
 ## 6、Crash捕获后程序保活问题（TODO）
 
-![main thread crash - call stack](/Users/wesley_chen/GitHub_Projcets/HelloProjects/HelloNSException/images/main%20thread%20crash%20-%20call%20stack.png)
+![main thread crash - call stack](/Users/wesley_chen/GitHub_Projects/HelloProjects/HelloNSException/images/main%20thread%20crash%20-%20call%20stack.png)
+
+
+
+## 7、Crash日志符号化
+
+
+
+
 
 
 

@@ -36,6 +36,7 @@
 		4F746935214E42B50079F654 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F746934214E42B50079F654 /* main.m */; };
 		4F746942214E42C50079F654 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F746941214E42C50079F654 /* Tests.m */; };
 		4F74694A214E42E30079F654 /* Tests_Nil_Exception.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F746949214E42E30079F654 /* Tests_Nil_Exception.m */; };
+		4FE08D392339BD5C00CAA5DC /* Tests_NSAssertionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE08D382339BD5C00CAA5DC /* Tests_NSAssertionHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,6 +120,7 @@
 		4F746941214E42C50079F654 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		4F746943214E42C50079F654 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F746949214E42E30079F654 /* Tests_Nil_Exception.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_Nil_Exception.m; sourceTree = "<group>"; };
+		4FE08D382339BD5C00CAA5DC /* Tests_NSAssertionHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSAssertionHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -271,6 +273,7 @@
 				4F746941214E42C50079F654 /* Tests.m */,
 				4F746943214E42C50079F654 /* Info.plist */,
 				4F746949214E42E30079F654 /* Tests_Nil_Exception.m */,
+				4FE08D382339BD5C00CAA5DC /* Tests_NSAssertionHandler.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 			files = (
 				4F746942214E42C50079F654 /* Tests.m in Sources */,
 				4F74694A214E42E30079F654 /* Tests_Nil_Exception.m in Sources */,
+				4FE08D392339BD5C00CAA5DC /* Tests_NSAssertionHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
