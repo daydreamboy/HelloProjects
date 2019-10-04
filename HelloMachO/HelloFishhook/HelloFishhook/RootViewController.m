@@ -19,7 +19,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Note:
+    // Note: If NSLog is not compiled in code, it won't appear in the symbol table
+    // of the binary
     NSLog(@"before hook");
     
     struct rebinding NSLogBind;
@@ -29,10 +30,10 @@
     
     struct rebinding rebindings[] = { NSLogBind };
     
-    // Note: 
+    // Note: make a breakpoint at the below line
     rebind_symbols(rebindings, 1);
     
-    NSLog(@"after hook");
+    NSLog(@"after hook"); // Output: NSLog is hooked!
 }
 
 static void (*old_NSLog)(NSString *format, ...);
