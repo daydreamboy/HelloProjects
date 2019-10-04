@@ -1068,6 +1068,7 @@ R"(@{
     id JSONObject;
     NSString *output;
     
+    // Case 1
     JSONObject = @{
                    @"str": @"a",
                    @"num": @3,
@@ -1076,12 +1077,31 @@ R"(@{
                    @"float": @3.14,
                    @"dict": @{
                      @"key": @"value",
+                     @"jsonString": @"{\"url\":\"https://www.baidu.com/\"}",
                    }
                  };
     output = [WCJSONTool literalStringWithJSONObject:JSONObject indentLevel:0 startIndentLength:2 indentLength:2 ordered:YES isRootContainer:YES];
     printf("%s\n", [output UTF8String]);
+    printf("----------------------------------\n");
     
-    //
+    // Case 2
+    JSONObject = @{
+      @"bool" : @YES,
+      @"dict" : @{
+              @"jsonString" : @"{\"url\":\"https://www.baidu.com/\"}",
+              @"key" : @"value"
+              },
+      @"float" : @(3.14),
+      @"null" : [NSNull null],
+      @"num" : @(3),
+      @"str" : @"a"
+      };
+    
+    output = [WCJSONTool literalStringWithJSONObject:JSONObject indentLevel:0 startIndentLength:2 indentLength:4 ordered:YES isRootContainer:YES];
+    printf("%s\n", [output UTF8String]);
+    printf("----------------------------------\n");
+    
+    // Case 3
     JSONObject = @{
                    @"arr": @[
                      @"a",
@@ -1097,6 +1117,15 @@ R"(@{
                  };
     output = [WCJSONTool literalStringWithJSONObject:JSONObject indentLevel:0 startIndentLength:2 indentLength:4 ordered:YES isRootContainer:YES];
     printf("%s\n", [output UTF8String]);
+    printf("----------------------------------\n");
+
+    // Case 4
+    JSONObject = @{
+                   @"jsonString" : @"{\"jsonString\":\"{\\\"url\\\":\\\"https://www.baidu.com/\\\"}\"}"
+                   };
+    output = [WCJSONTool literalStringWithJSONObject:JSONObject indentLevel:0 startIndentLength:2 indentLength:4 ordered:YES isRootContainer:YES];
+    printf("%s\n", [output UTF8String]);
+    printf("----------------------------------\n");
 }
 
 #pragma mark -

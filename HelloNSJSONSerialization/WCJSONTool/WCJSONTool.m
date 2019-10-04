@@ -536,6 +536,9 @@
 static NSString * JSONEscapedStringFromString(NSString *string) {
     NSMutableString *stringM = [NSMutableString stringWithString:string];
     
+    // Note: `\` -> `\\`
+    [stringM replaceOccurrencesOfString:@"\\" withString:@"\\\\" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    // Note: `"` -> `\"`
     [stringM replaceOccurrencesOfString:@"\"" withString:@"\\\"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
     //[stringM replaceOccurrencesOfString:@"/" withString:@"\\/" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
     [stringM replaceOccurrencesOfString:@"\n" withString:@"\\n" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
