@@ -320,6 +320,14 @@ NSLog(@"%f", random);
 
 
 
+## 11、extern "C"[^5]
+
+
+
+
+
+
+
 ## References
 
 [1]: https://stackoverflow.com/questions/34574933/a-good-and-idiomatic-way-to-use-gcc-and-clang-attribute-cleanup-and-point
@@ -328,6 +336,8 @@ NSLog(@"%f", random);
 [^3]:http://blog.benjamin-encz.de/post/objective-c-backing-ivars-subclasses/
 
 [^4]:https://nshipster.com/random/
+
+[^5]:https://stackoverflow.com/questions/1041866/what-is-the-effect-of-extern-c-in-c
 
 
 
