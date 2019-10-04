@@ -10,6 +10,8 @@
 
 #import "RootViewController.h"
 
+static NSFileHandle *sReadHandler;
+
 @interface AppDelegate ()
 @property (nonatomic, strong) RootViewController *rootViewController;
 @property (nonatomic, strong) UINavigationController *navController;
@@ -18,6 +20,17 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    // Note: global NSFileHandle will keep a file handle, comment the following lines
+    // to see the alert info
+    // ---begin comment
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"Info" ofType:@"plist"];
+        sReadHandler = [NSFileHandle fileHandleForReadingAtPath:path];
+    });
+    // ---end comment
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     self.rootViewController = [RootViewController new];
