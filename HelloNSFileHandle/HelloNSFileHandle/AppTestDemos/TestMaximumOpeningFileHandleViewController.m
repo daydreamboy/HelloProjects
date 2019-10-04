@@ -48,18 +48,20 @@ do { \
                 NSLog(@"%@", handle);
                 count++;
             }
+            
+            NSError *error;
+            NSArray *list = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:mainBundleDirectory error:&error];
+            
+            if (error) {
+                NSLog(@"maximum opening handle: %ld", (long)count);
+                NSLog(@"%@", list);
+                NSLog(@"%@", error); // Maybe error: {Error Domain=NSPOSIXErrorDomain Code=24 "Too many open files"}}
+                
+                NSString *msg = [NSString stringWithFormat:@"maximum opening file: %ld", (long)count];
+                SHOW_ALERT(@"Error: Reached the maximum opening file", msg, @"Ok", nil);
+                break;
+            }
         }
-    }
-    
-    NSError *error;
-    NSArray *list = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:mainBundleDirectory error:&error];
-    NSLog(@"maximum opening handle: %ld", (long)count);
-    NSLog(@"%@", list);
-    NSLog(@"%@", error); // Maybe error: {Error Domain=NSPOSIXErrorDomain Code=24 "Too many open files"}}
-    
-    if (error) {
-        NSString *msg = [NSString stringWithFormat:@"maximum opening file: %ld", (long)count];
-        SHOW_ALERT(@"Error: Reached the maximum opening file", msg, @"Ok", nil);
     }
 }
 
