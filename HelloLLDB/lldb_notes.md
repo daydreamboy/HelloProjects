@@ -299,7 +299,90 @@ thread #1: tid = 0x1ba0d4, 0x000000010dc05280 libclang_rt.asan_iossim_dynamic.dy
 
 
 
-### 8. TODO
+### 8. disassemble
+
+格式：disassemble [<cmd-options>]   
+简写：dis    
+说明：在当前target中反汇编指定的指令（地址）。
+
+常用选项：
+
+* dis，不指定任何option，默认反汇编当前线程的stack frame。
+
+```assembly
+(lldb) dis
+HelloFishhook`-[RootViewController viewDidLoad]:
+    0x1001da8a0 <+0>:   push   rbp
+    0x1001da8a1 <+1>:   mov    rbp, rsp
+    0x1001da8a4 <+4>:   sub    rsp, 0x60
+    0x1001da8a8 <+8>:   mov    rax, qword ptr [rip + 0x2761] ; (void *)0x0000000102f17070: __stack_chk_guard
+    0x1001da8af <+15>:  mov    rax, qword ptr [rax]
+    0x1001da8b2 <+18>:  mov    qword ptr [rbp - 0x8], rax
+    0x1001da8b6 <+22>:  mov    qword ptr [rbp - 0x28], rdi
+    0x1001da8ba <+26>:  mov    qword ptr [rbp - 0x30], rsi
+    0x1001da8be <+30>:  mov    rax, qword ptr [rbp - 0x28]
+    0x1001da8c2 <+34>:  mov    qword ptr [rbp - 0x40], rax
+    0x1001da8c6 <+38>:  mov    rax, qword ptr [rip + 0x38ab] ; (void *)0x00000001001de1f8: RootViewController
+    0x1001da8cd <+45>:  mov    qword ptr [rbp - 0x38], rax
+    0x1001da8d1 <+49>:  mov    rsi, qword ptr [rip + 0x3760] ; "viewDidLoad"
+    0x1001da8d8 <+56>:  lea    rdi, [rbp - 0x40]
+    0x1001da8dc <+60>:  call   0x1001db48a               ; symbol stub for: objc_msgSendSuper2
+    0x1001da8e1 <+65>:  lea    rax, [rip + 0x27b8]       ; @"before hook"
+    0x1001da8e8 <+72>:  mov    rdi, rax
+    0x1001da8eb <+75>:  mov    al, 0x0
+    0x1001da8ed <+77>:  call   0x1001db454               ; symbol stub for: NSLog
+    0x1001da8f2 <+82>:  mov    ecx, 0x1
+    0x1001da8f7 <+87>:  mov    esi, ecx
+    0x1001da8f9 <+89>:  lea    rdi, [rbp - 0x20]
+    0x1001da8fd <+93>:  lea    rdx, [rip + 0x3a0c]       ; old_NSLog
+    0x1001da904 <+100>: lea    r8, [rip + 0x75]          ; myNSLog at RootViewController.m:41
+    0x1001da90b <+107>: lea    r9, [rip + 0x23d2]        ; "NSLog"
+    0x1001da912 <+114>: mov    qword ptr [rbp - 0x58], r9
+    0x1001da916 <+118>: mov    qword ptr [rbp - 0x50], r8
+    0x1001da91a <+122>: mov    qword ptr [rbp - 0x48], rdx
+    0x1001da91e <+126>: mov    rdx, qword ptr [rbp - 0x58]
+    0x1001da922 <+130>: mov    qword ptr [rbp - 0x20], rdx
+    0x1001da926 <+134>: mov    rdx, qword ptr [rbp - 0x50]
+    0x1001da92a <+138>: mov    qword ptr [rbp - 0x18], rdx
+    0x1001da92e <+142>: mov    rdx, qword ptr [rbp - 0x48]
+    0x1001da932 <+146>: mov    qword ptr [rbp - 0x10], rdx
+->  0x1001da936 <+150>: call   0x1001db4a2               ; symbol stub for: rebind_symbols
+    0x1001da93b <+155>: lea    rdx, [rip + 0x277e]       ; @"after hook"
+    0x1001da942 <+162>: mov    rdi, rdx
+    0x1001da945 <+165>: mov    dword ptr [rbp - 0x5c], eax
+    0x1001da948 <+168>: mov    al, 0x0
+    0x1001da94a <+170>: call   0x1001db454               ; symbol stub for: NSLog
+    0x1001da94f <+175>: mov    rdx, qword ptr [rip + 0x26ba] ; (void *)0x0000000102f17070: __stack_chk_guard
+    0x1001da956 <+182>: mov    rdx, qword ptr [rdx]
+    0x1001da959 <+185>: mov    rsi, qword ptr [rbp - 0x8]
+    0x1001da95d <+189>: cmp    rdx, rsi
+    0x1001da960 <+192>: jne    0x1001da96c               ; <+204> at RootViewController.m
+    0x1001da966 <+198>: add    rsp, 0x60
+    0x1001da96a <+202>: pop    rbp
+    0x1001da96b <+203>: ret    
+    0x1001da96c <+204>: call   0x1001db46c               ; symbol stub for: __stack_chk_fail
+    0x1001da971 <+209>: ud2    
+    0x1001da973 <+211>: nop    word ptr cs:[rax + rax]
+    0x1001da97d <+221>: nop    dword ptr [rax]
+```
+
+
+
+* dis -s <address-expression>，在指定地址开始执行反汇编
+
+```assembly
+(lldb) dis -s 0x00000001005840de
+Foundation`NSLog:
+    0x1005840de <+0>:  push   rbp
+    0x1005840df <+1>:  mov    rbp, rsp
+    0x1005840e2 <+4>:  sub    rsp, 0xd0
+    0x1005840e9 <+11>: test   al, al
+    0x1005840eb <+13>: je     0x100584113               ; <+53>
+    0x1005840ed <+15>: movaps xmmword ptr [rbp - 0xa0], xmm0
+    0x1005840f4 <+22>: movaps xmmword ptr [rbp - 0x90], xmm1
+```
+
+
 
 
 
@@ -749,15 +832,18 @@ class]]"
 
 
 
-#### （1）memory read
+#### （1）memory read (x)
 
 格式：memory read [options] \<memory address\>      
 简写: x/\<fmt\> \<memory address\>          
+
+> memory read简写为x
+
 常用选项：
 
 * -c\<num\>，根据输出的格式（或者每个单位），指定输出多少个单位。例如-fi指定按照指令格式，单位是内存地址，所以-c10，是输出10个连续地址。
 
-```
+```assembly
 (lldb) memory read -fi -c10 0x00000001000089f0
 ->  0x1000089f0: 55                    pushq  %rbp
     0x1000089f1: 48 89 e5              movq   %rsp, %rbp
@@ -773,7 +859,7 @@ class]]"
 
 又例如-fx按照内存值输出，默认是4个字节为一个单位，输出20个单位。
 
-```
+```assembly
 (lldb) memory read -c20 -fx 0x00000001000089f0
 0x1000089f0: 0xe5894855 0xc0ec8148 0x4c000000 0xb8f86d89
 0x100008a00: 0x00000001 0x53e8c789 0x48000006 0x8948c789
@@ -784,7 +870,7 @@ class]]"
 
 * -fi，按照指令格式(instruction)输出。objc上下文中，可以使用简写形式p/i。
 
-```
+```shell
 (lldb) expr -l objc -f x -- $rip
 (unsigned long) $1 = 0x00000001000089f0
 (lldb) memory read -fi -c1 0x00000001000089f0
@@ -795,7 +881,7 @@ class]]"
 
 除了对内存地址中的值，按照指令格式输出，也适用于对应任意值，例如
 
-```
+```shell
 (lldb) expression -l objc -fi -- 0x55
 (int) $2 = 55  pushq  %rbp
 (lldb) expression -l objc -fi -- 0x4889e5
@@ -809,16 +895,20 @@ class]]"
 >
 little-endian方式，即低位存低地址。例如存储0xabcd到内存，先存0xcd（地址x），然后存0xab（地址x+1）。big-endian方式则相反。
 
+
+
 * -fx，按照十六进制格式输出。如果不指定-s，默认是4个字节（64位上）
 
-```
-memory read -c1 -fx 0x00000001000089f0
+```assembly
+(lldb) memory read -c1 -fx 0x00000001000089f0
 0x1000089f0: 0xe5894855
 ```
 
+
+
 * -s\<n\>，指定每个单位的大小（n byte）。注意：-s和-fi一起使用，-s无效
 
-```
+```assembly
 (lldb) memory read -s1 -c20 -fx 0x00000001000089f0
 0x1000089f0: 0x55 0x48 0x89 0xe5 0x48 0x81 0xec 0xc0
 0x1000089f8: 0x00 0x00 0x00 0x4c 0x89 0x6d 0xf8 0xb8
@@ -834,9 +924,31 @@ memory read -c1 -fx 0x00000001000089f0
 0x100008a30: 0x48a0558b 0xb9184289 0x00000003 0x15e8cf89
 ```
 
+现在iOS系统都是64位，默认是4个字节，不能完整显示一个指针的值。可以指定-s8，来输出指针地址。
+
+```assembly
+(lldb) memory read -fx -s8 0x00000001001d9000+0x4030
+0x1001dd030: 0x00000001001da980 0x00000001001db4cc
+0x1001dd040: 0x0000000100570489 0x00000001043faf36
+0x1001dd050: 0x00000001001db526 0x00000001001db530
+0x1001dd060: 0x00000001001db4e0 0x0000000100ad5aeb
+(lldb) dis -s 0x00000001001da980
+HelloFishhook`myNSLog:
+    0x1001da980 <+0>:  push   rbp
+    0x1001da981 <+1>:  mov    rbp, rsp
+    0x1001da984 <+4>:  sub    rsp, 0x30
+    0x1001da988 <+8>:  mov    qword ptr [rbp - 0x8], 0x0
+    0x1001da990 <+16>: lea    rax, [rbp - 0x8]
+    0x1001da994 <+20>: mov    qword ptr [rbp - 0x10], rdi
+    0x1001da998 <+24>: mov    rdi, rax
+    0x1001da99b <+27>: mov    rsi, qword ptr [rbp - 0x10]
+```
+
+
+
 * x/\<fmt\>，支持-f和-G选项，例如
 
-```
+```assembly
 (lldb) x/gx $rsp
 0x7ffeefbfe3a8: 0x0000000100003550
 (lldb) memory read -fx -G g $rsp
@@ -845,9 +957,9 @@ memory read -c1 -fx 0x00000001000089f0
 0x7ffeefbfe3a8: 0x00003550
 ```
 
--G选项的参数，可以参考http://visualgdb.com/gdbreference/commands/x
 
->
+
+>-G选项的参数，可以参考http://visualgdb.com/gdbreference/commands/x
 
 
 
@@ -1620,7 +1732,7 @@ void* dlsym(void* handle, const char* symbol);
 
 以hook getenv函数为例
 
-```
+```c
 #import <dlfcn.h>
 #import <assert.h>
 #import <stdio.h>
