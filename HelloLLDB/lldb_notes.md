@@ -1565,10 +1565,19 @@ GBD格式的size修饰符，参考[http://visualgdb.com/gdbreference/commands/x]
 ![$RIP的作用.png](images/$RIP的作用.png)
 
 
+
 #### ARM64
 
 * x0-x7，存放方法（函数）的前8个参数，具体个数视调试而定
 * x0，存放方法（函数）的返回值
+
+* LR（x30），链接寄存器，一般是保存返回上一层调用的地址[^6]
+* FP（x29），栈底寄存器[^6]
+* SP，栈顶寄存器[^6]
+
+
+
+
 
 #### 寄存器命名
 
@@ -2104,5 +2113,5 @@ instance method 'YW_lyk_size' also declared here
 [^4]:https://libcxxabi.llvm.org/spec.html
 [^5]:https://www.jianshu.com/p/a488de9cd535
 
-
+[^6]:https://wetest.qq.com/lab/view/393.html
 

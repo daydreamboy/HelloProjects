@@ -506,12 +506,9 @@ $ xcodebuild -scheme Test -destination 'platform=iOS Simulator,name=iPhone 8,OS=
 
 ##### OS X特有的key值
 
-| key    | value                | 示例                                                         |
-| ------ | -------------------- | ------------------------------------------------------------ |
-| `arch` | `x86_64`<br />`i386` | xcodebuild \\<br/>  -workspace MyMacApp.xcworkspace \\<br />
-  -scheme MyMacApp \\<br />
-  -destination 'platform=OS X,arch=x86_64' \\<br />
-  clean test |
+| key    | value               | 示例                                                         |
+| ------ | ------------------- | ------------------------------------------------------------ |
+| `arch` | `x86_64`<br/>`i386` | xcodebuild <br/>  -workspace MyMacApp.xcworkspace <br/>  -scheme MyMacApp <br/>  -destination 'platform=OS X,arch=x86_64' <br/>  clean test |
 
 
 
@@ -519,18 +516,11 @@ $ xcodebuild -scheme Test -destination 'platform=iOS Simulator,name=iPhone 8,OS=
 
 | key    | value                | 示例                                                         |
 | ------ | -------------------- | ------------------------------------------------------------ |
-| `id`   | UUID                 | xcodebuild \\<br/>-workspace MyApp.xcworkspace \\<br />
-  -scheme MyApp \\<br />
-  -destination 'platform=iOS,id=YOUR_PHONE_UUID' \\<br />
-  clean test |
-| `name` | 设备名               | xcodebuild \\<br/>  -workspace MyApp.xcworkspace \\<br />
-  -scheme MyApp \\<br />
-  -destination "platform=iOS,name=Gio's iPhone" \\<br />
-  clean test |
-| `OS`   | 系统版本或者`latest` | xcodebuild \\<br/>  -workspace MyApp.xcworkspace \\<br />
-  -scheme MyApp \\<br />
-  -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.1' \\<br/>
-  clean test |
+| `id`   | UUID                 | xcodebuild \\<br/>  -workspace MyApp.xcworkspace \\<br />  -scheme MyApp \\<br />  -destination 'platform=iOS,id=YOUR_PHONE_UUID' \\<br />  clean test |
+| `name` | 设备名               | xcodebuild \\<br/>  -workspace MyApp.xcworkspace \\<br />  -scheme MyApp \\<br />  -destination "platform=iOS,name=Gio's iPhone" \\<br />  clean test |
+| `OS`   | 系统版本或者`latest` | xcodebuild \\<br/>  -workspace MyApp.xcworkspace \\<br />  -scheme MyApp \\<br />  -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.1' \\<br/>  clean test |
+
+
 
 说明
 
@@ -553,6 +543,26 @@ xcodebuild允许多个`-destination`选项，这样可以编译多个目标设�
 
 
 
+### （2）`-version`选项
+
+查看当前使用Xcode版本[^4]，如下
+
+```shell
+$ /usr/bin/xcodebuild -version | head -n 1
+Xcode 10.3
+```
+
+
+
+提取Xcode版本号，如下[^5][^6]
+
+```shell
+$ /usr/bin/xcodebuild -version | head -n 1 | cut -d' ' -f2
+10.3
+```
+
+
+
 
 
 
@@ -564,3 +574,9 @@ References
 [^1]:https://developer.apple.com/library/mac/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html#//apple_ref/doc/uid/TP40003931-CH3-SW38
 [^2]: https://stackoverflow.com/a/34005020
 [^3]:<https://www.mokacoding.com/blog/xcodebuild-destination-options/>
+[^4]:https://stackoverflow.com/questions/21272479/how-can-i-find-out-if-i-have-xcode-commandline-tools-installed
+[^5]:https://stackoverflow.com/questions/46021955/get-first-line-of-a-shell-commands-output?noredirect=1&lq=1
+[^6]:https://stackoverflow.com/a/46022082
+
+
+
