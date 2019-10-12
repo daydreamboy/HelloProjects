@@ -4,7 +4,8 @@
 # @see https://gist.github.com/cromandini/1a9c4aeab27ca84f5d79
 
 # Note:
-# 1. set iOS Deployment Target to `iOS 8.0` to include i386 for simulator and armv7 for device. `iOS 11.2` won't include those archs
+# 1. Targets -> <Universal Target> -> General -> Deployment Info -> Deployment Target,
+#    set iOS Deployment Target to `iOS 8.0` to include i386 for simulator and armv7 for device. `iOS 11.2` won't include those archs
 # 2. error: Check dependencies No architectures to compile for (ARCHS=i386 x86_64, VALID_ARCHS=arm64 armv7 armv7s).
 #    solution: build settings, set VALID_ARCHS="arm64 armv7 armv7s i386 x86_64"
 
@@ -13,6 +14,9 @@ set -e
 set -x
 
 UNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal
+
+xcode_version=`xcodebuild -version | head -n 1 | cut -d' ' -f2`
+xcode_10=10
 
 # only build configuration is Debug to create universal, becase AppStore not accept fat arch
 if [ "Debug" == ${CONFIGURATION} ]; then
@@ -30,8 +34,12 @@ if [ "Debug" == ${CONFIGURATION} ]; then
         else
             additional_arch='iphonesimulator'
         fi
-        
-        xcodebuild -target "${TARGET_NAME}" -configuration ${CONFIGURATION} -sdk ${additional_arch} ONLY_ACTIVE_ARCH=NO BUILD_DIR="${BUILD_DIR}" BUILD_ROOT="${BUILD_ROOT}" OBJROOT="${OBJROOT}" clean build
+
+        if (( $(echo "$xcode_version >= $xcode_10" | bc -l) )); then
+            xcodebuild -target "${TARGET_NAME}" -configuration ${CONFIGURATION} -sdk ${additional_arch} ONLY_ACTIVE_ARCH=NO BUILD_DIR="${BUILD_DIR}" BUILD_ROOT="${BUILD_ROOT}" OBJROOT="${OBJROOT}" -UseModernBuildSystem=NO
+        else
+            xcodebuild -target "${TARGET_NAME}" -configuration ${CONFIGURATION} -sdk ${additional_arch} ONLY_ACTIVE_ARCH=NO BUILD_DIR="${BUILD_DIR}" BUILD_ROOT="${BUILD_ROOT}" OBJROOT="${OBJROOT}" clean build
+        fi
         
         # Step 2. Copy the framework structure (from iphoneos build) to the universal folder
         rsync -arv "${BUILD_DIR}/${CONFIGURATION}-${additional_arch}/${PRODUCT_NAME}.framework" "${UNIVERSAL_OUTPUTFOLDER}/"
@@ -73,7 +81,11 @@ if [ "Release" == ${CONFIGURATION} ]; then
             additional_arch='iphonesimulator'
         fi
         
-        xcodebuild -target "${TARGET_NAME}" -configuration ${CONFIGURATION} -sdk ${additional_arch} ONLY_ACTIVE_ARCH=NO BUILD_DIR="${BUILD_DIR}" BUILD_ROOT="${BUILD_ROOT}" OBJROOT="${OBJROOT}" clean build
+        if (( $(echo "$xcode_version >= $xcode_10" | bc -l) )); then
+            xcodebuild -target "${TARGET_NAME}" -configuration ${CONFIGURATION} -sdk ${additional_arch} ONLY_ACTIVE_ARCH=NO BUILD_DIR="${BUILD_DIR}" BUILD_ROOT="${BUILD_ROOT}" OBJROOT="${OBJROOT}" -UseModernBuildSystem=NO
+        else
+            xcodebuild -target "${TARGET_NAME}" -configuration ${CONFIGURATION} -sdk ${additional_arch} ONLY_ACTIVE_ARCH=NO BUILD_DIR="${BUILD_DIR}" BUILD_ROOT="${BUILD_ROOT}" OBJROOT="${OBJROOT}" clean build
+        fi
         
         # Step 2. Copy the framework structure (from iphoneos build) to the universal folder
         rsync -arv "${BUILD_DIR}/${CONFIGURATION}-${additional_arch}/${PRODUCT_NAME}.framework" "${UNIVERSAL_OUTPUTFOLDER}/"
