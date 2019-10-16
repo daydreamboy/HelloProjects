@@ -229,8 +229,9 @@
         return CGSizeZero;
     }
     
-    // Note: `\n` will count for a line, so strip it
+    // Note: `\n` or `\r` will count for a line, so strip it
     attributedString = [self replaceStringWithAttributedString:attributedString occurrenceString:@"\n" replacementString:@"" range:NSMakeRange(0, attributedString.length)];
+    attributedString = [self replaceStringWithAttributedString:attributedString occurrenceString:@"\r" replacementString:@"" range:NSMakeRange(0, attributedString.length)];
     CGRect rect = [attributedString boundingRectWithSize:CGSizeMake(CGFLOAT_MAX, CGFLOAT_MAX)
                                                  options:(NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading)
                                                  context:nil];

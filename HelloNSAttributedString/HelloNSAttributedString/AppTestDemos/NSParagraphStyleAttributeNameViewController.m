@@ -178,7 +178,7 @@
 
 - (NSString *)text3 {
     if (!_text3) {
-        NSString *text = @"文本内容\n";
+        NSString *text = @"文本内容\n\r";
         
         _text3 = text;
     }
