@@ -552,6 +552,31 @@ static NSString * JSONEscapedStringFromString(NSString *string) {
 
 #pragma mark ::
 
+#pragma mark > JSON value comparison
+
++ (NSNumber *)compareNumbersRoughlyWithJSONValue1:(id)JSONValue1 JSONValue2:(id)JSONValue2 {
+    if (![JSONValue1 isKindOfClass:[NSString class]] && ![JSONValue1 isKindOfClass:[NSNumber class]]) {
+        return nil;
+    }
+    
+    if (![JSONValue2 isKindOfClass:[NSString class]] && ![JSONValue2 isKindOfClass:[NSNumber class]]) {
+        return nil;
+    }
+    
+    double value1 = [JSONValue1 doubleValue];
+    double value2 = [JSONValue2 doubleValue];
+    
+    if (value1 < value2) {
+        return @(NSOrderedAscending);
+    }
+    else if (value1 > value2) {
+        return @(NSOrderedDescending);
+    }
+    else {
+        return @(NSOrderedSame);
+    }
+}
+
 #pragma mark - Utility Methods
 
 + (nullable NSString *)stringByReplacingMatchesInString:(NSString *)string pattern:(NSString *)pattern captureGroupBindingBlock:(nullable NSString *(^)(NSString *matchString, NSArray<NSString *> *captureGroupStrings))captureGroupBindingBlock {

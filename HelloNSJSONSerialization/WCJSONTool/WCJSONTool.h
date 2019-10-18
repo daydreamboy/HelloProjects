@@ -212,6 +212,18 @@ NS_AVAILABLE_IOS(5_0)
  */
 + (void)printLiteralStringFromJSONObject:(id)JSONObject;
 
+#pragma mark > JSON value comparison
+
+/**
+ Compare two numbers which maybe NSString or NSNumber
+
+ @param JSONValue1 the value allowed in JSON
+ @param JSONValue2 the value allowed in JSON
+ @return the NSNumber wrapper NSOrderedAscending/NSOrderedDescending/NSOrderedSame.
+ Return nil if parameters are wrong.
+ */
++ (NSNumber *)compareNumbersRoughlyWithJSONValue1:(id)JSONValue1 JSONValue2:(id)JSONValue2;
+
 @end
 
 NS_ASSUME_NONNULL_END

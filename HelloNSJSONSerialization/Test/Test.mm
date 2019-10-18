@@ -1062,6 +1062,61 @@ R"(@{
     XCTAssertNil(output);
 }
 
+- (void)test_compareNumbersRoughlyWithJSONValue1_JSONValue2 {
+    id value1;
+    id value2;
+    NSNumber *output;
+    
+    // Case 1
+    value1 = @"1.0";
+    value2 = @(1);
+    output = [WCJSONTool compareNumbersRoughlyWithJSONValue1:value1 JSONValue2:value2];
+    XCTAssertNotNil(output);
+    XCTAssertTrue([output integerValue] == NSOrderedSame);
+    
+    // Case 2
+    value1 = @"3";
+    value2 = @(3);
+    output = [WCJSONTool compareNumbersRoughlyWithJSONValue1:value1 JSONValue2:value2];
+    XCTAssertNotNil(output);
+    XCTAssertTrue([output integerValue] == NSOrderedSame);
+    
+    // Case 3
+    value1 = @"3";
+    value2 = @"3.0";
+    output = [WCJSONTool compareNumbersRoughlyWithJSONValue1:value1 JSONValue2:value2];
+    XCTAssertNotNil(output);
+    XCTAssertTrue([output integerValue] == NSOrderedSame);
+    
+    // Case 4
+    value1 = @(5);
+    value2 = @(5);
+    output = [WCJSONTool compareNumbersRoughlyWithJSONValue1:value1 JSONValue2:value2];
+    XCTAssertNotNil(output);
+    XCTAssertTrue([output integerValue] == NSOrderedSame);
+    
+    // Case 5
+    value1 = @"3.14";
+    value2 = @"3.14";
+    output = [WCJSONTool compareNumbersRoughlyWithJSONValue1:value1 JSONValue2:value2];
+    XCTAssertNotNil(output);
+    XCTAssertTrue([output integerValue] == NSOrderedSame);
+    
+    // Case 6
+    value1 = @"3.14";
+    value2 = @"3";
+    output = [WCJSONTool compareNumbersRoughlyWithJSONValue1:value1 JSONValue2:value2];
+    XCTAssertNotNil(output);
+    XCTAssertTrue([output integerValue] == NSOrderedDescending);
+    
+    // Case 7
+    value1 = @"3";
+    value2 = @(3.14);
+    output = [WCJSONTool compareNumbersRoughlyWithJSONValue1:value1 JSONValue2:value2];
+    XCTAssertNotNil(output);
+    XCTAssertTrue([output integerValue] == NSOrderedAscending);
+}
+
 #pragma mark - Internal Testing
 
 - (void)test_literalStringWithJSONObject_indentLevel_startIndentLength_indentLength_ordered_isRootContainer {
