@@ -118,4 +118,11 @@ typedef struct StructTypeA {
 //    return Tuple(@1, @"string", 2);
 //}
 
+- (void)test_strlen {
+    NSString *stringMaybeNil = nil;
+    
+    size_t len = strlen([stringMaybeNil UTF8String]); // Crash: pass NULL to strlen
+    printf("%zu\n", len);
+}
+
 @end
