@@ -556,11 +556,11 @@ static NSString * JSONEscapedStringFromString(NSString *string) {
 
 + (NSNumber *)compareNumbersRoughlyWithJSONValue1:(id)JSONValue1 JSONValue2:(id)JSONValue2 {
     if (![JSONValue1 isKindOfClass:[NSString class]] && ![JSONValue1 isKindOfClass:[NSNumber class]]) {
-        return nil;
+        return @(NSNotFound);
     }
     
     if (![JSONValue2 isKindOfClass:[NSString class]] && ![JSONValue2 isKindOfClass:[NSNumber class]]) {
-        return nil;
+        return @(NSNotFound);
     }
     
     double value1 = [JSONValue1 doubleValue];

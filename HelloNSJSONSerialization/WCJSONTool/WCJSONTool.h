@@ -219,8 +219,8 @@ NS_AVAILABLE_IOS(5_0)
 
  @param JSONValue1 the value allowed in JSON
  @param JSONValue2 the value allowed in JSON
- @return the NSNumber wrapper NSOrderedAscending/NSOrderedDescending/NSOrderedSame.
- Return nil if parameters are wrong.
+ @return the NSNumber which are @(NSOrderedAscending)/@(NSOrderedDescending)/@(NSOrderedSame)/@(NSNotFound).
+ Return @(NSNotFound) if parameters are wrong.
  */
 + (NSNumber *)compareNumbersRoughlyWithJSONValue1:(id)JSONValue1 JSONValue2:(id)JSONValue2;
 

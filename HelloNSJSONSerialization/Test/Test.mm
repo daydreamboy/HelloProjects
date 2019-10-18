@@ -1115,6 +1115,20 @@ R"(@{
     output = [WCJSONTool compareNumbersRoughlyWithJSONValue1:value1 JSONValue2:value2];
     XCTAssertNotNil(output);
     XCTAssertTrue([output integerValue] == NSOrderedAscending);
+    
+    // Abnormal Case 1
+    value1 = @{@"k": @"v"};
+    value2 = @(3.14);
+    output = [WCJSONTool compareNumbersRoughlyWithJSONValue1:value1 JSONValue2:value2];
+    XCTAssertNotNil(output);
+    XCTAssertTrue([output integerValue] == NSNotFound);
+    
+    // Abnormal Case 2
+    value1 = @"3.14";
+    value2 = @[@"1"];
+    output = [WCJSONTool compareNumbersRoughlyWithJSONValue1:value1 JSONValue2:value2];
+    XCTAssertNotNil(output);
+    XCTAssertTrue([output integerValue] == NSNotFound);
 }
 
 #pragma mark - Internal Testing
