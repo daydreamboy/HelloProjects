@@ -37,6 +37,44 @@
     XCTAssertNil(value);
 }
 
+- (void)test_flattenDictionaryWithDictionary_option {
+    id dict;
+    NSDictionary *output;
+    
+    // Case 1
+    dict = @{
+             @"1": @{
+                     @"2-1": @{
+                         @"3-1": @"3-1-value",
+                         @"3-2": @"3-1-value",
+                         @"3-3": @[ @"3-1-value1", @"3-1-value2", @"3-1-value3",]
+                         },
+                     @"2-2": @[
+                                @{ @"4": @"4-value"}
+                             ]
+                     },
+             };
+    output = [WCDictionaryTool flattenDictionaryWithDictionary:dict option:kNilOptions];
+    NSLog(@"%@", output);
+    
+    // Case 2
+    // Case 1
+    dict = @{
+             @"1": @{
+                     @"2-1": @{
+                             @"3-1": @"3-1-value",
+                             @"3-2": @"3-1-value",
+                             @"3-3": @[ @"3-1-value1", @"3-1-value2", @"3-1-value3",]
+                             },
+                     @"2-2": @[
+                                @{ @"4": @"4-value"}
+                             ]
+                     },
+             };
+    output = [WCDictionaryTool flattenDictionaryWithDictionary:dict option:WCFlattenDictionaryOptionOnlyDictionaryAndArray];
+    NSLog(@"%@", output);
+}
+
 - (void)test_description {
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     for (NSInteger i = 0; i < 100; i++) {

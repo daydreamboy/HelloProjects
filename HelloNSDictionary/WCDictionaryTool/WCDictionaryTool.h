@@ -17,6 +17,11 @@ typedef NS_ENUM(NSUInteger, WCKeysMappingMode) {
     WCKeysMappingModeKeepKeysIfNotSet,
 };
 
+typedef NS_ENUM(NSUInteger, WCFlattenDictionaryOption) {
+    WCFlattenDictionaryOptionOnlyDictionary = kNilOptions,
+    WCFlattenDictionaryOptionOnlyDictionaryAndArray,
+};
+
 @interface WCDictionaryTool : NSObject
 
 #pragma mark - Get Value for Key
@@ -69,6 +74,17 @@ typedef NS_ENUM(NSUInteger, WCKeysMappingMode) {
  not exists.
  */
 + (nullable id)objectWithDictionary:(NSDictionary *)dictionary forKeyPath:(NSString *)keyPath objectClass:(nullable Class)objectClass;
+
+/**
+ Flatten the nested dictionary into one-level dictionary
+
+ @param dictionary the dictionary which maybe nest dictionary or array.
+ @param option the option. See WCFlattenDictionaryOption
+ - WCFlattenDictionaryOptionOnlyDictionary (also kNilOptions): dictionary nest dictionary
+ - WCFlattenDictionaryOptionOnlyDictionaryAndArray: dictionary nest dictionary or array
+ @return the flatten dictionary. The key are keyPath separated by `.`
+ */
++ (nullable NSDictionary<NSString *, id> *)flattenDictionaryWithDictionary:(NSDictionary *)dictionary option:(WCFlattenDictionaryOption)option;
 
 #pragma mark - Safe Wrapping
 

@@ -64,6 +64,67 @@
     return (objectClass == nil || [object isKindOfClass:objectClass]) ? object : nil;
 }
 
++ (nullable NSDictionary<NSString *, id> *)flattenDictionaryWithDictionary:(NSDictionary *)dictionary option:(WCFlattenDictionaryOption)option {
+    if (![dictionary isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    
+    __block NSMutableDictionary *flattenDictM = [NSMutableDictionary dictionary];
+    
+    BOOL (^checkIsContainer)(id) = ^BOOL(id container) {
+        BOOL isContainer = NO;
+        
+        if ((option == WCFlattenDictionaryOptionOnlyDictionary) && [container isKindOfClass:[NSDictionary class]]) {
+            isContainer = YES;
+        }
+        else if ((option == WCFlattenDictionaryOptionOnlyDictionaryAndArray) &&
+                 ([container isKindOfClass:[NSDictionary class]] || [container isKindOfClass:[NSArray class]])) {
+            isContainer = YES;
+        }
+        
+        return isContainer;
+    };
+    
+    // @see https://stackoverflow.com/a/19905407
+    __block __weak void (^weak_block)(NSString *, id);
+    __block __strong void (^block)(NSString *, id);
+    
+    weak_block = block = ^(NSString *currentPath, id container) {
+        if ([container isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *dict = (NSDictionary *)container;
+            
+            [dict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                NSString *keyPath = currentPath.length ? [[currentPath stringByAppendingString:@"."] stringByAppendingString:key] : [key copy];
+                
+                if (checkIsContainer(obj)) {
+                    weak_block(keyPath, obj);
+                }
+                else {
+                    flattenDictM[keyPath] = obj;
+                }
+            }];
+        }
+        else if ([container isKindOfClass:[NSArray class]]) {
+            NSArray *arr = (NSArray *)container;
+            for (NSUInteger i = 0; i < arr.count; ++i) {
+                NSString *index = [NSString stringWithFormat:@"[%lu]", (unsigned long)i];
+                NSString *keyPath = currentPath.length ? [[currentPath stringByAppendingString:@"."] stringByAppendingString:index] : index;
+             
+                if (checkIsContainer(arr[i])) {
+                    weak_block(keyPath, arr[i]);
+                }
+                else {
+                    flattenDictM[keyPath] = arr[i];
+                }
+            }
+        }
+    };
+    
+    block(@"", dictionary);
+    
+    return [flattenDictM copy];
+}
+
 #pragma mark - Safe Wrapping
 
 + (NSDictionary *)dictionaryWithKeyAndValues:(id)firstKey, ... NS_REQUIRES_NIL_TERMINATION {
