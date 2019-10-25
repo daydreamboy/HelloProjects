@@ -13,10 +13,37 @@
 set -e
 set -x
 
+# Note: If this script use in podspec as script_phase field, set the pod_name to the target name
+pod_name=""
+
 UNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal
+IPHONE_SIMULATOR_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PRODUCT_NAME}.framework/${PRODUCT_NAME}
+IPHONE_OS_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PRODUCT_NAME}.framework/${PRODUCT_NAME}
+dSYM_iphoneos_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PRODUCT_NAME}.framework.dSYM/Contents/Resources/DWARF/${PRODUCT_NAME}
+dSYM_iphonesimulator_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PRODUCT_NAME}.framework.dSYM/Contents/Resources/DWARF/${PRODUCT_NAME}
 
 xcode_version=`xcodebuild -version | head -n 1 | cut -d' ' -f2`
 xcode_10=10
+
+additional_arch=${PLATFORM_NAME}
+if [ ${PLATFORM_NAME} = "iphonesimulator" ]; then
+    additional_arch='iphoneos'
+else
+    additional_arch='iphonesimulator'
+fi
+
+IPHONE_ADDITIONAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-${additional_arch}/${PRODUCT_NAME}.framework
+dSYM_ADDITIONAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-${additional_arch}/${PRODUCT_NAME}.framework.dSYM
+
+if [ ! -z "$pod_name" -a "$pod_name" != " " ]; then
+    UNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-iphoneuniversal/${pod_name}
+    IPHONE_SIMULATOR_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${pod_name}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}
+    IPHONE_OS_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-iphoneos/${pod_name}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}
+    IPHONE_ADDITIONAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-${additional_arch}/${pod_name}/${PRODUCT_NAME}.framework
+    dSYM_ADDITIONAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-${additional_arch}/${pod_name}/${PRODUCT_NAME}.framework.dSYM
+    dSYM_iphoneos_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-iphoneos/${pod_name}/${PRODUCT_NAME}.framework.dSYM/Contents/Resources/DWARF/${PRODUCT_NAME}
+    dSYM_iphonesimulator_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${pod_name}/${PRODUCT_NAME}.framework.dSYM/Contents/Resources/DWARF/${PRODUCT_NAME}
+fi
 
 # only build configuration is Debug to create universal, becase AppStore not accept fat arch
 if [ "Debug" == ${CONFIGURATION} ]; then
@@ -28,13 +55,6 @@ if [ "Debug" == ${CONFIGURATION} ]; then
 
         export ALREADYINVOKED="true"
 
-        additional_arch=${PLATFORM_NAME}
-        if [ ${PLATFORM_NAME} = "iphonesimulator" ]; then
-            additional_arch='iphoneos'
-        else
-            additional_arch='iphonesimulator'
-        fi
-
         if (( $(echo "$xcode_version >= $xcode_10" | bc -l) )); then
             xcodebuild -target "${TARGET_NAME}" -configuration ${CONFIGURATION} -sdk ${additional_arch} ONLY_ACTIVE_ARCH=NO BUILD_DIR="${BUILD_DIR}" BUILD_ROOT="${BUILD_ROOT}" OBJROOT="${OBJROOT}" -UseModernBuildSystem=NO
         else
@@ -42,7 +62,7 @@ if [ "Debug" == ${CONFIGURATION} ]; then
         fi
         
         # Step 2. Copy the framework structure (from iphoneos build) to the universal folder
-        rsync -arv "${BUILD_DIR}/${CONFIGURATION}-${additional_arch}/${PRODUCT_NAME}.framework" "${UNIVERSAL_OUTPUTFOLDER}/"
+        rsync -arv "${IPHONE_ADDITIONAL_OUTPUTFOLDER}" "${UNIVERSAL_OUTPUTFOLDER}/"
 
         # Step 3. Copy Swift modules from iphonesimulator build (if it exists) to the copied framework directory
         SIMULATOR_SWIFT_MODULES_DIR="${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PRODUCT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule/."
@@ -51,7 +71,7 @@ if [ "Debug" == ${CONFIGURATION} ]; then
         fi
 
         # Step 4. Create universal binary file using lipo and place the combined executable in the copied framework directory
-        lipo -create -output "${UNIVERSAL_OUTPUTFOLDER}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}" "${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PRODUCT_NAME}.framework/${PRODUCT_NAME}" "${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PRODUCT_NAME}.framework/${PRODUCT_NAME}"
+        lipo -create -output "${UNIVERSAL_OUTPUTFOLDER}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}" "${IPHONE_SIMULATOR_OUTPUTFOLDER}" "${IPHONE_OS_OUTPUTFOLDER}"
 
         # Step 5. Convenience step to copy the framework to the project's directory
         rsync -arv "${UNIVERSAL_OUTPUTFOLDER}/${PRODUCT_NAME}.framework" "${PROJECT_DIR}"
@@ -73,13 +93,6 @@ if [ "Release" == ${CONFIGURATION} ]; then
     if [ "false" == ${ALREADYINVOKED:-false} ]; then
 
         export ALREADYINVOKED="true"
-
-        additional_arch=${PLATFORM_NAME}
-        if [ ${PLATFORM_NAME} = "iphonesimulator" ]; then
-            additional_arch='iphoneos'
-        else
-            additional_arch='iphonesimulator'
-        fi
         
         if (( $(echo "$xcode_version >= $xcode_10" | bc -l) )); then
             xcodebuild -target "${TARGET_NAME}" -configuration ${CONFIGURATION} -sdk ${additional_arch} ONLY_ACTIVE_ARCH=NO BUILD_DIR="${BUILD_DIR}" BUILD_ROOT="${BUILD_ROOT}" OBJROOT="${OBJROOT}" -UseModernBuildSystem=NO
@@ -88,10 +101,10 @@ if [ "Release" == ${CONFIGURATION} ]; then
         fi
         
         # Step 2. Copy the framework structure (from iphoneos build) to the universal folder
-        rsync -arv "${BUILD_DIR}/${CONFIGURATION}-${additional_arch}/${PRODUCT_NAME}.framework" "${UNIVERSAL_OUTPUTFOLDER}/"
+        rsync -arv "${IPHONE_ADDITIONAL_OUTPUTFOLDER}" "${UNIVERSAL_OUTPUTFOLDER}/"
         
 		# Note: copy dSYM if needed
-		dSYM="${BUILD_DIR}/${CONFIGURATION}-${additional_arch}/${PRODUCT_NAME}.framework.dSYM"
+		dSYM="${dSYM_ADDITIONAL_OUTPUTFOLDER}"
 		if [ -d "$dSYM" ]; then
 			rsync -arv "$dSYM" "${UNIVERSAL_OUTPUTFOLDER}/"
 		fi
@@ -103,15 +116,15 @@ if [ "Release" == ${CONFIGURATION} ]; then
         fi
 
         # Step 4. Create universal binary file using lipo and place the combined executable in the copied framework directory
-        lipo -create -output "${UNIVERSAL_OUTPUTFOLDER}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}" "${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PRODUCT_NAME}.framework/${PRODUCT_NAME}" "${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PRODUCT_NAME}.framework/${PRODUCT_NAME}"
+        lipo -create -output "${UNIVERSAL_OUTPUTFOLDER}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}" "${IPHONE_SIMULATOR_OUTPUTFOLDER}" "${IPHONE_OS_OUTPUTFOLDER}"
         
         if [ ${MACH_O_TYPE} == "mh_dylib" ]; then
             strip -x "${UNIVERSAL_OUTPUTFOLDER}/${PRODUCT_NAME}.framework/${PRODUCT_NAME}"
         fi
 
 		# Note: create universal dSYM
-		dSYM_iphoneos="${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PRODUCT_NAME}.framework.dSYM/Contents/Resources/DWARF/${PRODUCT_NAME}"
-		dSYM_iphonesimulator="${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PRODUCT_NAME}.framework.dSYM/Contents/Resources/DWARF/${PRODUCT_NAME}"
+		dSYM_iphoneos="${dSYM_iphoneos_OUTPUTFOLDER}"
+		dSYM_iphonesimulator="${dSYM_iphonesimulator_OUTPUTFOLDER}"
 	
 		if [ -f "$dSYM_iphoneos" ] && [ -f "$dSYM_iphonesimulator" ] ; then
 			lipo -create -output "${UNIVERSAL_OUTPUTFOLDER}/${PRODUCT_NAME}.framework.dSYM/Contents/Resources/DWARF/${PRODUCT_NAME}" "${dSYM_iphoneos}" "${dSYM_iphonesimulator}"
