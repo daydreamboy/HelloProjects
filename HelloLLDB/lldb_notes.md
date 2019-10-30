@@ -73,15 +73,14 @@ bar
 
 * expression -- \<expression\>，--指定后面不是选项，而是需要执行的表达式
 
-* expression -i 0 -- \<expression\>，lldb中执行expression默认不会触发断点。-i0（或者-i 0）强制执行expression触发断点。
+* expression -i 0 -- \<expression\>，lldb中执行expression默认不会触发断点。-i0（或者-i 0）强制执行expression触发断点[^7]。
 
 ```shell
 (lldb) expr -i 0 -- [self areaNbr]
 ```
 
-参考 
->
-https://stackoverflow.com/questions/35861198/xcode-not-stopping-on-breakpoint-in-method-called-from-lldb
+
+
 
 * expression -O -- \<expression\>，等同于po命令
 
@@ -2114,4 +2113,6 @@ instance method 'YW_lyk_size' also declared here
 [^5]:https://www.jianshu.com/p/a488de9cd535
 
 [^6]:https://wetest.qq.com/lab/view/393.html
+
+[^7]:https://stackoverflow.com/questions/35861198/xcode-not-stopping-on-breakpoint-in-method-called-from-lldb
 
