@@ -1,10 +1,8 @@
-## 使用Xcode相关技巧
+# 使用Xcode相关技巧
 
 [TOC]
 
----
-
-### 1、Xcode环境变量[^1]
+## 1、Xcode环境变量[^1]
 
 | Environment variable | 作用 | 说明 |
 |----------------------|-----|------|
@@ -13,9 +11,9 @@
 
 
 
-### 2、Code Diagnostics[^2]
+## 2、Code Diagnostics[^2]
 
-#### （1）Address Sanitizer
+### （1）Address Sanitizer
 
 Xcode打开Address Sanitizer（简称ASan）设置，如下
 
@@ -53,7 +51,7 @@ Address Sanitizer支持检查的类型，如下
 
 
 
-#### （2）Thread Sanitizer
+### （2）Thread Sanitizer
 
 Xcode打开Thread Sanitizer（简称TSan）设置，如下
 
@@ -90,7 +88,7 @@ Thread Sanitizer支持检查的情况，如下
 
 
 
-#### （3）Main Thread Checker
+### （3）Main Thread Checker
 
 Xcode默认打开Main Thread Checker设置，如下
 
@@ -108,7 +106,7 @@ Xcode默认打开Main Thread Checker设置，如下
 
 
 
-#### （4）Undefined Behavior Sanitizer
+### （4）Undefined Behavior Sanitizer
 
 Xcode打开Undefined Behavior Sanitizer（简称UBSan）设置，如下
 
@@ -185,9 +183,31 @@ UBSan支持检查的类型以及对于编译器flags，如下
 
 
 
+## 3、Xcode编译配置
 
 
 
+### （1）Compile Sources As
+
+Compile Sources As配置位于
+
+`Build Settings > Apple Clang - Language > Compile Sources As`
+
+一般不做改动时，如下
+
+![](images/Compile Sources As.png)
+
+
+
+缺省属性值，如下
+
+```properties
+GCC_INPUT_FILETYPE=automatic
+```
+
+根据文件类型，决定编译的语言。一般来说，选择默认方式，是最优的编译方式。
+
+举个例子，.m文件一般是按照Objective-C编译，如果选择Objective-C++编译则产生的二进制体积会变大。
 
 
 
