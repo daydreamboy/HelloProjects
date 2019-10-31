@@ -49,7 +49,13 @@
         if (data && !error) {
             NSLog(@"data size: %lld", (long long)data.length);
             NSError *jsonError;
-            id jsonObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+            id jsonObject;
+            @try {
+                jsonObject = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&jsonError];
+            }
+            @catch (NSException *e) {
+                jsonError = [NSError errorWithDomain:e.name code:-1 userInfo:@{ NSLocalizedDescriptionKey: e.reason }];
+            }
             
             // Note: completionHandler is called on main thread, so call completion on main thread
             dispatch_async(dispatch_get_main_queue(), ^{
