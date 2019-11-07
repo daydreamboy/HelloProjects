@@ -211,11 +211,35 @@ GCC_INPUT_FILETYPE=automatic
 
 
 
+## 4、Xcode安装低版本模拟器
+
+Xcode默认内置一个版本的模拟器运行时文件（后简称simruntime文件），如下
+
+```text
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime
+```
+
+iOS.simruntime是一个文件夹，里面Contents/Info.plist的Bundle name是显示simruntime文件的当前版本。
+
+
+
+通过Xcode的Preferences > Components下载的模拟器，存放在下面路径
+
+```text
+/Library/Developer/CoreSimulator/Profiles/Runtimes
+```
+
+
+
+将事先保存过的simruntime文件，放在上面文件夹下，重启Xcode让读取到，省去重新下载模拟器的麻烦。
 
 
 
 
-### Reference
+
+
+
+## Reference
 
 [^1]: https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/DynamicLibraries/100-Articles/LoggingDynamicLoaderEvents.html
 [^2]: https://developer.apple.com/documentation/code_diagnostics 
