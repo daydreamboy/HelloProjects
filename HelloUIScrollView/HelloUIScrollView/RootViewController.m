@@ -10,6 +10,8 @@
 
 #import "ScrollToTopOrBottomViewController.h"
 #import "NestedScrollViewViewController.h"
+#import "CheckScrollingViewController.h"
+#import "PullRefreshViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -34,11 +36,15 @@
     _titles = @[
         @"Scroll UIScrollView to top or bottom",
         @"Handle nested UIScrollView",
+        @"Check UIScrollView is scrolling",
+        @"Pull refresh",
         @"call a test method",
     ];
     _classes = @[
         [ScrollToTopOrBottomViewController class],
         [NestedScrollViewViewController class],
+        [CheckScrollingViewController class],
+        [PullRefreshViewController class],
         @"testMethod",
     ];
 }

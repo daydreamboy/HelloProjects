@@ -13,6 +13,9 @@
 		4F4D747720BE48190027DE7C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D747620BE48190027DE7C /* main.m */; };
 		4F4D748320BE7CE20027DE7C /* ScrollToTopOrBottomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D748220BE7CE20027DE7C /* ScrollToTopOrBottomViewController.m */; };
 		4F4D748620BE7CF70027DE7C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D748520BE7CF70027DE7C /* RootViewController.m */; };
+		4F62BA3E233B66760020CC6D /* CheckScrollingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F62BA3D233B66760020CC6D /* CheckScrollingViewController.m */; };
+		4F62BA42233B71DD0020CC6D /* WCScrollViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F62BA41233B71DD0020CC6D /* WCScrollViewTool.m */; };
+		4F6C4D282372719F00872371 /* PullRefreshViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6C4D272372719F00872371 /* PullRefreshViewController.m */; };
 		4FB1D48220CBA29200DBA776 /* NestedScrollViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1D48120CBA29200DBA776 /* NestedScrollViewViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -28,6 +31,12 @@
 		4F4D748220BE7CE20027DE7C /* ScrollToTopOrBottomViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollToTopOrBottomViewController.m; sourceTree = "<group>"; };
 		4F4D748420BE7CF70027DE7C /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F4D748520BE7CF70027DE7C /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		4F62BA3C233B66760020CC6D /* CheckScrollingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckScrollingViewController.h; sourceTree = "<group>"; };
+		4F62BA3D233B66760020CC6D /* CheckScrollingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckScrollingViewController.m; sourceTree = "<group>"; };
+		4F62BA40233B71DD0020CC6D /* WCScrollViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCScrollViewTool.h; sourceTree = "<group>"; };
+		4F62BA41233B71DD0020CC6D /* WCScrollViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCScrollViewTool.m; sourceTree = "<group>"; };
+		4F6C4D262372719F00872371 /* PullRefreshViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PullRefreshViewController.h; sourceTree = "<group>"; };
+		4F6C4D272372719F00872371 /* PullRefreshViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PullRefreshViewController.m; sourceTree = "<group>"; };
 		4FB1D48020CBA29200DBA776 /* NestedScrollViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NestedScrollViewViewController.h; sourceTree = "<group>"; };
 		4FB1D48120CBA29200DBA776 /* NestedScrollViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NestedScrollViewViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -46,6 +55,7 @@
 		4F4D745B20BE48170027DE7C = {
 			isa = PBXGroup;
 			children = (
+				4F62BA3F233B719D0020CC6D /* WCScrollViewTool */,
 				4F4D746620BE48170027DE7C /* HelloUIScrollView */,
 				4F4D746520BE48170027DE7C /* Products */,
 			);
@@ -82,8 +92,21 @@
 				4F4D748220BE7CE20027DE7C /* ScrollToTopOrBottomViewController.m */,
 				4FB1D48020CBA29200DBA776 /* NestedScrollViewViewController.h */,
 				4FB1D48120CBA29200DBA776 /* NestedScrollViewViewController.m */,
+				4F62BA3C233B66760020CC6D /* CheckScrollingViewController.h */,
+				4F62BA3D233B66760020CC6D /* CheckScrollingViewController.m */,
+				4F6C4D262372719F00872371 /* PullRefreshViewController.h */,
+				4F6C4D272372719F00872371 /* PullRefreshViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F62BA3F233B719D0020CC6D /* WCScrollViewTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F62BA40233B71DD0020CC6D /* WCScrollViewTool.h */,
+				4F62BA41233B71DD0020CC6D /* WCScrollViewTool.m */,
+			);
+			path = WCScrollViewTool;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,10 +179,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FB1D48220CBA29200DBA776 /* NestedScrollViewViewController.m in Sources */,
+				4F6C4D282372719F00872371 /* PullRefreshViewController.m in Sources */,
+				4F62BA42233B71DD0020CC6D /* WCScrollViewTool.m in Sources */,
 				4F4D747720BE48190027DE7C /* main.m in Sources */,
 				4F4D746920BE48170027DE7C /* AppDelegate.m in Sources */,
 				4F4D748620BE7CF70027DE7C /* RootViewController.m in Sources */,
 				4F4D748320BE7CE20027DE7C /* ScrollToTopOrBottomViewController.m in Sources */,
+				4F62BA3E233B66760020CC6D /* CheckScrollingViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
