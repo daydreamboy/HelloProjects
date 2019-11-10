@@ -11,25 +11,42 @@
 
 @interface WCScrollViewObserver : NSObject
 @property (nonatomic, weak) UIScrollView *scrollView;
-@property (nonatomic, copy) void (^block)(UIScrollView *, UIGestureRecognizerState);
+@property (nonatomic, copy) void (^touchEventBlock)(UIScrollView *, UIGestureRecognizerState);
+@property (nonatomic, copy) void (^scrollingEventBlock)(UIScrollView *);
 @end
 
 @implementation WCScrollViewObserver
 
-- (instancetype)initWithScrollView:(UIScrollView *)scrollView block:(void (^)(UIScrollView *, UIGestureRecognizerState))block {
+- (instancetype)initWithScrollView:(UIScrollView *)scrollView touchEventBlock:(void (^)(UIScrollView *, UIGestureRecognizerState))touchEventBlock {
     self = [super init];
     if (self) {
         _scrollView = scrollView;
-        _block = block;
+        _touchEventBlock = touchEventBlock;
         
         [_scrollView.panGestureRecognizer addObserver:self forKeyPath:@"state" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     }
     return self;
 }
 
+- (instancetype)initWithScrollView:(UIScrollView *)scrollView scrollingEventBlock:(void (^)(UIScrollView *))scrollingEventBlock {
+    self = [super init];
+    if (self) {
+        _scrollView = scrollView;
+        _scrollingEventBlock = scrollingEventBlock;
+        
+        [_scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+    }
+    return self;
+}
+
 - (void)dealloc {
     @try {
-        [self.scrollView.panGestureRecognizer removeObserver:self forKeyPath:@"state"];
+        if (self.touchEventBlock) {
+            [self.scrollView.panGestureRecognizer removeObserver:self forKeyPath:@"state"];
+        }
+        else if (self.scrollingEventBlock) {
+            [self.scrollView removeObserver:self forKeyPath:@"contentOffset"];
+        }
     }
     @catch (NSException *exception) {
 #if DEBUG
@@ -46,8 +63,15 @@
         return;
     }
     
-    if (object == scrollView.panGestureRecognizer && [keyPath isEqualToString:@"state"]) {
-        self.block(scrollView, scrollView.panGestureRecognizer.state);
+    if (self.touchEventBlock) {
+        if (object == scrollView.panGestureRecognizer && [keyPath isEqualToString:@"state"]) {
+            self.touchEventBlock(scrollView, scrollView.panGestureRecognizer.state);
+        }
+    }
+    else if (self.scrollingEventBlock) {
+        if (object == scrollView && [keyPath isEqualToString:@"contentOffset"]) {
+            self.scrollingEventBlock(scrollView);
+        }
     }
 }
 
@@ -55,29 +79,55 @@
 
 @implementation WCScrollViewTool
 
-static void * const kAssociatedKeyObserver = (void *)&kAssociatedKeyObserver;
+static void * const kAssociatedKeyTouchEventObserver = (void *)&kAssociatedKeyTouchEventObserver;
+static void * const kAssociatedKeyScrollingEventObserver = (void *)&kAssociatedKeyScrollingEventObserver;
 
 + (BOOL)observeTouchEventWithScrollView:(UIScrollView *)scrollView touchEventCallback:(void (^)(UIScrollView *scrollView, UIGestureRecognizerState state))touchEventCallback {
     if (![scrollView isKindOfClass:[UIScrollView class]] || touchEventCallback == nil) {
         return NO;
     }
     
-    id object = objc_getAssociatedObject(scrollView, kAssociatedKeyObserver);
+    id object = objc_getAssociatedObject(scrollView, kAssociatedKeyTouchEventObserver);
     if (object) {
         return NO;
     }
     
-    WCScrollViewObserver *observer = [[WCScrollViewObserver alloc] initWithScrollView:scrollView block:touchEventCallback];
-    objc_setAssociatedObject(scrollView, kAssociatedKeyObserver, observer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    WCScrollViewObserver *observer = [[WCScrollViewObserver alloc] initWithScrollView:scrollView touchEventBlock:touchEventCallback];
+    objc_setAssociatedObject(scrollView, kAssociatedKeyTouchEventObserver, observer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
     return YES;
 }
 
-+ (BOOL)isOverTopWithScrollView:(UIScrollView *)scrollView {
++ (BOOL)observeScrollingEventWithScrollView:(UIScrollView *)scrollView scrollingEventCallback:(void (^)(UIScrollView *scrollView))scrollingEventCallback {
+    
+    if (![scrollView isKindOfClass:[UIScrollView class]] || scrollingEventCallback == nil) {
+        return NO;
+    }
+    
+    id object = objc_getAssociatedObject(scrollView, kAssociatedKeyScrollingEventObserver);
+    if (object) {
+        return NO;
+    }
+    
+    WCScrollViewObserver *observer = [[WCScrollViewObserver alloc] initWithScrollView:scrollView scrollingEventBlock:scrollingEventCallback];
+    objc_setAssociatedObject(scrollView, kAssociatedKeyScrollingEventObserver, observer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    return YES;
+}
+
++ (BOOL)checkIsOverTopWithScrollView:(UIScrollView *)scrollView {
+    if (![scrollView isKindOfClass:[UIScrollView class]]) {
+        return NO;
+    }
+    
     return scrollView.contentOffset.y <= -scrollView.contentInset.top;
 }
 
-+ (BOOL)isOverBottomWithScrollView:(UIScrollView *)scrollView {
++ (BOOL)checkIsOverBottomWithScrollView:(UIScrollView *)scrollView {
+    if (![scrollView isKindOfClass:[UIScrollView class]]) {
+        return NO;
+    }
+    
     return scrollView.contentOffset.y + scrollView.bounds.size.height >= scrollView.contentSize.height + scrollView.contentInset.bottom;
 }
 

@@ -21,9 +21,20 @@ NS_ASSUME_NONNULL_BEGIN
  - scrollView The touching scroll view
  - state The state of eventCallback is same as UIGestureRecognizerState.
  @return YES if setup the observing successfully, NO if the parameters are wrong or already setup once
- @discussion The eventCallback should not retain the scroll view again, use its the first parameter `scrollView` instead
+ @discussion The touchEventCallback should not retain the scroll view again, use its the first parameter `scrollView` instead
  */
 + (BOOL)observeTouchEventWithScrollView:(UIScrollView *)scrollView touchEventCallback:(void (^)(UIScrollView *scrollView, UIGestureRecognizerState state))touchEventCallback;
+
+/**
+Observe the scrolling event on the scroll view
+
+@param scrollView the scroll view
+@param scrollingEventCallback the callback when event happened.
+- scrollView The scrolling scroll view
+@return YES if setup the observing successfully, NO if the parameters are wrong or already setup once
+@discussion The scrollingEventCallback should not retain the scroll view again, use its the first parameter `scrollView` instead
+*/
++ (BOOL)observeScrollingEventWithScrollView:(UIScrollView *)scrollView scrollingEventCallback:(void (^)(UIScrollView *scrollView))scrollingEventCallback;
 
 /**
  Check the scroll view is scrolling over or at the top edge
@@ -31,7 +42,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param scrollView the scroll view
  @return YES if scroll view is scrolling over or at the top edge, otherwise return NO. And also return NO if the parameters are wrong.
  */
-+ (BOOL)isOverTopWithScrollView:(UIScrollView *)scrollView;
++ (BOOL)checkIsOverTopWithScrollView:(UIScrollView *)scrollView;
 
 /**
  Check the scroll view is scrolling over or at the bottom edge
@@ -39,7 +50,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param scrollView the scroll view
  @return YES if scroll view is scrolling over or at the bottom edge, otherwise return NO. And also return NO if the parameters are wrong.
  */
-+ (BOOL)isOverBottomWithScrollView:(UIScrollView *)scrollView;
++ (BOOL)checkIsOverBottomWithScrollView:(UIScrollView *)scrollView;
 
 @end
 

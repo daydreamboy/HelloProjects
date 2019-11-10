@@ -28,6 +28,7 @@ if (!object) { \
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, assign) CGFloat contentHeight;
 @property (nonatomic, strong) UILabel *hudTip;
+@property (nonatomic, assign) UIGestureRecognizerState state;
 @end
 
 @implementation PullRefreshViewController
@@ -48,6 +49,7 @@ if (!object) { \
         
         if (self.scrollView == scrollView) {
             if (state == UIGestureRecognizerStateBegan) {
+                self.state = state;
                 NSLog(@"Began");
                 
                 CGSize screenSize = [[UIScreen mainScreen] bounds].size;
@@ -57,6 +59,7 @@ if (!object) { \
                 self.hudTip.center = CGPointMake(screenSize.width / 2.0, screenSize.height / 2.0);
             }
             else if (state == UIGestureRecognizerStateEnded || state == UIGestureRecognizerStateCancelled) {
+                self.state = state;
                 NSLog(@"Ended");
                 
                 CGSize screenSize = [[UIScreen mainScreen] bounds].size;
@@ -68,6 +71,27 @@ if (!object) { \
                     self.hudTip.alpha = 0;
                 }];
             }
+        }
+    }];
+    
+    [WCScrollViewTool observeScrollingEventWithScrollView:self.scrollView scrollingEventCallback:^(UIScrollView * _Nonnull scrollView) {
+        if (self.state == UIGestureRecognizerStateEnded || self.state == UIGestureRecognizerStateCancelled) {
+            return ;
+        }
+        
+        if ([WCScrollViewTool checkIsOverTopWithScrollView:scrollView]) {
+            CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+            self.hudTip.alpha = 1;
+            self.hudTip.text = @"scrolling over top";
+            [self.hudTip sizeToFit];
+            self.hudTip.center = CGPointMake(screenSize.width / 2.0, screenSize.height / 2.0);
+        }
+        else if ([WCScrollViewTool checkIsOverBottomWithScrollView:scrollView]) {
+            CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+            self.hudTip.alpha = 1;
+            self.hudTip.text = @"scrolling over bottom";
+            [self.hudTip sizeToFit];
+            self.hudTip.center = CGPointMake(screenSize.width / 2.0, screenSize.height / 2.0);
         }
     }];
 }
