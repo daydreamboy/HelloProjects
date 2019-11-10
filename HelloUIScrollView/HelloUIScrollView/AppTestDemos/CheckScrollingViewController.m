@@ -32,23 +32,42 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height) style:UITableViewStylePlain];
-    _tableView.delegate = self;
-    _tableView.dataSource = self;
-    [self.view addSubview:_tableView];
+    [self.view addSubview:self.tableView];
+    [self.view addSubview:self.hudTip];
+}
+
+#pragma mark - Getter
+
+- (UITableView *)tableView {
+    if (!_tableView) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height) style:UITableViewStylePlain];
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        
+        _tableView = tableView;
+    }
     
-    _hudTip = [[UILabel alloc] initWithFrame:CGRectZero];
-    _hudTip.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.9];
-    _hudTip.userInteractionEnabled = NO;
-    _hudTip.layer.cornerRadius = 3;
-    _hudTip.layer.masksToBounds = YES;
-    _hudTip.alpha = 0;
-    _hudTip.textColor = [UIColor whiteColor];
-    _hudTip.font = [UIFont boldSystemFontOfSize:25];
+    return _tableView;
+}
+
+- (UILabel *)hudTip {
+    if (!_hudTip) {
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+        label.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.9];
+        label.userInteractionEnabled = NO;
+        label.layer.cornerRadius = 3;
+        label.layer.masksToBounds = YES;
+        label.alpha = 0;
+        label.textColor = [UIColor whiteColor];
+        label.font = [UIFont boldSystemFontOfSize:25];
+        
+        _hudTip = label;
+    }
     
-    [self.view addSubview:_hudTip];
+    return _hudTip;
 }
 
 #pragma mark - UITableViewDataSource
