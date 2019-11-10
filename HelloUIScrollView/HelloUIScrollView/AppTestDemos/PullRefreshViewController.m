@@ -22,7 +22,7 @@
     [self.view addSubview:self.scrollView];
     
     __weak typeof(self) weak_self = self;
-    [WCScrollViewTool observeTouchEventWithScrollView:self.scrollView eventCallback:^(UIScrollView *scrollView, UIGestureRecognizerState state) {
+    [WCScrollViewTool observeTouchEventWithScrollView:self.scrollView touchEventCallback:^(UIScrollView *scrollView, UIGestureRecognizerState state) {
         
         if (weak_self.scrollView == scrollView) {
             if (state == UIGestureRecognizerStateBegan) {
@@ -39,7 +39,6 @@
 }
 
 - (void)dealloc {
-//    [self.scrollView.panGestureRecognizer removeObserver:self forKeyPath:@"state"];
 }
 
 #pragma mark - Getter
@@ -56,22 +55,6 @@
     }
     
     return _scrollView;
-}
-
-#pragma mark - KVO
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    if ([keyPath isEqualToString:@"state"]) {
-        if (self.scrollView.panGestureRecognizer.state == UIGestureRecognizerStateBegan) {
-            NSLog(@"Began");
-        }
-        else if (self.scrollView.panGestureRecognizer.state == UIGestureRecognizerStateEnded) {
-            NSLog(@"Ended");
-        }
-        else if (self.scrollView.panGestureRecognizer.state == UIGestureRecognizerStateCancelled) {
-            NSLog(@"Cancelled");
-        }
-    }
 }
 
 @end

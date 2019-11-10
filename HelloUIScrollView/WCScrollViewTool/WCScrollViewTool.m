@@ -57,8 +57,8 @@
 
 static void * const kAssociatedKeyObserver = (void *)&kAssociatedKeyObserver;
 
-+ (BOOL)observeTouchEventWithScrollView:(UIScrollView *)scrollView eventCallback:(void (^)(UIScrollView *scrollView, UIGestureRecognizerState state))eventCallback {
-    if (![scrollView isKindOfClass:[UIScrollView class]] || eventCallback == nil) {
++ (BOOL)observeTouchEventWithScrollView:(UIScrollView *)scrollView touchEventCallback:(void (^)(UIScrollView *scrollView, UIGestureRecognizerState state))touchEventCallback {
+    if (![scrollView isKindOfClass:[UIScrollView class]] || touchEventCallback == nil) {
         return NO;
     }
     
@@ -67,10 +67,18 @@ static void * const kAssociatedKeyObserver = (void *)&kAssociatedKeyObserver;
         return NO;
     }
     
-    WCScrollViewObserver *observer = [[WCScrollViewObserver alloc] initWithScrollView:scrollView block:eventCallback];
+    WCScrollViewObserver *observer = [[WCScrollViewObserver alloc] initWithScrollView:scrollView block:touchEventCallback];
     objc_setAssociatedObject(scrollView, kAssociatedKeyObserver, observer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
     return YES;
+}
+
++ (BOOL)isOverTopWithScrollView:(UIScrollView *)scrollView {
+    return scrollView.contentOffset.y <= -scrollView.contentInset.top;
+}
+
++ (BOOL)isOverBottomWithScrollView:(UIScrollView *)scrollView {
+    return scrollView.contentOffset.y + scrollView.bounds.size.height >= scrollView.contentSize.height + scrollView.contentInset.bottom;
 }
 
 @end
