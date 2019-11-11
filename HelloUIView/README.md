@@ -2,7 +2,7 @@
 
 [TOC]
 
-## 1、UIView常见知识点介绍
+## 1、UIView常用知识点介绍
 
 
 
@@ -14,15 +14,24 @@
 
 
 
-### （2）关于AVMakeRectWithAspectRatioInsideRect
+### （2）关于AVMakeRectWithAspectRatioInsideRect函数
 
-​     AVMakeRectWithAspectRatioInsideRect是AVFoundation.framework提供的函数，用于计算在特定rect中缩放view后的rect。这里的缩放实际是按比例尺缩放的。
+​      AVFoundation.framework提供的`AVMakeRectWithAspectRatioInsideRect`函数，签名如下
 
-
-
-一般用于缩放UIImageView或者AVPlayerLayer（图片或者视频），举个例子
-
+```objective-c
+CGRect AVMakeRectWithAspectRatioInsideRect(CGSize aspectRatio, CGRect boundingRect);
 ```
+
+* aspectRatio参数，需要缩放对象的实际大小。
+  * 如果是CGSizeZero，则返回的是(NaN, NaN, NaN, NaN)，把这个值赋值给UIView的frame会导致Crash，例如“Terminating app due to uncaught exception 'CALayerInvalidGeometry', reason: 'CALayer position contains NaN: [nan 300]'”
+
+* 返回值是指定rect中按比例尺缩放view后的rect。
+
+
+
+​     `AVMakeRectWithAspectRatioInsideRect`函数一般用于缩放UIImageView或者AVPlayerLayer（图片或者视频）。举个例子，如下
+
+```objective-c
 CGSize screenSize = [[UIScreen mainScreen] bounds].size;
 
 // bounding view
@@ -41,28 +50,86 @@ imageView.frame = aspectScaledRect;
 
 
 
-安全使用AVMakeRectWithAspectRatioInsideRect
+鉴于上面存在crash问题，有两种方式可以安全使用AVMakeRectWithAspectRatioInsideRect
 
-```
-CGRect AVMakeRectWithAspectRatioInsideRect(CGSize aspectRatio, CGRect boundingRect);
-```
+1）对AVMakeRectWithAspectRatioInsideRect进行保护
 
-AVMakeRectWithAspectRatioInsideRect的第一个参数aspectRatio，如果是CGSizeZero，则返回的是(NaN, NaN, NaN, NaN)，把这个值赋值给UIView的frame会导致Crash。
+>  见`+[WCViewTool safeAVMakeAspectRatioRectWithContentSize:insideBoundingRect:]`实现
 
-```
-Terminating app due to uncaught exception 'CALayerInvalidGeometry', reason: 'CALayer position contains NaN: [nan 300]'
-```
+2）为了避免只使用一个函数，而引入AVFoundation.framework，可以自己实现AVMakeRectWithAspectRatioInsideRect
+
+> 见`+[WCViewTool makeAspectRatioRectWithContentSize:insideBoundingRect:]`实现
 
 
 
-- 可以对AVMakeRectWithAspectRatioInsideRect进行保护，详见`+[WCViewTool safeAVMakeAspectRatioRectWithContentSize:insideBoundingRect:]`
-- 为了避免只使用一个函数，而引入AVFoundation.framework，可以自己实现AVMakeRectWithAspectRatioInsideRect。详见`+[WCViewTool makeAspectRatioRectWithContentSize:insideBoundingRect:]`
+## 2、Safe Area（安全区域）[^1]
+
+​        Safe Area这个概念是在iOS 11+支持的，含义是view中没有被导航栏、tab bar或者tool bar（实际上也包含状态栏、iPhone X开始出现Home Indicator）的区域，称之为**安全区域（Safe Area）**。当视图层级（View Hierarchy）构成后，这个安全区域是可以继承的，即子视图可以继承自父视图的Safe Area。
+
+
+
+​       在UIView的`safeAreaInsets`属性文档注释，这样解释Safe Area，如下
+
+> The safe area of a view reflects the area not covered by navigation bars, tab bars, toolbars, and other ancestors that obscure a view controller's view.
+
+
+
+​       Safe Area推出的意义，个人认为在于，规范自定义控件和系统控件之间，避免遮挡冲突，尤其在取消实体Home按键后，出现虚拟的Home Indicator。
+
+
+
+iOS 11+增加下面多种属性用于支持实现Safe Area
+
+| 控件   | 属性           |
+| ------ | -------------- |
+| UIView | safeAreaInsets |
 
 
 
 
 
-## 2、UIView使用技巧
+### （1）safeAreaInsets
+
+UIView的safeAreaInsets属性，针对下面两种不同的View分区来计算它的值。
+
+* View Controller中root view的safeAreaInsets，即self.view的safeAreaInsets，通过状态栏、其他visible bar（导航栏、工具栏等）以及`additionalSafeAreaInsets`属性，一起计算出无遮挡的安全区域。
+* 普通View的safeAreaInsets，仅计算它本身是否被遮挡的安全区域，一般继承自父视图的遮挡。如果它没有被遮挡，则它的safeAreaInsets是UIEdgeInsetsZero
+
+> For the view controller's root view, the insets account for the status bar, other visible bars, and any additional insets that you specified using the [`additionalSafeAreaInsets`](dash-apple-api://load?topic_id=2902284&language=occ)property of your view controller. For other views in the view hierarchy, the insets reflect only the portion of the view that is covered.
+
+
+
+​      UIView的safeAreaInsets属性的值，是系统在布局完成后，自动计算出来的。因此，需要在UIKit完成某个布局后，再获取这个safeAreaInsets属性值。
+
+* 对于View Controller中root view的safeAreaInsets
+  * **viewDidLayoutSubviews**方法，可以获取self.view.safeAreaInsets，以及self.view所有子视图的safeAreaInsets
+  * **viewWillLayoutSubviews**方法，也可以获取self.view.safeAreaInsets，但self.view所有子视图还没有完成布局，因此它们的safeAreaInsets都是UIEdgeInsetsZero
+
+
+
+> 关于View Controller的root view生命周期几个回调方法的顺序，如下
+>
+> viewDidLoad（仅一次）
+>
+> viewWillAppear（仅一次）
+>
+> viewWillLayoutSubviews（存在多次，如横竖旋转、viewWillLayoutSubviews或viewDidLayoutSubviews中修改了self.view本身的布局）
+>
+> viewDidLayoutSubviews（存在多次，如横竖旋转、viewWillLayoutSubviews或viewDidLayoutSubviews中修改了self.view本身的布局、self.view调用setNeedsLayout或setNeedsDisplayInRect方法[^2]）
+>
+> viewDidAppear（仅一次）
+
+
+
+​       为了避免viewWillLayoutSubviews和viewDidLayoutSubviews调用多次，一般不建议在这两个方法中修改self.view的frame。
+
+
+
+
+
+
+
+## 3、UIView使用技巧
 
 
 
@@ -131,7 +198,7 @@ UIView提供`- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event;`方�
 
 基本转换关系，如下
 
-```
+```objective-c
 [sourceView convertRect:<someRect> toView:targetView];
 [targetView convertRect:<someRect> fromView:sourceView];
 ```
@@ -153,4 +220,9 @@ UIView提供`- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event;`方�
 
 
 ## References
+
+[^1]:https://medium.com/rosberryapps/ios-safe-area-ca10e919526f
+[^2]:https://stackoverflow.com/a/27050776
+
+
 

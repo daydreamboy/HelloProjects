@@ -246,6 +246,14 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark > SafeArea
 
 /**
+ Get safeAreaInsets of the view. Wrapper of the view.safeAreaInsets
+  
+ @param view the view
+ @return the safeAreaInsets.  iOS 11+, return by view.safeAreaInsets. iOS 10-, return UIEdgeInsetsZero.
+*/
++ (UIEdgeInsets)safeAreaInsetsWithView:(UIView *)view;
+
+/**
  Get safe area frame base on the parent view
   
  @param parentView the parent view (e.g. self.view, or other views)

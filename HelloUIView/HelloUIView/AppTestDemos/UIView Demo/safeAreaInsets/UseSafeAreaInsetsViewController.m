@@ -7,8 +7,7 @@
 //
 
 #import "UseSafeAreaInsetsViewController.h"
-
-#import "PresentedOnlyStatusBarViewController.h"
+#import "ShowSafeAreaViewController.h"
 
 @interface UseSafeAreaInsetsViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -32,10 +31,14 @@
     // MARK: Configure titles and classes for table view
     _titles = @[
         @"Only status bar view controller",
+        @"With nav bar's view controller",
+        @"With tab bar's view controller",
         @"call a test method",
     ];
     _classes = @[
-        @"presentPresentedOnlyStatusBarViewController",
+        @"presentViewControllerWithStatusBar",
+        @"presentViewControllerWithNavBar",
+        @"presentViewControllerWithTabBar",
         @"testMethod",
     ];
 }
@@ -95,9 +98,25 @@
     NSLog(@"test something");
 }
 
-- (void)presentPresentedOnlyStatusBarViewController {
-    PresentedOnlyStatusBarViewController *vc = [PresentedOnlyStatusBarViewController new];
+- (void)presentViewControllerWithStatusBar {
+    ShowSafeAreaViewController *vc = [ShowSafeAreaViewController new];
     [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)presentViewControllerWithNavBar {
+    ShowSafeAreaViewController *vc = [ShowSafeAreaViewController new];
+    vc.title = @"This is a nav bar";
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:navController animated:YES completion:nil];
+}
+
+- (void)presentViewControllerWithTabBar {
+    ShowSafeAreaViewController *vc1 = [ShowSafeAreaViewController new];
+    ShowSafeAreaViewController *vc2 = [ShowSafeAreaViewController new];
+    
+    UITabBarController *tabController = [[UITabBarController alloc] init];
+    tabController.viewControllers = @[vc1, vc2];
+    [self presentViewController:tabController animated:YES completion:nil];
 }
 
 @end

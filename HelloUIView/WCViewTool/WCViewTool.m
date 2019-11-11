@@ -611,6 +611,22 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
 
 #pragma mark > SafeArea
 
++ (UIEdgeInsets)safeAreaInsetsWithView:(UIView *)view {
+    if (![view isKindOfClass:[UIView class]]) {
+        return UIEdgeInsetsZero;
+    }
+    
+    if (IOS11_OR_LATER) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+        return view.safeAreaInsets;
+#pragma GCC diagnostic pop
+    }
+    else {
+        return UIEdgeInsetsZero;
+    }
+}
+
 + (CGRect)safeAreaFrameWithParentView:(UIView *)parentView {
     if (![parentView isKindOfClass:[UIView class]]) {
         return CGRectZero;
