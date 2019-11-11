@@ -213,6 +213,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (CGRect)changeFrame:(CGRect)frame newX:(CGFloat)newX newY:(CGFloat)newY newWidth:(CGFloat)newWidth newHeight:(CGFloat)newHeight;
 
+/**
+ Get padded rect with insets
+ 
+ @param frame the original frame
+ @param insets the insets  to set. Set UIEdgeInsetsZero to not change.
+ @return the new rect. Return CGRectZero if calculate the wrong result by insets
+ @note insets need positive values
+ */
++ (CGRect)paddedRectWithFrame:(CGRect)frame insets:(UIEdgeInsets)insets;
+
 #pragma mark > CGSize
 
 /**
@@ -232,6 +242,18 @@ NS_ASSUME_NONNULL_BEGIN
  @return the scaled size. Return CGSizeZero if the content's width or height is <= 0 or fixedHeight <= 0
  */
 + (CGSize)scaledSizeWithContentSize:(CGSize)contentSize fitToHeight:(CGFloat)fixedHeight;
+
+#pragma mark > SafeArea
+
+/**
+ Get safe area frame base on the parent view
+  
+ @param parentView the parent view (e.g. self.view, or other views)
+ @return the frame which always in the safe area
+ @discussion the safe area is available on iOS 11+, but this API is compatible with lower version and
+ return the parent view's bounds in iOS 10-
+*/
++ (CGRect)safeAreaFrameWithParentView:(UIView *)parentView;
 
 @end
 

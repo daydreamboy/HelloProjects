@@ -18,6 +18,7 @@
 #import "UseCAGradientLayerWithMultipleColorsViewController.h"
 #import "StretchImageInLayerViewController.h"
 #import "DottedLineViewViewController.h"
+#import "UseSafeAreaInsetsViewController.h"
 
 #import "HitTestInViewViewController.h"
 #import "AddShadowBorderToImageViewController.h"
@@ -63,6 +64,7 @@
           @{ kTitle: @"Group all subviews by wrapper view", kClass: [GroupSubviewsByWrapperViewViewController class] },
           @{ kTitle: @"Group all subviews by relayout subviews", kClass: [GroupSubviewsByRelayoutSubviewsViewController class] },
           @{ kTitle: @"Dotted line views", kClass: [DottedLineViewViewController class] },
+          @{ kTitle: @"safeAreaInsets", kClass: [UseSafeAreaInsetsViewController class] },
     ];
 
     NSArray<NSDictionary *> *section2 = @[

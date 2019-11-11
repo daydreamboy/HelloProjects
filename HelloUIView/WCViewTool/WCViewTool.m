@@ -18,6 +18,11 @@
 } \
 @catch (NSException *exception) {}
 
+// >= `11.0`
+#ifndef IOS11_OR_LATER
+#define IOS11_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"11.0" options:NSNumericSearch] != NSOrderedAscending)
+#endif
+
 @interface ViewObserver : NSObject
 @property (nonatomic, weak) UIView *view;
 @end
@@ -568,6 +573,22 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
     return newFrame;
 }
 
++ (CGRect)paddedRectWithFrame:(CGRect)frame insets:(UIEdgeInsets)insets {
+    if (insets.top < 0 || insets.left < 0 || insets.bottom < 0 || insets.right < 0) {
+        return CGRectZero;
+    }
+    
+    if (insets.top + insets.bottom >= frame.size.height) {
+        return CGRectZero;
+    }
+    
+    if (insets.left + insets.right >= frame.size.width) {
+        return CGRectZero;
+    }
+    
+    return CGRectMake(insets.left, insets.top, frame.size.width - insets.left - insets.right, frame.size.height - insets.top - insets.bottom);
+}
+
 #pragma mark > CGSize
 
 + (CGSize)scaledSizeWithContentSize:(CGSize)contentSize fitToWidth:(CGFloat)fixedWidth {
@@ -586,6 +607,24 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
     
     CGFloat ratioByHeight = (fixedHeight / contentSize.height);
     return CGSizeMake(contentSize.width * ratioByHeight, fixedHeight);
+}
+
+#pragma mark > SafeArea
+
++ (CGRect)safeAreaFrameWithParentView:(UIView *)parentView {
+    if (![parentView isKindOfClass:[UIView class]]) {
+        return CGRectZero;
+    }
+    
+    if (IOS11_OR_LATER) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+        return [self paddedRectWithFrame:parentView.bounds insets:parentView.safeAreaInsets];
+#pragma GCC diagnostic pop
+    }
+    else {
+        return parentView.bounds;
+    }
 }
 
 @end
