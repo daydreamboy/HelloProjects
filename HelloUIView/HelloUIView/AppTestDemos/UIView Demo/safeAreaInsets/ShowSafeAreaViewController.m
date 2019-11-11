@@ -90,7 +90,7 @@
     UIPanGestureRecognizer *recognizer = sender;
     CGPoint translation = [recognizer translationInView:recognizer.view.superview];
     
-    // Note: make a threhold to limit the maximum of self.additionalInsetsValue
+    // Note: make a threshold to limit the maximum of self.additionalInsetsValue
     CGFloat threshold = screenSize.height / 6.0;
     
     // Note: divide by screenSize.height to be a smaller delta value to slow finger moving fast

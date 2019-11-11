@@ -80,9 +80,10 @@ imageView.frame = aspectScaledRect;
 
 iOS 11+增加下面多种属性用于支持实现Safe Area
 
-| 控件   | 属性           |
-| ------ | -------------- |
-| UIView | safeAreaInsets |
+| 控件             | 属性                     |
+| ---------------- | ------------------------ |
+| UIView           | safeAreaInsets           |
+| UIViewController | additionalSafeAreaInsets |
 
 
 
@@ -101,8 +102,10 @@ UIView的safeAreaInsets属性，针对下面两种不同的View分区来计算�
 
 ​      UIView的safeAreaInsets属性的值，是系统在布局完成后，自动计算出来的。因此，需要在UIKit完成某个布局后，再获取这个safeAreaInsets属性值。
 
+
+
 * 对于View Controller中root view的safeAreaInsets
-  * **viewDidLayoutSubviews**方法，可以获取self.view.safeAreaInsets，以及self.view所有子视图的safeAreaInsets
+  * **viewDidLayoutSubviews**方法，可以获取self.view.safeAreaInsets[^3]，以及self.view所有子视图的safeAreaInsets
   * **viewWillLayoutSubviews**方法，也可以获取self.view.safeAreaInsets，但self.view所有子视图还没有完成布局，因此它们的safeAreaInsets都是UIEdgeInsetsZero
 
 
@@ -124,6 +127,30 @@ UIView的safeAreaInsets属性，针对下面两种不同的View分区来计算�
 ​       为了避免viewWillLayoutSubviews和viewDidLayoutSubviews调用多次，一般不建议在这两个方法中修改self.view的frame。
 
 
+
+> 处于不同容器（UINavigationController、UITabBarController等）中View Controller的root view，显示它的safeAreaInsets，示例代码见UseSafeAreaInsetsViewController
+
+
+
+* 对于普通View的safeAreaInsets
+  * 在layoutSubview方法中获取当前View的safeAreaInsets。这个safeAreaInsets值来自父视图的safeAreaInsets。值得注意的是，子视图的safeAreaInsets不会超出父视图的safeAreaInsets（例如，当子视图拖拽移出到父视图的安全区域外一定范围时，子视图的safeAreaInsets总是等于父视图的safeAreaInsets）
+
+> 示例代码见ShowCustomViewSafeAreaViewController
+
+
+
+
+
+
+
+### （2）additionalSafeAreaInsets
+
+​       UIViewController的additionalSafeAreaInsets属性，实际上针对UIViewController的view，额外增加insets。因此，UIViewController的view的**safe area insets = self.view.safeAreaInsets + self.additionalSafeAreaInsets**。additionalSafeAreaInsets属性默认为UIEdgeInsetsZero。
+
+* 在self.view布局之前，设置additionalSafeAreaInsets属性
+* 在self.view布局之后，设置additionalSafeAreaInsets属性，同时调用setNeedsLayout和layoutIfNeeded方法。
+
+> 示例代码见UseSafeAreaInsetsViewController
 
 
 
@@ -223,6 +250,7 @@ UIView提供`- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event;`方�
 
 [^1]:https://medium.com/rosberryapps/ios-safe-area-ca10e919526f
 [^2]:https://stackoverflow.com/a/27050776
+[^3]:https://stackoverflow.com/a/46290400
 
 
 

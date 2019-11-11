@@ -8,6 +8,7 @@
 
 #import "UseSafeAreaInsetsViewController.h"
 #import "ShowSafeAreaViewController.h"
+#import "ShowCustomViewSafeAreaViewController.h"
 
 @interface UseSafeAreaInsetsViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -33,12 +34,14 @@
         @"Only status bar view controller",
         @"With nav bar's view controller",
         @"With tab bar's view controller",
+        @"safe area of customized view",
         @"call a test method",
     ];
     _classes = @[
         @"presentViewControllerWithStatusBar",
         @"presentViewControllerWithNavBar",
         @"presentViewControllerWithTabBar",
+        @"presentShowCustomViewSafeAreaViewController",
         @"testMethod",
     ];
 }
@@ -117,6 +120,11 @@
     UITabBarController *tabController = [[UITabBarController alloc] init];
     tabController.viewControllers = @[vc1, vc2];
     [self presentViewController:tabController animated:YES completion:nil];
+}
+
+- (void)presentShowCustomViewSafeAreaViewController {
+    ShowCustomViewSafeAreaViewController *vc = [ShowCustomViewSafeAreaViewController new];
+    [self presentViewController:vc animated:YES completion:nil];
 }
 
 @end
