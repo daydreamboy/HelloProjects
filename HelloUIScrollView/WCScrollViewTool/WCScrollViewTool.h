@@ -41,6 +41,7 @@ Observe the scrolling event on the scroll view
  
  @param scrollView the scroll view
  @return YES if scroll view is scrolling over or at the top edge, otherwise return NO. And also return NO if the parameters are wrong.
+ @see https://stackoverflow.com/a/14745900
  */
 + (BOOL)checkIsOverTopWithScrollView:(UIScrollView *)scrollView;
 
