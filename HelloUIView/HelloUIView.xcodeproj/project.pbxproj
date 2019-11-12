@@ -12,6 +12,8 @@
 		4F1C88A32379688D00FC9897 /* ShowSafeAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88A22379688D00FC9897 /* ShowSafeAreaViewController.m */; };
 		4F1C88A8237992E200FC9897 /* TouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88A7237992E200FC9897 /* TouchView.m */; };
 		4F1C88AB23799A9700FC9897 /* ShowCustomViewSafeAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88AA23799A9700FC9897 /* ShowCustomViewSafeAreaViewController.m */; };
+		4F2C03C7237AE75A0074473E /* TouchView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C03C6237AE75A0074473E /* TouchView2.m */; };
+		4F2C03CA237AE8B30074473E /* ShowCustomViewFixedSafeAreaLayoutFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C03C9237AE8B30074473E /* ShowCustomViewFixedSafeAreaLayoutFrameViewController.m */; };
 		4F4EDC3E22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4EDC3D22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.m */; };
 		4F502DDE22CA46E100137BE1 /* WCDashLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F502DDD22CA46E100137BE1 /* WCDashLineView.m */; };
 		4F502DE122CA56DA00137BE1 /* DottedLineViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F502DE022CA56DA00137BE1 /* DottedLineViewViewController.m */; };
@@ -74,6 +76,10 @@
 		4F1C88A7237992E200FC9897 /* TouchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TouchView.m; sourceTree = "<group>"; };
 		4F1C88A923799A9700FC9897 /* ShowCustomViewSafeAreaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowCustomViewSafeAreaViewController.h; sourceTree = "<group>"; };
 		4F1C88AA23799A9700FC9897 /* ShowCustomViewSafeAreaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowCustomViewSafeAreaViewController.m; sourceTree = "<group>"; };
+		4F2C03C5237AE75A0074473E /* TouchView2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchView2.h; sourceTree = "<group>"; };
+		4F2C03C6237AE75A0074473E /* TouchView2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TouchView2.m; sourceTree = "<group>"; };
+		4F2C03C8237AE8B30074473E /* ShowCustomViewFixedSafeAreaLayoutFrameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowCustomViewFixedSafeAreaLayoutFrameViewController.h; sourceTree = "<group>"; };
+		4F2C03C9237AE8B30074473E /* ShowCustomViewFixedSafeAreaLayoutFrameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowCustomViewFixedSafeAreaLayoutFrameViewController.m; sourceTree = "<group>"; };
 		4F4EDC3C22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupSubviewsByRelayoutSubviewsViewController.h; sourceTree = "<group>"; };
 		4F4EDC3D22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupSubviewsByRelayoutSubviewsViewController.m; sourceTree = "<group>"; };
 		4F502DDC22CA46E100137BE1 /* WCDashLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCDashLineView.h; sourceTree = "<group>"; };
@@ -175,6 +181,8 @@
 				4F1C88A22379688D00FC9897 /* ShowSafeAreaViewController.m */,
 				4F1C88A923799A9700FC9897 /* ShowCustomViewSafeAreaViewController.h */,
 				4F1C88AA23799A9700FC9897 /* ShowCustomViewSafeAreaViewController.m */,
+				4F2C03C8237AE8B30074473E /* ShowCustomViewFixedSafeAreaLayoutFrameViewController.h */,
+				4F2C03C9237AE8B30074473E /* ShowCustomViewFixedSafeAreaLayoutFrameViewController.m */,
 			);
 			path = safeAreaInsets;
 			sourceTree = "<group>";
@@ -184,6 +192,8 @@
 			children = (
 				4F1C88A6237992E200FC9897 /* TouchView.h */,
 				4F1C88A7237992E200FC9897 /* TouchView.m */,
+				4F2C03C5237AE75A0074473E /* TouchView2.h */,
+				4F2C03C6237AE75A0074473E /* TouchView2.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -480,6 +490,8 @@
 				4FAAA5751FA45FE700A80328 /* main.m in Sources */,
 				4FB43AF6200DA28100D5D92D /* DrawRadialGradientViewViewController.m in Sources */,
 				4FB43AE6200DA22F00D5D92D /* WCTouchThroughView.m in Sources */,
+				4F2C03CA237AE8B30074473E /* ShowCustomViewFixedSafeAreaLayoutFrameViewController.m in Sources */,
+				4F2C03C7237AE75A0074473E /* TouchView2.m in Sources */,
 				4FA301272151328C005A5344 /* GroupSubviewsByWrapperViewViewController.m in Sources */,
 				4F983BD81FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m in Sources */,
 				4F1C88A8237992E200FC9897 /* TouchView.m in Sources */,

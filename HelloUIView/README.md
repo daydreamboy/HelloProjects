@@ -83,6 +83,7 @@ iOS 11+增加下面多种属性用于支持实现Safe Area
 | 控件             | 属性                     |
 | ---------------- | ------------------------ |
 | UIView           | safeAreaInsets           |
+| UIView           | safeAreaLayoutGuide      |
 | UIViewController | additionalSafeAreaInsets |
 
 
@@ -139,10 +140,6 @@ UIView的safeAreaInsets属性，针对下面两种不同的View分区来计算�
 
 
 
-
-
-
-
 ### （2）additionalSafeAreaInsets
 
 ​       UIViewController的additionalSafeAreaInsets属性，实际上针对UIViewController的view，额外增加insets。因此，UIViewController的view的**safe area insets = self.view.safeAreaInsets + self.additionalSafeAreaInsets**。additionalSafeAreaInsets属性默认为UIEdgeInsetsZero。
@@ -151,6 +148,14 @@ UIView的safeAreaInsets属性，针对下面两种不同的View分区来计算�
 * 在self.view布局之后，设置additionalSafeAreaInsets属性，同时调用setNeedsLayout和layoutIfNeeded方法。
 
 > 示例代码见UseSafeAreaInsetsViewController
+
+
+
+### （3）safeAreaLayoutGuide
+
+​       UIView的safeAreaLayoutGuide属性，适用于Auto Layout的场景。和safeAreaInsets属性作用一样，只不过safeAreaLayoutGuide属性使用UILayoutGuide对象来定义安全区域（Safe Area）。
+
+
 
 
 

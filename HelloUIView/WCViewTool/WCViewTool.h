@@ -243,6 +243,18 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (CGSize)scaledSizeWithContentSize:(CGSize)contentSize fitToHeight:(CGFloat)fixedHeight;
 
+#pragma mark > UIEdgeInsets
+
+/**
+ check the UIEdgeInsets if contains the other UIEdgeInsets
+
+ @param edgeInsets the first UIEdgeInsets
+ @param otherEdgeInsets the second UIEdgeInsets
+ @return Return YES if the  first UIEdgeInsets contains the second UIEdgeInsets
+ @discussion the edgeInsets and otherEdgeInsets allow positve values and negative values.
+*/
++ (BOOL)checkEdgeInsets:(UIEdgeInsets)edgeInsets containsOtherEdgeInsets:(UIEdgeInsets)otherEdgeInsets;
+
 #pragma mark > SafeArea
 
 /**
@@ -262,6 +274,18 @@ NS_ASSUME_NONNULL_BEGIN
  return the parent view's bounds in iOS 10-
 */
 + (CGRect)safeAreaFrameWithParentView:(UIView *)parentView;
+
+/**
+ Get safe area layout  frame for the view
+  
+ @param view the view to get its safe area layout  frame
+ @return the frame which always in the safe area
+ @discussion
+ 1. This method works same as view.safeAreaLayoutGuide.layoutFrame, but still can get
+ correct layout frame when view.safeAreaInsets reach maximum or not increased.
+ 2. This method usually called in -[UIView layoutSubviews] get the correct layout frame.
+*/
++ (CGRect)safeAreaLayoutFrameWithView:(UIView *)view;
 
 @end
 

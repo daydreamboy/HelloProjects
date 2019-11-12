@@ -9,6 +9,7 @@
 #import "UseSafeAreaInsetsViewController.h"
 #import "ShowSafeAreaViewController.h"
 #import "ShowCustomViewSafeAreaViewController.h"
+#import "ShowCustomViewFixedSafeAreaLayoutFrameViewController.h"
 
 @interface UseSafeAreaInsetsViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -35,6 +36,7 @@
         @"With nav bar's view controller",
         @"With tab bar's view controller",
         @"safe area of customized view",
+        @"safe area layout frame of customized view",
         @"call a test method",
     ];
     _classes = @[
@@ -42,6 +44,7 @@
         @"presentViewControllerWithNavBar",
         @"presentViewControllerWithTabBar",
         @"presentShowCustomViewSafeAreaViewController",
+        @"presentShowCustomViewFixedSafeAreaLayoutFrameViewController",
         @"testMethod",
     ];
 }
@@ -124,6 +127,11 @@
 
 - (void)presentShowCustomViewSafeAreaViewController {
     ShowCustomViewSafeAreaViewController *vc = [ShowCustomViewSafeAreaViewController new];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)presentShowCustomViewFixedSafeAreaLayoutFrameViewController {
+    ShowCustomViewFixedSafeAreaLayoutFrameViewController *vc = [ShowCustomViewFixedSafeAreaLayoutFrameViewController new];
     [self presentViewController:vc animated:YES completion:nil];
 }
 

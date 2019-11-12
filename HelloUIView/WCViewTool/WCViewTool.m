@@ -609,6 +609,19 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
     return CGSizeMake(contentSize.width * ratioByHeight, fixedHeight);
 }
 
+#pragma mark > UIEdgeInsets
+
++ (BOOL)checkEdgeInsets:(UIEdgeInsets)edgeInsets containsOtherEdgeInsets:(UIEdgeInsets)otherEdgeInsets {
+    if (fabs(edgeInsets.top) >= fabs(otherEdgeInsets.top) &&
+        fabs(edgeInsets.left) >= fabs(otherEdgeInsets.left) &&
+        fabs(edgeInsets.bottom) >= fabs(otherEdgeInsets.bottom) &&
+        fabs(edgeInsets.right) >= fabs(otherEdgeInsets.right)) {
+        return YES;
+    }
+    
+    return NO;
+}
+
 #pragma mark > SafeArea
 
 + (UIEdgeInsets)safeAreaInsetsWithView:(UIView *)view {
@@ -640,6 +653,29 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
     }
     else {
         return parentView.bounds;
+    }
+}
+
++ (CGRect)safeAreaLayoutFrameWithView:(UIView *)view {
+    if (![view isKindOfClass:[UIView class]]) {
+        return CGRectZero;
+    }
+    
+    if (!view.superview) {
+        return view.bounds;
+    }
+    
+    // Note: get safe area rect of the parent view
+    CGRect safeAreaOfParentView = [WCViewTool safeAreaFrameWithParentView:view.superview];
+    CGRect intersection = CGRectIntersection(safeAreaOfParentView, view.frame);
+    
+    if (!CGRectContainsRect(safeAreaOfParentView, view.frame) && !CGRectIsNull(intersection)) {
+        CGRect newFrame = [view.superview convertRect:intersection toView:view];
+        
+        return newFrame;
+    }
+    else {
+        return view.bounds;
     }
 }
 

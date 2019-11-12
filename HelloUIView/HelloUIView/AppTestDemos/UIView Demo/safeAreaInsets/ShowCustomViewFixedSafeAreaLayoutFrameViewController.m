@@ -1,22 +1,22 @@
 //
-//  ShowCustomViewSafeAreaViewController.m
+//  ShowCustomViewFixedSafeAreaLayoutFrameViewController.m
 //  HelloUIView
 //
-//  Created by wesley_chen on 2019/11/11.
+//  Created by wesley_chen on 2019/11/12.
 //  Copyright © 2019 wesley_chen. All rights reserved.
 //
 
-#import "ShowCustomViewSafeAreaViewController.h"
-#import "TouchView.h"
+#import "ShowCustomViewFixedSafeAreaLayoutFrameViewController.h"
+#import "TouchView2.h"
 
-@interface ShowCustomViewSafeAreaViewController ()
+@interface ShowCustomViewFixedSafeAreaLayoutFrameViewController ()
 @property (nonatomic, assign) CGPoint touchViewPositionValue;
 @property (nonatomic, assign) CGPoint touchViewPositionOffset;
-@property (nonatomic, strong) TouchView *touchView;
+@property (nonatomic, strong) TouchView2 *touchView;
 @property (nonatomic, assign) BOOL needUpdateTouchViewPosition;
 @end
 
-@implementation ShowCustomViewSafeAreaViewController
+@implementation ShowCustomViewFixedSafeAreaLayoutFrameViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,9 +42,9 @@
 
 #pragma mark - Getter
 
-- (TouchView *)touchView {
+- (TouchView2 *)touchView {
     if (!_touchView) {
-        TouchView *view = [[TouchView alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
+        TouchView2 *view = [[TouchView2 alloc] initWithFrame:CGRectMake(0, 0, 300, 300)];
         
         UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(touchViewPanned:)];
         [view addGestureRecognizer:panGesture];
