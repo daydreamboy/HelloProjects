@@ -20,7 +20,7 @@
 
     CGFloat navBarHeight = 64.0f;
     CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-    CGRect rect = CGRectMake(0, navBarHeight, screenSize.width, screenSize.height - navBarHeight);
+    __unused CGRect rect = CGRectMake(0, navBarHeight, screenSize.width, screenSize.height - navBarHeight);
     
     self.view.backgroundColor = [UIColor whiteColor];
     

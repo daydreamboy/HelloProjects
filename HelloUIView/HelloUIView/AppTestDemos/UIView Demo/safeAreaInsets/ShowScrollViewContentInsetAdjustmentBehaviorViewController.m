@@ -84,7 +84,7 @@
 }
 
 - (void)updateBehavior {
-    self.scrollView.contentInsetAdjustmentBehavior = self.behavior;
+    [WCScrollViewTool safeSetContentInsetAdjustmentBehaviorWithScrollView:self.scrollView behavior:self.behavior];
 }
 
 #pragma mark - Getter
@@ -165,7 +165,7 @@
 
 - (void)segmentedControlBehaviorChanged:(id)sender {
     UISegmentedControl *segmentedControl = sender;
-    self.behavior = (UIScrollViewContentInsetAdjustmentBehavior)segmentedControl.selectedSegmentIndex;
+    self.behavior = (WCScrollViewContentInsetAdjustmentBehavior)segmentedControl.selectedSegmentIndex;
     
     [self.view setNeedsLayout];
     [self.view layoutIfNeeded];

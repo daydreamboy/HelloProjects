@@ -38,10 +38,7 @@
         @"With tab bar's view controller",
         @"safe area of customized view",
         @"safe area layout frame of customized view",
-        @"Automatic contentInsetAdjustmentBehavior of scroll view",
-        @"ScrollableAxes contentInsetAdjustmentBehavior of scroll view",
-        @"Never contentInsetAdjustmentBehavior of scroll view",
-        @"Always contentInsetAdjustmentBehavior of scroll view",
+        @"contentInsetAdjustmentBehavior of scroll view",
         @"call a test method",
     ];
     _classes = @[
@@ -50,10 +47,7 @@
         @"presentViewControllerWithTabBar",
         @"presentShowCustomViewSafeAreaViewController",
         @"presentShowCustomViewFixedSafeAreaLayoutFrameViewController",
-        @"presentShowScrollViewContentInsetAdjustmentBehaviorViewControllerAutomatic",
-        @"presentShowScrollViewContentInsetAdjustmentBehaviorViewControllerScrollableAxes",
-        @"presentShowScrollViewContentInsetAdjustmentBehaviorViewControllerNever",
-        @"presentShowScrollViewContentInsetAdjustmentBehaviorViewControllerAlways",
+        @"presentShowScrollViewContentInsetAdjustmentBehaviorViewController",
         @"testMethod",
     ];
 }
@@ -144,27 +138,8 @@
     [self presentViewController:vc animated:YES completion:nil];
 }
 
-- (void)presentShowScrollViewContentInsetAdjustmentBehaviorViewControllerAutomatic {
+- (void)presentShowScrollViewContentInsetAdjustmentBehaviorViewController {
     ShowScrollViewContentInsetAdjustmentBehaviorViewController *vc = [ShowScrollViewContentInsetAdjustmentBehaviorViewController new];
-    vc.behavior = UIScrollViewContentInsetAdjustmentAutomatic;
-    [self presentViewController:vc animated:YES completion:nil];
-}
-
-- (void)presentShowScrollViewContentInsetAdjustmentBehaviorViewControllerScrollableAxes {
-    ShowScrollViewContentInsetAdjustmentBehaviorViewController *vc = [ShowScrollViewContentInsetAdjustmentBehaviorViewController new];
-    vc.behavior = UIScrollViewContentInsetAdjustmentScrollableAxes;
-    [self presentViewController:vc animated:YES completion:nil];
-}
-
-- (void)presentShowScrollViewContentInsetAdjustmentBehaviorViewControllerNever {
-    ShowScrollViewContentInsetAdjustmentBehaviorViewController *vc = [ShowScrollViewContentInsetAdjustmentBehaviorViewController new];
-    vc.behavior = UIScrollViewContentInsetAdjustmentNever;
-    [self presentViewController:vc animated:YES completion:nil];
-}
-
-- (void)presentShowScrollViewContentInsetAdjustmentBehaviorViewControllerAlways {
-    ShowScrollViewContentInsetAdjustmentBehaviorViewController *vc = [ShowScrollViewContentInsetAdjustmentBehaviorViewController new];
-    vc.behavior = UIScrollViewContentInsetAdjustmentAlways;
     [self presentViewController:vc animated:YES completion:nil];
 }
 

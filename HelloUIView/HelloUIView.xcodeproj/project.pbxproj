@@ -12,6 +12,7 @@
 		4F1C88A32379688D00FC9897 /* ShowSafeAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88A22379688D00FC9897 /* ShowSafeAreaViewController.m */; };
 		4F1C88A8237992E200FC9897 /* TouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88A7237992E200FC9897 /* TouchView.m */; };
 		4F1C88AB23799A9700FC9897 /* ShowCustomViewSafeAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88AA23799A9700FC9897 /* ShowCustomViewSafeAreaViewController.m */; };
+		4F27D4BA237DBB53007E2B54 /* WCScrollViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F27D4B9237DBB53007E2B54 /* WCScrollViewTool.m */; };
 		4F297915237BAF09000A1133 /* ShowScrollViewContentInsetAdjustmentBehaviorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F297914237BAF09000A1133 /* ShowScrollViewContentInsetAdjustmentBehaviorViewController.m */; };
 		4F2C03C7237AE75A0074473E /* TouchView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C03C6237AE75A0074473E /* TouchView2.m */; };
 		4F2C03CA237AE8B30074473E /* ShowCustomViewFixedSafeAreaLayoutFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C03C9237AE8B30074473E /* ShowCustomViewFixedSafeAreaLayoutFrameViewController.m */; };
@@ -77,6 +78,8 @@
 		4F1C88A7237992E200FC9897 /* TouchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TouchView.m; sourceTree = "<group>"; };
 		4F1C88A923799A9700FC9897 /* ShowCustomViewSafeAreaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowCustomViewSafeAreaViewController.h; sourceTree = "<group>"; };
 		4F1C88AA23799A9700FC9897 /* ShowCustomViewSafeAreaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowCustomViewSafeAreaViewController.m; sourceTree = "<group>"; };
+		4F27D4B8237DBB53007E2B54 /* WCScrollViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCScrollViewTool.h; sourceTree = "<group>"; };
+		4F27D4B9237DBB53007E2B54 /* WCScrollViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCScrollViewTool.m; sourceTree = "<group>"; };
 		4F297913237BAF09000A1133 /* ShowScrollViewContentInsetAdjustmentBehaviorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowScrollViewContentInsetAdjustmentBehaviorViewController.h; sourceTree = "<group>"; };
 		4F297914237BAF09000A1133 /* ShowScrollViewContentInsetAdjustmentBehaviorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowScrollViewContentInsetAdjustmentBehaviorViewController.m; sourceTree = "<group>"; };
 		4F2C03C5237AE75A0074473E /* TouchView2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchView2.h; sourceTree = "<group>"; };
@@ -203,6 +206,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		4F27D4B7237DBB3A007E2B54 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F27D4B8237DBB53007E2B54 /* WCScrollViewTool.h */,
+				4F27D4B9237DBB53007E2B54 /* WCScrollViewTool.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		4F502DDB22CA46BF00137BE1 /* WCDashLineView */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,6 +333,7 @@
 		4FAAA5641FA45FE700A80328 /* HelloUIView */ = {
 			isa = PBXGroup;
 			children = (
+				4F27D4B7237DBB3A007E2B54 /* Tools */,
 				4FAAA57B1FA4601500A80328 /* AppTestDemos */,
 				4FAAA5651FA45FE700A80328 /* AppDelegate.h */,
 				4FAAA5661FA45FE700A80328 /* AppDelegate.m */,
@@ -522,6 +535,7 @@
 				4F0B4F1E205269D9003B241E /* HitTestInViewViewController.m in Sources */,
 				4F961BB42133ABF5009402F3 /* UIView+Position.m in Sources */,
 				4F60E70622A7DBFB00C27087 /* StretchImageInLayerViewController.m in Sources */,
+				4F27D4BA237DBB53007E2B54 /* WCScrollViewTool.m in Sources */,
 				4F7CB04920EF96CD00ABDED4 /* TouchThroughToUnderneathViewViewController.m in Sources */,
 				4F63EFE71FE103DB000AFD6F /* ObserveViewGeometryChangeEventViewController.m in Sources */,
 			);

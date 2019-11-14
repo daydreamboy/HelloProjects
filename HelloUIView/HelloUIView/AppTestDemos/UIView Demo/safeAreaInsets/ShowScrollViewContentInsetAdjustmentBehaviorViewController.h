@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+#import "WCScrollViewTool.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, ScrollAxisType) {
@@ -18,7 +20,7 @@ typedef NS_ENUM(NSUInteger, ScrollAxisType) {
 
 @interface ShowScrollViewContentInsetAdjustmentBehaviorViewController : UIViewController
 @property (nonatomic, assign) ScrollAxisType scrollAxisType;
-@property (nonatomic, assign) UIScrollViewContentInsetAdjustmentBehavior behavior;
+@property (nonatomic, assign) WCScrollViewContentInsetAdjustmentBehavior behavior;
 @end
 
 NS_ASSUME_NONNULL_END
