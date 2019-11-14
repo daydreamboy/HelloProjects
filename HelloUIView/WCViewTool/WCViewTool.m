@@ -269,6 +269,25 @@
     return YES;
 }
 
++ (BOOL)changeFrameWithView:(UIView *)view newX:(CGFloat)newX newY:(CGFloat)newY newWidth:(CGFloat)newWidth newHeight:(CGFloat)newHeight {
+    if (![view isKindOfClass:[UIView class]]) {
+        return NO;
+    }
+    
+    view.frame = [self changeFrame:view.frame newX:newX newY:newY newWidth:newWidth newHeight:newHeight];
+    
+    return YES;
+}
+
++ (BOOL)changeCenterWithView:(UIView *)view newCX:(CGFloat)newCX newCY:(CGFloat)newCY {
+    if (![view isKindOfClass:[UIView class]]) {
+        return NO;
+    }
+    
+    view.center = [self changeCenter:view.center newCX:newCX newCY:newCY];
+    
+    return YES;
+}
 
 #pragma mark - Visibility
 
@@ -607,6 +626,22 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
     
     CGFloat ratioByHeight = (fixedHeight / contentSize.height);
     return CGSizeMake(contentSize.width * ratioByHeight, fixedHeight);
+}
+
+#pragma mark > CGPoint
+
++ (CGPoint)changeCenter:(CGPoint)center newCX:(CGFloat)newCX newCY:(CGFloat)newCY {
+    CGPoint newCenter = center;
+    
+    if (!isnan(newCX)) {
+        newCenter.x = newCX;
+    }
+    
+    if (!isnan(newCY)) {
+        newCenter.y = newCY;
+    }
+    
+    return newCenter;
 }
 
 #pragma mark > UIEdgeInsets

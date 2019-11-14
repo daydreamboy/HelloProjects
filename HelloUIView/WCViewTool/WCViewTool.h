@@ -11,6 +11,24 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ Change frame with new x, y, width or height.
+ 
+ @discussion Set NAN to not change. See +[WCViewTool changeFrame:newX:newY:newWidth:newHeight:] for details.
+ */
+#define FrameSet(frame, x, y, width, height) ([WCViewTool changeFrame:(frame) newX:(x) newY:(y) newWidth:(width) newHeight:(height)])
+
+/**
+ Change center with new x, y
+ 
+ @discussion Set NAN to not change. See +[WCViewTool changeCenter:newCX:newCY:] for details.
+ */
+#define CenterSet(center, cx, cy) ([WCViewTool changeCenter:(center) newCX:(cx) newCY:(cy)])
+
+#define ViewFrameSet(view, x, y, width, height) ([WCViewTool changeFrameWithView:(view) newX:(x) newY:(y) newWidth:(width) newHeight:(height)])
+
+#define ViewCenterSet(view, cx, cy) ([WCViewTool changeCenterWithView:(view) newCX:(cx) newCY:(cy)])
+
 @interface WCViewTool : NSObject
 
 #pragma mark - Blurring
@@ -104,6 +122,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)makeSubviewsIntoGroup:(NSArray *)subviews centeredAtPoint:(CGPoint)centerPoint groupViewsRect:(inout nullable CGRect *)groupViewsRect;
 
+
+
++ (BOOL)changeFrameWithView:(UIView *)view newX:(CGFloat)newX newY:(CGFloat)newY newWidth:(CGFloat)newWidth newHeight:(CGFloat)newHeight;
++ (BOOL)changeCenterWithView:(UIView *)view newCX:(CGFloat)newCX newCY:(CGFloat)newCY;
+
 #pragma mark - Visibility
 
 /**
@@ -195,13 +218,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**
  Change frame with new x, y, width or height.
- 
- @discussion Set NAN to not change. See +[WCViewTool changeFrame:newX:newY:newWidth:newHeight:] for details.
- */
-#define FrameSet(frame, x, y, width, height) ([WCViewTool changeFrame:(frame) newX:(x) newY:(y) newWidth:(width) newHeight:(height)])
-
-/**
- Change frame with new x, y, width or height.
  For convenience, use macro FrameSet(frame, x, y, width, height) instead.
  
  @param frame the frame
@@ -243,6 +259,19 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (CGSize)scaledSizeWithContentSize:(CGSize)contentSize fitToHeight:(CGFloat)fixedHeight;
 
+#pragma mark > CGPoint
+
+/**
+ Change center with new x, y
+ For convenience, use macro FrameSet(frame, x, y, width, height) instead.
+ 
+ @param center the center
+ @param newCX the new cx to set. Set NAN to not change
+ @param newCY the new cy to set. Set NAN to not change
+ @return the new center
+ */
++ (CGPoint)changeCenter:(CGPoint)center newCX:(CGFloat)newCX newCY:(CGFloat)newCY;
+
 #pragma mark > UIEdgeInsets
 
 /**
@@ -276,7 +305,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (CGRect)safeAreaFrameWithParentView:(UIView *)parentView;
 
 /**
- Get safe area layout  frame for the view
+ Get safe area layout frame for the view
   
  @param view the view to get its safe area layout  frame
  @return the frame which always in the safe area

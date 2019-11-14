@@ -10,6 +10,7 @@
 #import "ShowSafeAreaViewController.h"
 #import "ShowCustomViewSafeAreaViewController.h"
 #import "ShowCustomViewFixedSafeAreaLayoutFrameViewController.h"
+#import "ShowScrollViewContentInsetAdjustmentBehaviorViewController.h"
 
 @interface UseSafeAreaInsetsViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -37,6 +38,10 @@
         @"With tab bar's view controller",
         @"safe area of customized view",
         @"safe area layout frame of customized view",
+        @"Automatic contentInsetAdjustmentBehavior of scroll view",
+        @"ScrollableAxes contentInsetAdjustmentBehavior of scroll view",
+        @"Never contentInsetAdjustmentBehavior of scroll view",
+        @"Always contentInsetAdjustmentBehavior of scroll view",
         @"call a test method",
     ];
     _classes = @[
@@ -45,6 +50,10 @@
         @"presentViewControllerWithTabBar",
         @"presentShowCustomViewSafeAreaViewController",
         @"presentShowCustomViewFixedSafeAreaLayoutFrameViewController",
+        @"presentShowScrollViewContentInsetAdjustmentBehaviorViewControllerAutomatic",
+        @"presentShowScrollViewContentInsetAdjustmentBehaviorViewControllerScrollableAxes",
+        @"presentShowScrollViewContentInsetAdjustmentBehaviorViewControllerNever",
+        @"presentShowScrollViewContentInsetAdjustmentBehaviorViewControllerAlways",
         @"testMethod",
     ];
 }
@@ -132,6 +141,30 @@
 
 - (void)presentShowCustomViewFixedSafeAreaLayoutFrameViewController {
     ShowCustomViewFixedSafeAreaLayoutFrameViewController *vc = [ShowCustomViewFixedSafeAreaLayoutFrameViewController new];
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)presentShowScrollViewContentInsetAdjustmentBehaviorViewControllerAutomatic {
+    ShowScrollViewContentInsetAdjustmentBehaviorViewController *vc = [ShowScrollViewContentInsetAdjustmentBehaviorViewController new];
+    vc.behavior = UIScrollViewContentInsetAdjustmentAutomatic;
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)presentShowScrollViewContentInsetAdjustmentBehaviorViewControllerScrollableAxes {
+    ShowScrollViewContentInsetAdjustmentBehaviorViewController *vc = [ShowScrollViewContentInsetAdjustmentBehaviorViewController new];
+    vc.behavior = UIScrollViewContentInsetAdjustmentScrollableAxes;
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)presentShowScrollViewContentInsetAdjustmentBehaviorViewControllerNever {
+    ShowScrollViewContentInsetAdjustmentBehaviorViewController *vc = [ShowScrollViewContentInsetAdjustmentBehaviorViewController new];
+    vc.behavior = UIScrollViewContentInsetAdjustmentNever;
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+- (void)presentShowScrollViewContentInsetAdjustmentBehaviorViewControllerAlways {
+    ShowScrollViewContentInsetAdjustmentBehaviorViewController *vc = [ShowScrollViewContentInsetAdjustmentBehaviorViewController new];
+    vc.behavior = UIScrollViewContentInsetAdjustmentAlways;
     [self presentViewController:vc animated:YES completion:nil];
 }
 

@@ -138,4 +138,19 @@
     XCTAssertTrue(output.origin.x == 20 && output.origin.y == 30 && output.size.width == 100 && output.size.height == 100);
 }
 
+- (void)test_CGSize {
+    CGSize size1 = CGSizeFromString(@"{227, 55.333333333333336}");
+    CGSize size2 = CGSizeMake(227, 166 / 3.0);
+    
+    if (CGSizeEqualToSize(size1, size2)) {
+        NSLog(@"equal");
+    }
+    else {
+        NSLog(@"not equal");
+    }
+    
+    NSLog(@"%@", NSStringFromCGSize(size1));
+    NSLog(@"%@", NSStringFromCGSize(size2));
+}
+
 @end

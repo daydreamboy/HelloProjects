@@ -80,11 +80,12 @@ imageView.frame = aspectScaledRect;
 
 iOS 11+增加下面多种属性用于支持实现Safe Area
 
-| 控件             | 属性                     |
-| ---------------- | ------------------------ |
-| UIView           | safeAreaInsets           |
-| UIView           | safeAreaLayoutGuide      |
-| UIViewController | additionalSafeAreaInsets |
+| 控件             | 属性                           |
+| ---------------- | ------------------------------ |
+| UIView           | safeAreaInsets                 |
+| UIView           | safeAreaLayoutGuide            |
+| UIViewController | additionalSafeAreaInsets       |
+| UIScrollView     | contentInsetAdjustmentBehavior |
 
 
 

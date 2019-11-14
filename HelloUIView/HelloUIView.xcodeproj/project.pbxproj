@@ -12,6 +12,7 @@
 		4F1C88A32379688D00FC9897 /* ShowSafeAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88A22379688D00FC9897 /* ShowSafeAreaViewController.m */; };
 		4F1C88A8237992E200FC9897 /* TouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88A7237992E200FC9897 /* TouchView.m */; };
 		4F1C88AB23799A9700FC9897 /* ShowCustomViewSafeAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88AA23799A9700FC9897 /* ShowCustomViewSafeAreaViewController.m */; };
+		4F297915237BAF09000A1133 /* ShowScrollViewContentInsetAdjustmentBehaviorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F297914237BAF09000A1133 /* ShowScrollViewContentInsetAdjustmentBehaviorViewController.m */; };
 		4F2C03C7237AE75A0074473E /* TouchView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C03C6237AE75A0074473E /* TouchView2.m */; };
 		4F2C03CA237AE8B30074473E /* ShowCustomViewFixedSafeAreaLayoutFrameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C03C9237AE8B30074473E /* ShowCustomViewFixedSafeAreaLayoutFrameViewController.m */; };
 		4F4EDC3E22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4EDC3D22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.m */; };
@@ -76,6 +77,8 @@
 		4F1C88A7237992E200FC9897 /* TouchView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TouchView.m; sourceTree = "<group>"; };
 		4F1C88A923799A9700FC9897 /* ShowCustomViewSafeAreaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowCustomViewSafeAreaViewController.h; sourceTree = "<group>"; };
 		4F1C88AA23799A9700FC9897 /* ShowCustomViewSafeAreaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowCustomViewSafeAreaViewController.m; sourceTree = "<group>"; };
+		4F297913237BAF09000A1133 /* ShowScrollViewContentInsetAdjustmentBehaviorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowScrollViewContentInsetAdjustmentBehaviorViewController.h; sourceTree = "<group>"; };
+		4F297914237BAF09000A1133 /* ShowScrollViewContentInsetAdjustmentBehaviorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowScrollViewContentInsetAdjustmentBehaviorViewController.m; sourceTree = "<group>"; };
 		4F2C03C5237AE75A0074473E /* TouchView2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchView2.h; sourceTree = "<group>"; };
 		4F2C03C6237AE75A0074473E /* TouchView2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TouchView2.m; sourceTree = "<group>"; };
 		4F2C03C8237AE8B30074473E /* ShowCustomViewFixedSafeAreaLayoutFrameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowCustomViewFixedSafeAreaLayoutFrameViewController.h; sourceTree = "<group>"; };
@@ -183,6 +186,8 @@
 				4F1C88AA23799A9700FC9897 /* ShowCustomViewSafeAreaViewController.m */,
 				4F2C03C8237AE8B30074473E /* ShowCustomViewFixedSafeAreaLayoutFrameViewController.h */,
 				4F2C03C9237AE8B30074473E /* ShowCustomViewFixedSafeAreaLayoutFrameViewController.m */,
+				4F297913237BAF09000A1133 /* ShowScrollViewContentInsetAdjustmentBehaviorViewController.h */,
+				4F297914237BAF09000A1133 /* ShowScrollViewContentInsetAdjustmentBehaviorViewController.m */,
 			);
 			path = safeAreaInsets;
 			sourceTree = "<group>";
@@ -482,6 +487,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F297915237BAF09000A1133 /* ShowScrollViewContentInsetAdjustmentBehaviorViewController.m in Sources */,
 				4F4EDC3E22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.m in Sources */,
 				4FB43AEC200DA27300D5D92D /* GradientView.m in Sources */,
 				4F502DDE22CA46E100137BE1 /* WCDashLineView.m in Sources */,
@@ -551,6 +557,7 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -569,6 +576,7 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -692,6 +700,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = HelloUIView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloUIView;
@@ -705,6 +714,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = HelloUIView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloUIView;
