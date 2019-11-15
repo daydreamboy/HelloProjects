@@ -80,12 +80,15 @@ imageView.frame = aspectScaledRect;
 
 iOS 11+增加下面多种属性用于支持实现Safe Area
 
-| 控件             | 属性                           |
-| ---------------- | ------------------------------ |
-| UIView           | safeAreaInsets                 |
-| UIView           | safeAreaLayoutGuide            |
-| UIViewController | additionalSafeAreaInsets       |
-| UIScrollView     | contentInsetAdjustmentBehavior |
+| 控件                                           | 属性                           |
+| ---------------------------------------------- | ------------------------------ |
+| UIView                                         | safeAreaInsets                 |
+| UIView                                         | safeAreaLayoutGuide            |
+| UIViewController                               | additionalSafeAreaInsets       |
+| UIScrollView                                   | contentInsetAdjustmentBehavior |
+| UIScrollView                                   | adjustedContentInset           |
+| UITableView                                    | insetsContentViewsToSafeArea   |
+| UICollectionViewFlowLayout（UICollectionView） | sectionInsetReference          |
 
 
 
@@ -155,6 +158,36 @@ UIView的safeAreaInsets属性，针对下面两种不同的View分区来计算�
 ### （3）safeAreaLayoutGuide
 
 ​       UIView的safeAreaLayoutGuide属性，适用于Auto Layout的场景。和safeAreaInsets属性作用一样，只不过safeAreaLayoutGuide属性使用UILayoutGuide对象来定义安全区域（Safe Area）。
+
+
+
+### （4）contentInsetAdjustmentBehavior
+
+​       UIScrollView的`automaticallyAdjustsScrollViewInsets`和`contentInsetAdjustmentBehavior`属性，作用是一样的。但是`contentInsetAdjustmentBehavior`属性控制粒度比`automaticallyAdjustsScrollViewInsets`更细一些。
+
+| 属性                                 | 起始版本 |
+| ------------------------------------ | -------- |
+| automaticallyAdjustsScrollViewInsets | iOS 7+   |
+| contentInsetAdjustmentBehavior       | iOS 11+  |
+
+
+
+### （5）adjustedContentInset
+
+​        UIScrollView的`adjustedContentInset`属性和`contentInset`属性的区别，在于`adjustedContentInset`属性是通过`contentInset`属性和安全区域一起计算出来的，即`adjustedContentInset` = `contentInset` + safe area insets。
+
+
+
+举个例子，UIScrollView位于NavBar和TabBar下面，打印两个属性的值，如下
+
+```text
+//iOS 10
+//contentInset = UIEdgeInsets(top: 64.0, left: 0.0, bottom: 49.0, right: 0.0)
+
+//iOS 11
+//contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
+//adjustedContentInset = UIEdgeInsets(top: 64.0, left: 0.0, bottom: 49.0, right: 0.0)
+```
 
 
 

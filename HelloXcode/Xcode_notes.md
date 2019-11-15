@@ -235,6 +235,60 @@ iOS.simruntime是一个文件夹，里面Contents/Info.plist的Bundle name是显
 
 
 
+## 5、介绍Xcode的Build Settings[^4]
+
+​      Xcode Build Settings文档，之前是[Xcode Build System Guide](https://developer.apple.com/library/archive/documentation/DeveloperTools/Reference/XcodeBuildSettingRef/1-Build_Setting_Reference/build_setting_ref.html)，但是现在已经废弃，官方推出新的[Xcode Build Settings文档](https://help.apple.com/xcode/mac/10.2/#/itcaec37c2a6)。
+
+
+
+Xcode的编译系统的底层，使用三个编译工具，分别是
+
+* Clang Cxx编译器（Clang Cxx Compiler），用于编译C/C++和Objective-C
+* Swift编译器（Swift Compiler）
+* 链接器（Linker），用于链接object文件
+
+Clang编译器和链接器的文档，官方提供在[这里](https://clang.llvm.org/docs/ClangCommandLineReference.html)。Swift编译器的文档，使用`swift --help`命令查看。
+
+
+
+​      Xcode的Build Settings上的UI设置，实际上，将设置转成底层编译工具的特定flag参数。例如，设置`GCC_TREAT_WARNINGS_AS_ERRORS=YES`，实际是将`-Werror`flag参数传给Clang Cxx编译器。
+
+又例如，`SWIFT_TREAT_WARNINGS_AS_ERRORS=YES`，实际是将`-warnings-as-errors`flag参数传给Swift编译器。
+
+某些Build Settings设置，会转成三个编译工具的编译选项，例如`CLANG_ENABLE_CODE_COVERAGE = YES`，会添加下面参数到三个编译工具
+
+* `-profile-instr-generate`和`-fcoverage-mapping`给Clang编译器
+* `-profile-coverage-mapping`和`-profile-generate`给Swift编译器
+* `-fprofile-instr-generate`给链接器
+
+
+
+​        Build Settings到编译工具选项的映射，通过`.xcspec`文件来维护的，这些文件位于Xcode.app中。
+
+​        以Xcode 11.2为例，如下表
+
+| 编译工具    | `.xcspec`文件         | 位置                                                         |
+| ----------- | --------------------- | ------------------------------------------------------------ |
+| Clang编译器 | Clang LLVM 1.0.xcspec | Xcode.app/Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/Clang LLVM 1.0.xcplugin/Contents/Resources/Clang LLVM 1.0.xcspec |
+| Swift编译器 | Swift.xcspec          | Xcode.app/Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/XCLanguageSupport.xcplugin/Contents/Resources/Swift.xcspec |
+| 链接器      | Ld.xcspec             | Xcode.app/Contents/PlugIns/Xcode3Core.ideplugin/Contents/SharedSupport/Developer/Library/Xcode/Plug-ins/CoreBuildTasks.xcplugin/Contents/Resources/Ld.xcspec |
+
+> `.xcspec`文件实际上是ASCII类型plist文件，修改后缀名或直接用文本工具打开。
+
+
+
+​       上面xcspec文件用于描述一个或多个编译工具（xcspec文件中的Name字段），例如Clang LLVM 1.0.xcspec包含Clang编译器（Name=Apple Clang）、分析器（Name=Static Analyzer）、迁移器（Name=ObjC Migrator、XCTest Migrator）和AST工具（Name=AST Builder）
+
+
+
+每个工具描述（tool specification）
+
+
+
+
+
+
+
 
 
 
@@ -245,3 +299,7 @@ iOS.simruntime是一个文件夹，里面Contents/Info.plist的Bundle name是显
 [^2]: https://developer.apple.com/documentation/code_diagnostics 
 
 [^3]: https://stackoverflow.com/questions/8575822/which-guarantees-does-malloc-make-about-memory-alignment 
+[^4]:https://heartbeat.fritz.ai/xcode-build-settings-in-depth-733667d01a9a
+
+
+
