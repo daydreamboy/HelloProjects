@@ -27,7 +27,7 @@
     NSLog(@"screen size: %@", NSStringFromCGSize(screenSize));
     
     self.additionalInsetsValue = 0;
-    self.view.backgroundColor = [UIColor colorWithRed:157 / 255.0 green:254 / 255.0 blue:157 / 255.0 alpha:1];;
+    self.view.backgroundColor = [UIColor colorWithRed:157 / 255.0 green:254 / 255.0 blue:157 / 255.0 alpha:1];
     
     self.childView = [[UILabel alloc] initWithFrame:self.view.bounds];
     self.childView.backgroundColor = [UIColor lightGrayColor];

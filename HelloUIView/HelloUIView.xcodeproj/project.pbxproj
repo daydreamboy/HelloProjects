@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4F0B4F1E205269D9003B241E /* HitTestInViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0B4F1D205269D9003B241E /* HitTestInViewViewController.m */; };
 		4F13075623785E4A006FF0DE /* UseSafeAreaInsetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F13075523785E4A006FF0DE /* UseSafeAreaInsetsViewController.m */; };
+		4F15612223811C4A007437EB /* AutomaticallyAdjustsScrollViewInsetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F15612123811C4A007437EB /* AutomaticallyAdjustsScrollViewInsetsViewController.m */; };
 		4F1C88A32379688D00FC9897 /* ShowSafeAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88A22379688D00FC9897 /* ShowSafeAreaViewController.m */; };
 		4F1C88A8237992E200FC9897 /* TouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88A7237992E200FC9897 /* TouchView.m */; };
 		4F1C88AB23799A9700FC9897 /* ShowCustomViewSafeAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88AA23799A9700FC9897 /* ShowCustomViewSafeAreaViewController.m */; };
@@ -72,6 +73,8 @@
 		4F0B4F1D205269D9003B241E /* HitTestInViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HitTestInViewViewController.m; sourceTree = "<group>"; };
 		4F13075423785E4A006FF0DE /* UseSafeAreaInsetsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseSafeAreaInsetsViewController.h; sourceTree = "<group>"; };
 		4F13075523785E4A006FF0DE /* UseSafeAreaInsetsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseSafeAreaInsetsViewController.m; sourceTree = "<group>"; };
+		4F15612023811C4A007437EB /* AutomaticallyAdjustsScrollViewInsetsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutomaticallyAdjustsScrollViewInsetsViewController.h; sourceTree = "<group>"; };
+		4F15612123811C4A007437EB /* AutomaticallyAdjustsScrollViewInsetsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutomaticallyAdjustsScrollViewInsetsViewController.m; sourceTree = "<group>"; };
 		4F1C88A12379688D00FC9897 /* ShowSafeAreaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowSafeAreaViewController.h; sourceTree = "<group>"; };
 		4F1C88A22379688D00FC9897 /* ShowSafeAreaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowSafeAreaViewController.m; sourceTree = "<group>"; };
 		4F1C88A6237992E200FC9897 /* TouchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchView.h; sourceTree = "<group>"; };
@@ -191,6 +194,8 @@
 				4F2C03C9237AE8B30074473E /* ShowCustomViewFixedSafeAreaLayoutFrameViewController.m */,
 				4F297913237BAF09000A1133 /* ShowScrollViewContentInsetAdjustmentBehaviorViewController.h */,
 				4F297914237BAF09000A1133 /* ShowScrollViewContentInsetAdjustmentBehaviorViewController.m */,
+				4F15612023811C4A007437EB /* AutomaticallyAdjustsScrollViewInsetsViewController.h */,
+				4F15612123811C4A007437EB /* AutomaticallyAdjustsScrollViewInsetsViewController.m */,
 			);
 			path = safeAreaInsets;
 			sourceTree = "<group>";
@@ -528,6 +533,7 @@
 				4F63EFE41FE10068000AFD6F /* WCViewTool.m in Sources */,
 				4FAAA5811FA4601E00A80328 /* RootViewController.m in Sources */,
 				4F502DE122CA56DA00137BE1 /* DottedLineViewViewController.m in Sources */,
+				4F15612223811C4A007437EB /* AutomaticallyAdjustsScrollViewInsetsViewController.m in Sources */,
 				4FAAA5671FA45FE700A80328 /* AppDelegate.m in Sources */,
 				4F1C88A32379688D00FC9897 /* ShowSafeAreaViewController.m in Sources */,
 				4FB43AF8200DA28100D5D92D /* UseCAGradientLayerWithMultipleColorsViewController.m in Sources */,

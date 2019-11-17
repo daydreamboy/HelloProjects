@@ -105,6 +105,8 @@ UIView的safeAreaInsets属性，针对下面两种不同的View分区来计算�
 
 
 
+#### 获取safeAreaInsets的值
+
 ​      UIView的safeAreaInsets属性的值，是系统在布局完成后，自动计算出来的。因此，需要在UIKit完成某个布局后，再获取这个safeAreaInsets属性值。
 
 
@@ -148,6 +150,10 @@ UIView的safeAreaInsets属性，针对下面两种不同的View分区来计算�
 
 ​       UIViewController的additionalSafeAreaInsets属性，实际上针对UIViewController的view，额外增加insets。因此，UIViewController的view的**safe area insets = self.view.safeAreaInsets + self.additionalSafeAreaInsets**。additionalSafeAreaInsets属性默认为UIEdgeInsetsZero。
 
+
+
+#### 如何设置additionalSafeAreaInsets属性
+
 * 在self.view布局之前，设置additionalSafeAreaInsets属性
 * 在self.view布局之后，设置additionalSafeAreaInsets属性，同时调用setNeedsLayout和layoutIfNeeded方法。
 
@@ -163,12 +169,50 @@ UIView的safeAreaInsets属性，针对下面两种不同的View分区来计算�
 
 ### （4）contentInsetAdjustmentBehavior
 
-​       UIScrollView的`automaticallyAdjustsScrollViewInsets`和`contentInsetAdjustmentBehavior`属性，作用是一样的。但是`contentInsetAdjustmentBehavior`属性控制粒度比`automaticallyAdjustsScrollViewInsets`更细一些。
+​       UIScrollView的`contentInsetAdjustmentBehavior`属性和UIViewController的`automaticallyAdjustsScrollViewInsets`属性作用是一样的，都是用于设置UIScrollView的insets。
 
-| 属性                                 | 起始版本 |
-| ------------------------------------ | -------- |
-| automaticallyAdjustsScrollViewInsets | iOS 7+   |
-| contentInsetAdjustmentBehavior       | iOS 11+  |
+
+
+但是区别如下
+
+| 控件             | 属性                                 | 默认值                                      | 起始版本 |
+| ---------------- | ------------------------------------ | ------------------------------------------- | -------- |
+| UIViewController | automaticallyAdjustsScrollViewInsets | YES                                         | iOS 7+   |
+| UIScrollView     | contentInsetAdjustmentBehavior       | UIScrollViewContentInsetAdjustmentAutomatic | iOS 11+  |
+
+
+
+* contentInsetAdjustmentBehavior是UIScrollView上的属性，而automaticallyAdjustsScrollViewInsets是UIViewController上的属性，却用于影响UIScrollView的insets。显然contentInsetAdjustmentBehavior属性更加贴切，容易理解。
+* contentInsetAdjustmentBehavior是枚举值，而automaticallyAdjustsScrollViewInsets是布尔值。contentInsetAdjustmentBehavior属性表意范围更广一些。
+* contentInsetAdjustmentBehavior属性在iOS 11+使用，而automaticallyAdjustsScrollViewInsets属性在iOS 11上不推荐使用。
+
+
+
+#### 介绍automaticallyAdjustsScrollViewInsets的实际作用
+
+​       当设置`automaticallyAdjustsScrollViewInsets`为YES，系统自动调整ViewController中UIScrollView的contentInset，但是官方对此属性的描述比较模糊，而且和实际情况不符合。
+
+​       网上这篇文档[^4]对automaticallyAdjustsScrollViewInsets详细分析比较到位。这里摘要文章的几个结论，如下
+
+
+
+1）automaticallyAdjustsScrollViewInsets属性仅设置在UINavigationController中UIViewController才生效，其他情况并不生效。（见**presentAutomaticallyAdjustsScrollViewInsetsViewController1**方法）
+
+2）在1）的条件下，UIScrollView必须是viewController.view的第一个subview，即vc.view.subviews[0]是UIScrollView，或者vc.view.subviews[0]....subviews[0].subviews[0]是UIScrollView，这样automaticallyAdjustsScrollViewInsets=YES才生效。或者UIScrollView是vc.view，即UITableViewController这种情况。
+
+3）automaticallyAdjustsScrollViewInsets属性的作用并不是Safe Area那样，即使UIScrollView没有被status bar或者nav bar遮挡，automaticallyAdjustsScrollViewInsets=YES生效后，依然会调整UIScrollView的contentInset（见**presentAutomaticallyAdjustsScrollViewInsetsViewController4**方法）
+
+
+
+> 鉴于automaticallyAdjustsScrollViewInsets属性有许多隐晦的生效条件，最好将其设置NO，在iOS 11+使用contentInsetAdjustmentBehavior属性。
+
+
+
+#### contentInsetAdjustmentBehavior的作用
+
+
+
+
 
 
 
@@ -290,6 +334,8 @@ UIView提供`- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event;`方�
 [^1]:https://medium.com/rosberryapps/ios-safe-area-ca10e919526f
 [^2]:https://stackoverflow.com/a/27050776
 [^3]:https://stackoverflow.com/a/46290400
+
+[^4]: https://medium.com/@wailord/the-automaticallyadjustsscrollviewinsets-rabbit-hole-b9153a769ce9
 
 
 
