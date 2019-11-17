@@ -11,6 +11,10 @@
 		4F13075623785E4A006FF0DE /* UseSafeAreaInsetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F13075523785E4A006FF0DE /* UseSafeAreaInsetsViewController.m */; };
 		4F15612223811C4A007437EB /* AutomaticallyAdjustsScrollViewInsetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F15612123811C4A007437EB /* AutomaticallyAdjustsScrollViewInsetsViewController.m */; };
 		4F156125238145DE007437EB /* InsetsContentViewsToSafeAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F156124238145DE007437EB /* InsetsContentViewsToSafeAreaViewController.m */; };
+		4F15612A23814757007437EB /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F15612923814757007437EB /* TableViewCell.m */; };
+		4F15612D238148DF007437EB /* TableViewCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F15612C238148DF007437EB /* TableViewCellItem.m */; };
+		4F15613023814AC0007437EB /* TableViewSectionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F15612F23814AC0007437EB /* TableViewSectionItem.m */; };
+		4F15613323814C97007437EB /* TableViewSectionItemsFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F15613223814C97007437EB /* TableViewSectionItemsFactory.m */; };
 		4F1C88A32379688D00FC9897 /* ShowSafeAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88A22379688D00FC9897 /* ShowSafeAreaViewController.m */; };
 		4F1C88A8237992E200FC9897 /* TouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88A7237992E200FC9897 /* TouchView.m */; };
 		4F1C88AB23799A9700FC9897 /* ShowCustomViewSafeAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88AA23799A9700FC9897 /* ShowCustomViewSafeAreaViewController.m */; };
@@ -78,6 +82,14 @@
 		4F15612123811C4A007437EB /* AutomaticallyAdjustsScrollViewInsetsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutomaticallyAdjustsScrollViewInsetsViewController.m; sourceTree = "<group>"; };
 		4F156123238145DE007437EB /* InsetsContentViewsToSafeAreaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InsetsContentViewsToSafeAreaViewController.h; sourceTree = "<group>"; };
 		4F156124238145DE007437EB /* InsetsContentViewsToSafeAreaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InsetsContentViewsToSafeAreaViewController.m; sourceTree = "<group>"; };
+		4F15612823814757007437EB /* TableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
+		4F15612923814757007437EB /* TableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
+		4F15612B238148DF007437EB /* TableViewCellItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewCellItem.h; sourceTree = "<group>"; };
+		4F15612C238148DF007437EB /* TableViewCellItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewCellItem.m; sourceTree = "<group>"; };
+		4F15612E23814AC0007437EB /* TableViewSectionItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewSectionItem.h; sourceTree = "<group>"; };
+		4F15612F23814AC0007437EB /* TableViewSectionItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewSectionItem.m; sourceTree = "<group>"; };
+		4F15613123814C97007437EB /* TableViewSectionItemsFactory.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewSectionItemsFactory.h; sourceTree = "<group>"; };
+		4F15613223814C97007437EB /* TableViewSectionItemsFactory.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewSectionItemsFactory.m; sourceTree = "<group>"; };
 		4F1C88A12379688D00FC9897 /* ShowSafeAreaViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowSafeAreaViewController.h; sourceTree = "<group>"; };
 		4F1C88A22379688D00FC9897 /* ShowSafeAreaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowSafeAreaViewController.m; sourceTree = "<group>"; };
 		4F1C88A6237992E200FC9897 /* TouchView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TouchView.h; sourceTree = "<group>"; };
@@ -216,9 +228,25 @@
 			path = TouchView;
 			sourceTree = "<group>";
 		};
+		4F15612723814735007437EB /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				4F15612823814757007437EB /* TableViewCell.h */,
+				4F15612923814757007437EB /* TableViewCell.m */,
+				4F15612B238148DF007437EB /* TableViewCellItem.h */,
+				4F15612C238148DF007437EB /* TableViewCellItem.m */,
+				4F15612E23814AC0007437EB /* TableViewSectionItem.h */,
+				4F15612F23814AC0007437EB /* TableViewSectionItem.m */,
+				4F15613123814C97007437EB /* TableViewSectionItemsFactory.h */,
+				4F15613223814C97007437EB /* TableViewSectionItemsFactory.m */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
 		4F1C88A5237992CE00FC9897 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				4F15612723814735007437EB /* TableView */,
 				4F156126238146F6007437EB /* TouchView */,
 			);
 			path = View;
@@ -519,10 +547,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F297915237BAF09000A1133 /* ShowScrollViewContentInsetAdjustmentBehaviorViewController.m in Sources */,
+				4F15612A23814757007437EB /* TableViewCell.m in Sources */,
 				4F4EDC3E22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.m in Sources */,
 				4FB43AEC200DA27300D5D92D /* GradientView.m in Sources */,
 				4F502DDE22CA46E100137BE1 /* WCDashLineView.m in Sources */,
 				4F1C88AB23799A9700FC9897 /* ShowCustomViewSafeAreaViewController.m in Sources */,
+				4F15612D238148DF007437EB /* TableViewCellItem.m in Sources */,
 				4F517BB7212FD41C008CE69F /* BlurAnyViewViewController.m in Sources */,
 				4FAAA5751FA45FE700A80328 /* main.m in Sources */,
 				4FB43AF6200DA28100D5D92D /* DrawRadialGradientViewViewController.m in Sources */,
@@ -539,6 +569,7 @@
 				4F13075623785E4A006FF0DE /* UseSafeAreaInsetsViewController.m in Sources */,
 				4FB43AF5200DA28100D5D92D /* DrawGradientViewViewController.m in Sources */,
 				4F60E70322A7C85600C27087 /* WCResizableImageLayer.m in Sources */,
+				4F15613323814C97007437EB /* TableViewSectionItemsFactory.m in Sources */,
 				4FB43AF7200DA28100D5D92D /* UseCAGradientLayerWithTwoColorsViewController.m in Sources */,
 				4FD7BE11206BBA9400368A46 /* AddShadowBorderToImageViewController.m in Sources */,
 				4F961BB12133ABE2009402F3 /* UIView+UserInfo.m in Sources */,
@@ -548,6 +579,7 @@
 				4F502DE122CA56DA00137BE1 /* DottedLineViewViewController.m in Sources */,
 				4F15612223811C4A007437EB /* AutomaticallyAdjustsScrollViewInsetsViewController.m in Sources */,
 				4FAAA5671FA45FE700A80328 /* AppDelegate.m in Sources */,
+				4F15613023814AC0007437EB /* TableViewSectionItem.m in Sources */,
 				4F1C88A32379688D00FC9897 /* ShowSafeAreaViewController.m in Sources */,
 				4FB43AF8200DA28100D5D92D /* UseCAGradientLayerWithMultipleColorsViewController.m in Sources */,
 				4F156125238145DE007437EB /* InsetsContentViewsToSafeAreaViewController.m in Sources */,
