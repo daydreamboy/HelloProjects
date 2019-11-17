@@ -9,6 +9,7 @@
 #import "ShowScrollViewContentInsetAdjustmentBehaviorViewController.h"
 #import "TouchView.h"
 #import "WCViewTool.h"
+#import "WCScrollViewTool.h"
 
 // use for initializing frame/size/point when change it afterward
 #ifndef UNSPECIFIED
@@ -19,7 +20,9 @@
 
 @interface ShowScrollViewContentInsetAdjustmentBehaviorViewController () <UIGestureRecognizerDelegate>
 @property (nonatomic, strong) UIScrollView *scrollView;
-@property (nonatomic, strong) UILabel *label;
+@property (nonatomic, strong) UILabel *labelText;
+@property (nonatomic, strong) UILabel *labelContentInset;
+@property (nonatomic, strong) UILabel *labelAdjustedContentInset;
 @property (nonatomic, strong) UIVisualEffectView *toolbarView;
 @property (nonatomic, strong) UISegmentedControl *segmentedControlScrollAxisType;
 @property (nonatomic, strong) UISegmentedControl *segmentedControlBehavior;
@@ -31,9 +34,12 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    [self.scrollView addSubview:self.label];
+    [self.scrollView addSubview:self.labelText];
     [self.view addSubview:self.scrollView];
     [self.view addSubview:self.toolbarView];
+    [self.view addSubview:self.labelContentInset];
+    [self.view addSubview:self.labelAdjustedContentInset];
+    
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
     tapGesture.delegate = self;
@@ -59,6 +65,7 @@
     
     [self updateScrollViewContentSize];
     [self updateBehavior];
+    [self updateLabels];
 }
 
 #pragma mark -
@@ -80,11 +87,27 @@
         }
     }
     
-    self.label.frame = CGRectMake(self.label.frame.origin.x, self.label.frame.origin.y, self.scrollView.contentSize.width, self.scrollView.contentSize.height);
+    self.labelText.frame = CGRectMake(self.labelText.frame.origin.x, self.labelText.frame.origin.y, self.scrollView.contentSize.width, self.scrollView.contentSize.height);
 }
 
 - (void)updateBehavior {
     [WCScrollViewTool safeSetContentInsetAdjustmentBehaviorWithScrollView:self.scrollView behavior:self.behavior];
+}
+
+- (void)updateLabels {
+    self.labelContentInset.text = NSStringFromUIEdgeInsets(self.scrollView.contentInset);
+    self.labelAdjustedContentInset.text = NSStringFromUIEdgeInsets([WCScrollViewTool actualContentInsetsWithScrollView:self.scrollView]);
+    
+    [self.labelContentInset sizeToFit];
+    [self.labelAdjustedContentInset sizeToFit];
+    
+    CGFloat maxWidth = MAX(self.labelContentInset.frame.size.width, self.labelAdjustedContentInset.frame.size.width);
+    self.labelContentInset.center = CGPointMake(ABS((maxWidth - self.labelContentInset.frame.size.width)) / 2.0 + self.labelContentInset.frame.size.width / 2.0, self.labelContentInset.frame.size.height / 2.0);
+    self.labelAdjustedContentInset.center = CGPointMake(ABS((maxWidth - self.labelAdjustedContentInset.frame.size.width)) / 2.0 + self.labelAdjustedContentInset.frame.size.width / 2.0, self.labelAdjustedContentInset.frame.size.height / 2.0 + self.labelContentInset.frame.size.height);
+    
+    CGPoint groupCenter = self.view.center;
+    
+    [WCViewTool makeSubviewsIntoGroup:@[self.labelContentInset, self.labelAdjustedContentInset] centeredAtPoint:groupCenter groupViewsRect:nil];
 }
 
 #pragma mark - Getter
@@ -100,19 +123,49 @@
     return _scrollView;
 }
 
-- (UILabel *)label {
-    if (!_label) {
+- (UILabel *)labelText {
+    if (!_labelText) {
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
-        label.textColor = [UIColor darkGrayColor];
+        label.textColor = [[UIColor darkGrayColor] colorWithAlphaComponent:0.5];
         label.numberOfLines = 0;
         label.font = [UIFont systemFontOfSize:16];
         label.text = LONG_TEXT;
         label.backgroundColor = [UIColor whiteColor];
         
-        _label = label;
+        _labelText = label;
     }
     
-    return _label;
+    return _labelText;
+}
+
+- (UILabel *)labelContentInset {
+    if (!_labelContentInset) {
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+        label.textColor = [UIColor blueColor];
+        label.numberOfLines = 1;
+        label.font = [UIFont systemFontOfSize:18];
+        label.layer.borderColor = [UIColor blueColor].CGColor;
+        label.layer.borderWidth = 1;
+        
+        _labelContentInset = label;
+    }
+    
+    return _labelContentInset;
+}
+
+- (UILabel *)labelAdjustedContentInset {
+    if (!_labelAdjustedContentInset) {
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+        label.textColor = [UIColor brownColor];
+        label.numberOfLines = 1;
+        label.font = [UIFont systemFontOfSize:18];
+        label.layer.borderColor = [UIColor brownColor].CGColor;
+        label.layer.borderWidth = 1;
+        
+        _labelAdjustedContentInset = label;
+    }
+    
+    return _labelAdjustedContentInset;
 }
 
 - (UIVisualEffectView *)toolbarView {

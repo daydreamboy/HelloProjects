@@ -35,4 +35,21 @@
     return NO;
 }
 
++ (UIEdgeInsets)actualContentInsetsWithScrollView:(UIScrollView *)scrollView {
+    if (![scrollView isKindOfClass:[UIScrollView class]]) {
+        return UIEdgeInsetsZero;
+    }
+    
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+
+    if (IOS11_OR_LATER) {
+        return scrollView.adjustedContentInset;
+    }
+
+#pragma GCC diagnostic pop
+    
+    return scrollView.contentInset;
+}
+
 @end

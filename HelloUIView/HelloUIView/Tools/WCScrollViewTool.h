@@ -26,14 +26,22 @@ typedef NS_ENUM(NSInteger, WCScrollViewContentInsetAdjustmentBehavior) {
 @interface WCScrollViewTool : NSObject
 
 /**
- Safe set contentInsetAdjustmentBehavior of UIScrollView on iOS 11-
+ Safe set contentInsetAdjustmentBehavior of UIScrollView on iOS 10 <=
  
  @param scrollView the UIScrollView
  @param behavior the WCScrollViewContentInsetAdjustmentBehavior which is same as UIScrollViewContentInsetAdjustmentBehavior
  @return YES if set successfully, or NO if set failed.
- @discussion setContentInsetAdjustmentBehavior: called on iOS 11- will cause to crash
+ @discussion setContentInsetAdjustmentBehavior: called on iOS 10  <= will cause to crash, but this method is safe.
  */
 + (BOOL)safeSetContentInsetAdjustmentBehaviorWithScrollView:(UIScrollView *)scrollView behavior:(WCScrollViewContentInsetAdjustmentBehavior)behavior;
+
+/**
+ Get actual content inset of UIScrollView
+ 
+ @param scrollView the UIScrollView
+ @return the actual content inset. On iOS 11+, return the UIScrollView.adjustedContentInset. On iOS 10-, return the UIScrollView.contentInset.
+ */
++ (UIEdgeInsets)actualContentInsetsWithScrollView:(UIScrollView *)scrollView;
 
 @end
 

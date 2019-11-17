@@ -127,9 +127,7 @@
 
 #pragma mark - Test Methods
 
-- (void)testMethod {
-    NSLog(@"test something");
-}
+#pragma mark - Section 1 (Run iOS 11+ simulator or device)
 
 - (void)presentViewControllerWithStatusBar {
     ShowSafeAreaViewController *vc = [ShowSafeAreaViewController new];
@@ -167,7 +165,7 @@
     [self presentViewController:vc animated:YES completion:nil];
 }
 
-#pragma mark - Section 2
+#pragma mark - Section 2 (Run iOS 11- simulator or device)
 
 - (void)presentAutomaticallyAdjustsScrollViewInsetsViewController1 {
     AutomaticallyAdjustsScrollViewInsetsViewController *vc = [AutomaticallyAdjustsScrollViewInsetsViewController new];

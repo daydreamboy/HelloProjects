@@ -122,9 +122,26 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)makeSubviewsIntoGroup:(NSArray *)subviews centeredAtPoint:(CGPoint)centerPoint groupViewsRect:(inout nullable CGRect *)groupViewsRect;
 
-
-
+/**
+ Change frame with the view. See +[WCViewTool changeFrame:newX:newY:newWidth:newHeight:] for detail.
+ 
+ @param view the view
+ @param newX the new x to set. Set NAN to not change
+ @param newY the new y to set. Set NAN to not change
+ @param newWidth the new width to set. Set NAN to not change
+ @param newHeight the new height to set. Set NAN to not change
+ @return YES if the operation is success, or return NO.
+ */
 + (BOOL)changeFrameWithView:(UIView *)view newX:(CGFloat)newX newY:(CGFloat)newY newWidth:(CGFloat)newWidth newHeight:(CGFloat)newHeight;
+
+/**
+ Change center with the view. See +[WCViewTool changeCenter:newCX:newCY:] for detail.
+ 
+ @param view the view
+ @param newCX the new cx to set. Set NAN to not change
+ @param newCY the new cy to set. Set NAN to not change
+ @return YES if the operation is success, or return NO.
+ */
 + (BOOL)changeCenterWithView:(UIView *)view newCX:(CGFloat)newCX newCY:(CGFloat)newCY;
 
 #pragma mark - Visibility

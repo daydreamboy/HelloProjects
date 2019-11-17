@@ -185,6 +185,7 @@ UIView的safeAreaInsets属性，针对下面两种不同的View分区来计算�
 * contentInsetAdjustmentBehavior是UIScrollView上的属性，而automaticallyAdjustsScrollViewInsets是UIViewController上的属性，却用于影响UIScrollView的insets。显然contentInsetAdjustmentBehavior属性更加贴切，容易理解。
 * contentInsetAdjustmentBehavior是枚举值，而automaticallyAdjustsScrollViewInsets是布尔值。contentInsetAdjustmentBehavior属性表意范围更广一些。
 * contentInsetAdjustmentBehavior属性在iOS 11+使用，而automaticallyAdjustsScrollViewInsets属性在iOS 11上不推荐使用。
+* contentInsetAdjustmentBehavior属性调整的是UIScrollView的adjustedContentInset属性，并不会修改UIScrollView的contentInset，而automaticallyAdjustsScrollViewInsets属性设置为YES，是直接修改的UIScrollView的contentInset。
 
 
 
@@ -210,9 +211,47 @@ UIView的safeAreaInsets属性，针对下面两种不同的View分区来计算�
 
 #### contentInsetAdjustmentBehavior的作用
 
+​       UIScrollView的contentInsetAdjustmentBehavior属性的作用，是基于Safe Area对UIScrollView的adjustedContentInset属性进行调整。只有当设置UIScrollViewContentInsetAdjustmentNever值，才完全忽略UIScrollView的Safe Area。
 
 
 
+​       UIScrollView的contentInsetAdjustmentBehavior属性有4个枚举值，默认值是UIScrollViewContentInsetAdjustmentAutomatic。
+
+
+
+根据UIScrollViewContentInsetAdjustmentBehavior的代码注释，可以总结如下
+
+* UIScrollViewContentInsetAdjustmentScrollableAxes
+
+​         可以滚动的轴方向（竖直或水平）上，对UIScrollView的adjustedContentInset属性调整，即滚动的轴方向不超出Safe Area的范围。如果轴方向不能滚动（contentSize.width/height <= frame.size.width/height或者alwaysBounceHorizontal/Vertical = NO），则不会调整。
+
+* UIScrollViewContentInsetAdjustmentAutomatic
+
+​        UIScrollViewContentInsetAdjustmentAutomatic值和UIScrollViewContentInsetAdjustmentScrollableAxes值一样，但是多了一个作用：向下兼容，即当automaticallyAdjustsScrollViewInsets=YES时，UINavigationController中的UIViewController所持有的UIScrollView不管是否能滚动，都对UIScrollView调整contentInset。
+
+* UIScrollViewContentInsetAdjustmentNever
+
+​       总是不对UIScrollView的adjustedContentInset属性调整。此时UIScrollView不会遵照Safe Area。
+
+* UIScrollViewContentInsetAdjustmentAlways
+
+​       总是对UIScrollView的adjustedContentInset属性调整，即竖直或水平方向，UIScrollView的content都不会超出Safe Area。和UIScrollViewContentInsetAdjustmentScrollableAxes区别，在于如果轴方向上不能滚动，UIScrollViewContentInsetAdjustmentAlways也会调整adjustedContentInset属性，有可能经过调整后，轴方向上变得可以滚动。
+
+
+
+> 示例代码，见ShowScrollViewContentInsetAdjustmentBehaviorViewController
+
+
+
+如果完全不需要系统自动调整UIScrollView的inset，则使用下面的代码[^5]设置
+
+```swift
+if #available(iOS 11.0, *) {
+    scrollView.contentInsetAdjustmentBehavior = .never
+} else {
+    vc.automaticallyAdjustsScrollViewInsets = false
+}
+```
 
 
 
@@ -220,17 +259,38 @@ UIView的safeAreaInsets属性，针对下面两种不同的View分区来计算�
 
 ​        UIScrollView的`adjustedContentInset`属性和`contentInset`属性的区别，在于`adjustedContentInset`属性是通过`contentInset`属性和安全区域一起计算出来的，即`adjustedContentInset` = `contentInset` + safe area insets。
 
+* 在iOS 11-上，UIScrollView的content是基于contentInset属性来放置的。
+* 在iOS 11+上，UIScrollView的content是基于adjustedContentInset属性来放置的。
 
 
-举个例子，UIScrollView位于NavBar和TabBar下面，打印两个属性的值，如下
 
-```text
-//iOS 10
-//contentInset = UIEdgeInsets(top: 64.0, left: 0.0, bottom: 49.0, right: 0.0)
+​       UIScrollView的contentInsetAdjustmentBehavior属性，总是影响adjustedContentInset的值，不影响contentInset的值。
 
-//iOS 11
-//contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 0.0)
-//adjustedContentInset = UIEdgeInsets(top: 64.0, left: 0.0, bottom: 49.0, right: 0.0)
+
+
+> 示例代码，见ShowScrollViewContentInsetAdjustmentBehaviorViewController
+
+
+
+为了取到UIScrollView真实的content inset，代码如下
+
+```objective-c
++ (UIEdgeInsets)actualContentInsetsWithScrollView:(UIScrollView *)scrollView {
+    if (![scrollView isKindOfClass:[UIScrollView class]]) {
+        return UIEdgeInsetsZero;
+    }
+    
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+
+    if (IOS11_OR_LATER) {
+        return scrollView.adjustedContentInset;
+    }
+
+#pragma GCC diagnostic pop
+    
+    return scrollView.contentInset;
+}
 ```
 
 
@@ -336,6 +396,5 @@ UIView提供`- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event;`方�
 [^3]:https://stackoverflow.com/a/46290400
 
 [^4]: https://medium.com/@wailord/the-automaticallyadjustsscrollviewinsets-rabbit-hole-b9153a769ce9
-
-
+[^5]:https://stackoverflow.com/a/45242206
 
