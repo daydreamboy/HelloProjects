@@ -12,6 +12,7 @@
 #import "ShowCustomViewFixedSafeAreaLayoutFrameViewController.h"
 #import "ShowScrollViewContentInsetAdjustmentBehaviorViewController.h"
 #import "AutomaticallyAdjustsScrollViewInsetsViewController.h"
+#import "InsetsContentViewsToSafeAreaViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"

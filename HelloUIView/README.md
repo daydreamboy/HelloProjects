@@ -295,6 +295,18 @@ if #available(iOS 11.0, *) {
 
 
 
+当UIScrollView的`adjustedContentInset`属性被调整时，可以使用实例方法`adjustedContentInsetDidChange`（子类继承方式重写该方法）或者通过delegate方法`scrollViewDidChangeAdjustedContentInset`，来取得事件通知。
+
+```swift
+//UIScrollView
+@available(iOS 11.0, *)
+open func adjustedContentInsetDidChange()
+
+//UIScrollViewDelegate
+@available(iOS 11.0, *)
+optional public func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScrollView)
+```
+
 
 
 
