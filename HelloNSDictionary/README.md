@@ -217,6 +217,16 @@ while((count = [collection countByEnumeratingWithState: &state objects: stackbuf
 
 
 
+## 3、NSMutableDictionary的key
+
+
+
+NSMutableDictionary的key必须是符合NSCopying协议的，否则在执行下面方法时，会报错找不到copyWithZone:方法
+
+```objective-c
+- (void)setObject:(ObjectType)anObject forKey:(id<NSCopying>)aKey;
+```
+
 
 
 
