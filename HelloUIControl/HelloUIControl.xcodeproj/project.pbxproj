@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F2153DA2383A02E0047A9BF /* WCControlTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2153D92383A02E0047A9BF /* WCControlTool.m */; };
 		4F60E6EC22A7AE0400C27087 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E6EB22A7AE0400C27087 /* AppDelegate.m */; };
 		4F60E6EF22A7AE0400C27087 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E6EE22A7AE0400C27087 /* ViewController.m */; };
 		4F60E6F222A7AE0400C27087 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F60E6F022A7AE0400C27087 /* Main.storyboard */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F2153D82383A02E0047A9BF /* WCControlTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCControlTool.h; sourceTree = "<group>"; };
+		4F2153D92383A02E0047A9BF /* WCControlTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCControlTool.m; sourceTree = "<group>"; };
 		4F60E6E722A7AE0400C27087 /* HelloUIControl.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUIControl.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F60E6EA22A7AE0400C27087 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F60E6EB22A7AE0400C27087 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -39,9 +42,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F2153D72383A0180047A9BF /* WCControlTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F2153D82383A02E0047A9BF /* WCControlTool.h */,
+				4F2153D92383A02E0047A9BF /* WCControlTool.m */,
+			);
+			path = WCControlTool;
+			sourceTree = "<group>";
+		};
 		4F60E6DE22A7AE0400C27087 = {
 			isa = PBXGroup;
 			children = (
+				4F2153D72383A0180047A9BF /* WCControlTool */,
 				4F60E6E922A7AE0400C27087 /* HelloUIControl */,
 				4F60E6E822A7AE0400C27087 /* Products */,
 			);
@@ -144,6 +157,7 @@
 				4F60E6EF22A7AE0400C27087 /* ViewController.m in Sources */,
 				4F60E6FA22A7AE0500C27087 /* main.m in Sources */,
 				4F60E6EC22A7AE0400C27087 /* AppDelegate.m in Sources */,
+				4F2153DA2383A02E0047A9BF /* WCControlTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
