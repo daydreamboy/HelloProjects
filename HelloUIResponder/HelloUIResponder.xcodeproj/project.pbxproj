@@ -26,6 +26,7 @@
 		4FBA52FC2159D29F00711552 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBA52FB2159D29F00711552 /* main.m */; };
 		4FBA53082159DA5B00711552 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBA53072159DA5B00711552 /* RootViewController.m */; };
 		4FBA530B2159DB3F00711552 /* GetContextMenuClickEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBA530A2159DB3F00711552 /* GetContextMenuClickEventViewController.m */; };
+		4FCC249223866C2800A42A8A /* WCControlTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCC249023866C2800A42A8A /* WCControlTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,8 @@
 		4FBA53072159DA5B00711552 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4FBA53092159DB3F00711552 /* GetContextMenuClickEventViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetContextMenuClickEventViewController.h; sourceTree = "<group>"; };
 		4FBA530A2159DB3F00711552 /* GetContextMenuClickEventViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetContextMenuClickEventViewController.m; sourceTree = "<group>"; };
+		4FCC249023866C2800A42A8A /* WCControlTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCControlTool.m; sourceTree = "<group>"; };
+		4FCC249123866C2800A42A8A /* WCControlTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCControlTool.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +163,7 @@
 		4FBA53022159DA5200711552 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4FCC248F23866BDA00A42A8A /* Tools */,
 				2B6AE1A92263302200226F9A /* DummyClass */,
 				4F8C95AB221FA6ED00869CE7 /* Libraries */,
 				4FBA53092159DB3F00711552 /* GetContextMenuClickEventViewController.h */,
@@ -178,6 +182,15 @@
 				4F502DD022C9AEDD00137BE1 /* UseWCMenuItemViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4FCC248F23866BDA00A42A8A /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4FCC249123866C2800A42A8A /* WCControlTool.h */,
+				4FCC249023866C2800A42A8A /* WCControlTool.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,6 +267,7 @@
 				2B6AE1B822635CEC00226F9A /* MyTableViewCell.m in Sources */,
 				4F502DD122C9AEDD00137BE1 /* UseWCMenuItemViewController.m in Sources */,
 				2B6A79F72263121A009EFFF4 /* UseUIMenuControllerViewController.m in Sources */,
+				4FCC249223866C2800A42A8A /* WCControlTool.m in Sources */,
 				2B6AE1B522635AC300226F9A /* TableViewCellShowCustomContextMenuViewController.m in Sources */,
 				4FBA530B2159DB3F00711552 /* GetContextMenuClickEventViewController.m in Sources */,
 				4FBA52FC2159D29F00711552 /* main.m in Sources */,

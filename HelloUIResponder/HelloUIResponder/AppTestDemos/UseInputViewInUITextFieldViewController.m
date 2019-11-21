@@ -8,6 +8,7 @@
 
 #import "UseInputViewInUITextFieldViewController.h"
 #import "WCAlertController.h"
+#import "WCControlTool.h"
 
 // TODO
 @interface UseInputViewInUITextFieldViewController () <UITextFieldDelegate>
@@ -33,6 +34,13 @@
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
     [self.view addGestureRecognizer:tapGesture];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    NSDictionary *info = [WCControlTool allTargetActionsMapWithControl:self.buttonAlert];
+    NSLog(@"%@", info);
 }
 
 #pragma mark - Getters

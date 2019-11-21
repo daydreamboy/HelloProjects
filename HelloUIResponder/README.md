@@ -46,8 +46,8 @@ UIMenuController是一个共享的单例，通过`+[UIMenuController sharedMenuC
 > 一般对于普通UIView，调用上面方法，并不显示上下文菜单。需要做下面三个步骤[^1]
 >
 > 1. 调用`-[UIMenuController setMenuVisile:animated:]`方法前，要必须先调用`-[UIResponder becomeFirstResponder]`。示例代码见**UseUIMenuControllerViewController**
-> 2. UIView或者UIViewController，需要实现`- [UIResponder canBecomeFirstResponder]`并返回YES。UITextField/UITextView都默认返回YES。
-> 3. UIView或者UIViewController，需要实现`- [UIResponder canPerformAction:withSender:]`，用于控制哪些菜单可以显示
+> 2. UIView或者UIViewController，需要实现`-[UIResponder canBecomeFirstResponder]`并返回YES。UITextField/UITextView都默认返回YES。
+> 3. UIView或者UIViewController，需要实现`-[UIResponder canPerformAction:withSender:]`，用于控制哪些菜单可以显示
 
 
 
@@ -55,10 +55,10 @@ UIMenuController是一个共享的单例，通过`+[UIMenuController sharedMenuC
 
 UIMenuController的响应者，是按照事件响应链的顺序，去查找该显示哪个响应者的上下文菜单。例如常见的UITextField，调用`-[UIResponder becomeFirstResponder]`方法，再次长按松开时，才会显示上下文菜单。如果要重新设置UITextField的上下文菜单，只需要完成下面两个步骤
 
-> 1. 实现`- [UIResponder canPerformAction:withSender:]`方法，控制哪些菜单显示
+> 1. 实现`-[UIResponder canPerformAction:withSender:]`方法，控制哪些菜单显示
 > 2. 添加自定义的UIMenuItem，以及实现对应的selector方法
 
-但是普通的UIView，除了上面两个步骤，还需要实现`- [UIResponder canBecomeFirstResponder]`并返回YES。
+但是普通的UIView，除了上面两个步骤，还需要实现`-[UIResponder canBecomeFirstResponder]`并返回YES。
 
 注意的是，普通的UIView调用`-[UIResponder becomeFirstResponder]`，不会唤起键盘，这就导致显示上下文菜单时，让UITextField失去焦点，对应的键盘也收起。SO上有人提出这个[问题](https://stackoverflow.com/questions/13601643/uimenucontroller-hides-the-keyboard)[^2]，解决思路是
 
@@ -75,7 +75,7 @@ UILabel <- UIView <- ... <- UIWindow <- UIApplication
 UITextField <- UILabel <- UIView <- ... <- UIWindow <- UIApplication
 ```
 
-这样键盘不会收起，但是如果UITextField自身提供了上下文菜单，则显示的上下文菜单对应的是UITextField。因此还需要重写UITextField的`- [UIResponder canBecomeFirstResponder]`方法，当存在上面的响应链，`- [UIResponder canBecomeFirstResponder]`方法返回NO，让事件传递给UILabel。
+这样键盘不会收起，但是如果UITextField自身提供了上下文菜单，则显示的上下文菜单对应的是UITextField。因此还需要重写UITextField的`-[UIResponder canBecomeFirstResponder]`方法，当存在上面的响应链，`- [UIResponder canBecomeFirstResponder]`方法返回NO，让事件传递给UILabel。
 
 示例代码见**UIMenuControllerKeepKeyboardShowViewController**
 
