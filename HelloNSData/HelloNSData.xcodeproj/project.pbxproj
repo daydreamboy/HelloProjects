@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F1F31922395313600ABD170 /* Tests_gzip.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F31912395313600ABD170 /* Tests_gzip.m */; };
 		4F4AFFDE213E80EB0031856A /* 1.amr in Resources */ = {isa = PBXBuildFile; fileRef = 4F4AFFDC213E80EB0031856A /* 1.amr */; };
 		4F4AFFDF213E80EB0031856A /* piano2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4F4AFFDD213E80EB0031856A /* piano2.wav */; };
 		4F58CEEB21763FCF00D0FD17 /* opus.opus in Resources */ = {isa = PBXBuildFile; fileRef = 4F58CEE321763FCE00D0FD17 /* opus.opus */; };
@@ -27,6 +28,7 @@
 		4F75A03921313127000DDE60 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A03621313126000DDE60 /* RootViewController.m */; };
 		4F75A04B213144E8000DDE60 /* WCDataTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A04A213144E8000DDE60 /* WCDataTool.m */; };
 		4F8BB3E6215201D600F0AD99 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8BB3E5215201D600F0AD99 /* Tests.m */; };
+		4FE7419E2398B4FA009E5909 /* NSData+SEGGZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7419D2398B4FA009E5909 /* NSData+SEGGZIP.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F1F31912395313600ABD170 /* Tests_gzip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_gzip.m; sourceTree = "<group>"; };
 		4F4AFFDC213E80EB0031856A /* 1.amr */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1.amr; sourceTree = "<group>"; };
 		4F4AFFDD213E80EB0031856A /* piano2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = piano2.wav; sourceTree = "<group>"; };
 		4F58CEE321763FCE00D0FD17 /* opus.opus */ = {isa = PBXFileReference; lastKnownFileType = file; path = opus.opus; sourceTree = "<group>"; };
@@ -69,6 +72,8 @@
 		4F8BB3E3215201D600F0AD99 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F8BB3E5215201D600F0AD99 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		4F8BB3E7215201D600F0AD99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FE7419C2398B4FA009E5909 /* NSData+SEGGZIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SEGGZIP.h"; sourceTree = "<group>"; };
+		4FE7419D2398B4FA009E5909 /* NSData+SEGGZIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SEGGZIP.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +165,9 @@
 			children = (
 				4F8BB3ED2152022E00F0AD99 /* Samples */,
 				4F8BB3E5215201D600F0AD99 /* Tests.m */,
+				4F1F31912395313600ABD170 /* Tests_gzip.m */,
+				4FE7419C2398B4FA009E5909 /* NSData+SEGGZIP.h */,
+				4FE7419D2398B4FA009E5909 /* NSData+SEGGZIP.m */,
 				4F8BB3E7215201D600F0AD99 /* Info.plist */,
 			);
 			path = Tests;
@@ -304,6 +312,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F8BB3E6215201D600F0AD99 /* Tests.m in Sources */,
+				4FE7419E2398B4FA009E5909 /* NSData+SEGGZIP.m in Sources */,
+				4F1F31922395313600ABD170 /* Tests_gzip.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

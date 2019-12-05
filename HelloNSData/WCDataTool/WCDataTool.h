@@ -169,6 +169,13 @@ typedef NS_ENUM(NSUInteger, WCMIMEType) {
  */
 + (nullable NSString *)base64EncodedStringWithData:(NSData *)data;
 
+#pragma mark - Data GZip (from nicklockwood)
+
++ (nullable NSData *)gzippedDataWithData:(NSData *)data compressionLevel:(float)level;
++ (nullable NSData *)gzippedDataWithData:(NSData *)data;
++ (nullable NSData *)gunzippedDataWithData:(NSData *)data;
++ (BOOL)isGzippedDataWithData:(NSData *)data;
+
 #pragma mark - Data Assistant
 
 /**
