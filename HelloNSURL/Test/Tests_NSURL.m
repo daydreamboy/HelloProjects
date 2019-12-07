@@ -80,6 +80,15 @@
     url = @"https://ha.emas.alibaba-inc.com/#/page/crash?r_=[]";
     URL = [NSURL URLWithString:url];
     XCTAssertNotNil(URL);
+    
+    // Case 11: url contains invisible characters at the end
+    url = @"https://www.baidu.com/​";
+    URL = [NSURL URLWithString:url];
+    XCTAssertNil(URL);
+    
+    url = [url stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    URL = [NSURL URLWithString:url];
+    XCTAssertNotNil(URL);
 }
 
 - (void)test_pathExtension {
