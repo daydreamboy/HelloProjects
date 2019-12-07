@@ -1,25 +1,30 @@
 //
-//  CheckScrollingViewController.m
+//  DisableCallScrollViewDidScrollAutomaticallyViewController.m
 //  HelloUIScrollView
 //
-//  Created by wesley_chen on 2019/12/6.
+//  Created by wesley_chen on 2019/12/7.
 //  Copyright © 2019 wesley_chen. All rights reserved.
 //
 
-#import "CheckScrollingViewController.h"
+#import "DisableCallScrollViewDidScrollAutomaticallyViewController.h"
 
-@interface CheckScrollingViewController () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
+@interface DisableCallScrollViewDidScrollAutomaticallyViewController () <UITableViewDelegate, UITableViewDataSource, UIScrollViewDelegate>
+@property (nonatomic, strong) NSDictionary *options;
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *listData;
 @property (nonatomic, strong) UILabel *hudTip;
 @property (nonatomic, strong) UISwitch *switcher;
+@property (nonatomic, assign) BOOL disableAutoCallScrollViewDidScroll;
 @end
 
-@implementation CheckScrollingViewController
+@implementation DisableCallScrollViewDidScrollAutomaticallyViewController
 
-- (instancetype)init {
+- (instancetype)initWithOptions:(NSDictionary *)options {
     self = [super init];
     if (self) {
+        _options = options;
+        _disableAutoCallScrollViewDidScroll = [options[kOptionDisableAutoCallScrollViewDidScroll] boolValue];
+        
         NSMutableArray *groups = [[NSMutableArray alloc] init];
         [groups addObject:[NSArray arrayWithObjects:@"G1-R1", @"G1-R2", @"G1-R3", @"G1-R4", nil]];
         [groups addObject:[NSArray arrayWithObjects:@"G2-R1", @"G2-R2", @"G2-R3", nil]];
@@ -31,7 +36,6 @@
         
         _listData = groups;
     }
-    
     return self;
 }
 
@@ -58,7 +62,9 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
-    self.tableView.delegate = self;
+    if (self.disableAutoCallScrollViewDidScroll) {
+        self.tableView.delegate = self;
+    }
 }
 
 #pragma mark - Getter
@@ -68,7 +74,9 @@
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height) style:UITableViewStylePlain];
-//        tableView.delegate = self;
+        if (!self.disableAutoCallScrollViewDidScroll) {
+            tableView.delegate = self;
+        }
         tableView.dataSource = self;
         
         _tableView = tableView;
@@ -219,5 +227,6 @@
     UISwitch *switcher = (UISwitch *)sender;
     switcher.on = !switcher.on;
 }
+
 
 @end

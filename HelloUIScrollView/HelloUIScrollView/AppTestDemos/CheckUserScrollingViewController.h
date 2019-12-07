@@ -1,8 +1,8 @@
 //
-//  CheckScrollingViewController.h
+//  CheckUserScrollingViewController.h
 //  HelloUIScrollView
 //
-//  Created by wesley_chen on 2019/12/6.
+//  Created by wesley_chen on 2019/9/25.
 //  Copyright © 2019 wesley_chen. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CheckScrollingViewController : UIViewController
+@interface CheckUserScrollingViewController : UIViewController
 
 @end
 
