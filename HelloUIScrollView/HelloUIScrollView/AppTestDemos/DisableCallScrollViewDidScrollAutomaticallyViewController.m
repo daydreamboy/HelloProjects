@@ -191,13 +191,13 @@
     // @see https://stackoverflow.com/a/1857162
     [NSObject cancelPreviousPerformRequestsWithTarget:self];
     // Note: ensure that the end of scroll is fired.
-    [self performSelector:@selector(scrollViewDidEndScrolling:) withObject:_tableView afterDelay:0.3];
+    [self performSelector:@selector(scrollViewDidEndScrolling:) withObject:scrollView afterDelay:0.3];
 }
 
 #pragma mark -
 
 - (void)scrollViewDidEndScrolling:(UIScrollView *)scrollView {
-    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(scrollViewDidEndScrollingAnimation:) object:_tableView];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(scrollViewDidEndScrollingAnimation:) object:scrollView];
     
     NSLog(@"ScrollView end scrolling");
     
