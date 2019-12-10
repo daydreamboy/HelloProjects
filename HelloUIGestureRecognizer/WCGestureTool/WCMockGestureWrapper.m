@@ -8,6 +8,18 @@
 
 #import "WCMockGestureWrapper.h"
 
+@interface WCMockTapGestureRecognizer : UITapGestureRecognizer
+@property (nonatomic, assign) CGPoint position;
+@end
+
+@implementation WCMockTapGestureRecognizer
+
+- (CGPoint)locationInView:(UIView *)view {
+    return self.position;
+}
+
+@end
+
 @implementation WCMockGestureWrapper
 
 - (instancetype)initWithGesture:(UIGestureRecognizer *)gestureRecognizer {
@@ -16,7 +28,9 @@
         _originalGesture = gestureRecognizer;
         _targetView = gestureRecognizer.view;
         _targetActionPairs = [NSMutableArray array];
-        _mockGesture = [[[gestureRecognizer class] alloc] initWithTarget:nil action:nil];
+        if ([gestureRecognizer isKindOfClass:[UITapGestureRecognizer class]]) {
+            _mockGesture = [[WCMockTapGestureRecognizer alloc] initWithTarget:nil action:nil];
+        }
         
         @try {
             [_mockGesture setValue:_targetView forKey:@"_view"];
@@ -40,7 +54,10 @@
     for (NSArray *targetActionPair in _targetActionPairs) {
         if (targetActionPair.count == 2) {
             status = YES;
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
             [targetActionPair[0] performSelector:NSSelectorFromString(targetActionPair[1]) withObject:_mockGesture];
+#pragma GCC diagnostic pop
         }
     }
     
@@ -72,7 +89,12 @@
     numberOfTouches = MAX(1, numberOfTouches);
     
     if (numberOfTaps == self.numberOfTapsRequired && numberOfTouches == self.numberOfTouchesRequired) {
-        return [super triggerGesture];
+        if (CGRectContainsPoint(self.originalGesture.view.bounds, position)) {
+            WCMockTapGestureRecognizer *mockGesture = (WCMockTapGestureRecognizer *)self.mockGesture;
+            mockGesture.position = position;
+            
+            return [super triggerGesture];
+        }
     }
     
     return NO;
