@@ -17,6 +17,7 @@
 #import "GestureRecognizerVSControlEventsViewController.h"
 #import "UseCancelsTouchesInView1ViewController.h"
 #import "UseCancelsTouchesInView2ViewController.h"
+#import "MockTapGestureViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -48,6 +49,7 @@
         @"UIGestureRecognizer vs. UIControlEvents",
         @"Use cancelsTouchesInView (UIbutton example)",
         @"Use cancelsTouchesInView (UICollectionView example)",
+        @"MockTapGestureViewController",
         @"call a test method",
     ];
     _classes = @[
@@ -60,6 +62,7 @@
         [GestureRecognizerVSControlEventsViewController class],
         [UseCancelsTouchesInView1ViewController class],
         [UseCancelsTouchesInView2ViewController class],
+        [MockTapGestureViewController class],
         @"testMethod",
     ];
 }
