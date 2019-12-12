@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F1C729423A1345E008FE2C0 /* DetectScrollingDirectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C729323A1345E008FE2C0 /* DetectScrollingDirectionViewController.m */; };
 		4F2762A7239BAD68003740C8 /* DisableCallScrollViewDidScrollAutomaticallyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2762A6239BAD68003740C8 /* DisableCallScrollViewDidScrollAutomaticallyViewController.m */; };
 		4F2762BD239BC57C003740C8 /* UIView+UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2762BB239BC57C003740C8 /* UIView+UserInfo.m */; };
 		4F4D746920BE48170027DE7C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D746820BE48170027DE7C /* AppDelegate.m */; };
@@ -23,6 +24,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F1C729223A1345E008FE2C0 /* DetectScrollingDirectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectScrollingDirectionViewController.h; sourceTree = "<group>"; };
+		4F1C729323A1345E008FE2C0 /* DetectScrollingDirectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetectScrollingDirectionViewController.m; sourceTree = "<group>"; };
 		4F2762A5239BAD68003740C8 /* DisableCallScrollViewDidScrollAutomaticallyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DisableCallScrollViewDidScrollAutomaticallyViewController.h; sourceTree = "<group>"; };
 		4F2762A6239BAD68003740C8 /* DisableCallScrollViewDidScrollAutomaticallyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DisableCallScrollViewDidScrollAutomaticallyViewController.m; sourceTree = "<group>"; };
 		4F2762AA239BAE69003740C8 /* IViewControllerInitOption.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IViewControllerInitOption.h; sourceTree = "<group>"; };
@@ -121,6 +124,8 @@
 				4F6C4D272372719F00872371 /* PullRefreshViewController.m */,
 				4F2762A5239BAD68003740C8 /* DisableCallScrollViewDidScrollAutomaticallyViewController.h */,
 				4F2762A6239BAD68003740C8 /* DisableCallScrollViewDidScrollAutomaticallyViewController.m */,
+				4F1C729223A1345E008FE2C0 /* DetectScrollingDirectionViewController.h */,
+				4F1C729323A1345E008FE2C0 /* DetectScrollingDirectionViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -204,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FB1D48220CBA29200DBA776 /* NestedScrollViewViewController.m in Sources */,
+				4F1C729423A1345E008FE2C0 /* DetectScrollingDirectionViewController.m in Sources */,
 				4F6C4D282372719F00872371 /* PullRefreshViewController.m in Sources */,
 				4F2762A7239BAD68003740C8 /* DisableCallScrollViewDidScrollAutomaticallyViewController.m in Sources */,
 				4F62BA42233B71DD0020CC6D /* WCScrollViewTool.m in Sources */,

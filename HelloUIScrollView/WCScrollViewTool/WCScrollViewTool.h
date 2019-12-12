@@ -11,6 +11,14 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, WCScrollViewScrollingDirection) {
+    WCScrollViewScrollingDirectionNone,
+    WCScrollViewScrollingDirectionLeft,
+    WCScrollViewScrollingDirectionRight,
+    WCScrollViewScrollingDirectionUp,
+    WCScrollViewScrollingDirectionDown,
+};
+
 @interface WCScrollViewTool : NSObject
 
 /**
@@ -52,6 +60,28 @@ Observe the scrolling event on the scroll view
  @return YES if scroll view is scrolling over or at the bottom edge, otherwise return NO. And also return NO if the parameters are wrong.
  */
 + (BOOL)checkIsOverBottomWithScrollView:(UIScrollView *)scrollView;
+
+/**
+ Get fitted content size of the scroll view which can make scroll view not scrollable if
+ alwaysBounceVertical and alwaysBounceHorizontal are NO.
+ 
+ @param scrollView the scroll view
+ @return Get fitted content size. Return CGSizeZero if parameter is wrong.
+ */
++ (CGSize)fittedContentSizeWithScrollView:(UIScrollView *)scrollView;
+
+#pragma mark - Adjust UIScrollView
+
+#pragma mark > Content Size
+
+/**
+ Make the content size of scroll view just to fit, so only bounce if enable bouncing or not bounce if
+ not enable bouncing.
+ 
+ @param scrollView the scroll view
+ @return YES if operate successully. NO if operate failed.
+ */
++ (BOOL)makeContentSizeToFitWithScrollView:(UIScrollView *)scrollView;
 
 @end
 

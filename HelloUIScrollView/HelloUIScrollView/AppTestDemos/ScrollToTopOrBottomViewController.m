@@ -77,7 +77,7 @@
         CGFloat topInset = 100;
         CGFloat bottomInset = 100;
         
-        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, screenSize.width, screenSize.height - 64)];
+        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 100, screenSize.width, screenSize.height - 100 - 20)];
         scrollView.contentInset = UIEdgeInsetsMake(topInset, 0, bottomInset, 0);
         scrollView.backgroundColor = [UIColor yellowColor];
         scrollView.contentSize = self.contentView.bounds.size;

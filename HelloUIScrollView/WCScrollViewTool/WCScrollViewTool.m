@@ -9,6 +9,11 @@
 #import "WCScrollViewTool.h"
 #import <objc/runtime.h>
 
+// >= `11.0`
+#ifndef IOS11_OR_LATER
+#define IOS11_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"11.0" options:NSNumericSearch] != NSOrderedAscending)
+#endif
+
 @interface WCScrollViewObserver : NSObject
 @property (nonatomic, weak) UIScrollView *scrollView;
 @property (nonatomic, copy) void (^touchEventBlock)(UIScrollView *, UIGestureRecognizerState);
@@ -129,6 +134,40 @@ static void * const kAssociatedKeyScrollingEventObserver = (void *)&kAssociatedK
     }
     
     return scrollView.contentOffset.y + scrollView.bounds.size.height >= scrollView.contentSize.height + scrollView.contentInset.bottom;
+}
+
++ (CGSize)fittedContentSizeWithScrollView:(UIScrollView *)scrollView {
+    if (![scrollView isKindOfClass:[UIScrollView class]]) {
+        return CGSizeZero;
+    }
+    
+    CGSize fittedContentSize;
+    
+    if (IOS11_OR_LATER) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+        fittedContentSize = CGSizeMake(scrollView.bounds.size.width - scrollView.adjustedContentInset.left - scrollView.adjustedContentInset.right, scrollView.bounds.size.height - scrollView.adjustedContentInset.top - scrollView.adjustedContentInset.bottom);
+#pragma GCC diagnostic pop
+    }
+    else {
+        fittedContentSize = CGSizeMake(scrollView.bounds.size.width - scrollView.contentInset.left - scrollView.contentInset.right, scrollView.bounds.size.height - scrollView.contentInset.top - scrollView.contentInset.bottom);
+    }
+    
+    return fittedContentSize;
+}
+
+#pragma mark - Adjust UIScrollView
+
+#pragma mark > Content Size
+
++ (BOOL)makeContentSizeToFitWithScrollView:(UIScrollView *)scrollView {
+    if (![scrollView isKindOfClass:[UIScrollView class]]) {
+        return NO;
+    }
+    
+    scrollView.contentSize = [self fittedContentSizeWithScrollView:scrollView];
+    
+    return YES;
 }
 
 @end
