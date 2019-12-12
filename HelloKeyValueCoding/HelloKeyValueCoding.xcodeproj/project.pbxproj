@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F1C728F23A12D5B008FE2C0 /* PrimitivePropertyObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C728E23A12D5B008FE2C0 /* PrimitivePropertyObject.m */; };
+		4F1C729123A12D97008FE2C0 /* Tests_Primitive.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C729023A12D97008FE2C0 /* Tests_Primitive.m */; };
 		4F4FEB8822DDB9A800C6B052 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FEB8622DDB97500C6B052 /* Person.m */; };
 		4F4FEB8A22DDBABE00C6B052 /* Tests_KVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FEB8922DDBABE00C6B052 /* Tests_KVC.m */; };
 		4F4FEB8D22DDBDB600C6B052 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FEB8C22DDBDB600C6B052 /* Transaction.m */; };
@@ -30,6 +32,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F1C728D23A12D5B008FE2C0 /* PrimitivePropertyObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrimitivePropertyObject.h; sourceTree = "<group>"; };
+		4F1C728E23A12D5B008FE2C0 /* PrimitivePropertyObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrimitivePropertyObject.m; sourceTree = "<group>"; };
+		4F1C729023A12D97008FE2C0 /* Tests_Primitive.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_Primitive.m; sourceTree = "<group>"; };
 		4F4FEB8522DDB97500C6B052 /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		4F4FEB8622DDB97500C6B052 /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		4F4FEB8922DDBABE00C6B052 /* Tests_KVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_KVC.m; sourceTree = "<group>"; };
@@ -76,6 +81,8 @@
 				4F4FEB8622DDB97500C6B052 /* Person.m */,
 				4F4FEB8B22DDBDB600C6B052 /* Transaction.h */,
 				4F4FEB8C22DDBDB600C6B052 /* Transaction.m */,
+				4F1C728D23A12D5B008FE2C0 /* PrimitivePropertyObject.h */,
+				4F1C728E23A12D5B008FE2C0 /* PrimitivePropertyObject.m */,
 			);
 			path = DummyClass;
 			sourceTree = "<group>";
@@ -86,6 +93,7 @@
 				4F4FEB8422DDB95600C6B052 /* DummyClass */,
 				4F5640AD22127B570039D6F6 /* Tests.m */,
 				4F4FEB8922DDBABE00C6B052 /* Tests_KVC.m */,
+				4F1C729023A12D97008FE2C0 /* Tests_Primitive.m */,
 				4F5640AF22127B570039D6F6 /* Info.plist */,
 			);
 			path = Tests;
@@ -236,7 +244,9 @@
 				4F4FEB8822DDB9A800C6B052 /* Person.m in Sources */,
 				4F4FEB8A22DDBABE00C6B052 /* Tests_KVC.m in Sources */,
 				4F4FEB8D22DDBDB600C6B052 /* Transaction.m in Sources */,
+				4F1C728F23A12D5B008FE2C0 /* PrimitivePropertyObject.m in Sources */,
 				4F5640AE22127B570039D6F6 /* Tests.m in Sources */,
+				4F1C729123A12D97008FE2C0 /* Tests_Primitive.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
