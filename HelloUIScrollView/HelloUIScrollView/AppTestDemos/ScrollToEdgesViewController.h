@@ -1,5 +1,5 @@
 //
-//  ScrollToTopOrBottomViewController.h
+//  ScrollToEdgesViewController.h
 //  HelloUIScrollView
 //
 //  Created by wesley_chen on 2018/5/30.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ScrollToTopOrBottomViewController : UIViewController
+@interface ScrollToEdgesViewController : UIViewController
 
 
 @end
