@@ -83,6 +83,35 @@ scrollViewDidEndScrollingAnimation // 执行滚动动画结束
 
 
 
+## 4、UIScrollView滚动到特定位置
+
+​        UIScrollView在水平和垂直方向进行滚动，由于contentInset的存在，因此可以判断滚动到内容的边缘，还是滚动到UIScrollView的边缘。在iOS 11+上UIScrollView支持SafeArea，增加adjustedContentInset属性，将是否滚动到内容的边缘变得更复杂一点。
+
+​       按照分类来说，UIScrollView滚动到下面八种特定位置
+
+|              | top  | left | bottom | right |
+| ------------ | ---- | ---- | ------ | ----- |
+| UIScrollView |      |      |        |       |
+| Content      |      |      |        |       |
+
+WCScrollViewTool实现UIScrollView滚动到上面八种特定位置。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Reference
 
 [^1]:https://stackoverflow.com/a/1857162

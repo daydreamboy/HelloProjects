@@ -34,13 +34,13 @@ typedef NS_ENUM(NSUInteger, WCScrollViewScrollingDirection) {
 + (BOOL)observeTouchEventWithScrollView:(UIScrollView *)scrollView touchEventCallback:(void (^)(UIScrollView *scrollView, UIGestureRecognizerState state))touchEventCallback;
 
 /**
-Observe the scrolling event on the scroll view
-
-@param scrollView the scroll view
-@param scrollingEventCallback the callback when event happened.
-- scrollView The scrolling scroll view
-@return YES if setup the observing successfully, NO if the parameters are wrong or already setup once
-@discussion The scrollingEventCallback should not retain the scroll view again, use its the first parameter `scrollView` instead
+ Observe the scrolling event on the scroll view
+ 
+ @param scrollView the scroll view
+ @param scrollingEventCallback the callback when event happened.
+ - scrollView The scrolling scroll view
+ @return YES if setup the observing successfully, NO if the parameters are wrong or already setup once
+ @discussion The scrollingEventCallback should not retain the scroll view again, use its the first parameter `scrollView` instead
 */
 + (BOOL)observeScrollingEventWithScrollView:(UIScrollView *)scrollView scrollingEventCallback:(void (^)(UIScrollView *scrollView))scrollingEventCallback;
 
@@ -48,16 +48,82 @@ Observe the scrolling event on the scroll view
 
 #pragma mark > Scroll to edges of the scroll view
 
+/**
+ Scroll to the top edge of the scroll view
+ 
+ @param scrollView the scroll view
+ @param animated YES if animated
+ @return YES if operate successfully, NO if failed.
+*/
 + (BOOL)scrollToTopWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated;
+
+/**
+ Scroll to the bottom edge of the scroll view
+ 
+ @param scrollView the scroll view
+ @param animated YES if animated
+ @return YES if operate successfully, NO if failed.
+*/
 + (BOOL)scrollToBottomWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated;
+
+/**
+ Scroll to the left edge of the scroll view
+ 
+ @param scrollView the scroll view
+ @param animated YES if animated
+ @return YES if operate successfully, NO if failed.
+*/
 + (BOOL)scrollToLeftWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated;
+
+/**
+ Scroll to the right edge of the scroll view
+ 
+ @param scrollView the scroll view
+ @param animated YES if animated
+ @return YES if operate successfully, NO if failed.
+*/
 + (BOOL)scrollToRightWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated;
 
 #pragma mark > Scroll to edges of the content
 
+/**
+ Scroll to the top edge of the content
+ 
+ @param scrollView the scroll view
+ @param animated YES if animated
+ @param considerSafeArea YES if consider the top safe area
+ @return YES if operate successfully, NO if failed.
+*/
 + (BOOL)scrollToTopOfContentWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated considerSafeArea:(BOOL)considerSafeArea;
+
+/**
+ Scroll to the bottom edge of the content
+ 
+ @param scrollView the scroll view
+ @param animated YES if animated
+ @param considerSafeArea YES if consider the bottom safe area
+ @return YES if operate successfully, NO if failed.
+*/
 + (BOOL)scrollToBottomOfContentWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated considerSafeArea:(BOOL)considerSafeArea;
+
+/**
+ Scroll to the left edge of the content
+ 
+ @param scrollView the scroll view
+ @param animated YES if animated
+ @param considerSafeArea YES if consider the left safe area
+ @return YES if operate successfully, NO if failed.
+*/
 + (BOOL)scrollToLeftOfContentWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated considerSafeArea:(BOOL)considerSafeArea;
+
+/**
+ Scroll to the right edge of the content
+ 
+ @param scrollView the scroll view
+ @param animated YES if animated
+ @param considerSafeArea YES if consider the right safe area
+ @return YES if operate successfully, NO if failed.
+*/
 + (BOOL)scrollToRightOfContentWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated considerSafeArea:(BOOL)considerSafeArea;
 
 #pragma mark - Check Scrolling Over
