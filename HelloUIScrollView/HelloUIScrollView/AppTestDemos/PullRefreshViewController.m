@@ -79,14 +79,14 @@ if (!object) { \
             return ;
         }
         
-        if ([WCScrollViewTool checkIsOverTopWithScrollView:scrollView]) {
+        if ([WCScrollViewTool checkIsScrollingOverTopWithScrollView:scrollView]) {
             CGSize screenSize = [[UIScreen mainScreen] bounds].size;
             self.hudTip.alpha = 1;
             self.hudTip.text = @"scrolling over top";
             [self.hudTip sizeToFit];
             self.hudTip.center = CGPointMake(screenSize.width / 2.0, screenSize.height / 2.0);
         }
-        else if ([WCScrollViewTool checkIsOverBottomWithScrollView:scrollView]) {
+        else if ([WCScrollViewTool checkIsScrollingOverBottomWithScrollView:scrollView]) {
             CGSize screenSize = [[UIScreen mainScreen] bounds].size;
             self.hudTip.alpha = 1;
             self.hudTip.text = @"scrolling over bottom";

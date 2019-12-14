@@ -151,11 +151,11 @@
             self.scrollDirection = WCScrollViewScrollingDirectionLeft;
         }
         // scroll view move down and check is over top
-        else if (scrollView.contentOffset.y > [self.lastContentOffset CGPointValue].y && ![WCScrollViewTool checkIsOverTopWithScrollView:scrollView]) {
+        else if (scrollView.contentOffset.y > [self.lastContentOffset CGPointValue].y && ![WCScrollViewTool checkIsScrollingOverTopWithScrollView:scrollView]) {
             self.scrollDirection = WCScrollViewScrollingDirectionDown;
         }
         // scroll view move up and check is over bottom
-        else if (scrollView.contentOffset.y < [self.lastContentOffset CGPointValue].y && ![WCScrollViewTool checkIsOverBottomWithScrollView:scrollView]) {
+        else if (scrollView.contentOffset.y < [self.lastContentOffset CGPointValue].y && ![WCScrollViewTool checkIsScrollingOverBottomWithScrollView:scrollView]) {
             self.scrollDirection = WCScrollViewScrollingDirectionUp;
         }
     }

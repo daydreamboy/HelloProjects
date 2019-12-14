@@ -120,7 +120,7 @@ static void * const kAssociatedKeyScrollingEventObserver = (void *)&kAssociatedK
     return YES;
 }
 
-+ (BOOL)checkIsOverTopWithScrollView:(UIScrollView *)scrollView {
++ (BOOL)checkIsScrollingOverTopWithScrollView:(UIScrollView *)scrollView {
     if (![scrollView isKindOfClass:[UIScrollView class]]) {
         return NO;
     }
@@ -128,7 +128,7 @@ static void * const kAssociatedKeyScrollingEventObserver = (void *)&kAssociatedK
     return scrollView.contentOffset.y <= -scrollView.contentInset.top;
 }
 
-+ (BOOL)checkIsOverBottomWithScrollView:(UIScrollView *)scrollView {
++ (BOOL)checkIsScrollingOverBottomWithScrollView:(UIScrollView *)scrollView {
     if (![scrollView isKindOfClass:[UIScrollView class]]) {
         return NO;
     }

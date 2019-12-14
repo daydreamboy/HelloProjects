@@ -51,7 +51,7 @@ Observe the scrolling event on the scroll view
  @return YES if scroll view is scrolling over or at the top edge, otherwise return NO. And also return NO if the parameters are wrong.
  @see https://stackoverflow.com/a/14745900
  */
-+ (BOOL)checkIsOverTopWithScrollView:(UIScrollView *)scrollView;
++ (BOOL)checkIsScrollingOverTopWithScrollView:(UIScrollView *)scrollView;
 
 /**
  Check the scroll view is scrolling over or at the bottom edge
@@ -59,7 +59,7 @@ Observe the scrolling event on the scroll view
  @param scrollView the scroll view
  @return YES if scroll view is scrolling over or at the bottom edge, otherwise return NO. And also return NO if the parameters are wrong.
  */
-+ (BOOL)checkIsOverBottomWithScrollView:(UIScrollView *)scrollView;
++ (BOOL)checkIsScrollingOverBottomWithScrollView:(UIScrollView *)scrollView;
 
 /**
  Get fitted content size of the scroll view which can make scroll view not scrollable if
