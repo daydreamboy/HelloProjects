@@ -120,6 +120,131 @@ static void * const kAssociatedKeyScrollingEventObserver = (void *)&kAssociatedK
     return YES;
 }
 
+#pragma mark - Scroll to Specific Area
+
+#pragma mark > Scroll to edges of the scroll view
+
++ (BOOL)scrollToTopWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated {
+    if (![scrollView isKindOfClass:[UIScrollView class]]) {
+        return NO;
+    }
+    
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+    CGPoint contentOffset = CGPointMake(scrollView.contentOffset.x, IOS11_OR_LATER ? -scrollView.adjustedContentInset.top : -scrollView.contentInset.top);
+#pragma GCC diagnostic pop
+    [scrollView setContentOffset:contentOffset animated:animated];
+    
+    return YES;
+}
+
+// @see https://stackoverflow.com/a/38241928
++ (BOOL)scrollToBottomWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated {
+    if (![scrollView isKindOfClass:[UIScrollView class]]) {
+        return NO;
+    }
+    
+    // @see https://stackoverflow.com/a/38241928
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+    CGPoint contentOffset = CGPointMake(scrollView.contentOffset.x, scrollView.contentSize.height - scrollView.bounds.size.height + (IOS11_OR_LATER ? scrollView.adjustedContentInset.bottom : scrollView.contentInset.bottom));
+#pragma GCC diagnostic pop
+    [scrollView setContentOffset:contentOffset animated:animated];
+    
+    return YES;
+}
+
++ (BOOL)scrollToLeftWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated {
+    if (![scrollView isKindOfClass:[UIScrollView class]]) {
+        return NO;
+    }
+    
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+    CGPoint contentOffset = CGPointMake((IOS11_OR_LATER ? -scrollView.adjustedContentInset.left : -scrollView.contentInset.left), scrollView.contentOffset.y) ;
+#pragma GCC diagnostic pop
+    [scrollView setContentOffset:contentOffset animated:animated];
+    
+    return YES;
+}
+
++ (BOOL)scrollToRightWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated {
+    if (![scrollView isKindOfClass:[UIScrollView class]]) {
+        return NO;
+    }
+    
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+    CGPoint contentOffset = CGPointMake(scrollView.contentSize.width - scrollView.bounds.size.width + (IOS11_OR_LATER ? scrollView.adjustedContentInset.right : scrollView.contentInset.right), scrollView.contentOffset.y);
+#pragma GCC diagnostic pop
+    [scrollView setContentOffset:contentOffset animated:animated];
+    
+    return YES;
+}
+
+#pragma mark > Scroll to edges of the content
+
++ (BOOL)scrollToTopOfContentWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated considerSafeArea:(BOOL)considerSafeArea {
+    if (![scrollView isKindOfClass:[UIScrollView class]]) {
+        return NO;
+    }
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+    CGFloat safeAreaTopInset = (considerSafeArea && IOS11_OR_LATER) ? scrollView.safeAreaInsets.bottom : 0;
+#pragma GCC diagnostic pop
+    
+    CGPoint contentOffset = CGPointMake(scrollView.contentOffset.x, 0 - safeAreaTopInset);
+    [scrollView setContentOffset:contentOffset animated:animated];
+    
+    return YES;
+}
+
++ (BOOL)scrollToBottomOfContentWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated considerSafeArea:(BOOL)considerSafeArea {
+    if (![scrollView isKindOfClass:[UIScrollView class]]) {
+        return NO;
+    }
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+    CGFloat safeAreaBottomInset = (considerSafeArea && IOS11_OR_LATER) ? scrollView.safeAreaInsets.bottom : 0;
+#pragma GCC diagnostic pop
+    
+    CGPoint contentOffset = CGPointMake(scrollView.contentOffset.x, scrollView.contentSize.height - scrollView.bounds.size.height + safeAreaBottomInset);
+    [scrollView setContentOffset:contentOffset animated:animated];
+    
+    return YES;
+}
+
++ (BOOL)scrollToLeftOfContentWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated considerSafeArea:(BOOL)considerSafeArea {
+    if (![scrollView isKindOfClass:[UIScrollView class]]) {
+        return NO;
+    }
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+    CGFloat safeAreaLeftInset = (considerSafeArea && IOS11_OR_LATER) ? scrollView.safeAreaInsets.left : 0;
+#pragma GCC diagnostic pop
+    
+    CGPoint contentOffset = CGPointMake(0 - safeAreaLeftInset, scrollView.contentOffset.y);
+    [scrollView setContentOffset:contentOffset animated:animated];
+    
+    return YES;
+}
+
++ (BOOL)scrollToRightOfContentWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated considerSafeArea:(BOOL)considerSafeArea {
+    
+    if (![scrollView isKindOfClass:[UIScrollView class]]) {
+        return NO;
+    }
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+    CGFloat safeAreaRightInset = (considerSafeArea && IOS11_OR_LATER) ? scrollView.safeAreaInsets.right : 0;
+#pragma GCC diagnostic pop
+    
+    CGPoint contentOffset = CGPointMake(scrollView.contentSize.width - scrollView.bounds.size.width + safeAreaRightInset, scrollView.contentOffset.y);
+    [scrollView setContentOffset:contentOffset animated:animated];
+    
+    return YES;
+}
+
 #pragma mark - Check Scrolling Over
 
 + (BOOL)checkIsScrollingOverTopWithScrollView:(UIScrollView *)scrollView {
@@ -185,6 +310,8 @@ static void * const kAssociatedKeyScrollingEventObserver = (void *)&kAssociatedK
         return scrollView.contentOffset.x + scrollView.bounds.size.width > scrollView.contentSize.width + scrollView.contentInset.right;
     }
 }
+
+#pragma mark - Query
 
 + (CGSize)fittedContentSizeWithScrollView:(UIScrollView *)scrollView {
     if (![scrollView isKindOfClass:[UIScrollView class]]) {

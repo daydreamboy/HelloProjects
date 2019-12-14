@@ -44,6 +44,22 @@ Observe the scrolling event on the scroll view
 */
 + (BOOL)observeScrollingEventWithScrollView:(UIScrollView *)scrollView scrollingEventCallback:(void (^)(UIScrollView *scrollView))scrollingEventCallback;
 
+#pragma mark - Scroll to Specific Area
+
+#pragma mark > Scroll to edges of the scroll view
+
++ (BOOL)scrollToTopWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated;
++ (BOOL)scrollToBottomWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated;
++ (BOOL)scrollToLeftWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated;
++ (BOOL)scrollToRightWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated;
+
+#pragma mark > Scroll to edges of the content
+
++ (BOOL)scrollToTopOfContentWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated considerSafeArea:(BOOL)considerSafeArea;
++ (BOOL)scrollToBottomOfContentWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated considerSafeArea:(BOOL)considerSafeArea;
++ (BOOL)scrollToLeftOfContentWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated considerSafeArea:(BOOL)considerSafeArea;
++ (BOOL)scrollToRightOfContentWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated considerSafeArea:(BOOL)considerSafeArea;
+
 #pragma mark - Check Scrolling Over
 
 /**
@@ -79,7 +95,7 @@ Observe the scrolling event on the scroll view
  */
 + (BOOL)checkIsScrollingOverRightWithScrollView:(UIScrollView *)scrollView;
 
-#pragma mark -
+#pragma mark - Query
 
 /**
  Get fitted content size of the scroll view which can make scroll view not scrollable if

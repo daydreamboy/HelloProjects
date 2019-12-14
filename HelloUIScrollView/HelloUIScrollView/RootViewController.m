@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 #import "ScrollToTopOrBottomViewController.h"
+#import "ScrollToLeftOrRightViewController.h"
 #import "NestedScrollViewViewController.h"
 #import "CheckUserScrollingViewController.h"
 #import "CheckScrollingViewController.h"
@@ -45,6 +46,7 @@ typedef NS_ENUM(NSUInteger, AccessoryViewType) {
     // MARK: Configure titles and classes for table view
     _titles = @[
         @"Scroll UIScrollView to top or bottom",
+        @"Scroll UIScrollView to left or right",
         @"Handle nested UIScrollView",
         @"Check UIScrollView is dragging by user",
         @"Check UIScrollView is scrolling",
@@ -55,6 +57,7 @@ typedef NS_ENUM(NSUInteger, AccessoryViewType) {
     ];
     _classes = @[
         [ScrollToTopOrBottomViewController class],
+        [ScrollToLeftOrRightViewController class],
         [NestedScrollViewViewController class],
         [CheckUserScrollingViewController class],
         [CheckScrollingViewController class],
@@ -64,6 +67,7 @@ typedef NS_ENUM(NSUInteger, AccessoryViewType) {
         @"testMethod",
     ];
     _options = [@[
+        [NSNull null],
         [NSNull null],
         [NSNull null],
         [NSNull null],

@@ -1,25 +1,25 @@
 //
-//  ScrollToTopOrBottomViewController.m
+//  ScrollToLeftOrRightViewController.m
 //  HelloUIScrollView
 //
-//  Created by wesley_chen on 2018/5/30.
-//  Copyright © 2018 wesley_chen. All rights reserved.
+//  Created by wesley_chen on 2019/12/14.
+//  Copyright © 2019 wesley_chen. All rights reserved.
 //
 
-#import "ScrollToTopOrBottomViewController.h"
+#import "ScrollToLeftOrRightViewController.h"
 #import "WCScrollViewTool.h"
 
-#define ContentHeight 900 // 200
+#define ContentWidth 900 // 200
 
-@interface ScrollToTopOrBottomViewController ()
+@interface ScrollToLeftOrRightViewController ()
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, assign) BOOL scrollAnimated;
-@property (nonatomic, assign) CGFloat contentHeight;
+@property (nonatomic, assign) CGFloat contentWidth;
 @property (nonatomic, strong) UIToolbar *toolbar;
 @end
 
-@implementation ScrollToTopOrBottomViewController
+@implementation ScrollToLeftOrRightViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,7 +28,7 @@
 
     // Configure: toggle animate and set content height
     self.scrollAnimated = YES;
-    self.contentHeight = ContentHeight;
+    self.contentWidth = ContentWidth;
 
     [self.view addSubview:self.scrollView];
     [self.view addSubview:self.toolbar];
@@ -47,23 +47,23 @@
 
 - (UIView *)contentView {
     if (!_contentView) {
-        CGFloat contentHeight = self.contentHeight;
+        CGFloat contentWidth = self.contentWidth;
         
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, contentHeight)];
+        UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentWidth, 300)];
         contentView.backgroundColor = [UIColor greenColor];
         
-        UILabel *labelAtTop = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, 30)];
-        labelAtTop.text = @"top";
-        labelAtTop.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.5];
-        labelAtTop.textAlignment = NSTextAlignmentCenter;
-        [contentView addSubview:labelAtTop];
+        UILabel *labelAtLeft = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 40, screenSize.height)];
+        labelAtLeft.text = @"left";
+        labelAtLeft.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.5];
+        labelAtLeft.textAlignment = NSTextAlignmentCenter;
+        [contentView addSubview:labelAtLeft];
         
-        UILabel *labelAtBottom = [[UILabel alloc] initWithFrame:CGRectMake(0, contentHeight - 30, screenSize.width, 30)];
-        labelAtBottom.text = @"bottom";
-        labelAtBottom.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.5];
-        labelAtBottom.textAlignment = NSTextAlignmentCenter;
-        [contentView addSubview:labelAtBottom];
+        UILabel *labelAtRight = [[UILabel alloc] initWithFrame:CGRectMake(contentWidth - 40, 0, 40, screenSize.height)];
+        labelAtRight.text = @"right";
+        labelAtRight.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.5];
+        labelAtRight.textAlignment = NSTextAlignmentCenter;
+        [contentView addSubview:labelAtRight];
         
         _contentView = contentView;
     }
@@ -74,11 +74,11 @@
 - (UIScrollView *)scrollView {
     if (!_scrollView) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        CGFloat topInset = 100;
-        CGFloat bottomInset = 100;
+        CGFloat leftInset = 30;
+        CGFloat rightInset = 50;
         
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height)];
-        scrollView.contentInset = UIEdgeInsetsMake(topInset, 0, bottomInset, 0);
+        scrollView.contentInset = UIEdgeInsetsMake(0 , leftInset, 0, rightInset);
         scrollView.backgroundColor = [UIColor yellowColor];
         scrollView.contentSize = self.contentView.bounds.size;
         [scrollView addSubview:self.contentView];
@@ -95,22 +95,22 @@
         
         UIBarButtonItem *itemBack = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(itemBackClicked:)];
         
-        UIBarButtonItem *itemScrollToBottom = [[UIBarButtonItem alloc] initWithTitle:@"UIScrollView底部" style:UIBarButtonItemStylePlain target:self action:@selector(itemScrollToBottomClicked:)];
+        UIBarButtonItem *itemScrollToLeft = [[UIBarButtonItem alloc] initWithTitle:@"UIScrollView左边" style:UIBarButtonItemStylePlain target:self action:@selector(itemScrollToLeftClicked:)];
 
-        UIBarButtonItem *itemScrollToTop = [[UIBarButtonItem alloc] initWithTitle:@"UIScrollView顶部" style:UIBarButtonItemStylePlain target:self action:@selector(itemScrollToTopClicked:)];
+        UIBarButtonItem *itemScrollToRight = [[UIBarButtonItem alloc] initWithTitle:@"UIScrollView右边" style:UIBarButtonItemStylePlain target:self action:@selector(itemScrollToRightClicked:)];
         
-        UIBarButtonItem *itemScrollToBottomOfContent = [[UIBarButtonItem alloc] initWithTitle:@"内容底部" style:UIBarButtonItemStylePlain target:self action:@selector(itemScrollToBottomOfContentClicked:)];
+        UIBarButtonItem *itemScrollToLeftOfContent = [[UIBarButtonItem alloc] initWithTitle:@"内容左边" style:UIBarButtonItemStylePlain target:self action:@selector(itemScrollToLeftOfContentClicked:)];
         
-        UIBarButtonItem *itemScrollToTopOfContent = [[UIBarButtonItem alloc] initWithTitle:@"内容顶部" style:UIBarButtonItemStylePlain target:self action:@selector(itemScrollToTopOfContentClicked:)];
+        UIBarButtonItem *itemScrollToRightOfContent = [[UIBarButtonItem alloc] initWithTitle:@"内容右边" style:UIBarButtonItemStylePlain target:self action:@selector(itemScrollToRightOfContentClicked:)];
         
-        NSArray *items = @[itemBack, itemScrollToBottom, itemScrollToTop, itemScrollToBottomOfContent, itemScrollToTopOfContent];
+        NSArray *items = @[itemBack, itemScrollToLeft, itemScrollToRight, itemScrollToLeftOfContent, itemScrollToRightOfContent];
         
         for (UIBarItem *barItem in items) {
             [barItem setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]} forState:UIControlStateNormal];
             [barItem setTitleTextAttributes:@{NSFontAttributeName: [UIFont systemFontOfSize:14]} forState:UIControlStateHighlighted];
         }
         
-        UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 500, 44)];
+        UIToolbar *toolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 400, 44)];
         [toolbar setShadowImage:[UIImage new] forToolbarPosition:UIBarPositionAny];
         [toolbar setItems:items animated:NO];
         // Note: not work as expect to fit all items, only fit to screen.width and 44
@@ -132,20 +132,20 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void)itemScrollToBottomOfContentClicked:(id)sender {
-    [WCScrollViewTool scrollToBottomOfContentWithScrollView:self.scrollView animated:self.scrollAnimated considerSafeArea:YES];
+- (void)itemScrollToLeftOfContentClicked:(id)sender {
+    [WCScrollViewTool scrollToLeftOfContentWithScrollView:self.scrollView animated:self.scrollAnimated considerSafeArea:YES];
 }
 
-- (void)itemScrollToTopOfContentClicked:(id)sender {
-    [WCScrollViewTool scrollToTopOfContentWithScrollView:self.scrollView animated:self.scrollAnimated considerSafeArea:YES];
+- (void)itemScrollToRightOfContentClicked:(id)sender {
+    [WCScrollViewTool scrollToRightOfContentWithScrollView:self.scrollView animated:self.scrollAnimated considerSafeArea:YES];
 }
 
-- (void)itemScrollToBottomClicked:(id)sender {
-    [WCScrollViewTool scrollToBottomWithScrollView:self.scrollView animated:self.scrollAnimated];
+- (void)itemScrollToLeftClicked:(id)sender {
+    [WCScrollViewTool scrollToLeftWithScrollView:self.scrollView animated:self.scrollAnimated];
 }
 
-- (void)itemScrollToTopClicked:(id)sender {
-    [WCScrollViewTool scrollToTopWithScrollView:self.scrollView animated:self.scrollAnimated];
+- (void)itemScrollToRightClicked:(id)sender {
+    [WCScrollViewTool scrollToRightWithScrollView:self.scrollView animated:self.scrollAnimated];
 }
 
 - (void)viewPanned:(UIPanGestureRecognizer *)recognizer {
