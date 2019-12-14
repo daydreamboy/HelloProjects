@@ -120,6 +120,8 @@ static void * const kAssociatedKeyScrollingEventObserver = (void *)&kAssociatedK
     return YES;
 }
 
+#pragma mark - Check Scrolling Over
+
 + (BOOL)checkIsScrollingOverTopWithScrollView:(UIScrollView *)scrollView {
     if (![scrollView isKindOfClass:[UIScrollView class]]) {
         return NO;
@@ -149,6 +151,38 @@ static void * const kAssociatedKeyScrollingEventObserver = (void *)&kAssociatedK
     }
     else {
         return scrollView.contentOffset.y + scrollView.bounds.size.height > scrollView.contentSize.height + scrollView.contentInset.bottom;
+    }
+}
+
++ (BOOL)checkIsScrollingOverLeftWithScrollView:(UIScrollView *)scrollView {
+    if (![scrollView isKindOfClass:[UIScrollView class]]) {
+        return NO;
+    }
+    
+    if (IOS11_OR_LATER) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+        return scrollView.contentOffset.x < -scrollView.adjustedContentInset.left;
+#pragma GCC diagnostic pop
+    }
+    else {
+        return scrollView.contentOffset.x < -scrollView.contentInset.left;
+    }
+}
+
++ (BOOL)checkIsScrollingOverRightWithScrollView:(UIScrollView *)scrollView {
+    if (![scrollView isKindOfClass:[UIScrollView class]]) {
+        return NO;
+    }
+    
+    if (IOS11_OR_LATER) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+        return scrollView.contentOffset.x + scrollView.bounds.size.width > scrollView.contentSize.width + scrollView.adjustedContentInset.right;
+#pragma GCC diagnostic pop
+    }
+    else {
+        return scrollView.contentOffset.x + scrollView.bounds.size.width > scrollView.contentSize.width + scrollView.contentInset.right;
     }
 }
 

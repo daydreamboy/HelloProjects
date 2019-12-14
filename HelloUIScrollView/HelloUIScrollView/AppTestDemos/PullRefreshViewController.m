@@ -21,12 +21,12 @@ if (!object) { \
     __VA_ARGS__; \
 }
 
-#define ContentHeight 900 // 200
+//#define ContentHeight 900 // 200
 
 @interface PullRefreshViewController ()
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *contentView;
-@property (nonatomic, assign) CGFloat contentHeight;
+//@property (nonatomic, assign) CGFloat contentHeight;
 @property (nonatomic, strong) UILabel *hudTip;
 @property (nonatomic, assign) UIGestureRecognizerState state;
 @end
@@ -37,11 +37,16 @@ if (!object) { \
     [super viewDidLoad];
     
     // Configure: toggle animate and set content height
-    self.contentHeight = ContentHeight;
+    //self.contentHeight = ContentHeight;
     
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.scrollView];
     [self.view addSubview:self.hudTip];
+    
+    UIBarButtonItem *verticalItem = [[UIBarButtonItem alloc] initWithTitle:@"Vertical" style:UIBarButtonItemStylePlain target:self action:@selector(verticalItemClicked:)];
+    UIBarButtonItem *horizontalItem = [[UIBarButtonItem alloc] initWithTitle:@"Horizontal" style:UIBarButtonItemStylePlain target:self action:@selector(horizontalItemClicked:)];
+    
+    self.navigationItem.rightBarButtonItems = @[horizontalItem, verticalItem];
     
     weakify(self);
     [WCScrollViewTool observeTouchEventWithScrollView:self.scrollView touchEventCallback:^(UIScrollView *scrollView, UIGestureRecognizerState state) {
@@ -50,7 +55,6 @@ if (!object) { \
         if (self.scrollView == scrollView) {
             if (state == UIGestureRecognizerStateBegan) {
                 self.state = state;
-                NSLog(@"Began");
                 
                 CGSize screenSize = [[UIScreen mainScreen] bounds].size;
                 self.hudTip.alpha = 1;
@@ -60,7 +64,6 @@ if (!object) { \
             }
             else if (state == UIGestureRecognizerStateEnded || state == UIGestureRecognizerStateCancelled) {
                 self.state = state;
-                NSLog(@"Ended");
                 
                 CGSize screenSize = [[UIScreen mainScreen] bounds].size;
                 self.hudTip.alpha = 1;
@@ -93,6 +96,20 @@ if (!object) { \
             [self.hudTip sizeToFit];
             self.hudTip.center = CGPointMake(screenSize.width / 2.0, screenSize.height / 2.0);
         }
+        else if ([WCScrollViewTool checkIsScrollingOverLeftWithScrollView:scrollView]) {
+            CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+            self.hudTip.alpha = 1;
+            self.hudTip.text = @"scrolling over left";
+            [self.hudTip sizeToFit];
+            self.hudTip.center = CGPointMake(screenSize.width / 2.0, screenSize.height / 2.0);
+        }
+        else if ([WCScrollViewTool checkIsScrollingOverRightWithScrollView:scrollView]) {
+            CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+            self.hudTip.alpha = 1;
+            self.hudTip.text = @"scrolling over right";
+            [self.hudTip sizeToFit];
+            self.hudTip.center = CGPointMake(screenSize.width / 2.0, screenSize.height / 2.0);
+        }
     }];
 }
 
@@ -110,41 +127,21 @@ if (!object) { \
         CGFloat startY = CGRectGetMaxY(self.navigationController.navigationBar.frame);
         
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, startY, screenSize.width, screenSize.height - startY)];
-        scrollView.contentInset = UIEdgeInsetsMake(topInset, 0, bottomInset, 0);
+        scrollView.contentInset = UIEdgeInsetsMake(topInset, 10, bottomInset, 10);
         scrollView.backgroundColor = [UIColor yellowColor];
-        scrollView.contentSize = self.contentView.bounds.size;
-        [scrollView addSubview:self.contentView];
         
-        _scrollView = scrollView;
-    }
-    
-    return _scrollView;
-}
-
-- (UIView *)contentView {
-    if (!_contentView) {
-        CGFloat contentHeight = self.contentHeight;
-        
-        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, contentHeight)];
+        CGSize contentSize = [WCScrollViewTool fittedContentSizeWithScrollView:scrollView];
+        UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, contentSize.width, contentSize.height * 2)];
         contentView.backgroundColor = [UIColor greenColor];
         
-        UILabel *labelAtTop = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, 30)];
-        labelAtTop.text = @"top";
-        labelAtTop.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.5];
-        labelAtTop.textAlignment = NSTextAlignmentCenter;
-        [contentView addSubview:labelAtTop];
+        scrollView.contentSize = contentView.bounds.size;
+        [scrollView addSubview:contentView];
         
-        UILabel *labelAtBottom = [[UILabel alloc] initWithFrame:CGRectMake(0, contentHeight - 30, screenSize.width, 30)];
-        labelAtBottom.text = @"bottom";
-        labelAtBottom.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.5];
-        labelAtBottom.textAlignment = NSTextAlignmentCenter;
-        [contentView addSubview:labelAtBottom];
-        
+        _scrollView = scrollView;
         _contentView = contentView;
     }
     
-    return _contentView;
+    return _scrollView;
 }
 
 - (UILabel *)hudTip {
@@ -162,6 +159,20 @@ if (!object) { \
     }
     
     return _hudTip;
+}
+
+#pragma mark - Actions
+
+- (void)verticalItemClicked:(id)sender {
+    CGSize contentSize = [WCScrollViewTool fittedContentSizeWithScrollView:self.scrollView];
+    self.scrollView.contentSize = CGSizeMake(contentSize.width, contentSize.height * 2);
+    self.contentView.frame = CGRectMake(0, 0, self.scrollView.contentSize.width, self.scrollView.contentSize.height);
+}
+
+- (void)horizontalItemClicked:(id)sender {
+    CGSize contentSize = [WCScrollViewTool fittedContentSizeWithScrollView:self.scrollView];
+    self.scrollView.contentSize = CGSizeMake(contentSize.width * 2, contentSize.height);
+    self.contentView.frame = CGRectMake(0, 0, self.scrollView.contentSize.width, self.scrollView.contentSize.height);
 }
 
 @end
