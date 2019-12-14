@@ -65,6 +65,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F15E7E723A4AEC900C89A81 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				4F2762AA239BAE69003740C8 /* IViewControllerInitOption.h */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		4F2762BA239BC556003740C8 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -95,12 +103,12 @@
 			isa = PBXGroup;
 			children = (
 				4F2762BA239BC556003740C8 /* Tools */,
+				4F15E7E723A4AEC900C89A81 /* Protocols */,
 				4F4D747D20BE7CCE0027DE7C /* AppTestDemos */,
 				4F4D746720BE48170027DE7C /* AppDelegate.h */,
 				4F4D746820BE48170027DE7C /* AppDelegate.m */,
 				4F4D748420BE7CF70027DE7C /* RootViewController.h */,
 				4F4D748520BE7CF70027DE7C /* RootViewController.m */,
-				4F2762AA239BAE69003740C8 /* IViewControllerInitOption.h */,
 				4F4D747020BE48190027DE7C /* Assets.xcassets */,
 				4F4D747220BE48190027DE7C /* LaunchScreen.storyboard */,
 				4F4D747520BE48190027DE7C /* Info.plist */,

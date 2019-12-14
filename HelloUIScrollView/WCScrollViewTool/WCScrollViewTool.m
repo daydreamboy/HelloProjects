@@ -125,7 +125,15 @@ static void * const kAssociatedKeyScrollingEventObserver = (void *)&kAssociatedK
         return NO;
     }
     
-    return scrollView.contentOffset.y <= -scrollView.contentInset.top;
+    if (IOS11_OR_LATER) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+        return scrollView.contentOffset.y < -scrollView.adjustedContentInset.top;
+#pragma GCC diagnostic pop
+    }
+    else {
+        return scrollView.contentOffset.y < -scrollView.contentInset.top;
+    }
 }
 
 + (BOOL)checkIsScrollingOverBottomWithScrollView:(UIScrollView *)scrollView {
@@ -133,7 +141,15 @@ static void * const kAssociatedKeyScrollingEventObserver = (void *)&kAssociatedK
         return NO;
     }
     
-    return scrollView.contentOffset.y + scrollView.bounds.size.height >= scrollView.contentSize.height + scrollView.contentInset.bottom;
+    if (IOS11_OR_LATER) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+        return scrollView.contentOffset.y + scrollView.bounds.size.height > scrollView.contentSize.height + scrollView.adjustedContentInset.bottom;
+#pragma GCC diagnostic pop
+    }
+    else {
+        return scrollView.contentOffset.y + scrollView.bounds.size.height > scrollView.contentSize.height + scrollView.contentInset.bottom;
+    }
 }
 
 + (CGSize)fittedContentSizeWithScrollView:(UIScrollView *)scrollView {

@@ -48,7 +48,7 @@ typedef NS_ENUM(NSUInteger, AccessoryViewType) {
         @"Handle nested UIScrollView",
         @"Check UIScrollView is dragging by user",
         @"Check UIScrollView is scrolling",
-        @"Pull refresh",
+        @"Pull refresh (Vertical/Horizontal)",
         @"Disable call scrollViewDidScroll automatically",
         @"Detect scrolling direction",
         @"call a test method",
