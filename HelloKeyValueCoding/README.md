@@ -59,6 +59,16 @@
 
 
 
+示例：将嵌套的二维数组转成一维数组，如下
+
+```objective-c
+NSArray *flattedArray = [twoDimensionalArray valueForKeyPath:@"@unionOfArrays.self"];
+```
+
+
+
+
+
 ## 2、KVC常见问题
 
 
