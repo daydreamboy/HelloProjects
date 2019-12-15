@@ -1,9 +1,0 @@
-ENABLE_BITCODE = NO
-OTHER_LDFLAGS[sdk=iphoneos*] = $(inherited) -weak_framework "MetalPerformanceShaders"
-OTHER_LINK_FLAG = $(inherited) -ObjC
-OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
-PODS_BUILD_DIR = $BUILD_DIR
-PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
-PODS_ROOT = ${SRCROOT}/Pods
-OTHER_LDFLAGS = $(inherited) -framework "TestLibrary" -l"XXX"
-FRAMEWORK_SEARCH_PATHS = $(inherited) '$(PODS_ROOT)/TestLibrary' '$(PODS_ROOT)/XXX'    "$(PODS_ROOT)/YYY"  $(PODS_ROOT)/zzz   "$(PODS_ROOT)/aaa"
