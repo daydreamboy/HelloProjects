@@ -12,9 +12,9 @@
 		4F1B9FAB23ABC49C00CD0BFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F1B9FA923ABC49C00CD0BFC /* LaunchScreen.storyboard */; };
 		4F1B9FAE23ABC49C00CD0BFC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B9FAD23ABC49C00CD0BFC /* main.m */; };
 		4F1B9FBB23ABC4B700CD0BFC /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B9FBA23ABC4B700CD0BFC /* Tests.m */; };
-		4F1B9FC323ABC4CF00CD0BFC /* Tests_doubleRelease.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B9FC223ABC4CF00CD0BFC /* Tests_doubleRelease.m */; };
+		4F1B9FC323ABC4CF00CD0BFC /* Tests_overRelease.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B9FC223ABC4CF00CD0BFC /* Tests_overRelease.m */; };
 		4F1B9FEE23ABD31500CD0BFC /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B9FE923ABD31400CD0BFC /* RootViewController.m */; };
-		4F1C296B23AF9196004E984A /* DoubleReleaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C296A23AF9196004E984A /* DoubleReleaseViewController.m */; };
+		4F1C296B23AF9196004E984A /* OverReleaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C296A23AF9196004E984A /* OverReleaseViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,11 +38,11 @@
 		4F1B9FB823ABC4B700CD0BFC /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F1B9FBA23ABC4B700CD0BFC /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		4F1B9FBC23ABC4B700CD0BFC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4F1B9FC223ABC4CF00CD0BFC /* Tests_doubleRelease.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_doubleRelease.m; sourceTree = "<group>"; };
+		4F1B9FC223ABC4CF00CD0BFC /* Tests_overRelease.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_overRelease.m; sourceTree = "<group>"; };
 		4F1B9FE923ABD31400CD0BFC /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F1B9FED23ABD31500CD0BFC /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		4F1C296923AF9196004E984A /* DoubleReleaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DoubleReleaseViewController.h; sourceTree = "<group>"; };
-		4F1C296A23AF9196004E984A /* DoubleReleaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DoubleReleaseViewController.m; sourceTree = "<group>"; };
+		4F1C296923AF9196004E984A /* OverReleaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OverReleaseViewController.h; sourceTree = "<group>"; };
+		4F1C296A23AF9196004E984A /* OverReleaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OverReleaseViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				4F1B9FBA23ABC4B700CD0BFC /* Tests.m */,
-				4F1B9FC223ABC4CF00CD0BFC /* Tests_doubleRelease.m */,
+				4F1B9FC223ABC4CF00CD0BFC /* Tests_overRelease.m */,
 				4F1B9FBC23ABC4B700CD0BFC /* Info.plist */,
 			);
 			path = Tests;
@@ -110,8 +110,8 @@
 		4F1B9FEA23ABD31500CD0BFC /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F1C296923AF9196004E984A /* DoubleReleaseViewController.h */,
-				4F1C296A23AF9196004E984A /* DoubleReleaseViewController.m */,
+				4F1C296923AF9196004E984A /* OverReleaseViewController.h */,
+				4F1C296A23AF9196004E984A /* OverReleaseViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -216,7 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F1B9F9D23ABC49A00CD0BFC /* AppDelegate.m in Sources */,
-				4F1C296B23AF9196004E984A /* DoubleReleaseViewController.m in Sources */,
+				4F1C296B23AF9196004E984A /* OverReleaseViewController.m in Sources */,
 				4F1B9FAE23ABC49C00CD0BFC /* main.m in Sources */,
 				4F1B9FEE23ABD31500CD0BFC /* RootViewController.m in Sources */,
 			);
@@ -226,7 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F1B9FC323ABC4CF00CD0BFC /* Tests_doubleRelease.m in Sources */,
+				4F1B9FC323ABC4CF00CD0BFC /* Tests_overRelease.m in Sources */,
 				4F1B9FBB23ABC4B700CD0BFC /* Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,15 +367,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = HelloNSInvocation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloNSInvocation;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloNSInvocation.wc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -386,15 +387,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = HelloNSInvocation/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloNSInvocation;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloNSInvocation.wc;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";

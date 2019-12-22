@@ -8,7 +8,7 @@
 
 #import "RootViewController.h"
 
-#import "DoubleReleaseViewController.h"
+#import "OverReleaseViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -35,7 +35,7 @@
         @"call a test method",
     ];
     _classes = @[
-        [DoubleReleaseViewController class],
+        [OverReleaseViewController class],
         @"testMethod",
     ];
 }

@@ -1,5 +1,5 @@
 //
-//  Tests_doubleRelease.m
+//  Tests_overRelease.m
 //  Tests
 //
 //  Created by wesley_chen on 2019/12/19.
@@ -8,11 +8,11 @@
 
 #import <XCTest/XCTest.h>
 
-@interface Tests_doubleRelease : XCTestCase
+@interface Tests_overRelease : XCTestCase
 
 @end
 
-@implementation Tests_doubleRelease
+@implementation Tests_overRelease
 
 - (void)setUp {
     NSLog(@"\n");
@@ -22,7 +22,7 @@
     NSLog(@"\n");
 }
 
-- (void)test_double_release {
+- (void)test_over_release {
     @autoreleasepool {
         id returnObject = nil;
         SEL selector = @selector(concatStringWithStringA:stringB:);
@@ -43,7 +43,7 @@
     }
 }
 
-- (void)test_double_release_fixed {
+- (void)test_over_release_fixed {
     // @see https://stackoverflow.com/a/22034059
     @autoreleasepool {
         id __unsafe_unretained tempReturnObject = nil;

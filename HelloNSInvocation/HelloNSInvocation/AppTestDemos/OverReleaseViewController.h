@@ -1,5 +1,5 @@
 //
-//  DoubleReleaseViewController.h
+//  OverReleaseViewController.h
 //  HelloNSInvocation
 //
 //  Created by wesley_chen on 2019/12/22.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DoubleReleaseViewController : UIViewController
+@interface OverReleaseViewController : UIViewController
 
 @end
 
