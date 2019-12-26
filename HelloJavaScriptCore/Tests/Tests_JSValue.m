@@ -60,6 +60,7 @@
     JSContext *context = [[JSContext alloc] init];
     context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
         NSLog(@"JS Error: %@", exception);
+        NSLog(@"More Info: line: %@:%@, stack: %@", exception[@"line"], exception[@"column"], exception[@"stack"]);
     };
     
     // Case 1

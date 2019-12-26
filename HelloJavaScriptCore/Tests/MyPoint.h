@@ -16,6 +16,7 @@
 @property (nonatomic, assign) double y;
 - (NSString *)description;
 - (instancetype)initWithX:(double)x y:(double)y;
+- (void)setX:(double)x y:(double)y;
 + (MyPoint *)makePointWithX:(double)x y:(double)y;
 
 JSExportAs(makeMyPointWithXY, + (MyPoint *)makePoint2WithX:(double)x y:(double)y);

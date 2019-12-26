@@ -94,6 +94,8 @@
     JSContext *context = [[JSContext alloc] init];
     context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
         NSLog(@"JS Error: %@", exception);
+        // @see https://stackoverflow.com/questions/34273540/ios-javascriptcore-exception-detailed-stacktrace-info
+        NSLog(@"More Info: line: %@:%@, stack: %@", exception[@"line"], exception[@"column"], exception[@"stack"]);
     };
     
     context[@"MyPoint"] = [MyPoint class];
@@ -103,6 +105,11 @@
     p = [context[@"p"] toObjectOfClass:[MyPoint class]];
     XCTAssertTrue(p.x == 1);
     XCTAssertTrue(p.y == 2);
+    
+    [context evaluateScript:@"p.setXY(3, 4);"];
+    p = [context[@"p"] toObjectOfClass:[MyPoint class]];
+    XCTAssertTrue(p.x == 3);
+    XCTAssertTrue(p.y == 4);
     
     // call native class method
     [context evaluateScript:@"var point = MyPoint.makePointWithXY(3, 4);"];
@@ -131,6 +138,7 @@
 }
 
 // @see https://stackoverflow.com/a/21680112
+// Deprecated, because of var %@ = function (){ return __%@();}; will hide the class method
 extern void RHJSContextMakeClassAvailable(JSContext *context, Class class){
     NSString *className = NSStringFromClass(class);
     context[[NSString stringWithFormat:@"__%@", className]] = (id) ^(void){ return [[class alloc] init]; };
@@ -146,11 +154,13 @@ extern void RHJSContextMakeClassAvailable(JSContext *context, Class class){
 - (void)test_RHJSContextMakeClassAvailable_issue {
     JSContext *context = [[JSContext alloc] init];
     context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
-        NSLog(@"JS Error: %@", exception); // TypeError: MyPoint.makePointWithXY is not a function. (In 'MyPoint.makePointWithXY(3, 4)', 'MyPoint.makePointWithXY' is undefined)
+        NSLog(@"JS Error: %@", exception);
+        NSLog(@"More Info: line: %@:%@, stack: %@", exception[@"line"], exception[@"column"], exception[@"stack"]);
     };
     
     RHJSContextMakeClassAvailable(context, [MyPoint class]);
-    [context evaluateScript:@"var point = MyPoint.makePointWithXY(3, 4);"];
+    [context evaluateScript:@"var point = MyPoint.makePointWithXY(3, 4);"]; // TypeError: MyPoint.makePointWithXY is not a function. (In 'MyPoint.makePointWithXY(3, 4)', 'MyPoint.makePointWithXY' is undefined)
+    [context evaluateScript:@"var point2 = new MyPoint(); point2.setXY(3, 4);"]; // Ok
 }
 
 - (void)test_JSValue_and_native_share_object {

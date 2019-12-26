@@ -23,6 +23,11 @@
     return self;
 }
 
+- (void)setX:(double)x y:(double)y {
+    _x = x;
+    _y = y;
+}
+
 + (MyPoint *)makePointWithX:(double)x y:(double)y {
     return [[self alloc] initWithX:x y:y];
 }

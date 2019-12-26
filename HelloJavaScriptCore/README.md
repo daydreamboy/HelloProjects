@@ -45,6 +45,12 @@ context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
 
 
 
+说明
+
+> exception是JSValue对象，可以使用exception[@"line"]、exception[@"column"]、exception[@"stack"])，获取行号、列号以及JS的堆栈[^7]
+
+
+
 ## 3、JSValue
 
 ​      **JSValue**的实例是JavaScript中值的引用。使用JSValue可以在JavaScript代码和native代码之间传递数据，JSValue可以封装native代码中自定义类的对象，或者JavaScript函数但实现放在native代码中。
@@ -460,3 +466,7 @@ WKWebView *webView = [[WKWebView alloc] initWithFrame:frame configuration:config
 [^4]:https://stackoverflow.com/a/21719420
 [^5]:https://stackoverflow.com/questions/21714365/uiwebview-javascript-losing-reference-to-ios-jscontext-namespace-object
 [^6]:https://stackoverflow.com/questions/25792131/how-to-get-jscontext-from-wkwebview
+[^7]:https://stackoverflow.com/questions/34273540/ios-javascriptcore-exception-detailed-stacktrace-info
+
+
+

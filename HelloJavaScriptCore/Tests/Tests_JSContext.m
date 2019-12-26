@@ -51,6 +51,7 @@
     JSContext *context = [[JSContext alloc] init];
     context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
         NSLog(@"JS Error: %@", exception); // JS Error: SyntaxError: Unexpected end of script
+        NSLog(@"More Info: line: %@:%@, stack: %@", exception[@"line"], exception[@"column"], exception[@"stack"]);
     };
     
     [context evaluateScript:@"function multiply(value1, value2) { return value1 * value2 "];
