@@ -1,5 +1,5 @@
 //
-//  LoadHtmlCodeViewController.h
+//  LoadHTMLCodeViewController.h
 //  HelloUIWebView
 //
 //  Created by wesley_chen on 2018/9/2.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoadHtmlCodeViewController : UIViewController
+@interface LoadHTMLCodeViewController : UIViewController
 
 @end

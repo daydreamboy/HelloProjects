@@ -1,24 +1,35 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 	<title></title>
-	<!--  -->
+	<!-- Note: 解决中文乱码问题 -->
 	<meta charset="UTF-8">
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 	<!-- https://stackoverflow.com/questions/10666484/html-content-fit-in-uiwebview-without-zooming-out -->
+	<!-- Note: 解决HTML页面适配屏幕宽度的问题 -->
 	<meta name="viewport" content="width=device-width; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no">
 	<style type="text/css">
-	body{font-family: '-apple-system','HelveticaNeue'; font-size:17;}
-	#apple-system-headline{font: -apple-system-headline;}
+		body {
+			font-family: '-apple-system', 'HelveticaNeue';
+			font-size: 17;
+		}
+
+		#apple-system-headline {
+			font: -apple-system-headline;
+		}
 	</style>
 </head>
+
 <body>
-<p>今年的七夕，我的对象仍然是 <span id='apple-system-headline'>404 Object Not Found</span></p>
-<!-- https://stackoverflow.com/questions/2676279/resize-images-in-uiwebview-to-viewport-size -->
-<img src="./images/1.png"/ style="max-width: 100%; width: auto; height: auto;">
-<p>不管别人怎么过，我也许又是这样过 <span id='apple-system-headline'>Eat, Sleep, Code</span></p>
-<img src="./images/2.png"/ style="max-width: 100%; width: auto; height: auto;">
-<p>虽如此，相信我的对象已经在加载中 <span id='apple-system-headline'>Object is Loading</span></p>
-<img src="./images/3.png"/ style="max-width: 100%; width: auto; height: auto;">
-<p><span id='apple-system-headline'>Happy 七夕，every🐶～</span></p>
+	<p>今年的七夕，我的对象仍然是 <span id='apple-system-headline'>404 Object Not Found</span></p>
+	<!-- https://stackoverflow.com/questions/2676279/resize-images-in-uiwebview-to-viewport-size -->
+	<img src="./images/1.png"/ style="max-width: 100%; width: auto; height: auto;">
+	<p>不管别人怎么过，我也许又是这样过 <span id='apple-system-headline'>Eat, Sleep, Code</span></p>
+	<img src="./images/2.png"/ style="max-width: 100%; width: auto; height: auto;">
+	<p>虽如此，相信我的对象已经在加载中 <span id='apple-system-headline'>Object is Loading</span></p>
+	<img src="./images/3.png"/ style="max-width: 100%; width: auto; height: auto;">
+	<p><span id='apple-system-headline'>Happy 七夕，every🐶～</span></p>
 </body>
+
 </html>

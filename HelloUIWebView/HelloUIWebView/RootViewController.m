@@ -8,8 +8,8 @@
 
 #import "RootViewController.h"
 
-#import "LoadLocalHtmlViewController.h"
-#import "LoadHtmlCodeViewController.h"
+#import "LoadLocalHTMLViewController.h"
+#import "LoadHTMLCodeViewController.h"
 #import "TestViewController.h"
 
 @interface RootViewController ()
@@ -38,8 +38,8 @@
         @"Test",
     ];
     _classes = @[
-        [LoadLocalHtmlViewController class],
-        [LoadHtmlCodeViewController class],
+        [LoadLocalHTMLViewController class],
+        [LoadHTMLCodeViewController class],
         [TestViewController class],
         @"testMethod",
     ];

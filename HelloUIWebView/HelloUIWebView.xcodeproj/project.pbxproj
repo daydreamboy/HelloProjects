@@ -11,7 +11,7 @@
 		2BFCCA6D1F543E4800797DB5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BFCCA6C1F543E4800797DB5 /* AppDelegate.m */; };
 		2BFCCA751F543E4800797DB5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BFCCA741F543E4800797DB5 /* Assets.xcassets */; };
 		2BFCCA781F543E4800797DB5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BFCCA761F543E4800797DB5 /* LaunchScreen.storyboard */; };
-		2BFCCA821F543E9300797DB5 /* LoadLocalHtmlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BFCCA811F543E9300797DB5 /* LoadLocalHtmlViewController.m */; };
+		2BFCCA821F543E9300797DB5 /* LoadLocalHTMLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BFCCA811F543E9300797DB5 /* LoadLocalHTMLViewController.m */; };
 		2BFCCA851F543E9B00797DB5 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BFCCA841F543E9B00797DB5 /* RootViewController.m */; };
 		2BFCCA8F1F543EEB00797DB5 /* qixi.html in Resources */ = {isa = PBXBuildFile; fileRef = 2BFCCA8B1F543EEB00797DB5 /* qixi.html */; };
 		2BFCCA911F54401100797DB5 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 2BFCCA901F54401100797DB5 /* images */; };
@@ -22,7 +22,7 @@
 		2BFCCAA21F544E4600797DB5 /* PhotosUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BFCCAA01F544E4600797DB5 /* PhotosUI.framework */; };
 		4F7E6EC4213CE812007BB837 /* WCLegacyWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7E6EC3213CE812007BB837 /* WCLegacyWebView.m */; };
 		4FA4E26B218351BF002F407A /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA4E26A218351BF002F407A /* TestViewController.m */; };
-		4FBBDA46213C36E500F21DE5 /* LoadHtmlCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBBDA45213C36E500F21DE5 /* LoadHtmlCodeViewController.m */; };
+		4FBBDA46213C36E500F21DE5 /* LoadHTMLCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBBDA45213C36E500F21DE5 /* LoadHTMLCodeViewController.m */; };
 		4FD95301232A4F6E00A9E163 /* WCUIWebViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD95300232A4F6E00A9E163 /* WCUIWebViewTool.m */; };
 /* End PBXBuildFile section */
 
@@ -34,8 +34,8 @@
 		2BFCCA741F543E4800797DB5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2BFCCA771F543E4800797DB5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2BFCCA791F543E4800797DB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2BFCCA801F543E9300797DB5 /* LoadLocalHtmlViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadLocalHtmlViewController.h; sourceTree = "<group>"; };
-		2BFCCA811F543E9300797DB5 /* LoadLocalHtmlViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadLocalHtmlViewController.m; sourceTree = "<group>"; };
+		2BFCCA801F543E9300797DB5 /* LoadLocalHTMLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadLocalHTMLViewController.h; sourceTree = "<group>"; };
+		2BFCCA811F543E9300797DB5 /* LoadLocalHTMLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadLocalHTMLViewController.m; sourceTree = "<group>"; };
 		2BFCCA831F543E9B00797DB5 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		2BFCCA841F543E9B00797DB5 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		2BFCCA8B1F543EEB00797DB5 /* qixi.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = qixi.html; sourceTree = "<group>"; };
@@ -52,8 +52,8 @@
 		4F7E6EC3213CE812007BB837 /* WCLegacyWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCLegacyWebView.m; sourceTree = "<group>"; };
 		4FA4E269218351BF002F407A /* TestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		4FA4E26A218351BF002F407A /* TestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
-		4FBBDA44213C36E500F21DE5 /* LoadHtmlCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadHtmlCodeViewController.h; sourceTree = "<group>"; };
-		4FBBDA45213C36E500F21DE5 /* LoadHtmlCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadHtmlCodeViewController.m; sourceTree = "<group>"; };
+		4FBBDA44213C36E500F21DE5 /* LoadHTMLCodeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadHTMLCodeViewController.h; sourceTree = "<group>"; };
+		4FBBDA45213C36E500F21DE5 /* LoadHTMLCodeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadHTMLCodeViewController.m; sourceTree = "<group>"; };
 		4FD952FF232A4F6E00A9E163 /* WCUIWebViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCUIWebViewTool.h; sourceTree = "<group>"; };
 		4FD95300232A4F6E00A9E163 /* WCUIWebViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCUIWebViewTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,10 +119,10 @@
 			isa = PBXGroup;
 			children = (
 				2BFCCA921F5447E700797DB5 /* Utility */,
-				2BFCCA801F543E9300797DB5 /* LoadLocalHtmlViewController.h */,
-				2BFCCA811F543E9300797DB5 /* LoadLocalHtmlViewController.m */,
-				4FBBDA44213C36E500F21DE5 /* LoadHtmlCodeViewController.h */,
-				4FBBDA45213C36E500F21DE5 /* LoadHtmlCodeViewController.m */,
+				2BFCCA801F543E9300797DB5 /* LoadLocalHTMLViewController.h */,
+				2BFCCA811F543E9300797DB5 /* LoadLocalHTMLViewController.m */,
+				4FBBDA44213C36E500F21DE5 /* LoadHTMLCodeViewController.h */,
+				4FBBDA45213C36E500F21DE5 /* LoadHTMLCodeViewController.m */,
 				4FA4E269218351BF002F407A /* TestViewController.h */,
 				4FA4E26A218351BF002F407A /* TestViewController.m */,
 			);
@@ -267,7 +267,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BFCCA821F543E9300797DB5 /* LoadLocalHtmlViewController.m in Sources */,
+				2BFCCA821F543E9300797DB5 /* LoadLocalHTMLViewController.m in Sources */,
 				4FD95301232A4F6E00A9E163 /* WCUIWebViewTool.m in Sources */,
 				4F7E6EC4213CE812007BB837 /* WCLegacyWebView.m in Sources */,
 				2BFCCA6D1F543E4800797DB5 /* AppDelegate.m in Sources */,
@@ -276,7 +276,7 @@
 				2BFCCA9B1F5447E700797DB5 /* UIView+StatusBar.m in Sources */,
 				2BFCCA9C1F5447E700797DB5 /* WCRuntimeHelper.m in Sources */,
 				2BFCCA851F543E9B00797DB5 /* RootViewController.m in Sources */,
-				4FBBDA46213C36E500F21DE5 /* LoadHtmlCodeViewController.m in Sources */,
+				4FBBDA46213C36E500F21DE5 /* LoadHTMLCodeViewController.m in Sources */,
 				2BFCCA9D1F5447E700797DB5 /* WCScreenshotHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

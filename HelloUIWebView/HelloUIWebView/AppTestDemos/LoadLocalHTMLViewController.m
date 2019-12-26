@@ -6,14 +6,14 @@
 //
 //
 
-#import "LoadLocalHtmlViewController.h"
+#import "LoadLocalHTMLViewController.h"
 #import "WCScreenshotHelper.h"
 
-@interface LoadLocalHtmlViewController ()
+@interface LoadLocalHTMLViewController ()
 @property (nonatomic, strong) UIWebView *webView;
 @end
 
-@implementation LoadLocalHtmlViewController
+@implementation LoadLocalHTMLViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
