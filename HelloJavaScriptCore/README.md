@@ -88,6 +88,28 @@ JSValue *result = [tripleFunction callWithArguments:@[@5]];
 XCTAssertTrue([result toInt32] == 15);
 ```
 
+
+
+另外，JSValue还可以封装JavaScript闭包，作为回调函数传给native。例如
+
+```objective-c
+context[@"calculate"] = ^(JSValue *param1, JSValue *param2, JSValue *param3, JSValue *callback) {
+    if ([param1.toString isEqualToString:@"+"]) {
+        int sum = param2.toInt32 + param3.toInt32;
+        [callback callWithArguments:@[@(sum)]];
+    }
+};
+[context evaluateScript:@"var result; calculate('+', 3, 4, function(res){ \
+ result = res;\
+ })();"];
+result = context[@"result"];
+XCTAssertTrue([result toInt32] == 7);
+```
+
+注意：callback不能是具体的block类型，否则context执行时会抛出异常。
+
+
+
 说明
 
 > 1. 通过`-[JSValue callWithArguments:]`方法可以执行对一个JavaScript函数的调用

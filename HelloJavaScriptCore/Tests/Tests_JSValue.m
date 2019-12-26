@@ -47,11 +47,27 @@
 }
 
 - (void)test_function_wrapper {
+    JSValue *result;
     JSContext *context = [[JSContext alloc] init];
+    
+    // Case 1: JSValue represents JavaScript function
     [context evaluateScript:@"var triple = function(value) { return value * 3 }"];
     JSValue *tripleFunction = context[@"triple"];
-    JSValue *result = [tripleFunction callWithArguments:@[@5]];
+    result = [tripleFunction callWithArguments:@[@5]];
     XCTAssertTrue([result toInt32] == 15);
+    
+    // Case 2: callback must be JSValue, not the block type NSNumber*(^callback)(NSNumber *, NSNumber *)
+    context[@"calculate"] = ^(JSValue *param1, JSValue *param2, JSValue *param3, JSValue *callback) {
+        if ([param1.toString isEqualToString:@"+"]) {
+            int sum = param2.toInt32 + param3.toInt32;
+            [callback callWithArguments:@[@(sum)]];
+        }
+    };
+    [context evaluateScript:@"var result; calculate('+', 3, 4, function(res){ \
+     result = res;\
+     })();"];
+    result = context[@"result"];
+    XCTAssertTrue([result toInt32] == 7);
 }
 
 - (void)test_undefined {
