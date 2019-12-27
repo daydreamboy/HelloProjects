@@ -187,4 +187,23 @@ extern void RHJSContextMakeClassAvailable(JSContext *context, Class class){
     NSLog(@"pointValue: %@", pointValue);
 }
 
+- (void)test_MyPoint_not_on_main_thread {
+    __block MyPoint *p;
+    JSContext *context = [[JSContext alloc] init];
+    context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
+        NSLog(@"JS Error: %@", exception);
+        // @see https://stackoverflow.com/questions/34273540/ios-javascriptcore-exception-detailed-stacktrace-info
+        NSLog(@"More Info: line: %@:%@, stack: %@", exception[@"line"], exception[@"column"], exception[@"stack"]);
+    };
+
+    context[@"MyPoint"] = [MyPoint class];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [context evaluateScript:@"var p = new MyPoint(1, 2); p.setXY(3, 4);"];
+        p = [context[@"p"] toObjectOfClass:[MyPoint class]];
+        XCTAssertTrue(p.x == 3);
+        XCTAssertTrue(p.y == 4);
+    });
+}
+
 @end

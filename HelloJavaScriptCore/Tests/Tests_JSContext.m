@@ -72,9 +72,8 @@
 }
 
 - (void)test_block_retain_recycle {
-    // TODO: check retain recycle
     __weak JSContext *weak_context;
-    {
+    @autoreleasepool {
         JSContext *context = [[JSContext alloc] init];
         [context evaluateScript:@"var triple = function(value) { return value * 3 }"];
         JSValue *result = [context evaluateScript:@"triple(10)"];
@@ -90,7 +89,7 @@
 
 - (void)test_block_retain_recycle_solution {
     __weak JSContext *weak_context;
-    {
+    @autoreleasepool {
         JSContext *context = [[JSContext alloc] init];
         [context evaluateScript:@"var triple = function(value) { return value * 3 }"];
         [context evaluateScript:@"var result = triple(10)"];
@@ -102,8 +101,7 @@
         weak_context = context;
     }
     
-    // TODO: check nil
-    //XCTAssertNil(weak_context);
+    XCTAssertNil(weak_context);
 }
 
 - (void)test_JSContext_currentArguments {
@@ -139,6 +137,37 @@
     
     [context evaluateScript:@"changeColor(255, 1, 2);"];
     [context evaluateScript:@"changeColor(255, 1, 2, 255);"];
+}
+
+- (void)test_execute_not_on_main_thread {
+    JSContext *context = [[JSContext alloc] init];
+    
+    // Case 1: exceptionHandler maybe called on non-main thread
+    context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
+        NSLog(@"JS Error: %@", exception); // JS Error: SyntaxError: Unexpected end of script
+        NSLog(@"More Info: line: %@:%@, stack: %@", exception[@"line"], exception[@"column"], exception[@"stack"]);
+        XCTAssertFalse([[NSThread currentThread] isMainThread]);
+    };
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [context evaluateScript:@"function multiply(value1, value2) { return value1 * value2 "];
+    });
+    
+    // Case 2:
+    context[@"simplifyString"] = ^(NSString *input) {
+        XCTAssertFalse([[NSThread currentThread] isMainThread]);
+        
+        NSMutableString *mutableString = [input mutableCopy];
+        CFStringTransform((__bridge CFMutableStringRef)mutableString, NULL, kCFStringTransformToLatin, NO);
+        CFStringTransform((__bridge CFMutableStringRef)mutableString, NULL, kCFStringTransformStripCombiningMarks, NO);
+        return mutableString;
+    };
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        JSValue *result = [context evaluateScript:@"simplifyString('안녕하새요!')"];
+        NSLog(@"%@", result);
+        XCTAssertEqualObjects([result toString], @"annyeonghasaeyo!");
+    });
 }
 
 @end

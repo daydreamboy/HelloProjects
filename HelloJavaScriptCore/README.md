@@ -90,7 +90,7 @@ XCTAssertTrue([result toInt32] == 15);
 
 
 
-另外，JSValue还可以封装JavaScript闭包，作为回调函数传给native。例如
+另外，JSValue还可以封装JavaScript闭包，作为回调函数传给native[^8]。例如
 
 ```objective-c
 context[@"calculate"] = ^(JSValue *param1, JSValue *param2, JSValue *param3, JSValue *callback) {
@@ -489,6 +489,8 @@ WKWebView *webView = [[WKWebView alloc] initWithFrame:frame configuration:config
 [^5]:https://stackoverflow.com/questions/21714365/uiwebview-javascript-losing-reference-to-ios-jscontext-namespace-object
 [^6]:https://stackoverflow.com/questions/25792131/how-to-get-jscontext-from-wkwebview
 [^7]:https://stackoverflow.com/questions/34273540/ios-javascriptcore-exception-detailed-stacktrace-info
+
+[^8]:https://stackoverflow.com/a/41201799
 
 
 

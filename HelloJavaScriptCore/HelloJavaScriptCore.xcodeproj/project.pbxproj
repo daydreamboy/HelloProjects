@@ -80,6 +80,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F324EB223B5AE9400288B29 /* DummyClass */ = {
+			isa = PBXGroup;
+			children = (
+				4F986B052216C3950096026E /* Person.h */,
+				4F986B062216C3950096026E /* Person.m */,
+				4F828E71221939DD00D9CD51 /* MyPoint.h */,
+				4F828E72221939DD00D9CD51 /* MyPoint.m */,
+			);
+			path = DummyClass;
+			sourceTree = "<group>";
+		};
 		4F5E8B7D2215125B00269853 = {
 			isa = PBXGroup;
 			children = (
@@ -129,15 +140,12 @@
 		4F5E8BAE22151D5A00269853 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				4F324EB223B5AE9400288B29 /* DummyClass */,
 				4F5E8BAF22151D5A00269853 /* Tests.m */,
 				4F5E8BB722151D7200269853 /* Tests_JSContext.m */,
 				4F986B01221591650096026E /* Tests_JSValue.m */,
 				4F986B082216C54B0096026E /* Tests_JSExport.m */,
 				4F5E8BB122151D5A00269853 /* Info.plist */,
-				4F986B052216C3950096026E /* Person.h */,
-				4F986B062216C3950096026E /* Person.m */,
-				4F828E71221939DD00D9CD51 /* MyPoint.h */,
-				4F828E72221939DD00D9CD51 /* MyPoint.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
