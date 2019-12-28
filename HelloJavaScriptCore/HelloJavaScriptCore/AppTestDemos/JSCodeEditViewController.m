@@ -8,12 +8,13 @@
 
 #import "JSCodeEditViewController.h"
 #import "WCMacroKit.h"
+#import <WebKit/WebKit.h>
 
 @interface JSCodeEditViewController ()
-@property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UITextView *textViewEdit;
 @property (nonatomic, strong, readonly) NSArray *leftBarButtonItems;
 @property (nonatomic, strong, readonly) NSArray *rightBarButtonItems;
+@property (nonatomic, strong) WKWebView *webView;
 @end
 
 @implementation JSCodeEditViewController
@@ -28,20 +29,18 @@
     self.navigationItem.leftBarButtonItems = self.leftBarButtonItems;
     self.navigationItem.rightBarButtonItems = self.rightBarButtonItems;
     
-    [self.scrollView addSubview:self.textViewEdit];
-    [self.view addSubview:self.scrollView];
-    
-    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-    
-    self.scrollView.contentSize = CGSizeMake(screenSize.width, CGRectGetMaxY(self.textViewEdit.frame) + 10);
-    self.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+//    [self.view addSubview:self.textViewEdit];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUIKeyboardWillShowNotification:) name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUIKeyboardWillHideNotification:) name:UIKeyboardWillHideNotification object:nil];
     
     self.textViewEdit.text = self.JSCodeString;
+    
+    
+    NSString *HTMLString = [NSString stringWithFormat:@"<html><body><pre class=\"prettyprint linenums\"><code class=\"language-js\">%@</code></pre></body></html>", self.JSCodeString];
+    [self.webView loadHTMLString:HTMLString baseURL:nil];
+    [self.view addSubview:self.webView];
 }
-
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
@@ -51,16 +50,9 @@
 #pragma mark - NSNotifications
 
 - (void)handleUIKeyboardWillShowNotification:(NSNotification *)notification {
-    NSDictionary *userInfo = [notification userInfo];
-    CGRect keyboardFrame = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue];
-    
-    self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, CGRectGetHeight(keyboardFrame), 0);
-    self.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(64, 0, CGRectGetHeight(keyboardFrame), 0);
 }
 
 - (void)handleUIKeyboardWillHideNotification:(NSNotification *)notification {
-    self.scrollView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-    self.scrollView.scrollIndicatorInsets = UIEdgeInsetsMake(64, 0, 0, 0);
 }
 
 #pragma mark - Getters
@@ -78,11 +70,44 @@
         textView.layer.cornerRadius = 1;
         textView.backgroundColor = [UIColor blackColor];
         textView.textColor = [UIColor whiteColor];
+        textView.font = [UIFont systemFontOfSize:15];
+        textView.tintColor = [UIColor cyanColor];
         
         _textViewEdit = textView;
     }
     
     return _textViewEdit;
+}
+
+- (WKWebView *)webView {
+    if (!_webView) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        CGFloat startY = CGRectGetMaxY(self.navigationController.navigationBar.frame);
+        CGRect frame = CGRectMake(0, 0, screenSize.width, screenSize.height - startY);
+        
+        WKUserContentController *userContentController = [WKUserContentController new];
+        
+        // https://stackoverflow.com/a/26583062
+        NSString *JSCode1 = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
+        WKUserScript *script1 = [[WKUserScript alloc] initWithSource:JSCode1 injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+        [userContentController addUserScript:script1];
+        
+        NSError *error;
+        
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"run_prettify" ofType:@"js"];
+        NSString *JSCode2 = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+        WKUserScript *script2 = [[WKUserScript alloc] initWithSource:JSCode2 injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:YES];
+        
+        [userContentController addUserScript:script2];
+        
+        WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
+        configuration.userContentController = userContentController;
+        
+        WKWebView *webView = [[WKWebView alloc] initWithFrame:frame configuration:configuration];
+        _webView = webView;
+    }
+    
+    return _webView;
 }
 
 - (NSArray *)leftBarButtonItems {
@@ -100,26 +125,6 @@
     UIBarButtonItem *runItem = [[UIBarButtonItem alloc] initWithTitle:@"运行" style:UIBarButtonItemStyleDone target:self action:@selector(runItemClicked:)];
     
     return @[runItem, pasteItem, clearItem, formatItem];
-}
-
-- (UIScrollView *)scrollView {
-    if (!_scrollView) {
-        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height)];
-#ifdef __IPHONE_11_0
-#define IOS11_OR_LATER  ([[[UIDevice currentDevice] systemVersion] compare:@"11.0" options:NSNumericSearch] != NSOrderedAscending)
-        if (IOS11_OR_LATER) {
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
-            scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-#pragma GCC diagnostic pop
-        }
-#undef IOS11_OR_LATER
-#endif
-        _scrollView = scrollView;
-    }
-    
-    return _scrollView;
 }
 
 #pragma mark - Actions

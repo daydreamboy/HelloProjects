@@ -8,19 +8,7 @@
 
 #import "JSCallNativeInWKWebViewViewController.h"
 #import <WebKit/WebKit.h>
-
-#define ALERT_TIP(title, msg, cancel, dismissCompletion) \
-\
-do { \
-    if ([UIAlertController class]) { \
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:(title) message:(msg) preferredStyle:UIAlertControllerStyleAlert]; \
-        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:(cancel) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) { \
-            dismissCompletion; \
-        }]; \
-        [alert addAction:cancelAction]; \
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alert animated:YES completion:nil]; \
-    } \
-} while (0)
+#import "WCMacroKit.h"
 
 @interface JSCallNativeInWKWebViewViewController () <WKScriptMessageHandler>
 @property (nonatomic, strong) WKWebView *webView;
@@ -47,15 +35,14 @@ do { \
         WKUserContentController *userContentController = [WKUserContentController new];
         
         // https://stackoverflow.com/a/26583062
-        NSString *jScript = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
+        NSString *JSCode1 = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
+        WKUserScript *script1 = [[WKUserScript alloc] initWithSource:JSCode1 injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+        [userContentController addUserScript:script1];
         
-        WKUserScript *wkUScript = [[WKUserScript alloc] initWithSource:jScript injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
-        [userContentController addUserScript:wkUScript];
+        NSString *JSCode2 = @"window.webkit.messageHandlers.welcome.postMessage({msg: 'Welcome to use WKWebView'});";
+        WKUserScript *script2 = [[WKUserScript alloc] initWithSource:JSCode2 injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:YES];
         
-        NSString *JSSourceCode = @"window.webkit.messageHandlers.welcome.postMessage({msg: 'Welcome to use WKWebView'});";
-        WKUserScript *JSCode = [[WKUserScript alloc] initWithSource:JSSourceCode injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:YES];
-        
-        [userContentController addUserScript:JSCode];
+        [userContentController addUserScript:script2];
         [userContentController addScriptMessageHandler:self name:@"buttonClicked"];
         [userContentController addScriptMessageHandler:self name:@"welcome"];
         
@@ -78,7 +65,7 @@ do { \
         if ([messageBody isKindOfClass:[NSDictionary class]]) {
             NSLog(@"messageBody: %@", messageBody);
             NSString *msg = [NSString stringWithFormat:@"messageBody: %@", messageBody];
-            ALERT_TIP(@"JavaScript触发`buttonClicked`消息", msg, @"Ok", nil);
+            SHOW_ALERT(@"JavaScript触发`buttonClicked`消息", msg, @"Ok", nil);
         }
     }
     else if ([message.name isEqualToString:@"welcome"]) {
@@ -86,7 +73,7 @@ do { \
         if ([messageBody isKindOfClass:[NSDictionary class]]) {
             NSLog(@"messageBody: %@", messageBody);
             NSString *msg = ((NSDictionary *)messageBody)[@"msg"];
-            ALERT_TIP(@"JavaScript触发`welcome`消息", msg, @"Ok", nil);
+            SHOW_ALERT(@"JavaScript触发`welcome`消息", msg, @"Ok", nil);
         }
     }
 }

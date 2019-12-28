@@ -11,6 +11,8 @@
 		4F1B380D23B75BD700349B62 /* JSTestList in Resources */ = {isa = PBXBuildFile; fileRef = 4F1B380C23B75BD700349B62 /* JSTestList */; };
 		4F1B381123B75D9C00349B62 /* WCFileManagerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B381023B75D9C00349B62 /* WCFileManagerTool.m */; };
 		4F1B381423B7750400349B62 /* JSCodeEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B381323B7750400349B62 /* JSCodeEditViewController.m */; };
+		4F1B384423B7803200349B62 /* run_prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F1B384323B7803200349B62 /* run_prettify.js */; };
+		4F1B384723B78AC200349B62 /* WCWebViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B384623B78AC200349B62 /* WCWebViewTool.m */; };
 		4F5E8B8B2215125B00269853 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E8B8A2215125B00269853 /* AppDelegate.m */; };
 		4F5E8B932215125D00269853 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F5E8B922215125D00269853 /* Assets.xcassets */; };
 		4F5E8B962215125D00269853 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F5E8B942215125D00269853 /* LaunchScreen.storyboard */; };
@@ -47,6 +49,9 @@
 		4F1B381223B7750400349B62 /* JSCodeEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSCodeEditViewController.h; sourceTree = "<group>"; };
 		4F1B381323B7750400349B62 /* JSCodeEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSCodeEditViewController.m; sourceTree = "<group>"; };
 		4F1B381523B77D5100349B62 /* WCMacroKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroKit.h; sourceTree = "<group>"; };
+		4F1B384323B7803200349B62 /* run_prettify.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = run_prettify.js; sourceTree = "<group>"; };
+		4F1B384523B78AC200349B62 /* WCWebViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCWebViewTool.h; sourceTree = "<group>"; };
+		4F1B384623B78AC200349B62 /* WCWebViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCWebViewTool.m; sourceTree = "<group>"; };
 		4F5E8B862215125B00269853 /* HelloJavaScriptCore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloJavaScriptCore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F5E8B892215125B00269853 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F5E8B8A2215125B00269853 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -98,8 +103,19 @@
 				4F1B380F23B75D9C00349B62 /* WCFileManagerTool.h */,
 				4F1B381023B75D9C00349B62 /* WCFileManagerTool.m */,
 				4F1B381523B77D5100349B62 /* WCMacroKit.h */,
+				4F1B384523B78AC200349B62 /* WCWebViewTool.h */,
+				4F1B384623B78AC200349B62 /* WCWebViewTool.m */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		4F1B384223B7801500349B62 /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				4F1B384323B7803200349B62 /* run_prettify.js */,
+				4F828E6F2219254500D9CD51 /* mustache.js */,
+			);
+			path = libs;
 			sourceTree = "<group>";
 		};
 		4F324EB223B5AE9400288B29 /* DummyClass */ = {
@@ -180,9 +196,9 @@
 		4F828E6E2219254500D9CD51 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F1B384223B7801500349B62 /* libs */,
 				4F1B380C23B75BD700349B62 /* JSTestList */,
 				4F828E77221A5D5800D9CD51 /* index.html */,
-				4F828E6F2219254500D9CD51 /* mustache.js */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -268,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F1B380D23B75BD700349B62 /* JSTestList in Resources */,
+				4F1B384423B7803200349B62 /* run_prettify.js in Resources */,
 				4F5E8B962215125D00269853 /* LaunchScreen.storyboard in Resources */,
 				4F828E78221A5D5900D9CD51 /* index.html in Resources */,
 				4F828E702219254500D9CD51 /* mustache.js in Resources */,
@@ -291,6 +308,7 @@
 			files = (
 				4F5E8B992215125D00269853 /* main.m in Sources */,
 				4F828E76221A5AB100D9CD51 /* UseJSContextOfUIWebViewViewController.m in Sources */,
+				4F1B384723B78AC200349B62 /* WCWebViewTool.m in Sources */,
 				4F1B381423B7750400349B62 /* JSCodeEditViewController.m in Sources */,
 				4F5E8B8B2215125B00269853 /* AppDelegate.m in Sources */,
 				4F5E8BA522151D0C00269853 /* RootViewController.m in Sources */,
