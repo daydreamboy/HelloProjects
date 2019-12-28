@@ -243,13 +243,27 @@ UIView的safeAreaInsets属性，针对下面两种不同的View分区来计算�
 
 
 
-如果完全不需要系统自动调整UIScrollView的inset，则使用下面的代码[^5]设置
+如果完全不需要系统自动调整UIScrollView的inset，则使用下面的Swift代码[^5]设置
 
 ```swift
 if #available(iOS 11.0, *) {
     scrollView.contentInsetAdjustmentBehavior = .never
 } else {
     vc.automaticallyAdjustsScrollViewInsets = false
+}
+```
+
+或者Objective-C代码
+
+```objective-c
+if (@available(iOS 11.0, *)) {
+    scrollView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+}
+else {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
+    vc.automaticallyAdjustsScrollViewInsets = NO;
+#pragma GCC diagnostic pop
 }
 ```
 
