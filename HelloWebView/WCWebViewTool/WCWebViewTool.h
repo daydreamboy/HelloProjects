@@ -16,7 +16,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - WKWebView
 
+#pragma mark > Query HTML
 
+/**
+ Get the whole html sorce code from webView
+
+ @param webView the WKWebView
+ @param completion the callback
+ - documentString, whole html sorce code
+ - error, error info
+ @return YES if operate successfully, NO if parameters are not correct.
+ @see https://stackoverflow.com/a/34759075
+ */
++ (BOOL)getDocumentStringWithWKWebView:(WKWebView *)webView completion:(void (^)(NSString * _Nullable documentString, NSError * _Nullable error))completion;
+
+
+#pragma mark > Insert HTML
+
+#pragma mark > Insert CSS
+
+// @see https://stackoverflow.com/a/33126467
++ (BOOL)insertCSSWithWKWebView:(WKWebView *)webView CSSFilePath:(NSString *)CSSFilePath;
 
 #pragma mark - UIWebView
 
