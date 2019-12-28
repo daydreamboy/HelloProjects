@@ -8,8 +8,13 @@
 
 #import "JSCodeEditViewController.h"
 #import "WCMacroKit.h"
+#import "WCWebViewTool.h"
 #import <WebKit/WebKit.h>
 
+// https://github.com/google/code-prettify
+// run_prettify.js: https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js
+// prettify.css: https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.css
+// Example: https://raw.githack.com/google/code-prettify/master/examples/quine.html
 @interface JSCodeEditViewController ()
 @property (nonatomic, strong) UITextView *textViewEdit;
 @property (nonatomic, strong, readonly) NSArray *leftBarButtonItems;
@@ -97,8 +102,17 @@
         NSString *filePath = [[NSBundle mainBundle] pathForResource:@"run_prettify" ofType:@"js"];
         NSString *JSCode2 = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
         WKUserScript *script2 = [[WKUserScript alloc] initWithSource:JSCode2 injectionTime:WKUserScriptInjectionTimeAtDocumentStart forMainFrameOnly:YES];
-        
         [userContentController addUserScript:script2];
+        
+        filePath = [[NSBundle mainBundle] pathForResource:@"prettify_modified" ofType:@"css"];
+        NSString *string = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+        string = [string stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+        string = [string stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+        string = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
+        NSString *JSCodeString = [NSString stringWithFormat:@"var style = document.createElement('style'); style.innerHTML = '%@'; document.head.appendChild(style);", string];
+        WKUserScript *script3 = [[WKUserScript alloc] initWithSource:JSCodeString injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+        [userContentController addUserScript:script3];
         
         WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
         configuration.userContentController = userContentController;
@@ -129,12 +143,16 @@
 
 #pragma mark - Actions
 
-- (void)formatItemClicked:(id)sender {
-    SHOW_ALERT(@"Whoops!", @"Not supported now", @"Ok", nil);
-}
-
 - (void)listItemClicked:(id)sender {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)formatItemClicked:(id)sender {
+//    SHOW_ALERT(@"Whoops!", @"Not supported now", @"Ok", nil);
+    
+    [WCWebViewTool getDocumentStringWithWKWebView:self.webView completion:^(NSString * _Nullable documentString, NSError * _Nullable error) {
+        NSLog(@"%@", documentString);
+    }];
 }
 
 - (void)clearItemClicked:(id)sender {

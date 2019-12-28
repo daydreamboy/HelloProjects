@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,6 +17,20 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface WCWebViewTool ()
+
+#pragma mark > Query HTML
+
+/**
+ Get the whole html sorce code from webView
+
+ @param webView the UIWebView
+ @return the whole html sorce code
+ */
++ (BOOL)getDocumentStringWithWKWebView:(WKWebView *)webView completion:(void (^)(NSString * _Nullable documentString, NSError * _Nullable error))completion;
+
+#pragma mark > Insert CSS
+
++ (BOOL)insertCSSWithWKWebView:(WKWebView *)webView CSSFilePath:(NSString *)CSSFilePath;
 
 @end
 

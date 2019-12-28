@@ -13,6 +13,7 @@
 		4F1B381423B7750400349B62 /* JSCodeEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B381323B7750400349B62 /* JSCodeEditViewController.m */; };
 		4F1B384423B7803200349B62 /* run_prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F1B384323B7803200349B62 /* run_prettify.js */; };
 		4F1B384723B78AC200349B62 /* WCWebViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B384623B78AC200349B62 /* WCWebViewTool.m */; };
+		4F214E4C23B7961300A5911F /* prettify_modified.css in Resources */ = {isa = PBXBuildFile; fileRef = 4F214E4B23B7961300A5911F /* prettify_modified.css */; };
 		4F5E8B8B2215125B00269853 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E8B8A2215125B00269853 /* AppDelegate.m */; };
 		4F5E8B932215125D00269853 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F5E8B922215125D00269853 /* Assets.xcassets */; };
 		4F5E8B962215125D00269853 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F5E8B942215125D00269853 /* LaunchScreen.storyboard */; };
@@ -52,6 +53,7 @@
 		4F1B384323B7803200349B62 /* run_prettify.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = run_prettify.js; sourceTree = "<group>"; };
 		4F1B384523B78AC200349B62 /* WCWebViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCWebViewTool.h; sourceTree = "<group>"; };
 		4F1B384623B78AC200349B62 /* WCWebViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCWebViewTool.m; sourceTree = "<group>"; };
+		4F214E4B23B7961300A5911F /* prettify_modified.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = prettify_modified.css; sourceTree = "<group>"; };
 		4F5E8B862215125B00269853 /* HelloJavaScriptCore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloJavaScriptCore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F5E8B892215125B00269853 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F5E8B8A2215125B00269853 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 		4F1B384223B7801500349B62 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				4F214E4B23B7961300A5911F /* prettify_modified.css */,
 				4F1B384323B7803200349B62 /* run_prettify.js */,
 				4F828E6F2219254500D9CD51 /* mustache.js */,
 			);
@@ -285,6 +288,7 @@
 			files = (
 				4F1B380D23B75BD700349B62 /* JSTestList in Resources */,
 				4F1B384423B7803200349B62 /* run_prettify.js in Resources */,
+				4F214E4C23B7961300A5911F /* prettify_modified.css in Resources */,
 				4F5E8B962215125D00269853 /* LaunchScreen.storyboard in Resources */,
 				4F828E78221A5D5900D9CD51 /* index.html in Resources */,
 				4F828E702219254500D9CD51 /* mustache.js in Resources */,
