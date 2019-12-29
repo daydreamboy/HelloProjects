@@ -105,14 +105,7 @@
         [userContentController addUserScript:script2];
         
         filePath = [[NSBundle mainBundle] pathForResource:@"prettify_modified" ofType:@"css"];
-        NSString *string = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
-        string = [string stringByReplacingOccurrencesOfString:@"\n" withString:@""];
-        string = [string stringByReplacingOccurrencesOfString:@"\r" withString:@""];
-        string = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-        
-        NSString *JSCodeString = [NSString stringWithFormat:@"var style = document.createElement('style'); style.innerHTML = '%@'; document.head.appendChild(style);", string];
-        WKUserScript *script3 = [[WKUserScript alloc] initWithSource:JSCodeString injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
-        [userContentController addUserScript:script3];
+        [userContentController addUserScript:[WCWebViewTool userScriptWithAppendCSSAtFilePath:filePath]];
         
         WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
         configuration.userContentController = userContentController;

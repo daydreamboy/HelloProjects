@@ -27,38 +27,34 @@
     return YES;
 }
 
-#pragma mark > Insert CSS
++ (nullable WKUserScript *)userScriptWithAppendCSSAtFilePath:(NSString *)CSSFilePath {
+    return [self userScriptWithAppendCSSAtFilePath:CSSFilePath injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+}
 
-+ (BOOL)insertCSSWithWKWebView:(WKWebView *)webView CSSFilePath:(NSString *)CSSFilePath {
-    if (![webView isKindOfClass:[WKWebView class]] || ![CSSFilePath isKindOfClass:[NSString class]]) {
-        return NO;
-    }
-    
-    if (![[NSFileManager defaultManager] fileExistsAtPath:CSSFilePath]) {
-        return NO;
++ (nullable WKUserScript *)userScriptWithAppendCSSAtFilePath:(NSString *)CSSFilePath injectionTime:(WKUserScriptInjectionTime)injectionTime forMainFrameOnly:(BOOL)forMainFrameOnly {
+    if (![CSSFilePath isKindOfClass:[NSString class]]) {
+        return nil;
     }
     
     NSError *error;
     NSString *string = [NSString stringWithContentsOfFile:CSSFilePath encoding:NSUTF8StringEncoding error:&error];
     if (error) {
-        return NO;
+        return nil;
     }
     
+    // Note: remove \n and \r to avoid executing JS failed
     string = [string stringByReplacingOccurrencesOfString:@"\n" withString:@""];
     string = [string stringByReplacingOccurrencesOfString:@"\r" withString:@""];
     string = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
     if (!string.length) {
-        return NO;
+        return nil;
     }
     
     NSString *JSCodeString = [NSString stringWithFormat:@"var style = document.createElement('style'); style.innerHTML = '%@'; document.head.appendChild(style);", string];
-    [webView evaluateJavaScript:JSCodeString completionHandler:^(id _Nullable value, NSError * _Nullable error) {
-        if (error) {
-            NSLog(@"%@", error);
-        }
-    }];
+    WKUserScript *userScript = [[WKUserScript alloc] initWithSource:JSCodeString injectionTime:injectionTime forMainFrameOnly:forMainFrameOnly];
     
-    return YES;
+    return userScript;
 }
 
 @end
