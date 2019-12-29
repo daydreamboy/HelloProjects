@@ -65,6 +65,38 @@
     return YES;
 }
 
+#pragma mark > Create User Script
+
++ (nullable WKUserScript *)userScriptWithAppendCSSAtFilePath:(NSString *)CSSFilePath {
+    return [self userScriptWithAppendCSSAtFilePath:CSSFilePath injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+}
+
++ (nullable WKUserScript *)userScriptWithAppendCSSAtFilePath:(NSString *)CSSFilePath injectionTime:(WKUserScriptInjectionTime)injectionTime forMainFrameOnly:(BOOL)forMainFrameOnly {
+    if (![CSSFilePath isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    NSError *error;
+    NSString *string = [NSString stringWithContentsOfFile:CSSFilePath encoding:NSUTF8StringEncoding error:&error];
+    if (error) {
+        return nil;
+    }
+    
+    // Note: remove \n and \r to avoid executing JS failed
+    string = [string stringByReplacingOccurrencesOfString:@"\n" withString:@""];
+    string = [string stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+    string = [string stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    if (!string.length) {
+        return nil;
+    }
+    
+    NSString *JSCodeString = [NSString stringWithFormat:@"var style = document.createElement('style'); style.innerHTML = '%@'; document.head.appendChild(style);", string];
+    WKUserScript *userScript = [[WKUserScript alloc] initWithSource:JSCodeString injectionTime:injectionTime forMainFrameOnly:forMainFrameOnly];
+    
+    return userScript;
+}
+
 #pragma mark - UIWebView
 
 #pragma mark > Query HTML

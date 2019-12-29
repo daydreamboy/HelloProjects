@@ -33,10 +33,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark > Insert HTML
 
-#pragma mark > Insert CSS
+#pragma mark > Insert CSS after WebView load finished
 
 // @see https://stackoverflow.com/a/33126467
 + (BOOL)insertCSSWithWKWebView:(WKWebView *)webView CSSFilePath:(NSString *)CSSFilePath;
+
+#pragma mark > Create User Script
+
++ (nullable WKUserScript *)userScriptWithAppendCSSAtFilePath:(NSString *)CSSFilePath;
++ (nullable WKUserScript *)userScriptWithAppendCSSAtFilePath:(NSString *)CSSFilePath injectionTime:(WKUserScriptInjectionTime)injectionTime forMainFrameOnly:(BOOL)forMainFrameOnly;
 
 #pragma mark - UIWebView
 
