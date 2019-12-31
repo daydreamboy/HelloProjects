@@ -68,6 +68,14 @@
      })();"];
     result = context[@"result"];
     XCTAssertTrue([result toInt32] == 7);
+    
+    // Abnormal Case 1: JSValue is not a function wrapper
+    [context evaluateScript:@"var fakeFunc = {};"];
+    JSValue *fakeFunction = context[@"fakeFunc"];
+    // result = nil, fakeFunction is not a function wrapper
+    // result = <JSValue object> but isUndefined = YES, fakeFunction has no return value
+    result = [fakeFunction callWithArguments:@[]];
+    XCTAssertNil(result);
 }
 
 - (void)test_undefined {

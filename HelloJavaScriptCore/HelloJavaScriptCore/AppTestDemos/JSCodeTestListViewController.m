@@ -149,7 +149,14 @@
     if (indexPath.row == 0) {
         context[@"alert"] = ^(id object) {
             NSString *message = [object description];
-            SHOW_ALERT(@"JS Alert", message, @"Ok", nil);
+            if ([NSThread isMainThread]) {
+                SHOW_ALERT(@"JS Alert", message, @"Ok", nil);
+            }
+            else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    SHOW_ALERT(@"JS Alert", message, @"Ok", nil);
+                });
+            }
         };
     }
     else if (indexPath.row == 1) {
