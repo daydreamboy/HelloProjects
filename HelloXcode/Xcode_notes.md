@@ -285,9 +285,19 @@ Clang编译器和链接器的文档，官方提供在[这里](https://clang.llvm
 
 
 
+## 6、Xcode常见问题
 
 
 
+### （1）Expected in: /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 11.1.simruntime/Contents/Resources/RuntimeRoot/usr/lib/libobjc.A.dylib[^5]
+
+
+
+运行时报错：Expected in: /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 11.1.simruntime/Contents/Resources/RuntimeRoot/usr/lib/libobjc.A.dylib
+
+原因：工程中存在子工程，而子工程的deployment target版本高于主工程的deployment target版本
+
+解决方法：修改所有子工程的deployment target版本，使它低于或等于主工程的deployment target版本
 
 
 
@@ -301,5 +311,5 @@ Clang编译器和链接器的文档，官方提供在[这里](https://clang.llvm
 [^3]: https://stackoverflow.com/questions/8575822/which-guarantees-does-malloc-make-about-memory-alignment 
 [^4]:https://heartbeat.fritz.ai/xcode-build-settings-in-depth-733667d01a9a
 
-
+[^5]:https://stackoverflow.com/questions/39486064/xcode-8-ios-8-simulator-with-crash-dyld-lazy-symbol-binding-failed-symbol-n
 
