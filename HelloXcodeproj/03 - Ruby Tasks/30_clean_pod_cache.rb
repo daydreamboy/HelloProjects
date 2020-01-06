@@ -3,10 +3,10 @@
 require_relative '../02 - Ruby Helper/rubyscript_helper'
 require 'fileutils'
 
-dir_path = '/Users/wesley_chen/Library/Caches/CocoaPods/Pods-1.2.0/Release'
+dir_path = '~/Library/Caches/CocoaPods/Pods/Release'
 
 # @see https://stackoverflow.com/questions/2370702/one-liner-to-recursively-list-directories-in-ruby
-Dir.glob(dir_path + '/*') do |item|
+Dir.glob(File.expand_path(dir_path) + '/*') do |item|
   next if item == '.' or item == '..'
 
   # @see https://stackoverflow.com/questions/10115591/check-if-a-filename-is-a-folder-or-a-file

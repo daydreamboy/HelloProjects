@@ -38,7 +38,7 @@ def dump_object(arg)
   argName = callerString[/\(.+\)/]
 
   # get content of parenthesis
-  argNameStr = argName.gsub!(/^\(|\)?$/, '')
+  argNameStr = (argName && argName.gsub!(/^\(|\)?$/, '')) || 'empty'
 
   filename = loc.path
   lineNo = loc.lineno
