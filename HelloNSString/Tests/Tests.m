@@ -1413,6 +1413,37 @@
     NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
 }
 
+#pragma mark >> Unicode
+
+- (void)test_unicodePointStringWithString {
+    NSString *string;
+    NSString *output;
+    
+    // Case 1
+    string = @"A";
+    output = [WCStringTool unicodePointStringWithString:string];
+    XCTAssertEqualObjects(output, @"\\U00000041");
+    //NSLog(@"\U00000041"); // Error: Character 'A' cannot be specified by a universal character name
+    
+    // Case 2
+    string = @"🌍";
+    output = [WCStringTool unicodePointStringWithString:string];
+    XCTAssertEqualObjects(output, @"\\U0001F30D");
+    NSLog(@"\U0001F30D");
+    
+    // Case 3
+    string = @"";
+    output = [WCStringTool unicodePointStringWithString:string];
+    XCTAssertEqualObjects(output, @"\\U0000F8FF");
+    NSLog(@"\U0000F8FF");
+    
+    // Case 4
+    string = @"🌍🌞";
+    output = [WCStringTool unicodePointStringWithString:string];
+    XCTAssertEqualObjects(output, @"\\U0001F30D\\U0001F31E");
+    NSLog(@"\U0001F30D\U0001F31E");
+}
+
 #pragma mark > String Measuration (e.g. length, number of substring, range, ...)
 
 - (void)test_rangesOfSubstringWithString_substring {
@@ -1442,6 +1473,36 @@
     NSString *str = @"Hi，中国";
     NSLog(@"len1: %lu", (unsigned long)[WCStringTool lengthWithString:str treatChineseCharacterAsTwoCharacters:NO]);
     NSLog(@"len2: %lu", (unsigned long)[WCStringTool lengthWithString:str treatChineseCharacterAsTwoCharacters:YES]);
+}
+
+- (void)test_lengthByVisualizationWithString {
+    NSString *string;
+    NSInteger output;
+    
+    // Case 1
+    string = @"";
+    output = [WCStringTool lengthByVisualizationWithString:string];
+    XCTAssertTrue(output == 1);
+    
+    // Case 2
+    string = @"中文";
+    output = [WCStringTool lengthByVisualizationWithString:string];
+    XCTAssertTrue(output == 2);
+    
+    // Case 3
+    string = @"🇨🇳";
+    output = [WCStringTool lengthByVisualizationWithString:string];
+    XCTAssertTrue(output == 1);
+    
+    // Case 4
+    string = @"🌎";
+    output = [WCStringTool lengthByVisualizationWithString:string];
+    XCTAssertTrue(output == 1);
+    
+    // Case 5
+    string = @"haha😁";
+    output = [WCStringTool lengthByVisualizationWithString:string];
+    XCTAssertTrue(output == 5);
 }
 
 - (void)test_occurrenceOfSubstringInString_substring {

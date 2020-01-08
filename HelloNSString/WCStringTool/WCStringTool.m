@@ -1006,6 +1006,8 @@
     return [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:a / 255.0];
 }
 
+#pragma mark  >> Unicode
+
 + (nullable NSString *)unescapedUnicodeStringWithString:(NSString *)string {
     
     if (![string isKindOfClass:[NSString class]]) {
@@ -1022,6 +1024,37 @@
     CFStringTransform((__bridge CFMutableStringRef)unescapedString, NULL, transform, YES);
     
     return [unescapedString copy];
+}
+
++ (nullable NSString *)unicodePointStringWithString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    // A -> \U00000041, so length multiply by 10
+    NSMutableString *unicodePointString = [NSMutableString stringWithCapacity:string.length * 10];
+    
+    [string enumerateSubstringsInRange:NSMakeRange(0, string.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+        
+        NSUInteger lengthByUnichar = [substring length];
+        
+        if (lengthByUnichar == 1) {
+            unichar buffer[2] = {0};
+            
+            [substring getBytes:buffer maxLength:sizeof(unichar) usedLength:NULL encoding:NSUTF16StringEncoding options:0 range:NSMakeRange(0, substring.length) remainingRange:NULL];
+            
+            [unicodePointString appendFormat:@"\\U%08X", buffer[0]];
+        }
+        else if (lengthByUnichar == 2) {
+            unsigned int buffer[2] = {0};
+            
+            [substring getBytes:buffer maxLength:sizeof(unsigned int) usedLength:NULL encoding:NSUTF32StringEncoding options:0 range:NSMakeRange(0, substring.length) remainingRange:NULL];
+            
+            [unicodePointString appendFormat:@"\\U%08X", buffer[0]];
+        }
+    }];
+
+    return unicodePointString;
 }
 
 + (nullable NSNumber *)numberFromString:(NSString *)string encodedType:(char *)encodedType {
@@ -1171,6 +1204,22 @@
         NSUInteger numberOfMatch = [regex numberOfMatchesInString:string options:NSMatchingReportProgress range:NSMakeRange(0, len)];
         return len + numberOfMatch;
     }
+}
+
++ (NSInteger)lengthByVisualizationWithString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return NSNotFound;
+    }
+    
+    // @see https://www.objc.io/issues/9-strings/unicode/#length, not work with 🇻🇳
+    //NSUInteger lengthByVisualization = [string lengthOfBytesUsingEncoding:NSUTF32StringEncoding] / 4;
+    
+    __block NSInteger count = 0;
+    [string enumerateSubstringsInRange:NSMakeRange(0, string.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+        ++count;
+    }];
+    
+    return count;
 }
 
 + (NSInteger)occurrenceOfSubstringInString:(NSString *)string substring:(NSString *)substring {

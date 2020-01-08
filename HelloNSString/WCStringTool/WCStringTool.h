@@ -435,6 +435,8 @@ typedef NS_ENUM(NSUInteger, WCStringTruncatingStyle) {
  */
 + (nullable UIColor *)colorFromHexString:(NSString *)string;
 
+#pragma mark  >> Unicode
+
 /**
  Convert escaped utf8 characters back to their original form, e.g. @"\\U5378\\U8f7d\\U5e94\\U7528" => @"卸载应用"
 
@@ -450,6 +452,8 @@ typedef NS_ENUM(NSUInteger, WCStringTruncatingStyle) {
  @return the NSString
  */
 #define ESCAPE_UNICODE_CSTR(...) @#__VA_ARGS__
+
++ (nullable NSString *)unicodePointStringWithString:(NSString *)string;
 
 /**
  Convert NSString to NSNumber with \@encode
@@ -505,6 +509,8 @@ typedef NS_ENUM(NSUInteger, WCStringTruncatingStyle) {
  @return the number of characters in the string. Return NSNotFound if an error happened.
  */
 + (NSInteger)lengthWithString:(NSString *)string treatChineseCharacterAsTwoCharacters:(BOOL)chineseCharacterAsTwoCharacters;
+
++ (NSInteger)lengthByVisualizationWithString:(NSString *)string;
 
 /**
  Get the occurrence times of substring in string
