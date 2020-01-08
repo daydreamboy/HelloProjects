@@ -1436,12 +1436,20 @@
     output = [WCStringTool unicodePointStringWithString:string];
     XCTAssertEqualObjects(output, @"\\U0000F8FF");
     NSLog(@"\U0000F8FF");
+    NSLog(@"\uF8FF");
     
     // Case 4
     string = @"🌍🌞";
     output = [WCStringTool unicodePointStringWithString:string];
     XCTAssertEqualObjects(output, @"\\U0001F30D\\U0001F31E");
     NSLog(@"\U0001F30D\U0001F31E");
+    
+    // Case 5
+    string = @"\n";
+    output = [WCStringTool unicodePointStringWithString:string];
+    XCTAssertEqualObjects(output, @"\\U0000000A");
+    //NSLog(@"\U0000000A"); // Error: Universal character name refers to a control character
+    //NSLog(@"\u000A"); // Error: Universal character name refers to a control character
 }
 
 #pragma mark > String Measuration (e.g. length, number of substring, range, ...)
