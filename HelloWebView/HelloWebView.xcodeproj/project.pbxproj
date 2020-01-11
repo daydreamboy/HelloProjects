@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F110BE223C72171005EFF92 /* LoadWebPageUrlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F110BE123C72171005EFF92 /* LoadWebPageUrlViewController.m */; };
 		4F1B382423B77F5500349B62 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B382323B77F5500349B62 /* AppDelegate.m */; };
 		4F1B382F23B77F5900349B62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F1B382E23B77F5900349B62 /* Assets.xcassets */; };
 		4F1B383223B77F5900349B62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F1B383023B77F5900349B62 /* LaunchScreen.storyboard */; };
 		4F1B383523B77F5900349B62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B383423B77F5900349B62 /* main.m */; };
-		4F1B384023B77F9600349B62 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B383C23B77F9500349B62 /* Demo1ViewController.m */; };
 		4F1B384123B77F9600349B62 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B383F23B77F9600349B62 /* RootViewController.m */; };
 		4F214E0C23B78BD200A5911F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F214E0B23B78BD200A5911F /* AppDelegate.m */; };
 		4F214E1723B78BD200A5911F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F214E1623B78BD200A5911F /* Assets.xcassets */; };
@@ -31,6 +31,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F110BE023C72171005EFF92 /* LoadWebPageUrlViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadWebPageUrlViewController.h; sourceTree = "<group>"; };
+		4F110BE123C72171005EFF92 /* LoadWebPageUrlViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadWebPageUrlViewController.m; sourceTree = "<group>"; };
+		4F110BE423C72661005EFF92 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
 		4F1B381F23B77F5500349B62 /* HelloWKWebView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloWKWebView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F1B382223B77F5500349B62 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F1B382323B77F5500349B62 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -38,8 +41,6 @@
 		4F1B383123B77F5900349B62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F1B383323B77F5900349B62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F1B383423B77F5900349B62 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4F1B383C23B77F9500349B62 /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
-		4F1B383D23B77F9500349B62 /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
 		4F1B383E23B77F9500349B62 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F1B383F23B77F9600349B62 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F214E0823B78BD200A5911F /* HelloUIWebView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUIWebView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +88,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F110BE323C7264E005EFF92 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F110BE423C72661005EFF92 /* WCMacroTool.h */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		4F1B381623B77F5500349B62 = {
 			isa = PBXGroup;
 			children = (
@@ -125,8 +134,9 @@
 		4F1B383B23B77F9500349B62 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F1B383D23B77F9500349B62 /* Demo1ViewController.h */,
-				4F1B383C23B77F9500349B62 /* Demo1ViewController.m */,
+				4F110BE323C7264E005EFF92 /* Tools */,
+				4F110BE023C72171005EFF92 /* LoadWebPageUrlViewController.h */,
+				4F110BE123C72171005EFF92 /* LoadWebPageUrlViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -312,7 +322,7 @@
 			files = (
 				4F1B382423B77F5500349B62 /* AppDelegate.m in Sources */,
 				4F214E4923B78E0600A5911F /* WCWebViewTool.m in Sources */,
-				4F1B384023B77F9600349B62 /* Demo1ViewController.m in Sources */,
+				4F110BE223C72171005EFF92 /* LoadWebPageUrlViewController.m in Sources */,
 				4F1B384123B77F9600349B62 /* RootViewController.m in Sources */,
 				4F1B383523B77F5900349B62 /* main.m in Sources */,
 			);
