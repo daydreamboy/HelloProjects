@@ -1008,8 +1008,7 @@
 
 #pragma mark  >> Unicode
 
-+ (nullable NSString *)unescapedUnicodeStringWithString:(NSString *)string {
-    
++ (nullable NSString *)unescapeUTF8EncodingStringWithString:(NSString *)string {
     if (![string isKindOfClass:[NSString class]]) {
         return nil;
     }
@@ -1021,7 +1020,7 @@
     
     NSMutableString *unescapedString = [modifiedString mutableCopy];
     CFStringRef transform = CFSTR("Any-Hex/Java");
-    CFStringTransform((__bridge CFMutableStringRef)unescapedString, NULL, transform, YES);
+    __unused BOOL status = CFStringTransform((__bridge CFMutableStringRef)unescapedString, NULL, transform, YES);
     
     return [unescapedString copy];
 }

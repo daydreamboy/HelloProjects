@@ -1325,24 +1325,6 @@
 
 #pragma mark >> String to CGRect/UIEdgeInsets/UIColor
 
-- (void)test_unescapedUnicodeStringWithString {
-    // Case 1: Need to unescape
-    XCTAssertEqualObjects([WCStringTool unescapedUnicodeStringWithString:@"\\u5404\\u500b\\u90fd"], @"各個都");
-    XCTAssertEqualObjects([WCStringTool unescapedUnicodeStringWithString:@"\\U5378\\U8f7d\\U5e94\\U7528"], @"卸载应用");
-    
-    XCTAssertEqualObjects([WCStringTool unescapedUnicodeStringWithString:@"\u03C0"], @"π");
-    // Note: Xcode not allow c string to use "\U03C0", must be "\u03C0", so use ESCAPE_UNICODE_CSTR macro to escape it
-    XCTAssertEqualObjects([WCStringTool unescapedUnicodeStringWithString:ESCAPE_UNICODE_CSTR("\U03C0")], @"π");
-    
-    XCTAssertEqualObjects([WCStringTool unescapedUnicodeStringWithString:ESCAPE_UNICODE_CSTR("\U5e97\U94fa\U6d4b\U8bd5\U8d26\U53f7")], @"店铺测试账号");
-    
-    // Case 2: No need to unescape
-    XCTAssertEqualObjects([WCStringTool unescapedUnicodeStringWithString:@""], @"");
-    XCTAssertEqualObjects([WCStringTool unescapedUnicodeStringWithString:@"a normal string"], @"a normal string");
-    NSString *nilString;
-    XCTAssertNil([WCStringTool unescapedUnicodeStringWithString:nilString]);
-}
-
 - (void)test_numberFromString_encodedType {
     NSString *string;
     
@@ -1415,6 +1397,53 @@
 
 #pragma mark >> Unicode
 
+- (void)test_unescapedUnicodeStringWithString {
+    NSString *string;
+    NSString *output;
+    
+    // Case 1: unescape UTF-8
+    string = @"\\u5404\\u500b\\u90fd";
+    output = [WCStringTool unescapeUTF8EncodingStringWithString:string];
+    XCTAssertEqualObjects(output, @"各個都");
+    
+    // Case 2: unescape non-standard UTF-8 which has \U and 4 length
+    string = @"\\U5378\\U8f7d\\U5e94\\U7528";
+    output = [WCStringTool unescapeUTF8EncodingStringWithString:string];
+    XCTAssertEqualObjects(output, @"卸载应用");
+    
+    string = ESCAPE_UNICODE_CSTR("\U5e97\U94fa\U6d4b\U8bd5\U8d26\U53f7");
+    output = [WCStringTool unescapeUTF8EncodingStringWithString:string];
+    XCTAssertEqualObjects(output, @"店铺测试账号");
+    
+    // Note: Xcode not allow c string to use "\U03C0", must be "\u03C0", so use ESCAPE_UNICODE_CSTR macro to escape it
+    string = ESCAPE_UNICODE_CSTR("\U03C0"); // It's not same as π
+    output = [WCStringTool unescapeUTF8EncodingStringWithString:string];
+    XCTAssertEqualObjects(output, @"π");
+    
+    // Case 3: no need to unescape
+    string = @"\u03C0"; // It's same as π
+    output = [WCStringTool unescapeUTF8EncodingStringWithString:string];
+    XCTAssertEqualObjects(output, @"π");
+    
+    string = @"";
+    output = [WCStringTool unescapeUTF8EncodingStringWithString:string];
+    XCTAssertEqualObjects(output, @"");
+    
+    string = @"a normal string";
+    output = [WCStringTool unescapeUTF8EncodingStringWithString:string];
+    XCTAssertEqualObjects(output, @"a normal string");
+    
+    NSString *nilString;
+    string = nilString;
+    output = [WCStringTool unescapeUTF8EncodingStringWithString:string];
+    XCTAssertNil(output);
+
+    // Case 4: unescape Unicode not UTF-8 encoding
+    string = @"\\U0001F30D";
+    output = [WCStringTool unescapeUTF8EncodingStringWithString:string];
+    XCTAssertNotEqualObjects(output, @"🌍");
+}
+
 - (void)test_unicodePointStringWithString {
     NSString *string;
     NSString *output;
@@ -1450,6 +1479,12 @@
     XCTAssertEqualObjects(output, @"\\U0000000A");
     //NSLog(@"\U0000000A"); // Error: Universal character name refers to a control character
     //NSLog(@"\u000A"); // Error: Universal character name refers to a control character
+    
+    // Case 6
+    string = @"卸载应用";
+    output = [WCStringTool unicodePointStringWithString:string];
+    XCTAssertEqualObjects(output, @"\\U00005378\\U00008F7D\\U00005E94\\U00007528");
+    NSLog(@"\U00005378\U00008F7D\U00005E94\U00007528");
 }
 
 #pragma mark > String Measuration (e.g. length, number of substring, range, ...)

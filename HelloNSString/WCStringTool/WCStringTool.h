@@ -444,7 +444,7 @@ typedef NS_ENUM(NSUInteger, WCStringTruncatingStyle) {
  @return the unescaped string
  @see http://stackoverflow.com/questions/2099349/using-objective-c-cocoa-to-unescape-unicode-characters-ie-u1234/11615076#11615076
  */
-+ (nullable NSString *)unescapedUnicodeStringWithString:(NSString *)string;
++ (nullable NSString *)unescapeUTF8EncodingStringWithString:(NSString *)string;
 /**
  Companion with unescapedUnicodeString, escape raw unicode string, e.g. ESCAPE_UNICODE_CSTR("\U5e97\U94fa\U6d4b\U8bd5\U8d26\U53f7") => @"\"\\U5e97\\U94fa\\U6d4b\\U8bd5\\U8d26\\U53f7\""
 
@@ -452,6 +452,8 @@ typedef NS_ENUM(NSUInteger, WCStringTruncatingStyle) {
  @return the NSString
  */
 #define ESCAPE_UNICODE_CSTR(...) @#__VA_ARGS__
+
++ (nullable NSString *)unescapeUnicodeStringWithString:(NSString *)string;
 
 + (nullable NSString *)unicodePointStringWithString:(NSString *)string;
 
