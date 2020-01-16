@@ -365,12 +365,10 @@
     //  @sa https://en.wikipedia.org/wiki/Percent-encoding
     //  @sa online tool: http://meyerweb.com/eric/tools/dencoder/
     //
-    // Test unescape characters [].
-    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"["], @"[");
-    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"]"], @"]");
+    // Test unescape characters .
     XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"."], @".");
     
-    // Test escape characters :/?&=;+!@#$()',*
+    // Test escape characters :/?&=;+!@#$()',*[]{}
     XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@":"], @"%3A");
     XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"/"], @"%2F");
     XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"?"], @"%3F");
@@ -387,6 +385,10 @@
     XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"'"], @"%27");
     XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@","], @"%2C");
     XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"*"], @"%2A");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"["], @"%5B");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"]"], @"%5D");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"{"], @"%7B");
+    XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"}"], @"%7D");
     
     // Letters and numbers
     XCTAssertEqualObjects([WCStringTool URLEscapedStringWithString:@"a"], @"a");

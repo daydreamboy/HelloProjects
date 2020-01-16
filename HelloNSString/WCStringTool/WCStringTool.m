@@ -1349,7 +1349,7 @@
         return nil;
     }
     
-    static NSString * const kAFCharactersGeneralDelimitersToEncode = @":#[]@"; // does not include "?" or "/" due to RFC 3986 - Section 3.4
+    static NSString * const kAFCharactersGeneralDelimitersToEncode = @":#[]@?/"; // Note: RFC 3986 - Section 3.4 does not include "?" or "/"
     static NSString * const kAFCharactersSubDelimitersToEncode = @"!$&'()*+,;=";
     
     NSMutableCharacterSet * allowedCharacterSet = [[NSCharacterSet URLQueryAllowedCharacterSet] mutableCopy];
