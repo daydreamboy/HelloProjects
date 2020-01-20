@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "Person.h"
 #import "MyPoint.h"
+#import "WCJSCTool.h"
 
 #define STR_OF_JSON(...) @#__VA_ARGS__
 
@@ -93,9 +94,11 @@
     MyPoint *p;
     JSContext *context = [[JSContext alloc] init];
     context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
-        NSLog(@"JS Error: %@", exception);
-        // @see https://stackoverflow.com/questions/34273540/ios-javascriptcore-exception-detailed-stacktrace-info
-        NSLog(@"More Info: line: %@:%@, stack: %@", exception[@"line"], exception[@"column"], exception[@"stack"]);
+        [WCJSCTool printExceptionValue:exception];
+        
+        context[@"exception"] = exception;
+        JSValue *keys = [context evaluateScript:@"Object.keys(exception)"];
+        NSLog(@"keys: %@", keys);
     };
     
     context[@"MyPoint"] = [MyPoint class];
@@ -154,8 +157,7 @@ extern void RHJSContextMakeClassAvailable(JSContext *context, Class class){
 - (void)test_RHJSContextMakeClassAvailable_issue {
     JSContext *context = [[JSContext alloc] init];
     context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
-        NSLog(@"JS Error: %@", exception);
-        NSLog(@"More Info: line: %@:%@, stack: %@", exception[@"line"], exception[@"column"], exception[@"stack"]);
+        [WCJSCTool printExceptionValue:exception];
     };
     
     RHJSContextMakeClassAvailable(context, [MyPoint class]);
@@ -191,9 +193,7 @@ extern void RHJSContextMakeClassAvailable(JSContext *context, Class class){
     __block MyPoint *p;
     JSContext *context = [[JSContext alloc] init];
     context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
-        NSLog(@"JS Error: %@", exception);
-        // @see https://stackoverflow.com/questions/34273540/ios-javascriptcore-exception-detailed-stacktrace-info
-        NSLog(@"More Info: line: %@:%@, stack: %@", exception[@"line"], exception[@"column"], exception[@"stack"]);
+        [WCJSCTool printExceptionValue:exception];
     };
 
     context[@"MyPoint"] = [MyPoint class];

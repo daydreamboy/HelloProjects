@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F0686DE23D4881A00AC076F /* WCJSCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0686DD23D4881A00AC076F /* WCJSCTool.m */; };
 		4F1B380B23B75B9300349B62 /* JSCodeTestListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B380A23B75B9300349B62 /* JSCodeTestListViewController.m */; };
 		4F1B380D23B75BD700349B62 /* JSTestList in Resources */ = {isa = PBXBuildFile; fileRef = 4F1B380C23B75BD700349B62 /* JSTestList */; };
 		4F1B381123B75D9C00349B62 /* WCFileManagerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B381023B75D9C00349B62 /* WCFileManagerTool.m */; };
@@ -42,6 +43,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F0686DC23D4881A00AC076F /* WCJSCTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCJSCTool.h; sourceTree = "<group>"; };
+		4F0686DD23D4881A00AC076F /* WCJSCTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCJSCTool.m; sourceTree = "<group>"; };
 		4F1B380923B75B9300349B62 /* JSCodeTestListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSCodeTestListViewController.h; sourceTree = "<group>"; };
 		4F1B380A23B75B9300349B62 /* JSCodeTestListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSCodeTestListViewController.m; sourceTree = "<group>"; };
 		4F1B380C23B75BD700349B62 /* JSTestList */ = {isa = PBXFileReference; lastKnownFileType = folder; path = JSTestList; sourceTree = "<group>"; };
@@ -99,6 +102,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F0686DB23D487FB00AC076F /* WCJSCTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F0686DC23D4881A00AC076F /* WCJSCTool.h */,
+				4F0686DD23D4881A00AC076F /* WCJSCTool.m */,
+			);
+			path = WCJSCTool;
+			sourceTree = "<group>";
+		};
 		4F1B380E23B75C8700349B62 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +147,7 @@
 		4F5E8B7D2215125B00269853 = {
 			isa = PBXGroup;
 			children = (
+				4F0686DB23D487FB00AC076F /* WCJSCTool */,
 				4F5E8B882215125B00269853 /* HelloJavaScriptCore */,
 				4F5E8BAE22151D5A00269853 /* Tests */,
 				4F5E8B872215125B00269853 /* Products */,
@@ -310,6 +323,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F0686DE23D4881A00AC076F /* WCJSCTool.m in Sources */,
 				4F5E8B992215125D00269853 /* main.m in Sources */,
 				4F828E76221A5AB100D9CD51 /* UseJSContextOfUIWebViewViewController.m in Sources */,
 				4F1B384723B78AC200349B62 /* WCWebViewTool.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import <JavaScriptCore/JavaScriptCore.h>
+#import "WCJSCTool.h"
 
 @interface Tests_JSContext : XCTestCase
 
@@ -50,8 +51,7 @@
 - (void)test_exception_handler {
     JSContext *context = [[JSContext alloc] init];
     context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
-        NSLog(@"JS Error: %@", exception); // JS Error: SyntaxError: Unexpected end of script
-        NSLog(@"More Info: line: %@:%@, stack: %@", exception[@"line"], exception[@"column"], exception[@"stack"]);
+        [WCJSCTool printExceptionValue:exception];
     };
     
     [context evaluateScript:@"function multiply(value1, value2) { return value1 * value2 "];
@@ -144,8 +144,7 @@
     
     // Case 1: exceptionHandler maybe called on non-main thread
     context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
-        NSLog(@"JS Error: %@", exception); // JS Error: SyntaxError: Unexpected end of script
-        NSLog(@"More Info: line: %@:%@, stack: %@", exception[@"line"], exception[@"column"], exception[@"stack"]);
+        [WCJSCTool printExceptionValue:exception];
         XCTAssertFalse([[NSThread currentThread] isMainThread]);
     };
     
@@ -168,6 +167,33 @@
         NSLog(@"%@", result);
         XCTAssertEqualObjects([result toString], @"annyeonghasaeyo!");
     });
+}
+
+- (void)test_check_global_objects {
+    JSContext *context = [[JSContext alloc] init];
+    JSValue *output;
+    // @see https://www.contentful.com/blog/2017/01/17/the-global-object-in-javascript/
+    
+    //
+    output = context[@"globalThis"];
+    XCTAssertFalse([output isUndefined]);
+    NSLog(@"%@", [output toObject]);
+    
+    //
+    output = context[@"this"];
+    XCTAssertTrue([output isUndefined]);
+    
+    //
+    output = context[@"window"];
+    XCTAssertTrue([output isUndefined]);
+    
+    //
+    output = context[@"global"];
+    XCTAssertTrue([output isUndefined]);
+    
+    //
+    output = context[@"self"];
+    XCTAssertTrue([output isUndefined]);
 }
 
 @end

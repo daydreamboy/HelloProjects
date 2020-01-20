@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import <JavaScriptCore/JavaScriptCore.h>
+#import "WCJSCTool.h"
 
 @interface Tests_JSValue : XCTestCase
 
@@ -83,8 +84,7 @@
     
     JSContext *context = [[JSContext alloc] init];
     context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
-        NSLog(@"JS Error: %@", exception);
-        NSLog(@"More Info: line: %@:%@, stack: %@", exception[@"line"], exception[@"column"], exception[@"stack"]);
+        [WCJSCTool printExceptionValue:exception];
     };
     
     // Case 1
