@@ -95,10 +95,6 @@
     JSContext *context = [[JSContext alloc] init];
     context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
         [WCJSCTool printExceptionValue:exception];
-        
-        context[@"exception"] = exception;
-        JSValue *keys = [context evaluateScript:@"Object.keys(exception)"];
-        NSLog(@"keys: %@", keys);
     };
     
     context[@"MyPoint"] = [MyPoint class];

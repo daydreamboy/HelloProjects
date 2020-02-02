@@ -26,25 +26,37 @@
     [super tearDown];
 }
 
-- (void)test_subscript {
+- (void)test_subscript_for_array {
     JSContext *context = [[JSContext alloc] init];
     [context evaluateScript:@"var list=[1, 2, 3]"];
-    [context evaluateScript:@"var map={'key': 'value'}"];
     
     // Case 1: number as subscript
     JSValue *list = context[@"list"];
+    list[3] = @(4);
     JSValue *element1 = list[0];
     JSValue *element2 = list[1];
     JSValue *element3 = list[2];
+    JSValue *element4 = list[3];
     
     XCTAssertTrue([element1 toInt32] == 1);
     XCTAssertTrue([element2 toInt32] == 2);
     XCTAssertTrue([element3 toInt32] == 3);
+    XCTAssertTrue([element4 toInt32] == 4);
+}
+
+- (void)test_subscript_for_map {
+    JSContext *context = [[JSContext alloc] init];
+    [context evaluateScript:@"var map={'key': 'value'}"];
     
-    // Case 2: string as subscript
+    // Case 1: string as subscript
     JSValue *map = context[@"map"];
     JSValue *value = map[@"key"];
     XCTAssertEqualObjects([value toString], @"value");
+    
+    // Case 2: define value by subscript
+    map[@"key2"] = @"value2";
+    value = map[@"key2"];
+    XCTAssertEqualObjects([value toString], @"value2");
 }
 
 - (void)test_function_wrapper {
@@ -107,6 +119,52 @@
     XCTAssertFalse(result.isUndefined);
     XCTAssertEqualObjects([result toString], @"hello");
     XCTAssertEqualObjects([context[@"b"] toString], @"hello");
+}
+
+- (void)test_defineProperty_descriptor {
+    JSContext *context = [[JSContext alloc] init];
+    JSValueProperty propertyName;
+    JSValue *property;
+    
+    context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
+        [WCJSCTool printExceptionValue:exception];
+    };
+    
+    // Case 1: JSPropertyDescriptorWritableKey is NO by default
+    // example from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty
+    
+    // JSPropertyDescriptorWritableKey
+    // JSPropertyDescriptorEnumerableKey
+    // JSPropertyDescriptorConfigurableKey
+    // JSPropertyDescriptorValueKey
+    // JSPropertyDescriptorGetKey
+    // JSPropertyDescriptorSetKey
+    
+    propertyName = @"property1";
+    [context.globalObject defineProperty:propertyName descriptor:@{
+        JSPropertyDescriptorValueKey: @(42),
+    }];
+    property = [context.globalObject valueForProperty:propertyName];
+    
+    // throws an error in strict mode
+    context.globalObject[@"property1"] = @(77);
+
+    // expected output: 42
+    NSLog(@"%@", context.globalObject[@"property1"]);
+    
+    // Case 2: modify property value
+    propertyName = @"property2";
+    [context.globalObject defineProperty:propertyName descriptor:@{
+        JSPropertyDescriptorValueKey: @(42),
+        JSPropertyDescriptorWritableKey: @(YES),
+    }];
+    property = [context.globalObject valueForProperty:propertyName];
+    
+    // throws an error in strict mode
+    context.globalObject[@"property2"] = @(77);
+
+    // expected output: 77
+    NSLog(@"%@", context.globalObject[@"property2"]);
 }
 
 @end

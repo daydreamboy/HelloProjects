@@ -174,26 +174,54 @@
     JSValue *output;
     // @see https://www.contentful.com/blog/2017/01/17/the-global-object-in-javascript/
     
-    //
+    // globalThis is global JSContext object
     output = context[@"globalThis"];
     XCTAssertFalse([output isUndefined]);
     NSLog(@"%@", [output toObject]);
     
-    //
+    // globalObject property is the same address with globalThis
+    output = context.globalObject;
+    XCTAssertFalse([output isUndefined]);
+    NSLog(@"%@", [output toObject]);
+    
+    // this is undefined
     output = context[@"this"];
     XCTAssertTrue([output isUndefined]);
     
-    //
+    // window is undefined
     output = context[@"window"];
     XCTAssertTrue([output isUndefined]);
     
-    //
+    // global is undefined
     output = context[@"global"];
     XCTAssertTrue([output isUndefined]);
     
-    //
+    // self is undefined
     output = context[@"self"];
     XCTAssertTrue([output isUndefined]);
+}
+
+//- (void)test_copy_JSValue_to_another_context {
+//    JSContext *context1 = [[JSContext alloc] init];
+//    context1.globalObject defineProperty:<#(JSValueProperty)#> descriptor:<#(id)#>
+//    JSContext *context2 = [[JSContext alloc] init];
+//    
+//    [context1 evaluateScript:@"var a = 1;"];
+//    JSValue *value = context1[@"a"];
+//    
+//    context2[@"b"] = value;
+//    
+//    [context2 evaluateScript:@"console.log(b)"];
+//}
+
+- (void)test_JSValue_object_keys {
+//    JSContext *context = [[JSContext alloc] init];
+//    JSValue *output;
+//
+//
+//    context[@"exception"] = exception;
+//    JSValue *keys = [context evaluateScript:@"Object.keys(exception)"];
+//    NSLog(@"keys: %@", keys);
 }
 
 @end

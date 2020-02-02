@@ -106,7 +106,7 @@ result = context[@"result"];
 XCTAssertTrue([result toInt32] == 7);
 ```
 
-注意：callback不能是具体的block类型，否则context执行时会抛出异常。
+注意：callback参数不能是具体的block类型，必须是JSValue类型，否则context执行时会抛出异常。
 
 
 
@@ -121,7 +121,7 @@ XCTAssertTrue([result toInt32] == 7);
 
 
 
-JSValue实例允许字符串或者数字下标访问，例如
+JSValue实例和JSContext实例一样，允许使用字符串或者数字下标访问，例如
 
 ```objective-c
 JSContext *context = [[JSContext alloc] init];
@@ -130,12 +130,19 @@ JSContext *context = [[JSContext alloc] init];
 
 // Case 1: number as subscript
 JSValue *list = context[@"list"];
+list[3] = @(4);
 JSValue *element1 = list[0];
 
 // Case 2: string as subscript
 JSValue *map = context[@"map"];
 JSValue *value = map[@"key"];
+map[@"key2"] = @"value2";
+value = map[@"key2"];
 ```
+
+说明
+
+> 使用字符串或者数字下标访问，包括读取和赋值
 
 
 
@@ -171,6 +178,16 @@ XCTAssertEqualObjects([context[@"b"] toString], @"hello");
 示例代码见**Tests_JSValue.m**
 
 ​       值得注意的是，`-[JSContext evaluateScript:]`方法执行JavaScript代码时，如果JavaScript代码是函数调用或者变量，是可以通过该方法返回的JSValue对象拿到JavaScript环境中的值，例如上面的Case 2和Case 3。当然，如果JavaScript代码是执行语句，则该方法返回的是undefined的JSValue对象，例如上面的Case 1。
+
+
+
+### （4）定义Property
+
+
+
+
+
+
 
 
 
