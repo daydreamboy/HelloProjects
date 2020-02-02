@@ -146,7 +146,7 @@
     }];
     property = [context.globalObject valueForProperty:propertyName];
     
-    // throws an error in strict mode
+    // JS: throws an error in strict mode
     context.globalObject[@"property1"] = @(77);
 
     // expected output: 42

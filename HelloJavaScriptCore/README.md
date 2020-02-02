@@ -183,9 +183,63 @@ XCTAssertEqualObjects([context[@"b"] toString], @"hello");
 
 ### （4）定义Property
 
+​      JavaScript对象的属性（Propery），可以通过下标方式直接赋值，也可以通过`-[JSValue defineProperty:descriptor:]`方法来细粒度定义属性。这个方法类似JavaScript中的`Object.defineProperty()`方法。
 
+defineProperty:descriptor:方法，签名如下
 
+```
+- (void)defineProperty:(JSValueProperty)property descriptor:(id)descriptor;
+```
 
+* property参数，类型是JSValueProperty。JSValueProperty实际是NSString或者id（iOS 13+）的别名。
+
+* descriptor参数，类型是id，可以传入词典。词典的key，有如下几种
+
+  ```c
+  JSPropertyDescriptorWritableKey // 属性是否可写，默认是NO，即属性只读
+  JSPropertyDescriptorEnumerableKey
+  JSPropertyDescriptorConfigurableKey
+  JSPropertyDescriptorValueKey // 属性的初始值
+  JSPropertyDescriptorGetKey
+  JSPropertyDescriptorSetKey
+  ```
+
+  
+
+将下面的JavaScript使用`Object.defineProperty()`方法，换成对应`-[JSValue defineProperty:descriptor:]`方法，如下
+
+```javascript
+const object1 = {};
+
+Object.defineProperty(object1, 'property1', {
+  value: 42,
+  writable: false
+});
+
+object1.property1 = 77;
+// throws an error in strict mode
+
+console.log(object1.property1);
+// expected output: 42
+```
+
+改成Objective-C，如下
+
+```objective-c
+JSContext *context = [[JSContext alloc] init];
+JSValueProperty propertyName;
+JSValue *property;
+
+propertyName = @"property1";
+[context.globalObject defineProperty:propertyName descriptor:@{
+    JSPropertyDescriptorValueKey: @(42),
+}];
+property = [context.globalObject valueForProperty:propertyName];
+
+context.globalObject[@"property1"] = @(77);
+
+NSLog(@"%@", context.globalObject[@"property1"]); // expected output: 42
+```
 
 
 
