@@ -124,10 +124,100 @@
 - (void)test_defineProperty_descriptor {
     JSContext *context = [[JSContext alloc] init];
     JSValueProperty propertyName;
-    JSValue *property;
     
+    // Preparation
     context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
         [WCJSCTool printExceptionValue:exception];
+    };
+    
+    [context evaluateScript:@"var console = {}"];
+    context[@"console"][@"log"] = ^(id object) {
+        NSString *message = [object description];
+        NSLog(@"JSBridge log: %@", message);
+    };
+    
+    // Case 1
+    propertyName = @"property";
+    [context.globalObject defineProperty:propertyName descriptor:@{
+    }];
+    
+    [context evaluateScript:@"console.log(property);"];
+    
+    // Case 2
+    context[@"a"] = @{};
+    [context[@"a"] defineProperty:@"property" descriptor:@{
+    }];
+    
+    [context evaluateScript:@"console.log(a);"];
+    [context evaluateScript:@"console.log(a.property);"];
+    [context evaluateScript:@"console.log(a.property2);"];
+}
+
+- (void)test_defineProperty_descriptor_issue {
+    JSContext *context = [[JSContext alloc] init];
+    
+    // Preparation
+    context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
+        [WCJSCTool printExceptionValue:exception];
+    };
+    
+    [context evaluateScript:@"var console = {}"];
+    context[@"console"][@"log"] = ^(id object) {
+        NSString *message = [object description];
+        NSLog(@"JSBridge log: %@", message);
+    };
+    
+    // defineProperty for same property
+    [context.globalObject defineProperty:@"property1" descriptor:@{
+        JSPropertyDescriptorValueKey: @(1),
+    }];
+    
+    // JS Error: TypeError: Attempting to change value of a readonly property.
+    [context.globalObject defineProperty:@"property1" descriptor:@{
+        JSPropertyDescriptorValueKey: @(2),
+    }];
+    
+    // Fixed Case 1: defineProperty for same property by JSPropertyDescriptorWritableKey
+    [context.globalObject defineProperty:@"property2" descriptor:@{
+        JSPropertyDescriptorValueKey: @(1),
+        JSPropertyDescriptorWritableKey: @(YES)
+    }];
+    
+    [context.globalObject defineProperty:@"property2" descriptor:@{
+        JSPropertyDescriptorValueKey: @(3),
+    }];
+    
+    // expected output: 3
+    [context evaluateScript:@"console.log(property2);"];
+    
+    // Fixed Case 2: defineProperty for same property by JSPropertyDescriptorConfigurableKey
+    [context.globalObject defineProperty:@"property3" descriptor:@{
+        JSPropertyDescriptorValueKey: @(1),
+        JSPropertyDescriptorConfigurableKey: @(YES)
+    }];
+    
+    [context.globalObject defineProperty:@"property3" descriptor:@{
+        JSPropertyDescriptorValueKey: @(4),
+    }];
+    
+    // expected output: 4
+    [context evaluateScript:@"console.log(property3);"];
+}
+
+- (void)test_defineProperty_descriptor_JSPropertyDescriptorWritableKey {
+    JSContext *context = [[JSContext alloc] init];
+    JSValueProperty propertyName;
+    JSValue *property;
+    
+    // Preparation
+    context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
+        [WCJSCTool printExceptionValue:exception];
+    };
+    
+    [context evaluateScript:@"var console = {}"];
+    context[@"console"][@"log"] = ^(id object) {
+        NSString *message = [object description];
+        NSLog(@"JSBridge log: %@", message);
     };
     
     // Case 1: JSPropertyDescriptorWritableKey is NO by default
@@ -146,25 +236,146 @@
     }];
     property = [context.globalObject valueForProperty:propertyName];
     
-    // JS: throws an error in strict mode
+    // not work, JS throws an error in strict mode
     context.globalObject[@"property1"] = @(77);
 
     // expected output: 42
     NSLog(@"%@", context.globalObject[@"property1"]);
     
     // Case 2: modify property value
-    propertyName = @"property2";
-    [context.globalObject defineProperty:propertyName descriptor:@{
+    [context.globalObject defineProperty:@"property2" descriptor:@{
         JSPropertyDescriptorValueKey: @(42),
         JSPropertyDescriptorWritableKey: @(YES),
     }];
-    property = [context.globalObject valueForProperty:propertyName];
+    property = [context.globalObject valueForProperty:@"property2"];
     
-    // throws an error in strict mode
     context.globalObject[@"property2"] = @(77);
 
     // expected output: 77
     NSLog(@"%@", context.globalObject[@"property2"]);
+    [context evaluateScript:@"console.log(property2);"];
+}
+
+- (void)test_defineProperty_descriptor_JSPropertyDescriptorEnumerableKey {
+    JSContext *context = [[JSContext alloc] init];
+    
+    // Preparation
+    context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
+        [WCJSCTool printExceptionValue:exception];
+    };
+    
+    [context evaluateScript:@"var console = {}"];
+    context[@"console"][@"log"] = ^(id object) {
+        NSString *message = [object description];
+        NSLog(@"JSBridge log: %@", message);
+    };
+    
+    // Case 1: not enumerable
+    [context evaluateScript:@"var enumerableObject1 = {}"];
+    [context[@"enumerableObject1"] defineProperty:@"p1" descriptor:@{
+        JSPropertyDescriptorValueKey: @(1),
+    }];
+    
+    [context[@"enumerableObject1"] defineProperty:@"p2" descriptor:@{
+        JSPropertyDescriptorValueKey: @(2),
+    }];
+    
+    [context[@"enumerableObject1"] defineProperty:@"p3" descriptor:@{
+        JSPropertyDescriptorValueKey: @(3),
+    }];
+    
+    [context evaluateScript:@"for (key in enumerableObject1) { console.log(key); }"];
+    [context evaluateScript:@"console.log(Object.keys(enumerableObject1))"];
+    
+    // Case 2: enumerable
+    [context evaluateScript:@"var enumerableObject2 = {}"];
+    [context[@"enumerableObject2"] defineProperty:@"p1" descriptor:@{
+        JSPropertyDescriptorValueKey: @(1),
+        JSPropertyDescriptorEnumerableKey: @(YES),
+    }];
+    
+    [context[@"enumerableObject2"] defineProperty:@"p2" descriptor:@{
+        JSPropertyDescriptorValueKey: @(2),
+        JSPropertyDescriptorEnumerableKey: @(YES),
+    }];
+    
+    [context[@"enumerableObject2"] defineProperty:@"p3" descriptor:@{
+        JSPropertyDescriptorValueKey: @(3),
+        JSPropertyDescriptorEnumerableKey: @(YES),
+    }];
+    
+    [context evaluateScript:@"for (key in enumerableObject2) { console.log(key); }"];
+    [context evaluateScript:@"console.log(Object.keys(enumerableObject2))"];
+}
+
+- (void)test_defineProperty_descriptor_JSPropertyDescriptorConfigurableKey {
+    JSContext *context = [[JSContext alloc] init];
+    
+    // Preparation
+    context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
+        [WCJSCTool printExceptionValue:exception];
+    };
+    
+    [context.globalObject defineProperty:@"console" descriptor:@{
+        JSPropertyDescriptorValueKey: @{
+                @"log": ^(id object) {
+                    NSString *message = [object description];
+                    NSLog(@"JSBridge log: %@", message);
+                }
+        }
+    }];
+    
+    // Case 1: not configurable
+    [context evaluateScript:@"var configurableObject1 = {}"];
+    [context[@"configurableObject1"] defineProperty:@"p" descriptor:@{
+        JSPropertyDescriptorValueKey: @(1),
+        JSPropertyDescriptorWritableKey: @(YES),
+    }];
+    
+    [context[@"configurableObject1"] defineProperty:@"p" descriptor:@{
+        JSPropertyDescriptorValueKey: @(2),
+    }];
+    
+    // expected output: 1
+    [context evaluateScript:@"console.log(configurableObject1.p);"];
+    
+    // Case 2: configurable
+    [context evaluateScript:@"var configurableObject2 = {}"];
+    [context[@"configurableObject2"] defineProperty:@"p" descriptor:@{
+        JSPropertyDescriptorValueKey: @(1),
+        JSPropertyDescriptorConfigurableKey: @(YES),
+    }];
+
+    [context[@"configurableObject2"] defineProperty:@"p" descriptor:@{
+        JSPropertyDescriptorValueKey: @(2),
+    }];
+
+    [context[@"configurableObject2"] defineProperty:@"p" descriptor:@{
+        JSPropertyDescriptorValueKey: @(3),
+    }];
+
+    // expected output: 3, not 2
+    [context evaluateScript:@"console.log(configurableObject2.p);"];
+    
+    // Case 3: configurable
+    [context evaluateScript:@"var configurableObject3 = {}"];
+    [context[@"configurableObject3"] defineProperty:@"p" descriptor:@{
+        JSPropertyDescriptorValueKey: @(1),
+        JSPropertyDescriptorConfigurableKey: @(YES),
+    }];
+
+    [context[@"configurableObject3"] defineProperty:@"p" descriptor:@{
+        JSPropertyDescriptorValueKey: @(2),
+        JSPropertyDescriptorConfigurableKey: @(NO),
+    }];
+
+    // JS Error: TypeError: Attempting to change value of a readonly property.
+    [context[@"configurableObject3"] defineProperty:@"p" descriptor:@{
+        JSPropertyDescriptorValueKey: @(3),
+    }];
+
+    // expected output: 2, not 3
+    [context evaluateScript:@"console.log(configurableObject3.p);"];
 }
 
 @end

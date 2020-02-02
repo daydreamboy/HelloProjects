@@ -205,12 +205,12 @@
 //    JSContext *context1 = [[JSContext alloc] init];
 //    context1.globalObject defineProperty:<#(JSValueProperty)#> descriptor:<#(id)#>
 //    JSContext *context2 = [[JSContext alloc] init];
-//    
+//
 //    [context1 evaluateScript:@"var a = 1;"];
 //    JSValue *value = context1[@"a"];
-//    
+//
 //    context2[@"b"] = value;
-//    
+//
 //    [context2 evaluateScript:@"console.log(b)"];
 //}
 

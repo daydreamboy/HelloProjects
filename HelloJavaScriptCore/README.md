@@ -197,14 +197,14 @@ defineProperty:descriptor:方法，签名如下
 
   ```c
   JSPropertyDescriptorWritableKey // 属性是否可写，默认是NO，即属性只读
-  JSPropertyDescriptorEnumerableKey
-  JSPropertyDescriptorConfigurableKey
-  JSPropertyDescriptorValueKey // 属性的初始值
+  JSPropertyDescriptorEnumerableKey // 该属性是否可以通过所属对象的for-in枚举出来，默认是NO
+  JSPropertyDescriptorConfigurableKey // 该属性是否可以重新定义，默认是NO
+  JSPropertyDescriptorValueKey // 属性的初始值，默认值是undefined
   JSPropertyDescriptorGetKey
   JSPropertyDescriptorSetKey
   ```
 
-  
+
 
 将下面的JavaScript使用`Object.defineProperty()`方法，换成对应`-[JSValue defineProperty:descriptor:]`方法，如下
 
@@ -240,6 +240,38 @@ context.globalObject[@"property1"] = @(77);
 
 NSLog(@"%@", context.globalObject[@"property1"]); // expected output: 42
 ```
+
+
+
+defineProperty:descriptor:方法，允许多次被调用，并且重复定义相同的属性，descriptor有不同的属性key。
+
+注意
+
+> 如果第一次调用，属性key没有设置JSPropertyDescriptorWritableKey或者JSPropertyDescriptorConfigurableKey，则后面调用defineProperty:descriptor:方法设置相同的属性，会产生JS Error。
+>
+> 举个例子，如下
+>
+> ```objective-c
+> - (void)test_defineProperty_descriptor_issue {
+>     JSContext *context = [[JSContext alloc] init];
+>     
+>     // defineProperty for same property
+>     [context.globalObject defineProperty:@"property1" descriptor:@{
+>         JSPropertyDescriptorValueKey: @(1),
+>     }];
+>     
+>     // JS Error: TypeError: Attempting to change value of a readonly property.
+>     [context.globalObject defineProperty:@"property1" descriptor:@{
+>         JSPropertyDescriptorValueKey: @(2),
+>     }];
+> }
+> ```
+>
+> 解决方法：在第一次定义属性时，设置它的属性key为JSPropertyDescriptorWritableKey或者JSPropertyDescriptorConfigurableKey，表示该属性可写，或者可以重新配置。
+
+
+
+
 
 
 
