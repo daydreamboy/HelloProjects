@@ -25,7 +25,7 @@ typedef NS_ENUM(NSUInteger, WCStringTruncatingStyle) {
 /**
  Calculate text size for single line (numberOfLines = 1)
 
- @param string the text expected a single line which should have no line wrap '\\n'
+ @param string the text expected a single line which should have no line wrap '\\n' or '\\r'
  @param font the font of text
  @return the text size
  */
@@ -34,7 +34,7 @@ typedef NS_ENUM(NSUInteger, WCStringTruncatingStyle) {
 /**
  Calculate text size for single line (numberOfLines = 1) with attributes
  
- @param string the text expected a single line which should have no line wrap '\\n'
+ @param string the text expected a single line which should have no line wrap '\\n' or '\\r'
  @param attributes the attributes dictionary
  @return the text size
  */
@@ -69,12 +69,12 @@ typedef NS_ENUM(NSUInteger, WCStringTruncatingStyle) {
  @param string the text
  @param width the fixed width
  @param font the font of text
- @param numberOfLines the number of lines. numberOfLines <= 0, will treat as multiple lines (numberOfLines = 0)
+ @param maximumNumberOfLines the maximum number of lines. maximumNumberOfLines <= 0, will treat as multiple lines (maximumNumberOfLines = 0)
  @param lineBreakMode the lineBreakMode. NSLineBreakByClipping/NSLineBreakByTruncatingHead/NSLineBreakByTruncatingTail/NSLineBreakByTruncatingMiddle will be treated as NSLineBreakByCharWrapping
  @param widthToFit If NO, the width of calculated text size always is the input width. If YES, the width of calculated text size as it.
- @return the text size
+ @return the text size. If the actual lines is lower than the numberOfLines, the text size's height is the actual lines height.
  */
-+ (CGSize)textSizeWithFixedLineString:(NSString *)string width:(CGFloat)width font:(UIFont *)font numberOfLines:(NSUInteger)numberOfLines mode:(NSLineBreakMode)lineBreakMode widthToFit:(BOOL)widthToFit NS_AVAILABLE_IOS(8_0);
++ (CGSize)textSizeWithFixedLineString:(NSString *)string width:(CGFloat)width font:(UIFont *)font maximumNumberOfLines:(NSUInteger)maximumNumberOfLines mode:(NSLineBreakMode)lineBreakMode widthToFit:(BOOL)widthToFit NS_AVAILABLE_IOS(8_0);
 
 #pragma mark > Others
 

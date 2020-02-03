@@ -77,12 +77,12 @@
     }
 }
 
-+ (CGSize)textSizeWithFixedLineString:(NSString *)string width:(CGFloat)width font:(UIFont *)font numberOfLines:(NSUInteger)numberOfLines mode:(NSLineBreakMode)lineBreakMode widthToFit:(BOOL)widthToFit {
++ (CGSize)textSizeWithFixedLineString:(NSString *)string width:(CGFloat)width font:(UIFont *)font maximumNumberOfLines:(NSUInteger)maximumNumberOfLines mode:(NSLineBreakMode)lineBreakMode widthToFit:(BOOL)widthToFit {
     if (![string isKindOfClass:[NSString class]] || !string.length || ![font isKindOfClass:[UIFont class]] || width <= 0) {
         return CGSizeZero;
     }
     
-    if (numberOfLines <= 0) {
+    if (maximumNumberOfLines <= 0) {
         return [self textSizeWithMultipleLineString:string width:width font:font mode:lineBreakMode widthToFit:widthToFit];
     }
     else {
@@ -90,8 +90,8 @@
         CGSize textSizeForMultipleLines = [self textSizeWithMultipleLineString:string width:width font:font mode:lineBreakMode widthToFit:widthToFit];
         
         CGFloat height;
-        if (textSizeForMultipleLines.height > (numberOfLines * textSizeForOneLine.height)) {
-            height = (numberOfLines * textSizeForOneLine.height);
+        if (textSizeForMultipleLines.height > (maximumNumberOfLines * textSizeForOneLine.height)) {
+            height = (maximumNumberOfLines * textSizeForOneLine.height);
         }
         else {
             height = textSizeForMultipleLines.height;
