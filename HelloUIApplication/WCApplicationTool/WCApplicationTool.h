@@ -141,7 +141,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - App Utility
 
-#pragma mark - Risky Methods
+#pragma mark > Get debug configuration (Only Simulator)
+
+/**
+ Get JSON Object at the specific JSON file at MacOS user direcotry
+ 
+ @return the JSON object which allow fragments
+ */
++ (nullable id)JSONObjectWithUserHomeFileName:(NSString *)userHomeFileName;
+
+#pragma mark > Risky Methods
 
 /**
  Get the window which owns the presented keyboard
