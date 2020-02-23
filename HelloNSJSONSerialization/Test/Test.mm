@@ -493,14 +493,188 @@
     XCTAssertNil(value);
     
     // Case
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wnonnull"
     XCTAssertNil([WCJSONTool valueOfJSONObject:nil usingKeyPath:@"[1]" objectClass:nil]);
+#pragma GCC diagnostic pop
     
     // Case
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wnonnull"
     XCTAssertNil([WCJSONTool valueOfJSONObject:nil usingKeyPath:@"" objectClass:nil]);
+#pragma GCC diagnostic pop
     
     // Case: invalidJSONObject
     JSONObject = @{ @(123): @"we" };
     XCTAssertNil([WCJSONTool valueOfJSONObject:JSONObject usingKeyPath:@"123" objectClass:nil]);
+}
+
+- (void)test_replaceValueOfKVCObject_usingKeyPath_value {
+    NSString *JSONString;
+    NSObject *JSONObject;
+    id output;
+    NSString *expectedJSONString;
+    NSError *error;
+    
+    // Case 1 root is map
+    JSONString = STR_OF_JSON(
+        {
+            "true-key": true,
+            "false-key": false
+        }
+    );
+    JSONObject = [NSJSONSerialization JSONObjectWithData:[JSONString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+    output = [WCJSONTool replaceValueOfKVCObject:JSONObject usingKeyPath:@"true-key" value:@"true"];
+    expectedJSONString = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:output options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
+    XCTAssertEqualObjects(expectedJSONString, @"{\"true-key\":\"true\",\"false-key\":false}");
+    
+    // Case 2: root is list
+    JSONString = STR_OF_JSON(
+        [
+            123,
+            456
+        ]
+    );
+    JSONObject = [NSJSONSerialization JSONObjectWithData:[JSONString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+    output = [WCJSONTool replaceValueOfKVCObject:JSONObject usingKeyPath:@"[1]" value:@"456"];
+    expectedJSONString = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:output options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
+    XCTAssertEqualObjects(expectedJSONString, @"[123,\"456\"]");
+    
+    
+    // Case 3: map -> map
+    JSONString = STR_OF_JSON(
+        {
+            "a": {
+                "b": "B",
+                "1": "C"
+            }
+        }
+    );
+    JSONObject = [NSJSONSerialization JSONObjectWithData:[JSONString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+    
+    // leaf to replace
+    output = [WCJSONTool replaceValueOfKVCObject:JSONObject usingKeyPath:@"a.b" value:@(2)];
+    expectedJSONString = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:output options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
+    XCTAssertEqualObjects(expectedJSONString, @"{\"a\":{\"b\":2,\"1\":\"C\"}}");
+    
+    // two leaves to replace by order
+    output = [WCJSONTool replaceValueOfKVCObject:JSONObject usingKeyPath:@"a.b" value:@(2)];
+    output = [WCJSONTool replaceValueOfKVCObject:output usingKeyPath:@"a.1" value:@(3)];
+    expectedJSONString = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:output options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
+    XCTAssertEqualObjects(expectedJSONString, @"{\"a\":{\"b\":2,\"1\":3}}");
+    
+    // leaf to replace by a container
+    output = [WCJSONTool replaceValueOfKVCObject:JSONObject usingKeyPath:@"a.b" value:@[@4,@5,@6]];
+    expectedJSONString = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:output options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
+    XCTAssertEqualObjects(expectedJSONString, @"{\"a\":{\"b\":[4,5,6],\"1\":\"C\"}}");
+    
+    // Case 3: Three levels
+    // map -> map -> list: a.c.[1]
+    // map -> map -> map: a.b.c
+    // map -> list -> map: c.[0].a
+    // map -> list -> list: b.[2].[1]
+    JSONString = STR_OF_JSON(
+        {
+            "a": {
+                "b": {"c":3},
+                "c": [ 1, 2 ]
+            },
+            "b": [
+                1,
+                2,
+                [3, 4]
+            ],
+            "c": [{"a": "b"}]
+        }
+    );
+    JSONObject = [NSJSONSerialization JSONObjectWithData:[JSONString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+  
+    output = [WCJSONTool replaceValueOfKVCObject:JSONObject usingKeyPath:@"a.c.[1]" value:@"2"];
+    expectedJSONString = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:output options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
+    XCTAssertEqualObjects(expectedJSONString, @"{\"a\":{\"b\":{\"c\":3},\"c\":[1,\"2\"]},\"b\":[1,2,[3,4]],\"c\":[{\"a\":\"b\"}]}");
+    
+    output = [WCJSONTool replaceValueOfKVCObject:JSONObject usingKeyPath:@"a.b.c" value:@"3"];
+    expectedJSONString = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:output options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
+    XCTAssertEqualObjects(expectedJSONString, @"{\"a\":{\"b\":{\"c\":\"3\"},\"c\":[1,2]},\"b\":[1,2,[3,4]],\"c\":[{\"a\":\"b\"}]}");
+    
+    output = [WCJSONTool replaceValueOfKVCObject:JSONObject usingKeyPath:@"c.[0].a" value:@"0"];
+    expectedJSONString = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:output options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
+    XCTAssertEqualObjects(expectedJSONString, @"{\"a\":{\"b\":{\"c\":3},\"c\":[1,2]},\"b\":[1,2,[3,4]],\"c\":[{\"a\":\"0\"}]}");
+    
+    output = [WCJSONTool replaceValueOfKVCObject:JSONObject usingKeyPath:@"b.[2].[1]" value:@"4"];
+    expectedJSONString = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:output options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
+    XCTAssertEqualObjects(expectedJSONString, @"{\"a\":{\"b\":{\"c\":3},\"c\":[1,2]},\"b\":[1,2,[3,\"4\"]],\"c\":[{\"a\":\"b\"}]}");
+    
+    // Case 4: Three levels
+    // list -> map -> list: [0].a.2
+    // list -> map -> map: [0].b.c
+    // list -> list -> map: [1].[0].a
+    // list -> list -> list: [1].[1].[1]
+    JSONString = STR_OF_JSON(
+        [
+         {
+            "a": [ 1, 2, 3],
+            "b": {"c": "3"}
+         },
+         [
+            {
+                "a": 1
+            },
+            [1, 2, 3]
+         ]
+        ]
+    );
+    JSONObject = [NSJSONSerialization JSONObjectWithData:[JSONString dataUsingEncoding:NSUTF8StringEncoding] options:0 error:nil];
+    
+    output = [WCJSONTool replaceValueOfKVCObject:JSONObject usingKeyPath:@"[0].a.2" value:@"3"];
+    expectedJSONString = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:output options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
+    XCTAssertEqualObjects(expectedJSONString, @"[{\"a\":[1,2,\"3\"],\"b\":{\"c\":\"3\"}},[{\"a\":1},[1,2,3]]]");
+    
+    output = [WCJSONTool replaceValueOfKVCObject:JSONObject usingKeyPath:@"[0].b.c" value:@3];
+    expectedJSONString = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:output options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
+    XCTAssertEqualObjects(expectedJSONString, @"[{\"a\":[1,2,3],\"b\":{\"c\":3}},[{\"a\":1},[1,2,3]]]");
+    
+    output = [WCJSONTool replaceValueOfKVCObject:JSONObject usingKeyPath:@"[1].[0].a" value:@3];
+    expectedJSONString = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:output options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
+    XCTAssertEqualObjects(expectedJSONString, @"[{\"a\":[1,2,3],\"b\":{\"c\":\"3\"}},[{\"a\":3},[1,2,3]]]");
+    
+    output = [WCJSONTool replaceValueOfKVCObject:JSONObject usingKeyPath:@"[1].[1].[1]" value:@3];
+    expectedJSONString = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:output options:kNilOptions error:&error] encoding:NSUTF8StringEncoding];
+    XCTAssertEqualObjects(expectedJSONString, @"[{\"a\":[1,2,3],\"b\":{\"c\":\"3\"}},[{\"a\":1},[1,3,3]]]");
+    
+    // Case 5: KVC object
+    Human *human = [Human new];
+    Hand *leftHand = [[Hand alloc] initWithName:@"left"];
+    leftHand.fingers = @[
+        [[Finger alloc] initWithName:@"1" index:0],
+        [[Finger alloc] initWithName:@"2" index:1],
+        [[Finger alloc] initWithName:@"3" index:2],
+        [[Finger alloc] initWithName:@"4" index:3],
+        [[Finger alloc] initWithName:@"5" index:4],
+    ];
+    
+    Hand *rightHand = [[Hand alloc] initWithName:@"right"];
+    rightHand.fingers = @[
+        [[Finger alloc] initWithName:@"1" index:0],
+        [[Finger alloc] initWithName:@"2" index:1],
+        [[Finger alloc] initWithName:@"3" index:2],
+        [[Finger alloc] initWithName:@"4" index:3],
+        [[Finger alloc] initWithName:@"5" index:4],
+    ];
+    
+    human.hands = @[ leftHand, rightHand ];
+    
+    JSONObject = @{
+        @"human": human,
+        @"array": @[
+                human
+            ]
+    };
+    output = [WCJSONTool replaceValueOfKVCObject:JSONObject usingKeyPath:@"human.hands[0].fingers[0].name" value:@"left finger 1"];
+    XCTAssertEqualObjects(((Human *)output[@"human"]).hands[0].fingers[0].name, @"left finger 1");
+
+    output = [WCJSONTool replaceValueOfKVCObject:JSONObject usingKeyPath:@"array[0].hands[0].fingers[0].name" value:@"left finger 1"];
+    XCTAssertEqualObjects(((Human *)output[@"array"][0]).hands[0].fingers[0].name, @"left finger 1");
 }
 
 - (void)test_valueOfKVCObject_usingKeyPath {

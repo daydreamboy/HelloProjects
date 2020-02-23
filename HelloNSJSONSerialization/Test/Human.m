@@ -52,4 +52,18 @@
     return self;
 }
 
+#pragma mark - NSMutableCopying
+
+- (id)mutableCopyWithZone:(NSZone *)zone {
+    Human *copyM = [[Human alloc] init];
+    
+    NSMutableArray *hands = [NSMutableArray array];
+    [hands addObject:[[Hand alloc] initWithName:_hands[0].name]];
+    [hands addObject:[[Hand alloc] initWithName:_hands[1].name]];
+    
+    copyM.hands = hands;
+    
+    return copyM;
+}
+
 @end

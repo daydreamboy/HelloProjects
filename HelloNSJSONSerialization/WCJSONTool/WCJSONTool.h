@@ -44,17 +44,6 @@ NS_AVAILABLE_IOS(5_0)
  */
 + (nullable NSString *)JSONStringWithObject:(id)object printOptions:(NSJSONWritingOptions)options filterInvalidObjects:(BOOL)filterInvalidObjects;
 
-#pragma mark > Safe JSON Object
-
-/**
- Safe get JSON object (NSArray/NSDictionary/NSString/NSNumber/NSNull)
-
- @param object the any object
- @return the JSON object which is valid for +[NSJSONSerialization isValidJSONObject:]
- @discussion This method maybe return a new instance which is different from the object
- */
-+ (nullable id)safeJSONObjectWithObject:(id)object;
-
 #pragma mark - String to Object
 
 #pragma mark > to NSDictionary/NSArray (also mutable version)
@@ -108,6 +97,28 @@ NS_AVAILABLE_IOS(5_0)
 
 #pragma mark - Assistant Methods
 
+#pragma mark > Safe JSON Object
+
+/**
+ Safe get JSON object (NSArray/NSDictionary/NSString/NSNumber/NSNull)
+
+ @param object the any object
+ @return the JSON object which is valid for +[NSJSONSerialization isValidJSONObject:]
+ @discussion This method maybe return a new instance which is different from the object
+ */
++ (nullable id)safeJSONObjectWithObject:(id)object;
+
+#pragma mark > JSON Object Mutable Copy
+
+/**
+ Create a mutable copy of JSON object
+ 
+ @param object the expected JSON object
+ @param allowKVCObjects YES if allow to copy custom container object which implments NSMutableCopying
+ @param allowMutableLeaves YES if make leaves mutable, e.g. NSMutableString
+ */
++ (nullable id)mutableCopiedJSONObjectWithObject:(id)object allowKVCObjects:(BOOL)allowKVCObjects allowMutableLeaves:(BOOL)allowMutableLeaves;
+
 #pragma mark > Key Path Query
 
 #pragma mark >> For JSON Object
@@ -133,7 +144,7 @@ NS_AVAILABLE_IOS(5_0)
  Get value using keyPath from JSON object
 
  @param JSONObject a NSDictionary or a NSArray
- @param keyPath a key or a keyPath separated by `.` or `[x]`, e.g. @"hash[key]", @"array[0]"
+ @param keyPath a key or a keyPath separated by `.` or `[x]`, e.g. @"hash[key]", @"array[0]", @"hash.[key]", @"array.[0]"
  @param objectClass the expected class of the returned value
  @return return nil, if the keyPath not match the JSONObject
  @note If keyPath is empty string, will return the original JSONObject
@@ -146,7 +157,7 @@ NS_AVAILABLE_IOS(5_0)
  Get value using keyPath from KVC object
 
  @param KVCObject a KVC-compliant object
- @param keyPath a key or a keyPath separated by `.` or `[x]`, e.g. @"hash[key]", @"array[0]"
+ @param keyPath a key or a keyPath separated by `.` or `[x]`, e.g. @"hash[key]", @"array[0]", @"hash.[key]", @"array.[0]"
  @param objectClass the expected class of the returned value
  @return return nil, if the keyPath not match the KVCObject
  @note If keyPath is empty string, will return the original KVCObject
@@ -165,6 +176,16 @@ NS_AVAILABLE_IOS(5_0)
              2. the pattern for template variables is @"\\$(?:\\{([a-zA-Z0-9_-]+)\\}|([a-zA-Z0-9_-]+))";
  */
 + (nullable id)valueOfKVCObject:(id)KVCObject usingKeyPath:(NSString *)keyPath bindings:(nullable NSDictionary *)bindings objectClass:(nullable Class)objectClass;
+
+/**
+ Replace value using keyPath from JSON object
+ 
+ @param JSONObject a NSDictionary or a NSArray
+ @param keyPath a key or a keyPath separated by `.` or `[x]`, e.g. @"hash[key]", @"array[0]", @"hash.[key]", @"array.[0]"
+ @param value the value to replcae, which is not allow nil, pass [NSNull null] instead
+ @return return nil, if any replacement not succeed. Return a mutable object after replacement.
+ */
++ (id)replaceValueOfKVCObject:(id)JSONObject usingKeyPath:(NSString *)keyPath value:(id)value;
 
 #pragma mark >> For NSArray/NSDictionary
 

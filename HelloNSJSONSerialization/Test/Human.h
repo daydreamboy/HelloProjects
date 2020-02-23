@@ -20,6 +20,6 @@
 - (instancetype)initWithName:(NSString *)name;
 @end
 
-@interface Human : NSObject
+@interface Human : NSObject <NSMutableCopying>
 @property (nonatomic, strong) NSArray<Hand *> *hands;
 @end

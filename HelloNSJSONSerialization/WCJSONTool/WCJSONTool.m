@@ -79,37 +79,6 @@
     }
 }
 
-+ (nullable id)safeJSONObjectWithObject:(id)object {
-    if ([object isKindOfClass:[NSNumber class]] || [object isKindOfClass:[NSString class]] || object == [NSNull null]) {
-        return object;
-    }
-    else if ([object isKindOfClass:[NSArray class]]) {
-        NSMutableArray *arrM = [NSMutableArray array];
-        for (id element in (NSArray *)object) {
-            id item = [self safeJSONObjectWithObject:element];
-            if (item) {
-                [arrM addObject:item];
-            }
-        }
-        return arrM;
-    }
-    else if ([object isKindOfClass:[NSDictionary class]]) {
-        NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
-        [(NSDictionary *)object enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
-            if ([key isKindOfClass:[NSString class]]) {
-                id value = [self safeJSONObjectWithObject:obj];
-                if (value) {
-                    dictM[key] = value;
-                }
-            }
-        }];
-        return dictM;
-    }
-    else {
-        return nil;
-    }
-}
-
 #pragma mark - String to Object
 
 #pragma mark > to NSDictionary/NSArray
@@ -227,6 +196,83 @@
 
 #pragma mark - Assistant Methods
 
+#pragma mark > Safe JSON Object
+
++ (nullable id)safeJSONObjectWithObject:(id)object {
+    if ([object isKindOfClass:[NSNumber class]] || [object isKindOfClass:[NSString class]] || object == [NSNull null]) {
+        return object;
+    }
+    else if ([object isKindOfClass:[NSArray class]]) {
+        NSMutableArray *arrM = [NSMutableArray array];
+        for (id element in (NSArray *)object) {
+            id item = [self safeJSONObjectWithObject:element];
+            if (item) {
+                [arrM addObject:item];
+            }
+        }
+        return arrM;
+    }
+    else if ([object isKindOfClass:[NSDictionary class]]) {
+        NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
+        [(NSDictionary *)object enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            if ([key isKindOfClass:[NSString class]]) {
+                id value = [self safeJSONObjectWithObject:obj];
+                if (value) {
+                    dictM[key] = value;
+                }
+            }
+        }];
+        return dictM;
+    }
+    else {
+        return nil;
+    }
+}
+
+#pragma mark > JSON Object Mutable Copy
+
++ (nullable id)mutableCopiedJSONObjectWithObject:(id)object allowKVCObjects:(BOOL)allowKVCObjects allowMutableLeaves:(BOOL)allowMutableLeaves {
+    if (object == [NSNull null]) {
+        return object;
+    }
+    if ([object isKindOfClass:[NSNumber class]]) {
+        // Note: NSNumber is immutable, not support copying
+        // @see https://stackoverflow.com/questions/6099667/nsnumbers-copy-is-not-allocating-new-memory/6099711
+        return object;
+    }
+    else if ([object isKindOfClass:[NSString class]]) {
+        return allowMutableLeaves ? [object mutableCopy] : object;
+    }
+    else if ([object isKindOfClass:[NSArray class]]) {
+        NSMutableArray *arrM = [NSMutableArray array];
+        for (id element in (NSArray *)object) {
+            id item = [self mutableCopiedJSONObjectWithObject:element allowKVCObjects:allowKVCObjects allowMutableLeaves:allowMutableLeaves];
+            if (item) {
+                [arrM addObject:item];
+            }
+        }
+        return arrM;
+    }
+    else if ([object isKindOfClass:[NSDictionary class]]) {
+        NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
+        [(NSDictionary *)object enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            if ([key isKindOfClass:[NSString class]]) {
+                id value = [self mutableCopiedJSONObjectWithObject:obj allowKVCObjects:allowKVCObjects allowMutableLeaves:allowMutableLeaves];
+                if (value) {
+                    dictM[key] = value;
+                }
+            }
+        }];
+        return dictM;
+    }
+    else if (allowKVCObjects && [object isKindOfClass:[NSObject class]] && [object respondsToSelector:@selector(mutableCopy)]) {
+        return [object mutableCopy];
+    }
+    else {
+        return nil;
+    }
+}
+
 #pragma mark > Key Path Query
 
 #pragma mark >> For JSON Object
@@ -283,6 +329,79 @@
     }
     
     return [self valueOfKVCObject:JSONObject usingKeyPath:keyPath objectClass:objectClass];
+}
+
++ (id)replaceValueOfKVCObject:(id)JSONObject usingKeyPath:(NSString *)keyPath value:(id)value {
+    if (!JSONObject || ![keyPath isKindOfClass:[NSString class]] || !keyPath.length || !value) {
+        return nil;
+    }
+    
+    NSArray *parts = [keyPath componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@".[]"]];
+    NSMutableArray *keys = [NSMutableArray arrayWithArray:parts];
+    // Note: remove all empty string
+    [keys removeObject:@""];
+    
+    id targetContainer = [self mutableCopiedJSONObjectWithObject:JSONObject allowKVCObjects:YES allowMutableLeaves:NO];
+    id currentContainer = targetContainer;
+    for (NSUInteger i = 0; i < keys.count; i++) {
+        NSString *currentKey = keys[i];
+        
+        if ([currentContainer isKindOfClass:[NSMutableArray class]]) {
+            // Note: handle NSArray container
+            if (![NSPREDICATE(@"0|[1-9]\\d*") evaluateWithObject:currentKey]) {
+                NSLog(@"Error: %@ is not a subscript of NSArray", currentKey);
+                return nil;
+            }
+            
+            NSInteger index = [currentKey integerValue];
+            NSMutableArray *arrM = (NSMutableArray *)currentContainer;
+            
+            if (index < 0 || index >= arrM.count) {
+                NSLog(@"Error: subscript %@ is out of bounds [0..%ld]", currentKey, (long)arrM.count - 1);
+                return nil;
+            }
+            
+            if (i == keys.count - 1) {
+                arrM[index] = value;
+            }
+            else {
+                currentContainer = arrM[index];
+            }
+        }
+        else if ([currentContainer isKindOfClass:[NSMutableDictionary class]]) {
+            // Note: handle NSDictionary container
+            NSMutableDictionary *dictM = (NSMutableDictionary *)currentContainer;
+            
+            if (i == keys.count - 1) {
+                dictM[currentKey] = value;
+            }
+            else {
+                currentContainer = dictM[currentKey];
+            }
+        }
+        else if ([currentContainer isKindOfClass:[NSObject class]]) {
+            // Note: handle custom container
+            NSObject *KVCObject = (NSObject *)currentContainer;
+            @try {
+                if (i == keys.count - 1) {
+                    [KVCObject setValue:value forKey:currentKey];
+                }
+                else {
+                    currentContainer = [KVCObject valueForKey:currentKey];
+                }
+            }
+            @catch (NSException *e) {
+                NSLog(@"Error: object %@ is not KVC compliant for key `%@`", KVCObject, currentKey);
+                return nil;
+            }
+        }
+        else {
+            NSLog(@"Error: unsupported object %@", currentContainer);
+            return nil;
+        }
+    }
+    
+    return targetContainer;
 }
 
 #pragma mark >> For KVC Object
