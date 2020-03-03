@@ -146,9 +146,13 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Get JSON Object at the specific JSON file at MacOS user direcotry
  
+ @param userHomeFileName the debug configuratio file name. If pass nil、empty string or not a string, use @"simulator_debug.json" instead.
+ 
  @return the JSON object which allow fragments
  */
-+ (nullable id)JSONObjectWithUserHomeFileName:(NSString *)userHomeFileName;
++ (nullable id)JSONObjectWithUserHomeFileName:(nullable NSString *)userHomeFileName;
+
+#define RTCall_JSONObjectWithUserHomeFileName(userHomeFileName) ([NSClassFromString(@"WCApplicationTool") performSelector:@selector(JSONObjectWithUserHomeFileName:) withObject:(userHomeFileName)])
 
 #pragma mark > Risky Methods
 

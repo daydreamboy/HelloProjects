@@ -158,10 +158,10 @@
 
 #pragma mark > Get debug configuration (Only Simulator)
 
-+ (nullable id)JSONObjectWithUserHomeFileName:(NSString *)userHomeFileName {
++ (nullable id)JSONObjectWithUserHomeFileName:(nullable NSString *)userHomeFileName {
 #if TARGET_OS_SIMULATOR
     if (![userHomeFileName isKindOfClass:[NSString class]] || !userHomeFileName.length) {
-        return nil;
+        userHomeFileName = @"simulator_debug.json";
     }
     
     NSString *appHomeDirectoryPath = [@"~" stringByExpandingTildeInPath];

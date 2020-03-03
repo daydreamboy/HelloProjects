@@ -22,9 +22,21 @@
 }
 
 - (void)test_JSONObjectWithUserHomeFileName {
+    id object;
+    
     // Note: place 1.txt at the ~ folder
-    id object = [WCApplicationTool JSONObjectWithUserHomeFileName:@"1.txt"];
+    object = [WCApplicationTool JSONObjectWithUserHomeFileName:@"1.txt"];
     NSLog(@"%@", object);
+    XCTAssertNotNil(object);
+    
+    // Note: place 1.txt at the ~ folder
+    object = [WCApplicationTool JSONObjectWithUserHomeFileName:nil];
+    NSLog(@"%@", object);
+    XCTAssertNotNil(object);
+    
+    object = RTCall_JSONObjectWithUserHomeFileName(nil);
+    NSLog(@"%@", object);
+    XCTAssertNotNil(object);
 }
 
 @end
