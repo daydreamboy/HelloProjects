@@ -91,6 +91,25 @@
     XCTAssertNil(result);
 }
 
+- (void)test_function_call {
+    JSValue *result;
+    JSContext *context = [[JSContext alloc] init];
+    context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
+        [WCJSCTool printExceptionValue:exception];
+    };
+    
+    [context evaluateScript:@"var a = 1; var b = 2; var c = 3;"];
+    JSValue *a = context[@"a"];
+    JSValue *b = context[@"b"];
+    JSValue *c = context[@"c"];
+    
+    [context evaluateScript:@"var sum = function(a, b, c) { return a + b + c; }"];
+    JSValue *sumFunc = context[@"sum"];
+    
+    result = [sumFunc callWithArguments:@[a, b, c]];
+    XCTAssertTrue([result toInt32] == 6);
+}
+
 - (void)test_undefined {
     JSValue *result;
     

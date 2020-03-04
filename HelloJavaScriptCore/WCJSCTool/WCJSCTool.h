@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)printExceptionValue:(JSValue *)exception;
 
++ (BOOL)checkSymbolDefinedWithContext:(JSContext *)context symbolName:(NSString *)symbolName;
+
 @end
 
 NS_ASSUME_NONNULL_END

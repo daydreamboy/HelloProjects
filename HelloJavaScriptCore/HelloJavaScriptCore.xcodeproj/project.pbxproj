@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F0238D0240FACDF00799EEA /* WCJSCTimerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0238CF240FACDF00799EEA /* WCJSCTimerManager.m */; };
 		4F0686DE23D4881A00AC076F /* WCJSCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0686DD23D4881A00AC076F /* WCJSCTool.m */; };
 		4F1B380B23B75B9300349B62 /* JSCodeTestListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B380A23B75B9300349B62 /* JSCodeTestListViewController.m */; };
 		4F1B380D23B75BD700349B62 /* JSTestList in Resources */ = {isa = PBXBuildFile; fileRef = 4F1B380C23B75BD700349B62 /* JSTestList */; };
@@ -43,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F0238CE240FACDF00799EEA /* WCJSCTimerManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCJSCTimerManager.h; sourceTree = "<group>"; };
+		4F0238CF240FACDF00799EEA /* WCJSCTimerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCJSCTimerManager.m; sourceTree = "<group>"; };
 		4F0686DC23D4881A00AC076F /* WCJSCTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCJSCTool.h; sourceTree = "<group>"; };
 		4F0686DD23D4881A00AC076F /* WCJSCTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCJSCTool.m; sourceTree = "<group>"; };
 		4F1B380923B75B9300349B62 /* JSCodeTestListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSCodeTestListViewController.h; sourceTree = "<group>"; };
@@ -107,6 +110,8 @@
 			children = (
 				4F0686DC23D4881A00AC076F /* WCJSCTool.h */,
 				4F0686DD23D4881A00AC076F /* WCJSCTool.m */,
+				4F0238CE240FACDF00799EEA /* WCJSCTimerManager.h */,
+				4F0238CF240FACDF00799EEA /* WCJSCTimerManager.m */,
 			);
 			path = WCJSCTool;
 			sourceTree = "<group>";
@@ -324,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F0686DE23D4881A00AC076F /* WCJSCTool.m in Sources */,
+				4F0238D0240FACDF00799EEA /* WCJSCTimerManager.m in Sources */,
 				4F5E8B992215125D00269853 /* main.m in Sources */,
 				4F828E76221A5AB100D9CD51 /* UseJSContextOfUIWebViewViewController.m in Sources */,
 				4F1B384723B78AC200349B62 /* WCWebViewTool.m in Sources */,

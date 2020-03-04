@@ -11,11 +11,14 @@
 #import "JSCodeEditViewController.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "WCMacroKit.h"
+#import "WCJSCTimerManager.h"
 
 @interface JSCodeTestListViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray<NSString *> *listData;
 @property (nonatomic, strong) NSString *dirPath;
+@property (nonatomic, strong) NSArray<NSString *> *fileNames;
+@property (nonatomic, strong) JSContext *context;
 @end
 
 @implementation JSCodeTestListViewController
@@ -34,6 +37,7 @@
         }
         _listData = arrM;
         _dirPath = dirPath;
+        _fileNames = fileNames;
     }
     return self;
 }
@@ -56,6 +60,10 @@
     UIBarButtonItem *editItem = [[UIBarButtonItem alloc] initWithTitle:@"编辑" style:UIBarButtonItemStylePlain target:self action:@selector(editItemClicked:)];
     UIBarButtonItem *scanQRCodeItem = [[UIBarButtonItem alloc] initWithTitle:@"QRCode" style:UIBarButtonItemStylePlain target:self action:@selector(scanQRCodeItemClicked:)];
     self.navigationItem.rightBarButtonItems = @[editItem, scanQRCodeItem];
+}
+
+- (void)dealloc {
+//    [WCJSCTimerManager unregisterWithContext:self.context];
 }
 
 #pragma mark - Actions
@@ -141,12 +149,19 @@
 
 - (void)runJSCode:(NSString *)JSCode atIndexPath:(NSIndexPath *)indexPath {
     JSContext *context = [[JSContext alloc] init];
+    context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
+        NSString *title = [NSString stringWithFormat:@"%@", [exception toString]];
+        NSString *msg = [NSString stringWithFormat:@"%@\nstack:%@", [exception toObject], exception[@"stack"]];
+        SHOW_ALERT(title, msg, @"I'll check it", nil);
+    };
     [self injectCodeWithContext:context atIndexPath:indexPath];
     [context evaluateScript:JSCode];
+    self.context = context;
 }
 
 - (void)injectCodeWithContext:(JSContext *)context atIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
+    NSString *fileName = self.fileNames[indexPath.row];
+    if ([fileName isEqualToString:@"alert.js"]) {
         context[@"alert"] = ^(id object) {
             NSString *message = [object description];
             if ([NSThread isMainThread]) {
@@ -159,13 +174,56 @@
             }
         };
     }
-    else if (indexPath.row == 1) {
+    else if ([fileName isEqualToString:@"clearTimeout.js"]) {
+        [context evaluateScript:@"var console = {}"];
+        context[@"console"][@"log"] = ^(id object) {
+            NSString *message = [object description];
+            NSLog(@"JSBridge log: %@", message);
+        };
+        [WCJSCTimerManager registerWithContext:context];
+    }
+    else if ([fileName isEqualToString:@"console.log.js"]) {
         // @see https://stackoverflow.com/a/21325240
         [context evaluateScript:@"var console = {}"];
         context[@"console"][@"log"] = ^(id object) {
             NSString *message = [object description];
             NSLog(@"JSBridge log: %@", message);
         };
+    }
+    else if ([fileName isEqualToString:@"setInterval.js"]) {
+        [context evaluateScript:@"var console = {}"];
+        context[@"console"][@"log"] = ^(id object) {
+            NSString *message = [object description];
+            NSLog(@"JSBridge log: %@", message);
+        };
+        [WCJSCTimerManager registerWithContext:context];
+    }
+    else if ([fileName isEqualToString:@"setTimeout_arguments.js"]) {
+        [context evaluateScript:@"var console = {}"];
+        context[@"console"][@"log"] = ^(id object) {
+            NSString *message = [object description];
+            NSLog(@"JSBridge log: %@", message);
+        };
+        context[@"alert"] = ^(id object) {
+            NSString *message = [object description];
+            if ([NSThread isMainThread]) {
+                SHOW_ALERT(@"JS Alert", message, @"Ok", nil);
+            }
+            else {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    SHOW_ALERT(@"JS Alert", message, @"Ok", nil);
+                });
+            }
+        };
+        [WCJSCTimerManager registerWithContext:context];
+    }
+    else if ([fileName isEqualToString:@"setTimout.js"]) {
+        [context evaluateScript:@"var console = {}"];
+        context[@"console"][@"log"] = ^(id object) {
+            NSString *message = [object description];
+            NSLog(@"JSBridge log: %@", message);
+        };
+        [WCJSCTimerManager registerWithContext:context];
     }
 }
 

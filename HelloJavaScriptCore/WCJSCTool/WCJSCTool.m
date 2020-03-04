@@ -24,4 +24,14 @@
     }
 }
 
++ (BOOL)checkSymbolDefinedWithContext:(JSContext *)context symbolName:(NSString *)symbolName {
+    if (![context isKindOfClass:[JSContext class]] || ![symbolName isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    
+    JSValue *value = context[symbolName];
+    
+    return !value.isUndefined;
+}
+
 @end
