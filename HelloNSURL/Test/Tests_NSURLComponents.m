@@ -78,4 +78,29 @@
     XCTAssertEqualObjects(URLComponents.URL.absoluteString, @"https://www.google.com/?key=value1&key=value2");
 }
 
+- (void)test_components {
+    NSString *url;
+    NSURL *URL;
+    NSURLComponents *URLComponents;
+    NSMutableArray<NSURLQueryItem *> *items;
+    NSURLQueryItem *newItem;
+    
+    // Case 1
+    url = @"https://www.google.com/search?newwindow=1&sxsrf=ALeKk02f5THLMykHpX_xYTfZXya4AGnpOw%3A1583401893198&ei=pctgXt_TC-iJr7wP08CaiA8&q=host+vs+domain&oq=host+vs+domain&gs_l=psy-ab.3..0i71l8.16422.16422..16779...0.3..0.0.0.......0....1..gws-wiz.fLnkxFSfQ9A&ved=0ahUKEwifuoXbh4PoAhXoxIsBHVOgBvEQ4dUDCAs&uact=5";
+    URL = [NSURL URLWithString:url];
+    items = [NSMutableArray array];
+    
+    URLComponents = [NSURLComponents componentsWithURL:URL resolvingAgainstBaseURL:NO];
+    
+    // Note: http://username:password@www.example.com/index.html
+    NSLog(@"%@", URLComponents.scheme);
+    NSLog(@"%@", URLComponents.user);
+    NSLog(@"%@", URLComponents.password);
+    NSLog(@"%@", URLComponents.host);
+    NSLog(@"%@", URLComponents.port);
+    NSLog(@"%@", URLComponents.path);
+    NSLog(@"%@", URLComponents.query);
+    NSLog(@"%@", URLComponents.fragment);
+}
+
 @end
