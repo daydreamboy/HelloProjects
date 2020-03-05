@@ -24,7 +24,7 @@
     }
 }
 
-+ (BOOL)checkSymbolDefinedWithContext:(JSContext *)context symbolName:(NSString *)symbolName {
++ (BOOL)checkGlobalVariableDefinedWithContext:(JSContext *)context variableName:(NSString *)symbolName {
     if (![context isKindOfClass:[JSContext class]] || ![symbolName isKindOfClass:[NSString class]]) {
         return NO;
     }

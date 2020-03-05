@@ -15,7 +15,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)printExceptionValue:(JSValue *)exception;
 
-+ (BOOL)checkSymbolDefinedWithContext:(JSContext *)context symbolName:(NSString *)symbolName;
+/**
+ Check global variable if defined in the context
+ 
+ @param context the JS context
+ @param variableName the global variable name
+ 
+ @return return YES if the global variable has defined
+ */
++ (BOOL)checkGlobalVariableDefinedWithContext:(JSContext *)context variableName:(NSString *)variableName;
 
 @end
 

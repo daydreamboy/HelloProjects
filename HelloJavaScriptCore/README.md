@@ -530,6 +530,16 @@ NSLog(@"pointValue: %@", pointValue);
 
 
 
+##### 构造函数
+
+JSExport导出的类和方法，默认是没有构造函数。当JS代码使用new关键词创建实例时，会发生异常。
+
+
+
+
+
+
+
 ## 5、WebView中JavaScript和native交互
 
 WebView（UIWebView和WKWebView）都提供执行JavaScript代码的接口，如下

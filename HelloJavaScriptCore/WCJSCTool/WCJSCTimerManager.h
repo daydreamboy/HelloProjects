@@ -10,7 +10,7 @@
 #import <JavaScriptCore/JavaScriptCore.h>
 
 NS_ASSUME_NONNULL_BEGIN
-// @see https://stackoverflow.com/a/39864295
+
 @protocol WCJSCTimerManagerJSExports <JSExport>
 // Note: make `new` available in JS Code
 - (instancetype)init;
@@ -19,6 +19,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *)setInterval:(JSValue *)callback delayInMS:(NSTimeInterval)delayInMS arg1:(JSValue *)arg1 arg2:(JSValue *)arg2 arg3:(JSValue *)arg3 arg4:(JSValue *)arg4 arg5:(JSValue *)arg5;
 @end
 
+/**
+ A timer manager provides setTimeout, setInterval, clearTimeout function to JS front code
+ 
+ @see https://stackoverflow.com/a/39864295
+ */
 @interface WCJSCTimerManager : NSObject <WCJSCTimerManagerJSExports>
 
 - (instancetype)init NS_UNAVAILABLE;

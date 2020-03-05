@@ -32,7 +32,6 @@ static void * const kAssociatedKeyWCJSCTimerManager = (void *)&kAssociatedKeyWCJ
         return NO;
     }
     
-    
     WCJSCTimerManager *manager = [[WCJSCTimerManager alloc] init];
     context[WCJSCTimerManagerJSClassName] = [WCJSCTimerManager class];
     context[WCJSCTimerManagerJSInstanceName] = manager;
