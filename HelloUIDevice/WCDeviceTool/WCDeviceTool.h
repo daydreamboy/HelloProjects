@@ -61,6 +61,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)systemVersion;
 
+#pragma mark > System browser
+
+/**
+ Get user agent, e.g. Mozilla/5.0 (iPhone; CPU iPhone OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148
+ 
+ @param block the block to return the user agent
+ @discussion iOS 13+, the block is asynchronous and queried by WKWebView; iOS 12-, the block is synchronous and queried by UIWebView,
+ */
++ (void)browserUserAgentWithBlock:(void (^)(NSString *userAgent))block;
+
 #pragma mark - Hardware Info
 
 #pragma mark > Model

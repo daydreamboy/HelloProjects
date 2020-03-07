@@ -23,7 +23,7 @@ static void * const kAssociatedKeyMockTapGesture = (void *)&kAssociatedKeyMockTa
         return NO;
     }
     
-    WCMockTapGestureWrapper *mockGesture =  objc_getAssociatedObject(tapGesture, kAssociatedKeyMockTapGesture);
+    WCMockTapGestureWrapper *mockGesture = objc_getAssociatedObject(tapGesture, kAssociatedKeyMockTapGesture);
     if (![mockGesture isKindOfClass:[WCMockTapGestureWrapper class]]) {
         mockGesture = [self createMockTapGestureWithGesture:tapGesture];
         if (!mockGesture) {

@@ -9,10 +9,16 @@
 #import "WCDeviceTool.h"
 
 #import <UIKit/UIKit.h>
+#import <WebKit/WebKit.h>
 #import <sys/sysctl.h>
 #import <sys/utsname.h>
 #import <mach/mach.h>
 #import <objc/runtime.h>
+
+// >= `13.0`
+#ifndef IOS13_OR_LATER
+#define IOS13_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"13.0" options:NSNumericSearch] != NSOrderedAscending)
+#endif
 
 @implementation WCDeviceTool
 
@@ -94,6 +100,35 @@
 + (NSString *)systemVersion {
     NSString *version = [[UIDevice currentDevice] systemVersion];
     return version ?: @"Unknown";
+}
+
+#pragma mark > System browser
+
++ (void)browserUserAgentWithBlock:(void (^)(NSString *userAgent))block {
+    if (IOS13_OR_LATER) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        
+        WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
+        WKWebView *webView = [[WKWebView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, screenSize.height) configuration:configuration];
+        [webView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        if ([result isKindOfClass:[NSString class]] && ((NSString *)result).length > 0) {
+            // Note: create a variable to hold `webView` strongly if `webView` is
+            // a local object release after call this method
+            // @see https://forums.developer.apple.com/thread/123128
+            __unused WKWebView *webViewL = webView;
+            !block ?: block(result);
+        }
+        else {
+            !block ?: block(@"Unknown");
+        }
+    }];
+    }
+    else {
+        UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+        NSString *userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+        
+        !block ?: block(userAgent ?: @"Unknown");
+    }
 }
 
 #pragma mark - Hardware Info
