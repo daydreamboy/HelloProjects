@@ -32,6 +32,8 @@
 		4F986B02221591650096026E /* Tests_JSValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F986B01221591650096026E /* Tests_JSValue.m */; };
 		4F986B072216C3950096026E /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F986B062216C3950096026E /* Person.m */; };
 		4F986B092216C54B0096026E /* Tests_JSExport.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F986B082216C54B0096026E /* Tests_JSExport.m */; };
+		4FF9B085241248C500D4145E /* MyCycle_noInitMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF9B084241248C500D4145E /* MyCycle_noInitMethod.m */; };
+		4FFF9B07241237E800964DE2 /* MyCycle_twoMoreInitMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFF9B06241237E800964DE2 /* MyCycle_twoMoreInitMethod.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,10 @@
 		4F986B052216C3950096026E /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		4F986B062216C3950096026E /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		4F986B082216C54B0096026E /* Tests_JSExport.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_JSExport.m; sourceTree = "<group>"; };
+		4FF9B083241248C500D4145E /* MyCycle_noInitMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCycle_noInitMethod.h; sourceTree = "<group>"; };
+		4FF9B084241248C500D4145E /* MyCycle_noInitMethod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCycle_noInitMethod.m; sourceTree = "<group>"; };
+		4FFF9B05241237E800964DE2 /* MyCycle_twoMoreInitMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCycle_twoMoreInitMethod.h; sourceTree = "<group>"; };
+		4FFF9B06241237E800964DE2 /* MyCycle_twoMoreInitMethod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCycle_twoMoreInitMethod.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +156,10 @@
 				4F828E72221939DD00D9CD51 /* MyPoint.m */,
 				4F77D9D92410A59800BC2BA2 /* MyCycle.h */,
 				4F77D9DA2410A59800BC2BA2 /* MyCycle.m */,
+				4FF9B083241248C500D4145E /* MyCycle_noInitMethod.h */,
+				4FF9B084241248C500D4145E /* MyCycle_noInitMethod.m */,
+				4FFF9B05241237E800964DE2 /* MyCycle_twoMoreInitMethod.h */,
+				4FFF9B06241237E800964DE2 /* MyCycle_twoMoreInitMethod.m */,
 			);
 			path = DummyClass;
 			sourceTree = "<group>";
@@ -356,7 +366,9 @@
 				4F986B092216C54B0096026E /* Tests_JSExport.m in Sources */,
 				4F5E8BB022151D5A00269853 /* Tests.m in Sources */,
 				4F986B072216C3950096026E /* Person.m in Sources */,
+				4FFF9B07241237E800964DE2 /* MyCycle_twoMoreInitMethod.m in Sources */,
 				4F986B02221591650096026E /* Tests_JSValue.m in Sources */,
+				4FF9B085241248C500D4145E /* MyCycle_noInitMethod.m in Sources */,
 				4F77D9DB2410A59800BC2BA2 /* MyCycle.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

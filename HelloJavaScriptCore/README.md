@@ -181,6 +181,77 @@ XCTAssertEqualObjects([context[@"b"] toString], @"hello");
 
 
 
+#### JSValue的undefined值转换Native其他类型值
+
+​         在JSExport导出方法时，建议**参数类型都指定为JSValue**，而不是具体的Native类型（CGFloat、NSString等）。
+
+​        因为JS调用函数，可以不确定参数个数，如果没有传，默认将undefined值传到Native方法的参数。但是JSValue的undefined值转native有很多需要注意的地方，如下
+
+* undefined值，toString不是nil，是undefined
+* undefined值，toDouble是nan
+* undefined值，toNumber不是nil
+
+* undefined值，toDate不是nil，而是-5877520-03-03 -596:-31:-23 +0000
+* ……
+
+测试代码，如下
+
+```objective-c
+XCTAssertTrue(result.isUndefined);
+
+XCTAssertNil([result toObject]); // nil
+XCTAssertNil([result toObjectOfClass:[NSString class]]); // nil
+
+BOOL b = [result toBool];
+XCTAssertTrue(b == NO);
+
+double d = [result toDouble];
+XCTAssertTrue(isnan(d));
+
+int32_t i32 = [result toInt32];
+XCTAssertTrue(i32 == 0);
+
+uint32_t ui32 = [result toUInt32];
+XCTAssertTrue(ui32 == 0);
+
+NSNumber *n = [result toNumber];
+XCTAssertNotNil(n);
+XCTAssertEqualObjects([n stringValue], @"nan");
+
+NSString *s = [result toString];
+XCTAssertNotNil(s);
+XCTAssertEqualObjects(s, @"undefined");
+
+NSDate *date = [result toDate];
+XCTAssertNotNil(date);
+XCTAssertEqualObjects([date description], @"-5877520-03-03 -596:-31:-23 +0000");
+
+XCTAssertNil([result toArray]);
+XCTAssertNil([result toDictionary]);
+
+CGPoint p = [result toPoint];
+XCTAssertTrue(isnan(p.x));
+XCTAssertTrue(isnan(p.y));
+
+NSRange range = [result toRange];
+NSUInteger location = range.location;
+NSUInteger length = range.length;
+XCTAssertTrue(location == (unsigned long)LONG_MAX + 1LL); // 9223372036854775808
+XCTAssertTrue(length == (unsigned long)LONG_MAX + 1LL); // 9223372036854775808
+
+CGRect rect = [result toRect];
+XCTAssertTrue(isnan(rect.origin.x));
+XCTAssertTrue(isnan(rect.origin.y));
+XCTAssertTrue(isnan(rect.size.width));
+XCTAssertTrue(isnan(rect.size.height));
+
+CGSize size = [result toSize];
+XCTAssertTrue(isnan(size.width));
+XCTAssertTrue(isnan(size.height));
+```
+
+
+
 ### （4）定义Property
 
 ​      JavaScript对象的属性（Propery），可以通过下标方式直接赋值，也可以通过`-[JSValue defineProperty:descriptor:]`方法来细粒度定义属性。这个方法类似JavaScript中的`Object.defineProperty()`方法。
@@ -268,12 +339,6 @@ defineProperty:descriptor:方法，允许多次被调用，并且重复定义相
 > ```
 >
 > 解决方法：在第一次定义属性时，设置它的属性key为JSPropertyDescriptorWritableKey或者JSPropertyDescriptorConfigurableKey，表示该属性可写，或者可以重新配置。
-
-
-
-
-
-
 
 
 
@@ -532,11 +597,84 @@ NSLog(@"pointValue: %@", pointValue);
 
 ##### 构造函数
 
-JSExport导出的类和方法，默认是没有构造函数。当JS代码使用new关键词创建实例时，会发生异常。
+**使用new创建对象必须要有init方法**
+
+​       JavaScript使用new创建对象，会调用该类的构造函数，需要Native端的JSExport导出init方法。JSExport导出的类，注入到JSContext中，默认没有JS端的构造函数。当JS代码使用new关键词创建实例时，会发生异常。
+
+举个例子，如下
+
+```objective-c
+MyCycle_noInitMethod *c;
+JSValue *value;
+JSContext *context = [[JSContext alloc] init];
+context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
+    [WCJSCTool printExceptionValue:exception]; // TypeError: MyCycle_noInitMethodConstructor is not a constructor (evaluating 'new MyCycle_noInitMethod()')
+};
+context[@"MyCycle_noInitMethod"] = [MyCycle_noInitMethod class];
+
+// Case: `new` keyword will call JSExport init or initXXX:..: method
+[context evaluateScript:@"var c = new MyCycle_noInitMethod();"];
+value = context[@"c"];
+XCTAssertTrue(value.isUndefined);
+
+c = [value toObjectOfClass:[MyCycle_noInitMethod class]];
+XCTAssertNil(c);
+```
+
+​       上面MyCycle_noInitMethod的JSExport协议没有导出init方法，则new MyCycle_noInitMethod()会抛出JS异常，对应的变量c也是undefined。
 
 
 
+**JSExport导出init方法只能有一个**
 
+JSExport导出init方法只能有一个，如果JSExport导出多个init方法，则运行时报错如下
+
+```text
+ERROR: Class MyCycle_twoMoreInitMethod exported more than one init family method via JSExport. Class MyCycle_twoMoreInitMethod will not have a callable JavaScript constructor function.
+```
+
+JS调用构造函数抛出异常，导致赋值变量为undefined。
+
+```
+TypeError: MyCycle_twoMoreInitMethodConstructor is not a constructor (evaluating 'new MyCycle_twoMoreInitMethod()')
+```
+
+
+
+**JSExport导出正确init方法**
+
+确定JS的构造函数的参数个数和顺序，实现参数个数最多的init方法，同时参数类型一定指定为JSValue。
+
+举个例子，MyCycle的构造函数有三个参数，所有参数都是可选的。
+
+```objective-c
+@protocol MyCycleJSExport <JSExport>
+- (instancetype)initWithRadius:(JSValue *)radius x:(JSValue *)x y:(JSValue *)y;
+@end
+
+- (instancetype)initWithRadius:(JSValue *)radius x:(JSValue *)x y:(JSValue *)y {
+    self = [super init];
+    if (self) {
+        _radius = radius.isUndefined ? 0 : [radius toDouble];
+        _x = x.isUndefined ? 0 : [x toDouble];
+        _y = y.isUndefined ? 0 : [y toDouble];
+    }
+    return self;
+}
+```
+
+通过JSValue的isUndefined属性判断，JS调用构造函数是否传入对应的参数。
+
+JS代码，如下
+
+```javascript
+context[@"MyCycle"] = [MyCycle class];
+
+[context evaluateScript:@"var c1 = new MyCycle();"];
+[context evaluateScript:@"var c2 = new MyCycle(2);"];
+[context evaluateScript:@"var c3 = new MyCycle(2, 1);"];
+[context evaluateScript:@"var c4 = new MyCycle(2, 1, 3);"];
+```
 
 
 

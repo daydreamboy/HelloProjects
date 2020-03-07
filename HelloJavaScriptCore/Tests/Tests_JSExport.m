@@ -9,6 +9,9 @@
 #import <XCTest/XCTest.h>
 #import "Person.h"
 #import "MyPoint.h"
+#import "MyCycle.h"
+#import "MyCycle_noInitMethod.h"
+#import "MyCycle_twoMoreInitMethod.h"
 #import "WCJSCTool.h"
 
 #define STR_OF_JSON(...) @#__VA_ARGS__
@@ -135,6 +138,98 @@
     p = [context[@"point3"] toObjectOfClass:[MyPoint class]];
     XCTAssertNil(p);
 }
+
+#pragma mark - JSExport with constructor
+
+- (void)test_constructor_noInitMethod {
+    MyCycle_noInitMethod *c;
+    JSValue *value;
+    JSContext *context = [[JSContext alloc] init];
+    context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
+        [WCJSCTool printExceptionValue:exception]; // TypeError: MyCycle_noInitMethodConstructor is not a constructor (evaluating 'new MyCycle_noInitMethod()')
+    };
+    context[@"MyCycle_noInitMethod"] = [MyCycle_noInitMethod class];
+    
+    // Case: `new` keyword will call JSExport init or initXXX:..: method
+    [context evaluateScript:@"var c = new MyCycle_noInitMethod();"];
+    value = context[@"c"];
+    XCTAssertTrue(value.isUndefined);
+    
+    c = [value toObjectOfClass:[MyCycle_noInitMethod class]];
+    XCTAssertNil(c);
+    
+    XCTAssertTrue(c.radius == 0);
+    XCTAssertTrue(c.diameter == 0);
+}
+
+- (void)test_constructor_twoMoreInitMethod {
+    MyCycle_twoMoreInitMethod *c;
+    JSValue *value;
+    
+    JSContext *context = [[JSContext alloc] init];
+    context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
+        XCTAssertEqualObjects([exception toString], @"TypeError: MyCycle_twoMoreInitMethodConstructor is not a constructor (evaluating 'new MyCycle_twoMoreInitMethod()')");
+    };
+    context[@"MyCycle_twoMoreInitMethod"] = [MyCycle_twoMoreInitMethod class];
+    
+    // Case: `new` keyword call native init or init method, but only one init method in JSExport
+    [context evaluateScript:@"var c = new MyCycle_twoMoreInitMethod();"]; // ERROR: Class MyCycle_twoMoreInitMethod exported more than one init family method via JSExport. Class MyCycle_twoMoreInitMethod will not have a callable JavaScript constructor function.
+    value = context[@"c"];
+    XCTAssertTrue(value.isUndefined);
+    
+    c = [value toObjectOfClass:[MyCycle_twoMoreInitMethod class]];
+    XCTAssertNil(c);
+    
+    XCTAssertTrue(c.radius == 0);
+    XCTAssertTrue(c.diameter == 0);
+}
+
+- (void)test_constructor {
+    JSValue *value;
+    MyCycle *c;
+    JSContext *context = [[JSContext alloc] init];
+    context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
+        [WCJSCTool printExceptionValue:exception];
+    };
+    
+    context[@"MyCycle"] = [MyCycle class];
+    
+    // Case 1:
+    [context evaluateScript:@"var c1 = new MyCycle();"];
+    value = context[@"c1"];
+    c = [value toObjectOfClass:[MyCycle class]];
+    XCTAssertTrue(c.radius == 0);
+    XCTAssertTrue(c.diameter == 0);
+    XCTAssertTrue(c.x == 0);
+    XCTAssertTrue(c.y == 0);
+    
+    // Case 2:
+    [context evaluateScript:@"var c2 = new MyCycle(2);"];
+    value = context[@"c2"];
+    c = [value toObjectOfClass:[MyCycle class]];
+    XCTAssertTrue(c.radius == 2);
+    XCTAssertTrue(c.diameter == 4);
+    XCTAssertTrue(c.x == 0);
+    XCTAssertTrue(c.y == 0);
+    
+    // Case 3:
+    [context evaluateScript:@"var c3 = new MyCycle(2, 1);"];
+    c = [context[@"c3"] toObjectOfClass:[MyCycle class]];
+    XCTAssertTrue(c.radius == 2);
+    XCTAssertTrue(c.diameter == 4);
+    XCTAssertTrue(c.x == 1);
+    XCTAssertTrue(c.y == 0);
+    
+    // Case 4:
+    [context evaluateScript:@"var c4 = new MyCycle(2, 1, 3);"];
+    c = [context[@"c4"] toObjectOfClass:[MyCycle class]];
+    XCTAssertTrue(c.radius == 2);
+    XCTAssertTrue(c.diameter == 4);
+    XCTAssertTrue(c.x == 1);
+    XCTAssertTrue(c.y == 3);
+}
+
+#pragma mark -
 
 // @see https://stackoverflow.com/a/21680112
 // Deprecated, because of var %@ = function (){ return __%@();}; will hide the class method

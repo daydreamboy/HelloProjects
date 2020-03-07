@@ -26,6 +26,8 @@
     [super tearDown];
 }
 
+#pragma mark - subscript
+
 - (void)test_subscript_for_array {
     JSContext *context = [[JSContext alloc] init];
     [context evaluateScript:@"var list=[1, 2, 3]"];
@@ -58,6 +60,8 @@
     value = map[@"key2"];
     XCTAssertEqualObjects([value toString], @"value2");
 }
+
+#pragma mark - Wrapper
 
 - (void)test_function_wrapper {
     JSValue *result;
@@ -139,6 +143,76 @@
     XCTAssertEqualObjects([result toString], @"hello");
     XCTAssertEqualObjects([context[@"b"] toString], @"hello");
 }
+
+#pragma mark - undefined to Native
+
+- (void)test_undefined_to_native {
+    JSValue *result;
+    
+    JSContext *context = [[JSContext alloc] init];
+    context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
+        [WCJSCTool printExceptionValue:exception];
+    };
+    
+    // Case 1
+    result = [context evaluateScript:@"var a = 'hello'"]; // execute code
+    NSLog(@"%@", result);
+    XCTAssertEqualObjects([context[@"a"] toString], @"hello");
+    
+    XCTAssertTrue(result.isUndefined);
+    
+    XCTAssertNil([result toObject]); // nil
+    XCTAssertNil([result toObjectOfClass:[NSString class]]); // nil
+    
+    BOOL b = [result toBool];
+    XCTAssertTrue(b == NO);
+    
+    double d = [result toDouble];
+    XCTAssertTrue(isnan(d));
+    
+    int32_t i32 = [result toInt32];
+    XCTAssertTrue(i32 == 0);
+    
+    uint32_t ui32 = [result toUInt32];
+    XCTAssertTrue(ui32 == 0);
+    
+    NSNumber *n = [result toNumber];
+    XCTAssertNotNil(n);
+    XCTAssertEqualObjects([n stringValue], @"nan");
+    
+    NSString *s = [result toString];
+    XCTAssertNotNil(s);
+    XCTAssertEqualObjects(s, @"undefined");
+
+    NSDate *date = [result toDate];
+    XCTAssertNotNil(date);
+    XCTAssertEqualObjects([date description], @"-5877520-03-03 -596:-31:-23 +0000");
+
+    XCTAssertNil([result toArray]);
+    XCTAssertNil([result toDictionary]);
+
+    CGPoint p = [result toPoint];
+    XCTAssertTrue(isnan(p.x));
+    XCTAssertTrue(isnan(p.y));
+
+    NSRange range = [result toRange];
+    NSUInteger location = range.location;
+    NSUInteger length = range.length;
+    XCTAssertTrue(location == (unsigned long)LONG_MAX + 1LL); // 9223372036854775808
+    XCTAssertTrue(length == (unsigned long)LONG_MAX + 1LL); // 9223372036854775808
+
+    CGRect rect = [result toRect];
+    XCTAssertTrue(isnan(rect.origin.x));
+    XCTAssertTrue(isnan(rect.origin.y));
+    XCTAssertTrue(isnan(rect.size.width));
+    XCTAssertTrue(isnan(rect.size.height));
+    
+    CGSize size = [result toSize];
+    XCTAssertTrue(isnan(size.width));
+    XCTAssertTrue(isnan(size.height));
+}
+
+#pragma mark - defineProperty
 
 - (void)test_defineProperty_descriptor {
     JSContext *context = [[JSContext alloc] init];
