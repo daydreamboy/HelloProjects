@@ -97,6 +97,27 @@
     return userScript;
 }
 
+#pragma mark > Query Browser
+
++ (void)userAgentWithWKWebView:(WKWebView *)webView completion:(void (^)(NSString *userAgent))completion {
+    if (![webView isKindOfClass:[WKWebView class]]) {
+        !completion ?: completion(@"Unknown");
+    }
+    
+    [webView evaluateJavaScript:@"navigator.userAgent" completionHandler:^(id _Nullable result, NSError * _Nullable error) {
+        if ([result isKindOfClass:[NSString class]] && ((NSString *)result).length > 0) {
+            // Note: create a variable to hold `webView` strongly if `webView` is
+            // a local object release after call this method
+            // @see https://forums.developer.apple.com/thread/123128
+            __unused WKWebView *webViewL = webView;
+            !completion ?: completion(result);
+        }
+        else {
+            !completion ?: completion(@"Unknown");
+        }
+    }];
+}
+
 #pragma mark - UIWebView
 
 #pragma mark > Query HTML
@@ -144,6 +165,17 @@
     [doctypeString appendString:@">"];
     
     return doctypeString;
+}
+
+#pragma mark > Query Browser
+
++ (nullable NSString *)userAgentWithUIWebView:(UIWebView *)webView {
+    if (![webView isKindOfClass:[UIWebView class]]) {
+        return nil;
+    }
+    
+    NSString *userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
+    return userAgent;
 }
 
 @end

@@ -45,6 +45,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark > Observing
 
+#pragma mark > Query Browser
+
+/**
+ Get user agent string, e.g. Mozilla/5.0 (iPhone; CPU iPhone OS 13_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148
+ 
+ @param webView the WKWebView
+ @param completion the block to get user agent, which is asynchronous
+ */
++ (void)userAgentWithWKWebView:(WKWebView *)webView completion:(void (^)(NSString *userAgent))completion;
 
 
 #pragma mark - UIWebView
@@ -81,6 +90,16 @@ NS_ASSUME_NONNULL_BEGIN
  @see https://developer.mozilla.org/en-US/docs/Web/API/Document/doctype
  */
 + (nullable NSString *)doctypeTagStringWithUIWebView:(UIWebView *)webView;
+
+#pragma mark > Query Browser
+
+/**
+ Get user agent string, e.g. Mozilla/5.0 (iPhone; CPU iPhone OS 13_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148
+ 
+ @param webView the UIWebView
+ @see https://stackoverflow.com/a/19184414
+ */
++ (nullable NSString *)userAgentWithUIWebView:(UIWebView *)webView;
 
 @end
 

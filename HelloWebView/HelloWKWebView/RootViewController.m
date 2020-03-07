@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 #import "LoadWebPageUrlViewController.h"
+#import "GetUserAgentViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -31,11 +32,13 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"load web page url",
+        @"Load web page url",
+        @"Get user agent",
         @"call a test method",
     ];
     _classes = @[
         [LoadWebPageUrlViewController class],
+        [GetUserAgentViewController class],
         @"testMethod",
     ];
 }

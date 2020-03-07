@@ -10,6 +10,7 @@
 
 #import "LoadLocalHTMLViewController.h"
 #import "LoadHTMLCodeViewController.h"
+#import "GetUserAgentViewController.h"
 #import "TestViewController.h"
 
 @interface RootViewController ()
@@ -33,13 +34,16 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"load local html file",
-        @"load html code",
+        @"Load local html file",
+        @"Load html code",
+        @"Get user agent",
         @"Test",
+        @"test",
     ];
     _classes = @[
         [LoadLocalHTMLViewController class],
         [LoadHTMLCodeViewController class],
+        [GetUserAgentViewController class],
         [TestViewController class],
         @"testMethod",
     ];

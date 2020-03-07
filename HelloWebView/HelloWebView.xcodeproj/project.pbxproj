@@ -28,6 +28,8 @@
 		4F214E4623B78D8F00A5911F /* images in Resources */ = {isa = PBXBuildFile; fileRef = 4F214E4523B78D8F00A5911F /* images */; };
 		4F214E4923B78E0600A5911F /* WCWebViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F214E4823B78E0600A5911F /* WCWebViewTool.m */; };
 		4F214E4A23B78E0600A5911F /* WCWebViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F214E4823B78E0600A5911F /* WCWebViewTool.m */; };
+		4F27EBAE24138BED0022349C /* GetUserAgentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F27EBAD24138BED0022349C /* GetUserAgentViewController.m */; };
+		4F77D9DF241131CB00BC2BA2 /* GetUserAgentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F77D9DE241131CB00BC2BA2 /* GetUserAgentViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +70,10 @@
 		4F214E4523B78D8F00A5911F /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = "<group>"; };
 		4F214E4723B78E0600A5911F /* WCWebViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCWebViewTool.h; sourceTree = "<group>"; };
 		4F214E4823B78E0600A5911F /* WCWebViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCWebViewTool.m; sourceTree = "<group>"; };
+		4F27EBAC24138BED0022349C /* GetUserAgentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetUserAgentViewController.h; sourceTree = "<group>"; };
+		4F27EBAD24138BED0022349C /* GetUserAgentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetUserAgentViewController.m; sourceTree = "<group>"; };
+		4F77D9DD241131CB00BC2BA2 /* GetUserAgentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetUserAgentViewController.h; sourceTree = "<group>"; };
+		4F77D9DE241131CB00BC2BA2 /* GetUserAgentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetUserAgentViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +143,8 @@
 				4F110BE323C7264E005EFF92 /* Tools */,
 				4F110BE023C72171005EFF92 /* LoadWebPageUrlViewController.h */,
 				4F110BE123C72171005EFF92 /* LoadWebPageUrlViewController.m */,
+				4F27EBAC24138BED0022349C /* GetUserAgentViewController.h */,
+				4F27EBAD24138BED0022349C /* GetUserAgentViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -175,6 +183,8 @@
 				4F214E2723B78CA500A5911F /* LoadHTMLCodeViewController.m */,
 				4F214E2423B78CA500A5911F /* LoadLocalHTMLViewController.h */,
 				4F214E2823B78CA500A5911F /* LoadLocalHTMLViewController.m */,
+				4F77D9DD241131CB00BC2BA2 /* GetUserAgentViewController.h */,
+				4F77D9DE241131CB00BC2BA2 /* GetUserAgentViewController.m */,
 				4F214E2623B78CA500A5911F /* TestViewController.h */,
 				4F214E2323B78CA500A5911F /* TestViewController.m */,
 			);
@@ -322,6 +332,7 @@
 			files = (
 				4F1B382423B77F5500349B62 /* AppDelegate.m in Sources */,
 				4F214E4923B78E0600A5911F /* WCWebViewTool.m in Sources */,
+				4F27EBAE24138BED0022349C /* GetUserAgentViewController.m in Sources */,
 				4F110BE223C72171005EFF92 /* LoadWebPageUrlViewController.m in Sources */,
 				4F1B384123B77F9600349B62 /* RootViewController.m in Sources */,
 				4F1B383523B77F5900349B62 /* main.m in Sources */,
@@ -340,6 +351,7 @@
 				4F214E3E23B78CA500A5911F /* UIView+StatusBar.m in Sources */,
 				4F214E4023B78CA500A5911F /* RootViewController.m in Sources */,
 				4F214E0C23B78BD200A5911F /* AppDelegate.m in Sources */,
+				4F77D9DF241131CB00BC2BA2 /* GetUserAgentViewController.m in Sources */,
 				4F214E3B23B78CA500A5911F /* LoadHTMLCodeViewController.m in Sources */,
 				4F214E1D23B78BD200A5911F /* main.m in Sources */,
 			);
