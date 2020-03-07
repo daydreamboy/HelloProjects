@@ -161,7 +161,7 @@
 				4FB076231FB2070F0025F402 /* Frameworks */,
 				4FB076241FB2070F0025F402 /* Headers */,
 				4FB076251FB2070F0025F402 /* Resources */,
-				4FB076341FB207370025F402 /* ShellScript */,
+				4FB076341FB207370025F402 /* Create universal dynamic framework */,
 			);
 			buildRules = (
 			);
@@ -231,13 +231,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		4FB076341FB207370025F402 /* ShellScript */ = {
+		4FB076341FB207370025F402 /* Create universal dynamic framework */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Create universal dynamic framework";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;

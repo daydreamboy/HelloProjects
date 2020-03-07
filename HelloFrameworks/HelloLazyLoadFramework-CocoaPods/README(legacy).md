@@ -1,3 +1,5 @@
+## CocoaPod集成的动态库换成懒加载方式
+
 ### Setup project
 
 1. Prepare a podspec to provide binary framework

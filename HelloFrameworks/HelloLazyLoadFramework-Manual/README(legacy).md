@@ -1,6 +1,6 @@
 
 # HelloLazyLoadFramework-Manual
---
+[TOC]
 
 说明：   
 framework可以是静态库，也可以是动态库，这里讨论的都是动态库的framework
