@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface WCXCAssetsImageTool : NSObject
 
 /**
@@ -21,6 +23,8 @@
         - nil statnd for current bundle which this code reside in
  @return the UIImage object. return nil if not found
  */
-+ (UIImage *)xcassetsImageNamed:(NSString *)name resourceBundleName:(NSString *)resourceBundleName podName:(NSString *)podName NS_AVAILABLE_IOS(8_0);
++ (nullable UIImage *)xcassetsImageNamed:(NSString *)name resourceBundleName:(NSString *)resourceBundleName podName:(NSString *)podName NS_AVAILABLE_IOS(8_0);
 
 @end
+
+NS_ASSUME_NONNULL_END

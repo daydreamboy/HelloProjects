@@ -1,7 +1,7 @@
 # HelloXCAssets
---
+[TOC]
 
-## 1. Asset Catalog
+## 1、Asset Catalog
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Asset Catalog是iOS 7推出的管理资源（images、launch images、app icons、colors等）的方式，优点主要如下[^1]
 
@@ -17,11 +17,13 @@
 >
 可以存在多个xcasset文件夹，所有xcasset文件夹都会被Xcode编译打包成一个Asset.car二进制文件。如果要查看这个car文件，可以使用cartool工具解压查看[^3]
 
-## 2. Assets.car文件的位置
+
+
+## 2、Assets.car文件的位置
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;xcasset文件夹会被Xcode编译成Assets.car文件，它的文件名是固定的。Assets.car文件可能存在有4种存放方式，如下
 
-```
+```shell
 xxx.app
  |- Assets.car (1)
  |- Frameworks
@@ -43,7 +45,9 @@ xxx.app
 
 另外，读取Assets.car文件，依赖Info.plist文件，确认同级文件夹下有Info.plist [^5] [^6]
 
-## 3. CocoaPods中使用xcasset文件夹
+
+
+## 3、CocoaPods中使用xcasset文件夹
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;podspec中可以用`resource_bundles`和`resource`指定，由于xcasset是文件夹，因此指定到文件夹即可，例如"/SomePod/Assets/myImages.xcasset"，后面不需要继续使用通配符。
 
@@ -51,7 +55,9 @@ xxx.app
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;另外，resource_bundles名称和framework同名，对应的Info.plist文件有些字段会冲突，导致读取(3)和(4)只能加载一个。参见HelloXCAssets-Issues工程。
 
-## 4. Asset Catalog使用Tips
+
+
+## 4、Asset Catalog使用Tips
 
 
 https://krakendev.io/blog/4-xcode-asset-catalog-secrets-you-need-to-know
@@ -61,7 +67,9 @@ https://krakendev.io/blog/4-xcode-asset-catalog-secrets-you-need-to-know
 * 更换Launch Screen.stroyboard
 * Image Slicing用法（拉伸图片）
 
-## 5. xcasset图片访问工具类
+
+
+## 5、xcasset图片访问工具类
 
 WCXCAssetsImageTool支持car文件在4种位置的情况，支持代码在main bundle或者CocoaPods（静态库或者动态库）编译。
 

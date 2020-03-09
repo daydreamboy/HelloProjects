@@ -10,7 +10,11 @@
 
 @implementation WCXCAssetsImageTool
 
-+ (UIImage *)xcassetsImageNamed:(NSString *)name resourceBundleName:(NSString *)resourceBundleName podName:(NSString *)podName {
++ (nullable UIImage *)xcassetsImageNamed:(NSString *)name resourceBundleName:(NSString *)resourceBundleName podName:(NSString *)podName {
+    if (![name isKindOfClass:[NSString class]] || ![resourceBundleName isKindOfClass:[NSString class]] || ![podName isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
 #if DEBUG
     if ([resourceBundleName isEqualToString:podName]) {
         NSLog(@"<WCXCAssetsImageTool> [Warning] resource bundle name is same as Pod name: %@", podName);
