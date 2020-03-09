@@ -14,6 +14,7 @@
 		4F2D57172416700400820E3F /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2D57132416700300820E3F /* RootViewController.m */; };
 		4F2D57182416700400820E3F /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2D57152416700400820E3F /* Demo1ViewController.m */; };
 		4F2D571B2416704C00820E3F /* EmoticonInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F2D571A2416704C00820E3F /* EmoticonInfo.plist */; };
+		4F7ADA0C241692AE009C5349 /* emotionOrder.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F7ADA0B241692AE009C5349 /* emotionOrder.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +30,7 @@
 		4F2D57152416700400820E3F /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
 		4F2D57162416700400820E3F /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
 		4F2D571A2416704C00820E3F /* EmoticonInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = EmoticonInfo.plist; sourceTree = "<group>"; };
+		4F7ADA0B241692AE009C5349 /* emotionOrder.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = emotionOrder.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +89,7 @@
 		4F2D57192416704C00820E3F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F7ADA0B241692AE009C5349 /* emotionOrder.plist */,
 				4F2D571A2416704C00820E3F /* EmoticonInfo.plist */,
 			);
 			path = Resources;
@@ -152,6 +155,7 @@
 				4F2D570924166FB700820E3F /* LaunchScreen.storyboard in Resources */,
 				4F2D570624166FB700820E3F /* Assets.xcassets in Resources */,
 				4F2D571B2416704C00820E3F /* EmoticonInfo.plist in Resources */,
+				4F7ADA0C241692AE009C5349 /* emotionOrder.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
