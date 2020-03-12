@@ -10,7 +10,7 @@
 
 @interface CallReloadDataInsideCellForRowAtIndexPathViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSArray<NSArray<NSString *> *> *listData;
+@property (nonatomic, strong) NSMutableArray<NSString *> *listData;
 @end
 
 @implementation CallReloadDataInsideCellForRowAtIndexPathViewController
@@ -21,37 +21,25 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
+    
+    UIBarButtonItem *insertItem = [[UIBarButtonItem alloc] initWithTitle:@"Insert" style:UIBarButtonItemStylePlain target:self action:@selector(insertItemClicked:)];
+    self.navigationItem.rightBarButtonItem = insertItem;
 }
 
 - (void)setup {
     NSArray *arr = @[
-                     @[
-                         @"viewDidLoad",
-                         @"UITableView",
-                         @"UITableView2",
-                         @"screenSize",
-                         @"UITableViewCell",
-                         ],
-                     @[
-                         @"UIScreen",
-                         @"backgroundColor",
-                         @"view",
-                         @"self",
-                         @"whiteColor",
-                         @"UIColor",
-                         @"initWithFrame",
-                         ],
-                     @[
-                         @"UITableViewStylePlain",
-                         @"delegate",
-                         @"dataSource",
-                         @"UITableViewDelegate",
-                         @"UITableViewDataSource",
-                         @"FadeInCellRowByRowViewController",
-                         @"listData",
-                         ],
+                     @"viewDidLoad",
+                     @"UITableView",
+                     @"UITableView",
+                     @"screenSize",
+                     @"UITableViewCell",
+                     @"viewDidLoad2",
+                     @"UITableView2",
+                     @"UITableView2",
+                     @"screenSize2",
+                     @"UITableViewCell2"
                      ];
-    self.listData = arr;
+    self.listData = [arr mutableCopy];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -78,11 +66,12 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.listData count];
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.listData[section] count];
+    NSLog(@"numberOfRowsInSection");
+    return [self.listData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -92,9 +81,34 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
     }
     
-    cell.textLabel.text = self.listData[indexPath.section][indexPath.row];
+    cell.textLabel.text = self.listData[indexPath.row];
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 80;
+}
+
+#pragma mark -
+
+- (void)insertItemClicked:(id)sender {
+    
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
+    
+    [self.tableView beginUpdates];
+    
+    for (NSInteger i = 0; i < 5; i++) {
+        [self.listData insertObject:[NSString stringWithFormat:@"Insert %d", (int)i] atIndex:0];
+        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    }
+    
+    //[self.tableView reloadData];
+    [self.tableView endUpdates];
+    [CATransaction commit];
+    
+    NSLog(@"endUpdates");
 }
 
 @end

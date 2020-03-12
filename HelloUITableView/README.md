@@ -272,7 +272,135 @@ typedef NS_ENUM(NSInteger, UITableViewCellEditingStyle) {
 
 
 
-### （6）UITableViewCell上屏和离屏事件
+### （6）UITableView首屏初始化cell个数
+
+UITableView首屏初始化cell个数，指UITableView首次渲染，系统会初始化多少个cell。这个也和cell高度有关。
+
+在tableView:cellForRowAtIndexPath:方法中输出日志，观察如下
+
+| 系统版本 | 模拟器设备类型    | 首屏初始化cell个数                                           |
+| -------- | ----------------- | ------------------------------------------------------------ |
+| 10.3.1   | 与设备无关        | 按显示需要初始化个数。即cell高度越大，初始化cell的个数越少。 |
+| 11.1     | iPhone 6s         | （1）cell高度比默认cell高度（不指定高度）小，按显示需要初始化个数；（2）否则，初始化固定数量14个 |
+| 11.1     | iPhone 6s Plus    | （1）cell高度比默认cell高度（不指定高度）小，按显示需要初始化个数；（2）否则，初始化固定数量16个 |
+| 12.2     | iPhone 7          | （1）cell高度比默认cell高度（不指定高度）小，按显示需要初始化个数；（2）否则，初始化固定数量14个 |
+| 12.2     | iPhone 7 Plus     | （1）cell高度比默认cell高度（不指定高度）小，按显示需要初始化个数；（2）否则，初始化固定数量16个 |
+| 12.2     | iPhone X          | （1）cell高度比默认cell高度（不指定高度）小，按显示需要初始化个数；（2）否则，初始化固定数量17个 |
+| 13.1     | iPhone 11         | （1）cell高度比默认cell高度（不指定高度）小，按显示需要初始化个数；（2）否则，初始化固定数量19个 |
+| 13.1     | iPhone 11 Pro Max | （1）cell高度比默认cell高度（不指定高度）小，按显示需要初始化个数；（2）否则，初始化固定数量19个 |
+| 13.3     | iPhone 11         | （1）cell高度比默认cell高度（不指定高度）小，按显示需要初始化个数；（2）否则，初始化固定数量19个 |
+| 13.3     | iPhone 11 Pro Max | （1）cell高度比默认cell高度（不指定高度）小，按显示需要初始化个数；（2）否则，初始化固定数量19个 |
+
+可以得出下面结论
+
+* 10.3.1上，和设备无关，按照显示需要初始化cell个数
+* 12上，至少初始化N个cell，N和设备有关
+* 13上，至少初始化N个cell，N和设备无关
+
+> 示例代码，见CheckNumberOfCellOnFirstRenderViewController
+
+
+
+### （7）UITableViewCell上屏和离屏事件
+
+在分析Cell上屏和离屏事件之前，先了解下面3个方法
+
+* tableView:cellForRowAtIndexPath:方法
+* tableView:willDisplayCell:forRowAtIndexPath:方法
+* tableView:didEndDisplayingCell:forRowAtIndexPath:方法
+
+
+
+#### tableView:cellForRowAtIndexPath:方法
+
+创建和配置cell在此方法中，但是获取cell不能通过此方法，而是tableView的cellForRowAtIndexPath:方法、
+
+> In your implementation, create and configure an appropriate cell for the given index path. Create your cell using the table view's [`dequeueReusableCellWithIdentifier:forIndexPath:`](dash-apple-api://load?topic_id=1614878&language=occ) method, which recycles or creates the cell for you. After creating the cell, update the properties of the cell with appropriate data values.
+>
+> Never call this method yourself. If you want to retrieve cells from your table, call the table view's [`cellForRowAtIndexPath:`](dash-apple-api://load?topic_id=1614983&language=occ) method instead.
+
+
+
+#### tableView:willDisplayCell:forRowAtIndexPath:方法
+
+此方法在cell显示之前，让delegate做最后的配置cell显示。在此方法返回后，系统仅设置alpha和frame，并完成需要的动画。
+
+> A table view sends this message to its delegate just before it uses `cell` to draw a row, thereby permitting the delegate to customize the cell object before it is displayed. This method gives the delegate a chance to override state-based properties set earlier by the table view, such as selection and background color. After the delegate returns, the table view sets only the alpha and frame properties, and then only when animating rows as they slide in or out.
+
+
+
+#### tableView:didEndDisplayingCell:forRowAtIndexPath:方法
+
+此方法用于检查cell从table view移除的事件，和检测cell是否显示是不同的。
+
+> Use this method to detect when a cell is removed from a table view, as opposed to monitoring the view itself to see when it appears or disappears.
+
+
+
+​        从官方文档上看，cellForRowAtIndexPath:方法不适合用于cell上屏时机。而其他两个方法，无明确说明，能用于上屏和离屏时机。
+
+
+
+#### cell离屏时机
+
+##### a. 首次渲染的情况
+
+​       根据“UITableView首屏初始化cell个数”这一节，可以知道在iOS 11+后，cell初始化个数不再是按照显示需要，而是固定的个数。因此，首次渲染的情况，存在所有固定个数的cell都掉调用了willDisplayCell方法，然后不在屏幕上的cell再调用didEndDisplayingCell方法。输出日志，如下
+
+```shell
+cellForRow: row: 0, section: 0
+onscreen: row: 0, section: 0
+cellForRow: row: 1, section: 0
+onscreen: row: 1, section: 0
+cellForRow: row: 2, section: 0
+onscreen: row: 2, section: 0
+cellForRow: row: 3, section: 0
+onscreen: row: 3, section: 0
+cellForRow: row: 4, section: 0
+onscreen: row: 4, section: 0
+cellForRow: row: 5, section: 0
+onscreen: row: 5, section: 0
+cellForRow: row: 6, section: 0
+onscreen: row: 6, section: 0
+cellForRow: row: 7, section: 0
+onscreen: row: 7, section: 0
+cellForRow: row: 8, section: 0
+onscreen: row: 8, section: 0
+cellForRow: row: 9, section: 0
+onscreen: row: 9, section: 0
+cellForRow: row: 10, section: 0
+onscreen: row: 10, section: 0
+cellForRow: row: 11, section: 0
+onscreen: row: 11, section: 0
+cellForRow: row: 12, section: 0
+onscreen: row: 12, section: 0
+cellForRow: row: 13, section: 0
+onscreen: row: 13, section: 0
+cellForRow: row: 14, section: 0
+onscreen: row: 14, section: 0
+cellForRow: row: 15, section: 0
+onscreen: row: 15, section: 0
+cellForRow: row: 16, section: 0
+onscreen: row: 16, section: 0
+offscreen: row: 3, section: 0
+offscreen: row: 4, section: 0
+offscreen: row: 5, section: 0
+offscreen: row: 6, section: 0
+offscreen: row: 7, section: 0
+offscreen: row: 8, section: 0
+offscreen: row: 9, section: 0
+offscreen: row: 10, section: 0
+offscreen: row: 11, section: 0
+offscreen: row: 12, section: 0
+offscreen: row: 13, section: 0
+offscreen: row: 14, section: 0
+offscreen: row: 15, section: 0
+offscreen: row: 16, section: 0
+```
+
+
+
+##### b. cell被刷新的情况
 
 ​      UITableViewDelegate提供`-tableView:didEndDisplayingCell:forRowAtIndexPath:`方法用于检测cell移除UITableView的事件。但是当某个cell被reload或者replace时，该方法会被调用，因此需要修正这种情况。
 
@@ -289,9 +417,17 @@ typedef NS_ENUM(NSInteger, UITableViewCellEditingStyle) {
 
 
 
-上屏事件（TODO）
+#### cell上屏时机
 
+```objective-c
+- (void)tableView:(UITableView *)tableView willDisplayCell:(nonnull UITableViewCell *)cell forRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    if ([tableView.indexPathsForVisibleRows indexOfObject:indexPath] != NSNotFound) {
+        NSLog(@"onscreen: %@", NSStringFromIndexPath(indexPath));
+    }
+}
+```
 
+​      当table view首次渲染时，iOS 11+后，初始化固定个数的cell都会调用此方法，因此需要增加if判断过滤这种情况。
 
 
 

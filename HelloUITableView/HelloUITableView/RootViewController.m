@@ -38,9 +38,11 @@
 #import "CustomizeSelectMeViewController.h"
 #import "DetectCellOffscreenViewController.h"
 #import "CustomizeHighlightCellViewController.h"
+#import "CheckNumberOfCellOnFirstRenderViewController.h"
 
 // section 5
 #import "StaticCellHeightAboveiOS11IssuesViewController.h"
+#import "CallReloadDataInsideCellForRowAtIndexPathViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -97,11 +99,13 @@
           @{ kTitle: @"Show empty tip in table view", kClass: [ShowEmptyTipViewInUITableViewViewController class] },
           @{ kTitle: @"Customize select mode of table view", kClass: [CustomizeSelectMeViewController class] },
           @{ kTitle: @"Detect cell offscreen event", kClass: [DetectCellOffscreenViewController class] },
+          @{ kTitle: @"Check number of cell on first render", kClass: [CheckNumberOfCellOnFirstRenderViewController class] },
           @{ kTitle: @"Customize highlight cell", kClass: [CustomizeHighlightCellViewController class] },
     ];
     
     NSArray<NSDictionary *> *section5 = @[
           @{ kTitle: @"Static cell height iOS11+", kClass: [StaticCellHeightAboveiOS11IssuesViewController class] },
+          @{ kTitle: @"Test", kClass: [CallReloadDataInsideCellForRowAtIndexPathViewController class] },
     ];
     
     NSArray<NSDictionary *> *section6 = @[
