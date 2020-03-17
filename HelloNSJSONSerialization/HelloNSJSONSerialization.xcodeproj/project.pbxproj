@@ -11,6 +11,7 @@
 		4F2DF698205BAD2A0097EF50 /* MixJSONObjectWithEscapedJSONStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2DF696205BAD2A0097EF50 /* MixJSONObjectWithEscapedJSONStringViewController.m */; };
 		4F2DF69B205BAD3F0097EF50 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2DF69A205BAD3F0097EF50 /* RootViewController.m */; };
 		4F4588CC215CD56A005A52C8 /* Tests_NSJSONSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4588CB215CD56A005A52C8 /* Tests_NSJSONSerialization.m */; };
+		4F51D60B2420FECB00760B8A /* HumanModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F51D60A2420FECB00760B8A /* HumanModel.m */; };
 		4F53314B208746F10016F650 /* theme.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F53314A208746F10016F650 /* theme.plist */; };
 		4F6938EA222FABDF0057BDFE /* WCJSONTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70BC1420301C600017C99B /* WCJSONTool.m */; };
 		4F70BBFE203012BD0017C99B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70BBFD203012BD0017C99B /* AppDelegate.m */; };
@@ -42,6 +43,8 @@
 		4F2DF699205BAD3F0097EF50 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F2DF69A205BAD3F0097EF50 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F4588CB215CD56A005A52C8 /* Tests_NSJSONSerialization.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSJSONSerialization.m; sourceTree = "<group>"; };
+		4F51D6092420FECB00760B8A /* HumanModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HumanModel.h; sourceTree = "<group>"; };
+		4F51D60A2420FECB00760B8A /* HumanModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HumanModel.m; sourceTree = "<group>"; };
 		4F52282121E8A99500D30BA2 /* WCJSONTool_Testing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCJSONTool_Testing.h; sourceTree = "<group>"; };
 		4F53314A208746F10016F650 /* theme.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = theme.plist; sourceTree = "<group>"; };
 		4F70BBF9203012BD0017C99B /* HelloNSJSONSerialization.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSJSONSerialization.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,6 +92,17 @@
 				4F2DF696205BAD2A0097EF50 /* MixJSONObjectWithEscapedJSONStringViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F51D6082420FE9C00760B8A /* DummyClass */ = {
+			isa = PBXGroup;
+			children = (
+				4F97EA2321B9239600921599 /* Human.h */,
+				4F97EA2421B9239600921599 /* Human.m */,
+				4F51D6092420FECB00760B8A /* HumanModel.h */,
+				4F51D60A2420FECB00760B8A /* HumanModel.m */,
+			);
+			path = DummyClass;
 			sourceTree = "<group>";
 		};
 		4F70BBF0203012BD0017C99B = {
@@ -140,12 +154,11 @@
 		4F70BC34203025CE0017C99B /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				4F51D6082420FE9C00760B8A /* DummyClass */,
 				4F71139821A64F7200DCB8FA /* Resources */,
 				4F70BC35203025CE0017C99B /* Test.mm */,
 				4F4588CB215CD56A005A52C8 /* Tests_NSJSONSerialization.m */,
 				4F70BC37203025CE0017C99B /* Info.plist */,
-				4F97EA2321B9239600921599 /* Human.h */,
-				4F97EA2421B9239600921599 /* Human.m */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -276,6 +289,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F51D60B2420FECB00760B8A /* HumanModel.m in Sources */,
 				4F97EA2521B9239600921599 /* Human.m in Sources */,
 				4F6938EA222FABDF0057BDFE /* WCJSONTool.m in Sources */,
 				4F70BC36203025CE0017C99B /* Test.mm in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "WCJSONTool.h"
+#import <objc/runtime.h>
 
 #define NSPREDICATE(expression)    ([NSPredicate predicateWithFormat:@"SELF MATCHES %@", expression])
 
@@ -78,6 +79,94 @@
         return nil;
     }
 }
+
++ (nullable NSString *)JSONStringWithKVCObject:(id)KVCObject printOptions:(NSJSONWritingOptions)options keyTreeDescription:(id)keyTreeDescription {
+    if (![KVCObject isKindOfClass:[NSObject class]]) {
+        return nil;
+    }
+    
+    if (![keyTreeDescription isKindOfClass:[NSString class]] && ![keyTreeDescription isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    
+    NSDictionary *walkTree = nil;
+    if ([keyTreeDescription isKindOfClass:[NSString class]] && [(NSString *)keyTreeDescription length]) {
+        walkTree = [self JSONDictWithString:keyTreeDescription allowMutable:NO];
+    }
+    else if ([keyTreeDescription isKindOfClass:[NSDictionary class]] && [(NSDictionary *)keyTreeDescription count]) {
+        walkTree = keyTreeDescription;
+    }
+    
+    if (!walkTree) {
+        return nil;
+    }
+    
+    
+    NSDictionary *JSONDict = [self searchPropertiesWithKVCObject:KVCObject keyTreeDescription:walkTree];
+    if (!JSONDict) {
+        return nil;
+    }
+    
+    return [self JSONStringWithObject:JSONDict printOptions:options];
+}
+
+#pragma mark ::
+
++ (nullable NSMutableDictionary *)searchPropertiesWithKVCObject:(NSObject *)KVCObject keyTreeDescription:(NSDictionary *)keyTreeDescription {
+    NSMutableDictionary *containerDict = [NSMutableDictionary dictionary];
+    
+    for (NSString *currentKey in keyTreeDescription) {
+        if ([currentKey isKindOfClass:[NSString class]] && currentKey.length) {
+            id currentValue = nil;
+            @try {
+                currentValue = [KVCObject valueForKey:currentKey];
+            } @catch (NSException *exception) {}
+            
+            id innerKeys = keyTreeDescription[currentKey];
+            
+            if ([innerKeys isKindOfClass:[NSDictionary class]] && ((NSDictionary *)innerKeys).count) {
+                // currentValue is NSDictionary or KVC Object
+                id value = [self searchPropertiesWithKVCObject:currentValue keyTreeDescription:innerKeys];
+                if (value) {
+                    containerDict[currentKey] = value;
+                }
+            }
+            else if ([innerKeys isKindOfClass:[NSArray class]] && ((NSArray *)innerKeys).count) {
+                // currentValue is NSArray
+                if ([currentValue isKindOfClass:[NSArray class]]) {
+                    NSMutableArray *containerArr = [NSMutableArray arrayWithCapacity:((NSArray *)currentValue).count];
+                    NSArray *arr = (NSArray *)currentValue;
+                    
+                    for (NSUInteger i = 0; i < arr.count; ++i) {
+                        NSUInteger index = i > ((NSArray *)innerKeys).count - 1 ? ((NSArray *)innerKeys).count - 1 : i;
+                        id innerKeysForItem = innerKeys[index];
+                        
+                        if ([innerKeysForItem isKindOfClass:[NSDictionary class]]) {
+                            id item = arr[i];
+                            id value = [self searchPropertiesWithKVCObject:item keyTreeDescription:innerKeysForItem];
+                            if (value) {
+                                [containerArr addObject:value];
+                            }
+                        }
+                    }
+                    
+                    if (containerArr.count) {
+                        containerDict[currentKey] = containerArr;
+                    }
+                }
+            }
+            else {
+                if (currentValue) {
+                    containerDict[currentKey] = currentValue;
+                }
+            }
+        }
+    }
+    
+    return containerDict.count ? containerDict : nil;
+}
+
+#pragma mark ::
 
 #pragma mark - String to Object
 

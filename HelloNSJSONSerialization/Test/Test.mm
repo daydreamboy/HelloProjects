@@ -10,6 +10,7 @@
 #import "WCJSONTool.h"
 #import "WCJSONTool_Testing.h"
 #import "Human.h"
+#import "HumanModel.h"
 
 // >= `11.0`
 #ifndef IOS11_OR_LATER
@@ -148,6 +149,127 @@
              @"date": [NSDate date],
              };
     XCTAssertEqualObjects([WCJSONTool JSONStringWithObject:dict printOptions:kNilOptions filterInvalidObjects:YES], @"{\"null\":null}");
+}
+
+- (void)test_JSONStringWithKVCObject_printOptions_keyTreeDescription {
+    id KVCObject;
+    id keyTreeDescription;
+    NSString *output;
+        
+    // Case 1
+    KVCObject = [HumanModel createHuman];
+    keyTreeDescription = STR_OF_JSON(
+    {
+       "leftHand": {
+         "thumb": {"name":{}},
+         "indexFinger": {"name":{}},
+         "middleFinger": {"name":{}},
+         "ringFinger": {"name":{}},
+         "pinky": {"name":{}}
+       }
+    }
+    );
+    output = [WCJSONTool JSONStringWithKVCObject:KVCObject printOptions:NSJSONWritingPrettyPrinted keyTreeDescription:keyTreeDescription];
+    NSLog(@"%@", output);
+    
+    // Case 2
+    KVCObject = [HumanModel createHuman];
+    keyTreeDescription = STR_OF_JSON(
+    {
+        "leftHand": {
+            "thumb": {"name":{}},
+            "indexFinger": {"name":{}},
+            "middleFinger": {"name":{}},
+            "ringFinger": {"name":{}},
+            "pinky": {"name":{}}
+        },
+        "rightHand": {
+            "thumb": {"name":{}},
+            "indexFinger": {"name":{}},
+            "middleFinger": {"name":{}},
+            "ringFinger": {"name":{}},
+            "pinky": {"name":{}}
+        }
+    }
+    );
+    output = [WCJSONTool JSONStringWithKVCObject:KVCObject printOptions:NSJSONWritingPrettyPrinted keyTreeDescription:keyTreeDescription];
+    NSLog(@"%@", output);
+    
+    // Case 3
+    KVCObject = [HumanModel createHuman];
+    keyTreeDescription = STR_OF_JSON(
+    {
+        "map": {},
+    }
+    );
+    output = [WCJSONTool JSONStringWithKVCObject:KVCObject printOptions:NSJSONWritingPrettyPrinted keyTreeDescription:keyTreeDescription];
+    NSLog(@"%@", output);
+    
+    // Case 4
+    KVCObject = [HumanModel createHuman];
+    keyTreeDescription = STR_OF_JSON(
+    {
+        "mapHands": {
+            "leftHand": {
+                "thumb": {"name":{}},
+                "indexFinger": {"name":{}},
+                "middleFinger": {"name":{}},
+                "ringFinger": {"name":{}},
+                "pinky": {"name":{}}
+            },
+            "rightHand": {
+                "thumb": {"name":{}},
+                "indexFinger": {"name":{}},
+                "middleFinger": {"name":{}},
+                "ringFinger": {"name":{}},
+                "pinky": {"name":{}}
+            }
+        },
+    }
+    );
+    output = [WCJSONTool JSONStringWithKVCObject:KVCObject printOptions:NSJSONWritingPrettyPrinted keyTreeDescription:keyTreeDescription];
+    NSLog(@"%@", output);
+    
+    // Case 5
+    Human *human = [Human new];
+    Hand *leftHand = [[Hand alloc] initWithName:@"left"];
+    leftHand.fingers = @[
+        [[Finger alloc] initWithName:@"1" index:0],
+        [[Finger alloc] initWithName:@"2" index:1],
+        [[Finger alloc] initWithName:@"3" index:2],
+        [[Finger alloc] initWithName:@"4" index:3],
+        [[Finger alloc] initWithName:@"5" index:4],
+    ];
+
+    Hand *rightHand = [[Hand alloc] initWithName:@"right"];
+    rightHand.fingers = @[
+        [[Finger alloc] initWithName:@"1" index:0],
+        [[Finger alloc] initWithName:@"2" index:1],
+        [[Finger alloc] initWithName:@"3" index:2],
+        [[Finger alloc] initWithName:@"4" index:3],
+        [[Finger alloc] initWithName:@"5" index:4],
+    ];
+
+    human.hands = @[ leftHand, rightHand ];
+    
+    KVCObject = human;
+    keyTreeDescription = STR_OF_JSON(
+    {
+        "hands": [
+            {
+              "name": {},
+              "fingers": [
+                {
+                  "name": {},
+                  "index": {}
+                }
+              ]
+            }
+        ]
+    }
+    );
+    output = [WCJSONTool JSONStringWithKVCObject:KVCObject printOptions:NSJSONWritingPrettyPrinted keyTreeDescription:keyTreeDescription];
+    NSLog(@"%@", output);
 }
 
 #pragma mark > Safe JSON Object

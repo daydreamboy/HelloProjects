@@ -44,6 +44,57 @@ NS_AVAILABLE_IOS(5_0)
  */
 + (nullable NSString *)JSONStringWithObject:(id)object printOptions:(NSJSONWritingOptions)options filterInvalidObjects:(BOOL)filterInvalidObjects;
 
+/**
+ Convert KVC object to JSON string
+ 
+ @param KVCObject the KVC object, which allow NSDictionary/NSArray/KVC object as properties
+ @param options the options
+        - kNilOptions for compact string.
+        - NSJSONWritingPrettyPrinted for pretty printed string.
+        - NSJSONWritingSortedKeys for sorted keys.
+ @param keyTreeDescription the key tree to determine which values to pull out.
+ For example:
+ {
+    "leftHand": {
+      "thumb": {"name":{}},
+      "indexFinger": {"name":{}},
+      "middleFinger": {"name":{}},
+      "ringFinger": {"name":{}},
+      "pinky": {"name":{}}
+    }
+ }
+ The root object has `leftHand` property, the leftHand object has `thumb`/`indexFinger`/`middleFinger`/`ringFinger`/`pinky`
+ which each one has a `name` property. The `name` property is a not NSDictionary/NSArray/KVC object,
+ so use empty {} as key tree
+ 
+ An example: property is NSArray
+ {
+   "hands": [
+     {
+       "name": {},
+       "fingers": [
+         {
+           "name": {},
+           "index": {}
+         }
+       ]
+     }
+   ]
+ }
+ 
+ `hands` is an array property, which each one item has `name`/`fingers`. And [] allows one more description which
+ match the array property's items. If less than items count, use the last description. For example:
+ {
+   "hands": [
+     {...}, // match item 0
+     {...}, // match item 1...N
+     // no more description
+   ]
+ }
+ @return the JSON formatted string. If any error occurred, return nil.
+ */
++ (nullable NSString *)JSONStringWithKVCObject:(id)KVCObject printOptions:(NSJSONWritingOptions)options keyTreeDescription:(id)keyTreeDescription;
+
 #pragma mark - String to Object
 
 #pragma mark > to NSDictionary/NSArray (also mutable version)
