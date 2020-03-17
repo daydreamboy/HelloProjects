@@ -69,7 +69,7 @@
 static void traverse_object(NSMutableString *stringM, id object, NSUInteger depth, BOOL isValueForKey) {
     
     if (isValueForKey) {
-        // hanlde value if it has a counter-part key
+        // handle value if it has a counter-part key
         [stringM appendString:@" : "];
     }
     else {

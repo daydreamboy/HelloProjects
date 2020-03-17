@@ -232,7 +232,7 @@ TableViewDelegate提供下面三个方法，用于提供cell的上下文菜单�
 
 说明
 
-> 1. 实现三个方法，可以简单显示系统默认的context menu。如果需要自定义菜单，则使用UIMenuController，示例代码参考HelloUITableViewCell
+> 1. 实现三个方法，可以简单显示系统默认的context menu。如果需要自定义菜单，则使用UIMenuController，示例代码参考HelloUIResponder工程。
 > 2. 上面三个方法的action参数，如果是以下划线开头的，则是系统私有方法，需要额外注意。例如action为@selector(_share:)，在canPerformAction:方法中，可以控制share菜单是否显示，但是share菜单的点击并不会回调到performAction:方法中。
 
 

@@ -23,7 +23,6 @@
     [self.view addSubview:self.tableView];
 }
 
-
 - (void)setup {
     NSArray *arr = @[
                      @[
