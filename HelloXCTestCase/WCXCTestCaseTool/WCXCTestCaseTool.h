@@ -67,6 +67,18 @@ XCTestExpectation *expectation__ = [self expectationWithDescription:description_
  */
 + (BOOL)signalAsyncBlockCompletedXCTestCase:(XCTestCase *)testCase completionBlock:(void (^)(void))completionBlock;
 
+#pragma mark - Timing Measure
+
+/**
+ Measure average time with the count
+ 
+ @param count the iteration count
+ @param block the one pass execution
+ 
+ @return YES if parameters are correct, or return NO if wrong.
+ */
++ (BOOL)timingMesaureAverageWithCount:(NSUInteger)count block:(void (^)(void))block;
+
 @end
 
 NS_ASSUME_NONNULL_END

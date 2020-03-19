@@ -45,4 +45,24 @@ static const char * const SemaphoreObjectTagKey = "SemaphoreObjectTagKey";
     return YES;
 }
 
+#pragma mark - Timing Measure
+
++ (BOOL)timingMesaureAverageWithCount:(NSUInteger)count block:(void (^)(void))block {
+    if (count == 0 || !block) {
+        return NO;
+    }
+    
+    NSTimeInterval startTime;
+    NSTimeInterval endTime;
+    
+    startTime = CACurrentMediaTime();
+    for (NSUInteger i = 0; i < count; ++i) {
+        block();
+    }
+    endTime = CACurrentMediaTime();
+    NSLog(@"average: %f, count: %ld", (endTime - startTime) / count, (long)count);
+    
+    return YES;
+}
+
 @end

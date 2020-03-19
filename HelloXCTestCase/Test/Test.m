@@ -115,4 +115,21 @@ if (!object) { \
     }];
 }
 
+- (void)test_timingMesaureAverageWithCount_block {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    for (NSInteger i = 0; i < 1000; i++) {
+        dict[[NSString stringWithFormat:@"%d", (int)i]] = @(i);
+    }
+    
+    NSUInteger count = 1000;
+    
+    [WCXCTestCaseTool timingMesaureAverageWithCount:count block:^{
+        __unused NSString *JSONString = [[NSString alloc] initWithData:[NSJSONSerialization dataWithJSONObject:dict options:kNilOptions error:nil] encoding:NSUTF8StringEncoding];
+    }];
+    
+    [WCXCTestCaseTool timingMesaureAverageWithCount:count block:^{
+        __unused NSString *compactDescription = [[[dict description] stringByReplacingOccurrencesOfString:@"\n" withString:@""] stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+    }];
+}
+
 @end
