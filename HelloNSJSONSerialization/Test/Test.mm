@@ -11,6 +11,7 @@
 #import "WCJSONTool_Testing.h"
 #import "Human.h"
 #import "HumanModel.h"
+#import "WCXCTestCaseTool.h"
 
 // >= `11.0`
 #ifndef IOS11_OR_LATER
@@ -1491,6 +1492,24 @@ R"(@{
     output = [WCJSONTool literalStringWithJSONObject:JSONObject indentLevel:0 startIndentLength:2 indentLength:4 ordered:YES isRootContainer:YES];
     printf("%s\n", [output UTF8String]);
     printf("----------------------------------\n");
+}
+
+#pragma mark - Timing Testing
+
+- (void)test_JSONStringWithObject_printOptions_vs_stringByReplacingOccurrencesOfString_withString {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    for (NSInteger i = 0; i < 1000; i++) {
+        dict[[NSString stringWithFormat:@"%d", (int)i]] = @(i);
+    }
+    
+    NSUInteger count = 1000;
+    [WCXCTestCaseTool timingMesaureAverageWithCount:count block:^{
+        __unused NSString *JSONString = [WCJSONTool JSONStringWithObject:dict printOptions:kNilOptions];
+    }];
+    
+    [WCXCTestCaseTool timingMesaureAverageWithCount:count block:^{
+        __unused NSString *compactDescription = [[[dict description] stringByReplacingOccurrencesOfString:@"\n" withString:@""] stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+    }];
 }
 
 #pragma mark -

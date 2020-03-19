@@ -23,6 +23,7 @@
 		4F71139B21A64FEE00DCB8FA /* data2.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F71139921A64FEE00DCB8FA /* data2.json */; };
 		4F71139C21A64FEE00DCB8FA /* data1.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F71139A21A64FEE00DCB8FA /* data1.json */; };
 		4F97EA2521B9239600921599 /* Human.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97EA2421B9239600921599 /* Human.m */; };
+		4FE509CF2423273F0004A479 /* WCXCTestCaseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE509CE2423273F0004A479 /* WCXCTestCaseTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,8 @@
 		4F71139A21A64FEE00DCB8FA /* data1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = data1.json; sourceTree = "<group>"; };
 		4F97EA2321B9239600921599 /* Human.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Human.h; sourceTree = "<group>"; };
 		4F97EA2421B9239600921599 /* Human.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Human.m; sourceTree = "<group>"; };
+		4FE509CD2423273F0004A479 /* WCXCTestCaseTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCXCTestCaseTool.h; sourceTree = "<group>"; };
+		4FE509CE2423273F0004A479 /* WCXCTestCaseTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCXCTestCaseTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +157,7 @@
 		4F70BC34203025CE0017C99B /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				4FE509CC242327210004A479 /* Tools */,
 				4F51D6082420FE9C00760B8A /* DummyClass */,
 				4F71139821A64F7200DCB8FA /* Resources */,
 				4F70BC35203025CE0017C99B /* Test.mm */,
@@ -170,6 +174,15 @@
 				4F71139A21A64FEE00DCB8FA /* data1.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		4FE509CC242327210004A479 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4FE509CD2423273F0004A479 /* WCXCTestCaseTool.h */,
+				4FE509CE2423273F0004A479 /* WCXCTestCaseTool.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,6 +302,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FE509CF2423273F0004A479 /* WCXCTestCaseTool.m in Sources */,
 				4F51D60B2420FECB00760B8A /* HumanModel.m in Sources */,
 				4F97EA2521B9239600921599 /* Human.m in Sources */,
 				4F6938EA222FABDF0057BDFE /* WCJSONTool.m in Sources */,
