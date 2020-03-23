@@ -225,6 +225,20 @@
         };
         [WCJSCTimerManager registerWithContext:context];
     }
+    else if ([fileName isEqualToString:@"decodeURIComponent.js"]) {
+        [context evaluateScript:@"var console = {}"];
+        context[@"console"][@"log"] = ^(id object) {
+            NSString *message = [object description];
+            NSLog(@"JSBridge log: %@", message);
+        };
+    }
+    else if ([fileName isEqualToString:@"encodeURIComponent.js"]) {
+        [context evaluateScript:@"var console = {}"];
+        context[@"console"][@"log"] = ^(id object) {
+            NSString *message = [object description];
+            NSLog(@"JSBridge log: %@", message);
+        };
+    }
 }
 
 @end

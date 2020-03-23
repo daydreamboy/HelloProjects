@@ -51,6 +51,41 @@ context.exceptionHandler = ^(JSContext *context, JSValue *exception) {
 
 
 
+### （3）内置函数、内置对象的支持
+
+JavaScript内置函数或对象，一般在window对象中可以找到。例如decodeURIComponent函数。对于JavaScript内置函数或对象，JSContext有些支持，有些不支持。不支持的函数，则需要自己实现。
+
+下面列出两个表，表示对JavaScript内置函数的支持情况
+
+
+
+#### a. 支持的JavaScript内置函数或对象
+
+| 函数               | 说明 |
+| ------------------ | ---- |
+| decodeURIComponent |      |
+| encodeURIComponent |      |
+
+
+
+
+
+#### b. 不支持的JavaScript内置函数或对象
+
+| 函数         | 说明 |
+| ------------ | ---- |
+| alert        |      |
+| clearTimeout |      |
+| console对象  |      |
+| setInterval  |      |
+| setTimout    |      |
+
+
+
+> 示例代码，见JSTestList
+
+
+
 ## 3、JSValue
 
 ​      **JSValue**的实例是JavaScript中值的引用。使用JSValue可以在JavaScript代码和native代码之间传递数据，JSValue可以封装native代码中自定义类的对象，或者JavaScript函数但实现放在native代码中。
