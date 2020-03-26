@@ -324,7 +324,7 @@
     if (object == [NSNull null]) {
         return object;
     }
-    if ([object isKindOfClass:[NSNumber class]]) {
+    else if ([object isKindOfClass:[NSNumber class]]) {
         // Note: NSNumber is immutable, not support copying
         // @see https://stackoverflow.com/questions/6099667/nsnumbers-copy-is-not-allocating-new-memory/6099711
         return object;
@@ -356,6 +356,90 @@
     }
     else if (allowKVCObjects && [object isKindOfClass:[NSObject class]] && [object respondsToSelector:@selector(mutableCopy)]) {
         return [object mutableCopy];
+    }
+    else {
+        return nil;
+    }
+}
+
+#pragma mark > Merge two JSON Objects
+
++ (nullable id)mergeToJSONObject:(id)toJSONObject fromJSONObject:(nullable id)fromJSONObject {
+    // toJSONObject expected not nil and must be JSON object
+    if (!toJSONObject || ![NSJSONSerialization isValidJSONObject:toJSONObject]) {
+        return nil;
+    }
+    
+    // fromJSONObject allow nil and not be JSON object
+    if (!fromJSONObject || ![NSJSONSerialization isValidJSONObject:fromJSONObject]) {
+        return toJSONObject;
+    }
+    
+    return [self mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject];
+}
+
++ (nullable id)mergeTwoJSONObjectWithBaseObject:(id)baseObject additionalObject:(nullable id)additionalObject {
+    // null not replace
+    if (baseObject == [NSNull null]) {
+        return baseObject;
+    }
+    else if ([baseObject isKindOfClass:[NSNumber class]]) {
+        return [additionalObject isKindOfClass:[NSNumber class]] ? additionalObject : baseObject;
+    }
+    else if ([baseObject isKindOfClass:[NSString class]]) {
+        return [additionalObject isKindOfClass:[NSString class]] ? additionalObject : baseObject;
+    }
+    else if ([baseObject isKindOfClass:[NSArray class]]) {
+        if (![additionalObject isKindOfClass:[NSArray class]]) {
+            return baseObject;
+        }
+        
+        NSArray *baseObjectArray = (NSArray *)baseObject;
+        NSArray *additionalObjectArray = (NSArray *)additionalObject;
+        
+        // additionalObjectArray's count not match baseObjectArray's count, use baseObjectArray
+        if (baseObjectArray.count != additionalObjectArray.count) {
+            return baseObjectArray;
+        }
+        
+        NSMutableArray *arrM = [NSMutableArray array];
+        for (NSUInteger i = 0; i < baseObjectArray.count; ++i) {
+            id itemInBaseObjectArray = baseObjectArray[i];
+            id itemInAdditionalObjectArray = additionalObjectArray[i];
+            
+            id mergedItem = [self mergeTwoJSONObjectWithBaseObject:itemInBaseObjectArray additionalObject:itemInAdditionalObjectArray];
+            if (mergedItem) {
+                [arrM addObject:mergedItem];
+            }
+        }
+        return arrM;
+    }
+    else if ([baseObject isKindOfClass:[NSDictionary class]]) {
+        if (![additionalObject isKindOfClass:[NSDictionary class]]) {
+            return baseObject;
+        }
+        
+        NSDictionary *baseObjectDict = (NSDictionary *)baseObject;
+        NSDictionary *additionalObjectDict = (NSDictionary *)additionalObject;
+        
+        // additionalObjectDict's count is 0, use baseObjectDict
+        if (additionalObjectDict.count == 0) {
+            return baseObjectDict;
+        }
+        
+        NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
+        [baseObjectDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+            if ([key isKindOfClass:[NSString class]]) {
+                id itemInBaseObjectDict = obj;
+                id itemInAdditionalObjectDict = additionalObjectDict[key];
+                
+                id mergedItem = [self mergeTwoJSONObjectWithBaseObject:itemInBaseObjectDict additionalObject:itemInAdditionalObjectDict];
+                if (mergedItem) {
+                    dictM[key] = mergedItem;
+                }
+            }
+        }];
+        return dictM;
     }
     else {
         return nil;

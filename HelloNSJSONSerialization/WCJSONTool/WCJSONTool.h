@@ -167,8 +167,41 @@ NS_AVAILABLE_IOS(5_0)
  @param object the expected JSON object
  @param allowKVCObjects YES if allow to copy custom container object which implments NSMutableCopying
  @param allowMutableLeaves YES if make leaves mutable, e.g. NSMutableString
+ 
+ @return the mutable copy of JSON object
  */
 + (nullable id)mutableCopiedJSONObjectWithObject:(id)object allowKVCObjects:(BOOL)allowKVCObjects allowMutableLeaves:(BOOL)allowMutableLeaves;
+
+#pragma mark > Merge two JSON Objects
+
+/**
+ Merge two JSON Objects
+ 
+ @param toJSONObject the JSON object which to overwrite
+ @param fromJSONObject the JSON object used to overwrite if needed
+ 
+ @return the merged JSON object
+ @example
+ e.g. 1
+ {
+     "name": "Alice",
+     "job": "teacher"
+ }
+ {
+     "name": "Bob"
+ }
+ =>
+ {
+     "name": "Bob",
+     "job": "teacher"
+ }
+ e.g. 2
+ ["1", "2", "3"]
+ [{}, "22", null]
+ =>
+ ["1", "22", "3"]
+ */
++ (nullable id)mergeToJSONObject:(id)toJSONObject fromJSONObject:(nullable id)fromJSONObject;
 
 #pragma mark > Key Path Query
 

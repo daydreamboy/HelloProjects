@@ -27,6 +27,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSString *)literalStringWithJSONObject:(id)JSONObject indentLevel:(NSUInteger)indentLevel startIndentLength:(NSUInteger)startIndentLength indentLength:(NSUInteger)indentLength ordered:(BOOL)ordered isRootContainer:(BOOL)isRootContainer;
 
++ (nullable id)mergeTwoJSONObjectWithBaseObject:(id)baseObject additionalObject:(nullable id)additionalObject;
+
 @end
 
 NS_ASSUME_NONNULL_END

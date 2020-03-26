@@ -470,6 +470,190 @@
 
 #pragma mark - Assistant Methods
 
+#pragma mark > Merge two JSON Objects
+
+- (void)test_mergeTwoJSONObjectWithBaseObject_additionalObject {
+    id toJSONObject;
+    id fromJSONObject;
+    id output;
+    
+    // Case 1: single value
+    toJSONObject = @"a";
+    fromJSONObject = @"b";
+    output = [WCJSONTool mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject];
+    XCTAssertEqualObjects(output, @"b");
+    
+    toJSONObject = @"a";
+    fromJSONObject = @"";
+    output = [WCJSONTool mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject];
+    XCTAssertEqualObjects(output, @"");
+    
+    toJSONObject = @"a";
+    fromJSONObject = nil;
+    output = [WCJSONTool mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject];
+    XCTAssertEqualObjects(output, @"a");
+    
+    toJSONObject = @"a";
+    fromJSONObject = @(1);
+    output = [WCJSONTool mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject];
+    XCTAssertEqualObjects(output, @"a");
+    
+    toJSONObject = @"a";
+    fromJSONObject = [NSNull null];
+    output = [WCJSONTool mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject];
+    XCTAssertEqualObjects(output, @"a");
+
+    toJSONObject = @(1);
+    fromJSONObject = @(2);
+    output = [WCJSONTool mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject];
+    XCTAssertEqualObjects(output, @(2));
+    
+    toJSONObject = @(NO);
+    fromJSONObject = @(YES);
+    output = [WCJSONTool mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject];
+    XCTAssertEqualObjects(output, @(YES));
+}
+
+- (void)test_mergeToJSONObject_fromJSONObject {
+    id toJSONObject;
+    id fromJSONObject;
+    id output;
+    NSString *toJSONString;
+    NSString *fromJSONString;
+    NSString *outputString;
+    
+    // Case 1: simple container - dict
+    toJSONString = STR_OF_JSON(
+                               {
+        "name": "Alice",
+        "job": "teacher"
+    }
+                               );
+    fromJSONString = STR_OF_JSON(
+                                 {
+        "name": "Bob"
+    }
+                                 );
+    toJSONObject = [WCJSONTool JSONObjectWithString:toJSONString options:kNilOptions objectClass:nil];
+    fromJSONObject = [WCJSONTool JSONObjectWithString:fromJSONString options:kNilOptions objectClass:nil];
+    output = [WCJSONTool mergeToJSONObject:toJSONObject fromJSONObject:fromJSONObject];
+    outputString = [WCJSONTool JSONStringWithObject:output printOptions:kNilOptions];
+    XCTAssertEqualObjects(outputString, @"{\"name\":\"Bob\",\"job\":\"teacher\"}");
+                          
+    // Case 2: simple container - array
+    toJSONString = STR_OF_JSON(
+                               ["1", "2", "3"]
+                               );
+    fromJSONString = STR_OF_JSON(
+                                 [{}, "22", null]
+                                 );
+    toJSONObject = [WCJSONTool JSONObjectWithString:toJSONString options:kNilOptions objectClass:nil];
+    fromJSONObject = [WCJSONTool JSONObjectWithString:fromJSONString options:kNilOptions objectClass:nil];
+    output = [WCJSONTool mergeToJSONObject:toJSONObject fromJSONObject:fromJSONObject];
+    outputString = [WCJSONTool JSONStringWithObject:output printOptions:kNilOptions];
+    XCTAssertEqualObjects(outputString, @"[\"1\",\"22\",\"3\"]");
+    
+    // Case 3: nested container。dict -> array
+    toJSONString = STR_OF_JSON(
+                               {
+        "name": "Alice",
+        "job": "teacher",
+        "children": [
+        {
+            "name": "Lucy"
+        },
+        {
+            "name": "Lucky"
+        }
+        ]
+    }
+                               );
+    fromJSONString = STR_OF_JSON(
+                                 {
+        "children": [
+        {},
+        {
+            "name": "Lily"
+        }
+        ]
+    }
+                                 );
+    toJSONObject = [WCJSONTool JSONObjectWithString:toJSONString options:kNilOptions objectClass:nil];
+    fromJSONObject = [WCJSONTool JSONObjectWithString:fromJSONString options:kNilOptions objectClass:nil];
+    output = [WCJSONTool mergeToJSONObject:toJSONObject fromJSONObject:fromJSONObject];
+    outputString = [WCJSONTool JSONStringWithObject:output printOptions:kNilOptions];
+    XCTAssertEqualObjects(outputString, @"{\"name\":\"Alice\",\"job\":\"teacher\",\"children\":[{\"name\":\"Lucy\"},{\"name\":\"Lily\"}]}");
+    
+    
+    toJSONString = STR_OF_JSON(
+                               {
+        "name": "Alice",
+        "job": "teacher",
+        "children": [
+        {
+            "name": "Lucy"
+        },
+        {
+            "name": "Lucky"
+        }
+        ]
+    }
+                               );
+    fromJSONString = STR_OF_JSON(
+                                 {
+        "children": [
+        ]
+    }
+                                 );
+    toJSONObject = [WCJSONTool JSONObjectWithString:toJSONString options:kNilOptions objectClass:nil];
+    fromJSONObject = [WCJSONTool JSONObjectWithString:fromJSONString options:kNilOptions objectClass:nil];
+    output = [WCJSONTool mergeToJSONObject:toJSONObject fromJSONObject:fromJSONObject];
+    outputString = [WCJSONTool JSONStringWithObject:output printOptions:kNilOptions];
+    XCTAssertEqualObjects(outputString, @"{\"name\":\"Alice\",\"job\":\"teacher\",\"children\":[{\"name\":\"Lucy\"},{\"name\":\"Lucky\"}]}");
+    
+    // Case 4: nested container。array -> dict
+    toJSONString = STR_OF_JSON(
+                               [
+    {
+        "title": "a",
+        "price": 100,
+        "onSale": true,
+        "size": {
+            "h": "2",
+            "w": "3",
+        }
+    },
+    {
+        "title": "b",
+        "price": 200,
+        "onSale": false,
+        "size": {
+            "h": "4",
+            "w": "5",
+        }
+    }
+                                
+                               ]
+                               );
+    fromJSONString = STR_OF_JSON(
+                                 [
+    {
+    },
+    {
+        "onSale": true,
+        "size": {
+            "w": "6"
+        }
+    }
+                                 ]
+                                 );
+    toJSONObject = [WCJSONTool JSONObjectWithString:toJSONString options:kNilOptions objectClass:nil];
+    fromJSONObject = [WCJSONTool JSONObjectWithString:fromJSONString options:kNilOptions objectClass:nil];
+    output = [WCJSONTool mergeToJSONObject:toJSONObject fromJSONObject:fromJSONObject];
+    outputString = [WCJSONTool JSONStringWithObject:output printOptions:kNilOptions];
+    XCTAssertEqualObjects(outputString, @"[{\"size\":{\"h\":\"2\",\"w\":\"3\"},\"title\":\"a\",\"price\":100,\"onSale\":true},{\"size\":{\"h\":\"4\",\"w\":\"6\"},\"title\":\"b\",\"price\":200,\"onSale\":true}]");
+}
+
 #pragma mark > Key Path Query
 
 - (void)test_arrayOfJSONObject_usingKeyPath {
