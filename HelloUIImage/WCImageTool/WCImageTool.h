@@ -152,6 +152,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (UIImage *)imageWithName:(NSString *)name inResourceBundle:(nullable NSString *)resourceBundleName;
 
-NS_ASSUME_NONNULL_END
-
 @end
+
+NS_ASSUME_NONNULL_END
