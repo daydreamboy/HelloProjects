@@ -345,41 +345,47 @@
     }
 }
 
-+ (UIImage *)imageWithName:(NSString *)name inResourceBundle:(NSString *)resourceBundleName {
++ (nullable UIImage *)imageWithName:(NSString *)name inResourceBundle:(nullable NSString *)resourceBundleName {
+    if (![name isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    if (resourceBundleName && ![resourceBundleName isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
     NSString *resourceBundlePath = [NSBundle mainBundle].bundlePath;
-    if (resourceBundleName) {
-        if ([resourceBundleName hasSuffix:@".bundle"]) {
-            resourceBundlePath = [resourceBundlePath stringByAppendingPathComponent:resourceBundleName];
-        }
-        else {
-            resourceBundlePath = [resourceBundlePath stringByAppendingPathComponent:[resourceBundleName stringByAppendingPathExtension:@"bundle"]];
-        }
+    if (resourceBundleName.length) {
+        resourceBundleName = [resourceBundleName hasSuffix:@".bundle"] ? resourceBundleName : [resourceBundleName stringByAppendingPathExtension:@"bundle"];
+        resourceBundlePath = [resourceBundlePath stringByAppendingPathComponent:resourceBundleName];
     }
     
     NSString *filePath;
-    if (!name.pathExtension.length) {
-        NSArray *imageNames = @[
-                                [NSString stringWithFormat:@"%@@%dx.png", name, (int)[UIScreen mainScreen].scale],
-                                [NSString stringWithFormat:@"%@@%dx.PNG", name, (int)[UIScreen mainScreen].scale],
-                                [NSString stringWithFormat:@"%@@%dX.png", name, (int)[UIScreen mainScreen].scale],
-                                [NSString stringWithFormat:@"%@@%dX.PNG", name, (int)[UIScreen mainScreen].scale],
-                                ];
-        NSString *imageFileName = [imageNames firstObject];
-        for (NSString *imageName in imageNames) {
-            NSString *path = [resourceBundlePath stringByAppendingPathComponent:imageName];
-            if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-                imageFileName = imageName;
-                break;
-            }
-        }
-        filePath = [resourceBundlePath stringByAppendingPathComponent:imageFileName];
-    }
-    else {
+    if (name.pathExtension.length) {
         filePath = [resourceBundlePath stringByAppendingPathComponent:name];
+        return [UIImage imageWithContentsOfFile:filePath];
     }
+    
+    NSArray *imageNames = @[
+                            [NSString stringWithFormat:@"%@@%dx.png", name, (int)[UIScreen mainScreen].scale],
+                            [NSString stringWithFormat:@"%@@%dx.PNG", name, (int)[UIScreen mainScreen].scale],
+                            [NSString stringWithFormat:@"%@@%dX.png", name, (int)[UIScreen mainScreen].scale],
+                            [NSString stringWithFormat:@"%@@%dX.PNG", name, (int)[UIScreen mainScreen].scale],
+                            ];
+    NSString *imageFileName = [imageNames firstObject];
+    for (NSString *imageName in imageNames) {
+        NSString *path = [resourceBundlePath stringByAppendingPathComponent:imageName];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            imageFileName = imageName;
+            break;
+        }
+    }
+    filePath = [resourceBundlePath stringByAppendingPathComponent:imageFileName];
     
     return [UIImage imageWithContentsOfFile:filePath];
 }
+
+#pragma mark -
 
 // @see https://stackoverflow.com/questions/5427656/ios-uiimagepickercontroller-result-image-orientation-after-upload
 + (UIImage *)orientationUpImageWithImage:(UIImage *)image {

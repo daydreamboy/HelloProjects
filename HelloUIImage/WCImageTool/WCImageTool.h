@@ -150,7 +150,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param resourceBundleName the bundle name, and the name can have or not have .bundle extension. Note that nil for main bunde.
  @return the UIImage. Return nil if not found.
  */
-+ (UIImage *)imageWithName:(NSString *)name inResourceBundle:(nullable NSString *)resourceBundleName;
++ (nullable UIImage *)imageWithName:(NSString *)name inResourceBundle:(nullable NSString *)resourceBundleName;
 
 @end
 
