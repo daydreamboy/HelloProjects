@@ -7,15 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F2376ED241F334000389A64 /* UseSystemColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2376EC241F334000389A64 /* UseSystemColorViewController.m */; };
+		4F2376F1241F35B700389A64 /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2376F0241F35B700389A64 /* MyTableViewCell.m */; };
 		4F2820DF241B31D30032E16A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2820DE241B31D30032E16A /* AppDelegate.m */; };
 		4F2820EA241B31D60032E16A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F2820E9241B31D60032E16A /* Assets.xcassets */; };
 		4F2820ED241B31D60032E16A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F2820EB241B31D60032E16A /* LaunchScreen.storyboard */; };
 		4F2820F0241B31D60032E16A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2820EF241B31D60032E16A /* main.m */; };
 		4F2820FB241B32310032E16A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2820F6241B32310032E16A /* RootViewController.m */; };
-		4F2820FC241B32310032E16A /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2820F8241B32310032E16A /* Demo1ViewController.m */; };
+		4FD8E7EF24246A7000DD34AA /* UseSemanticColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD8E7EE24246A7000DD34AA /* UseSemanticColorViewController.m */; };
+		4FEC5B262421CA42008376EA /* WCImageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FEC5B252421CA42008376EA /* WCImageTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F2376EB241F334000389A64 /* UseSystemColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseSystemColorViewController.h; sourceTree = "<group>"; };
+		4F2376EC241F334000389A64 /* UseSystemColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseSystemColorViewController.m; sourceTree = "<group>"; };
+		4F2376EF241F35B700389A64 /* MyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell.h; sourceTree = "<group>"; };
+		4F2376F0241F35B700389A64 /* MyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell.m; sourceTree = "<group>"; };
 		4F2820DA241B31D30032E16A /* HelloHumanInterfaceGuidelines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloHumanInterfaceGuidelines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F2820DD241B31D30032E16A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F2820DE241B31D30032E16A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -24,9 +31,11 @@
 		4F2820EE241B31D60032E16A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F2820EF241B31D60032E16A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F2820F6241B32310032E16A /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		4F2820F8241B32310032E16A /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
-		4F2820F9241B32310032E16A /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
 		4F2820FA241B32310032E16A /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		4FD8E7ED24246A7000DD34AA /* UseSemanticColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseSemanticColorViewController.h; sourceTree = "<group>"; };
+		4FD8E7EE24246A7000DD34AA /* UseSemanticColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseSemanticColorViewController.m; sourceTree = "<group>"; };
+		4FEC5B242421CA42008376EA /* WCImageTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCImageTool.h; sourceTree = "<group>"; };
+		4FEC5B252421CA42008376EA /* WCImageTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCImageTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,9 +49,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F2376EE241F358700389A64 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				4F2376EF241F35B700389A64 /* MyTableViewCell.h */,
+				4F2376F0241F35B700389A64 /* MyTableViewCell.m */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		4F2820D1241B31D30032E16A = {
 			isa = PBXGroup;
 			children = (
+				4FA87EDB2424C11C00F2EBDF /* WCDarkModeTool */,
 				4F2820DC241B31D30032E16A /* HelloHumanInterfaceGuidelines */,
 				4F2820DB241B31D30032E16A /* Products */,
 			);
@@ -75,10 +94,30 @@
 		4F2820F7241B32310032E16A /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F2820F9241B32310032E16A /* Demo1ViewController.h */,
-				4F2820F8241B32310032E16A /* Demo1ViewController.m */,
+				4FEC5B232421C9FF008376EA /* Tools */,
+				4F2376EE241F358700389A64 /* Cell */,
+				4F2376EB241F334000389A64 /* UseSystemColorViewController.h */,
+				4F2376EC241F334000389A64 /* UseSystemColorViewController.m */,
+				4FD8E7ED24246A7000DD34AA /* UseSemanticColorViewController.h */,
+				4FD8E7EE24246A7000DD34AA /* UseSemanticColorViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4FA87EDB2424C11C00F2EBDF /* WCDarkModeTool */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = WCDarkModeTool;
+			sourceTree = "<group>";
+		};
+		4FEC5B232421C9FF008376EA /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4FEC5B242421CA42008376EA /* WCImageTool.h */,
+				4FEC5B252421CA42008376EA /* WCImageTool.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,8 +189,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F2376ED241F334000389A64 /* UseSystemColorViewController.m in Sources */,
+				4FEC5B262421CA42008376EA /* WCImageTool.m in Sources */,
 				4F2820DF241B31D30032E16A /* AppDelegate.m in Sources */,
-				4F2820FC241B32310032E16A /* Demo1ViewController.m in Sources */,
+				4FD8E7EF24246A7000DD34AA /* UseSemanticColorViewController.m in Sources */,
+				4F2376F1241F35B700389A64 /* MyTableViewCell.m in Sources */,
 				4F2820F0241B31D60032E16A /* main.m in Sources */,
 				4F2820FB241B32310032E16A /* RootViewController.m in Sources */,
 			);
@@ -221,7 +263,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -273,7 +315,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

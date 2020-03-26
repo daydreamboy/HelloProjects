@@ -8,7 +8,8 @@
 
 #import "RootViewController.h"
 
-#import "Demo1ViewController.h"
+#import "UseSystemColorViewController.h"
+#import "UseSemanticColorViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -31,11 +32,13 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"Demo1ViewController's title",
+        @"Use system color",
+        @"Use semantic color",
         @"call a test method",
     ];
     _classes = @[
-        [Demo1ViewController class],
+        [UseSystemColorViewController class],
+        [UseSemanticColorViewController class],
         @"testMethod",
     ];
 }
