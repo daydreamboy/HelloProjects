@@ -553,6 +553,18 @@
     outputString = [WCJSONTool JSONStringWithObject:output printOptions:kNilOptions];
     XCTAssertEqualObjects(outputString, @"[\"1\",\"22\",\"3\"]");
     
+    toJSONString = STR_OF_JSON(
+                               ["1", "2", "3"]
+                               );
+    fromJSONString = STR_OF_JSON(
+                                 [{}, "22"]
+                                 );
+    toJSONObject = [WCJSONTool JSONObjectWithString:toJSONString options:kNilOptions objectClass:nil];
+    fromJSONObject = [WCJSONTool JSONObjectWithString:fromJSONString options:kNilOptions objectClass:nil];
+    output = [WCJSONTool mergeToJSONObject:toJSONObject fromJSONObject:fromJSONObject];
+    outputString = [WCJSONTool JSONStringWithObject:output printOptions:kNilOptions];
+    XCTAssertEqualObjects(outputString, @"[\"1\",\"2\",\"3\"]");
+    
     // Case 3: nested container。dict -> array
     toJSONString = STR_OF_JSON(
                                {
