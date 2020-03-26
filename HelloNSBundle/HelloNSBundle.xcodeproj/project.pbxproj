@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		4F1A27D32015FEAE009EEF1B /* GetAllDynamicLibrariesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A27D22015FEAE009EEF1B /* GetAllDynamicLibrariesViewController.m */; };
+		4F1D005B242CF9B100EC1995 /* WCBundleTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1D0059242CF9B100EC1995 /* WCBundleTool.m */; };
 		4F3525B02006005F00891B09 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3525AF2006005F00891B09 /* AppDelegate.m */; };
 		4F3525B82006005F00891B09 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3525B72006005F00891B09 /* Assets.xcassets */; };
 		4F3525BB2006005F00891B09 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F3525B92006005F00891B09 /* LaunchScreen.storyboard */; };
 		4F3525BE2006005F00891B09 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3525BD2006005F00891B09 /* main.m */; };
-		4F3525C72006013700891B09 /* WCBundleTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3525C62006013700891B09 /* WCBundleTool.m */; };
 		4F3525CE2006017D00891B09 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3525CD2006017C00891B09 /* RootViewController.m */; };
 		4F3525DB2006044900891B09 /* AutoLoadFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F3525D92006044900891B09 /* AutoLoadFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4F3525DE2006044900891B09 /* AutoLoadFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F3525D72006044900891B09 /* AutoLoadFramework.framework */; };
@@ -64,6 +64,8 @@
 /* Begin PBXFileReference section */
 		4F1A27D12015FEAE009EEF1B /* GetAllDynamicLibrariesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAllDynamicLibrariesViewController.h; sourceTree = "<group>"; };
 		4F1A27D22015FEAE009EEF1B /* GetAllDynamicLibrariesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAllDynamicLibrariesViewController.m; sourceTree = "<group>"; };
+		4F1D0059242CF9B100EC1995 /* WCBundleTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCBundleTool.m; sourceTree = "<group>"; };
+		4F1D005A242CF9B100EC1995 /* WCBundleTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCBundleTool.h; sourceTree = "<group>"; };
 		4F3525AB2006005F00891B09 /* HelloNSBundle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSBundle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F3525AE2006005F00891B09 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F3525AF2006005F00891B09 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -71,8 +73,6 @@
 		4F3525BA2006005F00891B09 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F3525BC2006005F00891B09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F3525BD2006005F00891B09 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4F3525C52006013700891B09 /* WCBundleTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCBundleTool.h; sourceTree = "<group>"; };
-		4F3525C62006013700891B09 /* WCBundleTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCBundleTool.m; sourceTree = "<group>"; };
 		4F3525CC2006017C00891B09 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F3525CD2006017C00891B09 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F3525D72006044900891B09 /* AutoLoadFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AutoLoadFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,9 +121,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F1D0058242CF9B100EC1995 /* WCBundleTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F1D0059242CF9B100EC1995 /* WCBundleTool.m */,
+				4F1D005A242CF9B100EC1995 /* WCBundleTool.h */,
+			);
+			path = WCBundleTool;
+			sourceTree = "<group>";
+		};
 		4F3525A22006005F00891B09 = {
 			isa = PBXGroup;
 			children = (
+				4F1D0058242CF9B100EC1995 /* WCBundleTool */,
 				4F3525AD2006005F00891B09 /* HelloNSBundle */,
 				4F3525D82006044900891B09 /* AutoLoadFramework */,
 				4F9489B3200F49FB0030BC4A /* LazyLoadFramework */,
@@ -144,7 +154,6 @@
 		4F3525AD2006005F00891B09 /* HelloNSBundle */ = {
 			isa = PBXGroup;
 			children = (
-				4F3525C42006012900891B09 /* WCBundleTool */,
 				4F3525AE2006005F00891B09 /* AppDelegate.h */,
 				4F3525AF2006005F00891B09 /* AppDelegate.m */,
 				4F3525CC2006017C00891B09 /* RootViewController.h */,
@@ -156,15 +165,6 @@
 				4F3525BD2006005F00891B09 /* main.m */,
 			);
 			path = HelloNSBundle;
-			sourceTree = "<group>";
-		};
-		4F3525C42006012900891B09 /* WCBundleTool */ = {
-			isa = PBXGroup;
-			children = (
-				4F3525C52006013700891B09 /* WCBundleTool.h */,
-				4F3525C62006013700891B09 /* WCBundleTool.m */,
-			);
-			path = WCBundleTool;
 			sourceTree = "<group>";
 		};
 		4F3525C82006015C00891B09 /* AppTestDemos */ = {
@@ -363,10 +363,10 @@
 				4F3525BE2006005F00891B09 /* main.m in Sources */,
 				4F94E500211EBCE5007AEA3B /* Test_PathForResourceInBundle_ViewController.m in Sources */,
 				4F3525B02006005F00891B09 /* AppDelegate.m in Sources */,
+				4F1D005B242CF9B100EC1995 /* WCBundleTool.m in Sources */,
 				4F9489AC200F42D80030BC4A /* GetAllClassNamesOfFrameworkViewController.m in Sources */,
 				4F1A27D32015FEAE009EEF1B /* GetAllDynamicLibrariesViewController.m in Sources */,
 				4F9489A9200F42400030BC4A /* GetAllClassNamesOfMainBundleViewController.m in Sources */,
-				4F3525C72006013700891B09 /* WCBundleTool.m in Sources */,
 				4F3525CE2006017D00891B09 /* RootViewController.m in Sources */,
 				4F9489C7200F570E0030BC4A /* GetAllClassNamesOfLazyLoadFrameworkViewController.m in Sources */,
 			);
