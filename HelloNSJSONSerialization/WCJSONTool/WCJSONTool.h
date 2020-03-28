@@ -11,6 +11,37 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ The merge mode
+ 
+ Ovewrite mode:
+ For array, must find the original item in array by counterpart index
+ e.g. ["a", "b"] + [{}, "c"] => ["a", "c"],  ["a", "b"] + ["c"] => ["a", "b"]
+ 
+ For map, must find the original entry in array by counterpart key
+ e.g. {"k1":"v1"} + {"k1":"v2"} => {"k1":"v2"}, {"k1":"v1"} + {"k2":"v2"} => {"k1":"v1"}
+ 
+ UnionSet mode:
+ For array, not need find the original item in array by counterpart index, just get the unioned array
+ e.g. ["a", "b"] + [{}, "c"] => ["a", "b", {}, "c"],  ["a", "b"] + ["c"] => ["a", "b", "c"]
+ 
+ For map, not need find the original entry in array by counterpart key, just get the unioned map. If the
+ keys conflict, the later to overwrite
+ e.g. {"k1":"v1"} + {"k1":"v2"} => {"k1":"v2"}, {"k1":"v1"} + {"k2":"v2"} => {"k1":"v1", "k2":"v2"}
+ */
+typedef NS_ENUM(NSUInteger, WCJSONToolMergeMode) {
+    /**
+     array using overwrite mode
+     map using overwrite mode
+     */
+    WCJSONToolMergeModeArrayOverwriteMapOverwrite,
+    /**
+     array using overwrite mode
+     map using unionset mode
+     */
+    WCJSONToolMergeModeArrayOverwriteMapUnionSet,
+};
+
 NS_AVAILABLE_IOS(5_0)
 @interface WCJSONTool : NSObject
 
@@ -201,7 +232,7 @@ NS_AVAILABLE_IOS(5_0)
  =>
  ["1", "22", "3"]
  */
-+ (nullable id)mergeToJSONObject:(id)toJSONObject fromJSONObject:(nullable id)fromJSONObject;
++ (nullable id)mergeToJSONObject:(id)toJSONObject fromJSONObject:(nullable id)fromJSONObject mergeMode:(WCJSONToolMergeMode)mergeMode;
 
 #pragma mark > Key Path Query
 

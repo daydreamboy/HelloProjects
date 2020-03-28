@@ -480,41 +480,163 @@
     // Case 1: single value
     toJSONObject = @"a";
     fromJSONObject = @"b";
-    output = [WCJSONTool mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject];
+    output = [WCJSONTool mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject mergeMode:WCJSONToolMergeModeArrayOverwriteMapOverwrite];
     XCTAssertEqualObjects(output, @"b");
     
     toJSONObject = @"a";
     fromJSONObject = @"";
-    output = [WCJSONTool mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject];
+    output = [WCJSONTool mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject mergeMode:WCJSONToolMergeModeArrayOverwriteMapOverwrite];
     XCTAssertEqualObjects(output, @"");
     
     toJSONObject = @"a";
     fromJSONObject = nil;
-    output = [WCJSONTool mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject];
+    output = [WCJSONTool mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject mergeMode:WCJSONToolMergeModeArrayOverwriteMapOverwrite];
     XCTAssertEqualObjects(output, @"a");
     
     toJSONObject = @"a";
     fromJSONObject = @(1);
-    output = [WCJSONTool mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject];
+    output = [WCJSONTool mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject mergeMode:WCJSONToolMergeModeArrayOverwriteMapOverwrite];
     XCTAssertEqualObjects(output, @"a");
     
     toJSONObject = @"a";
     fromJSONObject = [NSNull null];
-    output = [WCJSONTool mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject];
+    output = [WCJSONTool mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject mergeMode:WCJSONToolMergeModeArrayOverwriteMapOverwrite];
     XCTAssertEqualObjects(output, @"a");
 
     toJSONObject = @(1);
     fromJSONObject = @(2);
-    output = [WCJSONTool mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject];
+    output = [WCJSONTool mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject mergeMode:WCJSONToolMergeModeArrayOverwriteMapOverwrite];
     XCTAssertEqualObjects(output, @(2));
     
     toJSONObject = @(NO);
     fromJSONObject = @(YES);
-    output = [WCJSONTool mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject];
+    output = [WCJSONTool mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject mergeMode:WCJSONToolMergeModeArrayOverwriteMapOverwrite];
     XCTAssertEqualObjects(output, @(YES));
 }
 
-- (void)test_mergeToJSONObject_fromJSONObject {
+
+- (void)test_mergeToJSONObject_fromJSONObject_WCJSONToolMergeModeArrayOverwriteMapOverwrite {
+    [self common_case_mergeToJSONObject_fromJSONObject_with_merge_mode:WCJSONToolMergeModeArrayOverwriteMapOverwrite];
+    
+    id toJSONObject;
+    id fromJSONObject;
+    id output;
+    NSString *toJSONString;
+    NSString *fromJSONString;
+    NSString *outputString;
+    WCJSONToolMergeMode mode = WCJSONToolMergeModeArrayOverwriteMapOverwrite;
+    
+    // Case 1
+    toJSONString = STR_OF_JSON(
+                               {
+        "name": "Alice",
+        "job": "teacher"
+    }
+                               );
+    fromJSONString = STR_OF_JSON(
+                                 {
+        "age": 25
+    }
+                                 );
+    toJSONObject = [WCJSONTool JSONObjectWithString:toJSONString options:kNilOptions objectClass:nil];
+    fromJSONObject = [WCJSONTool JSONObjectWithString:fromJSONString options:kNilOptions objectClass:nil];
+    output = [WCJSONTool mergeToJSONObject:toJSONObject fromJSONObject:fromJSONObject mergeMode:mode];
+    outputString = [WCJSONTool JSONStringWithObject:output printOptions:kNilOptions];
+    XCTAssertEqualObjects(outputString, @"{\"name\":\"Alice\",\"job\":\"teacher\"}");
+    
+    // Case 2
+    toJSONString = STR_OF_JSON(
+                               {
+        "name": "Alice",
+        "job": "teacher",
+        "education": {
+            "junior": "A school",
+            "senior": "B school",
+            "college": {
+                "community": "C school",
+            }
+        }
+    }
+                               );
+    fromJSONString = STR_OF_JSON(
+                                 {
+        "age": 25,
+        "education": {
+            "college": {
+                "community": "C2 school",
+                "university": "D school"
+            }
+        }
+    }
+                                 );
+    toJSONObject = [WCJSONTool JSONObjectWithString:toJSONString options:kNilOptions objectClass:nil];
+    fromJSONObject = [WCJSONTool JSONObjectWithString:fromJSONString options:kNilOptions objectClass:nil];
+    output = [WCJSONTool mergeToJSONObject:toJSONObject fromJSONObject:fromJSONObject mergeMode:mode];
+    outputString = [WCJSONTool JSONStringWithObject:output printOptions:kNilOptions];
+    XCTAssertEqualObjects(outputString, @"{\"name\":\"Alice\",\"job\":\"teacher\",\"education\":{\"junior\":\"A school\",\"senior\":\"B school\",\"college\":{\"community\":\"C2 school\"}}}");
+}
+
+- (void)test_mergeToJSONObject_fromJSONObject_WCJSONToolMergeModeArrayOverwriteMapUnionSet {
+    [self common_case_mergeToJSONObject_fromJSONObject_with_merge_mode:WCJSONToolMergeModeArrayOverwriteMapUnionSet];
+    
+    id toJSONObject;
+    id fromJSONObject;
+    id output;
+    NSString *toJSONString;
+    NSString *fromJSONString;
+    NSString *outputString;
+    WCJSONToolMergeMode mode = WCJSONToolMergeModeArrayOverwriteMapUnionSet;
+    
+    toJSONString = STR_OF_JSON(
+                               {
+        "name": "Alice",
+        "job": "teacher"
+    }
+                               );
+    fromJSONString = STR_OF_JSON(
+                                 {
+        "age": 25
+    }
+                                 );
+    toJSONObject = [WCJSONTool JSONObjectWithString:toJSONString options:kNilOptions objectClass:nil];
+    fromJSONObject = [WCJSONTool JSONObjectWithString:fromJSONString options:kNilOptions objectClass:nil];
+    output = [WCJSONTool mergeToJSONObject:toJSONObject fromJSONObject:fromJSONObject mergeMode:mode];
+    outputString = [WCJSONTool JSONStringWithObject:output printOptions:kNilOptions];
+    XCTAssertEqualObjects(outputString, @"{\"name\":\"Alice\",\"job\":\"teacher\",\"age\":25}");
+    
+    // Case 2
+    toJSONString = STR_OF_JSON(
+                               {
+        "name": "Alice",
+        "job": "teacher",
+        "education": {
+            "junior": "A school",
+            "senior": "B school",
+            "college": {
+                "community": "C school",
+            }
+        }
+    }
+                               );
+    fromJSONString = STR_OF_JSON(
+                                 {
+        "age": 25,
+        "education": {
+            "college": {
+                "community": "C2 school",
+                "university": "D school"
+            }
+        }
+    }
+                                 );
+    toJSONObject = [WCJSONTool JSONObjectWithString:toJSONString options:kNilOptions objectClass:nil];
+    fromJSONObject = [WCJSONTool JSONObjectWithString:fromJSONString options:kNilOptions objectClass:nil];
+    output = [WCJSONTool mergeToJSONObject:toJSONObject fromJSONObject:fromJSONObject mergeMode:mode];
+    outputString = [WCJSONTool JSONStringWithObject:output printOptions:kNilOptions];
+    XCTAssertEqualObjects(outputString, @"{\"age\":25,\"education\":{\"junior\":\"A school\",\"senior\":\"B school\",\"college\":{\"community\":\"C2 school\",\"university\":\"D school\"}},\"name\":\"Alice\",\"job\":\"teacher\"}");
+}
+
+- (void)common_case_mergeToJSONObject_fromJSONObject_with_merge_mode:(WCJSONToolMergeMode)mergeMode {
     id toJSONObject;
     id fromJSONObject;
     id output;
@@ -536,10 +658,10 @@
                                  );
     toJSONObject = [WCJSONTool JSONObjectWithString:toJSONString options:kNilOptions objectClass:nil];
     fromJSONObject = [WCJSONTool JSONObjectWithString:fromJSONString options:kNilOptions objectClass:nil];
-    output = [WCJSONTool mergeToJSONObject:toJSONObject fromJSONObject:fromJSONObject];
+    output = [WCJSONTool mergeToJSONObject:toJSONObject fromJSONObject:fromJSONObject mergeMode:mergeMode];
     outputString = [WCJSONTool JSONStringWithObject:output printOptions:kNilOptions];
     XCTAssertEqualObjects(outputString, @"{\"name\":\"Bob\",\"job\":\"teacher\"}");
-                          
+    
     // Case 2: simple container - array
     toJSONString = STR_OF_JSON(
                                ["1", "2", "3"]
@@ -549,7 +671,7 @@
                                  );
     toJSONObject = [WCJSONTool JSONObjectWithString:toJSONString options:kNilOptions objectClass:nil];
     fromJSONObject = [WCJSONTool JSONObjectWithString:fromJSONString options:kNilOptions objectClass:nil];
-    output = [WCJSONTool mergeToJSONObject:toJSONObject fromJSONObject:fromJSONObject];
+    output = [WCJSONTool mergeToJSONObject:toJSONObject fromJSONObject:fromJSONObject mergeMode:mergeMode];
     outputString = [WCJSONTool JSONStringWithObject:output printOptions:kNilOptions];
     XCTAssertEqualObjects(outputString, @"[\"1\",\"22\",\"3\"]");
     
@@ -561,7 +683,7 @@
                                  );
     toJSONObject = [WCJSONTool JSONObjectWithString:toJSONString options:kNilOptions objectClass:nil];
     fromJSONObject = [WCJSONTool JSONObjectWithString:fromJSONString options:kNilOptions objectClass:nil];
-    output = [WCJSONTool mergeToJSONObject:toJSONObject fromJSONObject:fromJSONObject];
+    output = [WCJSONTool mergeToJSONObject:toJSONObject fromJSONObject:fromJSONObject mergeMode:mergeMode];
     outputString = [WCJSONTool JSONStringWithObject:output printOptions:kNilOptions];
     XCTAssertEqualObjects(outputString, @"[\"1\",\"2\",\"3\"]");
     
@@ -592,7 +714,7 @@
                                  );
     toJSONObject = [WCJSONTool JSONObjectWithString:toJSONString options:kNilOptions objectClass:nil];
     fromJSONObject = [WCJSONTool JSONObjectWithString:fromJSONString options:kNilOptions objectClass:nil];
-    output = [WCJSONTool mergeToJSONObject:toJSONObject fromJSONObject:fromJSONObject];
+    output = [WCJSONTool mergeToJSONObject:toJSONObject fromJSONObject:fromJSONObject mergeMode:mergeMode];
     outputString = [WCJSONTool JSONStringWithObject:output printOptions:kNilOptions];
     XCTAssertEqualObjects(outputString, @"{\"name\":\"Alice\",\"job\":\"teacher\",\"children\":[{\"name\":\"Lucy\"},{\"name\":\"Lily\"}]}");
     
@@ -619,7 +741,7 @@
                                  );
     toJSONObject = [WCJSONTool JSONObjectWithString:toJSONString options:kNilOptions objectClass:nil];
     fromJSONObject = [WCJSONTool JSONObjectWithString:fromJSONString options:kNilOptions objectClass:nil];
-    output = [WCJSONTool mergeToJSONObject:toJSONObject fromJSONObject:fromJSONObject];
+    output = [WCJSONTool mergeToJSONObject:toJSONObject fromJSONObject:fromJSONObject mergeMode:mergeMode];
     outputString = [WCJSONTool JSONStringWithObject:output printOptions:kNilOptions];
     XCTAssertEqualObjects(outputString, @"{\"name\":\"Alice\",\"job\":\"teacher\",\"children\":[{\"name\":\"Lucy\"},{\"name\":\"Lucky\"}]}");
     
@@ -661,7 +783,7 @@
                                  );
     toJSONObject = [WCJSONTool JSONObjectWithString:toJSONString options:kNilOptions objectClass:nil];
     fromJSONObject = [WCJSONTool JSONObjectWithString:fromJSONString options:kNilOptions objectClass:nil];
-    output = [WCJSONTool mergeToJSONObject:toJSONObject fromJSONObject:fromJSONObject];
+    output = [WCJSONTool mergeToJSONObject:toJSONObject fromJSONObject:fromJSONObject mergeMode:mergeMode];
     outputString = [WCJSONTool JSONStringWithObject:output printOptions:kNilOptions];
     XCTAssertEqualObjects(outputString, @"[{\"size\":{\"h\":\"2\",\"w\":\"3\"},\"title\":\"a\",\"price\":100,\"onSale\":true},{\"size\":{\"h\":\"4\",\"w\":\"6\"},\"title\":\"b\",\"price\":200,\"onSale\":true}]");
 }

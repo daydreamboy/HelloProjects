@@ -364,7 +364,7 @@
 
 #pragma mark > Merge two JSON Objects
 
-+ (nullable id)mergeToJSONObject:(id)toJSONObject fromJSONObject:(nullable id)fromJSONObject {
++ (nullable id)mergeToJSONObject:(id)toJSONObject fromJSONObject:(nullable id)fromJSONObject mergeMode:(WCJSONToolMergeMode)mergeMode {
     // toJSONObject expected not nil and must be JSON object
     if (!toJSONObject || ![NSJSONSerialization isValidJSONObject:toJSONObject]) {
         return nil;
@@ -375,10 +375,10 @@
         return toJSONObject;
     }
     
-    return [self mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject];
+    return [self mergeTwoJSONObjectWithBaseObject:toJSONObject additionalObject:fromJSONObject mergeMode:mergeMode];
 }
 
-+ (nullable id)mergeTwoJSONObjectWithBaseObject:(id)baseObject additionalObject:(nullable id)additionalObject {
++ (nullable id)mergeTwoJSONObjectWithBaseObject:(id)baseObject additionalObject:(nullable id)additionalObject mergeMode:(WCJSONToolMergeMode)mergeMode {
     // null not replace
     if (baseObject == [NSNull null]) {
         return baseObject;
@@ -407,7 +407,7 @@
             id itemInBaseObjectArray = baseObjectArray[i];
             id itemInAdditionalObjectArray = additionalObjectArray[i];
             
-            id mergedItem = [self mergeTwoJSONObjectWithBaseObject:itemInBaseObjectArray additionalObject:itemInAdditionalObjectArray];
+            id mergedItem = [self mergeTwoJSONObjectWithBaseObject:itemInBaseObjectArray additionalObject:itemInAdditionalObjectArray mergeMode:mergeMode];
             if (mergedItem) {
                 [arrM addObject:mergedItem];
             }
@@ -428,17 +428,33 @@
         }
         
         NSMutableDictionary *dictM = [NSMutableDictionary dictionary];
+        NSMutableSet *commonKeys = [NSMutableSet set];
+        
         [baseObjectDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
             if ([key isKindOfClass:[NSString class]]) {
                 id itemInBaseObjectDict = obj;
                 id itemInAdditionalObjectDict = additionalObjectDict[key];
                 
-                id mergedItem = [self mergeTwoJSONObjectWithBaseObject:itemInBaseObjectDict additionalObject:itemInAdditionalObjectDict];
+                if (itemInAdditionalObjectDict) {
+                    [commonKeys addObject:key];
+                }
+                
+                id mergedItem = [self mergeTwoJSONObjectWithBaseObject:itemInBaseObjectDict additionalObject:itemInAdditionalObjectDict mergeMode:mergeMode];
                 if (mergedItem) {
                     dictM[key] = mergedItem;
                 }
             }
         }];
+        
+        
+        if (mergeMode == WCJSONToolMergeModeArrayOverwriteMapUnionSet) {
+            [additionalObjectDict enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                if (![commonKeys containsObject:key]) {
+                    dictM[key] = obj;
+                }
+            }];
+        }
+        
         return dictM;
     }
     else {
