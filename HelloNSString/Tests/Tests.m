@@ -113,22 +113,42 @@
 - (void)test_componentsWithString_delimeters {
     NSString *string;
     NSArray *components;
+    NSArray *expected;
     
     // Case 1
     string = @"This is a test string, and should split into multiple parts by multiple delimeters.";
     components = [WCStringTool componentsWithString:string delimeters:@[@"and", @"multiple", @"a"]];
-    for (NSString *part in components) {
-        NSLog(@"`%@`", part);
+    expected = @[
+        @"This is ",
+        @" test string, ",
+        @" should split into ",
+        @" p",
+        @"rts by ",
+        @" delimeters.",
+    ];
+    for (NSUInteger i = 0; i < components.count; ++i) {
+        XCTAssertEqualObjects(components[i], expected[i]);
     }
-    NSLog(@"---------------------------------");
     
     // Case 2
     string = @"This is a test string, and should split into multiple parts by multiple delimeters.";
     components = [WCStringTool componentsWithString:string delimeters:@[@"multiple", @"a", @"and"]];
-    for (NSString *part in components) {
-        NSLog(@"`%@`", part);
+    expected = @[
+        @"This is ",
+        @" test string, ",
+        @"nd should split into ",
+        @" p",
+        @"rts by ",
+        @" delimeters.",
+    ];
+    for (NSUInteger i = 0; i < components.count; ++i) {
+        XCTAssertEqualObjects(components[i], expected[i]);
     }
-    NSLog(@"---------------------------------");
+    
+    // Case 3
+    string = @"/:^_^/:^_^/:^_^/:^_^/:^_^";
+    components = [WCStringTool componentsWithString:string delimeters:@[@"/:^_^"]];
+    NSLog(@"%@", components);
 }
 
 - (void)test_componentsWithString_charactersInSet_substringRangs {
