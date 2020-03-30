@@ -18,6 +18,11 @@ typedef NS_ENUM(NSUInteger, WCStringTruncatingStyle) {
     WCStringTruncatingStyleTrail,
 };
 
+typedef NS_ENUM(NSUInteger, WCStringSplitInComponentsMode) {
+    WCStringSplitInComponentsModeWithoutDelimiter,
+    WCStringSplitInComponentsModeIncludeDelimiter,
+};
+
 @interface WCStringTool : NSObject
 
 #pragma mark - Handle String As Text In UILabel
@@ -161,11 +166,13 @@ typedef NS_ENUM(NSUInteger, WCStringTruncatingStyle) {
 
  @param string the original string
  @param delimeters the multiple delimeters. Split the string with delimeters by the order of the array.
- @return the components after spliting
+ @return the components after spliting. The components will remove empty strings before return it.
  @discussion If have multiple delimeters, will split the string one by one, and the order of the delimeters
  array will affect the return result.
  */
 + (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters;
+
++ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters mode:(WCStringSplitInComponentsMode)mode;
 
 /**
  Split string into components by multiple gap ranges

@@ -148,7 +148,54 @@
     // Case 3
     string = @"/:^_^/:^_^/:^_^/:^_^/:^_^";
     components = [WCStringTool componentsWithString:string delimeters:@[@"/:^_^"]];
+    XCTAssertTrue(components.count == 0);
     NSLog(@"%@", components);
+}
+
+- (void)test_componentsWithString_delimeters_ {
+    NSString *string;
+    NSArray *components;
+    NSArray *expected;
+    
+    // Case 1
+    string = @"abcsabc";
+    components = [WCStringTool componentsWithString:string delimeters:@[@"s", @"b"] mode:WCStringSplitInComponentsModeIncludeDelimiter];
+    expected = @[
+        @"a",
+        @"b",
+        @"c",
+        @"s",
+        @"a",
+        @"b",
+        @"c",
+    ];
+    for (NSUInteger i = 0; i < components.count; ++i) {
+        XCTAssertEqualObjects(components[i], expected[i]);
+    }
+    
+    // Case 2
+    string = @"abcsabc";
+    components = [WCStringTool componentsWithString:string delimeters:@[@"s"] mode:WCStringSplitInComponentsModeIncludeDelimiter];
+    expected = @[
+        @"abc",
+        @"s",
+        @"abc",
+    ];
+    for (NSUInteger i = 0; i < components.count; ++i) {
+        XCTAssertEqualObjects(components[i], expected[i]);
+    }
+    
+    // Case 3
+    string = @"abcsabc";
+    components = [WCStringTool componentsWithString:string delimeters:@[@"abc", @"s"] mode:WCStringSplitInComponentsModeIncludeDelimiter];
+    expected = @[
+        @"abc",
+        @"s",
+        @"abc",
+    ];
+    for (NSUInteger i = 0; i < components.count; ++i) {
+        XCTAssertEqualObjects(components[i], expected[i]);
+    }
 }
 
 - (void)test_componentsWithString_charactersInSet_substringRangs {
@@ -1571,8 +1618,27 @@
 }
 
 - (void)test_occurrenceOfSubstringInString_substring {
-    NSString *formatString = @"%@:%@";
-    NSLog(@"occurence of %%@ is %ld", [WCStringTool occurrenceOfSubstringInString:formatString substring:@"%@"]);
+    NSString *string;
+    NSString *substring;
+    NSInteger output;
+    
+    // Case 1
+    string = @"%@:%@";
+    substring = @"%@";
+    output = [WCStringTool occurrenceOfSubstringInString:string substring:@"%@"];
+    XCTAssertTrue(output == 2);
+    
+    // Case 2
+    string = @"%@%@";
+    substring = @"%@";
+    output = [WCStringTool occurrenceOfSubstringInString:string substring:@"%@"];
+    XCTAssertTrue(output == 2);
+    
+    // Case 3
+    string = @"%@";
+    substring = @"%@";
+    output = [WCStringTool occurrenceOfSubstringInString:string substring:@"%@"];
+    XCTAssertTrue(output == 1);
 }
 
 #pragma mark > String Lowercase/Uppercase

@@ -270,16 +270,71 @@
 #pragma mark > Split String
 
 + (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters {
-    if (![string isKindOfClass:[NSString class]]) {
+    return [self componentsWithString:string delimeters:delimeters mode:WCStringSplitInComponentsModeWithoutDelimiter];
+}
+
++ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters mode:(WCStringSplitInComponentsMode)mode {
+    if (![string isKindOfClass:[NSString class]] || ![delimeters isKindOfClass:[NSArray class]]) {
         return nil;
     }
     
-    NSMutableArray *strings = [NSMutableArray arrayWithObject:string];
-    NSArray *components = [self splitStringWithComponents:strings delimeters:[delimeters mutableCopy]];
-    return components;
+    if (mode != WCStringSplitInComponentsModeWithoutDelimiter && mode != WCStringSplitInComponentsModeIncludeDelimiter) {
+        return nil;
+    }
+    
+    if (mode == WCStringSplitInComponentsModeWithoutDelimiter) {
+        NSMutableArray *strings = [NSMutableArray arrayWithObject:string];
+        NSArray *components = [self splitStringWithComponents:strings delimeters:[delimeters mutableCopy]];
+        return components;
+    }
+    else if (mode == WCStringSplitInComponentsModeIncludeDelimiter) {
+        return [self splitStringWithString:string delimeters:delimeters currentDelimeterIndex:0];
+    }
+    
+    return nil;
 }
 
 #pragma mark ::
+
++ (NSArray<NSString *> *)splitStringWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters currentDelimeterIndex:(NSUInteger)currentDelimeterIndex {
+    
+    if (currentDelimeterIndex < delimeters.count) {
+        NSString *separator = delimeters[currentDelimeterIndex];
+        NSArray *components = [string componentsSeparatedByString:separator];
+        NSUInteger numberOfSeparator = components.count - 1;
+        NSUInteger count = 0;
+        NSMutableArray *componentsIncludeSeparator = [NSMutableArray arrayWithCapacity:components.count];
+        
+        for (NSUInteger i = 0; i < components.count; ++i) {
+            NSString *component = components[i];
+            
+            if (component.length == 0) {
+                if (count < numberOfSeparator) {
+                    [componentsIncludeSeparator addObject:separator];
+                }
+                ++count;
+            }
+            else {
+                NSArray *subcomponents = [self splitStringWithString:component delimeters:delimeters currentDelimeterIndex:currentDelimeterIndex + 1];
+                if (subcomponents.count) {
+                    [componentsIncludeSeparator addObjectsFromArray:subcomponents];
+                    
+                    if (i + 1 < components.count) {
+                        NSString *nextComponent = components[i + 1];
+                        if (nextComponent.length > 0) {
+                            [componentsIncludeSeparator addObject:separator];
+                        }
+                    }
+                }
+            }
+        }
+        
+        return componentsIncludeSeparator;
+    }
+    else {
+        return string ? @[string] : nil;
+    }
+}
 
 + (NSMutableArray<NSString *> *)splitStringWithComponents:(NSMutableArray<NSString *> *)components delimeters:(NSMutableArray<NSString *> *)delimeters {
     if (delimeters.count) {

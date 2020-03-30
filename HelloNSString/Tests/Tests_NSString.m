@@ -74,16 +74,161 @@
 - (void)test_componentsSeparatedByString {
     NSString *string;
     NSUInteger count;
+    NSArray *components;
     
     // Case 1
     string = @"pow";
-    count = [string componentsSeparatedByString:@":"].count;
+    components = [string componentsSeparatedByString:@":"];
+    count = components.count;
     XCTAssert(count == 1);
     
     // Case 2
     string = @"pow:";
-    count = [string componentsSeparatedByString:@":"].count;
+    components = [string componentsSeparatedByString:@":"];
+    count = components.count;
     XCTAssert(count == 2);
+    
+    // Case 3
+    string = @":";
+    components = [string componentsSeparatedByString:@":"];
+    count = components.count;
+    XCTAssert(count == 2);
+}
+
+- (void)test_componentsSeparatedByString_include_separator {
+    NSString *string;
+    NSString *separator;
+    NSArray *components;
+    NSArray *componentsIncludeSeparator;
+    
+    /*
+     separator = `:`
+     
+     // 1
+     :pow
+     -->
+     "" pow
+
+     // 2
+     pow:
+     -->
+     pow ""
+
+     // 3
+     :pow:
+     -->
+     "" pow ""
+
+     // 4
+     :
+     -->
+     "" ""
+
+     // 5
+     ::
+     -->
+     "" "" ""
+
+     // 6
+     pow:pow
+     -->
+     pow pow
+     */
+    
+    NSArray *(^getComponent)(NSArray *component, NSString *separator) = ^NSArray *(NSArray *components, NSString *separator) {
+        NSUInteger numberOfSeparator = components.count - 1;
+        NSUInteger count = 0;
+        NSMutableArray *componentsIncludeSeparator = [NSMutableArray arrayWithCapacity:components.count];
+        
+        for (NSUInteger i = 0; i < components.count; ++i) {
+            NSString *component = components[i];
+            if (component.length == 0) {
+                if (count < numberOfSeparator) {
+                    [componentsIncludeSeparator addObject:separator];
+                }
+                ++count;
+            }
+            else {
+                [componentsIncludeSeparator addObject:component];
+                
+                if (i + 1 < components.count) {
+                    NSString *nextComponent = components[i + 1];
+                    if (nextComponent.length > 0) {
+                        [componentsIncludeSeparator addObject:separator];
+                    }
+                }
+            }
+        }
+        
+        return componentsIncludeSeparator;
+    };
+    
+    // Case 1
+    string = @"pow";
+    separator = @":";
+    components = [string componentsSeparatedByString:separator];
+    
+    XCTAssert(components.count == 1);
+    componentsIncludeSeparator = getComponent(components, separator);
+    XCTAssertTrue(componentsIncludeSeparator.count == 1);
+    XCTAssertEqualObjects([componentsIncludeSeparator componentsJoinedByString:@""], string);
+    
+    // Case 2
+    string = @":pow";
+    components = [string componentsSeparatedByString:separator];
+    XCTAssert(components.count == 2);
+    componentsIncludeSeparator = getComponent(components, separator);
+    XCTAssertTrue(componentsIncludeSeparator.count == 2);
+    XCTAssertEqualObjects([componentsIncludeSeparator componentsJoinedByString:@""], string);
+    
+    // Case 2
+    string = @"pow:";
+    components = [string componentsSeparatedByString:separator];
+    XCTAssert(components.count == 2);
+    componentsIncludeSeparator = getComponent(components, separator);
+    XCTAssertTrue(componentsIncludeSeparator.count == 2);
+    XCTAssertEqualObjects([componentsIncludeSeparator componentsJoinedByString:@""], string);
+    
+    // Case 2
+    string = @":pow:";
+    components = [string componentsSeparatedByString:separator];
+    XCTAssert(components.count == 3);
+    componentsIncludeSeparator = getComponent(components, separator);
+    XCTAssertTrue(componentsIncludeSeparator.count == 3);
+    XCTAssertEqualObjects([componentsIncludeSeparator componentsJoinedByString:@""], string);
+    
+    // Case 3
+    string = @":";
+    components = [string componentsSeparatedByString:separator];
+    XCTAssert(components.count == 2);
+    componentsIncludeSeparator = getComponent(components, separator);
+    XCTAssertTrue(componentsIncludeSeparator.count == 1);
+    XCTAssertEqualObjects([componentsIncludeSeparator componentsJoinedByString:@""], string);
+    
+    // Case 3
+    string = @"::";
+    components = [string componentsSeparatedByString:separator];
+    XCTAssert(components.count == 3);
+    componentsIncludeSeparator = getComponent(components, separator);
+    XCTAssertTrue(componentsIncludeSeparator.count == 2);
+    XCTAssertEqualObjects([componentsIncludeSeparator componentsJoinedByString:@""], string);
+    
+    // Case 3
+   string = @"pow:pow";
+   components = [string componentsSeparatedByString:separator];
+   XCTAssert(components.count == 2);
+   componentsIncludeSeparator = getComponent(components, separator);
+   XCTAssertTrue(componentsIncludeSeparator.count == 3);
+   XCTAssertEqualObjects([componentsIncludeSeparator componentsJoinedByString:@""], string);
+    
+    // Case 3
+    string = @"abc";
+    separator = @"b";
+    components = [string componentsSeparatedByString:separator];
+    XCTAssert(components.count == 2);
+    componentsIncludeSeparator = getComponent(components, separator);
+    XCTAssertTrue(componentsIncludeSeparator.count == 3);
+    XCTAssertEqualObjects([componentsIncludeSeparator componentsJoinedByString:@""], string);
 }
 
 - (void)test_commonPrefixWithString_options {
