@@ -37,7 +37,7 @@
 }
 
 - (void)test_filterArray_usingPredicateString_arg1_arg2_arg3_arg4_arg5 {
-    NSArray * output;
+    NSArray *output;
     NSArray *array;
     
     array = @[
@@ -67,5 +67,23 @@
     XCTAssert(output.count == 0);
 }
 
+- (void)test_iterateArray_keyPath_outputToFileName {
+    NSArray *filteredArray;
+    NSArray *array;
+    BOOL output;
+    
+    array = @[
+        [Person personWithName:@"Alice" age:15],
+        [Person personWithName:@"Bob" age:20],
+        [Person personWithName:@"Jane" age:15],
+        [Person personWithName:@"Lily" age:16],
+        [Person personWithName:@"Lucy" age:10],
+    ];
+    
+    // Case 1
+    filteredArray = [WCLLDBTool filterArray:array usingPredicateString:@"name LIKE 'L*'"];
+    output = [WCLLDBTool iterateArray:filteredArray keyPath:@"name" outputToFileName:nil];
+    XCTAssertTrue(output);
+}
 
 @end
