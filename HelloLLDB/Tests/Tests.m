@@ -60,6 +60,11 @@
     output = [WCLLDBTool filterArray:array usingPredicateString:@"name LIKE %@" arg1:@"Bob"];
     XCTAssert(output.count == 1);
     XCTAssertEqualObjects([[output firstObject] valueForKey:@"name"], @"Bob");
+    
+    // Abnormal Case 1
+    output = [WCLLDBTool filterArray:array usingPredicateString:@"name LIKE L*"]; // an exception occur
+    XCTAssertNil(output);
+    XCTAssert(output.count == 0);
 }
 
 

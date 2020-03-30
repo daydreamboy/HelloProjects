@@ -110,7 +110,14 @@
         return [array filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicateString, arg1]];
     }
     
-    return [array filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicateString]];
+    NSArray *filteredArray;
+    @try {
+        filteredArray = [array filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:predicateString]];
+    }
+    @catch (NSException *exception) {
+    }
+    
+    return filteredArray;
 }
 
 @end
