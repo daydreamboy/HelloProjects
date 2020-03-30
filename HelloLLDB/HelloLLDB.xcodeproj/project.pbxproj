@@ -10,6 +10,9 @@
 		4FB214C721370C1B00799FD6 /* TrapWithBuiltinTrapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB214C621370C1B00799FD6 /* TrapWithBuiltinTrapViewController.m */; };
 		4FBA0E192137C1360008F561 /* TrapWithSignalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBA0E182137C1360008F561 /* TrapWithSignalViewController.m */; };
 		4FBA0E1C2137C1500008F561 /* TrapWithASMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBA0E1B2137C1500008F561 /* TrapWithASMViewController.m */; };
+		4FC0C72D24320BF4007195C2 /* WCLLDBTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0C72C24320BF4007195C2 /* WCLLDBTool.m */; };
+		4FC0C73524320EEE007195C2 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0C73424320EEE007195C2 /* Tests.m */; };
+		4FC0C73F2432164E007195C2 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC0C73E2432164D007195C2 /* Person.m */; };
 		4FC2CF6F2031536300A416DC /* RegisterWithMoreSixParametersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC2CF6E2031536300A416DC /* RegisterWithMoreSixParametersViewController.m */; };
 		4FC8F839203069B000E32502 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8F838203069B000E32502 /* AppDelegate.m */; };
 		4FC8F841203069B100E32502 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FC8F840203069B100E32502 /* Assets.xcassets */; };
@@ -19,6 +22,16 @@
 		4FE63C81203133990055C7A0 /* RegisterWithSixParamtersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE63C80203133990055C7A0 /* RegisterWithSixParamtersViewController.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4FC0C73724320EEE007195C2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FC8F82C203069AF00E32502 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4FC8F833203069AF00E32502;
+			remoteInfo = HelloLLDB;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		4FB214C521370C1B00799FD6 /* TrapWithBuiltinTrapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrapWithBuiltinTrapViewController.h; sourceTree = "<group>"; };
 		4FB214C621370C1B00799FD6 /* TrapWithBuiltinTrapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrapWithBuiltinTrapViewController.m; sourceTree = "<group>"; };
@@ -26,6 +39,13 @@
 		4FBA0E182137C1360008F561 /* TrapWithSignalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrapWithSignalViewController.m; sourceTree = "<group>"; };
 		4FBA0E1A2137C1500008F561 /* TrapWithASMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TrapWithASMViewController.h; sourceTree = "<group>"; };
 		4FBA0E1B2137C1500008F561 /* TrapWithASMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TrapWithASMViewController.m; sourceTree = "<group>"; };
+		4FC0C72B24320BF4007195C2 /* WCLLDBTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCLLDBTool.h; sourceTree = "<group>"; };
+		4FC0C72C24320BF4007195C2 /* WCLLDBTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCLLDBTool.m; sourceTree = "<group>"; };
+		4FC0C73224320EED007195C2 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FC0C73424320EEE007195C2 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		4FC0C73624320EEE007195C2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FC0C73D2432164D007195C2 /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
+		4FC0C73E2432164D007195C2 /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		4FC2CF6D2031536300A416DC /* RegisterWithMoreSixParametersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterWithMoreSixParametersViewController.h; sourceTree = "<group>"; };
 		4FC2CF6E2031536300A416DC /* RegisterWithMoreSixParametersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterWithMoreSixParametersViewController.m; sourceTree = "<group>"; };
 		4FC8F834203069AF00E32502 /* HelloLLDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloLLDB.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,6 +62,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4FC0C72F24320EED007195C2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FC8F831203069AF00E32502 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -59,10 +86,40 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4FC0C72A24320BC7007195C2 /* WCLLDBTool */ = {
+			isa = PBXGroup;
+			children = (
+				4FC0C72B24320BF4007195C2 /* WCLLDBTool.h */,
+				4FC0C72C24320BF4007195C2 /* WCLLDBTool.m */,
+			);
+			path = WCLLDBTool;
+			sourceTree = "<group>";
+		};
+		4FC0C73324320EEE007195C2 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4FC0C73C24321631007195C2 /* DummyClass */,
+				4FC0C73424320EEE007195C2 /* Tests.m */,
+				4FC0C73624320EEE007195C2 /* Info.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		4FC0C73C24321631007195C2 /* DummyClass */ = {
+			isa = PBXGroup;
+			children = (
+				4FC0C73D2432164D007195C2 /* Person.h */,
+				4FC0C73E2432164D007195C2 /* Person.m */,
+			);
+			path = DummyClass;
+			sourceTree = "<group>";
+		};
 		4FC8F82B203069AF00E32502 = {
 			isa = PBXGroup;
 			children = (
+				4FC0C72A24320BC7007195C2 /* WCLLDBTool */,
 				4FC8F836203069AF00E32502 /* HelloLLDB */,
+				4FC0C73324320EEE007195C2 /* Tests */,
 				4FC8F835203069AF00E32502 /* Products */,
 				4F8057B222F7076F0002AEF6 /* Frameworks */,
 			);
@@ -72,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				4FC8F834203069AF00E32502 /* HelloLLDB.app */,
+				4FC0C73224320EED007195C2 /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -112,6 +170,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4FC0C73124320EED007195C2 /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FC0C73924320EEE007195C2 /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				4FC0C72E24320EED007195C2 /* Sources */,
+				4FC0C72F24320EED007195C2 /* Frameworks */,
+				4FC0C73024320EED007195C2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4FC0C73824320EEE007195C2 /* PBXTargetDependency */,
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = 4FC0C73224320EED007195C2 /* Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		4FC8F833203069AF00E32502 /* HelloLLDB */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4FC8F84A203069B100E32502 /* Build configuration list for PBXNativeTarget "HelloLLDB" */;
@@ -138,6 +214,10 @@
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = wesley_chen;
 				TargetAttributes = {
+					4FC0C73124320EED007195C2 = {
+						CreatedOnToolsVersion = 11.3;
+						TestTargetID = 4FC8F833203069AF00E32502;
+					};
 					4FC8F833203069AF00E32502 = {
 						CreatedOnToolsVersion = 9.3;
 					};
@@ -157,11 +237,19 @@
 			projectRoot = "";
 			targets = (
 				4FC8F833203069AF00E32502 /* HelloLLDB */,
+				4FC0C73124320EED007195C2 /* Tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4FC0C73024320EED007195C2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FC8F832203069AF00E32502 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -174,6 +262,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4FC0C72E24320EED007195C2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FC0C73F2432164E007195C2 /* Person.m in Sources */,
+				4FC0C73524320EEE007195C2 /* Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FC8F830203069AF00E32502 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -182,6 +279,7 @@
 				4FBA0E1C2137C1500008F561 /* TrapWithASMViewController.m in Sources */,
 				4FC2CF6F2031536300A416DC /* RegisterWithMoreSixParametersViewController.m in Sources */,
 				4FC8F839203069B000E32502 /* AppDelegate.m in Sources */,
+				4FC0C72D24320BF4007195C2 /* WCLLDBTool.m in Sources */,
 				4FE63C7E203133210055C7A0 /* RootViewController.m in Sources */,
 				4FB214C721370C1B00799FD6 /* TrapWithBuiltinTrapViewController.m in Sources */,
 				4FBA0E192137C1360008F561 /* TrapWithSignalViewController.m in Sources */,
@@ -190,6 +288,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4FC0C73824320EEE007195C2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4FC8F833203069AF00E32502 /* HelloLLDB */;
+			targetProxy = 4FC0C73724320EEE007195C2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4FC8F842203069B100E32502 /* LaunchScreen.storyboard */ = {
@@ -203,6 +309,45 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4FC0C73A24320EEE007195C2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloLLDB.app/HelloLLDB";
+			};
+			name = Debug;
+		};
+		4FC0C73B24320EEE007195C2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloLLDB.app/HelloLLDB";
+			};
+			name = Release;
+		};
 		4FC8F848203069B100E32502 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -350,6 +495,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4FC0C73924320EEE007195C2 /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FC0C73A24320EEE007195C2 /* Debug */,
+				4FC0C73B24320EEE007195C2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4FC8F82F203069AF00E32502 /* Build configuration list for PBXProject "HelloLLDB" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
