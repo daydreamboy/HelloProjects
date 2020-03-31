@@ -15,23 +15,81 @@
 @implementation Tests
 
 - (void)setUp {
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    NSLog(@"\n");
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    NSLog(@"\n");
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)test_get_primitive_return_value {
+    SEL selector;
+    
+    // Case 1
+    NSUInteger returnInteger = 0;
+    selector = @selector(returnInteger);
+    if ([self respondsToSelector:selector]) {
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[self methodSignatureForSelector:selector]];
+        invocation.target = self;
+        invocation.selector = selector;
+        
+        [invocation invoke];
+        [invocation getReturnValue:&returnInteger];
+        
+        XCTAssertTrue(returnInteger == 10);
+    }
+    
+    // Case 2
+    CGRect returnCGRect = CGRectZero;
+    selector = @selector(returnCGRect);
+    if ([self respondsToSelector:selector]) {
+        NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[self methodSignatureForSelector:selector]];
+        invocation.target = [UIScreen mainScreen];
+        invocation.selector = selector;
+        
+        [invocation invoke];
+        [invocation getReturnValue:&returnCGRect];
+        
+        XCTAssertTrue(returnCGRect.origin.x == 1);
+        XCTAssertTrue(returnCGRect.origin.y == 2);
+        XCTAssertTrue(returnCGRect.size.width == 3);
+        XCTAssertTrue(returnCGRect.size.height == 4);
+    }
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)test_safe_invoke {
+    SEL selector;
+    
+    CGRect returnCGRect = CGRectZero;
+    selector = @selector(returnCGRect);
+    
+    @try {
+        if ([self respondsToSelector:selector]) {
+            // exception 1: invocationWithMethodSignature: pass nil
+            NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:[self methodSignatureForSelector:selector]];
+            
+            // exception 2: target not correct
+            invocation.target = [UIScreen mainScreen];
+            invocation.selector = selector;
+            
+            [invocation invoke];
+            [invocation getReturnValue:&returnCGRect];
+        }
+    }
+    @catch (NSException *exception) {
+    }
+    
+    NSLog(@"%@", NSStringFromCGRect(returnCGRect));
+}
+
+#pragma mark -
+
+- (NSUInteger)returnInteger {
+    return 10;
+}
+
+- (CGRect)returnCGRect {
+    return CGRectMake(1, 2, 3, 4);
 }
 
 @end
