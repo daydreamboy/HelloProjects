@@ -56,6 +56,42 @@
     return format;
 }
 
+#pragma mark > Output to File
+
++ (BOOL)dumpString:(NSString *)string outputToFileName:(nullable NSString *)fileName {
+    if (![string isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    
+    if (fileName && ![fileName isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    
+    NSString *filePath;
+    NSString *userHomeFileName = fileName.length ? fileName : [NSString stringWithFormat:@"lldb_output_%f.txt", [[NSDate date] timeIntervalSince1970]];
+    
+#if TARGET_OS_SIMULATOR
+    NSString *appHomeDirectoryPath = [@"~" stringByExpandingTildeInPath];
+    NSArray *pathParts = [appHomeDirectoryPath componentsSeparatedByString:@"/"];
+    if (pathParts.count < 2) {
+        return NO;
+    }
+    
+    NSMutableArray *components = [NSMutableArray arrayWithObject:@"/"];
+    // Note: pathParts is @"", @"Users", @"<your name>", ...
+    [components addObjectsFromArray:[pathParts subarrayWithRange:NSMakeRange(1, 2)]];
+    [components addObject:userHomeFileName];
+    
+    filePath = [NSString pathWithComponents:components];
+#else
+    filePath = [NSHomeDirectory() stringByAppendingPathComponent:userHomeFileName];
+#endif
+    
+    BOOL success = [string writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    
+    return success;
+}
+
 #pragma mark - Array
 
 #pragma mark > Filter
@@ -147,7 +183,7 @@
     }];
     
     NSString *filePath;
-    NSString *userHomeFileName = fileName ?: [NSString stringWithFormat:@"lldb_output_%f.txt", [[NSDate date] timeIntervalSince1970]];
+    NSString *userHomeFileName = fileName.length ? fileName : [NSString stringWithFormat:@"lldb_output_%f.txt", [[NSDate date] timeIntervalSince1970]];
     
 #if TARGET_OS_SIMULATOR
     NSString *appHomeDirectoryPath = [@"~" stringByExpandingTildeInPath];

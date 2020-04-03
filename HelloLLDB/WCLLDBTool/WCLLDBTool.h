@@ -20,6 +20,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable NSString *)stringWithFormat:(NSString *)format arg1:(nullable id)arg1 arg2:(nullable id)arg2 arg3:(nullable id)arg3 arg4:(nullable id)arg4;
 + (nullable NSString *)stringWithFormat:(NSString *)format arg1:(nullable id)arg1 arg2:(nullable id)arg2 arg3:(nullable id)arg3 arg4:(nullable id)arg4 arg5:(nullable id)arg5;
 
+#pragma mark > Output to File
+
++ (BOOL)dumpString:(NSString *)string outputToFileName:(nullable NSString *)fileName;
+
 #pragma mark - Array
 
 #pragma mark > Filter

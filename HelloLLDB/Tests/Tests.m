@@ -24,6 +24,8 @@
     NSLog(@"\n");
 }
 
+#pragma mark - String
+
 - (void)test_stringWithFormat_arg1_arg2_arg3_arg4_arg5 {
     id output;
     
@@ -35,6 +37,17 @@
     output = [WCLLDBTool stringWithFormat:@"%@ %@ %@" arg1:@"a" arg2:@"b" arg3:@"c"];
     XCTAssertEqualObjects(output, @"a b c");
 }
+
+- (void)test_dumpString_outputToFileName {
+    BOOL output;
+    NSString *string;
+    
+    string = @"abc";
+    output = [WCLLDBTool dumpString:string outputToFileName:nil];
+    XCTAssertTrue(output);
+}
+
+#pragma mark - Array
 
 - (void)test_filterArray_usingPredicateString_arg1_arg2_arg3_arg4_arg5 {
     NSArray *output;
