@@ -460,8 +460,6 @@ typedef NS_ENUM(NSUInteger, WCStringSplitInComponentsMode) {
  */
 #define ESCAPE_UNICODE_CSTR(...) @#__VA_ARGS__
 
-+ (nullable NSString *)unescapeUnicodeStringWithString:(NSString *)string;
-
 + (nullable NSString *)unicodePointStringWithString:(NSString *)string;
 
 /**

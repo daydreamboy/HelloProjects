@@ -7,6 +7,15 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "WCStringTool.h"
+
+typedef NS_ENUM(NSUInteger, WCStringShowMode) {
+    WCStringShowModeUnknown,
+    WCStringShowModeNoneEmoticon,
+    WCStringShowModeOnly1To3Emoticon,
+    WCStringShowModeOnly4MoreEmoticon,
+    WCStringShowModeMixedTextEmoticon,
+};
 
 @interface Tests_NSString : XCTestCase
 
@@ -274,6 +283,129 @@
     
     string = @"https:\/\/ossgw.alicdn.com\/rapid-oss-bucket\/publish\/1557840001032\/alimp_message_imba_default.zip";
     NSLog(@"%@", string);
+}
+
+- (void)test_xxx {
+    NSString *string;
+    
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Emoticon_new" ofType:@"plist"];
+    NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+    NSArray *array = [dict allValues];
+    NSMutableString *pattern = [NSMutableString string];
+    NSUInteger maxLen = 0;
+    NSMutableDictionary *emoticonCodeTestMap = [NSMutableDictionary dictionary];
+    for (NSArray *items in array) {
+        NSString *code = items[1];
+        if ([code length] > maxLen) {
+            maxLen = [code length];
+        }
+        [pattern appendString:code];
+        emoticonCodeTestMap[code] = @(YES);
+        NSLog(@"%@", code);
+    }
+    NSLog(@"%@", pattern);
+    NSLog(@"%ld", maxLen);
+    
+    WCStringShowMode mode = 0;
+    
+    // Case WCStringShowModeMixedTextEmoticon
+    string = @"/:^_^abc/:^_^/:^_^/:^_^/:^_^/:***";
+    mode = [self detectEmoticonRenderModeWithString:string emoticonCodeTestMap:emoticonCodeTestMap];
+    XCTAssertTrue(mode == WCStringShowModeMixedTextEmoticon);
+    
+    string = @"/:087/:0877";
+    mode = [self detectEmoticonRenderModeWithString:string emoticonCodeTestMap:emoticonCodeTestMap];
+    XCTAssertTrue(mode == WCStringShowModeMixedTextEmoticon);
+    
+    string = @"/:0877/:087";
+    mode = [self detectEmoticonRenderModeWithString:string emoticonCodeTestMap:emoticonCodeTestMap];
+    XCTAssertTrue(mode == WCStringShowModeMixedTextEmoticon);
+
+    string = @"/:/:/:^_^";
+    mode = [self detectEmoticonRenderModeWithString:string emoticonCodeTestMap:emoticonCodeTestMap];
+    XCTAssertTrue(mode == WCStringShowModeMixedTextEmoticon);
+    
+    string = @"abc";
+    mode = [self detectEmoticonRenderModeWithString:string emoticonCodeTestMap:emoticonCodeTestMap];
+    XCTAssertTrue(mode == WCStringShowModeMixedTextEmoticon);
+    
+    string = @"/:007😁/:007";
+    mode = [self detectEmoticonRenderModeWithString:string emoticonCodeTestMap:emoticonCodeTestMap];
+    XCTAssertTrue(mode == WCStringShowModeMixedTextEmoticon);
+    
+    string = @"We’re/:^_^/:^$^/:Q/:815";
+    mode = [self detectEmoticonRenderModeWithString:string emoticonCodeTestMap:emoticonCodeTestMap];
+    XCTAssertTrue(mode == WCStringShowModeMixedTextEmoticon);
+    
+    string = @"/:087/:?/:girl/:813/:clock/:807/:'\"\"/:$/:068/:819/:810/:074/:P/:012/:>@</:(OK)/:809/:046/:072/:803/:@/:^W^/:-W/:083/:015/:>O</:C/:027/:028/:O/:812/:^$^/:018/:036/:>W</:b/:)-(/:081/:811/:047/:804/:U*U/:066/:816/:qp/:!/:801/:044/:075/:*&*/:043/:H/:052/:815/:045/:071/:008/:(&)/:814/:-F/:086/:077/:man/:818/:R/:802/:079/:069/:085/:^_^/:>_</:O=O/:808/:806/:076/:8*8/:^O^/:048/:065/:~B/:080/:007/:Y/:817/:084/:020/:plane/:(Zz...)/:026/:067/:\"/:Q/:039/:805/:073/:%/:^x^/:lip ";
+    mode = [self detectEmoticonRenderModeWithString:string emoticonCodeTestMap:emoticonCodeTestMap];
+    XCTAssertTrue(mode == WCStringShowModeMixedTextEmoticon);
+    
+    // Case WCStringShowModeOnly1To3Emoticon
+    string = @"/:^_^";
+    mode = [self detectEmoticonRenderModeWithString:string emoticonCodeTestMap:emoticonCodeTestMap];
+    XCTAssertTrue(mode == WCStringShowModeOnly1To3Emoticon);
+    
+    string = @"/:087/:087";
+    mode = [self detectEmoticonRenderModeWithString:string emoticonCodeTestMap:emoticonCodeTestMap];
+    XCTAssertTrue(mode == WCStringShowModeOnly1To3Emoticon);
+    
+    string = @"/:^_^/:^_^/:^_^";
+    mode = [self detectEmoticonRenderModeWithString:string emoticonCodeTestMap:emoticonCodeTestMap];
+    XCTAssertTrue(mode == WCStringShowModeOnly1To3Emoticon);
+    
+    // Case WCStringShowModeOnly4MoreEmoticon
+    string = @"/:^_^/:^_^/:^_^/:^_^";
+    mode = [self detectEmoticonRenderModeWithString:string emoticonCodeTestMap:emoticonCodeTestMap];
+    XCTAssertTrue(mode == WCStringShowModeOnly4MoreEmoticon);
+    
+    string = @"/:087/:?/:girl/:813/:clock/:807/:'\"\"/:$/:068/:819/:810/:074/:P/:012/:>@</:(OK)/:809/:046/:072/:803/:@/:^W^/:-W/:083/:015/:>O</:C/:027/:028/:O/:812/:^$^/:018/:036/:>W</:b/:)-(/:081/:811/:047/:804/:U*U/:066/:816/:qp/:!/:801/:044/:075/:*&*/:043/:H/:052/:815/:045/:071/:008/:(&)/:814/:-F/:086/:077/:man/:818/:R/:802/:079/:069/:085/:^_^/:>_</:O=O/:808/:806/:076/:8*8/:^O^/:048/:065/:~B/:080/:007/:Y/:817/:084/:020/:plane/:(Zz...)/:026/:067/:\"/:Q/:039/:805/:073/:%/:^x^/:lip";
+    mode = [self detectEmoticonRenderModeWithString:string emoticonCodeTestMap:emoticonCodeTestMap];
+    XCTAssertTrue(mode == WCStringShowModeOnly4MoreEmoticon);
+}
+
+- (WCStringShowMode)detectEmoticonRenderModeWithString:(NSString *)string emoticonCodeTestMap:(NSDictionary *)emoticonCodeTestMap {
+    NSArray *ranges = [WCStringTool rangesOfSubstringWithString:string substring:@"/:"];
+    
+    if (ranges.count == 0) {
+        return WCStringShowModeMixedTextEmoticon;
+    }
+    
+    NSRange range = [[ranges firstObject] rangeValue];
+    if (range.location != 0) {
+        return WCStringShowModeMixedTextEmoticon;
+    }
+    
+    WCStringShowMode renderMode = WCStringShowModeMixedTextEmoticon;
+    
+    if (1 <= ranges.count && ranges.count <= 3) {
+        renderMode = WCStringShowModeOnly1To3Emoticon;
+    }
+    else {
+        renderMode = WCStringShowModeOnly4MoreEmoticon;
+    }
+    
+    for (NSUInteger i = 0; i < ranges.count; ++i) {
+        NSRange range = [ranges[i] rangeValue];
+        NSRange nextRange = i + 1 < ranges.count ? [ranges[i + 1] rangeValue] : NSMakeRange(string.length, 0);
+        
+        NSUInteger startIndex = range.location;
+        NSUInteger endIndex = nextRange.location;
+        
+        BOOL foundCode = NO;
+        NSRange testRange = NSMakeRange(startIndex, endIndex - startIndex);
+        NSString *testCode = [WCStringTool substringWithString:string range:testRange];
+        if (testCode.length && emoticonCodeTestMap[testCode]) {
+            foundCode = YES;
+        }
+        
+        if (!foundCode) {
+            renderMode = WCStringShowModeMixedTextEmoticon;//WCStringShowModeUnknown;
+            break;
+        }
+    }
+    
+    return renderMode;
 }
 
 @end
