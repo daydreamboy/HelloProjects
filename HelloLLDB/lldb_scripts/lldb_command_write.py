@@ -51,6 +51,7 @@ def write_to_file(filename, command, output):
 
     f.write('(lldb) ' + command + '\n\n')
     f.write(output)
+    f.close()
 
     print('write successfully to %s' % file_path)
 
@@ -71,7 +72,6 @@ def handle_call(debugger, raw_args, result, internal_dict):
 
 
 def __lldb_init_module(debugger, internal_dict):
-    print(__file__)
     """Initialize the write command within lldb"""
     debugger.HandleCommand('command script add -f %s.handle_call write' % os.path.splitext(os.path.basename(__file__))[0])
 
