@@ -1768,9 +1768,9 @@ char * getenv(const char *name)
 ```
 
 说明
->
-1. 如果dlopen和dlsym执行失败，会返回NULL
-2. hook的getenv函数是否被调用，和dyld如何解决外部函数符号有关。如果UIKit中有函数调用getenv，但是getenv地址解释成/usr/lib/system/libsystem_c.dylib中的getenv地址，则自定义hook的getenv不调用了
+>1. 如果dlopen和dlsym执行失败，会返回NULL
+>2. hook的getenv函数是否被调用，和dyld如何解决外部函数符号有关。如果UIKit中有函数调用getenv，但是getenv地址解释成/usr/lib/system/libsystem_c.dylib中的getenv地址，则自定义hook的getenv不调用了
+
 
 #### Hooking swift functions
 
@@ -1835,20 +1835,40 @@ override func viewDidLoad() {
 
 ## 8、Python调试脚本
 
-Xcode的lldb提供一个python模块，也名为lldb。它位于/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/Resources/Python/lldb
+Xcode的LLDB.framework提供一个python模块，命名为lldb。
+
+
+
+Python2的lldb模块位于
+
+```shell
+/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/Resources/Python/lldb
+```
+
+
+
+Python3的lldb模块位于
+
+```shell
+/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/Resources/Python3/lldb
+```
+
+
+
+关于LLDB对Python的支持，可以参考[官方文档](https://lldb.llvm.org/use/python.html)。
 
 
 
 ### 1. 导入python脚本或者模块
 通过command script import命令，可以导入python脚本或者模块到lldb环境中。只有导入到lldb才可以执行python函数。
 
-```
+```shell
 (lldb) command script import lldb.macosx.heap
 ```
 
 或者
 
-```
+```shell
 (lldb) command script import ~/lldb/helloworld.py
 ```
 
@@ -1860,7 +1880,7 @@ Xcode的lldb提供一个python模块，也名为lldb。它位于/Applications/Xc
 >
 注意，script命令和command script命令不一样，script命令作用仅执行python代码，而command script命令用于管理脚本，有add、delete、list等子命令。
 
-```
+```shell
 (lldb) script import sys
 (lldb) script print (sys.version)
 2.7.10 (default, Oct  6 2017, 22:29:07) 
@@ -1878,7 +1898,7 @@ Xcode的lldb提供一个python模块，也名为lldb。它位于/Applications/Xc
 格式：help (class/class.method)   
 说明：在python交互式环境中，可以查看类以及方法的帮助信息
 
-```
+```python
 >>> help (str)
 >>> help str
   File "<stdin>", line 1
@@ -1890,7 +1910,7 @@ SyntaxError: invalid syntax
 
 结合script命令，可以方便查看一些帮助信息。
 
-```
+```shell
 (lldb) script help(lldb.SBDebugger.HandleCommand)
 Help on method HandleCommand in module lldb:
 
@@ -1903,7 +1923,7 @@ HandleCommand(self, *args) unbound lldb.SBDebugger method
 格式：object.\_\_class\_\_    
 说明：获取对象的类型
 
-```
+```python
 >>> h = "hello world"
 >>> h.split(" ").__class__
 <type 'list'>
@@ -1916,7 +1936,7 @@ HandleCommand(self, *args) unbound lldb.SBDebugger method
 格式：dir ([object/class/module])   
 说明：在python交互式环境中，可以查看对象、类以及模块的属性。参数可以为为空，则输出当前scope的属性。
 
-```
+```shell
 (lldb) script dir (helloworld)
 Traceback (most recent call last):
   File "<input>", line 1, in <module>
@@ -1935,12 +1955,12 @@ NameError: name 'helloworld' is not defined
 
 直接使用script命令执行python方法，比较麻烦，可能需要import模块以及多次执行script命令。command script add命令（具体见command script命令）可以为python方法建立别名，这样在lldb环境中直接使用别名调用python方法。
 
-```
+```shell
 (lldb) command script add -f helloworld.your_first_command yay
 ```
 如果helloworld模块没有导入在lldb环境中，command script add不会报错，执行yay命令才会报错。
 
-```
+```shell
 (lldb) yay
 error: unable to execute script function
 ```
@@ -1953,26 +1973,58 @@ error: unable to execute script function
 
 ### 6. 自定义lldb的python脚本
 
-#### （1）\_\_lldb\_init\_module方法
+#### （1）PyCharm添加lldb模块
+
+当前Python工程配置(`Command + .`) > Project Structure > Add Content Root[^8]，如果是Python3选择下面路径
+
+```shell
+/Applications/Xcode.app/Contents/SharedFrameworks/LLDB.framework/Versions/A/Resources/Python3
+```
+
+完成上面步骤后，当前工程Project多一个Python3目录，自定义的python可以import lldb，并且有语法提示。
+
+
+
+#### （2）\_\_lldb\_init\_module方法
 
 lldb模块提供一个\_\_lldb\_init\_module方法，自定义的python脚本在导入lldb环境时，会自动执行该方法。因此，可以在\_\_lldb\_init\_module方法中做一些初始化工作。
 
 helloworld.py，在\_\_lldb\_init\_module方法中添加python方法的别名yay。
 
-```
+```python
 def __lldb_init_module(debugger, internal_dict):
   debugger.HandleCommand('command script add -f helloworld.your_first_command yay')
 ```
 
 debugger是SBDebugger实例，它的HandleCommand方法，相当于在lldb环境中执行命令。
 
-#### （2）~/.lldbinit文件
+
+
+#### （3）~/.lldbinit文件
 
 可以直接配置~/.lldbinit文件，这样lldb启动自动加载需要的python脚本。具体见<b>lldbinit配置</b>。
 
-```
+```shell
 command script import ~/lldb/helloworld.py
 ```
+
+
+
+### 7. 常见lldb的python脚本报错
+
+#### （1）lldb启动报错
+
+* .lldbinit配置文件中，指定python脚本的路径不存在，报错如下
+
+```
+error: module importing failed: invalid pathname
+```
+
+
+
+#### （2）执行命令报错
+
+
 
 
 
@@ -2115,4 +2167,8 @@ instance method 'YW_lyk_size' also declared here
 [^6]:https://wetest.qq.com/lab/view/393.html
 
 [^7]:https://stackoverflow.com/questions/35861198/xcode-not-stopping-on-breakpoint-in-method-called-from-lldb
+
+[^8]:https://stackoverflow.com/a/56043107
+
+
 
