@@ -129,6 +129,8 @@
     XCTAssertEqualObjects(output, expected);
 }
 
+#pragma mark > Convert
+
 - (void)test_collapsedArrayWithArray_keyPaths {
     id item1;
     id item2;
@@ -212,6 +214,36 @@
     
     uniqueArray = [WCArrayTool collapsedArrayWithArray:redundantArray keyPaths:@[ @"age" ]];
     XCTAssertTrue(uniqueArray.count == 4);
+}
+
+- (void)test_itemWithArray_atIndex {
+    NSArray *array;
+    id output;
+    
+    // Case 1
+    array = @[];
+    output = [WCArrayTool itemWithArray:array atIndex:0];
+    XCTAssertNil(output);
+    
+    // Case 2
+    array = @[ @"1" ];
+    output = [WCArrayTool itemWithArray:array atIndex:0];
+    XCTAssertEqualObjects(output, @"1");
+    
+    // Case 3
+    array = @[ @"1" ];
+    output = [WCArrayTool itemWithArray:array atIndex:-1];
+    XCTAssertEqualObjects(output, @"1");
+    
+    // Case 3
+    array = @[ @"1", @"2" ];
+    output = [WCArrayTool itemWithArray:array atIndex:-1];
+    XCTAssertEqualObjects(output, @"2");
+    
+    // Case 4
+    array = @[ @"1", @"2" ];
+    output = [WCArrayTool itemWithArray:array atIndex:-3];
+    XCTAssertNil(output);
 }
 
 #pragma mark - Subarray

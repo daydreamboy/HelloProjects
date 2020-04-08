@@ -55,27 +55,6 @@
     return [NSArray arrayWithArray:arrayM];
 }
 
-+ (nullable NSArray *)shuffledArrayWithArray:(NSArray *)array {
-    if (![array isKindOfClass:[NSArray class]]) {
-        return array;
-    }
-    
-    if (array.count <= 1) {
-        return array;
-    }
-    
-    NSMutableArray *arrayM = [NSMutableArray arrayWithArray:array];
-    
-    NSUInteger count = arrayM.count;
-    for (NSUInteger i = 0; i < count - 1; ++i) {
-        NSInteger remainingCount = count - i;
-        NSInteger exchangeIndex = i + arc4random_uniform((u_int32_t )remainingCount);
-        [arrayM exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
-    }
-    
-    return arrayM;
-}
-
 + (nullable NSArray *)insertObjectsWithArray:(NSArray *)array objects:(NSArray *)objects atIndex:(NSUInteger)index {
     if (![array isKindOfClass:[NSArray class]] || ![objects isKindOfClass:[NSArray class]]) {
         return array;
@@ -97,6 +76,45 @@
     [arrayM addObjectsFromArray:rearItems];
     
     return [arrayM copy];
+}
+
++ (nullable NSArray *)removeObjectAtIndexWithArray:(NSArray *)array atIndex:(NSUInteger)index allowMutable:(BOOL)allowMutable {
+    if (![array isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
+    
+    if (index >= array.count) {
+        return nil;
+    }
+    
+    NSMutableArray *arrM = [NSMutableArray arrayWithCapacity:array.count];
+    [arrM addObjectsFromArray:array];
+    [arrM removeObjectAtIndex:index];
+    
+    return allowMutable ? arrM : [arrM copy];
+}
+
+#pragma mark > Convert
+
++ (nullable NSArray *)shuffledArrayWithArray:(NSArray *)array {
+    if (![array isKindOfClass:[NSArray class]]) {
+        return array;
+    }
+    
+    if (array.count <= 1) {
+        return array;
+    }
+    
+    NSMutableArray *arrayM = [NSMutableArray arrayWithArray:array];
+    
+    NSUInteger count = arrayM.count;
+    for (NSUInteger i = 0; i < count - 1; ++i) {
+        NSInteger remainingCount = count - i;
+        NSInteger exchangeIndex = i + arc4random_uniform((u_int32_t )remainingCount);
+        [arrayM exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
+    }
+    
+    return arrayM;
 }
 
 + (nullable NSArray *)collapsedArrayWithArray:(NSArray *)array keyPaths:(nullable NSArray<NSString *> *)keyPaths {
@@ -160,20 +178,13 @@
     }
 }
 
-+ (nullable NSArray *)removeObjectAtIndexWithArray:(NSArray *)array atIndex:(NSUInteger)index allowMutable:(BOOL)allowMutable {
++ (nullable NSArray *)reversedArrayWithArray:(NSArray *)array {
     if (![array isKindOfClass:[NSArray class]]) {
         return nil;
     }
     
-    if (index >= array.count) {
-        return nil;
-    }
-    
-    NSMutableArray *arrM = [NSMutableArray arrayWithCapacity:array.count];
-    [arrM addObjectsFromArray:array];
-    [arrM removeObjectAtIndex:index];
-    
-    return allowMutable ? arrM : [arrM copy];
+    NSArray *reversedArray = [[array reverseObjectEnumerator] allObjects];
+    return reversedArray;
 }
 
 #pragma mark - Subarray
@@ -271,6 +282,28 @@
     }
     
     return sortedArray;
+}
+
+#pragma mark - Query Item
+
++ (nullable id)itemWithArray:(NSArray *)array atIndex:(NSInteger)index {
+    if (![array isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
+    
+    // Note: range is [0, array.count-1]
+    if (index >= 0 && index >= array.count) {
+        return nil;
+    }
+    
+    // Note: range is [-array.count, -1]
+    if (index < 0 && ABS(index) > array.count) {
+        return nil;
+    }
+    
+    return index >= 0 ? array[index] : array[array.count + index];
+    
+    return nil;
 }
 
 #pragma mark - Assistant Methods

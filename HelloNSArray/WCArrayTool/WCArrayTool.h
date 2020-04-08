@@ -40,6 +40,28 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable NSArray *)moveObjectWithArray:(NSArray *)array fromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex;
 
 /**
+ Insert an array of objects at the index
+
+ @param array the original array
+ @param objects the objects to insert
+ @param index the index
+ @return the new array
+ */
++ (nullable NSArray *)insertObjectsWithArray:(NSArray *)array objects:(NSArray *)objects atIndex:(NSUInteger)index;
+
+/**
+ Remove object at the index and return the modified one
+
+ @param array the original array
+ @param index the index of object to remove
+ @param allowMutable YES if return a mutable array. NO if return an immutable array.
+ @return the modified array. NSArray or NSMutableArray
+ */
++ (nullable NSArray *)removeObjectAtIndexWithArray:(NSArray *)array atIndex:(NSUInteger)index allowMutable:(BOOL)allowMutable;
+
+#pragma mark > Convert
+
+/**
  Get a shuffled array
 
  @param array the original array
@@ -49,16 +71,6 @@ NS_ASSUME_NONNULL_BEGIN
  @see https://stackoverflow.com/a/56656
  */
 + (nullable NSArray *)shuffledArrayWithArray:(NSArray *)array;
-
-/**
- Insert an array of objects at the index
-
- @param array the original array
- @param objects the objects to insert
- @param index the index
- @return the new array
- */
-+ (nullable NSArray *)insertObjectsWithArray:(NSArray *)array objects:(NSArray *)objects atIndex:(NSUInteger)index;
 
 /**
  Remove duplicated element in the array by the combination of the key paths (or properties).
@@ -75,14 +87,13 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable NSArray *)collapsedArrayWithArray:(NSArray *)array keyPaths:(nullable NSArray<NSString *> *)keyPaths;
 
 /**
- Remove object at the index and return the modified one
-
- @param array the original array
- @param index the index of object to remove
- @param allowMutable YES if return a mutable array. NO if return an immutable array.
- @return the modified array. NSArray or NSMutableArray
+ Get a reversed array
+ 
+ @param array the array
+ @return the reversed array
+ @see https://stackoverflow.com/a/586529
  */
-+ (nullable NSArray *)removeObjectAtIndexWithArray:(NSArray *)array atIndex:(NSUInteger)index allowMutable:(BOOL)allowMutable;
++ (nullable NSArray *)reversedArrayWithArray:(NSArray *)array;
 
 #pragma mark - Subarray
 
@@ -133,6 +144,18 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion the element is not KVC compliant, return nil if catch the exception.
  */
 + (nullable NSArray *)sortArrayWithArray:(NSArray *)array ascending:(BOOL)ascending keyPaths:(nullable NSArray<NSString *> *)keyPaths;
+
+#pragma mark - Query Item
+
+/**
+ Get item the index (>=0) by forward or the index (<0) by backward
+ 
+ @param array the original array
+ @param index the index. index >= 0 by forward or index < 0 by backward,
+ @return the item at the index
+ @discussion index >= 0, range is [0, array.count-1]; index < 0, range is [-array.count, -1]
+ */
++ (nullable id)itemWithArray:(NSArray *)array atIndex:(NSInteger)index;
 
 #pragma mark - Assistant Methods
 
