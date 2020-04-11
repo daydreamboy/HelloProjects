@@ -64,6 +64,15 @@
     NSString *globalVariableName = @"";
     
     switch (featureType) {
+        case WCJSCToolFeatureTypeArrowFunction: {
+            [context evaluateScript:@"var arrowFunction = () => {};"];
+            globalVariableName = @"arrowFunction";
+            break;
+        }
+        case WCJSCToolFeatureTypeLetVariable: {
+            [context evaluateScript:@"let letVariable = 'a';"];
+            globalVariableName = @"letVariable";
+        }
         case WCJSCToolFeatureTypeGlobal:
             globalVariableName = @"global";
             break;

@@ -25,24 +25,36 @@
     if (self) {
         _listData = @[
             @{
-                @"variable": @"window",
+                @"feature": @"window",
                 @"avaibility": @([WCJSCTool checkIfAvaiableInJSCWithFeatureType:WCJSCToolFeatureTypeWindow]),
             },
             @{
-                @"variable": @"self",
+                @"feature": @"self",
                 @"avaibility": @([WCJSCTool checkIfAvaiableInJSCWithFeatureType:WCJSCToolFeatureTypeSelf]),
             },
             @{
-                @"variable": @"global",
+                @"feature": @"global",
                 @"avaibility": @([WCJSCTool checkIfAvaiableInJSCWithFeatureType:WCJSCToolFeatureTypeGlobal]),
             },
             @{
-                @"variable": @"Promise",
+                @"feature": @"globalThis",
+                @"avaibility": @([WCJSCTool checkIfAvaiableInJSCWithFeatureType:WCJSCToolFeatureTypeGlobalThis]),
+            },
+            @{
+                @"feature": @"Promise",
                 @"avaibility": @([WCJSCTool checkIfAvaiableInJSCWithFeatureType:WCJSCToolFeatureTypePromise]),
             },
             @{
-                @"variable": @"Map",
+                @"feature": @"Map",
                 @"avaibility": @([WCJSCTool checkIfAvaiableInJSCWithFeatureType:WCJSCToolFeatureTypeMap]),
+            },
+            @{
+                @"feature": @"Arrow Function",
+                @"avaibility": @([WCJSCTool checkIfAvaiableInJSCWithFeatureType:WCJSCToolFeatureTypeArrowFunction]),
+            },
+            @{
+                @"feature": @"let variable",
+                @"avaibility": @([WCJSCTool checkIfAvaiableInJSCWithFeatureType:WCJSCToolFeatureTypeLetVariable]),
             },
         ];
     }
@@ -95,7 +107,7 @@
     
     NSDictionary *item = self.listData[indexPath.row];
     
-    cell.textLabel.text = item[@"variable"];
+    cell.textLabel.text = item[@"feature"];
     cell.detailTextLabel.text = [item[@"avaibility"] boolValue] ? @"available" : @"unavailable";
     cell.detailTextLabel.textColor = [item[@"avaibility"] boolValue] ? [UIColor greenColor] : [UIColor redColor];
     

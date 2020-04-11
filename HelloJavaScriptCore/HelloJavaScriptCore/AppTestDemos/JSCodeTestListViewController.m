@@ -240,7 +240,6 @@
         };
     }
     else if ([fileName isEqualToString:@"Promise_setTimeout.js"]) {
-        [context evaluateScript:@"var global = {}"];
         [context evaluateScript:@"var console = {}"];
         context[@"console"][@"log"] = ^(id object) {
             NSString *message = [object description];
@@ -253,13 +252,12 @@
         NSString *JSCode = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
         [context evaluateScript:JSCode];
     }
-    else if ([fileName isEqualToString:@"Promise_setTimeout_arrow.js"]) {
+    else if ([fileName isEqualToString:@"arrow_function.js"]) {
         [context evaluateScript:@"var console = {}"];
         context[@"console"][@"log"] = ^(id object) {
             NSString *message = [object description];
             NSLog(@"JSBridge log: %@", message);
         };
-        [WCJSCTimerManager registerWithContext:context];
     }
     else if ([fileName isEqualToString:@"let.js"]) {
         [context evaluateScript:@"var console = {}"];

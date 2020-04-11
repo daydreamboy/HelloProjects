@@ -767,17 +767,65 @@ WKWebView *webView = [[WKWebView alloc] initWithFrame:frame configuration:config
 
 ## 6、JavaScriptCore兼容性问题
 
-iOS 9版本上JavaScriptCore对很多JavaScript特性不支持
-
-| 特性     | 说明 |
-| -------- | ---- |
-| 箭头函数 |      |
-| let变量  |      |
-| Promise  |      |
+JavaScriptCore实际上WebKit的精简版本，WebKit本身对JavaScript语法的支持也不一定完全支持。
 
 
 
+### JavaScript语法的支持列表
 
+下表列举JavaScriptCore对JavaScript语法的支持
+
+| 特性         | 系统版本支持情况   | 说明 |
+| ------------ | ------------------ | ---- |
+| Map          | 支持               |      |
+| 箭头函数     | iOS 10+支持        |      |
+| Promise      | iOS 10+支持        |      |
+| window       | 目前所有版本不支持 |      |
+| self         | 目前所有版本不支持 |      |
+| global       | 目前所有版本不支持 |      |
+| globalThis   | 目前所有版本不支持 |      |
+| let变量      | 目前所有版本不支持 |      |
+| setTimeout   | 目前所有版本不支持 |      |
+| setInterval  | 目前所有版本不支持 |      |
+| clearTimeout | 目前所有版本不支持 |      |
+
+​        
+
+### 判断是否支持JavaScript语法特性
+
+
+
+​        可以通过JSContext执行特定语法的JS代码，然后JSContext取出对应的变量，判断是否是undefined来判断当前系统的JavaScriptCore是否支持某个语法特性。
+
+举个例子，如下
+
+```objective-c
+JSContext *context = [[JSContext alloc] init];
+[context evaluateScript:@"let letVariable = 'a';"];
+value = context[globalVariableName];
+if (!value.isUndefined) {
+  // Supported
+}
+else {
+  // Not Supported
+}
+```
+
+
+
+> 示例代码，见CheckJSContextFeatureViewController
+
+
+
+### 补充JavaScript语法特性
+
+* 对于不支持函数和类（setTimeout、Promise等）
+  * 可以native实现对应函数和类
+  * 或者JS代码实现对应函数和类，然后native在执行其他JS代码之前，优先执行预置的JS代码
+
+* 对于不支持语法（let等）
+  * 使用前端工具babel等，将let转换成var
+  * 或者native预处理JS代码的字符串，将let替换成var
 
 
 

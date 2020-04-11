@@ -46,6 +46,7 @@
     [context evaluateScript:@"var x8 = alert;"];
     [context evaluateScript:@"var x9 = JSON;"];
     [context evaluateScript:@"var x10 = Object;"];
+    [context evaluateScript:@"var x11 = () => {};"];
     
     // Case 1
     output = [WCJSCTool checkJSValueTypeWithValue:context[@"x1"] inContext:context];
@@ -78,6 +79,9 @@
     output = [WCJSCTool checkJSValueTypeWithValue:context[@"x10"] inContext:context];
     XCTAssertEqualObjects(output, @"function");
     
+    output = [WCJSCTool checkJSValueTypeWithValue:context[@"x11"] inContext:context];
+    XCTAssertEqualObjects(output, @"function");
+    
     // Case 2
     output = [WCJSCTool checkJSValueTypeWithValue:context[@"x1"] inContext:nil];
     XCTAssertEqualObjects(output, @"undefined");
@@ -107,6 +111,9 @@
     XCTAssertEqualObjects(output, @"object");
     
     output = [WCJSCTool checkJSValueTypeWithValue:context[@"x10"] inContext:nil];
+    XCTAssertEqualObjects(output, @"function");
+    
+    output = [WCJSCTool checkJSValueTypeWithValue:context[@"x11"] inContext:nil];
     XCTAssertEqualObjects(output, @"function");
 }
 
