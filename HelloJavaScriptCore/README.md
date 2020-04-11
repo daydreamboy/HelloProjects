@@ -765,6 +765,22 @@ WKWebView *webView = [[WKWebView alloc] initWithFrame:frame configuration:config
 
 
 
+## 6、JavaScriptCore兼容性问题
+
+iOS 9版本上JavaScriptCore对很多JavaScript特性不支持
+
+| 特性     | 说明 |
+| -------- | ---- |
+| 箭头函数 |      |
+| let变量  |      |
+| Promise  |      |
+
+
+
+
+
+
+
 ## References
 
 [^1]:https://nshipster.com/javascriptcore/

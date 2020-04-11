@@ -11,6 +11,7 @@
 #import "JSCodeTestListViewController.h"
 #import "UseJSContextOfUIWebViewViewController.h"
 #import "JSCallNativeInWKWebViewViewController.h"
+#import "CheckJSContextFeatureViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -36,12 +37,14 @@
         @"JSCode列表",
         @"Use JSContext in UIWebView",
         @"JavaScript call native in WKWebView",
+        @"Check supported features",
         @"call a test method",
     ];
     _classes = @[
         [JSCodeTestListViewController class],
         [UseJSContextOfUIWebViewViewController class],
         [JSCallNativeInWKWebViewViewController class],
+        [CheckJSContextFeatureViewController class],
         @"testMethod",
     ];
 }

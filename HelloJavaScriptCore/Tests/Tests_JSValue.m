@@ -61,6 +61,18 @@
     XCTAssertEqualObjects([value toString], @"value2");
 }
 
+#pragma mark -
+
+- (void)test_map {
+    JSContext *context = [[JSContext alloc] init];
+    [context evaluateScript:@"var map={'key': 'value'}"];
+    
+    // Case 1: string as subscript
+    JSValue *map = context[@"map"];
+    
+    XCTAssertEqualObjects([map toString], @"value2");
+}
+
 #pragma mark - Wrapper
 
 - (void)test_function_wrapper {

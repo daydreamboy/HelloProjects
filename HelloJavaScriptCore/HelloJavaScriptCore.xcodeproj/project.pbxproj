@@ -23,12 +23,14 @@
 		4F5E8BA522151D0C00269853 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E8BA322151D0C00269853 /* RootViewController.m */; };
 		4F5E8BB022151D5A00269853 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E8BAF22151D5A00269853 /* Tests.m */; };
 		4F5E8BB822151D7200269853 /* Tests_JSContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E8BB722151D7200269853 /* Tests_JSContext.m */; };
+		4F70033A2440A005000BEE2A /* polyfill.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F7003392440A004000BEE2A /* polyfill.min.js */; };
 		4F77D9DB2410A59800BC2BA2 /* MyCycle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F77D9DA2410A59800BC2BA2 /* MyCycle.m */; };
 		4F828E702219254500D9CD51 /* mustache.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F828E6F2219254500D9CD51 /* mustache.js */; };
 		4F828E73221939DD00D9CD51 /* MyPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F828E72221939DD00D9CD51 /* MyPoint.m */; };
 		4F828E76221A5AB100D9CD51 /* UseJSContextOfUIWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F828E75221A5AB000D9CD51 /* UseJSContextOfUIWebViewViewController.m */; };
 		4F828E78221A5D5900D9CD51 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 4F828E77221A5D5800D9CD51 /* index.html */; };
 		4F828EA7221AB37A00D9CD51 /* JSCallNativeInWKWebViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F828EA6221AB37A00D9CD51 /* JSCallNativeInWKWebViewViewController.m */; };
+		4F8DB0D92441B152008B2D8C /* CheckJSContextFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8DB0D82441B152008B2D8C /* CheckJSContextFeatureViewController.m */; };
 		4F986B02221591650096026E /* Tests_JSValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F986B01221591650096026E /* Tests_JSValue.m */; };
 		4F986B072216C3950096026E /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F986B062216C3950096026E /* Person.m */; };
 		4F986B092216C54B0096026E /* Tests_JSExport.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F986B082216C54B0096026E /* Tests_JSExport.m */; };
@@ -76,6 +78,7 @@
 		4F5E8BAF22151D5A00269853 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		4F5E8BB122151D5A00269853 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F5E8BB722151D7200269853 /* Tests_JSContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_JSContext.m; sourceTree = "<group>"; };
+		4F7003392440A004000BEE2A /* polyfill.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = polyfill.min.js; sourceTree = "<group>"; };
 		4F77D9D92410A59800BC2BA2 /* MyCycle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCycle.h; sourceTree = "<group>"; };
 		4F77D9DA2410A59800BC2BA2 /* MyCycle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCycle.m; sourceTree = "<group>"; };
 		4F828E6F2219254500D9CD51 /* mustache.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = mustache.js; sourceTree = "<group>"; };
@@ -86,6 +89,8 @@
 		4F828E77221A5D5800D9CD51 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		4F828EA5221AB37A00D9CD51 /* JSCallNativeInWKWebViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSCallNativeInWKWebViewViewController.h; sourceTree = "<group>"; };
 		4F828EA6221AB37A00D9CD51 /* JSCallNativeInWKWebViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSCallNativeInWKWebViewViewController.m; sourceTree = "<group>"; };
+		4F8DB0D72441B152008B2D8C /* CheckJSContextFeatureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckJSContextFeatureViewController.h; sourceTree = "<group>"; };
+		4F8DB0D82441B152008B2D8C /* CheckJSContextFeatureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckJSContextFeatureViewController.m; sourceTree = "<group>"; };
 		4F986B01221591650096026E /* Tests_JSValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_JSValue.m; sourceTree = "<group>"; };
 		4F986B052216C3950096026E /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		4F986B062216C3950096026E /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
@@ -140,6 +145,7 @@
 		4F1B384223B7801500349B62 /* libs */ = {
 			isa = PBXGroup;
 			children = (
+				4F7003392440A004000BEE2A /* polyfill.min.js */,
 				4F214E4B23B7961300A5911F /* prettify_modified.css */,
 				4F1B384323B7803200349B62 /* run_prettify.js */,
 				4F828E6F2219254500D9CD51 /* mustache.js */,
@@ -208,6 +214,8 @@
 				4F828E75221A5AB000D9CD51 /* UseJSContextOfUIWebViewViewController.m */,
 				4F828EA5221AB37A00D9CD51 /* JSCallNativeInWKWebViewViewController.h */,
 				4F828EA6221AB37A00D9CD51 /* JSCallNativeInWKWebViewViewController.m */,
+				4F8DB0D72441B152008B2D8C /* CheckJSContextFeatureViewController.h */,
+				4F8DB0D82441B152008B2D8C /* CheckJSContextFeatureViewController.m */,
 				4F1B380923B75B9300349B62 /* JSCodeTestListViewController.h */,
 				4F1B380A23B75B9300349B62 /* JSCodeTestListViewController.m */,
 				4F1B381223B7750400349B62 /* JSCodeEditViewController.h */,
@@ -326,6 +334,7 @@
 				4F828E78221A5D5900D9CD51 /* index.html in Resources */,
 				4F828E702219254500D9CD51 /* mustache.js in Resources */,
 				4F5E8B932215125D00269853 /* Assets.xcassets in Resources */,
+				4F70033A2440A005000BEE2A /* polyfill.min.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,6 +355,7 @@
 				4F0686DE23D4881A00AC076F /* WCJSCTool.m in Sources */,
 				4F0238D0240FACDF00799EEA /* WCJSCTimerManager.m in Sources */,
 				4F5E8B992215125D00269853 /* main.m in Sources */,
+				4F8DB0D92441B152008B2D8C /* CheckJSContextFeatureViewController.m in Sources */,
 				4F828E76221A5AB100D9CD51 /* UseJSContextOfUIWebViewViewController.m in Sources */,
 				4F1B384723B78AC200349B62 /* WCWebViewTool.m in Sources */,
 				4F1B381423B7750400349B62 /* JSCodeEditViewController.m in Sources */,
@@ -446,7 +456,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -498,7 +508,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -510,6 +520,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = HelloJavaScriptCore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -526,6 +537,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = HelloJavaScriptCore/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

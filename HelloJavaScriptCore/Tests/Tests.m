@@ -7,6 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <JavaScriptCore/JavaScriptCore.h>
+#import "WCJSCTool.h"
 
 @interface Tests : XCTestCase
 
@@ -29,11 +31,83 @@
     NSLog(@"%@", string);
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)test_checkJSValueTypeWithValue {
+    NSString *output;
+    
+    JSContext *context = [[JSContext alloc] init];
+    
+    [context evaluateScript:@"var x1;"];
+    [context evaluateScript:@"var x2 = 10;"];
+    [context evaluateScript:@"var x3 = 'a';"];
+    [context evaluateScript:@"var x4 = true;"];
+    [context evaluateScript:@"var x5 = null;"];
+    [context evaluateScript:@"var x6 = Symbol('id');"];
+    [context evaluateScript:@"var x7 = Math;"];
+    [context evaluateScript:@"var x8 = alert;"];
+    [context evaluateScript:@"var x9 = JSON;"];
+    [context evaluateScript:@"var x10 = Object;"];
+    
+    // Case 1
+    output = [WCJSCTool checkJSValueTypeWithValue:context[@"x1"] inContext:context];
+    XCTAssertEqualObjects(output, @"undefined");
+    
+    output = [WCJSCTool checkJSValueTypeWithValue:context[@"x2"] inContext:context];
+    XCTAssertEqualObjects(output, @"number");
+    
+    output = [WCJSCTool checkJSValueTypeWithValue:context[@"x3"] inContext:context];
+    XCTAssertEqualObjects(output, @"string");
+    
+    output = [WCJSCTool checkJSValueTypeWithValue:context[@"x4"] inContext:context];
+    XCTAssertEqualObjects(output, @"boolean");
+    
+    output = [WCJSCTool checkJSValueTypeWithValue:context[@"x5"] inContext:context];
+    XCTAssertEqualObjects(output, @"object");
+    
+    output = [WCJSCTool checkJSValueTypeWithValue:context[@"x6"] inContext:context];
+    XCTAssertEqualObjects(output, @"symbol");
+    
+    output = [WCJSCTool checkJSValueTypeWithValue:context[@"x7"] inContext:context];
+    XCTAssertEqualObjects(output, @"object");
+    
+    output = [WCJSCTool checkJSValueTypeWithValue:context[@"x8"] inContext:context];
+    XCTAssertEqualObjects(output, @"undefined");
+    
+    output = [WCJSCTool checkJSValueTypeWithValue:context[@"x9"] inContext:context];
+    XCTAssertEqualObjects(output, @"object");
+    
+    output = [WCJSCTool checkJSValueTypeWithValue:context[@"x10"] inContext:context];
+    XCTAssertEqualObjects(output, @"function");
+    
+    // Case 2
+    output = [WCJSCTool checkJSValueTypeWithValue:context[@"x1"] inContext:nil];
+    XCTAssertEqualObjects(output, @"undefined");
+    
+    output = [WCJSCTool checkJSValueTypeWithValue:context[@"x2"] inContext:nil];
+    XCTAssertEqualObjects(output, @"number");
+    
+    output = [WCJSCTool checkJSValueTypeWithValue:context[@"x3"] inContext:nil];
+    XCTAssertEqualObjects(output, @"string");
+    
+    output = [WCJSCTool checkJSValueTypeWithValue:context[@"x4"] inContext:nil];
+    XCTAssertEqualObjects(output, @"boolean");
+    
+    output = [WCJSCTool checkJSValueTypeWithValue:context[@"x5"] inContext:nil];
+    XCTAssertEqualObjects(output, @"object");
+    
+    output = [WCJSCTool checkJSValueTypeWithValue:context[@"x6"] inContext:nil];
+    XCTAssertEqualObjects(output, @"symbol");
+    
+    output = [WCJSCTool checkJSValueTypeWithValue:context[@"x7"] inContext:nil];
+    XCTAssertEqualObjects(output, @"object");
+    
+    output = [WCJSCTool checkJSValueTypeWithValue:context[@"x8"] inContext:nil];
+    XCTAssertEqualObjects(output, @"undefined");
+    
+    output = [WCJSCTool checkJSValueTypeWithValue:context[@"x9"] inContext:nil];
+    XCTAssertEqualObjects(output, @"object");
+    
+    output = [WCJSCTool checkJSValueTypeWithValue:context[@"x10"] inContext:nil];
+    XCTAssertEqualObjects(output, @"function");
 }
 
 @end

@@ -224,4 +224,34 @@
 //    NSLog(@"keys: %@", keys);
 }
 
+#pragma mark - Issue
+
+- (void)test_JSContext_issue {
+    NSString *output;
+    
+    JSContext *context = [[JSContext alloc] init];
+
+    [context evaluateScript:@"var x1 = Object;"];
+    [context evaluateScript:@"var x2 = Math;"];
+    [context evaluateScript:@"var x3 = JSON;"];
+    
+    output = [self checkJSValueTypeWithValue:context[@"x1"]];
+    XCTAssertEqualObjects(output, @"function");
+    
+    output = [self checkJSValueTypeWithValue:context[@"x2"]]; // Cause to crash
+    XCTAssertEqualObjects(output, @"object");
+    
+    output = [self checkJSValueTypeWithValue:context[@"x3"]]; // Cause to crash
+    XCTAssertEqualObjects(output, @"object");
+}
+
+- (NSString *)checkJSValueTypeWithValue:(JSValue *)value {
+    JSContext *context = [[JSContext alloc] init];
+    [context evaluateScript:@"function __checkObjectType(obj) { return typeof obj; }"];
+    JSValue *function = [[context globalObject] valueForProperty:@"__checkObjectType"];
+    JSValue *type = [function callWithArguments:@[ value ]]; // Crash
+    
+    return [type toString];
+}
+
 @end

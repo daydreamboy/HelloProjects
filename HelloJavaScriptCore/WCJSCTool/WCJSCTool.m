@@ -34,4 +34,64 @@
     return !value.isUndefined;
 }
 
++ (nullable NSString *)checkJSValueTypeWithValue:(JSValue *)value inContext:(nullable JSContext *)context {
+    if (![value isKindOfClass:[JSValue class]]) {
+        return nil;
+    }
+    
+    if (context && ![context isKindOfClass:[JSContext class]]) {
+        return nil;;
+    }
+    
+    if (context && value.context != context) {
+        return nil;
+    }
+    
+    JSContext *contextL = context ?: value.context;
+    
+    [contextL evaluateScript:@"function __internal_checkObjectType(obj) { return typeof obj; }"];
+    JSValue *function = [[contextL globalObject] valueForProperty:@"__internal_checkObjectType"];
+    JSValue *type = [function callWithArguments:@[ value ]];
+    
+    return [type toString];
+}
+
+#pragma mark - JSContext Environment Checking
+
++ (BOOL)checkIfAvaiableInJSCWithFeatureType:(WCJSCToolFeatureType)featureType {
+    JSContext *context = [[JSContext alloc] init];
+    JSValue *value;
+    NSString *globalVariableName = @"";
+    
+    switch (featureType) {
+        case WCJSCToolFeatureTypeGlobal:
+            globalVariableName = @"global";
+            break;
+        case WCJSCToolFeatureTypeGlobalThis:
+            globalVariableName = @"globalThis";
+            break;
+        case WCJSCToolFeatureTypeMap:
+            globalVariableName = @"Map";
+            break;
+        case WCJSCToolFeatureTypePromise:
+            globalVariableName = @"Promise";
+            break;
+        case WCJSCToolFeatureTypeSelf:
+            globalVariableName = @"self";
+            break;
+        case WCJSCToolFeatureTypeWindow:
+            globalVariableName = @"window";
+            break;
+        default:
+            break;
+    }
+    
+    if (globalVariableName.length) {
+        value = context[globalVariableName];
+        return !value.isUndefined;
+    }
+    
+    return NO;
+}
+
 @end

@@ -98,7 +98,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *sCellIdentifier = @"CardListViewController_sCellIdentifier";
+    static NSString *sCellIdentifier = @"JSCodeTestListViewController_sCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
@@ -233,6 +233,35 @@
         };
     }
     else if ([fileName isEqualToString:@"encodeURIComponent.js"]) {
+        [context evaluateScript:@"var console = {}"];
+        context[@"console"][@"log"] = ^(id object) {
+            NSString *message = [object description];
+            NSLog(@"JSBridge log: %@", message);
+        };
+    }
+    else if ([fileName isEqualToString:@"Promise_setTimeout.js"]) {
+        [context evaluateScript:@"var global = {}"];
+        [context evaluateScript:@"var console = {}"];
+        context[@"console"][@"log"] = ^(id object) {
+            NSString *message = [object description];
+            NSLog(@"JSBridge log: %@", message);
+        };
+        
+        [WCJSCTimerManager registerWithContext:context];
+        
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"polyfill.min" ofType:@"js"];
+        NSString *JSCode = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+        [context evaluateScript:JSCode];
+    }
+    else if ([fileName isEqualToString:@"Promise_setTimeout_arrow.js"]) {
+        [context evaluateScript:@"var console = {}"];
+        context[@"console"][@"log"] = ^(id object) {
+            NSString *message = [object description];
+            NSLog(@"JSBridge log: %@", message);
+        };
+        [WCJSCTimerManager registerWithContext:context];
+    }
+    else if ([fileName isEqualToString:@"let.js"]) {
         [context evaluateScript:@"var console = {}"];
         context[@"console"][@"log"] = ^(id object) {
             NSString *message = [object description];
