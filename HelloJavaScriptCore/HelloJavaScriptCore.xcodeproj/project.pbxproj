@@ -23,7 +23,7 @@
 		4F5E8BA522151D0C00269853 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E8BA322151D0C00269853 /* RootViewController.m */; };
 		4F5E8BB022151D5A00269853 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E8BAF22151D5A00269853 /* Tests.m */; };
 		4F5E8BB822151D7200269853 /* Tests_JSContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5E8BB722151D7200269853 /* Tests_JSContext.m */; };
-		4F70033A2440A005000BEE2A /* polyfill.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F7003392440A004000BEE2A /* polyfill.min.js */; };
+		4F70033A2440A005000BEE2A /* Promise.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F7003392440A004000BEE2A /* Promise.js */; };
 		4F77D9DB2410A59800BC2BA2 /* MyCycle.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F77D9DA2410A59800BC2BA2 /* MyCycle.m */; };
 		4F828E702219254500D9CD51 /* mustache.js in Resources */ = {isa = PBXBuildFile; fileRef = 4F828E6F2219254500D9CD51 /* mustache.js */; };
 		4F828E73221939DD00D9CD51 /* MyPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F828E72221939DD00D9CD51 /* MyPoint.m */; };
@@ -78,7 +78,7 @@
 		4F5E8BAF22151D5A00269853 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		4F5E8BB122151D5A00269853 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F5E8BB722151D7200269853 /* Tests_JSContext.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_JSContext.m; sourceTree = "<group>"; };
-		4F7003392440A004000BEE2A /* polyfill.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = polyfill.min.js; sourceTree = "<group>"; };
+		4F7003392440A004000BEE2A /* Promise.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = Promise.js; sourceTree = "<group>"; };
 		4F77D9D92410A59800BC2BA2 /* MyCycle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyCycle.h; sourceTree = "<group>"; };
 		4F77D9DA2410A59800BC2BA2 /* MyCycle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyCycle.m; sourceTree = "<group>"; };
 		4F828E6F2219254500D9CD51 /* mustache.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = mustache.js; sourceTree = "<group>"; };
@@ -145,7 +145,7 @@
 		4F1B384223B7801500349B62 /* libs */ = {
 			isa = PBXGroup;
 			children = (
-				4F7003392440A004000BEE2A /* polyfill.min.js */,
+				4F7003392440A004000BEE2A /* Promise.js */,
 				4F214E4B23B7961300A5911F /* prettify_modified.css */,
 				4F1B384323B7803200349B62 /* run_prettify.js */,
 				4F828E6F2219254500D9CD51 /* mustache.js */,
@@ -334,7 +334,7 @@
 				4F828E78221A5D5900D9CD51 /* index.html in Resources */,
 				4F828E702219254500D9CD51 /* mustache.js in Resources */,
 				4F5E8B932215125D00269853 /* Assets.xcassets in Resources */,
-				4F70033A2440A005000BEE2A /* polyfill.min.js in Resources */,
+				4F70033A2440A005000BEE2A /* Promise.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

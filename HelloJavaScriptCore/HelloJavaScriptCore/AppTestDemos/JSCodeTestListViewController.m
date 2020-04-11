@@ -248,7 +248,7 @@
         
         [WCJSCTimerManager registerWithContext:context];
         
-        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"polyfill.min" ofType:@"js"];
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Promise" ofType:@"js"];
         NSString *JSCode = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
         [context evaluateScript:JSCode];
     }
