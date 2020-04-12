@@ -9,6 +9,7 @@
 #import "CheckJSContextFeatureViewController.h"
 #import <JavaScriptCore/JavaScriptCore.h>
 #import "WCJSCTool.h"
+#import "WCMacroKit.h"
 
 @interface CheckJSContextFeatureViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -64,8 +65,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"Feature列表";
-    if (@available(iOS 11.0, *)) {
+    if (IOS11_OR_LATER) {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 110000
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+#endif
     }
     else {
 #pragma GCC diagnostic push

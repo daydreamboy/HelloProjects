@@ -45,8 +45,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"JSCode列表";
-    if (@available(iOS 11.0, *)) {
+    if (IOS11_OR_LATER) {
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 110000
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+#endif
     }
     else {
 #pragma GCC diagnostic push
@@ -240,6 +242,15 @@
         };
     }
     else if ([fileName isEqualToString:@"Promise_setTimeout.js"]) {
+        [context evaluateScript:@"var console = {}"];
+        context[@"console"][@"log"] = ^(id object) {
+            NSString *message = [object description];
+            NSLog(@"JSBridge log: %@", message);
+        };
+        
+        [WCJSCTimerManager registerWithContext:context];
+    }
+    else if ([fileName isEqualToString:@"Promise_setTimeout_fixed_iOS9.js"]) {
         [context evaluateScript:@"var console = {}"];
         context[@"console"][@"log"] = ^(id object) {
             NSString *message = [object description];
