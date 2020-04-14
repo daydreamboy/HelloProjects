@@ -58,7 +58,7 @@
 
 #pragma mark - JSContext Environment Checking
 
-+ (BOOL)checkIfAvaiableInJSCWithFeatureType:(WCJSCToolFeatureType)featureType {
++ (BOOL)checkIfAvailableInJSCWithFeatureType:(WCJSCToolFeatureType)featureType {
     JSContext *context = [[JSContext alloc] init];
     JSValue *value;
     NSString *globalVariableName = @"";
@@ -101,6 +101,18 @@
     }
     
     return NO;
+}
+
+#pragma mark - complementary JSContext
+
++ (nullable JSContext *)createJSContextWithJSCode:(NSString *)JSCode {
+    if (![JSCode isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    JSContext *context = [[JSContext alloc] init];
+    
+    return context;
 }
 
 @end

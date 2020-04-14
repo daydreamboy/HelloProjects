@@ -56,7 +56,11 @@ typedef NS_ENUM(NSUInteger, WCJSCToolFeatureType) {
  @return Return YES if available, or return NO if not
  @discussion This method is similar with +[WCJSCTool checkGlobalVariableDefinedWithContext:variableName:]
  */
-+ (BOOL)checkIfAvaiableInJSCWithFeatureType:(WCJSCToolFeatureType)featureType;
++ (BOOL)checkIfAvailableInJSCWithFeatureType:(WCJSCToolFeatureType)featureType;
+
+#pragma mark - complementary JSContext
+
++ (nullable JSContext *)createJSContextWithJSCode:(NSString *)JSCode;
 
 @end
 

@@ -47,7 +47,10 @@
     self.title = @"JSCode列表";
     if (IOS11_OR_LATER) {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 110000
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+#pragma GCC diagnostic pop
 #endif
     }
     else {

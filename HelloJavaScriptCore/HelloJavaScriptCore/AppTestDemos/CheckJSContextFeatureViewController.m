@@ -27,35 +27,35 @@
         _listData = @[
             @{
                 @"feature": @"window",
-                @"avaibility": @([WCJSCTool checkIfAvaiableInJSCWithFeatureType:WCJSCToolFeatureTypeWindow]),
+                @"avaibility": @([WCJSCTool checkIfAvailableInJSCWithFeatureType:WCJSCToolFeatureTypeWindow]),
             },
             @{
                 @"feature": @"self",
-                @"avaibility": @([WCJSCTool checkIfAvaiableInJSCWithFeatureType:WCJSCToolFeatureTypeSelf]),
+                @"avaibility": @([WCJSCTool checkIfAvailableInJSCWithFeatureType:WCJSCToolFeatureTypeSelf]),
             },
             @{
                 @"feature": @"global",
-                @"avaibility": @([WCJSCTool checkIfAvaiableInJSCWithFeatureType:WCJSCToolFeatureTypeGlobal]),
+                @"avaibility": @([WCJSCTool checkIfAvailableInJSCWithFeatureType:WCJSCToolFeatureTypeGlobal]),
             },
             @{
                 @"feature": @"globalThis",
-                @"avaibility": @([WCJSCTool checkIfAvaiableInJSCWithFeatureType:WCJSCToolFeatureTypeGlobalThis]),
+                @"avaibility": @([WCJSCTool checkIfAvailableInJSCWithFeatureType:WCJSCToolFeatureTypeGlobalThis]),
             },
             @{
                 @"feature": @"Promise",
-                @"avaibility": @([WCJSCTool checkIfAvaiableInJSCWithFeatureType:WCJSCToolFeatureTypePromise]),
+                @"avaibility": @([WCJSCTool checkIfAvailableInJSCWithFeatureType:WCJSCToolFeatureTypePromise]),
             },
             @{
                 @"feature": @"Map",
-                @"avaibility": @([WCJSCTool checkIfAvaiableInJSCWithFeatureType:WCJSCToolFeatureTypeMap]),
+                @"avaibility": @([WCJSCTool checkIfAvailableInJSCWithFeatureType:WCJSCToolFeatureTypeMap]),
             },
             @{
                 @"feature": @"Arrow Function",
-                @"avaibility": @([WCJSCTool checkIfAvaiableInJSCWithFeatureType:WCJSCToolFeatureTypeArrowFunction]),
+                @"avaibility": @([WCJSCTool checkIfAvailableInJSCWithFeatureType:WCJSCToolFeatureTypeArrowFunction]),
             },
             @{
                 @"feature": @"let variable",
-                @"avaibility": @([WCJSCTool checkIfAvaiableInJSCWithFeatureType:WCJSCToolFeatureTypeLetVariable]),
+                @"avaibility": @([WCJSCTool checkIfAvailableInJSCWithFeatureType:WCJSCToolFeatureTypeLetVariable]),
             },
         ];
     }
@@ -67,7 +67,10 @@
     self.title = @"Feature列表";
     if (IOS11_OR_LATER) {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 110000
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
         self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+#pragma GCC diagnostic pop
 #endif
     }
     else {
