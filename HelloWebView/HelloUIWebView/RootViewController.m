@@ -31,7 +31,7 @@
 }
 
 - (void)prepareForInit {
-    self.title = @"AppTest";
+    self.title = @"UIWebView AppTest";
 
     // MARK: Configure titles and classes for table view
     _titles = @[

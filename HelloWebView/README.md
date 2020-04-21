@@ -39,6 +39,16 @@
 
 #### 页面加载周期[^1]
 
+
+
+WebView决定是否处理URL请求
+
+```objective-c
+-[WKNavigationDelegate webView:decidePolicyForNavigationAction:decisionHandler:]
+```
+
+
+
 WebView的URL请求已发送到服务端，但没有收到数据回来。
 
 ```objective-c
@@ -68,6 +78,10 @@ WebView的URL请求未收到服务端的响应，例如127.0.0.1:8080的本地�
 ```objective-c
 -[WKNavigationDelegate webView:didFailProvisionalNavigation:withError:]
 ```
+
+
+
+
 
 
 

@@ -10,9 +10,10 @@
 #import <WebKit/WebKit.h>
 #import "WCMacroTool.h"
 #import "WCWebViewTool.h"
+#import "WCFitHTMLContentWKWebView.h"
 
 @interface LoadHTMLStringViewController () <UITextViewDelegate, WKUIDelegate, WKNavigationDelegate>
-@property (nonatomic, strong) WKWebView *webView;
+@property (nonatomic, strong) WCFitHTMLContentWKWebView *webView;
 @property (nonatomic, strong) UITextView *textViewHTMLString;
 @property (nonatomic, strong) UIProgressView *progressView;
 @end
@@ -25,8 +26,6 @@
     
     [self.view addSubview:self.webView];
     [self.view addSubview:self.textViewHTMLString];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.baidu.com/"]];
     
     //[self.webView addObserver:self forKeyPath:NSStringFromSelector(@selector(estimatedProgress)) options:NSKeyValueObservingOptionNew context:NULL];
     
@@ -58,21 +57,21 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
-    self.webView.frame = FrameSetSize(self.webView.frame, NAN, CGRectGetHeight(self.view.bounds) - 200 - 44);
+    //self.webView.frame = FrameSetSize(self.webView.frame, NAN, CGRectGetHeight(self.view.bounds) - 200 - 44);
 }
 
 #pragma mark - Getter
 
-- (WKWebView *)webView {
+- (WCFitHTMLContentWKWebView *)webView {
     if (!_webView) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         CGFloat marginH = 3;
-        CGRect frame = CGRectMake(marginH, CGRectGetHeight(self.textViewHTMLString.frame) + 5, screenSize.width - 2 * marginH, screenSize.height - 200);
+        CGRect frame = CGRectMake(marginH, CGRectGetHeight(self.textViewHTMLString.frame) + 5, screenSize.width - 2 * marginH, 1000);
         
         WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
-        WKWebView *webView = [[WKWebView alloc] initWithFrame:frame configuration:configuration];
+        WCFitHTMLContentWKWebView *webView = [[WCFitHTMLContentWKWebView alloc] initWithFrame:frame configuration:configuration];
         webView.UIDelegate = self;
-        webView.navigationDelegate = self;
+//        webView.navigationDelegate = self;
         webView.layer.borderColor = [UIColor orangeColor].CGColor;
         webView.layer.borderWidth = 1;
         
@@ -145,11 +144,14 @@
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
     
+    // @see https://stackoverflow.com/a/45674575
     [self.webView evaluateJavaScript:@"document.readyState" completionHandler:^(NSString *_Nullable readyState, NSError * _Nullable error) {
         if ([readyState isKindOfClass:[NSString class]] && [readyState isEqualToString:@"complete"]) {
-            [self.webView evaluateJavaScript:@"document.body.clientHeight" completionHandler:^(NSNumber *_Nullable scrollHeight, NSError * _Nullable error) {
+            NSString *script = IOS13_OR_LATER ? @"document.documentElement.scrollHeight" : @"document.body.scrollHeight";
+            [self.webView evaluateJavaScript:script completionHandler:^(NSNumber *_Nullable scrollHeight, NSError * _Nullable error) {
                 if ([scrollHeight isKindOfClass:[NSNumber class]]) {
-                    //self.webView.frame = FrameSetSize(self.webView.frame, NAN, [scrollHeight doubleValue]);
+                    NSLog(@"scrollHeight: %@", scrollHeight);
+//                    self.webView.frame = FrameSetSize(self.webView.frame, NAN, [scrollHeight doubleValue]);
                 }
             }];
         }
@@ -160,6 +162,7 @@
 
 - (void)loadItemClicked:(id)sender {
     if (self.textViewHTMLString.text.length) {
+        //self.webView.frame = FrameSetSize(self.webView.frame, NAN, 0);
         [self.webView loadHTMLString:self.textViewHTMLString.text baseURL:nil];
     }
 }

@@ -12,6 +12,7 @@
 #import "LoadHTMLStringViewController.h"
 #import "GetUserAgentViewController.h"
 #import "UseWKNavigationDelegateViewController.h"
+#import "HTMLCodeTestListWKViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -30,10 +31,11 @@
 }
 
 - (void)prepareForInit {
-    self.title = @"AppTest";
+    self.title = @"WKWebView AppTest";
 
     // MARK: Configure titles and classes for table view
     _titles = @[
+        @"HTML列表",
         @"Load Web Page Url",
         @"Load HTML string",
         @"Get User Agent",
@@ -41,6 +43,7 @@
         @"call a test method",
     ];
     _classes = @[
+        [HTMLCodeTestListWKViewController class],
         [LoadRemoteWebPageViewController class],
         [LoadHTMLStringViewController class],
         [GetUserAgentViewController class],

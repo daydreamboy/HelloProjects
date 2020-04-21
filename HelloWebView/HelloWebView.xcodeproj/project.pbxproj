@@ -33,6 +33,10 @@
 		4F27EBAE24138BED0022349C /* GetUserAgentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F27EBAD24138BED0022349C /* GetUserAgentViewController.m */; };
 		4F45F3B0244E9B3400043A35 /* LoadHTMLStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F45F3AF244E9B3400043A35 /* LoadHTMLStringViewController.m */; };
 		4F45F3B3244ECB5900043A35 /* LoadLocalWebPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F45F3B2244ECB5900043A35 /* LoadLocalWebPageViewController.m */; };
+		4F4A9913244F3C7F00071219 /* WCFitHTMLContentWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A9912244F3C7F00071219 /* WCFitHTMLContentWKWebView.m */; };
+		4F4A9916244F4C6900071219 /* HTMLCodeEditWKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A9915244F4C6900071219 /* HTMLCodeEditWKViewController.m */; };
+		4F4A9919244F4C8500071219 /* HTMLCodeTestListWKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A9918244F4C8500071219 /* HTMLCodeTestListWKViewController.m */; };
+		4F4A991C244F4CA100071219 /* HTMLCodePreviewWKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A991B244F4CA100071219 /* HTMLCodePreviewWKViewController.m */; };
 		4F77D9DF241131CB00BC2BA2 /* GetUserAgentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F77D9DE241131CB00BC2BA2 /* GetUserAgentViewController.m */; };
 		4FFE8806244EF72F00CB11FA /* LoadHTMLStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE8805244EF72F00CB11FA /* LoadHTMLStringViewController.m */; };
 		4FFE880B244EFA2700CB11FA /* HTMLCodeEditUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE8809244EFA2700CB11FA /* HTMLCodeEditUIViewController.m */; };
@@ -96,6 +100,14 @@
 		4F45F3AF244E9B3400043A35 /* LoadHTMLStringViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadHTMLStringViewController.m; sourceTree = "<group>"; };
 		4F45F3B1244ECB5900043A35 /* LoadLocalWebPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadLocalWebPageViewController.h; sourceTree = "<group>"; };
 		4F45F3B2244ECB5900043A35 /* LoadLocalWebPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadLocalWebPageViewController.m; sourceTree = "<group>"; };
+		4F4A9911244F3C7F00071219 /* WCFitHTMLContentWKWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCFitHTMLContentWKWebView.h; sourceTree = "<group>"; };
+		4F4A9912244F3C7F00071219 /* WCFitHTMLContentWKWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCFitHTMLContentWKWebView.m; sourceTree = "<group>"; };
+		4F4A9914244F4C6900071219 /* HTMLCodeEditWKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMLCodeEditWKViewController.h; sourceTree = "<group>"; };
+		4F4A9915244F4C6900071219 /* HTMLCodeEditWKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMLCodeEditWKViewController.m; sourceTree = "<group>"; };
+		4F4A9917244F4C8500071219 /* HTMLCodeTestListWKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMLCodeTestListWKViewController.h; sourceTree = "<group>"; };
+		4F4A9918244F4C8500071219 /* HTMLCodeTestListWKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMLCodeTestListWKViewController.m; sourceTree = "<group>"; };
+		4F4A991A244F4CA100071219 /* HTMLCodePreviewWKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMLCodePreviewWKViewController.h; sourceTree = "<group>"; };
+		4F4A991B244F4CA100071219 /* HTMLCodePreviewWKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMLCodePreviewWKViewController.m; sourceTree = "<group>"; };
 		4F77D9DD241131CB00BC2BA2 /* GetUserAgentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetUserAgentViewController.h; sourceTree = "<group>"; };
 		4F77D9DE241131CB00BC2BA2 /* GetUserAgentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetUserAgentViewController.m; sourceTree = "<group>"; };
 		4FFE8804244EF72F00CB11FA /* LoadHTMLStringViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadHTMLStringViewController.h; sourceTree = "<group>"; };
@@ -179,6 +191,12 @@
 		4F1B383B23B77F9500349B62 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F4A9914244F4C6900071219 /* HTMLCodeEditWKViewController.h */,
+				4F4A9915244F4C6900071219 /* HTMLCodeEditWKViewController.m */,
+				4F4A9917244F4C8500071219 /* HTMLCodeTestListWKViewController.h */,
+				4F4A9918244F4C8500071219 /* HTMLCodeTestListWKViewController.m */,
+				4F4A991A244F4CA100071219 /* HTMLCodePreviewWKViewController.h */,
+				4F4A991B244F4CA100071219 /* HTMLCodePreviewWKViewController.m */,
 				4F110BE323C7264E005EFF92 /* Tools */,
 				4F110BE023C72171005EFF92 /* LoadRemoteWebPageViewController.h */,
 				4F110BE123C72171005EFF92 /* LoadRemoteWebPageViewController.m */,
@@ -218,6 +236,8 @@
 			children = (
 				4F214E4723B78E0600A5911F /* WCWebViewTool.h */,
 				4F214E4823B78E0600A5911F /* WCWebViewTool.m */,
+				4F4A9911244F3C7F00071219 /* WCFitHTMLContentWKWebView.h */,
+				4F4A9912244F3C7F00071219 /* WCFitHTMLContentWKWebView.m */,
 			);
 			path = WCWebViewTool;
 			sourceTree = "<group>";
@@ -421,13 +441,17 @@
 				4F1B382423B77F5500349B62 /* AppDelegate.m in Sources */,
 				4F1DC2F6244DCBCD008E3E1F /* UseWKUIDelegateViewController.m in Sources */,
 				4F214E4923B78E0600A5911F /* WCWebViewTool.m in Sources */,
+				4F4A9913244F3C7F00071219 /* WCFitHTMLContentWKWebView.m in Sources */,
 				4F27EBAE24138BED0022349C /* GetUserAgentViewController.m in Sources */,
 				4F45F3B3244ECB5900043A35 /* LoadLocalWebPageViewController.m in Sources */,
 				4F1DC2F3244DC098008E3E1F /* UseWKNavigationDelegateViewController.m in Sources */,
 				4F110BE223C72171005EFF92 /* LoadRemoteWebPageViewController.m in Sources */,
+				4F4A9916244F4C6900071219 /* HTMLCodeEditWKViewController.m in Sources */,
+				4F4A9919244F4C8500071219 /* HTMLCodeTestListWKViewController.m in Sources */,
 				4F45F3B0244E9B3400043A35 /* LoadHTMLStringViewController.m in Sources */,
 				4F1B384123B77F9600349B62 /* RootViewController.m in Sources */,
 				4F1B383523B77F5900349B62 /* main.m in Sources */,
+				4F4A991C244F4CA100071219 /* HTMLCodePreviewWKViewController.m in Sources */,
 				4FFE8810244EFAB600CB11FA /* WCFileManagerTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
