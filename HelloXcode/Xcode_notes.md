@@ -303,6 +303,27 @@ Clang编译器和链接器的文档，官方提供在[这里](https://clang.llvm
 
 
 
+## 7、Simulator常见问题
+
+### （1）本地图片无法拖拽到Simulator中
+
+本地图片拖拽到iPhone 11 Pro Max 13.1，报错如下
+
+```
+One or more media items failed to import:
+/Users/dev/Desktop/images/Fotolia_8598911.jpg: The operation couldn’t be completed. (PHPhotosErrorDomain error -1.)
+```
+
+
+
+#### 解决方法
+
+找到System Preferences > Security & Privacy > Full Disk Access，选择+号，将Simulator添加进来[^6]。
+
+> Simulator的位置可以通过Show in Finder找到
+
+
+
 ## Reference
 
 [^1]: https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/DynamicLibraries/100-Articles/LoggingDynamicLoaderEvents.html
@@ -312,4 +333,8 @@ Clang编译器和链接器的文档，官方提供在[这里](https://clang.llvm
 [^4]:https://heartbeat.fritz.ai/xcode-build-settings-in-depth-733667d01a9a
 
 [^5]:https://stackoverflow.com/questions/39486064/xcode-8-ios-8-simulator-with-crash-dyld-lazy-symbol-binding-failed-symbol-n
+
+[^6]:https://forums.developer.apple.com/thread/126307
+
+
 
