@@ -1,22 +1,22 @@
 //
-//  LoadWebPageUrlViewController.m
+//  LoadRemoteWebPageViewController.m
 //  HelloWKWebView
 //
 //  Created by wesley_chen on 2020/1/9.
 //  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
-#import "LoadWebPageUrlViewController.h"
+#import "LoadRemoteWebPageViewController.h"
 #import "WCMacroTool.h"
 #import <WebKit/WebKit.h>
 
-@interface LoadWebPageUrlViewController () <UITextFieldDelegate, WKUIDelegate, WKNavigationDelegate>
+@interface LoadRemoteWebPageViewController () <UITextFieldDelegate, WKUIDelegate, WKNavigationDelegate>
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) UITextField *textFieldInputUrl;
 @property (nonatomic, strong) UIProgressView *progressView;
 @end
 
-@implementation LoadWebPageUrlViewController
+@implementation LoadRemoteWebPageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

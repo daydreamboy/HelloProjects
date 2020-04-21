@@ -12,4 +12,6 @@
 // Is a string and not empty after trim
 #define STR_TRIM_IF_NOT_EMPTY(str)   ([(str) isKindOfClass:[NSString class]] && [[(NSString *)(str) stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] length])
 
+#define STR_OF_JSON(...) @#__VA_ARGS__
+
 #endif /* WCMacroTool_h */

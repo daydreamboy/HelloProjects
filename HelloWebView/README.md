@@ -8,9 +8,12 @@
 
 ### Structure
 
-| UIWebView | WKWebView |
-| --------- | --------- |
-|           |           |
+| UIWebView                       | WKWebView                                    |
+| ------------------------------- | -------------------------------------------- |
+| UIScrollView *scrollView        | UIScrollView *scrollView                     |
+|                                 | WKWebViewConfiguration *configuration        |
+| id\<UIWebViewDelegate> delegate | id\<WKNavigationDelegate> navigationDelegate |
+|                                 | id\<WKUIDelegate> UIDelegate                 |
 
 
 
@@ -68,6 +71,16 @@ WebView的URL请求未收到服务端的响应，例如127.0.0.1:8080的本地�
 
 
 
+### （3）WKUserContentController
+
+创建WKWebView时，使用WKUserContentController管理用户的脚本。
+
+
+
+### （4）WKWebViewConfiguration
+
+
+
 
 
 
@@ -86,6 +99,12 @@ typedef NS_ENUM(NSInteger, UIWebViewNavigationType) {
     UIWebViewNavigationTypeOther
 } API_UNAVAILABLE(tvos);
 ```
+
+
+
+## 4、Web页面设置
+
+
 
 
 

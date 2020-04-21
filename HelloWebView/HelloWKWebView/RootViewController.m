@@ -8,7 +8,8 @@
 
 #import "RootViewController.h"
 
-#import "LoadWebPageUrlViewController.h"
+#import "LoadRemoteWebPageViewController.h"
+#import "LoadHTMLStringViewController.h"
 #import "GetUserAgentViewController.h"
 #import "UseWKNavigationDelegateViewController.h"
 
@@ -33,13 +34,15 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"Load web page url",
-        @"Get user agent",
+        @"Load Web Page Url",
+        @"Load HTML string",
+        @"Get User Agent",
         @"Use WKNavigationDelegate",
         @"call a test method",
     ];
     _classes = @[
-        [LoadWebPageUrlViewController class],
+        [LoadRemoteWebPageViewController class],
+        [LoadHTMLStringViewController class],
         [GetUserAgentViewController class],
         [UseWKNavigationDelegateViewController class],
         @"testMethod",

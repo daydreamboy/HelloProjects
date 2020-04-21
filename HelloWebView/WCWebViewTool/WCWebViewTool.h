@@ -10,6 +10,11 @@
 #import <UIKit/UIKit.h>
 #import <WebKit/WebKit.h>
 
+#define WCUserScriptAtStart(JSCode) WCUserScript3(JSCode, WKUserScriptInjectionTimeAtDocumentStart, YES)
+#define WCUserScriptAtEnd(JSCode)   WCUserScript3(JSCode, WKUserScriptInjectionTimeAtDocumentEnd, YES)
+
+#define WCUserScript3(JSCode, injectionTime__, forMainFrameOnly__)   ([[WKUserScript alloc] initWithSource:JSCode injectionTime:injectionTime__ forMainFrameOnly:forMainFrameOnly__])
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WCWebViewTool : NSObject
@@ -43,6 +48,35 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable WKUserScript *)userScriptWithAppendCSSAtFilePath:(NSString *)CSSFilePath;
 + (nullable WKUserScript *)userScriptWithAppendCSSAtFilePath:(NSString *)CSSFilePath injectionTime:(WKUserScriptInjectionTime)injectionTime forMainFrameOnly:(BOOL)forMainFrameOnly;
 
+#pragma mark > Add User Script
+
+/**
+ Add viewport script
+ 
+ @param webView the WKWebView
+ @return YES if add script successfully, or NO if failed.
+ */
++ (BOOL)addViewportScriptWithWKWebView:(WKWebView *)webView;
+
+#pragma mark > Preset User Script
+
++ (WKUserScript *)viewportUserScript;
+
+#pragma mark > Execute User Script
+
+/**
+ viewport script to fit screen width and disable zooming out
+ 
+ @code
+ <head>
+ <meta name="viewport" content="width=device-width; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no">
+ </head>
+ 
+ @return the script
+ @see https://stackoverflow.com/questions/10666484/html-content-fit-in-uiwebview-without-zooming-out
+ */
++ (WKUserScript *)viewportUserScript;
+
 #pragma mark > Observing
 
 #pragma mark > Query Browser
@@ -54,7 +88,6 @@ NS_ASSUME_NONNULL_BEGIN
  @param completion the block to get user agent, which is asynchronous
  */
 + (void)userAgentWithWKWebView:(WKWebView *)webView completion:(void (^)(NSString *userAgent))completion;
-
 
 #pragma mark - UIWebView
 

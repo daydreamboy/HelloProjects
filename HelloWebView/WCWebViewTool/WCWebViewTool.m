@@ -97,6 +97,30 @@
     return userScript;
 }
 
+#pragma mark > Preset User Script
+
++ (WKUserScript *)viewportUserScript {
+    NSString *script = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;'); document.getElementsByTagName('head')[0].appendChild(meta);";
+    // Note: use WCUserScriptAtEnd for after all DOM loaded to insert viewport
+    return WCUserScriptAtEnd(script);
+}
+
+#pragma mark > Add User Script
+
++ (BOOL)addViewportScriptWithWKWebView:(WKWebView *)webView {
+    if (![webView isKindOfClass:[WKWebView class]]) {
+        return NO;
+    }
+    
+    if (!webView.configuration.userContentController) {
+        webView.configuration.userContentController = [WKUserContentController new];
+    }
+    
+    WKUserContentController *contentController = webView.configuration.userContentController;
+    [contentController addUserScript:[self viewportUserScript]];
+    return YES;
+}
+
 #pragma mark > Query Browser
 
 + (void)userAgentWithWKWebView:(WKWebView *)webView completion:(void (^)(NSString *userAgent))completion {

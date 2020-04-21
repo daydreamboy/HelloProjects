@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F110BE223C72171005EFF92 /* LoadWebPageUrlViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F110BE123C72171005EFF92 /* LoadWebPageUrlViewController.m */; };
+		4F110BE223C72171005EFF92 /* LoadRemoteWebPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F110BE123C72171005EFF92 /* LoadRemoteWebPageViewController.m */; };
 		4F1B382423B77F5500349B62 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B382323B77F5500349B62 /* AppDelegate.m */; };
 		4F1B382F23B77F5900349B62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F1B382E23B77F5900349B62 /* Assets.xcassets */; };
 		4F1B383223B77F5900349B62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F1B383023B77F5900349B62 /* LaunchScreen.storyboard */; };
@@ -31,12 +31,14 @@
 		4F214E4923B78E0600A5911F /* WCWebViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F214E4823B78E0600A5911F /* WCWebViewTool.m */; };
 		4F214E4A23B78E0600A5911F /* WCWebViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F214E4823B78E0600A5911F /* WCWebViewTool.m */; };
 		4F27EBAE24138BED0022349C /* GetUserAgentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F27EBAD24138BED0022349C /* GetUserAgentViewController.m */; };
+		4F45F3B0244E9B3400043A35 /* LoadHTMLStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F45F3AF244E9B3400043A35 /* LoadHTMLStringViewController.m */; };
+		4F45F3B3244ECB5900043A35 /* LoadLocalWebPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F45F3B2244ECB5900043A35 /* LoadLocalWebPageViewController.m */; };
 		4F77D9DF241131CB00BC2BA2 /* GetUserAgentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F77D9DE241131CB00BC2BA2 /* GetUserAgentViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4F110BE023C72171005EFF92 /* LoadWebPageUrlViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadWebPageUrlViewController.h; sourceTree = "<group>"; };
-		4F110BE123C72171005EFF92 /* LoadWebPageUrlViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadWebPageUrlViewController.m; sourceTree = "<group>"; };
+		4F110BE023C72171005EFF92 /* LoadRemoteWebPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadRemoteWebPageViewController.h; sourceTree = "<group>"; };
+		4F110BE123C72171005EFF92 /* LoadRemoteWebPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadRemoteWebPageViewController.m; sourceTree = "<group>"; };
 		4F110BE423C72661005EFF92 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
 		4F1B381F23B77F5500349B62 /* HelloWKWebView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloWKWebView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F1B382223B77F5500349B62 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -78,6 +80,10 @@
 		4F214E4823B78E0600A5911F /* WCWebViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCWebViewTool.m; sourceTree = "<group>"; };
 		4F27EBAC24138BED0022349C /* GetUserAgentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetUserAgentViewController.h; sourceTree = "<group>"; };
 		4F27EBAD24138BED0022349C /* GetUserAgentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetUserAgentViewController.m; sourceTree = "<group>"; };
+		4F45F3AE244E9B3300043A35 /* LoadHTMLStringViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadHTMLStringViewController.h; sourceTree = "<group>"; };
+		4F45F3AF244E9B3400043A35 /* LoadHTMLStringViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadHTMLStringViewController.m; sourceTree = "<group>"; };
+		4F45F3B1244ECB5900043A35 /* LoadLocalWebPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadLocalWebPageViewController.h; sourceTree = "<group>"; };
+		4F45F3B2244ECB5900043A35 /* LoadLocalWebPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadLocalWebPageViewController.m; sourceTree = "<group>"; };
 		4F77D9DD241131CB00BC2BA2 /* GetUserAgentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetUserAgentViewController.h; sourceTree = "<group>"; };
 		4F77D9DE241131CB00BC2BA2 /* GetUserAgentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetUserAgentViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -147,8 +153,12 @@
 			isa = PBXGroup;
 			children = (
 				4F110BE323C7264E005EFF92 /* Tools */,
-				4F110BE023C72171005EFF92 /* LoadWebPageUrlViewController.h */,
-				4F110BE123C72171005EFF92 /* LoadWebPageUrlViewController.m */,
+				4F110BE023C72171005EFF92 /* LoadRemoteWebPageViewController.h */,
+				4F110BE123C72171005EFF92 /* LoadRemoteWebPageViewController.m */,
+				4F45F3B1244ECB5900043A35 /* LoadLocalWebPageViewController.h */,
+				4F45F3B2244ECB5900043A35 /* LoadLocalWebPageViewController.m */,
+				4F45F3AE244E9B3300043A35 /* LoadHTMLStringViewController.h */,
+				4F45F3AF244E9B3400043A35 /* LoadHTMLStringViewController.m */,
 				4F27EBAC24138BED0022349C /* GetUserAgentViewController.h */,
 				4F27EBAD24138BED0022349C /* GetUserAgentViewController.m */,
 				4F1DC2F1244DC098008E3E1F /* UseWKNavigationDelegateViewController.h */,
@@ -344,8 +354,10 @@
 				4F1DC2F6244DCBCD008E3E1F /* UseWKUIDelegateViewController.m in Sources */,
 				4F214E4923B78E0600A5911F /* WCWebViewTool.m in Sources */,
 				4F27EBAE24138BED0022349C /* GetUserAgentViewController.m in Sources */,
+				4F45F3B3244ECB5900043A35 /* LoadLocalWebPageViewController.m in Sources */,
 				4F1DC2F3244DC098008E3E1F /* UseWKNavigationDelegateViewController.m in Sources */,
-				4F110BE223C72171005EFF92 /* LoadWebPageUrlViewController.m in Sources */,
+				4F110BE223C72171005EFF92 /* LoadRemoteWebPageViewController.m in Sources */,
+				4F45F3B0244E9B3400043A35 /* LoadHTMLStringViewController.m in Sources */,
 				4F1B384123B77F9600349B62 /* RootViewController.m in Sources */,
 				4F1B383523B77F5900349B62 /* main.m in Sources */,
 			);
