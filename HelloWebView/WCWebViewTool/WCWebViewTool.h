@@ -60,10 +60,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark > Preset User Script
 
-+ (WKUserScript *)viewportUserScript;
-
-#pragma mark > Execute User Script
-
 /**
  viewport script to fit screen width and disable zooming out
  
@@ -76,6 +72,8 @@ NS_ASSUME_NONNULL_BEGIN
  @see https://stackoverflow.com/questions/10666484/html-content-fit-in-uiwebview-without-zooming-out
  */
 + (WKUserScript *)viewportUserScript;
+
+#pragma mark > Execute User Script
 
 #pragma mark > Observing
 

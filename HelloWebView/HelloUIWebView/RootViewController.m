@@ -8,8 +8,9 @@
 
 #import "RootViewController.h"
 
+#import "HTMLCodeTestListUIViewController.h"
 #import "LoadLocalHTMLViewController.h"
-#import "LoadHTMLCodeViewController.h"
+#import "PreLoadHTMLStringViewController.h"
 #import "GetUserAgentViewController.h"
 #import "TestViewController.h"
 
@@ -34,6 +35,7 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
+        @"HTMLCode列表",
         @"Load local html file",
         @"Load html code",
         @"Get user agent",
@@ -41,8 +43,9 @@
         @"test",
     ];
     _classes = @[
+        [HTMLCodeTestListUIViewController class],
         [LoadLocalHTMLViewController class],
-        [LoadHTMLCodeViewController class],
+        [PreLoadHTMLStringViewController class],
         [GetUserAgentViewController class],
         [TestViewController class],
         @"testMethod",

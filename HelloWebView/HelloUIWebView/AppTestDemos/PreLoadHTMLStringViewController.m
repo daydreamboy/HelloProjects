@@ -1,19 +1,19 @@
 //
-//  LoadHTMLCodeViewController.m
+//  PreLoadHTMLStringViewController.m
 //  HelloUIWebView
 //
 //  Created by wesley_chen on 2018/9/2.
 //  Copyright © 2018 wesley_chen. All rights reserved.
 //
 
-#import "LoadHTMLCodeViewController.h"
+#import "PreLoadHTMLStringViewController.h"
 
-@interface LoadHTMLCodeViewController () <UIWebViewDelegate>
+@interface PreLoadHTMLStringViewController () <UIWebViewDelegate>
 @property (nonatomic, strong) UIWebView *webView;
 @property (nonatomic, copy) NSString *htmlString;
 @end
 
-@implementation LoadHTMLCodeViewController
+@implementation PreLoadHTMLStringViewController
 
 - (instancetype)init {
     self = [super init];

@@ -20,7 +20,7 @@
 		4F214E1A23B78BD200A5911F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F214E1823B78BD200A5911F /* LaunchScreen.storyboard */; };
 		4F214E1D23B78BD200A5911F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F214E1C23B78BD200A5911F /* main.m */; };
 		4F214E3A23B78CA500A5911F /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F214E2323B78CA500A5911F /* TestViewController.m */; };
-		4F214E3B23B78CA500A5911F /* LoadHTMLCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F214E2723B78CA500A5911F /* LoadHTMLCodeViewController.m */; };
+		4F214E3B23B78CA500A5911F /* PreLoadHTMLStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F214E2723B78CA500A5911F /* PreLoadHTMLStringViewController.m */; };
 		4F214E3C23B78CA500A5911F /* LoadLocalHTMLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F214E2823B78CA500A5911F /* LoadLocalHTMLViewController.m */; };
 		4F214E3D23B78CA500A5911F /* WCScreenshotHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F214E2C23B78CA500A5911F /* WCScreenshotHelper.m */; };
 		4F214E3E23B78CA500A5911F /* UIView+StatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F214E2E23B78CA500A5911F /* UIView+StatusBar.m */; };
@@ -34,6 +34,18 @@
 		4F45F3B0244E9B3400043A35 /* LoadHTMLStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F45F3AF244E9B3400043A35 /* LoadHTMLStringViewController.m */; };
 		4F45F3B3244ECB5900043A35 /* LoadLocalWebPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F45F3B2244ECB5900043A35 /* LoadLocalWebPageViewController.m */; };
 		4F77D9DF241131CB00BC2BA2 /* GetUserAgentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F77D9DE241131CB00BC2BA2 /* GetUserAgentViewController.m */; };
+		4FFE8806244EF72F00CB11FA /* LoadHTMLStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE8805244EF72F00CB11FA /* LoadHTMLStringViewController.m */; };
+		4FFE880B244EFA2700CB11FA /* HTMLCodeEditUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE8809244EFA2700CB11FA /* HTMLCodeEditUIViewController.m */; };
+		4FFE880C244EFA2700CB11FA /* HTMLCodeTestListUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE880A244EFA2700CB11FA /* HTMLCodeTestListUIViewController.m */; };
+		4FFE8810244EFAB600CB11FA /* WCFileManagerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE880E244EFAB600CB11FA /* WCFileManagerTool.m */; };
+		4FFE8811244EFAB600CB11FA /* WCFileManagerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE880E244EFAB600CB11FA /* WCFileManagerTool.m */; };
+		4FFE8814244EFD0E00CB11FA /* HTMLCodePreviewUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE8813244EFD0E00CB11FA /* HTMLCodePreviewUIViewController.m */; };
+		4FFE8816244EFE7300CB11FA /* HTMLTestList in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE8815244EFE7300CB11FA /* HTMLTestList */; };
+		4FFE8817244EFE7300CB11FA /* HTMLTestList in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE8815244EFE7300CB11FA /* HTMLTestList */; };
+		4FFE881C244EFF7000CB11FA /* prettify_modified.css in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE881A244EFF7000CB11FA /* prettify_modified.css */; };
+		4FFE881D244EFF7000CB11FA /* prettify_modified.css in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE881A244EFF7000CB11FA /* prettify_modified.css */; };
+		4FFE881E244EFF7000CB11FA /* run_prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE881B244EFF7000CB11FA /* run_prettify.js */; };
+		4FFE881F244EFF7000CB11FA /* run_prettify.js in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE881B244EFF7000CB11FA /* run_prettify.js */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,9 +74,9 @@
 		4F214E1C23B78BD200A5911F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F214E2323B78CA500A5911F /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		4F214E2423B78CA500A5911F /* LoadLocalHTMLViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadLocalHTMLViewController.h; sourceTree = "<group>"; };
-		4F214E2523B78CA500A5911F /* LoadHTMLCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadHTMLCodeViewController.h; sourceTree = "<group>"; };
+		4F214E2523B78CA500A5911F /* PreLoadHTMLStringViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreLoadHTMLStringViewController.h; sourceTree = "<group>"; };
 		4F214E2623B78CA500A5911F /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
-		4F214E2723B78CA500A5911F /* LoadHTMLCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadHTMLCodeViewController.m; sourceTree = "<group>"; };
+		4F214E2723B78CA500A5911F /* PreLoadHTMLStringViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreLoadHTMLStringViewController.m; sourceTree = "<group>"; };
 		4F214E2823B78CA500A5911F /* LoadLocalHTMLViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadLocalHTMLViewController.m; sourceTree = "<group>"; };
 		4F214E2B23B78CA500A5911F /* WCScreenshotHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCScreenshotHelper.h; sourceTree = "<group>"; };
 		4F214E2C23B78CA500A5911F /* WCScreenshotHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCScreenshotHelper.m; sourceTree = "<group>"; };
@@ -86,6 +98,19 @@
 		4F45F3B2244ECB5900043A35 /* LoadLocalWebPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadLocalWebPageViewController.m; sourceTree = "<group>"; };
 		4F77D9DD241131CB00BC2BA2 /* GetUserAgentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetUserAgentViewController.h; sourceTree = "<group>"; };
 		4F77D9DE241131CB00BC2BA2 /* GetUserAgentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetUserAgentViewController.m; sourceTree = "<group>"; };
+		4FFE8804244EF72F00CB11FA /* LoadHTMLStringViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadHTMLStringViewController.h; sourceTree = "<group>"; };
+		4FFE8805244EF72F00CB11FA /* LoadHTMLStringViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadHTMLStringViewController.m; sourceTree = "<group>"; };
+		4FFE8807244EFA2600CB11FA /* HTMLCodeEditUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLCodeEditUIViewController.h; sourceTree = "<group>"; };
+		4FFE8808244EFA2600CB11FA /* HTMLCodeTestListUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLCodeTestListUIViewController.h; sourceTree = "<group>"; };
+		4FFE8809244EFA2700CB11FA /* HTMLCodeEditUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLCodeEditUIViewController.m; sourceTree = "<group>"; };
+		4FFE880A244EFA2700CB11FA /* HTMLCodeTestListUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTMLCodeTestListUIViewController.m; sourceTree = "<group>"; };
+		4FFE880E244EFAB600CB11FA /* WCFileManagerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCFileManagerTool.m; sourceTree = "<group>"; };
+		4FFE880F244EFAB600CB11FA /* WCFileManagerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCFileManagerTool.h; sourceTree = "<group>"; };
+		4FFE8812244EFD0E00CB11FA /* HTMLCodePreviewUIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMLCodePreviewUIViewController.h; sourceTree = "<group>"; };
+		4FFE8813244EFD0E00CB11FA /* HTMLCodePreviewUIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMLCodePreviewUIViewController.m; sourceTree = "<group>"; };
+		4FFE8815244EFE7300CB11FA /* HTMLTestList */ = {isa = PBXFileReference; lastKnownFileType = folder; path = HTMLTestList; sourceTree = "<group>"; };
+		4FFE881A244EFF7000CB11FA /* prettify_modified.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = prettify_modified.css; sourceTree = "<group>"; };
+		4FFE881B244EFF7000CB11FA /* run_prettify.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = run_prettify.js; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,7 +134,6 @@
 		4F110BE323C7264E005EFF92 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				4F110BE423C72661005EFF92 /* WCMacroTool.h */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -117,6 +141,9 @@
 		4F1B381623B77F5500349B62 = {
 			isa = PBXGroup;
 			children = (
+				4FFE8818244EFF3C00CB11FA /* Resources */,
+				4FFE8815244EFE7300CB11FA /* HTMLTestList */,
+				4FFE880D244EFA8300CB11FA /* Tools */,
 				4F214E2123B78C0500A5911F /* WCWebViewTool */,
 				4F1B382123B77F5500349B62 /* HelloWKWebView */,
 				4F214E0923B78BD200A5911F /* HelloUIWebView */,
@@ -198,9 +225,17 @@
 		4F214E2223B78CA500A5911F /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4FFE8807244EFA2600CB11FA /* HTMLCodeEditUIViewController.h */,
+				4FFE8809244EFA2700CB11FA /* HTMLCodeEditUIViewController.m */,
+				4FFE8808244EFA2600CB11FA /* HTMLCodeTestListUIViewController.h */,
+				4FFE880A244EFA2700CB11FA /* HTMLCodeTestListUIViewController.m */,
+				4FFE8812244EFD0E00CB11FA /* HTMLCodePreviewUIViewController.h */,
+				4FFE8813244EFD0E00CB11FA /* HTMLCodePreviewUIViewController.m */,
 				4F214E2923B78CA500A5911F /* Utility */,
-				4F214E2523B78CA500A5911F /* LoadHTMLCodeViewController.h */,
-				4F214E2723B78CA500A5911F /* LoadHTMLCodeViewController.m */,
+				4F214E2523B78CA500A5911F /* PreLoadHTMLStringViewController.h */,
+				4F214E2723B78CA500A5911F /* PreLoadHTMLStringViewController.m */,
+				4FFE8804244EF72F00CB11FA /* LoadHTMLStringViewController.h */,
+				4FFE8805244EF72F00CB11FA /* LoadHTMLStringViewController.m */,
 				4F214E2423B78CA500A5911F /* LoadLocalHTMLViewController.h */,
 				4F214E2823B78CA500A5911F /* LoadLocalHTMLViewController.m */,
 				4F77D9DD241131CB00BC2BA2 /* GetUserAgentViewController.h */,
@@ -247,6 +282,33 @@
 				4F214E3823B78CA500A5911F /* qixi.html */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		4FFE880D244EFA8300CB11FA /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4FFE880F244EFAB600CB11FA /* WCFileManagerTool.h */,
+				4FFE880E244EFAB600CB11FA /* WCFileManagerTool.m */,
+				4F110BE423C72661005EFF92 /* WCMacroTool.h */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		4FFE8818244EFF3C00CB11FA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4FFE8819244EFF4D00CB11FA /* libs */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		4FFE8819244EFF4D00CB11FA /* libs */ = {
+			isa = PBXGroup;
+			children = (
+				4FFE881A244EFF7000CB11FA /* prettify_modified.css */,
+				4FFE881B244EFF7000CB11FA /* run_prettify.js */,
+			);
+			path = libs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -327,8 +389,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FFE881E244EFF7000CB11FA /* run_prettify.js in Resources */,
 				4F1B383223B77F5900349B62 /* LaunchScreen.storyboard in Resources */,
+				4FFE8816244EFE7300CB11FA /* HTMLTestList in Resources */,
 				4F1B382F23B77F5900349B62 /* Assets.xcassets in Resources */,
+				4FFE881C244EFF7000CB11FA /* prettify_modified.css in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,9 +402,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F214E4623B78D8F00A5911F /* images in Resources */,
+				4FFE881D244EFF7000CB11FA /* prettify_modified.css in Resources */,
+				4FFE8817244EFE7300CB11FA /* HTMLTestList in Resources */,
 				4F214E1A23B78BD200A5911F /* LaunchScreen.storyboard in Resources */,
 				4F214E1723B78BD200A5911F /* Assets.xcassets in Resources */,
 				4F214E4423B78CA500A5911F /* qixi.html in Resources */,
+				4FFE881F244EFF7000CB11FA /* run_prettify.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +428,7 @@
 				4F45F3B0244E9B3400043A35 /* LoadHTMLStringViewController.m in Sources */,
 				4F1B384123B77F9600349B62 /* RootViewController.m in Sources */,
 				4F1B383523B77F5900349B62 /* main.m in Sources */,
+				4FFE8810244EFAB600CB11FA /* WCFileManagerTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,7 +436,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FFE8806244EF72F00CB11FA /* LoadHTMLStringViewController.m in Sources */,
+				4FFE8814244EFD0E00CB11FA /* HTMLCodePreviewUIViewController.m in Sources */,
 				4F214E3A23B78CA500A5911F /* TestViewController.m in Sources */,
+				4FFE8811244EFAB600CB11FA /* WCFileManagerTool.m in Sources */,
+				4FFE880C244EFA2700CB11FA /* HTMLCodeTestListUIViewController.m in Sources */,
 				4F214E4A23B78E0600A5911F /* WCWebViewTool.m in Sources */,
 				4F214E3D23B78CA500A5911F /* WCScreenshotHelper.m in Sources */,
 				4F214E3F23B78CA500A5911F /* WCRuntimeHelper.m in Sources */,
@@ -376,7 +449,8 @@
 				4F214E4023B78CA500A5911F /* RootViewController.m in Sources */,
 				4F214E0C23B78BD200A5911F /* AppDelegate.m in Sources */,
 				4F77D9DF241131CB00BC2BA2 /* GetUserAgentViewController.m in Sources */,
-				4F214E3B23B78CA500A5911F /* LoadHTMLCodeViewController.m in Sources */,
+				4FFE880B244EFA2700CB11FA /* HTMLCodeEditUIViewController.m in Sources */,
+				4F214E3B23B78CA500A5911F /* PreLoadHTMLStringViewController.m in Sources */,
 				4F214E1D23B78BD200A5911F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -25,7 +25,6 @@
     
     [self.view addSubview:self.webView];
     [self.view addSubview:self.textViewHTMLString];
-    //[self.view addSubview:self.progressView];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.baidu.com/"]];
     
@@ -56,17 +55,26 @@
     self.navigationItem.rightBarButtonItems = @[loadItem];
 }
 
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    self.webView.frame = FrameSetSize(self.webView.frame, NAN, CGRectGetHeight(self.view.bounds) - 200 - 44);
+}
+
 #pragma mark - Getter
 
 - (WKWebView *)webView {
     if (!_webView) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        CGRect frame = CGRectMake(0, 200, screenSize.width, screenSize.height - 200);
+        CGFloat marginH = 3;
+        CGRect frame = CGRectMake(marginH, CGRectGetHeight(self.textViewHTMLString.frame) + 5, screenSize.width - 2 * marginH, screenSize.height - 200);
         
         WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
         WKWebView *webView = [[WKWebView alloc] initWithFrame:frame configuration:configuration];
         webView.UIDelegate = self;
         webView.navigationDelegate = self;
+        webView.layer.borderColor = [UIColor orangeColor].CGColor;
+        webView.layer.borderWidth = 1;
         
         [WCWebViewTool addViewportScriptWithWKWebView:webView];
         
@@ -133,6 +141,20 @@
 #pragma mark - WKUIDelegate
 
 #pragma mark - WKNavigationDelegate
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
+    
+    [self.webView evaluateJavaScript:@"document.readyState" completionHandler:^(NSString *_Nullable readyState, NSError * _Nullable error) {
+        if ([readyState isKindOfClass:[NSString class]] && [readyState isEqualToString:@"complete"]) {
+            [self.webView evaluateJavaScript:@"document.body.clientHeight" completionHandler:^(NSNumber *_Nullable scrollHeight, NSError * _Nullable error) {
+                if ([scrollHeight isKindOfClass:[NSNumber class]]) {
+                    //self.webView.frame = FrameSetSize(self.webView.frame, NAN, [scrollHeight doubleValue]);
+                }
+            }];
+        }
+    }];
+}
 
 #pragma mark - Action
 
