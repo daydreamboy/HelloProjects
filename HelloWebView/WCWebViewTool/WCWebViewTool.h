@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return YES if operate successfully, NO if parameters are not correct.
  @see https://stackoverflow.com/a/34759075
  */
-+ (BOOL)getDocumentStringWithWKWebView:(WKWebView *)webView completion:(void (^)(NSString * _Nullable documentString, NSError * _Nullable error))completion;
++ (BOOL)documentStringWithWKWebView:(WKWebView *)webView completion:(void (^)(NSString * _Nullable documentString, NSError * _Nullable error))completion;
 
 
 #pragma mark > Insert HTML

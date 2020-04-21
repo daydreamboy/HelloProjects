@@ -14,7 +14,7 @@
 
 #pragma mark > Query HTML
 
-+ (BOOL)getDocumentStringWithWKWebView:(WKWebView *)webView completion:(void (^)(NSString * _Nullable documentString, NSError * _Nullable error))completion {
++ (BOOL)documentStringWithWKWebView:(WKWebView *)webView completion:(void (^)(NSString * _Nullable documentString, NSError * _Nullable error))completion {
     if (![webView isKindOfClass:[WKWebView class]]) {
         return NO;
     }
