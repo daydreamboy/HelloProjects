@@ -10,6 +10,7 @@
 
 #import "LoadWebPageUrlViewController.h"
 #import "GetUserAgentViewController.h"
+#import "UseWKNavigationDelegateViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -34,11 +35,13 @@
     _titles = @[
         @"Load web page url",
         @"Get user agent",
+        @"Use WKNavigationDelegate",
         @"call a test method",
     ];
     _classes = @[
         [LoadWebPageUrlViewController class],
         [GetUserAgentViewController class],
+        [UseWKNavigationDelegateViewController class],
         @"testMethod",
     ];
 }

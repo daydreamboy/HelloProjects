@@ -1,22 +1,22 @@
 //
-//  LoadWebPageUrlViewController.m
+//  UseWKUIDelegateViewController.m
 //  HelloWKWebView
 //
-//  Created by wesley_chen on 2020/1/9.
+//  Created by wesley_chen on 2020/4/20.
 //  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
-#import "LoadWebPageUrlViewController.h"
-#import "WCMacroTool.h"
+#import "UseWKUIDelegateViewController.h"
 #import <WebKit/WebKit.h>
+#import "WCMacroTool.h"
 
-@interface LoadWebPageUrlViewController () <UITextFieldDelegate, WKUIDelegate, WKNavigationDelegate>
+@interface UseWKUIDelegateViewController () <UITextFieldDelegate, WKUIDelegate, WKNavigationDelegate>
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, strong) UITextField *textFieldInputUrl;
 @property (nonatomic, strong) UIProgressView *progressView;
 @end
 
-@implementation LoadWebPageUrlViewController
+@implementation UseWKUIDelegateViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -103,6 +103,14 @@
 }
 
 #pragma mark - WKUIDelegate
+
+//- (WKWebView *)webView:(WKWebView *)webView createWebViewWithConfiguration:(WKWebViewConfiguration *)configuration forNavigationAction:(WKNavigationAction *)navigationAction windowFeatures:(WKWindowFeatures *)windowFeatures {
+//    
+//}
+//
+//- (void)webViewDidClose:(WKWebView *)webView {
+//    
+//}
 
 #pragma mark - WKNavigationDelegate
 
