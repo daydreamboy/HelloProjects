@@ -38,6 +38,8 @@ do { \
     } \
 } while (0)
 
+#define STR_OF_FILE(filePath) ([NSString stringWithContentsOfFile:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:(filePath)] encoding:NSUTF8StringEncoding error:nil])
+
 // >= `11.0`
 #ifndef IOS11_OR_LATER
 #define IOS11_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"11.0" options:NSNumericSearch] != NSOrderedAscending)

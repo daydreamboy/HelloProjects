@@ -11,8 +11,8 @@
 #import <WebKit/WebKit.h>
 #import "WCWebViewTool.h"
 
-static float sStart;
-static float sEnd;
+static NSTimeInterval sStart;
+static NSTimeInterval sEnd;
 
 @interface HTMLCodePreviewWKViewController () <WKNavigationDelegate, WKUIDelegate>
 @property (nonatomic, strong) WKWebView *webView;
@@ -33,20 +33,7 @@ static float sEnd;
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    
     [self.view addSubview:self.webView];
-    
-//    for (UIView *view in self.webView.subviews) {
-//        if ([view isKindOfClass:[UIScrollView class]]) {
-//            UIScrollView *scroll = (UIScrollView *)view;
-//            scroll.alwaysBounceHorizontal = YES;
-//            scroll.alwaysBounceVertical = NO;
-//            break;
-//        }
-//    }
-    
-//    [self.webView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
-    
     [self.webView loadHTMLString:self.HTMLString baseURL:nil];
 }
 
@@ -64,6 +51,7 @@ static float sEnd;
         webView.layer.borderColor = [UIColor orangeColor].CGColor;
         webView.layer.borderWidth = 1;
         webView.opaque = NO;
+        webView.allowsLinkPreview = NO;
         webView.backgroundColor = [UIColor clearColor];
         [WCWebViewTool addViewportScriptWithWKWebView:webView];
         
@@ -74,5 +62,15 @@ static float sEnd;
 }
 
 #pragma mark - WKNavigationDelegate
+
+- (void)webView:(WKWebView *)webView didCommitNavigation:(WKNavigation *)navigation {
+    sStart = CACurrentMediaTime();
+}
+
+- (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
+    sEnd = CACurrentMediaTime();
+    NSLog(@"end: %f", sEnd);
+    NSLog(@"duration: %f", sEnd - sStart);
+}
 
 @end

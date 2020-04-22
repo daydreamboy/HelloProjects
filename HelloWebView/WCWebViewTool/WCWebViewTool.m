@@ -143,6 +143,25 @@
     }];
 }
 
+#pragma mark - Configure WebView
+
++ (BOOL)toggleLinkPreviewWithWKWebView:(WKWebView *)webView enabled:(BOOL)enabled {
+    if (![webView isKindOfClass:[WKWebView class]]) {
+        return NO;
+    }
+    
+    if ([webView respondsToSelector:@selector(setAllowsLinkPreview:)]) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability"
+        webView.allowsLinkPreview = enabled;
+#pragma GCC diagnostic pop
+        
+        return YES;
+    }
+    
+    return NO;
+}
+
 #pragma mark - UIWebView
 
 #pragma mark > Query HTML

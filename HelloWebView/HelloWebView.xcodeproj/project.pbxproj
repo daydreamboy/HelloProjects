@@ -38,6 +38,7 @@
 		4F4A9919244F4C8500071219 /* HTMLCodeTestListWKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A9918244F4C8500071219 /* HTMLCodeTestListWKViewController.m */; };
 		4F4A991C244F4CA100071219 /* HTMLCodePreviewWKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A991B244F4CA100071219 /* HTMLCodePreviewWKViewController.m */; };
 		4F77D9DF241131CB00BC2BA2 /* GetUserAgentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F77D9DE241131CB00BC2BA2 /* GetUserAgentViewController.m */; };
+		4FC16198244FFA1C002A93C3 /* DisableLinkPreviewWKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC16197244FFA1C002A93C3 /* DisableLinkPreviewWKViewController.m */; };
 		4FFE8806244EF72F00CB11FA /* LoadHTMLStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE8805244EF72F00CB11FA /* LoadHTMLStringViewController.m */; };
 		4FFE880B244EFA2700CB11FA /* HTMLCodeEditUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE8809244EFA2700CB11FA /* HTMLCodeEditUIViewController.m */; };
 		4FFE880C244EFA2700CB11FA /* HTMLCodeTestListUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE880A244EFA2700CB11FA /* HTMLCodeTestListUIViewController.m */; };
@@ -110,6 +111,8 @@
 		4F4A991B244F4CA100071219 /* HTMLCodePreviewWKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMLCodePreviewWKViewController.m; sourceTree = "<group>"; };
 		4F77D9DD241131CB00BC2BA2 /* GetUserAgentViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetUserAgentViewController.h; sourceTree = "<group>"; };
 		4F77D9DE241131CB00BC2BA2 /* GetUserAgentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetUserAgentViewController.m; sourceTree = "<group>"; };
+		4FC16196244FFA1C002A93C3 /* DisableLinkPreviewWKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DisableLinkPreviewWKViewController.h; sourceTree = "<group>"; };
+		4FC16197244FFA1C002A93C3 /* DisableLinkPreviewWKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DisableLinkPreviewWKViewController.m; sourceTree = "<group>"; };
 		4FFE8804244EF72F00CB11FA /* LoadHTMLStringViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadHTMLStringViewController.h; sourceTree = "<group>"; };
 		4FFE8805244EF72F00CB11FA /* LoadHTMLStringViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadHTMLStringViewController.m; sourceTree = "<group>"; };
 		4FFE8807244EFA2600CB11FA /* HTMLCodeEditUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLCodeEditUIViewController.h; sourceTree = "<group>"; };
@@ -210,6 +213,8 @@
 				4F1DC2F2244DC098008E3E1F /* UseWKNavigationDelegateViewController.m */,
 				4F1DC2F4244DCBCD008E3E1F /* UseWKUIDelegateViewController.h */,
 				4F1DC2F5244DCBCD008E3E1F /* UseWKUIDelegateViewController.m */,
+				4FC16196244FFA1C002A93C3 /* DisableLinkPreviewWKViewController.h */,
+				4FC16197244FFA1C002A93C3 /* DisableLinkPreviewWKViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -442,6 +447,7 @@
 				4F1DC2F6244DCBCD008E3E1F /* UseWKUIDelegateViewController.m in Sources */,
 				4F214E4923B78E0600A5911F /* WCWebViewTool.m in Sources */,
 				4F4A9913244F3C7F00071219 /* WCFitHTMLContentWKWebView.m in Sources */,
+				4FC16198244FFA1C002A93C3 /* DisableLinkPreviewWKViewController.m in Sources */,
 				4F27EBAE24138BED0022349C /* GetUserAgentViewController.m in Sources */,
 				4F45F3B3244ECB5900043A35 /* LoadLocalWebPageViewController.m in Sources */,
 				4F1DC2F3244DC098008E3E1F /* UseWKNavigationDelegateViewController.m in Sources */,

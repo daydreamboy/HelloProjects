@@ -27,14 +27,6 @@
 
 #pragma mark -
 
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-    CGRect frame = self.frame;
-    frame.size.height = 0;
-    self.frame = frame;
-    
-    decisionHandler(WKNavigationActionPolicyAllow);
-}
-
 - (void)webView:(WKWebView *)webView didFinishNavigation:(WKNavigation *)navigation {
     // @see https://stackoverflow.com/a/45674575
     [self evaluateJavaScript:@"document.readyState" completionHandler:^(NSString *_Nullable readyState, NSError * _Nullable error) {
@@ -46,7 +38,6 @@
                     NSLog(@"scrollHeight: %@", scrollHeight);
                     self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, [scrollHeight doubleValue]);
                     self.frame = FrameSetSize(self.frame, NAN, [scrollHeight doubleValue]);
-                    [self setNeedsLayout];
                 }
             }];
         }

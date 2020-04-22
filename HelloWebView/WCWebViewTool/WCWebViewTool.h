@@ -87,6 +87,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)userAgentWithWKWebView:(WKWebView *)webView completion:(void (^)(NSString *userAgent))completion;
 
+#pragma mark - Configure WebView
+
++ (BOOL)toggleLinkPreviewWithWKWebView:(WKWebView *)webView enabled:(BOOL)enabled;
+
 #pragma mark - UIWebView
 
 #pragma mark > Query HTML

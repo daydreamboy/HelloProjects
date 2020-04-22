@@ -69,7 +69,7 @@
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     sEnd = CACurrentMediaTime();
-    NSLog(@"start: %f", sEnd);
+    NSLog(@"end: %f", sEnd);
     NSLog(@"duration: %f", sEnd - sStart);
 }
 

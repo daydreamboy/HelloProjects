@@ -13,6 +13,7 @@
 #import "GetUserAgentViewController.h"
 #import "UseWKNavigationDelegateViewController.h"
 #import "HTMLCodeTestListWKViewController.h"
+#import "DisableLinkPreviewWKViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -38,16 +39,18 @@
         @"HTML列表",
         @"Load Web Page Url",
         @"Load HTML string",
-        @"Get User Agent",
         @"Use WKNavigationDelegate",
+        @"Get User Agent",
+        @"Disable Link Preview",
         @"call a test method",
     ];
     _classes = @[
         [HTMLCodeTestListWKViewController class],
         [LoadRemoteWebPageViewController class],
         [LoadHTMLStringViewController class],
-        [GetUserAgentViewController class],
         [UseWKNavigationDelegateViewController class],
+        [GetUserAgentViewController class],
+        [DisableLinkPreviewWKViewController class],
         @"testMethod",
     ];
 }
