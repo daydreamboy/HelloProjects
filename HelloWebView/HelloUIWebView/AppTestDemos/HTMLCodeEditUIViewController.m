@@ -41,7 +41,7 @@
     self.textViewEdit.text = self.HTMLCodeString;
     
     
-    NSString *HTMLString = [NSString stringWithFormat:@"<html><body><pre class=\"prettyprint linenums\"><code class=\"language-html\">%@</code></pre></body></html>", self.HTMLCodeString];
+    NSString *HTMLString = [NSString stringWithFormat:@"<html><body><pre class=\"prettyprint linenums\"><code class=\"language-html\"><xmp>%@</xmp></code></pre></body></html>", self.HTMLCodeString];
     [self.webView loadHTMLString:HTMLString baseURL:nil];
     [self.view addSubview:self.webView];
 }

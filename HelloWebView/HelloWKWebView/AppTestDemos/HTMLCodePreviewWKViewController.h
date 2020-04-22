@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HTMLCodePreviewWKViewController : UIViewController
-- (instancetype)initWithHTMLString:(NSString *)HTMLString;
+- (instancetype)initWithHTMLString:(NSString *)HTMLString fileName:(NSString *)fileName;
 @end
 
 NS_ASSUME_NONNULL_END

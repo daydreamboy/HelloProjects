@@ -1,26 +1,25 @@
 //
-//  DisableLinkPreviewWKViewController.m
+//  DisableUserSelectWKViewController.m
 //  HelloWKWebView
 //
 //  Created by wesley_chen on 2020/4/22.
 //  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
-#import "DisableLinkPreviewWKViewController.h"
+#import "DisableUserSelectWKViewController.h"
 #import <WebKit/WebKit.h>
 #import "WCMacroTool.h"
 #import "WCWebViewTool.h"
 
 #define WebViewHeight 150
 
-@interface DisableLinkPreviewWKViewController () <WKUIDelegate, WKNavigationDelegate>
+@interface DisableUserSelectWKViewController () <WKUIDelegate, WKNavigationDelegate>
 @property (nonatomic, strong) WKWebView *webViewOriginal;
-@property (nonatomic, strong) WKWebView *webViewDisableByNative;
 @property (nonatomic, strong) WKWebView *webViewDisableByJS;
 @property (nonatomic, strong) NSString *HTMLString;
 @end
 
-@implementation DisableLinkPreviewWKViewController
+@implementation DisableUserSelectWKViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,10 +27,9 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.webViewOriginal];
-    [self.view addSubview:self.webViewDisableByNative];
     [self.view addSubview:self.webViewDisableByJS];
     
-    self.HTMLString = STR_OF_FILE(@"HTMLTestList/coupon.html");
+    self.HTMLString = STR_OF_FILE(@"HTMLTestList/div_selection.html");
     
     UIBarButtonItem *loadItem = [[UIBarButtonItem alloc] initWithTitle:@"Reload" style:UIBarButtonItemStylePlain target:self action:@selector(loadItemClicked:)];
     
@@ -64,8 +62,8 @@
     return _webViewOriginal;
 }
 
-- (WKWebView *)webViewDisableByNative {
-    if (!_webViewDisableByNative) {
+- (WKWebView *)webViewDisableByJS {
+    if (!_webViewDisableByJS) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         CGFloat marginH = 3;
         CGRect frame = CGRectMake(marginH, CGRectGetMaxY(_webViewOriginal.frame) + 5, screenSize.width - 2 * marginH, WebViewHeight);
@@ -79,30 +77,7 @@
         webView.scrollView.scrollEnabled = NO;
         
         [WCWebViewTool addViewportScriptWithWKWebView:webView];
-        [WCWebViewTool toggleLinkPreviewWithWKWebView:webView enabled:NO];
-        
-        _webViewDisableByNative = webView;
-    }
-    
-    return _webViewDisableByNative;
-}
-
-- (WKWebView *)webViewDisableByJS {
-    if (!_webViewDisableByJS) {
-        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        CGFloat marginH = 3;
-        CGRect frame = CGRectMake(marginH, CGRectGetMaxY(_webViewDisableByNative.frame) + 5, screenSize.width - 2 * marginH, WebViewHeight);
-        
-        WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
-        WKWebView *webView = [[WKWebView alloc] initWithFrame:frame configuration:configuration];
-        webView.UIDelegate = self;
-        webView.navigationDelegate = self;
-        webView.layer.borderColor = [UIColor orangeColor].CGColor;
-        webView.layer.borderWidth = 1;
-        webView.scrollView.scrollEnabled = NO;
-        
-        [WCWebViewTool addViewportScriptWithWKWebView:webView];
-        [WCWebViewTool addDisableTouchCalloutUserScriptWithWKWebView:webView];
+        [WCWebViewTool addDisableUserSelectUserScriptWithWKWebView:webView];
         
         _webViewDisableByJS = webView;
     }
@@ -133,24 +108,37 @@
 
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
 
-//    // Note: 禁用UIWebView的长按手势，避免导致长按变成单击跳转
-//    NSArray *subviews = [webView subviews];
-//    NSString *classNameToCheck = [@[ @"W", @"K", @"C", @"o", @"n", @"t", @"e", @"n", @"t", @"V", @"i", @"e", @"w" ] componentsJoinedByString:@""];
-//
-//    for (UIView *subview in subviews) {
-//        if ([subview isKindOfClass:[UIView class]]) {
-//            for (UIView *subview2 in [subview subviews]) {
-//                if ([subview2 isKindOfClass:[UIView class]] && [NSStringFromClass([subview2 class]) isEqualToString:classNameToCheck]) {
-//                    for (UIGestureRecognizer *recognizer in subview2.gestureRecognizers) {
-//                        if ([recognizer isKindOfClass:[UILongPressGestureRecognizer class]]) {
-//                            recognizer.enabled = NO;
-//                        }
+        // Note: 禁用UIWebView的长按手势，避免导致长按变成单击跳转
+        NSArray *subviews = [webView subviews];
+        //NSString *classNameToCheck = [@[ @"W", @"K", @"S", @"c", @"r", @"o", @"l", @"l", @"V", @"i", @"e", @"w" ] componentsJoinedByString:@""];
+        
+        NSString *classNameToCheck = [@[ @"W", @"K", @"C", @"o", @"n", @"t", @"e", @"n", @"t", @"V", @"i", @"e", @"w" ] componentsJoinedByString:@""];
+//        for (UIView *subview in subviews) {
+//            if ([subview isKindOfClass:[UIView class]] && [NSStringFromClass([subview class]) isEqualToString:classNameToCheck]) {
+//                for (UIGestureRecognizer *recognizer in subview.gestureRecognizers) {
+//                    if ([recognizer isKindOfClass:[UILongPressGestureRecognizer class]]) {
+//                        recognizer.enabled = NO;
 //                    }
-//                    break;
 //                }
+//                break;
 //            }
 //        }
-//    }
+        
+        for (UIView *subview in subviews) {
+            if ([subview isKindOfClass:[UIView class]]) {
+                for (UIView *subview2 in [subview subviews]) {
+                    if ([subview2 isKindOfClass:[UIView class]] && [NSStringFromClass([subview2 class]) isEqualToString:classNameToCheck]) {
+                        for (UIGestureRecognizer *recognizer in subview2.gestureRecognizers) {
+                            if ([recognizer isKindOfClass:[UILongPressGestureRecognizer class]]) {
+                                recognizer.enabled = NO;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+
     
     if (navigationAction.navigationType == WKNavigationTypeLinkActivated) {
         decisionHandler(WKNavigationActionPolicyCancel);
@@ -166,7 +154,6 @@
 - (void)loadItemClicked:(id)sender {
     if (self.HTMLString.length) {
         [self.webViewOriginal loadHTMLString:self.HTMLString baseURL:nil];
-        [self.webViewDisableByNative loadHTMLString:self.HTMLString baseURL:nil];
         [self.webViewDisableByJS loadHTMLString:self.HTMLString baseURL:nil];
     }
 }

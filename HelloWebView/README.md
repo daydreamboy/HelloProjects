@@ -105,7 +105,43 @@ History
 
 
 
+### （5）常见问题
 
+#### WKWebView设置allowsLinkPreview为NO后，长按变成单击
+
+问题：WKWebView设置allowsLinkPreview为NO后，长按变成单击。即使长按拖出区域，还是单击效果。
+
+解决方法：不要设置设置allowsLinkPreview为NO，还是默认YES，使用下面JS代码设置用户不能选中内容，如下
+
+```javascript
+// iOS 13+
+document.documentElement.style.webkitUserSelect='none';
+// iOS 12-
+document.body.style.webkitUserSelect='none';
+```
+
+
+
+#### WKWebView变成普通UIView
+
+WKWebView默认有些行为，使得它和普通UIView不一样。主要有下面特性
+
+* 长按可以预览
+* 可以选中内容
+
+* 长按有放大镜
+
+
+
+有两种方法可以解决
+
+1. JS代码禁用UserSelect和TouchCallout
+2. Native代码设置allowsLinkPreview为YES（效果和禁用TouchCallout一样），但是存在长按变单击问题，因此需要Hook WKWebView的长按手势，使其不能生效，但是Hook成功后，会出现可以选中内容的情况，还需要禁用UserSelect。最后解决方案是：allowsLinkPreview=YES + Hook长按手势 + 禁用UserSelect
+
+比较而言，第一种方法要好一些。
+
+> 1. 示例代码，见WebViewFakeUIViewWKViewController
+> 2. Hook WKWebView的长按手势，见disableLongPressWithWKWebView方法。注意：初始化WebView时不能调用该方法，因为WKWebView还没有手势。
 
 
 

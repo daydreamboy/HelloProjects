@@ -8,6 +8,11 @@
 
 #import "WCWebViewTool.h"
 
+// >= `13.0`
+#ifndef IOS13_OR_LATER
+#define IOS13_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"13.0" options:NSNumericSearch] != NSOrderedAscending)
+#endif
+
 @implementation WCWebViewTool
 
 #pragma mark - WKWebView
@@ -100,15 +105,38 @@
 #pragma mark > Preset User Script
 
 + (WKUserScript *)viewportUserScript {
-    //NSString *script = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;'); document.getElementsByTagName('head')[0].appendChild(meta);";
     NSString *script = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width; initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;'); document.getElementsByTagName('head')[0].appendChild(meta);";
     // Note: use WCUserScriptAtEnd for after all DOM loaded to insert viewport
+    return WCUserScriptAtEnd(script);
+}
+
++ (WKUserScript *)disableTouchCalloutUserScript {
+    NSString *script = IOS13_OR_LATER ? @"document.documentElement.style.webkitTouchCallout='none';" : @"document.body.style.webkitTouchCallout='none';";
+    return WCUserScriptAtEnd(script);
+}
+
++ (WKUserScript *)disableUserSelectUserScript {
+    NSString *script = IOS13_OR_LATER ? @"document.documentElement.style.webkitUserSelect='none';" : @"document.body.style.webkitUserSelect='none';";
     return WCUserScriptAtEnd(script);
 }
 
 #pragma mark > Add User Script
 
 + (BOOL)addViewportScriptWithWKWebView:(WKWebView *)webView {
+    return [self addUserScriptWithWKWebView:webView userScript:[self viewportUserScript]];
+}
+
++ (BOOL)addDisableTouchCalloutUserScriptWithWKWebView:(WKWebView *)webView {
+    return [self addUserScriptWithWKWebView:webView userScript:[self disableTouchCalloutUserScript]];
+}
+
++ (BOOL)addDisableUserSelectUserScriptWithWKWebView:(WKWebView *)webView {
+    return [self addUserScriptWithWKWebView:webView userScript:[self disableUserSelectUserScript]];
+}
+
+#pragma mark ::
+
++ (BOOL)addUserScriptWithWKWebView:(WKWebView *)webView userScript:(WKUserScript *)userScript {
     if (![webView isKindOfClass:[WKWebView class]]) {
         return NO;
     }
@@ -118,9 +146,12 @@
     }
     
     WKUserContentController *contentController = webView.configuration.userContentController;
-    [contentController addUserScript:[self viewportUserScript]];
+    [contentController addUserScript:userScript];
+    
     return YES;
 }
+
+#pragma mark ::
 
 #pragma mark > Query Browser
 
@@ -143,7 +174,7 @@
     }];
 }
 
-#pragma mark - Configure WebView
+#pragma mark > Configure WebView
 
 + (BOOL)toggleLinkPreviewWithWKWebView:(WKWebView *)webView enabled:(BOOL)enabled {
     if (![webView isKindOfClass:[WKWebView class]]) {
@@ -160,6 +191,37 @@
     }
     
     return NO;
+}
+
+#pragma mark > Hook WebView
+
++ (BOOL)disableLongPressWithWKWebView:(WKWebView *)webView {
+    if (![webView isKindOfClass:[WKWebView class]]) {
+        return NO;
+    }
+    
+    // Note: 禁用WKWebView的长按手势，避免导致长按变成单击跳转
+    NSArray *subviews = [webView subviews];
+    NSString *classNameToCheck = [@[ @"W", @"K", @"C", @"o", @"n", @"t", @"e", @"n", @"t", @"V", @"i", @"e", @"w" ] componentsJoinedByString:@""];
+
+    BOOL hooked = NO;
+    for (UIView *subview in subviews) {
+        if ([subview isKindOfClass:[UIView class]]) {
+            for (UIView *subview2 in [subview subviews]) {
+                if ([subview2 isKindOfClass:[UIView class]] && [NSStringFromClass([subview2 class]) isEqualToString:classNameToCheck]) {
+                    for (UIGestureRecognizer *recognizer in subview2.gestureRecognizers) {
+                        if ([recognizer isKindOfClass:[UILongPressGestureRecognizer class]]) {
+                            recognizer.enabled = NO;
+                            hooked = YES;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+    }
+    
+    return hooked;
 }
 
 #pragma mark - UIWebView
@@ -220,6 +282,37 @@
     
     NSString *userAgent = [webView stringByEvaluatingJavaScriptFromString:@"navigator.userAgent"];
     return userAgent;
+}
+
+#pragma mark > Hook WebView
+
++ (BOOL)disableLongPressWithUIWebView:(UIWebView *)webView {
+    if (![webView isKindOfClass:[UIWebView class]]) {
+        return NO;
+    }
+    
+    // Note: 禁用UIWebView的长按手势，避免导致长按变成单击跳转
+    NSArray *subviews = [webView subviews];
+    NSString *classNameToCheck = [@[ @"U", @"I", @"W", @"e", @"b", @"B", @"r", @"o", @"w", @"s", @"e", @"r", @"V", @"i", @"e", @"w" ] componentsJoinedByString:@""];
+    
+    BOOL hooked = NO;
+    for (UIView *subview in subviews) {
+        if ([subview isKindOfClass:[UIView class]]) {
+            for (UIView *subview2 in [subview subviews]) {
+                if ([subview2 isKindOfClass:[UIView class]] && [NSStringFromClass([subview2 class]) isEqualToString:classNameToCheck]) {
+                    for (UIGestureRecognizer *recognizer in subview2.gestureRecognizers) {
+                        if ([recognizer isKindOfClass:[UILongPressGestureRecognizer class]]) {
+                            recognizer.enabled = NO;
+                            hooked = YES;
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+    }
+    
+    return hooked;
 }
 
 @end

@@ -33,12 +33,13 @@
 		4F27EBAE24138BED0022349C /* GetUserAgentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F27EBAD24138BED0022349C /* GetUserAgentViewController.m */; };
 		4F45F3B0244E9B3400043A35 /* LoadHTMLStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F45F3AF244E9B3400043A35 /* LoadHTMLStringViewController.m */; };
 		4F45F3B3244ECB5900043A35 /* LoadLocalWebPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F45F3B2244ECB5900043A35 /* LoadLocalWebPageViewController.m */; };
-		4F4A9913244F3C7F00071219 /* WCFitHTMLContentWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A9912244F3C7F00071219 /* WCFitHTMLContentWKWebView.m */; };
 		4F4A9916244F4C6900071219 /* HTMLCodeEditWKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A9915244F4C6900071219 /* HTMLCodeEditWKViewController.m */; };
 		4F4A9919244F4C8500071219 /* HTMLCodeTestListWKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A9918244F4C8500071219 /* HTMLCodeTestListWKViewController.m */; };
 		4F4A991C244F4CA100071219 /* HTMLCodePreviewWKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4A991B244F4CA100071219 /* HTMLCodePreviewWKViewController.m */; };
 		4F77D9DF241131CB00BC2BA2 /* GetUserAgentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F77D9DE241131CB00BC2BA2 /* GetUserAgentViewController.m */; };
 		4FC16198244FFA1C002A93C3 /* DisableLinkPreviewWKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC16197244FFA1C002A93C3 /* DisableLinkPreviewWKViewController.m */; };
+		4FC1619C245072CE002A93C3 /* DisableUserSelectWKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1619B245072CE002A93C3 /* DisableUserSelectWKViewController.m */; };
+		4FCDC7CA24509E2500428663 /* WebViewFakeUIViewWKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCDC7C924509E2500428663 /* WebViewFakeUIViewWKViewController.m */; };
 		4FFE8806244EF72F00CB11FA /* LoadHTMLStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE8805244EF72F00CB11FA /* LoadHTMLStringViewController.m */; };
 		4FFE880B244EFA2700CB11FA /* HTMLCodeEditUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE8809244EFA2700CB11FA /* HTMLCodeEditUIViewController.m */; };
 		4FFE880C244EFA2700CB11FA /* HTMLCodeTestListUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE880A244EFA2700CB11FA /* HTMLCodeTestListUIViewController.m */; };
@@ -101,8 +102,6 @@
 		4F45F3AF244E9B3400043A35 /* LoadHTMLStringViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadHTMLStringViewController.m; sourceTree = "<group>"; };
 		4F45F3B1244ECB5900043A35 /* LoadLocalWebPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadLocalWebPageViewController.h; sourceTree = "<group>"; };
 		4F45F3B2244ECB5900043A35 /* LoadLocalWebPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadLocalWebPageViewController.m; sourceTree = "<group>"; };
-		4F4A9911244F3C7F00071219 /* WCFitHTMLContentWKWebView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCFitHTMLContentWKWebView.h; sourceTree = "<group>"; };
-		4F4A9912244F3C7F00071219 /* WCFitHTMLContentWKWebView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCFitHTMLContentWKWebView.m; sourceTree = "<group>"; };
 		4F4A9914244F4C6900071219 /* HTMLCodeEditWKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMLCodeEditWKViewController.h; sourceTree = "<group>"; };
 		4F4A9915244F4C6900071219 /* HTMLCodeEditWKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTMLCodeEditWKViewController.m; sourceTree = "<group>"; };
 		4F4A9917244F4C8500071219 /* HTMLCodeTestListWKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HTMLCodeTestListWKViewController.h; sourceTree = "<group>"; };
@@ -113,6 +112,10 @@
 		4F77D9DE241131CB00BC2BA2 /* GetUserAgentViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetUserAgentViewController.m; sourceTree = "<group>"; };
 		4FC16196244FFA1C002A93C3 /* DisableLinkPreviewWKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DisableLinkPreviewWKViewController.h; sourceTree = "<group>"; };
 		4FC16197244FFA1C002A93C3 /* DisableLinkPreviewWKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DisableLinkPreviewWKViewController.m; sourceTree = "<group>"; };
+		4FC1619A245072CE002A93C3 /* DisableUserSelectWKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DisableUserSelectWKViewController.h; sourceTree = "<group>"; };
+		4FC1619B245072CE002A93C3 /* DisableUserSelectWKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DisableUserSelectWKViewController.m; sourceTree = "<group>"; };
+		4FCDC7C824509E2500428663 /* WebViewFakeUIViewWKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WebViewFakeUIViewWKViewController.h; sourceTree = "<group>"; };
+		4FCDC7C924509E2500428663 /* WebViewFakeUIViewWKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewFakeUIViewWKViewController.m; sourceTree = "<group>"; };
 		4FFE8804244EF72F00CB11FA /* LoadHTMLStringViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadHTMLStringViewController.h; sourceTree = "<group>"; };
 		4FFE8805244EF72F00CB11FA /* LoadHTMLStringViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadHTMLStringViewController.m; sourceTree = "<group>"; };
 		4FFE8807244EFA2600CB11FA /* HTMLCodeEditUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTMLCodeEditUIViewController.h; sourceTree = "<group>"; };
@@ -215,6 +218,10 @@
 				4F1DC2F5244DCBCD008E3E1F /* UseWKUIDelegateViewController.m */,
 				4FC16196244FFA1C002A93C3 /* DisableLinkPreviewWKViewController.h */,
 				4FC16197244FFA1C002A93C3 /* DisableLinkPreviewWKViewController.m */,
+				4FC1619A245072CE002A93C3 /* DisableUserSelectWKViewController.h */,
+				4FC1619B245072CE002A93C3 /* DisableUserSelectWKViewController.m */,
+				4FCDC7C824509E2500428663 /* WebViewFakeUIViewWKViewController.h */,
+				4FCDC7C924509E2500428663 /* WebViewFakeUIViewWKViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -241,8 +248,6 @@
 			children = (
 				4F214E4723B78E0600A5911F /* WCWebViewTool.h */,
 				4F214E4823B78E0600A5911F /* WCWebViewTool.m */,
-				4F4A9911244F3C7F00071219 /* WCFitHTMLContentWKWebView.h */,
-				4F4A9912244F3C7F00071219 /* WCFitHTMLContentWKWebView.m */,
 			);
 			path = WCWebViewTool;
 			sourceTree = "<group>";
@@ -445,8 +450,8 @@
 			files = (
 				4F1B382423B77F5500349B62 /* AppDelegate.m in Sources */,
 				4F1DC2F6244DCBCD008E3E1F /* UseWKUIDelegateViewController.m in Sources */,
+				4FC1619C245072CE002A93C3 /* DisableUserSelectWKViewController.m in Sources */,
 				4F214E4923B78E0600A5911F /* WCWebViewTool.m in Sources */,
-				4F4A9913244F3C7F00071219 /* WCFitHTMLContentWKWebView.m in Sources */,
 				4FC16198244FFA1C002A93C3 /* DisableLinkPreviewWKViewController.m in Sources */,
 				4F27EBAE24138BED0022349C /* GetUserAgentViewController.m in Sources */,
 				4F45F3B3244ECB5900043A35 /* LoadLocalWebPageViewController.m in Sources */,
@@ -456,6 +461,7 @@
 				4F4A9919244F4C8500071219 /* HTMLCodeTestListWKViewController.m in Sources */,
 				4F45F3B0244E9B3400043A35 /* LoadHTMLStringViewController.m in Sources */,
 				4F1B384123B77F9600349B62 /* RootViewController.m in Sources */,
+				4FCDC7CA24509E2500428663 /* WebViewFakeUIViewWKViewController.m in Sources */,
 				4F1B383523B77F5900349B62 /* main.m in Sources */,
 				4F4A991C244F4CA100071219 /* HTMLCodePreviewWKViewController.m in Sources */,
 				4FFE8810244EFAB600CB11FA /* WCFileManagerTool.m in Sources */,

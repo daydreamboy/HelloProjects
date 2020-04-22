@@ -17,20 +17,23 @@ static NSTimeInterval sEnd;
 @interface HTMLCodePreviewWKViewController () <WKNavigationDelegate, WKUIDelegate>
 @property (nonatomic, strong) WKWebView *webView;
 @property (nonatomic, copy) NSString *HTMLString;
+@property (nonatomic, copy) NSString *fileName;
 @end
 
 @implementation HTMLCodePreviewWKViewController
 
-- (instancetype)initWithHTMLString:(NSString *)HTMLString {
+- (instancetype)initWithHTMLString:(NSString *)HTMLString fileName:(NSString *)fileName {
     self = [super init];
     if (self) {
         _HTMLString = HTMLString;
+        _fileName = fileName;
     }
     return self;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = self.fileName;
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.webView];
@@ -51,7 +54,7 @@ static NSTimeInterval sEnd;
         webView.layer.borderColor = [UIColor orangeColor].CGColor;
         webView.layer.borderWidth = 1;
         webView.opaque = NO;
-        webView.allowsLinkPreview = NO;
+//        webView.allowsLinkPreview = NO;
         webView.backgroundColor = [UIColor clearColor];
         [WCWebViewTool addViewportScriptWithWKWebView:webView];
         

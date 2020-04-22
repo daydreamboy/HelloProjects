@@ -123,7 +123,7 @@
         vc.HTMLCodeString = JSCode;
         __weak typeof(self) weak_self = self;
         vc.runBlock = ^(NSString * _Nonnull HTMLCode) {
-            HTMLCodePreviewWKViewController *vc = [[HTMLCodePreviewWKViewController alloc] initWithHTMLString:HTMLCode];
+            HTMLCodePreviewWKViewController *vc = [[HTMLCodePreviewWKViewController alloc] initWithHTMLString:HTMLCode fileName:[filePath lastPathComponent]];
             [weak_self.navigationController pushViewController:vc animated:YES];
         };
         
@@ -141,7 +141,7 @@
     NSError *error;
     NSString *HTMLCode = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
     if (!error) {
-        HTMLCodePreviewWKViewController *vc = [[HTMLCodePreviewWKViewController alloc] initWithHTMLString:HTMLCode];
+        HTMLCodePreviewWKViewController *vc = [[HTMLCodePreviewWKViewController alloc] initWithHTMLString:HTMLCode fileName:[filePath lastPathComponent]];
         [self.navigationController pushViewController:vc animated:YES];
     }
     else {

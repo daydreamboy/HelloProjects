@@ -58,6 +58,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)addViewportScriptWithWKWebView:(WKWebView *)webView;
 
++ (BOOL)addDisableTouchCalloutUserScriptWithWKWebView:(WKWebView *)webView;
++ (BOOL)addDisableUserSelectUserScriptWithWKWebView:(WKWebView *)webView;
+
 #pragma mark > Preset User Script
 
 /**
@@ -65,13 +68,25 @@ NS_ASSUME_NONNULL_BEGIN
  
  @code
  <head>
- <meta name="viewport" content="width=device-width; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no">
+ <meta name="viewport" content="width=device-width; initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no">
  </head>
  
  @return the script
  @see https://stackoverflow.com/questions/10666484/html-content-fit-in-uiwebview-without-zooming-out
  */
 + (WKUserScript *)viewportUserScript;
+
+/**
+ 
+ @see https://stackoverflow.com/a/12694403
+ */
++ (WKUserScript *)disableTouchCalloutUserScript;
+
+/**
+ 
+ @see https://stackoverflow.com/a/12694403
+ */
++ (WKUserScript *)disableUserSelectUserScript;
 
 #pragma mark > Execute User Script
 
@@ -87,9 +102,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)userAgentWithWKWebView:(WKWebView *)webView completion:(void (^)(NSString *userAgent))completion;
 
-#pragma mark - Configure WebView
+#pragma mark > Configure WebView
 
 + (BOOL)toggleLinkPreviewWithWKWebView:(WKWebView *)webView enabled:(BOOL)enabled;
+
+#pragma mark > Hook WebView
+
++ (BOOL)disableLongPressWithWKWebView:(WKWebView *)webView;
 
 #pragma mark - UIWebView
 
@@ -135,6 +154,10 @@ NS_ASSUME_NONNULL_BEGIN
  @see https://stackoverflow.com/a/19184414
  */
 + (nullable NSString *)userAgentWithUIWebView:(UIWebView *)webView;
+
+#pragma mark > Hook WebView
+
++ (BOOL)disableLongPressWithUIWebView:(UIWebView *)webView;
 
 @end
 

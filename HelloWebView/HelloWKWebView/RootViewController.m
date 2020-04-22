@@ -14,6 +14,8 @@
 #import "UseWKNavigationDelegateViewController.h"
 #import "HTMLCodeTestListWKViewController.h"
 #import "DisableLinkPreviewWKViewController.h"
+#import "DisableUserSelectWKViewController.h"
+#import "WebViewFakeUIViewWKViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -42,6 +44,8 @@
         @"Use WKNavigationDelegate",
         @"Get User Agent",
         @"Disable Link Preview",
+        @"Disable User Select",
+        @"WKWebView Fake as UIView",
         @"call a test method",
     ];
     _classes = @[
@@ -51,6 +55,8 @@
         [UseWKNavigationDelegateViewController class],
         [GetUserAgentViewController class],
         [DisableLinkPreviewWKViewController class],
+        [DisableUserSelectWKViewController class],
+        [WebViewFakeUIViewWKViewController class],
         @"testMethod",
     ];
 }
