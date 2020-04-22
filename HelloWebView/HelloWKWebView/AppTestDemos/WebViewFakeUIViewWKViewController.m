@@ -13,7 +13,7 @@
 
 #define WebViewHeight 150
 
-@interface WebViewFakeUIViewWKViewController () <WKUIDelegate, WKNavigationDelegate>
+@interface WebViewFakeUIViewWKViewController () <WKUIDelegate, WKNavigationDelegate, UIGestureRecognizerDelegate>
 @property (nonatomic, strong) WKWebView *webViewOriginal;
 @property (nonatomic, strong) WKWebView *webViewFakeByJS;
 @property (nonatomic, strong) WKWebView *webViewFakeByHook;
@@ -104,6 +104,15 @@
         webView.layer.borderWidth = 1;
         webView.scrollView.scrollEnabled = NO;
         
+        if (!IOS13_OR_LATER) {
+            // @see https://blog.csdn.net/timtian008/article/details/71634545
+            // @see https://stackoverflow.com/a/32873667
+            UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:nil];
+            longPress.delegate = self;
+            longPress.minimumPressDuration = 0.2;
+            [webView addGestureRecognizer:longPress];
+        }
+
         [WCWebViewTool addViewportScriptWithWKWebView:webView];
         [WCWebViewTool addDisableUserSelectUserScriptWithWKWebView:webView];
         [WCWebViewTool toggleLinkPreviewWithWKWebView:webView enabled:NO];
@@ -141,6 +150,11 @@
         [self.webViewFakeByJS loadHTMLString:self.HTMLString baseURL:nil];
         [self.webViewFakeByHook loadHTMLString:self.HTMLString baseURL:nil];
     }
+}
+
+#pragma mark - GestureRecognizerDelegate
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return NO;
 }
 
 @end

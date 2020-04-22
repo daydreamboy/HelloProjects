@@ -80,13 +80,13 @@ NS_ASSUME_NONNULL_BEGIN
  
  @see https://stackoverflow.com/a/12694403
  */
-+ (WKUserScript *)disableTouchCalloutUserScript;
++ (NSArray<WKUserScript *> *)disableTouchCalloutUserScript;
 
 /**
  
  @see https://stackoverflow.com/a/12694403
  */
-+ (WKUserScript *)disableUserSelectUserScript;
++ (NSArray<WKUserScript *> *)disableUserSelectUserScript;
 
 #pragma mark > Execute User Script
 

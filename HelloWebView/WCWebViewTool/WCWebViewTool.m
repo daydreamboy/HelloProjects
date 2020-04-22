@@ -8,11 +8,6 @@
 
 #import "WCWebViewTool.h"
 
-// >= `13.0`
-#ifndef IOS13_OR_LATER
-#define IOS13_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"13.0" options:NSNumericSearch] != NSOrderedAscending)
-#endif
-
 @implementation WCWebViewTool
 
 #pragma mark - WKWebView
@@ -110,33 +105,37 @@
     return WCUserScriptAtEnd(script);
 }
 
-+ (WKUserScript *)disableTouchCalloutUserScript {
-    NSString *script = IOS13_OR_LATER ? @"document.documentElement.style.webkitTouchCallout='none';" : @"document.body.style.webkitTouchCallout='none';";
-    return WCUserScriptAtEnd(script);
++ (NSArray<WKUserScript *> *)disableTouchCalloutUserScript {
+    //NSString *script = IOS13_OR_LATER ? @"document.documentElement.style.webkitTouchCallout='none';" :
+    NSString *scriptForIOS13 = @"document.documentElement.style.webkitTouchCallout='none';";
+    NSString *scriptForBeforeIOS13 = @"document.body.style.webkitTouchCallout='none';";
+    NSString *scriptForUnknown = @"document.body.style.KhtmlUserSelect='none'";
+    return @[ WCUserScriptAtEnd(scriptForIOS13), WCUserScriptAtEnd(scriptForBeforeIOS13), WCUserScriptAtEnd(scriptForUnknown) ];
 }
 
-+ (WKUserScript *)disableUserSelectUserScript {
-    NSString *script = IOS13_OR_LATER ? @"document.documentElement.style.webkitUserSelect='none';" : @"document.body.style.webkitUserSelect='none';";
-    return WCUserScriptAtEnd(script);
++ (NSArray<WKUserScript *> *)disableUserSelectUserScript {
+    NSString *scriptForIOS13 = @"document.documentElement.style.webkitUserSelect='none';";
+    NSString *scriptForBeforeIOS13 = @"document.body.style.webkitUserSelect='none';";
+    return @[ WCUserScriptAtEnd(scriptForIOS13), WCUserScriptAtEnd(scriptForBeforeIOS13) ];
 }
 
 #pragma mark > Add User Script
 
 + (BOOL)addViewportScriptWithWKWebView:(WKWebView *)webView {
-    return [self addUserScriptWithWKWebView:webView userScript:[self viewportUserScript]];
+    return [self addUserScriptWithWKWebView:webView userScripts:@[ [self viewportUserScript] ]];
 }
 
 + (BOOL)addDisableTouchCalloutUserScriptWithWKWebView:(WKWebView *)webView {
-    return [self addUserScriptWithWKWebView:webView userScript:[self disableTouchCalloutUserScript]];
+    return [self addUserScriptWithWKWebView:webView userScripts:[self disableTouchCalloutUserScript]];
 }
 
 + (BOOL)addDisableUserSelectUserScriptWithWKWebView:(WKWebView *)webView {
-    return [self addUserScriptWithWKWebView:webView userScript:[self disableUserSelectUserScript]];
+    return [self addUserScriptWithWKWebView:webView userScripts:[self disableUserSelectUserScript]];
 }
 
 #pragma mark ::
 
-+ (BOOL)addUserScriptWithWKWebView:(WKWebView *)webView userScript:(WKUserScript *)userScript {
++ (BOOL)addUserScriptWithWKWebView:(WKWebView *)webView userScripts:(NSArray<WKUserScript *> *)userScripts {
     if (![webView isKindOfClass:[WKWebView class]]) {
         return NO;
     }
@@ -146,7 +145,9 @@
     }
     
     WKUserContentController *contentController = webView.configuration.userContentController;
-    [contentController addUserScript:userScript];
+    for (WKUserScript *userScript in userScripts) {
+        [contentController addUserScript:userScript];
+    }
     
     return YES;
 }
