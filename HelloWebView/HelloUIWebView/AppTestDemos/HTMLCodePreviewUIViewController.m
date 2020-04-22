@@ -8,7 +8,6 @@
 
 #import "HTMLCodePreviewUIViewController.h"
 #import "WCMacroTool.h"
-#import "YWHybridWebView.h"
 
 static float sStart;
 static float sEnd;
@@ -55,7 +54,7 @@ static float sEnd;
     if (!_webView) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         CGFloat marginH = 3;
-        CGRect frame = CGRectMake(marginH, 0, screenSize.width - 2 * marginH, 60);
+        CGRect frame = CGRectMake(marginH, 0, 200/*screenSize.width - 2 * marginH*/, 60);
         
         UIWebView *webView = [[UIWebView alloc] initWithFrame:frame];
         webView.delegate = self;

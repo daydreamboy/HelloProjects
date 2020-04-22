@@ -9,6 +9,7 @@
 #import "HTMLCodePreviewWKViewController.h"
 #import "WCMacroTool.h"
 #import <WebKit/WebKit.h>
+#import "WCWebViewTool.h"
 
 static float sStart;
 static float sEnd;
@@ -44,7 +45,7 @@ static float sEnd;
 //        }
 //    }
     
-    [self.webView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+//    [self.webView.scrollView addObserver:self forKeyPath:@"contentSize" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     
     [self.webView loadHTMLString:self.HTMLString baseURL:nil];
 }
@@ -55,7 +56,7 @@ static float sEnd;
     if (!_webView) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         CGFloat marginH = 3;
-        CGRect frame = CGRectMake(marginH, 0, screenSize.width - 2 * marginH, 60);
+        CGRect frame = CGRectMake(marginH, 0, screenSize.width - 2 * marginH, 600);
         
         WKWebView *webView = [[WKWebView alloc] initWithFrame:frame];
         webView.navigationDelegate = self;
@@ -64,6 +65,7 @@ static float sEnd;
         webView.layer.borderWidth = 1;
         webView.opaque = NO;
         webView.backgroundColor = [UIColor clearColor];
+        [WCWebViewTool addViewportScriptWithWKWebView:webView];
         
         _webView = webView;
     }

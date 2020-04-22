@@ -12,7 +12,7 @@
 #import "HTMLCodePreviewWKViewController.h"
 #import "WCMacroTool.h"
 
-@interface HTMLCodeTestListWKViewController ()
+@interface HTMLCodeTestListWKViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray<NSString *> *listData;
 @property (nonatomic, strong) NSString *dirPath;
@@ -42,7 +42,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"JSCode列表";
+    self.title = @"HTMLCode列表";
     if (IOS11_OR_LATER) {
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= 110000
 #pragma GCC diagnostic push
@@ -66,7 +66,6 @@
 }
 
 - (void)dealloc {
-//    [WCJSCTimerManager unregisterWithContext:self.context];
 }
 
 #pragma mark - Actions

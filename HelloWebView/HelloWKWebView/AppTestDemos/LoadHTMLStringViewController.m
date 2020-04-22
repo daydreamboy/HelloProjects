@@ -30,7 +30,7 @@
     //[self.webView addObserver:self forKeyPath:NSStringFromSelector(@selector(estimatedProgress)) options:NSKeyValueObservingOptionNew context:NULL];
     
     self.textViewHTMLString.text = STR_OF_JSON(
-   <div style="min-width:180px;max-width:300px;background:#fff;margin:0;font-size:12px;line-height:16px;font-family:arial;">
+   <div style="min-width:180px;max-width:100px;background:#fff;margin:0;font-size:12px;line-height:16px;font-family:arial;">
        <a href="http://taoquan.taobao.com/coupon/unify_apply.htm?sellerId=263662065&activityId=4f63298a460c45cabf0553ab8ae49316" target="_blank" style="position:relative;display:block;padding:9px;background:#f2aa18;color:#fff;text-decoration:none;">
            <div style="text-align:center;font-size:12pt;margin-bottom:10px;">店铺优惠券</div>
            <div style="text-align:center;color:rgba(255,255,255,0.8);font-size:10pt;position:relative">
@@ -66,7 +66,7 @@
     if (!_webView) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         CGFloat marginH = 3;
-        CGRect frame = CGRectMake(marginH, CGRectGetHeight(self.textViewHTMLString.frame) + 5, screenSize.width - 2 * marginH, 1000);
+        CGRect frame = CGRectMake(marginH, CGRectGetHeight(self.textViewHTMLString.frame) + 5, 400/*screenSize.width - 2 * marginH*/, 1000);
         
         WKWebViewConfiguration *configuration = [WKWebViewConfiguration new];
         WCFitHTMLContentWKWebView *webView = [[WCFitHTMLContentWKWebView alloc] initWithFrame:frame configuration:configuration];

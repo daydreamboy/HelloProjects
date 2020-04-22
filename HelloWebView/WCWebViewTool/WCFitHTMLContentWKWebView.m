@@ -44,8 +44,9 @@
             [self evaluateJavaScript:script completionHandler:^(NSNumber *_Nullable scrollHeight, NSError * _Nullable error) {
                 if ([scrollHeight isKindOfClass:[NSNumber class]]) {
                     NSLog(@"scrollHeight: %@", scrollHeight);
+                    self.scrollView.contentSize = CGSizeMake(self.scrollView.contentSize.width, [scrollHeight doubleValue]);
                     self.frame = FrameSetSize(self.frame, NAN, [scrollHeight doubleValue]);
-                    [self invalidateIntrinsicContentSize];
+                    [self setNeedsLayout];
                 }
             }];
         }

@@ -100,7 +100,8 @@
 #pragma mark > Preset User Script
 
 + (WKUserScript *)viewportUserScript {
-    NSString *script = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;'); document.getElementsByTagName('head')[0].appendChild(meta);";
+    //NSString *script = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;'); document.getElementsByTagName('head')[0].appendChild(meta);";
+    NSString *script = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width; initial-scale=1.0; minimum-scale=1.0; maximum-scale=1.0; user-scalable=no;'); document.getElementsByTagName('head')[0].appendChild(meta);";
     // Note: use WCUserScriptAtEnd for after all DOM loaded to insert viewport
     return WCUserScriptAtEnd(script);
 }
