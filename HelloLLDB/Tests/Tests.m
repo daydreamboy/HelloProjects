@@ -54,6 +54,16 @@
     XCTAssertTrue(output);
 }
 
+- (void)test_stringWithInputFileName_crash {
+    NSString *output;
+    
+    @autoreleasepool {
+        output = @"12345"; // Note: use `e output = (id)[WCLLDBTool stringWithInputFileName:nil]` to overwrite
+        NSLog(@"%@", output);
+    }
+    XCTAssertTrue(output);
+}
+
 #pragma mark - Array
 
 - (void)test_filterArray_usingPredicateString_arg1_arg2_arg3_arg4_arg5 {
