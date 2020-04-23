@@ -24,6 +24,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (BOOL)dumpString:(NSString *)string outputToFileName:(nullable NSString *)fileName;
 
+#pragma mark > Read String from File
+
+/**
+ Read string from home file
+ 
+ @param inputFileName the home file. For simulator, located in ~. For device, located in NSHomeDirectory()
+ 
+ @return the content of the file
+ */
++ (nullable NSString *)stringWithInputFileName:(nullable NSString *)inputFileName;
+
 #pragma mark - Array
 
 #pragma mark > Filter

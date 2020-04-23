@@ -47,6 +47,13 @@
     XCTAssertTrue(output);
 }
 
+- (void)test_stringWithInputFileName {
+    NSString *output;
+    
+    output = [WCLLDBTool stringWithInputFileName:nil];
+    XCTAssertTrue(output);
+}
+
 #pragma mark - Array
 
 - (void)test_filterArray_usingPredicateString_arg1_arg2_arg3_arg4_arg5 {

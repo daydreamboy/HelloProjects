@@ -92,6 +92,38 @@
     return success;
 }
 
+#pragma mark > Read String from File
+
++ (nullable NSString *)stringWithInputFileName:(nullable NSString *)fileName {
+    if (fileName && ![fileName isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+        
+    NSString *filePath;
+    NSString *userHomeFileName = fileName.length ? fileName : @"lldb_input.txt";
+        
+#if TARGET_OS_SIMULATOR
+    NSString *appHomeDirectoryPath = [@"~" stringByExpandingTildeInPath];
+    NSArray *pathParts = [appHomeDirectoryPath componentsSeparatedByString:@"/"];
+    if (pathParts.count < 2) {
+        return nil;
+    }
+    
+    NSMutableArray *components = [NSMutableArray arrayWithObject:@"/"];
+    // Note: pathParts is @"", @"Users", @"<your name>", ...
+    [components addObjectsFromArray:[pathParts subarrayWithRange:NSMakeRange(1, 2)]];
+    [components addObject:userHomeFileName];
+    
+    filePath = [NSString pathWithComponents:components];
+#else
+    filePath = [NSHomeDirectory() stringByAppendingPathComponent:userHomeFileName];
+#endif
+        
+    NSString *string = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+    
+    return string;
+}
+
 #pragma mark - Array
 
 #pragma mark > Filter
