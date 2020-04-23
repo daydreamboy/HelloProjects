@@ -10,6 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface WCKVOObserver : NSObject
+@property (nonatomic, weak, readonly) id observedObject;
+@property (nonatomic, copy, readonly) void(^eventCallback)(id observedObject, WCKVOObserver *observer);
+@property (nonatomic, copy, readonly) NSString *keyPath;
+@property (nonatomic, assign, readonly) NSKeyValueObservingOptions options;
+@end
+
 @interface WCKVORegistrationInfo : NSObject
 @property (nonatomic, weak, nullable) NSObject *observedObject;
 @property (nonatomic, weak, nullable) NSObject *observer;
@@ -38,6 +45,10 @@ NS_ASSUME_NONNULL_BEGIN
  @see https://stackoverflow.com/a/9322342
  */
 + (nullable NSPointerArray *)observersWithObservationInfo:(void *)observationInfo;
+
+#pragma mark - Auto KVO
+
++ (BOOL)observeKVOEventWithObject:(NSObject *)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options associatedKey:(const void *)associatedKey eventCallback:(void (^)(id object, WCKVOObserver *observer))eventCallback;
 
 @end
 
