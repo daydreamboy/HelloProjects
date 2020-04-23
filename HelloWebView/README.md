@@ -126,14 +126,15 @@ document.body.style.webkitUserSelect='none';
 
 WKWebView默认有些行为，使得它和普通UIView不一样。主要有下面特性
 
-* 长按可以预览
-* 可以选中内容
+| 特性         | 禁用方式                                                     |
+| ------------ | ------------------------------------------------------------ |
+| 长按可以预览 | allowsLinkPreview=YES或者iOS13上设置document.documentElement.style.webkitTouchCallout='none'; |
+| 可以选中内容 | document.documentElement.style.webkitUserSelect='none';<br/>document.body.style.webkitUserSelect='none'; |
+| 长按有放大镜 | WebView添加小于0.5的长按手势，iOS 13上无放大镜               |
 
-* 长按有放大镜
 
 
-
-有两种方法可以解决
+iOS 13上有两种方法可以解决长按预览和选中内容：
 
 1. JS代码禁用UserSelect和TouchCallout
 2. Native代码设置allowsLinkPreview为YES（效果和禁用TouchCallout一样），但是存在长按变单击问题，因此需要Hook WKWebView的长按手势，使其不能生效，但是Hook成功后，会出现可以选中内容的情况，还需要禁用UserSelect。最后解决方案是：allowsLinkPreview=YES + Hook长按手势 + 禁用UserSelect
@@ -142,6 +143,12 @@ WKWebView默认有些行为，使得它和普通UIView不一样。主要有下�
 
 > 1. 示例代码，见WebViewFakeUIViewWKViewController
 > 2. Hook WKWebView的长按手势，见disableLongPressWithWKWebView方法。注意：初始化WebView时不能调用该方法，因为WKWebView还没有手势。
+
+
+
+iOS 12之前版本使用Hook方式，JS的document.body.style.webkitTouchCallout='none';不起作用。
+
+
 
 
 
