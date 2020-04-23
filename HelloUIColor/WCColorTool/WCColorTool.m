@@ -175,7 +175,7 @@
     }
 }
 
-#pragma mark - Private Methods
+#pragma mark ::
 
 + (void)componentsOfRed:(CGFloat *)red green:(CGFloat *)green blue:(CGFloat *)blue alpha:(CGFloat *)alpha fromColor:(UIColor *)color {
     const CGFloat *components = CGColorGetComponents(color.CGColor);
@@ -195,5 +195,7 @@
         *red = *green = *blue = *alpha = 0;
     }
 }
+
+#pragma mark ::
 
 @end
