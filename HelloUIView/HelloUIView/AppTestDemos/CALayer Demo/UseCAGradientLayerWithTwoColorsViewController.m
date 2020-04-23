@@ -8,6 +8,7 @@
 
 #import "UseCAGradientLayerWithTwoColorsViewController.h"
 #import "WCViewTool.h"
+#import "WCMacroTool.h"
 
 #ifndef UICOLOR_RGB
 #define UICOLOR_RGB(color)       [UIColor colorWithRed: (((color) >> 16) & 0xFF) / 255.0 green: (((color) >> 8) & 0xFF) / 255.0 blue: ((color) & 0xFF) / 255.0 alpha: 1.0]
@@ -28,6 +29,14 @@
     [self.view addSubview:self.view1];
     [self.view addSubview:self.view2];
     [self.view addSubview:self.view3];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        self.view3.frame = FrameSetSize(self.view3.frame, 100, 100);
+    });
 }
 
 - (UIView *)view1 {
@@ -55,7 +64,7 @@
         backgroundView.backgroundColor = [UIColor orangeColor];
         [view addSubview:backgroundView];
         
-        [WCViewTool addGradientLayerWithView:view startColor:[UIColor clearColor] endColor:[[UIColor blackColor] colorWithAlphaComponent:0.5] startPoint:CGPointMake(0.5, 0) endPoint:CGPointMake(0.5, 1) shouldAddToTop:YES];
+//        [WCViewTool addGradientLayerWithView:view startColor:[UIColor clearColor] endColor:[[UIColor blackColor] colorWithAlphaComponent:0.5] startPoint:CGPointMake(0.5, 0) endPoint:CGPointMake(0.5, 1) shouldAddToTop:YES];
         
         _view2 = view;
     }

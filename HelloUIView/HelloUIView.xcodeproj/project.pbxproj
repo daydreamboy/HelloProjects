@@ -27,6 +27,7 @@
 		4F502DE122CA56DA00137BE1 /* DottedLineViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F502DE022CA56DA00137BE1 /* DottedLineViewViewController.m */; };
 		4F517BB7212FD41C008CE69F /* BlurAnyViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F517BB6212FD41C008CE69F /* BlurAnyViewViewController.m */; };
 		4F517BB9212FD500008CE69F /* dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F517BB8212FD500008CE69F /* dog.jpg */; };
+		4F5747492451DDD70071C003 /* WCKVOTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5747482451DDD70071C003 /* WCKVOTool.m */; };
 		4F60E70322A7C85600C27087 /* WCResizableImageLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E70222A7C85600C27087 /* WCResizableImageLayer.m */; };
 		4F60E70622A7DBFB00C27087 /* StretchImageInLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60E70522A7DBFB00C27087 /* StretchImageInLayerViewController.m */; };
 		4F60E70822A7DD6800C27087 /* stretchableImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F60E70722A7DD6700C27087 /* stretchableImage.png */; };
@@ -113,6 +114,9 @@
 		4F517BB5212FD41C008CE69F /* BlurAnyViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlurAnyViewViewController.h; sourceTree = "<group>"; };
 		4F517BB6212FD41C008CE69F /* BlurAnyViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlurAnyViewViewController.m; sourceTree = "<group>"; };
 		4F517BB8212FD500008CE69F /* dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dog.jpg; sourceTree = "<group>"; };
+		4F5747462451D36D0071C003 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
+		4F5747472451DDD70071C003 /* WCKVOTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCKVOTool.h; sourceTree = "<group>"; };
+		4F5747482451DDD70071C003 /* WCKVOTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCKVOTool.m; sourceTree = "<group>"; };
 		4F60E70122A7C85600C27087 /* WCResizableImageLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCResizableImageLayer.h; sourceTree = "<group>"; };
 		4F60E70222A7C85600C27087 /* WCResizableImageLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCResizableImageLayer.m; sourceTree = "<group>"; };
 		4F60E70422A7DBFB00C27087 /* StretchImageInLayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StretchImageInLayerViewController.h; sourceTree = "<group>"; };
@@ -257,6 +261,7 @@
 			children = (
 				4F27D4B8237DBB53007E2B54 /* WCScrollViewTool.h */,
 				4F27D4B9237DBB53007E2B54 /* WCScrollViewTool.m */,
+				4F5747462451D36D0071C003 /* WCMacroTool.h */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -284,6 +289,8 @@
 			children = (
 				4F63EFE21FE10068000AFD6F /* WCViewTool.h */,
 				4F63EFE31FE10068000AFD6F /* WCViewTool.m */,
+				4F5747472451DDD70071C003 /* WCKVOTool.h */,
+				4F5747482451DDD70071C003 /* WCKVOTool.m */,
 				4F961BAF2133ABE2009402F3 /* UIView+UserInfo.h */,
 				4F961BB02133ABE2009402F3 /* UIView+UserInfo.m */,
 				4F961BB22133ABF5009402F3 /* UIView+Position.h */,
@@ -560,6 +567,7 @@
 				4F2C03CA237AE8B30074473E /* ShowCustomViewFixedSafeAreaLayoutFrameViewController.m in Sources */,
 				4F2C03C7237AE75A0074473E /* TouchView2.m in Sources */,
 				4FA301272151328C005A5344 /* GroupSubviewsByWrapperViewViewController.m in Sources */,
+				4F5747492451DDD70071C003 /* WCKVOTool.m in Sources */,
 				4F983BD81FFF8697009143E3 /* TouchThroughPartRegionOfViewViewController.m in Sources */,
 				4F1C88A8237992E200FC9897 /* TouchView.m in Sources */,
 				4FB43AC2200A476700D5D92D /* MappingRectFromViewToViewViewController.m in Sources */,

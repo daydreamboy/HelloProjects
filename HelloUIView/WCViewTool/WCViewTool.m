@@ -9,6 +9,7 @@
 #import "WCViewTool.h"
 #import <AVFoundation/AVFoundation.h>
 #import <objc/runtime.h>
+#import "WCKVOTool.h"
 
 #define PauseOnThisLineWhenAddedExceptionBreakpoint(shouldPause) \
 @try { \
@@ -313,6 +314,8 @@
 
 #pragma mark - Add Layers
 
+static void * const kAssociatedKeyaddGradientLayerWithView = (void *)&kAssociatedKeyaddGradientLayerWithView;
+
 + (BOOL)addGradientLayerWithView:(UIView *)view startColor:(UIColor *)startColor endColor:(UIColor *)endColor startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint shouldAddToTop:(BOOL)shouldAddToTop {
     if (![view isKindOfClass:[UIView class]] || ![startColor isKindOfClass:[UIColor class]] || ![endColor isKindOfClass:[UIColor class]]) {
         return NO;
@@ -334,7 +337,15 @@
         gradientLayer.startPoint = startPoint;
         gradientLayer.endPoint = endPoint;
         gradientLayer.masksToBounds = YES;
-        gradientLayer.frame = view.bounds;
+        gradientLayer.frame = view.layer.bounds;
+        
+        __weak typeof(gradientLayer) weak_gradientLayer = gradientLayer;
+        [WCKVOTool observeKVOEventWithObject:view.layer keyPath:@"bounds" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew associatedKey:kAssociatedKeyaddGradientLayerWithView eventCallback:^(CALayer * _Nonnull layer, WCKVOObserver *observer) {
+            [CATransaction begin];
+            [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+            weak_gradientLayer.frame = layer.bounds;
+            [CATransaction commit];
+        }];
         
         if (shouldAddToTop) {
             [view.layer addSublayer:gradientLayer];
