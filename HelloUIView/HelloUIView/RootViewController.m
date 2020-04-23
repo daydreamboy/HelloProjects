@@ -71,7 +71,7 @@
           @{ kTitle: @"UIView with two corners", kClass: [UseCAShapeLayerToShowViewWithTwoCornersViewController class] },
           @{ kTitle: @"Draw gradient view", kClass: [DrawGradientViewViewController class] },
           @{ kTitle: @"Draw radial gradient view", kClass: [DrawRadialGradientViewViewController class] },
-          @{ kTitle: @"gradient with two colors (Use CAGradientLayer)", kClass: [UseCAGradientLayerWithTwoColorsViewController class] },
+          @{ kTitle: @"Gradient with two colors (Use CAGradientLayer)", kClass: [UseCAGradientLayerWithTwoColorsViewController class] },
           @{ kTitle: @"Use CAGradientLayer", kClass: [UseCAGradientLayerWithMultipleColorsViewController class] },
           @{ kTitle: @"Add shadow border to image", kClass: [AddShadowBorderToImageViewController class] },
           @{ kTitle: @"Add border to image", kClass: [AddBorderToImageViewController class] },

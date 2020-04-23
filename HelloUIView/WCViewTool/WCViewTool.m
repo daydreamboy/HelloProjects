@@ -313,9 +313,9 @@
 
 #pragma mark - Add Layers
 
-+ (UIView *)addGradientLayerWithView:(UIView *)view startLeftColor:(UIColor *)startLeftColor endRightColor:(UIColor *)endRightColor {
-    if (![view isKindOfClass:[UIView class]] || ![startLeftColor isKindOfClass:[UIColor class]] || ![endRightColor isKindOfClass:[UIColor class]]) {
-        return view;
++ (BOOL)addGradientLayerWithView:(UIView *)view startColor:(UIColor *)startColor endColor:(UIColor *)endColor startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint shouldAddToTop:(BOOL)shouldAddToTop {
+    if (![view isKindOfClass:[UIView class]] || ![startColor isKindOfClass:[UIColor class]] || ![endColor isKindOfClass:[UIColor class]]) {
+        return NO;
     }
     
     BOOL found = NO;
@@ -327,26 +327,29 @@
     }
     
     if (!found) {
-        UIColor *startColor = startLeftColor;
-        UIColor *finalColor = endRightColor;
-        
         CAGradientLayer *gradientLayer = [CAGradientLayer layer];
         gradientLayer.name = [NSString stringWithFormat:@"gradientLayer_%p", gradientLayer];
-        gradientLayer.colors = @[(__bridge id)startColor.CGColor, (__bridge id)finalColor.CGColor];
+        gradientLayer.colors = @[(__bridge id)startColor.CGColor, (__bridge id)endColor.CGColor];
         gradientLayer.locations = @[ @0.0, @1.0 ];
-        gradientLayer.startPoint = CGPointMake(0, 0.5);
-        gradientLayer.endPoint = CGPointMake(1.0, 0.5);
+        gradientLayer.startPoint = startPoint;
+        gradientLayer.endPoint = endPoint;
         gradientLayer.masksToBounds = YES;
         gradientLayer.frame = view.bounds;
-        [view.layer insertSublayer:gradientLayer atIndex:0];
+        
+        if (shouldAddToTop) {
+            [view.layer addSublayer:gradientLayer];
+        }
+        else {
+            [view.layer insertSublayer:gradientLayer atIndex:0];
+        }
     }
     
-    return view;
+    return YES;
 }
 
-+ (UIView *)removeGradientLayerWithView:(UIView *)view {
++ (BOOL)removeGradientLayerWithView:(UIView *)view {
     if (![view isKindOfClass:[UIView class]]) {
-        return view;
+        return NO;
     }
     
     CAGradientLayer *gradientLayer;
@@ -359,9 +362,10 @@
     
     if (!gradientLayer) {
         [gradientLayer removeFromSuperlayer];
+        return YES;
     }
     
-    return view;
+    return NO;
 }
 
 #pragma mark - View State
