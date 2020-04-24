@@ -33,6 +33,10 @@ NS_ASSUME_NONNULL_BEGIN
  @param inputFileName the home file. For simulator, located in ~. For device, located in NSHomeDirectory()
  
  @return the content of the file
+ 
+ @warning Use this method in LLDB, should copy the returned NSString, or maybe cause to crash
+ @code
+ e someStringToOverwrite = (id)[(id)[WCLLDBTool stringWithInputFileName:nil] copy]
  */
 + (nullable NSString *)stringWithInputFileName:(nullable NSString *)inputFileName;
 
