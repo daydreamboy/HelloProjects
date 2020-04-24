@@ -18,6 +18,7 @@
 @property (nonatomic, strong) UIView *view1;
 @property (nonatomic, strong) UIView *view2;
 @property (nonatomic, strong) UIView *view3;
+@property (nonatomic, strong) UIButton *buttonTitle;
 @end
 
 @implementation UseCAGradientLayerWithTwoColorsViewController
@@ -29,6 +30,7 @@
     [self.view addSubview:self.view1];
     [self.view addSubview:self.view2];
     [self.view addSubview:self.view3];
+    [self.view addSubview:self.buttonTitle];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -78,12 +80,27 @@
         view.layer.cornerRadius = CGRectGetWidth(view.bounds) / 2.0;
         view.layer.masksToBounds = YES;
         
-        [WCViewTool addGradientLayerWithView:view startColor:UICOLOR_RGB(0xFD9426) endColor:UICOLOR_RGB(0xFC6323) startPoint:CGPointMake(0, 1) endPoint:CGPointMake(1, 0) shouldAddToTop:NO];
+        [WCViewTool addGradientLayerWithView:view startColor:UICOLOR_RGB(0xFD9426) endColor:UICOLOR_RGB(0xFC6323) startPoint:CGPointMake(0, 1) endPoint:CGPointMake(1, 0) addToTop:NO observeViewBoundsChange:YES];
         
         _view3 = view;
     }
     
     return _view3;
+}
+
+- (UIButton *)buttonTitle {
+    if (!_buttonTitle) {
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        button.frame = CGRectMake(0, CGRectGetMaxY(self.view3.frame) + 150, 100, 30);
+        [button setTitle:@"Hello" forState:UIControlStateNormal];
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+        [WCViewTool addGradientLayerWithView:button startColor:UICOLOR_RGB(0xFD9426) endColor:UICOLOR_RGB(0xFC6323) startPoint:CGPointMake(0, 1) endPoint:CGPointMake(1, 0) addToTop:NO observeViewBoundsChange:NO];
+        
+        _buttonTitle = button;
+    }
+    
+    return _buttonTitle;
 }
 
 @end

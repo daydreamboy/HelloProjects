@@ -316,7 +316,7 @@
 
 static void * const kAssociatedKeyaddGradientLayerWithView = (void *)&kAssociatedKeyaddGradientLayerWithView;
 
-+ (BOOL)addGradientLayerWithView:(UIView *)view startColor:(UIColor *)startColor endColor:(UIColor *)endColor startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint shouldAddToTop:(BOOL)shouldAddToTop {
++ (BOOL)addGradientLayerWithView:(UIView *)view startColor:(UIColor *)startColor endColor:(UIColor *)endColor startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint addToTop:(BOOL)addToTop observeViewBoundsChange:(BOOL)observeViewBoundsChange {
     if (![view isKindOfClass:[UIView class]] || ![startColor isKindOfClass:[UIColor class]] || ![endColor isKindOfClass:[UIColor class]]) {
         return NO;
     }
@@ -339,15 +339,17 @@ static void * const kAssociatedKeyaddGradientLayerWithView = (void *)&kAssociate
         gradientLayer.masksToBounds = YES;
         gradientLayer.frame = view.layer.bounds;
         
-        __weak typeof(gradientLayer) weak_gradientLayer = gradientLayer;
-        [WCKVOTool observeKVOEventWithObject:view.layer keyPath:@"bounds" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew associatedKey:kAssociatedKeyaddGradientLayerWithView eventCallback:^(CALayer * _Nonnull layer, WCKVOObserver *observer) {
-            [CATransaction begin];
-            [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
-            weak_gradientLayer.frame = layer.bounds;
-            [CATransaction commit];
-        }];
+        if (observeViewBoundsChange) {
+            __weak typeof(gradientLayer) weak_gradientLayer = gradientLayer;
+            [WCKVOTool observeKVOEventWithObject:view.layer keyPath:@"bounds" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew associatedKey:kAssociatedKeyaddGradientLayerWithView eventCallback:^(CALayer * _Nonnull layer, WCKVOObserver *observer) {
+                [CATransaction begin];
+                [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+                weak_gradientLayer.frame = layer.bounds;
+                [CATransaction commit];
+            }];
+        }
         
-        if (shouldAddToTop) {
+        if (addToTop) {
             [view.layer addSublayer:gradientLayer];
         }
         else {

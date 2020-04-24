@@ -166,12 +166,13 @@ NS_ASSUME_NONNULL_BEGIN
  @param endColor the end color
  @param startPoint the start point
  @param endPoint the end point
- @param shouldAddToTop YES if add the top layer, NO if add as the lowest layer
+ @param addToTop YES if add the top layer, NO if add as the lowest layer
+ @param observeViewBoundsChange YES if need to observe the view bounds change, or NO if not need
  
  @return YES if operate successfully, or NO if failed
  @discussion This method only add a gradient layer once when called mutiple times. To remove it use +[WCViewTool removeGradientLayerWithView:]
  */
-+ (BOOL)addGradientLayerWithView:(UIView *)view startColor:(UIColor *)startColor endColor:(UIColor *)endColor startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint shouldAddToTop:(BOOL)shouldAddToTop;
++ (BOOL)addGradientLayerWithView:(UIView *)view startColor:(UIColor *)startColor endColor:(UIColor *)endColor startPoint:(CGPoint)startPoint endPoint:(CGPoint)endPoint addToTop:(BOOL)addToTop observeViewBoundsChange:(BOOL)observeViewBoundsChange;
 
 /**
  Remove gradient layer which added by +[WCViewTool addGradientLayerWithView:startLeftColor:endRightColor:]
