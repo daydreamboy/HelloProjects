@@ -94,6 +94,7 @@
         button.frame = CGRectMake(0, CGRectGetMaxY(self.view3.frame) + 150, 100, 30);
         [button setTitle:@"Hello" forState:UIControlStateNormal];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [button addTarget:self action:@selector(buttonTitleClicked:) forControlEvents:UIControlEventTouchUpInside];
         
         [WCViewTool addGradientLayerWithView:button startColor:UICOLOR_RGB(0xFD9426) endColor:UICOLOR_RGB(0xFC6323) startPoint:CGPointMake(0, 1) endPoint:CGPointMake(1, 0) addToTop:NO observeViewBoundsChange:NO];
         
@@ -101,6 +102,12 @@
     }
     
     return _buttonTitle;
+}
+
+#pragma mark - Action
+
+- (void)buttonTitleClicked:(id)sender {
+    NSLog(@"buttonTitleClicked called");
 }
 
 @end
