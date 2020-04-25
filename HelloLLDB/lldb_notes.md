@@ -1556,7 +1556,7 @@ GBD格式的size修饰符，参考[http://visualgdb.com/gdbreference/commands/x]
 
 ## 5、Call Convention
 
-#### x86_64
+### x86_64
 
 * RDI、RSI、RDX、RCX、R8、R9，存放方法（函数）的前6个参数。剩余的参数（从第7个参数开始）从右到左的顺序用栈来存放[^1]。
 * RAX，存放方法（函数）的返回值
@@ -1565,7 +1565,7 @@ GBD格式的size修饰符，参考[http://visualgdb.com/gdbreference/commands/x]
 
 
 
-#### ARM64
+### ARM64
 
 * x0-x7，存放方法（函数）的前8个参数，具体个数视调试而定
 * x0，存放方法（函数）的返回值
@@ -1578,7 +1578,7 @@ GBD格式的size修饰符，参考[http://visualgdb.com/gdbreference/commands/x]
 
 
 
-#### 寄存器命名
+### 寄存器命名
 
 根据寄存器大小，寄存器命名有一定约定，如下
 
@@ -1627,7 +1627,9 @@ R8到R15的寄存器，由于仅出现在64bit架构，它们对应的命名是�
 (unsigned char) $8 = 0xef
 ```
 
-#### 加载地址（load address）和偏移地址（implementation offset）
+
+
+### 加载地址（load address）和偏移地址（implementation offset）
 
 * load address
 
@@ -1643,7 +1645,9 @@ load address也对应方法的IMP地址，但不是偏移地址
 
 ![偏移地址](images/偏移地址.png)
 
-#### 栈相关的opcode
+
+
+### 栈相关的opcode
 
 * push x
 
@@ -1693,6 +1697,22 @@ ret过程，和call对应。将栈顶的值（函数返回后的地址）pop出�
 ```
 pop RIP
 ```
+
+
+
+### `$arg1`到`$argN`参数
+
+LLDB中提供`$arg1`到`$argN`参数，用于映射到对应的寄存器[^9]，这样不用区分平台（x86或者arm等），方法的第一个参数都是`$arg1`。
+
+当Xcode的异常断点，停在objc_exception_throw方法上，可以使用下面方法查询异常信息
+
+```shell
+(lldb) po $arg1
+(lldb) po [$arg1 name]
+(lldb) po [$arg1 reason]
+```
+
+
 
 
 
@@ -2169,6 +2189,8 @@ instance method 'YW_lyk_size' also declared here
 [^7]:https://stackoverflow.com/questions/35861198/xcode-not-stopping-on-breakpoint-in-method-called-from-lldb
 
 [^8]:https://stackoverflow.com/a/56043107
+
+[^9]:https://stackoverflow.com/a/3327954
 
 
 
