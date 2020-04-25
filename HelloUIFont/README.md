@@ -1,12 +1,10 @@
-## iOS Font
+# iOS Font
 
 [TOC]
 
----
 
 
-
-### 1、字体名规则
+## 1、字体名规则
 
 ​       每个字体所属一个font family，font family类似一个字体系列，然后在系列下面有具体的字体名（font name）。UIFont提供`+[UIFont familyNames]`方法用于查询系统支持的所有font family，然后通过`+[UIFont fontNamesForFamilyName:]`方法获取某个字体系列下面的字体名。
 
@@ -49,6 +47,60 @@ Georgia-Italic
 
 
 
+## 2、使用Icon Font
+
+### Icon Font介绍
+
+​       Icon Font类似Apple Emoji，比如Unicode编码为@"\U0001F604"，打印文字为😄。而Icon Font类似这样的用法，每个Icon Font图标对应有一个Unicode编码，这个编码是在字体文件中（例如ttf文件）。当这个字体文件加载到系统中，就可以通过`[UIFont fontWithName:fontName size:fontSize]`来获取对应的字体。如果渲染的文本中使用到该字体中存在的Unicode编码，则该Unicode编码会被渲染成对应的图标。
+
+
+
+> 1. 可以通过[这个表](https://unicode.org/emoji/charts/full-emoji-list.html)，查询到Apple支持的Emoji的Unicode编码
+> 2. 可以[这个网站](https://char-map.herokuapp.com/)来解析字体文件中的图标信息
+
+
+
+### 加载自定义Font
+
+加载自定义Font有两种方式：
+
+* 在Info.plist注册字体文件。设置以main bunlde为相对路径的文件路径，可以有多个字体文件。
+* 运行时注册字体文件
+
+> 运行时注册字体文件，主要用CoreText的CTFontManagerRegisterGraphicsFont方法。示例代码，见WCIconFontTool
+
+
+
+### 渲染Icon Font
+
+
+
+#### UILabel使用Icon Font
+
+将UILabel设置自定义Font以及文本包含特定Unicode，系统就渲染出icon图标
+
+```objective-c
+UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_labelUseFontResigteredInfoPlist.frame), screenSize.width, 60)];
+label.font = [WCIconFontTool fontWithName:@"icofont" fontSize:20];
+label.text = @"Display a \U0000EEA0, \uEEA0 on label \U0000C03A";
+```
+
+
+
+#### UIImageView使用Icon Font
+
+基本原理就是UILabel使用icon font，然后把UILabel内容创建成UIImage对象，最后提供给UIImageView[^2]
+
+
+
+#### UIButton使用Icon Font
+
+和UILabel使用Icon Font类似
+
+
+
+
+
 ## 附录
 
 ### 1、各个iOS系统版本支持的字体
@@ -57,11 +109,23 @@ http://iosfonts.com/
 
 
 
+### 2、免费获取IconFont图标
+
+https://icofont.com/icons
+
+
+
+
+
 
 
 ## Reference
 
 [^1]: https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/typography/
+
+[^2]:https://medium.com/@ankoma22/working-with-icon-fonts-in-ios-code-example-in-swift-3-561d47ae9d40
+
+
 
 
 

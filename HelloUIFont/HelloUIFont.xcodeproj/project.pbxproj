@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F32327F24546D3700BE0966 /* UseIconFontInUILabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F32327E24546D3700BE0966 /* UseIconFontInUILabelViewController.m */; };
+		4F32328224546D6C00BE0966 /* UseIconFontInUIButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F32328124546D6C00BE0966 /* UseIconFontInUIButtonViewController.m */; };
+		4F32328524546D7F00BE0966 /* UseIconFontInUIImageViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F32328424546D7F00BE0966 /* UseIconFontInUIImageViewViewController.m */; };
+		4F323287245475B900BE0966 /* my_iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4F323286245475B900BE0966 /* my_iconfont.ttf */; };
+		4F32328A24547A5D00BE0966 /* WCIconFontTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F32328924547A5D00BE0966 /* WCIconFontTool.m */; };
+		4F32328C245484B100BE0966 /* app_font in Resources */ = {isa = PBXBuildFile; fileRef = 4F32328B245484B100BE0966 /* app_font */; };
 		4F6B552121AFF0F6009843E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6B552021AFF0F6009843E6 /* AppDelegate.m */; };
 		4F6B552921AFF0F7009843E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F6B552821AFF0F7009843E6 /* Assets.xcassets */; };
 		4F6B552C21AFF0F7009843E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F6B552A21AFF0F7009843E6 /* LaunchScreen.storyboard */; };
@@ -18,6 +24,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F32327D24546D3700BE0966 /* UseIconFontInUILabelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseIconFontInUILabelViewController.h; sourceTree = "<group>"; };
+		4F32327E24546D3700BE0966 /* UseIconFontInUILabelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseIconFontInUILabelViewController.m; sourceTree = "<group>"; };
+		4F32328024546D6C00BE0966 /* UseIconFontInUIButtonViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseIconFontInUIButtonViewController.h; sourceTree = "<group>"; };
+		4F32328124546D6C00BE0966 /* UseIconFontInUIButtonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseIconFontInUIButtonViewController.m; sourceTree = "<group>"; };
+		4F32328324546D7F00BE0966 /* UseIconFontInUIImageViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseIconFontInUIImageViewViewController.h; sourceTree = "<group>"; };
+		4F32328424546D7F00BE0966 /* UseIconFontInUIImageViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseIconFontInUIImageViewViewController.m; sourceTree = "<group>"; };
+		4F323286245475B900BE0966 /* my_iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = my_iconfont.ttf; sourceTree = "<group>"; };
+		4F32328824547A5D00BE0966 /* WCIconFontTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCIconFontTool.h; sourceTree = "<group>"; };
+		4F32328924547A5D00BE0966 /* WCIconFontTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCIconFontTool.m; sourceTree = "<group>"; };
+		4F32328B245484B100BE0966 /* app_font */ = {isa = PBXFileReference; lastKnownFileType = folder; path = app_font; sourceTree = "<group>"; };
 		4F6B551C21AFF0F5009843E6 /* HelloUIFont.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUIFont.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F6B551F21AFF0F5009843E6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F6B552021AFF0F6009843E6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -46,6 +62,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F323277245466F500BE0966 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4F32328B245484B100BE0966 /* app_font */,
+				4F323286245475B900BE0966 /* my_iconfont.ttf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		4F6B551321AFF0F5009843E6 = {
 			isa = PBXGroup;
 			children = (
@@ -72,6 +97,7 @@
 				4F6B553621AFF121009843E6 /* RootViewController.h */,
 				4F6B553521AFF121009843E6 /* RootViewController.m */,
 				4F6B552821AFF0F7009843E6 /* Assets.xcassets */,
+				4F323277245466F500BE0966 /* Resources */,
 				4F6B552A21AFF0F7009843E6 /* LaunchScreen.storyboard */,
 				4F6B552D21AFF0F7009843E6 /* Info.plist */,
 				4F6B552E21AFF0F7009843E6 /* main.m */,
@@ -86,6 +112,12 @@
 				4F6B553A21AFF1C9009843E6 /* GetAllFontNamesViewController.m */,
 				4F8AD8F521B0EB65005DE01F /* SystemFontViewController.h */,
 				4F8AD8F621B0EB65005DE01F /* SystemFontViewController.m */,
+				4F32327D24546D3700BE0966 /* UseIconFontInUILabelViewController.h */,
+				4F32327E24546D3700BE0966 /* UseIconFontInUILabelViewController.m */,
+				4F32328024546D6C00BE0966 /* UseIconFontInUIButtonViewController.h */,
+				4F32328124546D6C00BE0966 /* UseIconFontInUIButtonViewController.m */,
+				4F32328324546D7F00BE0966 /* UseIconFontInUIImageViewViewController.h */,
+				4F32328424546D7F00BE0966 /* UseIconFontInUIImageViewViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -95,6 +127,8 @@
 			children = (
 				4F8AD8F221B0DAF1005DE01F /* WCFontTool.h */,
 				4F8AD8F321B0DAF1005DE01F /* WCFontTool.m */,
+				4F32328824547A5D00BE0966 /* WCIconFontTool.h */,
+				4F32328924547A5D00BE0966 /* WCIconFontTool.m */,
 			);
 			path = WCFontTool;
 			sourceTree = "<group>";
@@ -157,7 +191,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F6B552C21AFF0F7009843E6 /* LaunchScreen.storyboard in Resources */,
+				4F323287245475B900BE0966 /* my_iconfont.ttf in Resources */,
 				4F6B552921AFF0F7009843E6 /* Assets.xcassets in Resources */,
+				4F32328C245484B100BE0966 /* app_font in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,8 +205,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F8AD8F421B0DAF1005DE01F /* WCFontTool.m in Sources */,
+				4F32328224546D6C00BE0966 /* UseIconFontInUIButtonViewController.m in Sources */,
 				4F6B552F21AFF0F7009843E6 /* main.m in Sources */,
+				4F32328524546D7F00BE0966 /* UseIconFontInUIImageViewViewController.m in Sources */,
+				4F32328A24547A5D00BE0966 /* WCIconFontTool.m in Sources */,
 				4F8AD8F721B0EB65005DE01F /* SystemFontViewController.m in Sources */,
+				4F32327F24546D3700BE0966 /* UseIconFontInUILabelViewController.m in Sources */,
 				4F6B553B21AFF1C9009843E6 /* GetAllFontNamesViewController.m in Sources */,
 				4F6B553721AFF121009843E6 /* RootViewController.m in Sources */,
 				4F6B552121AFF0F6009843E6 /* AppDelegate.m in Sources */,

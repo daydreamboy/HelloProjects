@@ -10,6 +10,9 @@
 
 #import "GetAllFontNamesViewController.h"
 #import "SystemFontViewController.h"
+#import "UseIconFontInUILabelViewController.h"
+#import "UseIconFontInUIButtonViewController.h"
+#import "UseIconFontInUIImageViewViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -34,11 +37,17 @@
     _titles = @[
         @"Get all font names",
         @"Get system font",
+        @"Use IconFont in UILabel",
+        @"Use IconFont in UIButton",
+        @"Use IconFont in UIImage",
         @"call a test method",
     ];
     _classes = @[
         [GetAllFontNamesViewController class],
         [SystemFontViewController class],
+        [UseIconFontInUILabelViewController class],
+        [UseIconFontInUIButtonViewController class],
+        [UseIconFontInUIImageViewViewController class],
         @"testMethod",
     ];
 }
