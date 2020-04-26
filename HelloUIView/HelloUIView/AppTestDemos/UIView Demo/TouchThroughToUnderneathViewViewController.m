@@ -54,7 +54,7 @@
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(screenSize.width - 100, 0, 200, 60);
+        button.frame = CGRectMake(screenSize.width - 200, 0, 200, 60);
         button.layer.borderWidth = 1;
         button.layer.borderColor = [UIColor redColor].CGColor;
         button.layer.cornerRadius = 5;
