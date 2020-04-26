@@ -42,11 +42,11 @@
 
 + (nullable NSArray *)moveObjectWithArray:(NSArray *)array fromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex {
     if (![array isKindOfClass:[NSArray class]]) {
-        return array;
+        return nil;
     }
     
     NSMutableArray *arrayM = [NSMutableArray arrayWithArray:array];
-    if ((fromIndex != toIndex) && (fromIndex < arrayM.count && toIndex <= arrayM.count)) {
+    if ((fromIndex != toIndex) && (0 <= fromIndex && fromIndex < arrayM.count && 0 <= toIndex && toIndex <= arrayM.count)) {
         id object = [arrayM objectAtIndex:fromIndex];
         [arrayM removeObjectAtIndex:fromIndex];
         [arrayM insertObject:object atIndex:toIndex];
