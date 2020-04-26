@@ -24,7 +24,7 @@
 @property (nonatomic, assign) BOOL touchThrough;
 
 /**
- The subviews of this view which make touch through intercepted, so those subviews handle the touch event
+ The subviews of this WCTouchThroughView which make touch through intercepted, so those subviews handle the touch event
  
  @discussion The order of array is the respond priority of the subviews.
  @warning The subviews are weakly hold in this array

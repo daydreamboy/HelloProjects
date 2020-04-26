@@ -33,7 +33,6 @@
     // Note: self.switcherUnderOverlay not work, because it's not subview of touchThroughView
     touchThroughView.interceptedSubviews = @[self.buttonInOverlay];
     touchThroughView.backgroundRegionShouldTouchThrough = ^BOOL{
-        self.buttonInOverlay.hidden = YES;
         return self.shouldPassTouchThroughWhenHitBackgroundRegion;
     };
     
@@ -55,12 +54,13 @@
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(screenSize.width - 100, 0, 100, 100);
+        button.frame = CGRectMake(screenSize.width - 100, 0, 200, 60);
         button.layer.borderWidth = 1;
         button.layer.borderColor = [UIColor redColor].CGColor;
         button.layer.cornerRadius = 5;
-        [button setTitle:@"Close Me" forState:UIControlStateNormal];
+        button.titleLabel.font = [UIFont systemFontOfSize:14];
         button.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.9];
+        [button setTitle:@"Enable TouchThrough" forState:UIControlStateNormal];
         [button addTarget:self action:@selector(buttonInOverlayClicked:) forControlEvents:UIControlEventTouchUpInside];
         
         _buttonInOverlay = button;
@@ -73,7 +73,7 @@
     if (!_buttonUnderOverlay) {
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-        button.frame = CGRectMake(0, 64 + 10, 100, 100);
+        button.frame = CGRectMake(0, 64 + 10, 150, 100);
         [button setTitle:@"Button under overlay" forState:UIControlStateNormal];
         [button addTarget:self action:@selector(buttonUnderOverlayClicked:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -102,6 +102,7 @@
 
 - (void)buttonInOverlayClicked:(id)sender {
     NSLog(@"buttonInOverlayClicked");
+    self.shouldPassTouchThroughWhenHitBackgroundRegion = YES;
 }
 
 - (void)buttonUnderOverlayClicked:(id)sender {
@@ -109,7 +110,6 @@
 }
 
 - (void)switcherToggled:(UISwitch *)switcher {
-    switcher.on = !switcher.on;
     self.shouldPassTouchThroughWhenHitBackgroundRegion = switcher.on;
 }
 

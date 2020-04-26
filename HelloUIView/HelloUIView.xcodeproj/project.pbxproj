@@ -309,6 +309,15 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		4F70D86324553FD10082B87A /* WCTouchThroughView */ = {
+			isa = PBXGroup;
+			children = (
+				4FB43AE5200DA22F00D5D92D /* WCTouchThroughView.h */,
+				4FB43AE4200DA22F00D5D92D /* WCTouchThroughView.m */,
+			);
+			path = WCTouchThroughView;
+			sourceTree = "<group>";
+		};
 		4F86CF98206CBD8E0080A9E1 /* CALayer Demo */ = {
 			isa = PBXGroup;
 			children = (
@@ -365,6 +374,7 @@
 		4FAAA5591FA45FE700A80328 = {
 			isa = PBXGroup;
 			children = (
+				4F70D86324553FD10082B87A /* WCTouchThroughView */,
 				4F502DDB22CA46BF00137BE1 /* WCDashLineView */,
 				4F60E70022A7C84900C27087 /* WCResizableImageLayer */,
 				4F63EFE11FE10053000AFD6F /* WCViewTool */,
@@ -418,8 +428,6 @@
 				4FB43AEA200DA27300D5D92D /* GradientView.m */,
 				4FB43AE9200DA27300D5D92D /* RadialGradientView.h */,
 				4FB43AE7200DA27300D5D92D /* RadialGradientView.m */,
-				4FB43AE5200DA22F00D5D92D /* WCTouchThroughView.h */,
-				4FB43AE4200DA22F00D5D92D /* WCTouchThroughView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
