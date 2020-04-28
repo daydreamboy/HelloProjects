@@ -38,10 +38,43 @@ Loading
 
 History
 
-| UIWebView | WKWebView                                                    |
-| --------- | ------------------------------------------------------------ |
-|           | func goToBackForwardListItem(item: WKBackForwardListItem) -> WKNavigation? |
-|           |                                                              |
+| UIWebView                      | WKWebView                                                    |
+| ------------------------------ | ------------------------------------------------------------ |
+|                                | func goToBackForwardListItem(item: WKBackForwardListItem) -> WKNavigation? |
+| func goBack()                  | func goBack() -> WKNavigation?                               |
+| func goForward()               | func goForward() -> WKNavigation?                            |
+| var canGoBack: Bool { get }    | `var canGoBack: Bool { get }`                                |
+| var canGoForward: Bool { get } | var canGoForward: Bool { get }                               |
+| var loading: Bool { get }      | var loading: Bool { get }                                    |
+
+
+
+Javascript Evaluation
+
+| UIWebView                                                    | WKWebView                                                    |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| func stringByEvaluatingJavaScriptFromString(script: String) -> String |                                                              |
+|                                                              | func evaluateJavaScript(_ javaScriptString: String, completionHandler: ((AnyObject?, NSError?) -> Void)?) |
+
+
+
+Miscellaneous
+
+| UIWebView                                   | WKWebView                                     |
+| ------------------------------------------- | --------------------------------------------- |
+| var keyboardDisplayRequiresUserAction: Bool |                                               |
+| var scalesPageToFit: Bool                   |                                               |
+|                                             | var allowsBackForwardNavigationGestures: Bool |
+
+
+
+Pagination
+
+| UIWebView                                                    | WKWebView |
+| ------------------------------------------------------------ | --------- |
+| var paginationMode: UIWebPaginationMode                      |           |
+| `var paginationBreakingMode: UIWebPaginationBreakingMode` `var pageLength: CGFloat` `var gapBetweenPages: CGFloat` `var pageCount: Int { get }` |           |
+|                                                              |           |
 
 
 
