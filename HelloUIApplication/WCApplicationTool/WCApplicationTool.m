@@ -156,6 +156,34 @@
 
 #pragma mark - App Utility
 
+#pragma mark > Gray Release
+
++ (long long)hashCodeWithString:(NSString *)string {
+    const char *cString = [string UTF8String];
+    long long ret = 0;
+    size_t len = strlen(cString);
+    for (NSUInteger i = 0; i < len; i++) {
+        ret = 31 * ret + cString[i];
+    }
+    
+    return ret;
+}
+
++ (BOOL)checkIfSampledWithUniqueID:(NSString *)uniqueID lowerBound:(long long)lowerBound upperBound:(long long)upperBound mod:(long long)mod {
+    long long hashCode = [self hashCodeWithString:uniqueID];
+    if (hashCode == 0) {
+        return NO;
+    }
+    
+    long long boundedHashCode = hashCode % mod;
+    if (lowerBound <= boundedHashCode && boundedHashCode <= upperBound) {
+        return YES;
+    }
+    
+    
+    return NO;
+}
+
 #pragma mark > Get debug configuration (Only Simulator)
 
 + (nullable id)JSONObjectWithUserHomeFileName:(nullable NSString *)userHomeFileName {

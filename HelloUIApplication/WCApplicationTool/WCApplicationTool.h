@@ -154,6 +154,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 #define RTCall_JSONObjectWithUserHomeFileName(userHomeFileName) ([NSClassFromString(@"WCApplicationTool") performSelector:@selector(JSONObjectWithUserHomeFileName:) withObject:(userHomeFileName)])
 
+#pragma mark > Gray Release
+
+/**
+ 
+ @see https://stackoverflow.com/questions/299304/why-does-javas-hashcode-in-string-use-31-as-a-multiplier
+ */
++ (long long)hashCodeWithString:(NSString *)string;
++ (BOOL)checkIfSampledWithUniqueID:(NSString *)uniqueID lowerBound:(long long)lowerBound upperBound:(long long)upperBound mod:(long long)mod;
+
 #pragma mark > Risky Methods
 
 /**
