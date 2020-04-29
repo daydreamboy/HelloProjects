@@ -15,6 +15,8 @@
 		4F110EF2231F5EDD006C9AFD /* MyObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F110EF0231F5EDD006C9AFD /* MyObject.m */; };
 		4F161AB2231E934000A22350 /* SwizzleMethodByBlockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F161AB0231E934000A22350 /* SwizzleMethodByBlockViewController.m */; };
 		4F161AB5231E935400A22350 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F161AB3231E935400A22350 /* RootViewController.m */; };
+		4F2237D424595EB3000CC3C9 /* NSObject+WCDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2237D324595EB3000CC3C9 /* NSObject+WCDebug.m */; };
+		4F2237D6245963EA000CC3C9 /* Test_NSObject_WCDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2237D5245963EA000CC3C9 /* Test_NSObject_WCDebug.m */; };
 		4F35B9FB2324FC32001637AB /* SetIVarDirectlyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9DA2324FC30001637AB /* SetIVarDirectlyViewController.m */; };
 		4F35B9FC2324FC32001637AB /* CreateDynamicDelegateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9DC2324FC30001637AB /* CreateDynamicDelegateViewController.m */; };
 		4F35BA002324FC32001637AB /* IsaSwizzlingIssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9E12324FC31001637AB /* IsaSwizzlingIssueViewController.m */; };
@@ -87,6 +89,9 @@
 		4F161AB1231E934000A22350 /* SwizzleMethodByBlockViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwizzleMethodByBlockViewController.h; sourceTree = "<group>"; };
 		4F161AB3231E935400A22350 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F161AB4231E935400A22350 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		4F2237D224595EB3000CC3C9 /* NSObject+WCDebug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+WCDebug.h"; sourceTree = "<group>"; };
+		4F2237D324595EB3000CC3C9 /* NSObject+WCDebug.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+WCDebug.m"; sourceTree = "<group>"; };
+		4F2237D5245963EA000CC3C9 /* Test_NSObject_WCDebug.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_NSObject_WCDebug.m; sourceTree = "<group>"; };
 		4F35B9D92324FC30001637AB /* ObtainWeakVariableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObtainWeakVariableViewController.h; sourceTree = "<group>"; };
 		4F35B9DA2324FC30001637AB /* SetIVarDirectlyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetIVarDirectlyViewController.m; sourceTree = "<group>"; };
 		4F35B9DB2324FC30001637AB /* CreateDynamicDelegateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateDynamicDelegateViewController.h; sourceTree = "<group>"; };
@@ -294,6 +299,8 @@
 			children = (
 				4F54E6562238A0BB001A9BE2 /* WCObjectTool.h */,
 				4F54E6572238A0BB001A9BE2 /* WCObjectTool.m */,
+				4F2237D224595EB3000CC3C9 /* NSObject+WCDebug.h */,
+				4F2237D324595EB3000CC3C9 /* NSObject+WCDebug.m */,
 			);
 			path = WCObjectTool;
 			sourceTree = "<group>";
@@ -357,6 +364,7 @@
 				4F110EE5231F5E92006C9AFD /* Test_weak.m */,
 				4F5B7114229D686C0061A9D0 /* Test_NSObject.m */,
 				4F35BA2C23250101001637AB /* Test_property.m */,
+				4F2237D5245963EA000CC3C9 /* Test_NSObject_WCDebug.m */,
 				4F5B65322249DD4600D40218 /* Info.plist */,
 			);
 			path = Test;
@@ -636,6 +644,7 @@
 				4F5B710D229D64710061A9D0 /* KeyedSubscriptingObject.m in Sources */,
 				4F57328E224B133400EFB1CF /* Thing.m in Sources */,
 				4F110EEB231F5E92006C9AFD /* Test_weak.m in Sources */,
+				4F2237D6245963EA000CC3C9 /* Test_NSObject_WCDebug.m in Sources */,
 				4F110EEA231F5E92006C9AFD /* Test_selector.m in Sources */,
 				4F5B65382249DDAE00D40218 /* WCObjectTool.m in Sources */,
 				4F5B7110229D64840061A9D0 /* IndexedSubscriptingObject.m in Sources */,
@@ -678,6 +687,7 @@
 				4F35BA042324FC32001637AB /* CreateDynamicParamModelViewController.m in Sources */,
 				4F35BA1B2324FDA1001637AB /* WCRTProtocol.m in Sources */,
 				4F35BA012324FC32001637AB /* IsaSwizzlingViewController.m in Sources */,
+				4F2237D424595EB3000CC3C9 /* NSObject+WCDebug.m in Sources */,
 				4F161AB2231E934000A22350 /* SwizzleMethodByBlockViewController.m in Sources */,
 				4F35BA052324FC32001637AB /* SomeSDK.m in Sources */,
 				4F35BA192324FDA1001637AB /* WCRTIvar.m in Sources */,
