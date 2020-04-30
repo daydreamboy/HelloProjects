@@ -81,9 +81,24 @@ UIControlEvents事件的回调方法，调用栈如下
 
 
 
+## 3、UIGestureRecognizerDelegate
 
 
-## 3、常见手势处理问题
+
+```objective-c
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer;
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch;
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer;
+```
+
+
+
+
+
+## 4、常见手势处理问题
 
 ### （1）parent view监听child view的tap gesture事件
 
@@ -115,9 +130,47 @@ parent view实现touchBegin/.../touchEnd方法，自己判断touchUpInside事件
 
 
 
-##### c. child view创建mirrored手势
+##### c. child view创建mirroring手势
 
-child view创建额外的相同的点击手势，mirrored手势的gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:方法返回YES（默认是NO），这样child view点击事件会触发两个tap手势。
+child view创建额外的相同的点击手势，mirroring手势的gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:方法返回YES（默认是NO），这样child view点击事件会触发两个tap手势。
+
+```objective-c
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+```
+
+完成上面的设置后，存在一个问题：当parent view也添加mirroring手势，点击child view也会触发parent view的mirroring手势回调。只需要当前view的original gesture触发时，同步触发mirroring gesture。如下图。
+
+|                 | child view original gesture | child view mirroring gesture | parent view original gesture | parent view mirroring gesture |
+| --------------- | --------------------------- | ---------------------------- | ---------------------------- | ----------------------------- |
+| child view点击  | 触发                        | 触发                         | 不触发                       | 不触发                        |
+| parent view点击 | 不触发                      | 不触发                       | 触发                         | 触发                          |
+
+
+
+mirroring手势的gestureRecognizer:shouldReceiveTouch:方法实现，如下
+
+```objective-c
+@interface WCMirroringTapGestureRecognizer () <UIGestureRecognizerDelegate>
+@end
+@implementation WCMirroringTapGestureRecognizer
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    // Note: accept only touchs on view which attached current tap gesture, not accept touchs on its subviews
+    if (touch.view != self.view) {
+        return NO;
+    }
+    
+    return YES;
+}
+@end
+```
+
+用于控制仅点击touch view是手势注册的view时才接受手势响应。这样即使点击child view，在parent view的mirroring手势gestureRecognizer:shouldReceiveTouch:方法中，可以判断当前点击的view是不是mirroring手势注册的view。
+
+> 示例代码，见MirrorTapGestureViewController
+
+
 
 
 

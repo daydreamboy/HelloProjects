@@ -19,6 +19,7 @@
 #import "UseCancelsTouchesInView2ViewController.h"
 #import "MockTapGestureViewController.h"
 #import "MirrorTapGestureViewController.h"
+#import "ParentViewObserveChildViewTapEventViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -52,6 +53,7 @@
         @"Use cancelsTouchesInView (UICollectionView example)",
         @"Mock TapGesture",
         @"Use Mirrored TapGesture",
+        @"ParentView Observe ChildView Tap Event",
         @"call a test method",
     ];
     _classes = @[
@@ -66,6 +68,7 @@
         [UseCancelsTouchesInView2ViewController class],
         [MockTapGestureViewController class],
         [MirrorTapGestureViewController class],
+        [ParentViewObserveChildViewTapEventViewController class],
         @"testMethod",
     ];
 }
