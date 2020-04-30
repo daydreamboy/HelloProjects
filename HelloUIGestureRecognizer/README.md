@@ -124,6 +124,10 @@ parent view的手势，注册delegate，实现gestureRecognizerShouldBegin:方�
 
 
 
+> 示例代码，见ParentViewObserveChildViewTapEventViewController
+
+
+
 ##### b. parent view实现touchBegin/.../touchEnd方法
 
 parent view实现touchBegin/.../touchEnd方法，自己判断touchUpInside事件
