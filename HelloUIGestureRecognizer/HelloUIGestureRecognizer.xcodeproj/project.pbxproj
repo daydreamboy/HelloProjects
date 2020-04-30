@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		4F1812F4239F9F8E0058B20D /* WCGestureTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1812F3239F9F8E0058B20D /* WCGestureTool.m */; };
 		4F1812F7239FB4780058B20D /* WCMockGestureWrapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1812F6239FB4780058B20D /* WCMockGestureWrapper.m */; };
+		4F190300245A804E0054FA3C /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1902FF245A804E0054FA3C /* WCViewTool.m */; };
+		4F2237D9245973A3000CC3C9 /* MirrorTapGestureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2237D8245973A3000CC3C9 /* MirrorTapGestureViewController.m */; };
+		4F2237DC245987BB000CC3C9 /* WCMirroringTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2237DB245987BB000CC3C9 /* WCMirroringTapGestureRecognizer.m */; };
 		4F338286239E946B00AA444F /* MockTapGestureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F338285239E946B00AA444F /* MockTapGestureViewController.m */; };
 		4F4990261F9D987F00D313B5 /* DragViewDemo1UsingUIPanGestureRecognizerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4990251F9D987F00D313B5 /* DragViewDemo1UsingUIPanGestureRecognizerViewController.m */; };
 		4F49902B1F9D99C400D313B5 /* DragViewDemo2UsingUIPanGestureRecognizerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F49902A1F9D99C400D313B5 /* DragViewDemo2UsingUIPanGestureRecognizerViewController.m */; };
@@ -33,6 +36,12 @@
 		4F1812F3239F9F8E0058B20D /* WCGestureTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCGestureTool.m; sourceTree = "<group>"; };
 		4F1812F5239FB4780058B20D /* WCMockGestureWrapper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMockGestureWrapper.h; sourceTree = "<group>"; };
 		4F1812F6239FB4780058B20D /* WCMockGestureWrapper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMockGestureWrapper.m; sourceTree = "<group>"; };
+		4F1902FE245A804E0054FA3C /* WCViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCViewTool.h; sourceTree = "<group>"; };
+		4F1902FF245A804E0054FA3C /* WCViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewTool.m; sourceTree = "<group>"; };
+		4F2237D7245973A3000CC3C9 /* MirrorTapGestureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MirrorTapGestureViewController.h; sourceTree = "<group>"; };
+		4F2237D8245973A3000CC3C9 /* MirrorTapGestureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MirrorTapGestureViewController.m; sourceTree = "<group>"; };
+		4F2237DA245987BB000CC3C9 /* WCMirroringTapGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMirroringTapGestureRecognizer.h; sourceTree = "<group>"; };
+		4F2237DB245987BB000CC3C9 /* WCMirroringTapGestureRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMirroringTapGestureRecognizer.m; sourceTree = "<group>"; };
 		4F338284239E946B00AA444F /* MockTapGestureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockTapGestureViewController.h; sourceTree = "<group>"; };
 		4F338285239E946B00AA444F /* MockTapGestureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MockTapGestureViewController.m; sourceTree = "<group>"; };
 		4F4990241F9D987F00D313B5 /* DragViewDemo1UsingUIPanGestureRecognizerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragViewDemo1UsingUIPanGestureRecognizerViewController.h; sourceTree = "<group>"; };
@@ -85,6 +94,10 @@
 				4F1812F3239F9F8E0058B20D /* WCGestureTool.m */,
 				4F1812F5239FB4780058B20D /* WCMockGestureWrapper.h */,
 				4F1812F6239FB4780058B20D /* WCMockGestureWrapper.m */,
+				4F2237DA245987BB000CC3C9 /* WCMirroringTapGestureRecognizer.h */,
+				4F2237DB245987BB000CC3C9 /* WCMirroringTapGestureRecognizer.m */,
+				4F1902FE245A804E0054FA3C /* WCViewTool.h */,
+				4F1902FF245A804E0054FA3C /* WCViewTool.m */,
 			);
 			path = WCGestureTool;
 			sourceTree = "<group>";
@@ -164,6 +177,8 @@
 				4F9DC2B821F05709002114D7 /* UseCancelsTouchesInView2ViewController.m */,
 				4F338284239E946B00AA444F /* MockTapGestureViewController.h */,
 				4F338285239E946B00AA444F /* MockTapGestureViewController.m */,
+				4F2237D7245973A3000CC3C9 /* MirrorTapGestureViewController.h */,
+				4F2237D8245973A3000CC3C9 /* MirrorTapGestureViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -202,7 +217,7 @@
 		4F671A211F944F5B0031E9C9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = wesley_chen;
 				TargetAttributes = {
 					4F671A281F944F5B0031E9C9 = {
@@ -214,10 +229,9 @@
 			};
 			buildConfigurationList = 4F671A241F944F5B0031E9C9 /* Build configuration list for PBXProject "HelloUIGestureRecognizer" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -249,9 +263,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F2237DC245987BB000CC3C9 /* WCMirroringTapGestureRecognizer.m in Sources */,
 				4F671A311F944F5B0031E9C9 /* AppDelegate.m in Sources */,
 				4F9DC2B921F05709002114D7 /* UseCancelsTouchesInView2ViewController.m in Sources */,
+				4F2237D9245973A3000CC3C9 /* MirrorTapGestureViewController.m in Sources */,
 				4F4990311F9DB95400D313B5 /* DetectSwipeUsingUIPanGestureRecognizerViewController.m in Sources */,
+				4F190300245A804E0054FA3C /* WCViewTool.m in Sources */,
 				4F8FDA2D20EB566300C766D4 /* DragDownAndScaleImageViewViewController.m in Sources */,
 				4F338286239E946B00AA444F /* MockTapGestureViewController.m in Sources */,
 				4F4DC06921EED0850066E96A /* WCAlertTool.m in Sources */,
@@ -286,21 +303,30 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -334,21 +360,30 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

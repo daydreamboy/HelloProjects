@@ -1,10 +1,8 @@
-## HelloUIGestureRecognizer
+# UIGestureRecognizer
 
 [TOC]
 
----
-
-### 1、UIGestureRecognizer vs. UIControlEvents
+## 1、UIGestureRecognizer vs. UIControlEvents
 
 UIGestureRecognizer和UIControlEvents都可以用于处理某个控件的事件响应，但是两者有一定区别。
 
@@ -32,9 +30,9 @@ UIControlEvents事件的回调方法，调用栈如下
 
 
 
-### 2、UIGestureRecognizer常用属性分析
+## 2、UIGestureRecognizer常用属性分析
 
-#### （1）cancelsTouchesInView
+### （1）cancelsTouchesInView
 
 `cancelsTouchesInView`属性默认值是YES。官方文档释义，如下
 
@@ -54,7 +52,7 @@ UIControlEvents事件的回调方法，调用栈如下
 
 ​       如果将`cancelsTouchesInView`设置为NO，则UIControlEventTouchUpInside事件的回调方法和UITapGestureRecognizer的回调方法都触发，但还是先触发后者的回调方法。
 
-示例代码见**GestureRecognizerVSControlEventsViewController**
+> 示例代码见**GestureRecognizerVSControlEventsViewController**
 
 
 
@@ -64,7 +62,7 @@ UIControlEvents事件的回调方法，调用栈如下
 
 当`cancelsTouchesInView`为NO，手势识别成功后，自定义UIView的touchesEnd:withEvent:会被调用
 
-示例代码见**UseCancelsTouchesInView1ViewController**
+> 示例代码见**UseCancelsTouchesInView1ViewController**
 
 
 
@@ -72,7 +70,7 @@ UIControlEvents事件的回调方法，调用栈如下
 
 ​         UICollectionView不是继承自UIControl，但是collectionView:didSelectItemAtIndexPath:方法触发是通过touchesEnd:withEvent:（可以看调用栈）。当前UICollectionView自身或者父视图添加了UITapGestureRecognizer，如果`cancelsTouchesInView`设置为YES，则collectionView:didSelectItemAtIndexPath:方法不会被触发。如果`cancelsTouchesInView`设置为NO，则先触发手势回调方法，再触发collectionView:didSelectItemAtIndexPath:方法。
 
-示例代码见**UseCancelsTouchesInView2ViewController**
+> 示例代码见**UseCancelsTouchesInView2ViewController**
 
 
 
@@ -83,16 +81,49 @@ UIControlEvents事件的回调方法，调用栈如下
 
 
 
-### 3、父子视图都添加UITapGesture
-
-当父子视图都添加UITapGesture，点击子视图，触发子视图的回调；点击父视图，触发父视图的回调。
-
-如果父视图需要知道子视图的点击事件，则可以用下面两种方式：
-
-* 父视图的手势，实现delegate的gestureRecognizerShouldBegin:方法
-* 父视图实现touchBegin/.../touchEnd方法，自己判断touchUpInside事件
 
 
+## 3、常见手势处理问题
+
+### （1）parent view监听child view的tap gesture事件
+
+#### 需求
+
+parent view通过addSudview添加多个child view，需要在parent view统一监听child view的UITapGestureRecognizer点击事件，即child view手势触发方法时，都通知到parent view上。
+
+
+
+#### 解决方案
+
+​      parent view添加UITapGesture，一般情况下，点击child view，触发child view的回调；点击parent view，触发parent view的回调。这样，parent view感知不到child view的点击事件。
+
+​      有三种方式，可以让parent view知道child view的点击事件。
+
+##### a. 实现gestureRecognizerShouldBegin:方法
+
+parent view的手势，注册delegate，实现gestureRecognizerShouldBegin:方法并返回NO，gestureRecognizerShouldBegin:方法中可以知道child view点击事件，但是不能区分哪个child view点击
+
+注意
+
+> parent view只是监听点击事件，不响应事件，gestureRecognizerShouldBegin:方法就一定要返回NO
+
+
+
+##### b. parent view实现touchBegin/.../touchEnd方法
+
+parent view实现touchBegin/.../touchEnd方法，自己判断touchUpInside事件
+
+
+
+##### c. child view创建mirrored手势
+
+child view创建额外的相同的点击手势，mirrored手势的gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:方法返回YES（默认是NO），这样child view点击事件会触发两个tap手势。
+
+
+
+
+
+## References
 
 
 
