@@ -39,7 +39,7 @@
     
     // be careful when view hierarchy is changing (addSubview or removeFromSuperview...)
     __block  BOOL hasCalled = NO;
-    [WCViewTool enumerateSubviewsInView:self.view usingBlock:^(UIView *subview, BOOL *stop) {
+    [WCViewTool enumerateSubviewsInView:self.view enumerateIncludeView:NO usingBlock:^(UIView *subview, BOOL *stop) {
         NSLog(@"%@", subview);
         hasCalled = YES;
     }];
@@ -51,13 +51,13 @@
     __block NSUInteger count = 0;
     
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-    [WCViewTool enumerateSubviewsInView:appDelegate.window usingBlock:^(UIView *subview, BOOL *stop) {
+    [WCViewTool enumerateSubviewsInView:appDelegate.window enumerateIncludeView:NO usingBlock:^(UIView *subview, BOOL *stop) {
         NSLog(@"%@", subview);
         count++;
     }];
     
     NSLog(@"=====================================");
-    [WCViewTool enumerateSubviewsInView:appDelegate.window usingBlock:^(UIView *subview, BOOL *stop) {
+    [WCViewTool enumerateSubviewsInView:appDelegate.window enumerateIncludeView:NO usingBlock:^(UIView *subview, BOOL *stop) {
         NSLog(@"%@", subview);
         if (subview == self.view) {
             NSLog(@"found self.view");

@@ -113,19 +113,30 @@
 
 #pragma mark - Hierarchy
 
-+ (void)enumerateSubviewsInView:(UIView *)view usingBlock:(void (^)(UIView *subview, BOOL *stop))block {
++ (BOOL)enumerateSubviewsInView:(UIView *)view enumerateIncludeView:(BOOL)enumerateIncludeView usingBlock:(void (^)(UIView *subview, BOOL *stop))block {
+    
+    if (![view isKindOfClass:[UIView class]] || !block) {
+        return NO;
+    }
+    
     BOOL stop = NO;
-    if (block) {
-        // Note: pre-travse subviews for root view, so skip the block for root view
-        
-        NSArray *subviews = [view subviews];
-        for (UIView *subview in subviews) {
-            [self traverseViewHierarchyWithView:subview usinglock:block stop:&stop];
-            if (stop) {
-                break;
-            }
+    
+    if (enumerateIncludeView) {
+        block(view, &stop);
+        if (stop) {
+            return YES;
         }
     }
+    
+    NSArray *subviews = [view subviews];
+    for (UIView *subview in subviews) {
+        [self traverseViewHierarchyWithView:subview usinglock:block stop:&stop];
+        if (stop) {
+            break;
+        }
+    }
+    
+    return YES;
 }
 
 #pragma mark ::
@@ -403,7 +414,7 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
     NSMutableDictionary *recordMap = [NSMutableDictionary dictionary];
     
     __block BOOL stopFlag = NO;
-    [self enumerateSubviewsInView:view usingBlock:^(UIView * _Nonnull subview, BOOL * _Nonnull stop) {
+    [self enumerateSubviewsInView:view enumerateIncludeView:NO usingBlock:^(UIView * _Nonnull subview, BOOL * _Nonnull stop) {
         @try {
             NSMutableDictionary *stateM = [NSMutableDictionary dictionary];
             for (NSString *property in properties) {
@@ -451,7 +462,7 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
     NSMutableDictionary *recordMap = associatedObject;
     
     __block BOOL stopFlag = NO;
-    [self enumerateSubviewsInView:view usingBlock:^(UIView * _Nonnull subview, BOOL * _Nonnull stop) {
+    [self enumerateSubviewsInView:view enumerateIncludeView:NO usingBlock:^(UIView * _Nonnull subview, BOOL * _Nonnull stop) {
         NSDictionary *stateM = recordMap[[NSString stringWithFormat:@"%p", subview]];
         if ([stateM isKindOfClass:[NSDictionary class]]) {
             NSArray *propertiesToRestore;

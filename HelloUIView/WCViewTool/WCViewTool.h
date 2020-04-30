@@ -58,9 +58,12 @@ NS_ASSUME_NONNULL_BEGIN
  Traverse all subviews of the UIView, excluding the sender view
 
  @param view the view to traverse
+ @param enumerateIncludeView  set YES, the block's subview parameter consider the view. set NO, the block's subview parameter ignore the view
  @param block the callback
     - subview child of the view, or child...child of the view
     - stop set *stop = YES to stop traversing
+ @return YES if the operation is success. NO if the parameters are not correct.
+ 
  @discussion the block not called if the view has no subviews
  @warning be careful when view hierarchy is changing (addSubview or removeFromSuperview...)
  
@@ -68,7 +71,7 @@ NS_ASSUME_NONNULL_BEGIN
  @see http://stackoverflow.com/questions/7243888/how-to-list-out-all-the-subviews-in-a-uiviewcontroller-in-ios
  @see https://stackoverflow.com/questions/22463017/recursive-method-with-block-and-stop-arguments
  */
-+ (void)enumerateSubviewsInView:(UIView *)view usingBlock:(void (^)(UIView *subview, BOOL *stop))block;
++ (BOOL)enumerateSubviewsInView:(UIView *)view enumerateIncludeView:(BOOL)enumerateIncludeView usingBlock:(void (^)(UIView *subview, BOOL *stop))block;
 
 /**
  Check it and itself all ancestor views `isKindOfClass`
