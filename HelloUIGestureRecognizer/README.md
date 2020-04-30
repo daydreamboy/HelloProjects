@@ -149,7 +149,7 @@ child view创建额外的相同的点击手势，mirroring手势的gestureRecogn
 
 
 
-mirroring手势的gestureRecognizer:shouldReceiveTouch:方法实现，如下
+mirroring手势的gestureRecognizer:shouldReceiveTouch:方法实现[^1]，如下
 
 ```objective-c
 @interface WCMirroringTapGestureRecognizer () <UIGestureRecognizerDelegate>
@@ -177,6 +177,8 @@ mirroring手势的gestureRecognizer:shouldReceiveTouch:方法实现，如下
 
 
 ## References
+
+[^1]:https://stackoverflow.com/questions/15457205/exclude-subviews-from-uigesturerecognizer
 
 
 
