@@ -129,7 +129,7 @@
         UIFont *font = [UIFont systemFontOfSize:43];
         
         //string = @"This is a /:^_^/:^$^/:Q/:815/:809, and test.";
-        string = @"/:^_^/:^$^/:Q/:815/:809";
+        string = @"/:^_^/:^$^/:Q/:815/:809/:man/:man";
         attrString = [[NSMutableAttributedString alloc] initWithString:string attributes:@{ NSFontAttributeName : font }];
         [attrText appendAttributedString:attrString];
 
@@ -144,6 +144,8 @@
         mapper[@"/:Q"] = [UIImage imageNamed:@"003@2x.png"];
         mapper[@"/:815"] = [UIImage imageNamed:@"004@2x.png"];
         mapper[@"/:809"] = [UIImage imageNamed:@"005@2x.png"];
+        mapper[@"/:man"] = [UIImage imageNamed:@"079@2x.png"];
+        mapper[@"/:%"] = [UIImage imageNamed:@"090@2x.png"];
         parser.emoticonMapper = mapper;
         label.textParser = parser;
         

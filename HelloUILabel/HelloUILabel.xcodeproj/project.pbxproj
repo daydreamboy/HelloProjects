@@ -10,6 +10,7 @@
 		4F1D7DCB2122B2D20021023C /* LabelWithMaximumLinesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1D7DCA2122B2D20021023C /* LabelWithMaximumLinesViewController.m */; };
 		4F4EF6B6245C15B3003F32F4 /* 079@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F4EF6B4245C15B2003F32F4 /* 079@2x.png */; };
 		4F4EF6B7245C15B3003F32F4 /* 090@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F4EF6B5245C15B2003F32F4 /* 090@2x.png */; };
+		4F4EF6B9245C16AC003F32F4 /* EmoticonInfo_new.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F4EF6B8245C16AC003F32F4 /* EmoticonInfo_new.plist */; };
 		4F517B2D212E90C9008CE69F /* LabelWithHyphenationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F517B2C212E90C9008CE69F /* LabelWithHyphenationViewController.m */; };
 		4F52D11E21181B72004EE254 /* WCMacroTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D11D21181B72004EE254 /* WCMacroTool.m */; };
 		4F52D191211948F0004EE254 /* i_video_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F52D18F211948F0004EE254 /* i_video_play@2x.png */; };
@@ -121,6 +122,7 @@
 		4F1D7DCA2122B2D20021023C /* LabelWithMaximumLinesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelWithMaximumLinesViewController.m; sourceTree = "<group>"; };
 		4F4EF6B4245C15B2003F32F4 /* 079@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "079@2x.png"; sourceTree = "<group>"; };
 		4F4EF6B5245C15B2003F32F4 /* 090@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "090@2x.png"; sourceTree = "<group>"; };
+		4F4EF6B8245C16AC003F32F4 /* EmoticonInfo_new.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = EmoticonInfo_new.plist; sourceTree = "<group>"; };
 		4F517B2B212E90C9008CE69F /* LabelWithHyphenationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabelWithHyphenationViewController.h; sourceTree = "<group>"; };
 		4F517B2C212E90C9008CE69F /* LabelWithHyphenationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelWithHyphenationViewController.m; sourceTree = "<group>"; };
 		4F52D11C21181B72004EE254 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
@@ -335,6 +337,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F4EF6BA245C19EF003F32F4 /* UILabel */ = {
+			isa = PBXGroup;
+			children = (
+				4F7D8E4A21062BAF00145B00 /* UseUILabelViewController.h */,
+				4F7D8E4B21062BB000145B00 /* UseUILabelViewController.m */,
+				4F1D7DC92122B2D20021023C /* LabelWithMaximumLinesViewController.h */,
+				4F1D7DCA2122B2D20021023C /* LabelWithMaximumLinesViewController.m */,
+				4F517B2B212E90C9008CE69F /* LabelWithHyphenationViewController.h */,
+				4F517B2C212E90C9008CE69F /* LabelWithHyphenationViewController.m */,
+				4FA253FC21AEE4DF00E4C6FC /* TextAlignmentViewController.h */,
+				4FA253FD21AEE4DF00E4C6FC /* TextAlignmentViewController.m */,
+			);
+			path = UILabel;
+			sourceTree = "<group>";
+		};
+		4F4EF6BB245C1A4E003F32F4 /* YYLabel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = YYLabel;
+			sourceTree = "<group>";
+		};
 		4F52D11B21181B54004EE254 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -386,8 +410,8 @@
 		4F93830B20C6D6AE00568EE1 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F7D8E4A21062BAF00145B00 /* UseUILabelViewController.h */,
-				4F7D8E4B21062BB000145B00 /* UseUILabelViewController.m */,
+				4F4EF6BB245C1A4E003F32F4 /* YYLabel */,
+				4F4EF6BA245C19EF003F32F4 /* UILabel */,
 				4F93835320C6E82F00568EE1 /* UseYYLabelWithAttachmentViewController.h */,
 				4F93835420C6E83000568EE1 /* UseYYLabelWithAttachmentViewController.m */,
 				4F7D8F35210B674D00145B00 /* UseYYLabelWithLinkViewController.h */,
@@ -396,12 +420,6 @@
 				4F7D900C210DD8DF00145B00 /* UseYYWLabelWithEmoticonViewController.m */,
 				4F93835F20C6EA2B00568EE1 /* YYTextExampleHelper.h */,
 				4F93836020C6EA2C00568EE1 /* YYTextExampleHelper.m */,
-				4F1D7DC92122B2D20021023C /* LabelWithMaximumLinesViewController.h */,
-				4F1D7DCA2122B2D20021023C /* LabelWithMaximumLinesViewController.m */,
-				4F517B2B212E90C9008CE69F /* LabelWithHyphenationViewController.h */,
-				4F517B2C212E90C9008CE69F /* LabelWithHyphenationViewController.m */,
-				4FA253FC21AEE4DF00E4C6FC /* TextAlignmentViewController.h */,
-				4FA253FD21AEE4DF00E4C6FC /* TextAlignmentViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -409,6 +427,7 @@
 		4F93836920C6EB3700568EE1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F4EF6B8245C16AC003F32F4 /* EmoticonInfo_new.plist */,
 				4F4EF6B4245C15B2003F32F4 /* 079@2x.png */,
 				4F4EF6B5245C15B2003F32F4 /* 090@2x.png */,
 				4F52D18F211948F0004EE254 /* i_video_play@2x.png */,
@@ -507,12 +526,12 @@
 		4FAF513B21500F2B006A7509 /* Text */ = {
 			isa = PBXGroup;
 			children = (
-				4FAF513C21500F2B006A7509 /* YYTextView.m */,
-				4FAF513D21500F2B006A7509 /* Component */,
+				4FAF516521500F2B006A7509 /* YYLabel.h */,
 				4FAF515021500F2B006A7509 /* YYLabel.m */,
 				4FAF515121500F2B006A7509 /* YYTextView.h */,
+				4FAF513C21500F2B006A7509 /* YYTextView.m */,
+				4FAF513D21500F2B006A7509 /* Component */,
 				4FAF515221500F2B006A7509 /* String */,
-				4FAF516521500F2B006A7509 /* YYLabel.h */,
 			);
 			path = Text;
 			sourceTree = "<group>";
@@ -757,6 +776,7 @@
 				4F7D9031210EE76C00145B00 /* 004@2X.png in Resources */,
 				4F93836B20C6EB4200568EE1 /* dribbble64_imageio.png in Resources */,
 				4F52D192211948F0004EE254 /* i_video_play@3x.png in Resources */,
+				4F4EF6B9245C16AC003F32F4 /* EmoticonInfo_new.plist in Resources */,
 				4F52D191211948F0004EE254 /* i_video_play@2x.png in Resources */,
 				4F9382FF20C6D67E00568EE1 /* Assets.xcassets in Resources */,
 			);
