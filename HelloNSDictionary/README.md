@@ -229,6 +229,28 @@ NSMutableDictionary的key必须是符合NSCopying协议的，否则在执行下�
 
 
 
+## 4、NSMutableDictionary的KVO监听value变化
+
+NSMutableDictionary可以使用KVO监听value变化
+
+```objective-c
+- (void)test_KVO {
+    // @see https://stackoverflow.com/a/4505507
+    NSMutableDictionary *d = [NSMutableDictionary dictionary];
+    [d addObserver:self forKeyPath:@"foo" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew context:NULL];
+    [d setObject:@"bar" forKey:@"foo"];
+    [d removeObjectForKey:@"foo"];
+    [d removeObserver:self forKeyPath:@"foo"];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    NSLog(@"observing: -[%@ %@]", object, keyPath);
+    NSLog(@"change: %@", change);
+}
+```
+
+
+
 
 
 
