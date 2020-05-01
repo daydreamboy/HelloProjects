@@ -355,6 +355,14 @@
 		4F4EF6BB245C1A4E003F32F4 /* YYLabel */ = {
 			isa = PBXGroup;
 			children = (
+				4F93835320C6E82F00568EE1 /* UseYYLabelWithAttachmentViewController.h */,
+				4F93835420C6E83000568EE1 /* UseYYLabelWithAttachmentViewController.m */,
+				4F7D8F35210B674D00145B00 /* UseYYLabelWithLinkViewController.h */,
+				4F7D8F36210B674D00145B00 /* UseYYLabelWithLinkViewController.m */,
+				4F7D900B210DD8DE00145B00 /* UseYYWLabelWithEmoticonViewController.h */,
+				4F7D900C210DD8DF00145B00 /* UseYYWLabelWithEmoticonViewController.m */,
+				4F93835F20C6EA2B00568EE1 /* YYTextExampleHelper.h */,
+				4F93836020C6EA2C00568EE1 /* YYTextExampleHelper.m */,
 			);
 			path = YYLabel;
 			sourceTree = "<group>";
@@ -412,14 +420,6 @@
 			children = (
 				4F4EF6BB245C1A4E003F32F4 /* YYLabel */,
 				4F4EF6BA245C19EF003F32F4 /* UILabel */,
-				4F93835320C6E82F00568EE1 /* UseYYLabelWithAttachmentViewController.h */,
-				4F93835420C6E83000568EE1 /* UseYYLabelWithAttachmentViewController.m */,
-				4F7D8F35210B674D00145B00 /* UseYYLabelWithLinkViewController.h */,
-				4F7D8F36210B674D00145B00 /* UseYYLabelWithLinkViewController.m */,
-				4F7D900B210DD8DE00145B00 /* UseYYWLabelWithEmoticonViewController.h */,
-				4F7D900C210DD8DF00145B00 /* UseYYWLabelWithEmoticonViewController.m */,
-				4F93835F20C6EA2B00568EE1 /* YYTextExampleHelper.h */,
-				4F93836020C6EA2C00568EE1 /* YYTextExampleHelper.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
