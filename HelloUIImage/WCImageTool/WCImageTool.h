@@ -146,7 +146,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Get an image with name in resource bundle
 
- @param name the image name, if not with extension, treat image as png and consider @2x.png/@2X.PNG, @3x.png/@3X.PNG
+ @param name the image name, if not with extension, treat image as png and consider @2x.png/@3x.png like imageNamed: method
  @param resourceBundleName the bundle name, and the name can have or not have .bundle extension. Note that nil for main bunde.
  @return the UIImage. Return nil if not found.
  */

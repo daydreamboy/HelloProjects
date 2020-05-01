@@ -366,23 +366,30 @@
         return [UIImage imageWithContentsOfFile:filePath];
     }
     
-    NSArray *imageNames = @[
-                            [NSString stringWithFormat:@"%@@%dx.png", name, (int)[UIScreen mainScreen].scale],
-                            [NSString stringWithFormat:@"%@@%dx.PNG", name, (int)[UIScreen mainScreen].scale],
-                            [NSString stringWithFormat:@"%@@%dX.png", name, (int)[UIScreen mainScreen].scale],
-                            [NSString stringWithFormat:@"%@@%dX.PNG", name, (int)[UIScreen mainScreen].scale],
-                            ];
-    NSString *imageFileName = [imageNames firstObject];
+    
+    int currentScale = (int)[UIScreen mainScreen].scale;
+    NSMutableArray *imageNames = [NSMutableArray arrayWithCapacity:3];
+    [imageNames addObject:[NSString stringWithFormat:@"%@@%@x.png", name, @(currentScale)]];
+    
+    for (int scale = 3; scale > 0; --scale) {
+        if (scale != currentScale) {
+            [imageNames addObject:[NSString stringWithFormat:@"%@@%@x.png", name, @(scale)]];
+        }
+    }
+    
     for (NSString *imageName in imageNames) {
         NSString *path = [resourceBundlePath stringByAppendingPathComponent:imageName];
         if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-            imageFileName = imageName;
+            filePath = path;
             break;
         }
     }
-    filePath = [resourceBundlePath stringByAppendingPathComponent:imageFileName];
     
-    return [UIImage imageWithContentsOfFile:filePath];
+    if (filePath) {
+        return [UIImage imageWithContentsOfFile:filePath];
+    }
+    
+    return nil;
 }
 
 #pragma mark -
