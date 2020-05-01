@@ -9,6 +9,7 @@
 #import "UseYYWLabelWithEmoticonViewController.h"
 #import "YYLabel.h"
 #import "YYKit.h"
+#import "WCImageTool.h"
 
 #define WCCGSizeScaled(size, scale) (CGSizeMake((size).width * (scale), (size).height * (scale)))
 
@@ -32,11 +33,11 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"update" style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonItemClicked:)];
     
     self.view.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.label1];
-    [self.view addSubview:self.label2];
+//    [self.view addSubview:self.label1];
+//    [self.view addSubview:self.label2];
     [self.view addSubview:self.label3];
-    [self.view addSubview:self.label4];
-    [self.view addSubview:self.label5];
+//    [self.view addSubview:self.label4];
+//    [self.view addSubview:self.label5];
 }
 
 #pragma mark - Actions
@@ -56,7 +57,8 @@
 #pragma mark -
 
 - (NSMutableAttributedString *)emoticonStringWithImageName:(NSString *)imageName textFont:(UIFont *)textFont emoticonCode:(NSString *)emoticonCode {
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:[self.class imageWithFileName:imageName]];
+    UIImage *image = [WCImageTool imageWithName:imageName inResourceBundle:nil];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
     CGSize imageViewSize = WCCGSizeScaled(imageView.bounds.size, textFont.lineHeight / imageView.bounds.size.height);
     imageView.frame = CGRectMake(0, 0, imageViewSize.width, imageViewSize.height);
     
@@ -123,14 +125,17 @@
         NSString *string;
         NSMutableAttributedString *attrText = [[NSMutableAttributedString alloc] initWithString:@""];
         NSMutableAttributedString *attrString;
-        UIFont *font = [UIFont systemFontOfSize:14];
+        //UIFont *font = [UIFont systemFontOfSize:14];
+        UIFont *font = [UIFont systemFontOfSize:43];
         
-        string = @"This is a /:^_^/:^$^/:Q/:815/:809, and test.";
+        //string = @"This is a /:^_^/:^$^/:Q/:815/:809, and test.";
+        string = @"/:^_^/:^$^/:Q/:815/:809";
         attrString = [[NSMutableAttributedString alloc] initWithString:string attributes:@{ NSFontAttributeName : font }];
         [attrText appendAttributedString:attrString];
 
-        YYLabel *label = [[YYLabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(self.label2.frame) + 20, screenSize.width - 2 * 10, 30)];
+        YYLabel *label = [[YYLabel alloc] initWithFrame:CGRectMake(10, CGRectGetMaxY(self.label2.frame) + 20, screenSize.width - 2 * 10, 50)];
         label.attributedText = attrText;
+        label.clipsToBounds = NO;
         
         YYTextSimpleEmoticonParser *parser = [YYTextSimpleEmoticonParser new];
         NSMutableDictionary *mapper = [NSMutableDictionary new];
@@ -248,26 +253,6 @@
     }
     
     return _label5;
-}
-
-#pragma mark -
-
-+ (UIImage *)imageWithFileName:(NSString *)fileName {
-    return [self imageWithFileName:fileName inBundle:nil];
-}
-
-+ (UIImage *)imageWithFileName:(NSString *)fileName inBundle:(NSString *)bundleName {
-    NSString *resourceBundlePath = [NSBundle mainBundle].bundlePath;
-    if (bundleName) {
-        resourceBundlePath = [resourceBundlePath stringByAppendingPathComponent:[bundleName stringByAppendingPathExtension:@"bundle"]];
-    }
-    
-    if (!fileName.pathExtension.length) {
-        fileName = [NSString stringWithFormat:@"%@@%dx.png", fileName, (int)[UIScreen mainScreen].scale];
-    }
-    
-    NSString *filePath = [resourceBundlePath stringByAppendingPathComponent:fileName];
-    return [UIImage imageWithContentsOfFile:filePath];
 }
 
 @end

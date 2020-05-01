@@ -29,4 +29,51 @@
     return newImage;
 }
 
++ (nullable UIImage *)imageWithName:(NSString *)name inResourceBundle:(nullable NSString *)resourceBundleName {
+    if (![name isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    if (resourceBundleName && ![resourceBundleName isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    NSString *resourceBundlePath = [NSBundle mainBundle].bundlePath;
+    if (resourceBundleName.length) {
+        resourceBundleName = [resourceBundleName hasSuffix:@".bundle"] ? resourceBundleName : [resourceBundleName stringByAppendingPathExtension:@"bundle"];
+        resourceBundlePath = [resourceBundlePath stringByAppendingPathComponent:resourceBundleName];
+    }
+    
+    NSString *filePath;
+    if (name.pathExtension.length) {
+        filePath = [resourceBundlePath stringByAppendingPathComponent:name];
+        return [UIImage imageWithContentsOfFile:filePath];
+    }
+    
+    
+    int currentScale = (int)[UIScreen mainScreen].scale;
+    NSMutableArray *imageNames = [NSMutableArray arrayWithCapacity:3];
+    [imageNames addObject:[NSString stringWithFormat:@"%@@%@x.png", name, @(currentScale)]];
+    
+    for (int scale = 3; scale > 0; --scale) {
+        if (scale != currentScale) {
+            [imageNames addObject:[NSString stringWithFormat:@"%@@%@x.png", name, @(scale)]];
+        }
+    }
+    
+    for (NSString *imageName in imageNames) {
+        NSString *path = [resourceBundlePath stringByAppendingPathComponent:imageName];
+        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            filePath = path;
+            break;
+        }
+    }
+    
+    if (filePath) {
+        return [UIImage imageWithContentsOfFile:filePath];
+    }
+    
+    return nil;
+}
+
 @end

@@ -8,18 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4F1D7DCB2122B2D20021023C /* LabelWithMaximumLinesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1D7DCA2122B2D20021023C /* LabelWithMaximumLinesViewController.m */; };
+		4F4EF6B6245C15B3003F32F4 /* 079@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F4EF6B4245C15B2003F32F4 /* 079@2x.png */; };
+		4F4EF6B7245C15B3003F32F4 /* 090@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F4EF6B5245C15B2003F32F4 /* 090@2x.png */; };
 		4F517B2D212E90C9008CE69F /* LabelWithHyphenationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F517B2C212E90C9008CE69F /* LabelWithHyphenationViewController.m */; };
-		4F52D1172117FF50004EE254 /* MPMShareCommodityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D1162117FF50004EE254 /* MPMShareCommodityView.m */; };
-		4F52D11A211800C0004EE254 /* UseMPMShareCommodityViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D119211800C0004EE254 /* UseMPMShareCommodityViewViewController.m */; };
 		4F52D11E21181B72004EE254 /* WCMacroTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D11D21181B72004EE254 /* WCMacroTool.m */; };
-		4F52D144211845AF004EE254 /* MPMShareStoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D143211845AF004EE254 /* MPMShareStoreView.m */; };
-		4F52D14721185089004EE254 /* UseMPMShareStoreViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D14621185089004EE254 /* UseMPMShareStoreViewViewController.m */; };
-		4F52D14F21185499004EE254 /* MPMShareCouponView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D14E21185499004EE254 /* MPMShareCouponView.m */; };
-		4F52D1522118646D004EE254 /* UseMPMShareCouponViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D1512118646D004EE254 /* UseMPMShareCouponViewViewController.m */; };
-		4F52D155211866C0004EE254 /* MPMShareLinkView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D154211866C0004EE254 /* MPMShareLinkView.m */; };
-		4F52D18721188860004EE254 /* UseMPMShareLinkViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D18621188860004EE254 /* UseMPMShareLinkViewViewController.m */; };
-		4F52D18A211893E3004EE254 /* MPMShareLiveView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D189211893E3004EE254 /* MPMShareLiveView.m */; };
-		4F52D18E211943B4004EE254 /* UseMPMShareLiveViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D18D211943B4004EE254 /* UseMPMShareLiveViewViewController.m */; };
 		4F52D191211948F0004EE254 /* i_video_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F52D18F211948F0004EE254 /* i_video_play@2x.png */; };
 		4F52D192211948F0004EE254 /* i_video_play@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F52D190211948F0004EE254 /* i_video_play@3x.png */; };
 		4F52D19521194ADD004EE254 /* WCImageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D19421194ADD004EE254 /* WCImageTool.m */; };
@@ -30,7 +22,7 @@
 		4F7D900F210DDB8300145B00 /* 001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D900E210DDB8200145B00 /* 001@2x.png */; };
 		4F7D902F210EE76C00145B00 /* 005@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D902B210EE76B00145B00 /* 005@2x.png */; };
 		4F7D9030210EE76C00145B00 /* 002@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D902C210EE76C00145B00 /* 002@2x.png */; };
-		4F7D9031210EE76C00145B00 /* 004@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D902D210EE76C00145B00 /* 004@2x.png */; };
+		4F7D9031210EE76C00145B00 /* 004@2X.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D902D210EE76C00145B00 /* 004@2X.png */; };
 		4F7D9032210EE76C00145B00 /* 003@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D902E210EE76C00145B00 /* 003@2x.png */; };
 		4F9382F720C6D67C00568EE1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9382F620C6D67C00568EE1 /* AppDelegate.m */; };
 		4F9382FF20C6D67E00568EE1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F9382FE20C6D67E00568EE1 /* Assets.xcassets */; };
@@ -127,30 +119,12 @@
 /* Begin PBXFileReference section */
 		4F1D7DC92122B2D20021023C /* LabelWithMaximumLinesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabelWithMaximumLinesViewController.h; sourceTree = "<group>"; };
 		4F1D7DCA2122B2D20021023C /* LabelWithMaximumLinesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelWithMaximumLinesViewController.m; sourceTree = "<group>"; };
+		4F4EF6B4245C15B2003F32F4 /* 079@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "079@2x.png"; sourceTree = "<group>"; };
+		4F4EF6B5245C15B2003F32F4 /* 090@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "090@2x.png"; sourceTree = "<group>"; };
 		4F517B2B212E90C9008CE69F /* LabelWithHyphenationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabelWithHyphenationViewController.h; sourceTree = "<group>"; };
 		4F517B2C212E90C9008CE69F /* LabelWithHyphenationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelWithHyphenationViewController.m; sourceTree = "<group>"; };
-		4F52D1152117FF50004EE254 /* MPMShareCommodityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPMShareCommodityView.h; sourceTree = "<group>"; };
-		4F52D1162117FF50004EE254 /* MPMShareCommodityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPMShareCommodityView.m; sourceTree = "<group>"; };
-		4F52D118211800C0004EE254 /* UseMPMShareCommodityViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseMPMShareCommodityViewViewController.h; sourceTree = "<group>"; };
-		4F52D119211800C0004EE254 /* UseMPMShareCommodityViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseMPMShareCommodityViewViewController.m; sourceTree = "<group>"; };
 		4F52D11C21181B72004EE254 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
 		4F52D11D21181B72004EE254 /* WCMacroTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMacroTool.m; sourceTree = "<group>"; };
-		4F52D142211845AF004EE254 /* MPMShareStoreView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPMShareStoreView.h; sourceTree = "<group>"; };
-		4F52D143211845AF004EE254 /* MPMShareStoreView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPMShareStoreView.m; sourceTree = "<group>"; };
-		4F52D14521185089004EE254 /* UseMPMShareStoreViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseMPMShareStoreViewViewController.h; sourceTree = "<group>"; };
-		4F52D14621185089004EE254 /* UseMPMShareStoreViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseMPMShareStoreViewViewController.m; sourceTree = "<group>"; };
-		4F52D14D21185499004EE254 /* MPMShareCouponView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPMShareCouponView.h; sourceTree = "<group>"; };
-		4F52D14E21185499004EE254 /* MPMShareCouponView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPMShareCouponView.m; sourceTree = "<group>"; };
-		4F52D1502118646D004EE254 /* UseMPMShareCouponViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseMPMShareCouponViewViewController.h; sourceTree = "<group>"; };
-		4F52D1512118646D004EE254 /* UseMPMShareCouponViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseMPMShareCouponViewViewController.m; sourceTree = "<group>"; };
-		4F52D153211866C0004EE254 /* MPMShareLinkView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPMShareLinkView.h; sourceTree = "<group>"; };
-		4F52D154211866C0004EE254 /* MPMShareLinkView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPMShareLinkView.m; sourceTree = "<group>"; };
-		4F52D18521188860004EE254 /* UseMPMShareLinkViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseMPMShareLinkViewViewController.h; sourceTree = "<group>"; };
-		4F52D18621188860004EE254 /* UseMPMShareLinkViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseMPMShareLinkViewViewController.m; sourceTree = "<group>"; };
-		4F52D188211893E3004EE254 /* MPMShareLiveView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MPMShareLiveView.h; sourceTree = "<group>"; };
-		4F52D189211893E3004EE254 /* MPMShareLiveView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MPMShareLiveView.m; sourceTree = "<group>"; };
-		4F52D18C211943B4004EE254 /* UseMPMShareLiveViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseMPMShareLiveViewViewController.h; sourceTree = "<group>"; };
-		4F52D18D211943B4004EE254 /* UseMPMShareLiveViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseMPMShareLiveViewViewController.m; sourceTree = "<group>"; };
 		4F52D18F211948F0004EE254 /* i_video_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "i_video_play@2x.png"; sourceTree = "<group>"; };
 		4F52D190211948F0004EE254 /* i_video_play@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "i_video_play@3x.png"; sourceTree = "<group>"; };
 		4F52D19321194ADD004EE254 /* WCImageTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCImageTool.h; sourceTree = "<group>"; };
@@ -166,7 +140,7 @@
 		4F7D900E210DDB8200145B00 /* 001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "001@2x.png"; sourceTree = "<group>"; };
 		4F7D902B210EE76B00145B00 /* 005@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "005@2x.png"; sourceTree = "<group>"; };
 		4F7D902C210EE76C00145B00 /* 002@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "002@2x.png"; sourceTree = "<group>"; };
-		4F7D902D210EE76C00145B00 /* 004@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "004@2x.png"; sourceTree = "<group>"; };
+		4F7D902D210EE76C00145B00 /* 004@2X.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "004@2X.png"; sourceTree = "<group>"; };
 		4F7D902E210EE76C00145B00 /* 003@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "003@2x.png"; sourceTree = "<group>"; };
 		4F9382F220C6D67C00568EE1 /* HelloUILabel.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUILabel.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F9382F520C6D67C00568EE1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -400,16 +374,6 @@
 				4F9382F620C6D67C00568EE1 /* AppDelegate.m */,
 				4F93831220C6D6C900568EE1 /* RootViewController.h */,
 				4F93831320C6D6C900568EE1 /* RootViewController.m */,
-				4F52D1152117FF50004EE254 /* MPMShareCommodityView.h */,
-				4F52D1162117FF50004EE254 /* MPMShareCommodityView.m */,
-				4F52D142211845AF004EE254 /* MPMShareStoreView.h */,
-				4F52D143211845AF004EE254 /* MPMShareStoreView.m */,
-				4F52D14D21185499004EE254 /* MPMShareCouponView.h */,
-				4F52D14E21185499004EE254 /* MPMShareCouponView.m */,
-				4F52D153211866C0004EE254 /* MPMShareLinkView.h */,
-				4F52D154211866C0004EE254 /* MPMShareLinkView.m */,
-				4F52D188211893E3004EE254 /* MPMShareLiveView.h */,
-				4F52D189211893E3004EE254 /* MPMShareLiveView.m */,
 				4F93836920C6EB3700568EE1 /* Resources */,
 				4F9382FE20C6D67E00568EE1 /* Assets.xcassets */,
 				4F93830020C6D67E00568EE1 /* LaunchScreen.storyboard */,
@@ -432,16 +396,6 @@
 				4F7D900C210DD8DF00145B00 /* UseYYWLabelWithEmoticonViewController.m */,
 				4F93835F20C6EA2B00568EE1 /* YYTextExampleHelper.h */,
 				4F93836020C6EA2C00568EE1 /* YYTextExampleHelper.m */,
-				4F52D118211800C0004EE254 /* UseMPMShareCommodityViewViewController.h */,
-				4F52D119211800C0004EE254 /* UseMPMShareCommodityViewViewController.m */,
-				4F52D14521185089004EE254 /* UseMPMShareStoreViewViewController.h */,
-				4F52D14621185089004EE254 /* UseMPMShareStoreViewViewController.m */,
-				4F52D1502118646D004EE254 /* UseMPMShareCouponViewViewController.h */,
-				4F52D1512118646D004EE254 /* UseMPMShareCouponViewViewController.m */,
-				4F52D18521188860004EE254 /* UseMPMShareLinkViewViewController.h */,
-				4F52D18621188860004EE254 /* UseMPMShareLinkViewViewController.m */,
-				4F52D18C211943B4004EE254 /* UseMPMShareLiveViewViewController.h */,
-				4F52D18D211943B4004EE254 /* UseMPMShareLiveViewViewController.m */,
 				4F1D7DC92122B2D20021023C /* LabelWithMaximumLinesViewController.h */,
 				4F1D7DCA2122B2D20021023C /* LabelWithMaximumLinesViewController.m */,
 				4F517B2B212E90C9008CE69F /* LabelWithHyphenationViewController.h */,
@@ -455,12 +409,14 @@
 		4F93836920C6EB3700568EE1 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F4EF6B4245C15B2003F32F4 /* 079@2x.png */,
+				4F4EF6B5245C15B2003F32F4 /* 090@2x.png */,
 				4F52D18F211948F0004EE254 /* i_video_play@2x.png */,
 				4F52D190211948F0004EE254 /* i_video_play@3x.png */,
 				4F7D900E210DDB8200145B00 /* 001@2x.png */,
 				4F7D902C210EE76C00145B00 /* 002@2x.png */,
 				4F7D902E210EE76C00145B00 /* 003@2x.png */,
-				4F7D902D210EE76C00145B00 /* 004@2x.png */,
+				4F7D902D210EE76C00145B00 /* 004@2X.png */,
 				4F7D902B210EE76B00145B00 /* 005@2x.png */,
 				4F93836A20C6EB4200568EE1 /* dribbble64_imageio.png */,
 			);
@@ -795,8 +751,10 @@
 				4F7D9030210EE76C00145B00 /* 002@2x.png in Resources */,
 				4F7D9032210EE76C00145B00 /* 003@2x.png in Resources */,
 				4F93830220C6D67E00568EE1 /* LaunchScreen.storyboard in Resources */,
+				4F4EF6B7245C15B3003F32F4 /* 090@2x.png in Resources */,
+				4F4EF6B6245C15B3003F32F4 /* 079@2x.png in Resources */,
 				4F7D902F210EE76C00145B00 /* 005@2x.png in Resources */,
-				4F7D9031210EE76C00145B00 /* 004@2x.png in Resources */,
+				4F7D9031210EE76C00145B00 /* 004@2X.png in Resources */,
 				4F93836B20C6EB4200568EE1 /* dribbble64_imageio.png in Resources */,
 				4F52D192211948F0004EE254 /* i_video_play@3x.png in Resources */,
 				4F52D191211948F0004EE254 /* i_video_play@2x.png in Resources */,
@@ -820,7 +778,6 @@
 				4FAF520621500F2B006A7509 /* YYAsyncLayer.m in Sources */,
 				4FAF51E921500F2B006A7509 /* UIColor+YYAdd.m in Sources */,
 				4FAF520521500F2B006A7509 /* YYWeakProxy.m in Sources */,
-				4F52D14F21185499004EE254 /* MPMShareCouponView.m in Sources */,
 				4FAF51C721500F2B006A7509 /* YYImage.m in Sources */,
 				4FAF51E721500F2B006A7509 /* UITextField+YYAdd.m in Sources */,
 				4FAF520B21500F2B006A7509 /* YYKeychain.m in Sources */,
@@ -833,8 +790,6 @@
 				4FAF51CB21500F2B006A7509 /* UIButton+YYWebImage.m in Sources */,
 				4FAF520921500F2B006A7509 /* YYTransaction.m in Sources */,
 				4F7D8E4C21062BB000145B00 /* UseUILabelViewController.m in Sources */,
-				4F52D18E211943B4004EE254 /* UseMPMShareLiveViewViewController.m in Sources */,
-				4F52D1172117FF50004EE254 /* MPMShareCommodityView.m in Sources */,
 				4FAF51C321500F2B006A7509 /* YYMemoryCache.m in Sources */,
 				4FAF51D621500F2B006A7509 /* YYTextEffectWindow.m in Sources */,
 				4F7D900D210DD8DF00145B00 /* UseYYWLabelWithEmoticonViewController.m in Sources */,
@@ -854,22 +809,18 @@
 				4FAF51FE21500F2B006A7509 /* NSDate+YYAdd.m in Sources */,
 				4FAF51E521500F2B006A7509 /* YYTextArchiver.m in Sources */,
 				4FAF51FA21500F2B006A7509 /* NSThread+YYAdd.m in Sources */,
-				4F52D14721185089004EE254 /* UseMPMShareStoreViewViewController.m in Sources */,
 				4FAF51F621500F2B006A7509 /* NSNumber+YYAdd.m in Sources */,
 				4FAF51C121500F2B006A7509 /* YYCache.m in Sources */,
 				4F93836120C6EA2C00568EE1 /* YYTextExampleHelper.m in Sources */,
 				4FAF51F021500F2B006A7509 /* UIBarButtonItem+YYAdd.m in Sources */,
-				4F52D18A211893E3004EE254 /* MPMShareLiveView.m in Sources */,
 				4FAF51D321500F2B006A7509 /* YYTextView.m in Sources */,
 				4FAF51D921500F2B006A7509 /* YYTextLine.m in Sources */,
-				4F52D144211845AF004EE254 /* MPMShareStoreView.m in Sources */,
 				4FAF51CA21500F2B006A7509 /* _YYWebImageSetter.m in Sources */,
 				4FAF520D21500F2B006A7509 /* YYFileHash.m in Sources */,
 				4FAF51FC21500F2B006A7509 /* NSTimer+YYAdd.m in Sources */,
 				4FAF51CE21500F2B006A7509 /* CALayer+YYWebImage.m in Sources */,
 				4FAF51C221500F2B006A7509 /* YYKVStorage.m in Sources */,
 				4FAF51E221500F2B006A7509 /* NSAttributedString+YYText.m in Sources */,
-				4F52D11A211800C0004EE254 /* UseMPMShareCommodityViewViewController.m in Sources */,
 				4FAF521021500F2B006A7509 /* YYReachability.m in Sources */,
 				4FAF51EF21500F2B006A7509 /* UIView+YYAdd.m in Sources */,
 				4FAF520C21500F2B006A7509 /* YYGestureRecognizer.m in Sources */,
@@ -887,7 +838,6 @@
 				4FAF520721500F2B006A7509 /* YYThreadSafeDictionary.m in Sources */,
 				4FAF51F121500F2B006A7509 /* UIGestureRecognizer+YYAdd.m in Sources */,
 				4FAF51C621500F2B006A7509 /* YYSpriteSheetImage.m in Sources */,
-				4F52D18721188860004EE254 /* UseMPMShareLinkViewViewController.m in Sources */,
 				4FAF51C921500F2B006A7509 /* YYFrameImage.m in Sources */,
 				4FAF520821500F2B006A7509 /* YYSentinel.m in Sources */,
 				4FA253FE21AEE4DF00E4C6FC /* TextAlignmentViewController.m in Sources */,
@@ -904,7 +854,6 @@
 				4FAF51D221500F2B006A7509 /* YYClassInfo.m in Sources */,
 				4F93831420C6D6C900568EE1 /* RootViewController.m in Sources */,
 				4FAF51EB21500F2B006A7509 /* UIApplication+YYAdd.m in Sources */,
-				4F52D1522118646D004EE254 /* UseMPMShareCouponViewViewController.m in Sources */,
 				4FAF520021500F2B006A7509 /* NSNotificationCenter+YYAdd.m in Sources */,
 				4FAF520F21500F2B006A7509 /* YYThreadSafeArray.m in Sources */,
 				4FAF520221500F2B006A7509 /* NSObject+YYAddForKVO.m in Sources */,
@@ -914,7 +863,6 @@
 				4FAF51DB21500F2B006A7509 /* YYTextKeyboardManager.m in Sources */,
 				4FAF51EA21500F2B006A7509 /* UIDevice+YYAdd.m in Sources */,
 				4FAF51E121500F2B006A7509 /* YYTextParser.m in Sources */,
-				4F52D155211866C0004EE254 /* MPMShareLinkView.m in Sources */,
 				4FAF51D721500F2B006A7509 /* YYTextInput.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

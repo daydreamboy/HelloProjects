@@ -31,4 +31,7 @@
  @return the new image
  */
 + (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
+
++ (UIImage *)imageWithName:(NSString *)name inResourceBundle:(NSString *)resourceBundleName;
+
 @end
