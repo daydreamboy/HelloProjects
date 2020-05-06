@@ -324,6 +324,12 @@ NSLog(@"%f", random);
 
 
 
+## 12、数据类型最大最小值[^6]
+
+limits.h提供整型数据类型最大最小值的宏定义
+
+float.h提供float型数据类型最大最小值的宏定义
+
 
 
 
@@ -338,6 +344,8 @@ NSLog(@"%f", random);
 [^4]:https://nshipster.com/random/
 
 [^5]:https://stackoverflow.com/questions/1041866/what-is-the-effect-of-extern-c-in-c
+
+[^6]:https://stackoverflow.com/questions/2053843/min-and-max-value-of-data-type-in-c
 
 
 
