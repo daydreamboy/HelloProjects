@@ -11,7 +11,7 @@
 @implementation WCCrashTool
 
 + (void)load {
-    [MethodUnrecognizedGuard inject];
+    //[MethodUnrecognizedGuard inject];
 }
 
 @end

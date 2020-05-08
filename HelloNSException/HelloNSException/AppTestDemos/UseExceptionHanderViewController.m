@@ -8,50 +8,39 @@
 
 #import "UseExceptionHanderViewController.h"
 #import "WCCrashCaseTool.h"
+#import "WCExceptionTool.h"
 
 void UseExceptionHanderViewController_HandleException(NSException *exception)
 {
-    NSArray *arr = [exception callStackSymbols];
-    
-    NSString *reason = [exception reason];
-    NSString *name = [exception name];
-    
-    NSDate *date = [NSDate date];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    
-    [formatter setDateFormat:@"yyyy-MM-dd HH-mm-ss"];
-    [formatter setTimeZone:[NSTimeZone localTimeZone]];
-    NSString *dateString = [formatter stringFromDate:date];
-    
-    NSMutableString *crashLogContent = [NSMutableString string];
-    [crashLogContent appendFormat:@"appVersion: %@\n", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
-    [crashLogContent appendFormat:@"appBuildVersion: %@\n", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
-    [crashLogContent appendFormat:@"systemVersion: %@\n", [[UIDevice currentDevice] systemVersion]];
-    //    [crashLogContent appendFormat:@"platform: %@\n", [networkParameter platform]];
-    [crashLogContent appendFormat:@"crashTime: %@\n", dateString];
-    [crashLogContent appendFormat:@"crashLogName: %@ \n", name];
-    [crashLogContent appendFormat:@"crashReason: %@ \n", reason];
-    [crashLogContent appendFormat:@"callStackInfo: %@ \n", arr];
-    
-    NSLog(@"CrashLog: %@", crashLogContent);
-    
-    NSString *filePath = ExceptionLogFilePath;
-    [crashLogContent writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    [WCExceptionTool writeCrashReportWithException:exception enablePrintToConsole:YES crashReportFileName:ExceptionLogFileName];
 }
 
 @interface UseExceptionHanderViewController ()
+@property (nonatomic, strong) UISwitch *switcher;
 @end
 
 @implementation UseExceptionHanderViewController
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
+- (void)viewDidLoad {
+    [super viewDidLoad];
     
-//    [self installUncaughtExceptionHandler];
+    UISwitch *switcher = [[UISwitch alloc] init];
+    switcher.on = NO;
+    [switcher addTarget:self action:@selector(toggleExceptionHandler:) forControlEvents:UIControlEventValueChanged];
+    self.switcher = switcher;
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:switcher];
 }
 
-- (void)dealloc {
-    [self uninstallUncaughtExceptionHandler];
+#pragma mark - Action
+
+- (void)toggleExceptionHandler:(UISwitch *)sender {
+    if (sender.on) {
+        [self installUncaughtExceptionHandler];
+    }
+    else {
+        [self uninstallUncaughtExceptionHandler];
+    }
 }
 
 #pragma mark

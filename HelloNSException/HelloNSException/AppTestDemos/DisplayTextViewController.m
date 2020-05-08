@@ -8,9 +8,6 @@
 
 #import "DisplayTextViewController.h"
 
-#define STATUS_BAR_H            (CGRectGetHeight([UIApplication sharedApplication].statusBarFrame))
-#define NAV_BAR_H               (CGRectGetHeight(self.navigationController.navigationBar.frame))
-
 @interface DisplayTextViewController ()
 @property (nonatomic, copy) NSString *filePath;
 @property (nonatomic, strong) UITextView *textView;
@@ -76,7 +73,7 @@
     if (!error) {
         self.attrTextM = [[NSMutableAttributedString alloc] initWithString:text];
         self.textView.attributedText = [self.attrTextM copy];
-        self.textView.contentOffset = CGPointZero;
+//        self.textView.contentOffset = CGPointZero;
     }
     self.errorOfReadingFile = error;
 }
@@ -120,7 +117,7 @@
 - (UITextView *)textView {
     if (!_textView) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0, STATUS_BAR_H + NAV_BAR_H, screenSize.width, screenSize.height - STATUS_BAR_H - NAV_BAR_H)];
+        UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, 400)];
         textView.autocorrectionType = UITextAutocorrectionTypeNo;
         textView.autocapitalizationType = UITextAutocapitalizationTypeNone;
         textView.editable = NO;

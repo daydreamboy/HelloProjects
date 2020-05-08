@@ -20,8 +20,8 @@
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    //    [WCUncaughtExceptionTool installUncaughtExceptionHandler];
-    InstallUncaughtExceptionHandler();
+    //[WCUncaughtExceptionTool installUncaughtExceptionHandler];
+    //InstallUncaughtExceptionHandler();
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     
     self.rootViewController = [RootViewController new];
