@@ -14,6 +14,7 @@
 #import "DisplayTextViewController.h"
 #import "UseExceptionHanderViewController.h"
 #import "UseSignalHandlerViewController.h"
+#import "InterceptDoesNotRecognizeSelectorViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -42,6 +43,7 @@
                 @"Check current signal handler",
                 @"Use exception handler",
                 @"Use signal handler",
+                @"Intercept does not recognized selectors",
                 @"call a test method",
                 ];
     _classes = @[
@@ -51,6 +53,7 @@
                  @"checkCurrentSignalHandler",
                  [UseExceptionHanderViewController class],
                  [UseSignalHandlerViewController class],
+                 [InterceptDoesNotRecognizeSelectorViewController class],
                  @"testMethod",
                  ];
 }
