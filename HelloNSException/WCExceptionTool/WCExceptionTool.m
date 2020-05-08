@@ -8,6 +8,7 @@
 
 #import "WCExceptionTool.h"
 #import <mach-o/dyld.h>
+#import <mach-o/ldsyms.h>
 
 @implementation WCExceptionTool
 
@@ -37,7 +38,8 @@
     NSMutableString *crashReportableContent = [NSMutableString string];
     [crashReportableContent appendFormat:@"appVersion: %@\n", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
     [crashReportableContent appendFormat:@"appBuildVersion: %@\n", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
-    [crashReportableContent appendFormat:@"appExecutableLoadAddress: %@\n", [self getAppExecutableImageLoadAddress]];
+    [crashReportableContent appendFormat:@"appExecutableUUID: %@\n", [self appExecutableUUID]];
+    [crashReportableContent appendFormat:@"appExecutableLoadAddress: %@\n", [self appExecutableImageLoadAddress]];
     [crashReportableContent appendFormat:@"systemVersion: %@\n", [[UIDevice currentDevice] systemVersion]];
     [crashReportableContent appendFormat:@"crashTime: %@\n", dateString];
     [crashReportableContent appendFormat:@"crashExceptionName: %@\n", name];
@@ -84,7 +86,7 @@
 
 #pragma mark - Utility
 
-+ (NSString *)getAppExecutableImageLoadAddress {
++ (NSString *)appExecutableImageLoadAddress {
     static NSString *sAddress;
     
     if (!sAddress) {
@@ -101,6 +103,25 @@
     }
     
     return sAddress;
+}
+
++ (nullable NSString *)appExecutableUUID {
+    const uint8_t *command = (const uint8_t *)(&_mh_execute_header + 1);
+    for (uint32_t idx = 0; idx < _mh_execute_header.ncmds; ++idx) {
+        if (((const struct load_command *)command)->cmd == LC_UUID) {
+            command += sizeof(struct load_command);
+            return [NSString stringWithFormat:@"%02X%02X%02X%02X-%02X%02X-%02X%02X-%02X%02X-%02X%02X%02X%02X%02X%02X",
+                    command[0], command[1], command[2], command[3],
+                    command[4], command[5],
+                    command[6], command[7],
+                    command[8], command[9],
+                    command[10], command[11], command[12], command[13], command[14], command[15]];
+        }
+        else {
+            command += ((const struct load_command *)command)->cmdsize;
+        }
+    }
+    return nil;
 }
 
 @end

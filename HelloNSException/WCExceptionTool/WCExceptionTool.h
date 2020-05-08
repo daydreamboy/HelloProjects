@@ -37,9 +37,23 @@ NS_ASSUME_NONNULL_BEGIN
  Get the app executable image load address
  
  @return the app executable image load address, e.g. 0x104ffc000
+ @header #import <mach-o/dyld.h>
  @see https://www.wandouip.com/t5i276951/
  */
-+ (NSString *)getAppExecutableImageLoadAddress;
++ (NSString *)appExecutableImageLoadAddress;
+
+/**
+ Get the UUID of the app executable image
+ 
+ @return the UUID
+ @see https://stackoverflow.com/questions/10119700/how-to-get-mach-o-uuid-of-a-running-process
+ 
+ @discussion use the following command to check the app executable file
+ @code
+ $ otool -l <app executable file> | grep uuid
+ @endcode
+ */
++ (nullable NSString *)appExecutableUUID;
 
 @end
 
