@@ -28,9 +28,12 @@ void UseSignalHandlerViewController_SignalHandler(int signal)
     NSDate *date = [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     
-    [formatter setDateFormat:@"yyyy-MM-dd HH-mm-ss"];
+    [formatter setDateFormat:@"yyyy-MM-dd HH-mm-ss.sss"];
     [formatter setTimeZone:[NSTimeZone localTimeZone]];
     NSString *dateString = [formatter stringFromDate:date];
+    
+    NSArray *callStackSymbols = [NSThread callStackSymbols];
+    NSArray *callStackReturnAddresses = [NSThread callStackReturnAddresses];
     
     NSMutableString *crashLogContent = [NSMutableString string];
     [crashLogContent appendFormat:@"appVersion: %@\n", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
@@ -40,6 +43,8 @@ void UseSignalHandlerViewController_SignalHandler(int signal)
     [crashLogContent appendFormat:@"crashTime: %@\n", dateString];
     [crashLogContent appendFormat:@"crashLogName: %@ \n", name];
     [crashLogContent appendFormat:@"crashReason: %@ \n", reason];
+    [crashLogContent appendFormat:@"callStackSymbols: %@\n", callStackSymbols];
+    [crashLogContent appendFormat:@"callStackReturnAddresses: %@\n", callStackReturnAddresses];
     
     NSLog(@"CrashLog: %@", crashLogContent);
    
@@ -57,7 +62,7 @@ void UseSignalHandlerViewController_SignalHandler(int signal)
     [alert show];
 #pragma GCC diagnostic pop
 
-//    [self installUncaughtExceptionHandler];
+    [self installUncaughtExceptionHandler];
 }
 
 - (void)dealloc {

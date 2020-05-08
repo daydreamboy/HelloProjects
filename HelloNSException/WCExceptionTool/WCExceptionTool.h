@@ -37,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
  Get the app executable image load address
  
  @return the app executable image load address, e.g. 0x104ffc000
+ @see https://www.wandouip.com/t5i276951/
  */
 + (NSString *)getAppExecutableImageLoadAddress;
 

@@ -43,7 +43,7 @@
     [crashReportableContent appendFormat:@"crashExceptionName: %@\n", name];
     [crashReportableContent appendFormat:@"crashReason: %@\n", reason];
     [crashReportableContent appendFormat:@"crashUserInfo: %@\n", userInfo];
-    [crashReportableContent appendFormat:@"callStackInfo: %@\n", callStackSymbols];
+    [crashReportableContent appendFormat:@"callStackSymbols: %@\n", callStackSymbols];
     [crashReportableContent appendFormat:@"callStackReturnAddresses: %@\n", callStackReturnAddresses];
 
     return crashReportableContent;

@@ -172,6 +172,7 @@ void WCUncaughtExceptionTool_signalHandlerEntry(int signal)
         case SIGFPE: { return @"SIGFPE"; }
         case SIGBUS: { return @"SIGBUS"; }
         case SIGPIPE: { return @"SIGPIPE"; }
+        case SIGSEGV: { return @"SIGSEGV"; }
         default:
             return [NSString stringWithFormat:@"%d", signal];
     }
