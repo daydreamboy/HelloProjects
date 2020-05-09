@@ -57,6 +57,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)stopResidentThread:(NSThread *)residentThread;
 
+#pragma mark - Call Stack
+
++ (NSString *)currentThreadCallStackString;
+
 @end
 
 NS_ASSUME_NONNULL_END

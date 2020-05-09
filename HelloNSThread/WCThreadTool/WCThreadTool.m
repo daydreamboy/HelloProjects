@@ -9,6 +9,8 @@
 #import "WCThreadTool.h"
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
+#import <mach-o/dyld.h>
+#import <mach-o/ldsyms.h>
 
 // >= `10.0`
 #ifndef IOS10_OR_LATER
@@ -132,5 +134,71 @@ static const void *sAssociatedObjectKeyAddress = &sAssociatedObjectKeyAddress;
 }
 
 #pragma mark ::
+
+#pragma mark - Call Stack
+
++ (NSString *)currentThreadCallStackString {
+    NSArray *callStackSymbols = [NSThread callStackSymbols];
+    NSArray *callStackReturnAddresses = [NSThread callStackReturnAddresses];
+    
+    NSMutableString *logContent = [NSMutableString string];
+    [logContent appendFormat:@"appVersion: %@\n", [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"]];
+    [logContent appendFormat:@"appBuildVersion: %@\n", [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]];
+    [logContent appendFormat:@"appExecutableUUID: %@\n", [self appExecutableUUID]];
+    [logContent appendFormat:@"appExecutableLoadAddress: %@\n", [self appExecutableImageLoadAddress]];
+    [logContent appendFormat:@"systemVersion: %@\n", [[UIDevice currentDevice] systemVersion]];
+    [logContent appendFormat:@"callStackSymbols: %@\n", callStackSymbols];
+    [logContent appendFormat:@"callStackReturnAddresses: %@\n", callStackReturnAddresses];
+    
+    return logContent;
+}
+
+#pragma mark - Utility
+
++ (NSString *)appExecutableImageLoadAddress {
+    static NSString *sAddress;
+    
+    if (!sAddress) {
+        const struct mach_header *executableHeader = NULL;
+        for (uint32_t i = 0; i < _dyld_image_count(); i++){
+            const struct mach_header *header = _dyld_get_image_header(i);
+            // Note: find the image type is executable, which is the executable binary file
+            if (header->filetype == MH_EXECUTE){
+                executableHeader = header;
+                break;
+            }
+        }
+        sAddress = [NSString stringWithFormat:@"0x%lx", (NSInteger)executableHeader];
+    }
+    
+    return sAddress;
+}
+
++ (nullable NSString *)appExecutableUUID {
+    static NSString *sUUID;
+    
+    if (!sUUID) {
+        const uint8_t *command = (const uint8_t *)(&_mh_execute_header + 1);
+        for (uint32_t idx = 0; idx < _mh_execute_header.ncmds; ++idx) {
+            if (((const struct load_command *)command)->cmd == LC_UUID) {
+                command += sizeof(struct load_command);
+                sUUID = [NSString stringWithFormat:@"%02X%02X%02X%02X-%02X%02X-%02X%02X-%02X%02X-%02X%02X%02X%02X%02X%02X",
+                         command[0], command[1],
+                         command[2], command[3],
+                         command[4], command[5],
+                         command[6], command[7],
+                         command[8], command[9],
+                         command[10], command[11],
+                         command[12], command[13],
+                         command[14], command[15]];
+            }
+            else {
+                command += ((const struct load_command *)command)->cmdsize;
+            }
+        }
+    }
+    
+    return sUUID;
+}
 
 @end
