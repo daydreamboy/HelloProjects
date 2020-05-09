@@ -46,6 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
  Get the UUID of the app executable image
  
  @return the UUID
+ @header #import <mach-o/ldsyms.h>
  @see https://stackoverflow.com/questions/10119700/how-to-get-mach-o-uuid-of-a-running-process
  
  @discussion use the following command to check the app executable file
