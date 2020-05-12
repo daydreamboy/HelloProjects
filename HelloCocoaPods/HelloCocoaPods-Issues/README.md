@@ -1,9 +1,7 @@
 # CocoaPods Issues
---
+[TOC]
 
-TOC
-
-## 1. 文件名冲突
+## 1、文件名冲突
 
 文件组织结构，如下
 
@@ -25,6 +23,8 @@ TOC
 
 Pod中有相同命名的源文件，可能报此警告。不同Pod有相同文件名的文件，则不会有此警告。
 
+
+
 问题2：有可能少编译的源文件
 
 podspec文件
@@ -38,4 +38,61 @@ s.source_files = 'FileNameConflict/Classes/**/*'
 上面B中的ReplaceMe.m重复链接两次，而A中ReplaceMe.m没有编译进来。
 
 
+
+## 2、Framework命名冲突[^1]
+
+```ruby
+platform :ios, '9.0'
+use_frameworks!
+
+target 'ConflictFrameworkName' do
+end
+
+target 'FrameworkA' do
+  pod 'AFNetworking'
+end
+
+target 'FrameworkB' do
+  pod 'AFNetworking'
+end
+```
+
+
+
+上面的Podfile，在使用CocoaPods 1.2.0版本时，报错如下
+
+```shell
+[!] The 'Pods-ConflictFrameworkName' target has frameworks with conflicting names: afnetworking.
+```
+
+
+
+解决方法1：
+
+升级CocoaPods版本
+
+
+
+解决方法2：嵌套target，来安装pod
+
+```ruby
+use_frameworks!
+
+target 'Foo' do
+end
+
+target 'A' do
+  pod 'Decodable'
+    target 'B' do
+      inherit! :search_paths
+      # pod 'Decodable' # uncommenting this leads to the same issue
+    end
+end
+```
+
+
+
+## References
+
+[^1]:https://github.com/CocoaPods/CocoaPods/issues/6446
 
