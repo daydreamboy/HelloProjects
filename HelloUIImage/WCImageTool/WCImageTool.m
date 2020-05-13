@@ -6,6 +6,19 @@
 //
 
 #import "WCImageTool.h"
+#import <ImageIO/ImageIO.h>
+
+#if __has_feature(objc_arc)
+
+#define toCF (__bridge CFTypeRef)
+#define fromCF (__bridge id)
+
+#else
+
+#define toCF (CFTypeRef)
+#define fromCF (id)
+
+#endif
 
 @implementation WCImageTool
 
@@ -473,6 +486,88 @@
     CGImageRelease(cgImage);
     
     return fixedImage;
+}
+
+#pragma mark - Animated Image
+
++ (nullable UIImage *)animatedImageWithData:(NSData *)data {
+    if (![data isKindOfClass:[NSData class]] || data.length == 0) {
+        return nil;
+    }
+    
+    CGImageSourceRef imageSourceRef = CGImageSourceCreateWithData(toCF data, NULL);
+    size_t count = CGImageSourceGetCount(imageSourceRef);
+    CGImageRef images[count];
+    int delaysInCentiseconds[count]; // in centiseconds
+    int totalDurationInCentiseconds = 0;
+    int gcd = 1;
+    
+    for (size_t i = 0; i < count; ++i) {
+        images[i] = CGImageSourceCreateImageAtIndex(imageSourceRef, i, NULL);
+        
+        // Note: use 100ms (also 0.1s) as default, see https://stackoverflow.com/a/17824564
+        int delayInCentiseconds = 1;
+        
+        CFDictionaryRef properties = CGImageSourceCopyPropertiesAtIndex(imageSourceRef, i, NULL);
+        if (properties != NULL) {
+            CFDictionaryRef GIFProperties = CFDictionaryGetValue(properties, kCGImagePropertyGIFDictionary);
+            if (GIFProperties != NULL) {
+                NSNumber *delayInSeconds = fromCF CFDictionaryGetValue(GIFProperties, kCGImagePropertyGIFUnclampedDelayTime);
+                
+                if (delayInSeconds == NULL || [delayInSeconds doubleValue] <= 0) {
+                    delayInSeconds = fromCF CFDictionaryGetValue(GIFProperties, kCGImagePropertyGIFDelayTime);
+                }
+                
+                if ([delayInSeconds doubleValue] > 0) {
+                    // Convert seconds to centiseconds
+                    delayInCentiseconds = (int)lrint([delayInSeconds doubleValue] * 100);
+                }
+            }
+            
+            CFRelease(properties);
+        }
+        
+        delaysInCentiseconds[i] = delayInCentiseconds;
+        totalDurationInCentiseconds += delayInCentiseconds;
+        gcd = (i == 0 ? delaysInCentiseconds[i] : GCDOfPair(delaysInCentiseconds[i], gcd));
+    }
+        
+    size_t frameCount = totalDurationInCentiseconds / gcd;
+    UIImage *frames[frameCount];
+    for (size_t i = 0, f = 0; i < count; ++i) {
+        // Note: create one frame according to the one image of GIF
+        UIImage *frame = [UIImage imageWithCGImage:images[i]];
+        
+        for (size_t j = delaysInCentiseconds[i] / gcd; j > 0; --j) {
+            // Note: repeat adding the same frame base on its times (the faked `duration`)
+            frames[f++] = frame;
+        }
+        
+        // Note: because images[i] created by CGImageSourceCreateImageAtIndex so should release it
+        CGImageRelease(images[i]);
+    }
+    
+    UIImage *animatedImage = [UIImage animatedImageWithImages:[NSArray arrayWithObjects:frames count:frameCount] duration:(NSTimeInterval)totalDurationInCentiseconds / 100.0];
+    
+    CFRelease(imageSourceRef);
+    
+    return animatedImage;
+}
+
+#pragma mark - Utility
+
+static int GCDOfPair(int a, int b)
+{
+    if (a < b) {
+        return GCDOfPair(b, a);
+    }
+    while (true) {
+        int const r = a % b;
+        if (r == 0)
+            return b;
+        a = b;
+        b = r;
+    }
 }
 
 @end

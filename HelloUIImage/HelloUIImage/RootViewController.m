@@ -14,6 +14,7 @@
 #import "ScaleImageViewController.h"
 #import "CropImageViewController.h"
 #import "CreateImageWithColorViewController.h"
+#import "CreateAnimatedImageViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -42,6 +43,7 @@
         @"Scale image with new size",
         @"Crop an image",
         @"Create image with color",
+        @"Create animated image",
     ];
     _classes = @[
         [CreateOnePixelHeightLineViewController class],
@@ -50,6 +52,7 @@
         [ScaleImageViewController class],
         [CropImageViewController class],
         [CreateImageWithColorViewController class],
+        [CreateAnimatedImageViewController class],
     ];
 }
 

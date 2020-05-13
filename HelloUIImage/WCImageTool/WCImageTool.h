@@ -152,6 +152,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable UIImage *)imageWithName:(NSString *)name inResourceBundle:(nullable NSString *)resourceBundleName;
 
+#pragma mark - Animated Image
+
++ (nullable UIImage *)animatedImageWithData:(NSData *)data;
+
 @end
 
 NS_ASSUME_NONNULL_END
