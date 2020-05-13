@@ -70,27 +70,6 @@
 
 #pragma mark - Actions
 
-- (void)parentViewTapped:(UITapGestureRecognizer *)recognizer {
-    UIView *tappedView = recognizer.view;
-    NSString *msg = [NSString stringWithFormat:@"%@", tappedView];
-    [WCAlertTool presentAlertWithTitle:@"parentView tapped" message:msg cancelButtonTitle:@"Ok" cancelButtonDidClickBlock:nil];
-}
-
-- (void)childViewTapped:(UITapGestureRecognizer *)recognizer {
-    UIView *tappedView = recognizer.view;
-    NSString *msg = [NSString stringWithFormat:@"%@", tappedView];
-    [WCAlertTool presentAlertWithTitle:@"childView tapped" message:msg cancelButtonTitle:@"Ok" cancelButtonDidClickBlock:nil];
-}
-
-- (void)handleMirroredTapGesture:(UITapGestureRecognizer *)recognizer {
-    UIView *tappedView = recognizer.view;
-    NSString *msg = [NSString stringWithFormat:@"%@", tappedView];
-    NSLog(@"handleMirroredTapGesture: %@", msg);
-//    [WCAlertTool presentAlertWithTitle:@"childView tapped" message:msg cancelButtonTitle:@"Ok" cancelButtonDidClickBlock:nil];
-}
-
-#pragma mark -
-
 - (void)parentViewWithMultipleChildViewTapped:(UITapGestureRecognizer *)recognizer {
     UIView *tappedView = recognizer.view;
     NSString *msg = [NSString stringWithFormat:@"%@", tappedView];
@@ -119,31 +98,6 @@
     UIView *tappedView = recognizer.view;
     NSString *msg = [NSString stringWithFormat:@"%@", tappedView];
     [WCAlertTool presentAlertWithTitle:@"childView4 (cyanColor) tapped" message:msg cancelButtonTitle:@"Ok" cancelButtonDidClickBlock:nil];
-}
-
-#pragma mark -
-
-- (void)observeChildViewTapped:(UITapGestureRecognizer *)recognizer {
-    NSLog(@"-------------------");
-    NSLog(@"%@", recognizer.view);
-    
-    if (recognizer.view == self.parentViewWithMultipleChildView) {
-        NSLog(@"parentViewWithMultipleChildView (blueColor) tapped: %@", recognizer.view);
-    }
-    else if (recognizer.view == self.childView1) {
-        NSLog(@"childView1 (orangeColor) tapped: %@", recognizer.view);
-    }
-    else if (recognizer.view == self.childView2) {
-        NSLog(@"childView2 (greenColor) tapped: %@", recognizer.view);
-    }
-    else if (recognizer.view == self.childView3) {
-        NSLog(@"childView3 (magentaColor) tapped: %@", recognizer.view);
-    }
-    else if (recognizer.view == self.childView4) {
-        NSLog(@"childView4 (cyanColor) tapped: %@", recognizer.view);
-    }
-    NSLog(@"-------------------");
-    NSLog(@"\n");
 }
 
 #pragma mark - UIGestureRecognizerDelegate
