@@ -56,8 +56,8 @@
         imageView.image = image;
         imageView.contentMode = UIViewContentModeScaleAspectFit;
         
-        CGRect iamgeAspectRect = AVMakeRectWithAspectRatioInsideRect(image.size, imageView.bounds);
-        NSLog(@"iamgeAspectRect = %@, imageView =%@",NSStringFromCGRect(iamgeAspectRect),NSStringFromCGRect(imageView.frame));
+        CGRect imageAspectRect = AVMakeRectWithAspectRatioInsideRect(image.size, imageView.bounds);
+        NSLog(@"imageAspectRect = %@, imageView =%@",NSStringFromCGRect(imageAspectRect),NSStringFromCGRect(imageView.frame));
         
         [self addOverlayToView:imageView];
         
