@@ -12,8 +12,8 @@
 
 @interface LayerFrameIssueOniOS13ViewController ()
 @property (nonatomic, strong) UIImageView *imageView1Issued;
-@property (nonatomic, strong) UIImageView *imageView2;
-@property (nonatomic, strong) UIImageView *imageView1Fixed;
+@property (nonatomic, strong) UIImageView *imageView2Normal;
+@property (nonatomic, strong) UIImageView *imageView3Fixed;
 @end
 
 @implementation LayerFrameIssueOniOS13ViewController
@@ -28,11 +28,11 @@
     // ISSUE: set layer frame instead of set view frame will cause UIImageView's image not show on iOS 13+
     self.imageView1Issued.layer.frame = CGRectMake((screenSize.width - 200) / 2.0, 10, 200, 200);
     
-    [self.view addSubview:self.imageView2];
+    [self.view addSubview:self.imageView2Normal];
     
-    [self.view addSubview:self.imageView1Fixed];
+    [self.view addSubview:self.imageView3Fixed];
     // Note: Ok
-    self.imageView1Fixed.layer.frame = CGRectMake((screenSize.width - 200) / 2.0, CGRectGetMaxY(self.imageView2.frame) + 10, 200, 200);
+    self.imageView3Fixed.layer.frame = CGRectMake((screenSize.width - 200) / 2.0, CGRectGetMaxY(self.imageView2Normal.frame) + 10, 200, 200);
 }
 
 #pragma mark - Getters
@@ -52,8 +52,8 @@
     return _imageView1Issued;
 }
 
-- (UIImageView *)imageView2 {
-    if (!_imageView2) {
+- (UIImageView *)imageView2Normal {
+    if (!_imageView2Normal) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         UIImage *image = UIImageInResourceBundle(@"walnuts@2x.png", @"");
         
@@ -62,14 +62,14 @@
         imageView.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
         imageView.image = image;
         
-        _imageView2 = imageView;
+        _imageView2Normal = imageView;
     }
     
-    return _imageView2;
+    return _imageView2Normal;
 }
 
-- (UIImageView *)imageView1Fixed {
-    if (!_imageView1Fixed) {
+- (UIImageView *)imageView3Fixed {
+    if (!_imageView3Fixed) {
         UIImage *image = UIImageInResourceBundle(@"walnuts@2x.png", @"");
         
         // Note: initialize or set frame of UIImageView with a temparory non-zero frame on iOS 13+
@@ -79,10 +79,10 @@
         imageView.image = image;
         // FIXED: imageView.frame = <temparory non-zero frame>
         
-        _imageView1Fixed = imageView;
+        _imageView3Fixed = imageView;
     }
     
-    return _imageView1Fixed;
+    return _imageView3Fixed;
 }
 
 @end
