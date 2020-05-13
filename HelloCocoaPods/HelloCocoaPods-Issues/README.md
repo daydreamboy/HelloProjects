@@ -76,17 +76,18 @@ end
 解决方法2：嵌套target，来安装pod
 
 ```ruby
+platform :ios, '9.0'
 use_frameworks!
 
-target 'Foo' do
+target 'ConflictFrameworkName' do
 end
 
-target 'A' do
-  pod 'Decodable'
-    target 'B' do
-      inherit! :search_paths
-      # pod 'Decodable' # uncommenting this leads to the same issue
-    end
+target 'FrameworkA' do
+  pod 'AFNetworking'
+
+  target 'FrameworkB' do
+    inherit! :search_paths
+  end
 end
 ```
 
