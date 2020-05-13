@@ -107,6 +107,7 @@
 		4FB26E58217212B300BA1E73 /* bigger_squared.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigger_squared.png; sourceTree = "<group>"; };
 		4FB26E59217212B300BA1E73 /* smaller_portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = smaller_portrait.png; sourceTree = "<group>"; };
 		4FB26E5A217212B300BA1E73 /* bigger_landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bigger_landscape.png; sourceTree = "<group>"; };
+		4FF3D7D7246C239400B3B3D1 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +144,7 @@
 				4F60620421353A0100D049DF /* WCImageTool.m */,
 				4F67683F21743D0800B371A7 /* WCViewTool.h */,
 				4F67684021743D0800B371A7 /* WCViewTool.m */,
+				4FF3D7D7246C239400B3B3D1 /* WCMacroTool.h */,
 			);
 			path = Tools;
 			sourceTree = "<group>";

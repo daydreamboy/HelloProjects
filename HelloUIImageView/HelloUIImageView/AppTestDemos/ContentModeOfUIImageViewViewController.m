@@ -8,29 +8,65 @@
 
 #import "ContentModeOfUIImageViewViewController.h"
 #import <AVFoundation/AVFoundation.h>
-
-/**
- macro for [UIImage imageNamed:@"xxx"]
-
- @param imageName the name of image
- @param resource_bundle the resource bundle (with .bundle) containes image. @"" is for main bundle
- @return the UIImage object
- */
-#define UIImageInResourceBundle(imageName, resource_bundle)  ([UIImage imageNamed:[(resource_bundle) stringByAppendingPathComponent:(imageName)]])
+#import "WCMacroTool.h"
 
 @interface ContentModeOfUIImageViewViewController ()
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, strong) UIScrollView *scrollView;
+@property (nonatomic, strong) NSArray<NSNumber *> *contentModes;
 @end
 
 @implementation ContentModeOfUIImageViewViewController
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _contentModes = @[
+            @(UIViewContentModeScaleToFill),
+            @(UIViewContentModeScaleAspectFit),
+            @(UIViewContentModeScaleAspectFill),
+            @(UIViewContentModeRedraw),
+            @(UIViewContentModeCenter),
+            @(UIViewContentModeTop),
+            @(UIViewContentModeBottom),
+            @(UIViewContentModeLeft),
+            @(UIViewContentModeRight),
+            @(UIViewContentModeTopLeft),
+            @(UIViewContentModeTopRight),
+            @(UIViewContentModeBottomLeft),
+            @(UIViewContentModeBottomRight),
+        ];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.scrollView];
     
-    [self.scrollView addSubview:self.imageView];
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    CGFloat side = 400;
+    CGFloat startY = 10;
+    CGFloat spaceV = 10;
+    
+    for (NSInteger i = 0; i < self.contentModes.count; ++i) {
+        UIViewContentMode contentMode = [self.contentModes[i] integerValue];
+        CGRect frame = CGRectMake((screenSize.width - side) / 2.0, startY, side, side);
+        
+        UIImageView *imageView = [self createImageViewWithContentMode:contentMode frame:frame];
+        [self.scrollView addSubview:imageView];
+        
+        startY += (spaceV + side);
+    }
+
+    self.scrollView.contentSize = CGSizeMake(screenSize.width, startY + spaceV);
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    self.scrollView.frame = self.view.bounds;
 }
 
 #pragma mark - Getters
@@ -47,14 +83,28 @@
     return _scrollView;
 }
 
+#pragma mark -
+
+- (UIImageView *)createImageViewWithContentMode:(UIViewContentMode)contentMode frame:(CGRect)frame {
+    UIImage *image = UIImageInResourceBundle(@"walnuts@2x.png", @"");
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
+    imageView.image = image;
+    imageView.contentMode = contentMode;
+
+    [self addOverlayToView:imageView];
+    
+    return imageView;
+}
+
 - (UIImageView *)imageView {
     if (!_imageView) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         UIImage *image = UIImageInResourceBundle(@"walnuts@2x.png", @"");
         
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((screenSize.width - 200) / 2.0, 10, 200, 200)];
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((screenSize.width - 400) / 2.0, 10, 400, 400)];
         imageView.image = image;
-        imageView.contentMode = UIViewContentModeScaleAspectFit;
+        imageView.contentMode = UIViewContentModeCenter;//UIViewContentModeScaleAspectFit;
         
         CGRect imageAspectRect = AVMakeRectWithAspectRatioInsideRect(image.size, imageView.bounds);
         NSLog(@"imageAspectRect = %@, imageView =%@",NSStringFromCGRect(imageAspectRect),NSStringFromCGRect(imageView.frame));
@@ -73,7 +123,7 @@
     UIView *overlay = [[UIView alloc] initWithFrame:view.bounds];
     overlay.layer.borderColor = [UIColor redColor].CGColor;
     overlay.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
-    overlay.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8];
+//    overlay.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8];
     [view addSubview:overlay];
 }
 @end

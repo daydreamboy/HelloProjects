@@ -8,15 +8,7 @@
 
 #import "LayerFrameIssueOniOS13ViewController.h"
 #import <AVFoundation/AVFoundation.h>
-
-/**
- macro for [UIImage imageNamed:@"xxx"]
-
- @param imageName the name of image
- @param resource_bundle the resource bundle (with .bundle) containes image. @"" is for main bundle
- @return the UIImage object
- */
-#define UIImageInResourceBundle(imageName, resource_bundle)  ([UIImage imageNamed:[(resource_bundle) stringByAppendingPathComponent:(imageName)]])
+#import "WCMacroTool.h"
 
 @interface LayerFrameIssueOniOS13ViewController ()
 @property (nonatomic, strong) UIImageView *imageView1Issued;

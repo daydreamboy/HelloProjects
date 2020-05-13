@@ -8,15 +8,7 @@
 
 #import "AspectRatioScaledImageViewInsideRectViewController1.h"
 #import <AVFoundation/AVFoundation.h>
-
-/**
- macro for [UIImage imageNamed:@"xxx"]
- 
- @param imageName the name of image
- @param resource_bundle the resource bundle (with .bundle) containes image. @"" is for main bundle
- @return the UIImage object
- */
-#define UIImageInResourceBundle(imageName, resource_bundle)  ([UIImage imageNamed:[(resource_bundle) stringByAppendingPathComponent:(imageName)]])
+#import "WCMacroTool.h"
 
 //#define BoundingSize CGSizeMake(300, 300)
 #define BoundingSize CGSizeMake(300, 200)
