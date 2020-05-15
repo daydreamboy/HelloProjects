@@ -16,8 +16,20 @@
 		4F52D1D021198B40004EE254 /* DyldRegisterFuncForAddImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D1CF21198B40004EE254 /* DyldRegisterFuncForAddImageViewController.m */; };
 		4F52D1D42119A6D1004EE254 /* WCThreadSafeMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D1D32119A6D1004EE254 /* WCThreadSafeMutableArray.m */; };
 		4F68FB18246EC03400560439 /* WCMachOTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F68FB17246EC03400560439 /* WCMachOTool.m */; };
+		4F68FB2A246EC5F800560439 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F68FB29246EC5F800560439 /* Tests.m */; };
+		4F68FB32246EC62A00560439 /* Tests_WCMachOTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F68FB31246EC62A00560439 /* Tests_WCMachOTool.m */; };
 		4F7EA1EA231AA0DF001A0E63 /* WCThreadSafeArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EA1E8231AA0DF001A0E63 /* WCThreadSafeArray.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4F68FB2C246EC5F800560439 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F52D1A621198A36004EE254 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F52D1AD21198A36004EE254;
+			remoteInfo = HelloDyldFunctions;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4F1D7DC4212175570021023C /* WCDyldTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCDyldTool.h; sourceTree = "<group>"; };
@@ -37,12 +49,23 @@
 		4F52D1D32119A6D1004EE254 /* WCThreadSafeMutableArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCThreadSafeMutableArray.m; sourceTree = "<group>"; };
 		4F68FB16246EC03400560439 /* WCMachOTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMachOTool.h; sourceTree = "<group>"; };
 		4F68FB17246EC03400560439 /* WCMachOTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMachOTool.m; sourceTree = "<group>"; };
+		4F68FB27246EC5F700560439 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F68FB29246EC5F800560439 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		4F68FB2B246EC5F800560439 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F68FB31246EC62A00560439 /* Tests_WCMachOTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_WCMachOTool.m; sourceTree = "<group>"; };
 		4F7EA1E8231AA0DF001A0E63 /* WCThreadSafeArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCThreadSafeArray.m; sourceTree = "<group>"; };
 		4F7EA1E9231AA0DF001A0E63 /* WCThreadSafeArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCThreadSafeArray.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		4F52D1AB21198A36004EE254 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F68FB24246EC5F700560439 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -71,6 +94,7 @@
 				4F68FB15246EC01700560439 /* WCMachOTool */,
 				4F1D7DC3212175410021023C /* WCDyldTool */,
 				4F52D1B021198A36004EE254 /* HelloDyldFunctions */,
+				4F68FB28246EC5F800560439 /* Tests */,
 				4F52D1AF21198A36004EE254 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -79,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				4F52D1AE21198A36004EE254 /* HelloDyldFunctions.app */,
+				4F68FB27246EC5F700560439 /* Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -125,6 +150,16 @@
 			path = WCMachOTool;
 			sourceTree = "<group>";
 		};
+		4F68FB28246EC5F800560439 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				4F68FB29246EC5F800560439 /* Tests.m */,
+				4F68FB31246EC62A00560439 /* Tests_WCMachOTool.m */,
+				4F68FB2B246EC5F800560439 /* Info.plist */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -145,6 +180,24 @@
 			productReference = 4F52D1AE21198A36004EE254 /* HelloDyldFunctions.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4F68FB26246EC5F700560439 /* Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F68FB2E246EC5F800560439 /* Build configuration list for PBXNativeTarget "Tests" */;
+			buildPhases = (
+				4F68FB23246EC5F700560439 /* Sources */,
+				4F68FB24246EC5F700560439 /* Frameworks */,
+				4F68FB25246EC5F700560439 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F68FB2D246EC5F800560439 /* PBXTargetDependency */,
+			);
+			name = Tests;
+			productName = Tests;
+			productReference = 4F68FB27246EC5F700560439 /* Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -156,6 +209,10 @@
 				TargetAttributes = {
 					4F52D1AD21198A36004EE254 = {
 						CreatedOnToolsVersion = 9.4;
+					};
+					4F68FB26246EC5F700560439 = {
+						CreatedOnToolsVersion = 11.4;
+						TestTargetID = 4F52D1AD21198A36004EE254;
 					};
 				};
 			};
@@ -173,6 +230,7 @@
 			projectRoot = "";
 			targets = (
 				4F52D1AD21198A36004EE254 /* HelloDyldFunctions */,
+				4F68FB26246EC5F700560439 /* Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -184,6 +242,13 @@
 			files = (
 				4F52D1BE21198A37004EE254 /* LaunchScreen.storyboard in Resources */,
 				4F52D1BB21198A37004EE254 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F68FB25246EC5F700560439 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +270,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4F68FB23246EC5F700560439 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F68FB32246EC62A00560439 /* Tests_WCMachOTool.m in Sources */,
+				4F68FB2A246EC5F800560439 /* Tests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4F68FB2D246EC5F800560439 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F52D1AD21198A36004EE254 /* HelloDyldFunctions */;
+			targetProxy = 4F68FB2C246EC5F800560439 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4F52D1BC21198A37004EE254 /* LaunchScreen.storyboard */ = {
@@ -361,6 +443,47 @@
 			};
 			name = Release;
 		};
+		4F68FB2F246EC5F800560439 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloDyldFunctions.app/HelloDyldFunctions";
+			};
+			name = Debug;
+		};
+		4F68FB30246EC5F800560439 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloDyldFunctions.app/HelloDyldFunctions";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -378,6 +501,15 @@
 			buildConfigurations = (
 				4F52D1C521198A37004EE254 /* Debug */,
 				4F52D1C621198A37004EE254 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F68FB2E246EC5F800560439 /* Build configuration list for PBXNativeTarget "Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F68FB2F246EC5F800560439 /* Debug */,
+				4F68FB30246EC5F800560439 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
