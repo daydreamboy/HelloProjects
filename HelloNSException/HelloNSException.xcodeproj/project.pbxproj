@@ -30,6 +30,7 @@
 		4F5B08FD21FEAE0300EE7C2E /* WCDebugKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5B08F821FEADAF00EE7C2E /* WCDebugKit.framework */; };
 		4F5B08FF21FEAE2800EE7C2E /* WCDebugKit.framework in Copy Files (1 item) */ = {isa = PBXBuildFile; fileRef = 4F5B08F821FEADAF00EE7C2E /* WCDebugKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4F5B090321FEB2D500EE7C2E /* WCExceptionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B090221FEB2D500EE7C2E /* WCExceptionTool.m */; };
+		4F68FB1C246EC43100560439 /* WCMachOTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F68FB1B246EC43100560439 /* WCMachOTool.m */; };
 		4F746927214E42B30079F654 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F746926214E42B30079F654 /* AppDelegate.m */; };
 		4F74692F214E42B50079F654 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F74692E214E42B50079F654 /* Assets.xcassets */; };
 		4F746932214E42B50079F654 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F746930214E42B50079F654 /* LaunchScreen.storyboard */; };
@@ -109,6 +110,8 @@
 		4F5B08F921FEADAF00EE7C2E /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reveal.framework; path = HelloNSException/Reveal.framework; sourceTree = "<group>"; };
 		4F5B090121FEB2D500EE7C2E /* WCExceptionTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCExceptionTool.h; sourceTree = "<group>"; };
 		4F5B090221FEB2D500EE7C2E /* WCExceptionTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCExceptionTool.m; sourceTree = "<group>"; };
+		4F68FB1A246EC43100560439 /* WCMachOTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCMachOTool.h; sourceTree = "<group>"; };
+		4F68FB1B246EC43100560439 /* WCMachOTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCMachOTool.m; sourceTree = "<group>"; };
 		4F746922214E42B30079F654 /* HelloNSException.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSException.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F746925214E42B30079F654 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F746926214E42B30079F654 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -232,11 +235,21 @@
 		4F5B090021FEB2BD00EE7C2E /* WCExceptionTool */ = {
 			isa = PBXGroup;
 			children = (
+				4F68FB19246EC41100560439 /* Tools */,
 				4F10BEA724658D8800854622 /* Guards */,
 				4F5B090121FEB2D500EE7C2E /* WCExceptionTool.h */,
 				4F5B090221FEB2D500EE7C2E /* WCExceptionTool.m */,
 			);
 			path = WCExceptionTool;
+			sourceTree = "<group>";
+		};
+		4F68FB19246EC41100560439 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F68FB1A246EC43100560439 /* WCMachOTool.h */,
+				4F68FB1B246EC43100560439 /* WCMachOTool.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		4F746919214E42B30079F654 = {
@@ -446,6 +459,7 @@
 			files = (
 				4F746935214E42B50079F654 /* main.m in Sources */,
 				4F5B08F621FEAC4100EE7C2E /* WCUncaughtExceptionTool.m in Sources */,
+				4F68FB1C246EC43100560439 /* WCMachOTool.m in Sources */,
 				4F5B08F521FEAC4100EE7C2E /* UncaughtExceptionHandler.m in Sources */,
 				4F35BA2A2324FF78001637AB /* MethodUnrecognizedGuard.m in Sources */,
 				4F5B08EB21FEABEF00EE7C2E /* DisplayTextViewController.m in Sources */,
