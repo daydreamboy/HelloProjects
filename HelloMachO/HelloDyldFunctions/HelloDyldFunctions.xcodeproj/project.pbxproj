@@ -15,6 +15,7 @@
 		4F52D1CC21198A63004EE254 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D1C721198A63004EE254 /* RootViewController.m */; };
 		4F52D1D021198B40004EE254 /* DyldRegisterFuncForAddImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D1CF21198B40004EE254 /* DyldRegisterFuncForAddImageViewController.m */; };
 		4F52D1D42119A6D1004EE254 /* WCThreadSafeMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D1D32119A6D1004EE254 /* WCThreadSafeMutableArray.m */; };
+		4F68FB18246EC03400560439 /* WCMachOTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F68FB17246EC03400560439 /* WCMachOTool.m */; };
 		4F7EA1EA231AA0DF001A0E63 /* WCThreadSafeArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7EA1E8231AA0DF001A0E63 /* WCThreadSafeArray.m */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,8 @@
 		4F52D1CF21198B40004EE254 /* DyldRegisterFuncForAddImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DyldRegisterFuncForAddImageViewController.m; sourceTree = "<group>"; };
 		4F52D1D22119A6D1004EE254 /* WCThreadSafeMutableArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCThreadSafeMutableArray.h; sourceTree = "<group>"; };
 		4F52D1D32119A6D1004EE254 /* WCThreadSafeMutableArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCThreadSafeMutableArray.m; sourceTree = "<group>"; };
+		4F68FB16246EC03400560439 /* WCMachOTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMachOTool.h; sourceTree = "<group>"; };
+		4F68FB17246EC03400560439 /* WCMachOTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMachOTool.m; sourceTree = "<group>"; };
 		4F7EA1E8231AA0DF001A0E63 /* WCThreadSafeArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCThreadSafeArray.m; sourceTree = "<group>"; };
 		4F7EA1E9231AA0DF001A0E63 /* WCThreadSafeArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCThreadSafeArray.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -65,6 +68,7 @@
 		4F52D1A521198A36004EE254 = {
 			isa = PBXGroup;
 			children = (
+				4F68FB15246EC01700560439 /* WCMachOTool */,
 				4F1D7DC3212175410021023C /* WCDyldTool */,
 				4F52D1B021198A36004EE254 /* HelloDyldFunctions */,
 				4F52D1AF21198A36004EE254 /* Products */,
@@ -110,6 +114,15 @@
 			children = (
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		4F68FB15246EC01700560439 /* WCMachOTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F68FB16246EC03400560439 /* WCMachOTool.h */,
+				4F68FB17246EC03400560439 /* WCMachOTool.m */,
+			);
+			path = WCMachOTool;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,6 +194,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F68FB18246EC03400560439 /* WCMachOTool.m in Sources */,
 				4F52D1C121198A37004EE254 /* main.m in Sources */,
 				4F52D1D021198B40004EE254 /* DyldRegisterFuncForAddImageViewController.m in Sources */,
 				4F52D1B321198A36004EE254 /* AppDelegate.m in Sources */,
