@@ -42,6 +42,7 @@
 		4F5B3510224482CD006A6501 /* randomJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F5B350F224482CD006A6501 /* randomJSON.json */; };
 		4F6580112247AC4400FFBAEE /* UseNSConditionLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6580102247AC4400FFBAEE /* UseNSConditionLockViewController.m */; };
 		4F68FB14246E749D00560439 /* Tests_WCThreadTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F68FB13246E749D00560439 /* Tests_WCThreadTool.m */; };
+		4F68FB22246EC56300560439 /* WCMachOTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F68FB21246EC56300560439 /* WCMachOTool.m */; };
 		4F6E71A122420F2000478327 /* UseNSLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6E71A022420F2000478327 /* UseNSLockViewController.m */; };
 		4F9578E51FDF8A40009693CF /* WCThreadTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578E41FDF8A40009693CF /* WCThreadTool.m */; };
 		4F96ECBB2293011700442F65 /* Tests_synchronize_concurrent_writes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F96ECBA2293011700442F65 /* Tests_synchronize_concurrent_writes.m */; };
@@ -130,6 +131,8 @@
 		4F65800F2247AC4400FFBAEE /* UseNSConditionLockViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseNSConditionLockViewController.h; sourceTree = "<group>"; };
 		4F6580102247AC4400FFBAEE /* UseNSConditionLockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseNSConditionLockViewController.m; sourceTree = "<group>"; };
 		4F68FB13246E749D00560439 /* Tests_WCThreadTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_WCThreadTool.m; sourceTree = "<group>"; };
+		4F68FB20246EC56300560439 /* WCMachOTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCMachOTool.h; sourceTree = "<group>"; };
+		4F68FB21246EC56300560439 /* WCMachOTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCMachOTool.m; sourceTree = "<group>"; };
 		4F6E719F22420F2000478327 /* UseNSLockViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseNSLockViewController.h; sourceTree = "<group>"; };
 		4F6E71A022420F2000478327 /* UseNSLockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseNSLockViewController.m; sourceTree = "<group>"; };
 		4F9578E31FDF8A3F009693CF /* WCThreadTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCThreadTool.h; sourceTree = "<group>"; };
@@ -310,9 +313,19 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		4F68FB1F246EC56300560439 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F68FB20246EC56300560439 /* WCMachOTool.h */,
+				4F68FB21246EC56300560439 /* WCMachOTool.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		4F9578E21FDF8A2D009693CF /* WCThreadTool */ = {
 			isa = PBXGroup;
 			children = (
+				4F68FB1F246EC56300560439 /* Tools */,
 				4F9578E31FDF8A3F009693CF /* WCThreadTool.h */,
 				4F9578E41FDF8A40009693CF /* WCThreadTool.m */,
 			);
@@ -494,6 +507,7 @@
 				4F1125E1246466F90059846D /* GetSymbolicCallStackViewController.m in Sources */,
 				4F50C7302243CC25002B00C9 /* UseNSLockWithTryLockViewController.m in Sources */,
 				2B37F32F1F83C74100809F00 /* RootViewController.m in Sources */,
+				4F68FB22246EC56300560439 /* WCMachOTool.m in Sources */,
 				4F161AAD231E0F0100A22350 /* WCServiceHubManager.m in Sources */,
 				4F53C9922004AFE8003F79F6 /* KeepThreadLongAliveViewController.m in Sources */,
 				4F50C7392243E096002B00C9 /* UseNSLockIssueWithUnpairLockUnlockViewController.m in Sources */,
