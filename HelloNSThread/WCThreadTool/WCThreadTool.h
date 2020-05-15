@@ -61,6 +61,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)currentThreadCallStackString;
 
++ (nullable NSString *)appExecutableUUID;
+
 @end
 
 NS_ASSUME_NONNULL_END

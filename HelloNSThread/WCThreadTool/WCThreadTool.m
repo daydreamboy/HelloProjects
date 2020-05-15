@@ -176,13 +176,20 @@ static const void *sAssociatedObjectKeyAddress = &sAssociatedObjectKeyAddress;
 
 + (nullable NSString *)appExecutableUUID {
     static NSString *sUUID;
+    static dispatch_semaphore_t sLock;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sLock = dispatch_semaphore_create(1);
+    });
     
     if (!sUUID) {
+        dispatch_semaphore_wait(sLock, DISPATCH_TIME_FOREVER);
+        
         const uint8_t *command = (const uint8_t *)(&_mh_execute_header + 1);
         for (uint32_t idx = 0; idx < _mh_execute_header.ncmds; ++idx) {
             if (((const struct load_command *)command)->cmd == LC_UUID) {
                 command += sizeof(struct load_command);
-                sUUID = [NSString stringWithFormat:@"%02X%02X%02X%02X-%02X%02X-%02X%02X-%02X%02X-%02X%02X%02X%02X%02X%02X",
+                sUUID = [[NSString stringWithFormat:@"%02X%02X%02X%02X-%02X%02X-%02X%02X-%02X%02X-%02X%02X%02X%02X%02X%02X",
                          command[0], command[1],
                          command[2], command[3],
                          command[4], command[5],
@@ -190,14 +197,17 @@ static const void *sAssociatedObjectKeyAddress = &sAssociatedObjectKeyAddress;
                          command[8], command[9],
                          command[10], command[11],
                          command[12], command[13],
-                         command[14], command[15]];
+                         command[14], command[15]] copy];
+                break;
             }
             else {
                 command += ((const struct load_command *)command)->cmdsize;
             }
         }
+        
+        dispatch_semaphore_signal(sLock);
     }
-    
+
     return sUUID;
 }
 

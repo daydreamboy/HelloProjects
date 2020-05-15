@@ -26,6 +26,9 @@
 #import "UseNSRecursiveLockViewController.h"
 #import "UseNSConditionLockViewController.h"
 
+// callStack
+#import "GetSymbolicCallStackViewController.h"
+
 #define kTitle @"Title"
 #define kClass @"Class"
 
@@ -71,12 +74,13 @@
     ];
     
     NSArray<NSDictionary *> *section3 = @[
+          @{ kTitle: @"Get symbolic call stack", kClass: [GetSymbolicCallStackViewController class] },
     ];
     
     _sectionTitles = @[
         @"Thread",
         @"Lock",
-        @"(TODO)"
+        @"callStack"
     ];
     
     _classes = @[

@@ -16,6 +16,7 @@
 		2BA4F85D1F83D31C00AE2BAD /* CreateThreadByNSObjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4F85C1F83D31C00AE2BAD /* CreateThreadByNSObjectViewController.m */; };
 		2BA4F8601F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4F85F1F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m */; };
 		2BF7F44A1F83DB3500B27A0F /* UseOSAtomicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7F4491F83DB3500B27A0F /* UseOSAtomicViewController.m */; };
+		4F1125E1246466F90059846D /* GetSymbolicCallStackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1125E0246466F90059846D /* GetSymbolicCallStackViewController.m */; };
 		4F161AAD231E0F0100A22350 /* WCServiceHubManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F161AAC231E0F0100A22350 /* WCServiceHubManager.m */; };
 		4F4F054D2294EFBA002BD87A /* Tests_benchmarking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F054C2294EFBA002BD87A /* Tests_benchmarking.m */; };
 		4F4F05502294F8B7002BD87A /* CacheWithSemaphore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F054F2294F8B7002BD87A /* CacheWithSemaphore.m */; };
@@ -40,6 +41,7 @@
 		4F541AA922415D9F003331E0 /* UseNSRecursiveLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F541AA822415D9F003331E0 /* UseNSRecursiveLockViewController.m */; };
 		4F5B3510224482CD006A6501 /* randomJSON.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F5B350F224482CD006A6501 /* randomJSON.json */; };
 		4F6580112247AC4400FFBAEE /* UseNSConditionLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6580102247AC4400FFBAEE /* UseNSConditionLockViewController.m */; };
+		4F68FB14246E749D00560439 /* Tests_WCThreadTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F68FB13246E749D00560439 /* Tests_WCThreadTool.m */; };
 		4F6E71A122420F2000478327 /* UseNSLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6E71A022420F2000478327 /* UseNSLockViewController.m */; };
 		4F9578E51FDF8A40009693CF /* WCThreadTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578E41FDF8A40009693CF /* WCThreadTool.m */; };
 		4F96ECBB2293011700442F65 /* Tests_synchronize_concurrent_writes.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F96ECBA2293011700442F65 /* Tests_synchronize_concurrent_writes.m */; };
@@ -80,6 +82,8 @@
 		2BA4F85F1F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateThreadByPOSIXViewController.m; sourceTree = "<group>"; };
 		2BF7F4481F83DB3500B27A0F /* UseOSAtomicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseOSAtomicViewController.h; sourceTree = "<group>"; };
 		2BF7F4491F83DB3500B27A0F /* UseOSAtomicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseOSAtomicViewController.m; sourceTree = "<group>"; };
+		4F1125DF246466F90059846D /* GetSymbolicCallStackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetSymbolicCallStackViewController.h; sourceTree = "<group>"; };
+		4F1125E0246466F90059846D /* GetSymbolicCallStackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetSymbolicCallStackViewController.m; sourceTree = "<group>"; };
 		4F161AAB231E0F0100A22350 /* WCServiceHubManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCServiceHubManager.h; sourceTree = "<group>"; };
 		4F161AAC231E0F0100A22350 /* WCServiceHubManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCServiceHubManager.m; sourceTree = "<group>"; };
 		4F161AAE231E3EA700A22350 /* WCRouterService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCRouterService.h; sourceTree = "<group>"; };
@@ -125,6 +129,7 @@
 		4F5B350F224482CD006A6501 /* randomJSON.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = randomJSON.json; sourceTree = "<group>"; };
 		4F65800F2247AC4400FFBAEE /* UseNSConditionLockViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseNSConditionLockViewController.h; sourceTree = "<group>"; };
 		4F6580102247AC4400FFBAEE /* UseNSConditionLockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseNSConditionLockViewController.m; sourceTree = "<group>"; };
+		4F68FB13246E749D00560439 /* Tests_WCThreadTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_WCThreadTool.m; sourceTree = "<group>"; };
 		4F6E719F22420F2000478327 /* UseNSLockViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseNSLockViewController.h; sourceTree = "<group>"; };
 		4F6E71A022420F2000478327 /* UseNSLockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseNSLockViewController.m; sourceTree = "<group>"; };
 		4F9578E31FDF8A3F009693CF /* WCThreadTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCThreadTool.h; sourceTree = "<group>"; };
@@ -207,6 +212,7 @@
 		2BA4F8541F83D27F00AE2BAD /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F1125DE246466820059846D /* callStack */,
 				4F96ECB9229300CD00442F65 /* synchronize */,
 				2BA4F8561F83D27F00AE2BAD /* thread */,
 				2BA4F8551F83D27F00AE2BAD /* lock */,
@@ -256,6 +262,15 @@
 				4FE77AA92344C230000EA68D /* CreateResidentThreadViewController.m */,
 			);
 			path = thread;
+			sourceTree = "<group>";
+		};
+		4F1125DE246466820059846D /* callStack */ = {
+			isa = PBXGroup;
+			children = (
+				4F1125DF246466F90059846D /* GetSymbolicCallStackViewController.h */,
+				4F1125E0246466F90059846D /* GetSymbolicCallStackViewController.m */,
+			);
+			path = callStack;
 			sourceTree = "<group>";
 		};
 		4F161AAA231E0E5600A22350 /* WCServiceHubManager */ = {
@@ -352,6 +367,7 @@
 				4F4F054C2294EFBA002BD87A /* Tests_benchmarking.m */,
 				4F5005C922B0E36E0026CB16 /* Tests_WCSharedContextManager.m */,
 				4F513F0F22DF2AF6003698DA /* Tests_WCSingletonObject.m */,
+				4F68FB13246E749D00560439 /* Tests_WCThreadTool.m */,
 				4FA9918B21AECD1200E928D8 /* Info.plist */,
 			);
 			path = Tests;
@@ -475,6 +491,7 @@
 				2B37F3211F83C4A500809F00 /* main.m in Sources */,
 				2B37F3131F83C4A500809F00 /* AppDelegate.m in Sources */,
 				4F541AA922415D9F003331E0 /* UseNSRecursiveLockViewController.m in Sources */,
+				4F1125E1246466F90059846D /* GetSymbolicCallStackViewController.m in Sources */,
 				4F50C7302243CC25002B00C9 /* UseNSLockWithTryLockViewController.m in Sources */,
 				2B37F32F1F83C74100809F00 /* RootViewController.m in Sources */,
 				4F161AAD231E0F0100A22350 /* WCServiceHubManager.m in Sources */,
@@ -492,6 +509,7 @@
 				4F96ECBB2293011700442F65 /* Tests_synchronize_concurrent_writes.m in Sources */,
 				4F5005CA22B0E36E0026CB16 /* Tests_WCSharedContextManager.m in Sources */,
 				4F4F05532294FB34002BD87A /* CacheWithPthread_mutex.m in Sources */,
+				4F68FB14246E749D00560439 /* Tests_WCThreadTool.m in Sources */,
 				4F5005C822B0E33D0026CB16 /* WCSharedContextManager.m in Sources */,
 				4F4FCEFD2293D4DC0063E9B7 /* CacheWithPthread_rwlock.m in Sources */,
 				4FA9918A21AECD1200E928D8 /* Tests.m in Sources */,
@@ -644,7 +662,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EAA28CVMQM;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = HelloNSThread/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloThread;
@@ -658,7 +676,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = EAA28CVMQM;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = HelloNSThread/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloThread;
