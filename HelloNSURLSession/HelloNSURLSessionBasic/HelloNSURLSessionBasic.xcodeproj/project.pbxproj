@@ -16,6 +16,7 @@
 		4F875DB220CA8ABC0029503B /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F875DAF20CA8ABB0029503B /* RootViewController.m */; };
 		4F88345420EBBBAC0092094C /* UseNSURLSessionDataTaskDelegateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F88345320EBBBAC0092094C /* UseNSURLSessionDataTaskDelegateViewController.m */; };
 		4F8FDA6C20EB9FD400C766D4 /* UseNSURLSessionDownloadTaskDelegateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FDA6B20EB9FD400C766D4 /* UseNSURLSessionDownloadTaskDelegateViewController.m */; };
+		4FF2D03A2474256C00FEE247 /* WCOrderedDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF2D0382474256C00FEE247 /* WCOrderedDictionary.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,9 @@
 		4F88345320EBBBAC0092094C /* UseNSURLSessionDataTaskDelegateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseNSURLSessionDataTaskDelegateViewController.m; sourceTree = "<group>"; };
 		4F8FDA6A20EB9FD400C766D4 /* UseNSURLSessionDownloadTaskDelegateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseNSURLSessionDownloadTaskDelegateViewController.h; sourceTree = "<group>"; };
 		4F8FDA6B20EB9FD400C766D4 /* UseNSURLSessionDownloadTaskDelegateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseNSURLSessionDownloadTaskDelegateViewController.m; sourceTree = "<group>"; };
+		4FF2D03624741F9E00FEE247 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
+		4FF2D0382474256C00FEE247 /* WCOrderedDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCOrderedDictionary.m; sourceTree = "<group>"; };
+		4FF2D0392474256C00FEE247 /* WCOrderedDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCOrderedDictionary.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,7 @@
 		4F875DAC20CA8ABB0029503B /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4FF2D03524741F8B00FEE247 /* Tools */,
 				4F875DAE20CA8ABB0029503B /* UseNSURLSessionDataTaskViewController.h */,
 				4F875DAD20CA8ABB0029503B /* UseNSURLSessionDataTaskViewController.m */,
 				4F88345220EBBBAC0092094C /* UseNSURLSessionDataTaskDelegateViewController.h */,
@@ -94,6 +99,24 @@
 				4F1D7DB7212028100021023C /* UploadImageDataViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4FF2D03524741F8B00FEE247 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4FF2D0372474256C00FEE247 /* WCOrderedDictionary */,
+				4FF2D03624741F9E00FEE247 /* WCMacroTool.h */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		4FF2D0372474256C00FEE247 /* WCOrderedDictionary */ = {
+			isa = PBXGroup;
+			children = (
+				4FF2D0392474256C00FEE247 /* WCOrderedDictionary.h */,
+				4FF2D0382474256C00FEE247 /* WCOrderedDictionary.m */,
+			);
+			path = WCOrderedDictionary;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -170,6 +193,7 @@
 				4F1D7DB8212028100021023C /* UploadImageDataViewController.m in Sources */,
 				4F875DB120CA8ABC0029503B /* UseNSURLSessionDataTaskViewController.m in Sources */,
 				4F8FDA6C20EB9FD400C766D4 /* UseNSURLSessionDownloadTaskDelegateViewController.m in Sources */,
+				4FF2D03A2474256C00FEE247 /* WCOrderedDictionary.m in Sources */,
 				4F875DB220CA8ABC0029503B /* RootViewController.m in Sources */,
 				4F875D9820CA8A7E0029503B /* AppDelegate.m in Sources */,
 			);
