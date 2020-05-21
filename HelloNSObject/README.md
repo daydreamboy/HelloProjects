@@ -52,6 +52,21 @@
 
 
 
+### （3）@hash
+
+NSObject的hash属性，实际是对象的指针地址[^7]。
+
+```objective-c
+NSObject *object = [[NSObject alloc] init];
+NSString *address = [NSString stringWithFormat:@"%p", object];
+NSString *hash = [NSString stringWithFormat:@"0x%lx", (unsigned long)[object hash]];
+XCTAssertEqualObjects(address, hash);
+```
+
+
+
+
+
 ## 2、Object Subscripting[^1]
 
 ​        Xcode 4.4开始支持对象下标访问方式，即除了NSMutableDictionary和NSMutableArray之外，任意自定义类都可以使用`[]`来访问。
@@ -567,5 +582,8 @@ objc[49305]: Cannot form weak reference to instance (0x600000e0c340) of class My
 [^5]:[http://clang.llvm.org/docs/AutomaticReferenceCounting.html#self](http://clang.llvm.org/docs/AutomaticReferenceCounting.html#self)
 
 [^6]: [http://clang.llvm.org/docs/AutomaticReferenceCounting.html#semantics-of-init](http://clang.llvm.org/docs/AutomaticReferenceCounting.html#semantics-of-init)
+
+[^7]:https://stackoverflow.com/questions/1241575/what-is-the-nsobject-isequal-and-hash-default-function
+
 
 

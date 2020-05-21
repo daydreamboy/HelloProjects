@@ -96,4 +96,13 @@
     NSLog(@"Derived object contains %@", objData);
 }
 
+- (void)test_hash {
+    NSObject *object = [[NSObject alloc] init];
+    NSLog(@"%p", object);
+    NSLog(@"%lx", (unsigned long)[object hash]);
+    NSString *address = [NSString stringWithFormat:@"%p", object];
+    NSString *hash = [NSString stringWithFormat:@"0x%lx", (unsigned long)[object hash]];
+    XCTAssertEqualObjects(address, hash);
+}
+
 @end
