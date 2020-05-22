@@ -43,5 +43,7 @@
 	</array>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Request permission for Photo Library</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Request permission for Photo Library(For iOS 10)</string>
 </dict>
 </plist>

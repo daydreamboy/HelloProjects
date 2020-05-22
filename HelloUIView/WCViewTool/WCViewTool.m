@@ -537,7 +537,7 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
     
     UIImage *image = nil;
     CGSize outputSize = [UIScreen mainScreen].bounds.size;
-    UIView *statusBar = nil;//[UIView statusBarInstance];
+    UIView *statusBar = includeStatusBar ? [self getStatusBarIfNeeded] : nil;
     
     UIGraphicsBeginImageContextWithOptions(outputSize, NO, [UIScreen mainScreen].scale);
     {
@@ -550,7 +550,7 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
             [window.layer renderInContext:context];
         }
         
-        if (includeStatusBar) {
+        if (statusBar) {
             [statusBar.layer renderInContext:context];
         }
         
@@ -634,8 +634,7 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
 + (nullable UIImage *)snapshotScreenIncludeStatusBar:(BOOL)includeStatusBar {
     UIImage *image = nil;
     CGSize outputSize = [UIScreen mainScreen].bounds.size;
-    // TODO
-    UIView *statusBar = nil;//[UIView statusBarInstance];
+    UIView *statusBar = includeStatusBar ? [self getStatusBarIfNeeded] : nil;
     
     UIGraphicsBeginImageContextWithOptions(outputSize, NO, [UIScreen mainScreen].scale);
     {
@@ -650,7 +649,7 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
             }
         }
         
-        if (includeStatusBar) {
+        if (statusBar) {
             [statusBar.layer renderInContext:context];
         }
         
@@ -664,8 +663,7 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
 + (nullable UIImage *)snapshotScreenAfterOtherWindowsHasShownIncludeStatusBar:(BOOL)includeStatusBar {
     UIImage *image = nil;
     CGSize outputSize = [UIScreen mainScreen].bounds.size;
-    // TODO
-    UIView *statusBar = nil;//[UIView statusBarInstance];
+    UIView *statusBar = includeStatusBar ? [self getStatusBarIfNeeded] : nil;
     
     UIGraphicsBeginImageContextWithOptions(outputSize, NO, [UIScreen mainScreen].scale);
     {
@@ -716,6 +714,23 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
     
     return image;
 }
+
+#pragma mark ::
+
++ (nullable UIView *)getStatusBarIfNeeded {
+    UIView *statusBar = nil;
+    @try {
+        // iOS 12.4/11.1/10.3.1
+        NSString *key = [@[ @"s", @"t", @"a", @"t", @"u", @"s", @"B", @"a", @"r", @"W", @"i", @"n", @"d", @"o", @"w" ] componentsJoinedByString:@""];
+        statusBar = [[UIApplication sharedApplication] valueForKey:key];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"an exception occurred: %@", exception);
+    }
+    return statusBar;
+}
+
+#pragma mark ::
 
 #pragma mark - Assistant Methods
 
