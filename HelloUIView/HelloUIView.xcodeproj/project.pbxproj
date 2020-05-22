@@ -287,10 +287,9 @@
 		4F63EFE11FE10053000AFD6F /* WCViewTool */ = {
 			isa = PBXGroup;
 			children = (
+				4FAECDDB2477B36700E9BBDF /* Tools */,
 				4F63EFE21FE10068000AFD6F /* WCViewTool.h */,
 				4F63EFE31FE10068000AFD6F /* WCViewTool.m */,
-				4F5747472451DDD70071C003 /* WCKVOTool.h */,
-				4F5747482451DDD70071C003 /* WCKVOTool.m */,
 				4F961BAF2133ABE2009402F3 /* UIView+UserInfo.h */,
 				4F961BB02133ABE2009402F3 /* UIView+UserInfo.m */,
 				4F961BB22133ABF5009402F3 /* UIView+Position.h */,
@@ -419,6 +418,15 @@
 				4FB43AE3200DA22F00D5D92D /* Views */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4FAECDDB2477B36700E9BBDF /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F5747472451DDD70071C003 /* WCKVOTool.h */,
+				4F5747482451DDD70071C003 /* WCKVOTool.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		4FB43AE3200DA22F00D5D92D /* Views */ = {

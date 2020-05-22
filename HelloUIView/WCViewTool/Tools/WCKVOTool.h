@@ -19,6 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WCKVOTool : NSObject
 
+@end
+
+@interface WCKVOTool ()
+
 + (BOOL)observeKVOEventWithObject:(NSObject *)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options associatedKey:(const void *)associatedKey eventCallback:(void (^)(id object, WCKVOObserver *observer))eventCallback;
 
 @end
