@@ -49,6 +49,7 @@
 		4FAAA5751FA45FE700A80328 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAA5741FA45FE700A80328 /* main.m */; };
 		4FAAA5811FA4601E00A80328 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAA5801FA4601E00A80328 /* RootViewController.m */; };
 		4FAAA5841FA461E500A80328 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAA5831FA461E500A80328 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.m */; };
+		4FAECDDE2477BDDE00E9BBDF /* SnapshotViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAECDDD2477BDDE00E9BBDF /* SnapshotViewViewController.m */; };
 		4FB43AC2200A476700D5D92D /* MappingRectFromViewToViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB43AC1200A476700D5D92D /* MappingRectFromViewToViewViewController.m */; };
 		4FB43AE6200DA22F00D5D92D /* WCTouchThroughView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB43AE4200DA22F00D5D92D /* WCTouchThroughView.m */; };
 		4FB43AEB200DA27300D5D92D /* RadialGradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB43AE7200DA27300D5D92D /* RadialGradientView.m */; };
@@ -157,6 +158,8 @@
 		4FAAA5801FA4601E00A80328 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4FAAA5821FA461E500A80328 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCAShapeLayerToShowViewWithTwoCornersViewController.h; sourceTree = "<group>"; };
 		4FAAA5831FA461E500A80328 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCAShapeLayerToShowViewWithTwoCornersViewController.m; sourceTree = "<group>"; };
+		4FAECDDC2477BDDE00E9BBDF /* SnapshotViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SnapshotViewViewController.h; sourceTree = "<group>"; };
+		4FAECDDD2477BDDE00E9BBDF /* SnapshotViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SnapshotViewViewController.m; sourceTree = "<group>"; };
 		4FB43AC0200A476700D5D92D /* MappingRectFromViewToViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MappingRectFromViewToViewViewController.h; sourceTree = "<group>"; };
 		4FB43AC1200A476700D5D92D /* MappingRectFromViewToViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MappingRectFromViewToViewViewController.m; sourceTree = "<group>"; };
 		4FB43AE4200DA22F00D5D92D /* WCTouchThroughView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCTouchThroughView.m; sourceTree = "<group>"; };
@@ -365,6 +368,8 @@
 				4F4EDC3D22704E5300E028D3 /* GroupSubviewsByRelayoutSubviewsViewController.m */,
 				4F502DDF22CA56D900137BE1 /* DottedLineViewViewController.h */,
 				4F502DE022CA56DA00137BE1 /* DottedLineViewViewController.m */,
+				4FAECDDC2477BDDE00E9BBDF /* SnapshotViewViewController.h */,
+				4FAECDDD2477BDDE00E9BBDF /* SnapshotViewViewController.m */,
 				4F13075723785E77006FF0DE /* safeAreaInsets */,
 			);
 			path = "UIView Demo";
@@ -600,6 +605,7 @@
 				4FB43AEB200DA27300D5D92D /* RadialGradientView.m in Sources */,
 				4F63EFE41FE10068000AFD6F /* WCViewTool.m in Sources */,
 				4FAAA5811FA4601E00A80328 /* RootViewController.m in Sources */,
+				4FAECDDE2477BDDE00E9BBDF /* SnapshotViewViewController.m in Sources */,
 				4F502DE122CA56DA00137BE1 /* DottedLineViewViewController.m in Sources */,
 				4F15612223811C4A007437EB /* AutomaticallyAdjustsScrollViewInsetsViewController.m in Sources */,
 				4FAAA5671FA45FE700A80328 /* AppDelegate.m in Sources */,

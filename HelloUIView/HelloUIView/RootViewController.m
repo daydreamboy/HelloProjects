@@ -19,6 +19,7 @@
 #import "StretchImageInLayerViewController.h"
 #import "DottedLineViewViewController.h"
 #import "UseSafeAreaInsetsViewController.h"
+#import "SnapshotViewViewController.h"
 
 #import "HitTestInViewViewController.h"
 #import "AddShadowBorderToImageViewController.h"
@@ -29,6 +30,7 @@
 #import "TraverseSubviewsInViewViewController.h"
 #import "GroupSubviewsByWrapperViewViewController.h"
 #import "GroupSubviewsByRelayoutSubviewsViewController.h"
+
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -65,6 +67,7 @@
           @{ kTitle: @"Group all subviews by relayout subviews", kClass: [GroupSubviewsByRelayoutSubviewsViewController class] },
           @{ kTitle: @"Dotted line views", kClass: [DottedLineViewViewController class] },
           @{ kTitle: @"safeAreaInsets", kClass: [UseSafeAreaInsetsViewController class] },
+          @{ kTitle: @"Snapshot View", kClass: [SnapshotViewViewController class] },
     ];
 
     NSArray<NSDictionary *> *section2 = @[

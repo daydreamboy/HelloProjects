@@ -24,6 +24,9 @@
 #define IOS11_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"11.0" options:NSNumericSearch] != NSOrderedAscending)
 #endif
 
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
+
 @interface ViewObserver : NSObject
 @property (nonatomic, weak) UIView *view;
 @end
@@ -498,6 +501,220 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
     }
     
     return recordMap;
+}
+
+#pragma mark - View Snapshot
+
++ (nullable UIImage *)snapshotWithView:(UIView *)view {
+    if (![view isKindOfClass:[UIView class]]) {
+        return nil;
+    }
+    
+    UIImage *image = nil;
+    CGSize outputSize = view.bounds.size;
+
+    UIGraphicsBeginImageContextWithOptions(outputSize, NO, [UIScreen mainScreen].scale);
+    {
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        if ([view respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
+            [view drawViewHierarchyInRect:(CGRect) {CGPointZero, outputSize} afterScreenUpdates:NO];
+        }
+        else {
+            [view.layer renderInContext:context];
+        }
+        
+        image = UIGraphicsGetImageFromCurrentImageContext();
+    }
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
++ (nullable UIImage *)snapshotWithWindow:(UIWindow *)window includeStatusBar:(BOOL)includeStatusBar {
+    if (![window isKindOfClass:[UIWindow class]]) {
+        return nil;
+    }
+    
+    UIImage *image = nil;
+    CGSize outputSize = [UIScreen mainScreen].bounds.size;
+    UIView *statusBar = nil;//[UIView statusBarInstance];
+    
+    UIGraphicsBeginImageContextWithOptions(outputSize, NO, [UIScreen mainScreen].scale);
+    {
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        
+        if ([window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
+            [window drawViewHierarchyInRect:(CGRect) {CGPointZero, outputSize} afterScreenUpdates:NO];
+        }
+        else {
+            [window.layer renderInContext:context];
+        }
+        
+        if (includeStatusBar) {
+            [statusBar.layer renderInContext:context];
+        }
+        
+        image = UIGraphicsGetImageFromCurrentImageContext();
+    }
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
++ (nullable UIImage *)snapshotWithScrollView:(UIScrollView *)scrollView shouldConsiderContent:(BOOL)shouldConsiderContent {
+    if (![scrollView isKindOfClass:[UIScrollView class]]) {
+        return nil;
+    }
+    
+	UIImage *image = nil;
+    CGSize outputSize = shouldConsiderContent ? scrollView.contentSize : scrollView.bounds.size;
+    
+    UIGraphicsBeginImageContextWithOptions(outputSize, NO, [UIScreen mainScreen].scale);
+    {
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        
+        if (shouldConsiderContent) {
+            // Saved
+            CGPoint savedContentOffset = scrollView.contentOffset;
+            CGRect savedFrame = scrollView.frame;
+            BOOL savedShowsHorizontalScrollIndicator = scrollView.showsHorizontalScrollIndicator;
+            BOOL savedShowsVerticalScrollIndicator = scrollView.showsVerticalScrollIndicator;
+            BOOL savedUserInteractionEnabled = scrollView.userInteractionEnabled;
+            
+            // Adjust frame, contentOffset, hide indicators, and disable user interaction
+            scrollView.contentOffset = CGPointZero;
+            scrollView.frame = CGRectMake(0, 0, scrollView.contentSize.width, scrollView.contentSize.height);
+            scrollView.showsHorizontalScrollIndicator = NO;
+            scrollView.showsVerticalScrollIndicator = NO;
+            scrollView.userInteractionEnabled = NO;
+            
+            // Note: not use drawViewHierarchyInRect:afterScreenUpdates: method, because
+            // it only draws visible part of UIScrollView even after adjust its size, contentOffset and so on.
+            
+            [scrollView.layer renderInContext:context];
+        
+            // Restore
+            scrollView.contentOffset = savedContentOffset;
+            scrollView.frame = savedFrame;
+            scrollView.showsHorizontalScrollIndicator = savedShowsHorizontalScrollIndicator;
+            scrollView.showsVerticalScrollIndicator = savedShowsVerticalScrollIndicator;
+            scrollView.userInteractionEnabled = savedUserInteractionEnabled;
+        }
+		else {
+			// Saved
+			CGPoint savedContentOffset = scrollView.contentOffset;
+			BOOL savedShowsHorizontalScrollIndicator = scrollView.showsHorizontalScrollIndicator;
+			BOOL savedShowsVerticalScrollIndicator = scrollView.showsVerticalScrollIndicator;
+			BOOL savedUserInteractionEnabled = scrollView.userInteractionEnabled;
+
+			// Hide indicators, and disable user interaction
+			scrollView.showsHorizontalScrollIndicator = NO;
+			scrollView.showsVerticalScrollIndicator = NO;
+			scrollView.userInteractionEnabled = NO;
+
+            // Note: not use drawViewHierarchyInRect:afterScreenUpdates: method, because
+            // it will draw indicators of UIScrollView even after set indicators hidden.
+            
+			CGContextTranslateCTM(context, -savedContentOffset.x, -savedContentOffset.y);
+			[scrollView.layer renderInContext:context];
+
+			// Restore
+			scrollView.showsHorizontalScrollIndicator = savedShowsHorizontalScrollIndicator;
+			scrollView.showsVerticalScrollIndicator = savedShowsVerticalScrollIndicator;
+			scrollView.userInteractionEnabled = savedUserInteractionEnabled;
+		}
+        
+        image = UIGraphicsGetImageFromCurrentImageContext();
+    }
+    UIGraphicsEndImageContext();
+
+	return image;
+}
+
++ (nullable UIImage *)snapshotScreenIncludeStatusBar:(BOOL)includeStatusBar {
+    UIImage *image = nil;
+    CGSize outputSize = [UIScreen mainScreen].bounds.size;
+    // TODO
+    UIView *statusBar = nil;//[UIView statusBarInstance];
+    
+    UIGraphicsBeginImageContextWithOptions(outputSize, NO, [UIScreen mainScreen].scale);
+    {
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        
+        for (UIWindow *window in [UIApplication sharedApplication].windows) {
+            if ([window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
+                [window drawViewHierarchyInRect:(CGRect) {CGPointZero, outputSize} afterScreenUpdates:NO];
+            }
+            else {
+                [window.layer renderInContext:context];
+            }
+        }
+        
+        if (includeStatusBar) {
+            [statusBar.layer renderInContext:context];
+        }
+        
+        image = UIGraphicsGetImageFromCurrentImageContext();
+    }
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
+
++ (nullable UIImage *)snapshotScreenAfterOtherWindowsHasShownIncludeStatusBar:(BOOL)includeStatusBar {
+    UIImage *image = nil;
+    CGSize outputSize = [UIScreen mainScreen].bounds.size;
+    // TODO
+    UIView *statusBar = nil;//[UIView statusBarInstance];
+    
+    UIGraphicsBeginImageContextWithOptions(outputSize, NO, [UIScreen mainScreen].scale);
+    {
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        
+        NSArray *windows = [UIApplication sharedApplication].windows;
+        BOOL hasTakeSnapshot = NO;
+        
+        for (UIWindow *window in windows) {
+#if DEBUG_LOG
+            NSLog(@"level: %f", window.windowLevel);
+#endif
+            if ([window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
+                [window drawViewHierarchyInRect:(CGRect) {CGPointZero, outputSize }afterScreenUpdates:NO];
+            }
+            else {
+                [window.layer renderInContext:context];
+            }
+
+            if (!SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+                NSUInteger indexOfCurrentWindow = [windows indexOfObject:window];
+                if (indexOfCurrentWindow + 1 < [windows count]) {
+                    UIWindow *nextWindow = windows[indexOfCurrentWindow + 1];
+                    if (!hasTakeSnapshot && nextWindow.windowLevel > UIWindowLevelStatusBar) {
+                        [statusBar.layer renderInContext:context];
+                        hasTakeSnapshot = YES;
+                    }
+                }
+            }
+        }
+        
+        // Note: alert view and action sheet are NOT added to [UIApplication sharedApplication].windows any more in iOS 7+,
+        // and become a solo window which is a keyWindow when shown
+        if (SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+            [statusBar.layer renderInContext:context];
+            
+            if ([[[UIApplication sharedApplication] keyWindow] respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
+                [[[UIApplication sharedApplication] keyWindow] drawViewHierarchyInRect:(CGRect) {CGPointZero, outputSize } afterScreenUpdates:NO];
+            }
+            else {
+                [[[UIApplication sharedApplication] keyWindow].layer renderInContext:context];
+            }
+        }
+        
+        image = UIGraphicsGetImageFromCurrentImageContext();
+    }
+    UIGraphicsEndImageContext();
+    
+    return image;
 }
 
 #pragma mark - Assistant Methods

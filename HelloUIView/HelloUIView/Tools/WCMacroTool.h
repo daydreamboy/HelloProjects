@@ -31,5 +31,6 @@ if (!isnan((newHeight))) { \
 __internal_frame; \
 })
 
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 #endif /* WCMacroTool_h */

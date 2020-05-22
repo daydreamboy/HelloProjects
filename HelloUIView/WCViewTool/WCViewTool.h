@@ -207,6 +207,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSDictionary<NSString *, NSDictionary *> *)restoreAllSubviewStatesWithView:(UIView *)view properties:(nullable NSArray<NSString *> *)properties;
 
+#pragma mark - View Snapshot
+
++ (nullable UIImage *)snapshotWithView:(UIView *)view;
++ (nullable UIImage *)snapshotWithWindow:(UIWindow *)window includeStatusBar:(BOOL)includeStatusBar;
++ (nullable UIImage *)snapshotWithScrollView:(UIScrollView *)scrollView shouldConsiderContent:(BOOL)shouldConsiderContent;
++ (nullable UIImage *)snapshotScreenIncludeStatusBar:(BOOL)includeStatusBar;
++ (nullable UIImage *)snapshotScreenAfterOtherWindowsHasShownIncludeStatusBar:(BOOL)includeStatusBar;
+
 #pragma mark - Assistant Methods
 
 #pragma mark > CGRect
