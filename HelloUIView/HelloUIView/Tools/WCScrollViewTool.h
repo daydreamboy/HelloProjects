@@ -38,6 +38,10 @@ typedef NS_ENUM(NSInteger, WCScrollViewContentInsetAdjustmentBehavior) {
 
 @interface WCScrollViewTool : NSObject
 
+@end
+
+@interface WCScrollViewTool ()
+
 /**
  Safe set contentInsetAdjustmentBehavior of UIScrollView on iOS 10 <=
  
