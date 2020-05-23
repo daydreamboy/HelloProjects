@@ -923,7 +923,7 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
     if (![view isKindOfClass:[UIView class]]) {
         return UIEdgeInsetsZero;
     }
-    
+#ifdef __IPHONE_11_0
     if (IOS11_OR_LATER) {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunguarded-availability-new"
@@ -933,13 +933,16 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
     else {
         return UIEdgeInsetsZero;
     }
+#else
+    return UIEdgeInsetsZero;
+#endif
 }
 
 + (CGRect)safeAreaFrameWithParentView:(UIView *)parentView {
     if (![parentView isKindOfClass:[UIView class]]) {
         return CGRectZero;
     }
-    
+#ifdef __IPHONE_11_0
     if (IOS11_OR_LATER) {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunguarded-availability-new"
@@ -949,6 +952,9 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
     else {
         return parentView.bounds;
     }
+#else
+    return parentView.bounds;
+#endif
 }
 
 + (CGRect)safeAreaLayoutFrameWithView:(UIView *)view {

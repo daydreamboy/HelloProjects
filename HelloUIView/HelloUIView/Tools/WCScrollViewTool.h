@@ -11,6 +11,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#ifdef __IPHONE_11_0
+
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunguarded-availability-new"
 
@@ -23,7 +25,22 @@ typedef NS_ENUM(NSInteger, WCScrollViewContentInsetAdjustmentBehavior) {
 
 #pragma GCC diagnostic pop
 
+#else
+
+typedef NS_ENUM(NSInteger, WCScrollViewContentInsetAdjustmentBehavior) {
+    WCScrollViewContentInsetAdjustmentAutomatic,
+    WCScrollViewContentInsetAdjustmentScrollableAxes,
+    WCScrollViewContentInsetAdjustmentNever,
+    WCScrollViewContentInsetAdjustmentAlways,
+};
+
+#endif
+
 @interface WCScrollViewTool : NSObject
+
+@end
+
+@interface WCScrollViewTool ()
 
 /**
  Safe set contentInsetAdjustmentBehavior of UIScrollView on iOS 10 <=
