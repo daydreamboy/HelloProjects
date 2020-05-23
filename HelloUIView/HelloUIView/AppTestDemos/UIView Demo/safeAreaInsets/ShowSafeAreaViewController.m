@@ -102,6 +102,8 @@
         self.additionalInsetsValue = threshold;
     }
     
+#ifdef __IPHONE_11_0
+    
     UIEdgeInsets additionalInsets = UIEdgeInsetsMake(self.additionalInsetsValue, self.additionalInsetsValue, self.additionalInsetsValue, self.additionalInsetsValue);
     
     if (IOS11_OR_LATER) {
@@ -110,6 +112,8 @@
         self.additionalSafeAreaInsets = additionalInsets;
 #pragma GCC diagnostic pop
     }
+    
+#endif
     
     // Note: to trigger viewWillLayoutSubviews and viewDidLayoutSubviews
     [self.view setNeedsLayout];

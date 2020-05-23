@@ -20,7 +20,7 @@
     if (![scrollView isKindOfClass:[UIScrollView class]]) {
         return NO;
     }
-    
+#ifdef __IPHONE_11_0
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunguarded-availability-new"
 
@@ -31,7 +31,7 @@
     }
 
 #pragma GCC diagnostic pop
-    
+#endif
     return NO;
 }
 
@@ -39,7 +39,7 @@
     if (![scrollView isKindOfClass:[UIScrollView class]]) {
         return UIEdgeInsetsZero;
     }
-    
+#ifdef __IPHONE_11_0
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunguarded-availability-new"
 
@@ -48,7 +48,7 @@
     }
 
 #pragma GCC diagnostic pop
-    
+#endif
     return scrollView.contentInset;
 }
 
