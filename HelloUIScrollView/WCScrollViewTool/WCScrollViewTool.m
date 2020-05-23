@@ -347,4 +347,43 @@ static void * const kAssociatedKeyScrollingEventObserver = (void *)&kAssociatedK
     return YES;
 }
 
+#pragma mark > Content Insets
+
++ (BOOL)safeSetContentInsetAdjustmentBehaviorWithScrollView:(UIScrollView *)scrollView behavior:(WCScrollViewContentInsetAdjustmentBehavior)behavior {
+    
+    if (![scrollView isKindOfClass:[UIScrollView class]]) {
+        return NO;
+    }
+#ifdef __IPHONE_11_0
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+
+    if (IOS11_OR_LATER) {
+        scrollView.contentInsetAdjustmentBehavior = (UIScrollViewContentInsetAdjustmentBehavior)behavior;
+        
+        return YES;
+    }
+
+#pragma GCC diagnostic pop
+#endif
+    return NO;
+}
+
++ (UIEdgeInsets)actualContentInsetsWithScrollView:(UIScrollView *)scrollView {
+    if (![scrollView isKindOfClass:[UIScrollView class]]) {
+        return UIEdgeInsetsZero;
+    }
+#ifdef __IPHONE_11_0
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+
+    if (IOS11_OR_LATER) {
+        return scrollView.adjustedContentInset;
+    }
+
+#pragma GCC diagnostic pop
+#endif
+    return scrollView.contentInset;
+}
+
 @end
