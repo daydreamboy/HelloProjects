@@ -720,7 +720,8 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
 + (nullable UIView *)getStatusBarIfNeeded {
     UIView *statusBar = nil;
     @try {
-        // iOS 12.4/11.1/10.3.1
+        // iOS Simulator: 12.4/11.1/10.3.1/8.4/8.1 
+        // @see https://stackoverflow.com/a/26451989
         NSString *key = [@[ @"s", @"t", @"a", @"t", @"u", @"s", @"B", @"a", @"r", @"W", @"i", @"n", @"d", @"o", @"w" ] componentsJoinedByString:@""];
         statusBar = [[UIApplication sharedApplication] valueForKey:key];
     }
