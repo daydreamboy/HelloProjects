@@ -213,7 +213,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable UIImage *)snapshotWithWindow:(UIWindow *)window includeStatusBar:(BOOL)includeStatusBar afterScreenUpdates:(BOOL)afterScreenUpdates;
 + (nullable UIImage *)snapshotWithScrollView:(UIScrollView *)scrollView shouldConsiderContent:(BOOL)shouldConsiderContent;
 + (nullable UIImage *)snapshotScreenIncludeStatusBar:(BOOL)includeStatusBar afterScreenUpdates:(BOOL)afterScreenUpdates;
-+ (nullable UIImage *)snapshotScreenAfterOtherWindowsHasShownIncludeStatusBar:(BOOL)includeStatusBar;
++ (nullable UIImage *)snapshotScreenAfterOtherWindowsHasShownIncludeStatusBar:(BOOL)includeStatusBar afterScreenUpdates:(BOOL)afterScreenUpdates;
 
 #pragma mark - Assistant Methods
 

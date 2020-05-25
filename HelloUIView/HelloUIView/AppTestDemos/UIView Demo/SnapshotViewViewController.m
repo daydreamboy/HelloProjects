@@ -18,14 +18,7 @@ if (image) { \
 } while(0)
 
 @interface WCScreenshotHelper : NSObject
-
 + (UIImage *)snapshotView:(UIView *)capturedView savedToPhotosAlbum:(BOOL)savedToPhotosAlbum;
-+ (UIImage *)snapshotScrollView:(UIScrollView *)capturedScrollView withFullContent:(BOOL)withFullContent savedToPhotosAlbum:(BOOL)savedToPhotosAlbum;
-
-+ (UIImage *)snapshotScreenSavedToPhotosAlbum:(BOOL)savedToPhotosAlbum;
-+ (UIImage *)snapshotScreenAfterAlertShownSavedToPhotosAlbum:(BOOL)savedToPhotosAlbum;
-+ (UIImage *)snapshotScreenAfterActionSheetShownSavedToPhotosAlbum:(BOOL)savedToPhotosAlbum;
-
 @end
 
 
@@ -44,7 +37,7 @@ if (image) { \
         image = [WCViewTool snapshotWithWindow:(UIWindow *)capturedView includeStatusBar:NO afterScreenUpdates:NO];
     }
     else if ([capturedView isKindOfClass:[UIScrollView class]]) {
-        image = [self snapshotScrollView:(UIScrollView *)capturedView withFullContent:NO savedToPhotosAlbum:savedToPhotosAlbum];
+        image = [WCViewTool snapshotWithScrollView:(UIScrollView *)capturedView shouldConsiderContent:NO];
     }
     else {
         image = [WCViewTool snapshotWithView:capturedView];
@@ -54,42 +47,6 @@ if (image) { \
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
     }
     
-    return image;
-}
-
-// Snapshot full screen
-+ (UIImage *)snapshotScreenSavedToPhotosAlbum:(BOOL)savedToPhotosAlbum {
-    UIImage *image = [WCViewTool snapshotScreenIncludeStatusBar:YES afterScreenUpdates:NO];
-    if (savedToPhotosAlbum && image) {
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-    }
-    return image;
-}
-
-// Snapshot scroll view with full content or with visible content
-+ (UIImage *)snapshotScrollView:(UIScrollView *)capturedScrollView withFullContent:(BOOL)withFullContent savedToPhotosAlbum:(BOOL)savedToPhotosAlbum {
-    UIImage *image = [WCViewTool snapshotWithScrollView:capturedScrollView shouldConsiderContent:withFullContent];
-    if (savedToPhotosAlbum && image) {
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-    }
-    return image;
-}
-
-// Snapshot full screen with alert view
-+ (UIImage *)snapshotScreenAfterAlertShownSavedToPhotosAlbum:(BOOL)savedToPhotosAlbum {
-    UIImage *image = [WCViewTool snapshotScreenAfterOtherWindowsHasShownIncludeStatusBar:NO];
-    if (savedToPhotosAlbum && image) {
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-    }
-    return image;
-}
-
-// Snapshot full screen with action sheet
-+ (UIImage *)snapshotScreenAfterActionSheetShownSavedToPhotosAlbum:(BOOL)savedToPhotosAlbum {
-    UIImage *image = [WCViewTool snapshotScreenAfterOtherWindowsHasShownIncludeStatusBar:NO];
-    if (savedToPhotosAlbum && image) {
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-    }
     return image;
 }
 
@@ -253,13 +210,16 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
         SavedToPhotosAlbumIfNeeded(image);
     }
     else if ([title isEqualToString:@"Screen"]) {
-        [WCScreenshotHelper snapshotScreenSavedToPhotosAlbum:YES];
+        UIImage *image = [WCViewTool snapshotScreenIncludeStatusBar:YES afterScreenUpdates:NO];
+        SavedToPhotosAlbumIfNeeded(image);
     }
     else if ([title isEqualToString:@"full content"]) {
-        [WCScreenshotHelper snapshotScrollView:_scrollView withFullContent:YES savedToPhotosAlbum:YES];
+        UIImage *image = [WCViewTool snapshotWithScrollView:_scrollView shouldConsiderContent:YES];
+        SavedToPhotosAlbumIfNeeded(image);
     }
     else if ([title isEqualToString:@"visible content"]) {
-        [WCScreenshotHelper snapshotScrollView:_scrollView withFullContent:NO savedToPhotosAlbum:YES];
+        UIImage *image = [WCViewTool snapshotWithScrollView:_scrollView shouldConsiderContent:NO];
+        SavedToPhotosAlbumIfNeeded(image);
     }
 }
 
@@ -277,10 +237,10 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
             break;
         case ButtonTagCaptureOffscreen: {
             UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectZero];
-            textLabel.text = @"Some text...";
+            textLabel.text = [NSString stringWithFormat:@"timestamp: %lf", [[NSDate date] timeIntervalSince1970]];
             [textLabel sizeToFit];
             UIImage *image = [WCViewTool snapshotWithView:textLabel];
-            NSLog(@"image: %@", image);
+            SavedToPhotosAlbumIfNeeded(image);
             break;
         }
         default:
@@ -306,7 +266,8 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     if (buttonIndex == 0) {
     }
     else if (buttonIndex == 1) {
-        [WCScreenshotHelper snapshotScreenAfterAlertShownSavedToPhotosAlbum:YES];
+        UIImage *image = [WCViewTool snapshotScreenAfterOtherWindowsHasShownIncludeStatusBar:NO afterScreenUpdates:NO];
+        SavedToPhotosAlbumIfNeeded(image);
     }
 }
 
@@ -314,7 +275,8 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 0) {
-        [WCScreenshotHelper snapshotScreenAfterActionSheetShownSavedToPhotosAlbum:YES];
+        UIImage *image = [WCViewTool snapshotScreenAfterOtherWindowsHasShownIncludeStatusBar:NO afterScreenUpdates:NO];
+        SavedToPhotosAlbumIfNeeded(image);
     }
     else if (buttonIndex == 1) {
     }

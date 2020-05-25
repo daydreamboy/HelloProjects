@@ -663,7 +663,7 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
     return image;
 }
 
-+ (nullable UIImage *)snapshotScreenAfterOtherWindowsHasShownIncludeStatusBar:(BOOL)includeStatusBar {
++ (nullable UIImage *)snapshotScreenAfterOtherWindowsHasShownIncludeStatusBar:(BOOL)includeStatusBar afterScreenUpdates:(BOOL)afterScreenUpdates {
     UIImage *image = nil;
     CGSize outputSize = [UIScreen mainScreen].bounds.size;
     UIView *statusBar = includeStatusBar ? [self getStatusBarIfNeeded] : nil;
@@ -680,7 +680,7 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
             NSLog(@"level: %f", window.windowLevel);
 #endif
             if ([window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
-                [window drawViewHierarchyInRect:(CGRect) {CGPointZero, outputSize }afterScreenUpdates:YES];
+                [window drawViewHierarchyInRect:(CGRect) {CGPointZero, outputSize } afterScreenUpdates:afterScreenUpdates];
             }
             else {
                 [window.layer renderInContext:context];
