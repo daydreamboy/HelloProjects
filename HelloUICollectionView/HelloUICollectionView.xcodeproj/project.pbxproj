@@ -21,6 +21,7 @@
 		4F748FD920F5EEBE001CF507 /* SupplementaryViewOfSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F748FD820F5EEBE001CF507 /* SupplementaryViewOfSectionViewController.m */; };
 		4F748FDD20F6075B001CF507 /* SupplementaryViewHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F748FDC20F6075B001CF507 /* SupplementaryViewHeader.m */; };
 		4F748FE020F6076E001CF507 /* SupplementaryViewFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F748FDF20F6076E001CF507 /* SupplementaryViewFooter.m */; };
+		4F7D0347247BC89300FD8C61 /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D0346247BC89300FD8C61 /* WCViewTool.m */; };
 		4F7D8EE32109AFC400145B00 /* UseWCCrossDirectionEmotionPickerViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8EE22109AFC400145B00 /* UseWCCrossDirectionEmotionPickerViewViewController.m */; };
 		4F82DF5220E6799B007035FC /* WCHorizontalPageBrowserView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F82DF5120E6799B007035FC /* WCHorizontalPageBrowserView.m */; };
 		4F82DF5520E67A06007035FC /* WCBaseHorizontalPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F82DF5420E67A06007035FC /* WCBaseHorizontalPage.m */; };
@@ -98,6 +99,8 @@
 		4F748FDC20F6075B001CF507 /* SupplementaryViewHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SupplementaryViewHeader.m; sourceTree = "<group>"; };
 		4F748FDE20F6076E001CF507 /* SupplementaryViewFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SupplementaryViewFooter.h; sourceTree = "<group>"; };
 		4F748FDF20F6076E001CF507 /* SupplementaryViewFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SupplementaryViewFooter.m; sourceTree = "<group>"; };
+		4F7D0345247BC89300FD8C61 /* WCViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCViewTool.h; sourceTree = "<group>"; };
+		4F7D0346247BC89300FD8C61 /* WCViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewTool.m; sourceTree = "<group>"; };
 		4F7D8EE12109AFC400145B00 /* UseWCCrossDirectionEmotionPickerViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseWCCrossDirectionEmotionPickerViewViewController.h; sourceTree = "<group>"; };
 		4F7D8EE22109AFC400145B00 /* UseWCCrossDirectionEmotionPickerViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCCrossDirectionEmotionPickerViewViewController.m; sourceTree = "<group>"; };
 		4F82DF5020E6799B007035FC /* WCHorizontalPageBrowserView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCHorizontalPageBrowserView.h; sourceTree = "<group>"; };
@@ -249,6 +252,8 @@
 			children = (
 				4F5B090521FF07E700EE7C2E /* WCArrayTool.h */,
 				4F5B090621FF07E700EE7C2E /* WCArrayTool.m */,
+				4F7D0345247BC89300FD8C61 /* WCViewTool.h */,
+				4F7D0346247BC89300FD8C61 /* WCViewTool.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -573,6 +578,7 @@
 				4FA5ABED20FC40280098A138 /* MPMLightPopoverView.m in Sources */,
 				4FB1D4DA20CC324100DBA776 /* PagableCollectionViewViewController.m in Sources */,
 				4FA5ABF020FC93FF0098A138 /* WCSeparatorFlowLayout.m in Sources */,
+				4F7D0347247BC89300FD8C61 /* WCViewTool.m in Sources */,
 				4FAA229A21BE50BE001F97B6 /* DraggableLayoutViewController.m in Sources */,
 				4FB1D4D720CC2CBD00DBA776 /* MyCustomCollectionViewCell.m in Sources */,
 				4F65BFA320F87D6B00CE86EB /* WCEmotionFooterView.m in Sources */,

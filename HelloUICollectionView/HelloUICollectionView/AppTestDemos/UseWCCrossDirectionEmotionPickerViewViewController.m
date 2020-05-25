@@ -8,6 +8,7 @@
 
 #import "UseWCCrossDirectionEmotionPickerViewViewController.h"
 #import "WCCrossDirectionEmotionPickerView.h"
+#import "WCViewTool.h"
 
 @interface UseWCCrossDirectionEmotionPickerViewViewController ()
 @property (nonatomic, strong) UITextField *textField;
@@ -22,6 +23,28 @@
     [self.view addSubview:self.textField];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [self.textField becomeFirstResponder];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, CGRectGetHeight(self.emotionPickerView.bounds) + [WCViewTool safeAreaInsetsWithView:self.view].bottom)];
+    [view addSubview:self.emotionPickerView];
+//    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+//    label.text = @"Some text";
+//    [label sizeToFit];
+//    [view addSubview:label];
+    view.backgroundColor = [UIColor yellowColor];
+    
+    self.textField.inputView = view;
+}
+
 #pragma mark - Getters
 
 - (UITextField *)textField {
@@ -29,7 +52,7 @@
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         CGFloat paddingH = 20;
         UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(paddingH, 100, screenSize.width - 2 * paddingH, 30)];
-        textField.inputView = 
+        textField.placeholder = @"Type here...";
         
         _textField = textField;
     }

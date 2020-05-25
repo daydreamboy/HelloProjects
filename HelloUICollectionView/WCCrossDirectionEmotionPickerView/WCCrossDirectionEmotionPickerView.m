@@ -118,8 +118,7 @@ WCEmotionGroupInfoPropertiesImpl
 
 - (WCHorizontalPageBrowserView *)pickerView {
     if (!_pickerView) {
-        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        WCHorizontalPageBrowserView *view = [[WCHorizontalPageBrowserView alloc] initWithFrame:CGRectMake(0, 64 + 30, screenSize.width, pickerViewHeight)];
+        WCHorizontalPageBrowserView *view = [[WCHorizontalPageBrowserView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, pickerViewHeight)];;
         view.dataSource = self;
         view.delegate = self;
         view.pageSpace = 0;
@@ -148,8 +147,7 @@ WCEmotionGroupInfoPropertiesImpl
         }
         
         CGFloat paddingH = 20;
-        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        WCHorizontalSliderView *view = [[WCHorizontalSliderView alloc] initWithFrame:CGRectMake(paddingH, CGRectGetMaxY(self.pickerView.frame) + 20, screenSize.width  - 2 * paddingH, sliderViewHeight)];
+        WCHorizontalSliderView *view = [[WCHorizontalSliderView alloc] initWithFrame:CGRectMake(paddingH, CGRectGetMaxY(self.pickerView.frame), self.frame.size.width  - 2 * paddingH, sliderViewHeight)];
         view.delegate = self;
         view.sliderData = items;
         view.separatorWidth = 1.0 / [UIScreen mainScreen].scale;
