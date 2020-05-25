@@ -39,7 +39,7 @@
 		4F97DB2F20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97DB2E20CFAAA1003EBB3B /* SeparatorsBetweenCell2ViewController.m */; };
 		4F97DB3620CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97DB3520CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m */; };
 		4F97DB4220CFFB50003EBB3B /* CellSelectionAndHighlightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F97DB4120CFFB50003EBB3B /* CellSelectionAndHighlightViewController.m */; };
-		4FA5ABED20FC40280098A138 /* MPMLightPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA5ABEC20FC40280098A138 /* MPMLightPopoverView.m */; };
+		4FA5ABED20FC40280098A138 /* WCPopoverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA5ABEC20FC40280098A138 /* WCPopoverView.m */; };
 		4FA5ABF020FC93FF0098A138 /* WCSeparatorFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA5ABEF20FC93FF0098A138 /* WCSeparatorFlowLayout.m */; };
 		4FA5AC0420FCBC720098A138 /* WCHorizontalSliderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA5ABFF20FCBC720098A138 /* WCHorizontalSliderView.m */; };
 		4FA5AC0520FCBC720098A138 /* WCHorizontalSliderViewBaseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA5AC0120FCBC720098A138 /* WCHorizontalSliderViewBaseCell.m */; };
@@ -131,8 +131,8 @@
 		4F97DB3520CFAD47003EBB3B /* CollectionViewFlowLayoutSeparator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewFlowLayoutSeparator.m; sourceTree = "<group>"; };
 		4F97DB4020CFFB50003EBB3B /* CellSelectionAndHighlightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellSelectionAndHighlightViewController.h; sourceTree = "<group>"; };
 		4F97DB4120CFFB50003EBB3B /* CellSelectionAndHighlightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellSelectionAndHighlightViewController.m; sourceTree = "<group>"; };
-		4FA5ABEB20FC40280098A138 /* MPMLightPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MPMLightPopoverView.h; sourceTree = "<group>"; };
-		4FA5ABEC20FC40280098A138 /* MPMLightPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MPMLightPopoverView.m; sourceTree = "<group>"; };
+		4FA5ABEB20FC40280098A138 /* WCPopoverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCPopoverView.h; sourceTree = "<group>"; };
+		4FA5ABEC20FC40280098A138 /* WCPopoverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCPopoverView.m; sourceTree = "<group>"; };
 		4FA5ABEE20FC93FF0098A138 /* WCSeparatorFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCSeparatorFlowLayout.h; sourceTree = "<group>"; };
 		4FA5ABEF20FC93FF0098A138 /* WCSeparatorFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCSeparatorFlowLayout.m; sourceTree = "<group>"; };
 		4FA5ABFB20FCBC720098A138 /* WCHorizontalSliderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCHorizontalSliderView.h; sourceTree = "<group>"; };
@@ -211,8 +211,8 @@
 		4F48FC3320F6318D00DB26EE /* WCCrossDirectionEmotionPickerView */ = {
 			isa = PBXGroup;
 			children = (
-				4FA5ABEB20FC40280098A138 /* MPMLightPopoverView.h */,
-				4FA5ABEC20FC40280098A138 /* MPMLightPopoverView.m */,
+				4FA5ABEB20FC40280098A138 /* WCPopoverView.h */,
+				4FA5ABEC20FC40280098A138 /* WCPopoverView.m */,
 				4F48FC3420F631A300DB26EE /* WCCrossDirectionEmotionPickerView.h */,
 				4F48FC3520F631A300DB26EE /* WCCrossDirectionEmotionPickerView.m */,
 				4F47D70420F79296002C6B57 /* WCEmotionItemView.h */,
@@ -575,7 +575,7 @@
 				4FA5AC1C20FD97E80098A138 /* WCHorizontalSliderViewUtility.m in Sources */,
 				4F519A18229BE2AB004C548A /* WCStringTool.m in Sources */,
 				4F961BA1213280C9009402F3 /* ManyRoundedImageViewViewController.m in Sources */,
-				4FA5ABED20FC40280098A138 /* MPMLightPopoverView.m in Sources */,
+				4FA5ABED20FC40280098A138 /* WCPopoverView.m in Sources */,
 				4FB1D4DA20CC324100DBA776 /* PagableCollectionViewViewController.m in Sources */,
 				4FA5ABF020FC93FF0098A138 /* WCSeparatorFlowLayout.m in Sources */,
 				4F7D0347247BC89300FD8C61 /* WCViewTool.m in Sources */,

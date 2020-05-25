@@ -1,12 +1,12 @@
 //
-//  MPMLightPopoverView.m
+//  WCPopoverView.m
 //
 //
 //  Created by wesley chen on 2017/6/14.
 //  Copyright © 2017年 wesley chen. All rights reserved.
 //
 
-#import "MPMLightPopoverView.h"
+#import "WCPopoverView.h"
 
 #define kBoxPadding 10.f
 //Height/width of the actual arrow
@@ -58,7 +58,7 @@
 
 #define CFTYPECAST(exp) (__bridge exp)
 
-@implementation MPMLightPopoverViewDescriptor
+@implementation WCPopoverViewDescriptor
 - (instancetype)init {
     self = [super init];
     if (self) {
@@ -70,7 +70,7 @@
 @end
 
 
-@interface MPMLightPopoverView()
+@interface WCPopoverView()
 
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) UIView *parentView;
@@ -79,23 +79,23 @@
 
 @property (nonatomic, assign) CGRect boxFrame;
 
-@property (nonatomic, strong) MPMLightPopoverViewDescriptor *descriptor;
+@property (nonatomic, strong) WCPopoverViewDescriptor *descriptor;
 
 @end
 
-@implementation MPMLightPopoverView
+@implementation WCPopoverView
 
 #pragma mark - Public Methods
 
-+ (MPMLightPopoverView *)showAlwaysAbovePopoverAtPoint:(CGPoint)point inView:(UIView *)view withContentView:(UIView *)cView {
-    MPMLightPopoverView *popoverView = [[MPMLightPopoverView alloc] initWithFrame:CGRectZero];
++ (WCPopoverView *)showAlwaysAbovePopoverAtPoint:(CGPoint)point inView:(UIView *)view withContentView:(UIView *)cView {
+    WCPopoverView *popoverView = [[WCPopoverView alloc] initWithFrame:CGRectZero];
     popoverView.backgroundColor = [UIColor clearColor];
     [popoverView showAtPoint:point inView:view withContentView:cView];
     return popoverView;
 }
 
-+ (MPMLightPopoverView *)showAlwaysAbovePopoverAtPoint:(CGPoint)point inView:(UIView *)view withContentView:(UIView *)cView withDescriptor:(MPMLightPopoverViewDescriptor *)descriptor {
-    MPMLightPopoverView *popoverView = [[MPMLightPopoverView alloc] initWithFrame:CGRectZero];
++ (WCPopoverView *)showAlwaysAbovePopoverAtPoint:(CGPoint)point inView:(UIView *)view withContentView:(UIView *)cView withDescriptor:(WCPopoverViewDescriptor *)descriptor {
+    WCPopoverView *popoverView = [[WCPopoverView alloc] initWithFrame:CGRectZero];
     popoverView.backgroundColor = [UIColor clearColor];
     popoverView.descriptor = descriptor;
     [popoverView showAtPoint:point inView:view withContentView:cView];

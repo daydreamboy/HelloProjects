@@ -1,5 +1,5 @@
 //
-//  MPMLightPopoverView.h
+//  WCPopoverView.h
 //  
 //
 //  Created by wesley chen on 2017/6/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MPMLightPopoverViewDescriptor : NSObject
+@interface WCPopoverViewDescriptor : NSObject
 @property (nonatomic, assign) float boxPadding;
 @property (nonatomic, assign) BOOL autoDismissWhenTapOutside;
 @property (nonatomic, assign) float autoDismissAfterSeconds; // <=0 for never auto dismiss
@@ -18,10 +18,10 @@
 @property (nonatomic, assign) float dismissDuration;
 @end
 
-@interface MPMLightPopoverView : UIView
+@interface WCPopoverView : UIView
 
-+ (MPMLightPopoverView *)showAlwaysAbovePopoverAtPoint:(CGPoint)point inView:(UIView *)view withContentView:(UIView *)cView;
-+ (MPMLightPopoverView *)showAlwaysAbovePopoverAtPoint:(CGPoint)point inView:(UIView *)view withContentView:(UIView *)cView withDescriptor:(MPMLightPopoverViewDescriptor *)descriptor;
++ (WCPopoverView *)showAlwaysAbovePopoverAtPoint:(CGPoint)point inView:(UIView *)view withContentView:(UIView *)cView;
++ (WCPopoverView *)showAlwaysAbovePopoverAtPoint:(CGPoint)point inView:(UIView *)view withContentView:(UIView *)cView withDescriptor:(WCPopoverViewDescriptor *)descriptor;
 
 - (void)dismiss:(BOOL)animated;
 

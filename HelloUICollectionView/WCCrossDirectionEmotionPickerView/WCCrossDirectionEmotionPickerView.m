@@ -12,7 +12,7 @@
 #import "WCEmotionItemView.h"
 #import "WCEmotionHeaderView.h"
 #import "WCEmotionFooterView.h"
-#import "MPMLightPopoverView.h"
+#import "WCPopoverView.h"
 #import "WCHorizontalSliderViewBaseCell.h"
 #import "WCHorizontalSliderViewLayout.h"
 #import "WCHorizontalSliderView.h"
@@ -47,7 +47,7 @@ WCEmotionGroupInfoPropertiesImpl
 @property (nonatomic, strong) WCHorizontalPageBrowserView *pickerView;
 @property (nonatomic, strong) WCHorizontalSliderView *sliderView;
 @property (nonatomic, strong) NSArray<id<WCEmotionGroupInfo>> *emotionPageData;
-@property (nonatomic, strong) MPMLightPopoverView *popoverView;
+@property (nonatomic, strong) WCPopoverView *popoverView;
 @property (nonatomic, strong) NSIndexPath *touchDownIndexPath;
 @end
 
@@ -255,15 +255,15 @@ WCEmotionGroupInfoPropertiesImpl
     if (indexPath) {
         CGRect rect = [emotionPage visibleCellRectInPageAtIndexPath:indexPath];
         if (!CGRectEqualToRect(rect, CGRectZero)) {
-            MPMLightPopoverViewDescriptor *descriptor = [MPMLightPopoverViewDescriptor new];
-            descriptor.autoDismissAfterSeconds = 0.5;
+            WCPopoverViewDescriptor *descriptor = [WCPopoverViewDescriptor new];
+            descriptor.autoDismissAfterSeconds = 10000;
             descriptor.boxPadding = 5;
             descriptor.showDuration = 0.15;
             descriptor.dismissDuration = 0.1;
             
             CGPoint topMiddlePoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
             CGPoint locationInWindow = [emotionPage convertPoint:topMiddlePoint toView:self.window];
-            self.popoverView = [MPMLightPopoverView showAlwaysAbovePopoverAtPoint:locationInWindow inView:self.window withContentView:contentView withDescriptor:descriptor];
+            self.popoverView = [WCPopoverView showAlwaysAbovePopoverAtPoint:locationInWindow inView:self.window withContentView:contentView withDescriptor:descriptor];
         }
         else {
             [self.popoverView dismiss:NO];
@@ -294,7 +294,7 @@ WCEmotionGroupInfoPropertiesImpl
     if (indexPath) {
         CGRect rect = [emotionPage visibleCellRectInPageAtIndexPath:indexPath];
         if (!CGRectEqualToRect(rect, CGRectZero)) {
-            MPMLightPopoverViewDescriptor *descriptor = [MPMLightPopoverViewDescriptor new];
+            WCPopoverViewDescriptor *descriptor = [WCPopoverViewDescriptor new];
             descriptor.autoDismissAfterSeconds = 0;
             descriptor.boxPadding = 5;
             descriptor.showDuration = 0.15;
@@ -302,7 +302,7 @@ WCEmotionGroupInfoPropertiesImpl
             
             CGPoint topMiddlePoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
             CGPoint locationInWindow = [emotionPage convertPoint:topMiddlePoint toView:self.window];
-            self.popoverView = [MPMLightPopoverView showAlwaysAbovePopoverAtPoint:locationInWindow inView:self.window withContentView:contentView withDescriptor:descriptor];
+            self.popoverView = [WCPopoverView showAlwaysAbovePopoverAtPoint:locationInWindow inView:self.window withContentView:contentView withDescriptor:descriptor];
         }
         else {
             [self.popoverView dismiss:NO];
