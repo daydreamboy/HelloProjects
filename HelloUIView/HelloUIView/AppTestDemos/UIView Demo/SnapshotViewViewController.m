@@ -11,10 +11,15 @@
 #import "WCMacroTool.h"
 #import "WCViewTool.h"
 
+#define SavedToPhotosAlbumIfNeeded(image) do { \
+if (image) { \
+    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil); \
+}\
+} while(0)
+
 @interface WCScreenshotHelper : NSObject
 
 + (UIImage *)snapshotView:(UIView *)capturedView savedToPhotosAlbum:(BOOL)savedToPhotosAlbum;
-+ (UIImage *)snapshotWindow:(UIWindow *)capturedWindow savedToPhotosAlbum:(BOOL)savedToPhotosAlbum;
 + (UIImage *)snapshotScrollView:(UIScrollView *)capturedScrollView withFullContent:(BOOL)withFullContent savedToPhotosAlbum:(BOOL)savedToPhotosAlbum;
 
 + (UIImage *)snapshotScreenSavedToPhotosAlbum:(BOOL)savedToPhotosAlbum;
@@ -36,7 +41,7 @@
 
     UIImage *image = nil;
     if ([capturedView isKindOfClass:[UIWindow class]]) {
-        image = [WCViewTool snapshotWithWindow:(UIWindow *)capturedView includeStatusBar:NO];
+        image = [WCViewTool snapshotWithWindow:(UIWindow *)capturedView includeStatusBar:NO afterScreenUpdates:NO];
     }
     else if ([capturedView isKindOfClass:[UIScrollView class]]) {
         image = [self snapshotScrollView:(UIScrollView *)capturedView withFullContent:NO savedToPhotosAlbum:savedToPhotosAlbum];
@@ -52,18 +57,9 @@
     return image;
 }
 
-// Snapshot for window
-+ (UIImage *)snapshotWindow:(UIWindow *)capturedWindow savedToPhotosAlbum:(BOOL)savedToPhotosAlbum {
-    UIImage *image = [WCViewTool snapshotWithWindow:capturedWindow includeStatusBar:NO];
-    if (savedToPhotosAlbum && image) {
-        UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-    }
-    return image;
-}
-
 // Snapshot full screen
 + (UIImage *)snapshotScreenSavedToPhotosAlbum:(BOOL)savedToPhotosAlbum {
-    UIImage *image = [WCViewTool snapshotScreenIncludeStatusBar:YES];
+    UIImage *image = [WCViewTool snapshotScreenIncludeStatusBar:YES afterScreenUpdates:NO];
     if (savedToPhotosAlbum && image) {
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
     }
@@ -102,6 +98,7 @@
 typedef NS_ENUM(NSUInteger, ButtonTag) {
     ButtonTagShowAlert,
     ButtonTagShowActionSheet,
+    ButtonTagCaptureOffscreen,
 };
 
 @interface SnapshotViewViewController () <UIAlertViewDelegate, UIActionSheetDelegate>
@@ -201,6 +198,13 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
     [buttonForActionSheet addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:buttonForActionSheet];
     
+    UIButton *buttonForTextLabel = [UIButton buttonWithType:UIButtonTypeSystem];
+    buttonForTextLabel.frame = CGRectMake(spacing, CGRectGetMaxY(buttonForActionSheet.frame) + spacing, screenSize.width - 2 * spacing, 20);
+    buttonForTextLabel.tag = ButtonTagCaptureOffscreen;
+    [buttonForTextLabel setTitle:@"capture offscreen view" forState:UIControlStateNormal];
+    [buttonForTextLabel addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:buttonForTextLabel];
+    
     UIView *view  = [[UIView alloc] initWithFrame:CGRectMake(screenSize.width - 100 / 2.0, (screenSize.height - 100) / 2.0, 100, 100)];
     view.backgroundColor = [UIColor greenColor];
     [self.view addSubview:view];
@@ -245,7 +249,8 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
         [WCScreenshotHelper snapshotView:_plainView savedToPhotosAlbum:YES];
     }
     else if ([title isEqualToString:@"UIWindow"]) {
-        [WCScreenshotHelper snapshotWindow:[UIApplication sharedApplication].keyWindow savedToPhotosAlbum:YES];
+        UIImage *image = [WCViewTool snapshotWithWindow:[UIApplication sharedApplication].keyWindow includeStatusBar:NO afterScreenUpdates:NO];
+        SavedToPhotosAlbumIfNeeded(image);
     }
     else if ([title isEqualToString:@"Screen"]) {
         [WCScreenshotHelper snapshotScreenSavedToPhotosAlbum:YES];
@@ -270,6 +275,14 @@ typedef NS_ENUM(NSUInteger, ButtonTag) {
         case ButtonTagShowActionSheet:
             [_actionSheet showInView:self.view];
             break;
+        case ButtonTagCaptureOffscreen: {
+            UILabel *textLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+            textLabel.text = @"Some text...";
+            [textLabel sizeToFit];
+            UIImage *image = [WCViewTool snapshotWithView:textLabel];
+            NSLog(@"image: %@", image);
+            break;
+        }
         default:
             break;
     }

@@ -517,7 +517,10 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
     {
         CGContextRef context = UIGraphicsGetCurrentContext();
         if ([view respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
-            [view drawViewHierarchyInRect:(CGRect) {CGPointZero, outputSize} afterScreenUpdates:NO];
+            // Note: set afterScreenUpdates force to YES, because the view maybe not render on screen,
+            // on this situation, drawViewHierarchyInRect can't capture the view snapshot
+            // @see https://stackoverflow.com/questions/27410991/how-can-i-take-a-snapshot-of-a-uiview-that-isnt-rendered
+            [view drawViewHierarchyInRect:(CGRect) {CGPointZero, outputSize} afterScreenUpdates:YES];
         }
         else {
             [view.layer renderInContext:context];
@@ -530,7 +533,7 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
     return image;
 }
 
-+ (nullable UIImage *)snapshotWithWindow:(UIWindow *)window includeStatusBar:(BOOL)includeStatusBar {
++ (nullable UIImage *)snapshotWithWindow:(UIWindow *)window includeStatusBar:(BOOL)includeStatusBar afterScreenUpdates:(BOOL)afterScreenUpdates {
     if (![window isKindOfClass:[UIWindow class]]) {
         return nil;
     }
@@ -544,7 +547,7 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
         CGContextRef context = UIGraphicsGetCurrentContext();
         
         if ([window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
-            [window drawViewHierarchyInRect:(CGRect) {CGPointZero, outputSize} afterScreenUpdates:NO];
+            [window drawViewHierarchyInRect:(CGRect) {CGPointZero, outputSize} afterScreenUpdates:afterScreenUpdates];
         }
         else {
             [window.layer renderInContext:context];
@@ -631,7 +634,7 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
 	return image;
 }
 
-+ (nullable UIImage *)snapshotScreenIncludeStatusBar:(BOOL)includeStatusBar {
++ (nullable UIImage *)snapshotScreenIncludeStatusBar:(BOOL)includeStatusBar afterScreenUpdates:(BOOL)afterScreenUpdates {
     UIImage *image = nil;
     CGSize outputSize = [UIScreen mainScreen].bounds.size;
     UIView *statusBar = includeStatusBar ? [self getStatusBarIfNeeded] : nil;
@@ -677,7 +680,7 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
             NSLog(@"level: %f", window.windowLevel);
 #endif
             if ([window respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
-                [window drawViewHierarchyInRect:(CGRect) {CGPointZero, outputSize }afterScreenUpdates:NO];
+                [window drawViewHierarchyInRect:(CGRect) {CGPointZero, outputSize }afterScreenUpdates:YES];
             }
             else {
                 [window.layer renderInContext:context];
@@ -701,7 +704,7 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
             [statusBar.layer renderInContext:context];
             
             if ([[[UIApplication sharedApplication] keyWindow] respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
-                [[[UIApplication sharedApplication] keyWindow] drawViewHierarchyInRect:(CGRect) {CGPointZero, outputSize } afterScreenUpdates:NO];
+                [[[UIApplication sharedApplication] keyWindow] drawViewHierarchyInRect:(CGRect) {CGPointZero, outputSize } afterScreenUpdates:YES];
             }
             else {
                 [[[UIApplication sharedApplication] keyWindow].layer renderInContext:context];
