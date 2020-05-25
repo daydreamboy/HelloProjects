@@ -8,17 +8,8 @@
 
 #import "WCPopoverView.h"
 
-#define kBoxPadding 10.f
-//Height/width of the actual arrow
-#define kArrowHeight 12.f
-#define kArrowHalfWidth  8.f
-
-
 //control point offset for rounding corners of the main popover box
 #define kCPOffset 1.8f
-
-//radius for the rounded corners of the main popover box
-#define kBoxRadius 4.f
 
 //Curvature value for the arrow.  Set to 0.f to make it linear.
 #define kArrowCurvature 0.f
@@ -26,47 +17,43 @@
 //Minimum distance from the side of the arrow to the beginning of curvature for the box
 #define kArrowHorizontalPadding 5.f
 
-//Alpha value for the shadow behind the YWPopoverView
-#define kShadowAlpha 0.5f
-
-//Blur for the shadow behind the YWPopoverView
-#define kShadowBlur 4.f;
-
-//Box gradient bg alpha
-#define kBoxAlpha 0.95f
-
-//Padding along top of screen to allow for any nav/status bars
-#define kTopMargin 50.f
-
 //margin along the left and right of the box
 #define kHorizontalMargin 10.f
-
-//padding along top of icons/images
-#define kImageTopPadding 3.f
-
-//padding along bottom of icons/images
-#define kImageBottomPadding 3.f
-
-//#define kGradientBottomColor  [UIColor colorWithRed:0.00 green:0.00 blue:0.00 alpha:0.50]
-//#define kGradientTopColor  [UIColor colorWithRed:0.00 green:0.00 blue:0.00 alpha:0.50]
-
-#define kGradientBottomColor        [UIColor colorWithWhite:1.0 alpha:1.0]
-#define kGradientTopColor           [UIColor colorWithWhite:1.0 alpha:1.0]
-
-
-#define kDividerColor [UIColor colorWithRed:0.329 green:0.341 blue:0.353 alpha:0.15f]
 
 #define CFTYPECAST(exp) (__bridge exp)
 
 @implementation WCPopoverViewDescriptor
+
 - (instancetype)init {
     self = [super init];
     if (self) {
         _showDuration = 0.2;
         _dismissDuration = 0.3;
+        _boxPadding = 10.0;
+        _arrowWidth = 16.0;
+        _arrowHeight = 12.0;
+        _boxCornerRadius = 4.0;
+        _boxShadowBlurRadius = 4.0;
+        _boxShadowBlurColor = [UIColor colorWithWhite:207 / 255.0 alpha:0.5];
+        _boxShadowOffset = CGSizeMake(0, 2.0);
+        _boxGradientColors = @[
+            [UIColor colorWithRed:1.f green:1.f blue:1.f alpha:0.95f],
+            [UIColor colorWithRed:0.98f green:0.98f blue:0.98f alpha:0.95f]
+        ];
+        _boxGradientLocations = @[@0, @1];
+//        _boxGradientStartPoint = ;
+//        _boxGradientEndPoint = ;
     }
     return self;
 }
+
+- (void)setBoxPadding:(CGFloat)boxPadding {
+    if (boxPadding < 0) {
+        boxPadding = 0;
+    }
+    _boxPadding = boxPadding;
+}
+
 @end
 
 
@@ -87,26 +74,89 @@
 
 #pragma mark - Public Methods
 
-+ (WCPopoverView *)showAlwaysAbovePopoverAtPoint:(CGPoint)point inView:(UIView *)view withContentView:(UIView *)cView {
++ (WCPopoverView *)showPopoverViewAtPoint:(CGPoint)point inView:(UIView *)view contentView:(UIView *)cView {
     WCPopoverView *popoverView = [[WCPopoverView alloc] initWithFrame:CGRectZero];
     popoverView.backgroundColor = [UIColor clearColor];
-    [popoverView showAtPoint:point inView:view withContentView:cView];
+//    popoverView.backgroundColor = [[UIColor orangeColor] colorWithAlphaComponent:0.2];
+    [popoverView showAtPoint:point inParentView:view withContentView:cView];
     return popoverView;
 }
 
-+ (WCPopoverView *)showAlwaysAbovePopoverAtPoint:(CGPoint)point inView:(UIView *)view withContentView:(UIView *)cView withDescriptor:(WCPopoverViewDescriptor *)descriptor {
++ (WCPopoverView *)showPopoverViewAtPoint:(CGPoint)point inView:(UIView *)view contentView:(UIView *)cView descriptor:(WCPopoverViewDescriptor *)descriptor {
     WCPopoverView *popoverView = [[WCPopoverView alloc] initWithFrame:CGRectZero];
     popoverView.backgroundColor = [UIColor clearColor];
+//    popoverView.backgroundColor = [[UIColor orangeColor] colorWithAlphaComponent:0.2];
     popoverView.descriptor = descriptor;
-    [popoverView showAtPoint:point inView:view withContentView:cView];
+    [popoverView showAtPoint:point inParentView:view withContentView:cView];
     return popoverView;
 }
 
-- (void)showAtPoint:(CGPoint)point inView:(UIView *)view withContentView:(UIView *)cView {
+//+ (WCPopoverView *)showPopoverViewRelativeToView:(UIView *)view locationInView:(CGPoint)locationInView contentView:(UIView *)contentView descriptor:(WCPopoverViewDescriptor *)descriptor {
+//
+//
+//    CGPoint locationInWindow = [view convertPoint:locationInView toView:view.window];
+//
+//}
+
+- (void)showAtPoint:(CGPoint)point inParentView:(UIView *)parentView withContentView:(UIView *)cView {
     self.contentView = cView;
-    self.parentView = view;
+    self.parentView = parentView;
     
-    [self setupLayout:point inView:view];
+    self.arrowPoint = point;
+    
+    //NSLog(@"arrowPoint:%f,%f", arrowPoint.x, arrowPoint.y);
+    
+    CGRect topViewBounds = parentView.bounds;
+    //NSLog(@"topViewBounds %@", NSStringFromCGRect(topViewBounds));
+    
+    float contentHeight = self.contentView.frame.size.height;
+    float contentWidth = self.contentView.frame.size.width;
+    
+    float padding = self.descriptor.boxPadding;
+    
+    float boxHeight = contentHeight + 2.f*padding;
+    float boxWidth = contentWidth + 2.f*padding;
+    
+    float xOrigin = 0.f;
+    
+    //Make sure the arrow point is within the drawable bounds for the popover.
+    float arrowHalfWidth = self.descriptor.arrowWidth / 2.0;
+    if (point.x + arrowHalfWidth > topViewBounds.size.width - kHorizontalMargin - self.descriptor.boxCornerRadius - kArrowHorizontalPadding) {//Too far to the right
+        point.x = topViewBounds.size.width - kHorizontalMargin - self.descriptor.boxCornerRadius - kArrowHorizontalPadding - arrowHalfWidth;
+        //NSLog(@"Correcting Arrow Point because it's too far to the right");
+    } else if (point.x - arrowHalfWidth < kHorizontalMargin + self.descriptor.boxCornerRadius + kArrowHorizontalPadding) {//Too far to the left
+        point.x = kHorizontalMargin + arrowHalfWidth + self.descriptor.boxCornerRadius + kArrowHorizontalPadding;
+        //NSLog(@"Correcting Arrow Point because it's too far to the left");
+    }
+    
+    //NSLog(@"arrowPoint:%f,%f", arrowPoint.x, arrowPoint.y);
+    
+    xOrigin = floorf(point.x - boxWidth*0.5f);
+    
+    //Check to see if the centered xOrigin value puts the box outside of the normal range.
+    if (xOrigin < CGRectGetMinX(topViewBounds) + kHorizontalMargin) {
+        xOrigin = CGRectGetMinX(topViewBounds) + kHorizontalMargin;
+    } else if (xOrigin + boxWidth > CGRectGetMaxX(topViewBounds) - kHorizontalMargin) {
+        //Check to see if the positioning puts the box out of the window towards the left
+        xOrigin = CGRectGetMaxX(topViewBounds) - kHorizontalMargin - boxWidth;
+    }
+    
+    float arrowHeight = self.descriptor.arrowHeight;
+    
+    self.boxFrame = CGRectMake(xOrigin, point.y - arrowHeight - boxHeight, boxWidth, boxHeight);
+    CGRect contentFrame = CGRectMake(self.boxFrame.origin.x + padding, self.boxFrame.origin.y + padding, contentWidth, contentHeight);
+    self.contentView.frame = contentFrame;
+    
+    //We set the anchorPoint here so the popover will "grow" out of the arrowPoint specified by the user.
+    //You have to set the anchorPoint before setting the frame, because the anchorPoint property will
+    //implicitly set the frame for the view, which we do not want.
+    self.layer.anchorPoint = CGPointMake(point.x / topViewBounds.size.width, point.y / topViewBounds.size.height);
+    self.frame = topViewBounds;
+    [self setNeedsDisplay];
+    
+    [self addSubview:self.contentView];
+    self.clipsToBounds = NO;
+    [parentView addSubview:self];
     
     // Make the view small and transparent before animation
     self.alpha = 0.f;
@@ -131,64 +181,6 @@
     }];
 }
 
-- (void)setupLayout:(CGPoint)point inView:(UIView*)view
-{
-    self.arrowPoint = point;
-    
-    //NSLog(@"arrowPoint:%f,%f", arrowPoint.x, arrowPoint.y);
-    
-    CGRect topViewBounds = view.bounds;
-    //NSLog(@"topViewBounds %@", NSStringFromCGRect(topViewBounds));
-    
-    float contentHeight = self.contentView.frame.size.height;
-    float contentWidth = self.contentView.frame.size.width;
-    
-    float padding = self.descriptor ? self.descriptor.boxPadding : kBoxPadding;
-    
-    float boxHeight = contentHeight + 2.f*padding;
-    float boxWidth = contentWidth + 2.f*padding;
-    
-    float xOrigin = 0.f;
-    
-    //Make sure the arrow point is within the drawable bounds for the popover.
-    float arrowHalfWidth = self.descriptor.arrowWidth ? self.descriptor.arrowWidth / 2.0 : kArrowHalfWidth;
-    if (point.x + arrowHalfWidth > topViewBounds.size.width - kHorizontalMargin - kBoxRadius - kArrowHorizontalPadding) {//Too far to the right
-        point.x = topViewBounds.size.width - kHorizontalMargin - kBoxRadius - kArrowHorizontalPadding - arrowHalfWidth;
-        //NSLog(@"Correcting Arrow Point because it's too far to the right");
-    } else if (point.x - arrowHalfWidth < kHorizontalMargin + kBoxRadius + kArrowHorizontalPadding) {//Too far to the left
-        point.x = kHorizontalMargin + arrowHalfWidth + kBoxRadius + kArrowHorizontalPadding;
-        //NSLog(@"Correcting Arrow Point because it's too far to the left");
-    }
-    
-    //NSLog(@"arrowPoint:%f,%f", arrowPoint.x, arrowPoint.y);
-    
-    xOrigin = floorf(point.x - boxWidth*0.5f);
-    
-    //Check to see if the centered xOrigin value puts the box outside of the normal range.
-    if (xOrigin < CGRectGetMinX(topViewBounds) + kHorizontalMargin) {
-        xOrigin = CGRectGetMinX(topViewBounds) + kHorizontalMargin;
-    } else if (xOrigin + boxWidth > CGRectGetMaxX(topViewBounds) - kHorizontalMargin) {
-        //Check to see if the positioning puts the box out of the window towards the left
-        xOrigin = CGRectGetMaxX(topViewBounds) - kHorizontalMargin - boxWidth;
-    }
-    
-    float arrowHeight = self.descriptor.arrowHeight ? self.descriptor.arrowHeight : kArrowHeight;
-    
-    self.boxFrame = CGRectMake(xOrigin, point.y - arrowHeight - boxHeight, boxWidth, boxHeight);
-    CGRect contentFrame = CGRectMake(self.boxFrame.origin.x + padding, self.boxFrame.origin.y + padding, contentWidth, contentHeight);
-    self.contentView.frame = contentFrame;
-    
-    //We set the anchorPoint here so the popover will "grow" out of the arrowPoint specified by the user.
-    //You have to set the anchorPoint before setting the frame, because the anchorPoint property will
-    //implicitly set the frame for the view, which we do not want.
-    self.layer.anchorPoint = CGPointMake(point.x / topViewBounds.size.width, point.y / topViewBounds.size.height);
-    self.frame = topViewBounds;
-    [self setNeedsDisplay];
-    
-    [self addSubview:self.contentView];
-    [view addSubview:self];
-}
-
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
@@ -202,10 +194,10 @@
     float xMax = CGRectGetMaxX(frame);
     float yMax = CGRectGetMaxY(frame);
     
-    float radius = kBoxRadius; //Radius of the curvature.
+    float radius = self.descriptor.boxCornerRadius; //Radius of the curvature.
     
     float cpOffset = kCPOffset; //Control Point Offset.  Modifies how "curved" the corners are.
-    float arrowHalfWidth = self.descriptor.arrowWidth ? self.descriptor.arrowWidth / 2.0 : kArrowHalfWidth;
+    float arrowHalfWidth = self.descriptor.arrowWidth / 2.0;
     
     /*
      LT2            RT1
@@ -247,35 +239,63 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     //// Shadow Declarations
-    UIColor* shadow = [UIColor colorWithWhite:207./255 alpha:kShadowAlpha];
-    CGSize shadowOffset = CGSizeMake(0, 2);
-    CGFloat shadowBlurRadius = kShadowBlur;
+    UIColor *shadowColor = self.descriptor.boxShadowBlurColor;
+    CGSize shadowOffset = self.descriptor.boxShadowOffset;
+    CGFloat shadowBlurRadius = self.descriptor.boxShadowBlurRadius;
     
     //// Gradient Declarations
-    NSArray* gradientColors = [NSArray arrayWithObjects:
-                               (id)kGradientTopColor.CGColor,
-                               (id)kGradientBottomColor.CGColor, nil];
-    CGFloat gradientLocations[] = {0, 1};
-    CGGradientRef gradient = CGGradientCreateWithColors(colorSpace, (CFTYPECAST(CFArrayRef)gradientColors), gradientLocations);
     
+    NSMutableArray *gradientColors = [NSMutableArray arrayWithCapacity:self.descriptor.boxGradientColors.count];
+    CGGradientRef gradient = NULL;
+    
+    if (self.descriptor.boxGradientColors.count > 0 &&
+        self.descriptor.boxGradientLocations.count > 0 &&
+        self.descriptor.boxGradientColors.count == self.descriptor.boxGradientLocations.count) {
+        
+        for (UIColor *color in self.descriptor.boxGradientColors) {
+            if ([color isKindOfClass:[UIColor class]]) {
+                [gradientColors addObject:(id)color.CGColor];
+            }
+        }
+        
+        CGFloat gradientLocations[self.descriptor.boxGradientLocations.count];
+        NSUInteger i = 0;
+        for (; i < self.descriptor.boxGradientLocations.count; ++i) {
+            NSNumber *location = self.descriptor.boxGradientLocations[i];
+            if ([location isKindOfClass:[NSNumber class]]) {
+                gradientLocations[i] = [location floatValue];
+            }
+        }
+        
+        if (gradientColors.count == i) {
+            gradient = CGGradientCreateWithColors(colorSpace, (CFTYPECAST(CFArrayRef)gradientColors), gradientLocations);
+        }
+    }
     
     //These floats are the top and bottom offsets for the gradient drawing so the drawing includes the arrows.
-    float bottomOffset = self.descriptor.arrowHeight ? self.descriptor.arrowHeight : kArrowHeight;
+    float bottomOffset = self.descriptor.arrowHeight;
     float topOffset = 0.f;
     
     //Draw the actual gradient and shadow.
     CGContextSaveGState(context);
-    CGContextSetShadowWithColor(context, shadowOffset, shadowBlurRadius, shadow.CGColor);
+    CGContextSetShadowWithColor(context, shadowOffset, shadowBlurRadius, shadowColor.CGColor);
     CGContextBeginTransparencyLayer(context, NULL);
     [popoverPath addClip];
-    CGContextDrawLinearGradient(context, gradient, CGPointMake(CGRectGetMidX(frame), CGRectGetMinY(frame) - topOffset), CGPointMake(CGRectGetMidX(frame), CGRectGetMaxY(frame) + bottomOffset), 0);
+    if (gradient != NULL) {
+        CGContextDrawLinearGradient(context, gradient, CGPointMake(CGRectGetMidX(frame), CGRectGetMinY(frame) - topOffset), CGPointMake(CGRectGetMidX(frame), CGRectGetMaxY(frame) + bottomOffset), 0);
+    }
     CGContextEndTransparencyLayer(context);
     CGContextRestoreGState(context);
+    
+    if (self.descriptor.borderWidth > 0 && [self.descriptor.borderColor isKindOfClass:[UIColor class]]) {
+        [self.descriptor.borderColor setStroke];
+        popoverPath.lineWidth = self.descriptor.borderWidth;
+        [popoverPath stroke];
+    }
     
     //// Cleanup
     CGGradientRelease(gradient);
     CGColorSpaceRelease(colorSpace);
-    
 }
 
 - (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event {

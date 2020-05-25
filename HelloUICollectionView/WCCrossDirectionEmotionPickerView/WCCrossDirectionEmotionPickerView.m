@@ -263,7 +263,7 @@ WCEmotionGroupInfoPropertiesImpl
             
             CGPoint topMiddlePoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
             CGPoint locationInWindow = [emotionPage convertPoint:topMiddlePoint toView:self.window];
-            self.popoverView = [WCPopoverView showAlwaysAbovePopoverAtPoint:locationInWindow inView:self.window withContentView:contentView withDescriptor:descriptor];
+            self.popoverView = [WCPopoverView showPopoverViewAtPoint:locationInWindow inView:self.window contentView:contentView descriptor:descriptor];
         }
         else {
             [self.popoverView dismiss:NO];
@@ -302,7 +302,7 @@ WCEmotionGroupInfoPropertiesImpl
             
             CGPoint topMiddlePoint = CGPointMake(CGRectGetMidX(rect), CGRectGetMinY(rect));
             CGPoint locationInWindow = [emotionPage convertPoint:topMiddlePoint toView:self.window];
-            self.popoverView = [WCPopoverView showAlwaysAbovePopoverAtPoint:locationInWindow inView:self.window withContentView:contentView withDescriptor:descriptor];
+            self.popoverView = [WCPopoverView showPopoverViewAtPoint:locationInWindow inView:self.window contentView:contentView descriptor:descriptor];
         }
         else {
             [self.popoverView dismiss:NO];

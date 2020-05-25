@@ -8,21 +8,48 @@
 
 #import <UIKit/UIKit.h>
 
+NS_ASSUME_NONNULL_BEGIN
+
+typedef NS_ENUM(NSUInteger, WCPopoverViewShowMode) {
+    WCPopoverViewShowModeOnDefaultWindow,
+    WCPopoverViewShowModeOnNewWindow,
+    WCPopoverViewShowModeOnCustomView,
+};
+
 @interface WCPopoverViewDescriptor : NSObject
-@property (nonatomic, assign) float boxPadding;
+@property (nonatomic, assign) WCPopoverViewShowMode showMode;
+@property (nonatomic, assign) CGFloat boxPadding;
+@property (nonatomic, assign) CGFloat boxCornerRadius;
+#pragma mark > box border
+@property (nonatomic, strong, nullable) UIColor *borderColor;
+@property (nonatomic, assign) CGFloat borderWidth;
+#pragma mark > box shadow
+@property (nonatomic, assign) CGFloat boxShadowBlurRadius;
+@property (nonatomic, strong, nullable) UIColor *boxShadowBlurColor;
+@property (nonatomic, assign) CGSize boxShadowOffset;
+#pragma mark > box gradient
+@property (nonatomic, strong, nullable) NSArray<UIColor *> *boxGradientColors;
+@property (nonatomic, strong, nullable) NSArray<NSNumber *> *boxGradientLocations;
+@property (nonatomic, assign) CGPoint boxGradientStartPoint;
+@property (nonatomic, assign) CGPoint boxGradientEndPoint;
+
 @property (nonatomic, assign) BOOL autoDismissWhenTapOutside;
-@property (nonatomic, assign) float autoDismissAfterSeconds; // <=0 for never auto dismiss
-@property (nonatomic, assign) float arrowWidth;
-@property (nonatomic, assign) float arrowHeight;
-@property (nonatomic, assign) float showDuration;
-@property (nonatomic, assign) float dismissDuration;
+@property (nonatomic, assign) CGFloat autoDismissAfterSeconds; // <=0 for never auto dismiss
+@property (nonatomic, assign) CGFloat arrowWidth;
+@property (nonatomic, assign) CGFloat arrowHeight;
+@property (nonatomic, assign) CGFloat showDuration;
+@property (nonatomic, assign) CGFloat dismissDuration;
 @end
 
 @interface WCPopoverView : UIView
 
-+ (WCPopoverView *)showAlwaysAbovePopoverAtPoint:(CGPoint)point inView:(UIView *)view withContentView:(UIView *)cView;
-+ (WCPopoverView *)showAlwaysAbovePopoverAtPoint:(CGPoint)point inView:(UIView *)view withContentView:(UIView *)cView withDescriptor:(WCPopoverViewDescriptor *)descriptor;
++ (WCPopoverView *)showPopoverViewAtPoint:(CGPoint)point inView:(UIView *)view contentView:(UIView *)contentView;
++ (WCPopoverView *)showPopoverViewAtPoint:(CGPoint)point inView:(UIView *)view contentView:(UIView *)contentView descriptor:(WCPopoverViewDescriptor *)descriptor;
+
++ (WCPopoverView *)showPopoverViewRelativeToView:(UIView *)view locationInView:(CGPoint)locationInView contentView:(UIView *)contentView descriptor:(WCPopoverViewDescriptor *)descriptor;
 
 - (void)dismiss:(BOOL)animated;
 
 @end
+
+NS_ASSUME_NONNULL_END
