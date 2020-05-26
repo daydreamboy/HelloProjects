@@ -22,7 +22,7 @@ typedef NS_ENUM(NSUInteger, WCPopoverViewShowMode) {
 @property (nonatomic, assign) CGFloat arrowWidth;
 @property (nonatomic, assign) CGFloat arrowHeight;
 #pragma mark > box layout
-@property (nonatomic, assign) CGFloat boxPadding;
+@property (nonatomic, assign) UIEdgeInsets boxInsets;
 @property (nonatomic, assign) CGFloat boxCornerRadius;
 #pragma mark > box border
 @property (nonatomic, strong, nullable) UIColor *borderColor;

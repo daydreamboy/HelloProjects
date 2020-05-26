@@ -29,7 +29,7 @@
     if (self) {
         _showDuration = 0.2;
         _dismissDuration = 0.3;
-        _boxPadding = 10.0;
+        _boxInsets = UIEdgeInsetsMake(10, 10, 10, 10);
         _arrowWidth = 16.0;
         _arrowHeight = 12.0;
         _boxCornerRadius = 4.0;
@@ -48,11 +48,8 @@
     return self;
 }
 
-- (void)setBoxPadding:(CGFloat)boxPadding {
-    if (boxPadding < 0) {
-        boxPadding = 0;
-    }
-    _boxPadding = boxPadding;
+- (void)setBoxInsets:(UIEdgeInsets)boxInsets {
+    _boxInsets = UIEdgeInsetsMake(MAX(boxInsets.top, 0), MAX(boxInsets.left, 0), MAX(boxInsets.bottom, 0), MAX(boxInsets.right, 0));
 }
 
 @end
@@ -79,7 +76,7 @@
     WCPopoverView *popoverView = [[WCPopoverView alloc] initWithFrame:CGRectZero];
     popoverView.backgroundColor = [UIColor clearColor];
 //    popoverView.backgroundColor = [[UIColor orangeColor] colorWithAlphaComponent:0.2];
-    [popoverView showAtPoint:point inParentView:view withContentView:cView];
+    [popoverView showAtPoint:point inParentView:view contentView:cView];
     return popoverView;
 }
 
@@ -88,7 +85,7 @@
     popoverView.backgroundColor = [UIColor clearColor];
 //    popoverView.backgroundColor = [[UIColor orangeColor] colorWithAlphaComponent:0.2];
     popoverView.descriptor = descriptor;
-    [popoverView showAtPoint:point inParentView:view withContentView:cView];
+    [popoverView showAtPoint:point inParentView:view contentView:cView];
     return popoverView;
 }
 
@@ -99,7 +96,7 @@
 //
 //}
 
-- (void)showAtPoint:(CGPoint)point inParentView:(UIView *)parentView withContentView:(UIView *)cView {
+- (void)showAtPoint:(CGPoint)point inParentView:(UIView *)parentView contentView:(UIView *)cView {
     self.contentView = cView;
     self.parentView = parentView;
     
@@ -113,10 +110,8 @@
     float contentHeight = self.contentView.frame.size.height;
     float contentWidth = self.contentView.frame.size.width;
     
-    float padding = self.descriptor.boxPadding;
-    
-    float boxHeight = contentHeight + 2.f*padding;
-    float boxWidth = contentWidth + 2.f*padding;
+    float boxHeight = contentHeight + self.descriptor.boxInsets.top + self.descriptor.boxInsets.bottom;
+    float boxWidth = contentWidth + self.descriptor.boxInsets.left + self.descriptor.boxInsets.right;
     
     float xOrigin = 0.f;
     
@@ -145,7 +140,7 @@
     float arrowHeight = self.descriptor.arrowHeight;
     
     self.boxFrame = CGRectMake(xOrigin, point.y - arrowHeight - boxHeight, boxWidth, boxHeight);
-    CGRect contentFrame = CGRectMake(self.boxFrame.origin.x + padding, self.boxFrame.origin.y + padding, contentWidth, contentHeight);
+    CGRect contentFrame = CGRectMake(self.boxFrame.origin.x + self.descriptor.boxInsets.left, self.boxFrame.origin.y + self.descriptor.boxInsets.top, contentWidth, contentHeight);
     self.contentView.frame = contentFrame;
     
     //We set the anchorPoint here so the popover will "grow" out of the arrowPoint specified by the user.
@@ -327,7 +322,7 @@
         [self removeFromSuperview];
     }
     else {
-        [UIView animateWithDuration:self.descriptor.dismissDuration ?: 0.3f animations:^{
+        [UIView animateWithDuration:self.descriptor.dismissDuration animations:^{
             self.alpha = 0.1f;
             self.transform = CGAffineTransformMakeScale(0.1f, 0.1f);
         } completion:^(BOOL finished) {

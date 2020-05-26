@@ -15,6 +15,17 @@
 #define UICOLOR_RGB(color)       [UIColor colorWithRed: (((color) >> 16) & 0xFF) / 255.0 green: (((color) >> 8) & 0xFF) / 255.0 blue: ((color) & 0xFF) / 255.0 alpha: 1.0]
 #endif
 
+#define FrameSetSize(frame, newWidth, newHeight) ({ \
+CGRect __internal_frame = (frame); \
+if (!isnan((newWidth))) { \
+    __internal_frame.size.width = (newWidth); \
+} \
+if (!isnan((newHeight))) { \
+    __internal_frame.size.height = (newHeight); \
+} \
+__internal_frame; \
+})
+
 @interface UseWCCrossDirectionEmotionPickerViewViewController ()
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, strong) WCCrossDirectionEmotionPickerView *emotionPickerView;
@@ -97,13 +108,14 @@
 - (void)buttonShowPopoverViewClicked:(id)sender {
     UIButton *button = (UIButton *)sender;
     
-    NSUInteger numberOfMethods = 2;
+    NSUInteger numberOfMethods = 3;
     NSUInteger index = (NSUInteger)(arc4random() % numberOfMethods);
     NSString *selector = [NSString stringWithFormat:@"showStyle%ldWithButton:", (long)index];
     
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
-    [self performSelector:NSSelectorFromString(selector) withObject:button];
+    //[self performSelector:NSSelectorFromString(selector) withObject:button];
+    [self showStyle0WithButton:button];
 #pragma GCC diagnostic pop
 }
 
@@ -124,11 +136,11 @@
     
     WCPopoverViewDescriptor *descriptor = [WCPopoverViewDescriptor new];
     descriptor.autoDismissAfterSeconds = 0;
-    descriptor.boxPadding = 10;
+    descriptor.boxInsets = UIEdgeInsetsMake(4.5, 7.5, 4.5, 7.5);
     descriptor.showDuration = 0.15;
     descriptor.dismissDuration = 0.1;
     descriptor.autoDismissWhenTapOutside = YES;
-    descriptor.boxCornerRadius = (CGRectGetHeight(label.frame) + 2 * descriptor.boxPadding) / 2.0;//8;
+    descriptor.boxCornerRadius = (CGRectGetHeight(label.frame) + descriptor.boxInsets.top + descriptor.boxInsets.bottom) / 2.0;
 //    descriptor.borderWidth = 1;
     descriptor.borderColor = [UIColor redColor];
 //    descriptor.boxGradientLocations = nil;
@@ -156,6 +168,36 @@
     label.text = @"";
     
     WCPopoverViewDescriptor *descriptor = [WCPopoverViewDescriptor new];
+    
+    CGPoint topMiddlePoint = CGPointMake(CGRectGetMidX(button.bounds), 0);
+    CGPoint locationInWindow = [button convertPoint:topMiddlePoint toView:button.window];
+    self.popoverView = [WCPopoverView showPopoverViewAtPoint:locationInWindow inView:button.window contentView:label descriptor:descriptor];
+}
+
+- (void)showStyle2WithButton:(UIButton *)button {
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+    label.backgroundColor = [UIColor clearColor];
+    label.text = @"点击试试222";
+    label.font = [UIFont systemFontOfSize:12];
+    label.textColor = [UIColor whiteColor];
+    
+    [label sizeToFit];
+    label.frame = FrameSetSize(label.frame, NAN, 25);
+    
+    WCPopoverViewDescriptor *descriptor = [WCPopoverViewDescriptor new];
+    descriptor.autoDismissAfterSeconds = 5;
+    //descriptor.boxPadding = 7.5;
+    descriptor.boxInsets = UIEdgeInsetsMake(7.5, 7.5, 7.5, 7.5);
+    descriptor.showDuration = 0.15;
+    descriptor.dismissDuration = 0.1;
+    descriptor.autoDismissWhenTapOutside = YES;
+    descriptor.boxCornerRadius = (CGRectGetHeight(label.frame) + descriptor.boxInsets.top + descriptor.boxInsets.bottom) / 2.0;
+    descriptor.boxGradientColors = @[ UICOLOR_RGB(0xFF9200), UICOLOR_RGB(0xFF6C0B) ];
+    descriptor.boxGradientStartPoint = CGPointMake(0, 0.5);
+    descriptor.boxGradientEndPoint = CGPointMake(1, 0.5);
+    descriptor.boxShadowBlurColor = nil;
+    descriptor.arrowWidth = 12;
+    descriptor.arrowHeight = 6;
     
     CGPoint topMiddlePoint = CGPointMake(CGRectGetMidX(button.bounds), 0);
     CGPoint locationInWindow = [button convertPoint:topMiddlePoint toView:button.window];

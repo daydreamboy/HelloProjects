@@ -257,7 +257,7 @@ WCEmotionGroupInfoPropertiesImpl
         if (!CGRectEqualToRect(rect, CGRectZero)) {
             WCPopoverViewDescriptor *descriptor = [WCPopoverViewDescriptor new];
             descriptor.autoDismissAfterSeconds = 10000;
-            descriptor.boxPadding = 5;
+            descriptor.boxInsets = UIEdgeInsetsMake(5, 5, 5, 5);
             descriptor.showDuration = 0.15;
             descriptor.dismissDuration = 0.1;
             
@@ -296,7 +296,7 @@ WCEmotionGroupInfoPropertiesImpl
         if (!CGRectEqualToRect(rect, CGRectZero)) {
             WCPopoverViewDescriptor *descriptor = [WCPopoverViewDescriptor new];
             descriptor.autoDismissAfterSeconds = 0;
-            descriptor.boxPadding = 5;
+            descriptor.boxInsets = UIEdgeInsetsMake(5, 5, 5, 5);
             descriptor.showDuration = 0.15;
             descriptor.dismissDuration = 0.1;
             
