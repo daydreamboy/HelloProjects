@@ -506,6 +506,10 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
 #pragma mark - View Snapshot
 
 + (nullable UIImage *)snapshotWithView:(UIView *)view {
+    return [self snapshotWithView:view afterScreenUpdates:YES];
+}
+
++ (nullable UIImage *)snapshotWithView:(UIView *)view afterScreenUpdates:(BOOL)afterScreenUpdates {
     if (![view isKindOfClass:[UIView class]]) {
         return nil;
     }
@@ -520,7 +524,7 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
             // Note: set afterScreenUpdates force to YES, because the view maybe not render on screen,
             // on this situation, drawViewHierarchyInRect can't capture the view snapshot
             // @see https://stackoverflow.com/questions/27410991/how-can-i-take-a-snapshot-of-a-uiview-that-isnt-rendered
-            [view drawViewHierarchyInRect:(CGRect) {CGPointZero, outputSize} afterScreenUpdates:YES];
+            [view drawViewHierarchyInRect:(CGRect) {CGPointZero, outputSize} afterScreenUpdates:afterScreenUpdates];
         }
         else {
             [view.layer renderInContext:context];

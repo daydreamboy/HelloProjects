@@ -209,10 +209,61 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - View Snapshot
 
+/**
+ Create a snapshot of UIView
+ 
+ @param view the view to take snapshot
+ @return the snapshot UIImage. If failed, return nil
+ @discussion This method internally use +[WCViewTool snapshotWithView:afterScreenUpdates:]. And set afterScreenUpdates
+ to YES because snapshot the view both onscreen and offscreen
+ */
 + (nullable UIImage *)snapshotWithView:(UIView *)view;
+
+/**
+ Create a snapshot of UIView
+ 
+ @param view the view to take snapshot
+ @param afterScreenUpdates NO if consider the current state (e.g. UIButton pressed state), or NO if not consider
+ @return the snapshot UIImage. If failed, return nil
+ @discussion If consider the current state and view must not offscreen, set afterScreenUpdates to NO
+ */
++ (nullable UIImage *)snapshotWithView:(UIView *)view afterScreenUpdates:(BOOL)afterScreenUpdates;
+
+/**
+ Create a snapshot of UIWindow
+ 
+ @param window the UIWindow
+ @param includeStatusBar YES if also snapshot status bar, NO if ignore status bar
+ @param afterScreenUpdates NO if consider the current state (e.g. UIButton pressed state), or NO if not consider
+ @return the snapshot UIImage. If failed, return nil
+ */
 + (nullable UIImage *)snapshotWithWindow:(UIWindow *)window includeStatusBar:(BOOL)includeStatusBar afterScreenUpdates:(BOOL)afterScreenUpdates;
+
+/**
+ Create a snapshot of UIScrollView
+ 
+ @param scrollView the UIScrollView
+ @param shouldConsiderContent YES if only snapshot the content, NO if only snapshot the area of scrollView
+ @return the snapshot UIImage. If failed, return nil
+ */
 + (nullable UIImage *)snapshotWithScrollView:(UIScrollView *)scrollView shouldConsiderContent:(BOOL)shouldConsiderContent;
+
+/**
+ Create a snapshot of current screen not include special window (alert, action sheet, keyboard...)
+ 
+ @param includeStatusBar YES if also snapshot status bar, NO if ignore status bar
+ @param afterScreenUpdates NO if consider the current state (e.g. UIButton pressed state), or NO if not consider
+ @return the snapshot UIImage. If failed, return nil
+ */
 + (nullable UIImage *)snapshotScreenIncludeStatusBar:(BOOL)includeStatusBar afterScreenUpdates:(BOOL)afterScreenUpdates;
+
+/**
+ Create a snapshot of current screen include special window (alert, action sheet, keyboard...)
+ 
+ @param includeStatusBar YES if also snapshot status bar, NO if ignore status bar
+ @param afterScreenUpdates NO if consider the current state (e.g. UIButton pressed state), or NO if not consider
+ @return the snapshot UIImage. If failed, return nil
+ */
 + (nullable UIImage *)snapshotScreenAfterOtherWindowsHasShownIncludeStatusBar:(BOOL)includeStatusBar afterScreenUpdates:(BOOL)afterScreenUpdates;
 
 #pragma mark - Assistant Methods
