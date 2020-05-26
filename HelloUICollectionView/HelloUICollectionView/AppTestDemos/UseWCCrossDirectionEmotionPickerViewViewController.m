@@ -96,6 +96,20 @@
 
 - (void)buttonShowPopoverViewClicked:(id)sender {
     UIButton *button = (UIButton *)sender;
+    
+    NSUInteger numberOfMethods = 2;
+    NSUInteger index = (NSUInteger)(arc4random() % numberOfMethods);
+    NSString *selector = [NSString stringWithFormat:@"showStyle%ldWithButton:", (long)index];
+    
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
+    [self performSelector:NSSelectorFromString(selector) withObject:button];
+#pragma GCC diagnostic pop
+}
+
+#pragma mark - Style Methods
+
+- (void)showStyle0WithButton:(UIButton *)button {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
     label.backgroundColor = [UIColor greenColor];
     label.text = @"点击试试";
@@ -125,6 +139,23 @@
     descriptor.arrowWidth = 12;
     descriptor.arrowHeight = 6;
 //    descriptor.boxShadowBlurRadius = 10;
+    
+    CGPoint topMiddlePoint = CGPointMake(CGRectGetMidX(button.bounds), 0);
+    CGPoint locationInWindow = [button convertPoint:topMiddlePoint toView:button.window];
+    self.popoverView = [WCPopoverView showPopoverViewAtPoint:locationInWindow inView:button.window contentView:label descriptor:descriptor];
+}
+
+- (void)showStyle1WithButton:(UIButton *)button {
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+    label.backgroundColor = [UIColor greenColor];
+    label.text = @"点击试试";
+    label.font = [UIFont systemFontOfSize:13];
+    label.textColor = [UIColor whiteColor];
+    
+    [label sizeToFit];
+    label.text = @"";
+    
+    WCPopoverViewDescriptor *descriptor = [WCPopoverViewDescriptor new];
     
     CGPoint topMiddlePoint = CGPointMake(CGRectGetMidX(button.bounds), 0);
     CGPoint locationInWindow = [button convertPoint:topMiddlePoint toView:button.window];

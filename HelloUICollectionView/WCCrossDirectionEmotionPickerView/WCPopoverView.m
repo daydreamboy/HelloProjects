@@ -43,6 +43,7 @@
         _boxGradientLocations = @[@0, @1];
         _boxGradientStartPoint = CGPointMake(0.5, 0.0);
         _boxGradientEndPoint = CGPointMake(0.5, 1.0);
+        _autoDismissAfterSeconds = 3.0;
     }
     return self;
 }

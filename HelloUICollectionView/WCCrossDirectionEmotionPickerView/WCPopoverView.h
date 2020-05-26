@@ -18,6 +18,10 @@ typedef NS_ENUM(NSUInteger, WCPopoverViewShowMode) {
 
 @interface WCPopoverViewDescriptor : NSObject
 @property (nonatomic, assign) WCPopoverViewShowMode showMode;
+#pragma mark > arrow
+@property (nonatomic, assign) CGFloat arrowWidth;
+@property (nonatomic, assign) CGFloat arrowHeight;
+#pragma mark > box layout
 @property (nonatomic, assign) CGFloat boxPadding;
 @property (nonatomic, assign) CGFloat boxCornerRadius;
 #pragma mark > box border
@@ -32,11 +36,9 @@ typedef NS_ENUM(NSUInteger, WCPopoverViewShowMode) {
 @property (nonatomic, strong, nullable) NSArray<NSNumber *> *boxGradientLocations;
 @property (nonatomic, assign) CGPoint boxGradientStartPoint;
 @property (nonatomic, assign) CGPoint boxGradientEndPoint;
-
+#pragma mark > interact
 @property (nonatomic, assign) BOOL autoDismissWhenTapOutside;
 @property (nonatomic, assign) CGFloat autoDismissAfterSeconds; // <=0 for never auto dismiss
-@property (nonatomic, assign) CGFloat arrowWidth;
-@property (nonatomic, assign) CGFloat arrowHeight;
 @property (nonatomic, assign) CGFloat showDuration;
 @property (nonatomic, assign) CGFloat dismissDuration;
 @end
