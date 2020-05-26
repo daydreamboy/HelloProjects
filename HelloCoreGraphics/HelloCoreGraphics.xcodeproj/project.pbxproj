@@ -30,6 +30,8 @@
 		4F64C3C120ED1118008A2A1A /* CreateCircleProgressViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C3C020ED1118008A2A1A /* CreateCircleProgressViewViewController.m */; };
 		4F64C3C520ED114F008A2A1A /* WCCirlcleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C3C420ED114F008A2A1A /* WCCirlcleProgressView.m */; };
 		4F64C3C920ED13A7008A2A1A /* LayerWithProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C3C820ED13A7008A2A1A /* LayerWithProgress.m */; };
+		4FF3EAE8247D180F00227B3C /* DrawArcBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF3EAE7247D180F00227B3C /* DrawArcBezierPathViewController.m */; };
+		4FF3EAEB247D184E00227B3C /* DrawCurveBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF3EAEA247D184E00227B3C /* DrawCurveBezierPathViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +90,10 @@
 		4F64C3C420ED114F008A2A1A /* WCCirlcleProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCCirlcleProgressView.m; sourceTree = "<group>"; };
 		4F64C3C720ED13A7008A2A1A /* LayerWithProgress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerWithProgress.h; sourceTree = "<group>"; };
 		4F64C3C820ED13A7008A2A1A /* LayerWithProgress.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LayerWithProgress.m; sourceTree = "<group>"; };
+		4FF3EAE6247D180F00227B3C /* DrawArcBezierPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawArcBezierPathViewController.h; sourceTree = "<group>"; };
+		4FF3EAE7247D180F00227B3C /* DrawArcBezierPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawArcBezierPathViewController.m; sourceTree = "<group>"; };
+		4FF3EAE9247D184E00227B3C /* DrawCurveBezierPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawCurveBezierPathViewController.h; sourceTree = "<group>"; };
+		4FF3EAEA247D184E00227B3C /* DrawCurveBezierPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawCurveBezierPathViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +152,7 @@
 		2B0FD6061FC99E1E0022E59D /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4FF3EAE4247D15A800227B3C /* BezierPath */,
 				4F64C3C220ED1137008A2A1A /* Views */,
 				4F35262E2008B96A00891B09 /* ExamplesOfWCAttachedBubbleView */,
 				2B0FD6081FC99E1E0022E59D /* CreatePDFGraphicsContext1ViewController.h */,
@@ -215,6 +222,17 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		4FF3EAE4247D15A800227B3C /* BezierPath */ = {
+			isa = PBXGroup;
+			children = (
+				4FF3EAE6247D180F00227B3C /* DrawArcBezierPathViewController.h */,
+				4FF3EAE7247D180F00227B3C /* DrawArcBezierPathViewController.m */,
+				4FF3EAE9247D184E00227B3C /* DrawCurveBezierPathViewController.h */,
+				4FF3EAEA247D184E00227B3C /* DrawCurveBezierPathViewController.m */,
+			);
+			path = BezierPath;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -259,7 +277,7 @@
 		2B0FD5E51FC99DFC0022E59D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = wesley_chen;
 				TargetAttributes = {
 					2B0FD5EC1FC99DFC0022E59D = {
@@ -319,9 +337,11 @@
 				4F3526342008B9CF00891B09 /* AttachedBubbleWithDownArrowViewController.m in Sources */,
 				4F3525F120064D9200891B09 /* CreateAttachedBubbleLayerViewController.m in Sources */,
 				4F3525FA20077D6200891B09 /* ExamplesOfWAttachedBubbleViewViewController.m in Sources */,
+				4FF3EAE8247D180F00227B3C /* DrawArcBezierPathViewController.m in Sources */,
 				2B0FD6091FC99E1E0022E59D /* CreatePDFGraphicsContext1ViewController.m in Sources */,
 				4F35263A2008B9EB00891B09 /* AttachedBubbleWithRightArrowViewController.m in Sources */,
 				4F3526402008D68F00891B09 /* AttachedBubbleWithGradientColorViewController.m in Sources */,
+				4FF3EAEB247D184E00227B3C /* DrawCurveBezierPathViewController.m in Sources */,
 				4F64C3C920ED13A7008A2A1A /* LayerWithProgress.m in Sources */,
 				4F3526312008B99C00891B09 /* AttachedBubbleWithUpArrowViewController.m in Sources */,
 				2B0FD60F1FC99F0E0022E59D /* CreatePDFGraphicsContext2ViewController.m in Sources */,
@@ -383,6 +403,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -390,6 +411,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -438,6 +460,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -445,6 +468,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
