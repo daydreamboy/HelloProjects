@@ -11,6 +11,10 @@
 #import "WCViewTool.h"
 #import "WCPopoverView.h"
 
+#ifndef UICOLOR_RGB
+#define UICOLOR_RGB(color)       [UIColor colorWithRed: (((color) >> 16) & 0xFF) / 255.0 green: (((color) >> 8) & 0xFF) / 255.0 blue: ((color) & 0xFF) / 255.0 alpha: 1.0]
+#endif
+
 @interface UseWCCrossDirectionEmotionPickerViewViewController ()
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, strong) WCCrossDirectionEmotionPickerView *emotionPickerView;
@@ -95,8 +99,12 @@
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
     label.backgroundColor = [UIColor greenColor];
     label.text = @"点击试试";
+    label.font = [UIFont systemFontOfSize:13];
+    label.textColor = [UIColor whiteColor];
     
     [label sizeToFit];
+    label.text = @"";
+    
 //    label.layer.cornerRadius = CGRectGetHeight(label.bounds) / 2.0;
 //    label.layer.masksToBounds = YES;
     
@@ -106,12 +114,16 @@
     descriptor.showDuration = 0.15;
     descriptor.dismissDuration = 0.1;
     descriptor.autoDismissWhenTapOutside = YES;
-    descriptor.boxCornerRadius = 20;
-    descriptor.borderWidth = 3;
+    descriptor.boxCornerRadius = (CGRectGetHeight(label.frame) + 2 * descriptor.boxPadding) / 2.0;//8;
+//    descriptor.borderWidth = 1;
     descriptor.borderColor = [UIColor redColor];
 //    descriptor.boxGradientLocations = nil;
-//    descriptor.boxGradientColors = nil;
-//    descriptor.boxShadowBlurColor = [UIColor redColor];
+    descriptor.boxGradientColors = @[ UICOLOR_RGB(0xFF9200), UICOLOR_RGB(0xFF6C0B) ];
+    descriptor.boxGradientStartPoint = CGPointMake(0, 0.5);
+    descriptor.boxGradientEndPoint = CGPointMake(1, 0.5);
+    descriptor.boxShadowBlurColor = nil;
+    descriptor.arrowWidth = 12;
+    descriptor.arrowHeight = 6;
 //    descriptor.boxShadowBlurRadius = 10;
     
     CGPoint topMiddlePoint = CGPointMake(CGRectGetMidX(button.bounds), 0);

@@ -34,15 +34,15 @@
         _arrowHeight = 12.0;
         _boxCornerRadius = 4.0;
         _boxShadowBlurRadius = 4.0;
-        _boxShadowBlurColor = [UIColor colorWithWhite:207 / 255.0 alpha:0.5];
+        _boxShadowBlurColor = [UIColor colorWithWhite:20 / 255.0 alpha:0.5];
         _boxShadowOffset = CGSizeMake(0, 2.0);
         _boxGradientColors = @[
             [UIColor colorWithRed:1.f green:1.f blue:1.f alpha:0.95f],
             [UIColor colorWithRed:0.98f green:0.98f blue:0.98f alpha:0.95f]
         ];
         _boxGradientLocations = @[@0, @1];
-//        _boxGradientStartPoint = ;
-//        _boxGradientEndPoint = ;
+        _boxGradientStartPoint = CGPointMake(0.5, 0.0);
+        _boxGradientEndPoint = CGPointMake(0.5, 1.0);
     }
     return self;
 }
@@ -183,8 +183,6 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    // Drawing code
-    
     // Build the popover path
     CGRect frame = self.boxFrame;
     
@@ -194,9 +192,7 @@
     float xMax = CGRectGetMaxX(frame);
     float yMax = CGRectGetMaxY(frame);
     
-    float radius = self.descriptor.boxCornerRadius; //Radius of the curvature.
-    
-    float cpOffset = kCPOffset; //Control Point Offset.  Modifies how "curved" the corners are.
+    float radius = MIN(MAX(self.descriptor.boxCornerRadius, 0), CGRectGetHeight(frame) / 2.0);
     float arrowHalfWidth = self.descriptor.arrowWidth / 2.0;
     
     /*
@@ -219,19 +215,21 @@
     
     UIBezierPath *popoverPath = [UIBezierPath bezierPath];
     [popoverPath moveToPoint:CGPointMake(CGRectGetMinX(frame), CGRectGetMinY(frame) + radius)];//LT1
-    [popoverPath addCurveToPoint:CGPointMake(xMin + radius, yMin) controlPoint1:CGPointMake(xMin, yMin + radius - cpOffset) controlPoint2:CGPointMake(xMin + radius - cpOffset, yMin)];//LT2
+    [popoverPath addArcWithCenter:CGPointMake(xMin + radius, yMin + radius) radius:radius startAngle:M_PI endAngle:M_PI * 1.5 clockwise:YES];
     
     [popoverPath addLineToPoint:CGPointMake(xMax - radius, yMin)];//RT1
-    [popoverPath addCurveToPoint:CGPointMake(xMax, yMin + radius) controlPoint1:CGPointMake(xMax - radius + cpOffset, yMin) controlPoint2:CGPointMake(xMax, yMin + radius - cpOffset)];//RT2
+    [popoverPath addArcWithCenter:CGPointMake(xMax - radius, yMin + radius) radius:radius startAngle:M_PI * 1.5 endAngle:M_PI * 2.0 clockwise:YES];
+    
     [popoverPath addLineToPoint:CGPointMake(xMax, yMax - radius)];//RB1
-    [popoverPath addCurveToPoint:CGPointMake(xMax - radius, yMax) controlPoint1:CGPointMake(xMax, yMax - radius + cpOffset) controlPoint2:CGPointMake(xMax - radius + cpOffset, yMax)];//RB2
+    [popoverPath addArcWithCenter:CGPointMake(xMax - radius, yMax - radius) radius:radius startAngle:0 endAngle:M_PI_2 clockwise:YES];
     
     [popoverPath addLineToPoint:CGPointMake(self.arrowPoint.x + arrowHalfWidth, yMax)];//right side
     [popoverPath addCurveToPoint:self.arrowPoint controlPoint1:CGPointMake(self.arrowPoint.x + arrowHalfWidth - kArrowCurvature, yMax) controlPoint2:self.arrowPoint];//arrow point
     [popoverPath addCurveToPoint:CGPointMake(self.arrowPoint.x - arrowHalfWidth, yMax) controlPoint1:self.arrowPoint controlPoint2:CGPointMake(self.arrowPoint.x - arrowHalfWidth + kArrowCurvature, yMax)];
     
     [popoverPath addLineToPoint:CGPointMake(xMin + radius, yMax)];//LB1
-    [popoverPath addCurveToPoint:CGPointMake(xMin, yMax - radius) controlPoint1:CGPointMake(xMin + radius - cpOffset, yMax) controlPoint2:CGPointMake(xMin, yMax - radius + cpOffset)];//LB2
+    [popoverPath addArcWithCenter:CGPointMake(xMin + radius, yMax - radius) radius:radius startAngle:M_PI_2 endAngle:M_PI clockwise:YES];
+    
     [popoverPath closePath];
     
     //// General Declarations
@@ -274,15 +272,27 @@
     
     //These floats are the top and bottom offsets for the gradient drawing so the drawing includes the arrows.
     float bottomOffset = self.descriptor.arrowHeight;
-    float topOffset = 0.f;
     
     //Draw the actual gradient and shadow.
     CGContextSaveGState(context);
-    CGContextSetShadowWithColor(context, shadowOffset, shadowBlurRadius, shadowColor.CGColor);
+    
+    if (shadowBlurRadius > 0 && [shadowColor isKindOfClass:[UIColor class]]) {
+        CGContextSetShadowWithColor(context, shadowOffset, shadowBlurRadius, shadowColor.CGColor);
+    }
+    
     CGContextBeginTransparencyLayer(context, NULL);
+    
     [popoverPath addClip];
+    
     if (gradient != NULL) {
-        CGContextDrawLinearGradient(context, gradient, CGPointMake(CGRectGetMidX(frame), CGRectGetMinY(frame) - topOffset), CGPointMake(CGRectGetMidX(frame), CGRectGetMaxY(frame) + bottomOffset), 0);
+        CGFloat startPointXRatio = MIN(MAX(self.descriptor.boxGradientStartPoint.x, 0), 1);
+        CGFloat startPointYRatio = MIN(MAX(self.descriptor.boxGradientStartPoint.y, 0), 1);
+        CGFloat endPointXRatio = MIN(MAX(self.descriptor.boxGradientEndPoint.x, 0), 1);
+        CGFloat endPointYRatio = MIN(MAX(self.descriptor.boxGradientEndPoint.y, 0), 1);
+
+        CGPoint startPoint = CGPointMake(CGRectGetMinX(frame) + startPointXRatio * CGRectGetWidth(frame), CGRectGetMinY(frame) + startPointYRatio * (CGRectGetHeight(frame) + bottomOffset));
+        CGPoint endPoint = CGPointMake(CGRectGetMinX(frame) + endPointXRatio * CGRectGetWidth(frame), CGRectGetMinY(frame) + endPointYRatio * (CGRectGetHeight(frame) + bottomOffset));
+        CGContextDrawLinearGradient(context, gradient, startPoint, endPoint, kNilOptions);
     }
     CGContextEndTransparencyLayer(context);
     CGContextRestoreGState(context);
