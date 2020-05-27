@@ -115,7 +115,7 @@ __internal_frame; \
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
     //[self performSelector:NSSelectorFromString(selector) withObject:button];
-    [self showStyle0WithButton:button];
+    [self showStyle2WithButton:button];
 #pragma GCC diagnostic pop
 }
 
@@ -177,17 +177,14 @@ __internal_frame; \
 - (void)showStyle2WithButton:(UIButton *)button {
     UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
     label.backgroundColor = [UIColor clearColor];
-    label.text = @"点击试试222";
-    label.font = [UIFont systemFontOfSize:12];
+    label.text = @"试试点击查看、发送宝贝";
+    label.font = [UIFont fontWithName:@"PingFangSC-Regular" size:12];
     label.textColor = [UIColor whiteColor];
-    
     [label sizeToFit];
-    label.frame = FrameSetSize(label.frame, NAN, 25);
     
     WCPopoverViewDescriptor *descriptor = [WCPopoverViewDescriptor new];
     descriptor.autoDismissAfterSeconds = 5;
-    //descriptor.boxPadding = 7.5;
-    descriptor.boxInsets = UIEdgeInsetsMake(7.5, 7.5, 7.5, 7.5);
+    descriptor.boxInsets = UIEdgeInsetsMake(4.5, 7.5, 4.5, 7.5);
     descriptor.showDuration = 0.15;
     descriptor.dismissDuration = 0.1;
     descriptor.autoDismissWhenTapOutside = YES;
