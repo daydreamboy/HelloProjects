@@ -7,7 +7,6 @@
 //
 
 #import "UseIconFontInUILabelViewController.h"
-#import "IconFont.h"
 #import "WCIconFontTool.h"
 
 @interface UseIconFontInUILabelViewController ()

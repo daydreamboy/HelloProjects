@@ -21,6 +21,7 @@
 		4F6B553B21AFF1C9009843E6 /* GetAllFontNamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6B553A21AFF1C9009843E6 /* GetAllFontNamesViewController.m */; };
 		4F8AD8F421B0DAF1005DE01F /* WCFontTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8AD8F321B0DAF1005DE01F /* WCFontTool.m */; };
 		4F8AD8F721B0EB65005DE01F /* SystemFontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8AD8F621B0EB65005DE01F /* SystemFontViewController.m */; };
+		4FB91035247E12660089C697 /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB91034247E12660089C697 /* WCViewTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,9 @@
 		4F8AD8F321B0DAF1005DE01F /* WCFontTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCFontTool.m; sourceTree = "<group>"; };
 		4F8AD8F521B0EB65005DE01F /* SystemFontViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemFontViewController.h; sourceTree = "<group>"; };
 		4F8AD8F621B0EB65005DE01F /* SystemFontViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemFontViewController.m; sourceTree = "<group>"; };
+		4FB91032247E11B10089C697 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
+		4FB91033247E12660089C697 /* WCViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCViewTool.h; sourceTree = "<group>"; };
+		4FB91034247E12660089C697 /* WCViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,7 @@
 		4F6B553821AFF130009843E6 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4FB91031247E11900089C697 /* Tools */,
 				4F6B553921AFF1C9009843E6 /* GetAllFontNamesViewController.h */,
 				4F6B553A21AFF1C9009843E6 /* GetAllFontNamesViewController.m */,
 				4F8AD8F521B0EB65005DE01F /* SystemFontViewController.h */,
@@ -131,6 +136,16 @@
 				4F32328924547A5D00BE0966 /* WCIconFontTool.m */,
 			);
 			path = WCFontTool;
+			sourceTree = "<group>";
+		};
+		4FB91031247E11900089C697 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4FB91032247E11B10089C697 /* WCMacroTool.h */,
+				4FB91033247E12660089C697 /* WCViewTool.h */,
+				4FB91034247E12660089C697 /* WCViewTool.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F8AD8F421B0DAF1005DE01F /* WCFontTool.m in Sources */,
+				4FB91035247E12660089C697 /* WCViewTool.m in Sources */,
 				4F32328224546D6C00BE0966 /* UseIconFontInUIButtonViewController.m in Sources */,
 				4F6B552F21AFF0F7009843E6 /* main.m in Sources */,
 				4F32328524546D7F00BE0966 /* UseIconFontInUIImageViewViewController.m in Sources */,

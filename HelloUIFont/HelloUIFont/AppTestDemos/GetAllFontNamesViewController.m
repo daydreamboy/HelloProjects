@@ -8,18 +8,8 @@
 
 #import "GetAllFontNamesViewController.h"
 #import "WCFontTool.h"
-
-#ifndef NSARRAY_SAFE_GET
-#define NSARRAY_SAFE_GET(array, index)                      \
-    ({                                                      \
-        id value = nil;                                     \
-        if (array && 0 <= index && index < [array count]) { \
-            value = [array objectAtIndex:index];            \
-        }                                                   \
-        value;                                              \
-    })
-
-#endif /* NSARRAY_SAFE_GET */
+#import "WCMacroTool.h"
+#import "WCViewTool.h"
 
 @interface GetAllFontNamesViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
 @property (nonatomic, strong) UILabel *label;
@@ -38,6 +28,13 @@
     [self.view addSubview:self.label];
     [self.view addSubview:self.labelFontName];
     [self.view addSubview:self.pickerView];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    CGFloat y = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(_pickerView.bounds) - [WCViewTool safeAreaInsetsWithView:self.view].bottom;
+    self.pickerView.frame = FrameSetOrigin(self.pickerView.frame, NAN, y);
 }
 
 #pragma mark - Getters
@@ -132,6 +129,7 @@
     else {
         self.label.font = nil;
     }
+    NSLog(@"selected font: %@", fontName);
 }
 
 #pragma mark - UIPickerViewDataSource
