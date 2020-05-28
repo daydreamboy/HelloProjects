@@ -98,4 +98,24 @@
     NSLog(@"change: %@", change);
 }
 
+#pragma mark - Modification
+
+- (void)test_swappedKeyValueDictionaryWithDictionary_allowMutable {
+    NSDictionary *dict;
+    id output;
+    
+    // Case 1
+    dict = @{ @"A": @1, @"B": @2, @"C": @3 };
+    output = [WCDictionaryTool swappedKeyValueDictionaryWithDictionary:dict allowMutable:NO];
+    XCTAssertNotNil(output);
+    XCTAssertEqualObjects(output[@1], @"A");
+    XCTAssertEqualObjects(output[@2], @"B");
+    XCTAssertEqualObjects(output[@3], @"C");
+    
+    // Case 2
+    dict = @{ @"A": @1, @"B": @1, @"C": @3 };
+    output = [WCDictionaryTool swappedKeyValueDictionaryWithDictionary:dict allowMutable:NO];
+    XCTAssertNil(output);
+}
+
 @end

@@ -114,6 +114,15 @@ typedef NS_ENUM(NSUInteger, WCFlattenDictionaryOption) {
  @discussion This method not modify key-values in the parameter `dictionary`
  */
 + (nullable NSDictionary *)setObjectWithDictionary:(NSDictionary *)dictionary object:(nullable id)object forKey:(NSString *)keyPath allowMutable:(BOOL)allowMutable;
+/**
+ Swap key and value of NSDictionary
+ 
+ @param dictionary the original NSDictionary
+ @param allowMutable YES to return mutable, or NO to return immutable
+ @return the swapped NSDictionary. If the values have same value, return nil.
+ @see https://stackoverflow.com/a/50007091
+ */
++ (nullable NSDictionary *)swappedKeyValueDictionaryWithDictionary:(NSDictionary *)dictionary allowMutable:(BOOL)allowMutable;
 
 #pragma mark - Conversion (TODO)
 

@@ -199,6 +199,28 @@
     return allowMutable ? dictM : [dictM copy];
 }
 
++ (nullable NSDictionary *)swappedKeyValueDictionaryWithDictionary:(NSDictionary *)dictionary allowMutable:(BOOL)allowMutable {
+    if (![dictionary isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    
+    if (dictionary.count == 0) {
+        return allowMutable ? [NSMutableDictionary dictionary] : [NSDictionary dictionary];
+    }
+    
+    NSMutableDictionary *dictM = [NSMutableDictionary dictionaryWithCapacity:dictionary.count];
+    [dictionary enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+        dictM[obj] = key;
+    }];
+    
+    // Note: If the new keys not equal the old keys of dictionary, consider the swap is failed
+    if ([dictM allKeys].count != [dictionary allKeys].count) {
+        return nil;
+    }
+    
+    return allowMutable ? dictM : [dictM copy];
+}
+
 #pragma mark - Conversion
 
 + (nullable NSDictionary<NSString *, id> *)transformDictionary:(NSDictionary<NSString *, id> *)dictionary usingKeysMapping:(NSDictionary<NSString *, NSString *> *)keysMapping mode:(WCKeysMappingMode)mode {
