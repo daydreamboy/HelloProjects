@@ -8,6 +8,9 @@
 
 #import "UseNSLockWithTryLockViewController.h"
 
+#define LoopCountOfMainThread 50
+#define LoopCountOfObjectThread 1000
+
 static NSLock *sLock;
 
 @interface MyObject3 : NSObject
@@ -17,7 +20,9 @@ static NSLock *sLock;
 @implementation MyObject3
 + (void)aMethod:(id)param {
     int x;
-    for (x = 0; x < 50; ++x) {
+    // Note: let LoopCountOfObjectThread bigger than LoopCountOfMainThread to make object thread
+    // lives longer so it probably can get the lock and print `Object Thread says x is ...`
+    for (x = 0; x < LoopCountOfObjectThread; ++x) {
         if ([sLock tryLock]) {
             printf("Object Thread says x is %i\n", x);
             usleep(1);
@@ -41,7 +46,7 @@ static NSLock *sLock;
     int x;
     [NSThread detachNewThreadSelector:@selector(aMethod:) toTarget:[MyObject3 class] withObject:nil];
     
-    for(x = 0; x < 50; ++x) {
+    for (x = 0; x < LoopCountOfMainThread; ++x) {
         [sLock lock];
         printf("Main thread says x is %i\n", x);
         usleep(1);

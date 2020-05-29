@@ -51,6 +51,7 @@ static NSMutableArray *sQueue;
     while (YES) {
         [sCLock lockWhenCondition:DataStateHasData];
         
+        // Note: make consume random number of items in the queue
         NSUInteger numberOfItems = arc4random() % sQueue.count + 1;
         for (int i = 0; i < numberOfItems; i++) {
             NSNumber *itemToRemove = [sQueue firstObject];
@@ -60,6 +61,8 @@ static NSMutableArray *sQueue;
         }
         printf("-------------\n");
         
+        // Note: no data in the queue, release the lock with DataStateNoData, so the consumer
+        // can't get the lock again
         [sCLock unlockWithCondition:(sQueue.count == 0 ? DataStateNoData : DataStateHasData)];
     }
 }

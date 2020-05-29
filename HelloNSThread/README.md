@@ -302,7 +302,7 @@ NSConditionLock比较适合生产者和消费者情况[^3]，示例代码见**Us
 | 信号量（dispatch_semaphore_t）                     | **6628**     |
 | 互斥量（pthread_mutex_t）                          | **10437**    |
 
-示例代码见Tests_synchronize_concurrent_writes.m
+> 示例代码，见Tests_synchronize_concurrent_writes.m
 
 
 
@@ -320,7 +320,7 @@ NSConditionLock比较适合生产者和消费者情况[^3]，示例代码见**Us
 | 信号量（dispatch_semaphore_t）                     | **173966**   |
 | 互斥量（pthread_mutex_t）                          | **102997**   |
 
-> 示例代码见Tests_synchronize_concurrent_reads_writes.m
+> 示例代码，见Tests_synchronize_concurrent_reads_writes.m
 
 
 
@@ -353,7 +353,7 @@ uint64_t t_0 = dispatch_benchmark(iterations, ^{
 NSLog(@"Avg. Runtime: %llu ns", t_0);
 ```
 
-> 示例代码见Tests_benchmarking.m
+> 示例代码，见Tests_benchmarking.m
 
 
 
