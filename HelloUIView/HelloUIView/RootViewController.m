@@ -31,6 +31,8 @@
 #import "GroupSubviewsByWrapperViewViewController.h"
 #import "GroupSubviewsByRelayoutSubviewsViewController.h"
 
+//
+#import "UseCAShapeLayerViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -82,14 +84,20 @@
           @{ kTitle: @"Stretch image by CALayer", kClass: [StretchImageInLayerViewController class] },
     ];
     
+    NSArray<NSDictionary *> *section3 = @[
+          @{ kTitle: @"CAShapeLayer", kClass: [UseCAShapeLayerViewController class] },
+    ];
+    
     _sectionTitles = @[
         @"UIView",
         @"CALayer",
+        @"CAShapeLayer",
     ];
     
     _classes = @[
          section1,
          section2,
+         section3,
     ];
 }
 

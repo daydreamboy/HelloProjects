@@ -7,19 +7,7 @@
 //
 
 #import "UseCAShapeLayerToShowViewWithTwoCornersViewController.h"
-
-@implementation UIImage (UIColor)
-+ (UIImage *)imageWithColor:(UIColor *)color {
-    CGRect rect = CGRectMake(0, 0, 1, 1);
-    UIGraphicsBeginImageContext(rect.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, rect);
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return image;
-}
-@end
+#import "WCImageTool.h"
 
 @interface UseCAShapeLayerToShowViewWithTwoCornersViewController ()
 @property (nonatomic, strong) UIView *view1;
@@ -141,8 +129,8 @@
         [button setTitle:@"a button" forState:UIControlStateNormal];
         [button setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-        [button setBackgroundImage:[UIImage imageWithColor:[UIColor lightGrayColor]] forState:UIControlStateNormal];
-        [button setBackgroundImage:[UIImage imageWithColor:[UIColor grayColor]] forState:UIControlStateHighlighted];
+        [button setBackgroundImage:[WCImageTool imageWithColor:[UIColor lightGrayColor]] forState:UIControlStateNormal];
+        [button setBackgroundImage:[WCImageTool imageWithColor:[UIColor grayColor]] forState:UIControlStateHighlighted];
         [button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
         
         CAShapeLayer *buttonMaskLayer = [CAShapeLayer layer];
