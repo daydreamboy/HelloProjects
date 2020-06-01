@@ -136,6 +136,29 @@ XCTAssertTrue(CGRectEqualToRect(output, CGRectFromString(@"{{1.5, 2}, {3, 3}}"))
 
 
 
+## 2、UIBezierPath
+
+​       UIBezierPath是UIKit提供的上层对象，UIBezierPath是对应CGPath的封装[^3]，CGPath的C函数API，包含UIBezierPath的所有Objective-C方法。如果对CGPath不是非常熟悉，而且可以使用UIBezierPath完成绘图，那优先选择使用UIBezierPath。在某些情况下，UIBezierPath要比CGPath要“快”一些[^4]。
+
+
+
+UIBezierPath的使用，目前有两种方式
+
+* UIBezierPath结合CGContext，在drawRect:方法中使用
+* UIBezierPath设置到CAShapeLayer的path属性
+
+第二种方式比较简单，先介绍第二种方式。
+
+
+
+### （1）UIBezierPath+CAShapeLayer
+
+
+
+
+
+https://www.calayer.com/core-animation/2017/12/25/cashapelayer-in-depth-part-ii.html
+
 
 
 
@@ -146,3 +169,6 @@ XCTAssertTrue(CGRectEqualToRect(output, CGRectFromString(@"{{1.5, 2}, {3, 3}}"))
 
 [^1]: <https://nshipster.com/cggeometry/>
 [^2]:<https://www.infragistics.com/community/blogs/b/torrey-betts/posts/quick-tip-dividing-a-cgrect-using-cgrectdivide-objective-c>
+[^3]:https://stackoverflow.com/questions/25457597/what-is-the-difference-between-cgpath-and-uibezierpath
+[^4]:https://stackoverflow.com/questions/6327817/why-is-uibezierpath-faster-than-core-graphics-path
+

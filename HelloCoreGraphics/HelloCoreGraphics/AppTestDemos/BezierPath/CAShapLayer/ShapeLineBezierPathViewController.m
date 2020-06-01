@@ -7,11 +7,12 @@
 //
 
 #import "ShapeLineBezierPathViewController.h"
+#import <CoreGraphics/CoreGraphics.h>
 
 #define LayerHeight 30
 #define LayerSpace 10
 
-#define DEBUG_SHOW_LAYER_BORDER 0
+#define DEBUG_SHOW_LAYER_BORDER 1
 
 #if DEBUG_SHOW_LAYER_BORDER
 #define SHOW_LAYER_BORDER(layer) \
@@ -27,6 +28,7 @@
 @property (nonatomic, strong) CAShapeLayer *layerLine2;
 @property (nonatomic, strong) CAShapeLayer *layerLine3;
 @property (nonatomic, strong) CAShapeLayer *layerLine4;
+@property (nonatomic, strong) CAShapeLayer *layerLine5;
 @end
 
 @implementation ShapeLineBezierPathViewController
@@ -39,6 +41,7 @@
     [self.view.layer addSublayer:self.layerLine2];
     [self.view.layer addSublayer:self.layerLine3];
     [self.view.layer addSublayer:self.layerLine4];
+    [self.view.layer addSublayer:self.layerLine5];
 }
 
 #pragma mark - CAShapeLayer
@@ -57,8 +60,8 @@
         CGFloat paddingH = 10;
         
         UIBezierPath *path = [UIBezierPath bezierPath];
-        [path moveToPoint:CGPointMake(paddingH, CGRectGetMidY(layer.frame))];
-        [path addLineToPoint:CGPointMake(CGRectGetWidth(layer.frame) - paddingH, CGRectGetMidY(layer.frame))];
+        [path moveToPoint:CGPointMake(paddingH, CGRectGetHeight(layer.frame) / 2.0)];
+        [path addLineToPoint:CGPointMake(CGRectGetWidth(layer.frame) - paddingH, CGRectGetHeight(layer.frame) / 2.0)];
         
         layer.path = path.CGPath;
         
@@ -141,6 +144,7 @@
         
         // Note: not use CGRectGetMidY(layer.frame) instead of CGRectGetHeight(layer.frame) / 2.0
         [path moveToPoint:CGPointMake(paddingH, CGRectGetHeight(layer.frame) / 2.0)];
+        //CGPathMoveToPoint(path.CGPath, NULL, paddingH, CGRectGetHeight(layer.frame) / 2.0);
         [path addLineToPoint:CGPointMake(CGRectGetWidth(layer.frame) - paddingH, CGRectGetHeight(layer.frame) / 2.0)];
         
         layer.path = path.CGPath;
@@ -149,6 +153,33 @@
     }
     
     return _layerLine4;
+}
+
+- (CAShapeLayer *)layerLine5 {
+    if (!_layerLine5) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        
+        CAShapeLayer *layer = [CAShapeLayer layer];
+        layer.frame = CGRectMake(0, CGRectGetMaxY(self.layerLine4.frame) + LayerSpace, screenSize.width, LayerHeight);
+        layer.lineWidth = 5.0;
+        layer.lineDashPattern = @[@10, @5, @5, @5];
+        layer.lineDashPhase = 10;
+        layer.strokeColor = [UIColor redColor].CGColor;
+        SHOW_LAYER_BORDER(layer);
+        
+        CGFloat paddingH = 10;
+        
+        UIBezierPath *path = [UIBezierPath bezierPath];
+        
+        [path moveToPoint:CGPointMake(paddingH, CGRectGetHeight(layer.frame) / 2.0)];
+        [path addLineToPoint:CGPointMake(CGRectGetWidth(layer.frame) - paddingH, CGRectGetHeight(layer.frame) / 2.0)];
+        
+        layer.path = path.CGPath;
+        
+        _layerLine5 = layer;
+    }
+    
+    return _layerLine5;
 }
 
 @end
