@@ -173,6 +173,24 @@
 			path = AppTestDemos;
 			sourceTree = "<group>";
 		};
+		4F1DF0152484BAF50091F205 /* CGContext */ = {
+			isa = PBXGroup;
+			children = (
+				4FF3EAE6247D180F00227B3C /* DrawArcBezierPathViewController.h */,
+				4FF3EAE7247D180F00227B3C /* DrawArcBezierPathViewController.m */,
+				4FF3EAE9247D184E00227B3C /* DrawCurveBezierPathViewController.h */,
+				4FF3EAEA247D184E00227B3C /* DrawCurveBezierPathViewController.m */,
+			);
+			path = CGContext;
+			sourceTree = "<group>";
+		};
+		4F1DF0162484BB010091F205 /* CAShapLayer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CAShapLayer;
+			sourceTree = "<group>";
+		};
 		4F3525E820063F3100891B09 /* WCAttachedBubbleView */ = {
 			isa = PBXGroup;
 			children = (
@@ -225,10 +243,8 @@
 		4FF3EAE4247D15A800227B3C /* BezierPath */ = {
 			isa = PBXGroup;
 			children = (
-				4FF3EAE6247D180F00227B3C /* DrawArcBezierPathViewController.h */,
-				4FF3EAE7247D180F00227B3C /* DrawArcBezierPathViewController.m */,
-				4FF3EAE9247D184E00227B3C /* DrawCurveBezierPathViewController.h */,
-				4FF3EAEA247D184E00227B3C /* DrawCurveBezierPathViewController.m */,
+				4F1DF0162484BB010091F205 /* CAShapLayer */,
+				4F1DF0152484BAF50091F205 /* CGContext */,
 			);
 			path = BezierPath;
 			sourceTree = "<group>";
