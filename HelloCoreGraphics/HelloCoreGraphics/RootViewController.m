@@ -18,8 +18,12 @@
 #import "CreateCircleProgressViewViewController.h"
 
 // section2
+#import "DrawLineBezierPathViewController.h"
 #import "DrawArcBezierPathViewController.h"
 #import "DrawCurveBezierPathViewController.h"
+
+// section3
+#import "ShapeLineBezierPathViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -55,18 +59,25 @@
     ];
     
     NSArray<NSDictionary *> *section2 = @[
+          @{ kTitle: @"Draw Line Bezier Path", kClass: [DrawLineBezierPathViewController class] },
           @{ kTitle: @"Draw Arc Bezier Path", kClass: [DrawArcBezierPathViewController class] },
           @{ kTitle: @"Draw Curve Bezier Path", kClass: [DrawCurveBezierPathViewController class] },
     ];
     
+    NSArray<NSDictionary *> *section3 = @[
+          @{ kTitle: @"Shape Line Bezier Path", kClass: [ShapeLineBezierPathViewController class] },
+    ];
+    
     _sectionTitles = @[
         @"Create Context",
-        @"Use UIBezierPath",
+        @"Use UIBezierPath with CGContext",
+        @"Use UIBezierPath with CAShapeLayer",
     ];
     
     _classes = @[
          section1,
          section2,
+         section3,
     ];
 }
 
