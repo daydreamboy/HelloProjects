@@ -430,17 +430,34 @@ CAShapeLayer也是CALayer的子类。这里介绍CAShapeLayer的常用属性。
 | 属性            | 默认值                  | 作用                                                         | 说明                                                         |
 | --------------- | ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | fillColor       | [UIColor black].CGColor | path的填充色                                                 | 如果path是直线，fillColor无效果                              |
+| fillRule        |                         |                                                              |                                                              |
 | lineCap         | kCALineCapButt          | 决定线条末端的形状，如下<br/><img src="./images/CAShapeLayerLineCap.png" alt="CAShapeLayerLineCap" style="zoom:100%;" /> | 如果path是closed，不存在线条的末端，则设置lineCap是无效的    |
 | lineDashPattern | nil                     | 决定线条的dash模式                                           | 数组的按照[(painted segment length), (unpainted segment length), ...]顺序依次决定实线和虚线的长度，当数组匹配完成后，再重新从头开始匹配。（备注：如果是nil，则一直是实线） |
 | lineDashPhase   | 0                       | lineDashPattern起始的偏移量                                  | 举个例子，lineDashPattern = [10, 5, 5, 5], lineDashPhase = 10，则起始匹配按照5-5-5-10-5-5-5-...，但不影响实线-虚线-实线-虚线-...的顺序。如果lineDashPhase = 2，则起始匹配按照8-5-5-5-10-5-5-5-... |
-| lineJoin        | kCALineJoinMiter        | 决定两个线条交接的形状，如下<img src="./images/CAShapeLayerLineJoin.png" alt="CAShapeLayerLineJoin" style="zoom:100%;" /> |                                                              |
-| miterLimit      | 10                      |                                                              | 当lineJoin设置kCALineJoinMiter时，miterLimit才生效。具体作用不清楚(TODO) |
+| lineJoin        | kCALineJoinMiter        | 决定两个线条交接的形状，如下<img src="./images/CAShapeLayerLineJoin.png" alt="CAShapeLayerLineJoin" style="zoom:100%;" /> | kCALineJoinMiter<br/>kCALineJoinRound<br/>kCALineJoinBevel   |
+| miterLimit      | 10                      | 当设置kCALineJoinMiter时，决定是否变成kCALineJoinBevel       | 当lineJoin设置kCALineJoinMiter时，miterLimit才生效。具体见“miterLimit”一节。 |
 | strokeColor     | nil                     | path的线条颜色                                               |                                                              |
-|                 |                         |                                                              |                                                              |
+| strokeStart     |                         |                                                              |                                                              |
+| strokeEnd       |                         |                                                              |                                                              |
 
 
 
+#### a. miterLimit[^6]
 
+miterLimit实际是一个阈值，理解它还需要如下图的两个概念，miter length和stroke width。
+
+![](images/miter length.png)
+
+* miter length，是指两条线条相交，构成两个衔接点之间的距离
+* stroke width，是指线条的宽度
+
+当比例miter length/stroke width大于miterLimit时（而且lineJoin=kCALineJoinMiter），尖角太尖，CAShapeLayer自动将尖角画成kCALineJoinBevel类型。公式如下
+
+![](images/miter limit.png)
+
+说明
+
+> ratio比例miter length/stroke width，实际和角度φ有关，当φ=60°，ratio=2；当φ=90°，ratio=1.414
 
 
 
@@ -462,4 +479,6 @@ CAShapeLayer也是CALayer的子类。这里介绍CAShapeLayer的常用属性。
 
 [^4]: https://medium.com/@wailord/the-automaticallyadjustsscrollviewinsets-rabbit-hole-b9153a769ce9
 [^5]:https://stackoverflow.com/a/45242206
+
+[^6]:https://wiki.esko.com/pages/viewpage.action?pageId=184729203
 

@@ -7,6 +7,7 @@
 //
 
 #import "UseCAShapeLayerViewController.h"
+#import "WCMacroTool.h"
 
 #define LayerHeight 40
 #define LayerSpace 20
@@ -39,6 +40,9 @@
 @property (nonatomic, strong) CAShapeLayer *layerShape10;
 @property (nonatomic, strong) CAShapeLayer *layerShape11;
 @property (nonatomic, strong) CAShapeLayer *layerShape12;
+@property (nonatomic, strong) CAShapeLayer *layerShape13;
+@property (nonatomic, strong) CAShapeLayer *layerShape14;
+@property (nonatomic, strong) CAShapeLayer *layerShape15;
 @end
 
 @implementation UseCAShapeLayerViewController
@@ -61,12 +65,19 @@
     [self.contentView.layer addSublayer:self.layerShape10];
     [self.contentView.layer addSublayer:self.layerShape11];
     [self.contentView.layer addSublayer:self.layerShape12];
+    [self.contentView.layer addSublayer:self.layerShape13];
+    [self.contentView.layer addSublayer:self.layerShape14];
+    [self.contentView.layer addSublayer:self.layerShape15];
 }
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
     self.scrollView.frame = self.view.bounds;
+    
+    CALayer *lastAddedLayer = [[self.contentView.layer sublayers] lastObject];
+    self.contentView.frame = FrameSetSize(self.contentView.frame, NAN, CGRectGetMaxY(lastAddedLayer.frame));
+    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.contentView.bounds), CGRectGetHeight(self.contentView.bounds));
 }
 
 #pragma mark - Getter
@@ -77,7 +88,7 @@
         
         UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:CGRectZero];
         
-        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, 3 * screenSize.width)];
+        _contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, 0)];
         [scrollView addSubview:_contentView];
         scrollView.contentSize = CGSizeMake(CGRectGetWidth(_contentView.bounds), CGRectGetHeight(_contentView.bounds));
         
@@ -442,6 +453,114 @@
     }
 
     return _layerShape12;
+}
+
+- (CAShapeLayer *)layerShape13 {
+    if (!_layerShape13) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+
+        CAShapeLayer *layer = [CAShapeLayer layer];
+        layer.frame = CGRectMake(0, CGRectGetMaxY(self.layerShape12.frame) + LayerSpace, screenSize.width, TriangleHeight);
+        layer.lineWidth = 10.0;
+        layer.fillColor = [UIColor greenColor].CGColor;
+        layer.strokeColor = [UIColor redColor].CGColor;
+        layer.strokeStart = 0.2;
+        //layer.strokeEnd = 0.8;
+        SHOW_LAYER_BORDER(layer);
+
+        CGFloat paddingH = 10;
+
+        // Note: path's coordinate is relative to the layer
+        UIBezierPath *path = [UIBezierPath bezierPath];
+
+        // Note: Create a triangle like `▽`
+        CGPoint p1 = CGPointMake(paddingH, 0);
+        CGPoint p2 = CGPointMake(paddingH + TriangleWidth, 0);
+        CGPoint p3 = CGPointMake(paddingH + TriangleWidth / 2.0, CGRectGetHeight(layer.bounds));
+
+        [path moveToPoint:p1];
+        [path addLineToPoint:p2];
+        [path addLineToPoint:p3];
+        [path closePath];
+
+        layer.path = path.CGPath;
+
+        _layerShape13 = layer;
+    }
+
+    return _layerShape13;
+}
+
+- (CAShapeLayer *)layerShape14 {
+    if (!_layerShape14) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+
+        CAShapeLayer *layer = [CAShapeLayer layer];
+        layer.frame = CGRectMake(0, CGRectGetMaxY(self.layerShape13.frame) + LayerSpace, screenSize.width, TriangleHeight);
+        layer.lineWidth = 10.0;
+        layer.fillColor = [UIColor greenColor].CGColor;
+        layer.strokeColor = [UIColor redColor].CGColor;
+        //layer.strokeStart = 0.2;
+        layer.strokeEnd = 0.2;
+        SHOW_LAYER_BORDER(layer);
+
+        CGFloat paddingH = 10;
+
+        // Note: path's coordinate is relative to the layer
+        UIBezierPath *path = [UIBezierPath bezierPath];
+
+        // Note: Create a triangle like `▽`
+        CGPoint p1 = CGPointMake(paddingH, 0);
+        CGPoint p2 = CGPointMake(paddingH + TriangleWidth, 0);
+        CGPoint p3 = CGPointMake(paddingH + TriangleWidth / 2.0, CGRectGetHeight(layer.bounds));
+
+        [path moveToPoint:p1];
+        [path addLineToPoint:p2];
+        [path addLineToPoint:p3];
+        [path closePath];
+
+        layer.path = path.CGPath;
+
+        _layerShape14 = layer;
+    }
+
+    return _layerShape14;
+}
+
+- (CAShapeLayer *)layerShape15 {
+    if (!_layerShape15) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+
+        CAShapeLayer *layer = [CAShapeLayer layer];
+        layer.frame = CGRectMake(0, CGRectGetMaxY(self.layerShape14.frame) + LayerSpace, screenSize.width, TriangleHeight);
+        layer.lineWidth = 10.0;
+        layer.fillColor = [UIColor greenColor].CGColor;
+        layer.strokeColor = [UIColor redColor].CGColor;
+        layer.strokeStart = 0.2;
+        layer.strokeEnd = 0.8;
+        SHOW_LAYER_BORDER(layer);
+
+        CGFloat paddingH = 10;
+
+        // Note: path's coordinate is relative to the layer
+        UIBezierPath *path = [UIBezierPath bezierPath];
+
+        // Note: Create a triangle like `▽`
+        CGPoint p1 = CGPointMake(paddingH, 0);
+        CGPoint p2 = CGPointMake(paddingH + TriangleWidth, 0);
+        CGPoint p3 = CGPointMake(paddingH + TriangleWidth / 2.0, CGRectGetHeight(layer.bounds));
+
+        [path moveToPoint:p1];
+        [path addLineToPoint:p2];
+        [path addLineToPoint:p3];
+        [path closePath];
+
+        layer.path = path.CGPath;
+
+        _layerShape15 = layer;
+    }
+
+    return _layerShape15;
 }
 
 @end
