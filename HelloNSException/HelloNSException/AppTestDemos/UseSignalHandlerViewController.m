@@ -14,6 +14,7 @@
 #include <execinfo.h>
 
 #include <sys/signal.h> // for signal()
+#import "WCMacroTool.h"
 
 @interface UseSignalHandlerViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -56,12 +57,9 @@ void UseSignalHandlerViewController_SignalHandler(int signal)
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Notice" message:@"Try Signal Handler must on iOS Device" delegate:nil cancelButtonTitle:@"Got it" otherButtonTitles:nil];
-    [alert show];
-#pragma GCC diagnostic pop
-
+    
+    SHOW_ALERT(@"Notice", @"Try Signal Handler must on iOS Device", @"Got it", nil);
+    
     [self installUncaughtExceptionHandler];
 }
 

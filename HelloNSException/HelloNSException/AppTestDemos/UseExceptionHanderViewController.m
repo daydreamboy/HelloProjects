@@ -9,6 +9,7 @@
 #import "UseExceptionHanderViewController.h"
 #import "WCCrashCaseTool.h"
 #import "WCExceptionTool.h"
+#import "WCMacroTool.h"
 
 void UseExceptionHanderViewController_HandleException(NSException *exception)
 {
@@ -32,11 +33,21 @@ void UseExceptionHanderViewController_HandleException(NSException *exception)
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:switcher];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    SHOW_ALERT(@"Notice", @"Try Exception Handler must on iOS Device", @"Got it", nil);
+    
+    [self installUncaughtExceptionHandler];
+}
+
 #pragma mark - Action
 
 - (void)toggleExceptionHandler:(UISwitch *)sender {
     if (sender.on) {
         [self installUncaughtExceptionHandler];
+        
+        SHOW_ALERT(@"Notice", @"Exception Handler has installed", @"Got it", nil);
     }
     else {
         [self uninstallUncaughtExceptionHandler];

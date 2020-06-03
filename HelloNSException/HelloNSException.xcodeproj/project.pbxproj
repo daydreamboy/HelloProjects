@@ -73,6 +73,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4F0FDE23247926B10079ADF8 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
 		4F35BA1D2324FEEE001637AB /* SkipUnsafeMethodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SkipUnsafeMethodViewController.h; sourceTree = "<group>"; };
 		4F35BA1E2324FEEE001637AB /* SkipUnsafeMethodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SkipUnsafeMethodViewController.m; sourceTree = "<group>"; };
 		4F35BA202324FF45001637AB /* InterceptDoesNotRecognizeSelectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InterceptDoesNotRecognizeSelectorViewController.m; sourceTree = "<group>"; };
@@ -154,6 +155,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F0FDE222479268E0079ADF8 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F0FDE23247926B10079ADF8 /* WCMacroTool.h */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		4F10BEA624658B2700854622 /* Base */ = {
 			isa = PBXGroup;
 			children = (
@@ -193,6 +202,7 @@
 		4F58CEF7217717DF00D0FD17 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F0FDE222479268E0079ADF8 /* Tools */,
 				4F10BEA624658B2700854622 /* Base */,
 				4F35BA212324FF45001637AB /* InterceptDoesNotRecognizeSelectorViewController.h */,
 				4F35BA202324FF45001637AB /* InterceptDoesNotRecognizeSelectorViewController.m */,
