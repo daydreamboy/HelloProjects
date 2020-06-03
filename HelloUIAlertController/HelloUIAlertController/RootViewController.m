@@ -13,6 +13,7 @@
 #import "UseWCAlertToolViewController.h"
 #import "AlertWithTextViewController.h"
 #import "AlertWithTextFieldViewController.h"
+#import "WCMacroTool.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -41,6 +42,7 @@
         @"show alert/actionSheet by WCAlertTool",
         @"alert with text",
         @"alert with UITextField",
+        @"test",
     ];
     _classes = @[
         @"showTabledActionSheet",
@@ -49,6 +51,7 @@
         [UseWCAlertToolViewController class],
         [AlertWithTextViewController class],
         [AlertWithTextFieldViewController class],
+        @"test",
     ];
 }
 
@@ -134,5 +137,27 @@
     }]];
     [alert show];
 }
+
+- (void)test {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Action" message:@"ActionSheet" preferredStyle:UIAlertControllerStyleActionSheet];
+    [alert addAction:[UIAlertAction actionWithTitle:@"index1" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        SHOW_ALERT(@"JS Alert", @"message", @"Ok", nil);
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"index2" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+         
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"index3" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+         
+    }]];
+    
+    [alert addAction:[UIAlertAction actionWithTitle:@"index4" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+         
+    }]];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
 
 @end

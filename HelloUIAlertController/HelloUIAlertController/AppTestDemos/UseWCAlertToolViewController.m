@@ -35,7 +35,7 @@
     // MARK: Configure sectionTitles and classes for table view
     NSArray<NSDictionary *> *section1 = @[
           @{ kTitle: @"Show with cancel button", kClass: NSStringFromSelector(@selector(showActionSheetWithCancelButton)) },
-          @{ kTitle: @"show with other button title", kClass: NSStringFromSelector(@selector(showActionSheetWithOtherButtonTitle)) },
+          @{ kTitle: @"show with other button title (not work)", kClass: NSStringFromSelector(@selector(showActionSheetWithOtherButtonTitle)) },
           @{ kTitle: @"show with other button title and callback", kClass: NSStringFromSelector(@selector(showActionSheetWithOtherButtonTitleAndCallback)) },
           @{ kTitle: @"show with other buttons", kClass: NSStringFromSelector(@selector(showActionSheetWithOtherButtons)) },
     ];
