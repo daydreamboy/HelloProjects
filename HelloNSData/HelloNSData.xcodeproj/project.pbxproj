@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		4F1F31922395313600ABD170 /* Tests_gzip.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F31912395313600ABD170 /* Tests_gzip.m */; };
+		4F2376FE241F857600389A64 /* casc_pack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F2376F4241F857600389A64 /* casc_pack.cpp */; };
+		4F2376FF241F857600389A64 /* cow_container in Resources */ = {isa = PBXBuildFile; fileRef = 4F2376F8241F857600389A64 /* cow_container */; };
+		4F237700241F857600389A64 /* imsc_pack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F2376F9241F857600389A64 /* imsc_pack.cpp */; };
+		4F237701241F857600389A64 /* sc_head.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F2376FC241F857600389A64 /* sc_head.cpp */; };
 		4F4AFFDE213E80EB0031856A /* 1.amr in Resources */ = {isa = PBXBuildFile; fileRef = 4F4AFFDC213E80EB0031856A /* 1.amr */; };
 		4F4AFFDF213E80EB0031856A /* piano2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4F4AFFDD213E80EB0031856A /* piano2.wav */; };
 		4F58CEEB21763FCF00D0FD17 /* opus.opus in Resources */ = {isa = PBXBuildFile; fileRef = 4F58CEE321763FCE00D0FD17 /* opus.opus */; };
@@ -27,7 +31,7 @@
 		4F75A03821313127000DDE60 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A03421313126000DDE60 /* Demo1ViewController.m */; };
 		4F75A03921313127000DDE60 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A03621313126000DDE60 /* RootViewController.m */; };
 		4F75A04B213144E8000DDE60 /* WCDataTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A04A213144E8000DDE60 /* WCDataTool.m */; };
-		4F8BB3E6215201D600F0AD99 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8BB3E5215201D600F0AD99 /* Tests.m */; };
+		4F8BB3E6215201D600F0AD99 /* Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F8BB3E5215201D600F0AD99 /* Tests.mm */; };
 		4FE7419E2398B4FA009E5909 /* NSData+SEGGZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7419D2398B4FA009E5909 /* NSData+SEGGZIP.m */; };
 /* End PBXBuildFile section */
 
@@ -43,6 +47,17 @@
 
 /* Begin PBXFileReference section */
 		4F1F31912395313600ABD170 /* Tests_gzip.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_gzip.m; sourceTree = "<group>"; };
+		4F2376F3241F857500389A64 /* mimsc_cmd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mimsc_cmd.h; sourceTree = "<group>"; };
+		4F2376F4241F857600389A64 /* casc_pack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = casc_pack.cpp; sourceTree = "<group>"; };
+		4F2376F5241F857600389A64 /* sc_head.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sc_head.h; sourceTree = "<group>"; };
+		4F2376F6241F857600389A64 /* packdata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = packdata.h; sourceTree = "<group>"; };
+		4F2376F7241F857600389A64 /* datatype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = datatype.h; sourceTree = "<group>"; };
+		4F2376F8241F857600389A64 /* cow_container */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = cow_container; sourceTree = "<group>"; };
+		4F2376F9241F857600389A64 /* imsc_pack.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = imsc_pack.cpp; sourceTree = "<group>"; };
+		4F2376FA241F857600389A64 /* imsc_pack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = imsc_pack.h; sourceTree = "<group>"; };
+		4F2376FB241F857600389A64 /* casc_pack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = casc_pack.h; sourceTree = "<group>"; };
+		4F2376FC241F857600389A64 /* sc_head.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sc_head.cpp; sourceTree = "<group>"; };
+		4F2376FD241F857600389A64 /* const_macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = const_macro.h; sourceTree = "<group>"; };
 		4F4AFFDC213E80EB0031856A /* 1.amr */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1.amr; sourceTree = "<group>"; };
 		4F4AFFDD213E80EB0031856A /* piano2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = piano2.wav; sourceTree = "<group>"; };
 		4F58CEE321763FCE00D0FD17 /* opus.opus */ = {isa = PBXFileReference; lastKnownFileType = file; path = opus.opus; sourceTree = "<group>"; };
@@ -70,7 +85,7 @@
 		4F75A049213144E8000DDE60 /* WCDataTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCDataTool.h; sourceTree = "<group>"; };
 		4F75A04A213144E8000DDE60 /* WCDataTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCDataTool.m; sourceTree = "<group>"; };
 		4F8BB3E3215201D600F0AD99 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		4F8BB3E5215201D600F0AD99 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
+		4F8BB3E5215201D600F0AD99 /* Tests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Tests.mm; sourceTree = "<group>"; };
 		4F8BB3E7215201D600F0AD99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FE7419C2398B4FA009E5909 /* NSData+SEGGZIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SEGGZIP.h"; sourceTree = "<group>"; };
 		4FE7419D2398B4FA009E5909 /* NSData+SEGGZIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SEGGZIP.m"; sourceTree = "<group>"; };
@@ -94,6 +109,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F2376F2241F857500389A64 /* itf2 */ = {
+			isa = PBXGroup;
+			children = (
+				4F2376F3241F857500389A64 /* mimsc_cmd.h */,
+				4F2376F4241F857600389A64 /* casc_pack.cpp */,
+				4F2376F5241F857600389A64 /* sc_head.h */,
+				4F2376F6241F857600389A64 /* packdata.h */,
+				4F2376F7241F857600389A64 /* datatype.h */,
+				4F2376F8241F857600389A64 /* cow_container */,
+				4F2376F9241F857600389A64 /* imsc_pack.cpp */,
+				4F2376FA241F857600389A64 /* imsc_pack.h */,
+				4F2376FB241F857600389A64 /* casc_pack.h */,
+				4F2376FC241F857600389A64 /* sc_head.cpp */,
+				4F2376FD241F857600389A64 /* const_macro.h */,
+			);
+			path = itf2;
+			sourceTree = "<group>";
+		};
 		4F4AFFD9213E6DA30031856A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -163,8 +196,9 @@
 		4F8BB3E4215201D600F0AD99 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				4F2376F2241F857500389A64 /* itf2 */,
 				4F8BB3ED2152022E00F0AD99 /* Samples */,
-				4F8BB3E5215201D600F0AD99 /* Tests.m */,
+				4F8BB3E5215201D600F0AD99 /* Tests.mm */,
 				4F1F31912395313600ABD170 /* Tests_gzip.m */,
 				4FE7419C2398B4FA009E5909 /* NSData+SEGGZIP.h */,
 				4FE7419D2398B4FA009E5909 /* NSData+SEGGZIP.m */,
@@ -284,6 +318,7 @@
 				4F58CEEF21763FCF00D0FD17 /* mkv.mkv in Resources */,
 				4F58CEEE21763FCF00D0FD17 /* heic.heic in Resources */,
 				4F58CEF121763FCF00D0FD17 /* amr.amr in Resources */,
+				4F2376FF241F857600389A64 /* cow_container in Resources */,
 				4F58CEF021763FCF00D0FD17 /* wav.wav in Resources */,
 				4F58CEF221763FCF00D0FD17 /* webm.webm in Resources */,
 				4F58CEEB21763FCF00D0FD17 /* opus.opus in Resources */,
@@ -311,9 +346,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F8BB3E6215201D600F0AD99 /* Tests.m in Sources */,
+				4F8BB3E6215201D600F0AD99 /* Tests.mm in Sources */,
+				4F237701241F857600389A64 /* sc_head.cpp in Sources */,
 				4FE7419E2398B4FA009E5909 /* NSData+SEGGZIP.m in Sources */,
+				4F2376FE241F857600389A64 /* casc_pack.cpp in Sources */,
 				4F1F31922395313600ABD170 /* Tests_gzip.m in Sources */,
+				4F237700241F857600389A64 /* imsc_pack.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
