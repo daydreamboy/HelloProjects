@@ -437,8 +437,8 @@ CAShapeLayer也是CALayer的子类。这里介绍CAShapeLayer的常用属性。
 | lineJoin        | kCALineJoinMiter        | 决定两个线条交接的形状，如下<img src="./images/CAShapeLayerLineJoin.png" alt="CAShapeLayerLineJoin" style="zoom:100%;" /> | kCALineJoinMiter<br/>kCALineJoinRound<br/>kCALineJoinBevel   |
 | miterLimit      | 10                      | 当设置kCALineJoinMiter时，决定是否变成kCALineJoinBevel       | 当lineJoin设置kCALineJoinMiter时，miterLimit才生效。具体见“miterLimit”一节。 |
 | strokeColor     | nil                     | path的线条颜色                                               |                                                              |
-| strokeStart     |                         |                                                              |                                                              |
-| strokeEnd       |                         |                                                              |                                                              |
+| strokeStart     | 0.0                     | stroke的百分比起始位置                                       | 如果path从头到尾是100%，则strokeStart指定起始点按照百分比算的位置。比如0.5，则起始点在path的中间。 |
+| strokeEnd       | 1.0                     | stroke的百分比结束位置                                       | 如果path从头到尾是100%，则strokeEnd指定结束点按照百分比算的位置。比如0.5，则结束点在path的中间。 |
 
 
 
