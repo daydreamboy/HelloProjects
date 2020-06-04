@@ -264,6 +264,18 @@ typedef NS_ENUM(NSUInteger, WCStringShowMode) {
     XCTAssertEqualObjects(output, @"");
 }
 
+- (void)test_format {
+    //const char bytes[] = { 0x41, 0x4A };
+    
+    // @see https://stackoverflow.com/a/17938106
+    const char *bytes;
+    bytes = (char[3]){ 0x41, 0x4A };
+    
+    printf("%02hhx\n", (unsigned char)bytes[0]);
+    printf("%02hhx\n", (unsigned char)bytes[1]);
+    printf("%02x\n", (unsigned char)bytes[1]);
+}
+
 - (void)test {
 #define STR_OF_JSON(...) @#__VA_ARGS__
     NSString *string;
