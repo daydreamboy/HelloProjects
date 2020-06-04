@@ -14,6 +14,9 @@
 #import "casc_pack.h"
 #import "mimsc_cmd.h"
 
+#define RangeValue(location, length) ([NSValue valueWithRange:NSMakeRange((location), (length))])
+#define PointValue(x, y) ([NSValue valueWithCGPoint:NSMakePoint((x), (y))])
+
 using namespace std;
 
 @interface Tests : XCTestCase
@@ -86,6 +89,68 @@ using namespace std;
     NSLog(@"%@", MIMEType);
     
     [self checkWAVWithData:data];
+}
+
+- (void)test_subdataArrayWithData_referringRanges {
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"main" ofType:@"dx"];
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    NSArray *output;
+    NSString *string;
+    
+    NSData *header;
+    NSData *majorVersion;
+    NSData *compileVersion;
+    NSData *nameLength;
+    NSData *name;
+    
+    NSArray *ranges = @[
+        ReferringRangeValue(@0, @5, nil, nil, nil), // header
+        ReferringRangeValue(@5, @1, nil, nil, nil), // majorVersion
+        ReferringRangeValue(@6, @2, nil, nil, nil), // compileVersion
+        ReferringRangeValue(@8, @2, nil, nil, nil), // name length,
+        ReferringRangeValue(@10, nil, nil, @3, @2), // Refer to name length (10, nil, nil, lengthToReferIndex, 2)
+    ];
+    
+    output = [WCDataTool subdataArrayWithData:data referringRanges:ranges];
+    NSLog(@"%@", output);
+    
+    header = output[0];
+    majorVersion = output[1];
+    compileVersion = output[2];
+    nameLength = output[3];
+    name = output[4];
+    
+    // Analyze
+    NSLog(@"header: %@", [WCDataTool ASCIIStringWithData:header]);
+    NSLog(@"majorVersion: %hhd", [WCDataTool charValueWithData:majorVersion]);
+    NSLog(@"compileVersion: %hd", [WCDataTool shortValueWithData:compileVersion]);
+    NSLog(@"nameLength: %hd", [WCDataTool shortValueWithData:nameLength]);
+    NSLog(@"name: %@", [WCDataTool ASCIIStringWithData:name]);
+}
+
+- (void)test_longLongValueWithData {
+    long long output;
+    
+    NSData *data = [@"A" dataUsingEncoding:NSUTF8StringEncoding];
+    
+    output = [WCDataTool charValueWithData:data];
+    NSLog(@"%lld", output);
+    
+    output = [WCDataTool shortValueWithData:data];
+    NSLog(@"%lld", output);
+    
+    output = [WCDataTool intValueWithData:data];
+    NSLog(@"%lld", output);
+    
+    output = [WCDataTool longValueWithData:data];
+    NSLog(@"%lld", output);
+
+    output = [WCDataTool longLongValueWithData:data];
+    NSLog(@"%lld", output);
+
+//    NSLog(@"%zu", sizeof(int));
+//    NSLog(@"%zu", sizeof(long));
+//    NSLog(@"%zu", sizeof(long long));
 }
 
 #pragma mark - 

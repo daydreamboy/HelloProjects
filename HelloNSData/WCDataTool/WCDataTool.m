@@ -16,6 +16,25 @@
 //#define kBytesCount     @"bytesCount"
 //#define kMatches        @"matches"
 
+#define PTR_SAFE_SET(ptr, value) \
+do { \
+    if (ptr) { \
+        *ptr = value; \
+    } \
+} while (0)
+
+#ifndef NSARRAY_SAFE_GET
+#define NSARRAY_SAFE_GET(array, index)                      \
+    ({                                                      \
+        id __value = nil;                                   \
+        if ([array isKindOfClass:[NSArray class]] && 0 <= index && index < [(NSArray *)array count]) { \
+            __value = [(NSArray *)array objectAtIndex:index];          \
+        }                                                   \
+        __value;                                            \
+    })
+
+#endif /* NSARRAY_SAFE_GET */
+
 @implementation WCMIMETypeInfo
 
 #pragma mark - Public Methods
@@ -1295,6 +1314,199 @@
     
     const UInt8 *bytes = (const UInt8 *)data.bytes;
     return (data.length >= 2 && bytes[0] == 0x1f && bytes[1] == 0x8b);
+}
+
+#pragma mark - Data Query
+
++ (nullable NSArray<NSData *> *)subdataArrayWithData:(NSData *)data ranges:(NSArray<NSValue *> *)ranges {
+    if (![data isKindOfClass:[NSData class]] || ![ranges isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
+    
+    NSMutableArray *arrM = [NSMutableArray arrayWithCapacity:ranges.count];
+    
+    for (NSValue *value in ranges) {
+        NSRange range = [value rangeValue];
+        if (0 <= range.location && range.location <= data.length && range.length <= data.length) {
+            NSData *subdata = [data subdataWithRange:range];
+            if (subdata) {
+                [arrM addObject:subdata];
+            }
+        }
+        else {
+            return nil;
+        }
+    }
+    
+    return arrM;
+}
+
++ (nullable NSArray<NSData *> *)subdataArrayWithData:(NSData *)data referringRanges:(NSArray<WCReferringRange *> *)ranges {
+    if (![data isKindOfClass:[NSData class]] || ![ranges isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
+    
+    NSMutableArray *arrM = [NSMutableArray arrayWithCapacity:ranges.count];
+    
+    for (WCReferringRange *range in ranges) {
+        NSUInteger location = range.location;
+        NSUInteger length = range.length;
+        
+        if (range.locationReferToIndexNumber) {
+            NSUInteger referIndex = [range.locationReferToIndexNumber unsignedIntegerValue];
+            NSData *referredData = NSARRAY_SAFE_GET(arrM, referIndex);
+            if (referredData) {
+                NSUInteger expectedSize = [range.referValueExpectedSize unsignedIntegerValue];
+                if (expectedSize == 1) {
+                    location = [self charValueWithData:referredData];
+                }
+                else if (expectedSize == 2) {
+                    location = [self shortValueWithData:referredData];
+                }
+                else if (expectedSize == 4) {
+                    location = [self intValueWithData:referredData];
+                }
+                else if (expectedSize == 8) {
+                    location = [self longValueWithData:referredData];
+                }
+                else {
+                    return nil;
+                }
+            }
+            else {
+                return nil;
+            }
+        }
+        
+        if (range.lengthReferToIndexNumber) {
+            NSUInteger referIndex = [range.lengthReferToIndexNumber unsignedIntegerValue];
+            NSData *referredData = NSARRAY_SAFE_GET(arrM, referIndex);
+            if (referredData) {
+                NSUInteger expectedSize = [range.referValueExpectedSize unsignedIntegerValue];
+                if (expectedSize == 1) {
+                    length = [self charValueWithData:referredData];
+                }
+                else if (expectedSize == 2) {
+                    length = [self shortValueWithData:referredData];
+                }
+                else if (expectedSize == 4) {
+                    length = [self intValueWithData:referredData];
+                }
+                else if (expectedSize == 8) {
+                    length = [self longValueWithData:referredData];
+                }
+                else {
+                    return nil;
+                }
+            }
+            else {
+                return nil;
+            }
+        }
+        
+        if (0 <= location && location <= data.length && length <= data.length) {
+            NSData *subdata = [data subdataWithRange:NSMakeRange(location, length)];
+            if (subdata) {
+                [arrM addObject:subdata];
+            }
+        }
+        else {
+            return nil;
+        }
+    }
+    
+    return arrM;
+}
+
+#pragma mark - Data Translation
+
++ (nullable NSString *)ASCIIStringWithData:(NSData *)data {
+    if (![data isKindOfClass:[NSData class]]) {
+        return nil;
+    }
+    
+    NSMutableString *stringM = [NSMutableString string];
+    const char *bytes = [data bytes];
+    for (int i = 0; i < [data length]; i++) {
+        [stringM appendFormat:@"%c", bytes[i]];
+    }
+    
+    return stringM;
+}
+
++ (char)charValueWithData:(NSData *)data {
+    return [self charValueWithData:data isValid:NULL];
+}
+
++ (short)shortValueWithData:(NSData *)data {
+    return [self shortValueWithData:data useLittleEndian:NO isValid:NULL];
+}
+
++ (int)intValueWithData:(NSData *)data {
+    return [self intValueWithData:data useLittleEndian:NO isValid:NULL];
+}
+
++ (long)longValueWithData:(NSData *)data {
+    return [self longValueWithData:data useLittleEndian:NO isValid:NULL];
+}
+
++ (long long)longLongValueWithData:(NSData *)data {
+    return [self longLongValueWithData:data useLittleEndian:NO isValid:NULL];
+}
+
++ (char)charValueWithData:(NSData *)data isValid:(out BOOL * _Nullable)isValid {
+    if (![data isKindOfClass:[NSData class]] || !data.length) {
+        PTR_SAFE_SET(isValid, NO);
+        return 0;
+    }
+    
+    char value = *(char*)([data bytes]);
+    PTR_SAFE_SET(isValid, YES);
+    return value;
+}
+
++ (short)shortValueWithData:(NSData *)data useLittleEndian:(BOOL)useLittleEndian isValid:(out BOOL * _Nullable)isValid {
+    if (![data isKindOfClass:[NSData class]] || !data.length) {
+        PTR_SAFE_SET(isValid, NO);
+        return 0;
+    }
+    
+    short value = useLittleEndian ? CFSwapInt16LittleToHost(*(short*)([data bytes])) : CFSwapInt16BigToHost(*(short*)([data bytes]));
+    PTR_SAFE_SET(isValid, YES);
+    return value;
+}
+
++ (int)intValueWithData:(NSData *)data useLittleEndian:(BOOL)useLittleEndian isValid:(out BOOL * _Nullable)isValid {
+    if (![data isKindOfClass:[NSData class]] || !data.length) {
+        PTR_SAFE_SET(isValid, NO);
+        return 0;
+    }
+    
+    int value = useLittleEndian ? CFSwapInt32LittleToHost(*(int*)([data bytes])) : CFSwapInt32BigToHost(*(int*)([data bytes]));
+    PTR_SAFE_SET(isValid, YES);
+    return value;
+}
+
++ (long)longValueWithData:(NSData *)data useLittleEndian:(BOOL)useLittleEndian isValid:(out BOOL * _Nullable)isValid {
+    if (![data isKindOfClass:[NSData class]] || !data.length) {
+        PTR_SAFE_SET(isValid, NO);
+        return 0;
+    }
+    
+    long value = useLittleEndian ? CFSwapInt64LittleToHost(*(long*)([data bytes])) : CFSwapInt64BigToHost(*(long*)([data bytes]));
+    PTR_SAFE_SET(isValid, YES);
+    return value;
+}
+
++ (long long)longLongValueWithData:(NSData *)data useLittleEndian:(BOOL)useLittleEndian isValid:(out BOOL * _Nullable)isValid {
+    if (![data isKindOfClass:[NSData class]] || !data.length) {
+        PTR_SAFE_SET(isValid, NO);
+        return 0;
+    }
+    
+    long long value = useLittleEndian ? CFSwapInt64LittleToHost(*(long long*)([data bytes])) : CFSwapInt64BigToHost(*(long long*)([data bytes]));
+    PTR_SAFE_SET(isValid, YES);
+    return value;
 }
 
 #pragma mark - Data Assistant

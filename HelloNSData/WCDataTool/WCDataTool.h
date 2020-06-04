@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "WCReferringRange.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -175,6 +176,30 @@ typedef NS_ENUM(NSUInteger, WCMIMEType) {
 + (nullable NSData *)gzippedDataWithData:(NSData *)data;
 + (nullable NSData *)gunzippedDataWithData:(NSData *)data;
 + (BOOL)isGzippedDataWithData:(NSData *)data;
+
+#pragma mark - Data Query
+
++ (nullable NSArray<NSData *> *)subdataArrayWithData:(NSData *)data ranges:(NSArray<NSValue *> *)ranges;
+
++ (nullable NSArray<NSData *> *)subdataArrayWithData:(NSData *)data referringRanges:(NSArray<WCReferringRange *> *)ranges;
+
+#pragma mark - Data Translation
+
++ (nullable NSString *)ASCIIStringWithData:(NSData *)data;
+
++ (char)charValueWithData:(NSData *)data;
++ (short)shortValueWithData:(NSData *)data;
++ (int)intValueWithData:(NSData *)data;
++ (long)longValueWithData:(NSData *)data;
++ (long long)longLongValueWithData:(NSData *)data;
+
+#pragma mark > Specify Endian
+
++ (char)charValueWithData:(NSData *)data isValid:(out BOOL * _Nullable)isValid;
++ (short)shortValueWithData:(NSData *)data useLittleEndian:(BOOL)useLittleEndian isValid:(out BOOL * _Nullable)isValid;
++ (int)intValueWithData:(NSData *)data useLittleEndian:(BOOL)useLittleEndian isValid:(out BOOL * _Nullable)isValid;
++ (long)longValueWithData:(NSData *)data useLittleEndian:(BOOL)useLittleEndian isValid:(out BOOL * _Nullable)isValid;
++ (long long)longLongValueWithData:(NSData *)data useLittleEndian:(BOOL)useLittleEndian isValid:(out BOOL * _Nullable)isValid;
 
 #pragma mark - Data Assistant
 

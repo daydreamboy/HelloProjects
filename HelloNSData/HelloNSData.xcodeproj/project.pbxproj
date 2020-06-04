@@ -12,6 +12,9 @@
 		4F2376FF241F857600389A64 /* cow_container in Resources */ = {isa = PBXBuildFile; fileRef = 4F2376F8241F857600389A64 /* cow_container */; };
 		4F237700241F857600389A64 /* imsc_pack.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F2376F9241F857600389A64 /* imsc_pack.cpp */; };
 		4F237701241F857600389A64 /* sc_head.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F2376FC241F857600389A64 /* sc_head.cpp */; };
+		4F3AFA8D2488A5FF00806BD2 /* main.dx in Resources */ = {isa = PBXBuildFile; fileRef = 4F3AFA8C2488A5FF00806BD2 /* main.dx */; };
+		4F3AFA902488DBBC00806BD2 /* Tests_NSData.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3AFA8F2488DBBC00806BD2 /* Tests_NSData.m */; };
+		4F3AFA932488EEAD00806BD2 /* WCReferringRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3AFA922488EEAD00806BD2 /* WCReferringRange.m */; };
 		4F4AFFDE213E80EB0031856A /* 1.amr in Resources */ = {isa = PBXBuildFile; fileRef = 4F4AFFDC213E80EB0031856A /* 1.amr */; };
 		4F4AFFDF213E80EB0031856A /* piano2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4F4AFFDD213E80EB0031856A /* piano2.wav */; };
 		4F58CEEB21763FCF00D0FD17 /* opus.opus in Resources */ = {isa = PBXBuildFile; fileRef = 4F58CEE321763FCE00D0FD17 /* opus.opus */; };
@@ -58,6 +61,10 @@
 		4F2376FB241F857600389A64 /* casc_pack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = casc_pack.h; sourceTree = "<group>"; };
 		4F2376FC241F857600389A64 /* sc_head.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = sc_head.cpp; sourceTree = "<group>"; };
 		4F2376FD241F857600389A64 /* const_macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = const_macro.h; sourceTree = "<group>"; };
+		4F3AFA8C2488A5FF00806BD2 /* main.dx */ = {isa = PBXFileReference; lastKnownFileType = file; path = main.dx; sourceTree = "<group>"; };
+		4F3AFA8F2488DBBC00806BD2 /* Tests_NSData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSData.m; sourceTree = "<group>"; };
+		4F3AFA912488EEAD00806BD2 /* WCReferringRange.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCReferringRange.h; sourceTree = "<group>"; };
+		4F3AFA922488EEAD00806BD2 /* WCReferringRange.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCReferringRange.m; sourceTree = "<group>"; };
 		4F4AFFDC213E80EB0031856A /* 1.amr */ = {isa = PBXFileReference; lastKnownFileType = file; path = 1.amr; sourceTree = "<group>"; };
 		4F4AFFDD213E80EB0031856A /* piano2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = piano2.wav; sourceTree = "<group>"; };
 		4F58CEE321763FCE00D0FD17 /* opus.opus */ = {isa = PBXFileReference; lastKnownFileType = file; path = opus.opus; sourceTree = "<group>"; };
@@ -130,6 +137,7 @@
 		4F4AFFD9213E6DA30031856A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F3AFA8C2488A5FF00806BD2 /* main.dx */,
 				4F4AFFDC213E80EB0031856A /* 1.amr */,
 				4F4AFFDD213E80EB0031856A /* piano2.wav */,
 			);
@@ -189,6 +197,8 @@
 			children = (
 				4F75A049213144E8000DDE60 /* WCDataTool.h */,
 				4F75A04A213144E8000DDE60 /* WCDataTool.m */,
+				4F3AFA912488EEAD00806BD2 /* WCReferringRange.h */,
+				4F3AFA922488EEAD00806BD2 /* WCReferringRange.m */,
 			);
 			path = WCDataTool;
 			sourceTree = "<group>";
@@ -199,6 +209,7 @@
 				4F2376F2241F857500389A64 /* itf2 */,
 				4F8BB3ED2152022E00F0AD99 /* Samples */,
 				4F8BB3E5215201D600F0AD99 /* Tests.mm */,
+				4F3AFA8F2488DBBC00806BD2 /* Tests_NSData.m */,
 				4F1F31912395313600ABD170 /* Tests_gzip.m */,
 				4FE7419C2398B4FA009E5909 /* NSData+SEGGZIP.h */,
 				4FE7419D2398B4FA009E5909 /* NSData+SEGGZIP.m */,
@@ -302,6 +313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F3AFA8D2488A5FF00806BD2 /* main.dx in Resources */,
 				4F4AFFDE213E80EB0031856A /* 1.amr in Resources */,
 				4F75A02A213130EF000DDE60 /* LaunchScreen.storyboard in Resources */,
 				4F4AFFDF213E80EB0031856A /* piano2.wav in Resources */,
@@ -337,6 +349,7 @@
 				4F75A03821313127000DDE60 /* Demo1ViewController.m in Sources */,
 				4F75A02D213130EF000DDE60 /* main.m in Sources */,
 				4F75A01F213130EE000DDE60 /* AppDelegate.m in Sources */,
+				4F3AFA932488EEAD00806BD2 /* WCReferringRange.m in Sources */,
 				4F75A03921313127000DDE60 /* RootViewController.m in Sources */,
 				4F75A04B213144E8000DDE60 /* WCDataTool.m in Sources */,
 			);
@@ -352,6 +365,7 @@
 				4F2376FE241F857600389A64 /* casc_pack.cpp in Sources */,
 				4F1F31922395313600ABD170 /* Tests_gzip.m in Sources */,
 				4F237700241F857600389A64 /* imsc_pack.cpp in Sources */,
+				4F3AFA902488DBBC00806BD2 /* Tests_NSData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
