@@ -105,4 +105,14 @@
     XCTAssertEqualObjects(address, hash);
 }
 
+- (void)test_NSValue {
+    [self performSelector:@selector(setSize:) withObject:[NSValue valueWithCGSize:CGSizeMake(100, 200)]];
+}
+
+#pragma mark - 
+
+- (void)setSize:(CGSize)size {
+    NSLog(@"%@", NSStringFromCGSize(size));
+}
+
 @end
