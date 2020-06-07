@@ -25,6 +25,7 @@
 		4F58CEF021763FCF00D0FD17 /* wav.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4F58CEE821763FCF00D0FD17 /* wav.wav */; };
 		4F58CEF121763FCF00D0FD17 /* amr.amr in Resources */ = {isa = PBXBuildFile; fileRef = 4F58CEE921763FCF00D0FD17 /* amr.amr */; };
 		4F58CEF221763FCF00D0FD17 /* webm.webm in Resources */ = {isa = PBXBuildFile; fileRef = 4F58CEEA21763FCF00D0FD17 /* webm.webm */; };
+		4F5FBC34248CC9D500744D67 /* main2.dx in Resources */ = {isa = PBXBuildFile; fileRef = 4F5FBC33248CC9D500744D67 /* main2.dx */; };
 		4F75A01F213130EE000DDE60 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A01E213130EE000DDE60 /* AppDelegate.m */; };
 		4F75A022213130EE000DDE60 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A021213130EE000DDE60 /* ViewController.m */; };
 		4F75A025213130EE000DDE60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F75A023213130EE000DDE60 /* Main.storyboard */; };
@@ -75,6 +76,7 @@
 		4F58CEE821763FCF00D0FD17 /* wav.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wav.wav; sourceTree = "<group>"; };
 		4F58CEE921763FCF00D0FD17 /* amr.amr */ = {isa = PBXFileReference; lastKnownFileType = file; path = amr.amr; sourceTree = "<group>"; };
 		4F58CEEA21763FCF00D0FD17 /* webm.webm */ = {isa = PBXFileReference; lastKnownFileType = file; path = webm.webm; sourceTree = "<group>"; };
+		4F5FBC33248CC9D500744D67 /* main2.dx */ = {isa = PBXFileReference; lastKnownFileType = file; path = main2.dx; sourceTree = "<group>"; };
 		4F75A01A213130EE000DDE60 /* HelloNSData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F75A01D213130EE000DDE60 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F75A01E213130EE000DDE60 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 		4F4AFFD9213E6DA30031856A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F5FBC33248CC9D500744D67 /* main2.dx */,
 				4F3AFA8C2488A5FF00806BD2 /* main.dx */,
 				4F4AFFDC213E80EB0031856A /* 1.amr */,
 				4F4AFFDD213E80EB0031856A /* piano2.wav */,
@@ -314,6 +317,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F3AFA8D2488A5FF00806BD2 /* main.dx in Resources */,
+				4F5FBC34248CC9D500744D67 /* main2.dx in Resources */,
 				4F4AFFDE213E80EB0031856A /* 1.amr in Resources */,
 				4F75A02A213130EF000DDE60 /* LaunchScreen.storyboard in Resources */,
 				4F4AFFDF213E80EB0031856A /* piano2.wav in Resources */,

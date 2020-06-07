@@ -188,6 +188,77 @@ using namespace std;
     NSLog(@"exprSize: %d", [WCDataTool intValueWithData:exprSize]);
     NSLog(@"enumLocation: %d", [WCDataTool intValueWithData:enumLocation]);
     NSLog(@"enumSize: %d", [WCDataTool intValueWithData:enumSize]);
+    
+    // Note: stringSize不包括头部的countRange
+    NSData *stringSectionData = [data subdataWithRange:NSMakeRange([WCDataTool intValueWithData:stringLocation], [WCDataTool intValueWithData:stringSize] + 2)];
+    [self parseStringSectionWithData:stringSectionData];
+    
+    NSData *mainSectionData = [data subdataWithRange:NSMakeRange([WCDataTool intValueWithData:mainLocation], [WCDataTool intValueWithData:mainSize])];
+    [self parseMainSectionWithData:mainSectionData];
+}
+
+- (void)parseMainSectionWithData:(NSData *)data {
+    
+    WCReferringRange *firstTagRange = ReferringRangeValue(0, @1, nil, nil); // \0
+    WCReferringRange *widgetIDRange = ReferringRangeValue(nil, @8, LocationRelativeRefer(firstTagRange, WCRangeLocationRelativeAtEnd, 0), nil);
+    WCReferringRange *widgetCountOfBasicAttrsRange = ReferringRangeValue(nil, @2, LocationRelativeRefer(widgetIDRange, WCRangeLocationRelativeAtEnd, 0), nil);
+    
+    NSArray *ranges = @[
+        firstTagRange,
+        widgetIDRange,
+        widgetCountOfBasicAttrsRange
+    ];
+    
+    WCReferringRange *propertyTypeRange = ReferringRangeValue(nil, @2, LocationRelativeRefer(widgetCountOfBasicAttrsRange, WCRangeLocationRelativeAtEnd, 0), nil);
+    WCReferringRange *propertyID = ReferringRangeValue(nil, @8, LocationRelativeRefer(propertyTypeRange, WCRangeLocationRelativeAtEnd, 0), nil);
+    
+    // 基本属性(属性值是静态的)
+    // 动态属性(属性存在表达式)
+    // 事件属性(属性存在事件)
+    
+    NSArray *elementRange = @[
+        firstTagRange,
+        widgetIDRange,
+        widgetCountOfBasicAttrsRange
+    ];
+    
+}
+
+- (void)parseStringSectionWithData:(NSData *)data {
+    NSLog(@"-----string section-----");
+    NSArray *stringsData;
+    WCReferringRange *countRange = ReferringRangeValue(@0, @2, nil, nil);
+    NSArray *ranges = @[
+        countRange
+    ];
+    
+    stringsData = [WCDataTool subdataArrayWithData:data referringRanges:ranges];
+    NSData *numberOfStringsData = stringsData[0];
+    short numberOfStrings = [WCDataTool shortValueWithData:numberOfStringsData];
+    
+    NSMutableArray *rangesM = [NSMutableArray array];
+    [rangesM addObject:countRange];
+    
+    WCReferringRange *previousRange = countRange;
+    for (short i = 0; i < numberOfStrings; ++i) {
+        WCReferringRange *keyRange = ReferringRangeValue(nil, @8, LocationRelativeRefer(previousRange, WCRangeLocationRelativeAtEnd, 0), nil);
+        WCReferringRange *lengthRange = ReferringRangeValue(nil, @2, LocationRelativeRefer(keyRange, WCRangeLocationRelativeAtEnd, 0), nil);
+        WCReferringRange *valueRange = ReferringRangeValue(nil, nil, LocationRelativeRefer(lengthRange, WCRangeLocationRelativeAtEnd, 0), LengthRefer(lengthRange, 2));
+        previousRange= valueRange;
+        
+        [rangesM addObject:keyRange];
+        [rangesM addObject:lengthRange];
+        [rangesM addObject:valueRange];
+    }
+    
+    stringsData = [WCDataTool subdataArrayWithData:data referringRanges:rangesM];
+    NSLog(@"%@", stringsData);
+    
+    for (NSUInteger i = 1; i < stringsData.count; i = i + 3) {
+        NSLog(@"key: %ld", [WCDataTool longValueWithData:stringsData[i]]);
+        NSLog(@"length: %hd", [WCDataTool shortValueWithData:stringsData[i + 1]]);
+        NSLog(@"string: %@", [WCDataTool ASCIIStringWithData:stringsData[i + 2]]);
+    }
 }
 
 - (void)test_longLongValueWithData {
