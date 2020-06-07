@@ -109,10 +109,11 @@
     [self performSelector:@selector(setSize:) withObject:[NSValue valueWithCGSize:CGSizeMake(100, 200)]];
 }
 
-#pragma mark - 
+#pragma mark -
 
 - (void)setSize:(CGSize)size {
     NSLog(@"%@", NSStringFromCGSize(size));
+    XCTAssertNotEqualObjects(NSStringFromCGSize(size), @"{100, 200}");
 }
 
 @end
