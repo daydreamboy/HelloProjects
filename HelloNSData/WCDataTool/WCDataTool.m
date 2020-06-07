@@ -1352,37 +1352,54 @@ do { \
         NSUInteger location = range.location;
         NSUInteger length = range.length;
         
-        if (range.locationReferToIndexNumber) {
-            NSUInteger referIndex = [range.locationReferToIndexNumber unsignedIntegerValue];
-            NSData *referredData = NSARRAY_SAFE_GET(arrM, referIndex);
-            if (referredData) {
-                NSUInteger expectedSize = [range.referValueExpectedSize unsignedIntegerValue];
-                if (expectedSize == 1) {
-                    location = [self charValueWithData:referredData];
+        if (range.locationRefer) {
+            
+            if (range.locationRefer.referMode == WCReferringRangeReferModeRelative) {
+                if (range.locationRefer.relative == WCRangeLocationRelativeAtStart) {
+                    location = range.locationRefer.referringRange.location + range.locationRefer.offset;
                 }
-                else if (expectedSize == 2) {
-                    location = [self shortValueWithData:referredData];
+                else if (range.locationRefer.relative == WCRangeLocationRelativeAtEnd) {
+                    location = range.locationRefer.referringRange.location + range.locationRefer.referringRange.length + range.locationRefer.offset;
                 }
-                else if (expectedSize == 4) {
-                    location = [self intValueWithData:referredData];
+                else {
+                    NSLog(@"[locationRefer] unexpected relative: %d", (int)range.locationRefer.relative);
+                    return nil;
                 }
-                else if (expectedSize == 8) {
-                    location = [self longValueWithData:referredData];
+            }
+            else if (range.locationRefer.referMode == WCReferringRangeReferModeValue) {
+                NSData *referredData = range.lengthRefer.referringRange.userInfoObject;
+                if (referredData) {
+                    NSUInteger expectedSize = range.lengthRefer.expectedSize;
+                    if (expectedSize == 1) {
+                        location = [self charValueWithData:referredData];
+                    }
+                    else if (expectedSize == 2) {
+                        location = [self shortValueWithData:referredData];
+                    }
+                    else if (expectedSize == 4) {
+                        location = [self intValueWithData:referredData];
+                    }
+                    else if (expectedSize == 8) {
+                        location = [self longValueWithData:referredData];
+                    }
+                    else {
+                        return nil;
+                    }
                 }
                 else {
                     return nil;
                 }
             }
             else {
+                NSLog(@"[locationRefer] unexpected referMode: %d", (int)range.locationRefer.referMode);
                 return nil;
             }
         }
         
-        if (range.lengthReferToIndexNumber) {
-            NSUInteger referIndex = [range.lengthReferToIndexNumber unsignedIntegerValue];
-            NSData *referredData = NSARRAY_SAFE_GET(arrM, referIndex);
+        if (range.lengthRefer) {
+            NSData *referredData = range.lengthRefer.referringRange.userInfoObject;
             if (referredData) {
-                NSUInteger expectedSize = [range.referValueExpectedSize unsignedIntegerValue];
+                NSUInteger expectedSize = range.lengthRefer.expectedSize;
                 if (expectedSize == 1) {
                     length = [self charValueWithData:referredData];
                 }
@@ -1407,6 +1424,8 @@ do { \
         if (0 <= location && location <= data.length && length <= data.length) {
             NSData *subdata = [data subdataWithRange:NSMakeRange(location, length)];
             if (subdata) {
+                range.userInfoObject = subdata;
+                [range updateLocationNumber:@(location) lengthNumber:@(length)];
                 [arrM addObject:subdata];
             }
         }
@@ -1481,7 +1500,7 @@ do { \
         PTR_SAFE_SET(isValid, NO);
         return 0;
     }
-    
+    // @see https://stackoverflow.com/a/7333044
     int value = useLittleEndian ? CFSwapInt32LittleToHost(*(int*)([data bytes])) : CFSwapInt32BigToHost(*(int*)([data bytes]));
     PTR_SAFE_SET(isValid, YES);
     return value;

@@ -95,20 +95,60 @@ using namespace std;
     NSString *filePath = [[NSBundle mainBundle] pathForResource:@"main" ofType:@"dx"];
     NSData *data = [NSData dataWithContentsOfFile:filePath];
     NSArray *output;
-    NSString *string;
     
     NSData *header;
     NSData *majorVersion;
     NSData *compileVersion;
     NSData *nameLength;
     NSData *name;
+    NSData *version;
+    NSData *mainLocation; // 组件区
+    NSData *mainSize;
+    NSData *mappingLocation;
+    NSData *mappingSize;
+    NSData *stringLocation;
+    NSData *stringSize;
+    NSData *exprLocation;
+    NSData *exprSize;
+    NSData *enumLocation;
+    NSData *enumSize;
+    
+    WCReferringRange *nameLengthRange = ReferringRangeValue(@8, @2, nil, nil);
+    WCReferringRange *nameRange = ReferringRangeValue(@10, nil, nil, LengthRefer(nameLengthRange, 2));
+    WCReferringRange *versionRange = ReferringRangeValue(nil, @2, LocationRelativeRefer(nameRange, WCRangeLocationRelativeAtEnd, 0), nil);
+    
+    WCReferringRange *mainLocationRange = ReferringRangeValue(nil, @4, LocationRelativeRefer(versionRange, WCRangeLocationRelativeAtEnd, 0), nil);
+    WCReferringRange *mainSizeRange = ReferringRangeValue(nil, @4, LocationRelativeRefer(mainLocationRange, WCRangeLocationRelativeAtEnd, 0), nil);
+    
+    WCReferringRange *mappingLocationRange = ReferringRangeValue(nil, @4, LocationRelativeRefer(mainSizeRange, WCRangeLocationRelativeAtEnd, 0), nil);
+    WCReferringRange *mappingSizeRange = ReferringRangeValue(nil, @4, LocationRelativeRefer(mappingLocationRange, WCRangeLocationRelativeAtEnd, 0), nil);
+    
+    WCReferringRange *stringLocationRange = ReferringRangeValue(nil, @4, LocationRelativeRefer(mappingSizeRange, WCRangeLocationRelativeAtEnd, 0), nil);
+    WCReferringRange *stringSizeRange = ReferringRangeValue(nil, @4, LocationRelativeRefer(stringLocationRange, WCRangeLocationRelativeAtEnd, 0), nil);
+    
+    WCReferringRange *exprLocationRange = ReferringRangeValue(nil, @4, LocationRelativeRefer(stringSizeRange, WCRangeLocationRelativeAtEnd, 0), nil);
+    WCReferringRange *exprSizeRange = ReferringRangeValue(nil, @4, LocationRelativeRefer(exprLocationRange, WCRangeLocationRelativeAtEnd, 0), nil);
+    
+    WCReferringRange *enumLocationRange = ReferringRangeValue(nil, @4, LocationRelativeRefer(exprSizeRange, WCRangeLocationRelativeAtEnd, 0), nil);
+    WCReferringRange *enumSizeRange = ReferringRangeValue(nil, @4, LocationRelativeRefer(enumLocationRange, WCRangeLocationRelativeAtEnd, 0), nil);
     
     NSArray *ranges = @[
-        ReferringRangeValue(@0, @5, nil, nil, nil), // header
-        ReferringRangeValue(@5, @1, nil, nil, nil), // majorVersion
-        ReferringRangeValue(@6, @2, nil, nil, nil), // compileVersion
-        ReferringRangeValue(@8, @2, nil, nil, nil), // name length,
-        ReferringRangeValue(@10, nil, nil, @3, @2), // Refer to name length (10, nil, nil, lengthToReferIndex, 2)
+        ReferringRangeValue(@0, @5, nil, nil), // header
+        ReferringRangeValue(@5, @1, nil, nil), // majorVersion
+        ReferringRangeValue(@6, @2, nil, nil), // compileVersion
+        nameLengthRange, // name length,
+        nameRange, // Refer to name length (10, nil, nil, lengthToReferIndex, 2)
+        versionRange,
+        mainLocationRange,
+        mainSizeRange,
+        mappingLocationRange,
+        mappingSizeRange,
+        stringLocationRange,
+        stringSizeRange,
+        exprLocationRange,
+        exprSizeRange,
+        enumLocationRange,
+        enumSizeRange
     ];
     
     output = [WCDataTool subdataArrayWithData:data referringRanges:ranges];
@@ -119,13 +159,35 @@ using namespace std;
     compileVersion = output[2];
     nameLength = output[3];
     name = output[4];
+    version = output[5];
+    mainLocation = output[6];
+    mainSize = output[7];
+    mappingLocation = output[8];
+    mappingSize = output[9];
+    stringLocation = output[10];
+    stringSize = output[11];
+    exprLocation = output[12];
+    exprSize = output[13];
+    enumLocation = output[14];
+    enumSize = output[15];
     
     // Analyze
+    NSLog(@"total: %ld", (long)data.length);
     NSLog(@"header: %@", [WCDataTool ASCIIStringWithData:header]);
     NSLog(@"majorVersion: %hhd", [WCDataTool charValueWithData:majorVersion]);
     NSLog(@"compileVersion: %hd", [WCDataTool shortValueWithData:compileVersion]);
     NSLog(@"nameLength: %hd", [WCDataTool shortValueWithData:nameLength]);
     NSLog(@"name: %@", [WCDataTool ASCIIStringWithData:name]);
+    NSLog(@"mainLocation: %d", [WCDataTool intValueWithData:mainLocation]);
+    NSLog(@"mainSize: %d", [WCDataTool intValueWithData:mainSize]);
+    NSLog(@"mappingLocation: %d", [WCDataTool intValueWithData:mappingLocation]);
+    NSLog(@"mappingSize: %d", [WCDataTool intValueWithData:mappingSize]);
+    NSLog(@"stringLocation: %d", [WCDataTool intValueWithData:stringLocation]);
+    NSLog(@"stringSize: %d", [WCDataTool intValueWithData:stringSize]);
+    NSLog(@"exprLocation: %d", [WCDataTool intValueWithData:exprLocation]);
+    NSLog(@"exprSize: %d", [WCDataTool intValueWithData:exprSize]);
+    NSLog(@"enumLocation: %d", [WCDataTool intValueWithData:enumLocation]);
+    NSLog(@"enumSize: %d", [WCDataTool intValueWithData:enumSize]);
 }
 
 - (void)test_longLongValueWithData {
