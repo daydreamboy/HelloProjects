@@ -270,6 +270,8 @@
 			children = (
 				4F1DF039248524740091F205 /* UseCAShapeLayerViewController.h */,
 				4F1DF03A248524740091F205 /* UseCAShapeLayerViewController.m */,
+				4FAAA5821FA461E500A80328 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.h */,
+				4FAAA5831FA461E500A80328 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.m */,
 			);
 			path = CAShapeLayer;
 			sourceTree = "<group>";
@@ -357,8 +359,6 @@
 				4FB43AED200DA28000D5D92D /* DrawGradientViewViewController.m */,
 				4FB43AEF200DA28000D5D92D /* DrawRadialGradientViewViewController.h */,
 				4FB43AEE200DA28000D5D92D /* DrawRadialGradientViewViewController.m */,
-				4FAAA5821FA461E500A80328 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.h */,
-				4FAAA5831FA461E500A80328 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.m */,
 				4FD7BE0F206BBA9400368A46 /* AddShadowBorderToImageViewController.h */,
 				4FD7BE10206BBA9400368A46 /* AddShadowBorderToImageViewController.m */,
 				4F86CF9D206CBFD10080A9E1 /* AddBorderToImageViewController.h */,

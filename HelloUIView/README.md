@@ -415,13 +415,23 @@ optional public func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScr
 
 ## 3、CALayer
 
-### （1）CAGradientLayer
+### （1）CALayer
+
+​       CALayer主要管理图像内容和动画，一般CALayer是UIView的backing store，即UIView基于CALayer做了一层封装，但是CALayer也可以单独使用。CALayer的动画是基于CAMediaTiming协议来实现的。
+
+这里介绍CALayer的常用属性。
 
 
 
 
 
-### （2）CAShapeLayer
+### （2）CAGradientLayer
+
+
+
+
+
+### （3）CAShapeLayer
 
 CAShapeLayer也是CALayer的子类。这里介绍CAShapeLayer的常用属性。
 
