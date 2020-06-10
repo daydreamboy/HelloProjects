@@ -102,13 +102,9 @@
 
 - (UIButton *)checkmarkButton {
     if (!_checkmarkButton) {
-        CGFloat offset = 32.0;
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.frame = CGRectMake(-(offset/2.0)-(25.0/2.0),  (self.contentView.frame.size.height/2.0)-(25/2.0), 25  , 25);
         button.adjustsImageWhenHighlighted = NO;
         button.backgroundColor = [UIColor yellowColor];
-        [button setImage:[UIImage imageNamed:@"button_normal"] forState:UIControlStateNormal];
-        [button setImage:[UIImage imageNamed:@"button_selected"] forState:UIControlStateSelected];
         [button addTarget:self action:@selector(buttonCheckmarkClicked:) forControlEvents:UIControlEventTouchUpInside];
 
         _checkmarkButton = button;
