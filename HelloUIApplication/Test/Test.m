@@ -112,4 +112,70 @@
     NSLog(@"unsampled: %ld, percent: %f %%", countForUnsampled, countForUnsampled / (double)count * 100);
 }
 
+- (void)test_checkIfSampledOnceWithWithUniqueID_boundValue {
+    NSUInteger countForSampled;
+    NSUInteger countForUnsampled;
+    long long count = 100000;
+    
+    // Case 1
+    countForSampled = 0;
+    countForUnsampled = 0;
+    for (NSUInteger i = 0; i < 100000; ++i) {
+        BOOL sampled = [WCApplicationTool checkIfSampledOnceWithWithUniqueID:[NSUUID UUID].UUIDString boundValue:2000];
+        if (sampled) {
+            ++countForSampled;
+        }
+        else {
+            ++countForUnsampled;
+        }
+    }
+    NSLog(@"sampled: %ld, percent: %f %%", countForSampled, countForSampled / (double)count * 100);
+    NSLog(@"unsampled: %ld, percent: %f %%", countForUnsampled, countForUnsampled / (double)count * 100);
+    
+    // Case 2
+    countForSampled = 0;
+    countForUnsampled = 0;
+    for (NSUInteger i = 0; i < 100000; ++i) {
+        BOOL sampled = [WCApplicationTool checkIfSampledOnceWithWithUniqueID:[NSUUID UUID].UUIDString boundValue:4000];
+        if (sampled) {
+            ++countForSampled;
+        }
+        else {
+            ++countForUnsampled;
+        }
+    }
+    NSLog(@"sampled: %ld, percent: %f%%", countForSampled, countForSampled / (double)count * 100);
+    NSLog(@"unsampled: %ld, percent: %f %%", countForUnsampled, countForUnsampled / (double)count * 100);
+    
+    // Case 3
+    countForSampled = 0;
+    countForUnsampled = 0;
+    for (NSUInteger i = 0; i < 100000; ++i) {
+        BOOL sampled = [WCApplicationTool checkIfSampledOnceWithWithUniqueID:[NSUUID UUID].UUIDString boundValue:-4000];
+        if (sampled) {
+            ++countForSampled;
+        }
+        else {
+            ++countForUnsampled;
+        }
+    }
+    NSLog(@"sampled: %ld, percent: %f %%", countForSampled, countForSampled / (double)count * 100);
+    NSLog(@"unsampled: %ld, percent: %f %%", countForUnsampled, countForUnsampled / (double)count * 100);
+    
+    // Case 3
+    countForSampled = 0;
+    countForUnsampled = 0;
+    for (NSUInteger i = 0; i < 100000; ++i) {
+        BOOL sampled = [WCApplicationTool checkIfSampledOnceWithWithUniqueID:[NSUUID UUID].UUIDString boundValue:8000];
+        if (sampled) {
+            ++countForSampled;
+        }
+        else {
+            ++countForUnsampled;
+        }
+    }
+    NSLog(@"sampled: %ld, percent: %f %%", countForSampled, countForSampled / (double)count * 100);
+    NSLog(@"unsampled: %ld, percent: %f %%", countForUnsampled, countForUnsampled / (double)count * 100);
+}
+
 @end

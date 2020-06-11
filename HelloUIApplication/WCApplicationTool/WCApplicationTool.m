@@ -161,9 +161,12 @@
 + (long long)hashCodeWithString:(NSString *)string {
     const char *cString = [string UTF8String];
     long long ret = 0;
-    size_t len = strlen(cString);
-    for (NSUInteger i = 0; i < len; i++) {
-        ret = 31 * ret + cString[i];
+    
+    if (cString != NULL) {
+        size_t len = strlen(cString);
+        for (NSUInteger i = 0; i < len; ++i) {
+            ret = 31 * ret + cString[i];
+        }
     }
     
     return ret;
@@ -175,13 +178,39 @@
         return NO;
     }
     
-    long long boundedHashCode = hashCode % mod;
+    long long modL = ABS(mod);
+    long long boundedHashCode = hashCode % modL;
     if (lowerBound <= boundedHashCode && boundedHashCode <= upperBound) {
         return YES;
     }
     
-    
     return NO;
+}
+
++ (BOOL)checkIfSampledOnceWithWithUniqueID:(NSString *)uniqueID boundValue:(long long)boundValue {
+    if (boundValue == 0) {
+        return NO;
+    }
+    
+    static NSNumber *sResult;
+    if (!sResult) {
+        long long mod = 5000;
+        long long absBoundValue = MIN(ABS(boundValue), mod);
+        long long leftValue = -absBoundValue;
+        long long rightValue = absBoundValue;
+        
+        long long hashCode = [self hashCodeWithString:uniqueID];
+        long long boundedHashCode = hashCode % mod;
+        
+        if (boundedHashCode != 0 && boundedHashCode >= leftValue && boundedHashCode <= rightValue) {
+            sResult = @(YES);
+        }
+        else {
+            sResult = @(NO);
+        }
+    }
+
+    return [sResult boolValue];
 }
 
 #pragma mark > Get debug configuration (Only Simulator)

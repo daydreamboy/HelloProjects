@@ -157,11 +157,34 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark > Gray Release
 
 /**
+ Get a hash code integer
  
+ @param string the string to hash
+ @return the hash code integer which usually is unique
  @see https://stackoverflow.com/questions/299304/why-does-javas-hashcode-in-string-use-31-as-a-multiplier
  */
 + (long long)hashCodeWithString:(NSString *)string;
+
+/**
+ Check if sampled when use lower/upper bound and mod
+ 
+ @param uniqueID the unique string
+ @param lowerBound lower bound expected >= -mod
+ @param upperBound upper bound expected <= mod
+ @param mod the mod should not zero. If zero, return NO
+ @return YES if sampled, NO if not.
+ */
 + (BOOL)checkIfSampledWithUniqueID:(NSString *)uniqueID lowerBound:(long long)lowerBound upperBound:(long long)upperBound mod:(long long)mod;
+
+/**
+Check if sampled when use  mod as 5000
+
+@param uniqueID the unique string
+@param boundValue the bound value for lower bound and upper bound which is [-boundValue, boundValue]
+@return YES if sampled, NO if not. The result is stored as static variable.
+@discussion The mod uses 5000, if abs(boundValue) > 5000, return YES always.
+*/
++ (BOOL)checkIfSampledOnceWithWithUniqueID:(NSString *)uniqueID boundValue:(long long)boundValue;
 
 #pragma mark > Risky Methods
 
