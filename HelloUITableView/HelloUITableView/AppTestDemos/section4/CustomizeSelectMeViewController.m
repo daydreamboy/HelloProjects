@@ -7,119 +7,7 @@
 //
 
 #import "CustomizeSelectMeViewController.h"
-
-@interface CustomizeSelectMeCell : UITableViewCell
-@property (nonatomic, strong) UIColor *checkmarkTintColor;
-@property (nonatomic, strong, readonly) UIButton *checkmarkButton;
-@property (nonatomic, assign) UIEdgeInsets checkmarkButtonInsets;
-@property (nonatomic, assign) BOOL shiftContentViewWhileEditing;
-@end
-
-@interface CustomizeSelectMeCell ()
-@property (nonatomic, strong, readwrite) UIButton *checkmarkButton;
-@end
-
-@implementation CustomizeSelectMeCell
-
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        _shiftContentViewWhileEditing = YES;
-    }
-    return self;
-}
-
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
-    [super setEditing:editing animated:animated];
-    self.contentView.userInteractionEnabled = editing ? NO : YES;
-}
-
-- (void)willTransitionToState:(UITableViewCellStateMask)state {
-    //[super willTransitionToState:state];
-}
-
-- (void)didTransitionToState:(UITableViewCellStateMask)state {
-    [super didTransitionToState:state];
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-    self.checkmarkButton.selected = selected;
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    UIView *cellEditControl;
-    if (NSClassFromString(@"UITableViewCellEditControl")) {
-        for (UIView *subview in self.subviews) {
-            if ([NSStringFromClass([subview class]) isEqualToString:@"UITableViewCellEditControl"]) {
-                cellEditControl = subview;
-                cellEditControl.hidden = YES;
-                break;
-            }
-        }
-    }
-    
-    if (cellEditControl) {
-        if (self.checkmarkButton) {
-            cellEditControl.hidden = YES;
-            
-            BOOL isFirstLayoutSubviews = NO;
-            if (!self.checkmarkButton.superview) {
-                [self addSubview:self.checkmarkButton];
-                isFirstLayoutSubviews = YES;
-            }
-            
-            UIEdgeInsets paddings = UIEdgeInsetsEqualToEdgeInsets(self.checkmarkButtonInsets, UIEdgeInsetsZero)
-                                    ? UIEdgeInsetsMake(
-                                                       (CGRectGetHeight(self.bounds) - CGRectGetHeight(self.checkmarkButton.bounds)) / 2.0,
-                                                       (CGRectGetWidth(cellEditControl.bounds) - CGRectGetWidth(self.checkmarkButton.bounds)) / 2.0,
-                                                       (CGRectGetHeight(self.bounds) - CGRectGetHeight(self.checkmarkButton.bounds)) / 2.0,
-                                                       (CGRectGetWidth(cellEditControl.bounds) - CGRectGetWidth(self.checkmarkButton.bounds)) / 2.0
-                                                       )
-                                    : self.checkmarkButtonInsets;
-
-            CGFloat offsetXForCheckmarkButton = self.isEditing ? paddings.left : (-(paddings.right + CGRectGetWidth(self.checkmarkButton.bounds)));
-            if (isFirstLayoutSubviews) {
-                offsetXForCheckmarkButton = 0;//(-(paddings.right + CGRectGetWidth(self.checkmarkButton.bounds)));
-            }
-            
-            CGFloat offsetXForContentView = (self.isEditing && self.shiftContentViewWhileEditing)
-                                            ? (paddings.left + paddings.right + CGRectGetWidth(self.checkmarkButton.bounds))
-                                            : 0;
-            
-            self.contentView.frame = CGRectMake(offsetXForContentView, 0, CGRectGetWidth(self.contentView.bounds), CGRectGetHeight(self.contentView.bounds));
-            self.checkmarkButton.frame = CGRectMake(offsetXForCheckmarkButton, paddings.top, CGRectGetWidth(self.checkmarkButton.bounds), CGRectGetHeight(self.checkmarkButton.bounds));
-        }
-        else if (self.checkmarkTintColor) {
-            cellEditControl.tintColor = self.checkmarkTintColor;
-        }
-    }
-}
-
-#pragma mark - Getter
-
-- (UIButton *)checkmarkButton {
-    if (!_checkmarkButton) {
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        button.adjustsImageWhenHighlighted = NO;
-        button.backgroundColor = [UIColor yellowColor];
-        [button addTarget:self action:@selector(buttonCheckmarkClicked:) forControlEvents:UIControlEventTouchUpInside];
-
-        _checkmarkButton = button;
-    }
-
-    return _checkmarkButton;
-}
-
-#pragma mark - Action
-
-- (void)buttonCheckmarkClicked:(UIButton *)sender {
-    sender.selected = !sender.isSelected;
-}
-
-@end
+#import "WCTintSystemCheckmarkCell.h"
 
 @interface CustomizeSelectMeViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -155,7 +43,7 @@
     _tableView.editing = NO;
     _tableView.allowsMultipleSelectionDuringEditing = YES;
     //_tableView.allowsMultipleSelection = YES;
-    [_tableView registerClass:[CustomizeSelectMeCell class] forCellReuseIdentifier:NSStringFromClass([CustomizeSelectMeCell class])];
+    [_tableView registerClass:[WCTintSystemCheckmarkCell class] forCellReuseIdentifier:NSStringFromClass([WCTintSystemCheckmarkCell class])];
     //    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
     
@@ -178,14 +66,14 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifer;
     if (!CellIdentifer) {
-        CellIdentifer = NSStringFromClass([CustomizeSelectMeCell class]);
+        CellIdentifer = NSStringFromClass([WCTintSystemCheckmarkCell class]);
     }
     
-    CustomizeSelectMeCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifer];
+    WCTintSystemCheckmarkCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifer];
     //cell.imageView.image = [UIImage imageNamed:@"babelfish"];
     
     //UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    cell.checkmarkButton.frame = CGRectMake(0, 0, 40, 40);
+//    cell.checkmarkButton.frame = CGRectMake(0, 0, 40, 40);
     cell.checkmarkButton.adjustsImageWhenHighlighted = NO;
     cell.checkmarkButton.backgroundColor = [UIColor yellowColor];
     [cell.checkmarkButton setImage:[UIImage imageNamed:@"button_normal"] forState:UIControlStateNormal];
@@ -194,7 +82,7 @@
     cell.checkmarkTintColor = [UIColor orangeColor];
     cell.checkmarkButtonInsets = UIEdgeInsetsMake(5, 10, 0, 20);
     //cell.editingAccessoryType = UITableViewCellAccessoryCheckmark;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    //cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = _listArr[indexPath.row];
     if (indexPath.row % 2 == 0) {
         cell.textLabel.textAlignment = NSTextAlignmentLeft;

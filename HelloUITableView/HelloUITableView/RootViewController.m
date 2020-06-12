@@ -39,6 +39,7 @@
 #import "DetectCellOffscreenViewController.h"
 #import "CustomizeHighlightCellViewController.h"
 #import "CheckNumberOfCellOnFirstRenderViewController.h"
+#import "TintSystemCheckmarkCellViewController.h"
 
 // section 5
 #import "StaticCellHeightAboveiOS11IssuesViewController.h"
@@ -101,6 +102,7 @@
           @{ kTitle: @"Detect cell offscreen event", kClass: [DetectCellOffscreenViewController class] },
           @{ kTitle: @"Check number of cell on first render", kClass: [CheckNumberOfCellOnFirstRenderViewController class] },
           @{ kTitle: @"Customize highlight cell", kClass: [CustomizeHighlightCellViewController class] },
+          @{ kTitle: @"Tint system checkmark cell", kClass: [TintSystemCheckmarkCellViewController class] },
     ];
     
     NSArray<NSDictionary *> *section5 = @[

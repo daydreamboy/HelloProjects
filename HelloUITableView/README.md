@@ -451,6 +451,12 @@ offscreen: row: 16, section: 0
 
 
 
+## 4、UITableView Internals
+
+（1）_subviewCache
+
+UITableView内部使用UIView的私有实例变量`_subviewCache`，来存储屏幕上的UITableViewCell。`_subviewCache`是数组类型，值得注意的是，`_subviewCache`数组从0开始，cell是从下自上排列的。
+
 
 
 
