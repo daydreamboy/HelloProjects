@@ -215,7 +215,14 @@ static NSString *sCellIdentifier = @"TintSystemCheckmarkCellViewController_sCell
     }
     cell.textLabel.text = self.listArr[indexPath.row];
     [cell configureCellAtIndexPath:indexPath configureBlock:^{
-        cell.checkmarkTintColor = indexPath.row % 2 ? nil : [UIColor orangeColor];
+        NSArray *colors = @[
+            [UIColor orangeColor],
+            [UIColor magentaColor],
+            [NSNull null],
+        ];
+        
+        UIColor *color = colors[indexPath.row % 3];
+        cell.checkmarkTintColor = [color isKindOfClass:[UIColor class]] ? color : nil;
     }];
     
     return cell;
