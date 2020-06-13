@@ -9,6 +9,10 @@
 #import "CustomizeSelectMeViewController.h"
 #import "WCCustomizeSystemCheckmarkCell.h"
 
+#ifndef UNSPECIFIED
+#define UNSPECIFIED 0
+#endif
+
 @interface CustomizeSelectMeViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *listArr;
@@ -29,10 +33,8 @@
     if (!_listArr) {
         NSString *path = [[NSBundle mainBundle] pathForResource:@"computers" ofType:@"plist"];
         NSMutableArray *array = [[NSMutableArray alloc] initWithContentsOfFile:path];
-//        id firstObject = [array firstObject];
-//        [array removeAllObjects];
-//        [array addObject:firstObject];
-        _listArr = [array subarrayWithRange:NSMakeRange(0, 2)];
+        //_listArr = [[array subarrayWithRange:NSMakeRange(0, 2)] mutableCopy];
+        _listArr = array;
     }
 }
 
@@ -70,27 +72,22 @@
     }
     
     WCCustomizeSystemCheckmarkCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifer];
-    //cell.imageView.image = [UIImage imageNamed:@"babelfish"];
-    
-    //UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//    cell.checkmarkButton.frame = CGRectMake(0, 0, 40, 40);
+    cell.checkmarkButton.frame = CGRectMake(0, 0, 40, 40);
     cell.checkmarkButton.adjustsImageWhenHighlighted = NO;
     cell.checkmarkButton.backgroundColor = [UIColor yellowColor];
     [cell.checkmarkButton setImage:[UIImage imageNamed:@"button_normal"] forState:UIControlStateNormal];
     [cell.checkmarkButton setImage:[UIImage imageNamed:@"button_selected"] forState:UIControlStateSelected];
-    //[cell.checkmarkButton addTarget:self action:@selector(buttonCheckmarkClicked:) forControlEvents:UIControlEventTouchUpInside];
-    cell.checkmarkTintColor = [UIColor orangeColor];
-    cell.checkmarkButtonInsets = UIEdgeInsetsMake(5, 10, 0, 20);
-    //cell.editingAccessoryType = UITableViewCellAccessoryCheckmark;
-    //cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    [cell.checkmarkButton addTarget:self action:@selector(buttonCheckmarkClicked:) forControlEvents:UIControlEventTouchUpInside];
+    cell.checkmarkButtonInsets = UIEdgeInsetsMake(2, 10, 2, UNSPECIFIED);
+    
+    cell.imageView.image = [UIImage imageNamed:@"babelfish"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = _listArr[indexPath.row];
     if (indexPath.row % 2 == 0) {
         cell.textLabel.textAlignment = NSTextAlignmentLeft;
-        cell.shiftContentViewWhileEditing = YES;
     }
     else {
         cell.textLabel.textAlignment = NSTextAlignmentRight;
-        cell.shiftContentViewWhileEditing = NO;
     }
     // Counterpart for return NO in - tableView:canEditRowAtIndexPath: method
     //cell.userInteractionEnabled = indexPath.row == 0 ? NO : YES;
@@ -106,10 +103,10 @@
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (indexPath.row == 0) {
-//        // Can't edit at row 0
-//        return NO;
-//    }
+    if (indexPath.row == 0) {
+        // Can't edit at row 0
+        return NO;
+    }
     
     return YES;
 }
@@ -151,8 +148,12 @@
     [self.tableView setEditing:!self.tableView.editing animated:YES];
 }
 
+- (void)buttonCheckmarkClicked:(id)sender {
+    NSLog(@"456");
+}
+
 - (void)buttonClicked:(id)sender {
-    NSLog(@"123243");
+    NSLog(@"123");
 }
 
 @end

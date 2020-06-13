@@ -7,23 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "WCIndexedCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, WCTintSystemCheckmarkCellStyle) {
-    WCTintSystemCheckmarkCellStyleDefault,
-    WCTintSystemCheckmarkCellStyleTintColor,
-    WCTintSystemCheckmarkCellStyleCustomized,
-};
-
-@interface WCCustomizeSystemCheckmarkCell : WCIndexedCell
-@property (nonatomic, assign) WCTintSystemCheckmarkCellStyle style;
-@property (nonatomic, strong) UIColor *checkmarkTintColor;
+@interface WCCustomizeSystemCheckmarkCell : UITableViewCell
 @property (nonatomic, strong, readonly) UIButton *checkmarkButton;
-@property (nonatomic, assign) CGSize checkmarkButtonSize;
 @property (nonatomic, assign) UIEdgeInsets checkmarkButtonInsets;
-@property (nonatomic, assign) BOOL shiftContentViewWhileEditing;
 @end
 
 NS_ASSUME_NONNULL_END
