@@ -7,7 +7,7 @@
 //
 
 #import "CustomizeSelectMeViewController.h"
-#import "WCTintSystemCheckmarkCell.h"
+#import "WCCustomizeSystemCheckmarkCell.h"
 
 @interface CustomizeSelectMeViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -43,7 +43,7 @@
     _tableView.editing = NO;
     _tableView.allowsMultipleSelectionDuringEditing = YES;
     //_tableView.allowsMultipleSelection = YES;
-    [_tableView registerClass:[WCTintSystemCheckmarkCell class] forCellReuseIdentifier:NSStringFromClass([WCTintSystemCheckmarkCell class])];
+    [_tableView registerClass:[WCCustomizeSystemCheckmarkCell class] forCellReuseIdentifier:NSStringFromClass([WCCustomizeSystemCheckmarkCell class])];
     //    _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
     
@@ -66,10 +66,10 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifer;
     if (!CellIdentifer) {
-        CellIdentifer = NSStringFromClass([WCTintSystemCheckmarkCell class]);
+        CellIdentifer = NSStringFromClass([WCCustomizeSystemCheckmarkCell class]);
     }
     
-    WCTintSystemCheckmarkCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifer];
+    WCCustomizeSystemCheckmarkCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifer];
     //cell.imageView.image = [UIImage imageNamed:@"babelfish"];
     
     //UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];

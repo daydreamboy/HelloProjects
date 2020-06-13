@@ -22,6 +22,7 @@
 		2B63BF38200FA22600A5D8D2 /* GroupedTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63BF30200FA22600A5D8D2 /* GroupedTableViewViewController.m */; };
 		2B63BF39200FA22600A5D8D2 /* PlainTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63BF31200FA22600A5D8D2 /* PlainTableViewViewController.m */; };
 		2BA442CC2261DFD60016C876 /* ShowContextMenuInCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA442CB2261DFD60016C876 /* ShowContextMenuInCellViewController.m */; };
+		4F090D2A2494D7F20034F246 /* WCIndexedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F090D292494D7F20034F246 /* WCIndexedCell.m */; };
 		4F39AE39241A7C4C0008FBE7 /* CheckNumberOfCellOnFirstRenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F39AE38241A7C4C0008FBE7 /* CheckNumberOfCellOnFirstRenderViewController.m */; };
 		4F50647122DC2DA200C54420 /* DetectCellOffscreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50647022DC2DA200C54420 /* DetectCellOffscreenViewController.m */; };
 		4F5112BD22C39584005E5AAE /* CustomizeSelectMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5112BC22C39584005E5AAE /* CustomizeSelectMeViewController.m */; };
@@ -52,7 +53,7 @@
 		4FAAA5B71FA4845B00A80328 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FAAA5B51FA4845A00A80328 /* calendar.png */; };
 		4FAAA5B81FA4845B00A80328 /* ibooks.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FAAA5B61FA4845A00A80328 /* ibooks.png */; };
 		4FAD1F4220BD2D0100F4766D /* DetectUserScrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAD1F4120BD2D0100F4766D /* DetectUserScrollViewController.m */; };
-		4FB17BBC24936F23004D8B98 /* WCTintSystemCheckmarkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB17BBB24936F23004D8B98 /* WCTintSystemCheckmarkCell.m */; };
+		4FB17BBC24936F23004D8B98 /* WCCustomizeSystemCheckmarkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB17BBB24936F23004D8B98 /* WCCustomizeSystemCheckmarkCell.m */; };
 		4FB17BBF249376B8004D8B98 /* TintSystemCheckmarkCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB17BBE249376B8004D8B98 /* TintSystemCheckmarkCellViewController.m */; };
 		4FB17BC324937D05004D8B98 /* WCTableViewCellTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB17BC224937D05004D8B98 /* WCTableViewCellTool.m */; };
 		4FB55FC120E92EAC002DEF76 /* HorizontalTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB55FC020E92EAC002DEF76 /* HorizontalTableViewViewController.m */; };
@@ -86,6 +87,8 @@
 		2B63BF33200FA22600A5D8D2 /* PlainTableViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainTableViewViewController.h; sourceTree = "<group>"; };
 		2BA442CA2261DFD60016C876 /* ShowContextMenuInCellViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowContextMenuInCellViewController.h; sourceTree = "<group>"; };
 		2BA442CB2261DFD60016C876 /* ShowContextMenuInCellViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowContextMenuInCellViewController.m; sourceTree = "<group>"; };
+		4F090D282494D7F20034F246 /* WCIndexedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCIndexedCell.h; sourceTree = "<group>"; };
+		4F090D292494D7F20034F246 /* WCIndexedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCIndexedCell.m; sourceTree = "<group>"; };
 		4F39AE37241A7C4C0008FBE7 /* CheckNumberOfCellOnFirstRenderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckNumberOfCellOnFirstRenderViewController.h; sourceTree = "<group>"; };
 		4F39AE38241A7C4C0008FBE7 /* CheckNumberOfCellOnFirstRenderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckNumberOfCellOnFirstRenderViewController.m; sourceTree = "<group>"; };
 		4F50646F22DC2DA200C54420 /* DetectCellOffscreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectCellOffscreenViewController.h; sourceTree = "<group>"; };
@@ -140,8 +143,8 @@
 		4FAAA5B61FA4845A00A80328 /* ibooks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ibooks.png; sourceTree = "<group>"; };
 		4FAD1F4020BD2D0100F4766D /* DetectUserScrollViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectUserScrollViewController.h; sourceTree = "<group>"; };
 		4FAD1F4120BD2D0100F4766D /* DetectUserScrollViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetectUserScrollViewController.m; sourceTree = "<group>"; };
-		4FB17BBA24936F23004D8B98 /* WCTintSystemCheckmarkCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCTintSystemCheckmarkCell.h; sourceTree = "<group>"; };
-		4FB17BBB24936F23004D8B98 /* WCTintSystemCheckmarkCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCTintSystemCheckmarkCell.m; sourceTree = "<group>"; };
+		4FB17BBA24936F23004D8B98 /* WCCustomizeSystemCheckmarkCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCCustomizeSystemCheckmarkCell.h; sourceTree = "<group>"; };
+		4FB17BBB24936F23004D8B98 /* WCCustomizeSystemCheckmarkCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCCustomizeSystemCheckmarkCell.m; sourceTree = "<group>"; };
 		4FB17BBD249376B8004D8B98 /* TintSystemCheckmarkCellViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TintSystemCheckmarkCellViewController.h; sourceTree = "<group>"; };
 		4FB17BBE249376B8004D8B98 /* TintSystemCheckmarkCellViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TintSystemCheckmarkCellViewController.m; sourceTree = "<group>"; };
 		4FB17BC124937D05004D8B98 /* WCTableViewCellTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCTableViewCellTool.h; sourceTree = "<group>"; };
@@ -245,6 +248,15 @@
 			path = section1;
 			sourceTree = "<group>";
 		};
+		4F090D272494D7CB0034F246 /* WCIndexedCell */ = {
+			isa = PBXGroup;
+			children = (
+				4F090D282494D7F20034F246 /* WCIndexedCell.h */,
+				4F090D292494D7F20034F246 /* WCIndexedCell.m */,
+			);
+			path = WCIndexedCell;
+			sourceTree = "<group>";
+		};
 		4F519A11229B9052004C548A /* section5 */ = {
 			isa = PBXGroup;
 			children = (
@@ -292,8 +304,9 @@
 		4FAAA5851FA4804600A80328 = {
 			isa = PBXGroup;
 			children = (
+				4F090D272494D7CB0034F246 /* WCIndexedCell */,
 				4FB17BC024937CEA004D8B98 /* WCTableViewCellTool */,
-				4FB17BB924936ED7004D8B98 /* WCTintSystemCheckmarkCell */,
+				4FB17BB924936ED7004D8B98 /* WCCustomizeSystemCheckmarkCell */,
 				4F53472222C613CC000710B9 /* WCEditingTableViewCell */,
 				4F60E70E22A7E64300C27087 /* WCTableView */,
 				4F948A1F2011C5CC0030BC4A /* WCExpandableHeaderView */,
@@ -352,13 +365,13 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		4FB17BB924936ED7004D8B98 /* WCTintSystemCheckmarkCell */ = {
+		4FB17BB924936ED7004D8B98 /* WCCustomizeSystemCheckmarkCell */ = {
 			isa = PBXGroup;
 			children = (
-				4FB17BBA24936F23004D8B98 /* WCTintSystemCheckmarkCell.h */,
-				4FB17BBB24936F23004D8B98 /* WCTintSystemCheckmarkCell.m */,
+				4FB17BBA24936F23004D8B98 /* WCCustomizeSystemCheckmarkCell.h */,
+				4FB17BBB24936F23004D8B98 /* WCCustomizeSystemCheckmarkCell.m */,
 			);
-			path = WCTintSystemCheckmarkCell;
+			path = WCCustomizeSystemCheckmarkCell;
 			sourceTree = "<group>";
 		};
 		4FB17BC024937CEA004D8B98 /* WCTableViewCellTool */ = {
@@ -484,9 +497,10 @@
 				2B63BF1C200FA11200A5D8D2 /* MoveMeViewController.m in Sources */,
 				4FB17BBF249376B8004D8B98 /* TintSystemCheckmarkCellViewController.m in Sources */,
 				4F60E71C22A7E64400C27087 /* WCTableViewCell.m in Sources */,
-				4FB17BBC24936F23004D8B98 /* WCTintSystemCheckmarkCell.m in Sources */,
+				4FB17BBC24936F23004D8B98 /* WCCustomizeSystemCheckmarkCell.m in Sources */,
 				4F52CA2422E957E700A59177 /* StaticCellHeightAboveiOS11IssuesViewController.m in Sources */,
 				4F948A252011C8590030BC4A /* PlainTableViewWithExpandableSectionHeaderViewController.m in Sources */,
+				4F090D2A2494D7F20034F246 /* WCIndexedCell.m in Sources */,
 				2B63BF20200FA11200A5D8D2 /* DeleteMeViewController.m in Sources */,
 				4FB17BC324937D05004D8B98 /* WCTableViewCellTool.m in Sources */,
 				4F948A1E2011A0AE0030BC4A /* PlainTableViewWithNonFloatSectionViewController.m in Sources */,

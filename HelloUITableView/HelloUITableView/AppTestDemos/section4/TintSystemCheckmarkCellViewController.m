@@ -8,26 +8,15 @@
 
 #import "TintSystemCheckmarkCellViewController.h"
 #import "WCTableViewCellTool.h"
-#import <objc/runtime.h>
+#import "WCIndexedCell.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-static const void *kAssociatedObjectKeyTintSystemCheckmarkCell = &kAssociatedObjectKeyTintSystemCheckmarkCell;
-
-#define KeyFromIndexPath(indexPath) [NSString stringWithFormat:@"%ld,%ld", (long)[(indexPath) section], (long)[(indexPath) row]];
-
-@interface TintSystemCheckmarkCell : UITableViewCell
+@interface TintSystemCheckmarkCell : WCIndexedCell
 @property (nonatomic, strong, nullable) UIColor *checkmarkTintColor;
-@property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong, readonly) NSMutableDictionary<NSString *, NSMutableDictionary *> *stateMap;
-
-- (void)configureCellAtIndexPath:(NSIndexPath *)indexPath configureBlock:(void (^)(void))configureBlock;
-
 @end
 
 @interface TintSystemCheckmarkCell ()
-@property (nonatomic, strong) NSIndexPath *currentIndexPath;
-@property (nonatomic, assign) BOOL isConfigureBlockRunning;
 @end
 
 @implementation TintSystemCheckmarkCell
@@ -39,92 +28,15 @@ static const void *kAssociatedObjectKeyTintSystemCheckmarkCell = &kAssociatedObj
 }
 
 - (void)setCheckmarkTintColor:(nullable UIColor *)checkmarkTintColor {
-    if (!self.isConfigureBlockRunning) {
-        return;
-    }
-    
-    UITableView *tableView = self.tableView;
-    if (tableView) {
-        NSIndexPath *indexPath = self.currentIndexPath;
-        if (indexPath) {
-            NSString *key = KeyFromIndexPath(indexPath);
-            NSMutableDictionary *stateMap = self.stateMap;
-            
-            if (![stateMap[key] isKindOfClass:[NSMutableDictionary class]]) {
-                stateMap[key] = [NSMutableDictionary dictionary];
-            }
-            
-            NSMutableDictionary *attrs = stateMap[key];
-            attrs[@"checkmarkTintColor"] = checkmarkTintColor ?: [NSNull null];
-        }
-    }
-}
-
-- (void)configureCellAtIndexPath:(NSIndexPath *)indexPath configureBlock:(void (^)(void))configureBlock {
-    self.currentIndexPath = indexPath;
-    self.isConfigureBlockRunning = YES;
-    configureBlock();
-    self.isConfigureBlockRunning = NO;
+    [super setAttributeValue:(checkmarkTintColor ?: [NSNull null]) forAttributeKey:@"checkmarkTintColor"];
 }
 
 - (nullable UIColor *)checkmarkTintColor {
-    UITableView *tableView = self.tableView;
-    if (tableView) {
-        NSIndexPath *indexPath = self.currentIndexPath;
-        if (indexPath) {
-            NSString *key = KeyFromIndexPath(indexPath);
-            NSMutableDictionary *stateMap = self.stateMap;
-            
-            NSMutableDictionary *attrs = stateMap[key];
-            return attrs[@"checkmarkTintColor"];
-        }
-    }
-    
-    return nil;
-}
-
-- (void)willTransitionToState:(UITableViewCellStateMask)state {
-    [super willTransitionToState:state];
-}
-
-- (void)didTransitionToState:(UITableViewCellStateMask)state {
-    [super didTransitionToState:state];
-}
-
-#pragma mark - Getter
-
-- (UITableView *)tableView {
-    if (!_tableView) {
-        _tableView = [WCTableViewCellTool superTableViewWithCell:self];
-    }
-    
-    return _tableView;
-}
-
-- (NSMutableDictionary *)stateMap {
-    NSMutableDictionary *stateMapL;
-    
-    UITableView *tableView = self.tableView;
-    if (tableView) {
-        id object = objc_getAssociatedObject(tableView, kAssociatedObjectKeyTintSystemCheckmarkCell);
-        if ([object isKindOfClass:[NSMutableDictionary class]]) {
-            stateMapL = object;
-        }
-        else {
-            stateMapL = [NSMutableDictionary dictionary];
-            objc_setAssociatedObject(tableView, kAssociatedObjectKeyTintSystemCheckmarkCell, stateMapL, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        }
-    }
-    
-    return stateMapL;
+    return [super attributeValueForAttributeKey:@"checkmarkTintColor"];
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
-    UITableView *tableView = self.tableView;
-    if (!tableView) {
-        return;
-    }
     
     // Note: indexPathForCell not works even though the cell is visible
     //NSIndexPath *indexPath = [tableView indexPathForCell:self];
@@ -153,7 +65,7 @@ NS_ASSUME_NONNULL_END
 
 @interface TintSystemCheckmarkCellViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSArray *listArr;
+@property (nonatomic, strong) NSMutableArray *listArr;
 @end
 
 @implementation TintSystemCheckmarkCellViewController
@@ -181,7 +93,7 @@ static NSString *sCellIdentifier = @"TintSystemCheckmarkCellViewController_sCell
         tableView.delegate = self;
         tableView.editing = NO;
         tableView.allowsSelection = NO;
-        tableView.allowsMultipleSelection = YES;
+        tableView.allowsMultipleSelection = NO;
         tableView.allowsSelectionDuringEditing = NO;
         tableView.allowsMultipleSelectionDuringEditing = YES;
         [tableView registerClass:[TintSystemCheckmarkCell class] forCellReuseIdentifier:sCellIdentifier];
@@ -192,7 +104,7 @@ static NSString *sCellIdentifier = @"TintSystemCheckmarkCellViewController_sCell
     return _tableView;
 }
 
-- (NSArray *)listArr {
+- (NSMutableArray *)listArr {
     if (!_listArr) {
         NSString *path = [[NSBundle mainBundle] pathForResource:@"computers" ofType:@"plist"];
         NSMutableArray *array = [[NSMutableArray alloc] initWithContentsOfFile:path];

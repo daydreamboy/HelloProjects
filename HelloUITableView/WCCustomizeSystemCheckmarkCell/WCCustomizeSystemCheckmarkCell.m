@@ -6,13 +6,13 @@
 //  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
-#import "WCTintSystemCheckmarkCell.h"
+#import "WCCustomizeSystemCheckmarkCell.h"
 
-@interface WCTintSystemCheckmarkCell ()
+@interface WCCustomizeSystemCheckmarkCell ()
 @property (nonatomic, strong, readwrite) UIButton *checkmarkButton;
 @end
 
-@implementation WCTintSystemCheckmarkCell
+@implementation WCCustomizeSystemCheckmarkCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -30,7 +30,7 @@
 }
 
 - (void)willTransitionToState:(UITableViewCellStateMask)state {
-    //[super willTransitionToState:state];
+    [super willTransitionToState:state];
 }
 
 - (void)didTransitionToState:(UITableViewCellStateMask)state {
@@ -47,6 +47,18 @@
     
     UIView *cellEditControl;
     
+    switch (self.style) {
+        case WCTintSystemCheckmarkCellStyleDefault:
+        default: {
+            break;
+        }
+        case WCTintSystemCheckmarkCellStyleTintColor: {
+            break;
+        }
+        case WCTintSystemCheckmarkCellStyleCustomized: {
+            break;
+        }
+    }
     
     if (self.checkmarkButtonSize.width > 0 && self.checkmarkButtonSize.height > 0) {
         

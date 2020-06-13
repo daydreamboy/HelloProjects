@@ -118,6 +118,11 @@ iOS 8+上，当UIScrollView或者UITableView设置过delegate，然后再设置c
 
 
 
+* 非编辑模式下，allowsMultipleSelection优先于allowsSelection，即同时设置YES，实际是允许多选，而不是单选
+* 编辑模式下，allowsMultipleSelectionDuringEditing优先于allowsSelectionDuringEditing，即同时设置YES，实际是允许多选，而不是单选
+
+
+
 #### a. Cell选中背景色有三种方式设置
 
 （1）cell的`selectionStyle`属性，如下
@@ -430,6 +435,18 @@ offscreen: row: 16, section: 0
 ​      当table view首次渲染时，iOS 11+后，初始化固定个数的cell都会调用此方法，因此需要增加if判断过滤这种情况。
 
 
+
+### （8）修改cell的系统checkmark颜色
+
+当table view处于编辑状态时，允许多选，在cell左侧会出现圆形checkmark图标，这个不同于设置cell的editingAccessoryType为UITableViewCellAccessoryCheckmark。
+
+这个checkmark图标，对应的是UITableViewCellEditControl。可以通过修改它的tintColor来改变图标的颜色。
+
+注意：
+
+> UITableViewCellEditControl并不总是存在的，仅当处于编辑状态，UITableViewCellEditControl才实例化出来。
+
+> 示例代码，见TintSystemCheckmarkCellViewController
 
 
 
