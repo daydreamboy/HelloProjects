@@ -23,7 +23,11 @@ static const void *kAssociatedObjectKeyTintSystemCheckmarkCell = &kAssociatedObj
 
 @implementation WCIndexedCell
 
-- (void)configureCellAtIndexPath:(NSIndexPath *)indexPath configureBlock:(void (^)(void))configureBlock {
+- (void)configureCellWithTableView:(UITableView *)tableView atIndexPath:(NSIndexPath *)indexPath configureBlock:(void (^)(void))configureBlock {
+    if (!_tableView) {
+        _tableView = tableView;
+    }
+    
     self.currentIndexPath = indexPath;
     self.isConfigureBlockRunning = YES;
     configureBlock();
@@ -79,14 +83,6 @@ static const void *kAssociatedObjectKeyTintSystemCheckmarkCell = &kAssociatedObj
 }
 
 #pragma mark - Getter
-
-- (UITableView *)tableView {
-    if (!_tableView) {
-        _tableView = [WCTableViewCellTool superTableViewWithCell:self];
-    }
-    
-    return _tableView;
-}
 
 - (NSMutableDictionary *)stateMap {
     NSMutableDictionary *stateMapL;

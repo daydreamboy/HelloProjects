@@ -8,60 +8,7 @@
 
 #import "TintSystemCheckmarkCellViewController.h"
 #import "WCTableViewCellTool.h"
-#import "WCIndexedCell.h"
-
-NS_ASSUME_NONNULL_BEGIN
-
-@interface TintSystemCheckmarkCell : WCIndexedCell
-@property (nonatomic, strong, nullable) UIColor *checkmarkTintColor;
-@end
-
-@interface TintSystemCheckmarkCell ()
-@end
-
-@implementation TintSystemCheckmarkCell
-
-- (void)setEditing:(BOOL)editing animated:(BOOL)animated {
-    [super setEditing:editing animated:animated];
-    // Note: when cell is editing, the subviews in contentView is not interactive
-    self.contentView.userInteractionEnabled = editing ? NO : YES;
-}
-
-- (void)setCheckmarkTintColor:(nullable UIColor *)checkmarkTintColor {
-    [super setAttributeValue:(checkmarkTintColor ?: [NSNull null]) forAttributeKey:@"checkmarkTintColor"];
-}
-
-- (nullable UIColor *)checkmarkTintColor {
-    return [super attributeValueForAttributeKey:@"checkmarkTintColor"];
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    // Note: indexPathForCell not works even though the cell is visible
-    //NSIndexPath *indexPath = [tableView indexPathForCell:self];
-
-    UIView *cellEditControl;
-    UIColor *checkmarkTintColor = self.checkmarkTintColor;
-    if (checkmarkTintColor) {
-        if (NSClassFromString(@"UITableViewCellEditControl")) {
-            for (UIView *subview in self.subviews) {
-                if ([NSStringFromClass([subview class]) isEqualToString:@"UITableViewCellEditControl"]) {
-                    cellEditControl = subview;
-                    break;
-                }
-            }
-        }
-
-        if (cellEditControl) {
-            cellEditControl.tintColor = [checkmarkTintColor isKindOfClass:[UIColor class]] ? checkmarkTintColor : [UIColor systemBlueColor];
-        }
-    }
-}
-
-@end
-
-NS_ASSUME_NONNULL_END
+#import "WCTintSystemCheckmarkCell.h"
 
 @interface TintSystemCheckmarkCellViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -91,12 +38,12 @@ static NSString *sCellIdentifier = @"TintSystemCheckmarkCellViewController_sCell
         UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
         tableView.dataSource = self;
         tableView.delegate = self;
-        tableView.editing = NO;
+        tableView.editing = YES;
         tableView.allowsSelection = NO;
         tableView.allowsMultipleSelection = NO;
         tableView.allowsSelectionDuringEditing = NO;
         tableView.allowsMultipleSelectionDuringEditing = YES;
-        [tableView registerClass:[TintSystemCheckmarkCell class] forCellReuseIdentifier:sCellIdentifier];
+        [tableView registerClass:[WCTintSystemCheckmarkCell class] forCellReuseIdentifier:sCellIdentifier];
         
         _tableView = tableView;
     }
@@ -121,12 +68,12 @@ static NSString *sCellIdentifier = @"TintSystemCheckmarkCellViewController_sCell
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    TintSystemCheckmarkCell *cell = [tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
+    WCTintSystemCheckmarkCell *cell = [tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
     if (!cell) {
-        cell = [[TintSystemCheckmarkCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
+        cell = [[WCTintSystemCheckmarkCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
     }
     cell.textLabel.text = self.listArr[indexPath.row];
-    [cell configureCellAtIndexPath:indexPath configureBlock:^{
+    [cell configureCellWithTableView:tableView atIndexPath:indexPath configureBlock:^{
         NSArray *colors = @[
             [UIColor orangeColor],
             [UIColor magentaColor],
