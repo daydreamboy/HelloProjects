@@ -83,11 +83,12 @@
     cell.imageView.image = [UIImage imageNamed:@"babelfish"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.textLabel.text = _listArr[indexPath.row];
-    if (indexPath.row % 2 == 0) {
-        cell.textLabel.textAlignment = NSTextAlignmentLeft;
+    cell.textLabel.textAlignment = NSTextAlignmentLeft;
+    if (indexPath.row == 5) {
+        cell.disableShiftContentViewWhileEditing = NO;
     }
     else {
-        cell.textLabel.textAlignment = NSTextAlignmentRight;
+        cell.disableShiftContentViewWhileEditing = YES;
     }
     // Counterpart for return NO in - tableView:canEditRowAtIndexPath: method
     //cell.userInteractionEnabled = indexPath.row == 0 ? NO : YES;

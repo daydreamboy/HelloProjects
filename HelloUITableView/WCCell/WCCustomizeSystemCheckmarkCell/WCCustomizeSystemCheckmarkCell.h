@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface WCCustomizeSystemCheckmarkCell : UITableViewCell
 @property (nonatomic, strong, readonly) UIButton *checkmarkButton;
 @property (nonatomic, assign) UIEdgeInsets checkmarkButtonInsets;
+/// Decide if shift the content view when change to editing mode
+@property (nonatomic, assign) BOOL disableShiftContentViewWhileEditing;
 @end
 
 NS_ASSUME_NONNULL_END

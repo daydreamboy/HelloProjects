@@ -33,7 +33,8 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    if (_checkmarkButton) {
+    // Note: If the cell height is 0, not need to add _checkmarkButton
+    if (_checkmarkButton && CGRectGetHeight(self.bounds) > 0) {
         UIView *cellEditControl;
         
         if (NSClassFromString(@"UITableViewCellEditControl")) {
@@ -55,6 +56,11 @@
             : _checkmarkButtonInsets;
         
         CGFloat offsetXForCheckmarkButton = self.isEditing ? paddings.left : (-(paddings.left + CGRectGetWidth(_checkmarkButton.bounds)));
+        if (self.disableShiftContentViewWhileEditing) {
+            CGRect frame = self.contentView.frame;
+            frame.origin.x = 0;
+            self.contentView.frame = frame;
+        }
 
         _checkmarkButton.frame = CGRectMake(offsetXForCheckmarkButton, paddings.top, CGRectGetWidth(_checkmarkButton.bounds), CGRectGetHeight(_checkmarkButton.bounds));
     }
