@@ -1,8 +1,8 @@
 //
-//  ShapeLineBezierPathViewController.h
+//  ShapeCircleBezierPathViewController.h
 //  HelloCoreGraphics
 //
-//  Created by wesley_chen on 2020/6/1.
+//  Created by wesley_chen on 2020/6/14.
 //  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ShapeLineBezierPathViewController : ShapeBaseViewController
+@interface ShapeCircleBezierPathViewController : ShapeBaseViewController
 
 @end
 

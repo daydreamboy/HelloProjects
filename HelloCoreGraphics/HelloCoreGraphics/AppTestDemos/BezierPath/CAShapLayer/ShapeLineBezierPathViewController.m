@@ -12,17 +12,6 @@
 #define LayerHeight 30
 #define LayerSpace 10
 
-#define DEBUG_SHOW_LAYER_BORDER 1
-
-#if DEBUG_SHOW_LAYER_BORDER
-#define SHOW_LAYER_BORDER(layer) \
-(layer).borderWidth = 1.0; \
-(layer).borderColor = [UIColor blueColor].CGColor;
-#else
-#define SHOW_LAYER_BORDER(layer)
-#endif
-
-
 @interface ShapeLineBezierPathViewController ()
 @property (nonatomic, strong) CAShapeLayer *layerLine1;
 @property (nonatomic, strong) CAShapeLayer *layerLine2;
@@ -35,13 +24,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
     
-    [self.view.layer addSublayer:self.layerLine1];
-    [self.view.layer addSublayer:self.layerLine2];
-    [self.view.layer addSublayer:self.layerLine3];
-    [self.view.layer addSublayer:self.layerLine4];
-    [self.view.layer addSublayer:self.layerLine5];
+    [self.contentView.layer addSublayer:self.layerLine1];
+    [self.contentView.layer addSublayer:self.layerLine2];
+    [self.contentView.layer addSublayer:self.layerLine3];
+    [self.contentView.layer addSublayer:self.layerLine4];
+    [self.contentView.layer addSublayer:self.layerLine5];
 }
 
 #pragma mark - CAShapeLayer

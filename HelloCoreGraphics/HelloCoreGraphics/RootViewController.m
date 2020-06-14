@@ -24,6 +24,8 @@
 
 // section3
 #import "ShapeLineBezierPathViewController.h"
+#import "ShapeRectBezierPathViewController.h"
+#import "ShapeCircleBezierPathViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -66,6 +68,8 @@
     
     NSArray<NSDictionary *> *section3 = @[
           @{ kTitle: @"Shape Line Bezier Path", kClass: [ShapeLineBezierPathViewController class] },
+          @{ kTitle: @"Shape Rectangle Bezier Path", kClass: [ShapeRectBezierPathViewController class] },
+          @{ kTitle: @"Shape Circle Bezier Path", kClass: [ShapeCircleBezierPathViewController class] },
     ];
     
     _sectionTitles = @[
