@@ -190,7 +190,7 @@
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-        button.frame = CGRectMake(0, screenSize.height - height, screenSize.width / 2.0, height);
+        button.frame = CGRectMake(0, screenSize.height - height - 100, screenSize.width / 2.0, height);
         button.exclusiveTouch = YES;
         [button setTitle:@"Coming In !" forState:UIControlStateNormal];
         [button addTarget:self action:@selector(stageIn:) forControlEvents:UIControlEventTouchUpInside];
@@ -207,7 +207,7 @@
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         
         UIButton *button = [UIButton buttonWithType:UIButtonTypeSystem];
-        button.frame = CGRectMake(screenSize.width / 2.0, screenSize.height - height, screenSize.width / 2.0, height);
+        button.frame = CGRectMake(screenSize.width / 2.0, screenSize.height - height - 100, screenSize.width / 2.0, height);
         button.exclusiveTouch = YES;
         [button setTitle:@"Coming Out !" forState:UIControlStateNormal];
         [button addTarget:self action:@selector(stageOut:) forControlEvents:UIControlEventTouchUpInside];

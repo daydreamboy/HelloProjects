@@ -26,9 +26,12 @@
 #import "ParticleFadeViewController.h"
 #import "Uberworks1ViewController.h"
 
+#define kTitle @"Title"
+#define kClass @"Class"
+
 @interface RootViewController ()
-@property (nonatomic, strong) NSArray *titles;
-@property (nonatomic, strong) NSArray *classes;
+@property (nonatomic, strong) NSArray *sectionTitles;
+@property (nonatomic, strong) NSArray<NSArray<NSDictionary *> *> *classes;
 @end
 
 @implementation RootViewController
@@ -38,82 +41,116 @@
     if (self) {
         [self prepareForInit];
     }
+    
     return self;
 }
 
 - (void)prepareForInit {
-    self.title = @"Core Animations";
-    _titles = @[
-                @"Scale (UIView animation)",
-                @"Fade (UIView animation)",
-                @"Expand",
-                @"Fade with UILabel (UIView animation)",
-                @"Rotation",
-                @"borderWidth",
-                @"backgroundColor",
-                @"borderColor",
-                @"contents",
-                @"cornerRadius",
-                @"rotate card",
-                @"play with ball",
-                @"Flip image view",
-                @"@animationImages (UIImageView)",
-                @"Group Animation",
-                @"Particle Animation",
-                @"Uberworks1",
-                ];
+    self.title = @"AppTest";
+
+    // MARK: Configure titles and classes for table view
+    NSArray<NSDictionary *> *section1 = @[
+          @{ kTitle: @"Scale (UIView animation)", kClass: [ScaleViewController class], },
+          @{ kTitle: @"Fade (UIView animation)", kClass: [FadeViewController class],},
+          @{ kTitle: @"Expand", kClass: [ExpandViewController class], },
+          @{ kTitle: @"Fade with UILabel (UIView animation)", kClass: [FadeWithLabelViewController class], },
+          @{ kTitle: @"Rotation", kClass: [RotationViewController class], },
+          @{ kTitle: @"borderWidth", kClass: [BorderWidthViewController class], },
+          @{ kTitle: @"backgroundColor", kClass: [BackgroundColorViewController class], },
+          @{ kTitle: @"borderColor", kClass: [BorderColorViewController class], },
+          @{ kTitle: @"contents", kClass: [ContentsViewController class], },
+          @{ kTitle: @"cornerRadius", kClass: [CornerRadiusViewController class], },
+          @{ kTitle: @"rotate card", kClass: [CardViewControler class], },
+          @{ kTitle: @"play with ball", kClass: [BallViewController class], },
+          @{ kTitle: @"Flip image view", kClass: [FlipImageViewViewController class], },
+          @{ kTitle: @"@animationImages (UIImageView)", kClass: [AnimationImagesViewController class], },
+          @{ kTitle: @"Group Animation", kClass: [GroupAnimationViewController class], },
+          @{ kTitle: @"Particle Animation", kClass: [ParticleFadeViewController class], },
+          @{ kTitle: @"Uberworks1", kClass: [Uberworks1ViewController class], },
+    ];
+    
+    NSArray<NSDictionary *> *section2 = @[
+//          @{ kTitle: @"Draw Line Bezier Path", kClass: [DrawLineBezierPathViewController class] },
+//          @{ kTitle: @"Draw Arc Bezier Path", kClass: [DrawArcBezierPathViewController class] },
+//          @{ kTitle: @"Draw Curve Bezier Path", kClass: [DrawCurveBezierPathViewController class] },
+    ];
+    
+    _sectionTitles = @[
+        @"UIView Animation",
+        @"CAShapeLayer Animation",
+    ];
+    
     _classes = @[
-                 [ScaleViewController class],
-                 [FadeViewController class],
-                 [ExpandViewController class],
-                 [FadeWithLabelViewController class],
-                 [RotationViewController class],
-                 [BorderWidthViewController class],
-                 [BackgroundColorViewController class],
-                 [BorderColorViewController class],
-                 [ContentsViewController class],
-                 [CornerRadiusViewController class],
-                 [CardViewControler class],
-                 [BallViewController class],
-                 [FlipImageViewViewController class],
-                 [AnimationImagesViewController class],
-                 [GroupAnimationViewController class],
-                 [ParticleFadeViewController class],
-                 [Uberworks1ViewController class],
-                 ];
+         section1,
+         section2,
+    ];
 }
 
 #pragma mark -
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self pushViewController:_classes[indexPath.row]];
+    
+    NSDictionary *dict = _classes[indexPath.section][indexPath.row];
+    [self pushViewController:dict];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return _sectionTitles[section];
 }
 
 #pragma mark -
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [_classes count];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_titles count];
+    return [_classes[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *TableViewCellIdentifier = @"TableViewCellIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:TableViewCellIdentifier];
+    static NSString *sCellIdentifier = @"RootViewController_sCellIdentifier";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
+    
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:TableViewCellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-    cell.textLabel.text = _titles[indexPath.row];
+    
+    NSString *cellTitle = [_classes[indexPath.section][indexPath.row] objectForKey:kTitle];
+    cell.textLabel.text = cellTitle;
     
     return cell;
 }
 
-- (void)pushViewController:(Class)viewControllerClass {
-    NSAssert([viewControllerClass isSubclassOfClass:[UIViewController class]], @"%@ is not sublcass of UIViewController", NSStringFromClass(viewControllerClass));
+- (void)pushViewController:(NSDictionary *)dict {
+    id viewControllerClass = dict[kClass];
     
-    UIViewController *vc = [[viewControllerClass alloc] init];
-    vc.title = _titles[[_classes indexOfObject:viewControllerClass]];
-    
-    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-    [self.navigationController pushViewController:vc animated:YES];
+    id class = viewControllerClass;
+    if ([class isKindOfClass:[NSString class]]) {
+        SEL selector = NSSelectorFromString(viewControllerClass);
+        if ([self respondsToSelector:selector]) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
+            [self performSelector:selector];
+#pragma GCC diagnostic pop
+        }
+        else {
+            NSAssert(NO, @"can't handle selector `%@`", viewControllerClass);
+        }
+    }
+    else if (class && [class isSubclassOfClass:[UIViewController class]]) {
+        UIViewController *vc = [[class alloc] init];
+        vc.title = dict[kTitle];
+        
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+}
+
+#pragma mark - Test Methods
+
+- (void)testMethod {
+    NSLog(@"test something");
 }
 
 @end
