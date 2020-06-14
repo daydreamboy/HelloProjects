@@ -31,9 +31,6 @@
 #import "GroupSubviewsByWrapperViewViewController.h"
 #import "GroupSubviewsByRelayoutSubviewsViewController.h"
 
-//
-#import "UseCAShapeLayerViewController.h"
-
 #define kTitle @"Title"
 #define kClass @"Class"
 
@@ -85,7 +82,7 @@
     ];
     
     NSArray<NSDictionary *> *section3 = @[
-          @{ kTitle: @"CAShapeLayer", kClass: [UseCAShapeLayerViewController class] },
+          @{ kTitle: @"CAShapeLayer (See CoreGraphics)", kClass: @"testMethod" },
     ];
     
     _sectionTitles = @[

@@ -19,7 +19,6 @@
 		4F1C88A8237992E200FC9897 /* TouchView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88A7237992E200FC9897 /* TouchView.m */; };
 		4F1C88AB23799A9700FC9897 /* ShowCustomViewSafeAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C88AA23799A9700FC9897 /* ShowCustomViewSafeAreaViewController.m */; };
 		4F1DF038248524180091F205 /* WCImageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DF037248524180091F205 /* WCImageTool.m */; };
-		4F1DF03B248524740091F205 /* UseCAShapeLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DF03A248524740091F205 /* UseCAShapeLayerViewController.m */; };
 		4F27D4BA237DBB53007E2B54 /* WCScrollViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F27D4B9237DBB53007E2B54 /* WCScrollViewTool.m */; };
 		4F297915237BAF09000A1133 /* ShowScrollViewContentInsetAdjustmentBehaviorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F297914237BAF09000A1133 /* ShowScrollViewContentInsetAdjustmentBehaviorViewController.m */; };
 		4F2C03C7237AE75A0074473E /* TouchView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C03C6237AE75A0074473E /* TouchView2.m */; };
@@ -102,8 +101,6 @@
 		4F1C88AA23799A9700FC9897 /* ShowCustomViewSafeAreaViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowCustomViewSafeAreaViewController.m; sourceTree = "<group>"; };
 		4F1DF036248524180091F205 /* WCImageTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCImageTool.h; sourceTree = "<group>"; };
 		4F1DF037248524180091F205 /* WCImageTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCImageTool.m; sourceTree = "<group>"; };
-		4F1DF039248524740091F205 /* UseCAShapeLayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCAShapeLayerViewController.h; sourceTree = "<group>"; };
-		4F1DF03A248524740091F205 /* UseCAShapeLayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCAShapeLayerViewController.m; sourceTree = "<group>"; };
 		4F27D4B8237DBB53007E2B54 /* WCScrollViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCScrollViewTool.h; sourceTree = "<group>"; };
 		4F27D4B9237DBB53007E2B54 /* WCScrollViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCScrollViewTool.m; sourceTree = "<group>"; };
 		4F297913237BAF09000A1133 /* ShowScrollViewContentInsetAdjustmentBehaviorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowScrollViewContentInsetAdjustmentBehaviorViewController.h; sourceTree = "<group>"; };
@@ -268,8 +265,6 @@
 		4F1DF034248523290091F205 /* CAShapeLayer */ = {
 			isa = PBXGroup;
 			children = (
-				4F1DF039248524740091F205 /* UseCAShapeLayerViewController.h */,
-				4F1DF03A248524740091F205 /* UseCAShapeLayerViewController.m */,
 				4FAAA5821FA461E500A80328 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.h */,
 				4FAAA5831FA461E500A80328 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.m */,
 			);
@@ -624,7 +619,6 @@
 				4F13075623785E4A006FF0DE /* UseSafeAreaInsetsViewController.m in Sources */,
 				4FB43AF5200DA28100D5D92D /* DrawGradientViewViewController.m in Sources */,
 				4F60E70322A7C85600C27087 /* WCResizableImageLayer.m in Sources */,
-				4F1DF03B248524740091F205 /* UseCAShapeLayerViewController.m in Sources */,
 				4F15613323814C97007437EB /* TableViewSectionItemsFactory.m in Sources */,
 				4FB43AF7200DA28100D5D92D /* UseCAGradientLayerWithTwoColorsViewController.m in Sources */,
 				4FD7BE11206BBA9400368A46 /* AddShadowBorderToImageViewController.m in Sources */,
