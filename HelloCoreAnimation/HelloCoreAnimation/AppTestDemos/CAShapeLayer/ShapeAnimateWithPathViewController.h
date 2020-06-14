@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ShapeBaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ShapeAnimateWithPathViewController : UIViewController
+@interface ShapeAnimateWithPathViewController : ShapeBaseViewController
 
 @end
 

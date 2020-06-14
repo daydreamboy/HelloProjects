@@ -26,6 +26,9 @@
 #import "ParticleFadeViewController.h"
 #import "Uberworks1ViewController.h"
 
+// section2
+#import "ShapeAnimateWithPathViewController.h"
+
 #define kTitle @"Title"
 #define kClass @"Class"
 
@@ -70,7 +73,7 @@
     ];
     
     NSArray<NSDictionary *> *section2 = @[
-//          @{ kTitle: @"Draw Line Bezier Path", kClass: [DrawLineBezierPathViewController class] },
+          @{ kTitle: @"Path", kClass: [ShapeAnimateWithPathViewController class] },
 //          @{ kTitle: @"Draw Arc Bezier Path", kClass: [DrawArcBezierPathViewController class] },
 //          @{ kTitle: @"Draw Curve Bezier Path", kClass: [DrawCurveBezierPathViewController class] },
     ];
