@@ -28,6 +28,7 @@
 
 // section2
 #import "ShapeAnimateWithPathViewController.h"
+#import "ShapeAnimateWithFillColorViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -74,7 +75,7 @@
     
     NSArray<NSDictionary *> *section2 = @[
           @{ kTitle: @"Path", kClass: [ShapeAnimateWithPathViewController class] },
-//          @{ kTitle: @"Draw Arc Bezier Path", kClass: [DrawArcBezierPathViewController class] },
+          @{ kTitle: @"Fill Color", kClass: [ShapeAnimateWithFillColorViewController class] },
 //          @{ kTitle: @"Draw Curve Bezier Path", kClass: [DrawCurveBezierPathViewController class] },
     ];
     
