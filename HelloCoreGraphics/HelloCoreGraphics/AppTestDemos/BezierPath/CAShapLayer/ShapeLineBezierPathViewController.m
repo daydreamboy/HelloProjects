@@ -13,11 +13,12 @@
 #define LayerSpace 10
 
 @interface ShapeLineBezierPathViewController ()
-@property (nonatomic, strong) CAShapeLayer *layerLine1;
-@property (nonatomic, strong) CAShapeLayer *layerLine2;
-@property (nonatomic, strong) CAShapeLayer *layerLine3;
-@property (nonatomic, strong) CAShapeLayer *layerLine4;
-@property (nonatomic, strong) CAShapeLayer *layerLine5;
+@property (nonatomic, strong) CAShapeLayer *layerShape1;
+@property (nonatomic, strong) CAShapeLayer *layerShape2;
+@property (nonatomic, strong) CAShapeLayer *layerShape3;
+@property (nonatomic, strong) CAShapeLayer *layerShape4;
+@property (nonatomic, strong) CAShapeLayer *layerShape5;
+@property (nonatomic, strong) CAShapeLayer *layerShape6;
 @end
 
 @implementation ShapeLineBezierPathViewController
@@ -25,17 +26,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.contentView.layer addSublayer:self.layerLine1];
-    [self.contentView.layer addSublayer:self.layerLine2];
-    [self.contentView.layer addSublayer:self.layerLine3];
-    [self.contentView.layer addSublayer:self.layerLine4];
-    [self.contentView.layer addSublayer:self.layerLine5];
+    [self.contentView.layer addSublayer:self.layerShape1];
+    [self.contentView.layer addSublayer:self.layerShape2];
+    [self.contentView.layer addSublayer:self.layerShape3];
+    [self.contentView.layer addSublayer:self.layerShape4];
+    [self.contentView.layer addSublayer:self.layerShape5];
+    [self.contentView.layer addSublayer:self.layerShape6];
 }
 
 #pragma mark - CAShapeLayer
 
-- (CAShapeLayer *)layerLine1 {
-    if (!_layerLine1) {
+- (CAShapeLayer *)layerShape1 {
+    if (!_layerShape1) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         
         // @see https://stackoverflow.com/a/26663083
@@ -53,18 +55,18 @@
         
         layer.path = path.CGPath;
         
-        _layerLine1 = layer;
+        _layerShape1 = layer;
     }
     
-    return _layerLine1;
+    return _layerShape1;
 }
 
-- (CAShapeLayer *)layerLine2 {
-    if (!_layerLine2) {
+- (CAShapeLayer *)layerShape2 {
+    if (!_layerShape2) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         
         CAShapeLayer *layer = [CAShapeLayer layer];
-        layer.frame = CGRectMake(0, CGRectGetMaxY(self.layerLine1.frame) + LayerSpace, screenSize.width, LayerHeight);
+        layer.frame = CGRectMake(0, CGRectGetMaxY(self.layerShape1.frame) + LayerSpace, screenSize.width, LayerHeight);
         layer.lineWidth = 3.0;
         layer.strokeColor = [UIColor redColor].CGColor;
         SHOW_LAYER_BORDER(layer);
@@ -80,18 +82,18 @@
         
         layer.path = path.CGPath;
         
-        _layerLine2 = layer;
+        _layerShape2 = layer;
     }
     
-    return _layerLine2;
+    return _layerShape2;
 }
 
-- (CAShapeLayer *)layerLine3 {
-    if (!_layerLine3) {
+- (CAShapeLayer *)layerShape3 {
+    if (!_layerShape3) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         
         CAShapeLayer *layer = [CAShapeLayer layer];
-        layer.frame = CGRectMake(0, CGRectGetMaxY(self.layerLine2.frame) + LayerSpace, screenSize.width, LayerHeight);
+        layer.frame = CGRectMake(0, CGRectGetMaxY(self.layerShape2.frame) + LayerSpace, screenSize.width, LayerHeight);
         layer.lineWidth = 5.0;
         layer.lineDashPattern = @[@2, @3];
         layer.strokeColor = [UIColor redColor].CGColor;
@@ -108,18 +110,18 @@
         
         layer.path = path.CGPath;
         
-        _layerLine3 = layer;
+        _layerShape3 = layer;
     }
     
-    return _layerLine3;
+    return _layerShape3;
 }
 
-- (CAShapeLayer *)layerLine4 {
-    if (!_layerLine4) {
+- (CAShapeLayer *)layerShape4 {
+    if (!_layerShape4) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         
         CAShapeLayer *layer = [CAShapeLayer layer];
-        layer.frame = CGRectMake(0, CGRectGetMaxY(self.layerLine3.frame) + LayerSpace, screenSize.width, LayerHeight);
+        layer.frame = CGRectMake(0, CGRectGetMaxY(self.layerShape3.frame) + LayerSpace, screenSize.width, LayerHeight);
         layer.lineWidth = 5.0;
         layer.lineDashPattern = @[@10, @5, @5, @5];
         layer.strokeColor = [UIColor redColor].CGColor;
@@ -137,18 +139,18 @@
         
         layer.path = path.CGPath;
         
-        _layerLine4 = layer;
+        _layerShape4 = layer;
     }
     
-    return _layerLine4;
+    return _layerShape4;
 }
 
-- (CAShapeLayer *)layerLine5 {
-    if (!_layerLine5) {
+- (CAShapeLayer *)layerShape5 {
+    if (!_layerShape5) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         
         CAShapeLayer *layer = [CAShapeLayer layer];
-        layer.frame = CGRectMake(0, CGRectGetMaxY(self.layerLine4.frame) + LayerSpace, screenSize.width, LayerHeight);
+        layer.frame = CGRectMake(0, CGRectGetMaxY(self.layerShape4.frame) + LayerSpace, screenSize.width, LayerHeight);
         layer.lineWidth = 5.0;
         layer.lineDashPattern = @[@10, @5, @5, @5];
         layer.lineDashPhase = 10;
@@ -164,10 +166,35 @@
         
         layer.path = path.CGPath;
         
-        _layerLine5 = layer;
+        _layerShape5 = layer;
     }
     
-    return _layerLine5;
+    return _layerShape5;
+}
+
+- (CAShapeLayer *)layerShape6 {
+    if (!_layerShape6) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+
+        CAShapeLayer *layer = [CAShapeLayer layer];
+        layer.frame = CGRectMake(0, CGRectGetMaxY(self.layerShape5.frame) + LayerSpace, screenSize.width, LayerHeight);
+        layer.lineWidth = 10.0;
+        layer.fillColor = [UIColor greenColor].CGColor;
+        //layer.strokeColor = [UIColor redColor].CGColor;
+        SHOW_LAYER_BORDER(layer);
+
+        CGFloat paddingH = 10;
+
+        UIBezierPath *path = [UIBezierPath bezierPath];
+        [path moveToPoint:CGPointMake(paddingH, CGRectGetHeight(layer.bounds) / 2.0)];
+        [path addLineToPoint:CGPointMake(CGRectGetWidth(layer.bounds) - paddingH, CGRectGetHeight(layer.bounds) / 2.0)];
+
+        layer.path = path.CGPath;
+
+        _layerShape6 = layer;
+    }
+
+    return _layerShape6;
 }
 
 @end

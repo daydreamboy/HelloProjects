@@ -23,9 +23,19 @@
 #import "DrawCurveBezierPathViewController.h"
 
 // section3
-#import "ShapeLineBezierPathViewController.h"
 #import "ShapeRectBezierPathViewController.h"
 #import "ShapeCircleBezierPathViewController.h"
+#import "ShapePolygonBezierPathViewController.h"
+#import "ShapeSubPathBezierPathViewController.h"
+#import "ShapeOpenPathBezierPathViewController.h"
+#import "ShapeFillPathBezierPathViewController.h"
+#import "ShapeFillPatternImageBezierPathViewController.h"
+#import "ShapeFillRuleBezierPathViewController.h"
+#import "ShapeLineBezierPathViewController.h"
+#import "ShapeLineCapBezierPathViewController.h"
+#import "ShapeLineJoinBezierPathViewController.h"
+#import "ShapeLineStrokeBezierPathViewController.h"
+#import "ShapeLineStrokeStartEndBezierPathViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -67,9 +77,19 @@
     ];
     
     NSArray<NSDictionary *> *section3 = @[
-          @{ kTitle: @"Shape Line Bezier Path", kClass: [ShapeLineBezierPathViewController class] },
           @{ kTitle: @"Shape Rectangle Bezier Path", kClass: [ShapeRectBezierPathViewController class] },
           @{ kTitle: @"Shape Circle Bezier Path", kClass: [ShapeCircleBezierPathViewController class] },
+          @{ kTitle: @"Shape Polygon Bezier Path", kClass: [ShapePolygonBezierPathViewController class] },
+          @{ kTitle: @"Shape SubPath Bezier Path", kClass: [ShapeSubPathBezierPathViewController class] },
+          @{ kTitle: @"Shape OpenPath Bezier Path", kClass: [ShapeOpenPathBezierPathViewController class] },
+          @{ kTitle: @"Shape Fill Bezier Path", kClass: [ShapeFillPathBezierPathViewController class] },
+          @{ kTitle: @"Shape Fill Pattern Image Bezier Path", kClass: [ShapeFillPatternImageBezierPathViewController class] },
+          @{ kTitle: @"Shape Fill Rule Bezier Path", kClass: [ShapeFillRuleBezierPathViewController class] },
+          @{ kTitle: @"Shape Line Bezier Path", kClass: [ShapeLineBezierPathViewController class] },
+          @{ kTitle: @"Shape Line Cap", kClass: [ShapeLineCapBezierPathViewController class] },
+          @{ kTitle: @"Shape Line Join", kClass: [ShapeLineJoinBezierPathViewController class] },
+          @{ kTitle: @"Shape Line Stroke", kClass: [ShapeLineStrokeBezierPathViewController class] },
+          @{ kTitle: @"Shape Line Stroke Start & End", kClass: [ShapeLineStrokeStartEndBezierPathViewController class] },
     ];
     
     _sectionTitles = @[

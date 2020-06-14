@@ -35,6 +35,7 @@
         layer.lineWidth = 2.0;
         layer.fillColor = nil;
         layer.strokeColor = [UIColor redColor].CGColor;
+        //SHOW_LAYER_BORDER(layer);
         
         UIBezierPath *path = [UIBezierPath bezierPathWithRect:layer.bounds];
         layer.path = path.CGPath;

@@ -31,9 +31,10 @@
         layer.lineWidth = 2.0;
         layer.fillColor = nil;
         layer.strokeColor = [UIColor redColor].CGColor;
+        //SHOW_LAYER_BORDER(layer);
         
-        
-        CGPoint arcCenter = layer.position;
+        // Note: not use layer.position
+        CGPoint arcCenter = CGPointMake(layer.bounds.size.width / 2.0, layer.bounds.size.height / 2.0);
         CGFloat radius = layer.bounds.size.width / 2.0;
         CGFloat startAngle = 0;
         CGFloat endAngle = M_PI * 2;
