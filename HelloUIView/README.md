@@ -449,6 +449,7 @@ CAShapeLayer也是CALayer的子类。这里介绍CAShapeLayer的常用属性。
 | strokeColor     | nil                     | path的线条颜色                                               |                                                              |
 | strokeStart     | 0.0                     | stroke的百分比起始位置                                       | 如果path从头到尾是100%，则strokeStart指定起始点按照百分比算的位置。比如0.5，则起始点在path的中间。 |
 | strokeEnd       | 1.0                     | stroke的百分比结束位置                                       | 如果path从头到尾是100%，则strokeEnd指定结束点按照百分比算的位置。比如0.5，则结束点在path的中间。 |
+| path            | nil                     | CGPathRef类型。一般是UIBezierPath                            |                                                              |
 
 
 
@@ -471,6 +472,10 @@ miterLimit实际是一个阈值，理解它还需要如下图的两个概念，m
 
 
 
+#### b. path[^7]
+
+CAShapeLayer可以使用UIBezierPath对象自动画出矢量图片。这里不介绍UIBezierPath使用，参考HelloCoreGraphics工程。
+
 
 
 ## 4、关于WCViewTool
@@ -492,3 +497,4 @@ miterLimit实际是一个阈值，理解它还需要如下图的两个概念，m
 
 [^6]:https://wiki.esko.com/pages/viewpage.action?pageId=184729203
 
+[^7]:https://www.calayer.com/core-animation/2016/05/22/cashapelayer-in-depth.html
