@@ -25,6 +25,7 @@
 #import "GroupAnimationViewController.h"
 #import "ParticleFadeViewController.h"
 #import "Uberworks1ViewController.h"
+#import "ShrinkViewController.h"
 
 // section2
 #import "ShapeAnimateWithPathViewController.h"
@@ -71,6 +72,7 @@
           @{ kTitle: @"Group Animation", kClass: [GroupAnimationViewController class], },
           @{ kTitle: @"Particle Animation", kClass: [ParticleFadeViewController class], },
           @{ kTitle: @"Uberworks1", kClass: [Uberworks1ViewController class], },
+          @{ kTitle: @"Shrink", kClass: [ShrinkViewController class], },
     ];
     
     NSArray<NSDictionary *> *section2 = @[

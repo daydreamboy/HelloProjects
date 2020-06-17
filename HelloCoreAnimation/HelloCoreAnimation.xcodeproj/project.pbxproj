@@ -57,8 +57,11 @@
 		4F0F1DEB24964CFB0034AAE9 /* ShapeAnimateWithPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F1DEA24964CFB0034AAE9 /* ShapeAnimateWithPathViewController.m */; };
 		4F0F1DEF24964D450034AAE9 /* ShapeBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F1DEE24964D450034AAE9 /* ShapeBaseViewController.m */; };
 		4F0F1DF424967D520034AAE9 /* ShapeAnimateWithFillColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F1DF324967D520034AAE9 /* ShapeAnimateWithFillColorViewController.m */; };
+		4F1943B92499C1DB00CA74A8 /* ShapeAnimateWithLineDashPhaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1943B82499C1DB00CA74A8 /* ShapeAnimateWithLineDashPhaseViewController.m */; };
 		4F517B0D212D64ED008CE69F /* YWVideoProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F517B0B212D64ED008CE69F /* YWVideoProgressLayer.m */; };
 		4F517B10212D6617008CE69F /* WCPieProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F517B0F212D6617008CE69F /* WCPieProgressLayer.m */; };
+		4FE8C1E724972DB1000497F6 /* ShrinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8C1E624972DB1000497F6 /* ShrinkViewController.m */; };
+		4FE8C1EE249768A8000497F6 /* WCGenieAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8C1ED249768A8000497F6 /* WCGenieAnimation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,10 +156,16 @@
 		4F0F1DF124964D850034AAE9 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
 		4F0F1DF224967D520034AAE9 /* ShapeAnimateWithFillColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShapeAnimateWithFillColorViewController.h; sourceTree = "<group>"; };
 		4F0F1DF324967D520034AAE9 /* ShapeAnimateWithFillColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShapeAnimateWithFillColorViewController.m; sourceTree = "<group>"; };
+		4F1943B72499C1DB00CA74A8 /* ShapeAnimateWithLineDashPhaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShapeAnimateWithLineDashPhaseViewController.h; sourceTree = "<group>"; };
+		4F1943B82499C1DB00CA74A8 /* ShapeAnimateWithLineDashPhaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShapeAnimateWithLineDashPhaseViewController.m; sourceTree = "<group>"; };
 		4F517B0B212D64ED008CE69F /* YWVideoProgressLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YWVideoProgressLayer.m; sourceTree = "<group>"; };
 		4F517B0C212D64ED008CE69F /* YWVideoProgressLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWVideoProgressLayer.h; sourceTree = "<group>"; };
 		4F517B0E212D6617008CE69F /* WCPieProgressLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCPieProgressLayer.h; sourceTree = "<group>"; };
 		4F517B0F212D6617008CE69F /* WCPieProgressLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCPieProgressLayer.m; sourceTree = "<group>"; };
+		4FE8C1E524972DB1000497F6 /* ShrinkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShrinkViewController.h; sourceTree = "<group>"; };
+		4FE8C1E624972DB1000497F6 /* ShrinkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShrinkViewController.m; sourceTree = "<group>"; };
+		4FE8C1EC249768A8000497F6 /* WCGenieAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCGenieAnimation.h; sourceTree = "<group>"; };
+		4FE8C1ED249768A8000497F6 /* WCGenieAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCGenieAnimation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +216,7 @@
 		2B718B431A739C5E00C0BF2A = {
 			isa = PBXGroup;
 			children = (
+				4FE8C1EB249767A2000497F6 /* WCCoreAnimationTool */,
 				2B718B4E1A739C5E00C0BF2A /* HelloCoreAnimation */,
 				2B718B681A739C5E00C0BF2A /* HelloCoreAnimationTests */,
 				2B718B4D1A739C5E00C0BF2A /* Products */,
@@ -275,6 +285,8 @@
 				2B718B7E1A73BA6F00C0BF2A /* FadeViewController.m */,
 				2B718B7F1A73BA6F00C0BF2A /* ScaleViewController.h */,
 				2B718B801A73BA6F00C0BF2A /* ScaleViewController.m */,
+				4FE8C1E524972DB1000497F6 /* ShrinkViewController.h */,
+				4FE8C1E624972DB1000497F6 /* ShrinkViewController.m */,
 				2B7213E71A845D7700DB197D /* ExpandViewController.h */,
 				2B7213E81A845D7700DB197D /* ExpandViewController.m */,
 				2B8346721AC16CEE00B15364 /* FadeWithLabelViewController.h */,
@@ -357,6 +369,8 @@
 				4F0F1DEA24964CFB0034AAE9 /* ShapeAnimateWithPathViewController.m */,
 				4F0F1DF224967D520034AAE9 /* ShapeAnimateWithFillColorViewController.h */,
 				4F0F1DF324967D520034AAE9 /* ShapeAnimateWithFillColorViewController.m */,
+				4F1943B72499C1DB00CA74A8 /* ShapeAnimateWithLineDashPhaseViewController.h */,
+				4F1943B82499C1DB00CA74A8 /* ShapeAnimateWithLineDashPhaseViewController.m */,
 			);
 			path = CAShapeLayer;
 			sourceTree = "<group>";
@@ -387,6 +401,15 @@
 				4F517B0F212D6617008CE69F /* WCPieProgressLayer.m */,
 			);
 			path = Layers;
+			sourceTree = "<group>";
+		};
+		4FE8C1EB249767A2000497F6 /* WCCoreAnimationTool */ = {
+			isa = PBXGroup;
+			children = (
+				4FE8C1EC249768A8000497F6 /* WCGenieAnimation.h */,
+				4FE8C1ED249768A8000497F6 /* WCGenieAnimation.m */,
+			);
+			path = WCCoreAnimationTool;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -511,6 +534,7 @@
 				4F0F1DEF24964D450034AAE9 /* ShapeBaseViewController.m in Sources */,
 				2BB156171AC8EBE100360434 /* RotationViewController.m in Sources */,
 				4F0F1DEB24964CFB0034AAE9 /* ShapeAnimateWithPathViewController.m in Sources */,
+				4FE8C1EE249768A8000497F6 /* WCGenieAnimation.m in Sources */,
 				2BC3E1BB1ACC4AA500DA8BB7 /* BorderWidthViewController.m in Sources */,
 				2B718B551A739C5E00C0BF2A /* AppDelegate.m in Sources */,
 				2BC3E1C71ACC502E00DA8BB7 /* CornerRadiusViewController.m in Sources */,
@@ -518,6 +542,7 @@
 				2B718B771A739CD400C0BF2A /* RootViewController.m in Sources */,
 				2B8346741AC16CEE00B15364 /* FadeWithLabelViewController.m in Sources */,
 				2BFB1E7F1DBD0A9E00D4AE6B /* Uberworks1ViewController.m in Sources */,
+				4F1943B92499C1DB00CA74A8 /* ShapeAnimateWithLineDashPhaseViewController.m in Sources */,
 				2BC3E1C11ACC4E7800DA8BB7 /* BorderColorViewController.m in Sources */,
 				2BC3E1BE1ACC4D3400DA8BB7 /* BackgroundColorViewController.m in Sources */,
 				2BBA30111AD00424006BA44C /* BallViewController.m in Sources */,
@@ -527,6 +552,7 @@
 				2BC3E1C41ACC4F3D00DA8BB7 /* ContentsViewController.m in Sources */,
 				2B718B521A739C5E00C0BF2A /* main.m in Sources */,
 				2BB6C9641D08230500D470A0 /* GroupAnimationViewController.m in Sources */,
+				4FE8C1E724972DB1000497F6 /* ShrinkViewController.m in Sources */,
 				2B3CEB041D6221AD0001C5FB /* ParticleFadeViewController.m in Sources */,
 				4F517B0D212D64ED008CE69F /* YWVideoProgressLayer.m in Sources */,
 				2B7213E91A845D7700DB197D /* ExpandViewController.m in Sources */,
