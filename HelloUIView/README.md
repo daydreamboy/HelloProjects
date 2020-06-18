@@ -442,14 +442,18 @@ CAShapeLayer也是CALayer的子类。这里介绍CAShapeLayer的常用属性。
 | fillColor       | [UIColor black].CGColor | path的填充色                                                 | 如果path是直线，fillColor无效果                              |
 | fillRule        |                         |                                                              |                                                              |
 | lineCap         | kCALineCapButt          | 决定线条末端的形状，如下<br/><img src="./images/CAShapeLayerLineCap.png" alt="CAShapeLayerLineCap" style="zoom:100%;" /> | 如果path是closed，不存在线条的末端，则设置lineCap是无效的    |
-| lineDashPattern | nil                     | 决定线条的dash模式                                           | 数组的按照[(painted segment length), (unpainted segment length), ...]顺序依次决定实线和虚线的长度，当数组匹配完成后，再重新从头开始匹配。（备注：如果是nil，则一直是实线） |
-| lineDashPhase   | 0                       | lineDashPattern起始的偏移量                                  | 举个例子，lineDashPattern = [10, 5, 5, 5], lineDashPhase = 10，则起始匹配按照5-5-5-10-5-5-5-...，但不影响实线-虚线-实线-虚线-...的顺序。如果lineDashPhase = 2，则起始匹配按照8-5-5-5-10-5-5-5-... |
+| lineDashPattern | nil                     | 决定线条的dash模式                                           | 数组的按照[(painted segment length), (unpainted segment length), ...]顺序依次决定实线和虚线的长度，当数组匹配完成后，再重新从头开始匹配。（备注：如果是nil，则一直是实线）。注意：如果数组，只有一个元素，则按照实线-虚线-……的顺序，同时实线和虚线的长度是一样的。 |
+| lineDashPhase   | 0                       | lineDashPattern起始的偏移量                                  | 举个例子，lineDashPattern = [10, 5, 5, 5], lineDashPhase = 10，则起始匹配按照5-5-5-10-5-5-5-...，但不影响实线-虚线-实线-虚线-...的顺序，即5(虚)-5(实)-5(虚)-10(实)-5(虚)-...。如果lineDashPhase = 2，则起始匹配按照8(实)-5(虚)-5(实)-5(虚)-10(实)-5(虚)-5(实)-5(虚)-... |
 | lineJoin        | kCALineJoinMiter        | 决定两个线条交接的形状，如下<img src="./images/CAShapeLayerLineJoin.png" alt="CAShapeLayerLineJoin" style="zoom:100%;" /> | kCALineJoinMiter<br/>kCALineJoinRound<br/>kCALineJoinBevel   |
 | miterLimit      | 10                      | 当设置kCALineJoinMiter时，决定是否变成kCALineJoinBevel       | 当lineJoin设置kCALineJoinMiter时，miterLimit才生效。具体见“miterLimit”一节。 |
 | strokeColor     | nil                     | path的线条颜色                                               |                                                              |
 | strokeStart     | 0.0                     | stroke的百分比起始位置                                       | 如果path从头到尾是100%，则strokeStart指定起始点按照百分比算的位置。比如0.5，则起始点在path的中间。 |
 | strokeEnd       | 1.0                     | stroke的百分比结束位置                                       | 如果path从头到尾是100%，则strokeEnd指定结束点按照百分比算的位置。比如0.5，则结束点在path的中间。 |
 | path            | nil                     | CGPathRef类型。一般是UIBezierPath                            |                                                              |
+
+
+
+> 示例代码，见HelloCoreGraphics工程
 
 
 
