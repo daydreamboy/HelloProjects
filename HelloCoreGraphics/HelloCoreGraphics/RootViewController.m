@@ -32,6 +32,7 @@
 #import "ShapeFillPatternImageBezierPathViewController.h"
 #import "ShapeFillRuleBezierPathViewController.h"
 #import "ShapeLineBezierPathViewController.h"
+#import "ShapeLineDashPatternBezierPathViewController.h"
 #import "ShapeLineCapBezierPathViewController.h"
 #import "ShapeLineJoinBezierPathViewController.h"
 #import "ShapeLineStrokeBezierPathViewController.h"
@@ -86,6 +87,7 @@
           @{ kTitle: @"Shape Fill Pattern Image Bezier Path", kClass: [ShapeFillPatternImageBezierPathViewController class] },
           @{ kTitle: @"Shape Fill Rule Bezier Path", kClass: [ShapeFillRuleBezierPathViewController class] },
           @{ kTitle: @"Shape Line Bezier Path", kClass: [ShapeLineBezierPathViewController class] },
+          @{ kTitle: @"Shape Line Dash Pattern", kClass: [ShapeLineDashPatternBezierPathViewController class] },
           @{ kTitle: @"Shape Line Cap", kClass: [ShapeLineCapBezierPathViewController class] },
           @{ kTitle: @"Shape Line Join", kClass: [ShapeLineJoinBezierPathViewController class] },
           @{ kTitle: @"Shape Line Stroke", kClass: [ShapeLineStrokeBezierPathViewController class] },

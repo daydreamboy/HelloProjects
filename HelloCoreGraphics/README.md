@@ -161,6 +161,10 @@ https://www.calayer.com/core-animation/2017/12/25/cashapelayer-in-depth-part-ii.
 
 
 
+https://www.informit.com/articles/article.aspx?p=2149190&seqNum=13
+
+https://www.ramshandilya.com/blog/draw-smooth-curves/
+
 
 
 

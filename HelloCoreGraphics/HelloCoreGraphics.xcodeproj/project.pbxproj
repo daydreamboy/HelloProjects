@@ -31,6 +31,7 @@
 		4F0F1DE124961FE10034AAE9 /* ShapeLineJoinBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F1DE024961FE10034AAE9 /* ShapeLineJoinBezierPathViewController.m */; };
 		4F0F1DE4249622EB0034AAE9 /* ShapeLineStrokeBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F1DE3249622EB0034AAE9 /* ShapeLineStrokeBezierPathViewController.m */; };
 		4F0F1DE7249624970034AAE9 /* ShapeLineStrokeStartEndBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F1DE6249624970034AAE9 /* ShapeLineStrokeStartEndBezierPathViewController.m */; };
+		4F1943BC2499C65D00CA74A8 /* ShapeLineDashPatternBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1943BB2499C65D00CA74A8 /* ShapeLineDashPatternBezierPathViewController.m */; };
 		4F1DF01F2484DCF40091F205 /* DrawLineBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DF01E2484DCF40091F205 /* DrawLineBezierPathViewController.m */; };
 		4F1DF0292484E9070091F205 /* QuartzLineView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DF0282484E9070091F205 /* QuartzLineView.m */; };
 		4F1DF02C2484E9200091F205 /* QuartzCapJoinWidthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DF02B2484E9200091F205 /* QuartzCapJoinWidthView.m */; };
@@ -111,6 +112,8 @@
 		4F0F1DE3249622EB0034AAE9 /* ShapeLineStrokeBezierPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShapeLineStrokeBezierPathViewController.m; sourceTree = "<group>"; };
 		4F0F1DE5249624970034AAE9 /* ShapeLineStrokeStartEndBezierPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShapeLineStrokeStartEndBezierPathViewController.h; sourceTree = "<group>"; };
 		4F0F1DE6249624970034AAE9 /* ShapeLineStrokeStartEndBezierPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShapeLineStrokeStartEndBezierPathViewController.m; sourceTree = "<group>"; };
+		4F1943BA2499C65D00CA74A8 /* ShapeLineDashPatternBezierPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShapeLineDashPatternBezierPathViewController.h; sourceTree = "<group>"; };
+		4F1943BB2499C65D00CA74A8 /* ShapeLineDashPatternBezierPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShapeLineDashPatternBezierPathViewController.m; sourceTree = "<group>"; };
 		4F1DF01D2484DCF40091F205 /* DrawLineBezierPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawLineBezierPathViewController.h; sourceTree = "<group>"; };
 		4F1DF01E2484DCF40091F205 /* DrawLineBezierPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawLineBezierPathViewController.m; sourceTree = "<group>"; };
 		4F1DF0272484E9070091F205 /* QuartzLineView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = QuartzLineView.h; sourceTree = "<group>"; };
@@ -304,6 +307,8 @@
 				4F0F1DDA24961B950034AAE9 /* ShapeFillRuleBezierPathViewController.m */,
 				4F1DF0312484FA0F0091F205 /* ShapeLineBezierPathViewController.h */,
 				4F1DF0322484FA0F0091F205 /* ShapeLineBezierPathViewController.m */,
+				4F1943BA2499C65D00CA74A8 /* ShapeLineDashPatternBezierPathViewController.h */,
+				4F1943BB2499C65D00CA74A8 /* ShapeLineDashPatternBezierPathViewController.m */,
 				4F0F1DDC24961F490034AAE9 /* ShapeLineCapBezierPathViewController.h */,
 				4F0F1DDD24961F490034AAE9 /* ShapeLineCapBezierPathViewController.m */,
 				4F0F1DDF24961FE10034AAE9 /* ShapeLineJoinBezierPathViewController.h */,
@@ -503,6 +508,7 @@
 				4F0F1DCE249617F50034AAE9 /* ShapeFillPatternImageBezierPathViewController.m in Sources */,
 				4F3525FA20077D6200891B09 /* ExamplesOfWAttachedBubbleViewViewController.m in Sources */,
 				4FF3EAE8247D180F00227B3C /* DrawArcBezierPathViewController.m in Sources */,
+				4F1943BC2499C65D00CA74A8 /* ShapeLineDashPatternBezierPathViewController.m in Sources */,
 				2B0FD6091FC99E1E0022E59D /* CreatePDFGraphicsContext1ViewController.m in Sources */,
 				4F35263A2008B9EB00891B09 /* AttachedBubbleWithRightArrowViewController.m in Sources */,
 				4F0F1DC524960BA90034AAE9 /* ShapeSubPathBezierPathViewController.m in Sources */,
