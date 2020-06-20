@@ -45,6 +45,8 @@ typedef WCGenieAnimationSegment WCGenieAnimationCurve;
 #define isEdgeMoveVertically(d) (!((d) & 0x01))
 
 /**
+ Check the edge is moving `negative`
+ The `negative` means ?
  
  @discussion the WCGenieAnimationRectEdge should follow the rule:
  top edge: 00 & 10 = 00 ->  NO
@@ -85,6 +87,29 @@ typedef WCGenieAnimationSegment WCGenieAnimationCurve;
 // or width of a single vertical slice
 #define kSliceSize 10.0
 
+// assumed animation's FPS
+#define kFPS 60.0
+
+// [Original Reference]
+/* Animation parameters
+ *
+ * Genie effect consists of two such subanimations: the curves subanimation and the slide subanimation.
+ * There former one moves Bezier curves outlining the effect's shape, while the latter one slides
+ * the subject view towards/from the destination/start rect.
+ 
+ * These parameters describe the percentages of progress at which the subanimations should start/end.
+ * These values must be in range [0, 1]!
+ *
+ * Example:
+ * Assuming that duration of animation is set to 2 seconds then the curves subanimation will start
+ * at 0.0 and will end at 0.8 seconds while the slide subanimation will start at 0.6 seconds and
+ * will end at 2.0 seconds.
+ */
+#define kCurvesAnimationStart 0.0
+#define kCurvesAnimationEnd   0.4
+#define kSlideAnimationStart  0.3
+#define kSlideAnimationEnd    1.0
+
 #pragma mark - Utility Functions
 
 static inline WCGenieAnimationPoint WCGenieAnimationPointMake(double x, double y)
@@ -97,6 +122,13 @@ static inline WCGenieAnimationSegment WCGenieAnimationSegmentMake(WCGenieAnimati
     WCGenieAnimationSegment s; s.p1 = p1; s.p2 = p2; return s;
 }
 
+/**
+ Get segement for the specific edge, which used for transition
+ 
+ @param edge the edge
+ @param rect the rect
+ @return the segment
+ */
 static WCGenieAnimationSegment segmentForTransition(WCGenieAnimationRectEdge edge, CGRect rect)
 {
     // Note: segment direction follow the clockwise
@@ -111,6 +143,18 @@ static WCGenieAnimationSegment segmentForTransition(WCGenieAnimationRectEdge edg
         case WCGenieAnimationRectEdgeLeft:
             return WCGenieAnimationSegmentMake(WCGenieAnimationPointMake(CGRectGetMinX(rect), CGRectGetMaxY(rect)), WCGenieAnimationPointMake(CGRectGetMinX(rect), CGRectGetMinY(rect)));
     }
+}
+
+static inline NSString * edgeDescription(WCGenieAnimationRectEdge edge)
+{
+    NSString *rectEdge[] = {
+        [WCGenieAnimationRectEdgeBottom] = @"bottom",
+        [WCGenieAnimationRectEdgeTop] = @"top",
+        [WCGenieAnimationRectEdgeRight] = @"right",
+        [WCGenieAnimationRectEdgeLeft] = @"left",
+    };
+    
+    return rectEdge[edge];
 }
 
 #pragma mark -
@@ -162,8 +206,44 @@ static WCGenieAnimationSegment segmentForTransition(WCGenieAnimationRectEdge edg
     CGFloat totalSize = [[slices valueForKeyPath:sumKeyPath] floatValue];
     
     CGFloat sign = isEdgeMoveNegative(edge) ? -1.0 : 1.0;
+    if (sign * (fromSegment.p1.v[movementAxis] - toSegment.p1.v[movementAxis]) > 0.0) {
+        NSLog(@"Genie Effect ERROR: The distance between %@ edge of animated view and %@ edge of %@ rect is incorrect. Animation will not be performed!", edgeDescription(edge), edgeDescription(edge), reverse ? @"start" : @"destination");
+        return NO;
+    }
+    else if (sign * (fromSegment.p1.v[movementAxis] + sign * totalSize - toSegment.p1.v[movementAxis]) > 0.0) {
+        NSLog(@"Genie Effect Warning: The %@ edge of animated view overlaps %@ edge of %@ rect. Glitches may occur.",edgeDescription((edge + 2) % 4), edgeDescription(edge), reverse ? @"start" : @"destination");
+    }
     
+    UIView *containerView = [[UIView alloc] initWithFrame:view.superview.bounds];
+    containerView.clipsToBounds = view.superview.clipsToBounds;
+    containerView.backgroundColor = [UIColor clearColor];
+    [view.superview insertSubview:containerView belowSubview:view];
     
+    NSMutableArray *transforms = [NSMutableArray arrayWithCapacity:slices.count];
+    
+    for (CALayer *layer in slices) {
+        [containerView.layer addSublayer:layer];
+        
+        // With 'Renders with edge antialiasing' = YES in info.plist the slices are
+        // rendered with a border, this disables this making the UIView appear as supposed
+        layer.edgeAntialiasingMask = 0;
+        
+        [transforms addObject:[NSMutableArray array]];
+    }
+    
+    BOOL previousHiddenState = view.hidden;
+    view.hidden = YES; // hide self throught animation, slices will be shown instead
+    
+    // Animate frames
+    
+    NSInteger totalIter = duration * kFPS;
+    double tSignShift = reverse ? -1.0 : 1.0;
+    for (NSInteger i = 0; i < totalIter; ++i) {
+        double progress = ((double)i) / ((double)totalIter - 1.0);
+        double t = tSignShift * (progress - 0.5) + 0.5;
+        
+        
+    }
     
     return YES;
 }

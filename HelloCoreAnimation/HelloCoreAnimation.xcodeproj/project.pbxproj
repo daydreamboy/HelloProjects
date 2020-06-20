@@ -60,6 +60,10 @@
 		4F1943B92499C1DB00CA74A8 /* ShapeAnimateWithLineDashPhaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1943B82499C1DB00CA74A8 /* ShapeAnimateWithLineDashPhaseViewController.m */; };
 		4F517B0D212D64ED008CE69F /* YWVideoProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F517B0B212D64ED008CE69F /* YWVideoProgressLayer.m */; };
 		4F517B10212D6617008CE69F /* WCPieProgressLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F517B0F212D6617008CE69F /* WCPieProgressLayer.m */; };
+		4F7F208A249E4A3300EE6E0F /* BasicAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F2089249E4A3300EE6E0F /* BasicAnimationViewController.m */; };
+		4F7F208D249E4A5000EE6E0F /* AnimationBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F208C249E4A5000EE6E0F /* AnimationBaseViewController.m */; };
+		4F7F2091249E4CB200EE6E0F /* AnimationDemoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F2090249E4CB200EE6E0F /* AnimationDemoView.m */; };
+		4F7F2096249E525300EE6E0F /* LayerAnimateWithPositionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F2095249E525300EE6E0F /* LayerAnimateWithPositionController.m */; };
 		4FE8C1E724972DB1000497F6 /* ShrinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8C1E624972DB1000497F6 /* ShrinkViewController.m */; };
 		4FE8C1EE249768A8000497F6 /* WCGenieAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8C1ED249768A8000497F6 /* WCGenieAnimation.m */; };
 /* End PBXBuildFile section */
@@ -162,6 +166,14 @@
 		4F517B0C212D64ED008CE69F /* YWVideoProgressLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YWVideoProgressLayer.h; sourceTree = "<group>"; };
 		4F517B0E212D6617008CE69F /* WCPieProgressLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCPieProgressLayer.h; sourceTree = "<group>"; };
 		4F517B0F212D6617008CE69F /* WCPieProgressLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCPieProgressLayer.m; sourceTree = "<group>"; };
+		4F7F2088249E4A3300EE6E0F /* BasicAnimationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BasicAnimationViewController.h; sourceTree = "<group>"; };
+		4F7F2089249E4A3300EE6E0F /* BasicAnimationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BasicAnimationViewController.m; sourceTree = "<group>"; };
+		4F7F208B249E4A5000EE6E0F /* AnimationBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationBaseViewController.h; sourceTree = "<group>"; };
+		4F7F208C249E4A5000EE6E0F /* AnimationBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationBaseViewController.m; sourceTree = "<group>"; };
+		4F7F208F249E4CB200EE6E0F /* AnimationDemoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationDemoView.h; sourceTree = "<group>"; };
+		4F7F2090249E4CB200EE6E0F /* AnimationDemoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationDemoView.m; sourceTree = "<group>"; };
+		4F7F2094249E525300EE6E0F /* LayerAnimateWithPositionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerAnimateWithPositionController.h; sourceTree = "<group>"; };
+		4F7F2095249E525300EE6E0F /* LayerAnimateWithPositionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LayerAnimateWithPositionController.m; sourceTree = "<group>"; };
 		4FE8C1E524972DB1000497F6 /* ShrinkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShrinkViewController.h; sourceTree = "<group>"; };
 		4FE8C1E624972DB1000497F6 /* ShrinkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShrinkViewController.m; sourceTree = "<group>"; };
 		4FE8C1EC249768A8000497F6 /* WCGenieAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCGenieAnimation.h; sourceTree = "<group>"; };
@@ -279,6 +291,10 @@
 			isa = PBXGroup;
 			children = (
 				4F0F1DF024964D710034AAE9 /* Tools */,
+				4F7F2092249E4CB700EE6E0F /* View */,
+				4F7F208E249E4A5300EE6E0F /* Base */,
+				4F7F2093249E51C300EE6E0F /* CALayer */,
+				4F7F2087249E483100EE6E0F /* CABasicAnimation */,
 				4F0F1DE8249648270034AAE9 /* CAShapeLayer */,
 				4F517B0A212D64CB008CE69F /* Layers */,
 				2B718B7D1A73BA6F00C0BF2A /* FadeViewController.h */,
@@ -401,6 +417,42 @@
 				4F517B0F212D6617008CE69F /* WCPieProgressLayer.m */,
 			);
 			path = Layers;
+			sourceTree = "<group>";
+		};
+		4F7F2087249E483100EE6E0F /* CABasicAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				4F7F2088249E4A3300EE6E0F /* BasicAnimationViewController.h */,
+				4F7F2089249E4A3300EE6E0F /* BasicAnimationViewController.m */,
+			);
+			path = CABasicAnimation;
+			sourceTree = "<group>";
+		};
+		4F7F208E249E4A5300EE6E0F /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				4F7F208B249E4A5000EE6E0F /* AnimationBaseViewController.h */,
+				4F7F208C249E4A5000EE6E0F /* AnimationBaseViewController.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		4F7F2092249E4CB700EE6E0F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4F7F208F249E4CB200EE6E0F /* AnimationDemoView.h */,
+				4F7F2090249E4CB200EE6E0F /* AnimationDemoView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		4F7F2093249E51C300EE6E0F /* CALayer */ = {
+			isa = PBXGroup;
+			children = (
+				4F7F2094249E525300EE6E0F /* LayerAnimateWithPositionController.h */,
+				4F7F2095249E525300EE6E0F /* LayerAnimateWithPositionController.m */,
+			);
+			path = CALayer;
 			sourceTree = "<group>";
 		};
 		4FE8C1EB249767A2000497F6 /* WCCoreAnimationTool */ = {
@@ -533,6 +585,7 @@
 			files = (
 				4F0F1DEF24964D450034AAE9 /* ShapeBaseViewController.m in Sources */,
 				2BB156171AC8EBE100360434 /* RotationViewController.m in Sources */,
+				4F7F2096249E525300EE6E0F /* LayerAnimateWithPositionController.m in Sources */,
 				4F0F1DEB24964CFB0034AAE9 /* ShapeAnimateWithPathViewController.m in Sources */,
 				4FE8C1EE249768A8000497F6 /* WCGenieAnimation.m in Sources */,
 				2BC3E1BB1ACC4AA500DA8BB7 /* BorderWidthViewController.m in Sources */,
@@ -543,6 +596,7 @@
 				2B8346741AC16CEE00B15364 /* FadeWithLabelViewController.m in Sources */,
 				2BFB1E7F1DBD0A9E00D4AE6B /* Uberworks1ViewController.m in Sources */,
 				4F1943B92499C1DB00CA74A8 /* ShapeAnimateWithLineDashPhaseViewController.m in Sources */,
+				4F7F2091249E4CB200EE6E0F /* AnimationDemoView.m in Sources */,
 				2BC3E1C11ACC4E7800DA8BB7 /* BorderColorViewController.m in Sources */,
 				2BC3E1BE1ACC4D3400DA8BB7 /* BackgroundColorViewController.m in Sources */,
 				2BBA30111AD00424006BA44C /* BallViewController.m in Sources */,
@@ -551,12 +605,14 @@
 				2B718B811A73BA6F00C0BF2A /* FadeViewController.m in Sources */,
 				2BC3E1C41ACC4F3D00DA8BB7 /* ContentsViewController.m in Sources */,
 				2B718B521A739C5E00C0BF2A /* main.m in Sources */,
+				4F7F208D249E4A5000EE6E0F /* AnimationBaseViewController.m in Sources */,
 				2BB6C9641D08230500D470A0 /* GroupAnimationViewController.m in Sources */,
 				4FE8C1E724972DB1000497F6 /* ShrinkViewController.m in Sources */,
 				2B3CEB041D6221AD0001C5FB /* ParticleFadeViewController.m in Sources */,
 				4F517B0D212D64ED008CE69F /* YWVideoProgressLayer.m in Sources */,
 				2B7213E91A845D7700DB197D /* ExpandViewController.m in Sources */,
 				2B718B821A73BA6F00C0BF2A /* ScaleViewController.m in Sources */,
+				4F7F208A249E4A3300EE6E0F /* BasicAnimationViewController.m in Sources */,
 				2B8C2A271ACD93D70095E1BE /* CardViewControler.m in Sources */,
 				2BE50B901CFEF8AC0022C1A2 /* FlipImageViewViewController.m in Sources */,
 				4F0F1DF424967D520034AAE9 /* ShapeAnimateWithFillColorViewController.m in Sources */,

@@ -27,9 +27,15 @@
 #import "Uberworks1ViewController.h"
 #import "ShrinkViewController.h"
 
-// section2
+// secion2
+#import "LayerAnimateWithPositionController.h"
+
+// section3
 #import "ShapeAnimateWithPathViewController.h"
 #import "ShapeAnimateWithFillColorViewController.h"
+
+// section4
+#import "BasicAnimationViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -76,19 +82,31 @@
     ];
     
     NSArray<NSDictionary *> *section2 = @[
+          @{ kTitle: @"Position", kClass: [LayerAnimateWithPositionController class] },
+    ];
+    
+    NSArray<NSDictionary *> *section3 = @[
           @{ kTitle: @"Path", kClass: [ShapeAnimateWithPathViewController class] },
           @{ kTitle: @"Fill Color", kClass: [ShapeAnimateWithFillColorViewController class] },
 //          @{ kTitle: @"Draw Curve Bezier Path", kClass: [DrawCurveBezierPathViewController class] },
     ];
     
+    NSArray<NSDictionary *> *section4 = @[
+          @{ kTitle: @"Basic", kClass: [BasicAnimationViewController class] },
+    ];
+    
     _sectionTitles = @[
         @"UIView Animation",
+        @"CALayer Animation",
         @"CAShapeLayer Animation",
+        @"CABasicAnimation Animation",
     ];
     
     _classes = @[
          section1,
          section2,
+         section3,
+         section4,
     ];
 }
 
