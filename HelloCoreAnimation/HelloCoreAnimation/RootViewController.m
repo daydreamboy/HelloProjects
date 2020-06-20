@@ -37,6 +37,9 @@
 // section4
 #import "BasicAnimationViewController.h"
 
+// section5
+#import "KeyframeAnimationViewController.h"
+
 #define kTitle @"Title"
 #define kClass @"Class"
 
@@ -95,11 +98,16 @@
           @{ kTitle: @"Basic", kClass: [BasicAnimationViewController class] },
     ];
     
+    NSArray<NSDictionary *> *section5 = @[
+          @{ kTitle: @"Keyframe", kClass: [KeyframeAnimationViewController class] },
+    ];
+
     _sectionTitles = @[
         @"UIView Animation",
         @"CALayer Animation",
         @"CAShapeLayer Animation",
         @"CABasicAnimation Animation",
+        @"CAKeyframeAnimation Animation",
     ];
     
     _classes = @[
@@ -107,6 +115,7 @@
          section2,
          section3,
          section4,
+         section5,
     ];
 }
 

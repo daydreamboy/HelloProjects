@@ -149,6 +149,8 @@ CABasicAnimation如其命名，是一个基础的动画类，也比较简单。�
 | toValue   | 动画结束状态的值                                  |      |
 | byValue   | 动画的增量，即动画结束状态的值 - 动画开始状态的值 |      |
 
+关于上面3个属性的组合设置，参考[官方文档](https://developer.apple.com/documentation/quartzcore/cabasicanimation#//apple_ref/doc/uid/TP40004496-CH1-SW4)。
+
 
 
 ### （1）配置CABasicAnimation
@@ -226,6 +228,50 @@ animation.removedOnCompletion = NO;
 
 
 对于上面两种方式，objc.io[^1]推荐使用第一种方式，因为第二种方式有一定的性能开销。
+
+
+
+## 3、CAKeyframeAnimation
+
+​        和CABasicAnimation相比，CAKeyframeAnimation提供多于两种状态（开始状态、结束状态）的设置，可以设置任意多的中间状态。CAKeyframeAnimation最常用的两个属性是values和keyTimes。这两个属性都是数组，而且两者是一一对应的，元素个数是相同的。
+
+举个简单例子，如下
+
+```objective-c
+CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
+animation.keyPath = @"position.x";
+animation.values = @[ @0, @10, @-10, @10, @0 ];
+animation.keyTimes = @[ @0, @(1 / 6.0), @(3 / 6.0), @(5 / 6.0), @1 ];
+animation.duration = 0.4;
+
+animation.additive = YES;
+
+[animatedView.layer addAnimation:animation forKey:@"shake"];
+```
+
+* additive
+
+additive是CAPropertyAnimation的属性，默认是NO。如果设置为YES，则values中的值加到初始值上，得到动画需要的值。例如上面values，渲染树上position.x的值变化，如下
+
+values值：0 > 10 > -10 > 10 > 0
+
+当前值：0 > 10 > 0 > 10 > 0
+
+
+
+CAKeyframeAnimation的属性，介绍如下
+
+| 属性名           | 作用                                                         | 说明       |
+| ---------------- | ------------------------------------------------------------ | ---------- |
+| values           | 多个动画状态值。元素类型是NSNumber/NSValue/id，当需要设置CoreGraphics数据类型，例如CGColorRef要转成id类型 | 当calculationMode设置非kCAAnimationDiscrete时，values之间的值采用interpolation方式 |
+| path             | 当values不能描述path时，可以设置path。如果path不为nil，优先使用path | TODO |
+| keyTimes         | TODO |            |
+| timingFunctions  | TODO |            |
+| calculationMode  | TODO |            |
+| rotationMode     | TODO |            |
+| tensionValues    | TODO |            |
+| continuityValues | TODO |            |
+| biasValues       | TODO |            |
 
 
 

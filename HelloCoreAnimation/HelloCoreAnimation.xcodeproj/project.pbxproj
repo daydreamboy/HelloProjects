@@ -64,6 +64,7 @@
 		4F7F208D249E4A5000EE6E0F /* AnimationBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F208C249E4A5000EE6E0F /* AnimationBaseViewController.m */; };
 		4F7F2091249E4CB200EE6E0F /* AnimationDemoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F2090249E4CB200EE6E0F /* AnimationDemoView.m */; };
 		4F7F2096249E525300EE6E0F /* LayerAnimateWithPositionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F2095249E525300EE6E0F /* LayerAnimateWithPositionController.m */; };
+		4F7F209A249E689C00EE6E0F /* KeyframeAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F2099249E689C00EE6E0F /* KeyframeAnimationViewController.m */; };
 		4FE8C1E724972DB1000497F6 /* ShrinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8C1E624972DB1000497F6 /* ShrinkViewController.m */; };
 		4FE8C1EE249768A8000497F6 /* WCGenieAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8C1ED249768A8000497F6 /* WCGenieAnimation.m */; };
 /* End PBXBuildFile section */
@@ -174,6 +175,8 @@
 		4F7F2090249E4CB200EE6E0F /* AnimationDemoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationDemoView.m; sourceTree = "<group>"; };
 		4F7F2094249E525300EE6E0F /* LayerAnimateWithPositionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerAnimateWithPositionController.h; sourceTree = "<group>"; };
 		4F7F2095249E525300EE6E0F /* LayerAnimateWithPositionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LayerAnimateWithPositionController.m; sourceTree = "<group>"; };
+		4F7F2098249E689C00EE6E0F /* KeyframeAnimationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyframeAnimationViewController.h; sourceTree = "<group>"; };
+		4F7F2099249E689C00EE6E0F /* KeyframeAnimationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyframeAnimationViewController.m; sourceTree = "<group>"; };
 		4FE8C1E524972DB1000497F6 /* ShrinkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShrinkViewController.h; sourceTree = "<group>"; };
 		4FE8C1E624972DB1000497F6 /* ShrinkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShrinkViewController.m; sourceTree = "<group>"; };
 		4FE8C1EC249768A8000497F6 /* WCGenieAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCGenieAnimation.h; sourceTree = "<group>"; };
@@ -290,6 +293,7 @@
 		2B718B7C1A73BA6F00C0BF2A /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F7F2097249E681B00EE6E0F /* CAKeyframeAnimation */,
 				4F0F1DF024964D710034AAE9 /* Tools */,
 				4F7F2092249E4CB700EE6E0F /* View */,
 				4F7F208E249E4A5300EE6E0F /* Base */,
@@ -455,6 +459,15 @@
 			path = CALayer;
 			sourceTree = "<group>";
 		};
+		4F7F2097249E681B00EE6E0F /* CAKeyframeAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				4F7F2098249E689C00EE6E0F /* KeyframeAnimationViewController.h */,
+				4F7F2099249E689C00EE6E0F /* KeyframeAnimationViewController.m */,
+			);
+			path = CAKeyframeAnimation;
+			sourceTree = "<group>";
+		};
 		4FE8C1EB249767A2000497F6 /* WCCoreAnimationTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -592,6 +605,7 @@
 				2B718B551A739C5E00C0BF2A /* AppDelegate.m in Sources */,
 				2BC3E1C71ACC502E00DA8BB7 /* CornerRadiusViewController.m in Sources */,
 				2B8346711AC16C8100B15364 /* DrawedImageView.m in Sources */,
+				4F7F209A249E689C00EE6E0F /* KeyframeAnimationViewController.m in Sources */,
 				2B718B771A739CD400C0BF2A /* RootViewController.m in Sources */,
 				2B8346741AC16CEE00B15364 /* FadeWithLabelViewController.m in Sources */,
 				2BFB1E7F1DBD0A9E00D4AE6B /* Uberworks1ViewController.m in Sources */,

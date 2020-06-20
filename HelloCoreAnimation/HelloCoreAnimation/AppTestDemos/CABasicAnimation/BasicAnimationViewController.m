@@ -14,6 +14,7 @@
 @property (nonatomic, strong) AnimationDemoView *demoAnimation1;
 @property (nonatomic, strong) AnimationDemoView *demoAnimation2;
 @property (nonatomic, strong) AnimationDemoView *demoAnimation3;
+@property (nonatomic, strong) AnimationDemoView *demoAnimation4;
 @end
 
 @implementation BasicAnimationViewController
@@ -24,9 +25,10 @@
     [self.contentView addSubview:self.demoAnimation1];
     [self.contentView addSubview:self.demoAnimation2];
     [self.contentView addSubview:self.demoAnimation3];
+    [self.contentView addSubview:self.demoAnimation4];
 }
 
-#pragma mark -
+#pragma mark - CABasicAnimation
 
 - (AnimationDemoView *)demoAnimation1 {
     if (!_demoAnimation1) {
@@ -129,6 +131,53 @@
     }
     
     return _demoAnimation3;
+}
+
+- (AnimationDemoView *)demoAnimation4 {
+    if (!_demoAnimation4) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        CGFloat side = 40;
+        CGFloat spaceV = 10;
+        CGFloat height = side * 2 + spaceV * 3;
+        CGFloat paddingH = 10;
+        
+        AnimationDemoView *demoView = [[AnimationDemoView alloc] initWithFrame:CGRectMake(paddingH, CGRectGetMaxY(_demoAnimation3.frame) + SpaceV, screenSize.width - 2 * paddingH, height)];
+        
+        CGFloat startX = 10;
+        UIView *animatedView1 = [[UIView alloc] initWithFrame:CGRectMake(startX, spaceV, side, side)];
+        animatedView1.backgroundColor = [UIColor redColor];
+        [demoView addSubview:animatedView1];
+        
+        UIView *animatedView2 = [[UIView alloc] initWithFrame:CGRectMake(startX, CGRectGetMaxY(animatedView1.frame) + spaceV, side, side)];
+        animatedView2.backgroundColor = [UIColor orangeColor];
+        [demoView addSubview:animatedView2];
+        
+        CGFloat startPositionX = startX + side / 2.0;
+        CGFloat endPositionX = CGRectGetWidth(demoView.bounds) - paddingH - side / 2.0;
+        
+        demoView.doAnimation = ^{
+            CABasicAnimation *animation = [CABasicAnimation animation];
+            animation.keyPath = @"position.x";
+            animation.fromValue = @(startPositionX);
+            animation.byValue = @(endPositionX - startPositionX);
+            animation.duration = 1;
+
+            // Animate
+            [animatedView1.layer addAnimation:animation forKey:@"basic"];
+            
+            animation.beginTime = CACurrentMediaTime() + 0.5;
+            
+            // Animate
+            [animatedView2.layer addAnimation:animation forKey:@"basic"];
+            
+            animatedView1.layer.position = CGPointMake(endPositionX, animatedView1.layer.position.y);
+            animatedView2.layer.position = CGPointMake(endPositionX, animatedView2.layer.position.y);
+        };
+        
+        _demoAnimation4 = demoView;
+    }
+    
+    return _demoAnimation4;
 }
 
 @end
