@@ -1,18 +1,18 @@
 //
-//  ShapeCircleBezierPathViewController.m
+//  ShapeOvalBezierPathViewController.m
 //  HelloCoreGraphics
 //
 //  Created by wesley_chen on 2020/6/14.
 //  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
-#import "ShapeCircleBezierPathViewController.h"
+#import "ShapeOvalBezierPathViewController.h"
 
-@interface ShapeCircleBezierPathViewController ()
+@interface ShapeOvalBezierPathViewController ()
 @property (nonatomic, strong) CAShapeLayer *layerShape1;
 @end
 
-@implementation ShapeCircleBezierPathViewController
+@implementation ShapeOvalBezierPathViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

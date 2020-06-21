@@ -17,7 +17,7 @@
 		2B7B0B951FCAA60400CB7388 /* CreateBitmapGraphicsContext1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7B0B941FCAA60400CB7388 /* CreateBitmapGraphicsContext1ViewController.m */; };
 		2B7B0B981FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7B0B971FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.m */; };
 		4F0F1DB62495D1350034AAE9 /* ShapeRectBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F1DB52495D1350034AAE9 /* ShapeRectBezierPathViewController.m */; };
-		4F0F1DBB2495D3290034AAE9 /* ShapeCircleBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F1DBA2495D3290034AAE9 /* ShapeCircleBezierPathViewController.m */; };
+		4F0F1DBB2495D3290034AAE9 /* ShapeOvalBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F1DBA2495D3290034AAE9 /* ShapeOvalBezierPathViewController.m */; };
 		4F0F1DBE2495D34C0034AAE9 /* ShapeBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F1DBD2495D34C0034AAE9 /* ShapeBaseViewController.m */; };
 		4F0F1DC22495EA230034AAE9 /* ShapePolygonBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F1DC12495EA230034AAE9 /* ShapePolygonBezierPathViewController.m */; };
 		4F0F1DC524960BA90034AAE9 /* ShapeSubPathBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F1DC424960BA90034AAE9 /* ShapeSubPathBezierPathViewController.m */; };
@@ -86,8 +86,8 @@
 		4F0F1DB42495D1350034AAE9 /* ShapeRectBezierPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShapeRectBezierPathViewController.h; sourceTree = "<group>"; };
 		4F0F1DB52495D1350034AAE9 /* ShapeRectBezierPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShapeRectBezierPathViewController.m; sourceTree = "<group>"; };
 		4F0F1DB82495D18F0034AAE9 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
-		4F0F1DB92495D3290034AAE9 /* ShapeCircleBezierPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShapeCircleBezierPathViewController.h; sourceTree = "<group>"; };
-		4F0F1DBA2495D3290034AAE9 /* ShapeCircleBezierPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShapeCircleBezierPathViewController.m; sourceTree = "<group>"; };
+		4F0F1DB92495D3290034AAE9 /* ShapeOvalBezierPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShapeOvalBezierPathViewController.h; sourceTree = "<group>"; };
+		4F0F1DBA2495D3290034AAE9 /* ShapeOvalBezierPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShapeOvalBezierPathViewController.m; sourceTree = "<group>"; };
 		4F0F1DBC2495D34C0034AAE9 /* ShapeBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShapeBaseViewController.h; sourceTree = "<group>"; };
 		4F0F1DBD2495D34C0034AAE9 /* ShapeBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShapeBaseViewController.m; sourceTree = "<group>"; };
 		4F0F1DC02495EA230034AAE9 /* ShapePolygonBezierPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShapePolygonBezierPathViewController.h; sourceTree = "<group>"; };
@@ -291,8 +291,8 @@
 				4F0F1DBF2495D3520034AAE9 /* Base */,
 				4F0F1DB42495D1350034AAE9 /* ShapeRectBezierPathViewController.h */,
 				4F0F1DB52495D1350034AAE9 /* ShapeRectBezierPathViewController.m */,
-				4F0F1DB92495D3290034AAE9 /* ShapeCircleBezierPathViewController.h */,
-				4F0F1DBA2495D3290034AAE9 /* ShapeCircleBezierPathViewController.m */,
+				4F0F1DB92495D3290034AAE9 /* ShapeOvalBezierPathViewController.h */,
+				4F0F1DBA2495D3290034AAE9 /* ShapeOvalBezierPathViewController.m */,
 				4F0F1DC02495EA230034AAE9 /* ShapePolygonBezierPathViewController.h */,
 				4F0F1DC12495EA230034AAE9 /* ShapePolygonBezierPathViewController.m */,
 				4F0F1DC324960BA90034AAE9 /* ShapeSubPathBezierPathViewController.h */,
@@ -531,7 +531,7 @@
 				2B0FD5F21FC99DFC0022E59D /* AppDelegate.m in Sources */,
 				4F1DF02C2484E9200091F205 /* QuartzCapJoinWidthView.m in Sources */,
 				2B0FD60C1FC99E280022E59D /* RootViewController.m in Sources */,
-				4F0F1DBB2495D3290034AAE9 /* ShapeCircleBezierPathViewController.m in Sources */,
+				4F0F1DBB2495D3290034AAE9 /* ShapeOvalBezierPathViewController.m in Sources */,
 				4F1DF01F2484DCF40091F205 /* DrawLineBezierPathViewController.m in Sources */,
 				4F3526372008B9DD00891B09 /* AttachedBubbleWithLeftArrowViewController.m in Sources */,
 				4F0F1DB62495D1350034AAE9 /* ShapeRectBezierPathViewController.m in Sources */,

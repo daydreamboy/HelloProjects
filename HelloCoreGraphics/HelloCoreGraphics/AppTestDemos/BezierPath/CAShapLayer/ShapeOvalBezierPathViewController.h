@@ -1,5 +1,5 @@
 //
-//  ShapeCircleBezierPathViewController.h
+//  ShapeOvalBezierPathViewController.h
 //  HelloCoreGraphics
 //
 //  Created by wesley_chen on 2020/6/14.
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ShapeCircleBezierPathViewController : ShapeBaseViewController
+@interface ShapeOvalBezierPathViewController : ShapeBaseViewController
 
 @end
 

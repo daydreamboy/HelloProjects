@@ -24,7 +24,7 @@
 
 // section3
 #import "ShapeRectBezierPathViewController.h"
-#import "ShapeCircleBezierPathViewController.h"
+#import "ShapeOvalBezierPathViewController.h"
 #import "ShapePolygonBezierPathViewController.h"
 #import "ShapeSubPathBezierPathViewController.h"
 #import "ShapeOpenPathBezierPathViewController.h"
@@ -79,7 +79,7 @@
     
     NSArray<NSDictionary *> *section3 = @[
           @{ kTitle: @"Shape Rectangle Bezier Path", kClass: [ShapeRectBezierPathViewController class] },
-          @{ kTitle: @"Shape Circle Bezier Path", kClass: [ShapeCircleBezierPathViewController class] },
+          @{ kTitle: @"Shape Oval Bezier Path", kClass: [ShapeOvalBezierPathViewController class] },
           @{ kTitle: @"Shape Polygon Bezier Path", kClass: [ShapePolygonBezierPathViewController class] },
           @{ kTitle: @"Shape SubPath Bezier Path", kClass: [ShapeSubPathBezierPathViewController class] },
           @{ kTitle: @"Shape OpenPath Bezier Path", kClass: [ShapeOpenPathBezierPathViewController class] },

@@ -188,11 +188,19 @@ UIBezierPath提供5种构建path的方法，如下
 - (void)moveToPoint:(CGPoint)point;
 // 从currentPoint到point构建一条直线
 - (void)addLineToPoint:(CGPoint)point;
-// 
+// 从currentPoint处以center圆心构建一条弧，startAngle和endAngle参数和bezierPathWithArcCenter:radius:startAngle:endAngle:clockwise:方法一样的规则
 - (void)addArcWithCenter:(CGPoint)center radius:(CGFloat)radius startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle clockwise:(BOOL)clockwise;
+// 从currentPoint处构建一条二次方Bezier曲线
+- (void)addQuadCurveToPoint:(CGPoint)endPoint controlPoint:(CGPoint)controlPoint;
+// 从currentPoint处构建一条三次方Bezier曲线
+- (void)addCurveToPoint:(CGPoint)endPoint controlPoint1:(CGPoint)controlPoint1 controlPoint2:(CGPoint)controlPoint2;
 ```
 
 上面5种方法每次调用后，都会更新currentPoint，用于新的开始点。
+
+
+
+a. Quadratic
 
 
 
