@@ -1,8 +1,8 @@
 //
-//  ShapeAnimateWithLineDashPhaseViewController.h
+//  ShapeAnimateWithStrokeColorViewController.h
 //  HelloCoreAnimation
 //
-//  Created by wesley_chen on 2020/6/17.
+//  Created by wesley_chen on 2020/6/21.
 //  Copyright © 2020 wesley chen. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ShapeAnimateWithLineDashPhaseViewController : ShapeBaseViewController
+@interface ShapeAnimateWithStrokeColorViewController : ShapeBaseViewController
 
 @end
 

@@ -88,6 +88,10 @@
 		4FB4D242249FB0EA00FB94B1 /* aliwx_card_bubble_left_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4D23C249FB0E900FB94B1 /* aliwx_card_bubble_left_bg@2x.png */; };
 		4FB4D243249FB0EA00FB94B1 /* aliwx_card_bubble_right_bg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4D23D249FB0E900FB94B1 /* aliwx_card_bubble_right_bg@3x.png */; };
 		4FB4D244249FB0EA00FB94B1 /* dog.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4FB4D23E249FB0E900FB94B1 /* dog.jpg */; };
+		4FB4D247249FB7D500FB94B1 /* ShapeAnimateWithLineWidthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB4D246249FB7D500FB94B1 /* ShapeAnimateWithLineWidthViewController.m */; };
+		4FB4D24A249FB90100FB94B1 /* ShapeAnimateWithMiterLimitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB4D249249FB90100FB94B1 /* ShapeAnimateWithMiterLimitViewController.m */; };
+		4FB4D24D249FBA4E00FB94B1 /* ShapeAnimateWithStrokeColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB4D24C249FBA4E00FB94B1 /* ShapeAnimateWithStrokeColorViewController.m */; };
+		4FB4D250249FBB0000FB94B1 /* ShapeAnimateWithStrokeStartEndViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB4D24F249FBB0000FB94B1 /* ShapeAnimateWithStrokeStartEndViewController.m */; };
 		4FE8C1E724972DB1000497F6 /* ShrinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8C1E624972DB1000497F6 /* ShrinkViewController.m */; };
 		4FE8C1EE249768A8000497F6 /* WCGenieAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8C1ED249768A8000497F6 /* WCGenieAnimation.m */; };
 /* End PBXBuildFile section */
@@ -240,6 +244,14 @@
 		4FB4D23C249FB0E900FB94B1 /* aliwx_card_bubble_left_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aliwx_card_bubble_left_bg@2x.png"; sourceTree = "<group>"; };
 		4FB4D23D249FB0E900FB94B1 /* aliwx_card_bubble_right_bg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aliwx_card_bubble_right_bg@3x.png"; sourceTree = "<group>"; };
 		4FB4D23E249FB0E900FB94B1 /* dog.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = dog.jpg; sourceTree = "<group>"; };
+		4FB4D245249FB7D500FB94B1 /* ShapeAnimateWithLineWidthViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShapeAnimateWithLineWidthViewController.h; sourceTree = "<group>"; };
+		4FB4D246249FB7D500FB94B1 /* ShapeAnimateWithLineWidthViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShapeAnimateWithLineWidthViewController.m; sourceTree = "<group>"; };
+		4FB4D248249FB90100FB94B1 /* ShapeAnimateWithMiterLimitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShapeAnimateWithMiterLimitViewController.h; sourceTree = "<group>"; };
+		4FB4D249249FB90100FB94B1 /* ShapeAnimateWithMiterLimitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShapeAnimateWithMiterLimitViewController.m; sourceTree = "<group>"; };
+		4FB4D24B249FBA4E00FB94B1 /* ShapeAnimateWithStrokeColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShapeAnimateWithStrokeColorViewController.h; sourceTree = "<group>"; };
+		4FB4D24C249FBA4E00FB94B1 /* ShapeAnimateWithStrokeColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShapeAnimateWithStrokeColorViewController.m; sourceTree = "<group>"; };
+		4FB4D24E249FBB0000FB94B1 /* ShapeAnimateWithStrokeStartEndViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShapeAnimateWithStrokeStartEndViewController.h; sourceTree = "<group>"; };
+		4FB4D24F249FBB0000FB94B1 /* ShapeAnimateWithStrokeStartEndViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShapeAnimateWithStrokeStartEndViewController.m; sourceTree = "<group>"; };
 		4FE8C1E524972DB1000497F6 /* ShrinkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShrinkViewController.h; sourceTree = "<group>"; };
 		4FE8C1E624972DB1000497F6 /* ShrinkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShrinkViewController.m; sourceTree = "<group>"; };
 		4FE8C1EC249768A8000497F6 /* WCGenieAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCGenieAnimation.h; sourceTree = "<group>"; };
@@ -467,8 +479,16 @@
 				4F0F1DEA24964CFB0034AAE9 /* ShapeAnimateWithPathViewController.m */,
 				4F0F1DF224967D520034AAE9 /* ShapeAnimateWithFillColorViewController.h */,
 				4F0F1DF324967D520034AAE9 /* ShapeAnimateWithFillColorViewController.m */,
+				4FB4D24B249FBA4E00FB94B1 /* ShapeAnimateWithStrokeColorViewController.h */,
+				4FB4D24C249FBA4E00FB94B1 /* ShapeAnimateWithStrokeColorViewController.m */,
+				4FB4D24E249FBB0000FB94B1 /* ShapeAnimateWithStrokeStartEndViewController.h */,
+				4FB4D24F249FBB0000FB94B1 /* ShapeAnimateWithStrokeStartEndViewController.m */,
 				4F1943B72499C1DB00CA74A8 /* ShapeAnimateWithLineDashPhaseViewController.h */,
 				4F1943B82499C1DB00CA74A8 /* ShapeAnimateWithLineDashPhaseViewController.m */,
+				4FB4D245249FB7D500FB94B1 /* ShapeAnimateWithLineWidthViewController.h */,
+				4FB4D246249FB7D500FB94B1 /* ShapeAnimateWithLineWidthViewController.m */,
+				4FB4D248249FB90100FB94B1 /* ShapeAnimateWithMiterLimitViewController.h */,
+				4FB4D249249FB90100FB94B1 /* ShapeAnimateWithMiterLimitViewController.m */,
 			);
 			path = CAShapeLayer;
 			sourceTree = "<group>";
@@ -766,8 +786,10 @@
 				2BC3E1BB1ACC4AA500DA8BB7 /* BorderWidthViewController.m in Sources */,
 				2B718B551A739C5E00C0BF2A /* AppDelegate.m in Sources */,
 				2BC3E1C71ACC502E00DA8BB7 /* CornerRadiusViewController.m in Sources */,
+				4FB4D24A249FB90100FB94B1 /* ShapeAnimateWithMiterLimitViewController.m in Sources */,
 				4FB4D225249FAE4A00FB94B1 /* StretchImageInLayerViewController.m in Sources */,
 				2B8346711AC16C8100B15364 /* DrawedImageView.m in Sources */,
+				4FB4D24D249FBA4E00FB94B1 /* ShapeAnimateWithStrokeColorViewController.m in Sources */,
 				4FB4D202249F555400FB94B1 /* AnimationGroupViewController.m in Sources */,
 				4F7F209A249E689C00EE6E0F /* KeyframeAnimationViewController.m in Sources */,
 				2B718B771A739CD400C0BF2A /* RootViewController.m in Sources */,
@@ -794,10 +816,12 @@
 				4F517B0D212D64ED008CE69F /* YWVideoProgressLayer.m in Sources */,
 				2B7213E91A845D7700DB197D /* ExpandViewController.m in Sources */,
 				4FB4D226249FAE4A00FB94B1 /* DrawRadialGradientViewViewController.m in Sources */,
+				4FB4D247249FB7D500FB94B1 /* ShapeAnimateWithLineWidthViewController.m in Sources */,
 				2B718B821A73BA6F00C0BF2A /* ScaleViewController.m in Sources */,
 				4FB4D220249FAE4A00FB94B1 /* AddShadowBorderToImageViewController.m in Sources */,
 				4F7F208A249E4A3300EE6E0F /* BasicAnimationViewController.m in Sources */,
 				4FB4D22A249FAEDA00FB94B1 /* WCResizableImageLayer.m in Sources */,
+				4FB4D250249FBB0000FB94B1 /* ShapeAnimateWithStrokeStartEndViewController.m in Sources */,
 				2B8C2A271ACD93D70095E1BE /* CardViewControler.m in Sources */,
 				2BE50B901CFEF8AC0022C1A2 /* FlipImageViewViewController.m in Sources */,
 				4F0F1DF424967D520034AAE9 /* ShapeAnimateWithFillColorViewController.m in Sources */,

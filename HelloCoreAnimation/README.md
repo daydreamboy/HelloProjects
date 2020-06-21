@@ -497,9 +497,22 @@ CAShapeLayer可以使用UIBezierPath对象自动画出矢量图片。这里不�
 
 ### （2）CALayer动画
 
+#### a. CAShapeLayer[^7]
+
+CAShapeLayer支持Animate的属性，如下
+
+* path
+* fillColor
+* lineDashPhase
+* lineWidth
+* miterLimit
+* strokeColor
+* strokeStart
+* strokeEnd
 
 
 
+> 示例代码，见CAShapeLayer Animation
 
 
 
@@ -515,4 +528,4 @@ CAShapeLayer可以使用UIBezierPath对象自动画出矢量图片。这里不�
 [^5]: https://wiki.esko.com/pages/viewpage.action?pageId=184729203
 
 [^6]: https://www.calayer.com/core-animation/2016/05/22/cashapelayer-in-depth.html
-
+[^7]:https://www.calayer.com/core-animation/2017/12/25/cashapelayer-in-depth-part-ii.html

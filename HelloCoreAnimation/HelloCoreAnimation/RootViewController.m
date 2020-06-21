@@ -45,6 +45,11 @@
 // section4
 #import "ShapeAnimateWithPathViewController.h"
 #import "ShapeAnimateWithFillColorViewController.h"
+#import "ShapeAnimateWithStrokeColorViewController.h"
+#import "ShapeAnimateWithStrokeStartEndViewController.h"
+#import "ShapeAnimateWithLineDashPhaseViewController.h"
+#import "ShapeAnimateWithLineWidthViewController.h"
+#import "ShapeAnimateWithMiterLimitViewController.h"
 
 // section5
 #import "BasicAnimationViewController.h"
@@ -119,7 +124,11 @@
     NSArray<NSDictionary *> *section4 = @[
           @{ kTitle: @"Path", kClass: [ShapeAnimateWithPathViewController class] },
           @{ kTitle: @"Fill Color", kClass: [ShapeAnimateWithFillColorViewController class] },
-//          @{ kTitle: @"Draw Curve Bezier Path", kClass: [DrawCurveBezierPathViewController class] },
+          @{ kTitle: @"Stroke Color", kClass: [ShapeAnimateWithStrokeColorViewController class] },
+          @{ kTitle: @"Stroke Start/End", kClass: [ShapeAnimateWithStrokeStartEndViewController class] },
+          @{ kTitle: @"Line Dash Phase", kClass: [ShapeAnimateWithLineDashPhaseViewController class] },
+          @{ kTitle: @"Line Width", kClass: [ShapeAnimateWithLineWidthViewController class] },
+          @{ kTitle: @"Miter Limit", kClass: [ShapeAnimateWithMiterLimitViewController class] },
     ];
     
     NSArray<NSDictionary *> *section5 = @[
