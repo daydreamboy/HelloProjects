@@ -233,7 +233,27 @@ animation.removedOnCompletion = NO;
 
 ## 3、CAKeyframeAnimation
 
-​        和CABasicAnimation相比，CAKeyframeAnimation提供多于两种状态（开始状态、结束状态）的设置，可以设置任意多的中间状态。CAKeyframeAnimation最常用的两个属性是values和keyTimes。这两个属性都是数组，而且两者是一一对应的，元素个数是相同的。
+​        和CABasicAnimation相比，CAKeyframeAnimation提供多于两种状态（开始状态、结束状态）的设置，可以设置任意多的中间状态。
+
+​        CAKeyframeAnimation的属性，介绍如下
+
+| 属性名           | 作用                                                         | 说明                                                         |
+| ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| values           | 多个动画状态值。元素类型是NSNumber/NSValue/id，当需要设置CoreGraphics数据类型，例如CGColorRef要转成id类型 | 当calculationMode设置非kCAAnimationDiscrete时，values之间的值采用interpolation方式 |
+| path             | 当values不能描述path时，可以设置path。如果path不为nil，优先使用path | TODO                                                         |
+| keyTimes         | TODO                                                         |                                                              |
+| timingFunctions  | TODO                                                         |                                                              |
+| calculationMode  | TODO                                                         |                                                              |
+| rotationMode     | TODO                                                         |                                                              |
+| tensionValues    | TODO                                                         |                                                              |
+| continuityValues | TODO                                                         |                                                              |
+| biasValues       | TODO                                                         |                                                              |
+
+
+
+### （1）values和keyTimes属性
+
+​       CAKeyframeAnimation最常用的两个属性是values和keyTimes。这两个属性都是数组，而且两者是一一对应的，元素个数是相同的。
 
 举个简单例子，如下
 
@@ -249,6 +269,8 @@ animation.additive = YES;
 [animatedView.layer addAnimation:animation forKey:@"shake"];
 ```
 
+> 示例代码，见KeyframeAnimationViewController
+
 * additive
 
 additive是CAPropertyAnimation的属性，默认是NO。如果设置为YES，则values中的值加到初始值上，得到动画需要的值。例如上面values，渲染树上position.x的值变化，如下
@@ -259,19 +281,146 @@ values值：0 > 10 > -10 > 10 > 0
 
 
 
-CAKeyframeAnimation的属性，介绍如下
 
-| 属性名           | 作用                                                         | 说明       |
-| ---------------- | ------------------------------------------------------------ | ---------- |
-| values           | 多个动画状态值。元素类型是NSNumber/NSValue/id，当需要设置CoreGraphics数据类型，例如CGColorRef要转成id类型 | 当calculationMode设置非kCAAnimationDiscrete时，values之间的值采用interpolation方式 |
-| path             | 当values不能描述path时，可以设置path。如果path不为nil，优先使用path | TODO |
-| keyTimes         | TODO |            |
-| timingFunctions  | TODO |            |
-| calculationMode  | TODO |            |
-| rotationMode     | TODO |            |
-| tensionValues    | TODO |            |
-| continuityValues | TODO |            |
-| biasValues       | TODO |            |
+
+### （2）path属性
+
+​        除了使用values来指定动画值（keyframe value），还可以使用path。path描述一串连续的点构成的移动轨迹，其中path可以包含使用move-to、line-to、curve-to的线段，line-to、curve-to的线段的结束点定义keyframe的值，move-to线段不定义keyframe的值，其他点位于每个end point之间都被interpolated使用。
+
+官方文档，描述如下
+
+> Paths can contain points defining move-to, line-to, or curve-to segments. The end point of a line-to or curve-to segment defines the keyframe value. All other points between that end value and the previous value are then interpolated. Move-to segments do not define separate keyframe values.
+
+描述沿着path的动画速率，通过calculationMode属性来确定。
+
+* kCAAnimationPaced
+* kCAAnimationCubicPaced
+* kCAAnimationDiscrete
+* kCAAnimationLinear
+
+举个使用path的例子，如下
+
+```objective-c
+CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
+animation.keyPath = @"position";
+animation.path = CFAutorelease(CGPathCreateWithEllipseInRect(circleView.frame, NULL));
+animation.duration = 4;
+animation.repeatCount = HUGE_VALF;
+animation.calculationMode = kCAAnimationPaced;
+animation.rotationMode = kCAAnimationRotateAuto;
+
+[animatedView.layer addAnimation:animation forKey:@"orbit"];
+```
+
+这里实现的动画是，animatedView的position沿着circleView构成的圆圈进行移动。
+
+由于calculationMode指定为kCAAnimationPaced，因此不需要设置keyTimes属性。
+
+> 示例代码，见KeyframeAnimationViewController
+
+
+
+## 4、CAAnimation
+
+​       CAAnimation是CoreAnimation类层次中最上层的基类，也是抽象类，不能实例化。
+
+​       CAAnimation提供对CAMediaTiming和CAAction协议的支持，创建实例，需要使用子类，例如 CABasicAnimation, CAKeyframeAnimation, CAAnimationGroup或者CATransition来创建。
+
+官方文档，描述如下
+
+> `CAAnimation` provides the basic support for the [`CAMediaTiming`](dash-apple-api://load?topic_id=1427641&language=occ) and [`CAAction`](dash-apple-api://load?topic_id=1410759&language=occ) protocols. You do not create instance of [`CAAnimation`](dash-apple-api://load?topic_id=1412463&language=occ): to animate Core Animation layers or SceneKit objects, create instances of the concrete subclasses [`CABasicAnimation`](dash-apple-api://load?topic_id=1412477&language=occ), [`CAKeyframeAnimation`](dash-apple-api://load?topic_id=1412507&language=occ), [`CAAnimationGroup`](dash-apple-api://load?topic_id=1412483&language=occ), or [`CATransition`](dash-apple-api://load?topic_id=1412526&language=occ).
+
+CAAnimation的属性，介绍如下
+
+| 属性                | 作用                                                  | 说明   |
+| ------------------- | ----------------------------------------------------- | ------ |
+| removedOnCompletion | 决定是否在动画结束时移除动画对象。默认是YES           |        |
+| timingFunction      | 定时函数，用于确定执行动画的速率。默认nil，即线性速率 |        |
+| delegate            | TODO                                                  |        |
+| usesSceneTimeBase   | TODO                                                  | iOS 8+ |
+| fadeInDuration      | TODO                                                  | iOS 8+ |
+| fadeOutDuration     | TODO                                                  | iOS 8+ |
+| animationEvents     | TODO                                                  | iOS 8+ |
+
+
+
+### （1）timingFunction属性
+
+timingFunction属性的类型是CAMediaTimingFunction对象。系统默认提供下面5种函数名字[^4]，可以通过`functionWithName:`方法获取预定义的CAMediaTimingFunction对象。
+
+| 函数名常量                          | 作用                                                         | Bézier控制点              |
+| ----------------------------------- | ------------------------------------------------------------ | ------------------------- |
+| kCAMediaTimingFunctionLinear        | 线性速率                                                     | (0.0,0.0) and (1.0,1.0)   |
+| kCAMediaTimingFunctionEaseIn        | begin slowly and then speed up as it progresses.             | (0.42,0.0) and (1.0,1.0)  |
+| kCAMediaTimingFunctionEaseOut       | begin quickly and then slow as it progresses                 | (0.0,0.0) and (0.58,1.0)  |
+| kCAMediaTimingFunctionEaseInEaseOut | begin slowly, accelerate through the middle of its duration, and then slow again before completing. | (0.42,0.0) and (0.58,1.0) |
+| kCAMediaTimingFunctionDefault       | The system default timing function. Use this function to ensure that the timing of your animations matches that of most system animations. | (0.25,0.1) and (0.25,1.0) |
+
+
+
+如果上面5种满足不了自定义的速率变化方式，可以使用下面方法
+
+```objective-c
++ (instancetype)functionWithControlPoints:(float)c1x :(float)c1y :(float)c2x :(float)c2y;
+```
+
+自定义定时函数。
+
+
+
+> 示例代码，见TimingFunctionAnimationViewController
+
+
+
+
+
+## 5、CAAnimationGroup
+
+CAAnimationGroup继承自CAAnimation，它目前只有一个animations属性，用于设置多个并行执行的动画对象。
+
+举个例子，如下
+
+```objective-c
+CABasicAnimation *zPosition = [CABasicAnimation animation];
+zPosition.keyPath = @"zPosition";
+zPosition.fromValue = @(self.zPosition);
+zPosition.toValue = @(-self.zPosition);
+zPosition.duration = 1.2;
+
+CAKeyframeAnimation *rotation = [CAKeyframeAnimation animation];
+rotation.keyPath = @"transform.rotation";
+rotation.values = @[ @0, @0.14, @0 ];
+rotation.duration = 1.2;
+rotation.timingFunctions = @[
+    [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+    [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]
+];
+
+CAKeyframeAnimation *position = [CAKeyframeAnimation animation];
+position.keyPath = @"position";
+position.values = @[
+    [NSValue valueWithCGPoint:CGPointZero],
+    [NSValue valueWithCGPoint:CGPointMake(110, -20)],
+    [NSValue valueWithCGPoint:CGPointZero]
+];
+position.timingFunctions = @[
+    [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut],
+    [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]
+];
+position.additive = YES;
+position.duration = 1.2;
+
+CAAnimationGroup *group = [[CAAnimationGroup alloc] init];
+group.animations = @[ zPosition, rotation, position ];
+group.duration = 1.2;
+
+[animatedView1.layer addAnimation:group forKey:@"shuffle"];
+animatedView1.layer.zPosition = -self.zPosition;
+```
+
+
+
+> 示例代码，见AnimationGroupViewController
 
 
 
@@ -282,6 +431,8 @@ CAKeyframeAnimation的属性，介绍如下
 [^1]:https://www.objc.io/issues/12-animations/animations-explained/#first-things-first
 [^2]:https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreAnimation_guide/CreatingBasicAnimations/CreatingBasicAnimations.html
 [^3]:https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CoreAnimation_guide/AnimatableProperties/AnimatableProperties.html#//apple_ref/doc/uid/TP40004514-CH11-SW2
+
+[^4]:https://developer.apple.com/documentation/quartzcore/camediatimingfunction/predefined_timing_functions?language=objc
 
 
 

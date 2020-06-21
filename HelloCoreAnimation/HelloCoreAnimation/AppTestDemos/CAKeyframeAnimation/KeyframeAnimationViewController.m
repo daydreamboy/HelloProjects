@@ -13,6 +13,7 @@
 @interface KeyframeAnimationViewController ()
 @property (nonatomic, strong) AnimationDemoView *demoAnimation1;
 @property (nonatomic, strong) AnimationDemoView *demoAnimation2;
+@property (nonatomic, strong) AnimationDemoView *demoAnimation3;
 @end
 
 @implementation KeyframeAnimationViewController
@@ -22,6 +23,7 @@
     
     [self.contentView addSubview:self.demoAnimation1];
     [self.contentView addSubview:self.demoAnimation2];
+    [self.contentView addSubview:self.demoAnimation3];
 }
 
 #pragma mark - CAKeyframeAnimation
@@ -108,6 +110,53 @@
     }
     
     return _demoAnimation2;
+}
+
+- (AnimationDemoView *)demoAnimation3 {
+    if (!_demoAnimation3) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        CGFloat height = 150;
+        CGFloat paddingH = 10;
+        
+        // @see https://stackoverflow.com/a/38418410
+        AnimationDemoView *demoView = [[AnimationDemoView alloc] initWithFrame:CGRectMake(paddingH, CGRectGetMaxY(_demoAnimation2.frame) + SpaceV, screenSize.width - 2 * paddingH, height)];
+        
+        CGFloat side1 = 100;
+        UIView *circleView = [[UIView alloc] initWithFrame:CGRectMake((CGRectGetWidth(demoView.bounds) - side1) / 2.0, (CGRectGetHeight(demoView.bounds) - side1) / 2.0, side1, side1)];
+        circleView.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.2];
+        circleView.layer.cornerRadius = side1 / 2.0;
+        circleView.layer.borderColor = [UIColor greenColor].CGColor;
+        circleView.layer.borderWidth = 1;
+        [demoView addSubview:circleView];
+        
+        CGFloat side2 = 30;
+        UIView *animatedView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, side2, side2)];
+        // Note: because the path start point at left X, middle Y, so set the start state of the position,
+        // see the below the CGPathCreateWithEllipseInRect or UIBezierPath
+        animatedView.center = CGPointMake(CGRectGetMaxX(circleView.frame), CGRectGetMidY(circleView.frame));
+        animatedView.backgroundColor = [[UIColor orangeColor] colorWithAlphaComponent:0.9];
+        [demoView addSubview:animatedView];
+        
+        __unused UIBezierPath *path = [UIBezierPath bezierPathWithArcCenter:circleView.center radius:side1 / 2.0 startAngle:0 endAngle:M_PI * 2 clockwise:YES];
+        
+        demoView.doAnimation = ^{
+            CAKeyframeAnimation *animation = [CAKeyframeAnimation animation];
+            animation.keyPath = @"position";
+            animation.path = CFAutorelease(CGPathCreateWithEllipseInRect(circleView.frame, NULL));
+            // or use UIBezierPath to create path
+            //animation.path = path.CGPath;
+            animation.duration = 4;
+            animation.repeatCount = HUGE_VALF;
+            animation.calculationMode = kCAAnimationPaced;
+            animation.rotationMode = nil;//kCAAnimationRotateAuto;
+
+            [animatedView.layer addAnimation:animation forKey:@"orbit"];
+        };
+        
+        _demoAnimation3 = demoView;
+    }
+    
+    return _demoAnimation3;
 }
 
 @end

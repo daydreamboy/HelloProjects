@@ -65,6 +65,8 @@
 		4F7F2091249E4CB200EE6E0F /* AnimationDemoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F2090249E4CB200EE6E0F /* AnimationDemoView.m */; };
 		4F7F2096249E525300EE6E0F /* LayerAnimateWithPositionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F2095249E525300EE6E0F /* LayerAnimateWithPositionController.m */; };
 		4F7F209A249E689C00EE6E0F /* KeyframeAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F2099249E689C00EE6E0F /* KeyframeAnimationViewController.m */; };
+		4FB4D1FE249F464C00FB94B1 /* TimingFunctionAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB4D1FD249F464C00FB94B1 /* TimingFunctionAnimationViewController.m */; };
+		4FB4D202249F555400FB94B1 /* AnimationGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB4D201249F555400FB94B1 /* AnimationGroupViewController.m */; };
 		4FE8C1E724972DB1000497F6 /* ShrinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8C1E624972DB1000497F6 /* ShrinkViewController.m */; };
 		4FE8C1EE249768A8000497F6 /* WCGenieAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8C1ED249768A8000497F6 /* WCGenieAnimation.m */; };
 /* End PBXBuildFile section */
@@ -177,6 +179,10 @@
 		4F7F2095249E525300EE6E0F /* LayerAnimateWithPositionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LayerAnimateWithPositionController.m; sourceTree = "<group>"; };
 		4F7F2098249E689C00EE6E0F /* KeyframeAnimationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyframeAnimationViewController.h; sourceTree = "<group>"; };
 		4F7F2099249E689C00EE6E0F /* KeyframeAnimationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyframeAnimationViewController.m; sourceTree = "<group>"; };
+		4FB4D1FC249F464C00FB94B1 /* TimingFunctionAnimationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimingFunctionAnimationViewController.h; sourceTree = "<group>"; };
+		4FB4D1FD249F464C00FB94B1 /* TimingFunctionAnimationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimingFunctionAnimationViewController.m; sourceTree = "<group>"; };
+		4FB4D200249F555400FB94B1 /* AnimationGroupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationGroupViewController.h; sourceTree = "<group>"; };
+		4FB4D201249F555400FB94B1 /* AnimationGroupViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationGroupViewController.m; sourceTree = "<group>"; };
 		4FE8C1E524972DB1000497F6 /* ShrinkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShrinkViewController.h; sourceTree = "<group>"; };
 		4FE8C1E624972DB1000497F6 /* ShrinkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShrinkViewController.m; sourceTree = "<group>"; };
 		4FE8C1EC249768A8000497F6 /* WCGenieAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCGenieAnimation.h; sourceTree = "<group>"; };
@@ -293,6 +299,7 @@
 		2B718B7C1A73BA6F00C0BF2A /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4FB4D1FF249F553F00FB94B1 /* CAAnimationGroup */,
 				4F7F2097249E681B00EE6E0F /* CAKeyframeAnimation */,
 				4F0F1DF024964D710034AAE9 /* Tools */,
 				4F7F2092249E4CB700EE6E0F /* View */,
@@ -428,6 +435,8 @@
 			children = (
 				4F7F2088249E4A3300EE6E0F /* BasicAnimationViewController.h */,
 				4F7F2089249E4A3300EE6E0F /* BasicAnimationViewController.m */,
+				4FB4D1FC249F464C00FB94B1 /* TimingFunctionAnimationViewController.h */,
+				4FB4D1FD249F464C00FB94B1 /* TimingFunctionAnimationViewController.m */,
 			);
 			path = CABasicAnimation;
 			sourceTree = "<group>";
@@ -466,6 +475,15 @@
 				4F7F2099249E689C00EE6E0F /* KeyframeAnimationViewController.m */,
 			);
 			path = CAKeyframeAnimation;
+			sourceTree = "<group>";
+		};
+		4FB4D1FF249F553F00FB94B1 /* CAAnimationGroup */ = {
+			isa = PBXGroup;
+			children = (
+				4FB4D200249F555400FB94B1 /* AnimationGroupViewController.h */,
+				4FB4D201249F555400FB94B1 /* AnimationGroupViewController.m */,
+			);
+			path = CAAnimationGroup;
 			sourceTree = "<group>";
 		};
 		4FE8C1EB249767A2000497F6 /* WCCoreAnimationTool */ = {
@@ -605,6 +623,7 @@
 				2B718B551A739C5E00C0BF2A /* AppDelegate.m in Sources */,
 				2BC3E1C71ACC502E00DA8BB7 /* CornerRadiusViewController.m in Sources */,
 				2B8346711AC16C8100B15364 /* DrawedImageView.m in Sources */,
+				4FB4D202249F555400FB94B1 /* AnimationGroupViewController.m in Sources */,
 				4F7F209A249E689C00EE6E0F /* KeyframeAnimationViewController.m in Sources */,
 				2B718B771A739CD400C0BF2A /* RootViewController.m in Sources */,
 				2B8346741AC16CEE00B15364 /* FadeWithLabelViewController.m in Sources */,
@@ -620,6 +639,7 @@
 				2BC3E1C41ACC4F3D00DA8BB7 /* ContentsViewController.m in Sources */,
 				2B718B521A739C5E00C0BF2A /* main.m in Sources */,
 				4F7F208D249E4A5000EE6E0F /* AnimationBaseViewController.m in Sources */,
+				4FB4D1FE249F464C00FB94B1 /* TimingFunctionAnimationViewController.m in Sources */,
 				2BB6C9641D08230500D470A0 /* GroupAnimationViewController.m in Sources */,
 				4FE8C1E724972DB1000497F6 /* ShrinkViewController.m in Sources */,
 				2B3CEB041D6221AD0001C5FB /* ParticleFadeViewController.m in Sources */,
