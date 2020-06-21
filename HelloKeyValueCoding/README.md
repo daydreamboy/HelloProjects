@@ -34,6 +34,19 @@
 | [collectionObject valueForKeyPath:@min.property] | 取最小数 | id，根据property确定 |
 | [collectionObject valueForKeyPath:@sum.property] | 取总数   | NSNumber             |
 
+如果是对集合中元素本身操作，而不是元素上的属性，则将property换成self，例如@sum.self。
+
+举个例子，如下
+
+```objective-c
+NSArray *pattern = @[@5, @4, @3, @2];
+output = [pattern valueForKeyPath:@"@sum.self"];
+XCTAssertTrue([output isKindOfClass:[NSNumber class]]);
+XCTAssertEqualObjects(output, @(14));
+```
+
+
+
 
 
 ### Array Operators

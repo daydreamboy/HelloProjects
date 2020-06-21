@@ -137,6 +137,11 @@
     output = [self.transactions valueForKeyPath:@"@sum.amount"];
     XCTAssertTrue([output isKindOfClass:[NSNumber class]]);
     XCTAssertEqualObjects(output, @(64));
+    
+    NSArray *pattern = @[@5, @4, @3, @2];
+    output = [pattern valueForKeyPath:@"@sum.self"];
+    XCTAssertTrue([output isKindOfClass:[NSNumber class]]);
+    XCTAssertEqualObjects(output, @(14));
 }
 
 #pragma mark > @distinctUnionOfObjects
