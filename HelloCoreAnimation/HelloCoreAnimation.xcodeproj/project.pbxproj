@@ -299,12 +299,13 @@
 		2B718B7C1A73BA6F00C0BF2A /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4FB4D206249FABE700FB94B1 /* CALayer Presentation */,
 				4FB4D1FF249F553F00FB94B1 /* CAAnimationGroup */,
 				4F7F2097249E681B00EE6E0F /* CAKeyframeAnimation */,
 				4F0F1DF024964D710034AAE9 /* Tools */,
 				4F7F2092249E4CB700EE6E0F /* View */,
 				4F7F208E249E4A5300EE6E0F /* Base */,
-				4F7F2093249E51C300EE6E0F /* CALayer */,
+				4F7F2093249E51C300EE6E0F /* CALayer Animation */,
 				4F7F2087249E483100EE6E0F /* CABasicAnimation */,
 				4F0F1DE8249648270034AAE9 /* CAShapeLayer */,
 				4F517B0A212D64CB008CE69F /* Layers */,
@@ -459,13 +460,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		4F7F2093249E51C300EE6E0F /* CALayer */ = {
+		4F7F2093249E51C300EE6E0F /* CALayer Animation */ = {
 			isa = PBXGroup;
 			children = (
 				4F7F2094249E525300EE6E0F /* LayerAnimateWithPositionController.h */,
 				4F7F2095249E525300EE6E0F /* LayerAnimateWithPositionController.m */,
 			);
-			path = CALayer;
+			path = "CALayer Animation";
 			sourceTree = "<group>";
 		};
 		4F7F2097249E681B00EE6E0F /* CAKeyframeAnimation */ = {
@@ -484,6 +485,13 @@
 				4FB4D201249F555400FB94B1 /* AnimationGroupViewController.m */,
 			);
 			path = CAAnimationGroup;
+			sourceTree = "<group>";
+		};
+		4FB4D206249FABE700FB94B1 /* CALayer Presentation */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "CALayer Presentation";
 			sourceTree = "<group>";
 		};
 		4FE8C1EB249767A2000497F6 /* WCCoreAnimationTool */ = {
