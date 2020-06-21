@@ -26,6 +26,7 @@
 #import "ShapeRectBezierPathViewController.h"
 #import "ShapeOvalBezierPathViewController.h"
 #import "ShapePolygonBezierPathViewController.h"
+#import "ShapeCurveBezierPathViewController.h"
 #import "ShapeSubPathBezierPathViewController.h"
 #import "ShapeOpenPathBezierPathViewController.h"
 #import "ShapeFillPathBezierPathViewController.h"
@@ -81,6 +82,7 @@
           @{ kTitle: @"Shape Rectangle Bezier Path", kClass: [ShapeRectBezierPathViewController class] },
           @{ kTitle: @"Shape Oval Bezier Path", kClass: [ShapeOvalBezierPathViewController class] },
           @{ kTitle: @"Shape Polygon Bezier Path", kClass: [ShapePolygonBezierPathViewController class] },
+          @{ kTitle: @"Shape Curve Bezier Path", kClass: [ShapeCurveBezierPathViewController class] },
           @{ kTitle: @"Shape SubPath Bezier Path", kClass: [ShapeSubPathBezierPathViewController class] },
           @{ kTitle: @"Shape OpenPath Bezier Path", kClass: [ShapeOpenPathBezierPathViewController class] },
           @{ kTitle: @"Shape Fill Bezier Path", kClass: [ShapeFillPathBezierPathViewController class] },

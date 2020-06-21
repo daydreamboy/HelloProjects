@@ -200,7 +200,61 @@ UIBezierPath提供5种构建path的方法，如下
 
 
 
-a. Quadratic
+#### a. 二次方Bezier曲线 (Quadratic Bezier Curve)
+
+​        二次方Bezier曲线，可以通过addQuadCurveToPoint:controlPoint:方法描述出来。当前点和结束点，以及控制点的关系，如下图所示
+
+![](images/QuadraticBezierCurve.png)
+
+举个画正方形中四分之一圆弧的示例，如下
+
+```objective-c
+UIBezierPath *path = [UIBezierPath bezierPath];
+        
+[path moveToPoint:CGPointZero];
+[path addQuadCurveToPoint:CGPointMake(CGRectGetMaxX(layer.bounds), CGRectGetMaxY(layer.bounds)) controlPoint:CGPointMake(CGRectGetMaxX(layer.bounds), CGRectGetMinY(layer.bounds))];
+```
+
+注意
+
+> bezierPath方法创建的UIBezierPath对象，需要设置当前点，不然调用addQuadCurveToPoint:controlPoint:方法，不起作用
+
+> 示例代码，见ShapeCurveBezierPathViewController
+
+
+
+#### b. 三次方Bezier曲线 (Cubic Bezier Curve)
+
+​      三次方Bezier曲线，相比二次方Bezier曲线，多了一个控制点，控制点的计算更加复杂一些。可以通过addCurveToPoint:controlPoint1:controlPoint2:方法来描述三次方Bezier曲线。
+
+​      当前点和结束点，以及2个控制点的关系，如下图所示
+
+![](images/CubicBezierCurve.png)
+
+
+
+举个画三次方Bezier曲线的示例，如下
+
+```objective-c
+UIBezierPath *path = [UIBezierPath bezierPath];
+        
+[path moveToPoint:CGPointZero];
+
+CGPoint endPoint = CGPointMake(CGRectGetMaxX(layer.bounds), CGRectGetMaxY(layer.bounds));
+CGPoint controlPoint1 = CGPointMake(CGRectGetMidX(layer.bounds), CGRectGetMinY(layer.bounds));
+CGPoint controlPoint2 = CGPointMake(CGRectGetMidX(layer.bounds), CGRectGetMaxY(layer.bounds));
+
+[path addCurveToPoint:endPoint controlPoint1:controlPoint1 controlPoint2:controlPoint2];
+
+layer.path = path.CGPath;
+```
+
+
+
+> 1. 示例代码，见ShapeCurveBezierPathViewController
+> 2. 关于三次方Bezier曲线的绘制原理，可以参考这个[视频](https://vimeo.com/106757336)和[动画](https://codepen.io/pnowell/pen/gqLbc)
+
+
 
 
 

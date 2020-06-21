@@ -51,6 +51,7 @@
 		4F64C3C120ED1118008A2A1A /* CreateCircleProgressViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C3C020ED1118008A2A1A /* CreateCircleProgressViewViewController.m */; };
 		4F64C3C520ED114F008A2A1A /* WCCirlcleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C3C420ED114F008A2A1A /* WCCirlcleProgressView.m */; };
 		4F64C3C920ED13A7008A2A1A /* LayerWithProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C3C820ED13A7008A2A1A /* LayerWithProgress.m */; };
+		4FB4D205249F9C2900FB94B1 /* ShapeCurveBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB4D204249F9C2900FB94B1 /* ShapeCurveBezierPathViewController.m */; };
 		4FF3EAE8247D180F00227B3C /* DrawArcBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF3EAE7247D180F00227B3C /* DrawArcBezierPathViewController.m */; };
 		4FF3EAEB247D184E00227B3C /* DrawCurveBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF3EAEA247D184E00227B3C /* DrawCurveBezierPathViewController.m */; };
 /* End PBXBuildFile section */
@@ -152,6 +153,8 @@
 		4F64C3C420ED114F008A2A1A /* WCCirlcleProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCCirlcleProgressView.m; sourceTree = "<group>"; };
 		4F64C3C720ED13A7008A2A1A /* LayerWithProgress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerWithProgress.h; sourceTree = "<group>"; };
 		4F64C3C820ED13A7008A2A1A /* LayerWithProgress.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LayerWithProgress.m; sourceTree = "<group>"; };
+		4FB4D203249F9C2900FB94B1 /* ShapeCurveBezierPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShapeCurveBezierPathViewController.h; sourceTree = "<group>"; };
+		4FB4D204249F9C2900FB94B1 /* ShapeCurveBezierPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShapeCurveBezierPathViewController.m; sourceTree = "<group>"; };
 		4FF3EAE6247D180F00227B3C /* DrawArcBezierPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawArcBezierPathViewController.h; sourceTree = "<group>"; };
 		4FF3EAE7247D180F00227B3C /* DrawArcBezierPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawArcBezierPathViewController.m; sourceTree = "<group>"; };
 		4FF3EAE9247D184E00227B3C /* DrawCurveBezierPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawCurveBezierPathViewController.h; sourceTree = "<group>"; };
@@ -295,6 +298,8 @@
 				4F0F1DBA2495D3290034AAE9 /* ShapeOvalBezierPathViewController.m */,
 				4F0F1DC02495EA230034AAE9 /* ShapePolygonBezierPathViewController.h */,
 				4F0F1DC12495EA230034AAE9 /* ShapePolygonBezierPathViewController.m */,
+				4FB4D203249F9C2900FB94B1 /* ShapeCurveBezierPathViewController.h */,
+				4FB4D204249F9C2900FB94B1 /* ShapeCurveBezierPathViewController.m */,
 				4F0F1DC324960BA90034AAE9 /* ShapeSubPathBezierPathViewController.h */,
 				4F0F1DC424960BA90034AAE9 /* ShapeSubPathBezierPathViewController.m */,
 				4F0F1DC624960EB60034AAE9 /* ShapeOpenPathBezierPathViewController.h */,
@@ -540,6 +545,7 @@
 				4F64C3C520ED114F008A2A1A /* WCCirlcleProgressView.m in Sources */,
 				4F64C3C120ED1118008A2A1A /* CreateCircleProgressViewViewController.m in Sources */,
 				4F1DF0292484E9070091F205 /* QuartzLineView.m in Sources */,
+				4FB4D205249F9C2900FB94B1 /* ShapeCurveBezierPathViewController.m in Sources */,
 				4F0F1DE7249624970034AAE9 /* ShapeLineStrokeStartEndBezierPathViewController.m in Sources */,
 				4F0F1DC22495EA230034AAE9 /* ShapePolygonBezierPathViewController.m in Sources */,
 				4F0F1DC824960EB60034AAE9 /* ShapeOpenPathBezierPathViewController.m in Sources */,
