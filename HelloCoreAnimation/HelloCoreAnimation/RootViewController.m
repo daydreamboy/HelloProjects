@@ -8,6 +8,18 @@
 
 #import "RootViewController.h"
 
+// section1
+#import "UseCAShapeLayerToShowViewWithTwoCornersViewController.h"
+#import "DrawGradientViewViewController.h"
+#import "DrawRadialGradientViewViewController.h"
+#import "UseCAGradientLayerWithTwoColorsViewController.h"
+#import "UseCAGradientLayerWithMultipleColorsViewController.h"
+#import "StretchImageInLayerViewController.h"
+#import "AddShadowBorderToImageViewController.h"
+#import "AddBorderToImageViewController.h"
+#import "TwoAdjacentShadowBorderViewController.h"
+
+// section2
 #import "ScaleViewController.h"
 #import "FadeViewController.h"
 #import "ExpandViewController.h"
@@ -27,21 +39,21 @@
 #import "Uberworks1ViewController.h"
 #import "ShrinkViewController.h"
 
-// secion2
+// secion3
 #import "LayerAnimateWithPositionController.h"
 
-// section3
+// section4
 #import "ShapeAnimateWithPathViewController.h"
 #import "ShapeAnimateWithFillColorViewController.h"
 
-// section4
+// section5
 #import "BasicAnimationViewController.h"
 #import "TimingFunctionAnimationViewController.h"
 
-// section5
+// section6
 #import "KeyframeAnimationViewController.h"
 
-// section6
+// section7
 #import "AnimationGroupViewController.h"
 
 #define kTitle @"Title"
@@ -65,9 +77,21 @@
 
 - (void)prepareForInit {
     self.title = @"AppTest";
+    
+    NSArray<NSDictionary *> *section1 = @[
+        @{ kTitle: @"UIView with two corners", kClass: [UseCAShapeLayerToShowViewWithTwoCornersViewController class] },
+        @{ kTitle: @"Draw gradient view", kClass: [DrawGradientViewViewController class] },
+        @{ kTitle: @"Draw radial gradient view", kClass: [DrawRadialGradientViewViewController class] },
+        @{ kTitle: @"Gradient with two colors (Use CAGradientLayer)", kClass: [UseCAGradientLayerWithTwoColorsViewController class] },
+        @{ kTitle: @"Use CAGradientLayer", kClass: [UseCAGradientLayerWithMultipleColorsViewController class] },
+        @{ kTitle: @"Add shadow border to image", kClass: [AddShadowBorderToImageViewController class] },
+        @{ kTitle: @"Add border to image", kClass: [AddBorderToImageViewController class] },
+        @{ kTitle: @"Two adjacent shadow border", kClass: [TwoAdjacentShadowBorderViewController class] },
+        @{ kTitle: @"Stretch image by CALayer", kClass: [StretchImageInLayerViewController class] },
+    ];
 
     // MARK: Configure titles and classes for table view
-    NSArray<NSDictionary *> *section1 = @[
+    NSArray<NSDictionary *> *section2 = @[
           @{ kTitle: @"Scale (UIView animation)", kClass: [ScaleViewController class], },
           @{ kTitle: @"Fade (UIView animation)", kClass: [FadeViewController class],},
           @{ kTitle: @"Expand", kClass: [ExpandViewController class], },
@@ -88,31 +112,31 @@
           @{ kTitle: @"Shrink", kClass: [ShrinkViewController class], },
     ];
     
-    NSArray<NSDictionary *> *section2 = @[
+    NSArray<NSDictionary *> *section3 = @[
           @{ kTitle: @"Position", kClass: [LayerAnimateWithPositionController class] },
     ];
     
-    NSArray<NSDictionary *> *section3 = @[
+    NSArray<NSDictionary *> *section4 = @[
           @{ kTitle: @"Path", kClass: [ShapeAnimateWithPathViewController class] },
           @{ kTitle: @"Fill Color", kClass: [ShapeAnimateWithFillColorViewController class] },
 //          @{ kTitle: @"Draw Curve Bezier Path", kClass: [DrawCurveBezierPathViewController class] },
     ];
     
-    NSArray<NSDictionary *> *section4 = @[
+    NSArray<NSDictionary *> *section5 = @[
           @{ kTitle: @"Basic", kClass: [BasicAnimationViewController class] },
           @{ kTitle: @"Timing Function", kClass: [TimingFunctionAnimationViewController class] },
     ];
     
-    NSArray<NSDictionary *> *section5 = @[
+    NSArray<NSDictionary *> *section6 = @[
           @{ kTitle: @"Keyframe", kClass: [KeyframeAnimationViewController class] },
     ];
     
-    NSArray<NSDictionary *> *section6 = @[
+    NSArray<NSDictionary *> *section7 = @[
           @{ kTitle: @"Animation Group", kClass: [AnimationGroupViewController class] },
     ];
 
     _sectionTitles = @[
-        //@"CALayer Presentation",
+        @"CALayer Presentation",
         @"UIView Animation",
         @"CALayer Animation",
         @"CAShapeLayer Animation",
@@ -128,6 +152,7 @@
          section4,
          section5,
          section6,
+         section7,
     ];
 }
 
