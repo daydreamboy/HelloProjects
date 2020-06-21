@@ -129,16 +129,6 @@ CABasicAnimation <|-- CASpringAnimation
 
 
 
-https://www.objc.io/issues/12-animations/animations-explained/
-
-https://www.calayer.com/core-animation/2017/12/25/cashapelayer-in-depth-part-ii.html
-
-https://stackoverflow.com/questions/428110/how-can-i-replicate-the-trashing-animation-of-mail-app
-
-https://stackoverflow.com/questions/11578841/genie-effect-ipad
-
-
-
 ## 2、CABasicAnimation
 
 CABasicAnimation如其命名，是一个基础的动画类，也比较简单。它自身有3个属性，如下
@@ -518,6 +508,14 @@ CAShapeLayer支持Animate的属性，如下
 
 
 
+
+
+https://stackoverflow.com/questions/428110/how-can-i-replicate-the-trashing-animation-of-mail-app
+
+https://stackoverflow.com/questions/11578841/genie-effect-ipad
+
+
+
 ## References
 
 [^1]:https://www.objc.io/issues/12-animations/animations-explained/#first-things-first
@@ -529,3 +527,4 @@ CAShapeLayer支持Animate的属性，如下
 
 [^6]: https://www.calayer.com/core-animation/2016/05/22/cashapelayer-in-depth.html
 [^7]:https://www.calayer.com/core-animation/2017/12/25/cashapelayer-in-depth-part-ii.html
+
