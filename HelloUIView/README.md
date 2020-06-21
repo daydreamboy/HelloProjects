@@ -1,4 +1,4 @@
-# 使用UIView和CALayer
+# 使用UIView
 
 [TOC]
 
@@ -411,78 +411,7 @@ optional public func scrollViewDidChangeAdjustedContentInset(_ scrollView: UIScr
 
 
 
-
-
-## 3、CALayer
-
-### （1）CALayer
-
-​       CALayer主要管理图像内容和动画，一般CALayer是UIView的backing store，即UIView基于CALayer做了一层封装，但是CALayer也可以单独使用。CALayer的动画是基于CAMediaTiming协议来实现的。
-
-这里介绍CALayer的常用属性。
-
-
-
-
-
-### （2）CAGradientLayer
-
-
-
-
-
-### （3）CAShapeLayer
-
-CAShapeLayer也是CALayer的子类。这里介绍CAShapeLayer的常用属性。
-
-
-
-| 属性            | 默认值                  | 作用                                                         | 说明                                                         |
-| --------------- | ----------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| fillColor       | [UIColor black].CGColor | path的填充色                                                 | 如果path是直线，fillColor无效果                              |
-| fillRule        |                         |                                                              |                                                              |
-| lineCap         | kCALineCapButt          | 决定线条末端的形状，如下<br/><img src="./images/CAShapeLayerLineCap.png" alt="CAShapeLayerLineCap" style="zoom:100%;" /> | 如果path是closed，不存在线条的末端，则设置lineCap是无效的    |
-| lineDashPattern | nil                     | 决定线条的dash模式                                           | 数组的按照[(painted segment length), (unpainted segment length), ...]顺序依次决定实线和虚线的长度，当数组匹配完成后，再重新从头开始匹配。（备注：如果是nil，则一直是实线）。注意：如果数组，只有一个元素，则按照实线-虚线-……的顺序，同时实线和虚线的长度是一样的。 |
-| lineDashPhase   | 0                       | lineDashPattern起始的偏移量                                  | 举个例子，lineDashPattern = [10, 5, 5, 5], lineDashPhase = 10，则起始匹配按照5-5-5-10-5-5-5-...，但不影响实线-虚线-实线-虚线-...的顺序，即5(虚)-5(实)-5(虚)-10(实)-5(虚)-...。如果lineDashPhase = 2，则起始匹配按照8(实)-5(虚)-5(实)-5(虚)-10(实)-5(虚)-5(实)-5(虚)-... |
-| lineJoin        | kCALineJoinMiter        | 决定两个线条交接的形状，如下<img src="./images/CAShapeLayerLineJoin.png" alt="CAShapeLayerLineJoin" style="zoom:100%;" /> | kCALineJoinMiter<br/>kCALineJoinRound<br/>kCALineJoinBevel   |
-| miterLimit      | 10                      | 当设置kCALineJoinMiter时，决定是否变成kCALineJoinBevel       | 当lineJoin设置kCALineJoinMiter时，miterLimit才生效。具体见“miterLimit”一节。 |
-| strokeColor     | nil                     | path的线条颜色                                               |                                                              |
-| strokeStart     | 0.0                     | stroke的百分比起始位置                                       | 如果path从头到尾是100%，则strokeStart指定起始点按照百分比算的位置。比如0.5，则起始点在path的中间。 |
-| strokeEnd       | 1.0                     | stroke的百分比结束位置                                       | 如果path从头到尾是100%，则strokeEnd指定结束点按照百分比算的位置。比如0.5，则结束点在path的中间。 |
-| path            | nil                     | CGPathRef类型。一般是UIBezierPath                            |                                                              |
-
-
-
-> 示例代码，见HelloCoreGraphics工程
-
-
-
-#### a. miterLimit[^6]
-
-miterLimit实际是一个阈值，理解它还需要如下图的两个概念，miter length和stroke width。
-
-![](images/miter length.png)
-
-* miter length，是指两条线条相交，构成两个衔接点之间的距离
-* stroke width，是指线条的宽度
-
-当比例miter length/stroke width大于miterLimit时（而且lineJoin=kCALineJoinMiter），尖角太尖，CAShapeLayer自动将尖角画成kCALineJoinBevel类型。公式如下
-
-![](images/miter limit.png)
-
-说明
-
-> ratio比例miter length/stroke width，实际和角度φ有关，当φ=60°，ratio=2；当φ=90°，ratio=1.414
-
-
-
-#### b. path[^7]
-
-CAShapeLayer可以使用UIBezierPath对象自动画出矢量图片。这里不介绍UIBezierPath使用，参考HelloCoreGraphics工程。
-
-
-
-## 4、关于WCViewTool
+## 3、关于WCViewTool
 
 检测UIView的frame被修改的事件
 
@@ -499,6 +428,4 @@ CAShapeLayer可以使用UIBezierPath对象自动画出矢量图片。这里不�
 [^4]: https://medium.com/@wailord/the-automaticallyadjustsscrollviewinsets-rabbit-hole-b9153a769ce9
 [^5]:https://stackoverflow.com/a/45242206
 
-[^6]:https://wiki.esko.com/pages/viewpage.action?pageId=184729203
-
-[^7]:https://www.calayer.com/core-animation/2016/05/22/cashapelayer-in-depth.html
+[^]:

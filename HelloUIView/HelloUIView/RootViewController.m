@@ -8,23 +8,14 @@
 
 #import "RootViewController.h"
 
-#import "UseCAShapeLayerToShowViewWithTwoCornersViewController.h"
 #import "ObserveViewGeometryChangeEventViewController.h"
 #import "TouchThroughPartRegionOfViewViewController.h"
 #import "MappingRectFromViewToViewViewController.h"
-#import "DrawGradientViewViewController.h"
-#import "DrawRadialGradientViewViewController.h"
-#import "UseCAGradientLayerWithTwoColorsViewController.h"
-#import "UseCAGradientLayerWithMultipleColorsViewController.h"
-#import "StretchImageInLayerViewController.h"
+
 #import "DottedLineViewViewController.h"
 #import "UseSafeAreaInsetsViewController.h"
 #import "SnapshotViewViewController.h"
-
 #import "HitTestInViewViewController.h"
-#import "AddShadowBorderToImageViewController.h"
-#import "AddBorderToImageViewController.h"
-#import "TwoAdjacentShadowBorderViewController.h"
 #import "TouchThroughToUnderneathViewViewController.h"
 #import "BlurAnyViewViewController.h"
 #import "TraverseSubviewsInViewViewController.h"
@@ -68,33 +59,13 @@
           @{ kTitle: @"safeAreaInsets", kClass: [UseSafeAreaInsetsViewController class] },
           @{ kTitle: @"Snapshot View", kClass: [SnapshotViewViewController class] },
     ];
-
-    NSArray<NSDictionary *> *section2 = @[
-          @{ kTitle: @"UIView with two corners", kClass: [UseCAShapeLayerToShowViewWithTwoCornersViewController class] },
-          @{ kTitle: @"Draw gradient view", kClass: [DrawGradientViewViewController class] },
-          @{ kTitle: @"Draw radial gradient view", kClass: [DrawRadialGradientViewViewController class] },
-          @{ kTitle: @"Gradient with two colors (Use CAGradientLayer)", kClass: [UseCAGradientLayerWithTwoColorsViewController class] },
-          @{ kTitle: @"Use CAGradientLayer", kClass: [UseCAGradientLayerWithMultipleColorsViewController class] },
-          @{ kTitle: @"Add shadow border to image", kClass: [AddShadowBorderToImageViewController class] },
-          @{ kTitle: @"Add border to image", kClass: [AddBorderToImageViewController class] },
-          @{ kTitle: @"Two adjacent shadow border", kClass: [TwoAdjacentShadowBorderViewController class] },
-          @{ kTitle: @"Stretch image by CALayer", kClass: [StretchImageInLayerViewController class] },
-    ];
-    
-    NSArray<NSDictionary *> *section3 = @[
-          @{ kTitle: @"CAShapeLayer (See CoreGraphics)", kClass: @"testMethod" },
-    ];
     
     _sectionTitles = @[
         @"UIView",
-        @"CALayer",
-        @"CAShapeLayer",
     ];
     
     _classes = @[
          section1,
-         section2,
-         section3,
     ];
 }
 
