@@ -138,9 +138,65 @@ XCTAssertTrue(CGRectEqualToRect(output, CGRectFromString(@"{{1.5, 2}, {3, 3}}"))
 
 ## 2、UIBezierPath
 
-​       UIBezierPath是UIKit提供的上层对象，UIBezierPath是对应CGPath的封装[^3]，CGPath的C函数API，包含UIBezierPath的所有Objective-C方法。如果对CGPath不是非常熟悉，而且可以使用UIBezierPath完成绘图，那优先选择使用UIBezierPath。在某些情况下，UIBezierPath要比CGPath要“快”一些[^4]。
+​       UIBezierPath是UIKit提供的上层对象，用于描述绘图的路径，其中包括直线和曲线的线段
+
+​       UIBezierPath是对应CGPath的封装[^3]，CGPath的C函数API，包含UIBezierPath的所有Objective-C方法。如果对CGPath不是非常熟悉，而且可以使用UIBezierPath完成绘图，那优先选择使用UIBezierPath。在某些情况下，UIBezierPath要比CGPath要“快”一些[^4]。
 
 
+
+### （1）特定path的便利方法
+
+UIBezierPath提供5个便利方法，可以直接描述特定形状的路径，主要有矩形、椭圆、圆角矩形和弧。
+
+5个便利方法，如下
+
+```objective-c
+// 描述矩形，方向顺时针
++ (instancetype)bezierPathWithRect:(CGRect)rect;
+// 在指定矩形中，描述椭圆。如果矩形是正方形，则椭圆是圆形。方向顺时针
++ (instancetype)bezierPathWithOvalInRect:(CGRect)rect;
+// 描述圆角矩形，方向顺时针
++ (instancetype)bezierPathWithRoundedRect:(CGRect)rect cornerRadius:(CGFloat)cornerRadius;
+// 描述圆角矩形，可以指定特定位置的圆角。方向顺时针
++ (instancetype)bezierPathWithRoundedRect:(CGRect)rect byRoundingCorners:(UIRectCorner)corners cornerRadii:(CGSize)cornerRadii;
+// 描述弧，用于画半圆、圆等。该方法返回的path是open，不是闭环路径
++ (instancetype)bezierPathWithArcCenter:(CGPoint)center radius:(CGFloat)radius startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle clockwise:(BOOL)clockwise;
+```
+
+其中，bezierPathWithArcCenter:radius:startAngle:endAngle:clockwise:方法，startAngle和endAngle参数，按照下面坐标系指定特定的角度。
+
+![](images/bezierPathWithArcCenter.png)
+
+
+
+说明
+
+> bezierPathWithArcCenter:radius:startAngle:endAngle:clockwise:方法，只能描述圆的弧，不能描述椭圆的弧。
+
+
+
+### （2）构建path的方法
+
+​        UIBezierPath构建path，类似一笔画的方式，从某个开始点到结束点，构建一条直线或者曲线，然后将结束点设置成新的开始点，根据下个结束点，构建新一条直线或者曲线。这个不断成为新的开始点，在UIBezierPath中，对应它的只读currentPoint属性。在创建UIBezierPath对象时，currentPoint是CGPointZero。
+
+
+
+UIBezierPath提供5种构建path的方法，如下
+
+```objective-c
+// 将currentPoint移到某个点上
+- (void)moveToPoint:(CGPoint)point;
+// 从currentPoint到point构建一条直线
+- (void)addLineToPoint:(CGPoint)point;
+// 
+- (void)addArcWithCenter:(CGPoint)center radius:(CGFloat)radius startAngle:(CGFloat)startAngle endAngle:(CGFloat)endAngle clockwise:(BOOL)clockwise;
+```
+
+上面5种方法每次调用后，都会更新currentPoint，用于新的开始点。
+
+
+
+### （3）使用UIBezierPath绘图
 
 UIBezierPath的使用，目前有两种方式
 
@@ -151,7 +207,11 @@ UIBezierPath的使用，目前有两种方式
 
 
 
-### （1）UIBezierPath+CAShapeLayer[^5]
+#### a. UIBezierPath+CAShapeLayer[^5]
+
+
+
+
 
 
 
