@@ -700,6 +700,24 @@ typedef NS_ENUM(NSUInteger, WCStringSplitInComponentsMode) {
  */
 + (nullable NSString *)base64DecodedStringWithString:(NSString *)string NS_AVAILABLE_IOS(7_0);
 
+#pragma mark - Unit String
+
+/**
+ Get pretty size for memory bytes, which 1024 byte = 1 KB
+ 
+ @param memoryBytes the bytes for memory
+ @return the pretty size string
+ */
++ (NSString *)prettySizeWithMemoryBytes:(unsigned long long)memoryBytes;
+
+/**
+ Get pretty size for memory bytes, which 1000 byte = 1 KB
+ 
+ @param fileBytes the bytes for file
+ @return the pretty size string
+ */
++ (NSString *)prettySizeWithFileBytes:(unsigned long long)fileBytes;
+
 @end
 
 NS_ASSUME_NONNULL_END

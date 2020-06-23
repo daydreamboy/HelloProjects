@@ -1651,6 +1651,18 @@
     return decodedString;
 }
 
+#pragma mark - Unit String
+
++ (NSString *)prettySizeWithMemoryBytes:(unsigned long long)memoryBytes {
+    NSString *sizeString = [NSByteCountFormatter stringFromByteCount:memoryBytes countStyle:NSByteCountFormatterCountStyleBinary];
+    return sizeString;
+}
+
++ (NSString *)prettySizeWithFileBytes:(unsigned long long)fileBytes {
+    NSString *sizeString = [NSByteCountFormatter stringFromByteCount:fileBytes countStyle:NSByteCountFormatterCountStyleDecimal];
+    return sizeString;
+}
+
 #pragma mark - Private Utility Functions
 
 /**
