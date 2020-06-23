@@ -11,6 +11,8 @@
 		4F3F9794246C5981000814EC /* variableDuration.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4F3F9792246C5981000814EC /* variableDuration.gif */; };
 		4F3F9795246C5981000814EC /* infinityLoop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4F3F9793246C5981000814EC /* infinityLoop.gif */; };
 		4F3F9797246C5CAF000814EC /* 13.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F3F9796246C5CAF000814EC /* 13.png */; };
+		4F5081B224A0DD4500248AC8 /* sample_1920×1280.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 4F5081B124A0DD4500248AC8 /* sample_1920×1280.bmp */; };
+		4F5081B424A0DF2E00248AC8 /* lena_gray.bmp in Resources */ = {isa = PBXBuildFile; fileRef = 4F5081B324A0DF2E00248AC8 /* lena_gray.bmp */; };
 		4F58CEF42176503D00D0FD17 /* 11.heic in Resources */ = {isa = PBXBuildFile; fileRef = 4F58CEF32176503D00D0FD17 /* 11.heic */; };
 		4F6061CD2134F57C00D049DF /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6061CA2134F57B00D049DF /* RootViewController.m */; };
 		4F6061D62134F5A300D049DF /* CreateImageWithAlphaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6061CF2134F5A300D049DF /* CreateImageWithAlphaViewController.m */; };
@@ -32,6 +34,7 @@
 		4F636E692134F2F3003DE979 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F636E682134F2F3003DE979 /* Assets.xcassets */; };
 		4F636E6C2134F2F3003DE979 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F636E6A2134F2F3003DE979 /* LaunchScreen.storyboard */; };
 		4F636E6F2134F2F3003DE979 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F636E6E2134F2F3003DE979 /* main.m */; };
+		4F8591AE24A1F3A4005EBAA1 /* WCStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8591AD24A1F3A4005EBAA1 /* WCStringTool.m */; };
 		4F8BB40721526A5900F0AD99 /* fake@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8BB40621526A5900F0AD99 /* fake@2x.png */; };
 		4F8BB40B21526BEB00F0AD99 /* fake.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8BB40821526BEB00F0AD99 /* fake.png */; };
 		4F8BB40C21526BEB00F0AD99 /* fake@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8BB40921526BEB00F0AD99 /* fake@1x.png */; };
@@ -42,6 +45,12 @@
 		4FA7A82E21D0F503008A350C /* CreateImageWithColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA7A82D21D0F503008A350C /* CreateImageWithColorViewController.m */; };
 		4FBC72DD21DCC08E001B0F53 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBC72DC21DCC08E001B0F53 /* Tests.m */; };
 		4FBC72E521DCC0A1001B0F53 /* Tests_UIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBC72E421DCC0A1001B0F53 /* Tests_UIImage.m */; };
+		4FE1F3C824A0FB940034B4BA /* CheckImageMemorySizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE1F3C724A0FB940034B4BA /* CheckImageMemorySizeViewController.m */; };
+		4FE1F3CA24A112390034B4BA /* lena_color.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 4FE1F3C924A112390034B4BA /* lena_color.tiff */; };
+		4FE1F3CE24A114FF0034B4BA /* grayscale_1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4FE1F3CD24A114FF0034B4BA /* grayscale_1.jpg */; };
+		4FE1F3D024A1168D0034B4BA /* grayscale_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FE1F3CF24A1168D0034B4BA /* grayscale_2.png */; };
+		4FE1F3D224A1179F0034B4BA /* grayscale_3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4FE1F3D124A1179F0034B4BA /* grayscale_3.gif */; };
+		4FE1F3D424A119680034B4BA /* grayscale_4.pgm in Resources */ = {isa = PBXBuildFile; fileRef = 4FE1F3D324A119670034B4BA /* grayscale_4.pgm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +69,8 @@
 		4F3F9792246C5981000814EC /* variableDuration.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = variableDuration.gif; sourceTree = "<group>"; };
 		4F3F9793246C5981000814EC /* infinityLoop.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = infinityLoop.gif; sourceTree = "<group>"; };
 		4F3F9796246C5CAF000814EC /* 13.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 13.png; sourceTree = "<group>"; };
+		4F5081B124A0DD4500248AC8 /* sample_1920×1280.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = "sample_1920×1280.bmp"; sourceTree = "<group>"; };
+		4F5081B324A0DF2E00248AC8 /* lena_gray.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = lena_gray.bmp; sourceTree = "<group>"; };
 		4F58CEF32176503D00D0FD17 /* 11.heic */ = {isa = PBXFileReference; lastKnownFileType = file; path = 11.heic; sourceTree = "<group>"; };
 		4F6061CA2134F57B00D049DF /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F6061CB2134F57C00D049DF /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
@@ -90,6 +101,9 @@
 		4F636E6B2134F2F3003DE979 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F636E6D2134F2F3003DE979 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F636E6E2134F2F3003DE979 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4F85917124A1B7D9005EBAA1 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
+		4F8591AC24A1F3A4005EBAA1 /* WCStringTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStringTool.h; sourceTree = "<group>"; };
+		4F8591AD24A1F3A4005EBAA1 /* WCStringTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCStringTool.m; sourceTree = "<group>"; };
 		4F8BB40621526A5900F0AD99 /* fake@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fake@2x.png"; sourceTree = "<group>"; };
 		4F8BB40821526BEB00F0AD99 /* fake.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fake.png; sourceTree = "<group>"; };
 		4F8BB40921526BEB00F0AD99 /* fake@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fake@1x.png"; sourceTree = "<group>"; };
@@ -105,6 +119,13 @@
 		4FBC72DC21DCC08E001B0F53 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		4FBC72DE21DCC08E001B0F53 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FBC72E421DCC0A1001B0F53 /* Tests_UIImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_UIImage.m; sourceTree = "<group>"; };
+		4FE1F3C624A0FB940034B4BA /* CheckImageMemorySizeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckImageMemorySizeViewController.h; sourceTree = "<group>"; };
+		4FE1F3C724A0FB940034B4BA /* CheckImageMemorySizeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckImageMemorySizeViewController.m; sourceTree = "<group>"; };
+		4FE1F3C924A112390034B4BA /* lena_color.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = lena_color.tiff; sourceTree = "<group>"; };
+		4FE1F3CD24A114FF0034B4BA /* grayscale_1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = grayscale_1.jpg; sourceTree = "<group>"; };
+		4FE1F3CF24A1168D0034B4BA /* grayscale_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grayscale_2.png; sourceTree = "<group>"; };
+		4FE1F3D124A1179F0034B4BA /* grayscale_3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = grayscale_3.gif; sourceTree = "<group>"; };
+		4FE1F3D324A119670034B4BA /* grayscale_4.pgm */ = {isa = PBXFileReference; lastKnownFileType = file; path = grayscale_4.pgm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +163,8 @@
 				4FA7A82D21D0F503008A350C /* CreateImageWithColorViewController.m */,
 				4F3F978F246C452C000814EC /* CreateAnimatedImageViewController.h */,
 				4F3F9790246C452C000814EC /* CreateAnimatedImageViewController.m */,
+				4FE1F3C624A0FB940034B4BA /* CheckImageMemorySizeViewController.h */,
+				4FE1F3C724A0FB940034B4BA /* CheckImageMemorySizeViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -158,6 +181,13 @@
 		4F6061DE2134F5EA00D049DF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4FE1F3D324A119670034B4BA /* grayscale_4.pgm */,
+				4FE1F3D124A1179F0034B4BA /* grayscale_3.gif */,
+				4FE1F3CF24A1168D0034B4BA /* grayscale_2.png */,
+				4FE1F3CD24A114FF0034B4BA /* grayscale_1.jpg */,
+				4FE1F3C924A112390034B4BA /* lena_color.tiff */,
+				4F5081B324A0DF2E00248AC8 /* lena_gray.bmp */,
+				4F5081B124A0DD4500248AC8 /* sample_1920×1280.bmp */,
 				4F3F9796246C5CAF000814EC /* 13.png */,
 				4F3F9793246C5981000814EC /* infinityLoop.gif */,
 				4F3F9792246C5981000814EC /* variableDuration.gif */,
@@ -223,6 +253,9 @@
 			children = (
 				4F9909AA219C6CD000606B97 /* WCViewTool.h */,
 				4F9909AB219C6CD000606B97 /* WCViewTool.m */,
+				4F85917124A1B7D9005EBAA1 /* WCMacroTool.h */,
+				4F8591AC24A1F3A4005EBAA1 /* WCStringTool.h */,
+				4F8591AD24A1F3A4005EBAA1 /* WCStringTool.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -321,8 +354,10 @@
 				4F6061F12134F5EA00D049DF /* 7.png in Resources */,
 				4F9909A8219C6C3D00606B97 /* 12.jpg in Resources */,
 				4F8BB40721526A5900F0AD99 /* fake@2x.png in Resources */,
+				4F5081B224A0DD4500248AC8 /* sample_1920×1280.bmp in Resources */,
 				4F6061F02134F5EA00D049DF /* 2.jpeg in Resources */,
 				4F6061EA2134F5EA00D049DF /* 8.png in Resources */,
+				4FE1F3D224A1179F0034B4BA /* grayscale_3.gif in Resources */,
 				4F636E6C2134F2F3003DE979 /* LaunchScreen.storyboard in Resources */,
 				4F6061EF2134F5EA00D049DF /* 5.jpeg in Resources */,
 				4F6061EC2134F5EA00D049DF /* 10.png in Resources */,
@@ -332,9 +367,14 @@
 				4F3F9795246C5981000814EC /* infinityLoop.gif in Resources */,
 				4F6061ED2134F5EA00D049DF /* 4.jpeg in Resources */,
 				4F6061F22134F5EA00D049DF /* 3.jpeg in Resources */,
+				4F5081B424A0DF2E00248AC8 /* lena_gray.bmp in Resources */,
+				4FE1F3CE24A114FF0034B4BA /* grayscale_1.jpg in Resources */,
+				4FE1F3D424A119680034B4BA /* grayscale_4.pgm in Resources */,
 				4F6061EB2134F5EA00D049DF /* 9.png in Resources */,
 				4F8BB40B21526BEB00F0AD99 /* fake.png in Resources */,
+				4FE1F3D024A1168D0034B4BA /* grayscale_2.png in Resources */,
 				4F8BB40C21526BEB00F0AD99 /* fake@1x.png in Resources */,
+				4FE1F3CA24A112390034B4BA /* lena_color.tiff in Resources */,
 				4F636E692134F2F3003DE979 /* Assets.xcassets in Resources */,
 				4F58CEF42176503D00D0FD17 /* 11.heic in Resources */,
 				4F3F9797246C5CAF000814EC /* 13.png in Resources */,
@@ -357,6 +397,7 @@
 			files = (
 				4F6061D82134F5A300D049DF /* ReplaceColorByPixelViewController.m in Sources */,
 				4F636E6F2134F2F3003DE979 /* main.m in Sources */,
+				4F8591AE24A1F3A4005EBAA1 /* WCStringTool.m in Sources */,
 				4F6061DD2134F5B300D049DF /* WCImageTool.m in Sources */,
 				4F6061D92134F5A300D049DF /* ScaleImageViewController.m in Sources */,
 				4F9909AC219C6CD000606B97 /* WCViewTool.m in Sources */,
@@ -365,6 +406,7 @@
 				4F3F9791246C452C000814EC /* CreateAnimatedImageViewController.m in Sources */,
 				4FA7A82E21D0F503008A350C /* CreateImageWithColorViewController.m in Sources */,
 				4F9909A6219C6BF000606B97 /* CropImageViewController.m in Sources */,
+				4FE1F3C824A0FB940034B4BA /* CheckImageMemorySizeViewController.m in Sources */,
 				4F636E612134F2F1003DE979 /* AppDelegate.m in Sources */,
 				4F6061D62134F5A300D049DF /* CreateImageWithAlphaViewController.m in Sources */,
 			);
@@ -516,6 +558,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = HelloUIImage/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -532,6 +575,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = HelloUIImage/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

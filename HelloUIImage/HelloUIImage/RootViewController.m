@@ -15,6 +15,7 @@
 #import "CropImageViewController.h"
 #import "CreateImageWithColorViewController.h"
 #import "CreateAnimatedImageViewController.h"
+#import "CheckImageMemorySizeViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -44,6 +45,7 @@
         @"Crop an image",
         @"Create image with color",
         @"Create animated image",
+        @"Check UIImage memory size",
     ];
     _classes = @[
         [CreateOnePixelHeightLineViewController class],
@@ -53,6 +55,7 @@
         [CropImageViewController class],
         [CreateImageWithColorViewController class],
         [CreateAnimatedImageViewController class],
+        [CheckImageMemorySizeViewController class],
     ];
 }
 

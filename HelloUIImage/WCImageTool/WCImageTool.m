@@ -554,6 +554,36 @@
     return animatedImage;
 }
 
+#pragma mark - Query Image
+
++ (NSUInteger)memoryBytesWithImage:(UIImage *)image {
+    if (![image isKindOfClass:[UIImage class]]) {
+        return 0;
+    }
+    
+    NSUInteger bytes = 0;
+    CGColorSpaceRef colorSpace = CGImageGetColorSpace(image.CGImage);
+    CGColorSpaceModel model = CGColorSpaceGetModel(colorSpace);
+    
+    // Note: use components to check grayscale image is not accurate
+    // @see https://stackoverflow.com/a/16770978
+    //size_t components = CGColorSpaceGetNumberOfComponents(colorSpace);
+    if (model == kCGColorSpaceModelMonochrome) {
+        bytes = CGImageGetHeight(image.CGImage) * CGImageGetBytesPerRow(image.CGImage);
+    }
+    else {
+        NSUInteger height = (NSUInteger)ceil(image.size.height);
+        NSUInteger width = (NSUInteger)ceil(image.size.width);
+        
+        NSUInteger bytesPerRow = 4 * width;
+        if (bytesPerRow % 16)
+            bytesPerRow = ((bytesPerRow / 16) + 1) * 16;
+        bytes = height * bytesPerRow;
+    }
+
+    return bytes;
+}
+
 #pragma mark - Utility
 
 static int GCDOfPair(int a, int b)

@@ -156,6 +156,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (nullable UIImage *)animatedImageWithData:(NSData *)data;
 
+#pragma mark - Query Image
+
+/**
+ Get the uncompressed data bytes of the image
+ 
+ @param image the UIImage
+ @return the memory size in bytes. If the parameter is not UIImage, return 0.
+ @see https://stackoverflow.com/a/1298043
+ */
++ (NSUInteger)memoryBytesWithImage:(UIImage *)image;
+
 @end
 
 NS_ASSUME_NONNULL_END

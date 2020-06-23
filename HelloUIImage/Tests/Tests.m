@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "WCImageTool.h"
 
 @interface Tests : XCTestCase
 
@@ -16,24 +17,32 @@
 
 - (void)setUp {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    NSLog(@"\n");
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
+    NSLog(@"\n");
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
-}
-
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)test_memoryBytesWithImage {
+    UIImage *image;
+    NSUInteger output;
+    NSData *data;
+    
+    // image from https://filesamples.com/formats/bmp
+    image = [UIImage imageNamed:@"sample_1920×1280.bmp"];
+    output = [WCImageTool memoryBytesWithImage:image];
+    data = UIImageJPEGRepresentation(image, 1);
+    NSLog(@"%lu", (unsigned long)output);
+    NSLog(@"%lu", (unsigned long)[data length]);
+    
+    // image from http://eeweb.poly.edu/~yao/EL5123/SampleData.html
+    image = [UIImage imageNamed:@"lena_gray.bmp"];
+    output = [WCImageTool memoryBytesWithImage:image];
+    data = UIImageJPEGRepresentation(image, 1);
+    NSLog(@"%lu", (unsigned long)output);
+    NSLog(@"%lu", (unsigned long)[data length]);
 }
 
 @end
