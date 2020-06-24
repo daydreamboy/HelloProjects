@@ -357,6 +357,14 @@ NSLog(@"Avg. Runtime: %llu ns", t_0);
 
 
 
+### （5）异步任务转成串行执行
+
+
+
+WCAsyncTaskExecutor
+
+
+
 ## References
 
 [^1]: [http://etutorials.org/Programming/Cocoa/Part+I+Introducing+Cocoa/Chapter+2.+Foundation/2.9+Threaded+Programming/](http://etutorials.org/Programming/Cocoa/Part+I+Introducing+Cocoa/Chapter+2.+Foundation/2.9+Threaded+Programming/)

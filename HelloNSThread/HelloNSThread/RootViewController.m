@@ -29,6 +29,9 @@
 // callStack
 #import "GetSymbolicCallStackViewController.h"
 
+// test
+#import "TestWCAsyncTaskExecutorViewController.h"
+
 #define kTitle @"Title"
 #define kClass @"Class"
 
@@ -77,16 +80,22 @@
           @{ kTitle: @"Get symbolic call stack", kClass: [GetSymbolicCallStackViewController class] },
     ];
     
+    NSArray<NSDictionary *> *section4 = @[
+          @{ kTitle: @"Test WCAsyncTaskExecutor", kClass: [TestWCAsyncTaskExecutorViewController class] },
+    ];
+    
     _sectionTitles = @[
         @"Thread",
         @"Lock",
-        @"callStack"
+        @"callStack",
+        @"test",
     ];
     
     _classes = @[
          section1,
          section2,
          section3,
+         section4,
     ];
 }
 
