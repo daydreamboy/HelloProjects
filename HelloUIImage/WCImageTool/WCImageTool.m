@@ -20,6 +20,8 @@
 
 #endif
 
+#define CF_SAFE_RELEASE(ref) if ((ref) != NULL) { CFRelease((ref)); }
+
 @implementation WCImageTool
 
 #pragma mark - Image Generation
@@ -583,6 +585,76 @@
 
     return bytes;
 }
+
+#pragma mark - Thumbnail Image
+
++ (nullable UIImage *)thumbnailImageWithPath:(NSString *)path size:(CGSize)size scale:(CGFloat)scale {
+    return [self thumbnailImageWithData:nil path:path size:size scale:scale];
+}
+
++ (nullable UIImage *)thumbnailImageWithData:(NSData *)data size:(CGSize)size scale:(CGFloat)scale {
+    return [self thumbnailImageWithData:data path:nil size:size scale:scale];
+}
+
+#pragma mark ::
+
++ (nullable UIImage *)thumbnailImageWithData:(NSData *)data path:(NSString *)path size:(CGSize)size scale:(CGFloat)scale {
+    if (size.width <= 0 || size.height <= 0) {
+        return nil;
+    }
+    
+    if ((![data isKindOfClass:[NSData class]] || data.length == 0) &&
+        (![path isKindOfClass:[NSString class]] || path.length == 0)) {
+        return nil;
+    }
+    
+    CGImageSourceRef imageSourceRef = NULL;
+    NSDictionary *options = @{
+        fromCF kCGImageSourceShouldCache: @NO,
+    };
+    
+    if (data) {
+        imageSourceRef = CGImageSourceCreateWithData(toCF data, toCF options);
+    }
+    else {
+        if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            return nil;
+        }
+        
+        NSURL *fileURL = [NSURL URLWithString:path];
+        if (!fileURL) {
+            return nil;
+        }
+        
+        imageSourceRef = CGImageSourceCreateWithURL(toCF fileURL, toCF options);
+    }
+    
+    if (imageSourceRef == NULL) {
+        return nil;
+    }
+    
+    scale = scale <= 0 ? [UIScreen mainScreen].scale : scale;
+    CGFloat maxDimensionInPixels = MAX(size.width, size.height) * scale;
+    
+    NSDictionary *thumbnailOptions = @{
+        fromCF kCGImageSourceCreateThumbnailFromImageAlways: @YES,
+        fromCF kCGImageSourceShouldCacheImmediately: @YES,
+        fromCF kCGImageSourceThumbnailMaxPixelSize: @(maxDimensionInPixels),
+        fromCF kCGImageSourceCreateThumbnailWithTransform: @YES,
+    };
+    
+    CGImageRef downsampledImageRef = CGImageSourceCreateThumbnailAtIndex(imageSourceRef, 0, toCF thumbnailOptions);
+    
+    UIImage *thumbnailImage = [UIImage imageWithCGImage:downsampledImageRef];
+    
+    // cleanup
+    CF_SAFE_RELEASE(imageSourceRef);
+    CF_SAFE_RELEASE(downsampledImageRef);
+    
+    return thumbnailImage;
+}
+
+#pragma mark ::
 
 #pragma mark - Utility
 

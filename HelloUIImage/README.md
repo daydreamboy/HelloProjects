@@ -1,10 +1,12 @@
-## iOS Drawing
+# iOS Drawing
 
 [TOC]
 
----
 
-### 1、几种绘图方式
+
+
+
+## 1、几种绘图方式
 
 iOS中有几种方式可以绘图，UIKit、CoreGraphics（Quartz 2D）、OpenGL ES，其中
 
@@ -12,9 +14,9 @@ iOS中有几种方式可以绘图，UIKit、CoreGraphics（Quartz 2D）、OpenGL
 
 
 
-### 2、UIKit绘图
+## 2、UIKit绘图
 
-#### （1）创建绘图环境
+### （1）创建绘图环境
 
 创建一个绘图环境，可以用UIKit提供的`UIGraphicsBeginImageContextWithOptions`或`UIGraphicsBeginImageContext`函数。函数原型分别是
 
@@ -37,7 +39,7 @@ void UIGraphicsBeginImageContext(CGSize size);
 
 
 
-#### （2）显示1px高度的UImage
+### （2）显示1px高度的UImage
 
 ​        使用CoreGraphics画图时，不同分辨率scale的画布，对应1px高度是不一样的。例如scale=1（@1x），则对应高度是1pt；scale=2（@2x）对应的高度是1.0/2pt；scale=3（@3x）对应的高度是1.0/3pt。当高度小于这个值，UIGraphicsGetImageFromCurrentImageContext方法，总是返回1.0/scale pt = （1px）高度的UIImage。
 
@@ -62,9 +64,9 @@ void UIGraphicsBeginImageContext(CGSize size);
 
 
 
-### 3、UIImage常见问题
+## 3、UIImage常见问题
 
-#### （1）+[UIImage imageWithContentsOfFile:]方法懒加载图片文件
+### （1）+[UIImage imageWithContentsOfFile:]方法懒加载图片文件
 
 ​        `+[UIImage imageWithContentsOfFile:]`方法在调用时并不直接读文件，而是在渲染时才读取文件。如果在渲染之前删除UIImage对应的图片，则渲染失败显示一块黑色。
 
@@ -94,7 +96,7 @@ if ([[NSFileManager defaultManager] fileExistsAtPath:newFilePath]) {
 
 
 
-#### （2）计算UIImage所持有图片的内存大小
+### （2）计算UIImage所持有图片的内存大小
 
 ​        UIImage对象封装图片的信息，但是它自身的内存大小并不代表图片在内存的大小。另外，网上有人说使用`UIImageJPEGRepresentation`和`UIImagePNGRepresentation`方法来获取NSData对象来判断UIImage所持有图片的内存，显然这种方法不对，两个方法得出来NSData的length是不一样，因为采用不同图片编码压缩方式，得出来NSData大小就是不一样的。而且这个NSData并不是图片非压缩的大小。图片非压缩的大小，是指图片解码（反解JPEG、PNG等编码方式）展开成像素矩形（width * height），对于RGBA图片，每个像素用4 bytes来描述，因此RGBA图片的内存大小是`width * height * 4` bytes。
 
@@ -154,7 +156,7 @@ if ([[NSFileManager defaultManager] fileExistsAtPath:newFilePath]) {
 
 
 
-#### （3）+[UIImage imageWithContentsOfFile:]方法的获取图片不对的问题
+### （3）+[UIImage imageWithContentsOfFile:]方法的获取图片不对的问题
 
 ​        当同时存在xxx.png和xxx@2x.png时，使用imageWithContentsOfFile:方法，指定路径到xxx.png，该方法读取出的图片对象UIImage，居然是xxx@2x.png。
 
@@ -190,9 +192,125 @@ if ([[NSFileManager defaultManager] fileExistsAtPath:newFilePath]) {
 
 
 
+## 4、Image I/O
+
+​       Image I/O是系统提供处理图片文件的库 (ImageIO.framework)，主要负责大多数图片的读写以及元属性(metadata)访问，还有管理颜色。
+
+官方文档，对Image I/O描述，如下
+
+> The Image I/O programming interface framework allows applications to read and write most image file formats. This framework offers high efficiency, color management, and access to image metadata.
+
+
+
+Image I/O主要提供两个Opaque类型以及对应的API
+
+* CGImageSource，用于读取图片文件的模型
+* CGImageDestination，用于写图片文件的模型
+
+
+
+### （1）CGImageSource
+
+#### a. 创建CGImageSource
+
+​       CGImageSource类型（CGImageSourceRef），可以理解为一个图片容器，里面封装了图片 (images)、缩略图 (thumbnails)、图片属性 (properties)等其他信息。
+
+说明
+
+> CGImageSource对象并不是图像的模型，CGImage对象才代表图片中的一帧图像，因此CGImageSource对象包含多帧图像（例如GIF、PDF等），以及对应的缩略图和属性。
+
+
+
+创建CGImageSource可以来自URL、CFData和Data Provider，如下面三个API
+
+```c
+// 指定图片URL创建
+CGImageSourceRef CGImageSourceCreateWithURL(CFURLRef url, CFDictionaryRef options);
+// 根据Data创建
+CGImageSourceRef CGImageSourceCreateWithData(CFDataRef data, CFDictionaryRef options);
+// 根据Data Provider创建
+CGImageSourceRef CGImageSourceCreateWithDataProvider(CGDataProviderRef provider, CFDictionaryRef options);
+```
+
+除了上面使用数据来源创建CGImageSource，还可以创建一个空白的CGImageSource，如下
+
+```c
+// 创建空白的图片容器，后续CGImageSourceUpdateDataProvider或CGImageSourceUpdateData添加图片数据
+CGImageSourceRef CGImageSourceCreateIncremental(CFDictionaryRef options);
+```
+
+说明
+
+> 创建CGImageSource对象并不意味着图片数据已经加装到内存中，例如使用URL方式创建CGImageSource
+
+
+
+#### b. 创建CGImage
+
+CGImage对象代表图片中的图像，CGImageSource有2个API可以创建CGImage对象，如下
+
+```c
+// 在指定帧创建图像
+CGImageRef CGImageSourceCreateImageAtIndex(CGImageSourceRef isrc, size_t index, CFDictionaryRef options);
+// 在指定帧创建缩略图
+CGImageRef CGImageSourceCreateThumbnailAtIndex(CGImageSourceRef isrc, size_t index, CFDictionaryRef options);
+```
+
+CGImageSource可以包含多个图像（例如GIF、PDF等），可以通过下面函数，获取多个图像的总数
+
+```c
+size_t CGImageSourceGetCount(CGImageSourceRef isrc);
+```
+
+
+
+#### c. 获取属性(Properties)
+
+CGImageSource有2个API可以CGImageSource或者每帧图像的属性，如下
+
+```c
+// 获取CGImageSource的属性
+CFDictionaryRef CGImageSourceCopyProperties(CGImageSourceRef isrc, CFDictionaryRef options);
+// 获取CGImageSource指定帧的属性
+CFDictionaryRef CGImageSourceCopyPropertiesAtIndex(CGImageSourceRef isrc, size_t index, CFDictionaryRef options);
+```
+
+上面2个函数返回的词典，该词典的key可以参考[官方文档](https://developer.apple.com/documentation/imageio/cgimageproperties?language=objc)查询
+
+
+
+#### d. CGImageSource选项[^4]
+
+CGImageSource相关的API，都有options参数，该词典支持的key，如下
+
+| key                                            | value类型 | 默认值                              | 作用                                                         | 适用函数                        |
+| ---------------------------------------------- | --------- | ----------------------------------- | ------------------------------------------------------------ | ------------------------------- |
+| kCGImageSourceTypeIdentifierHint               | CFString  | NULL                                | 使用uniform type identifier (UTI)，用于创建CGImageSource时提示图片类型 | CGImageSourceCreateImageAtIndex |
+| kCGImageSourceShouldAllowFloat                 | CFBoolean | NO                                  | TODO                                                         | CGImageSourceCreateImageAtIndex |
+| kCGImageSourceShouldCache                      | CFBoolean | 32bit系统下是NO，64bit系统系下是YES | 图片解码后是否缓存结果                                       |                                 |
+| kCGImageSourceCreateThumbnailFromImageIfAbsent | CFBoolean | NO                                  | TODO                                                         |                                 |
+| kCGImageSourceCreateThumbnailFromImageAlways   | CFBoolean | NO                                  | 是否总是创建缩略图，即使CGImageSource对象已经存在缩略图      |                                 |
+| kCGImageSourceThumbnailMaxPixelSize            | CFNumber  | NULL                                |                                                              |                                 |
+| kCGImageSourceCreateThumbnailWithTransform     |           |                                     |                                                              |                                 |
+
+注意
+
+> 上面key并适用每个CGImageSource相关的API，还是需要参考每个API的文档。
+
+
+
+
+
+### （2）CGImageDestination
+
+
+
+
+
 ## References
 
 [^1]: https://developer.apple.com/documentation/uikit/drawing
 [^2]:https://stackoverflow.com/a/29212494
 [^3]:https://stackoverflow.com/a/1298043
+[^4]:https://developer.apple.com/documentation/imageio/cgimagesource/image_source_option_dictionary_keys?language=objc
 

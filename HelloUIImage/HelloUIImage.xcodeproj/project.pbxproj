@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4F2CADF624A4A8B0008C9C27 /* fake@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F2CADF524A4A8B0008C9C27 /* fake@2x.png */; };
+		4F2CADF924A4CAAC008C9C27 /* CreateThumbnailImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2CADF824A4CAAC008C9C27 /* CreateThumbnailImageViewController.m */; };
 		4F3F9791246C452C000814EC /* CreateAnimatedImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F9790246C452C000814EC /* CreateAnimatedImageViewController.m */; };
 		4F3F9794246C5981000814EC /* variableDuration.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4F3F9792246C5981000814EC /* variableDuration.gif */; };
 		4F3F9795246C5981000814EC /* infinityLoop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4F3F9793246C5981000814EC /* infinityLoop.gif */; };
@@ -63,6 +64,8 @@
 
 /* Begin PBXFileReference section */
 		4F2CADF524A4A8B0008C9C27 /* fake@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fake@2x.png"; sourceTree = "<group>"; };
+		4F2CADF724A4CAAC008C9C27 /* CreateThumbnailImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateThumbnailImageViewController.h; sourceTree = "<group>"; };
+		4F2CADF824A4CAAC008C9C27 /* CreateThumbnailImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateThumbnailImageViewController.m; sourceTree = "<group>"; };
 		4F3F978F246C452C000814EC /* CreateAnimatedImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAnimatedImageViewController.h; sourceTree = "<group>"; };
 		4F3F9790246C452C000814EC /* CreateAnimatedImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAnimatedImageViewController.m; sourceTree = "<group>"; };
 		4F3F9792246C5981000814EC /* variableDuration.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = variableDuration.gif; sourceTree = "<group>"; };
@@ -161,6 +164,8 @@
 				4F3F9790246C452C000814EC /* CreateAnimatedImageViewController.m */,
 				4FE1F3C624A0FB940034B4BA /* CheckImageMemorySizeViewController.h */,
 				4FE1F3C724A0FB940034B4BA /* CheckImageMemorySizeViewController.m */,
+				4F2CADF724A4CAAC008C9C27 /* CreateThumbnailImageViewController.h */,
+				4F2CADF824A4CAAC008C9C27 /* CreateThumbnailImageViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -396,6 +401,7 @@
 				4F6061CD2134F57C00D049DF /* RootViewController.m in Sources */,
 				4F6061D72134F5A300D049DF /* CreateOnePixelHeightLineViewController.m in Sources */,
 				4F3F9791246C452C000814EC /* CreateAnimatedImageViewController.m in Sources */,
+				4F2CADF924A4CAAC008C9C27 /* CreateThumbnailImageViewController.m in Sources */,
 				4FA7A82E21D0F503008A350C /* CreateImageWithColorViewController.m in Sources */,
 				4F9909A6219C6BF000606B97 /* CropImageViewController.m in Sources */,
 				4FE1F3C824A0FB940034B4BA /* CheckImageMemorySizeViewController.m in Sources */,

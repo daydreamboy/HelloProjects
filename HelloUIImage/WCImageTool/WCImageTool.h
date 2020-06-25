@@ -167,6 +167,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSUInteger)memoryBytesWithImage:(UIImage *)image;
 
+#pragma mark - Thumbnail Image
+
+// https://medium.com/@prafullkumar77/image-usage-memory-comparison-and-best-practices-in-ios-wwdc2018-4a8919019ae9
++ (nullable UIImage *)thumbnailImageWithPath:(NSString *)path size:(CGSize)size scale:(CGFloat)scale;
+
++ (nullable UIImage *)thumbnailImageWithData:(NSData *)data size:(CGSize)size scale:(CGFloat)scale;
+
 @end
 
 NS_ASSUME_NONNULL_END
