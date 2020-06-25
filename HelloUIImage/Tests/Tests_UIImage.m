@@ -32,7 +32,9 @@
     XCTAssertNil(image);
 }
 
-- (void)test_imageWithContentsOfFile_issue {
+#pragma mark - Issues
+
+- (void)test_imageWithContentsOfFile_issue_lazy_load_image {
     NSData *data;
     
     NSString *newFilePath = [[self.class appDocumentsDirectory] stringByAppendingPathComponent:@"test.png"];
@@ -52,7 +54,7 @@
     }
 }
 
-- (void)test_imageWithContentsOfFile_issue_solution {
+- (void)test_imageWithContentsOfFile_issue_lazy_load_image_solution {
     NSData *data;
     
     NSString *newFilePath = [[self.class appDocumentsDirectory] stringByAppendingPathComponent:@"test.png"];
@@ -71,6 +73,30 @@
         XCTAssertNotNil(data);
     }
 }
+
+- (void)test_imageWithContentsOfFile_issue_load_wrong_image {
+    NSString *filePath;
+    UIImage *image;
+    
+    // Note: Make sure fake.png and fake@x.png both exists in app
+    
+    // Case 1
+    NSString *filename = @"fake.png";
+    filePath = [[NSBundle mainBundle] pathForResource:[filename stringByDeletingPathExtension] ofType:[filename pathExtension]];
+    image = [UIImage imageWithContentsOfFile:filePath];
+    
+    NSLog(@"filePath1: %@", filePath);
+    NSLog(@"image1: %@", image);
+    
+    // Case 2
+    filePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"fake.png"];
+    UIImage *image2 = [UIImage imageWithContentsOfFile:filePath];
+    
+    NSLog(@"filePath2: %@", filePath);
+    NSLog(@"image2: %@", image2);
+}
+
+#pragma mark - Utility
 
 + (NSString *)appDocumentsDirectory {
     return [self appSearchPathDirectory:NSDocumentDirectory];

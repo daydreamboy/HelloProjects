@@ -572,8 +572,8 @@
         bytes = CGImageGetHeight(image.CGImage) * CGImageGetBytesPerRow(image.CGImage);
     }
     else {
-        NSUInteger height = (NSUInteger)ceil(image.size.height);
-        NSUInteger width = (NSUInteger)ceil(image.size.width);
+        NSUInteger height = (NSUInteger)ceil(image.size.height) * image.scale;
+        NSUInteger width = (NSUInteger)ceil(image.size.width) * image.scale;
         
         NSUInteger bytesPerRow = 4 * width;
         if (bytesPerRow % 16)

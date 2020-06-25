@@ -31,6 +31,7 @@
             @"lena_color.tiff",
             @"grayscale_1.jpg",
             @"grayscale_4.pgm",
+            @"fake@2x.png",
         ];
     }
     return self;
@@ -119,7 +120,7 @@
         NSUInteger bytes = [WCImageTool memoryBytesWithImage:image];
         NSLog(@"increased memory size: %@", [WCStringTool prettySizeWithMemoryBytes:bytes]);
         
-        self.title = [NSString stringWithFormat:@"%@", [WCStringTool prettySizeWithMemoryBytes:bytes]];
+        self.title = [NSString stringWithFormat:@"Increased: %@", [WCStringTool prettySizeWithMemoryBytes:bytes]];
     }
 }
 
