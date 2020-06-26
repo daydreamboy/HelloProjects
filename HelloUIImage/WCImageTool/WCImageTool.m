@@ -588,18 +588,18 @@
 
 #pragma mark - Thumbnail Image
 
-+ (nullable UIImage *)thumbnailImageWithPath:(NSString *)path size:(CGSize)size scale:(CGFloat)scale {
-    return [self thumbnailImageWithData:nil path:path size:size scale:scale];
++ (nullable UIImage *)thumbnailImageWithPath:(NSString *)path boundingSize:(CGSize)boundingSize scale:(CGFloat)scale {
+    return [self thumbnailImageWithData:nil path:path boundingSize:boundingSize scale:scale];
 }
 
-+ (nullable UIImage *)thumbnailImageWithData:(NSData *)data size:(CGSize)size scale:(CGFloat)scale {
-    return [self thumbnailImageWithData:data path:nil size:size scale:scale];
++ (nullable UIImage *)thumbnailImageWithData:(NSData *)data boundingSize:(CGSize)boundingSize scale:(CGFloat)scale {
+    return [self thumbnailImageWithData:data path:nil boundingSize:boundingSize scale:scale];
 }
 
 #pragma mark ::
 
-+ (nullable UIImage *)thumbnailImageWithData:(NSData *)data path:(NSString *)path size:(CGSize)size scale:(CGFloat)scale {
-    if (size.width <= 0 || size.height <= 0) {
++ (nullable UIImage *)thumbnailImageWithData:(NSData *)data path:(NSString *)path boundingSize:(CGSize)boundingSize scale:(CGFloat)scale {
+    if (boundingSize.width <= 0 || boundingSize.height <= 0) {
         return nil;
     }
     
@@ -621,7 +621,7 @@
             return nil;
         }
         
-        NSURL *fileURL = [NSURL URLWithString:path];
+        NSURL *fileURL = [NSURL fileURLWithPath:path];
         if (!fileURL) {
             return nil;
         }
@@ -634,18 +634,18 @@
     }
     
     scale = scale <= 0 ? [UIScreen mainScreen].scale : scale;
-    CGFloat maxDimensionInPixels = MAX(size.width, size.height) * scale;
+    CGFloat maxDimensionInPixels = MAX(boundingSize.width, boundingSize.height) * scale;
     
-    NSDictionary *thumbnailOptions = @{
+    NSDictionary *downsampledOptions = @{
         fromCF kCGImageSourceCreateThumbnailFromImageAlways: @YES,
         fromCF kCGImageSourceShouldCacheImmediately: @YES,
         fromCF kCGImageSourceThumbnailMaxPixelSize: @(maxDimensionInPixels),
         fromCF kCGImageSourceCreateThumbnailWithTransform: @YES,
     };
     
-    CGImageRef downsampledImageRef = CGImageSourceCreateThumbnailAtIndex(imageSourceRef, 0, toCF thumbnailOptions);
+    CGImageRef downsampledImageRef = CGImageSourceCreateThumbnailAtIndex(imageSourceRef, 0, toCF downsampledOptions);
     
-    UIImage *thumbnailImage = [UIImage imageWithCGImage:downsampledImageRef];
+    UIImage *thumbnailImage = [UIImage imageWithCGImage:downsampledImageRef scale:scale orientation:UIImageOrientationUp];
     
     // cleanup
     CF_SAFE_RELEASE(imageSourceRef);

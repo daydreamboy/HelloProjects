@@ -169,10 +169,29 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Thumbnail Image
 
-// https://medium.com/@prafullkumar77/image-usage-memory-comparison-and-best-practices-in-ios-wwdc2018-4a8919019ae9
-+ (nullable UIImage *)thumbnailImageWithPath:(NSString *)path size:(CGSize)size scale:(CGFloat)scale;
+/**
+ Create a thumbnail image from path
+ 
+ @param path the path for image file
+ @param boundingSize the bounding size of the thumbnail. The actual size of thumbnail is not equal to the bounding size, but it's sure that
+ the thumbnail image is scaled by ratio into the bounding size
+ @param scale the scale ratio. Pass 0 if use the current screen scale.
+ @return the thumbnail image.
+ 
+ @see https://medium.com/@prafullkumar77/image-usage-memory-comparison-and-best-practices-in-ios-wwdc2018-4a8919019ae9
+ */
++ (nullable UIImage *)thumbnailImageWithPath:(NSString *)path boundingSize:(CGSize)boundingSize scale:(CGFloat)scale;
 
-+ (nullable UIImage *)thumbnailImageWithData:(NSData *)data size:(CGSize)size scale:(CGFloat)scale;
+/**
+ Create a thumbnail image from path
+ 
+ @param data the image data
+ @param boundingSize the bounding size of the thumbnail. The actual size of thumbnail is not equal to the bounding size, but it's sure that
+ the thumbnail image is scaled by ratio into the bounding size
+ @param scale the scale ratio. Pass 0 if use the current screen scale.
+ @return the thumbnail image.
+ */
++ (nullable UIImage *)thumbnailImageWithData:(NSData *)data boundingSize:(CGSize)boundingSize scale:(CGFloat)scale;
 
 @end
 

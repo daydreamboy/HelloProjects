@@ -290,14 +290,62 @@ CGImageSource相关的API，都有options参数，该词典支持的key，如下
 | kCGImageSourceShouldCache                      | CFBoolean | 32bit系统下是NO，64bit系统系下是YES | 图片解码后是否缓存结果                                       |                                 |
 | kCGImageSourceCreateThumbnailFromImageIfAbsent | CFBoolean | NO                                  | TODO                                                         |                                 |
 | kCGImageSourceCreateThumbnailFromImageAlways   | CFBoolean | NO                                  | 是否总是创建缩略图，即使CGImageSource对象已经存在缩略图      |                                 |
-| kCGImageSourceThumbnailMaxPixelSize            | CFNumber  | NULL                                |                                                              |                                 |
-| kCGImageSourceCreateThumbnailWithTransform     |           |                                     |                                                              |                                 |
+| kCGImageSourceThumbnailMaxPixelSize            | CFNumber  | NULL                                | 缩略图的width或height的最大值，没有不指定，可能缩略图和原始图片一样大 |                                 |
+| kCGImageSourceCreateThumbnailWithTransform     | CFBoolean | NO                                  | TODO                                                         |                                 |
 
 注意
 
 > 上面key并适用每个CGImageSource相关的API，还是需要参考每个API的文档。
 
 
+
+#### e. 创建缩略图
+
+当Image的显示区域比实际Image大小要小一些时，没有必要将原始图片Image设置UIImageView上，不然会存在两个问题
+
+* 原始图片Image和UIImageView的width/height比例不一定是一致的，显示可能被压缩或拉伸
+* 原始图片Image可能很大，占用很大的内存
+
+针对第一个问题，一般想到的方法，是按照UIImageView的尺寸重新绘制UIImage对象，例如下面代码
+
+```objective-c
++ (UIImage *)OriginImage:(UIImage *)image scaleToSize:(CGSize)size {
+    UIGraphicsBeginImageContext(size);         
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];          
+    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();        
+    UIGraphicsEndImageContext();
+    return scaledImage; 
+}
+```
+
+但是这个方法并不能减少原始图片占用内存的大小[^6]，可以采用ImageIO提供的downsampling技术[^5]来直接创建缩略图。
+
+​      downsampling技术，是指读取图片文件后得到Data Buffer，然后根据缩略图大小，进行降级采样(downsample)，然后进行解码生成Image Buffer，提供给UIImage，最后UIImageView显示出来的缩略图是内存消耗比较小的，而且没有解码完整图片，少了完整图片解码后的Image Buffer的内存开销。整个过程，见下图
+
+![](images/downsampling.png)
+
+
+
+示意代码，如下
+
+```swift
+// Downsampling large images for display at smaller size 
+func downsample(imageAt imageURL: URL, to pointSize: CGSize, scale: CGFloat) -> UIImage {  
+  let imageSourceOptions = [kCGImageSourceShouldCache: false] as CFDictionary 
+ 
+  let imageSource = CGImageSourceCreateWithURL(imageURL as CFURL, imageSourceOptions)! 
+  
+  let maxDimensionInPixels = max(pointSize.width, pointSize.height) * scale  
+  let downsampleOptions = [kCGImageSourceCreateThumbnailFromImageAlways: true,
+  kCGImageSourceShouldCacheImmediately: true, 
+  kCGImageSourceCreateThumbnailWithTransform: true,
+  kCGImageSourceThumbnailMaxPixelSize: maxDimensionInPixels] as CFDictionary   
+  let downsampledImage = CGImageSourceCreateThumbnailAtIndex(imageSource, 0, downsampleOptions)!  
+  return UIImage(cgImage: downsampledImage) 
+}
+```
+
+> 示例代码，见CreateThumbnailImageViewController
 
 
 
@@ -313,4 +361,6 @@ CGImageSource相关的API，都有options参数，该词典支持的key，如下
 [^2]:https://stackoverflow.com/a/29212494
 [^3]:https://stackoverflow.com/a/1298043
 [^4]:https://developer.apple.com/documentation/imageio/cgimagesource/image_source_option_dictionary_keys?language=objc
+[^5]:https://developer.apple.com/videos/play/wwdc2018/219/
+[^6]:https://medium.com/@prafullkumar77/image-usage-memory-comparison-and-best-practices-in-ios-wwdc2018-4a8919019ae9
 

@@ -20,4 +20,6 @@ if (!isnan((newY))) { \
 __internal_frame; \
 })
 
+#define STR_PRETTY_SIZE_M(memoryBytes__) ([NSByteCountFormatter stringFromByteCount:(long long)(memoryBytes__) countStyle:NSByteCountFormatterCountStyleBinary])
+
 #endif /* WCMacroTool_h */

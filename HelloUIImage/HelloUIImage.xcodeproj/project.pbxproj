@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4F2CADF624A4A8B0008C9C27 /* fake@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F2CADF524A4A8B0008C9C27 /* fake@2x.png */; };
 		4F2CADF924A4CAAC008C9C27 /* CreateThumbnailImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2CADF824A4CAAC008C9C27 /* CreateThumbnailImageViewController.m */; };
+		4F2CADFB24A5CF14008C9C27 /* orientation_up.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4F2CADFA24A5CF13008C9C27 /* orientation_up.jpeg */; };
 		4F3F9791246C452C000814EC /* CreateAnimatedImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F9790246C452C000814EC /* CreateAnimatedImageViewController.m */; };
 		4F3F9794246C5981000814EC /* variableDuration.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4F3F9792246C5981000814EC /* variableDuration.gif */; };
 		4F3F9795246C5981000814EC /* infinityLoop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4F3F9793246C5981000814EC /* infinityLoop.gif */; };
@@ -66,6 +67,7 @@
 		4F2CADF524A4A8B0008C9C27 /* fake@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fake@2x.png"; sourceTree = "<group>"; };
 		4F2CADF724A4CAAC008C9C27 /* CreateThumbnailImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateThumbnailImageViewController.h; sourceTree = "<group>"; };
 		4F2CADF824A4CAAC008C9C27 /* CreateThumbnailImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateThumbnailImageViewController.m; sourceTree = "<group>"; };
+		4F2CADFA24A5CF13008C9C27 /* orientation_up.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = orientation_up.jpeg; sourceTree = "<group>"; };
 		4F3F978F246C452C000814EC /* CreateAnimatedImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAnimatedImageViewController.h; sourceTree = "<group>"; };
 		4F3F9790246C452C000814EC /* CreateAnimatedImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAnimatedImageViewController.m; sourceTree = "<group>"; };
 		4F3F9792246C5981000814EC /* variableDuration.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = variableDuration.gif; sourceTree = "<group>"; };
@@ -182,6 +184,7 @@
 		4F6061DE2134F5EA00D049DF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F2CADFA24A5CF13008C9C27 /* orientation_up.jpeg */,
 				4FE1F3D324A119670034B4BA /* grayscale_4.pgm */,
 				4FE1F3CD24A114FF0034B4BA /* grayscale_1.jpg */,
 				4FE1F3C924A112390034B4BA /* lena_color.tiff */,
@@ -369,6 +372,7 @@
 				4FE1F3CE24A114FF0034B4BA /* grayscale_1.jpg in Resources */,
 				4FE1F3D424A119680034B4BA /* grayscale_4.pgm in Resources */,
 				4F6061EB2134F5EA00D049DF /* 9.png in Resources */,
+				4F2CADFB24A5CF14008C9C27 /* orientation_up.jpeg in Resources */,
 				4F8BB40B21526BEB00F0AD99 /* fake.png in Resources */,
 				4F8BB40C21526BEB00F0AD99 /* fake@1x.png in Resources */,
 				4FE1F3CA24A112390034B4BA /* lena_color.tiff in Resources */,
