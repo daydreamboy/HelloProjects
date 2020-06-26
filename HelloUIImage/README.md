@@ -299,7 +299,17 @@ CGImageSource相关的API，都有options参数，该词典支持的key，如下
 
 
 
-#### e. 创建缩略图
+
+
+### （2）CGImageDestination
+
+TODO
+
+
+
+### （3）常见使用Tips
+
+#### a. 创建缩略图
 
 当Image的显示区域比实际Image大小要小一些时，没有必要将原始图片Image设置UIImageView上，不然会存在两个问题
 
@@ -349,7 +359,34 @@ func downsample(imageAt imageURL: URL, to pointSize: CGSize, scale: CGFloat) -> 
 
 
 
-### （2）CGImageDestination
+#### b. 获取图片大小
+
+​       一般获取图片大小，可以通过创建UIImage对象，然后检查image.size来获取大小。然而创建UIImage对象，免不了使用imageNamed:方法或者imageWithContentsOfFile:方法。
+
+
+
+这里介绍使用ImageIO的`CGImageSourceCopyPropertiesAtIndex`方法来获取图片属性。
+
+示意代码[^7]，如下
+
+```objective-c
+CFDictionaryRef imagePropertiesRef = CGImageSourceCopyPropertiesAtIndex(imageSourceRef, 0, NULL);
+    
+CGFloat widthInPixel = 0.0;
+CGFloat heightInPixel = 0.0;
+
+CFNumberRef widthNum = CFDictionaryGetValue(imagePropertiesRef, kCGImagePropertyPixelWidth);
+if (widthNum != NULL) {
+    CFNumberGetValue(widthNum, kCFNumberCGFloatType, &widthInPixel);
+}
+
+CFNumberRef heightNum = CFDictionaryGetValue(imagePropertiesRef, kCGImagePropertyPixelHeight);
+if (heightNum != NULL) {
+    CFNumberGetValue(heightNum, kCFNumberCGFloatType, &heightInPixel);
+}
+```
+
+> 示例代码，见GetImageSizeWithoutCreateUIImageViewController
 
 
 
@@ -363,4 +400,5 @@ func downsample(imageAt imageURL: URL, to pointSize: CGSize, scale: CGFloat) -> 
 [^4]:https://developer.apple.com/documentation/imageio/cgimagesource/image_source_option_dictionary_keys?language=objc
 [^5]:https://developer.apple.com/videos/play/wwdc2018/219/
 [^6]:https://medium.com/@prafullkumar77/image-usage-memory-comparison-and-best-practices-in-ios-wwdc2018-4a8919019ae9
+[^7]:https://stackoverflow.com/a/4170099
 

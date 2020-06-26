@@ -10,6 +10,7 @@
 		4F2CADF624A4A8B0008C9C27 /* fake@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F2CADF524A4A8B0008C9C27 /* fake@2x.png */; };
 		4F2CADF924A4CAAC008C9C27 /* CreateThumbnailImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2CADF824A4CAAC008C9C27 /* CreateThumbnailImageViewController.m */; };
 		4F2CADFB24A5CF14008C9C27 /* orientation_up.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4F2CADFA24A5CF13008C9C27 /* orientation_up.jpeg */; };
+		4F2CADFE24A5DAA0008C9C27 /* GetImageSizeWithoutCreateUIImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2CADFD24A5DAA0008C9C27 /* GetImageSizeWithoutCreateUIImageViewController.m */; };
 		4F3F9791246C452C000814EC /* CreateAnimatedImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3F9790246C452C000814EC /* CreateAnimatedImageViewController.m */; };
 		4F3F9794246C5981000814EC /* variableDuration.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4F3F9792246C5981000814EC /* variableDuration.gif */; };
 		4F3F9795246C5981000814EC /* infinityLoop.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4F3F9793246C5981000814EC /* infinityLoop.gif */; };
@@ -68,6 +69,8 @@
 		4F2CADF724A4CAAC008C9C27 /* CreateThumbnailImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateThumbnailImageViewController.h; sourceTree = "<group>"; };
 		4F2CADF824A4CAAC008C9C27 /* CreateThumbnailImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateThumbnailImageViewController.m; sourceTree = "<group>"; };
 		4F2CADFA24A5CF13008C9C27 /* orientation_up.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = orientation_up.jpeg; sourceTree = "<group>"; };
+		4F2CADFC24A5DAA0008C9C27 /* GetImageSizeWithoutCreateUIImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetImageSizeWithoutCreateUIImageViewController.h; sourceTree = "<group>"; };
+		4F2CADFD24A5DAA0008C9C27 /* GetImageSizeWithoutCreateUIImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetImageSizeWithoutCreateUIImageViewController.m; sourceTree = "<group>"; };
 		4F3F978F246C452C000814EC /* CreateAnimatedImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAnimatedImageViewController.h; sourceTree = "<group>"; };
 		4F3F9790246C452C000814EC /* CreateAnimatedImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateAnimatedImageViewController.m; sourceTree = "<group>"; };
 		4F3F9792246C5981000814EC /* variableDuration.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = variableDuration.gif; sourceTree = "<group>"; };
@@ -168,6 +171,8 @@
 				4FE1F3C724A0FB940034B4BA /* CheckImageMemorySizeViewController.m */,
 				4F2CADF724A4CAAC008C9C27 /* CreateThumbnailImageViewController.h */,
 				4F2CADF824A4CAAC008C9C27 /* CreateThumbnailImageViewController.m */,
+				4F2CADFC24A5DAA0008C9C27 /* GetImageSizeWithoutCreateUIImageViewController.h */,
+				4F2CADFD24A5DAA0008C9C27 /* GetImageSizeWithoutCreateUIImageViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -397,6 +402,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F6061D82134F5A300D049DF /* ReplaceColorByPixelViewController.m in Sources */,
+				4F2CADFE24A5DAA0008C9C27 /* GetImageSizeWithoutCreateUIImageViewController.m in Sources */,
 				4F636E6F2134F2F3003DE979 /* main.m in Sources */,
 				4F8591AE24A1F3A4005EBAA1 /* WCStringTool.m in Sources */,
 				4F6061DD2134F5B300D049DF /* WCImageTool.m in Sources */,

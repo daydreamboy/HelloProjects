@@ -586,6 +586,84 @@
     return bytes;
 }
 
+#pragma mark > Size
+
++ (CGSize)imageSizeWithPath:(NSString *)path scale:(CGFloat)scale {
+    return [self imageSizeWithData:nil path:path scale:scale];
+}
+
++ (CGSize)imageSizeWithData:(NSData *)data scale:(CGFloat)scale {
+    return [self imageSizeWithData:data path:nil scale:scale];
+}
+
+#pragma mark ::
+
++ (CGSize)imageSizeWithData:(NSData *)data path:(NSString *)path scale:(CGFloat)scale {
+    if ((![data isKindOfClass:[NSData class]] || data.length == 0) &&
+        (![path isKindOfClass:[NSString class]] || path.length == 0)) {
+        return CGSizeMake(-1, -1);
+    }
+    
+    CGImageSourceRef imageSourceRef = NULL;
+    
+    if (data) {
+        imageSourceRef = CGImageSourceCreateWithData(toCF data, NULL);
+    }
+    else {
+        if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            return CGSizeMake(-1, -1);
+        }
+        
+        NSURL *fileURL = [NSURL fileURLWithPath:path];
+        if (!fileURL) {
+            return CGSizeMake(-1, -1);
+        }
+        
+        imageSourceRef = CGImageSourceCreateWithURL(toCF fileURL, NULL);
+    }
+    
+    if (imageSourceRef == NULL) {
+        return CGSizeMake(-1, -1);
+    }
+    
+    CFDictionaryRef imagePropertiesRef = CGImageSourceCopyPropertiesAtIndex(imageSourceRef, 0, NULL);
+    if (imagePropertiesRef == NULL) {
+        return CGSizeMake(-1, -1);
+    }
+    
+    CGFloat widthInPixel = 0.0;
+    CGFloat heightInPixel = 0.0;
+    
+    CFNumberRef widthNum = CFDictionaryGetValue(imagePropertiesRef, kCGImagePropertyPixelWidth);
+    if (widthNum != NULL) {
+        CFNumberGetValue(widthNum, kCFNumberCGFloatType, &widthInPixel);
+    }
+    else {
+        widthInPixel = -1;
+    }
+
+    CFNumberRef heightNum = CFDictionaryGetValue(imagePropertiesRef, kCGImagePropertyPixelHeight);
+    if (heightNum != NULL) {
+        CFNumberGetValue(heightNum, kCFNumberCGFloatType, &heightInPixel);
+    }
+    else {
+        heightInPixel = -1;
+    }
+
+    scale = scale <= 0 ? [UIScreen mainScreen].scale : scale;
+    
+    // cleanup
+    CF_SAFE_RELEASE(imagePropertiesRef);
+    CF_SAFE_RELEASE(imageSourceRef);
+    
+    CGFloat width = widthInPixel == -1 ? -1 : (widthInPixel / (CGFloat)scale);
+    CGFloat height = heightInPixel == -1 ? -1 : (heightInPixel / (CGFloat)scale);
+    
+    return CGSizeMake(width, height);
+}
+
+#pragma mark ::
+
 #pragma mark - Thumbnail Image
 
 + (nullable UIImage *)thumbnailImageWithPath:(NSString *)path boundingSize:(CGSize)boundingSize scale:(CGFloat)scale {

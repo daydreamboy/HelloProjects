@@ -167,6 +167,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSUInteger)memoryBytesWithImage:(UIImage *)image;
 
+#pragma mark > Size
+
++ (CGSize)imageSizeWithPath:(NSString *)path scale:(CGFloat)scale;
+
++ (CGSize)imageSizeWithData:(NSData *)data scale:(CGFloat)scale;
+
 #pragma mark - Thumbnail Image
 
 /**
@@ -176,7 +182,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param boundingSize the bounding size of the thumbnail. The actual size of thumbnail is not equal to the bounding size, but it's sure that
  the thumbnail image is scaled by ratio into the bounding size
  @param scale the scale ratio. Pass 0 if use the current screen scale.
- @return the thumbnail image.
+ @return the thumbnail image
  
  @see https://medium.com/@prafullkumar77/image-usage-memory-comparison-and-best-practices-in-ios-wwdc2018-4a8919019ae9
  */
@@ -189,7 +195,10 @@ NS_ASSUME_NONNULL_BEGIN
  @param boundingSize the bounding size of the thumbnail. The actual size of thumbnail is not equal to the bounding size, but it's sure that
  the thumbnail image is scaled by ratio into the bounding size
  @param scale the scale ratio. Pass 0 if use the current screen scale.
- @return the thumbnail image.
+ @return the thumbnail image
+ 
+ @discussion This method used for the data is downloaded from network. If read image from local file,
+ use +[WCImageTool thumbnailImageWithPath:boundingSize:scale:] instead.
  */
 + (nullable UIImage *)thumbnailImageWithData:(NSData *)data boundingSize:(CGSize)boundingSize scale:(CGFloat)scale;
 
