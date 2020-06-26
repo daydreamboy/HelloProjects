@@ -1,12 +1,12 @@
 //
-//  DrawStokeWithFreeHandViewController.m
+//  DrawStrokeWithFreeHandViewController.m
 //  HelloCoreGraphics
 //
 //  Created by wesley_chen on 2020/6/26.
 //  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
-#import "DrawStokeWithFreeHandViewController.h"
+#import "DrawStrokeWithFreeHandViewController.h"
 #import "WCMacroTool.h"
 #import "WCViewTool.h"
 
@@ -304,7 +304,7 @@ DRAWING_VIEW_CLASS_IMPLEMENTATION_END
 
 #pragma mark -
 
-@interface DrawStokeWithFreeHandViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface DrawStrokeWithFreeHandViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
 @property (nonatomic, strong) UIView *drawingView;
 @property (nonatomic, strong) UIPickerView *pickerView;
 @property (nonatomic, assign) BOOL pickerViewShown;
@@ -312,7 +312,7 @@ DRAWING_VIEW_CLASS_IMPLEMENTATION_END
 @property (nonatomic, copy) NSString *currentCanvasName;
 @end
 
-@implementation DrawStokeWithFreeHandViewController
+@implementation DrawStrokeWithFreeHandViewController
 
 - (instancetype)init {
     self = [super init];

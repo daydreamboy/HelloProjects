@@ -1,5 +1,5 @@
 //
-//  DrawStokeWithFreeHandViewController.h
+//  DrawStrokeWithFreeHandViewController.h
 //  HelloCoreGraphics
 //
 //  Created by wesley_chen on 2020/6/26.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DrawStokeWithFreeHandViewController : UIViewController
+@interface DrawStrokeWithFreeHandViewController : UIViewController
 
 @end
 

@@ -21,7 +21,7 @@
 #import "DrawLineBezierPathViewController.h"
 #import "DrawArcBezierPathViewController.h"
 #import "DrawCurveBezierPathViewController.h"
-#import "DrawStokeWithFreeHandViewController.h"
+#import "DrawStrokeWithFreeHandViewController.h"
 
 // section3
 #import "ShapeRectBezierPathViewController.h"
@@ -77,7 +77,7 @@
           @{ kTitle: @"Draw Line Bezier Path", kClass: [DrawLineBezierPathViewController class] },
           @{ kTitle: @"Draw Arc Bezier Path", kClass: [DrawArcBezierPathViewController class] },
           @{ kTitle: @"Draw Curve Bezier Path", kClass: [DrawCurveBezierPathViewController class] },
-          @{ kTitle: @"Draw Stroke with free hand", kClass: [DrawStokeWithFreeHandViewController class] },
+          @{ kTitle: @"Draw Stroke with free hand", kClass: [DrawStrokeWithFreeHandViewController class] },
     ];
     
     NSArray<NSDictionary *> *section3 = @[

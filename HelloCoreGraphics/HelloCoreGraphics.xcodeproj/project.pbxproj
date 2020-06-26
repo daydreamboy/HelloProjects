@@ -37,7 +37,7 @@
 		4F1DF02C2484E9200091F205 /* QuartzCapJoinWidthView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DF02B2484E9200091F205 /* QuartzCapJoinWidthView.m */; };
 		4F1DF02F2484E92F0091F205 /* QuartzDashView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DF02E2484E92F0091F205 /* QuartzDashView.m */; };
 		4F1DF0332484FA0F0091F205 /* ShapeLineBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DF0322484FA0F0091F205 /* ShapeLineBezierPathViewController.m */; };
-		4F2CAE0124A5E60D008C9C27 /* DrawStokeWithFreeHandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2CAE0024A5E60D008C9C27 /* DrawStokeWithFreeHandViewController.m */; };
+		4F2CAE0124A5E60D008C9C27 /* DrawStrokeWithFreeHandViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2CAE0024A5E60D008C9C27 /* DrawStrokeWithFreeHandViewController.m */; };
 		4F2CAE0424A5F0CF008C9C27 /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2CAE0324A5F0CF008C9C27 /* WCViewTool.m */; };
 		4F3525F120064D9200891B09 /* CreateAttachedBubbleLayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3525F020064D9200891B09 /* CreateAttachedBubbleLayerViewController.m */; };
 		4F3525F4200707AE00891B09 /* WCAttachedBubbleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3525F3200707AE00891B09 /* WCAttachedBubbleView.m */; };
@@ -127,8 +127,8 @@
 		4F1DF02E2484E92F0091F205 /* QuartzDashView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = QuartzDashView.m; sourceTree = "<group>"; };
 		4F1DF0312484FA0F0091F205 /* ShapeLineBezierPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShapeLineBezierPathViewController.h; sourceTree = "<group>"; };
 		4F1DF0322484FA0F0091F205 /* ShapeLineBezierPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShapeLineBezierPathViewController.m; sourceTree = "<group>"; };
-		4F2CADFF24A5E60D008C9C27 /* DrawStokeWithFreeHandViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawStokeWithFreeHandViewController.h; sourceTree = "<group>"; };
-		4F2CAE0024A5E60D008C9C27 /* DrawStokeWithFreeHandViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawStokeWithFreeHandViewController.m; sourceTree = "<group>"; };
+		4F2CADFF24A5E60D008C9C27 /* DrawStrokeWithFreeHandViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawStrokeWithFreeHandViewController.h; sourceTree = "<group>"; };
+		4F2CAE0024A5E60D008C9C27 /* DrawStrokeWithFreeHandViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawStrokeWithFreeHandViewController.m; sourceTree = "<group>"; };
 		4F2CAE0224A5F0CF008C9C27 /* WCViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCViewTool.h; sourceTree = "<group>"; };
 		4F2CAE0324A5F0CF008C9C27 /* WCViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewTool.m; sourceTree = "<group>"; };
 		4F3525EF20064D9200891B09 /* CreateAttachedBubbleLayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateAttachedBubbleLayerViewController.h; sourceTree = "<group>"; };
@@ -292,8 +292,8 @@
 				4FF3EAEA247D184E00227B3C /* DrawCurveBezierPathViewController.m */,
 				4F1DF01D2484DCF40091F205 /* DrawLineBezierPathViewController.h */,
 				4F1DF01E2484DCF40091F205 /* DrawLineBezierPathViewController.m */,
-				4F2CADFF24A5E60D008C9C27 /* DrawStokeWithFreeHandViewController.h */,
-				4F2CAE0024A5E60D008C9C27 /* DrawStokeWithFreeHandViewController.m */,
+				4F2CADFF24A5E60D008C9C27 /* DrawStrokeWithFreeHandViewController.h */,
+				4F2CAE0024A5E60D008C9C27 /* DrawStrokeWithFreeHandViewController.m */,
 			);
 			path = CGContext;
 			sourceTree = "<group>";
@@ -547,7 +547,7 @@
 				2B0FD5F21FC99DFC0022E59D /* AppDelegate.m in Sources */,
 				4F1DF02C2484E9200091F205 /* QuartzCapJoinWidthView.m in Sources */,
 				2B0FD60C1FC99E280022E59D /* RootViewController.m in Sources */,
-				4F2CAE0124A5E60D008C9C27 /* DrawStokeWithFreeHandViewController.m in Sources */,
+				4F2CAE0124A5E60D008C9C27 /* DrawStrokeWithFreeHandViewController.m in Sources */,
 				4F0F1DBB2495D3290034AAE9 /* ShapeOvalBezierPathViewController.m in Sources */,
 				4F1DF01F2484DCF40091F205 /* DrawLineBezierPathViewController.m in Sources */,
 				4F3526372008B9DD00891B09 /* AttachedBubbleWithLeftArrowViewController.m in Sources */,
