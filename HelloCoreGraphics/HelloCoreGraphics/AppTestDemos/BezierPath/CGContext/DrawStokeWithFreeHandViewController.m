@@ -10,9 +10,11 @@
 #import "WCMacroTool.h"
 #import "WCViewTool.h"
 
+// Tutorial: @see https://code.tutsplus.com/tutorials/smooth-freehand-drawing-on-ios--mobile-13164
 #define MyDrawingView1  LinearInterpolationView
 #define MyDrawingView2  CachedLinearInterpolationView
 #define MyDrawingView3  CachedBezierInterpolationView
+#define MyDrawingView4  CachedSmoothedInterpolationView
 
 #pragma mark - MyDrawingView1
 
@@ -176,7 +178,7 @@ DRAWING_VIEW_CLASS_IMPLEMENTATION_BEGIN(MyDrawingView3) {
     _counter++;
     _points[_counter] = p;
     
-    if (_counter == 3) {
+    if (_counter == 3) { // 4th point
         [self.path moveToPoint:_points[0]];
         [self.path addCurveToPoint:_points[3] controlPoint1:_points[1] controlPoint2:_points[2]];
         [self setNeedsDisplay];
@@ -190,6 +192,92 @@ DRAWING_VIEW_CLASS_IMPLEMENTATION_BEGIN(MyDrawingView3) {
     [self drawBitmap];
     [self setNeedsDisplay];
     _points[0] = [self.path currentPoint];
+    [self.path removeAllPoints];
+    _counter = 0;
+}
+ 
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self touchesEnded:touches withEvent:event];
+}
+
+- (void)drawBitmap {
+    UIGraphicsBeginImageContextWithOptions(self.bounds.size, NO, 0.0);
+    [[UIColor blackColor] setStroke];
+    if (!self.incrementalImage) { // first draw; paint background white by ...
+        UIBezierPath *rectpath = [UIBezierPath bezierPathWithRect:self.bounds]; // enclosing bitmap by a rectangle defined by another UIBezierPath object
+        [self.backgroundColor setFill];
+        [rectpath fill];
+    }
+    [self.incrementalImage drawAtPoint:CGPointZero];
+    [self.path stroke];
+    self.incrementalImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+}
+
+DRAWING_VIEW_CLASS_IMPLEMENTATION_END
+
+
+#pragma mark - MyDrawingView4
+
+DRAWING_VIEW_CLASS_DECLARATION_BEGIN(MyDrawingView4)
+@property (nonatomic, strong) UIBezierPath *path;
+@property (nonatomic, strong) UIImage *incrementalImage;
+DRAWING_VIEW_CLASS_DECLARATION_END
+
+DRAWING_VIEW_CLASS_IMPLEMENTATION_BEGIN(MyDrawingView4) {
+    CGPoint _points[5]; // we now need to keep track of the four points of a Bezier segment and the first control point of the next segment
+    uint _counter; // a counter variable to keep track of the point index
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.multipleTouchEnabled = NO;
+        self.backgroundColor = [[UIColor orangeColor] colorWithAlphaComponent:0.4];
+        
+        _path = [UIBezierPath bezierPath];
+        _path.lineWidth = 2.0;
+    }
+    
+    return self;
+}
+
+- (void)drawRect:(CGRect)rect {
+    [self.incrementalImage drawInRect:rect];
+    [self.path stroke];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    _counter = 0;
+    UITouch *touch = [touches anyObject];
+    _points[0] = [touch locationInView:self];
+}
+
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    UITouch *touch = [touches anyObject];
+    CGPoint p = [touch locationInView:self];
+    _counter++;
+    _points[_counter] = p;
+    
+    if (_counter == 4) {
+        // move the endpoint to the middle of the line joining the second control point of the first Bezier segment and the first control point of the second Bezier segment
+        _points[3] = CGPointMake((_points[2].x + _points[4].x) / 2.0, (_points[2].y + _points[4].y) / 2.0);
+        
+        [self.path moveToPoint:_points[0]];
+        // add a cubic Bezier from pt[0] to pt[3], with control points pt[1] and pt[2]
+        [self.path addCurveToPoint:_points[3] controlPoint1:_points[1] controlPoint2:_points[2]];
+        [self setNeedsDisplay];
+        
+        // replace points and get ready to handle the next segment
+        _points[0] = _points[3];
+        _points[1] = _points[4];
+        _counter = 1;
+    }
+}
+ 
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [self drawBitmap];
+    [self setNeedsDisplay];
     [self.path removeAllPoints];
     _counter = 0;
 }
@@ -233,6 +321,7 @@ DRAWING_VIEW_CLASS_IMPLEMENTATION_END
             STR_OF_LITERAL(MyDrawingView1),
             STR_OF_LITERAL(MyDrawingView2),
             STR_OF_LITERAL(MyDrawingView3),
+            STR_OF_LITERAL(MyDrawingView4),
         ];
     }
     return self;
