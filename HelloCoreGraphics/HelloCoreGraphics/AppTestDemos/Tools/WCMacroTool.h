@@ -66,5 +66,17 @@ __internal_frame; \
 #define DRAWING_VIEW_CLASS_IMPLEMENTATION_BEGIN(identifier_) @implementation DRAWING_VIEW_CLASS(identifier_)
 #define DRAWING_VIEW_CLASS_IMPLEMENTATION_END @end
 
+#define weakify(object) \
+__weak __typeof__(object) object##_weak_ = object;
+
+#define strongify(object) \
+__strong __typeof__(object) object = object##_weak_;
+
+#define strongifyWithReturn(object, ...) \
+__strong __typeof__(object) object = object##_weak_; \
+if (!object) { \
+    __VA_ARGS__; \
+}
+
 
 #endif /* WCMacroTool_h */
