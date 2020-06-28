@@ -324,6 +324,41 @@ One or more media items failed to import:
 
 
 
+### （2）不支持APNS通知显示
+
+Xcode 11.4的模拟器上，开始支持模拟APNS通知[^7]。
+
+APNS通知数据格式，如下
+
+```json
+{
+    "Simulator Target Bundle": "np.com.sagunrajlage.TestPushNotifications",
+    "aps": {
+        "alert": "Push Notifications Test",
+        "sound": "default",
+        "badge": 1
+    }
+}
+```
+
+这是JSON格式的apns文件，扩展名为apns。
+
+
+
+有两种方式模拟APNS推送
+
+* 使用命令行方式
+
+```shell
+$ xcrun simctl push <device> com.example.my-app ExamplePush.apns
+```
+
+* 拖拽apns文件到模拟器上
+
+注意：这种方式要求apns文件，必须指定`Simulator Target Bundle`字段
+
+
+
 ## Reference
 
 [^1]: https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/DynamicLibraries/100-Articles/LoggingDynamicLoaderEvents.html
@@ -335,6 +370,8 @@ One or more media items failed to import:
 [^5]:https://stackoverflow.com/questions/39486064/xcode-8-ios-8-simulator-with-crash-dyld-lazy-symbol-binding-failed-symbol-n
 
 [^6]:https://forums.developer.apple.com/thread/126307
+
+[^7]:https://medium.com/better-programming/how-to-send-push-notifications-to-the-ios-simulator-2988092ba931
 
 
 
