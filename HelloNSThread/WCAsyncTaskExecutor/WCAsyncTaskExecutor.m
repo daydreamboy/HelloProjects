@@ -104,8 +104,9 @@
     weakify(self);
     __block BOOL checkFlagIfCompletionCalled = NO;
     WCAsyncTaskCompletion completion = ^{
+        strongifyWithReturn(self, return;);
+        
         checkFlagIfCompletionCalled = YES;
-        strongify(self);
         
         self.currentRunningTask.isRunning = NO;
         [self.enqueueMap removeObjectForKey:self.currentRunningTask.key];
