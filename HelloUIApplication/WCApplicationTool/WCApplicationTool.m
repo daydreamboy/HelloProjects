@@ -173,11 +173,11 @@
 }
 
 + (BOOL)checkIfSampledWithUniqueID:(NSString *)uniqueID lowerBound:(long long)lowerBound upperBound:(long long)upperBound mod:(long long)mod {
-    long long hashCode = [self hashCodeWithString:uniqueID];
-    if (hashCode == 0) {
+    if (![uniqueID isKindOfClass:[NSString class]] || uniqueID.length == 0) {
         return NO;
     }
     
+    long long hashCode = [self hashCodeWithString:uniqueID];
     long long modL = ABS(mod);
     long long boundedHashCode = hashCode % modL;
     if (lowerBound <= boundedHashCode && boundedHashCode <= upperBound) {
@@ -188,7 +188,7 @@
 }
 
 + (BOOL)checkIfSampledOnceWithWithUniqueID:(NSString *)uniqueID boundValue:(long long)boundValue {
-    if (boundValue == 0) {
+    if (boundValue == 0 || ![uniqueID isKindOfClass:[NSString class]] || uniqueID.length == 0) {
         return NO;
     }
     
@@ -202,7 +202,7 @@
         long long hashCode = [self hashCodeWithString:uniqueID];
         long long boundedHashCode = hashCode % mod;
         
-        if (boundedHashCode != 0 && boundedHashCode >= leftValue && boundedHashCode <= rightValue) {
+        if (boundedHashCode >= leftValue && boundedHashCode <= rightValue) {
             sResult = @(YES);
         }
         else {

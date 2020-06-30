@@ -110,6 +110,9 @@
     }
     NSLog(@"sampled: %ld, percent: %f %%", countForSampled, countForSampled / (double)count * 100);
     NSLog(@"unsampled: %ld, percent: %f %%", countForUnsampled, countForUnsampled / (double)count * 100);
+    
+    BOOL sampled = [WCApplicationTool checkIfSampledWithUniqueID:@"XqFgW9UpxPQDAEwf3Gdr4FXG" lowerBound:-5000 upperBound:5000 mod:5000];
+    XCTAssertTrue(sampled);
 }
 
 - (void)test_checkIfSampledOnceWithWithUniqueID_boundValue {
