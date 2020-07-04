@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4F0238D0240FACDF00799EEA /* WCJSCTimerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0238CF240FACDF00799EEA /* WCJSCTimerManager.m */; };
 		4F0686DE23D4881A00AC076F /* WCJSCTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0686DD23D4881A00AC076F /* WCJSCTool.m */; };
+		4F0A8C4B24B08A2A00399D10 /* Tests_JSVirtualMachine.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0A8C4A24B08A2A00399D10 /* Tests_JSVirtualMachine.m */; };
 		4F1B380B23B75B9300349B62 /* JSCodeTestListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B380A23B75B9300349B62 /* JSCodeTestListViewController.m */; };
 		4F1B380D23B75BD700349B62 /* JSTestList in Resources */ = {isa = PBXBuildFile; fileRef = 4F1B380C23B75BD700349B62 /* JSTestList */; };
 		4F1B381123B75D9C00349B62 /* WCFileManagerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B381023B75D9C00349B62 /* WCFileManagerTool.m */; };
@@ -53,6 +54,7 @@
 		4F0238CF240FACDF00799EEA /* WCJSCTimerManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCJSCTimerManager.m; sourceTree = "<group>"; };
 		4F0686DC23D4881A00AC076F /* WCJSCTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCJSCTool.h; sourceTree = "<group>"; };
 		4F0686DD23D4881A00AC076F /* WCJSCTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCJSCTool.m; sourceTree = "<group>"; };
+		4F0A8C4A24B08A2A00399D10 /* Tests_JSVirtualMachine.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_JSVirtualMachine.m; sourceTree = "<group>"; };
 		4F1B380923B75B9300349B62 /* JSCodeTestListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JSCodeTestListViewController.h; sourceTree = "<group>"; };
 		4F1B380A23B75B9300349B62 /* JSCodeTestListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JSCodeTestListViewController.m; sourceTree = "<group>"; };
 		4F1B380C23B75BD700349B62 /* JSTestList */ = {isa = PBXFileReference; lastKnownFileType = folder; path = JSTestList; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				4F5E8BB722151D7200269853 /* Tests_JSContext.m */,
 				4F986B01221591650096026E /* Tests_JSValue.m */,
 				4F986B082216C54B0096026E /* Tests_JSExport.m */,
+				4F0A8C4A24B08A2A00399D10 /* Tests_JSVirtualMachine.m */,
 				4F5E8BB122151D5A00269853 /* Info.plist */,
 			);
 			path = Tests;
@@ -373,6 +376,7 @@
 			files = (
 				4F828E73221939DD00D9CD51 /* MyPoint.m in Sources */,
 				4F5E8BB822151D7200269853 /* Tests_JSContext.m in Sources */,
+				4F0A8C4B24B08A2A00399D10 /* Tests_JSVirtualMachine.m in Sources */,
 				4F986B092216C54B0096026E /* Tests_JSExport.m in Sources */,
 				4F5E8BB022151D5A00269853 /* Tests.m in Sources */,
 				4F986B072216C3950096026E /* Person.m in Sources */,

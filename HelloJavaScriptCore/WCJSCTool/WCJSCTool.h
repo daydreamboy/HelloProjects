@@ -9,10 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <JavaScriptCore/JavaScriptCore.h>
 
+#define STR_OF_JS(...) @#__VA_ARGS__
+
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, WCJSCToolFeatureType) {
     WCJSCToolFeatureTypeArrowFunction,
+    WCJSCToolFeatureTypeConsole,
     WCJSCToolFeatureTypeFunctionClearTimeout,
     WCJSCToolFeatureTypeFunctionSetInterval,
     WCJSCToolFeatureTypeFunctionSetTimeout,
@@ -61,9 +64,31 @@ typedef NS_ENUM(NSUInteger, WCJSCToolFeatureType) {
  */
 + (BOOL)checkIfAvailableInJSCWithFeatureType:(WCJSCToolFeatureType)featureType;
 
-#pragma mark - complementary JSContext
+#pragma mark - Complementary JSContext
 
 + (nullable JSContext *)createJSContextWithJSCode:(NSString *)JSCode;
+
+#pragma mark > Injection
+
+/**
+ Implement console.log with context
+ 
+ @param context the JSContext
+ @param logBlock the callback when log called. If pass nil, use the default log message, which format is @"JSBridge log: %@"
+        - object, the native object which converted from JS object
+ @return YES if inject sucessfully, NO if failed
+ */
++ (BOOL)injectConsoleLogWithContext:(JSContext *)context logBlock:(nullable void (^)(id object))logBlock;
+
+#pragma mark - Debug
+
+/**
+ Dump properties with JSValue
+ 
+ @param value the JSValue expected to JavaScript object, e.g. {a: 1}
+ @return the properties of the value. Return nil if the value is not a JS object.
+ */
++ (nullable NSDictionary *)dumpPropertiesWithValue:(JSValue *)value;
 
 @end
 

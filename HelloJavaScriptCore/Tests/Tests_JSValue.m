@@ -31,19 +31,32 @@
 - (void)test_subscript_for_array {
     JSContext *context = [[JSContext alloc] init];
     [context evaluateScript:@"var list=[1, 2, 3]"];
+    [context evaluateScript:STR_OF_JS(
+                                      var message2 = 'sfdksfj222';
+                                      ;(function() {
+                                        // 测试console.log函数
+                                        let message = "Hello, world!";
+                                        console.log(message2);
+                                      })();
+    )];
+    JSValue *value1 = context[@"list"];
+    JSValue *value2 = context[@"message2"];
     
-    // Case 1: number as subscript
-    JSValue *list = context[@"list"];
-    list[3] = @(4);
-    JSValue *element1 = list[0];
-    JSValue *element2 = list[1];
-    JSValue *element3 = list[2];
-    JSValue *element4 = list[3];
+    NSLog(@"%@", value1);
+    NSLog(@"%@", value2);
     
-    XCTAssertTrue([element1 toInt32] == 1);
-    XCTAssertTrue([element2 toInt32] == 2);
-    XCTAssertTrue([element3 toInt32] == 3);
-    XCTAssertTrue([element4 toInt32] == 4);
+//    // Case 1: number as subscript
+//    JSValue *list = context[@"list"];
+//    list[3] = @(4);
+//    JSValue *element1 = list[0];
+//    JSValue *element2 = list[1];
+//    JSValue *element3 = list[2];
+//    JSValue *element4 = list[3];
+//
+//    XCTAssertTrue([element1 toInt32] == 1);
+//    XCTAssertTrue([element2 toInt32] == 2);
+//    XCTAssertTrue([element3 toInt32] == 3);
+//    XCTAssertTrue([element4 toInt32] == 4);
 }
 
 - (void)test_subscript_for_map {

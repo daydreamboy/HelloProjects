@@ -69,6 +69,10 @@
             globalVariableName = @"arrowFunction";
             break;
         }
+        case WCJSCToolFeatureTypeConsole: {
+            globalVariableName = @"console";
+            break;
+        }
         case WCJSCToolFeatureTypeFunctionClearTimeout: {
             // @see https://stackoverflow.com/questions/1042138/how-to-check-if-function-exists-in-javascript
             [context evaluateScript:@"var isExists = typeof clearTimeout === 'function' ? true : undefined;"];
@@ -88,6 +92,7 @@
         case WCJSCToolFeatureTypeLetVariable: {
             [context evaluateScript:@"let letVariable = 'a';"];
             globalVariableName = @"letVariable";
+            break;
         }
         case WCJSCToolFeatureTypeGlobal:
             globalVariableName = @"global";
@@ -119,7 +124,7 @@
     return NO;
 }
 
-#pragma mark - complementary JSContext
+#pragma mark - Complementary JSContext
 
 + (nullable JSContext *)createJSContextWithJSCode:(NSString *)JSCode {
     if (![JSCode isKindOfClass:[NSString class]]) {
@@ -127,8 +132,79 @@
     }
     
     JSContext *context = [[JSContext alloc] init];
+    [self injectConsoleLogWithContext:context logBlock:nil];
     
     return context;
+}
+
+#pragma mark > Injection
+
++ (BOOL)injectConsoleLogWithContext:(JSContext *)context logBlock:(nullable void (^)(id object))logBlock {
+    if (![context isKindOfClass:[JSContext class]]) {
+        return NO;
+    }
+    
+    void (^logBlockL)(id object);
+    
+    if (logBlock) {
+        logBlockL = [logBlock copy];
+    }
+    else {
+        logBlockL = ^(id object) {
+            NSString *message = [object description];
+            NSLog(@"JSBridge log: %@", message);
+        };
+    }
+    
+    JSValue *consoleValue = context[@"console"];
+    if (consoleValue.isUndefined) {
+        [context.globalObject defineProperty:@"console" descriptor:@{
+            JSPropertyDescriptorValueKey: @{
+                @"log": logBlockL,
+            }
+        }];
+    }
+    else {
+        consoleValue[@"log"] = logBlockL;
+    }
+    
+    return YES;
+}
+
+#pragma mark - Debug
+
++ (nullable NSDictionary *)dumpPropertiesWithValue:(JSValue *)value {
+    JSVirtualMachine *virtualMachine = value.context.virtualMachine;
+    if (!virtualMachine) {
+        return nil;
+    }
+    
+    // Note: make sure use the same virtualMachine to refer to JSValue cross two different JSContext
+    JSContext *context = [[JSContext alloc] initWithVirtualMachine:virtualMachine];
+    context[@"gValueToCheck"] = value;
+    JSValue *result = [context evaluateScript:STR_OF_JS(
+        (function check(variable) {
+            var props = {};
+            var propsValid = false;
+            try {
+                for (const prop in variable) {
+                    if (variable.hasOwnProperty(prop)) {
+                        props[prop] = variable[prop];
+                        propsValid = true;
+                    }
+                }
+            }
+            catch (e) {}
+            return propsValid ? props : undefined;
+        })(gValueToCheck);
+    )];
+    
+    NSDictionary *properties = [result toDictionary];
+    if (result.isUndefined || ![properties isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    
+    return properties;
 }
 
 @end

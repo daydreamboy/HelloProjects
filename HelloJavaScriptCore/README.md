@@ -72,13 +72,13 @@ JavaScript内置函数或对象，一般在window对象中可以找到。例如d
 
 #### b. 不支持的JavaScript内置函数或对象
 
-| 函数         | 说明 |
-| ------------ | ---- |
-| alert        |      |
-| clearTimeout |      |
-| console对象  |      |
-| setInterval  |      |
-| setTimout    |      |
+| 函数                   | 说明                                              |
+| ---------------------- | ------------------------------------------------- |
+| alert                  |                                                   |
+| clearTimeout           |                                                   |
+| console对象的log等函数 | console对象有log对象，但是log对象没有实现对应函数 |
+| setInterval            |                                                   |
+| setTimout              |                                                   |
 
 
 
@@ -377,7 +377,55 @@ defineProperty:descriptor:方法，允许多次被调用，并且重复定义相
 
 
 
-## 4、JavaScript和native之间通信
+## 4、JSVirtualMachine
+
+JSVirtualMachine实例代表JavaScript执行环境，这个不同于JSContext（JSContext可以理解为JSContext为代码上下文）。使用JSVirtualMachine实例，一般有两个用途
+
+* 支持JavaScript并发执行
+* 管理JavaScript和Native之间拥有对象的内存
+
+官方文档，描述如下
+
+> You use this class for two main purposes: to support concurrent JavaScript execution, and to manage memory for objects bridged between JavaScript and Objective-C or Swift.
+
+
+
+​       如果创建JSContext使用init方法，默认会创建一个JSVirtualMachine对象，而且多个JSContext对象所在的JSVirtualMachine也是不同的。位于不同JSVirtualMachine的JSContext是不能通信的，如下图[^9]
+
+![](images/JSVirtualMachine.png)
+
+​      可以使用`initWithVirtualMachine:`方法，让多个JSContext对象共享一个JSVirtualMachine对象。共享同一个JSVirtualMachine的好处，在于可以让JSContext之间可以传递JSValue。
+
+举个例子，如下
+
+```objective-c
+JSVirtualMachine *virtualMachine = [[JSVirtualMachine alloc] init];
+
+JSContext *context1 = [[JSContext alloc] initWithVirtualMachine:virtualMachine];
+JSContext *context2 = [[JSContext alloc] initWithVirtualMachine:virtualMachine];
+
+[context1 evaluateScript:@"function exportedFunc(a, b) { return a + b; }"];
+// Note: context1 shares its global function to context2
+context2[@"exportedFunc"] = context1[@"exportedFunc"];
+[context2 evaluateScript:@"console.log('result is: ' + exportedFunc(1, 2));"];
+```
+
+
+
+如果不同JSVirtualMachine下的JSContext之间强制传递JSValue，会导致Crash，如下
+
+```objective-c
+JSContext *context1 = [[JSContext alloc] init];
+JSContext *context2 = [[JSContext alloc] init];
+
+[context1 evaluateScript:@"function exportedFunc(a, b) { return a + b; }"];
+context2[@"exportedFunc"] = context1[@"exportedFunc"];
+[context2 evaluateScript:@"console.log('result is: ' + exportedFunc(1, 2));"]; // Crash
+```
+
+
+
+## 5、JavaScript和native之间通信
 
 
 
@@ -713,7 +761,7 @@ context[@"MyCycle"] = [MyCycle class];
 
 
 
-## 5、WebView中JavaScript和native交互
+## 6、WebView中JavaScript和native交互
 
 WebView（UIWebView和WKWebView）都提供执行JavaScript代码的接口，如下
 
@@ -765,7 +813,7 @@ WKWebView *webView = [[WKWebView alloc] initWithFrame:frame configuration:config
 
 
 
-## 6、JavaScriptCore兼容性问题
+## 7、JavaScriptCore兼容性问题
 
 JavaScriptCore实际上WebKit的精简版本，WebKit本身对JavaScript语法的支持也不一定完全支持。
 
@@ -775,19 +823,20 @@ JavaScriptCore实际上WebKit的精简版本，WebKit本身对JavaScript语法�
 
 下表列举JavaScriptCore对JavaScript语法的支持
 
-| 特性         | 系统版本支持情况   | 说明 |
-| ------------ | ------------------ | ---- |
-| Map          | 支持               |      |
-| 箭头函数     | iOS 10+支持        |      |
-| Promise      | iOS 10+支持        |      |
-| window       | 目前所有版本不支持 |      |
-| self         | 目前所有版本不支持 |      |
-| global       | 目前所有版本不支持 |      |
-| globalThis   | iOS 12.2+支持      |      |
-| let变量      | 目前所有版本不支持 |      |
-| setTimeout   | 目前所有版本不支持 |      |
-| setInterval  | 目前所有版本不支持 |      |
-| clearTimeout | 目前所有版本不支持 |      |
+| 特性         | 系统版本支持情况   | 说明                                                         |
+| ------------ | ------------------ | ------------------------------------------------------------ |
+| Map          | 支持               |                                                              |
+| 箭头函数     | iOS 10+支持        |                                                              |
+| Promise      | iOS 10+支持        |                                                              |
+| window       | 目前所有版本不支持 |                                                              |
+| self         | 目前所有版本不支持 |                                                              |
+| global       | 目前所有版本不支持 |                                                              |
+| globalThis   | iOS 12.2+支持      |                                                              |
+| let全局变量  | iOS 10+支持        | let全局变量，在JSContext中无法访问到，获取后是undefined。而var全局变量，在JSContext中可以访问 |
+| setTimeout   | 目前所有版本不支持 |                                                              |
+| setInterval  | 目前所有版本不支持 |                                                              |
+| clearTimeout | 目前所有版本不支持 |                                                              |
+| console对象  | iOS 10.3.1+支持    | 虽然提供console对象，但是console.log等函数没有实现           |
 
 ​        
 
@@ -851,6 +900,8 @@ Promise特性可以使用[promise-polyfill](https://github.com/taylorhakes/promi
 [^7]:https://stackoverflow.com/questions/34273540/ios-javascriptcore-exception-detailed-stacktrace-info
 
 [^8]:https://stackoverflow.com/a/41201799
+
+[^9]:https://www.raywenderlich.com/1227-javascriptcore-tutorial-for-ios-getting-started
 
 
 

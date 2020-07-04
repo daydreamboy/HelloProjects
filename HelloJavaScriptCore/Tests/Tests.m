@@ -117,4 +117,43 @@
     XCTAssertEqualObjects(output, @"function");
 }
 
+- (void)test_dumpPropertiesWithValue {
+    NSDictionary *output;
+    
+    JSContext *context = [[JSContext alloc] init];
+    
+    output = [WCJSCTool dumpPropertiesWithValue:context[@"console"]];
+    NSLog(@"%@", output);
+    [context evaluateScript:@"console.log(1);"]; // No output to console
+    
+    output = [WCJSCTool dumpPropertiesWithValue:context[@"globalThis"]];
+    NSLog(@"%@", output);
+    
+    output = [WCJSCTool dumpPropertiesWithValue:context.globalObject];
+    NSLog(@"%@", output);
+    
+    [context evaluateScript:@"var globalMap = { a: 1, b: 2 };"];
+    output = [WCJSCTool dumpPropertiesWithValue:context[@"globalMap"]];
+    NSLog(@"%@", output);
+    
+    output = [WCJSCTool dumpPropertiesWithValue:context.globalObject];
+    NSLog(@"%@", output);
+}
+
+- (void)test_injectConsoleLogWithContext_logBlock {
+    JSContext *context;
+    
+    // Case 1
+    context = [[JSContext alloc] init];
+    [WCJSCTool injectConsoleLogWithContext:context logBlock:nil];
+    [context evaluateScript:@"console.log(1);"];
+    
+    // Case 2
+    context = [[JSContext alloc] init];
+    [WCJSCTool injectConsoleLogWithContext:context logBlock:^(id  _Nonnull object) {
+        NSLog(@"%@", object);
+    }];
+    [context evaluateScript:@"console.log({a: 65});"];
+}
+
 @end

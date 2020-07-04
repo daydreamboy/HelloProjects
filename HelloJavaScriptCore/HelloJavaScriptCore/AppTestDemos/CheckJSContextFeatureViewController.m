@@ -54,7 +54,7 @@
                 @"avaibility": @([WCJSCTool checkIfAvailableInJSCWithFeatureType:WCJSCToolFeatureTypeArrowFunction]),
             },
             @{
-                @"feature": @"let variable",
+                @"feature": @"let global variable",
                 @"avaibility": @([WCJSCTool checkIfAvailableInJSCWithFeatureType:WCJSCToolFeatureTypeLetVariable]),
             },
             @{
@@ -68,6 +68,10 @@
             @{
                 @"feature": @"setTimeout",
                 @"avaibility": @([WCJSCTool checkIfAvailableInJSCWithFeatureType:WCJSCToolFeatureTypeFunctionSetTimeout]),
+            },
+            @{
+                @"feature": @"console",
+                @"avaibility": @([WCJSCTool checkIfAvailableInJSCWithFeatureType:WCJSCToolFeatureTypeConsole]),
             },
         ];
     }
