@@ -69,6 +69,22 @@
             globalVariableName = @"arrowFunction";
             break;
         }
+        case WCJSCToolFeatureTypeFunctionClearTimeout: {
+            // @see https://stackoverflow.com/questions/1042138/how-to-check-if-function-exists-in-javascript
+            [context evaluateScript:@"var isExists = typeof clearTimeout === 'function' ? true : undefined;"];
+            globalVariableName = @"isExists";
+            break;
+        }
+        case WCJSCToolFeatureTypeFunctionSetInterval: {
+            [context evaluateScript:@"var isExists = typeof setInterval === 'function' ? true : undefined;"];
+            globalVariableName = @"isExists";
+            break;
+        }
+        case WCJSCToolFeatureTypeFunctionSetTimeout: {
+            [context evaluateScript:@"var isExists = typeof setTimeout === 'function' ? true : undefined;"];
+            globalVariableName = @"isExists";
+            break;
+        }
         case WCJSCToolFeatureTypeLetVariable: {
             [context evaluateScript:@"let letVariable = 'a';"];
             globalVariableName = @"letVariable";

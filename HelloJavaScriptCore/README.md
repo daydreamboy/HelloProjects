@@ -771,7 +771,7 @@ JavaScriptCore实际上WebKit的精简版本，WebKit本身对JavaScript语法�
 
 
 
-### JavaScript语法的支持列表
+### （1）JavaScript语法的支持列表
 
 下表列举JavaScriptCore对JavaScript语法的支持
 
@@ -783,7 +783,7 @@ JavaScriptCore实际上WebKit的精简版本，WebKit本身对JavaScript语法�
 | window       | 目前所有版本不支持 |      |
 | self         | 目前所有版本不支持 |      |
 | global       | 目前所有版本不支持 |      |
-| globalThis   | 目前所有版本不支持 |      |
+| globalThis   | iOS 12.2+支持      |      |
 | let变量      | 目前所有版本不支持 |      |
 | setTimeout   | 目前所有版本不支持 |      |
 | setInterval  | 目前所有版本不支持 |      |
@@ -791,9 +791,7 @@ JavaScriptCore实际上WebKit的精简版本，WebKit本身对JavaScript语法�
 
 ​        
 
-### 判断是否支持JavaScript语法特性
-
-
+### （2）判断是否支持JavaScript语法特性
 
 ​        可以通过JSContext执行特定语法的JS代码，然后JSContext取出对应的变量，判断是否是undefined来判断当前系统的JavaScriptCore是否支持某个语法特性。
 
@@ -811,13 +809,11 @@ else {
 }
 ```
 
-
-
 > 示例代码，见CheckJSContextFeatureViewController
 
 
 
-### 补充JavaScript语法特性
+### （3）补充JavaScript语法特性
 
 * 对于不支持函数和类（setTimeout、Promise等）
   * 可以native实现对应函数和类
@@ -826,6 +822,20 @@ else {
 * 对于不支持语法（let等）
   * 使用前端工具babel等，将let转换成var
   * 或者native预处理JS代码的字符串，将let替换成var
+
+
+
+#### a. Promise特性
+
+Promise特性可以使用[promise-polyfill](https://github.com/taylorhakes/promise-polyfill)这个库来支持
+
+
+
+#### b. setTimeout/clearTimeout/setInterval函数
+
+参考WCJSCTimerManager实现
+
+
 
 
 

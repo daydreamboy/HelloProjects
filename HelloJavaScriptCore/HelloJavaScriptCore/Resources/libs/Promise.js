@@ -1,4 +1,7 @@
 /**
+ This code is from https://github.com/taylorhakes/promise-polyfill
+ */
+/**
  * @this {Promise}
  */
 function finallyConstructor(callback) {

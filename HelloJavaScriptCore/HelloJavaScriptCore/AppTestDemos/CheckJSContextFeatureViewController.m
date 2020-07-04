@@ -57,6 +57,18 @@
                 @"feature": @"let variable",
                 @"avaibility": @([WCJSCTool checkIfAvailableInJSCWithFeatureType:WCJSCToolFeatureTypeLetVariable]),
             },
+            @{
+                @"feature": @"clearTimeout",
+                @"avaibility": @([WCJSCTool checkIfAvailableInJSCWithFeatureType:WCJSCToolFeatureTypeFunctionClearTimeout]),
+            },
+            @{
+                @"feature": @"setInterval",
+                @"avaibility": @([WCJSCTool checkIfAvailableInJSCWithFeatureType:WCJSCToolFeatureTypeFunctionSetInterval]),
+            },
+            @{
+                @"feature": @"setTimeout",
+                @"avaibility": @([WCJSCTool checkIfAvailableInJSCWithFeatureType:WCJSCToolFeatureTypeFunctionSetTimeout]),
+            },
         ];
     }
     return self;

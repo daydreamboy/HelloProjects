@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, WCJSCToolFeatureType) {
     WCJSCToolFeatureTypeArrowFunction,
+    WCJSCToolFeatureTypeFunctionClearTimeout,
+    WCJSCToolFeatureTypeFunctionSetInterval,
+    WCJSCToolFeatureTypeFunctionSetTimeout,
     WCJSCToolFeatureTypeGlobal,
     WCJSCToolFeatureTypeGlobalThis,
     WCJSCToolFeatureTypeLetVariable,
