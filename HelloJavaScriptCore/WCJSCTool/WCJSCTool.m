@@ -187,12 +187,13 @@
             var props = {};
             var propsValid = false;
             try {
-                for (const prop in variable) {
+                let propertyNames = Object.getOwnPropertyNames(variable);
+                propertyNames.forEach((prop) => {
                     if (variable.hasOwnProperty(prop)) {
-                        props[prop] = variable[prop];
+                        props[prop] = `[${typeof variable[prop]}]`;
                         propsValid = true;
                     }
-                }
+                });
             }
             catch (e) {}
             return propsValid ? props : undefined;

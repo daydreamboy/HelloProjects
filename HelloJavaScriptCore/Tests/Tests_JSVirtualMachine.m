@@ -133,4 +133,94 @@
     [context2 evaluateScript:@"console.log('result is: ' + exportedFunc(1, 2));"]; // Crash: EXC_BREAKPOINT (code=EXC_I386_BPT, subcode=0x0)
 }
 
+- (void)test_same_virtualMachine_contextWithJSGlobalContextRef {
+    JSVirtualMachine *virtualMachine = [[JSVirtualMachine alloc] init];
+    
+    JSContext *context1 = [[JSContext alloc] initWithVirtualMachine:virtualMachine];
+    JSContext *context2 = [JSContext contextWithJSGlobalContextRef:context1.JSGlobalContextRef];
+    
+    context1.exceptionHandler = ^(JSContext *context, JSValue *exception) {
+        [WCJSCTool printExceptionValue:exception];
+    };
+    
+    context2.exceptionHandler = ^(JSContext *context, JSValue *exception) {
+        [WCJSCTool printExceptionValue:exception];
+    };
+    
+    XCTAssertTrue(context1 == context2);
+    XCTAssertTrue(context1.virtualMachine == context2.virtualMachine);
+    
+    [WCJSCTool injectConsoleLogWithContext:context1 logBlock:nil];
+    //[WCJSCTool injectConsoleLogWithContext:context2 logBlock:nil];
+    
+    [context1 evaluateScript:@"function exportedFunc(a, b) { return a + b; }"];
+    context2[@"exportedFunc"] = context1[@"exportedFunc"];
+    [context2 evaluateScript:@"console.log('result is: ' + exportedFunc(1, 2));"];
+}
+
+- (void)test_same_virtualMachine_ {
+    NSMutableDictionary *intents = [NSMutableDictionary dictionary];
+    
+    JSVirtualMachine *virtualMachine = [[JSVirtualMachine alloc] init];
+    
+    JSContext *basicContext = [[JSContext alloc] initWithVirtualMachine:virtualMachine];
+    basicContext[@"postNotification"] = ^(JSValue *name, JSValue *userInfo, JSValue *feedback) {
+        NSDictionary *callbackInfo = intents[name.toString];
+        if (callbackInfo) {
+            JSValue *callback = callbackInfo[@"callback"];
+            [callback callWithArguments:@[userInfo, feedback]];
+        }
+        else {
+            [feedback callWithArguments:@[@{}, @{ @"error": [NSString stringWithFormat:@"notification `%@` has not registered", name] }]];
+        }
+    };
+    
+    basicContext[@"addObserverForNotification"] = ^(JSValue *name, JSValue *callback) {
+        intents[name.toString] = @{
+            @"callback": callback,
+        };
+    };
+    
+    JSContext *context1 = [[JSContext alloc] initWithVirtualMachine:virtualMachine];
+    JSContext *context2 = [[JSContext alloc] initWithVirtualMachine:virtualMachine];
+    context1.exceptionHandler = ^(JSContext *context, JSValue *exception) {
+        [WCJSCTool printExceptionValue:exception];
+    };
+    context2.exceptionHandler = ^(JSContext *context, JSValue *exception) {
+        [WCJSCTool printExceptionValue:exception];
+    };
+    [WCJSCTool injectConsoleLogWithContext:context1 logBlock:nil];
+    [WCJSCTool injectConsoleLogWithContext:context2 logBlock:nil];
+    
+    context1[@"postNotification"] = basicContext[@"postNotification"];
+    context2[@"postNotification"] = basicContext[@"postNotification"];
+    
+    context1[@"addObserverForNotification"] = basicContext[@"addObserverForNotification"];
+    context2[@"addObserverForNotification"] = basicContext[@"addObserverForNotification"];
+    
+    /*
+    [context1 evaluateScript:STR_OF_JS(
+        addObserverForNotification('testNotification', (data, feedback) => {
+          console.log(`data: ${JSON.stringify(data)}`);
+          feedback({retCode:'Ok'}, undefined);
+        });
+    )];
+     */
+    
+    [context2 evaluateScript:STR_OF_JS(
+        postNotification('testNotification', { data: 'hello'}, (result, error) => {
+          console.log('feedback of postNotification');
+          console.log(`result: ${JSON.stringify(result)}`);
+          console.log(`error: ${JSON.stringify(error)}`);
+        });
+    )];
+    
+    [context1 evaluateScript:STR_OF_JS(
+        addObserverForNotification('testNotification', (data, feedback) => {
+          console.log(`data: ${JSON.stringify(data)}`);
+          feedback({retCode:'Ok'}, undefined);
+        });
+    )];
+}
+
 @end
