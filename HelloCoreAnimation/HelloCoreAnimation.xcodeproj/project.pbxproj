@@ -23,7 +23,6 @@
 		2B718B551A739C5E00C0BF2A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B718B541A739C5E00C0BF2A /* AppDelegate.m */; };
 		2B718B5D1A739C5E00C0BF2A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B718B5C1A739C5E00C0BF2A /* Images.xcassets */; };
 		2B718B601A739C5E00C0BF2A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2B718B5E1A739C5E00C0BF2A /* LaunchScreen.xib */; };
-		2B718B6C1A739C5E00C0BF2A /* HelloCoreAnimationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B718B6B1A739C5E00C0BF2A /* HelloCoreAnimationTests.m */; };
 		2B718B771A739CD400C0BF2A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B718B761A739CD400C0BF2A /* RootViewController.m */; };
 		2B718B811A73BA6F00C0BF2A /* FadeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B718B7E1A73BA6F00C0BF2A /* FadeViewController.m */; };
 		2B718B821A73BA6F00C0BF2A /* ScaleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B718B801A73BA6F00C0BF2A /* ScaleViewController.m */; };
@@ -96,16 +95,6 @@
 		4FE8C1EE249768A8000497F6 /* WCGenieAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8C1ED249768A8000497F6 /* WCGenieAnimation.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		2B718B661A739C5E00C0BF2A /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2B718B441A739C5E00C0BF2A /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 2B718B4B1A739C5E00C0BF2A;
-			remoteInfo = HelloCoreAnimation;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		2B26B0461D0580BF00374802 /* AnimationImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimationImagesViewController.h; sourceTree = "<group>"; };
 		2B26B0471D0580BF00374802 /* AnimationImagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimationImagesViewController.m; sourceTree = "<group>"; };
@@ -130,9 +119,6 @@
 		2B718B541A739C5E00C0BF2A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		2B718B5C1A739C5E00C0BF2A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		2B718B5F1A739C5E00C0BF2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		2B718B651A739C5E00C0BF2A /* HelloCoreAnimationTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HelloCoreAnimationTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B718B6A1A739C5E00C0BF2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2B718B6B1A739C5E00C0BF2A /* HelloCoreAnimationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloCoreAnimationTests.m; sourceTree = "<group>"; };
 		2B718B751A739CD400C0BF2A /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		2B718B761A739CD400C0BF2A /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		2B718B7D1A73BA6F00C0BF2A /* FadeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FadeViewController.h; sourceTree = "<group>"; };
@@ -267,13 +253,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2B718B621A739C5E00C0BF2A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -310,7 +289,6 @@
 				4FB4D227249FAEDA00FB94B1 /* WCResizableImageLayer */,
 				4FE8C1EB249767A2000497F6 /* WCCoreAnimationTool */,
 				2B718B4E1A739C5E00C0BF2A /* HelloCoreAnimation */,
-				2B718B681A739C5E00C0BF2A /* HelloCoreAnimationTests */,
 				2B718B4D1A739C5E00C0BF2A /* Products */,
 			);
 			sourceTree = "<group>";
@@ -319,7 +297,6 @@
 			isa = PBXGroup;
 			children = (
 				2B718B4C1A739C5E00C0BF2A /* HelloCoreAnimation.app */,
-				2B718B651A739C5E00C0BF2A /* HelloCoreAnimationTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -346,23 +323,6 @@
 				2B718B5E1A739C5E00C0BF2A /* LaunchScreen.xib */,
 				2B718B501A739C5E00C0BF2A /* Info.plist */,
 				2B718B511A739C5E00C0BF2A /* main.m */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		2B718B681A739C5E00C0BF2A /* HelloCoreAnimationTests */ = {
-			isa = PBXGroup;
-			children = (
-				2B718B6B1A739C5E00C0BF2A /* HelloCoreAnimationTests.m */,
-				2B718B691A739C5E00C0BF2A /* Supporting Files */,
-			);
-			path = HelloCoreAnimationTests;
-			sourceTree = "<group>";
-		};
-		2B718B691A739C5E00C0BF2A /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				2B718B6A1A739C5E00C0BF2A /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -668,24 +628,6 @@
 			productReference = 2B718B4C1A739C5E00C0BF2A /* HelloCoreAnimation.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2B718B641A739C5E00C0BF2A /* HelloCoreAnimationTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 2B718B721A739C5E00C0BF2A /* Build configuration list for PBXNativeTarget "HelloCoreAnimationTests" */;
-			buildPhases = (
-				2B718B611A739C5E00C0BF2A /* Sources */,
-				2B718B621A739C5E00C0BF2A /* Frameworks */,
-				2B718B631A739C5E00C0BF2A /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				2B718B671A739C5E00C0BF2A /* PBXTargetDependency */,
-			);
-			name = HelloCoreAnimationTests;
-			productName = HelloCoreAnimationTests;
-			productReference = 2B718B651A739C5E00C0BF2A /* HelloCoreAnimationTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -697,10 +639,6 @@
 				TargetAttributes = {
 					2B718B4B1A739C5E00C0BF2A = {
 						CreatedOnToolsVersion = 6.1.1;
-					};
-					2B718B641A739C5E00C0BF2A = {
-						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = 2B718B4B1A739C5E00C0BF2A;
 					};
 				};
 			};
@@ -718,7 +656,6 @@
 			projectRoot = "";
 			targets = (
 				2B718B4B1A739C5E00C0BF2A /* HelloCoreAnimation */,
-				2B718B641A739C5E00C0BF2A /* HelloCoreAnimationTests */,
 			);
 		};
 /* End PBXProject section */
@@ -756,13 +693,6 @@
 				2B26B0581D0581E000374802 /* common_btn_animation_right@2x.png in Resources */,
 				2BE50B991CFF3A890022C1A2 /* ops_icon_input_sms_code@2x.png in Resources */,
 				2B718B8C1A73CD2F00C0BF2A /* Xcode.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2B718B631A739C5E00C0BF2A /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -833,23 +763,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		2B718B611A739C5E00C0BF2A /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2B718B6C1A739C5E00C0BF2A /* HelloCoreAnimationTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		2B718B671A739C5E00C0BF2A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 2B718B4B1A739C5E00C0BF2A /* HelloCoreAnimation */;
-			targetProxy = 2B718B661A739C5E00C0BF2A /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		2B718B5E1A739C5E00C0BF2A /* LaunchScreen.xib */ = {
@@ -1006,42 +920,6 @@
 			};
 			name = Release;
 		};
-		2B718B731A739C5E00C0BF2A /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = HelloCoreAnimationTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.wc.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloCoreAnimation.app/HelloCoreAnimation";
-			};
-			name = Debug;
-		};
-		2B718B741A739C5E00C0BF2A /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = HelloCoreAnimationTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.wc.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloCoreAnimation.app/HelloCoreAnimation";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1059,15 +937,6 @@
 			buildConfigurations = (
 				2B718B701A739C5E00C0BF2A /* Debug */,
 				2B718B711A739C5E00C0BF2A /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		2B718B721A739C5E00C0BF2A /* Build configuration list for PBXNativeTarget "HelloCoreAnimationTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				2B718B731A739C5E00C0BF2A /* Debug */,
-				2B718B741A739C5E00C0BF2A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
