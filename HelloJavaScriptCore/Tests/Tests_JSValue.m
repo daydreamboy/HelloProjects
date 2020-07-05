@@ -251,7 +251,7 @@
     [context evaluateScript:@"var console = {}"];
     context[@"console"][@"log"] = ^(id object) {
         NSString *message = [object description];
-        NSLog(@"JSBridge log: %@", message);
+        NSLog(@"JS Console: %@", message);
     };
     
     // Case 1
@@ -282,7 +282,7 @@
     [context evaluateScript:@"var console = {}"];
     context[@"console"][@"log"] = ^(id object) {
         NSString *message = [object description];
-        NSLog(@"JSBridge log: %@", message);
+        NSLog(@"JS Console: %@", message);
     };
     
     // defineProperty for same property
@@ -335,7 +335,7 @@
     [context evaluateScript:@"var console = {}"];
     context[@"console"][@"log"] = ^(id object) {
         NSString *message = [object description];
-        NSLog(@"JSBridge log: %@", message);
+        NSLog(@"JS Console: %@", message);
     };
     
     // Case 1: JSPropertyDescriptorWritableKey is NO by default
@@ -385,7 +385,7 @@
     [context evaluateScript:@"var console = {}"];
     context[@"console"][@"log"] = ^(id object) {
         NSString *message = [object description];
-        NSLog(@"JSBridge log: %@", message);
+        NSLog(@"JS Console: %@", message);
     };
     
     // Case 1: not enumerable
@@ -438,7 +438,7 @@
         JSPropertyDescriptorValueKey: @{
                 @"log": ^(id object) {
                     NSString *message = [object description];
-                    NSLog(@"JSBridge log: %@", message);
+                    NSLog(@"JS Console: %@", message);
                 }
         }
     }];

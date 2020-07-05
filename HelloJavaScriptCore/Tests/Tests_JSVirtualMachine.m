@@ -61,8 +61,8 @@
         NSLog(@"message: %@, thread: %@", object, [NSThread currentThread]);
     }];
     
-    [context1 evaluateScript:@"console.log(1);"];
-    [context2 evaluateScript:@"console.log(2);"];
+    [context1 evaluateScript:@"while (1) { console.log(1); };"];
+    [context2 evaluateScript:@"while (1) { console.log(2); };"];
 }
 
 - (void)test_same_virtualMachine {

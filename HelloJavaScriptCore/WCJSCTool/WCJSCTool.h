@@ -74,7 +74,7 @@ typedef NS_ENUM(NSUInteger, WCJSCToolFeatureType) {
  Implement console.log with context
  
  @param context the JSContext
- @param logBlock the callback when log called. If pass nil, use the default log message, which format is @"JSBridge log: %@"
+ @param logBlock the callback when log called. If pass nil, use the default log message, which format is @"JS Console: %@"
         - object, the native object which converted from JS object
  @return YES if inject sucessfully, NO if failed
  */

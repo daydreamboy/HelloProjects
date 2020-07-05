@@ -152,7 +152,7 @@
     else {
         logBlockL = ^(id object) {
             NSString *message = [object description];
-            NSLog(@"JSBridge log: %@", message);
+            NSLog(@"JS Console: %@", message);
         };
     }
     

@@ -183,7 +183,7 @@
         [context evaluateScript:@"var console = {}"];
         context[@"console"][@"log"] = ^(id object) {
             NSString *message = [object description];
-            NSLog(@"JSBridge log: %@", message);
+            NSLog(@"JS Console: %@", message);
         };
         [WCJSCTimerManager registerWithContext:context];
     }
@@ -192,14 +192,14 @@
         [context evaluateScript:@"var console = {}"];
         context[@"console"][@"log"] = ^(id object) {
             NSString *message = [object description];
-            NSLog(@"JSBridge log: %@", message);
+            NSLog(@"JS Console: %@", message);
         };
     }
     else if ([fileName isEqualToString:@"setInterval.js"]) {
         [context evaluateScript:@"var console = {}"];
         context[@"console"][@"log"] = ^(id object) {
             NSString *message = [object description];
-            NSLog(@"JSBridge log: %@", message);
+            NSLog(@"JS Console: %@", message);
         };
         [WCJSCTimerManager registerWithContext:context];
     }
@@ -207,7 +207,7 @@
         [context evaluateScript:@"var console = {}"];
         context[@"console"][@"log"] = ^(id object) {
             NSString *message = [object description];
-            NSLog(@"JSBridge log: %@", message);
+            NSLog(@"JS Console: %@", message);
         };
         context[@"alert"] = ^(id object) {
             NSString *message = [object description];
@@ -226,7 +226,7 @@
         [context evaluateScript:@"var console = {}"];
         context[@"console"][@"log"] = ^(id object) {
             NSString *message = [object description];
-            NSLog(@"JSBridge log: %@", message);
+            NSLog(@"JS Console: %@", message);
         };
         [WCJSCTimerManager registerWithContext:context];
     }
@@ -234,21 +234,21 @@
         [context evaluateScript:@"var console = {}"];
         context[@"console"][@"log"] = ^(id object) {
             NSString *message = [object description];
-            NSLog(@"JSBridge log: %@", message);
+            NSLog(@"JS Console: %@", message);
         };
     }
     else if ([fileName isEqualToString:@"encodeURIComponent.js"]) {
         [context evaluateScript:@"var console = {}"];
         context[@"console"][@"log"] = ^(id object) {
             NSString *message = [object description];
-            NSLog(@"JSBridge log: %@", message);
+            NSLog(@"JS Console: %@", message);
         };
     }
     else if ([fileName isEqualToString:@"Promise_setTimeout.js"]) {
         [context evaluateScript:@"var console = {}"];
         context[@"console"][@"log"] = ^(id object) {
             NSString *message = [object description];
-            NSLog(@"JSBridge log: %@", message);
+            NSLog(@"JS Console: %@", message);
         };
         
         [WCJSCTimerManager registerWithContext:context];
@@ -257,7 +257,7 @@
         [context evaluateScript:@"var console = {}"];
         context[@"console"][@"log"] = ^(id object) {
             NSString *message = [object description];
-            NSLog(@"JSBridge log: %@", message);
+            NSLog(@"JS Console: %@", message);
         };
         
         [WCJSCTimerManager registerWithContext:context];
@@ -270,14 +270,14 @@
         [context evaluateScript:@"var console = {}"];
         context[@"console"][@"log"] = ^(id object) {
             NSString *message = [object description];
-            NSLog(@"JSBridge log: %@", message);
+            NSLog(@"JS Console: %@", message);
         };
     }
     else if ([fileName isEqualToString:@"let.js"]) {
         [context evaluateScript:@"var console = {}"];
         context[@"console"][@"log"] = ^(id object) {
             NSString *message = [object description];
-            NSLog(@"JSBridge log: %@", message);
+            NSLog(@"JS Console: %@", message);
         };
     }
 }
