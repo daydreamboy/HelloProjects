@@ -16,6 +16,7 @@
 #import "CreateAttachedBubbleLayerViewController.h"
 #import "ExamplesOfWAttachedBubbleViewViewController.h"
 #import "CreateCircleProgressViewViewController.h"
+#import "CircleAlphabetViewController.h"
 
 // section2
 #import "DrawLineBezierPathViewController.h"
@@ -72,6 +73,7 @@
           @{ kTitle: @"Create bubble layer", kClass: [CreateAttachedBubbleLayerViewController class] },
           @{ kTitle: @"Examples of WCAttachedBubbleView", kClass: [ExamplesOfWAttachedBubbleViewViewController class] },
           @{ kTitle: @"CreateCircleProgressViewViewController", kClass: [CreateCircleProgressViewViewController class] },
+          @{ kTitle: @"CircleAlphabetViewController", kClass: [CircleAlphabetViewController class] },
     ];
     
     NSArray<NSDictionary *> *section2 = @[

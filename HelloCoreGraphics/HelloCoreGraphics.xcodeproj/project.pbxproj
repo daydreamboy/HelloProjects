@@ -16,6 +16,10 @@
 		2B0FD60F1FC99F0E0022E59D /* CreatePDFGraphicsContext2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B0FD60E1FC99F0E0022E59D /* CreatePDFGraphicsContext2ViewController.m */; };
 		2B7B0B951FCAA60400CB7388 /* CreateBitmapGraphicsContext1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7B0B941FCAA60400CB7388 /* CreateBitmapGraphicsContext1ViewController.m */; };
 		2B7B0B981FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B7B0B971FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.m */; };
+		4F0C6C9324B2070E0040629C /* CircleAlphabetNaive.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C6C9224B2070E0040629C /* CircleAlphabetNaive.m */; };
+		4F0C6C9624B208E70040629C /* CircleAlphabetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C6C9524B208E70040629C /* CircleAlphabetViewController.m */; };
+		4F0C6C9924B219BD0040629C /* CircleAlphabetByCTM.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C6C9824B219BD0040629C /* CircleAlphabetByCTM.m */; };
+		4F0C6C9D24B21A930040629C /* DrawingBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C6C9C24B21A930040629C /* DrawingBaseViewController.m */; };
 		4F0F1DB62495D1350034AAE9 /* ShapeRectBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F1DB52495D1350034AAE9 /* ShapeRectBezierPathViewController.m */; };
 		4F0F1DBB2495D3290034AAE9 /* ShapeOvalBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F1DBA2495D3290034AAE9 /* ShapeOvalBezierPathViewController.m */; };
 		4F0F1DBE2495D34C0034AAE9 /* ShapeBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F1DBD2495D34C0034AAE9 /* ShapeBaseViewController.m */; };
@@ -87,6 +91,14 @@
 		2B7B0B941FCAA60400CB7388 /* CreateBitmapGraphicsContext1ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateBitmapGraphicsContext1ViewController.m; sourceTree = "<group>"; };
 		2B7B0B961FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateBitmapGraphicsContext2ViewController.h; sourceTree = "<group>"; };
 		2B7B0B971FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateBitmapGraphicsContext2ViewController.m; sourceTree = "<group>"; };
+		4F0C6C9124B2070E0040629C /* CircleAlphabetNaive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleAlphabetNaive.h; sourceTree = "<group>"; };
+		4F0C6C9224B2070E0040629C /* CircleAlphabetNaive.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleAlphabetNaive.m; sourceTree = "<group>"; };
+		4F0C6C9424B208E70040629C /* CircleAlphabetViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleAlphabetViewController.h; sourceTree = "<group>"; };
+		4F0C6C9524B208E70040629C /* CircleAlphabetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleAlphabetViewController.m; sourceTree = "<group>"; };
+		4F0C6C9724B219BD0040629C /* CircleAlphabetByCTM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CircleAlphabetByCTM.h; sourceTree = "<group>"; };
+		4F0C6C9824B219BD0040629C /* CircleAlphabetByCTM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CircleAlphabetByCTM.m; sourceTree = "<group>"; };
+		4F0C6C9B24B21A930040629C /* DrawingBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawingBaseViewController.h; sourceTree = "<group>"; };
+		4F0C6C9C24B21A930040629C /* DrawingBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawingBaseViewController.m; sourceTree = "<group>"; };
 		4F0F1DB42495D1350034AAE9 /* ShapeRectBezierPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShapeRectBezierPathViewController.h; sourceTree = "<group>"; };
 		4F0F1DB52495D1350034AAE9 /* ShapeRectBezierPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShapeRectBezierPathViewController.m; sourceTree = "<group>"; };
 		4F0F1DB82495D18F0034AAE9 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
@@ -227,6 +239,7 @@
 		2B0FD6061FC99E1E0022E59D /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F0C6C9A24B21A790040629C /* Base */,
 				4F0F1DB72495D1720034AAE9 /* Tools */,
 				4F1DF0302484F95D0091F205 /* QuartzView */,
 				4FF3EAE4247D15A800227B3C /* BezierPath */,
@@ -246,8 +259,30 @@
 				4F3525F020064D9200891B09 /* CreateAttachedBubbleLayerViewController.m */,
 				4F3525F820077D6200891B09 /* ExamplesOfWAttachedBubbleViewViewController.h */,
 				4F3525F920077D6200891B09 /* ExamplesOfWAttachedBubbleViewViewController.m */,
+				4F0C6C9424B208E70040629C /* CircleAlphabetViewController.h */,
+				4F0C6C9524B208E70040629C /* CircleAlphabetViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F0C6C9024B206900040629C /* CircleAlphabet */ = {
+			isa = PBXGroup;
+			children = (
+				4F0C6C9124B2070E0040629C /* CircleAlphabetNaive.h */,
+				4F0C6C9224B2070E0040629C /* CircleAlphabetNaive.m */,
+				4F0C6C9724B219BD0040629C /* CircleAlphabetByCTM.h */,
+				4F0C6C9824B219BD0040629C /* CircleAlphabetByCTM.m */,
+			);
+			path = CircleAlphabet;
+			sourceTree = "<group>";
+		};
+		4F0C6C9A24B21A790040629C /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				4F0C6C9B24B21A930040629C /* DrawingBaseViewController.h */,
+				4F0C6C9C24B21A930040629C /* DrawingBaseViewController.m */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		4F0F1DB72495D1720034AAE9 /* Tools */ = {
@@ -357,6 +392,7 @@
 		4F1DF0302484F95D0091F205 /* QuartzView */ = {
 			isa = PBXGroup;
 			children = (
+				4F0C6C9024B206900040629C /* CircleAlphabet */,
 				4F1DF0252484E67B0091F205 /* Lines */,
 			);
 			path = QuartzView;
@@ -526,6 +562,7 @@
 				4F2CAE0424A5F0CF008C9C27 /* WCViewTool.m in Sources */,
 				4F3526342008B9CF00891B09 /* AttachedBubbleWithDownArrowViewController.m in Sources */,
 				4F3525F120064D9200891B09 /* CreateAttachedBubbleLayerViewController.m in Sources */,
+				4F0C6C9924B219BD0040629C /* CircleAlphabetByCTM.m in Sources */,
 				4F0F1DCE249617F50034AAE9 /* ShapeFillPatternImageBezierPathViewController.m in Sources */,
 				4F3525FA20077D6200891B09 /* ExamplesOfWAttachedBubbleViewViewController.m in Sources */,
 				4FF3EAE8247D180F00227B3C /* DrawArcBezierPathViewController.m in Sources */,
@@ -543,8 +580,10 @@
 				4F3526312008B99C00891B09 /* AttachedBubbleWithUpArrowViewController.m in Sources */,
 				2B0FD60F1FC99F0E0022E59D /* CreatePDFGraphicsContext2ViewController.m in Sources */,
 				2B7B0B981FCAA61D00CB7388 /* CreateBitmapGraphicsContext2ViewController.m in Sources */,
+				4F0C6C9324B2070E0040629C /* CircleAlphabetNaive.m in Sources */,
 				4F35263D2008BEA100891B09 /* AttachedBubbleBaseViewController.m in Sources */,
 				4F3525F4200707AE00891B09 /* WCAttachedBubbleView.m in Sources */,
+				4F0C6C9624B208E70040629C /* CircleAlphabetViewController.m in Sources */,
 				2B7B0B951FCAA60400CB7388 /* CreateBitmapGraphicsContext1ViewController.m in Sources */,
 				4F0F1DCB249614240034AAE9 /* ShapeFillPathBezierPathViewController.m in Sources */,
 				2B0FD6001FC99DFC0022E59D /* main.m in Sources */,
@@ -564,6 +603,7 @@
 				4F1DF0292484E9070091F205 /* QuartzLineView.m in Sources */,
 				4FB4D205249F9C2900FB94B1 /* ShapeCurveBezierPathViewController.m in Sources */,
 				4F0F1DE7249624970034AAE9 /* ShapeLineStrokeStartEndBezierPathViewController.m in Sources */,
+				4F0C6C9D24B21A930040629C /* DrawingBaseViewController.m in Sources */,
 				4F0F1DC22495EA230034AAE9 /* ShapePolygonBezierPathViewController.m in Sources */,
 				4F2CAE0724A65041008C9C27 /* DrawVariableWidthStrokeWithFreeHandViewController.m in Sources */,
 				4F0F1DC824960EB60034AAE9 /* ShapeOpenPathBezierPathViewController.m in Sources */,
