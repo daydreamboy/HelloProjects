@@ -55,6 +55,25 @@
     }
 }
 
++ (BOOL)performBlockOnMainThread:(void (^)(void))block {
+    if (!block) {
+        return NO;
+    }
+    
+    if ([NSThread isMainThread]) {
+        !block ?: block();
+    }
+    else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            !block ?: block();
+        });
+    }
+    
+    return YES;
+}
+
+#pragma mark -
+
 static const void *sAssociatedObjectKeyShouldStop = &sAssociatedObjectKeyShouldStop;
 static const void *sAssociatedObjectKeyAddress = &sAssociatedObjectKeyAddress;
 

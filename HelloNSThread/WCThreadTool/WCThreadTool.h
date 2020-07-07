@@ -35,6 +35,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)performBlock:(void (^)(id))block onThread:(NSThread *)thread withObject:(id)object waitUntilDone:(BOOL)waitUntilDone;
 
+/**
+ call block always on main thread
+ 
+ @param block the block
+ @return YES if perform the block successfully, NO if not
+ */
++ (BOOL)performBlockOnMainThread:(void (^)(void))block;
+
 #pragma mark - Resident Thread
 
 /**
