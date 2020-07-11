@@ -461,11 +461,17 @@ sharedApplication] keyWindow] rootViewController] view]
 recursiveDescription]
 ```
 
-定义别名cpo，并接收一个参数。注意：使用command alias只能支持一个参数，而且在末尾拼接。如果动态参数在命令中间，需要使用command regex命令。
+定义别名cpo，并接收一个参数。
 
 ```shell
 command alias cpo expression -l objc -O --
 ```
+
+注意
+
+> 使用command alias只能支持一个参数，而且在末尾拼接。如果动态参数在命令中间，需要使用command regex命令。
+
+
 
 定义别名cpx，接收一个参数
 
@@ -506,8 +512,7 @@ command regex getcls 's/(([0-9]|\$|\@|\[).*)/cpo [%1 class]/'
 定义别名getcls，定义两个regex，执行两个命令cpo [%1 class]和expression -l swift -O -- type(of: %1)
 
 ```shell
-command regex getcls 's/(([0-9]|\$|\@|\[).*)/cpo [%1 class]/' 's/
-(.+)/expression -l swift -O -- type(of: %1)/'
+command regex getcls 's/(([0-9]|\$|\@|\[).*)/cpo [%1 class]/' 's/(.+)/expression -l swift -O -- type(of: %1)/'
 ```
 
 
@@ -535,8 +540,29 @@ command regex getcls 's/(([0-9]|\$|\@|\[).*)/cpo [%1 class]/' 's/
 ```shell
 (lldb) command script add -f helloworld.your_first_command yay
 ```
+>-f，指定python函数名，同时指定lldb命令名称
+
+
+
+#### （4）command source
+
+格式：command source [-s <boolean>] [-c <boolean>] [-e <boolean>] <filename>
+
+说明：从指定文件中读出lldb命令并执行
+
+执行文件中lldb命令，遇到错误继续执行(`-e0`选项)，同时静默执行(`-s1`选项)
+
+```shell
+(lldb) command source -e0 -s1 <filename>
+```
+
+说明
+
+> -e <boolean> ( --stop-on-error <boolean> )，如果true，遇到错误，则停止执行
 >
--f，指定python函数名，同时指定lldb命令名称
+> -s <boolean> ( --silent-run <boolean> )，如果true，执行命令时不显示命令本身
+
+可以使用command source命令，从文件中批量导入lldb命令。
 
 
 
@@ -1358,7 +1384,7 @@ Intel格式和AT&T格式的区别
 
 * 设置不跳过函数的prologue
 
-```
+```bash
 settings set target.skip-prologue false
 ```
 
