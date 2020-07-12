@@ -9,7 +9,7 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`UIGraphicsGetCurrentContext`方法取到的context，坐标系默认是左下角原点，up for x轴，right for y轴。这种数学上的坐标系和iOS CoreGraphics的左上角坐标系不一样，所以在context上画图形之前，需要修改context的坐标系。
 
-```
+```objective-c
 CGContextRef context = UIGraphicsGetCurrentContext();
 // Note: move origin to upward based on bottom-left coordinate
 CGContextTranslateCTM(context, 0, self.bounds.size.height);
