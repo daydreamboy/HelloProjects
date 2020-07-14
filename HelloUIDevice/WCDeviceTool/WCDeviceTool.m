@@ -362,6 +362,23 @@
     }
 }
 
++ (BOOL)deviceIsSimulator {
+    // Set up a struct
+    struct utsname dt;
+    // Get the system information
+    uname(&dt);
+    // Set the device type to the machine type
+    NSString *deviceType = [NSString stringWithFormat:@"%s", dt.machine];
+    
+    // Simulators
+    if ([deviceType isEqualToString:@"i386"] || [deviceType isEqualToString:@"x86_64"]) {
+        return YES;
+    }
+    else {
+        return NO;
+    }
+}
+
 #pragma mark > Processor
 
 + (NSInteger)deviceProcessorNumber {

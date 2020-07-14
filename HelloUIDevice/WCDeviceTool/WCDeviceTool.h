@@ -114,6 +114,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSString *)deviceModelPrettyPrinted:(BOOL)prettyPrinted;
 
+/**
+ Check device is if simulator
+ 
+ @return YES if device is simulator, NO if not
+ 
+ @header #import <sys/utsname.h>
+ */
++ (BOOL)deviceIsSimulator;
+
 #pragma mark > Processor
 
 /**
