@@ -173,6 +173,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (CGSize)imageSizeWithData:(NSData *)data scale:(CGFloat)scale;
 
+#pragma mark > File
+
++ (nullable NSString *)fileNameWithImage:(UIImage *)image;
++ (nullable NSString *)containerBundlePathWithImage:(UIImage *)image;
+
 #pragma mark - Thumbnail Image
 
 /**

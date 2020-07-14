@@ -664,6 +664,48 @@
 
 #pragma mark ::
 
+#pragma mark > File
+
++ (nullable NSString *)fileNameWithImage:(UIImage *)image {
+    if (![image isKindOfClass:[UIImage class]]) {
+        return nil;
+    }
+    
+    NSString *fileName = nil;
+    
+    if ([image respondsToSelector:@selector(imageAsset)]) {
+        UIImageAsset *imageAsset = image.imageAsset;
+        
+        @try {
+            fileName = [imageAsset valueForKey:@"_assetName"];
+        }
+        @catch (NSException *exception) {
+        }
+    }
+    
+    return fileName;
+}
+
++ (nullable NSString *)containerBundlePathWithImage:(UIImage *)image {
+    if (![image isKindOfClass:[UIImage class]]) {
+        return nil;
+    }
+    
+    NSString *bundlePath = nil;
+    
+    if ([image respondsToSelector:@selector(imageAsset)]) {
+        UIImageAsset *imageAsset = image.imageAsset;
+        
+        @try {
+            bundlePath = [imageAsset valueForKey:@"_containingBundle"];
+        }
+        @catch (NSException *exception) {
+        }
+    }
+    
+    return bundlePath;
+}
+
 #pragma mark - Thumbnail Image
 
 + (nullable UIImage *)thumbnailImageWithPath:(NSString *)path boundingSize:(CGSize)boundingSize scale:(CGFloat)scale {
