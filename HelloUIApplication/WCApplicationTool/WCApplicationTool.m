@@ -7,6 +7,7 @@
 //
 
 #import "WCApplicationTool.h"
+#import <sys/utsname.h>
 
 @implementation WCApplicationTool
 
@@ -213,23 +214,32 @@
     return [sResult boolValue];
 }
 
-#pragma mark > Get debug configuration (Only Simulator)
+#pragma mark > Get debug configuration
 
 + (nullable id)JSONObjectWithUserHomeFileName:(nullable NSString *)userHomeFileName {
-#if TARGET_OS_SIMULATOR
     if (![userHomeFileName isKindOfClass:[NSString class]] || !userHomeFileName.length) {
         userHomeFileName = @"simulator_debug.json";
     }
+
+    NSMutableArray *components = [NSMutableArray array];
     
-    NSString *appHomeDirectoryPath = [@"~" stringByExpandingTildeInPath];
-    NSArray *pathParts = [appHomeDirectoryPath componentsSeparatedByString:@"/"];
-    if (pathParts.count < 2) {
-        return nil;
+    if ([self deviceIsSimulator]) {
+        NSString *appHomeDirectoryPath = [@"~" stringByExpandingTildeInPath];
+        NSArray *pathParts = [appHomeDirectoryPath componentsSeparatedByString:@"/"];
+        if (pathParts.count < 2) {
+            return nil;
+        }
+        
+        [components addObject:@"/"];
+        // Note: pathParts is @"", @"Users", @"<your name>", ...
+        [components addObjectsFromArray:[pathParts subarrayWithRange:NSMakeRange(1, 2)]];
+        
+    }
+    else {
+        [components addObject:NSHomeDirectory()];
+        [components addObject:@"Documents"];
     }
     
-    NSMutableArray *components = [NSMutableArray arrayWithObject:@"/"];
-    // Note: pathParts is @"", @"Users", @"<your name>", ...
-    [components addObjectsFromArray:[pathParts subarrayWithRange:NSMakeRange(1, 2)]];
     [components addObject:userHomeFileName];
     
     NSString *filePath = [NSString pathWithComponents:components];
@@ -257,11 +267,28 @@
     }
     
     return JSONObject;
-#else
-#warning "JSONObjectWithUserHomeFileName method only available in simulator"
-    return nil;
-#endif
 }
+
+#pragma mark ::
+
++ (BOOL)deviceIsSimulator {
+    // Set up a struct
+    struct utsname dt;
+    // Get the system information
+    uname(&dt);
+    // Set the device type to the machine type
+    NSString *deviceType = [NSString stringWithFormat:@"%s", dt.machine];
+    
+    // Simulators
+    if ([deviceType isEqualToString:@"i386"] || [deviceType isEqualToString:@"x86_64"]) {
+        return YES;
+    }
+    else {
+        return NO;
+    }
+}
+
+#pragma mark ::
 
 #pragma mark > Risky Methods
 
