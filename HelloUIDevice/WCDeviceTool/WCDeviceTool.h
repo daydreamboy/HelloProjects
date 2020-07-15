@@ -139,6 +139,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSInteger)deviceProcessorActiveNumber;
 
+#pragma mark > Screen
+
+/**
+ Detect current screen if has notch, e.g. iPhoneX/XR/XS
+ 
+ @return YES if current screen has notch, NO if not
+ @see https://medium.com/@cafielo/how-to-detect-notch-screen-in-swift-56271827625d
+ */
++ (BOOL)screenHasNotch;
+
 @end
 
 NS_ASSUME_NONNULL_END

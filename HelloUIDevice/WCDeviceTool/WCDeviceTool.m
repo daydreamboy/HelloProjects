@@ -409,4 +409,20 @@
     }
 }
 
+#pragma mark > Screen
+
++ (BOOL)screenHasNotch {
+    UIWindow *keyWindow = [UIApplication sharedApplication].keyWindow;
+    
+    if ([keyWindow respondsToSelector:@selector(safeAreaInsets)]) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+        return keyWindow.safeAreaInsets.bottom > 0 ? YES : NO;
+#pragma GCC diagnostic pop
+    }
+    else {
+        return NO;
+    }
+}
+
 @end
