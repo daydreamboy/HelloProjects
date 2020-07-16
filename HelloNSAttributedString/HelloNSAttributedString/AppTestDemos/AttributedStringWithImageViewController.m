@@ -76,11 +76,11 @@
 - (NSAttributedString *)createAttributeString1 {
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"like<img1>after<img2>"];
     
-    NSAttributedString *attrStringWithImage1 = [self attributedStringWithImageName:@"img1.jpg" frame:CGRectMake(0, 0, 30, 30)];
+    NSAttributedString *attrStringWithImage1 = [WCAttributedStringTool attributedStringWithImageName:@"img1.jpg" frame:CGRectMake(0, 0, 30, 30)];
     NSRange range1 = [attributedString.string rangeOfString:@"<img1>"];
     [attributedString replaceCharactersInRange:range1 withAttributedString:attrStringWithImage1];
 
-    NSAttributedString *attrStringWithImage2 = [self attributedStringWithImageName:@"img2.png" frame:CGRectMake(100, 10, 30, 30)];
+    NSAttributedString *attrStringWithImage2 = [WCAttributedStringTool attributedStringWithImageName:@"img2.png" frame:CGRectMake(100, 10, 30, 30)];
     NSRange range2 = [attributedString.string rangeOfString:@"<img2>"];
     [attributedString replaceCharactersInRange:range2 withAttributedString:attrStringWithImage2];
     
@@ -90,26 +90,15 @@
 - (NSAttributedString *)createAttributeString2 {
     NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"like<img1>after<img2>"];
     
-    NSAttributedString *attrStringWithImage1 = [self attributedStringWithImageName:@"img1.jpg" frame:CGRectMake(-100, -20, 30, 30)];
+    NSAttributedString *attrStringWithImage1 = [WCAttributedStringTool attributedStringWithImageName:@"img1.jpg" frame:CGRectMake(-100, -20, 30, 30)];
     NSRange range1 = [attributedString.string rangeOfString:@"<img1>"];
     [attributedString replaceCharactersInRange:range1 withAttributedString:attrStringWithImage1];
     
-    NSAttributedString *attrStringWithImage2 = [self attributedStringWithImageName:@"img2.png" frame:CGRectMake(100, 10, 30, 30)];
+    NSAttributedString *attrStringWithImage2 = [WCAttributedStringTool attributedStringWithImageName:@"img2.png" frame:CGRectMake(100, 10, 30, 30)];
     NSRange range2 = [attributedString.string rangeOfString:@"<img2>"];
     [attributedString replaceCharactersInRange:range2 withAttributedString:attrStringWithImage2];
     
     return attributedString;
-}
-
-- (NSAttributedString *)attributedStringWithImageName:(NSString *)imageName frame:(CGRect)frame {
-    NSTextAttachment *textAttachment = [[NSTextAttachment alloc] init];
-    textAttachment.image = [UIImage imageNamed:imageName];
-    // Note: bounds consider baseline, and ignore x, only conside y/width/height, y is upward
-    textAttachment.bounds = frame;
-    
-    NSAttributedString *attrStringWithImage = [NSAttributedString attributedStringWithAttachment:textAttachment];
-    
-    return attrStringWithImage;
 }
 
 @end

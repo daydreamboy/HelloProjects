@@ -85,6 +85,17 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (CGSize)textSizeWithSingleLineAttributedString:(NSAttributedString *)attributedString;
 
+#pragma mark - Attachment
+
+/**
+ Get an image attachment attributed string
+ 
+ @param imageName  the image name
+ @param frame the frame of image
+ @return the attributed string contains the image. If the image not found, return an empty attributed string.
+ */
++ (NSAttributedString *)attributedStringWithImageName:(NSString *)imageName frame:(CGRect)frame;
+
 @end
 
 NS_ASSUME_NONNULL_END

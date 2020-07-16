@@ -10,6 +10,11 @@
 
 @implementation WCAttributedStringTool
 
+// >= `13.0`
+#ifndef IOS13_OR_LATER
+#define IOS13_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"13.0" options:NSNumericSearch] != NSOrderedAscending)
+#endif
+
 #pragma mark > Substring String
 
 + (nullable NSAttributedString *)attributedSubstringWithAttributedString:(NSAttributedString *)attributedString range:(NSRange)range {
@@ -238,6 +243,32 @@
     CGSize textSize = rect.size;
     
     return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
+}
+
+#pragma mark - Attachment
+
++ (NSAttributedString *)attributedStringWithImageName:(NSString *)imageName frame:(CGRect)frame {
+    if (![imageName isKindOfClass:[NSString class]] || imageName.length == 0) {
+        return [[NSAttributedString alloc] initWithString:@""];
+    }
+    
+    UIImage *image = [UIImage imageNamed:imageName];
+    if (!image) {
+        return [[NSAttributedString alloc] initWithString:@""];
+    }
+    
+    // BUG: textAttachment is black
+    // @see https://stackoverflow.com/questions/58153505/nstextattachment-image-in-attributed-text-with-foreground-colour
+    //NSTextAttachment *textAttachment = [NSTextAttachment textAttachmentWithImage:image];
+    
+    NSTextAttachment *textAttachment = [[NSTextAttachment alloc] init];
+    textAttachment.image = image;
+    // Note: bounds consider baseline, and ignore x, only conside y/width/height, y is upward
+    textAttachment.bounds = frame;
+    
+    NSAttributedString *attrStringWithImage = [NSAttributedString attributedStringWithAttachment:textAttachment];
+    
+    return attrStringWithImage;
 }
 
 #pragma mark - Private Utility Functions
