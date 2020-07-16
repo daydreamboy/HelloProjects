@@ -96,6 +96,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSAttributedString *)attributedStringWithImageName:(NSString *)imageName frame:(CGRect)frame;
 
+/**
+ Get an image attachment attributed string which aligned vertically to the UIFont
+ 
+ @param imageName  the image name
+ @param font the UIFont of the text
+ @return the attributed string contains the image. If the image not found, return an empty attributed string.
+ @see https://stackoverflow.com/a/47888862
+ */
++ (NSAttributedString *)attributedStringWithImageName:(NSString *)imageName imageSize:(CGSize)imageSize alignToFont:(UIFont *)font;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -271,6 +271,47 @@
     return attrStringWithImage;
 }
 
++ (NSAttributedString *)attributedStringWithImageName:(NSString *)imageName imageSize:(CGSize)imageSize alignToFont:(UIFont *)font {
+    if (![imageName isKindOfClass:[NSString class]] || imageName.length == 0) {
+        return [[NSAttributedString alloc] initWithString:@""];
+    }
+    
+    UIImage *image = [UIImage imageNamed:imageName];
+    if (!image) {
+        return [[NSAttributedString alloc] initWithString:@""];
+    }
+    
+    // BUG: textAttachment is black
+    // @see https://stackoverflow.com/questions/58153505/nstextattachment-image-in-attributed-text-with-foreground-colour
+    //NSTextAttachment *textAttachment = [NSTextAttachment textAttachmentWithImage:image];
+    
+    CGFloat scaledHeight;
+    CGFloat scaledWidth;
+    CGFloat offsetY;
+    
+    if (CGSizeEqualToSize(imageSize, CGSizeZero)) {
+        scaledHeight = font.lineHeight;
+        scaledWidth = scaledHeight / image.size.height * image.size.width;
+        
+        offsetY = -(scaledHeight - font.capHeight) / 2.0;
+    }
+    else {
+        scaledHeight = imageSize.height;
+        scaledWidth = imageSize.width;
+        
+        offsetY = -(scaledHeight - font.capHeight) / 2.0;
+    }
+    
+    NSTextAttachment *textAttachment = [[NSTextAttachment alloc] init];
+    textAttachment.image = image;
+    // Note: bounds consider baseline, and ignore x, only conside y/width/height, y is upward
+    textAttachment.bounds = CGRectMake(0, offsetY, scaledWidth, scaledHeight);
+    
+    NSAttributedString *attrStringWithImage = [NSAttributedString attributedStringWithAttachment:textAttachment];
+    
+    return attrStringWithImage;
+}
+
 #pragma mark - Private Utility Functions
 
 /**
