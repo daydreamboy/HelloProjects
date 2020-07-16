@@ -100,6 +100,7 @@ NS_ASSUME_NONNULL_BEGIN
  Get an image attachment attributed string which aligned vertically to the UIFont
  
  @param imageName  the image name
+ @param imageSize the actual image size. If want the image scaled by font, set CGSizeZero
  @param font the UIFont of the text
  @return the attributed string contains the image. If the image not found, return an empty attributed string.
  @see https://stackoverflow.com/a/47888862
