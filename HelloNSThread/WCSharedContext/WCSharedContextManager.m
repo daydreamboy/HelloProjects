@@ -163,12 +163,12 @@
         return nil;
     }
     
-    __block id<WCContextItem> item;
+    __block NSArray<id<WCContextItem>> *itemList;
     dispatch_sync(_map_queue, ^{
-        item = [self->_map[key] copy];
+        itemList = [self->_map_nesting_list[key] copy];
     });
     
-    return item;
+    return itemList;
 }
 
 - (void)cleanupForMapNestingList {
