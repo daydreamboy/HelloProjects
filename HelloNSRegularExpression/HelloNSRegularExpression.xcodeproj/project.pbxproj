@@ -17,6 +17,9 @@
 		4F4588C7215CBE12005A52C8 /* WCRegularExpressionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4588C6215CBE12005A52C8 /* WCRegularExpressionTool.m */; };
 		4F7D9012210DE92F00145B00 /* EmoticonInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D9011210DE92E00145B00 /* EmoticonInfo.plist */; };
 		4F7D9013210DE93D00145B00 /* EmoticonInfo.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D9011210DE92E00145B00 /* EmoticonInfo.plist */; };
+		4F818F4424C57C840023CAF0 /* emoticon_icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F818F4124C57C840023CAF0 /* emoticon_icon.json */; };
+		4F818F4524C57C840023CAF0 /* emoticon_order.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F818F4224C57C840023CAF0 /* emoticon_order.json */; };
+		4F818F4624C57C840023CAF0 /* emoticon_trans2en_US.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F818F4324C57C840023CAF0 /* emoticon_trans2en_US.json */; };
 		4FAA229C21BEA770001F97B6 /* Tests_NSRegularExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAA229B21BEA770001F97B6 /* Tests_NSRegularExpression.m */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +51,9 @@
 		4F4588C5215CBE12005A52C8 /* WCRegularExpressionTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCRegularExpressionTool.h; sourceTree = "<group>"; };
 		4F4588C6215CBE12005A52C8 /* WCRegularExpressionTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCRegularExpressionTool.m; sourceTree = "<group>"; };
 		4F7D9011210DE92E00145B00 /* EmoticonInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = EmoticonInfo.plist; sourceTree = "<group>"; };
+		4F818F4124C57C840023CAF0 /* emoticon_icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emoticon_icon.json; sourceTree = "<group>"; };
+		4F818F4224C57C840023CAF0 /* emoticon_order.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emoticon_order.json; sourceTree = "<group>"; };
+		4F818F4324C57C840023CAF0 /* emoticon_trans2en_US.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emoticon_trans2en_US.json; sourceTree = "<group>"; };
 		4FAA229B21BEA770001F97B6 /* Tests_NSRegularExpression.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSRegularExpression.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -136,6 +142,9 @@
 		4F7D9010210DE92E00145B00 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F818F4124C57C840023CAF0 /* emoticon_icon.json */,
+				4F818F4224C57C840023CAF0 /* emoticon_order.json */,
+				4F818F4324C57C840023CAF0 /* emoticon_trans2en_US.json */,
 				4F7D9011210DE92E00145B00 /* EmoticonInfo.plist */,
 			);
 			path = Resources;
@@ -223,6 +232,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F818F4624C57C840023CAF0 /* emoticon_trans2en_US.json in Resources */,
+				4F818F4524C57C840023CAF0 /* emoticon_order.json in Resources */,
+				4F818F4424C57C840023CAF0 /* emoticon_icon.json in Resources */,
 				4F20CB0F2060F98D00C4463B /* LaunchScreen.storyboard in Resources */,
 				4F20CB0C2060F98D00C4463B /* Assets.xcassets in Resources */,
 				4F7D9012210DE92F00145B00 /* EmoticonInfo.plist in Resources */,
