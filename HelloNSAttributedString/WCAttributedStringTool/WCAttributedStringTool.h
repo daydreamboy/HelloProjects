@@ -96,8 +96,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSAttributedString *)attributedStringWithImageName:(NSString *)imageName frame:(CGRect)frame;
 
-+ (NSAttributedString *)attributedStringWithImage:(UIImage *)image imageSize:(CGSize)imageSize alignToFont:(UIFont *)font;
-
 /**
  Get an image attachment attributed string which aligned vertically to the UIFont
  
@@ -108,6 +106,16 @@ NS_ASSUME_NONNULL_BEGIN
  @see https://stackoverflow.com/a/47888862
  */
 + (NSAttributedString *)attributedStringWithImageName:(NSString *)imageName imageSize:(CGSize)imageSize alignToFont:(UIFont *)font;
+
+/**
+ Get an image attachment attributed string which aligned vertically to the UIFont
+ 
+ @param image the UIImage
+ @param imageSize the actual image size. If want the image scaled by font, set CGSizeZero
+ @param font the UIFont of the text
+ @return the attributed string contains the image. If the image not found, return an empty attributed string.
+ */
++ (NSAttributedString *)attributedStringWithImage:(UIImage *)image imageSize:(CGSize)imageSize alignToFont:(UIFont *)font;
 
 @end
 
