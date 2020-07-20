@@ -96,6 +96,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSAttributedString *)attributedStringWithImageName:(NSString *)imageName frame:(CGRect)frame;
 
++ (NSAttributedString *)attributedStringWithImage:(UIImage *)image imageSize:(CGSize)imageSize alignToFont:(UIFont *)font;
+
 /**
  Get an image attachment attributed string which aligned vertically to the UIFont
  

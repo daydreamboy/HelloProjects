@@ -117,7 +117,7 @@
         NSRange range = [rangeValue rangeValue];
         NSRange rangeOfStringToAppend = NSMakeRange(previousRange.location + previousRange.length, range.location - previousRange.location - previousRange.length);
         
-        NSAttributedString *attrStringToAppend = [WCAttributedStringTool attributedSubstringWithAttributedString:attributedString range:rangeOfStringToAppend];
+        NSAttributedString *attrStringToAppend = [self attributedSubstringWithAttributedString:attributedString range:rangeOfStringToAppend];
         NSInteger indexOfReplacementString = [ranges indexOfObject:rangeValue];
         
         if (attrStringToAppend && indexOfReplacementString != NSNotFound) {
@@ -133,7 +133,7 @@
         
         if (i == sortedRanges.count - 1 && range.location + range.length < attributedString.length) {
             NSRange rangeOfLastStringToAppend = NSMakeRange(range.location + range.length, attributedString.length - range.location - range.length);
-            NSAttributedString *lastAttrStringToAppend = [WCAttributedStringTool attributedSubstringWithAttributedString:attributedString range:rangeOfLastStringToAppend];
+            NSAttributedString *lastAttrStringToAppend = [self attributedSubstringWithAttributedString:attributedString range:rangeOfLastStringToAppend];
             if (lastAttrStringToAppend) {
                 [attrStringM appendAttributedString:lastAttrStringToAppend];
             }
@@ -278,6 +278,14 @@
     
     UIImage *image = [UIImage imageNamed:imageName];
     if (!image) {
+        return [[NSAttributedString alloc] initWithString:@""];
+    }
+    
+    return [self attributedStringWithImage:image imageSize:imageSize alignToFont:font];
+}
+
++ (NSAttributedString *)attributedStringWithImage:(UIImage *)image imageSize:(CGSize)imageSize alignToFont:(UIFont *)font {
+    if (![image isKindOfClass:[UIImage class]]) {
         return [[NSAttributedString alloc] initWithString:@""];
     }
     
