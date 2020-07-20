@@ -20,6 +20,7 @@
 		4FC8F847203069B100E32502 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8F846203069B100E32502 /* main.m */; };
 		4FE63C7E203133210055C7A0 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE63C7C203133210055C7A0 /* RootViewController.m */; };
 		4FE63C81203133990055C7A0 /* RegisterWithSixParamtersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE63C80203133990055C7A0 /* RegisterWithSixParamtersViewController.m */; };
+		4FEB44F724C5F04A00FE3BEF /* Tests_lldb_scripts.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FEB44F624C5F04A00FE3BEF /* Tests_lldb_scripts.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		4FE63C7D203133210055C7A0 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4FE63C7F203133990055C7A0 /* RegisterWithSixParamtersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RegisterWithSixParamtersViewController.h; sourceTree = "<group>"; };
 		4FE63C80203133990055C7A0 /* RegisterWithSixParamtersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RegisterWithSixParamtersViewController.m; sourceTree = "<group>"; };
+		4FEB44F624C5F04A00FE3BEF /* Tests_lldb_scripts.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_lldb_scripts.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 			children = (
 				4FC0C73C24321631007195C2 /* DummyClass */,
 				4FC0C73424320EEE007195C2 /* Tests.m */,
+				4FEB44F624C5F04A00FE3BEF /* Tests_lldb_scripts.m */,
 				4FC0C73624320EEE007195C2 /* Info.plist */,
 			);
 			path = Tests;
@@ -267,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FC0C73F2432164E007195C2 /* Person.m in Sources */,
+				4FEB44F724C5F04A00FE3BEF /* Tests_lldb_scripts.m in Sources */,
 				4FC0C73524320EEE007195C2 /* Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
