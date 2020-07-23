@@ -10,6 +10,16 @@
 #import "WCLLDBTool.h"
 #import "Person.h"
 
+
+#define UICOLOR_R_COLOR(color) (((color) >> 24) & 0xFF)
+#define UICOLOR_G_COLOR(color) (((color) >> 16) & 0xFF)
+#define UICOLOR_B_COLOR(color) (((color) >> 8) & 0xFF)
+#define UICOLOR_A_COLOR(color) ((color) & 0xFF)
+
+#ifndef UICOLOR_RGBA
+#define UICOLOR_RGBA(color) ([UIColor colorWithRed: (((color) >> 24) & 0xFF) / 255.0 green: (((color) >> 16) & 0xFF) / 255.0 blue: (((color) >> 8) & 0xFF) / 255.0 alpha: ((color) & 0xFF) / 255.0])
+#endif
+
 @interface Tests : XCTestCase
 
 @end
@@ -114,6 +124,18 @@
     filteredArray = [WCLLDBTool filterArray:array usingPredicateString:@"name LIKE 'L*'"];
     output = [WCLLDBTool iterateArray:filteredArray keyPath:@"name" outputToFileName:nil];
     XCTAssertTrue(output);
+}
+
+#pragma mark -
+
+- (void)test_RGBAHexStringFromUIColor {
+    id output;
+    UIColor *color;
+    
+    // Case 1
+    color = UICOLOR_RGBA(0x111F2C3D);
+    output = [WCLLDBTool RGBAHexStringFromUIColor:color];
+    XCTAssertEqualObjects(output, @"#111F2C3D");
 }
 
 @end
