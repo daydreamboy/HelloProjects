@@ -447,7 +447,7 @@ CAShapeLayer也是CALayer的子类。这里介绍CAShapeLayer的常用属性。
 | lineCap         | kCALineCapButt          | 决定线条末端的形状，如下 ![CAShapeLayerLineCap](images/CAShapeLayerLineCap.png?lastModify=1592750861) | 如果path是closed，不存在线条的末端，则设置lineCap是无效的    |
 | lineDashPattern | nil                     | 决定线条的dash模式                                           | 数组的按照[(painted segment length), (unpainted segment length), ...]顺序依次决定实线和虚线的长度，当数组匹配完成后，再重新从头开始匹配。（备注：如果是nil，则一直是实线）。注意：如果数组，只有一个元素，则按照实线-虚线-……的顺序，同时实线和虚线的长度是一样的。 |
 | lineDashPhase   | 0                       | lineDashPattern起始的偏移量                                  | 举个例子，lineDashPattern = [10, 5, 5, 5], lineDashPhase = 10，则起始匹配按照5-5-5-10-5-5-5-...，但不影响实线-虚线-实线-虚线-...的顺序，即5(虚)-5(实)-5(虚)-10(实)-5(虚)-...。如果lineDashPhase = 2，则起始匹配按照8(实)-5(虚)-5(实)-5(虚)-10(实)-5(虚)-5(实)-5(虚)-... |
-| lineJoin        | kCALineJoinMiter        | 决定两个线条交接的形状，如下![CAShapeLayerLineJoin](images/CAShapeLayerLineJoin.png?lastModify=1592750861) | kCALineJoinMiter kCALineJoinRound kCALineJoinBevel           |
+| lineJoin        | kCALineJoinMiter        | 决定两个线条交接的形状，如下![CAShapeLayerLineJoin](images/CAShapeLayerLineJoin.png?lastModify=1592750861) | kCALineJoinMiter <br/>kCALineJoinRound <br/>kCALineJoinBevel<br/>说明：如果线条没有设置宽度，则设置lineJoin无效 |
 | miterLimit      | 10                      | 当设置kCALineJoinMiter时，决定是否变成kCALineJoinBevel       | 当lineJoin设置kCALineJoinMiter时，miterLimit才生效。具体见“miterLimit”一节。 |
 | strokeColor     | nil                     | path的线条颜色                                               |                                                              |
 | strokeStart     | 0.0                     | stroke的百分比起始位置                                       | 如果path从头到尾是100%，则strokeStart指定起始点按照百分比算的位置。比如0.5，则起始点在path的中间。 |
