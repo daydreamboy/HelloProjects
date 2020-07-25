@@ -1,18 +1,18 @@
 //
-//  DragViewDemo2UsingUIPanGestureRecognizerViewController.m
+//  UseUIPanGestureRecognizer2ViewController.m
 //  HelloUIGestureRecognizer
 //
 //  Created by wesley_chen on 23/10/2017.
 //  Copyright © 2017 wesley_chen. All rights reserved.
 //
 
-#import "DragViewDemo2UsingUIPanGestureRecognizerViewController.h"
+#import "UseUIPanGestureRecognizer2ViewController.h"
 
-@interface DragViewDemo2UsingUIPanGestureRecognizerViewController ()
+@interface UseUIPanGestureRecognizer2ViewController ()
 
 @end
 
-@implementation DragViewDemo2UsingUIPanGestureRecognizerViewController
+@implementation UseUIPanGestureRecognizer2ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

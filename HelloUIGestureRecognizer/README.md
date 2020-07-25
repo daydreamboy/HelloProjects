@@ -2,7 +2,105 @@
 
 [TOC]
 
-## 1、UIGestureRecognizer vs. UIControlEvents
+## 1、介绍UIGestureRecognizer
+
+
+
+```mermaid
+classDiagram
+UIGestureRecognizer <|-- UITapGestureRecognizer
+UIGestureRecognizer <|-- UILongPressGestureRecognizer
+UIGestureRecognizer <|-- UIPanGestureRecognizer
+UIGestureRecognizer <|-- UISwipeGestureRecognizer
+UIGestureRecognizer <|-- UIPinchGestureRecognizer
+UIGestureRecognizer <|-- UIRotationGestureRecognizer
+UIGestureRecognizer <|-- UIScreenEdgePanGestureRecognizer
+UIGestureRecognizer <|-- UIHoverGestureRecognizer
+```
+
+| UIGestureRecognizer子类          | 特有属性和方法                                               | 说明      |
+| -------------------------------- | ------------------------------------------------------------ | --------- |
+| UITapGestureRecognizer           | @numberOfTapsRequired (default: 1)<br/>@numberOfTouchesRequired (default: 1)<br/>@buttonMaskRequire (iOS 13.4) |           |
+| UILongPressGestureRecognizer     | @minimumPressDuration (default: 0.5)<br/>@numberOfTouchesRequired (default: 1)<br/>@numberOfTapsRequired (default: 0)<br/>@allowableMovement (default: 10) |           |
+| UIPanGestureRecognizer           | @maximumNumberOfTouches (default: NSUIntegerMax)<br/>@minimumNumberOfTouches (default: 1)<br/>@allowedScrollTypesMask (iOS 13.4)<br/>-translationInView:<br/>-setTranslation:inView:<br/>-velocityInView: |           |
+| UISwipeGestureRecognizer         | @direction (default: UISwipeGestureRecognizerDirectionRight)<br/>@numberOfTouchesRequired (default: 1) |           |
+| UIPinchGestureRecognizer         | @scale<br/>@velocity                                         |           |
+| UIRotationGestureRecognizer      | @rotation<br/>@velocity                                      |           |
+| UIScreenEdgePanGestureRecognizer | @edges (iOS 7)                                               |           |
+| UIHoverGestureRecognizer         |                                                              | iOS 13.0+ |
+
+
+
+### （1）UITapGestureRecognizer
+
+
+
+### （2）UILongPressGestureRecognizer
+
+#### a. allowableMovement属性
+
+allowableMovement允许长按移动的最大距离（默认是10dp）。如果长按同时移动超过10dp，则长按手势识别失败。
+
+
+
+### （3）UIPanGestureRecognizer
+
+#### a. translationInView:方法
+
+​       translationInView:方法获取View移动时的偏移量translation，当手势识别成功时，偏移量为(0, 0)；当手势移动时，偏移量translation总是相对于手势识别时的差值。
+
+注意：translation不是两次UIGestureRecognizerStateChanged之间的差值。
+
+>  They are not delta values from the last time that the translation was reported.
+
+
+
+#### b. UIPanGestureRecognizer常用用法
+
+##### 移动UIView
+
+一般移动UIView，有两种方式:
+
+* 第一种方式，不重置translation
+
+```objective-c
+- (void)viewPanned:(UIPanGestureRecognizer *)recognizer {
+    UIView *targetView = recognizer.view;
+    if (recognizer.state == UIGestureRecognizerStateBegan) {
+        self.center = targetView.center;
+    }
+    else if (recognizer.state == UIGestureRecognizerStateEnded) {
+        self.center = targetView.center;
+    }
+    else if (recognizer.state == UIGestureRecognizerStateChanged) {
+        CGPoint translation = [recognizer translationInView:targetView];
+        targetView.center = CGPointMake(self.center.x + translation.x, self.center.y + translation.y);
+    }
+}
+```
+
+* 第一种方式，重置translation
+
+```objective-c
+- (void)viewPanned:(UIPanGestureRecognizer *)recognizer {
+    // @see https://stackoverflow.com/questions/25503537/swift-uigesturerecogniser-follow-finger
+    UIView *targetView = recognizer.view;
+    if (recognizer.state == UIGestureRecognizerStateBegan || recognizer.state == UIGestureRecognizerStateChanged) {
+        CGPoint translation = [recognizer translationInView:self.view];
+        targetView.center = CGPointMake(targetView.center.x + translation.x, targetView.center.y + translation.y);
+        // Note: reset translation when every UIGestureRecognizerStateChanged detected, so translation is always calculated based on CGPointZero
+        [recognizer setTranslation:CGPointZero inView:self.view];
+    }
+}
+```
+
+
+
+
+
+
+
+## 2、UIGestureRecognizer vs. UIControlEvents
 
 UIGestureRecognizer和UIControlEvents都可以用于处理某个控件的事件响应，但是两者有一定区别。
 
@@ -30,7 +128,7 @@ UIControlEvents事件的回调方法，调用栈如下
 
 
 
-## 2、UIGestureRecognizer常用属性分析
+## 3、UIGestureRecognizer常用属性分析
 
 ### （1）cancelsTouchesInView
 
@@ -81,7 +179,7 @@ UIControlEvents事件的回调方法，调用栈如下
 
 
 
-## 3、UIGestureRecognizerDelegate
+## 4、UIGestureRecognizerDelegate
 
 
 
@@ -98,7 +196,7 @@ UIControlEvents事件的回调方法，调用栈如下
 
 
 
-## 4、常见手势处理问题
+## 5、常见手势处理问题
 
 ### （1）parent view监听child view的tap gesture事件
 

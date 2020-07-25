@@ -8,8 +8,9 @@
 
 #import "RootViewController.h"
 
-#import "DragViewDemo1UsingUIPanGestureRecognizerViewController.h"
-#import "DragViewDemo2UsingUIPanGestureRecognizerViewController.h"
+#import "UseUIPanGestureRecognizer1ViewController.h"
+#import "UseUIPanGestureRecognizer2ViewController.h"
+#import "UseUIPanGestureRecognizer3ViewController.h"
 #import "DragViewRestrictedViewController.h"
 #import "DetectSwipeUsingUIPanGestureRecognizerViewController.h"
 #import "DragDownAndScaleImageViewViewController.h"
@@ -44,6 +45,7 @@
     _titles = @[
         @"Move view (1) using UIPanGestureRecognizer",
         @"Move view (2) using UIPanGestureRecognizer",
+        @"Move view (3) using UIPanGestureRecognizer",
         @"Drag up view and increase height",
         @"Detect swipe using UIPanGestureRecognizer",
         @"Drag down and scale image",
@@ -57,8 +59,9 @@
         @"call a test method",
     ];
     _classes = @[
-        [DragViewDemo1UsingUIPanGestureRecognizerViewController class],
-        [DragViewDemo2UsingUIPanGestureRecognizerViewController class],
+        [UseUIPanGestureRecognizer1ViewController class],
+        [UseUIPanGestureRecognizer2ViewController class],
+        [UseUIPanGestureRecognizer3ViewController class],
         [DragViewRestrictedViewController class],
         [DetectSwipeUsingUIPanGestureRecognizerViewController class],
         [DragDownAndScaleImageViewViewController class],

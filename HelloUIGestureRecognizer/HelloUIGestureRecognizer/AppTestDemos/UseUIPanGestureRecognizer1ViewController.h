@@ -1,5 +1,5 @@
 //
-//  DragViewDemo2UsingUIPanGestureRecognizerViewController.h
+//  UseUIPanGestureRecognizer1ViewController.h
 //  HelloUIGestureRecognizer
 //
 //  Created by wesley_chen on 23/10/2017.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DragViewDemo2UsingUIPanGestureRecognizerViewController : UIViewController
+@interface UseUIPanGestureRecognizer1ViewController : UIViewController
 
 @end

@@ -1,18 +1,18 @@
 //
-//  DragViewDemo1UsingUIPanGestureRecognizerViewController.m
+//  UseUIPanGestureRecognizer1ViewController.m
 //  HelloUIGestureRecognizer
 //
 //  Created by wesley_chen on 23/10/2017.
 //  Copyright © 2017 wesley_chen. All rights reserved.
 //
 
-#import "DragViewDemo1UsingUIPanGestureRecognizerViewController.h"
+#import "UseUIPanGestureRecognizer1ViewController.h"
 
-@interface DragViewDemo1UsingUIPanGestureRecognizerViewController ()
+@interface UseUIPanGestureRecognizer1ViewController ()
 @property (nonatomic, assign) CGPoint center;
 @end
 
-@implementation DragViewDemo1UsingUIPanGestureRecognizerViewController
+@implementation UseUIPanGestureRecognizer1ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
