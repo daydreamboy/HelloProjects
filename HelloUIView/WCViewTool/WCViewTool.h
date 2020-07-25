@@ -100,6 +100,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)hierarchalDescriptionWithView:(UIView *)view;
 
+/**
+ Climbs up the view hierarchy to find the first which has clipToBounds = YES
+ 
+ @param view the start view to look up its parent view which is clipping or not
+ @return UIView with clipToBounds = YES, or the topmost view which is not clipping
+ */
++ (UIView *)clippingParentViewWithView:(UIView *)view;
+
 #pragma mark - Frame Adjustment
 
 /**
