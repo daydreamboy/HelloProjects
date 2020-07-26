@@ -274,6 +274,12 @@ mirroring手势的gestureRecognizer:shouldReceiveTouch:方法实现[^1]，如下
 
 
 
+## 6、WCPannedView
+
+
+
+
+
 
 
 

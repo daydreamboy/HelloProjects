@@ -19,6 +19,7 @@
 		4F49902B1F9D99C400D313B5 /* UseUIPanGestureRecognizer2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F49902A1F9D99C400D313B5 /* UseUIPanGestureRecognizer2ViewController.m */; };
 		4F49902E1F9D9D6600D313B5 /* DragViewRestrictedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F49902D1F9D9D6600D313B5 /* DragViewRestrictedViewController.m */; };
 		4F4990311F9DB95400D313B5 /* DetectSwipeUsingUIPanGestureRecognizerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4990301F9DB95400D313B5 /* DetectSwipeUsingUIPanGestureRecognizerViewController.m */; };
+		4F4C964C24CD36340022284B /* WCPannedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4C964B24CD36340022284B /* WCPannedView.m */; };
 		4F4DC06221EECC8F0066E96A /* GestureRecognizerVSControlEventsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4DC06121EECC8F0066E96A /* GestureRecognizerVSControlEventsViewController.m */; };
 		4F4DC06921EED0850066E96A /* WCAlertTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4DC06721EED0840066E96A /* WCAlertTool.m */; };
 		4F671A2E1F944F5B0031E9C9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F671A2D1F944F5B0031E9C9 /* main.m */; };
@@ -59,6 +60,8 @@
 		4F49902D1F9D9D6600D313B5 /* DragViewRestrictedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DragViewRestrictedViewController.m; sourceTree = "<group>"; };
 		4F49902F1F9DB95400D313B5 /* DetectSwipeUsingUIPanGestureRecognizerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectSwipeUsingUIPanGestureRecognizerViewController.h; sourceTree = "<group>"; };
 		4F4990301F9DB95400D313B5 /* DetectSwipeUsingUIPanGestureRecognizerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetectSwipeUsingUIPanGestureRecognizerViewController.m; sourceTree = "<group>"; };
+		4F4C964A24CD36340022284B /* WCPannedView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCPannedView.h; sourceTree = "<group>"; };
+		4F4C964B24CD36340022284B /* WCPannedView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCPannedView.m; sourceTree = "<group>"; };
 		4F4DC06021EECC8F0066E96A /* GestureRecognizerVSControlEventsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GestureRecognizerVSControlEventsViewController.h; sourceTree = "<group>"; };
 		4F4DC06121EECC8F0066E96A /* GestureRecognizerVSControlEventsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GestureRecognizerVSControlEventsViewController.m; sourceTree = "<group>"; };
 		4F4DC06721EED0840066E96A /* WCAlertTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCAlertTool.m; sourceTree = "<group>"; };
@@ -111,6 +114,15 @@
 			path = WCGestureTool;
 			sourceTree = "<group>";
 		};
+		4F4C964924CD360C0022284B /* WCPannedView */ = {
+			isa = PBXGroup;
+			children = (
+				4F4C964A24CD36340022284B /* WCPannedView.h */,
+				4F4C964B24CD36340022284B /* WCPannedView.m */,
+			);
+			path = WCPannedView;
+			sourceTree = "<group>";
+		};
 		4F66F7682198610C007DA8FD /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +135,7 @@
 		4F671A201F944F5B0031E9C9 = {
 			isa = PBXGroup;
 			children = (
+				4F4C964924CD360C0022284B /* WCPannedView */,
 				4F1812F1239F9F6B0058B20D /* WCGestureTool */,
 				4F671A2B1F944F5B0031E9C9 /* HelloUIGestureRecognizer */,
 				4F671A2A1F944F5B0031E9C9 /* Products */,
@@ -285,6 +298,7 @@
 				4F9DC2B921F05709002114D7 /* UseCancelsTouchesInView2ViewController.m in Sources */,
 				4F2237D9245973A3000CC3C9 /* MirrorTapGestureViewController.m in Sources */,
 				4F4990311F9DB95400D313B5 /* DetectSwipeUsingUIPanGestureRecognizerViewController.m in Sources */,
+				4F4C964C24CD36340022284B /* WCPannedView.m in Sources */,
 				4F190300245A804E0054FA3C /* WCViewTool.m in Sources */,
 				4F8FDA2D20EB566300C766D4 /* DragDownAndScaleImageViewViewController.m in Sources */,
 				4F338286239E946B00AA444F /* MockTapGestureViewController.m in Sources */,

@@ -1,0 +1,127 @@
+//
+//  WCPannedView.m
+//  HelloUIGestureRecognizer
+//
+//  Created by wesley_chen on 2020/7/26.
+//  Copyright © 2020 wesley_chen. All rights reserved.
+//
+
+#import "WCPannedView.h"
+#import "WCViewTool.h"
+
+@interface WCPannedView ()
+@property (nonatomic, strong, readwrite) UIView *contentView;
+@property (nonatomic, strong) UIPanGestureRecognizer *panGesture;
+@property (nonatomic, strong) UITapGestureRecognizer *tapGesture;
+@end
+
+@implementation WCPannedView
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        _contentView = [[UIView alloc] initWithFrame:self.bounds];
+        _scaleFactorWhenHolding = 1.5;
+        
+        [self addSubview:_contentView];
+    }
+    
+    return self;
+}
+
+#pragma mark - Public
+
+- (void)addToView:(UIView *)view {
+    if (self.superview == nil || self.superview != view) {
+        if (self.panGesture) {
+            [self.superview removeGestureRecognizer:self.panGesture];
+        }
+        
+        [view addSubview:self];
+        
+        if (!self.panGesture) {
+            UIPanGestureRecognizer *panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(viewPanned:)];
+            [self addGestureRecognizer:panGesture];
+            self.panGesture = panGesture;
+        }
+        
+        if (!self.tapGesture) {
+            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
+            [self addGestureRecognizer:tapGesture];
+            self.tapGesture = tapGesture;
+        }
+    }
+}
+
+#pragma mark - Actions
+
+- (void)viewTapped:(UITapGestureRecognizer *)recognizer {
+    UIView *targetView = recognizer.view;
+    if (targetView == self) {
+        
+    }
+}
+
+- (void)viewPanned:(UIPanGestureRecognizer *)recognizer {
+    UIView *targetView = recognizer.view;
+    if (recognizer.state == UIGestureRecognizerStateBegan || recognizer.state == UIGestureRecognizerStateChanged) {
+        CGPoint translation = [recognizer translationInView:targetView];
+        targetView.center = CGPointMake(targetView.center.x + translation.x, targetView.center.y + translation.y);
+        [recognizer setTranslation:CGPointZero inView:targetView];
+        
+        if (self.scaleFactorWhenHolding > 0) {
+            [UIView animateWithDuration:0.2 animations:^{
+                self.contentView.transform = CGAffineTransformMakeScale(self.scaleFactorWhenHolding, self.scaleFactorWhenHolding);
+            }];
+        }
+    }
+    else if (recognizer.state == UIGestureRecognizerStateEnded || recognizer.state == UIGestureRecognizerStateCancelled) {
+        UIView *clippingView = [WCViewTool clippingParentViewWithView:self];
+        
+        CGRect clippingFrame = [clippingView convertRect:clippingView.bounds toView:self.superview];
+        if (CGRectContainsRect(clippingFrame, self.frame)) {
+            if (self.scaleFactorWhenHolding > 0) {
+                [UIView animateWithDuration:0.2 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:0.8 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                    self.contentView.transform = CGAffineTransformIdentity;
+                } completion:^(BOOL finished) {
+                }];
+            }
+        }
+        else {
+            CGRect frame = self.frame;
+            CGFloat x = frame.origin.x;
+            CGFloat y = frame.origin.y;
+            
+            CGFloat newX = x;
+            CGFloat newY = y;
+            
+            if (CGRectGetMinX(frame) < CGRectGetMinX(clippingFrame)) {
+                newX = CGRectGetMinX(clippingFrame);
+            }
+            else if (CGRectGetMaxX(frame) > CGRectGetMaxX(clippingFrame)) {
+                newX = CGRectGetMaxX(clippingFrame) - frame.size.width;
+            }
+            
+            if (CGRectGetMinY(frame) < CGRectGetMinY(clippingFrame)) {
+                newY = CGRectGetMinY(clippingFrame);
+            }
+            else if (CGRectGetMaxY(frame) > CGRectGetMaxY(clippingFrame)) {
+                newY = CGRectGetMaxY(clippingFrame) - frame.size.height;
+            }
+            
+            CGRect newFrame = frame;
+            newFrame.origin.x = newX;
+            newFrame.origin.y = newY;
+            
+            [UIView animateWithDuration:0.2 delay:0 usingSpringWithDamping:0.5 initialSpringVelocity:0.8 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                self.frame = newFrame;
+                if (self.scaleFactorWhenHolding > 0) {
+                    self.contentView.transform = CGAffineTransformIdentity;
+                }
+            } completion:^(BOOL finished) {
+            }];
+        }
+    }
+}
+
+@end
