@@ -56,6 +56,11 @@ typedef enum {
     ALPHACircleMenuDirectionLeft
 } ALPHACircleMenuDirection;
 
+
+@interface WCCircularMenuViewSetting : NSObject
+
+@end
+
 @interface WCCircularMenuView : UIView
 
 @property (weak, nonatomic) id<ALPHACircleMenuDelegate> delegate;
@@ -89,7 +94,7 @@ typedef enum {
  *                    select a button and to close the menu, once the 
  *                    gesture ends.
  */
-- (void)openMenuWithRecognizer:(UIGestureRecognizer*)aRecognizer;
+- (void)openMenuWithTapGesture:(UIGestureRecognizer*)aRecognizer;
 
 /*!
  * Offers the possibility to close the menu externally.

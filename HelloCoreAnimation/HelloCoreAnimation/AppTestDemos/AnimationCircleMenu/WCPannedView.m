@@ -168,7 +168,10 @@
 
             // The target view may have its view hierarchy,
             // so call its hitTest method to return the right hit-test view
-            return [self.touchThroughSubview hitTest:pointForTargetView withEvent:event];
+            UIView *hitView = [self.touchThroughSubview hitTest:pointForTargetView withEvent:event];
+            if (hitView) {
+                return hitView;
+            }
         }
     }
 

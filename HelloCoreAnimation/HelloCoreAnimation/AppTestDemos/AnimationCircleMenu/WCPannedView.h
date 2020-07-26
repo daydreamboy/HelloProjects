@@ -31,7 +31,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, readonly) UITapGestureRecognizer *tapGesture;
 @property (nonatomic, weak) id<WCPannedViewDelegate> delegate;
 /// Set the touch through view if the subview out of the bouds of this WCPannedView
-@property (nonatomic, strong, nullable) UIView *touchThroughSubview;
+@property (nonatomic, weak, nullable) UIView *touchThroughSubview;
 
 - (void)addToView:(UIView *)view;
 

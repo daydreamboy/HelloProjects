@@ -7,9 +7,13 @@
 
 #import "WCCircularMenuView.h"
 
+@implementation WCCircularMenuViewSetting
+
+@end
+
 @interface WCCircularMenuView ()
 
-@property (nonatomic) NSMutableArray* buttons;
+@property (nonatomic) NSMutableArray<ALPHARoundView *> *buttons;
 @property (weak, nonatomic) UIGestureRecognizer* recognizer;
 @property (nonatomic) int hoverTag;
 
@@ -79,7 +83,7 @@ NSString* const CIRCLE_MENU_BUTTON_BORDER_WIDTH = @"kCircleMenuButtonBorderWidth
         self.frame = CGRectMake(aPoint.x - self.radius - self.buttonRadius, aPoint.y - self.radius - self.buttonRadius, self.radius * 2 + self.buttonRadius * 2, self.radius * 2 + self.buttonRadius * 2);
         int tTag = 1;
         for (UIImage* img in anImageArray) {
-            UIView* tView = [self createButtonViewWithImage:img andTag:tTag];
+            ALPHARoundView *tView = [self createButtonViewWithImage:img andTag:tTag];
             [self.buttons addObject:tView];
             tTag++;
         }
@@ -96,7 +100,7 @@ NSString* const CIRCLE_MENU_BUTTON_BORDER_WIDTH = @"kCircleMenuButtonBorderWidth
         va_list args;
         va_start(args, anImage);
         for (UIImage* img = anImage; img != nil; img = va_arg(args, UIImage*)) {
-            UIView* tView = [self createButtonViewWithImage:img andTag:tTag];
+            ALPHARoundView *tView = [self createButtonViewWithImage:img andTag:tTag];
             [self.buttons addObject:tView];
             tTag++;
         }
@@ -144,11 +148,12 @@ NSString* const CIRCLE_MENU_BUTTON_BORDER_WIDTH = @"kCircleMenuButtonBorderWidth
  * @param aTag unique identifier (should be index + 1)
  * @return UIView to be used as button
  */
-- (UIView*)createButtonViewWithImage:(UIImage*)anImage andTag:(int)aTag
+- (ALPHARoundView*)createButtonViewWithImage:(UIImage*)anImage andTag:(int)aTag
 {
     UIImage *tintedImage = [anImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
     UIButton* tButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    tButton.userInteractionEnabled = NO;
     CGFloat width = self.buttonRadius * 0.8;
     CGFloat height = self.buttonRadius * 0.8;
     tButton.frame = CGRectMake( ((self.buttonRadius * 2.0) - width) / 2.0, ((self.buttonRadius * 2.0) - height) / 2.0, width, height);
@@ -157,7 +162,7 @@ NSString* const CIRCLE_MENU_BUTTON_BORDER_WIDTH = @"kCircleMenuButtonBorderWidth
     tButton.tag = aTag + TAG_BUTTON_OFFSET;
     tButton.tintColor = self.borderViewColor;
     
-    UIView* tInnerView = [[ALPHARoundView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.buttonRadius * 2, self.buttonRadius * 2)];
+    ALPHARoundView* tInnerView = [[ALPHARoundView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.buttonRadius * 2, self.buttonRadius * 2)];
     tInnerView.backgroundColor = self.innerViewColor;
     tInnerView.opaque = YES;
     tInnerView.clipsToBounds = NO;
@@ -244,11 +249,10 @@ NSString* const CIRCLE_MENU_BUTTON_BORDER_WIDTH = @"kCircleMenuButtonBorderWidth
     }
 }
 
-- (void)openMenuWithRecognizer:(UIGestureRecognizer*)aRecognizer
-{
-    self.recognizer = aRecognizer;
+- (void)openMenuWithTapGesture:(UIGestureRecognizer *)tapGesture {
+    self.recognizer = tapGesture;
     // use target action to get notified upon gesture changes
-    [aRecognizer addTarget:self action:@selector(gestureChanged:)];
+    [tapGesture addTarget:self action:@selector(handleTapGesture:)];
  
     CGPoint tOrigin = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
     [self calculateButtonPositions];
@@ -278,7 +282,7 @@ NSString* const CIRCLE_MENU_BUTTON_BORDER_WIDTH = @"kCircleMenuButtonBorderWidth
  * Performs the closing animation.
  */
 - (void)closeMenu {
-    [self.recognizer removeTarget:self action:@selector(gestureChanged:)];
+    [self.recognizer removeTarget:self action:@selector(handleTapGesture:)];
     [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         for (UIView* tButtonView in self.buttons) {
             if (self.hoverTag > 0 && self.hoverTag == [self bareTagOfView:tButtonView]) {
@@ -398,22 +402,24 @@ NSString* const CIRCLE_MENU_BUTTON_BORDER_WIDTH = @"kCircleMenuButtonBorderWidth
  * Target action method that gets called when the gesture used to open
  * the ALPHACircleMenuView changes.
  */
-- (void)gestureChanged:(UILongPressGestureRecognizer*)sender
+- (void)handleTapGesture:(UITapGestureRecognizer *)sender
 {
-    if (sender.state == UIGestureRecognizerStateChanged) {
-        CGPoint tPoint = [sender locationInView:self];
-        [self gestureMovedToPoint:tPoint];
-    } else if (sender.state == UIGestureRecognizerStateEnded) {
-        // determine wether a button was hit when the gesture ended
-        CGPoint tPoint = [sender locationInView:self];
-        UIView* tView = [self hitTest:tPoint withEvent:nil];
-        int tTag = [self bareTagOfView:tView];
-        if (tTag > 0) {
-            if (self.delegate && [self.delegate respondsToSelector:@selector(circleMenuActivatedButtonWithIndex:)]) {
-                [self.delegate circleMenuActivatedButtonWithIndex:tTag-1];
-            }
+//    if (sender.state == UIGestureRecognizerStateChanged) {
+//        CGPoint tPoint = [sender locationInView:self];
+//        [self gestureMovedToPoint:tPoint];
+//    } else if (sender.state == UIGestureRecognizerStateEnded) {
+//
+//        //[self closeMenu];
+//    }
+    
+    // determine wether a button was hit when the gesture ended
+    CGPoint tPoint = [sender locationInView:self];
+    UIView* tView = [self hitTest:tPoint withEvent:nil];
+    int tTag = [self bareTagOfView:tView];
+    if (tTag > 0) {
+        if (self.delegate && [self.delegate respondsToSelector:@selector(circleMenuActivatedButtonWithIndex:)]) {
+            [self.delegate circleMenuActivatedButtonWithIndex:tTag-1];
         }
-        //[self closeMenu];
     }
 }
 
@@ -435,6 +441,21 @@ NSString* const CIRCLE_MENU_BUTTON_BORDER_WIDTH = @"kCircleMenuButtonBorderWidth
         }
     }
     return tTag;
+}
+
+#pragma mark -
+
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event {
+    for (UIView *buttonView in self.buttons) {
+        CGPoint pointForTargetView = [buttonView convertPoint:point fromView:self];
+        UIView *hitView = [buttonView hitTest:pointForTargetView withEvent:event];
+        
+        if (hitView) {
+            return hitView;
+        }
+    }
+
+    return nil;
 }
 
 @end

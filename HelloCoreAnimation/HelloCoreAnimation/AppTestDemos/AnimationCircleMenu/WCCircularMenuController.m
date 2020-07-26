@@ -96,7 +96,7 @@
             [pannedView addSubview:self.menuView];
             
             [self updateContextPosition];
-            [self.menuView openMenuWithRecognizer:pannedView.tapGesture];
+            [self.menuView openMenuWithTapGesture:pannedView.tapGesture];
         }
         else {
             self.menuOpened = NO;
