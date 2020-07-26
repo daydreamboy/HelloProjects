@@ -1,5 +1,5 @@
 //
-//  UseUIPanGestureRecognizer1ViewController.h
+//  UsePanGestureRecognizer2ViewController.h
 //  HelloUIGestureRecognizer
 //
 //  Created by wesley_chen on 23/10/2017.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UseUIPanGestureRecognizer1ViewController : UIViewController
+@interface UsePanGestureRecognizer2ViewController : UIViewController
 
 @end

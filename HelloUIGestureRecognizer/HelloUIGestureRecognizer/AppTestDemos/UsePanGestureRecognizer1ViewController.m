@@ -1,18 +1,18 @@
 //
-//  UseUIPanGestureRecognizer1ViewController.m
+//  UsePanGestureRecognizer1ViewController.m
 //  HelloUIGestureRecognizer
 //
 //  Created by wesley_chen on 23/10/2017.
 //  Copyright © 2017 wesley_chen. All rights reserved.
 //
 
-#import "UseUIPanGestureRecognizer1ViewController.h"
+#import "UsePanGestureRecognizer1ViewController.h"
 
-@interface UseUIPanGestureRecognizer1ViewController ()
+@interface UsePanGestureRecognizer1ViewController ()
 @property (nonatomic, assign) CGPoint center;
 @end
 
-@implementation UseUIPanGestureRecognizer1ViewController
+@implementation UsePanGestureRecognizer1ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

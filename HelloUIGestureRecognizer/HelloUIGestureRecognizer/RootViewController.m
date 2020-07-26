@@ -8,9 +8,9 @@
 
 #import "RootViewController.h"
 
-#import "UseUIPanGestureRecognizer1ViewController.h"
-#import "UseUIPanGestureRecognizer2ViewController.h"
-#import "UseUIPanGestureRecognizer3ViewController.h"
+#import "UsePanGestureRecognizer1ViewController.h"
+#import "UsePanGestureRecognizer2ViewController.h"
+#import "UsePanGestureRecognizer3ViewController.h"
 #import "DragViewRestrictedViewController.h"
 #import "DetectSwipeUsingUIPanGestureRecognizerViewController.h"
 #import "DragDownAndScaleImageViewViewController.h"
@@ -59,9 +59,9 @@
         @"call a test method",
     ];
     _classes = @[
-        [UseUIPanGestureRecognizer1ViewController class],
-        [UseUIPanGestureRecognizer2ViewController class],
-        [UseUIPanGestureRecognizer3ViewController class],
+        [UsePanGestureRecognizer1ViewController class],
+        [UsePanGestureRecognizer2ViewController class],
+        [UsePanGestureRecognizer3ViewController class],
         [DragViewRestrictedViewController class],
         [DetectSwipeUsingUIPanGestureRecognizerViewController class],
         [DragDownAndScaleImageViewViewController class],

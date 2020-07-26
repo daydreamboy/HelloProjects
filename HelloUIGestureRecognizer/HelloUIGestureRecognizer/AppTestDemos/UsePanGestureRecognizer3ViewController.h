@@ -1,5 +1,5 @@
 //
-//  UseUIPanGestureRecognizer3ViewController.h
+//  UsePanGestureRecognizer3ViewController.h
 //  HelloUIGestureRecognizer
 //
 //  Created by wesley_chen on 2020/7/25.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UseUIPanGestureRecognizer3ViewController : UIViewController
+@interface UsePanGestureRecognizer3ViewController : UIViewController
 
 @end
 

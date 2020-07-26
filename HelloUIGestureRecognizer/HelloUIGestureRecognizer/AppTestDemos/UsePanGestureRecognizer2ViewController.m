@@ -1,18 +1,18 @@
 //
-//  UseUIPanGestureRecognizer2ViewController.m
+//  UsePanGestureRecognizer2ViewController.m
 //  HelloUIGestureRecognizer
 //
 //  Created by wesley_chen on 23/10/2017.
 //  Copyright © 2017 wesley_chen. All rights reserved.
 //
 
-#import "UseUIPanGestureRecognizer2ViewController.h"
+#import "UsePanGestureRecognizer2ViewController.h"
 
-@interface UseUIPanGestureRecognizer2ViewController ()
+@interface UsePanGestureRecognizer2ViewController ()
 
 @end
 
-@implementation UseUIPanGestureRecognizer2ViewController
+@implementation UsePanGestureRecognizer2ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
