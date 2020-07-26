@@ -9,6 +9,20 @@
 
 @implementation WCCircularMenuViewSetting
 
++ (instancetype)preset {
+    WCCircularMenuViewSetting *setting = [[WCCircularMenuViewSetting alloc] init];
+    
+    setting.menuButtonNormalColor = [UIColor colorWithRed:0.0 green:0.25 blue:0.5 alpha:1.0];
+    setting.menuButtonActiveColor = [UIColor colorWithRed:0.25 green:0.5 blue:0.75 alpha:1.0];
+    setting.menuButtonBorderColor = [UIColor whiteColor];
+    setting.menuButtonBorderWidth = 2.0;
+    setting.menuButtonRadius = 40;
+    setting.menuRadius = 65;
+    setting.menuMaxAngle = 180.0;
+    
+    return setting;
+}
+
 @end
 
 @interface WCCircularMenuView ()
@@ -38,52 +52,27 @@
 static int TAG_BUTTON_OFFSET = 100;
 static int TAG_INNER_VIEW_OFFSET = 1000;
 
-// constants used for the configuration dictionary
-NSString* const CIRCLE_MENU_BUTTON_BACKGROUND_NORMAL = @"kCircleMenuNormal";
-NSString* const CIRCLE_MENU_BUTTON_BACKGROUND_ACTIVE = @"kCircleMenuActive";
-NSString* const CIRCLE_MENU_BUTTON_BORDER = @"kCircleMenuBorder";
-NSString* const CIRCLE_MENU_OPENING_DELAY = @"kCircleMenuDelay";
-NSString* const CIRCLE_MENU_RADIUS = @"kCircleMenuRadius";
-NSString* const CIRCLE_MENU_MAX_ANGLE = @"kCircleMenuMaxAngle";
-NSString* const CIRCLE_MENU_DIRECTION = @"kCircleMenuDirection";
-NSString* const CIRCLE_MENU_DEPTH = @"kCircleMenuDepth";
-NSString* const CIRCLE_MENU_BUTTON_RADIUS = @"kCircleMenuButtonRadius";
-NSString* const CIRCLE_MENU_BUTTON_BORDER_WIDTH = @"kCircleMenuButtonBorderWidth";
-
 @implementation WCCircularMenuView
 
-- (id)initWithOptions:(NSDictionary*)anOptionsDictionary
-{
+- (id)initWithOptions:(WCCircularMenuViewSetting *)setting {
     self = [super init];
     if (self) {
         self.buttons = [NSMutableArray new];
-        if (anOptionsDictionary) {
-            [self updateWithOptions:anOptionsDictionary];
-        } else {
-            // using some default settings
-            self.innerViewColor = [UIColor colorWithRed:0.0 green:0.25 blue:0.5 alpha:1.0];
-            self.innerViewActiveColor = [UIColor colorWithRed:0.25 green:0.5 blue:0.75 alpha:1.0];
-            self.borderViewColor = [UIColor whiteColor];
-            self.animationDelay = 0.0;
-            self.radius = 65.0;
-            self.maxAngle = 180.0;
-            self.startingAngle = 0.0;
-            self.depth = NO;
-            self.buttonRadius = 39.0;
-            self.buttonBorderWidth = 2.0;
+        if (!setting) {
+            setting = [WCCircularMenuViewSetting preset];
         }
+        [self updateWithOptions:setting];
     }
     return self;
 }
 
-- (id)initAtOrigin:(CGPoint)aPoint usingOptions:(NSDictionary *)anOptionsDictionary withImageArray:(NSArray *)anImageArray
-{
-    self = [self initWithOptions:anOptionsDictionary];
+- (id)initWithSetting:(WCCircularMenuViewSetting *)setting atCenter:(CGPoint)center menuButtonImages:(NSArray *)menuButtonImages {
+    self = [self initWithOptions:setting];
     if (self) {
-        self.frame = CGRectMake(aPoint.x - self.radius - self.buttonRadius, aPoint.y - self.radius - self.buttonRadius, self.radius * 2 + self.buttonRadius * 2, self.radius * 2 + self.buttonRadius * 2);
+        self.frame = CGRectMake(center.x - self.radius - self.buttonRadius, center.y - self.radius - self.buttonRadius, self.radius * 2 + self.buttonRadius * 2, self.radius * 2 + self.buttonRadius * 2);
         int tTag = 1;
-        for (UIImage* img in anImageArray) {
-            ALPHARoundView *tView = [self createButtonViewWithImage:img andTag:tTag];
+        for (UIImage *image in menuButtonImages) {
+            ALPHARoundView *tView = [self createButtonViewWithImage:image andTag:tTag];
             [self.buttons addObject:tView];
             tTag++;
         }
@@ -91,7 +80,8 @@ NSString* const CIRCLE_MENU_BUTTON_BORDER_WIDTH = @"kCircleMenuButtonBorderWidth
     return self;
 }
 
-- (id)initAtOrigin:(CGPoint)aPoint usingOptions:(NSDictionary *)anOptionsDictionary withImages:(UIImage *)anImage, ...
+/*
+- (id)initWithSettings:(CGPoint)aPoint atOrigin:(NSDictionary *)anOptionsDictionary withImages:(UIImage *)anImage, ...
 {
     self = [self initWithOptions:anOptionsDictionary];
     if (self) {
@@ -108,16 +98,21 @@ NSString* const CIRCLE_MENU_BUTTON_BORDER_WIDTH = @"kCircleMenuButtonBorderWidth
     }
     return self;
 }
+ */
 
-- (void)updateWithOptions:(NSDictionary *)anOptionsDictionary
-{
-    self.innerViewColor = [anOptionsDictionary valueForKey:CIRCLE_MENU_BUTTON_BACKGROUND_NORMAL];
-    self.innerViewActiveColor = [anOptionsDictionary valueForKey:CIRCLE_MENU_BUTTON_BACKGROUND_ACTIVE];
-    self.borderViewColor = [anOptionsDictionary valueForKey:CIRCLE_MENU_BUTTON_BORDER];
-    self.animationDelay = [[anOptionsDictionary valueForKey:CIRCLE_MENU_OPENING_DELAY] doubleValue];
-    self.radius = [[anOptionsDictionary valueForKey:CIRCLE_MENU_RADIUS] doubleValue];
-    self.maxAngle = [[anOptionsDictionary valueForKey:CIRCLE_MENU_MAX_ANGLE] doubleValue];
-    switch ([[anOptionsDictionary valueForKey:CIRCLE_MENU_DIRECTION] integerValue]) {
+- (void)updateWithOptions:(WCCircularMenuViewSetting *)setting {
+    self.innerViewColor = setting.menuButtonNormalColor;
+    self.innerViewActiveColor = setting.menuButtonActiveColor;
+    self.borderViewColor = setting.menuButtonBorderColor;
+    self.depth = setting.menuButtonShowShadow;
+    self.buttonRadius = setting.menuButtonRadius;
+    self.buttonBorderWidth = setting.menuButtonBorderWidth;
+    
+    self.animationDelay = setting.menuOpenDuration;
+    self.radius = setting.menuRadius;
+    self.maxAngle = setting.menuMaxAngle;
+    
+    switch (setting.menuDirection) {
         case ALPHACircleMenuDirectionUp:
             self.startingAngle = 0.0;
             break;
@@ -131,12 +126,8 @@ NSString* const CIRCLE_MENU_BUTTON_BORDER_WIDTH = @"kCircleMenuButtonBorderWidth
             self.startingAngle = 270.0;
             break;
     }
-    self.depth = [[anOptionsDictionary valueForKey:CIRCLE_MENU_DEPTH] boolValue];
-    self.buttonRadius = [[anOptionsDictionary valueForKey:CIRCLE_MENU_BUTTON_RADIUS] doubleValue];
-    self.buttonBorderWidth = [[anOptionsDictionary valueForKey:CIRCLE_MENU_BUTTON_BORDER_WIDTH] doubleValue];
     
-    if (self.superview)
-    {
+    if (self.superview) {
         [self calculateButtonPositions];
     }
 }

@@ -88,7 +88,7 @@
             self.menuOpened = YES;
             CGPoint center = CGPointMake(pannedView.bounds.size.width / 2.0, pannedView.bounds.size.height / 2.0);
 
-            self.menuView = [[WCCircularMenuView alloc] initAtOrigin:center usingOptions:[self optionsDictionary] withImageArray:self.images];
+            self.menuView = [[WCCircularMenuView alloc] initWithSetting:[self menuSetting] atCenter:center menuButtonImages:self.images];
             self.menuView.delegate = self;
             self.menuView.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.5];
             
@@ -313,28 +313,23 @@
 //        [self.circleMenuView updateWithOptions:[self optionsDictionary]];
 //    }];
     
-    [self.menuView updateWithOptions:[self optionsDictionary]];
+    [self.menuView updateWithOptions:[self menuSetting]];
 }
 
-- (NSDictionary *)optionsDictionary {
-    NSMutableDictionary* tOptions = [NSMutableDictionary new];
-    [tOptions setValue:[NSDecimalNumber numberWithFloat:self.delay] forKey:CIRCLE_MENU_OPENING_DELAY];
-    [tOptions setValue:[NSDecimalNumber numberWithFloat:self.angle] forKey:CIRCLE_MENU_MAX_ANGLE];
-    [tOptions setValue:[NSDecimalNumber numberWithFloat:self.radius] forKey:CIRCLE_MENU_RADIUS];
-    [tOptions setValue:[NSNumber numberWithInt:self.direction] forKey:CIRCLE_MENU_DIRECTION];
-
-    [tOptions setValue:[NSNumber numberWithInt:self.shadow] forKey:CIRCLE_MENU_DEPTH];
-    [tOptions setValue:[NSDecimalNumber decimalNumberWithString:[NSString stringWithFormat:@"%f", self.buttonRadius]] forKey:CIRCLE_MENU_BUTTON_RADIUS];
-    [tOptions setValue:[NSDecimalNumber decimalNumberWithString:@"2.5"] forKey:CIRCLE_MENU_BUTTON_BORDER_WIDTH];
+- (WCCircularMenuViewSetting *)menuSetting {
+    WCCircularMenuViewSetting *setting = [WCCircularMenuViewSetting new];
+    setting.menuOpenDuration = self.delay;
+    setting.menuMaxAngle = self.angle;
+    setting.menuRadius = self.radius;
+    setting.menuDirection = self.direction;
+    setting.menuButtonShowShadow = self.shadow;
+    setting.menuButtonRadius = self.buttonRadius;
+    setting.menuButtonBorderWidth = 2.5;
+    setting.menuButtonNormalColor = self.buttonBackgroundColor;
+    setting.menuButtonActiveColor = self.buttonSelectedBackgroundColor;
+    setting.menuButtonBorderColor = self.tintColor;
     
-    //
-    // Colors
-    //
-    [tOptions setValue:self.buttonBackgroundColor forKey:CIRCLE_MENU_BUTTON_BACKGROUND_NORMAL];
-    [tOptions setValue:self.buttonSelectedBackgroundColor forKey:CIRCLE_MENU_BUTTON_BACKGROUND_ACTIVE];
-    [tOptions setValue:self.tintColor forKey:CIRCLE_MENU_BUTTON_BORDER];
-    
-    return [tOptions copy];
+    return setting;
 }
 
 - (NSArray<UIImage *> *)images {

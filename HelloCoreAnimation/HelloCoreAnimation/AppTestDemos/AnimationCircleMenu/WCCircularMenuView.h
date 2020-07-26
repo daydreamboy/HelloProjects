@@ -37,18 +37,6 @@
 
 @end
 
-// Constants used for the configuration dictionary
-extern NSString* const CIRCLE_MENU_BUTTON_BACKGROUND_NORMAL;
-extern NSString* const CIRCLE_MENU_BUTTON_BACKGROUND_ACTIVE;
-extern NSString* const CIRCLE_MENU_BUTTON_BORDER;
-extern NSString* const CIRCLE_MENU_OPENING_DELAY;
-extern NSString* const CIRCLE_MENU_RADIUS;
-extern NSString* const CIRCLE_MENU_MAX_ANGLE;
-extern NSString* const CIRCLE_MENU_DIRECTION;
-extern NSString* const CIRCLE_MENU_DEPTH;
-extern NSString* const CIRCLE_MENU_BUTTON_RADIUS;
-extern NSString* const CIRCLE_MENU_BUTTON_BORDER_WIDTH;
-
 typedef enum {
     ALPHACircleMenuDirectionUp = 1,
     ALPHACircleMenuDirectionRight,
@@ -56,8 +44,21 @@ typedef enum {
     ALPHACircleMenuDirectionLeft
 } ALPHACircleMenuDirection;
 
-
 @interface WCCircularMenuViewSetting : NSObject
+
+@property (nonatomic, strong) UIColor *menuButtonNormalColor;
+@property (nonatomic, strong) UIColor *menuButtonActiveColor;
+@property (nonatomic, strong) UIColor *menuButtonBorderColor;
+@property (nonatomic, assign) BOOL menuButtonShowShadow;
+@property (nonatomic, assign) CGFloat menuButtonRadius;
+@property (nonatomic, assign) CGFloat menuButtonBorderWidth;
+
+@property (nonatomic, assign) CGFloat menuOpenDuration;
+@property (nonatomic, assign) CGFloat menuRadius;
+@property (nonatomic, assign) CGFloat menuMaxAngle;
+@property (nonatomic, assign) ALPHACircleMenuDirection menuDirection;
+
++ (instancetype)preset;
 
 @end
 
@@ -73,7 +74,7 @@ typedef enum {
  *                used for the buttons, currently icon images should
  *                be 32x32 points (64x64 px for retina)
  */
-- (id)initAtOrigin:(CGPoint)aPoint usingOptions:(NSDictionary*)anOptionsDictionary withImages:(UIImage*)anImage, ... NS_REQUIRES_NIL_TERMINATION;
+//- (id)initWithSettings:(WCCircularMenuViewSetting *)setting atOrigin:(CGPoint)aPoint withImages:(UIImage*)anImage, ... NS_REQUIRES_NIL_TERMINATION;
 
 /*!
  * Initializes the ALPHACircleMenuView.
@@ -83,7 +84,7 @@ typedef enum {
  *                     currently icon images should be 32x32 points
  *                     (64x64 px for retina)
  */
-- (id)initAtOrigin:(CGPoint)aPoint usingOptions:(NSDictionary*)anOptionsDictionary withImageArray:(NSArray*)anImageArray;
+- (id)initWithSetting:(WCCircularMenuViewSetting *)setting atCenter:(CGPoint)aPoint menuButtonImages:(NSArray*)anImageArray;
 
 /*!
  * Opens the menu with the buttons and settings specified in the
@@ -101,7 +102,7 @@ typedef enum {
  */
 - (void)closeMenu;
 
-- (void)updateWithOptions:(NSDictionary *)anOptionsDictionary;
+- (void)updateWithOptions:(WCCircularMenuViewSetting *)setting;
 
 @end
 
