@@ -22,9 +22,12 @@
 #import "MirrorTapGestureViewController.h"
 #import "ParentViewObserveChildViewTapEventViewController.h"
 
+#define kTitle @"Title"
+#define kClass @"Class"
+
 @interface RootViewController ()
-@property (nonatomic, strong) NSArray *titles;
-@property (nonatomic, strong) NSArray *classes;
+@property (nonatomic, strong) NSArray *sectionTitles;
+@property (nonatomic, strong) NSArray<NSArray<NSDictionary *> *> *classes;
 @end
 
 @implementation RootViewController
@@ -42,49 +45,60 @@
     self.title = @"AppTest";
 
     // MARK: Configure titles and classes for table view
-    _titles = @[
-        @"Move view (1) using UIPanGestureRecognizer",
-        @"Move view (2) using UIPanGestureRecognizer",
-        @"Move view (3) using UIPanGestureRecognizer",
-        @"Drag up view and increase height",
-        @"Detect swipe using UIPanGestureRecognizer",
-        @"Drag down and scale image",
-        @"Tap gestures both on parent view and child view",
-        @"UIGestureRecognizer vs. UIControlEvents",
-        @"Use cancelsTouchesInView (UIbutton example)",
-        @"Use cancelsTouchesInView (UICollectionView example)",
-        @"Mock TapGesture",
-        @"Use Mirrored TapGesture",
-        @"ParentView Observe ChildView Tap Event",
-        @"call a test method",
+    NSArray<NSDictionary *> *section1 = @[
+          @{ kTitle: @"Tap gestures both on parent view and child view", kClass: [TapGesturesBothOnParentChildViewViewController class] },
+          @{ kTitle: @"ParentView Observe ChildView Tap Event", kClass: [ParentViewObserveChildViewTapEventViewController class] },
     ];
+    
+    NSArray<NSDictionary *> *section2 = @[
+          @{ kTitle: @"Move view (1) using UIPanGestureRecognizer", kClass: [UsePanGestureRecognizer1ViewController class] },
+          @{ kTitle: @"Move view (2) using UIPanGestureRecognizer", kClass: [UsePanGestureRecognizer2ViewController class] },
+          @{ kTitle: @"Move view (3) using UIPanGestureRecognizer", kClass: [UsePanGestureRecognizer3ViewController class] },
+          @{ kTitle: @"Drag up view and increase height", kClass: [DragViewRestrictedViewController class] },
+          @{ kTitle: @"Detect swipe using UIPanGestureRecognizer", kClass: [DetectSwipeUsingUIPanGestureRecognizerViewController class] },
+          @{ kTitle: @"Drag down and scale image", kClass: [DragDownAndScaleImageViewViewController class] },
+    ];
+    
+    NSArray<NSDictionary *> *section3 = @[
+          @{ kTitle: @"UIGestureRecognizer vs. UIControlEvents", kClass: [GestureRecognizerVSControlEventsViewController class] },
+          @{ kTitle: @"Use cancelsTouchesInView (UIButton example)", kClass: [UseCancelsTouchesInView1ViewController class] },
+          @{ kTitle: @"Use cancelsTouchesInView (UICollectionView example)", kClass: [UseCancelsTouchesInView2ViewController class] },
+          @{ kTitle: @"Mock TapGesture", kClass: [MockTapGestureViewController class] },
+          @{ kTitle: @"Use Mirrored TapGesture", kClass: [MirrorTapGestureViewController class] },
+    ];
+    
+    _sectionTitles = @[
+        @"UITapGestureRecognizer",
+        @"UIPanGestureRecognizer",
+        @"Other",
+    ];
+    
     _classes = @[
-        [UsePanGestureRecognizer1ViewController class],
-        [UsePanGestureRecognizer2ViewController class],
-        [UsePanGestureRecognizer3ViewController class],
-        [DragViewRestrictedViewController class],
-        [DetectSwipeUsingUIPanGestureRecognizerViewController class],
-        [DragDownAndScaleImageViewViewController class],
-        [TapGesturesBothOnParentChildViewViewController class],
-        [GestureRecognizerVSControlEventsViewController class],
-        [UseCancelsTouchesInView1ViewController class],
-        [UseCancelsTouchesInView2ViewController class],
-        [MockTapGestureViewController class],
-        [MirrorTapGestureViewController class],
-        [ParentViewObserveChildViewTapEventViewController class],
-        @"testMethod",
+         section1,
+         section2,
+         section3,
     ];
 }
 
 #pragma mark -
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self pushViewController:_classes[indexPath.row]];
+    
+    NSDictionary *dict = _classes[indexPath.section][indexPath.row];
+    [self pushViewController:dict];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return _sectionTitles[section];
 }
 
 #pragma mark -
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [_classes count];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_titles count];
+    return [_classes[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -96,12 +110,14 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
-    cell.textLabel.text = _titles[indexPath.row];
+    NSString *cellTitle = [_classes[indexPath.section][indexPath.row] objectForKey:kTitle];
+    cell.textLabel.text = cellTitle;
     
     return cell;
 }
 
-- (void)pushViewController:(id)viewControllerClass {
+- (void)pushViewController:(NSDictionary *)dict {
+    id viewControllerClass = dict[kClass];
     
     id class = viewControllerClass;
     if ([class isKindOfClass:[NSString class]]) {
@@ -118,7 +134,7 @@
     }
     else if (class && [class isSubclassOfClass:[UIViewController class]]) {
         UIViewController *vc = [[class alloc] init];
-        vc.title = _titles[[_classes indexOfObject:viewControllerClass]];
+        vc.title = dict[kTitle];
         
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
         [self.navigationController pushViewController:vc animated:YES];

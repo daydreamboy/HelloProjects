@@ -33,6 +33,7 @@
 		4F8FDA2D20EB566300C766D4 /* DragDownAndScaleImageViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FDA2C20EB566300C766D4 /* DragDownAndScaleImageViewViewController.m */; };
 		4F8FDA3020EB571300C766D4 /* Xcode.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8FDA2F20EB571300C766D4 /* Xcode.png */; };
 		4F9DC2B921F05709002114D7 /* UseCancelsTouchesInView2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9DC2B821F05709002114D7 /* UseCancelsTouchesInView2ViewController.m */; };
+		4FF207BE24CD763A0068D0E7 /* UseTapGestureRecognizerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF207BD24CD763A0068D0E7 /* UseTapGestureRecognizerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,8 @@
 		4F8FDA2F20EB571300C766D4 /* Xcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Xcode.png; sourceTree = "<group>"; };
 		4F9DC2B721F05709002114D7 /* UseCancelsTouchesInView2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCancelsTouchesInView2ViewController.h; sourceTree = "<group>"; };
 		4F9DC2B821F05709002114D7 /* UseCancelsTouchesInView2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCancelsTouchesInView2ViewController.m; sourceTree = "<group>"; };
+		4FF207BC24CD763A0068D0E7 /* UseTapGestureRecognizerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseTapGestureRecognizerViewController.h; sourceTree = "<group>"; };
+		4FF207BD24CD763A0068D0E7 /* UseTapGestureRecognizerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseTapGestureRecognizerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +210,8 @@
 				4F190302245AC2200054FA3C /* ParentViewObserveChildViewTapEventViewController.m */,
 				4F190304245AC9A40054FA3C /* UseUIGestureRecognizerDelegateViewController.h */,
 				4F190305245AC9A40054FA3C /* UseUIGestureRecognizerDelegateViewController.m */,
+				4FF207BC24CD763A0068D0E7 /* UseTapGestureRecognizerViewController.h */,
+				4FF207BD24CD763A0068D0E7 /* UseTapGestureRecognizerViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -309,6 +314,7 @@
 				4F4DC06221EECC8F0066E96A /* GestureRecognizerVSControlEventsViewController.m in Sources */,
 				4F49902E1F9D9D6600D313B5 /* DragViewRestrictedViewController.m in Sources */,
 				4F4990261F9D987F00D313B5 /* UsePanGestureRecognizer1ViewController.m in Sources */,
+				4FF207BE24CD763A0068D0E7 /* UseTapGestureRecognizerViewController.m in Sources */,
 				4F1812F4239F9F8E0058B20D /* WCGestureTool.m in Sources */,
 				4F49902B1F9D99C400D313B5 /* UsePanGestureRecognizer2ViewController.m in Sources */,
 				4F1812F7239FB4780058B20D /* WCMockGestureWrapper.m in Sources */,
