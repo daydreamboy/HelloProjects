@@ -60,6 +60,7 @@
 
 // section7
 #import "AnimationGroupViewController.h"
+#import "AnimationCircleMenuViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -142,6 +143,7 @@
     
     NSArray<NSDictionary *> *section7 = @[
           @{ kTitle: @"Animation Group", kClass: [AnimationGroupViewController class] },
+          @{ kTitle: @"Animation Circle Menu", kClass: [AnimationCircleMenuViewController class] },          
     ];
 
     _sectionTitles = @[

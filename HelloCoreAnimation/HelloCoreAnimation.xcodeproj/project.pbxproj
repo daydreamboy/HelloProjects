@@ -64,6 +64,14 @@
 		4F7F2091249E4CB200EE6E0F /* AnimationDemoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F2090249E4CB200EE6E0F /* AnimationDemoView.m */; };
 		4F7F2096249E525300EE6E0F /* LayerAnimateWithPositionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F2095249E525300EE6E0F /* LayerAnimateWithPositionController.m */; };
 		4F7F209A249E689C00EE6E0F /* KeyframeAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F2099249E689C00EE6E0F /* KeyframeAnimationViewController.m */; };
+		4F7F7F6424CC010D00BD012C /* ALPHACircleMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F7F6224CC010D00BD012C /* ALPHACircleMenuView.m */; };
+		4F7F7F6724CC019700BD012C /* AnimationCircleMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F7F6624CC019700BD012C /* AnimationCircleMenuViewController.m */; };
+		4F7F7F6F24CC091C00BD012C /* Touch.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7F7F6924CC091C00BD012C /* Touch.png */; };
+		4F7F7F7024CC091C00BD012C /* Snapshot.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7F7F6A24CC091C00BD012C /* Snapshot.png */; };
+		4F7F7F7124CC091C00BD012C /* Inspect.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7F7F6B24CC091C00BD012C /* Inspect.png */; };
+		4F7F7F7224CC091C00BD012C /* Menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7F7F6C24CC091C00BD012C /* Menu.png */; };
+		4F7F7F7324CC091C00BD012C /* Network.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7F7F6D24CC091C00BD012C /* Network.png */; };
+		4F7F7F7424CC091C00BD012C /* Close.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7F7F6E24CC091C00BD012C /* Close.png */; };
 		4FB4D1FE249F464C00FB94B1 /* TimingFunctionAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB4D1FD249F464C00FB94B1 /* TimingFunctionAnimationViewController.m */; };
 		4FB4D202249F555400FB94B1 /* AnimationGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB4D201249F555400FB94B1 /* AnimationGroupViewController.m */; };
 		4FB4D20B249FAD1A00FB94B1 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB4D20A249FAD1A00FB94B1 /* UseCAShapeLayerToShowViewWithTwoCornersViewController.m */; };
@@ -93,6 +101,8 @@
 		4FB4D250249FBB0000FB94B1 /* ShapeAnimateWithStrokeStartEndViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB4D24F249FBB0000FB94B1 /* ShapeAnimateWithStrokeStartEndViewController.m */; };
 		4FE8C1E724972DB1000497F6 /* ShrinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8C1E624972DB1000497F6 /* ShrinkViewController.m */; };
 		4FE8C1EE249768A8000497F6 /* WCGenieAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8C1ED249768A8000497F6 /* WCGenieAnimation.m */; };
+		4FF207B824CD552B0068D0E7 /* WCPannedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF207B724CD552B0068D0E7 /* WCPannedView.m */; };
+		4FF207BB24CD561A0068D0E7 /* WCCircleMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF207BA24CD561A0068D0E7 /* WCCircleMenuController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -190,6 +200,16 @@
 		4F7F2095249E525300EE6E0F /* LayerAnimateWithPositionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LayerAnimateWithPositionController.m; sourceTree = "<group>"; };
 		4F7F2098249E689C00EE6E0F /* KeyframeAnimationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyframeAnimationViewController.h; sourceTree = "<group>"; };
 		4F7F2099249E689C00EE6E0F /* KeyframeAnimationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyframeAnimationViewController.m; sourceTree = "<group>"; };
+		4F7F7F6224CC010D00BD012C /* ALPHACircleMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALPHACircleMenuView.m; sourceTree = "<group>"; };
+		4F7F7F6324CC010D00BD012C /* ALPHACircleMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALPHACircleMenuView.h; sourceTree = "<group>"; };
+		4F7F7F6524CC019700BD012C /* AnimationCircleMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationCircleMenuViewController.h; sourceTree = "<group>"; };
+		4F7F7F6624CC019700BD012C /* AnimationCircleMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationCircleMenuViewController.m; sourceTree = "<group>"; };
+		4F7F7F6924CC091C00BD012C /* Touch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Touch.png; sourceTree = "<group>"; };
+		4F7F7F6A24CC091C00BD012C /* Snapshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Snapshot.png; sourceTree = "<group>"; };
+		4F7F7F6B24CC091C00BD012C /* Inspect.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Inspect.png; sourceTree = "<group>"; };
+		4F7F7F6C24CC091C00BD012C /* Menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Menu.png; sourceTree = "<group>"; };
+		4F7F7F6D24CC091C00BD012C /* Network.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Network.png; sourceTree = "<group>"; };
+		4F7F7F6E24CC091C00BD012C /* Close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Close.png; sourceTree = "<group>"; };
 		4FB4D1FC249F464C00FB94B1 /* TimingFunctionAnimationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TimingFunctionAnimationViewController.h; sourceTree = "<group>"; };
 		4FB4D1FD249F464C00FB94B1 /* TimingFunctionAnimationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TimingFunctionAnimationViewController.m; sourceTree = "<group>"; };
 		4FB4D200249F555400FB94B1 /* AnimationGroupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationGroupViewController.h; sourceTree = "<group>"; };
@@ -242,6 +262,10 @@
 		4FE8C1E624972DB1000497F6 /* ShrinkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShrinkViewController.m; sourceTree = "<group>"; };
 		4FE8C1EC249768A8000497F6 /* WCGenieAnimation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCGenieAnimation.h; sourceTree = "<group>"; };
 		4FE8C1ED249768A8000497F6 /* WCGenieAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCGenieAnimation.m; sourceTree = "<group>"; };
+		4FF207B624CD552B0068D0E7 /* WCPannedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCPannedView.h; sourceTree = "<group>"; };
+		4FF207B724CD552B0068D0E7 /* WCPannedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCPannedView.m; sourceTree = "<group>"; };
+		4FF207B924CD561A0068D0E7 /* WCCircleMenuController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCCircleMenuController.h; sourceTree = "<group>"; };
+		4FF207BA24CD561A0068D0E7 /* WCCircleMenuController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCCircleMenuController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,6 +354,7 @@
 		2B718B7C1A73BA6F00C0BF2A /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F7F7F6124CC00EE00BD012C /* AnimationCircleMenu */,
 				2B31939A1AD136F000741029 /* Objects */,
 				4F0F1DF024964D710034AAE9 /* Tools */,
 				4F7F208E249E4A5300EE6E0F /* Base */,
@@ -377,6 +402,8 @@
 				2B3CEB031D6221AD0001C5FB /* ParticleFadeViewController.m */,
 				2BFB1E7D1DBD0A9E00D4AE6B /* Uberworks1ViewController.h */,
 				2BFB1E7E1DBD0A9E00D4AE6B /* Uberworks1ViewController.m */,
+				4F7F7F6524CC019700BD012C /* AnimationCircleMenuViewController.h */,
+				4F7F7F6624CC019700BD012C /* AnimationCircleMenuViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -384,6 +411,7 @@
 		2B718B831A73BE5600C0BF2A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F7F7F6824CC091C00BD012C /* AnimationCircleMenu */,
 				2B26B0491D0581E000374802 /* loading */,
 				4FB4D23C249FB0E900FB94B1 /* aliwx_card_bubble_left_bg@2x.png */,
 				4FB4D23A249FB0E900FB94B1 /* aliwx_card_bubble_left_bg@3x.png */,
@@ -519,6 +547,32 @@
 				4F7F2099249E689C00EE6E0F /* KeyframeAnimationViewController.m */,
 			);
 			path = CAKeyframeAnimation;
+			sourceTree = "<group>";
+		};
+		4F7F7F6124CC00EE00BD012C /* AnimationCircleMenu */ = {
+			isa = PBXGroup;
+			children = (
+				4FF207B624CD552B0068D0E7 /* WCPannedView.h */,
+				4FF207B724CD552B0068D0E7 /* WCPannedView.m */,
+				4F7F7F6324CC010D00BD012C /* ALPHACircleMenuView.h */,
+				4F7F7F6224CC010D00BD012C /* ALPHACircleMenuView.m */,
+				4FF207B924CD561A0068D0E7 /* WCCircleMenuController.h */,
+				4FF207BA24CD561A0068D0E7 /* WCCircleMenuController.m */,
+			);
+			path = AnimationCircleMenu;
+			sourceTree = "<group>";
+		};
+		4F7F7F6824CC091C00BD012C /* AnimationCircleMenu */ = {
+			isa = PBXGroup;
+			children = (
+				4F7F7F6924CC091C00BD012C /* Touch.png */,
+				4F7F7F6A24CC091C00BD012C /* Snapshot.png */,
+				4F7F7F6B24CC091C00BD012C /* Inspect.png */,
+				4F7F7F6C24CC091C00BD012C /* Menu.png */,
+				4F7F7F6D24CC091C00BD012C /* Network.png */,
+				4F7F7F6E24CC091C00BD012C /* Close.png */,
+			);
+			path = AnimationCircleMenu;
 			sourceTree = "<group>";
 		};
 		4FB4D1FF249F553F00FB94B1 /* CAAnimationGroup */ = {
@@ -665,7 +719,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F7F7F7424CC091C00BD012C /* Close.png in Resources */,
 				4FB4D244249FB0EA00FB94B1 /* dog.jpg in Resources */,
+				4F7F7F7324CC091C00BD012C /* Network.png in Resources */,
 				2B718B601A739C5E00C0BF2A /* LaunchScreen.xib in Resources */,
 				2B26B0551D0581E000374802 /* common_btn_animation_middle@3x.png in Resources */,
 				2B26B0521D0581E000374802 /* common_btn_animation_left@2x.png in Resources */,
@@ -676,10 +732,12 @@
 				4FB4D23F249FB0EA00FB94B1 /* aliwx_card_bubble_right_bg@2x.png in Resources */,
 				2B718B861A73BE5600C0BF2A /* genre-music.jpg in Resources */,
 				4FB4D242249FB0EA00FB94B1 /* aliwx_card_bubble_left_bg@2x.png in Resources */,
+				4F7F7F7024CC091C00BD012C /* Snapshot.png in Resources */,
 				2B26B0591D0581E000374802 /* common_btn_animation_right@3x.png in Resources */,
 				2B26B0571D0581E000374802 /* common_btn_animation_normal@3x.png in Resources */,
 				4FB4D240249FB0EA00FB94B1 /* aliwx_card_bubble_left_bg@3x.png in Resources */,
 				2BB156291AC8FB3600360434 /* previous.png in Resources */,
+				4F7F7F7224CC091C00BD012C /* Menu.png in Resources */,
 				2B26B0531D0581E000374802 /* common_btn_animation_left@3x.png in Resources */,
 				2B95C2231ACA3FAE0077DED6 /* previous_pressed.png in Resources */,
 				2BB156271AC8FB3600360434 /* pause.png in Resources */,
@@ -688,9 +746,11 @@
 				2BE50B981CFF3A890022C1A2 /* ops_icon_input_phone@2x.png in Resources */,
 				2B26B0541D0581E000374802 /* common_btn_animation_middle@2x.png in Resources */,
 				2B718B5D1A739C5E00C0BF2A /* Images.xcassets in Resources */,
+				4F7F7F7124CC091C00BD012C /* Inspect.png in Resources */,
 				4FB4D241249FB0EA00FB94B1 /* stretchableImage.png in Resources */,
 				2BB156261AC8FB3600360434 /* next.png in Resources */,
 				2B26B0581D0581E000374802 /* common_btn_animation_right@2x.png in Resources */,
+				4F7F7F6F24CC091C00BD012C /* Touch.png in Resources */,
 				2BE50B991CFF3A890022C1A2 /* ops_icon_input_sms_code@2x.png in Resources */,
 				2B718B8C1A73CD2F00C0BF2A /* Xcode.png in Resources */,
 			);
@@ -712,6 +772,7 @@
 				4FB4D234249FAFF400FB94B1 /* WCViewTool.m in Sources */,
 				4FB4D238249FB02D00FB94B1 /* WCKVOTool.m in Sources */,
 				4FB4D222249FAE4A00FB94B1 /* AddBorderToImageViewController.m in Sources */,
+				4FF207B824CD552B0068D0E7 /* WCPannedView.m in Sources */,
 				4FB4D224249FAE4A00FB94B1 /* UseCAGradientLayerWithTwoColorsViewController.m in Sources */,
 				2BC3E1BB1ACC4AA500DA8BB7 /* BorderWidthViewController.m in Sources */,
 				2B718B551A739C5E00C0BF2A /* AppDelegate.m in Sources */,
@@ -721,10 +782,12 @@
 				2B8346711AC16C8100B15364 /* DrawedImageView.m in Sources */,
 				4FB4D24D249FBA4E00FB94B1 /* ShapeAnimateWithStrokeColorViewController.m in Sources */,
 				4FB4D202249F555400FB94B1 /* AnimationGroupViewController.m in Sources */,
+				4F7F7F6724CC019700BD012C /* AnimationCircleMenuViewController.m in Sources */,
 				4F7F209A249E689C00EE6E0F /* KeyframeAnimationViewController.m in Sources */,
 				2B718B771A739CD400C0BF2A /* RootViewController.m in Sources */,
 				2B8346741AC16CEE00B15364 /* FadeWithLabelViewController.m in Sources */,
 				2BFB1E7F1DBD0A9E00D4AE6B /* Uberworks1ViewController.m in Sources */,
+				4F7F7F6424CC010D00BD012C /* ALPHACircleMenuView.m in Sources */,
 				4F1943B92499C1DB00CA74A8 /* ShapeAnimateWithLineDashPhaseViewController.m in Sources */,
 				4F7F2091249E4CB200EE6E0F /* AnimationDemoView.m in Sources */,
 				4FB4D22F249FAF4500FB94B1 /* GradientView.m in Sources */,
@@ -738,6 +801,7 @@
 				2BC3E1C41ACC4F3D00DA8BB7 /* ContentsViewController.m in Sources */,
 				4FB4D230249FAF4500FB94B1 /* RadialGradientView.m in Sources */,
 				2B718B521A739C5E00C0BF2A /* main.m in Sources */,
+				4FF207BB24CD561A0068D0E7 /* WCCircleMenuController.m in Sources */,
 				4F7F208D249E4A5000EE6E0F /* AnimationBaseViewController.m in Sources */,
 				4FB4D1FE249F464C00FB94B1 /* TimingFunctionAnimationViewController.m in Sources */,
 				2BB6C9641D08230500D470A0 /* GroupAnimationViewController.m in Sources */,

@@ -100,6 +100,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (void)hierarchalDescriptionWithView:(UIView *)view;
 
++ (UIView *)clippingParentViewWithView:(UIView *)view;
+
 #pragma mark - Frame Adjustment
 
 /**

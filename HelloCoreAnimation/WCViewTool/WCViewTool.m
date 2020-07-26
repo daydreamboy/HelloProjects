@@ -219,6 +219,21 @@
 #endif
 }
 
++ (UIView *)clippingParentViewWithView:(UIView *)view {
+    UIView *viewToCheck = [view superview];
+    if (viewToCheck) {
+        if (viewToCheck.clipsToBounds) {
+            return viewToCheck;
+        }
+        else {
+            return [self clippingParentViewWithView:viewToCheck];
+        }
+    }
+    else {
+        return view;
+    }
+}
+
 #pragma mark - Frame Adjustment
 
 + (BOOL)makeViewFrameToFitAllSubviewsWithSuperView:(UIView *)superView {
