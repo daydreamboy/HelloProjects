@@ -193,6 +193,42 @@ static NSString * JSONEscapedStringFromString(NSString *string) {
     return [result sortedArrayUsingSelector:@selector(compare:)];
 }
 
++ (NSArray<NSString *> *)subclassesOfClass:(Class)parentClass {
+    int numberOfClasses = objc_getClassList(NULL, 0);
+    Class *classes = NULL;
+    
+    classes = (__unsafe_unretained Class *)malloc(sizeof(Class) * numberOfClasses);
+    numberOfClasses = objc_getClassList(classes, numberOfClasses);
+    
+    NSMutableArray<NSString *> *result = [NSMutableArray arrayWithCapacity:numberOfClasses];
+    for (NSInteger i = 0; i < numberOfClasses; ++i) {
+        Class superClass = classes[i];
+        do {
+            superClass = class_getSuperclass(superClass);
+        }
+        while (superClass && superClass != parentClass);
+        
+        if (superClass == nil) {
+            continue;
+        }
+        
+        const char *classNameCStr = class_getName(classes[i]);
+        if (classNameCStr != NULL) {
+            NSString *className;
+            @try {
+                className = [[NSString alloc] initWithUTF8String:classNameCStr];
+            }
+            @catch (NSException *exception) {
+            }
+            
+            if (className.length) {
+                [result addObject:className];
+            }
+        }
+    }
+    
+    return result;
+}
 
 #pragma mark > Property
 

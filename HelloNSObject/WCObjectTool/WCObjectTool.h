@@ -61,7 +61,20 @@ typedef struct selBlockPair {
 
 #pragma mark > Class
 
+/**
+ Get all class names which registered in the runtime
+ 
+ @return the all class names
+ */
 + (NSArray<NSString *> *)allClasses;
+
+/**
+ Get all subclass names which inherit from the parent class
+ 
+ @param parentClass the parent class
+ @return the all subclass names
+ */
++ (NSArray<NSString *> *)subclassesOfClass:(Class)parentClass;
 
 #pragma mark > Property
 
