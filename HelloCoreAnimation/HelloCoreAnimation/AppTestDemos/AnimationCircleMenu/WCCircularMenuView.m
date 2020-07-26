@@ -5,9 +5,9 @@
 //  Copyright © 2014 Christian Klaproth. All rights reserved.
 //
 
-#import "ALPHACircleMenuView.h"
+#import "WCCircularMenuView.h"
 
-@interface ALPHACircleMenuView ()
+@interface WCCircularMenuView ()
 
 @property (nonatomic) NSMutableArray* buttons;
 @property (weak, nonatomic) UIGestureRecognizer* recognizer;
@@ -46,7 +46,7 @@ NSString* const CIRCLE_MENU_DEPTH = @"kCircleMenuDepth";
 NSString* const CIRCLE_MENU_BUTTON_RADIUS = @"kCircleMenuButtonRadius";
 NSString* const CIRCLE_MENU_BUTTON_BORDER_WIDTH = @"kCircleMenuButtonBorderWidth";
 
-@implementation ALPHACircleMenuView
+@implementation WCCircularMenuView
 
 - (id)initWithOptions:(NSDictionary*)anOptionsDictionary
 {

@@ -7,7 +7,7 @@
 //
 
 #import "AnimationCircleMenuViewController.h"
-#import "ALPHACircleMenuView.h"
+#import "WCCircularMenuView.h"
 #import "WCCircleMenuController.h"
 
 @interface AnimationCircleMenuViewController () <ALPHACircleMenuDelegate>

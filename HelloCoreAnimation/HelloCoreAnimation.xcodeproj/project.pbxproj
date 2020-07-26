@@ -64,7 +64,7 @@
 		4F7F2091249E4CB200EE6E0F /* AnimationDemoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F2090249E4CB200EE6E0F /* AnimationDemoView.m */; };
 		4F7F2096249E525300EE6E0F /* LayerAnimateWithPositionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F2095249E525300EE6E0F /* LayerAnimateWithPositionController.m */; };
 		4F7F209A249E689C00EE6E0F /* KeyframeAnimationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F2099249E689C00EE6E0F /* KeyframeAnimationViewController.m */; };
-		4F7F7F6424CC010D00BD012C /* ALPHACircleMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F7F6224CC010D00BD012C /* ALPHACircleMenuView.m */; };
+		4F7F7F6424CC010D00BD012C /* WCCircularMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F7F6224CC010D00BD012C /* WCCircularMenuView.m */; };
 		4F7F7F6724CC019700BD012C /* AnimationCircleMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7F7F6624CC019700BD012C /* AnimationCircleMenuViewController.m */; };
 		4F7F7F6F24CC091C00BD012C /* Touch.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7F7F6924CC091C00BD012C /* Touch.png */; };
 		4F7F7F7024CC091C00BD012C /* Snapshot.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F7F7F6A24CC091C00BD012C /* Snapshot.png */; };
@@ -200,8 +200,8 @@
 		4F7F2095249E525300EE6E0F /* LayerAnimateWithPositionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LayerAnimateWithPositionController.m; sourceTree = "<group>"; };
 		4F7F2098249E689C00EE6E0F /* KeyframeAnimationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyframeAnimationViewController.h; sourceTree = "<group>"; };
 		4F7F2099249E689C00EE6E0F /* KeyframeAnimationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyframeAnimationViewController.m; sourceTree = "<group>"; };
-		4F7F7F6224CC010D00BD012C /* ALPHACircleMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALPHACircleMenuView.m; sourceTree = "<group>"; };
-		4F7F7F6324CC010D00BD012C /* ALPHACircleMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALPHACircleMenuView.h; sourceTree = "<group>"; };
+		4F7F7F6224CC010D00BD012C /* WCCircularMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCCircularMenuView.m; sourceTree = "<group>"; };
+		4F7F7F6324CC010D00BD012C /* WCCircularMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCCircularMenuView.h; sourceTree = "<group>"; };
 		4F7F7F6524CC019700BD012C /* AnimationCircleMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnimationCircleMenuViewController.h; sourceTree = "<group>"; };
 		4F7F7F6624CC019700BD012C /* AnimationCircleMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AnimationCircleMenuViewController.m; sourceTree = "<group>"; };
 		4F7F7F6924CC091C00BD012C /* Touch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Touch.png; sourceTree = "<group>"; };
@@ -554,8 +554,8 @@
 			children = (
 				4FF207B624CD552B0068D0E7 /* WCPannedView.h */,
 				4FF207B724CD552B0068D0E7 /* WCPannedView.m */,
-				4F7F7F6324CC010D00BD012C /* ALPHACircleMenuView.h */,
-				4F7F7F6224CC010D00BD012C /* ALPHACircleMenuView.m */,
+				4F7F7F6324CC010D00BD012C /* WCCircularMenuView.h */,
+				4F7F7F6224CC010D00BD012C /* WCCircularMenuView.m */,
 				4FF207B924CD561A0068D0E7 /* WCCircleMenuController.h */,
 				4FF207BA24CD561A0068D0E7 /* WCCircleMenuController.m */,
 			);
@@ -787,7 +787,7 @@
 				2B718B771A739CD400C0BF2A /* RootViewController.m in Sources */,
 				2B8346741AC16CEE00B15364 /* FadeWithLabelViewController.m in Sources */,
 				2BFB1E7F1DBD0A9E00D4AE6B /* Uberworks1ViewController.m in Sources */,
-				4F7F7F6424CC010D00BD012C /* ALPHACircleMenuView.m in Sources */,
+				4F7F7F6424CC010D00BD012C /* WCCircularMenuView.m in Sources */,
 				4F1943B92499C1DB00CA74A8 /* ShapeAnimateWithLineDashPhaseViewController.m in Sources */,
 				4F7F2091249E4CB200EE6E0F /* AnimationDemoView.m in Sources */,
 				4FB4D22F249FAF4500FB94B1 /* GradientView.m in Sources */,

@@ -8,11 +8,11 @@
 
 #import "WCCircleMenuController.h"
 #import "WCPannedView.h"
-#import "ALPHACircleMenuView.h"
+#import "WCCircularMenuView.h"
 
 @interface WCCircleMenuController () <WCPannedViewDelegate, ALPHACircleMenuDelegate>
 @property (nonatomic, strong) WCPannedView *pannedView;
-@property (nonatomic, strong) ALPHACircleMenuView *menuView;
+@property (nonatomic, strong) WCCircularMenuView *menuView;
 @property (nonatomic, assign) CGPoint startCenter;
 
 @property (nonatomic) CGFloat angle;
@@ -88,7 +88,7 @@
             self.menuOpened = YES;
             CGPoint center = CGPointMake(pannedView.bounds.size.width / 2.0, pannedView.bounds.size.height / 2.0);
 
-            self.menuView = [[ALPHACircleMenuView alloc] initAtOrigin:center usingOptions:[self optionsDictionary] withImageArray:self.images];
+            self.menuView = [[WCCircularMenuView alloc] initAtOrigin:center usingOptions:[self optionsDictionary] withImageArray:self.images];
             self.menuView.delegate = self;
             self.menuView.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.5];
             
@@ -130,7 +130,7 @@
 
 #pragma mark - ALPHACircleMenuDelegate
 
-- (void)circleMenuDidOpened:(ALPHACircleMenuView *)circleMenuView {
+- (void)circleMenuDidOpened:(WCCircularMenuView *)circleMenuView {
     
 }
 /*!
@@ -153,7 +153,7 @@
  * Gets called when the CircleMenu has been closed. This is usually
  * sent immediately after circleMenuActivatedButtonWithIndex:.
  */
-- (void)circleMenuDidClosed:(ALPHACircleMenuView *)circleMenuView {
+- (void)circleMenuDidClosed:(WCCircularMenuView *)circleMenuView {
     
 }
 
