@@ -1,5 +1,5 @@
 //
-//  WCCircleMenuController.h
+//  WCCircularMenuController.h
 //  HelloCoreAnimation
 //
 //  Created by wesley_chen on 2020/7/26.
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WCCircleMenuController : NSObject
+@interface WCCircularMenuController : NSObject
 
 @property (nonatomic, assign) CGFloat menuEntrySide;
 

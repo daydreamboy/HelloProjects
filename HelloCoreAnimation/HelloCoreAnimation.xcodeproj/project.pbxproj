@@ -102,7 +102,7 @@
 		4FE8C1E724972DB1000497F6 /* ShrinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8C1E624972DB1000497F6 /* ShrinkViewController.m */; };
 		4FE8C1EE249768A8000497F6 /* WCGenieAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8C1ED249768A8000497F6 /* WCGenieAnimation.m */; };
 		4FF207B824CD552B0068D0E7 /* WCPannedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF207B724CD552B0068D0E7 /* WCPannedView.m */; };
-		4FF207BB24CD561A0068D0E7 /* WCCircleMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF207BA24CD561A0068D0E7 /* WCCircleMenuController.m */; };
+		4FF207BB24CD561A0068D0E7 /* WCCircularMenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF207BA24CD561A0068D0E7 /* WCCircularMenuController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -264,8 +264,8 @@
 		4FE8C1ED249768A8000497F6 /* WCGenieAnimation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCGenieAnimation.m; sourceTree = "<group>"; };
 		4FF207B624CD552B0068D0E7 /* WCPannedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCPannedView.h; sourceTree = "<group>"; };
 		4FF207B724CD552B0068D0E7 /* WCPannedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCPannedView.m; sourceTree = "<group>"; };
-		4FF207B924CD561A0068D0E7 /* WCCircleMenuController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCCircleMenuController.h; sourceTree = "<group>"; };
-		4FF207BA24CD561A0068D0E7 /* WCCircleMenuController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCCircleMenuController.m; sourceTree = "<group>"; };
+		4FF207B924CD561A0068D0E7 /* WCCircularMenuController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCCircularMenuController.h; sourceTree = "<group>"; };
+		4FF207BA24CD561A0068D0E7 /* WCCircularMenuController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCCircularMenuController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -556,8 +556,8 @@
 				4FF207B724CD552B0068D0E7 /* WCPannedView.m */,
 				4F7F7F6324CC010D00BD012C /* WCCircularMenuView.h */,
 				4F7F7F6224CC010D00BD012C /* WCCircularMenuView.m */,
-				4FF207B924CD561A0068D0E7 /* WCCircleMenuController.h */,
-				4FF207BA24CD561A0068D0E7 /* WCCircleMenuController.m */,
+				4FF207B924CD561A0068D0E7 /* WCCircularMenuController.h */,
+				4FF207BA24CD561A0068D0E7 /* WCCircularMenuController.m */,
 			);
 			path = AnimationCircleMenu;
 			sourceTree = "<group>";
@@ -801,7 +801,7 @@
 				2BC3E1C41ACC4F3D00DA8BB7 /* ContentsViewController.m in Sources */,
 				4FB4D230249FAF4500FB94B1 /* RadialGradientView.m in Sources */,
 				2B718B521A739C5E00C0BF2A /* main.m in Sources */,
-				4FF207BB24CD561A0068D0E7 /* WCCircleMenuController.m in Sources */,
+				4FF207BB24CD561A0068D0E7 /* WCCircularMenuController.m in Sources */,
 				4F7F208D249E4A5000EE6E0F /* AnimationBaseViewController.m in Sources */,
 				4FB4D1FE249F464C00FB94B1 /* TimingFunctionAnimationViewController.m in Sources */,
 				2BB6C9641D08230500D470A0 /* GroupAnimationViewController.m in Sources */,

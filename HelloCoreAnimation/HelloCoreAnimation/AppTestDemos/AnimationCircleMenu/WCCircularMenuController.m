@@ -1,16 +1,16 @@
 //
-//  WCCircleMenuController.m
+//  WCCircularMenuController.m
 //  HelloCoreAnimation
 //
 //  Created by wesley_chen on 2020/7/26.
 //  Copyright © 2020 wesley chen. All rights reserved.
 //
 
-#import "WCCircleMenuController.h"
+#import "WCCircularMenuController.h"
 #import "WCPannedView.h"
 #import "WCCircularMenuView.h"
 
-@interface WCCircleMenuController () <WCPannedViewDelegate, ALPHACircleMenuDelegate>
+@interface WCCircularMenuController () <WCPannedViewDelegate, ALPHACircleMenuDelegate>
 @property (nonatomic, strong) WCPannedView *pannedView;
 @property (nonatomic, strong) WCCircularMenuView *menuView;
 @property (nonatomic, assign) CGPoint startCenter;
@@ -30,7 +30,7 @@
 
 @end
 
-@implementation WCCircleMenuController
+@implementation WCCircularMenuController
 
 - (instancetype)init {
     self = [super init];

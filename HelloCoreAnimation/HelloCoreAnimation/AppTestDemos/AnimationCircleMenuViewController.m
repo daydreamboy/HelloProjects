@@ -8,10 +8,10 @@
 
 #import "AnimationCircleMenuViewController.h"
 #import "WCCircularMenuView.h"
-#import "WCCircleMenuController.h"
+#import "WCCircularMenuController.h"
 
 @interface AnimationCircleMenuViewController () <ALPHACircleMenuDelegate>
-@property (nonatomic, strong) WCCircleMenuController *menuController;
+@property (nonatomic, strong) WCCircularMenuController *menuController;
 @end
 
 @implementation AnimationCircleMenuViewController
@@ -20,7 +20,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.menuController = [WCCircleMenuController new];
+    self.menuController = [WCCircularMenuController new];
     [self.menuController addCircleMenuToView:self.view atPoint:self.view.center];
 }
 
