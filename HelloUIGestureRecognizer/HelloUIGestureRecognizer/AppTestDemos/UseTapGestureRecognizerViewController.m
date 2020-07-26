@@ -9,24 +9,29 @@
 #import "UseTapGestureRecognizerViewController.h"
 
 @interface UseTapGestureRecognizerViewController ()
-
+@property (nonatomic, strong) UIView *roundView;
 @end
 
 @implementation UseTapGestureRecognizerViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self.view addSubview:self.roundView];
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - Getter
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UIView *)roundView {
+    if (!_roundView) {
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+        view.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:0.7];
+        
+        _roundView = view;
+    }
+    
+    return _roundView;
 }
-*/
 
 @end

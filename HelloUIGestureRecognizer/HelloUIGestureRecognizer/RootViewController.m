@@ -8,19 +8,25 @@
 
 #import "RootViewController.h"
 
+// section1
+#import "UseTapGestureRecognizerViewController.h"
+#import "TapGesturesBothOnParentChildViewViewController.h"
+#import "ParentViewObserveChildViewTapEventViewController.h"
+
+// section2
 #import "UsePanGestureRecognizer1ViewController.h"
 #import "UsePanGestureRecognizer2ViewController.h"
 #import "UsePanGestureRecognizer3ViewController.h"
 #import "DragViewRestrictedViewController.h"
 #import "DetectSwipeUsingUIPanGestureRecognizerViewController.h"
 #import "DragDownAndScaleImageViewViewController.h"
-#import "TapGesturesBothOnParentChildViewViewController.h"
+
+// section3
 #import "GestureRecognizerVSControlEventsViewController.h"
 #import "UseCancelsTouchesInView1ViewController.h"
 #import "UseCancelsTouchesInView2ViewController.h"
 #import "MockTapGestureViewController.h"
 #import "MirrorTapGestureViewController.h"
-#import "ParentViewObserveChildViewTapEventViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -46,6 +52,7 @@
 
     // MARK: Configure titles and classes for table view
     NSArray<NSDictionary *> *section1 = @[
+          @{ kTitle: @"Tap gestures on rounded view", kClass: [UseTapGestureRecognizerViewController class] },
           @{ kTitle: @"Tap gestures both on parent view and child view", kClass: [TapGesturesBothOnParentChildViewViewController class] },
           @{ kTitle: @"ParentView Observe ChildView Tap Event", kClass: [ParentViewObserveChildViewTapEventViewController class] },
     ];
