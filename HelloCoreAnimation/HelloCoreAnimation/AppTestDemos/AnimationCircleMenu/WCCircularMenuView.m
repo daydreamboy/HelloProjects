@@ -75,16 +75,16 @@ static int TAG_INNER_VIEW_OFFSET = 1000;
     _setting = setting;
     
     switch (setting.menuDirection) {
-        case ALPHACircleMenuDirectionUp:
+        case WCCircularMenuViewDirectionUp:
             self.startingAngle = 0.0;
             break;
-        case ALPHACircleMenuDirectionRight:
+        case WCCircularMenuViewDirectionRight:
             self.startingAngle = 90.0;
             break;
-        case ALPHACircleMenuDirectionDown:
+        case WCCircularMenuViewDirectionDown:
             self.startingAngle = 180.0;
             break;
-        case ALPHACircleMenuDirectionLeft:
+        case WCCircularMenuViewDirectionLeft:
             self.startingAngle = 270.0;
             break;
     }
@@ -211,14 +211,14 @@ static int TAG_INNER_VIEW_OFFSET = 1000;
     // use target action to get notified upon gesture changes
     [tapGesture addTarget:self action:@selector(handleTapGesture:)];
  
-    CGPoint tOrigin = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
+    CGPoint center = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
     [self calculateButtonPositions];
-    for (UIView* tButtonView in self.buttons) {
-        [self addSubview:tButtonView];
-        tButtonView.alpha = 0.0;
-        CGFloat tDiffX = tOrigin.x - tButtonView.frame.origin.x - self.setting.menuButtonRadius;
-        CGFloat tDiffY = tOrigin.y - tButtonView.frame.origin.y - self.setting.menuButtonRadius;
-        tButtonView.transform = CGAffineTransformMakeTranslation(tDiffX, tDiffY);
+    for (UIView *buttonView in self.buttons) {
+        [self addSubview:buttonView];
+        buttonView.alpha = 0.0;
+        CGFloat tDiffX = center.x - buttonView.frame.origin.x - self.setting.menuButtonRadius;
+        CGFloat tDiffY = center.y - buttonView.frame.origin.y - self.setting.menuButtonRadius;
+        buttonView.transform = CGAffineTransformMakeTranslation(tDiffX, tDiffY);
     }
 
     CGFloat tDelay = 0.0;
@@ -256,62 +256,7 @@ static int TAG_INNER_VIEW_OFFSET = 1000;
     }];
 }
 
-- (void)gestureMovedToPoint:(CGPoint)aPoint
-{
-    UIView* tView = [self hitTest:aPoint withEvent:nil];
-    int tTag = [self bareTagOfView:tView];
-    if (tTag > 0) {
-        if (tTag == self.hoverTag) {
-            // this button is already the active one
-            return;
-        }
-        else
-        {
-            // Animate previous button back to identity
-            [UIView setAnimationBeginsFromCurrentState:YES];
-            [UIView animateWithDuration:0.1 animations:^
-            {
-                UIView* tInnerView = [self viewWithTag:self.hoverTag];
-                tInnerView.transform = CGAffineTransformIdentity;
-                
-                [self sendSubviewToBack:tInnerView];
-            }];
-        }
-        
-        self.hoverTag = tTag;
-        
-        // display all (other) buttons in normal state
-        [self resetButtonState];
-        
-        // display this button in active color
-        tTag = tTag + TAG_INNER_VIEW_OFFSET;
-        UIView* tInnerView = [self viewWithTag:tTag];
-        tInnerView.backgroundColor = self.setting.menuButtonActiveColor;
-        
-        [UIView setAnimationBeginsFromCurrentState:YES];
-        [UIView animateWithDuration:0.1 animations:^
-        {
-            [self bringSubviewToFront:tInnerView];
-            tInnerView.transform = CGAffineTransformMakeScale(1.2, 1.2);
-        }];
-        
-        if (self.setting.menuButtonShowShadow) {
-            [self applyActiveDepthToButtonView:tInnerView];
-        }
-    } else {
-        // the view "hit" is none of the buttons -> display all in normal state
-        [self resetButtonState];        
-        self.hoverTag = 0;
-    }
-    
-    if ([self.delegate respondsToSelector:@selector(circleMenuHoverOnButtonWithIndex:)])
-    {
-        [self.delegate circleMenuHoverOnButtonWithIndex:tTag - 1 - TAG_INNER_VIEW_OFFSET];
-    }
-}
-
-- (void)resetButtonState
-{
+- (void)resetButtonState {
     if (self.hoverTag > 0)
     {
         [UIView setAnimationBeginsFromCurrentState:YES];

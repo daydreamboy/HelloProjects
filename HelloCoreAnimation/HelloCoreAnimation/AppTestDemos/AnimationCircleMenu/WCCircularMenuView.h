@@ -24,12 +24,6 @@
 - (void)circleMenuActivatedButtonWithIndex:(int)anIndex;
 
 /*!
- *  Informs the delegate that the menu hovered on button with index.
- *
- *  @param anIndex index of button
- */
-- (void)circleMenuHoverOnButtonWithIndex:(int)anIndex;
-/*!
  * Gets called when the CircleMenu has been closed. This is usually
  * sent immediately after circleMenuActivatedButtonWithIndex:.
  */
@@ -38,11 +32,11 @@
 @end
 
 typedef enum {
-    ALPHACircleMenuDirectionUp = 1,
-    ALPHACircleMenuDirectionRight,
-    ALPHACircleMenuDirectionDown,
-    ALPHACircleMenuDirectionLeft
-} ALPHACircleMenuDirection;
+    WCCircularMenuViewDirectionUp = 1,
+    WCCircularMenuViewDirectionRight,
+    WCCircularMenuViewDirectionDown,
+    WCCircularMenuViewDirectionLeft
+} WCCircularMenuViewDirection;
 
 @interface WCCircularMenuViewSetting : NSObject
 
@@ -59,7 +53,7 @@ typedef enum {
 
 @property (nonatomic, assign) CGFloat menuRadius;
 @property (nonatomic, assign) CGFloat menuMaxAngle;
-@property (nonatomic, assign) ALPHACircleMenuDirection menuDirection;
+@property (nonatomic, assign) WCCircularMenuViewDirection menuDirection;
 
 @property (nonatomic, assign, readonly) CGFloat menuTotalRadius;
 

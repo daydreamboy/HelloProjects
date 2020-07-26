@@ -102,13 +102,6 @@
             self.menuOpened = NO;
             [self.menuView closeMenu];
         }
-        
-        
-        /*
-        [UIView animateWithDuration:0.2 animations:^{
-            [self.menuView updateWithOptions:[self optionsDictionary]];
-        }];
-         */
     }
 }
 
@@ -168,19 +161,19 @@
     CGFloat restrictedWidth = self.pannedView.superview.bounds.size.width;
     CGFloat restrictedHeight = self.pannedView.superview.bounds.size.height;
     
-    ALPHACircleMenuDirection axisXClosestBorder = ALPHACircleMenuDirectionLeft;
+    WCCircularMenuViewDirection axisXClosestBorder = WCCircularMenuViewDirectionLeft;
     CGFloat axisXDistance = cx;
     
     if (restrictedWidth / 2.0 < cx) {
-        axisXClosestBorder = ALPHACircleMenuDirectionRight;
+        axisXClosestBorder = WCCircularMenuViewDirectionRight;
         axisXDistance = restrictedWidth - cx;
     }
     
-    ALPHACircleMenuDirection axisYClosestBorder = ALPHACircleMenuDirectionUp;
+    WCCircularMenuViewDirection axisYClosestBorder = WCCircularMenuViewDirectionUp;
     CGFloat axisYDistance = cy;
     
     if (restrictedHeight / 2.0 < cy) {
-        axisYClosestBorder = ALPHACircleMenuDirectionDown;
+        axisYClosestBorder = WCCircularMenuViewDirectionDown;
         axisYDistance = restrictedHeight - cy;
     }
     
@@ -232,7 +225,7 @@
     
     if (leftAngle < 90.0 && topAngle < 90.0)
     {
-        self.direction = ALPHACircleMenuDirectionDown;
+        self.direction = WCCircularMenuViewDirectionDown;
         
         totalAngle += leftAngle + topAngle;
         
@@ -240,7 +233,7 @@
     }
     else if (leftAngle < 90.0 && bottomAngle < 90.0)
     {
-        self.direction = ALPHACircleMenuDirectionRight;
+        self.direction = WCCircularMenuViewDirectionRight;
         
         totalAngle += leftAngle + bottomAngle;
         
@@ -248,7 +241,7 @@
     }
     else if (rightAngle < 90.0 && topAngle < 90.0)
     {
-        self.direction = ALPHACircleMenuDirectionLeft;
+        self.direction = WCCircularMenuViewDirectionLeft;
         
         totalAngle += rightAngle + topAngle;
         
@@ -256,7 +249,7 @@
     }
     else if (rightAngle < 90.0 && bottomAngle < 90.0)
     {
-        self.direction = ALPHACircleMenuDirectionUp;
+        self.direction = WCCircularMenuViewDirectionUp;
         
         totalAngle += rightAngle + bottomAngle;
         
@@ -264,7 +257,7 @@
     }
     else if (rightAngle < 90.0)
     {
-        self.direction = ALPHACircleMenuDirectionLeft;
+        self.direction = WCCircularMenuViewDirectionLeft;
         
         totalAngle = 360.0 - (2 * (90.0 - rightAngle));
         
@@ -272,7 +265,7 @@
     }
     else if (leftAngle < 90.0)
     {
-        self.direction = ALPHACircleMenuDirectionRight;
+        self.direction = WCCircularMenuViewDirectionRight;
         
         totalAngle = 360.0 - (2 * (90.0 - leftAngle));
         
@@ -280,7 +273,7 @@
     }
     else if (topAngle < 90.0)
     {
-        self.direction = ALPHACircleMenuDirectionDown;
+        self.direction = WCCircularMenuViewDirectionDown;
         
         totalAngle = 360.0 - (2 * (90.0 - topAngle));
         
@@ -292,13 +285,13 @@
         
         //angleModifier = 0.95;
         
-        self.direction = ALPHACircleMenuDirectionUp;
+        self.direction = WCCircularMenuViewDirectionUp;
     }
     else
     {
         totalAngle = 360.0;
         
-        //self.direction = ALPHACircleMenuDirectionUp;
+        //self.direction = WCCircularMenuViewDirectionUp;
     }
     
     totalAngle *= angleModifier;
