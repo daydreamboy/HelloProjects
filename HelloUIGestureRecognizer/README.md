@@ -276,7 +276,10 @@ mirroring手势的gestureRecognizer:shouldReceiveTouch:方法实现[^1]，如下
 
 ## 6、WCPannedView
 
+WCPannedView是一个可以拖动的View
 
+* 支持拖动不超过clip区域
+* 长按默认有放大动画
 
 
 

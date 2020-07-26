@@ -50,8 +50,8 @@
         WCPannedView *view = [[WCPannedView alloc] initWithFrame:CGRectMake(0, 0, side, side)];
         view.center = CGPointMake(CGRectGetWidth(_viewRestricted.bounds) / 2.0, CGRectGetHeight(_viewRestricted.bounds) / 2.0);
         
-        view.contentView.layer.cornerRadius = side / 2.0;
-        view.contentView.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.8];
+        view.backgroundView.layer.cornerRadius = side / 2.0;
+        view.backgroundView.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.8];
         
         _viewCircle = view;
     }
