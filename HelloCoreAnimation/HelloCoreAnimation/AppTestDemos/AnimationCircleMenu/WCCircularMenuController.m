@@ -37,7 +37,7 @@
     if (self) {
         _menuEntrySide = 50.0;
         
-        self.delay = 0.0;
+        self.delay = 0.6;
         self.buttonRadius = 26.0;
         self.shadow = 0;
         self.radius = 80.0;
@@ -313,11 +313,12 @@
 //        [self.circleMenuView updateWithOptions:[self optionsDictionary]];
 //    }];
     
-    [self.menuView updateWithOptions:[self menuSetting]];
+    [self.menuView updateWithSetting:[self menuSetting]];
 }
 
 - (WCCircularMenuViewSetting *)menuSetting {
-    WCCircularMenuViewSetting *setting = [WCCircularMenuViewSetting new];
+    WCCircularMenuViewSetting *setting = [WCCircularMenuViewSetting preset];
+    
     setting.menuOpenDuration = self.delay;
     setting.menuMaxAngle = self.angle;
     setting.menuRadius = self.radius;

@@ -19,8 +19,14 @@
     setting.menuButtonRadius = 40;
     setting.menuRadius = 65;
     setting.menuMaxAngle = 180.0;
+    setting.menuOpenDuration = 0.6;
+    setting.menuCloseDuration = 0.3;
     
     return setting;
+}
+
+- (CGFloat)menuTotalRadius {
+    return _menuRadius + _menuButtonRadius;
 }
 
 @end
@@ -30,18 +36,8 @@
 @property (nonatomic) NSMutableArray<ALPHARoundView *> *buttons;
 @property (weak, nonatomic) UIGestureRecognizer* recognizer;
 @property (nonatomic) int hoverTag;
-
-@property (nonatomic) UIColor* innerViewColor;
-@property (nonatomic) UIColor* innerViewActiveColor;
-@property (nonatomic) UIColor* borderViewColor;
-@property (nonatomic) CGFloat radius;
-@property (nonatomic) CGFloat maxAngle;
-@property (nonatomic) CGFloat animationDelay;
 @property (nonatomic) CGFloat startingAngle;
-@property (nonatomic) BOOL depth;
-@property (nonatomic) CGFloat buttonRadius;
-@property (nonatomic) CGFloat buttonBorderWidth;
-
+@property (nonatomic, strong) WCCircularMenuViewSetting *setting;
 @property (nonatomic, weak) UIView* clippingView;
 
 @end
@@ -54,63 +50,29 @@ static int TAG_INNER_VIEW_OFFSET = 1000;
 
 @implementation WCCircularMenuView
 
-- (id)initWithOptions:(WCCircularMenuViewSetting *)setting {
+- (id)initWithSetting:(WCCircularMenuViewSetting *)setting atCenter:(CGPoint)center menuButtonImages:(NSArray *)menuButtonImages {
     self = [super init];
     if (self) {
-        self.buttons = [NSMutableArray new];
         if (!setting) {
             setting = [WCCircularMenuViewSetting preset];
         }
-        [self updateWithOptions:setting];
-    }
-    return self;
-}
-
-- (id)initWithSetting:(WCCircularMenuViewSetting *)setting atCenter:(CGPoint)center menuButtonImages:(NSArray *)menuButtonImages {
-    self = [self initWithOptions:setting];
-    if (self) {
-        self.frame = CGRectMake(center.x - self.radius - self.buttonRadius, center.y - self.radius - self.buttonRadius, self.radius * 2 + self.buttonRadius * 2, self.radius * 2 + self.buttonRadius * 2);
-        int tTag = 1;
+        [self updateWithSetting:setting];
+        
+        _buttons = [NSMutableArray array];
+        
+        self.frame = CGRectMake(center.x - _setting.menuTotalRadius, center.y - _setting.menuTotalRadius, _setting.menuTotalRadius * 2, _setting.menuTotalRadius * 2);
+        int tag = 1;
         for (UIImage *image in menuButtonImages) {
-            ALPHARoundView *tView = [self createButtonViewWithImage:image andTag:tTag];
-            [self.buttons addObject:tView];
-            tTag++;
+            ALPHARoundView *buttonView = [self createButtonViewWithImage:image andTag:tag];
+            [_buttons addObject:buttonView];
+            tag++;
         }
     }
     return self;
 }
 
-/*
-- (id)initWithSettings:(CGPoint)aPoint atOrigin:(NSDictionary *)anOptionsDictionary withImages:(UIImage *)anImage, ...
-{
-    self = [self initWithOptions:anOptionsDictionary];
-    if (self) {
-        self.frame = CGRectMake(aPoint.x - self.radius - self.buttonRadius, aPoint.y - self.radius - self.buttonRadius, self.radius * 2 + self.buttonRadius * 2, self.radius * 2 + self.buttonRadius * 2);
-        int tTag = 1;
-        va_list args;
-        va_start(args, anImage);
-        for (UIImage* img = anImage; img != nil; img = va_arg(args, UIImage*)) {
-            ALPHARoundView *tView = [self createButtonViewWithImage:img andTag:tTag];
-            [self.buttons addObject:tView];
-            tTag++;
-        }
-        va_end(args);
-    }
-    return self;
-}
- */
-
-- (void)updateWithOptions:(WCCircularMenuViewSetting *)setting {
-    self.innerViewColor = setting.menuButtonNormalColor;
-    self.innerViewActiveColor = setting.menuButtonActiveColor;
-    self.borderViewColor = setting.menuButtonBorderColor;
-    self.depth = setting.menuButtonShowShadow;
-    self.buttonRadius = setting.menuButtonRadius;
-    self.buttonBorderWidth = setting.menuButtonBorderWidth;
-    
-    self.animationDelay = setting.menuOpenDuration;
-    self.radius = setting.menuRadius;
-    self.maxAngle = setting.menuMaxAngle;
+- (void)updateWithSetting:(WCCircularMenuViewSetting *)setting {
+    _setting = setting;
     
     switch (setting.menuDirection) {
         case ALPHACircleMenuDirectionUp:
@@ -145,23 +107,25 @@ static int TAG_INNER_VIEW_OFFSET = 1000;
     
     UIButton* tButton = [UIButton buttonWithType:UIButtonTypeCustom];
     tButton.userInteractionEnabled = NO;
-    CGFloat width = self.buttonRadius * 0.8;
-    CGFloat height = self.buttonRadius * 0.8;
-    tButton.frame = CGRectMake( ((self.buttonRadius * 2.0) - width) / 2.0, ((self.buttonRadius * 2.0) - height) / 2.0, width, height);
+    
+    CGFloat buttonRadius = self.setting.menuButtonRadius;
+    CGFloat width = buttonRadius * 0.8;
+    CGFloat height = buttonRadius * 0.8;
+    tButton.frame = CGRectMake( ((buttonRadius * 2.0) - width) / 2.0, ((buttonRadius * 2.0) - height) / 2.0, width, height);
     [tButton setImage:tintedImage forState:UIControlStateNormal];
     tButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
     tButton.tag = aTag + TAG_BUTTON_OFFSET;
-    tButton.tintColor = self.borderViewColor;
+    tButton.tintColor = self.setting.menuButtonBorderColor;
     
-    ALPHARoundView* tInnerView = [[ALPHARoundView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.buttonRadius * 2, self.buttonRadius * 2)];
-    tInnerView.backgroundColor = self.innerViewColor;
+    ALPHARoundView* tInnerView = [[ALPHARoundView alloc] initWithFrame:CGRectMake(0.0, 0.0, buttonRadius * 2, buttonRadius * 2)];
+    tInnerView.backgroundColor = self.setting.menuButtonNormalColor;
     tInnerView.opaque = YES;
     tInnerView.clipsToBounds = NO;
-    tInnerView.layer.cornerRadius = self.buttonRadius;
-    tInnerView.layer.borderColor = [self.borderViewColor CGColor];
-    tInnerView.layer.borderWidth = self.buttonBorderWidth;
+    tInnerView.layer.cornerRadius = buttonRadius;
+    tInnerView.layer.borderColor = [self.setting.menuButtonBorderColor CGColor];
+    tInnerView.layer.borderWidth = self.setting.menuButtonBorderWidth;
 
-    if (self.depth) {
+    if (self.setting.menuButtonShowShadow) {
         [self applyInactiveDepthToButtonView:tInnerView];
     }
 
@@ -181,30 +145,32 @@ static int TAG_INNER_VIEW_OFFSET = 1000;
         // climb view hierarchy up, until first view with clipToBounds = YES
         self.clippingView = [self clippingViewOfChild:self];
     }
-    CGFloat tMaxX = self.frame.size.width - self.buttonRadius;
-    CGFloat tMinX = self.buttonRadius;
-    CGFloat tMaxY = self.frame.size.height - self.buttonRadius;
-    CGFloat tMinY = self.buttonRadius;
+    
+    CGFloat buttonRadius = self.setting.menuButtonRadius;
+    CGFloat tMaxX = self.frame.size.width - buttonRadius;
+    CGFloat tMinX = buttonRadius;
+    CGFloat tMaxY = self.frame.size.height - buttonRadius;
+    CGFloat tMinY = buttonRadius;
     if (self.clippingView) {
         CGRect tClippingFrame = [self.clippingView convertRect:self.clippingView.bounds toView:self];
-        tMaxX = tClippingFrame.size.width + tClippingFrame.origin.x - self.buttonRadius * 2;
+        tMaxX = tClippingFrame.size.width + tClippingFrame.origin.x - buttonRadius * 2;
         tMinX = tClippingFrame.origin.x;
-        tMaxY = tClippingFrame.size.height + tClippingFrame.origin.y - self.buttonRadius * 2;
+        tMaxY = tClippingFrame.size.height + tClippingFrame.origin.y - buttonRadius * 2;
         tMinY = tClippingFrame.origin.y;
     }
 
     int tButtonCount = (int)self.buttons.count;
     CGPoint tOrigin = CGPointMake(self.frame.size.width / 2, self.frame.size.height / 2);
-    CGFloat tRadius = self.radius;
+    CGFloat tRadius = self.setting.menuRadius;
     int tCounter = 0;
     for (UIView* tView in self.buttons) {
         CGFloat tCurrentWinkel;
         if (tCounter == 0) {
             tCurrentWinkel = self.startingAngle + 0.0;
         } else if (tCounter > 0 && tCounter < tButtonCount) {
-            tCurrentWinkel = self.startingAngle + (self.maxAngle / (tButtonCount)) * tCounter;
+            tCurrentWinkel = self.startingAngle + (self.setting.menuMaxAngle / (tButtonCount)) * tCounter;
         } else {
-            tCurrentWinkel = self.startingAngle + self.maxAngle;
+            tCurrentWinkel = self.startingAngle + self.setting.menuMaxAngle;
         }
         CGSize tSize = tView.frame.size;
         CGFloat tX = tOrigin.x - (tRadius * cosf(tCurrentWinkel / 180.0 * M_PI)) - (tSize.width / 2);
@@ -250,15 +216,15 @@ static int TAG_INNER_VIEW_OFFSET = 1000;
     for (UIView* tButtonView in self.buttons) {
         [self addSubview:tButtonView];
         tButtonView.alpha = 0.0;
-        CGFloat tDiffX = tOrigin.x - tButtonView.frame.origin.x - self.buttonRadius;
-        CGFloat tDiffY = tOrigin.y - tButtonView.frame.origin.y - self.buttonRadius;
+        CGFloat tDiffX = tOrigin.x - tButtonView.frame.origin.x - self.setting.menuButtonRadius;
+        CGFloat tDiffY = tOrigin.y - tButtonView.frame.origin.y - self.setting.menuButtonRadius;
         tButtonView.transform = CGAffineTransformMakeTranslation(tDiffX, tDiffY);
     }
 
     CGFloat tDelay = 0.0;
     for (UIView* tButtonView in self.buttons) {
-        tDelay = tDelay + self.animationDelay;
-        [UIView animateWithDuration:0.6 delay:tDelay usingSpringWithDamping:0.5 initialSpringVelocity:0.8 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        tDelay = tDelay + self.setting.menuOpenDelay;
+        [UIView animateWithDuration:self.setting.menuOpenDuration delay:tDelay usingSpringWithDamping:0.5 initialSpringVelocity:0.8 options:UIViewAnimationOptionCurveEaseOut animations:^{
             tButtonView.alpha = 1.0;
             tButtonView.transform = CGAffineTransformIdentity;
         } completion:^(BOOL finished) {
@@ -274,7 +240,8 @@ static int TAG_INNER_VIEW_OFFSET = 1000;
  */
 - (void)closeMenu {
     [self.recognizer removeTarget:self action:@selector(handleTapGesture:)];
-    [UIView animateWithDuration:0.3 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    
+    [UIView animateWithDuration:self.setting.menuCloseDuration delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         for (UIView* tButtonView in self.buttons) {
             if (self.hoverTag > 0 && self.hoverTag == [self bareTagOfView:tButtonView]) {
                 tButtonView.transform = CGAffineTransformMakeScale(1.8, 1.8);
@@ -319,9 +286,7 @@ static int TAG_INNER_VIEW_OFFSET = 1000;
         // display this button in active color
         tTag = tTag + TAG_INNER_VIEW_OFFSET;
         UIView* tInnerView = [self viewWithTag:tTag];
-        tInnerView.backgroundColor = self.innerViewActiveColor;
-        
-        
+        tInnerView.backgroundColor = self.setting.menuButtonActiveColor;
         
         [UIView setAnimationBeginsFromCurrentState:YES];
         [UIView animateWithDuration:0.1 animations:^
@@ -330,7 +295,7 @@ static int TAG_INNER_VIEW_OFFSET = 1000;
             tInnerView.transform = CGAffineTransformMakeScale(1.2, 1.2);
         }];
         
-        if (self.depth) {
+        if (self.setting.menuButtonShowShadow) {
             [self applyActiveDepthToButtonView:tInnerView];
         }
     } else {
@@ -360,8 +325,8 @@ static int TAG_INNER_VIEW_OFFSET = 1000;
     
     for (int i = 1; i <= self.buttons.count; i++) {
         UIView* tView = [self viewWithTag:i + TAG_INNER_VIEW_OFFSET];
-        tView.backgroundColor = self.innerViewColor;
-        if (self.depth) {
+        tView.backgroundColor = self.setting.menuButtonNormalColor;
+        if (self.setting.menuButtonShowShadow) {
             [self applyInactiveDepthToButtonView:tView];
         }
         

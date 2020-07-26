@@ -54,27 +54,24 @@ typedef enum {
 @property (nonatomic, assign) CGFloat menuButtonBorderWidth;
 
 @property (nonatomic, assign) CGFloat menuOpenDuration;
+@property (nonatomic, assign) CGFloat menuCloseDuration;
+@property (nonatomic, assign) CGFloat menuOpenDelay;
+
 @property (nonatomic, assign) CGFloat menuRadius;
 @property (nonatomic, assign) CGFloat menuMaxAngle;
 @property (nonatomic, assign) ALPHACircleMenuDirection menuDirection;
 
+@property (nonatomic, assign, readonly) CGFloat menuTotalRadius;
+
 + (instancetype)preset;
++ (instancetype)new UNAVAILABLE_ATTRIBUTE;
+- (instancetype)init UNAVAILABLE_ATTRIBUTE;
 
 @end
 
 @interface WCCircularMenuView : UIView
 
 @property (weak, nonatomic) id<ALPHACircleMenuDelegate> delegate;
-
-/*!
- * Initializes the ALPHACircleMenuView.
- * @param aPoint the center of the menu's circle
- * @param anOptionsDictionary optional configuration, may be nil
- * @param anImage dynamic list of images (nil-terminated!) to be
- *                used for the buttons, currently icon images should
- *                be 32x32 points (64x64 px for retina)
- */
-//- (id)initWithSettings:(WCCircularMenuViewSetting *)setting atOrigin:(CGPoint)aPoint withImages:(UIImage*)anImage, ... NS_REQUIRES_NIL_TERMINATION;
 
 /*!
  * Initializes the ALPHACircleMenuView.
@@ -102,7 +99,7 @@ typedef enum {
  */
 - (void)closeMenu;
 
-- (void)updateWithOptions:(WCCircularMenuViewSetting *)setting;
+- (void)updateWithSetting:(WCCircularMenuViewSetting *)setting;
 
 @end
 
