@@ -7,26 +7,32 @@
 //
 
 #import "UseIconFontInUIButtonViewController.h"
+#import "WCIconFontTool.h"
 
 @interface UseIconFontInUIButtonViewController ()
-
+@property (nonatomic, strong) UIButton *button;
+@property (nonatomic, strong) NSString *fontName;
 @end
 
 @implementation UseIconFontInUIButtonViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    NSString *fontFilePath = [[NSBundle mainBundle] pathForResource:@"app_font/iconfont" ofType:@"ttf"];
+    NSString *fontName;
+    [WCIconFontTool registerIconFontWithFilePath:fontFilePath fontName:&fontName error:nil];
+    self.fontName = fontName;
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.titleLabel.font = [UIFont fontWithName:fontName size:22];
+    [button setTitle:@"\U0000B04A" forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+//    [button sizeToFit];
+    //[button addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *settingItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.navigationItem.rightBarButtonItem = settingItem;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
