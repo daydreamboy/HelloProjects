@@ -13,14 +13,20 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WCIconFontTool : NSObject
 
+#pragma mark - Load Icon in Runtime
+
 + (BOOL)registerIconFontWithFilePath:(NSString *)filePath fontName:(NSString * _Nullable * _Nullable)fontName error:(NSError * _Nullable * _Nullable)error;
 + (BOOL)registerIconFontWithData:(NSData *)data fontName:(NSString * _Nullable * _Nullable)fontName error:(NSError * _Nullable * _Nullable)error;
 
 + (nullable UIFont *)fontWithName:(NSString *)fontName fontSize:(CGFloat)fontSize;
 
-#pragma mark -
+#pragma mark - Icon Image
 
 + (UIImage *)imageWithIconFontName:(NSString *)iconFontName text:(NSString *)text fontSize:(CGFloat)fontSize color:(UIColor *)color;
+
+#pragma mark - Icon Text
+
++ (nullable NSString *)unicodePointStringWithIconText:(NSString *)iconText;
 
 @end
 

@@ -109,6 +109,8 @@ do { \
     return [UIFont fontWithName:fontName size:fontSize];
 }
 
+#pragma mark - Icon Image
+
 + (UIImage *)imageWithIconFontName:(NSString *)iconFontName text:(NSString *)text fontSize:(CGFloat)fontSize color:(UIColor *)color {
     UILabel *label = [[UILabel alloc] init];
     label.font = [self fontWithName:iconFontName fontSize:fontSize];
@@ -122,6 +124,39 @@ do { \
     UIGraphicsEndImageContext();
     
     return image;
+}
+
+#pragma mark - Icon Text
+
++ (nullable NSString *)unicodePointStringWithIconText:(NSString *)iconText {
+    if (![iconText isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    // A -> \U00000041, so length multiply by 10
+    NSMutableString *unicodePointString = [NSMutableString stringWithCapacity:iconText.length * 10];
+    
+    [iconText enumerateSubstringsInRange:NSMakeRange(0, iconText.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+        
+        NSUInteger lengthByUnichar = [substring length];
+        
+        if (lengthByUnichar == 1) {
+            unichar buffer[2] = {0};
+            
+            [substring getBytes:buffer maxLength:sizeof(unichar) usedLength:NULL encoding:NSUTF16StringEncoding options:0 range:NSMakeRange(0, substring.length) remainingRange:NULL];
+            
+            [unicodePointString appendFormat:@"\\U%08X", buffer[0]];
+        }
+        else if (lengthByUnichar == 2) {
+            unsigned int buffer[2] = {0};
+            
+            [substring getBytes:buffer maxLength:sizeof(unsigned int) usedLength:NULL encoding:NSUTF32StringEncoding options:0 range:NSMakeRange(0, substring.length) remainingRange:NULL];
+            
+            [unicodePointString appendFormat:@"\\U%08X", buffer[0]];
+        }
+    }];
+
+    return unicodePointString;
 }
 
 @end
