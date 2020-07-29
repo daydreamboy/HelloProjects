@@ -359,6 +359,24 @@ $ xcrun simctl push <device> com.example.my-app ExamplePush.apns
 
 
 
+## 8、Xcode常用配置
+
+### （1）开启Xcode编译的耗时统计[^8]
+
+```shel
+$ defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool YES
+$ defaults read com.apple.dt.Xcode ShowBuildOperationDuration           
+1
+```
+
+设置成功后重新启动Xcode，编译过程每个操作会显示耗时时间，如下图
+
+![](images/Xcode_build_timing.png)
+
+
+
+
+
 ## Reference
 
 [^1]: https://developer.apple.com/library/content/documentation/DeveloperTools/Conceptual/DynamicLibraries/100-Articles/LoggingDynamicLoaderEvents.html
@@ -372,6 +390,8 @@ $ xcrun simctl push <device> com.example.my-app ExamplePush.apns
 [^6]:https://forums.developer.apple.com/thread/126307
 
 [^7]:https://medium.com/better-programming/how-to-send-push-notifications-to-the-ios-simulator-2988092ba931
+
+[^8]:https://chaosky.tech/2020/04/20/optimize-xcode-build-time/
 
 
 
