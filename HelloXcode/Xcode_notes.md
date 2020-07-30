@@ -375,6 +375,25 @@ $ defaults read com.apple.dt.Xcode ShowBuildOperationDuration
 
 
 
+## 9、创建常用Target
+
+### （1）iOS Resource Bundle[^9]
+
+​       在TARGETS栏中，点击左下角+号，选择macOS > Bundle，输入bundle的名字，一般以[framework/static library name]-[resource bundle]的规则来命名
+
+相关改动配置
+
+* Base SDK，选择iOS。Bundle结构会按照iOS系统的方式。
+* Product Name，换成期望的名字。默认使用Target的名字。
+* 去掉Info.plist以及相关文件夹，Info.plist File设置为空，删除Info.plist文件以及所在的文件夹
+  * 默认会生成Info.plist，这个文件不大，但是bundle多了之后，也会占用包大小，可以去掉
+
+
+
+
+
+
+
 
 
 ## Reference
@@ -392,6 +411,8 @@ $ defaults read com.apple.dt.Xcode ShowBuildOperationDuration
 [^7]:https://medium.com/better-programming/how-to-send-push-notifications-to-the-ios-simulator-2988092ba931
 
 [^8]:https://chaosky.tech/2020/04/20/optimize-xcode-build-time/
+
+[^9]:https://medium.com/@09mejohn/resource-bundles-in-ios-static-library-beba3070fafd
 
 
 
