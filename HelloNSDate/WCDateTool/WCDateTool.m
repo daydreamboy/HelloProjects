@@ -8,11 +8,6 @@
 
 #import "WCDateTool.h"
 
-// >= `8.0`
-#ifndef IOS8_OR_LATER
-#define IOS8_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"8.0" options:NSNumericSearch] != NSOrderedAscending)
-#endif
-
 @interface WCDateTool ()
 + (NSCalendar *)currentCalendar;
 @end
@@ -27,7 +22,7 @@
 
 @implementation WCDateTool
 
-#pragma mark - Get Current Date String
+#pragma mark - Date String
 
 + (nullable NSString *)stringFromCurrentDateWithFormat:(nullable NSString *)format {
     return [self stringFromDate:[NSDate date] format:format];
@@ -47,6 +42,32 @@
     sDateFormatter.dateFormat = format.length ? format : @"yyyy-MM-dd HH:mm:ss ZZ";
     
     return [sDateFormatter stringFromDate:date];
+}
+
++ (nullable NSString *)stringFromUTCDate:(NSDate *)date format:(nullable NSString *)format {
+    if (![date isKindOfClass:[NSDate class]] || (format && ![format isKindOfClass:[NSString class]])) {
+        return nil;
+    }
+    
+    static NSDateFormatter *sDateFormatter;
+    if (!sDateFormatter) {
+        sDateFormatter = [[NSDateFormatter alloc] init];
+        // @see https://stackoverflow.com/a/2615847
+        sDateFormatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    }
+    
+    sDateFormatter.dateFormat = format.length ? format : @"yyyy-MM-dd HH:mm:ss ZZ";
+    
+    return [sDateFormatter stringFromDate:date];
+}
+
+#pragma mark - Date Detection
+
++ (BOOL)checkIf24Hour {
+    NSString *format = [NSDateFormatter dateFormatFromTemplate:@"j" options:0 locale:[NSLocale currentLocale]];
+    BOOL is24Hour = ([format rangeOfString:@"a"].location == NSNotFound);
+    
+    return is24Hour;
 }
 
 #pragma mark - Date Components
@@ -135,6 +156,8 @@
 
 #pragma mark > Date components compare with now
 
+#pragma mark >> Day
+
 + (BOOL)isTheDayAfterTomorrowWithDate:(NSDate *)date {
     // @see https://github.com/erica/NSDate-Extensions/blob/master/NSDate%2BUtilities.m#L149
     NSDate *theDayAfterTomorrow = [self dateTheDayAfterTomorrow];
@@ -171,6 +194,8 @@
     
     return NO;
 }
+
+#pragma mark >> Year
 
 + (BOOL)isNextYearWithDate:(NSDate *)date {
     NSDate *nextYear = [self dateNextYear];
@@ -241,39 +266,6 @@
     
     return NSNotFound;
 }
-
-#pragma mark ::
-
-+ (NSCalendar *)currentCalendar {
-    static __strong NSCalendar *sharedCalendar = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        sharedCalendar = [NSCalendar autoupdatingCurrentCalendar];
-    });
-    
-    return sharedCalendar;
-}
-
-/**
- *  Get all compoents of NSDate
- *
- *  @sa http://stackoverflow.com/questions/25952532/weekofyear-not-working
- *  @note must pass the correct flags to the components:fromDate: method
- *
- *  @return all components of NSDate
- */
-+ (unsigned)componentFlags {
-    static unsigned componentFlags;
-    
-    if (!componentFlags) {
-        componentFlags = (NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitWeekday | NSCalendarUnitWeekdayOrdinal | NSCalendarUnitQuarter  | NSCalendarUnitWeekOfMonth | NSCalendarUnitWeekOfYear);
-    }
-    
-    return componentFlags;
-}
-
-#pragma mark ::
 
 #pragma mark > Adjust date by components
 
@@ -350,5 +342,38 @@
     NSDate *newDate = [[self currentCalendar] dateByAddingComponents:dateComponents toDate:date options:kNilOptions];
     return newDate;
 }
+
+#pragma mark ::
+
++ (NSCalendar *)currentCalendar {
+    static __strong NSCalendar *sharedCalendar = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedCalendar = [NSCalendar autoupdatingCurrentCalendar];
+    });
+    
+    return sharedCalendar;
+}
+
+/**
+ *  Get all compoents of NSDate
+ *
+ *  @sa http://stackoverflow.com/questions/25952532/weekofyear-not-working
+ *  @note must pass the correct flags to the components:fromDate: method
+ *
+ *  @return all components of NSDate
+ */
++ (unsigned)componentFlags {
+    static unsigned componentFlags;
+    
+    if (!componentFlags) {
+        componentFlags = (NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitWeekday | NSCalendarUnitWeekdayOrdinal | NSCalendarUnitQuarter  | NSCalendarUnitWeekOfMonth | NSCalendarUnitWeekOfYear);
+    }
+    
+    return componentFlags;
+}
+
+#pragma mark ::
 
 @end

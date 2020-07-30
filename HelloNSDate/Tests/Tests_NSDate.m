@@ -65,6 +65,49 @@
     XCTAssertEqualObjects(output, @"19");
 }
 
+- (void)test_dateFormat {
+    NSString *output;
+    NSDate *date = ({
+        NSDate *date;
+        NSDateFormatter *formatter = [NSDateFormatter new];
+        formatter.dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZ";
+        date = [formatter dateFromString:@"2020-07-30T15:19:27+0000"];
+        date;
+    });
+    
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    NSString *dateFormat;
+    
+    // Case 1
+    dateFormat = @"yyyy年M月d日";
+    formatter.dateFormat = dateFormat;
+    formatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    output = [formatter stringFromDate:date];
+    NSLog(@"%@", output);
+    
+    // Case 2
+    dateFormat = @"yyyy年M月d日HH:mm:ssZZ";
+    formatter.dateFormat = dateFormat;
+    formatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    output = [formatter stringFromDate:date];
+    NSLog(@"%@", output);
+    
+    // Case 3
+    dateFormat = @"HH"; // 15
+    formatter.dateFormat = dateFormat;
+    formatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    output = [formatter stringFromDate:date];
+    NSLog(@"%@", output);
+    
+    // Case 4
+    dateFormat = @"hh"; // 03
+    formatter.dateFormat = dateFormat;
+    formatter.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    output = [formatter stringFromDate:date];
+    NSLog(@"%@", output);
+    
+}
+
 - (void)test_dateFromString {
     NSString *string;
     NSDate *date;

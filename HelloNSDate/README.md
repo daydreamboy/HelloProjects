@@ -30,3 +30,14 @@ NSDate提供下面的三个方法，获取时间偏移量
 
 
 
+## 2、dateFormat
+
+[^1]
+
+
+
+
+
+## References
+
+[^1]:https://segmentfault.com/a/1190000012858385

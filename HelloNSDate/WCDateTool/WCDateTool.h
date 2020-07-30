@@ -81,7 +81,7 @@ NS_AVAILABLE_IOS(8_0)
 NS_AVAILABLE_IOS(8_0)
 @interface WCDateTool : NSObject
 
-#pragma mark - Get Date String
+#pragma mark - Date String
 
 /**
  Get the string of current date with system timezone, and custom format, e.g. 2015-10-29 00:19:46 +0000
@@ -99,6 +99,12 @@ NS_AVAILABLE_IOS(8_0)
  @return the date string
  */
 + (nullable NSString *)stringFromDate:(NSDate *)date format:(nullable NSString *)format;
+
++ (nullable NSString *)stringFromUTCDate:(NSDate *)date format:(nullable NSString *)format;
+
+#pragma mark - Date Detection
+
++ (BOOL)checkIf24Hour;
 
 #pragma mark - Date Components
 
