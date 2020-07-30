@@ -205,6 +205,186 @@
     XCTAssertTrue(isSame);
 }
 
+- (void)test_isTheDayAfterTomorrowWithDate {
+    BOOL output;
+    NSDate *now = [NSDate date];
+    NSDate *theDayAfterTomorrow = [WCDateTool dateWithDate:now offset:2 dateComponentType:WCDateComponentTypeDay];
+    
+    output = [WCDateTool isTheDayAfterTomorrowWithDate:theDayAfterTomorrow];
+    XCTAssertTrue(output);
+    
+    NSDate *tomorrow = [WCDateTool dateWithDate:now offset:1 dateComponentType:WCDateComponentTypeDay];
+    output = [WCDateTool isTheDayAfterTomorrowWithDate:tomorrow];
+    XCTAssertFalse(output);
+    
+    NSDate *today = [WCDateTool dateWithDate:now offset:0 dateComponentType:WCDateComponentTypeDay];
+    output = [WCDateTool isTheDayAfterTomorrowWithDate:today];
+    XCTAssertFalse(output);
+    
+    NSDate *yesterday = [WCDateTool dateWithDate:now offset:-1 dateComponentType:WCDateComponentTypeDay];
+    output = [WCDateTool isTheDayAfterTomorrowWithDate:yesterday];
+    XCTAssertFalse(output);
+    
+    NSDate *theDayBeforeYesterday = [WCDateTool dateWithDate:now offset:-2 dateComponentType:WCDateComponentTypeDay];
+    output = [WCDateTool isTheDayAfterTomorrowWithDate:theDayBeforeYesterday];
+    XCTAssertFalse(output);
+    
+    NSDate *theDayAfterTomorrowInNextYear = [WCDateTool dateWithDate:theDayAfterTomorrow offset:1 dateComponentType:WCDateComponentTypeYear];
+    output = [WCDateTool isTheDayAfterTomorrowWithDate:theDayAfterTomorrowInNextYear];
+    XCTAssertFalse(output);
+}
+
+- (void)test_isTomorrowWithDate {
+    BOOL output;
+    NSDate *now = [NSDate date];
+    NSDate *tomorrow = [WCDateTool dateWithDate:now offset:1 dateComponentType:WCDateComponentTypeDay];
+    
+    output = [WCDateTool isTomorrowWithDate:tomorrow];
+    XCTAssertTrue(output);
+    
+    NSDate *theDayAfterTomorrow = [WCDateTool dateWithDate:now offset:2 dateComponentType:WCDateComponentTypeDay];
+    output = [WCDateTool isTomorrowWithDate:theDayAfterTomorrow];
+    XCTAssertFalse(output);
+    
+    NSDate *today = [WCDateTool dateWithDate:now offset:0 dateComponentType:WCDateComponentTypeDay];
+    output = [WCDateTool isTomorrowWithDate:today];
+    XCTAssertFalse(output);
+    
+    NSDate *yesterday = [WCDateTool dateWithDate:now offset:-1 dateComponentType:WCDateComponentTypeDay];
+    output = [WCDateTool isTomorrowWithDate:yesterday];
+    XCTAssertFalse(output);
+    
+    NSDate *theDayBeforeYesterday = [WCDateTool dateWithDate:now offset:-2 dateComponentType:WCDateComponentTypeDay];
+    output = [WCDateTool isTomorrowWithDate:theDayBeforeYesterday];
+    XCTAssertFalse(output);
+    
+    NSDate *tomorrowInNextYear = [WCDateTool dateWithDate:tomorrow offset:1 dateComponentType:WCDateComponentTypeYear];
+    output = [WCDateTool isTomorrowWithDate:tomorrowInNextYear];
+    XCTAssertFalse(output);
+}
+
+- (void)test_isTodayWithDate {
+    BOOL output;
+    NSDate *now = [NSDate date];
+    NSDate *today = [WCDateTool dateWithDate:now offset:0 dateComponentType:WCDateComponentTypeDay];
+    
+    output = [WCDateTool isTodayWithDate:today];
+    XCTAssertTrue(output);
+    
+    NSDate *theDayAfterTomorrow = [WCDateTool dateWithDate:now offset:2 dateComponentType:WCDateComponentTypeDay];
+    output = [WCDateTool isTodayWithDate:theDayAfterTomorrow];
+    XCTAssertFalse(output);
+    
+    NSDate *tomorrow = [WCDateTool dateWithDate:now offset:1 dateComponentType:WCDateComponentTypeDay];
+    output = [WCDateTool isTodayWithDate:tomorrow];
+    XCTAssertFalse(output);
+    
+    NSDate *yesterday = [WCDateTool dateWithDate:now offset:-1 dateComponentType:WCDateComponentTypeDay];
+    output = [WCDateTool isTodayWithDate:yesterday];
+    XCTAssertFalse(output);
+    
+    NSDate *theDayBeforeYesterday = [WCDateTool dateWithDate:now offset:-2 dateComponentType:WCDateComponentTypeDay];
+    output = [WCDateTool isTodayWithDate:theDayBeforeYesterday];
+    XCTAssertFalse(output);
+    
+    NSDate *todayInNextYear = [WCDateTool dateWithDate:today offset:1 dateComponentType:WCDateComponentTypeYear];
+    output = [WCDateTool isTodayWithDate:todayInNextYear];
+    XCTAssertFalse(output);
+}
+
+- (void)test_isYesterdayWithDate {
+    BOOL output;
+    NSDate *now = [NSDate date];
+    NSDate *yesterday = [WCDateTool dateWithDate:now offset:-1 dateComponentType:WCDateComponentTypeDay];
+    
+    output = [WCDateTool isYesterdayWithDate:yesterday];
+    XCTAssertTrue(output);
+    
+    NSDate *theDayAfterTomorrow = [WCDateTool dateWithDate:now offset:2 dateComponentType:WCDateComponentTypeDay];
+    output = [WCDateTool isYesterdayWithDate:theDayAfterTomorrow];
+    XCTAssertFalse(output);
+    
+    NSDate *tomorrow = [WCDateTool dateWithDate:now offset:1 dateComponentType:WCDateComponentTypeDay];
+    output = [WCDateTool isYesterdayWithDate:tomorrow];
+    XCTAssertFalse(output);
+    
+    NSDate *today = [WCDateTool dateWithDate:now offset:0 dateComponentType:WCDateComponentTypeDay];
+    output = [WCDateTool isYesterdayWithDate:today];
+    XCTAssertFalse(output);
+    
+    NSDate *theDayBeforeYesterday = [WCDateTool dateWithDate:now offset:-2 dateComponentType:WCDateComponentTypeDay];
+    output = [WCDateTool isYesterdayWithDate:theDayBeforeYesterday];
+    XCTAssertFalse(output);
+    
+    NSDate *theDayAfterTomorrowInNextYear = [WCDateTool dateWithDate:theDayAfterTomorrow offset:1 dateComponentType:WCDateComponentTypeYear];
+    output = [WCDateTool isYesterdayWithDate:theDayAfterTomorrowInNextYear];
+    XCTAssertFalse(output);
+}
+
+- (void)test_isTheDayBeforeYesterdayWithDate {
+    BOOL output;
+    NSDate *now = [NSDate date];
+    NSDate *theDayBeforeYesterday = [WCDateTool dateWithDate:now offset:-2 dateComponentType:WCDateComponentTypeDay];
+    
+    output = [WCDateTool isTheDayBeforeYesterdayWithDate:theDayBeforeYesterday];
+    XCTAssertTrue(output);
+}
+
+- (void)test_isNextYearWithDate {
+    BOOL output;
+    NSDate *now = [NSDate date];
+    NSDate *nextYear = [WCDateTool dateWithDate:now offset:1 dateComponentType:WCDateComponentTypeYear];
+    
+    output = [WCDateTool isNextYearWithDate:nextYear];
+    XCTAssertTrue(output);
+    
+    NSDate *thisYear = [WCDateTool dateWithDate:now offset:0 dateComponentType:WCDateComponentTypeYear];
+    output = [WCDateTool isNextYearWithDate:thisYear];
+    XCTAssertFalse(output);
+    
+    NSDate *lastYear = [WCDateTool dateWithDate:now offset:-1 dateComponentType:WCDateComponentTypeYear];
+    output = [WCDateTool isNextYearWithDate:lastYear];
+    XCTAssertFalse(output);
+}
+
+- (void)test_isThisYearWithDate {
+    BOOL output;
+    NSDate *now = [NSDate date];
+    NSDate *thisYear = [WCDateTool dateWithDate:now offset:0 dateComponentType:WCDateComponentTypeYear];
+    
+    output = [WCDateTool isThisYearWithDate:thisYear];
+    XCTAssertTrue(output);
+    
+    NSDate *nextYear = [WCDateTool dateWithDate:now offset:1 dateComponentType:WCDateComponentTypeYear];
+    output = [WCDateTool isThisYearWithDate:nextYear];
+    XCTAssertFalse(output);
+    
+    NSDate *lastYear = [WCDateTool dateWithDate:now offset:-1 dateComponentType:WCDateComponentTypeYear];
+    output = [WCDateTool isThisYearWithDate:lastYear];
+    XCTAssertFalse(output);
+}
+
+- (void)test_isLastYearWithDate {
+    BOOL output;
+    NSDate *now = [NSDate date];
+    NSDate *lastYear = [WCDateTool dateWithDate:now offset:-1 dateComponentType:WCDateComponentTypeYear];
+    
+    output = [WCDateTool isLastYearWithDate:lastYear];
+    XCTAssertTrue(output);
+    
+    NSDate *thisYear = [WCDateTool dateWithDate:now offset:0 dateComponentType:WCDateComponentTypeYear];
+    output = [WCDateTool isLastYearWithDate:thisYear];
+    XCTAssertFalse(output);
+    
+    NSDate *nextYear = [WCDateTool dateWithDate:now offset:1 dateComponentType:WCDateComponentTypeYear];
+    output = [WCDateTool isLastYearWithDate:nextYear];
+    XCTAssertFalse(output);
+}
+
+- (void)test_offsetByNowWithDate_dateComponentType {
+    
+}
+
 #pragma mark - Adjust Date
 
 - (void)test_dateWithDate_offset_dateComponentType {

@@ -65,4 +65,26 @@
     XCTAssertEqualObjects(output, @"19");
 }
 
+- (void)test_dateFromString {
+    NSString *string;
+    NSDate *date;
+    NSString *output;
+    NSString *dateFormat = @"yyyy-MM-dd'T'HH:mm:ssZZ";
+    
+    string = @"2020-07-30T15:19:27+0000";
+    NSDateFormatter *formatter = [NSDateFormatter new];
+    formatter.dateFormat = dateFormat;
+    date = [formatter dateFromString:string];
+    
+    // Case 1
+    dateFormat = @"MMMd, h:mm a";
+    
+    // @see https://segmentfault.com/a/1190000012858385
+    NSLocale *locale = [NSLocale localeWithLocaleIdentifier:@"zh_CN"];
+    formatter.locale = locale;
+    formatter.dateFormat = dateFormat;
+    output = [formatter stringFromDate:date];
+    NSLog(@"%@", output);
+}
+
 @end

@@ -8,6 +8,11 @@
 
 #import "WCDateTool.h"
 
+// >= `8.0`
+#ifndef IOS8_OR_LATER
+#define IOS8_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"8.0" options:NSNumericSearch] != NSOrderedAscending)
+#endif
+
 @interface WCDateTool ()
 + (NSCalendar *)currentCalendar;
 @end
@@ -63,6 +68,7 @@
     newComponents.date = date;
     newComponents.components = components;
     
+    newComponents.era = components.era;
     newComponents.year = components.year;
     newComponents.month = components.month;
     newComponents.weekOfYear = components.weekOfYear;
@@ -127,6 +133,115 @@
     return [[self currentCalendar] isDate:date equalToDate:anotherDate toUnitGranularity:unit];
 }
 
+#pragma mark > Date components compare with now
+
++ (BOOL)isTheDayAfterTomorrowWithDate:(NSDate *)date {
+    // @see https://github.com/erica/NSDate-Extensions/blob/master/NSDate%2BUtilities.m#L149
+    NSDate *theDayAfterTomorrow = [self dateTheDayAfterTomorrow];
+    WCDateComponents *components1 = [self dateComponentsWithDate:theDayAfterTomorrow];
+    WCDateComponents *components2 = [self dateComponentsWithDate:date];
+    
+    if (components1.era == components2.era && components1.year == components2.year && components1.month == components2.month && components1.day == components2.day) {
+        return YES;
+    }
+    
+    return NO;
+}
+
++ (BOOL)isTomorrowWithDate:(NSDate *)date {
+    return [[self currentCalendar] isDateInTomorrow:date];
+}
+
++ (BOOL)isTodayWithDate:(NSDate *)date {
+    return [[self currentCalendar] isDateInToday:date];
+}
+
++ (BOOL)isYesterdayWithDate:(NSDate *)date {
+    return [[self currentCalendar] isDateInYesterday:date];
+}
+
++ (BOOL)isTheDayBeforeYesterdayWithDate:(NSDate *)date {
+    NSDate *theDayBeforeYesterday = [self dateTheDayBeforeYesterday];
+    WCDateComponents *components1 = [self dateComponentsWithDate:theDayBeforeYesterday];
+    WCDateComponents *components2 = [self dateComponentsWithDate:date];
+    
+    if (components1.era == components2.era && components1.year == components2.year && components1.month == components2.month && components1.day == components2.day) {
+        return YES;
+    }
+    
+    return NO;
+}
+
++ (BOOL)isNextYearWithDate:(NSDate *)date {
+    NSDate *nextYear = [self dateNextYear];
+    WCDateComponents *components1 = [self dateComponentsWithDate:nextYear];
+    WCDateComponents *components2 = [self dateComponentsWithDate:date];
+    
+    if (components1.era == components2.era && components1.year == components2.year) {
+        return YES;
+    }
+    
+    return NO;
+}
+
++ (BOOL)isThisYearWithDate:(NSDate *)date {
+    NSDate *thisYear = [NSDate date];
+    WCDateComponents *components1 = [self dateComponentsWithDate:thisYear];
+    WCDateComponents *components2 = [self dateComponentsWithDate:date];
+    
+    if (components1.era == components2.era && components1.year == components2.year) {
+        return YES;
+    }
+    
+    return NO;
+}
+
++ (BOOL)isLastYearWithDate:(NSDate *)date {
+    NSDate *lastYear = [self dateLastYear];
+    WCDateComponents *components1 = [self dateComponentsWithDate:lastYear];
+    WCDateComponents *components2 = [self dateComponentsWithDate:date];
+    
+    if (components1.era == components2.era && components1.year == components2.year) {
+        return YES;
+    }
+    
+    return NO;
+}
+
++ (NSInteger)offsetByNowWithDate:(NSDate *)date dateComponentType:(WCDateComponentType)dateComponentType {
+    if (![date isKindOfClass:[NSDate class]]) {
+        return NSNotFound;
+    }
+    
+    NSDate *now = [NSDate date];
+    
+    NSDateComponents *components = [[self currentCalendar] components:(NSCalendarUnit)dateComponentType fromDate:now toDate:date options:kNilOptions];
+    switch (dateComponentType) {
+        case WCDateComponentTypeYear:
+            return components.year;
+        case WCDateComponentTypeMonth:
+            return components.month;
+        case WCDateComponentTypeDay:
+            return components.day;
+        case WCDateComponentTypeHour:
+            return components.hour;
+        case WCDateComponentTypeMinute:
+            return components.minute;
+        case WCDateComponentTypeSecond:
+            return components.second;
+        case WCDateComponentTypeWeekday:
+            return components.weekday;
+        case WCDateComponentTypeWeekOfMonth:
+            return components.weekOfMonth;
+        case WCDateComponentTypeWeekOfYear:
+            return components.weekOfYear;
+        default:
+            break;
+    }
+    
+    return NSNotFound;
+}
+
 #pragma mark ::
 
 + (NSCalendar *)currentCalendar {
@@ -162,10 +277,45 @@
 
 #pragma mark > Adjust date by components
 
+#pragma mark >> Day
+
++ (NSDate *)dateTheDayAfterTomorrow {
+    return [self dateWithDate:[NSDate date] offset:2 dateComponentType:WCDateComponentTypeDay];
+}
+
++ (NSDate *)dateTomorrow {
+    return [self dateWithDate:[NSDate date] offset:1 dateComponentType:WCDateComponentTypeDay];
+}
+
++ (NSDate *)dateToday {
+    return [self dateWithDate:[NSDate date] offset:0 dateComponentType:WCDateComponentTypeDay];
+}
+
++ (NSDate *)dateYesterday {
+    return [self dateWithDate:[NSDate date] offset:-1 dateComponentType:WCDateComponentTypeDay];
+}
+
++ (NSDate *)dateTheDayBeforeYesterday {
+    return [self dateWithDate:[NSDate date] offset:-2 dateComponentType:WCDateComponentTypeDay];
+}
+
+#pragma mark >> Year
+
++ (NSDate *)dateNextYear {
+    return [self dateWithDate:[NSDate date] offset:1 dateComponentType:WCDateComponentTypeYear];
+}
+
++ (NSDate *)dateLastYear {
+    return [self dateWithDate:[NSDate date] offset:-1 dateComponentType:WCDateComponentTypeYear];
+}
+
 + (nullable NSDate *)dateWithDate:(NSDate *)date offset:(NSInteger)offset dateComponentType:(WCDateComponentType)dateComponentType {
     NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
     
     switch (dateComponentType) {
+        case WCDateComponentTypeEra:
+            dateComponents.era = offset;
+            break;
         case WCDateComponentTypeYear:
             dateComponents.year = offset;
             break;

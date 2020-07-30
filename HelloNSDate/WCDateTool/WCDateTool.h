@@ -11,19 +11,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, WCDateComponentType) {
-    WCDateComponentTypeYear,
-    WCDateComponentTypeMonth,
-    WCDateComponentTypeDay,
-    WCDateComponentTypeHour,
-    WCDateComponentTypeMinute,
-    WCDateComponentTypeSecond,
+typedef NS_OPTIONS(NSUInteger, WCDateComponentType) {
+    WCDateComponentTypeEra = NSCalendarUnitEra,
+    WCDateComponentTypeYear = NSCalendarUnitYear,
+    WCDateComponentTypeMonth = NSCalendarUnitMonth,
+    WCDateComponentTypeDay = NSCalendarUnitDay,
+    WCDateComponentTypeHour = NSCalendarUnitHour,
+    WCDateComponentTypeMinute = NSCalendarUnitMinute,
+    WCDateComponentTypeSecond = NSCalendarUnitSecond,
     /*! The nth day in the week */
-    WCDateComponentTypeWeekday,
+    WCDateComponentTypeWeekday = NSCalendarUnitWeekday,
     /*! The nth week in the month */
-    WCDateComponentTypeWeekOfMonth,
+    WCDateComponentTypeWeekOfMonth = NSCalendarUnitWeekOfMonth,
     /*! The nth week in the year */
-    WCDateComponentTypeWeekOfYear,
+    WCDateComponentTypeWeekOfYear = NSCalendarUnitWeekOfYear,
 };
 
 typedef NS_ENUM(NSUInteger, WCWeekday) {
@@ -47,6 +48,7 @@ NS_AVAILABLE_IOS(8_0)
  */
 @property (nonatomic, strong, readonly) NSDate *date;
 
+@property (nonatomic, assign) NSInteger era;
 @property (nonatomic, assign) NSInteger year;
 @property (nonatomic, assign) NSInteger month;
 @property (nonatomic, assign) NSInteger day;
@@ -122,7 +124,34 @@ NS_AVAILABLE_IOS(8_0)
  */
 + (BOOL)sameDateComponentWithDate:(NSDate *)date anotherDate:(NSDate *)anotherDate dateComponentType:(WCDateComponentType)dateComponentType;
 
+#pragma mark > Date components compare with now
+
++ (BOOL)isTheDayAfterTomorrowWithDate:(NSDate *)date;
++ (BOOL)isTomorrowWithDate:(NSDate *)date;
++ (BOOL)isTodayWithDate:(NSDate *)date;
++ (BOOL)isYesterdayWithDate:(NSDate *)date;
++ (BOOL)isTheDayBeforeYesterdayWithDate:(NSDate *)date;
+
++ (BOOL)isNextYearWithDate:(NSDate *)date;
++ (BOOL)isThisYearWithDate:(NSDate *)date;
++ (BOOL)isLastYearWithDate:(NSDate *)date;
+
++ (NSInteger)offsetByNowWithDate:(NSDate *)date dateComponentType:(WCDateComponentType)dateComponentType;
+
 #pragma mark > Adjust date by components
+
+#pragma mark >> Day
+
++ (NSDate *)dateTheDayAfterTomorrow;
++ (NSDate *)dateTomorrow;
++ (NSDate *)dateToday;
++ (NSDate *)dateYesterday;
++ (NSDate *)dateTheDayBeforeYesterday;
+
+#pragma mark >> Year
+
++ (NSDate *)dateNextYear;
++ (NSDate *)dateLastYear;
 
 /**
  Get a new date by modifying the date components
