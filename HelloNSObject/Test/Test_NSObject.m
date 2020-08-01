@@ -105,15 +105,125 @@
     XCTAssertEqualObjects(address, hash);
 }
 
-- (void)test_NSValue {
+#pragma mark - performSelector issue
+
+#pragma mark > Callee with primitive parameter
+
+- (void)test_performSelector_NSValue {
     [self performSelector:@selector(setSize:) withObject:[NSValue valueWithCGSize:CGSizeMake(100, 200)]];
 }
 
-#pragma mark -
+#pragma mark > Leak returned object
+
+- (void)test_performSelector_leak1 {
+    __weak NSObject *returnedObject;
+    {
+        returnedObject = [self performSelector:NSSelectorFromString(@"initWithReturnObject")];
+    }
+    
+    if (returnedObject) {
+        NSLog(@"%@ is leaked", returnedObject); // This will print
+    }
+    else {
+        NSLog(@"The object is released");
+    }
+}
+
+- (void)test_performSelector_leak2 {
+    __weak NSObject *returnedObject;
+    {
+        returnedObject = [self performSelector:NSSelectorFromString(@"callWithReturnObject")];
+    }
+    
+    if (returnedObject) {
+        NSLog(@"%@ is leaked", returnedObject); // This will print
+    }
+    else {
+        NSLog(@"The object is released");
+    }
+}
+
+- (void)test_performSelector_leak1_autoreleasepool {
+    __weak NSObject *returnedObject;
+    @autoreleasepool {
+        returnedObject = [self performSelector:NSSelectorFromString(@"initWithReturnObject")];
+    }
+    
+    if (returnedObject) {
+        NSLog(@"%@ is leaked", returnedObject); // This will print
+    }
+    else {
+        NSLog(@"The object is released");
+    }
+}
+
+- (void)test_performSelector_leak2_autoreleasepool {
+    __weak NSObject *returnedObject;
+    @autoreleasepool {
+        returnedObject = [self performSelector:NSSelectorFromString(@"callWithReturnObject")];
+    }
+    
+    if (returnedObject) {
+        NSLog(@"%@ is leaked", returnedObject);
+    }
+    else {
+        NSLog(@"The object is released"); // This will print
+    }
+}
+
+- (void)test_call_initMethod_without_performSelector {
+    __weak NSObject *returnedObject;
+    {
+        returnedObject = [self initWithReturnObject];
+    }
+    
+    if (returnedObject) {
+        NSLog(@"%@ is leaked", returnedObject);
+    }
+    else {
+        NSLog(@"The object is released"); // This will print
+    }
+}
+
+- (void)test_call_nonInitMethod_without_performSelector {
+    __weak NSObject *returnedObject;
+    @autoreleasepool {
+        returnedObject = [self callWithReturnObject];
+    }
+    
+    if (returnedObject) {
+        NSLog(@"%@ is leaked", returnedObject); // This will print
+    }
+    else {
+        NSLog(@"The object is released");
+    }
+}
+
+- (void)test_call{
+    [self callWithReturnObject];
+    NSLog(@"The object is released");
+    // (lldb) po 0xZZZZZZ, will find the object is still alive
+}
+
+#pragma mark - Callee
 
 - (void)setSize:(CGSize)size {
     NSLog(@"%@", NSStringFromCGSize(size));
     XCTAssertNotEqualObjects(NSStringFromCGSize(size), @"{100, 200}");
+}
+
+- (id)initWithReturnObject {
+    NSObject *object = [[NSObject alloc] init];
+    NSLog(@"%@", object);
+    
+    return object;
+}
+
+- (id)callWithReturnObject {
+    NSObject *object = [[NSObject alloc] init];
+    NSLog(@"%@", object);
+    
+    return object;
 }
 
 @end

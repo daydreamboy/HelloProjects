@@ -571,6 +571,255 @@ objc[49305]: Cannot form weak reference to instance (0x600000e0c340) of class My
 
 
 
+### （3）performSelector不支持基本类型参数
+
+​        performSelector带参数的方法，不支持基本类型参数，即基本类型用NSValue封装，也不支持调用有基本类型参数的方法。举个例子，如下
+
+```objective-c
+- (void)test_performSelector_NSValue {
+    [self performSelector:@selector(setSize:) withObject:[NSValue valueWithCGSize:CGSizeMake(100, 200)]];
+}
+
+- (void)setSize:(CGSize)size {
+    NSLog(@"%@", NSStringFromCGSize(size));
+    XCTAssertNotEqualObjects(NSStringFromCGSize(size), @"{100, 200}");
+}
+```
+
+这里setSize:方法将接收到错误的CGSize值
+
+
+
+### （4）performSelector内存泄漏问题
+
+​       performSelector方法中selector参数，如果使用NSSelectorFromString，而不是@selector，会产生一个Warning，“PerformSelector may cause a leak because its selector is unknown”。
+
+> 使用@selector就不会有这个警告
+
+​       SO有人[^8]分析了产生这个Warning的原因。performSelector方法在ARC之前就已经存在，当应用ARC时，由于NSSelectorFromString使用字符串，而不是@selector，编译器无法判断返回值的类型，因此如果返回值是对象有可能存在内存泄漏的问题。
+
+注意
+
+> Warning中说的可能的内存泄漏是指返回值，而不是performSelector方法的参数。
+
+先说说如何消除这个Warning的方法，首先不是用下面预编译指令来抑制Warning
+
+```objective-c
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Warc-performSelector-leaks"
+        <#suppressed method#>
+#pragma GCC diagnostic pop
+```
+
+这样只是消除了Warning，但实际上可能存在内存泄漏。
+
+有两种方式来替换performSelector方法的使用
+
+* NSInvocation
+* 调用函数指针
+
+这里以函数指针为例，给出示例代码，如下
+
+```objective-c
+SEL selector = NSSelectorFromString(@"someMethod");
+IMP imp = [_controller methodForSelector:selector];
+void (*func)(id, SEL) = (void *)imp;
+func(_controller, selector);
+```
+
+
+
+再说说什么情况下，performSelector方法会产生内存泄漏。
+
+在ARC下，编译器会考虑方法的返回值有4种情况
+
+* 返回值是非对象类型，例如void、int等
+* 调用者retain返回的对象，然后在不使用该对象时release它（标准的假设）
+* 如果是init/copy等family方法，调用者不retain返回的对象，在不使用该对象时release它
+* 不做任何retain和release操作，并且调用者假设返回的对象，是在最内层的autorelease pool中，当autorelease pool清理对象时，该对象自动会被release
+
+
+
+原文如下
+
+> There are really only 4 things that ARC would consider for the return value:
+>
+> 1. Ignore non-object types (`void`, `int`, etc)
+> 2. Retain object value, then release when it is no longer used (standard assumption)
+> 3. Release new object values when no longer used (methods in the `init`/ `copy` family or attributed with `ns_returns_retained`)
+> 4. Do nothing & assume returned object value will be valid in local scope (until inner most release pool is drained, attributed with `ns_returns_autoreleased`)
+
+
+
+当调用performSelector方法，编译器会按照第4种情况来处理，原文没有提到这个，但是翻译后简书[^9]提到这一点。如果performSelector方法调用者，不做任何retain和release操作，那么被调用的方法属于2和3的情况，则会存在内存泄漏。
+
+先验证init方法和non-init方法的retain情况，即上面3和4点。
+
+```objective-c
+- (void)test_call_initMethod_without_performSelector {
+    __weak NSObject *returnedObject;
+    {
+        returnedObject = [self initWithReturnObject];
+    }
+    
+    if (returnedObject) {
+        NSLog(@"%@ is leaked", returnedObject);
+    }
+    else {
+        NSLog(@"The object is released"); // This will print
+    }
+}
+
+- (void)test_call_nonInitMethod_without_performSelector {
+    __weak NSObject *returnedObject;
+    {
+        returnedObject = [self callWithReturnObject];
+    }
+    
+    if (returnedObject) {
+        NSLog(@"%@ is leaked", returnedObject); // This will print
+    }
+    else {
+        NSLog(@"The object is released");
+    }
+}
+
+- (id)initWithReturnObject {
+    NSObject *object = [[NSObject alloc] init];
+    NSLog(@"%@", object);
+    
+    return object;
+}
+
+- (id)callWithReturnObject {
+    NSObject *object = [[NSObject alloc] init];
+    NSLog(@"%@", object);
+    
+    return object;
+}
+```
+
+​         可以看出对于init方法，调用者不会retain而且在不使用对象会release对象。但是为什么返回的对象能被正确释放，在于init/copy等方法，被编译器隐式标记为`__attribute__((ns_returns_retained))`，init/copy等方法自身会retain一次返回的对象。
+
+clang文档描述[^10]，如下
+
+> Methods in the `alloc`, `copy`, `init`, `mutableCopy`, and `new` [families](http://clang.llvm.org/docs/AutomaticReferenceCounting.html#arc-method-families) are implicitly marked `__attribute__((ns_returns_retained))`. This may be suppressed by explicitly marking the method `__attribute__((ns_returns_not_retained))`.
+
+
+
+而对于non-init方法，调用者会retain返回的对象，而且在不使用对象会release对象。但是上面代码却表示返回的对象没有释放，可能在于non-init方法自身将返回的对象retain或者标记为autorelease。为了验证这一点，将test_call_nonInitMethod_without_performSelector方法换成下面的代码，如下
+
+```objective-c
+- (void)test_call_nonInitMethod_without_performSelector {
+    __weak NSObject *returnedObject;
+    @autoreleasepool {
+        returnedObject = [self callWithReturnObject];
+    }
+    
+    if (returnedObject) {
+        NSLog(@"%@ is leaked", returnedObject);
+    }
+    else {
+        NSLog(@"The object is released"); // This will print
+    }
+}
+
+- (id)callWithReturnObject {
+    NSObject *object = [[NSObject alloc] init];
+    NSLog(@"%@", object);
+    
+    return object;
+}
+```
+
+这次发现返回的对象（returnedObject）被释放掉了。
+
+
+
+回到验证performSelector方法的内存泄漏，可以看出performSelector方法调用non-init方法，效果和直接调用non-init方法是一样的，即对象不会立马释放，但是加了@autoreleasepool，都会释放，符合预期。代码如下
+
+```objective-c
+- (void)test_performSelector_leak2 {
+    __weak NSObject *returnedObject;
+    {
+        returnedObject = [self performSelector:NSSelectorFromString(@"callWithReturnObject")];
+    }
+    
+    if (returnedObject) {
+        NSLog(@"%@ is leaked", returnedObject); // This will print
+    }
+    else {
+        NSLog(@"The object is released");
+    }
+}
+
+- (void)test_performSelector_leak2_autoreleasepool {
+    __weak NSObject *returnedObject;
+    @autoreleasepool {
+        returnedObject = [self performSelector:NSSelectorFromString(@"callWithReturnObject")];
+    }
+    
+    if (returnedObject) {
+        NSLog(@"%@ is leaked", returnedObject);
+    }
+    else {
+        NSLog(@"The object is released"); // This will print
+    }
+}
+
+- (id)callWithReturnObject {
+    NSObject *object = [[NSObject alloc] init];
+    NSLog(@"%@", object);
+    
+    return object;
+}
+```
+
+但是换成init方法，不管performSelector方法是否添加@autoreleasepool，返回的对象都不会释放，代码如下
+
+```objective-c
+- (void)test_performSelector_leak1 {
+    __weak NSObject *returnedObject;
+    {
+        returnedObject = [self performSelector:NSSelectorFromString(@"initWithReturnObject")];
+    }
+    
+    if (returnedObject) {
+        NSLog(@"%@ is leaked", returnedObject); // This will print
+    }
+    else {
+        NSLog(@"The object is released");
+    }
+}
+
+- (void)test_performSelector_leak1_autoreleasepool {
+    __weak NSObject *returnedObject;
+    @autoreleasepool {
+        returnedObject = [self performSelector:NSSelectorFromString(@"initWithReturnObject")];
+    }
+    
+    if (returnedObject) {
+        NSLog(@"%@ is leaked", returnedObject); // This will print
+    }
+    else {
+        NSLog(@"The object is released");
+    }
+}
+
+- (id)initWithReturnObject {
+    NSObject *object = [[NSObject alloc] init];
+    NSLog(@"%@", object);
+    
+    return object;
+}
+```
+
+
+
+​       总结一下，performSelector方法在调用init等family方法时存在内存泄漏的问题，需要避免使用performSelector的方式。
+
+
+
 ## References
 
 [^1]:<https://nshipster.com/object-subscripting/>
@@ -584,6 +833,10 @@ objc[49305]: Cannot form weak reference to instance (0x600000e0c340) of class My
 [^6]: [http://clang.llvm.org/docs/AutomaticReferenceCounting.html#semantics-of-init](http://clang.llvm.org/docs/AutomaticReferenceCounting.html#semantics-of-init)
 
 [^7]:https://stackoverflow.com/questions/1241575/what-is-the-nsobject-isequal-and-hash-default-function
+
+[^8]:https://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown
+[^9]:https://www.jianshu.com/p/6517ab655be7
+[^10]:http://clang.llvm.org/docs/AutomaticReferenceCounting.html#retained-return-values
 
 
 
