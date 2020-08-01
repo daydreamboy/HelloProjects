@@ -309,7 +309,6 @@
 		2B718B431A739C5E00C0BF2A = {
 			isa = PBXGroup;
 			children = (
-				4FB4D231249FAFF400FB94B1 /* WCViewTool */,
 				4FB4D227249FAEDA00FB94B1 /* WCResizableImageLayer */,
 				4FE8C1EB249767A2000497F6 /* WCCoreAnimationTool */,
 				2B718B4E1A739C5E00C0BF2A /* HelloCoreAnimation */,
@@ -493,6 +492,7 @@
 		4F0F1DF024964D710034AAE9 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				4FB4D231249FAFF400FB94B1 /* WCViewTool */,
 				4FB4D20D249FADA700FB94B1 /* WCImageTool.h */,
 				4FB4D20C249FADA700FB94B1 /* WCImageTool.m */,
 				4F0F1DF124964D850034AAE9 /* WCMacroTool.h */,
