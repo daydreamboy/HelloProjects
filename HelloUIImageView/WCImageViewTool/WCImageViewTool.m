@@ -9,11 +9,12 @@
 
 @implementation WCImageViewTool
 
-+ (void)setImageView:(UIImageView *)imageView shadowBorderColor:(UIColor *)shadowBorderColor shadowBorderWidth:(CGFloat)shadowBorderWidth {
-    
-    if (!imageView.image) {
-        NSLog(@"%@'s image is nil", self);
-        return;
++ (BOOL)setImageView:(UIImageView *)imageView shadowBorderColor:(UIColor *)shadowBorderColor shadowBorderWidth:(CGFloat)shadowBorderWidth {
+    if (![imageView isKindOfClass:[UIImageView class]] ||
+        ![imageView.image isKindOfClass:[UIImage class]] ||
+        ![shadowBorderColor isKindOfClass:[UIColor class]] ||
+        shadowBorderWidth <= 0.0) {
+        return NO;
     }
     
     CALayer *borderLayer = [CALayer layer];
@@ -26,9 +27,17 @@
     borderLayer.shadowRadius = shadowBorderWidth;
     
     [imageView.layer addSublayer:borderLayer];
+    
+    return YES;
 }
 
-+ (void)setImageView:(UIImageView *)imageView maskImage:(UIImage *)maskImage contentImage:(UIImage *)contentImage capInsets:(UIEdgeInsets)capInsets {
++ (BOOL)setImageView:(UIImageView *)imageView maskImage:(UIImage *)maskImage contentImage:(UIImage *)contentImage capInsets:(UIEdgeInsets)capInsets {
+    if (![imageView isKindOfClass:[UIImageView class]] ||
+        ![maskImage isKindOfClass:[UIImage class]] ||
+        ![contentImage isKindOfClass:[UIImage class]]) {
+        return NO;
+    }
+    
     CGSize imageViewSize = imageView.bounds.size;
     
     UIImage *finalMaskImage = maskImage;
@@ -57,6 +66,8 @@
     imageView.layer.mask = maskLayer;
     imageView.layer.masksToBounds = YES;
     imageView.image = contentImage;
+    
+    return YES;
 }
 
 @end
