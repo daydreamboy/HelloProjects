@@ -12,8 +12,11 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *listArr;
 @property (nonatomic, strong) UIView *stickyView1;
+@property (nonatomic, strong) UIView *stickyView2;
 @property (nonatomic, assign) CGFloat headerViewInitialY;
+@property (nonatomic, assign) CGFloat headerViewInitialY2;
 @property (nonatomic, assign) CGFloat headerViewFixedY;
+@property (nonatomic, assign) CGFloat headerViewFixedY2;
 @end
 
 @implementation StickyViewInScrollViewViewController
@@ -23,13 +26,16 @@ static NSString *sCellIdentifier = @"UITableViewCell_sCellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.headerViewInitialY = 100;
+    self.headerViewInitialY = -200;
+    self.headerViewInitialY2 = -100;
     
-    self.headerViewFixedY = 30;
+    self.headerViewFixedY = 0;
+    self.headerViewFixedY2 = 0;//100;
     
     [self.view addSubview:self.tableView];
     
     [self.tableView addSubview:self.stickyView1];
+    [self.tableView addSubview:self.stickyView2];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -38,24 +44,47 @@ static NSString *sCellIdentifier = @"UITableViewCell_sCellIdentifier";
     CGFloat startY = CGRectGetMaxY(self.navigationController.navigationBar.frame);
     self.tableView.frame = CGRectMake(0, startY, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - startY);
         
-    CGRect headerFrame = self.stickyView1.frame;
-    headerFrame.origin.y = self.headerViewInitialY;
-    self.stickyView1.frame = headerFrame;
+    self.stickyView1.frame = ({
+        CGRect headerFrame = self.stickyView1.frame;
+        headerFrame.origin.y = self.headerViewInitialY;
+        headerFrame;
+    });
+    
+    self.stickyView2.frame = ({
+        CGRect headerFrame = self.stickyView2.frame;
+        headerFrame.origin.y = self.headerViewInitialY2;
+        headerFrame;
+    });
+    
+    self.tableView.contentOffset = CGPointMake(0, -200);
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+//    self.stickyView1.frame = ({
+//        CGRect headerFrame = self.stickyView1.frame;
+//
+//        // @see https://stackoverflow.com/questions/11272847/make-uiview-in-uiscrollview-stick-to-the-top-when-scrolled-up
+//        if (scrollView.contentOffset.y + self.headerViewFixedY > self.headerViewInitialY) {
+//            headerFrame.origin.y = self.headerViewFixedY + scrollView.contentOffset.y;
+//        }
+//        else {
+//            headerFrame.origin.y = self.headerViewInitialY;
+//        }
+//        headerFrame;
+//    });
     
-    CGRect headerFrame = self.stickyView1.frame;
-    
-    // @see https://stackoverflow.com/questions/11272847/make-uiview-in-uiscrollview-stick-to-the-top-when-scrolled-up
-    if (scrollView.contentOffset.y + self.headerViewFixedY > self.headerViewInitialY) {
-        headerFrame.origin.y = self.headerViewFixedY + scrollView.contentOffset.y;
-    }
-    else {
-        headerFrame.origin.y = self.headerViewInitialY;
-    }
-    
-    self.stickyView1.frame = headerFrame;
+    self.stickyView2.frame = ({
+        CGRect headerFrame = self.stickyView2.frame;
+        
+        // @see https://stackoverflow.com/questions/11272847/make-uiview-in-uiscrollview-stick-to-the-top-when-scrolled-up
+        if (scrollView.contentOffset.y + self.headerViewFixedY2 > self.headerViewInitialY2) {
+            headerFrame.origin.y = self.headerViewFixedY2 + scrollView.contentOffset.y;
+        }
+        else {
+            headerFrame.origin.y = self.headerViewInitialY2;
+        }
+        headerFrame;
+    });
 }
 
 #pragma mark - Getters
@@ -70,6 +99,7 @@ static NSString *sCellIdentifier = @"UITableViewCell_sCellIdentifier";
         tableView.allowsMultipleSelection = NO;
         tableView.allowsSelectionDuringEditing = NO;
         tableView.allowsMultipleSelectionDuringEditing = YES;
+        tableView.contentInset = UIEdgeInsetsMake(200, 0, 0, 0);
         [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:sCellIdentifier];
         
         _tableView = tableView;
@@ -97,6 +127,17 @@ static NSString *sCellIdentifier = @"UITableViewCell_sCellIdentifier";
     }
     
     return _stickyView1;
+}
+
+- (UIView *)stickyView2 {
+    if (!_stickyView2) {
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, self.headerViewInitialY2, CGRectGetWidth(self.view.bounds), 100)];
+        view.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
+        
+        _stickyView2 = view;
+    }
+    
+    return _stickyView2;
 }
 
 #pragma mark - UITableViewDataSource
