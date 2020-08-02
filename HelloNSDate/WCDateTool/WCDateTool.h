@@ -100,10 +100,23 @@ NS_AVAILABLE_IOS(8_0)
  */
 + (nullable NSString *)stringFromDate:(NSDate *)date format:(nullable NSString *)format;
 
+/**
+ Convert date into string with UTC timezone
+
+ @param date the date to convert
+ @param format the format string. If nil, use `yyyy-MM-dd HH:mm:ss ZZ` by default
+ @return the date string
+ */
 + (nullable NSString *)stringFromUTCDate:(NSDate *)date format:(nullable NSString *)format;
 
 #pragma mark - Date Detection
 
+/**
+ Check system time is using 12 hour or 24 hour
+ 
+ @return YES if use 24 hour, or NO if use 12 hour
+ @see https://stackoverflow.com/a/28183182
+ */
 + (BOOL)checkIf24Hour;
 
 #pragma mark - Date Components
@@ -153,6 +166,11 @@ NS_AVAILABLE_IOS(8_0)
 + (NSDate *)dateToday;
 + (NSDate *)dateYesterday;
 + (NSDate *)dateTheDayBeforeYesterday;
+
+#pragma mark >> Month
+
++ (NSDate *)dateNextMonth;
++ (NSDate *)dateLastMonth;
 
 #pragma mark >> Year
 

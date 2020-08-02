@@ -291,6 +291,16 @@
     return [self dateWithDate:[NSDate date] offset:-2 dateComponentType:WCDateComponentTypeDay];
 }
 
+#pragma mark >> Month
+
++ (NSDate *)dateNextMonth {
+    return [self dateWithDate:[NSDate date] offset:1 dateComponentType:WCDateComponentTypeMonth];
+}
+
++ (NSDate *)dateLastMonth {
+     return [self dateWithDate:[NSDate date] offset:-1 dateComponentType:WCDateComponentTypeMonth];
+}
+
 #pragma mark >> Year
 
 + (NSDate *)dateNextYear {
