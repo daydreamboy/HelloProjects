@@ -41,7 +41,7 @@
         @"contentMode of UIImageView",
         @"Make rounded image",
         @"Add shadow border to image",
-        @"Mask a image by antoher image",
+        @"Mask Image",
         @"Aspect ratio scaled image",
         @"Safe aspect ratio scaled image 1",
         @"Safe aspect ratio scaled image 2",

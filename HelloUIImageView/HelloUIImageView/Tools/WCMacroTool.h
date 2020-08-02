@@ -18,5 +18,15 @@
  */
 #define UIImageInResourceBundle(imageName, resource_bundle)  ([UIImage imageNamed:[(resource_bundle) stringByAppendingPathComponent:(imageName)]])
 
+#define FrameSetSize(frame, newWidth, newHeight) ({ \
+CGRect __internal_frame = (frame); \
+if (!isnan((newWidth))) { \
+    __internal_frame.size.width = (newWidth); \
+} \
+if (!isnan((newHeight))) { \
+    __internal_frame.size.height = (newHeight); \
+} \
+__internal_frame; \
+})
 
 #endif /* WCMacroTool_h */

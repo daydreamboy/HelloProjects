@@ -31,6 +31,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)setImageView:(UIImageView *)imageView maskImage:(UIImage *)maskImage contentImage:(UIImage *)contentImage capInsets:(UIEdgeInsets)capInsets;
 
+#pragma mark - Creation
+
++ (UIImageView *)maskedImageViewWithFrame:(CGRect)frame maskImage:(UIImage *)maskImage contentImage:(UIImage *)contentImage capInsets:(UIEdgeInsets)capInsets;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F14CEDE24D6614F00EC4182 /* cascade_session_mask@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F14CEDB24D6614E00EC4182 /* cascade_session_mask@2x.png */; };
+		4F14CEE024D6614F00EC4182 /* cascade_session_mask@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F14CEDD24D6614F00EC4182 /* cascade_session_mask@3x.png */; };
+		4F14CEE224D6619400EC4182 /* cascade_session.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F14CEE124D6619300EC4182 /* cascade_session.png */; };
+		4F14CEE624D662D300EC4182 /* ImageViewDemoBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F14CEE524D662D300EC4182 /* ImageViewDemoBaseViewController.m */; };
 		4F5072352170A283007CBFFB /* walnuts@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F5072342170A283007CBFFB /* walnuts@2x.png */; };
 		4F50723D2170A64E007CBFFB /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50723C2170A64E007CBFFB /* Tests.m */; };
 		4F5072462170C270007CBFFB /* AspectRatioScaledImageViewInsideRectViewController1.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5072452170C270007CBFFB /* AspectRatioScaledImageViewInsideRectViewController1.m */; };
@@ -55,6 +59,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F14CEDB24D6614E00EC4182 /* cascade_session_mask@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cascade_session_mask@2x.png"; sourceTree = "<group>"; };
+		4F14CEDD24D6614F00EC4182 /* cascade_session_mask@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cascade_session_mask@3x.png"; sourceTree = "<group>"; };
+		4F14CEE124D6619300EC4182 /* cascade_session.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cascade_session.png; sourceTree = "<group>"; };
+		4F14CEE424D662D300EC4182 /* ImageViewDemoBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageViewDemoBaseViewController.h; sourceTree = "<group>"; };
+		4F14CEE524D662D300EC4182 /* ImageViewDemoBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageViewDemoBaseViewController.m; sourceTree = "<group>"; };
 		4F5072342170A283007CBFFB /* walnuts@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "walnuts@2x.png"; sourceTree = "<group>"; };
 		4F50723A2170A64E007CBFFB /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F50723C2170A64E007CBFFB /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
@@ -128,6 +137,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F14CEE324D662B800EC4182 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				4F14CEE424D662D300EC4182 /* ImageViewDemoBaseViewController.h */,
+				4F14CEE524D662D300EC4182 /* ImageViewDemoBaseViewController.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		4F50723B2170A64E007CBFFB /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +216,7 @@
 		4F75A03A21313133000DDE60 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F14CEE324D662B800EC4182 /* Base */,
 				4F75A03C21313133000DDE60 /* ContentModeOfUIImageViewViewController.h */,
 				4F75A03B21313133000DDE60 /* ContentModeOfUIImageViewViewController.m */,
 				4F961BA52132ED42009402F3 /* RoundedImageInUIImageViewViewController.h */,
@@ -221,6 +240,9 @@
 		4F75A04121313247000DDE60 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F14CEE124D6619300EC4182 /* cascade_session.png */,
+				4F14CEDB24D6614E00EC4182 /* cascade_session_mask@2x.png */,
+				4F14CEDD24D6614F00EC4182 /* cascade_session_mask@3x.png */,
 				4FB26E54217212B300BA1E73 /* scale_samples */,
 				4F5072342170A283007CBFFB /* walnuts@2x.png */,
 				4F89C07421541605003C7F1F /* simulator.png */,
@@ -339,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F60622721358D2D00D049DF /* aliwx_card_bubble_right_bg@2x.png in Resources */,
+				4F14CEDE24D6614F00EC4182 /* cascade_session_mask@2x.png in Resources */,
 				4F60622321358D2D00D049DF /* aliwx_card_bubble_left_bg@2x.png in Resources */,
 				4F60622521358D2D00D049DF /* aliwx_card_bubble_right_bg@3x.png in Resources */,
 				4F75A008213130DD000DDE60 /* LaunchScreen.storyboard in Resources */,
@@ -353,10 +376,12 @@
 				4FB26E5C217212B300BA1E73 /* bigger_portrait.png in Resources */,
 				4F961BA92132F1B6009402F3 /* cat.jpg in Resources */,
 				4FB26E5E217212B300BA1E73 /* bigger_squared.png in Resources */,
+				4F14CEE224D6619400EC4182 /* cascade_session.png in Resources */,
 				4F5072352170A283007CBFFB /* walnuts@2x.png in Resources */,
 				4F60622121358D2D00D049DF /* aliwx_card_bubble_left_bg@3x.png in Resources */,
 				4FB26E5F217212B300BA1E73 /* smaller_portrait.png in Resources */,
 				4F961BAE2133003B009402F3 /* flower.jpg in Resources */,
+				4F14CEE024D6614F00EC4182 /* cascade_session_mask@3x.png in Resources */,
 				4F60622221358D2D00D049DF /* coupon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,6 +408,7 @@
 				4F759FFD213130DB000DDE60 /* AppDelegate.m in Sources */,
 				4F843AB32320EB74001868D6 /* LayerFrameIssueOniOS13ViewController.m in Sources */,
 				4F60621321358D1A00D049DF /* WCImageViewTool.m in Sources */,
+				4F14CEE624D662D300EC4182 /* ImageViewDemoBaseViewController.m in Sources */,
 				4F961BA72132ED42009402F3 /* RoundedImageInUIImageViewViewController.m in Sources */,
 				4F60621921358D2400D049DF /* AddShadowBorderToImageViewController.m in Sources */,
 				4F6768442174478300B371A7 /* AspectRatioScaledImageViewInsideRectViewController2.m in Sources */,

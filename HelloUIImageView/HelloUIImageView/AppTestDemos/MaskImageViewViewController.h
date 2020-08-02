@@ -6,7 +6,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ImageViewDemoBaseViewController.h"
 
-@interface MaskImageViewViewController : UIViewController
+@interface MaskImageViewViewController : ImageViewDemoBaseViewController
 
 @end
