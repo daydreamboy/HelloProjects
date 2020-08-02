@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F0D00DC24BBFF06002CC255 /* StickyViewInScrollViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0D00DB24BBFF06002CC255 /* StickyViewInScrollViewViewController.m */; };
+		4F0D00DF24BC0120002CC255 /* computers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F0D00DE24BC0120002CC255 /* computers.plist */; };
 		4F12204123A4D7CF00F492B9 /* ContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F12204023A4D7CF00F492B9 /* ContentView.m */; };
 		4F12204523A4DDA600F492B9 /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F12204423A4DDA600F492B9 /* WCViewTool.m */; };
 		4F1C729423A1345E008FE2C0 /* DetectScrollingDirectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C729323A1345E008FE2C0 /* DetectScrollingDirectionViewController.m */; };
@@ -26,6 +28,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F0D00DA24BBFF06002CC255 /* StickyViewInScrollViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StickyViewInScrollViewViewController.h; sourceTree = "<group>"; };
+		4F0D00DB24BBFF06002CC255 /* StickyViewInScrollViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StickyViewInScrollViewViewController.m; sourceTree = "<group>"; };
+		4F0D00DE24BC0120002CC255 /* computers.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = computers.plist; sourceTree = "<group>"; };
 		4F12203F23A4D7CF00F492B9 /* ContentView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContentView.h; sourceTree = "<group>"; };
 		4F12204023A4D7CF00F492B9 /* ContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContentView.m; sourceTree = "<group>"; };
 		4F12204323A4DDA600F492B9 /* WCViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCViewTool.h; sourceTree = "<group>"; };
@@ -71,6 +76,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F0D00DD24BC00F6002CC255 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4F0D00DE24BC0120002CC255 /* computers.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		4F12203E23A4D7B900F492B9 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +146,7 @@
 				4F4D746820BE48170027DE7C /* AppDelegate.m */,
 				4F4D748420BE7CF70027DE7C /* RootViewController.h */,
 				4F4D748520BE7CF70027DE7C /* RootViewController.m */,
+				4F0D00DD24BC00F6002CC255 /* Resources */,
 				4F4D747020BE48190027DE7C /* Assets.xcassets */,
 				4F4D747220BE48190027DE7C /* LaunchScreen.storyboard */,
 				4F4D747520BE48190027DE7C /* Info.plist */,
@@ -160,6 +174,8 @@
 				4F2762A6239BAD68003740C8 /* DisableCallScrollViewDidScrollAutomaticallyViewController.m */,
 				4F1C729223A1345E008FE2C0 /* DetectScrollingDirectionViewController.h */,
 				4F1C729323A1345E008FE2C0 /* DetectScrollingDirectionViewController.m */,
+				4F0D00DA24BBFF06002CC255 /* StickyViewInScrollViewViewController.h */,
+				4F0D00DB24BBFF06002CC255 /* StickyViewInScrollViewViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -231,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F4D747420BE48190027DE7C /* LaunchScreen.storyboard in Resources */,
+				4F0D00DF24BC0120002CC255 /* computers.plist in Resources */,
 				4F4D747120BE48190027DE7C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,6 +265,7 @@
 				4F1C729423A1345E008FE2C0 /* DetectScrollingDirectionViewController.m in Sources */,
 				4F6C4D282372719F00872371 /* PullRefreshViewController.m in Sources */,
 				4F2762A7239BAD68003740C8 /* DisableCallScrollViewDidScrollAutomaticallyViewController.m in Sources */,
+				4F0D00DC24BBFF06002CC255 /* StickyViewInScrollViewViewController.m in Sources */,
 				4F62BA42233B71DD0020CC6D /* WCScrollViewTool.m in Sources */,
 				4F4D747720BE48190027DE7C /* main.m in Sources */,
 				4F2762BD239BC57C003740C8 /* UIView+UserInfo.m in Sources */,
