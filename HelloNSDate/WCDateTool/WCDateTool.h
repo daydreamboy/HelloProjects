@@ -116,6 +116,7 @@ NS_AVAILABLE_IOS(8_0)
  
  @return YES if use 24 hour, or NO if use 12 hour
  @see https://stackoverflow.com/a/28183182
+ @see https://stackoverflow.com/questions/12214398/detect-iphone-24-hour-time-setting
  */
 + (BOOL)checkIf24Hour;
 
