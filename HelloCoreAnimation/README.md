@@ -261,6 +261,14 @@ animation.additive = YES;
 
 > 示例代码，见KeyframeAnimationViewController
 
+* keyTimes
+
+keyTimes数组中的元素，用于定义每帧的时间点，时间点取值在0-1的浮点数。每个时间点应该大于或等于之前的时间点。
+
+* values
+
+values用于定义keyPath的对应的值。当每帧时间点到时，将取对应的values数组中元素应用动画
+
 * additive
 
 additive是CAPropertyAnimation的属性，默认是NO。如果设置为YES，则values中的值加到初始值上，得到动画需要的值。例如上面values，渲染树上position.x的值变化，如下
@@ -416,7 +424,38 @@ animatedView1.layer.zPosition = -self.zPosition;
 
 ## 6、CALayer
 
-由于CALayer是CoreAnimation操作的对象，因此熟悉CALayer的属性，是十分必要的。下面分为两个部分介绍CALayer。
+​       由于CALayer是CoreAnimation操作的对象，因此熟悉CALayer的属性，是十分必要的。CALayer有几个子类，如下
+
+```mermaid
+classDiagram
+
+CALayer <|-- CAShapeLayer
+CALayer <|-- CAGradientLayer
+CALayer <|-- CATextLayer
+CALayer <|-- CAScrollLayer
+CALayer <|-- CAEmitterLayer
+CALayer <|-- CATransformLayer
+CALayer <|-- CAReplicatorLayer
+CALayer <|-- CATiledLayer
+CALayer <|-- CAMetalLayer
+```
+
+| 类名              | 作用 | 说明   |
+| ----------------- | ---- | ------ |
+| CALayer           |      |        |
+| CAShapeLayer      |      |        |
+| CAGradientLayer   |      |        |
+| CATextLayer       |      |        |
+| CAScrollLayer     |      |        |
+| CAEmitterLayer    |      |        |
+| CATransformLayer  |      |        |
+| CAReplicatorLayer |      |        |
+| CATiledLayer      |      |        |
+| CAMetalLayer      |      | iOS 8+ |
+
+
+
+下面分为两个部分介绍CALayer。
 
 ### （1）CALayer显示
 
