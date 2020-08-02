@@ -14,6 +14,9 @@
 
 @property (nonatomic, strong) UIImageView *demo3MaskingWithImageByLayer;
 @property (nonatomic, strong) UIImageView *demo4MaskingWithResizaleImageByLayer;
+
+@property (nonatomic, strong) UIImageView *demo5MaskingWithTextLayer;
+
 @end
 
 @implementation MaskImageViewViewController
@@ -27,6 +30,7 @@
     [self.contentView addSubview:self.demo2MaskingWithResizableImageByRedraw];
     [self.contentView addSubview:self.demo3MaskingWithImageByLayer];
     [self.contentView addSubview:self.demo4MaskingWithResizaleImageByLayer];
+    [self.contentView addSubview:self.demo5MaskingWithTextLayer];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -111,6 +115,36 @@
     }
     
     return _demo4MaskingWithResizaleImageByLayer;
+}
+
+- (UIImageView *)demo5MaskingWithTextLayer {
+    if (!_demo5MaskingWithTextLayer) {
+        UIImage *contentImage = [UIImage imageNamed:@"colour_gradient.jpeg"];
+        
+        CGSize imageViewSize = CGSizeMake(300, 100);//CGSizeMake(200, 80);
+        CGRect frame = CGRectMake(10, CGRectGetMaxY(_demo4MaskingWithResizaleImageByLayer.frame) + 10, imageViewSize.width, imageViewSize.height);
+
+        // @see https://littlebitesofcocoa.com/245-masking-views-with-text-using-catextlayer
+        CATextLayer *textLayer = [CATextLayer layer];
+        
+        textLayer.frame = CGRectMake(0, 0, frame.size.width, frame.size.height);
+        textLayer.rasterizationScale = [UIScreen mainScreen].scale;
+        textLayer.contentsScale = [UIScreen mainScreen].scale;
+        textLayer.alignmentMode = kCAAlignmentCenter;
+        textLayer.fontSize = 42.0;
+        textLayer.font = (__bridge CFTypeRef _Nullable)([UIFont fontWithName:@"TrebuchetMS-Bold" size:42.0]);
+        textLayer.wrapped = YES;
+        textLayer.truncationMode = kCATruncationEnd;
+        textLayer.string = @"Hello, world!";
+        
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
+        imageView.image = contentImage;
+        imageView.layer.mask = textLayer;
+        
+        _demo5MaskingWithTextLayer = imageView;
+    }
+    
+    return _demo5MaskingWithTextLayer;
 }
 
 @end
