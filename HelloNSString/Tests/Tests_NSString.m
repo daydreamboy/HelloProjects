@@ -17,6 +17,18 @@ typedef NS_ENUM(NSUInteger, WCStringShowMode) {
     WCStringShowModeMixedTextEmoticon,
 };
 
+#if __has_feature(objc_arc)
+
+#define toCF (__bridge CFTypeRef)
+#define fromCF (__bridge id)
+
+#else
+
+#define toCF (CFTypeRef)
+#define fromCF (id)
+
+#endif
+
 @interface Tests_NSString : XCTestCase
 
 @end
@@ -274,6 +286,27 @@ typedef NS_ENUM(NSUInteger, WCStringShowMode) {
     printf("%02hhx\n", (unsigned char)bytes[0]);
     printf("%02hhx\n", (unsigned char)bytes[1]);
     printf("%02x\n", (unsigned char)bytes[1]);
+}
+
+- (void)test_CFStringTransform_pinyin {
+    // @see https://stackoverflow.com/a/34304188
+    CFMutableStringRef string;
+    
+    // Case 1
+    string = CFStringCreateMutableCopy(NULL, 0, CFSTR("中文"));
+    CFStringTransform(string, NULL, kCFStringTransformMandarinLatin, NO);
+    CFStringTransform(string, NULL, kCFStringTransformStripDiacritics, NO);
+    NSLog(@"%@", string);
+    XCTAssertEqualObjects(fromCF string, @"zhong wen");
+    CFRelease(string);
+    
+    // Case 2
+    string = CFStringCreateMutableCopy(NULL, 0, CFSTR("长春"));
+    CFStringTransform(string, NULL, kCFStringTransformMandarinLatin, NO);
+    CFStringTransform(string, NULL, kCFStringTransformStripDiacritics, NO);
+    NSLog(@"%@", string);
+    XCTAssertEqualObjects(fromCF string, @"zhang chun");
+    CFRelease(string);
 }
 
 - (void)test {

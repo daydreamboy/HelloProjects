@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F1AE82024DB0BD1001D5AD5 /* Tests_WCPinYinTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1AE81F24DB0BD1001D5AD5 /* Tests_WCPinYinTable.m */; };
 		4F1D7DB5211F0F9A0021023C /* Tests_NSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1D7DB4211F0F9A0021023C /* Tests_NSArray.m */; };
+		4F2C159524DAD56E00B3E209 /* WCStringTool+PinYin.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C159424DAD56E00B3E209 /* WCStringTool+PinYin.m */; };
+		4F2C159824DAE14500B3E209 /* WCPinYinTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C159724DAE14500B3E209 /* WCPinYinTable.m */; };
 		4F3DE4FD20D8B85F00FCCE6A /* StringSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3DE4FC20D8B85F00FCCE6A /* StringSizeViewController.m */; };
 		4F4D74AC20BED6CA0027DE7C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D74AB20BED6CA0027DE7C /* AppDelegate.m */; };
 		4F4D74B420BED6CB0027DE7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F4D74B320BED6CB0027DE7C /* Assets.xcassets */; };
@@ -36,7 +39,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F1AE81F24DB0BD1001D5AD5 /* Tests_WCPinYinTable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_WCPinYinTable.m; sourceTree = "<group>"; };
 		4F1D7DB4211F0F9A0021023C /* Tests_NSArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSArray.m; sourceTree = "<group>"; };
+		4F2C159324DAD56E00B3E209 /* WCStringTool+PinYin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WCStringTool+PinYin.h"; sourceTree = "<group>"; };
+		4F2C159424DAD56E00B3E209 /* WCStringTool+PinYin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "WCStringTool+PinYin.m"; sourceTree = "<group>"; };
+		4F2C159624DAE14500B3E209 /* WCPinYinTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCPinYinTable.h; sourceTree = "<group>"; };
+		4F2C159724DAE14500B3E209 /* WCPinYinTable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCPinYinTable.m; sourceTree = "<group>"; };
 		4F3DE4FB20D8B85F00FCCE6A /* StringSizeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringSizeViewController.h; sourceTree = "<group>"; };
 		4F3DE4FC20D8B85F00FCCE6A /* StringSizeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StringSizeViewController.m; sourceTree = "<group>"; };
 		4F4D74A720BED6CA0027DE7C /* HelloNSString.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSString.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,6 +169,10 @@
 				4F731A8B20BEE28F00D095F9 /* WCStringTool.m */,
 				4F591D72214D27BF00F3F30A /* WCStringTool+OpenSSL.h */,
 				4F591D73214D27BF00F3F30A /* WCStringTool+OpenSSL.m */,
+				4F2C159324DAD56E00B3E209 /* WCStringTool+PinYin.h */,
+				4F2C159424DAD56E00B3E209 /* WCStringTool+PinYin.m */,
+				4F2C159624DAE14500B3E209 /* WCPinYinTable.h */,
+				4F2C159724DAE14500B3E209 /* WCPinYinTable.m */,
 			);
 			path = WCStringTool;
 			sourceTree = "<group>";
@@ -170,6 +182,7 @@
 			children = (
 				4F577FFD24336A7500880ACB /* Resources */,
 				4F731A9320BEE34F00D095F9 /* Tests.m */,
+				4F1AE81F24DB0BD1001D5AD5 /* Tests_WCPinYinTable.m */,
 				4FA4E2672182FDFF002F407A /* Tests_NSString.m */,
 				4F746917214E3EFF0079F654 /* Tests_OpenSSL.m */,
 				4F1D7DB4211F0F9A0021023C /* Tests_NSArray.m */,
@@ -280,12 +293,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F4D74BA20BED6CB0027DE7C /* main.m in Sources */,
+				4F2C159524DAD56E00B3E209 /* WCStringTool+PinYin.m in Sources */,
 				4F731A8C20BEE28F00D095F9 /* WCStringTool.m in Sources */,
 				4F3DE4FD20D8B85F00FCCE6A /* StringSizeViewController.m in Sources */,
 				4F591D74214D27BF00F3F30A /* WCStringTool+OpenSSL.m in Sources */,
 				4F4D74C620BED73D0027DE7C /* Demo1ViewController.m in Sources */,
 				4F4D74C520BED73D0027DE7C /* RootViewController.m in Sources */,
 				4F4D74AC20BED6CA0027DE7C /* AppDelegate.m in Sources */,
+				4F2C159824DAE14500B3E209 /* WCPinYinTable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,6 +313,7 @@
 				4F746918214E3EFF0079F654 /* Tests_OpenSSL.m in Sources */,
 				4F731A9420BEE34F00D095F9 /* Tests.m in Sources */,
 				4FA4E2682182FDFF002F407A /* Tests_NSString.m in Sources */,
+				4F1AE82024DB0BD1001D5AD5 /* Tests_WCPinYinTable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
