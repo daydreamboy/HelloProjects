@@ -476,6 +476,20 @@ UITableView内部使用UIView的私有实例变量`_subviewCache`，来存储屏
 
 
 
+## 5、iOS 11上Drag & Drop[^6]
+
+Drag & Drop是iOS 11上引入的新特性，支持item从一个app拖拽到另一个app上。
+
+注意：iPad支持多个app之间的Drag & Drop，而iPhone上仅支持单个app内的Drag & Drop
+
+> All drag and drop features are available on iPad. On iPhone, drag and drop is available only within an app.
+
+
+
+
+
+
+
 
 
 References
@@ -488,6 +502,8 @@ References
 
 [^4]: https://stackoverflow.com/questions/2305781/iphone-didselectrowatindexpath-not-invoked
 [^5]: https://stackoverflow.com/questions/14468449/the-selectedbackgroundview-modifies-the-contentview-subviews
+
+[^6]:https://developer.apple.com/documentation/uikit/drag_and_drop
 
 
 
