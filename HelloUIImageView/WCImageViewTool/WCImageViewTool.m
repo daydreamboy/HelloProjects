@@ -70,6 +70,37 @@
     return YES;
 }
 
++ (BOOL)setImageView:(UIImageView *)imageView maskImage:(UIImage *)maskImage capInsets:(UIEdgeInsets)capInsets {
+    if (![imageView isKindOfClass:[UIImageView class]] || ![maskImage isKindOfClass:[UIImage class]]) {
+        return NO;
+    }
+    
+    CALayer *maskLayer = [CALayer layer];
+    maskLayer.frame = imageView.bounds;
+    maskLayer.contents = (id)maskImage.CGImage;
+    
+    if (!UIEdgeInsetsEqualToEdgeInsets(capInsets, UIEdgeInsetsZero)) {
+        maskLayer.contentsScale = maskImage.scale;
+        
+        CGFloat y = capInsets.top / maskImage.size.height;
+        CGFloat x = capInsets.left / maskImage.size.width;
+        CGFloat width = (maskImage.size.width - capInsets.left - capInsets.right) / maskImage.size.width;
+        CGFloat height = (maskImage.size.height - capInsets.top - capInsets.bottom) / maskImage.size.height;
+        
+        x = MIN(MAX(0, x), 1.0);
+        y = MIN(MAX(0, y), 1.0);
+        width = MIN(MAX(0, width), 1.0);
+        height = MIN(MAX(0, height), 1.0);
+        
+        maskLayer.contentsCenter = CGRectMake(x, y, width, height);
+    }
+
+    imageView.layer.mask = maskLayer;
+    imageView.layer.masksToBounds = YES;
+    
+    return YES;
+}
+
 #pragma mark - Creation
 
 + (UIImageView *)maskedImageViewWithFrame:(CGRect)frame maskImage:(UIImage *)maskImage contentImage:(UIImage *)contentImage capInsets:(UIEdgeInsets)capInsets {
