@@ -159,9 +159,16 @@
 
 #pragma mark > Gray Release
 
-+ (long long)hashCodeWithString:(NSString *)string {
-    const char *cString = [string UTF8String];
-    long long ret = 0;
++ (int)hashCodeWithString:(NSString *)string {
+    NSMutableString *stringM = [NSMutableString stringWithString:string];
+    if (string.length < 7) {
+        // Note: if string length shorter than 7, to fill its length to 7
+        for (NSUInteger i = string.length; i <= 7; ++i) {
+            [stringM appendString:@"0"];
+        }
+    }
+    const char *cString = [stringM UTF8String];
+    int ret = 0;
     
     if (cString != NULL) {
         size_t len = strlen(cString);
@@ -173,14 +180,14 @@
     return ret;
 }
 
-+ (BOOL)checkIfSampledWithUniqueID:(NSString *)uniqueID lowerBound:(long long)lowerBound upperBound:(long long)upperBound mod:(long long)mod {
++ (BOOL)checkIfSampledWithUniqueID:(NSString *)uniqueID lowerBound:(int)lowerBound upperBound:(int)upperBound mod:(int)mod {
     if (![uniqueID isKindOfClass:[NSString class]] || uniqueID.length == 0) {
         return NO;
     }
     
-    long long hashCode = [self hashCodeWithString:uniqueID];
-    long long modL = ABS(mod);
-    long long boundedHashCode = hashCode % modL;
+    int hashCode = [self hashCodeWithString:uniqueID];
+    int modL = ABS(mod);
+    int boundedHashCode = hashCode % modL;
     if (lowerBound <= boundedHashCode && boundedHashCode <= upperBound) {
         return YES;
     }
@@ -188,20 +195,20 @@
     return NO;
 }
 
-+ (BOOL)checkIfSampledOnceWithWithUniqueID:(NSString *)uniqueID boundValue:(long long)boundValue {
++ (BOOL)checkIfSampledOnceWithWithUniqueID:(NSString *)uniqueID boundValue:(int)boundValue {
     if (boundValue == 0 || ![uniqueID isKindOfClass:[NSString class]] || uniqueID.length == 0) {
         return NO;
     }
     
     static NSNumber *sResult;
     if (!sResult) {
-        long long mod = 5000;
-        long long absBoundValue = MIN(ABS(boundValue), mod);
-        long long leftValue = -absBoundValue;
-        long long rightValue = absBoundValue;
+        int mod = 5000;
+        int absBoundValue = MIN(ABS(boundValue), mod);
+        int leftValue = -absBoundValue;
+        int rightValue = absBoundValue;
         
-        long long hashCode = [self hashCodeWithString:uniqueID];
-        long long boundedHashCode = hashCode % mod;
+        int hashCode = [self hashCodeWithString:uniqueID];
+        int boundedHashCode = hashCode % mod;
         
         if (boundedHashCode >= leftValue && boundedHashCode <= rightValue) {
             sResult = @(YES);

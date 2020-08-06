@@ -45,7 +45,70 @@
     NSUInteger countForZero = 0;
     
     for (NSUInteger i = 0; i < 100000; ++i) {
-        long long hashCode = [WCApplicationTool hashCodeWithString:[NSUUID UUID].UUIDString];
+        int hashCode = [WCApplicationTool hashCodeWithString:[NSUUID UUID].UUIDString];
+        if (hashCode > 0) {
+            ++countForPositive;
+        }
+        else if (hashCode < 0) {
+            ++countForNegative;
+        }
+        else {
+            ++countForZero;
+        }
+    }
+    NSLog(@"positive: %ld, negative: %ld, zero: %ld", countForPositive, countForNegative, countForZero);
+}
+
+- (void)test_hashCodeWithString_length_7 {
+    NSUInteger countForPositive = 0;
+    NSUInteger countForNegative = 0;
+    NSUInteger countForZero = 0;
+    
+    for (NSUInteger i = 1000000; i < 9999999; ++i) {
+        NSString *seed = [NSString stringWithFormat:@"%ld", (long)i];
+        int hashCode = [WCApplicationTool hashCodeWithString:seed];
+        if (hashCode > 0) {
+            ++countForPositive;
+        }
+        else if (hashCode < 0) {
+            ++countForNegative;
+        }
+        else {
+            ++countForZero;
+        }
+    }
+    NSLog(@"positive: %ld, negative: %ld, zero: %ld", countForPositive, countForNegative, countForZero);
+}
+
+- (void)test_hashCodeWithString_length_4 {
+    NSUInteger countForPositive = 0;
+    NSUInteger countForNegative = 0;
+    NSUInteger countForZero = 0;
+    
+    for (NSUInteger i = 1000; i < 9999; ++i) {
+        NSString *seed = [NSString stringWithFormat:@"%ld", (long)i];
+        int hashCode = [WCApplicationTool hashCodeWithString:seed];
+        if (hashCode > 0) {
+            ++countForPositive;
+        }
+        else if (hashCode < 0) {
+            ++countForNegative;
+        }
+        else {
+            ++countForZero;
+        }
+    }
+    NSLog(@"positive: %ld, negative: %ld, zero: %ld", countForPositive, countForNegative, countForZero);
+}
+
+- (void)test_hashCodeWithString_length_8 {
+    NSUInteger countForPositive = 0;
+    NSUInteger countForNegative = 0;
+    NSUInteger countForZero = 0;
+    
+    for (NSUInteger i = 19999999; i < 29999999; ++i) {
+        NSString *seed = [NSString stringWithFormat:@"%ld", (long)i];
+        int hashCode = [WCApplicationTool hashCodeWithString:seed];
         if (hashCode > 0) {
             ++countForPositive;
         }
@@ -63,7 +126,7 @@
     
     NSUInteger countForSampled;
     NSUInteger countForUnsampled;
-    long long mod = 5000;
+    int mod = 5000;
     long long count = 100000;
     
     // Case 1
@@ -165,7 +228,7 @@
     NSLog(@"sampled: %ld, percent: %f %%", countForSampled, countForSampled / (double)count * 100);
     NSLog(@"unsampled: %ld, percent: %f %%", countForUnsampled, countForUnsampled / (double)count * 100);
     
-    // Case 3
+    // Case 4
     countForSampled = 0;
     countForUnsampled = 0;
     for (NSUInteger i = 0; i < 100000; ++i) {

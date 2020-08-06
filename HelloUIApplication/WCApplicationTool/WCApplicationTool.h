@@ -164,7 +164,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return the hash code integer which usually is unique
  @see https://stackoverflow.com/questions/299304/why-does-javas-hashcode-in-string-use-31-as-a-multiplier
  */
-+ (long long)hashCodeWithString:(NSString *)string;
++ (int)hashCodeWithString:(NSString *)string;
 
 /**
  Check if sampled when use lower/upper bound and mod
@@ -175,7 +175,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param mod the mod should not zero. If zero, return NO
  @return YES if sampled, NO if not.
  */
-+ (BOOL)checkIfSampledWithUniqueID:(NSString *)uniqueID lowerBound:(long long)lowerBound upperBound:(long long)upperBound mod:(long long)mod;
++ (BOOL)checkIfSampledWithUniqueID:(NSString *)uniqueID lowerBound:(int)lowerBound upperBound:(int)upperBound mod:(int)mod;
 
 /**
 Check if sampled when use  mod as 5000
@@ -185,7 +185,7 @@ Check if sampled when use  mod as 5000
 @return YES if sampled, NO if not. The result is stored as static variable.
 @discussion The mod uses 5000, if abs(boundValue) > 5000, return YES always.
 */
-+ (BOOL)checkIfSampledOnceWithWithUniqueID:(NSString *)uniqueID boundValue:(long long)boundValue;
++ (BOOL)checkIfSampledOnceWithWithUniqueID:(NSString *)uniqueID boundValue:(int)boundValue;
 
 #pragma mark > Risky Methods
 
