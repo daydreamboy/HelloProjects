@@ -9,14 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-#import "WCStickyHeaderSection.h"
+#import "WCStickySectionManager.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WCStickyHeaderSectionManager : NSObject
+@interface WCStickyHeaderSectionManager : WCStickySectionManager
 
-- (instancetype)initWithScrollView:(UIScrollView *)scrollView;
-- (BOOL)addStickyHeaderSection:(WCStickyHeaderSection *)section;
 - (void)viewDidLayoutSubviews;
 
 @end

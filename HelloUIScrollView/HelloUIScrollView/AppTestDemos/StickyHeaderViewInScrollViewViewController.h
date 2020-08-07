@@ -1,5 +1,5 @@
 //
-//  StickyViewInScrollViewViewController.h
+//  StickyHeaderViewInScrollViewViewController.h
 //  HelloUIScrollView
 //
 //  Created by wesley_chen on 2020/7/13.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface StickyViewInScrollViewViewController : UIViewController
+@interface StickyHeaderViewInScrollViewViewController : UIViewController
 
 @end
 

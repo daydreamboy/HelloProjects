@@ -7,70 +7,42 @@
 //
 
 #import "WCStickyHeaderSectionManager.h"
+#import "WCStickySection_Internal.h"
 
 @interface WCStickyHeaderSectionManager ()
-@property (nonatomic, weak) UIScrollView *scrollView;
-@property (nonatomic, strong) NSMutableArray<WCStickyHeaderSection *> *sections;
-@property (nonatomic, assign) CGFloat contentInsetHeight;
+@property (nonatomic, assign) CGFloat headerHeight;
 @end
 
 @implementation WCStickyHeaderSectionManager
 
 - (instancetype)initWithScrollView:(UIScrollView *)scrollView {
-    self = [super init];
+    self = [super initWithScrollView:scrollView];
     if (self) {
-        _scrollView = scrollView;
-        _sections = [NSMutableArray array];
-        _contentInsetHeight = 0;
-        
-        [_scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+        _headerHeight = 0;
     }
     return self;
 }
 
-- (void)dealloc {
-    [_scrollView removeObserver:self forKeyPath:@"contentOffset"];
-}
-
-- (BOOL)addStickyHeaderSection:(WCStickyHeaderSection *)section {
-    [self.sections addObject:section];
+- (BOOL)addStickyHeaderSection:(WCStickySection *)section {
+    [super addStickyHeaderSection:section];
     
-    [self.scrollView addSubview:section];
-    self.contentInsetHeight += section.height;
+    self.headerHeight += section.height;
+    
+    CGFloat startY = -self.headerHeight;
+    for (WCStickySection *section in self.sections) {
+        section.frame = CGRectMake(0, startY, CGRectGetWidth(self.scrollView.bounds), section.height);;
+        section.initialY = startY;
+        
+        startY += section.height;
+    }
+    
+    self.scrollView.contentInset = UIEdgeInsetsMake(self.headerHeight, 0, 0, 0);
     
     return YES;
 }
 
 - (void)viewDidLayoutSubviews {
-    self.scrollView.contentOffset = CGPointMake(0, -self.contentInsetHeight);
-}
-
-#pragma mark - KVO
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    if (object == _scrollView && [keyPath isEqualToString:@"contentOffset"]) {
-        NSValue *value = change[NSKeyValueChangeNewKey];
-        CGPoint contentOffset = [value CGPointValue];
-        
-        NSLog(@"%f", contentOffset.y);
-        
-        for (WCStickyHeaderSection *section in self.sections) {
-            if (section.sticky) {
-                section.frame = ({
-                    CGRect frame = section.frame;
-                    
-                    // @see https://stackoverflow.com/questions/11272847/make-uiview-in-uiscrollview-stick-to-the-top-when-scrolled-up
-                    if (contentOffset.y + section.fixedY > section.initialY) {
-                        frame.origin.y = section.fixedY + contentOffset.y;
-                    }
-                    else {
-                        frame.origin.y = section.initialY;
-                    }
-                    frame;
-                });
-            }
-        }
-    }
+    self.scrollView.contentOffset = CGPointMake(0, -self.headerHeight);
 }
 
 @end
