@@ -11,6 +11,8 @@
 		4F0D00DF24BC0120002CC255 /* computers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F0D00DE24BC0120002CC255 /* computers.plist */; };
 		4F12204123A4D7CF00F492B9 /* ContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F12204023A4D7CF00F492B9 /* ContentView.m */; };
 		4F12204523A4DDA600F492B9 /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F12204423A4DDA600F492B9 /* WCViewTool.m */; };
+		4F1C555B24DCF65500405947 /* WCStickyHeaderSectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C555A24DCF65500405947 /* WCStickyHeaderSectionManager.m */; };
+		4F1C555E24DCF6FA00405947 /* WCStickyHeaderSection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C555D24DCF6FA00405947 /* WCStickyHeaderSection.m */; };
 		4F1C729423A1345E008FE2C0 /* DetectScrollingDirectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C729323A1345E008FE2C0 /* DetectScrollingDirectionViewController.m */; };
 		4F2762A7239BAD68003740C8 /* DisableCallScrollViewDidScrollAutomaticallyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2762A6239BAD68003740C8 /* DisableCallScrollViewDidScrollAutomaticallyViewController.m */; };
 		4F2762BD239BC57C003740C8 /* UIView+UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2762BB239BC57C003740C8 /* UIView+UserInfo.m */; };
@@ -35,6 +37,10 @@
 		4F12204023A4D7CF00F492B9 /* ContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContentView.m; sourceTree = "<group>"; };
 		4F12204323A4DDA600F492B9 /* WCViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCViewTool.h; sourceTree = "<group>"; };
 		4F12204423A4DDA600F492B9 /* WCViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewTool.m; sourceTree = "<group>"; };
+		4F1C555924DCF65500405947 /* WCStickyHeaderSectionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStickyHeaderSectionManager.h; sourceTree = "<group>"; };
+		4F1C555A24DCF65500405947 /* WCStickyHeaderSectionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCStickyHeaderSectionManager.m; sourceTree = "<group>"; };
+		4F1C555C24DCF6FA00405947 /* WCStickyHeaderSection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStickyHeaderSection.h; sourceTree = "<group>"; };
+		4F1C555D24DCF6FA00405947 /* WCStickyHeaderSection.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCStickyHeaderSection.m; sourceTree = "<group>"; };
 		4F1C729223A1345E008FE2C0 /* DetectScrollingDirectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectScrollingDirectionViewController.h; sourceTree = "<group>"; };
 		4F1C729323A1345E008FE2C0 /* DetectScrollingDirectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetectScrollingDirectionViewController.m; sourceTree = "<group>"; };
 		4F2762A5239BAD68003740C8 /* DisableCallScrollViewDidScrollAutomaticallyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DisableCallScrollViewDidScrollAutomaticallyViewController.h; sourceTree = "<group>"; };
@@ -110,6 +116,17 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
+		4F1C555824DCF61C00405947 /* WCStickyHeaderSection */ = {
+			isa = PBXGroup;
+			children = (
+				4F1C555924DCF65500405947 /* WCStickyHeaderSectionManager.h */,
+				4F1C555A24DCF65500405947 /* WCStickyHeaderSectionManager.m */,
+				4F1C555C24DCF6FA00405947 /* WCStickyHeaderSection.h */,
+				4F1C555D24DCF6FA00405947 /* WCStickyHeaderSection.m */,
+			);
+			path = WCStickyHeaderSection;
+			sourceTree = "<group>";
+		};
 		4F2762BA239BC556003740C8 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,6 +139,7 @@
 		4F4D745B20BE48170027DE7C = {
 			isa = PBXGroup;
 			children = (
+				4F1C555824DCF61C00405947 /* WCStickyHeaderSection */,
 				4F62BA3F233B719D0020CC6D /* WCScrollViewTool */,
 				4F4D746620BE48170027DE7C /* HelloUIScrollView */,
 				4F4D746520BE48170027DE7C /* Products */,
@@ -260,8 +278,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F12204123A4D7CF00F492B9 /* ContentView.m in Sources */,
+				4F1C555E24DCF6FA00405947 /* WCStickyHeaderSection.m in Sources */,
 				4FB1D48220CBA29200DBA776 /* NestedScrollViewViewController.m in Sources */,
 				4F12204523A4DDA600F492B9 /* WCViewTool.m in Sources */,
+				4F1C555B24DCF65500405947 /* WCStickyHeaderSectionManager.m in Sources */,
 				4F1C729423A1345E008FE2C0 /* DetectScrollingDirectionViewController.m in Sources */,
 				4F6C4D282372719F00872371 /* PullRefreshViewController.m in Sources */,
 				4F2762A7239BAD68003740C8 /* DisableCallScrollViewDidScrollAutomaticallyViewController.m in Sources */,
