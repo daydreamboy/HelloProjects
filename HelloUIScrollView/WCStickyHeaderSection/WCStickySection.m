@@ -10,7 +10,6 @@
 #import "WCStickySection_Internal.h"
 
 @interface WCStickySection ()
-@property (nonatomic, assign, readwrite) CGFloat fixedY;
 @property (nonatomic, assign, readwrite) CGFloat height;
 @end
 
@@ -27,7 +26,7 @@
 }
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<WCStickyHeaderSection: %p; frame = %@; layer = <CALayer: %p>; priority = %d; sticky = %@>", self, NSStringFromCGRect(self.frame), self.layer, (int)self.priority, self.sticky ? @"YES": @"NO"];
+    return [NSString stringWithFormat:@"<WCStickyHeaderSection: %p; frame = %@; layer = <CALayer: %p>; sticky = %@>", self, NSStringFromCGRect(self.frame), self.layer, self.sticky ? @"YES": @"NO"];
 }
 
 @end

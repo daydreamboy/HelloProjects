@@ -12,8 +12,8 @@
 
 @interface WCStickySectionManager ()
 @property (nonatomic, weak, readwrite) UIScrollView *scrollView;
-/// sorted section which priority from high to low
-@property (nonatomic, strong, readwrite) NSMutableArray<WCStickySection *> *sections;
+@property (nonatomic, assign, readwrite) CGFloat sectionsTotalHeight;
+@property (nonatomic, strong) NSMutableSet<WCStickySection *> *sections;
 @end
 
 @implementation WCStickySectionManager
@@ -22,28 +22,19 @@
     self = [super init];
     if (self) {
         _scrollView = scrollView;
-        _sections = [NSMutableArray array];
+        _sectionsTotalHeight = 0;
+        _sections = [NSMutableSet set];
         
         [_scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     }
     return self;
 }
 
-- (BOOL)addStickyHeaderSection:(WCStickySection *)section {
-    NSInteger indexToInsert = self.sections.count;
-    for (NSInteger i = 0; i < self.sections.count; ++i) {
-        WCStickySection *currentSection = self.sections[i];
-        if (section.priority > currentSection.priority) {
-            indexToInsert = i;
-            break;
-        }
-    }
-    
-    [self.sections insertObject:section atIndex:indexToInsert];
-    
-    for (WCStickySection *section in self.sections) {
-        [self.scrollView addSubview:section];
-    }
+- (BOOL)addStickySection:(WCStickySection *)section atInitialY:(CGFloat)initialY {
+    section.frame = CGRectMake(0, initialY, CGRectGetWidth(self.scrollView.bounds), section.height);
+    section.initialY = initialY;
+    [self.scrollView addSubview:section];
+    [self.sections addObject:section];
     
     return YES;
 }

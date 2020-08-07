@@ -12,6 +12,9 @@
 		4F12204123A4D7CF00F492B9 /* ContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F12204023A4D7CF00F492B9 /* ContentView.m */; };
 		4F12204523A4DDA600F492B9 /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F12204423A4DDA600F492B9 /* WCViewTool.m */; };
 		4F1728F424DD511300110D4C /* WCStickySectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1728F324DD511300110D4C /* WCStickySectionManager.m */; };
+		4F1728F724DD544000110D4C /* StickyViewInScrollViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1728F624DD544000110D4C /* StickyViewInScrollViewViewController.m */; };
+		4F1728FA24DD60AD00110D4C /* WCStickyPushSectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1728F924DD60AD00110D4C /* WCStickyPushSectionManager.m */; };
+		4F1728FF24DD63B000110D4C /* StickyPushSectionInScrollViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1728FE24DD63B000110D4C /* StickyPushSectionInScrollViewViewController.m */; };
 		4F1C555B24DCF65500405947 /* WCStickyHeaderSectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C555A24DCF65500405947 /* WCStickyHeaderSectionManager.m */; };
 		4F1C555E24DCF6FA00405947 /* WCStickySection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C555D24DCF6FA00405947 /* WCStickySection.m */; };
 		4F1C729423A1345E008FE2C0 /* DetectScrollingDirectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C729323A1345E008FE2C0 /* DetectScrollingDirectionViewController.m */; };
@@ -41,6 +44,12 @@
 		4F1728F124DD46B700110D4C /* WCStickySection_Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStickySection_Internal.h; sourceTree = "<group>"; };
 		4F1728F224DD511300110D4C /* WCStickySectionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStickySectionManager.h; sourceTree = "<group>"; };
 		4F1728F324DD511300110D4C /* WCStickySectionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCStickySectionManager.m; sourceTree = "<group>"; };
+		4F1728F524DD544000110D4C /* StickyViewInScrollViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StickyViewInScrollViewViewController.h; sourceTree = "<group>"; };
+		4F1728F624DD544000110D4C /* StickyViewInScrollViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StickyViewInScrollViewViewController.m; sourceTree = "<group>"; };
+		4F1728F824DD60AD00110D4C /* WCStickyPushSectionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStickyPushSectionManager.h; sourceTree = "<group>"; };
+		4F1728F924DD60AD00110D4C /* WCStickyPushSectionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCStickyPushSectionManager.m; sourceTree = "<group>"; };
+		4F1728FD24DD63B000110D4C /* StickyPushSectionInScrollViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StickyPushSectionInScrollViewViewController.h; sourceTree = "<group>"; };
+		4F1728FE24DD63B000110D4C /* StickyPushSectionInScrollViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StickyPushSectionInScrollViewViewController.m; sourceTree = "<group>"; };
 		4F1C555924DCF65500405947 /* WCStickyHeaderSectionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStickyHeaderSectionManager.h; sourceTree = "<group>"; };
 		4F1C555A24DCF65500405947 /* WCStickyHeaderSectionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCStickyHeaderSectionManager.m; sourceTree = "<group>"; };
 		4F1C555C24DCF6FA00405947 /* WCStickySection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStickySection.h; sourceTree = "<group>"; };
@@ -120,11 +129,21 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		4F1C555824DCF61C00405947 /* WCStickyHeaderSection */ = {
+		4F1728FB24DD60B200110D4C /* Subclass */ = {
 			isa = PBXGroup;
 			children = (
 				4F1C555924DCF65500405947 /* WCStickyHeaderSectionManager.h */,
 				4F1C555A24DCF65500405947 /* WCStickyHeaderSectionManager.m */,
+				4F1728F824DD60AD00110D4C /* WCStickyPushSectionManager.h */,
+				4F1728F924DD60AD00110D4C /* WCStickyPushSectionManager.m */,
+			);
+			path = Subclass;
+			sourceTree = "<group>";
+		};
+		4F1C555824DCF61C00405947 /* WCStickyHeaderSection */ = {
+			isa = PBXGroup;
+			children = (
+				4F1728FB24DD60B200110D4C /* Subclass */,
 				4F1728F224DD511300110D4C /* WCStickySectionManager.h */,
 				4F1728F324DD511300110D4C /* WCStickySectionManager.m */,
 				4F1C555C24DCF6FA00405947 /* WCStickySection.h */,
@@ -201,6 +220,10 @@
 				4F1C729323A1345E008FE2C0 /* DetectScrollingDirectionViewController.m */,
 				4F0D00DA24BBFF06002CC255 /* StickyHeaderViewInScrollViewViewController.h */,
 				4F0D00DB24BBFF06002CC255 /* StickyHeaderViewInScrollViewViewController.m */,
+				4F1728F524DD544000110D4C /* StickyViewInScrollViewViewController.h */,
+				4F1728F624DD544000110D4C /* StickyViewInScrollViewViewController.m */,
+				4F1728FD24DD63B000110D4C /* StickyPushSectionInScrollViewViewController.h */,
+				4F1728FE24DD63B000110D4C /* StickyPushSectionInScrollViewViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -284,13 +307,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F1728FF24DD63B000110D4C /* StickyPushSectionInScrollViewViewController.m in Sources */,
 				4F12204123A4D7CF00F492B9 /* ContentView.m in Sources */,
 				4F1C555E24DCF6FA00405947 /* WCStickySection.m in Sources */,
 				4FB1D48220CBA29200DBA776 /* NestedScrollViewViewController.m in Sources */,
 				4F12204523A4DDA600F492B9 /* WCViewTool.m in Sources */,
+				4F1728FA24DD60AD00110D4C /* WCStickyPushSectionManager.m in Sources */,
 				4F1C555B24DCF65500405947 /* WCStickyHeaderSectionManager.m in Sources */,
 				4F1C729423A1345E008FE2C0 /* DetectScrollingDirectionViewController.m in Sources */,
 				4F6C4D282372719F00872371 /* PullRefreshViewController.m in Sources */,
+				4F1728F724DD544000110D4C /* StickyViewInScrollViewViewController.m in Sources */,
 				4F2762A7239BAD68003740C8 /* DisableCallScrollViewDidScrollAutomaticallyViewController.m in Sources */,
 				4F0D00DC24BBFF06002CC255 /* StickyHeaderViewInScrollViewViewController.m in Sources */,
 				4F62BA42233B71DD0020CC6D /* WCScrollViewTool.m in Sources */,

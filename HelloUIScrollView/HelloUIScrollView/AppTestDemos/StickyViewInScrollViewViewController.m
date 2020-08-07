@@ -1,21 +1,21 @@
 //
-//  StickyHeaderViewInScrollViewViewController.m
+//  StickyViewInScrollViewViewController.m
 //  HelloUIScrollView
 //
-//  Created by wesley_chen on 2020/7/13.
+//  Created by wesley_chen on 2020/8/7.
 //  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
-#import "StickyHeaderViewInScrollViewViewController.h"
-#import "WCStickyHeaderSectionManager.h"
+#import "StickyViewInScrollViewViewController.h"
+#import "WCStickySectionManager.h"
 
-@interface StickyHeaderViewInScrollViewViewController ()<UITableViewDataSource, UITableViewDelegate>
+@interface StickyViewInScrollViewViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *listArr;
-@property (nonatomic, strong) WCStickyHeaderSectionManager *stickyHeaderSectionManager;
+@property (nonatomic, strong) WCStickySectionManager *stickySectionManager;
 @end
 
-@implementation StickyHeaderViewInScrollViewViewController
+@implementation StickyViewInScrollViewViewController
 
 static NSString *sCellIdentifier = @"UITableViewCell_sCellIdentifier";
 
@@ -23,26 +23,25 @@ static NSString *sCellIdentifier = @"UITableViewCell_sCellIdentifier";
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    _stickyHeaderSectionManager = [[WCStickyHeaderSectionManager alloc] initWithScrollView:self.tableView];
-    [_stickyHeaderSectionManager addStickyHeaderSection:({
+    _stickySectionManager = [[WCStickySectionManager alloc] initWithScrollView:self.tableView];
+    [_stickySectionManager addStickySection:({
         WCStickySection *view = [[WCStickySection alloc] initWithFixed:0 height:100];
         view.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
-        view.sticky = NO;
+//        view.sticky = NO;
         view;
-    })];
-    [_stickyHeaderSectionManager addStickyHeaderSection:({
+    }) atInitialY:50];
+    [_stickySectionManager addStickySection:({
         WCStickySection *view = [[WCStickySection alloc] initWithFixed:0 height:100];
         view.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.5];
 //        view.sticky = NO; // MARK: set sticky or not
         view;
-    })];
-    [_stickyHeaderSectionManager addStickyHeaderSection:({
+    }) atInitialY:200];
+    [_stickySectionManager addStickySection:({
         WCStickySection *view = [[WCStickySection alloc] initWithFixed:0 height:100];
         view.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.5];
 //        view.sticky = NO; // MARK: set sticky or not
-//        view.priority = 1; // MARK: set priority
         view;
-    })];
+    }) atInitialY:350];
     
     [self.view addSubview:self.tableView];
 }
@@ -52,8 +51,6 @@ static NSString *sCellIdentifier = @"UITableViewCell_sCellIdentifier";
     
     CGFloat startY = CGRectGetMaxY(self.navigationController.navigationBar.frame);
     self.tableView.frame = CGRectMake(0, startY, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds) - startY);
-    
-    [self.stickyHeaderSectionManager viewDidLayoutSubviews];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -120,6 +117,5 @@ static NSString *sCellIdentifier = @"UITableViewCell_sCellIdentifier";
 - (void)itemToggleClicked:(id)sender {
     [self.tableView setEditing:!self.tableView.editing animated:YES];
 }
-
 
 @end

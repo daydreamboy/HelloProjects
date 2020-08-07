@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface WCStickySectionManager : NSObject
 
 @property (nonatomic, weak, readonly) UIScrollView *scrollView;
-@property (nonatomic, strong, readonly) NSMutableArray<WCStickySection *> *sections;
+@property (nonatomic, assign, readonly) CGFloat sectionsTotalHeight;
 
 - (instancetype)initWithScrollView:(UIScrollView *)scrollView;
 /**
@@ -24,7 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion If the priority is same, add to top by First-In-First-Get rule
  @note The last added header section is front-most
  */
-- (BOOL)addStickyHeaderSection:(WCStickySection *)section;
+- (BOOL)addStickySection:(WCStickySection *)section atInitialY:(CGFloat)initialY;
 
 @end
 

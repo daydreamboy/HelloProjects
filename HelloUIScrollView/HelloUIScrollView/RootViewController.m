@@ -17,6 +17,8 @@
 #import "UIView+UserInfo.h"
 #import "DetectScrollingDirectionViewController.h"
 #import "StickyHeaderViewInScrollViewViewController.h"
+#import "StickyViewInScrollViewViewController.h"
+#import "StickyPushSectionInScrollViewViewController.h"
 
 typedef NS_ENUM(NSUInteger, AccessoryViewType) {
     AccessoryViewTypeDefault,
@@ -53,6 +55,8 @@ typedef NS_ENUM(NSUInteger, AccessoryViewType) {
         @"Disable call scrollViewDidScroll automatically",
         @"Detect scrolling direction",
         @"StickyHeaderViewInScrollViewViewController",
+        @"StickyViewInScrollViewViewController",
+        @"StickyPushSectionInScrollViewViewController",
         @"call a test method",
     ];
     _classes = @[
@@ -64,6 +68,8 @@ typedef NS_ENUM(NSUInteger, AccessoryViewType) {
         [DisableCallScrollViewDidScrollAutomaticallyViewController class],
         [DetectScrollingDirectionViewController class],
         [StickyHeaderViewInScrollViewViewController class],
+        [StickyViewInScrollViewViewController class],
+        [StickyPushSectionInScrollViewViewController class],
         @"testMethod",
     ];
     _options = [@[
@@ -76,6 +82,8 @@ typedef NS_ENUM(NSUInteger, AccessoryViewType) {
             @"accessoryViewType": @(AccessoryViewTypeSwitch),
             kOptionDisableAutoCallScrollViewDidScroll: @(NO)
         } mutableCopy],
+        [NSNull null],
+        [NSNull null],
         [NSNull null],
         [NSNull null],
         [NSNull null],
