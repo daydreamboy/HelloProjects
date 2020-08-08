@@ -25,23 +25,25 @@ static NSString *sCellIdentifier = @"UITableViewCell_sCellIdentifier";
     
     _stickyHeaderSectionManager = [[WCStickyHeaderSectionManager alloc] initWithScrollView:self.tableView];    
     [_stickyHeaderSectionManager addStickyHeaderSection:({
-        WCStickySection *view = [[WCStickySection alloc] initWithFixed:0 height:100];
+        WCStickySection *view = [[WCStickySection alloc] initWithFixedY:10 height:100];
         view.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
-        view.sticky = NO;
+//        view.sticky = NO;
         view;
-    }) priority:0];
+    }) priority:2];
     [_stickyHeaderSectionManager addStickyHeaderSection:({
-        WCStickySection *view = [[WCStickySection alloc] initWithFixed:0 height:100];
+        WCStickySection *view = [[WCStickySection alloc] initWithFixedY:60 height:100];
         view.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.5];
-//        view.sticky = NO; // MARK: set sticky or not
-        view;
-    }) priority:0];
-    [_stickyHeaderSectionManager addStickyHeaderSection:({
-        WCStickySection *view = [[WCStickySection alloc] initWithFixed:0 height:100];
-        view.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.5];
-        view.sticky = NO; // MARK: set sticky or not
+        view.sticky = YES; // MARK: set sticky or not
+        view.autoFixed = YES;
         view;
     }) priority:1];
+    [_stickyHeaderSectionManager addStickyHeaderSection:({
+        WCStickySection *view = [[WCStickySection alloc] initWithFixedY:0 height:100];
+        view.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.5];
+//        view.sticky = NO; // MARK: set sticky or not
+        view.autoFixed = YES;
+        view;
+    }) priority:0];
     
     [self.view addSubview:self.tableView];
 }

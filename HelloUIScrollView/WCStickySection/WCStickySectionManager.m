@@ -12,8 +12,7 @@
 
 @interface WCStickySectionManager ()
 @property (nonatomic, weak, readwrite) UIScrollView *scrollView;
-@property (nonatomic, assign, readwrite) CGFloat sectionsTotalHeight;
-@property (nonatomic, strong) NSMutableSet<WCStickySection *> *sections;
+@property (nonatomic, strong) NSMutableSet<WCStickySection *> *sectionsSet;
 @end
 
 @implementation WCStickySectionManager
@@ -22,8 +21,7 @@
     self = [super init];
     if (self) {
         _scrollView = scrollView;
-        _sectionsTotalHeight = 0;
-        _sections = [NSMutableSet set];
+        _sectionsSet = [NSMutableSet set];
         
         [_scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     }
@@ -34,7 +32,7 @@
     section.frame = CGRectMake(0, initialY, CGRectGetWidth(self.scrollView.bounds), section.height);
     section.initialY = initialY;
     [self.scrollView addSubview:section];
-    [self.sections addObject:section];
+    [self.sectionsSet addObject:section];
     
     return YES;
 }
@@ -48,7 +46,7 @@
         
         NSLog(@"%f", contentOffset.y);
         
-        for (WCStickySection *section in self.sections) {
+        for (WCStickySection *section in self.sectionsSet) {
             if (section.sticky) {
                 section.frame = ({
                     CGRect frame = section.frame;

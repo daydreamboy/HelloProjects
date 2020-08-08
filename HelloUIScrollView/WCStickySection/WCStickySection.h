@@ -18,7 +18,12 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) BOOL sticky;
 
-- (instancetype)initWithFixed:(CGFloat)fixedY height:(CGFloat)height;
+- (instancetype)initWithFixedY:(CGFloat)fixedY height:(CGFloat)height;
+
+#pragma mark - UNAVAILABLE
+
+- (instancetype)init UNAVAILABLE_ATTRIBUTE;
+- (instancetype)initWithFrame:(CGRect)frame UNAVAILABLE_ATTRIBUTE;
 
 @end
 

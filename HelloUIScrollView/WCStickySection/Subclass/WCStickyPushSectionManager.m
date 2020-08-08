@@ -24,12 +24,22 @@
 }
 
 - (BOOL)addStickySection:(WCStickySection *)section atNextOffsetY:(CGFloat)nextOffsetY {
-    WCStickySection *lastSection = [self.sections lastObject];
-    if (lastSection) {
-        CGFloat fixedY = lastSection.fixedY + CGRectGetHeight(lastSection.bounds);
-        section.fixedY = fixedY;
+    CGFloat totalFixedHeight = 0;
+    WCStickySection *firstStickySection = nil;
+    for (WCStickySection *section in self.sections) {
+        if (section.sticky) {
+            if (!firstStickySection) {
+                firstStickySection = section;
+            }
+            
+            totalFixedHeight += CGRectGetHeight(section.bounds);
+        }
+    }
+    if (firstStickySection) {
+        section.fixedY = firstStickySection.fixedY + totalFixedHeight;
     }
     
+    WCStickySection *lastSection = [self.sections lastObject];
     CGFloat initialY = CGRectGetMaxY(lastSection.frame) + nextOffsetY;
     [super addStickySection:section atInitialY:initialY];
     

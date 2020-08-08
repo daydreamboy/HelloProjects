@@ -25,19 +25,19 @@ static NSString *sCellIdentifier = @"UITableViewCell_sCellIdentifier";
     
     _stickySectionManager = [[WCStickySectionManager alloc] initWithScrollView:self.tableView];
     [_stickySectionManager addStickySection:({
-        WCStickySection *view = [[WCStickySection alloc] initWithFixed:0 height:100];
+        WCStickySection *view = [[WCStickySection alloc] initWithFixedY:0 height:100];
         view.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
 //        view.sticky = NO;
         view;
     }) atInitialY:50];
     [_stickySectionManager addStickySection:({
-        WCStickySection *view = [[WCStickySection alloc] initWithFixed:0 height:100];
+        WCStickySection *view = [[WCStickySection alloc] initWithFixedY:0 height:100];
         view.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.5];
 //        view.sticky = NO; // MARK: set sticky or not
         view;
     }) atInitialY:200];
     [_stickySectionManager addStickySection:({
-        WCStickySection *view = [[WCStickySection alloc] initWithFixed:0 height:100];
+        WCStickySection *view = [[WCStickySection alloc] initWithFixedY:0 height:100];
         view.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.5];
 //        view.sticky = NO; // MARK: set sticky or not
         view;

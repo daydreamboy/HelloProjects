@@ -15,7 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface WCStickySectionManager : NSObject
 
 @property (nonatomic, weak, readonly) UIScrollView *scrollView;
-@property (nonatomic, assign, readonly) CGFloat sectionsTotalHeight;
 
 - (instancetype)initWithScrollView:(UIScrollView *)scrollView;
 /**

@@ -23,17 +23,9 @@
     return value;                                                                                               \
 }
 
-@interface WCStickySection (Header)
-/**
- The priority of sorting. Default is 0
- 
- @discussion If the priority is bigger, this header section is possibly arranged at the topmost than other sections
- */
-@property (nonatomic, assign) NSInteger priority;
-@end
-
 @implementation WCStickySection (Header)
 SYNTHESIZE_ASSOCIATED_PRIMITIVE(priority, setPriority, NSInteger);
+SYNTHESIZE_ASSOCIATED_PRIMITIVE(autoFixed, setAutoFixed, BOOL);
 
 - (NSString *)description {
     return [NSString stringWithFormat:@"<WCStickyHeaderSection: %p; frame = %@; layer = <CALayer: %p>; priority = %d; sticky = %@>", self, NSStringFromCGRect(self.frame), self.layer, (int)self.priority, self.sticky ? @"YES": @"NO"];
@@ -45,6 +37,7 @@ SYNTHESIZE_ASSOCIATED_PRIMITIVE(priority, setPriority, NSInteger);
 /// sorted section which priority from high to low
 @property (nonatomic, strong, readwrite) NSMutableArray<WCStickySection *> *sortedSections;
 @property (nonatomic, assign) CGFloat headerHeight;
+@property (nonatomic, assign) CGFloat sectionsTotalHeight;
 @end
 
 @implementation WCStickyHeaderSectionManager
@@ -53,6 +46,7 @@ SYNTHESIZE_ASSOCIATED_PRIMITIVE(priority, setPriority, NSInteger);
     self = [super initWithScrollView:scrollView];
     if (self) {
         _headerHeight = 0;
+        _sectionsTotalHeight = 0;
         _sortedSections = [NSMutableArray array];
     }
     return self;
@@ -74,17 +68,39 @@ SYNTHESIZE_ASSOCIATED_PRIMITIVE(priority, setPriority, NSInteger);
         }
     }
     
+    if (section.autoFixed) {
+        WCStickySection *firstStickySection = nil;
+        CGFloat totalFixedHeight = 0;
+        
+        for (WCStickySection *section in self.sortedSections) {
+            if (section.sticky) {
+                if (!firstStickySection) {
+                    firstStickySection = section;
+                }
+                
+                totalFixedHeight += CGRectGetHeight(section.bounds);
+            }
+        }
+        if (firstStickySection) {
+            section.fixedY = firstStickySection.fixedY + totalFixedHeight;
+        }
+    }
+    
     [self.sortedSections insertObject:section atIndex:indexToInsert];
     
-    self.headerHeight += section.height;
-    CGFloat startY = -self.headerHeight;
+    self.sectionsTotalHeight += section.height;
+    self.headerHeight = self.sectionsTotalHeight + [self.sortedSections firstObject].fixedY;
+    
+    CGFloat startY = -self.sectionsTotalHeight;
     for (WCStickySection *section in self.sortedSections) {
         [super addStickySection:section atInitialY:startY];
         startY += section.height;
     }
     
-    self.scrollView.contentInset = UIEdgeInsetsMake(self.headerHeight, 0, 0, 0);
-
+    UIEdgeInsets contentInset = self.scrollView.contentInset;
+    contentInset.top = self.headerHeight;
+    self.scrollView.contentInset = contentInset;
+    
     return YES;
 }
 

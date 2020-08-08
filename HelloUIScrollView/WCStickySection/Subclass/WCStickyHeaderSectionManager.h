@@ -13,6 +13,22 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface WCStickySection (Header)
+/**
+ The priority of sorting. Default is 0
+ 
+ @discussion If the priority is bigger, this header section is possibly arranged at the topmost than other sections
+ */
+@property (nonatomic, assign) NSInteger priority;
+/**
+ Set to auto adjust section's fixedY
+ 
+ @discussion If set YES, the previous one is sticky, this section is sticky after the previous one
+ @note This property only works when the section is sticky and ignore value in initWithFixedY: method
+ */
+@property (nonatomic, assign) BOOL autoFixed;
+@end
+
 @interface WCStickyHeaderSectionManager : WCStickySectionManager
 
 - (instancetype)initWithScrollView:(UIScrollView *)scrollView;

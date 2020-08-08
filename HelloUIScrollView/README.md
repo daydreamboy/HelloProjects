@@ -98,6 +98,12 @@ WCScrollViewTool实现UIScrollView滚动到上面八种特定位置。
 
 
 
+## 5、WCStickySection
+
+​      WCStickySection实现在UIScrollView上面添加子View（后简称sticky section），并让子View不跟随UIScrollView滚动或者滚动到指定位置后不滚动。
+
+
+
 
 
 

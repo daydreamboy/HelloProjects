@@ -15,7 +15,7 @@
 
 @implementation WCStickySection
 
-- (instancetype)initWithFixed:(CGFloat)fixedY height:(CGFloat)height {
+- (instancetype)initWithFixedY:(CGFloat)fixedY height:(CGFloat)height {
     self = [super initWithFrame:CGRectZero];
     if (self) {
         _sticky = YES;
