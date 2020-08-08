@@ -40,6 +40,7 @@
 #import "CustomizeHighlightCellViewController.h"
 #import "CheckNumberOfCellOnFirstRenderViewController.h"
 #import "TintSystemCheckmarkCellViewController.h"
+#import "GroupedSingleSectionViewController.h"
 
 // section 5
 #import "StaticCellHeightAboveiOS11IssuesViewController.h"
@@ -103,6 +104,7 @@
           @{ kTitle: @"Check number of cell on first render", kClass: [CheckNumberOfCellOnFirstRenderViewController class] },
           @{ kTitle: @"Customize highlight cell", kClass: [CustomizeHighlightCellViewController class] },
           @{ kTitle: @"Tint system checkmark cell", kClass: [TintSystemCheckmarkCellViewController class] },
+          @{ kTitle: @"Grouped single section", kClass: [GroupedSingleSectionViewController class] },
     ];
     
     NSArray<NSDictionary *> *section5 = @[
