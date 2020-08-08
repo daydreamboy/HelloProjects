@@ -104,7 +104,7 @@ WCScrollViewTool实现UIScrollView滚动到上面八种特定位置。
 
 
 
-
+不使用tableHeaderView，是因为scrollViewDidScroll:方法之后，系统会设置tableHeaderView的origin总是{0, 0}。
 
 
 

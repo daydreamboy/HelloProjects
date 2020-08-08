@@ -95,6 +95,7 @@ SYNTHESIZE_ASSOCIATED_PRIMITIVE(autoFixed, setAutoFixed, BOOL);
     for (WCStickySection *section in self.sortedSections) {
         [super addStickySection:section atInitialY:startY];
         startY += section.height;
+        [self.scrollView sendSubviewToBack:section];
     }
     
     UIEdgeInsets contentInset = self.scrollView.contentInset;

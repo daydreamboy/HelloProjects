@@ -33,7 +33,7 @@ static NSString *sCellIdentifier = @"UITableViewCell_sCellIdentifier";
     [_stickyHeaderSectionManager addStickyHeaderSection:({
         WCStickySection *view = [[WCStickySection alloc] initWithFixedY:60 height:100];
         view.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.5];
-        view.sticky = YES; // MARK: set sticky or not
+        view.sticky = NO; // MARK: set sticky or not
         view.autoFixed = YES;
         view;
     }) priority:1];
