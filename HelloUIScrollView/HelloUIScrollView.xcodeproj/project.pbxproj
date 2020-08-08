@@ -140,7 +140,7 @@
 			path = Subclass;
 			sourceTree = "<group>";
 		};
-		4F1C555824DCF61C00405947 /* WCStickyHeaderSection */ = {
+		4F1C555824DCF61C00405947 /* WCStickySection */ = {
 			isa = PBXGroup;
 			children = (
 				4F1728FB24DD60B200110D4C /* Subclass */,
@@ -150,7 +150,7 @@
 				4F1C555D24DCF6FA00405947 /* WCStickySection.m */,
 				4F1728F124DD46B700110D4C /* WCStickySection_Internal.h */,
 			);
-			path = WCStickyHeaderSection;
+			path = WCStickySection;
 			sourceTree = "<group>";
 		};
 		4F2762BA239BC556003740C8 /* Tools */ = {
@@ -165,7 +165,7 @@
 		4F4D745B20BE48170027DE7C = {
 			isa = PBXGroup;
 			children = (
-				4F1C555824DCF61C00405947 /* WCStickyHeaderSection */,
+				4F1C555824DCF61C00405947 /* WCStickySection */,
 				4F62BA3F233B719D0020CC6D /* WCScrollViewTool */,
 				4F4D746620BE48170027DE7C /* HelloUIScrollView */,
 				4F4D746520BE48170027DE7C /* Products */,
