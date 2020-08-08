@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F17290224DD80AF00110D4C /* UseDynamicColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F17290124DD80AF00110D4C /* UseDynamicColorViewController.m */; };
 		4F2376ED241F334000389A64 /* UseSystemColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2376EC241F334000389A64 /* UseSystemColorViewController.m */; };
 		4F2376F1241F35B700389A64 /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2376F0241F35B700389A64 /* MyTableViewCell.m */; };
 		4F2820DF241B31D30032E16A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2820DE241B31D30032E16A /* AppDelegate.m */; };
@@ -19,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F17290024DD80AF00110D4C /* UseDynamicColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseDynamicColorViewController.h; sourceTree = "<group>"; };
+		4F17290124DD80AF00110D4C /* UseDynamicColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseDynamicColorViewController.m; sourceTree = "<group>"; };
 		4F2376EB241F334000389A64 /* UseSystemColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseSystemColorViewController.h; sourceTree = "<group>"; };
 		4F2376EC241F334000389A64 /* UseSystemColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseSystemColorViewController.m; sourceTree = "<group>"; };
 		4F2376EF241F35B700389A64 /* MyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell.h; sourceTree = "<group>"; };
@@ -100,6 +103,8 @@
 				4F2376EC241F334000389A64 /* UseSystemColorViewController.m */,
 				4FD8E7ED24246A7000DD34AA /* UseSemanticColorViewController.h */,
 				4FD8E7EE24246A7000DD34AA /* UseSemanticColorViewController.m */,
+				4F17290024DD80AF00110D4C /* UseDynamicColorViewController.h */,
+				4F17290124DD80AF00110D4C /* UseDynamicColorViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -191,6 +196,7 @@
 			files = (
 				4F2376ED241F334000389A64 /* UseSystemColorViewController.m in Sources */,
 				4FEC5B262421CA42008376EA /* WCImageTool.m in Sources */,
+				4F17290224DD80AF00110D4C /* UseDynamicColorViewController.m in Sources */,
 				4F2820DF241B31D30032E16A /* AppDelegate.m in Sources */,
 				4FD8E7EF24246A7000DD34AA /* UseSemanticColorViewController.m in Sources */,
 				4F2376F1241F35B700389A64 /* MyTableViewCell.m in Sources */,
@@ -328,6 +334,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = HelloHumanInterfaceGuidelines/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -344,6 +351,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = HelloHumanInterfaceGuidelines/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
