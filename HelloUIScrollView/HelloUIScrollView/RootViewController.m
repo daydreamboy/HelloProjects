@@ -19,6 +19,7 @@
 #import "StickyHeaderSectionInScrollViewViewController.h"
 #import "StickySectionInScrollViewViewController.h"
 #import "StickySidingSectionInScrollViewViewController.h"
+#import "StickyPushSectionInScrollViewViewController.h"
 
 typedef NS_ENUM(NSUInteger, AccessoryViewType) {
     AccessoryViewTypeDefault,
@@ -57,6 +58,7 @@ typedef NS_ENUM(NSUInteger, AccessoryViewType) {
         @"Sticky Section",
         @"Sticky HeaderSection",
         @"Sticky SidingSection",
+        @"Sticky PushSection",
         @"call a test method",
     ];
     _classes = @[
@@ -70,6 +72,7 @@ typedef NS_ENUM(NSUInteger, AccessoryViewType) {
         [StickySectionInScrollViewViewController class],
         [StickyHeaderSectionInScrollViewViewController class],
         [StickySidingSectionInScrollViewViewController class],
+        [StickyPushSectionInScrollViewViewController class],
         @"testMethod",
     ];
     _options = [@[
@@ -82,6 +85,7 @@ typedef NS_ENUM(NSUInteger, AccessoryViewType) {
             @"accessoryViewType": @(AccessoryViewTypeSwitch),
             kOptionDisableAutoCallScrollViewDidScroll: @(NO)
         } mutableCopy],
+        [NSNull null],
         [NSNull null],
         [NSNull null],
         [NSNull null],

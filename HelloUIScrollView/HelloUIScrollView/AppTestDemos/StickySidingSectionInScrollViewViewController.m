@@ -9,7 +9,7 @@
 #import "StickySidingSectionInScrollViewViewController.h"
 #import "WCStickySidingSectionManager.h"
 
-@interface StickySidingSectionInScrollViewViewController ()
+@interface StickySidingSectionInScrollViewViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *listArr;
 @property (nonatomic, strong) WCStickySidingSectionManager *stickySectionManager;

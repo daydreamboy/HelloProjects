@@ -8,11 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "WCStickySectionManager.h"
+#import "WCStickySection.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WCStickyPushSectionManager : WCStickySectionManager
+#warning "WCStickyPushSectionManager unfinished"
+@interface WCStickyPushSectionManager : NSObject
+
+- (instancetype)initWithScrollView:(UIScrollView *)scrollView;
+- (BOOL)addStickySection:(WCStickySection *)section atNextOffsetY:(CGFloat)nextOffsetY;
+
+#pragma mark - UNAVAILABLE
+
+- (BOOL)addStickySection:(WCStickySection *)section atInitialY:(CGFloat)initialY UNAVAILABLE_ATTRIBUTE;
 
 @end
 
