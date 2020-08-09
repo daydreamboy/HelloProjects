@@ -1,19 +1,19 @@
 //
-//  WCStickyPushSectionManager.m
+//  WCStickySidingSectionManager.m
 //  HelloUIScrollView
 //
 //  Created by wesley_chen on 2020/8/7.
 //  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
-#import "WCStickyPushSectionManager.h"
+#import "WCStickySidingSectionManager.h"
 #import "WCStickySection_Internal.h"
 
-@interface WCStickyPushSectionManager ()
+@interface WCStickySidingSectionManager ()
 @property (nonatomic, strong) NSMutableArray<WCStickySection *> *sections;
 @end
 
-@implementation WCStickyPushSectionManager
+@implementation WCStickySidingSectionManager
 
 - (instancetype)initWithScrollView:(UIScrollView *)scrollView {
     self = [super initWithScrollView:scrollView];

@@ -1,5 +1,5 @@
 //
-//  WCStickyPushSectionManager.h
+//  WCStickySidingSectionManager.h
 //  HelloUIScrollView
 //
 //  Created by wesley_chen on 2020/8/7.
@@ -12,7 +12,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WCStickyPushSectionManager : WCStickySectionManager
+@interface WCStickySidingSectionManager : WCStickySectionManager
 
 - (instancetype)initWithScrollView:(UIScrollView *)scrollView;
 - (BOOL)addStickySection:(WCStickySection *)section atNextOffsetY:(CGFloat)nextOffsetY;

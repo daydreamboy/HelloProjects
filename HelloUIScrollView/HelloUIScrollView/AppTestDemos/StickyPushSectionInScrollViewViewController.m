@@ -7,12 +7,12 @@
 //
 
 #import "StickyPushSectionInScrollViewViewController.h"
-#import "WCStickyPushSectionManager.h"
+#import "WCStickySidingSectionManager.h"
 
 @interface StickyPushSectionInScrollViewViewController ()
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *listArr;
-@property (nonatomic, strong) WCStickyPushSectionManager *stickySectionManager;
+@property (nonatomic, strong) WCStickySidingSectionManager *stickySectionManager;
 @end
 
 @implementation StickyPushSectionInScrollViewViewController
@@ -23,7 +23,7 @@ static NSString *sCellIdentifier = @"UITableViewCell_sCellIdentifier";
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    _stickySectionManager = [[WCStickyPushSectionManager alloc] initWithScrollView:self.tableView];
+    _stickySectionManager = [[WCStickySidingSectionManager alloc] initWithScrollView:self.tableView];
     [_stickySectionManager addStickySection:({
         WCStickySection *view = [[WCStickySection alloc] initWithFixedY:10 height:100];
         view.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
