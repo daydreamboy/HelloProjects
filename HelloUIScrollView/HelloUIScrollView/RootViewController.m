@@ -56,7 +56,7 @@ typedef NS_ENUM(NSUInteger, AccessoryViewType) {
         @"Detect scrolling direction",
         @"Sticky Section",
         @"Sticky HeaderSection",
-        @"Sticky PushSection",
+        @"Sticky SidingSection",
         @"call a test method",
     ];
     _classes = @[

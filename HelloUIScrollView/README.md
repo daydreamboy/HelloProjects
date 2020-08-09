@@ -138,9 +138,9 @@ WCStickySection类，即是View，也是Model。
 
 
 
-### （2）StickyHeaderSection
+### （2）Sticky Header Section
 
-​      StickyHeaderSection是WCStickyHeaderSectionManager实现的效果，用于UITableView的头部，添加sticky section。
+​      Sticky Header Section是WCStickyHeaderSectionManager实现的效果，用于UITableView的头部，添加sticky section。
 
 ​      WCStickyHeaderSectionManager添加WCStickySection的分类，支持priority和autoFixed属性。支持的feature，如下
 
@@ -151,9 +151,9 @@ WCStickySection类，即是View，也是Model。
 
 
 
-### （3）StickySidingSection
+### （3）Sticky Siding Section
 
-​       StickySidingSection是WCStickySidingSectionManager实现的效果，用于多个section stick时，不互相重叠。支持的feature，如下
+​       Sticky Siding Section是WCStickySidingSectionManager实现的效果，用于多个section stick时，不互相重叠。支持的feature，如下
 
 * 提供API，按照section的间距来初始化section的位置
 
