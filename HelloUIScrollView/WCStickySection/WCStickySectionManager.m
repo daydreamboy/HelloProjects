@@ -12,7 +12,8 @@
 
 @interface WCStickySectionManager ()
 @property (nonatomic, weak, readwrite) UIScrollView *scrollView;
-@property (nonatomic, strong) NSMutableSet<WCStickySection *> *sectionsSet;
+@property (nonatomic, strong) NSMutableOrderedSet<WCStickySection *> *sectionsSet;
+@property (nonatomic, strong) NSNumber *statusSwitchFlag;
 @end
 
 @implementation WCStickySectionManager
@@ -21,7 +22,7 @@
     self = [super init];
     if (self) {
         _scrollView = scrollView;
-        _sectionsSet = [NSMutableSet set];
+        _sectionsSet = [[NSMutableOrderedSet alloc] init];
         
         [_scrollView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
     }
@@ -46,16 +47,28 @@
         
         NSLog(@"%f", contentOffset.y);
         
-        for (WCStickySection *section in self.sectionsSet) {
+        for (WCStickySection *section in [self.sectionsSet reverseObjectEnumerator]) {
             if (section.sticky) {
                 section.frame = ({
                     CGRect frame = section.frame;
                     
                     // @see https://stackoverflow.com/questions/11272847/make-uiview-in-uiscrollview-stick-to-the-top-when-scrolled-up
                     if (contentOffset.y + section.fixedY > section.initialY) {
+                        if (self.statusSwitchFlag.integerValue != WCStickySectionStatusSticking) {
+                            self.statusSwitchFlag = @(WCStickySectionStatusSticking);
+                            if ([self.delegate respondsToSelector:@selector(stickySection:willChangeStatus:)]) {
+                                [self.delegate stickySection:section willChangeStatus:WCStickySectionStatusSticking];
+                            }
+                        }
+                        
                         frame.origin.y = section.fixedY + contentOffset.y;
                     }
                     else {
+                        if (self.statusSwitchFlag.integerValue != WCStickySectionStatusUnsticking) {
+                            self.statusSwitchFlag = @(WCStickySectionStatusUnsticking);
+                            [self.delegate stickySection:section willChangeStatus:WCStickySectionStatusSticking];
+                        }
+                        
                         frame.origin.y = section.initialY;
                     }
                     frame;

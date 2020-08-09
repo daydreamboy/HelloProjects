@@ -18,7 +18,7 @@
 #import "DetectScrollingDirectionViewController.h"
 #import "StickyHeaderSectionInScrollViewViewController.h"
 #import "StickySectionInScrollViewViewController.h"
-#import "StickyPushSectionInScrollViewViewController.h"
+#import "StickySidingSectionInScrollViewViewController.h"
 
 typedef NS_ENUM(NSUInteger, AccessoryViewType) {
     AccessoryViewTypeDefault,
@@ -69,7 +69,7 @@ typedef NS_ENUM(NSUInteger, AccessoryViewType) {
         [DetectScrollingDirectionViewController class],
         [StickySectionInScrollViewViewController class],
         [StickyHeaderSectionInScrollViewViewController class],
-        [StickyPushSectionInScrollViewViewController class],
+        [StickySidingSectionInScrollViewViewController class],
         @"testMethod",
     ];
     _options = [@[

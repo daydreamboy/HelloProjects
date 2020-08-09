@@ -12,9 +12,21 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, WCStickySectionStatus) {
+    WCStickySectionStatusUnsticking,
+    WCStickySectionStatusSticking,
+};
+
+@protocol WCStickySectionDelegate <NSObject>
+
+- (void)stickySection:(WCStickySection *)section willChangeStatus:(WCStickySectionStatus)status;
+
+@end
+
 @interface WCStickySectionManager : NSObject
 
 @property (nonatomic, weak, readonly) UIScrollView *scrollView;
+@property (nonatomic, weak) id<WCStickySectionDelegate> delegate;
 
 - (instancetype)initWithScrollView:(UIScrollView *)scrollView;
 /**

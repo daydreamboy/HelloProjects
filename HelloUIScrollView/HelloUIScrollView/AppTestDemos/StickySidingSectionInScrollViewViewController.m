@@ -1,21 +1,21 @@
 //
-//  StickyPushSectionInScrollViewViewController.m
+//  StickySidingSectionInScrollViewViewController.m
 //  HelloUIScrollView
 //
 //  Created by wesley_chen on 2020/8/7.
 //  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
-#import "StickyPushSectionInScrollViewViewController.h"
+#import "StickySidingSectionInScrollViewViewController.h"
 #import "WCStickySidingSectionManager.h"
 
-@interface StickyPushSectionInScrollViewViewController ()
+@interface StickySidingSectionInScrollViewViewController ()
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *listArr;
 @property (nonatomic, strong) WCStickySidingSectionManager *stickySectionManager;
 @end
 
-@implementation StickyPushSectionInScrollViewViewController
+@implementation StickySidingSectionInScrollViewViewController
 
 static NSString *sCellIdentifier = @"UITableViewCell_sCellIdentifier";
 
