@@ -10,6 +10,28 @@
 #import "WCStickySection_Internal.h"
 #import <objc/runtime.h>
 
+#define FrameSetSize(frame, newWidth, newHeight) ({ \
+CGRect __internal_frame = (frame); \
+if (!isnan((newWidth))) { \
+    __internal_frame.size.width = (newWidth); \
+} \
+if (!isnan((newHeight))) { \
+    __internal_frame.size.height = (newHeight); \
+} \
+__internal_frame; \
+})
+
+#define FrameSetOrigin(frame, newX, newY) ({ \
+CGRect __internal_frame = (frame); \
+if (!isnan((newX))) { \
+    __internal_frame.origin.x = (newX); \
+} \
+if (!isnan((newY))) { \
+    __internal_frame.origin.y = (newY); \
+} \
+__internal_frame; \
+})
+
 #define SYNTHESIZE_ASSOCIATED_PRIMITIVE(getterName, setterName, type)                                           \
 - (void)setterName:(type)value {                                                                                \
     NSValue *nsValue = [NSValue value:&value withObjCType:@encode(type)];                                       \
@@ -110,6 +132,8 @@ SYNTHESIZE_ASSOCIATED_PRIMITIVE(autoFixed, setAutoFixed, BOOL);
     CGFloat sectionOldHeight = section.height;
     CGFloat sectionNewHeight = height >= 0 ? height : 0;
     section.height = sectionNewHeight;
+    section.frame = FrameSetSize(section.frame, NAN, sectionNewHeight);
+    
     self.sectionsTotalHeight = sectionNewHeight - sectionOldHeight + self.sectionsTotalHeight;
     
     CGFloat startY = -self.sectionsTotalHeight;
@@ -119,7 +143,11 @@ SYNTHESIZE_ASSOCIATED_PRIMITIVE(autoFixed, setAutoFixed, BOOL);
     for (NSInteger i = 0; i < self.sortedSections.count; ++i) {
         WCStickySection *sectionToUpdate = self.sortedSections[i];
         sectionToUpdate.initialY = startY;
-        startY += sectionToUpdate.height;
+        
+        // Note: if section which height changed, update its actual position
+        if (!section.sticky && sectionToUpdate == section) {
+            section.frame = FrameSetOrigin(section.frame, NAN, startY);
+        }
         
         if (sectionToUpdate.sticky && sectionToUpdate.autoFixed) {
             sectionToUpdate.fixedY = previousStickySection ? previousStickySection.fixedY + previousStickySection.height : sectionToUpdate.fixedY;
@@ -128,13 +156,15 @@ SYNTHESIZE_ASSOCIATED_PRIMITIVE(autoFixed, setAutoFixed, BOOL);
         if (sectionToUpdate.sticky) {
             previousStickySection = sectionToUpdate;
         }
+        
+        startY += sectionToUpdate.height;
     }
     
     self.headerHeight = self.sectionsTotalHeight + [self.sortedSections firstObject].fixedY;
     
     UIEdgeInsets contentInset = self.scrollView.contentInset;
     contentInset.top = self.headerHeight;
-    // Note: change contentInset will trigger contentOffset KVO
+    // Note: change contentInset will trigger contentOffset KVO to update all only sticky sections (sticky = YES)
     self.scrollView.contentInset = contentInset;
 }
 

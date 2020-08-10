@@ -14,7 +14,6 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *listArr;
 @property (nonatomic, strong) WCStickyHeaderSectionManager *stickyHeaderSectionManager;
-@property (nonatomic, strong) UIView *heightChangedView;
 @end
 
 @implementation StickyHeaderSectionInScrollViewViewController
@@ -30,7 +29,6 @@ static NSString *sCellIdentifier = @"UITableViewCell_sCellIdentifier";
         WCStickySection *view = [[WCStickySection alloc] initWithFixedY:10 height:100];
         view.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
 //        view.sticky = NO;
-        self.heightChangedView = view;
         view;
     }) priority:2];
     [_stickyHeaderSectionManager addStickyHeaderSection:({
@@ -128,13 +126,11 @@ static NSString *sCellIdentifier = @"UITableViewCell_sCellIdentifier";
 }
 
 - (void)itemChangeClicked:(id)sender {
-    WCStickySection *section = [self.stickyHeaderSectionManager.sortedSections firstObject];
+    WCStickySection *section = self.stickyHeaderSectionManager.sortedSections[1];
     if (section.height == 100) {
-        self.heightChangedView.frame = FrameSetSize(self.heightChangedView.frame, NAN, 250);
         [self.stickyHeaderSectionManager changeStickyHeaderSection:section toHeight:250];
     }
     else {
-        self.heightChangedView.frame = FrameSetSize(self.heightChangedView.frame, NAN, 100);
         [self.stickyHeaderSectionManager changeStickyHeaderSection:section toHeight:100];
     }
 }
