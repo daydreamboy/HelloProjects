@@ -34,14 +34,14 @@ static NSString *sCellIdentifier = @"UITableViewCell_sCellIdentifier";
     [_stickyHeaderSectionManager addStickyHeaderSection:({
         WCStickySection *view = [[WCStickySection alloc] initWithFixedY:60 height:100];
         view.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.5];
-        view.sticky = NO; // MARK: set sticky or not
+//        view.sticky = NO; // MARK: set sticky or not
         view.autoFixed = YES;
         view;
     }) priority:1];
     [_stickyHeaderSectionManager addStickyHeaderSection:({
         WCStickySection *view = [[WCStickySection alloc] initWithFixedY:0 height:100];
         view.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.5];
-//        view.sticky = NO; // MARK: set sticky or not
+        view.sticky = NO; // MARK: set sticky or not
         view.autoFixed = YES;
         view;
     }) priority:0];
@@ -126,7 +126,7 @@ static NSString *sCellIdentifier = @"UITableViewCell_sCellIdentifier";
 }
 
 - (void)itemChangeClicked:(id)sender {
-    WCStickySection *section = self.stickyHeaderSectionManager.sortedSections[1];
+    WCStickySection *section = self.stickyHeaderSectionManager.sortedSections[0];
     if (section.height == 100) {
         [self.stickyHeaderSectionManager changeStickyHeaderSection:section toHeight:250];
     }

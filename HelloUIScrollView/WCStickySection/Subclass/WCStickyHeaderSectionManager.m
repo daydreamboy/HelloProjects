@@ -145,8 +145,8 @@ SYNTHESIZE_ASSOCIATED_PRIMITIVE(autoFixed, setAutoFixed, BOOL);
         sectionToUpdate.initialY = startY;
         
         // Note: if section which height changed, update its actual position
-        if (!section.sticky && sectionToUpdate == section) {
-            section.frame = FrameSetOrigin(section.frame, NAN, startY);
+        if (!sectionToUpdate.sticky) {
+            sectionToUpdate.frame = FrameSetOrigin(sectionToUpdate.frame, NAN, startY);
         }
         
         if (sectionToUpdate.sticky && sectionToUpdate.autoFixed) {
