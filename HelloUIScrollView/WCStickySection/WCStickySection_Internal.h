@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface WCStickySection ()
 @property (nonatomic, assign) CGFloat initialY;
 @property (nonatomic, assign) CGFloat fixedY;
+@property (nonatomic, assign, readwrite) CGFloat height;
 @end
 
 NS_ASSUME_NONNULL_END

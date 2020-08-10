@@ -10,7 +10,7 @@
 #import "WCStickySection_Internal.h"
 
 @interface WCStickySection ()
-@property (nonatomic, assign, readwrite) CGFloat height;
+
 @end
 
 @implementation WCStickySection

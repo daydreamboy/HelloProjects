@@ -88,6 +88,7 @@
 		4FCA4D6824E01C4F00372063 /* WCStickyPushSectionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCStickyPushSectionManager.m; sourceTree = "<group>"; };
 		4FCA4D6A24E01EED00372063 /* StickyPushSectionInScrollViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StickyPushSectionInScrollViewViewController.m; sourceTree = "<group>"; };
 		4FCA4D6C24E01F0100372063 /* StickyPushSectionInScrollViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StickyPushSectionInScrollViewViewController.h; sourceTree = "<group>"; };
+		4FE8D2C824E0E9430035E424 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +124,7 @@
 			children = (
 				4F12204323A4DDA600F492B9 /* WCViewTool.h */,
 				4F12204423A4DDA600F492B9 /* WCViewTool.m */,
+				4FE8D2C824E0E9430035E424 /* WCMacroTool.h */,
 			);
 			path = Tools;
 			sourceTree = "<group>";

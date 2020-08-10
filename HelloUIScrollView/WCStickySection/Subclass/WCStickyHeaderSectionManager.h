@@ -31,11 +31,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WCStickyHeaderSectionManager : WCStickySectionManager
 
+@property (nonatomic, strong, readonly) NSMutableArray<WCStickySection *> *sortedSections;
+
 - (instancetype)initWithScrollView:(UIScrollView *)scrollView;
 - (void)viewDidLayoutSubviews;
 
 - (BOOL)addStickyHeaderSection:(WCStickySection *)section;
 - (BOOL)addStickyHeaderSection:(WCStickySection *)section priority:(NSInteger)priority;
+- (void)changeStickyHeaderSection:(WCStickySection *)section toHeight:(CGFloat)height;
 
 #pragma mark - UNAVAILABLE
 

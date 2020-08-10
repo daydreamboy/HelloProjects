@@ -8,11 +8,13 @@
 
 #import "StickyHeaderSectionInScrollViewViewController.h"
 #import "WCStickyHeaderSectionManager.h"
+#import "WCMacroTool.h"
 
 @interface StickyHeaderSectionInScrollViewViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *listArr;
 @property (nonatomic, strong) WCStickyHeaderSectionManager *stickyHeaderSectionManager;
+@property (nonatomic, strong) UIView *heightChangedView;
 @end
 
 @implementation StickyHeaderSectionInScrollViewViewController
@@ -28,6 +30,7 @@ static NSString *sCellIdentifier = @"UITableViewCell_sCellIdentifier";
         WCStickySection *view = [[WCStickySection alloc] initWithFixedY:10 height:100];
         view.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
 //        view.sticky = NO;
+        self.heightChangedView = view;
         view;
     }) priority:2];
     [_stickyHeaderSectionManager addStickyHeaderSection:({
@@ -46,6 +49,8 @@ static NSString *sCellIdentifier = @"UITableViewCell_sCellIdentifier";
     }) priority:0];
     
     [self.view addSubview:self.tableView];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Change H" style:UIBarButtonItemStylePlain target:self action:@selector(itemChangeClicked:)];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -120,6 +125,18 @@ static NSString *sCellIdentifier = @"UITableViewCell_sCellIdentifier";
 
 - (void)itemToggleClicked:(id)sender {
     [self.tableView setEditing:!self.tableView.editing animated:YES];
+}
+
+- (void)itemChangeClicked:(id)sender {
+    WCStickySection *section = [self.stickyHeaderSectionManager.sortedSections firstObject];
+    if (section.height == 100) {
+        self.heightChangedView.frame = FrameSetSize(self.heightChangedView.frame, NAN, 200);
+        [self.stickyHeaderSectionManager changeStickyHeaderSection:section toHeight:200];
+    }
+    else {
+        self.heightChangedView.frame = FrameSetSize(self.heightChangedView.frame, NAN, 100);
+        [self.stickyHeaderSectionManager changeStickyHeaderSection:section toHeight:100];
+    }
 }
 
 @end

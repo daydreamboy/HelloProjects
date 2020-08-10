@@ -28,7 +28,7 @@ SYNTHESIZE_ASSOCIATED_PRIMITIVE(priority, setPriority, NSInteger);
 SYNTHESIZE_ASSOCIATED_PRIMITIVE(autoFixed, setAutoFixed, BOOL);
 
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<WCStickyHeaderSection: %p; frame = %@; layer = <CALayer: %p>; priority = %d; sticky = %@>", self, NSStringFromCGRect(self.frame), self.layer, (int)self.priority, self.sticky ? @"YES": @"NO"];
+    return [NSString stringWithFormat:@"<WCStickyHeaderSection: %p; frame = %@; layer = <CALayer: %p>; priority = %d; sticky = %@; initialY = %f; fixedY = %f>", self, NSStringFromCGRect(self.frame), self.layer, (int)self.priority, self.sticky ? @"YES": @"NO", self.initialY, self.fixedY];
 }
 
 @end
@@ -103,6 +103,36 @@ SYNTHESIZE_ASSOCIATED_PRIMITIVE(autoFixed, setAutoFixed, BOOL);
     self.scrollView.contentInset = contentInset;
     
     return YES;
+}
+
+- (void)changeStickyHeaderSection:(WCStickySection *)section toHeight:(CGFloat)height {
+    CGFloat sectionOldHeight = section.height;
+    section.height = height >= 0 ? height : 0;
+    self.sectionsTotalHeight = section.height - sectionOldHeight + self.sectionsTotalHeight;
+    
+    CGFloat startY = -self.sectionsTotalHeight;
+    
+    WCStickySection *previousStickySection = nil;
+    for (NSInteger i = 0; i < self.sortedSections.count; ++i) {
+        WCStickySection *sectionToUpdate = self.sortedSections[i];
+        sectionToUpdate.initialY = startY;
+        startY += sectionToUpdate.height;
+        
+        if (sectionToUpdate.sticky && sectionToUpdate.autoFixed) {
+            sectionToUpdate.fixedY = previousStickySection ? previousStickySection.fixedY + previousStickySection.height : sectionToUpdate.fixedY;
+        }
+        
+        if (sectionToUpdate.sticky) {
+            previousStickySection = sectionToUpdate;
+        }
+    }
+    
+    self.headerHeight = self.sectionsTotalHeight + [self.sortedSections firstObject].fixedY;
+    
+    UIEdgeInsets contentInset = self.scrollView.contentInset;
+    contentInset.top = self.headerHeight;
+    self.scrollView.contentInset = contentInset;
+    self.scrollView.contentOffset = CGPointMake(0, -self.headerHeight);
 }
 
 - (void)viewDidLayoutSubviews {
