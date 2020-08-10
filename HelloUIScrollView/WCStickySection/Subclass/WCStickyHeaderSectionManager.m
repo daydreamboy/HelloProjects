@@ -106,12 +106,15 @@ SYNTHESIZE_ASSOCIATED_PRIMITIVE(autoFixed, setAutoFixed, BOOL);
 }
 
 - (void)changeStickyHeaderSection:(WCStickySection *)section toHeight:(CGFloat)height {
+    // Calculate the sectionsTotalHeight
     CGFloat sectionOldHeight = section.height;
-    section.height = height >= 0 ? height : 0;
-    self.sectionsTotalHeight = section.height - sectionOldHeight + self.sectionsTotalHeight;
+    CGFloat sectionNewHeight = height >= 0 ? height : 0;
+    section.height = sectionNewHeight;
+    self.sectionsTotalHeight = sectionNewHeight - sectionOldHeight + self.sectionsTotalHeight;
     
     CGFloat startY = -self.sectionsTotalHeight;
     
+    // Update all sections position virtually
     WCStickySection *previousStickySection = nil;
     for (NSInteger i = 0; i < self.sortedSections.count; ++i) {
         WCStickySection *sectionToUpdate = self.sortedSections[i];
@@ -131,8 +134,8 @@ SYNTHESIZE_ASSOCIATED_PRIMITIVE(autoFixed, setAutoFixed, BOOL);
     
     UIEdgeInsets contentInset = self.scrollView.contentInset;
     contentInset.top = self.headerHeight;
+    // Note: change contentInset will trigger contentOffset KVO
     self.scrollView.contentInset = contentInset;
-    self.scrollView.contentOffset = CGPointMake(0, -self.headerHeight);
 }
 
 - (void)viewDidLayoutSubviews {

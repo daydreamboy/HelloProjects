@@ -130,8 +130,8 @@ static NSString *sCellIdentifier = @"UITableViewCell_sCellIdentifier";
 - (void)itemChangeClicked:(id)sender {
     WCStickySection *section = [self.stickyHeaderSectionManager.sortedSections firstObject];
     if (section.height == 100) {
-        self.heightChangedView.frame = FrameSetSize(self.heightChangedView.frame, NAN, 200);
-        [self.stickyHeaderSectionManager changeStickyHeaderSection:section toHeight:200];
+        self.heightChangedView.frame = FrameSetSize(self.heightChangedView.frame, NAN, 250);
+        [self.stickyHeaderSectionManager changeStickyHeaderSection:section toHeight:250];
     }
     else {
         self.heightChangedView.frame = FrameSetSize(self.heightChangedView.frame, NAN, 100);
