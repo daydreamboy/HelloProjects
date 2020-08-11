@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F1D026224E2C76100ECCB3C /* Name.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1D026124E2C76100ECCB3C /* Name.m */; };
 		4F6F908821B6C3E800A949EC /* Tests_NSPredicate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F908721B6C3E800A949EC /* Tests_NSPredicate.m */; };
 		4F6F909121B6C45B00A949EC /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F909021B6C45B00A949EC /* Person.m */; };
 		4F6F909221B6C4D700A949EC /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F909021B6C45B00A949EC /* Person.m */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F1D026024E2C76100ECCB3C /* Name.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Name.h; sourceTree = "<group>"; };
+		4F1D026124E2C76100ECCB3C /* Name.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Name.m; sourceTree = "<group>"; };
 		4F6F908521B6C3E700A949EC /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F6F908721B6C3E800A949EC /* Tests_NSPredicate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSPredicate.m; sourceTree = "<group>"; };
 		4F6F908921B6C3E800A949EC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -98,6 +101,8 @@
 				4F6F908721B6C3E800A949EC /* Tests_NSPredicate.m */,
 				4F6F908F21B6C45B00A949EC /* Person.h */,
 				4F6F909021B6C45B00A949EC /* Person.m */,
+				4F1D026024E2C76100ECCB3C /* Name.h */,
+				4F1D026124E2C76100ECCB3C /* Name.m */,
 				4F6F908921B6C3E800A949EC /* Info.plist */,
 				4FBC72E621DCF025001B0F53 /* NSNumber+NSPredicate.h */,
 				4FBC72E721DCF025001B0F53 /* NSNumber+NSPredicate.m */,
@@ -235,6 +240,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -273,6 +279,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F1D026224E2C76100ECCB3C /* Name.m in Sources */,
 				4FBC72E821DCF025001B0F53 /* NSNumber+NSPredicate.m in Sources */,
 				4F6F909121B6C45B00A949EC /* Person.m in Sources */,
 				4FA8CB8621DDA76D00FA7ED5 /* NSString+NSPredicate.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "Person.h"
+#import "Name.h"
 #import "NSNumber+NSPredicate.h"
 #import "NSString+NSPredicate.h"
 
@@ -416,6 +417,44 @@
     XCTAssertEqualObjects(predicate.predicateFormat, @"a[1] == 2");
     trueOrFalse = [predicate evaluateWithObject:binding];
     XCTAssertTrue(trueOrFalse);
+}
+
+- (void)test_syntax_aggregate_operations_array_IN {
+    Name *name1 = [Name nameWithPatterns:@[ @"abc", @"c" ]];
+    Name *name2 = [Name nameWithPatterns:@[ @"bc", @"d" ]];
+    NSString *searchText;
+    NSArray *output;
+    NSPredicate *predicate;
+    
+    NSArray<Name *> *names = @[ name1, name2 ];
+    
+    // Case 1
+    searchText = @"bc";
+    predicate = [NSPredicate predicateWithFormat:@"%@ IN self.patterns", searchText];
+    output = [names filteredArrayUsingPredicate:predicate];
+    XCTAssertTrue(output.count == 1);
+    NSLog(@"%@", output);
+    
+    // Case 2
+    searchText = @"c";
+    predicate = [NSPredicate predicateWithFormat:@"%@ IN self.patterns", searchText];
+    output = [names filteredArrayUsingPredicate:predicate];
+    XCTAssertTrue(output.count == 1);
+    NSLog(@"%@", output);
+    
+    // Case 3
+    searchText = @"e";
+    predicate = [NSPredicate predicateWithFormat:@"%@ IN self.patterns", searchText];
+    output = [names filteredArrayUsingPredicate:predicate];
+    XCTAssertTrue(output.count == 0);
+    NSLog(@"%@", output);
+    
+    // Case 4
+    searchText = @"e";
+    predicate = [NSPredicate predicateWithFormat:@"%@ IN self.patterns2", searchText];
+    output = [names filteredArrayUsingPredicate:predicate];
+    XCTAssertTrue(output.count == 0);
+    NSLog(@"%@", output);
 }
 
 - (void)test_substitution {
