@@ -25,10 +25,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface WCPinYinTable : NSObject
 
 @property (nonatomic, assign, readonly) NSTimeInterval loadTimeInterval;
+@property (atomic, assign, readonly) BOOL loaded;
 
 + (instancetype)sharedInstance;
 
-- (void)preloadWithFilePath:(NSString *)filePath completion:(void (^)(BOOL success))completion async:(BOOL)async;
+- (void)preloadWithFilePath:(NSString *)filePath completion:(nullable void (^)(BOOL success))completion async:(BOOL)async;
 - (void)cleanup;
 - (nullable WCPinYinInfo *)pinYinInfoWithTextCharacter:(NSString *)textCharacter;
 

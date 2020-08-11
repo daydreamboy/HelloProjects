@@ -62,6 +62,8 @@ XCTestExpectation *expectation__ = [self expectationWithDescription:description_
     NSString *string = @"中文";
     __block NSMutableString *output;
     
+    output = [NSString stringWithFormat:@"%C", (unichar)0x7AD5];
+    
     XCTestExpectation_BEGIN
     
     [[WCPinYinTable sharedInstance] preloadWithFilePath:self.filePath completion:^(BOOL success) {

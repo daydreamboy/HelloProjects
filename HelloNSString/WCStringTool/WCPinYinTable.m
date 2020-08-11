@@ -18,6 +18,7 @@ static dispatch_queue_t sQueue;
 @interface WCPinYinTable ()
 @property (nonatomic, strong) NSMutableDictionary<NSNumber *, WCPinYinInfo *> *unicode2PinYinStorage;
 @property (nonatomic, assign, readwrite) NSTimeInterval loadTimeInterval;
+@property (atomic, assign, readwrite) BOOL loaded;
 @end
 
 @implementation WCPinYinTable
@@ -38,7 +39,11 @@ static dispatch_queue_t sQueue;
     return sInstance;
 }
 
-- (void)preloadWithFilePath:(NSString *)filePath completion:(void (^)(BOOL success))completion async:(BOOL)async {
+- (void)preloadWithFilePath:(NSString *)filePath completion:(nullable void (^)(BOOL success))completion async:(BOOL)async {
+    if (self.loaded) {
+        !completion ?: completion(YES);
+    }
+    
     dispatch_block_t taskBlock = ^{
         NSTimeInterval timeStart = CACurrentMediaTime();
         BOOL isDirectory = NO;
@@ -87,6 +92,7 @@ static dispatch_queue_t sQueue;
                 self.unicode2PinYinStorage = tempMap;
                 
                 self.loadTimeInterval = CACurrentMediaTime() - timeStart;
+                self.loaded = YES;
                 !completion ?: completion(YES);
             }
         }
