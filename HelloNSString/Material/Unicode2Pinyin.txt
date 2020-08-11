@@ -11476,7 +11476,7 @@
 7AD2	qi2	ji1
 7AD3	qian1fen1zhi1yi1gong1sheng1
 7AD4	gong1sheng1
-7AD5	shi2fen1zhi1yi1gong1sheng1
+7AD5	fen1
 7AD6	shu4
 7AD7	miao4
 7AD8	ju3
@@ -11488,7 +11488,7 @@
 7ADE	jing4
 7ADF	jing4
 7AE0	zhang1
-7AE1	yi1gong1sheng1deyi1bai3bei4
+7AE1	bai3
 7AE2	si4	qi2
 7AE3	jun4
 7AE4	hong2
