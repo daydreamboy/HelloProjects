@@ -418,7 +418,7 @@
 4FA0	xia2
 4FA1	jia4	jie4
 4FA2	zai4
-4FA3	lu:3
+4FA3	lv3
 4FA4
 4FA5	jiao3	yao2
 4FA6	zhen1
@@ -437,7 +437,7 @@
 4FB3	cuo4
 4FB4	chou3
 4FB5	qin1
-4FB6	lu:3
+4FB6	lv3
 4FB7	ju2
 4FB8	shu4
 4FB9	ting3
@@ -634,7 +634,7 @@
 5078	tou1
 5079	bei4
 507A	za2	zan2
-507B	lu:3	lou2
+507B	lv3	lou2
 507C	jie2
 507D	wei4
 507E	fen4
@@ -705,7 +705,7 @@
 50BF	yan4
 50C0	di4
 50C1	xi1
-50C2	lu:3	lou2
+50C2	lv3	lou2
 50C3	bei4
 50C4	piao1
 50C5	jin3	jin4
@@ -801,7 +801,7 @@
 511F	chang2
 5120	lie4
 5121	lei3
-5122	lu:3
+5122	lv3
 5123	kuang3
 5124	bao4
 5125	du2
@@ -1267,7 +1267,7 @@
 52F1	mai4
 52F2	xun1
 52F3	xun1
-52F4	lu:4
+52F4	lv4
 52F5	li4
 52F6	che4
 52F7	rang2
@@ -1370,7 +1370,7 @@
 5358	dan1	chan2
 5359	ji2
 535A	bo2
-535B	shuai4	lu:4
+535B	shuai4	lv4
 535C	bu3	bo5
 535D	kuang4
 535E	bian4
@@ -1556,7 +1556,7 @@
 5412	zha4	zha1
 5413	xia4	he4
 5414	ye3
-5415	lu:3
+5415	lv3
 5416	a1
 5417	ma5	ma3
 5418	ou3
@@ -1601,7 +1601,7 @@
 543F	gao4	gu4
 5440	ya1	ya5
 5441	jun4
-5442	lu:3
+5442	lv3
 5443	e4	e5
 5444	ge2
 5445	mei2
@@ -2328,7 +2328,7 @@
 5716	tu2
 5717	tu2
 5718	tuan2
-5719	lu:e4
+5719	lve4
 571A	hui4
 571B	yi4
 571C	yuan2	huan2
@@ -2930,7 +2930,7 @@
 5970	bei4
 5971	lian2
 5972	che3
-5973	nu:3	ru3
+5973	nv3	ru3
 5974	nu2
 5975	ding3
 5976	nai3
@@ -3136,7 +3136,7 @@
 5A3E	ai2
 5A3F	e1
 5A40	e1
-5A41	lou2	lu:3
+5A41	lou2	lv3
 5A42	mian2
 5A43	cong2
 5A44	pou3
@@ -3580,7 +3580,7 @@
 5BFA	si4
 5BFB	xun2	xin2
 5BFC	dao3
-5BFD	lu:3	luo1
+5BFD	lv3	luo1
 5BFE	dui4
 5BFF	shou4
 5C00	po3
@@ -3680,11 +3680,11 @@
 5C5E	shu3	zhu3
 5C5F	xie4
 5C60	tu2
-5C61	lu:3
-5C62	lu:3
+5C61	lv3
+5C62	lv3
 5C63	xi3
 5C64	ceng2
-5C65	lu:3
+5C65	lv3
 5C66	ju4
 5C67	xie4
 5C68	ju4
@@ -3905,7 +3905,7 @@
 5D3F	e4
 5D40	zhu4
 5D41	kan1
-5D42	lu:4
+5D42	lv4
 5D43	yan3
 5D44	mei3
 5D45	gan1	gan4
@@ -4490,7 +4490,7 @@
 5F88	hen3
 5F89	yang2
 5F8A	huai2	hui2
-5F8B	lu:4
+5F8B	lv4
 5F8C	hou4
 5F8D	wang3
 5F8E	cheng3
@@ -4710,7 +4710,7 @@
 6064	xu4
 6065	chi3
 6066	xiang4
-6067	nu:4
+6067	nv4
 6068	hen4
 6069	en1
 606A	ke4	que4
@@ -4973,7 +4973,7 @@
 616B	song3
 616C	jin3
 616D	yin4
-616E	lu:4
+616E	lv4
 616F	shang1
 6170	wei4
 6171	tuan2
@@ -4985,7 +4985,7 @@
 6177	kang1	kang3
 6178	di4
 6179	zhi2
-617A	lu:2
+617A	lv2
 617B	juan4
 617C	qi1
 617D	qi1
@@ -5395,7 +5395,7 @@
 6311	tiao1	tiao3
 6312	lie4
 6313	zha1
-6314	lu:3
+6314	lv3
 6315	die2
 6316	wa1
 6317	jue2
@@ -5450,7 +5450,7 @@
 6348	tu2
 6349	zhuo1
 634A	pou2
-634B	le4	lu:3	luo1
+634B	le4	lv3	luo1
 634C	ba1
 634D	han4
 634E	shao1	shao4
@@ -5535,7 +5535,7 @@
 639D	huo4
 639E	shan4
 639F	ding4
-63A0	lu:e4
+63A0	lve4
 63A1	cai3
 63A2	tan4
 63A3	che4
@@ -5884,7 +5884,7 @@
 64FA	bai3
 64FB	sou3	sou4
 64FC	lu1
-64FD	lu:e4
+64FD	lve4
 64FE	rao3
 64FF	zhi2
 6500	pan1
@@ -6084,7 +6084,7 @@
 65C2	qi2
 65C3	zhan1
 65C4	mao2	mao4
-65C5	lu:3
+65C5	lv3
 65C6	pei4
 65C7	pi1
 65C8	liu2
@@ -6417,7 +6417,7 @@
 670F	fei3
 6710	qu2
 6711
-6712	nu:4
+6712	nv4
 6713	tiao4	tiao3
 6714	shuo4
 6715	zhen4
@@ -6815,7 +6815,7 @@
 689D	tiao2
 689E	ji4
 689F	xiao1
-68A0	lu:3
+68A0	lv3
 68A1	kuan3
 68A2	shao1	sao4
 68A3	cen2
@@ -7047,7 +7047,7 @@
 6985	yun2
 6986	yu2
 6987	chen4
-6988	lu:2
+6988	lv2
 6989	ju3
 698A
 698B
@@ -7381,11 +7381,11 @@
 6AD3	lu3
 6AD4	li44
 6AD5	cuan2
-6AD6	lu:2
+6AD6	lv2
 6AD7	mie4
 6AD8	hui4
 6AD9	ou1
-6ADA	lu:2
+6ADA	lv2
 6ADB	zhi4
 6ADC	gao1
 6ADD	du2
@@ -7679,7 +7679,7 @@
 6BFD	jian4
 6BFE	ta4
 6BFF	san1
-6C00	lu:2
+6C00	lv2
 6C01	mu2
 6C02	li2
 6C03	tong2
@@ -7726,7 +7726,7 @@
 6C2C	ya4
 6C2D	dong1
 6C2E	dan4
-6C2F	lu:4
+6C2F	lv4
 6C30	qing2
 6C31	yang3
 6C32	yun1
@@ -8419,7 +8419,7 @@
 6EE1	man3
 6EE2	ying2
 6EE3	chun2
-6EE4	lu:4
+6EE4	lv4
 6EE5	lan4
 6EE6	luan2
 6EE7	xiao4
@@ -8457,7 +8457,7 @@
 6F07	xi3
 6F08	ji4
 6F09	lu4
-6F0A	lu:3	lou2
+6F0A	lv3	lou2
 6F0B	long2
 6F0C	jin3
 6F0D	guo2
@@ -8701,7 +8701,7 @@
 6FFB	dui4	wei2
 6FFC	luo4
 6FFD	luo4
-6FFE	lu:4
+6FFE	lv4
 6FFF	li4
 7000	you1
 7001	yang4
@@ -9606,7 +9606,7 @@
 7384	xuan2
 7385	miao4
 7386	zi1
-7387	lu:4	shuai4	shuo4
+7387	lv4	shuai4	shuo4
 7388	lu2
 7389	yu4
 738A	su4
@@ -10084,9 +10084,9 @@
 7562	bi4
 7563	da2
 7564	zhi4
-7565	lu:e4
+7565	lve4
 7566	qi2
-7567	lu:e4
+7567	lve4
 7568	pan1
 7569
 756A	fan1	pan1
@@ -10142,7 +10142,7 @@
 759C	xia4
 759D	shan4
 759E	xu1
-759F	nu:e4	yao4
+759F	nve4	yao4
 75A0	li4
 75A1	yang2
 75A2	chen4
@@ -10278,7 +10278,7 @@
 7624	liu2
 7625	chai4	cuo2
 7626	shou4
-7627	nu:e4	yao4
+7627	nve4	yao4
 7628	dian1
 7629	da2
 762A	bie1	bie3
@@ -11106,7 +11106,7 @@
 7960	ci2
 7961	chai2
 7962	mi2	ni3
-7963	lu:3
+7963	lv3
 7964	yu3
 7965	xiang2
 7966	wu2
@@ -11269,7 +11269,7 @@
 7A03	fu1	fu2
 7A04	ze4
 7A05	shui4
-7A06	lu:3
+7A06	lv3
 7A07	kun3
 7A08	gan3
 7A09	jing1
@@ -11357,7 +11357,7 @@
 7A5B	zhuo1
 7A5C	tong2
 7A5D
-7A5E	lu:3
+7A5E	lv3
 7A5F	sui4
 7A60	nong2
 7A61	se4
@@ -11372,7 +11372,7 @@
 7A6A	cheng1	chen4	cheng4
 7A6B	huo4
 7A6C	gong3
-7A6D	lu:3
+7A6D	lv3
 7A6E	biao1
 7A6F
 7A70	rang2
@@ -11896,7 +11896,7 @@
 7C76	shen1
 7C77	zhe2
 7C78	shen1
-7C79	nu:3
+7C79	nv3
 7C7A	xie2
 7C7B	lei4
 7C7C	xian1
@@ -12156,7 +12156,7 @@
 7D7A	chi1
 7D7B	mian3
 7D7C	zhen3
-7D7D	lu:3
+7D7D	lv3
 7D7E	cheng2
 7D7F	qiu2
 7D80	shu1
@@ -12191,7 +12191,7 @@
 7D9D	lin3
 7D9E	duo3
 7D9F	li4
-7DA0	lu:4
+7DA0	lv4
 7DA1	liang2
 7DA2	chou2
 7DA3	quan3
@@ -12240,7 +12240,7 @@
 7DCE	yu4
 7DCF	zong3
 7DD0	fan2
-7DD1	lu:4
+7DD1	lv4
 7DD2	xu4
 7DD3	yingl
 7DD4	shang4
@@ -12342,7 +12342,7 @@
 7E34	qian4
 7E35	man4
 7E36	zhi2
-7E37	lu:3
+7E37	lv3
 7E38	mo4
 7E39	piao3	piao1
 7E3A	lian2
@@ -12542,7 +12542,7 @@
 7EFC	zeng4	zong1
 7EFD	zhan4
 7EFE	wan3
-7EFF	lu:4
+7EFF	lv4
 7F00	zhui4
 7F01	zi1
 7F02	ke4
@@ -12564,7 +12564,7 @@
 7F12	zhui4
 7F13	huan3
 7F14	di4
-7F15	lu:3
+7F15	lv3
 7F16	bian1
 7F17	min2
 7F18	yuan2
@@ -13185,7 +13185,7 @@
 817F	tui3
 8180	bang3	pang1	pang2
 8181	qian3
-8182	lu:3
+8182	lv3
 8183	wa4
 8184	shou4
 8185	tang2
@@ -13199,7 +13199,7 @@
 818D	pi2
 818E	xie2
 818F	gao1	gao4
-8190	lu:3
+8190	lv3
 8191	bin4
 8192	ou
 8193	chang2
@@ -13214,10 +13214,10 @@
 819C	mo4	mo2
 819D	xi1
 819E	zhuan1
-819F	lu:4
+819F	lv4
 81A0	jiao1
 81A1	ying4
-81A2	lu:2
+81A2	lv2
 81A3	zhi4
 81A4	xue3
 81A5	chun1
@@ -13768,7 +13768,7 @@
 83C6	zou1
 83C7	gu1
 83C8	la1
-83C9	lu4	lu:4
+83C9	lu4	lv4
 83CA	ju2
 83CB	wei4
 83CC	jun4	jun1
@@ -13901,7 +13901,7 @@
 844B	qu2
 844C	jian1
 844D	fu2
-844E	lu:4
+844E	lv4
 844F	ly4
 8450	pen2
 8451	feng1	feng4
@@ -14295,7 +14295,7 @@
 85D5	ou3
 85D6	xian2
 85D7	su4
-85D8	lu:2
+85D8	lv2
 85D9	yi4
 85DA	xu4
 85DB	xie3
@@ -14415,8 +14415,8 @@
 864D	hu1
 864E	hu3
 864F	lu3
-8650	nu:e4
-8651	lu:4
+8650	nve4
+8651	lv4
 8652	zhi4
 8653	xiao1
 8654	qian2
@@ -14913,9 +14913,9 @@
 883F	zha2
 8840	xie3	xue4
 8841	huang1
-8842	nu:4
+8842	nv4
 8843	pei1
-8844	nu:4
+8844	nv4
 8845	xin4
 8846	zhong4
 8847	mo4
@@ -15130,7 +15130,7 @@
 8918	hui1
 8919	bei4
 891A	chu3	zhu3
-891B	lu:3
+891B	lv3
 891C
 891D
 891E	yun3
@@ -15159,7 +15159,7 @@
 8935	li2
 8936	zhe2	xi2	zhe3
 8937	shi1
-8938	lu:3
+8938	lv3
 8939	yi4
 893A	die1
 893B	xie4
@@ -15635,7 +15635,7 @@
 8B11	xi4
 8B12	qiang1
 8B13	chen1
-8B14	nu:e4	xue4
+8B14	nve4	xue4
 8B15	si1
 8B16	su4
 8B17	bang4
@@ -17111,7 +17111,7 @@
 90D5	cheng2
 90D6	dou1
 90D7	chi1	xi1
-90D8	lu:3
+90D8	lv3
 90D9	fu3
 90DA	wu2
 90DB	fu2
@@ -17400,7 +17400,7 @@
 91F6	ta1	tuo2
 91F7	tu3
 91F8	xi4
-91F9	nu:3
+91F9	nv3
 91FA	qian1
 91FB
 91FC	jian4
@@ -17600,7 +17600,7 @@
 92BE	gong3
 92BF	zhong1
 92C0	dou4
-92C1	lu:3
+92C1	lv3
 92C2	mei2
 92C3	lang2
 92C4	wan3
@@ -17628,7 +17628,7 @@
 92DA	tiao2
 92DB	gong3
 92DC	zhuo2
-92DD	lu:e4
+92DD	lve4
 92DE	xing2
 92DF	qin2
 92E0	shen4
@@ -18017,7 +18017,7 @@
 945F	du2
 9460	shuo4
 9461	chuo4
-9462	lu:4
+9462	lv4
 9463	biao1
 9464	bao4
 9465	lu3
@@ -18068,7 +18068,7 @@
 9492	fan2
 9493	diao4
 9494	men2
-9495	nu:3
+9495	nv3
 9496	yang2
 9497	chai1
 9498	xing2
@@ -18140,7 +18140,7 @@
 94DA	zhi4
 94DB	dang1	cheng1
 94DC	tong2
-94DD	lu:3
+94DD	lv3
 94DE	diao4
 94DF	yin1
 94E0	kai3
@@ -18185,7 +18185,7 @@
 9507	e2
 9508	xiu4
 9509	cuo4
-950A	lu:e4
+950A	lve4
 950B	feng1
 950C	xin1
 950D	liu3
@@ -18348,7 +18348,7 @@
 95AA
 95AB	kun3
 95AC	lang3	lang2	lang4
-95AD	lu:2
+95AD	lv2
 95AE	ting2
 95AF	sha4
 95B0	yan2
@@ -18429,7 +18429,7 @@
 95FB	wen2
 95FC	ta4
 95FD	min3
-95FE	lu:2
+95FE	lv2
 95FF	kai1
 9600	fa2
 9601	ge2
@@ -19390,7 +19390,7 @@
 99BC	wen2
 99BD	zhi2
 99BE	dan4
-99BF	lu:2
+99BF	lv2
 99C0	you2
 99C1	bo2
 99C2	bao3
@@ -19553,7 +19553,7 @@
 9A5F	zou4	zhou4
 9A60	yan4
 9A61	peng2
-9A62	lu:2
+9A62	lv2
 9A63	teng2
 9A64	xiang1
 9A65	ji4
@@ -19571,7 +19571,7 @@
 9A71	qu1
 9A72	ri4
 9A73	bo2
-9A74	lu:2
+9A74	lv2
 9A75	zang3
 9A76	shi3
 9A77	si4
