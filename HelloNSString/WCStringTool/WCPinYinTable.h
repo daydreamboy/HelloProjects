@@ -10,12 +10,29 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface WCPinYinInfo : NSObject
+@property (nonatomic, copy) NSString *text;
+@property (nonatomic, assign) unichar unicode;
+@property (nonatomic, copy) NSString *unicodeString;
+@property (nonatomic, copy) NSString *pinYin;
+@property (nonatomic, assign) NSInteger tone;
+@property (nonatomic, copy) NSString *pinYinWithTone;
+@property (nonatomic, copy) NSString *firstLetter;
+@property (nonatomic, copy) NSString *firstSyllable;
+@property (nonatomic, strong, nullable) NSArray<WCPinYinInfo *> *alternatives;
+@end
+
 @interface WCPinYinTable : NSObject
 
-@property (nonatomic, strong, readonly) NSDictionary<NSNumber *, NSArray<NSString *> *> *unicode2PinYin;
+@property (nonatomic, assign, readonly) NSTimeInterval loadTimeInterval;
 
 + (instancetype)sharedInstance;
-+ (void)cleanup;
+
+- (void)preloadWithFilePath:(NSString *)filePath completion:(void (^)(BOOL success))completion async:(BOOL)async;
+- (void)cleanup;
+- (nullable WCPinYinInfo *)pinYinInfoWithTextCharacter:(NSString *)textCharacter;
+
+#pragma mark - UNAVAILABLE
 
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
 + (instancetype)new UNAVAILABLE_ATTRIBUTE;
