@@ -50,6 +50,31 @@
 
 
 
+## 4、汉字转拼音
+
+### （1）Unicode拼音映射表
+
+TODO
+
+### （2）拼音加声调[^2]
+
+TODO
+
+### （3）拼音匹配[^3]
+
+TODO
+
+
+
+
+
+
+
+
+
 ## References
 
 [^1]: https://www.objc.io/issues/9-strings/string-parsing/
+[^2]:http://www.hwjyw.com/resource/content/2010/06/04/8183.shtml
+[^3]:https://www.jianshu.com/p/33f29eb598d9
+
