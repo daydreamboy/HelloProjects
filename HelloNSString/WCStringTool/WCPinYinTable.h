@@ -16,6 +16,21 @@ typedef NS_ENUM(NSUInteger, WCPinYinStringType) {
     WCPinYinStringTypeFirstSyllable,
 };
 
+typedef NS_OPTIONS(NSUInteger, WCPinYinStringPatternOption) {
+    /// 全拼（仅汉字部分）（例如chenmengyu）
+    WCPinYinStringPatternOptionFullPinYin = 1 << 0,
+    /// 完整拼音（包括非汉字部分）（例如chenmengyu 2020）
+    WCPinYinStringPatternOptionOriginalPinYin = 1 << 1,
+    /// 简拼（每个汉字的第一个音节的有序组合，例如chen meng yu的有序组合是ch, chm, chmy，但不能是my）
+    WCPinYinStringPatternOptionSimplePinYin = 1 << 2,
+    /// 首字母拼（每个汉字的第一个字母的有序组合，例如chen meng yu的有序组合是c, cm, cmy，但不能是my）
+    WCPinYinStringPatternOptionFirstLetter = 1 << 3,
+    /// 单字拼音（每个汉字的拼音，例如chen meng yu的单字拼音是chen, meng, yu）
+    WCPinYinStringPatternOptionSinglePinYin = 1 << 4,
+    /// 全部选项
+    WCPinYinStringPatternOptionAll = WCPinYinStringPatternOptionFullPinYin | WCPinYinStringPatternOptionOriginalPinYin | WCPinYinStringPatternOptionSimplePinYin | WCPinYinStringPatternOptionFirstLetter | WCPinYinStringPatternOptionSinglePinYin,
+};
+
 @interface WCPinYinInfo : NSObject
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic, assign) unichar unicode;
@@ -39,6 +54,7 @@ typedef NS_ENUM(NSUInteger, WCPinYinStringType) {
 - (void)cleanup;
 - (nullable WCPinYinInfo *)pinYinInfoWithTextCharacter:(NSString *)textCharacter;
 - (nullable NSString *)pinYinStringWithText:(NSString *)text type:(WCPinYinStringType)type separator:(nullable NSString *)separator;
+- (nullable NSOrderedSet<NSString *> *)pinYinMatchPatternsWithText:(NSString *)text options:(WCPinYinStringPatternOption)options;
 
 #pragma mark - UNAVAILABLE
 

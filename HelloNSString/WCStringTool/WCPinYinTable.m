@@ -178,7 +178,80 @@ static dispatch_queue_t sQueue;
         }
     }];
     
-    return stringM;
+    return [stringM copy];
+}
+
+- (nullable NSOrderedSet<NSString *> *)pinYinMatchPatternsWithText:(NSString *)text options:(WCPinYinStringPatternOption)options {
+    if (![text isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    WCPinYinStringPatternOption optionsL = options == kNilOptions ? WCPinYinStringPatternOptionFullPinYin : options;
+    
+    NSMutableOrderedSet *patternsFullPinYin = [NSMutableOrderedSet orderedSetWithCapacity:10];
+    NSMutableOrderedSet *patternsOriginalPinYin = [NSMutableOrderedSet orderedSetWithCapacity:10];
+    NSMutableOrderedSet *patternsSimplePinYin = [NSMutableOrderedSet orderedSetWithCapacity:10];
+    NSMutableOrderedSet *patternsFirstLetter = [NSMutableOrderedSet orderedSetWithCapacity:10];
+    NSMutableOrderedSet *patternsSinglePinYin = [NSMutableOrderedSet orderedSetWithCapacity:10];
+    
+    NSMutableString *fullPinYinPattern = [NSMutableString stringWithCapacity:text.length * 10];
+    NSMutableString *originalPinYinPattern = [NSMutableString stringWithCapacity:text.length * 10];
+    NSMutableString *simplePinYinPattern = [NSMutableString stringWithCapacity:text.length * 10];
+    NSMutableString *firstLetterPattern = [NSMutableString stringWithCapacity:text.length * 10];
+    //NSMutableString *singlePattern = [NSMutableString stringWithCapacity:text.length * 10];
+    
+    [text enumerateSubstringsInRange:NSMakeRange(0, text.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+        WCPinYinInfo *info = [self pinYinInfoWithTextCharacter:substring];
+        if (info) {
+            // Full PinYin
+            [fullPinYinPattern appendString:info.pinYin];
+            
+            // Original Full PinYin
+            [originalPinYinPattern appendString:info.pinYin];
+            
+            // Simple PinYin
+            [simplePinYinPattern appendString:info.firstSyllable];
+            [patternsSimplePinYin addObject:[simplePinYinPattern copy]];
+            
+            // First Letter PinYin
+            [firstLetterPattern appendString:info.firstLetter];
+            [patternsFirstLetter addObject:[firstLetterPattern copy]];
+            
+            // Single PinYin
+            [patternsSinglePinYin addObject:info.pinYin];
+        }
+        else {
+            [originalPinYinPattern appendString:substring];
+        }
+    }];
+    
+    [patternsFullPinYin addObject:fullPinYinPattern];
+    [patternsOriginalPinYin addObject:originalPinYinPattern];
+    
+    // Merge pattern set
+    NSMutableOrderedSet *patterns = [NSMutableOrderedSet orderedSetWithCapacity:15];
+    
+    if (optionsL & WCPinYinStringPatternOptionFullPinYin) {
+        [patterns unionOrderedSet:patternsFullPinYin];
+    }
+    
+    if (optionsL & WCPinYinStringPatternOptionOriginalPinYin) {
+        [patterns unionOrderedSet:patternsOriginalPinYin];
+    }
+    
+    if (optionsL & WCPinYinStringPatternOptionSimplePinYin) {
+        [patterns unionOrderedSet:patternsSimplePinYin];
+    }
+    
+    if (optionsL & WCPinYinStringPatternOptionFirstLetter) {
+        [patterns unionOrderedSet:patternsFirstLetter];
+    }
+    
+    if (optionsL & WCPinYinStringPatternOptionSinglePinYin) {
+        [patterns unionOrderedSet:patternsSinglePinYin];
+    }
+    
+    return [patterns copy];
 }
 
 #pragma mark -

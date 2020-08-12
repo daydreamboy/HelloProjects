@@ -106,8 +106,6 @@ XCTestExpectation *expectation__ = [self expectationWithDescription:description_
         
         NSLog(@"load time: %f", [WCPinYinTable sharedInstance].loadTimeInterval);
         
-        output = [NSMutableString string];
-        
         // Case 1
         string = @"我爱你祖国";
         output = [[WCPinYinTable sharedInstance] pinYinStringWithText:string type:WCPinYinStringTypePinYin separator:nil];
@@ -131,6 +129,28 @@ XCTestExpectation *expectation__ = [self expectationWithDescription:description_
     
     XCTestExpectation_END(3)
 }
+
+- (void)test_pinYinMatchPatternsWithText_options {
+    __block NSString *string;
+    __block NSOrderedSet<NSString *> *output;
+    
+    XCTestExpectation_BEGIN
+    
+    [[WCPinYinTable sharedInstance] preloadWithFilePath:self.filePath completion:^(BOOL success) {
+        NSLog(@"load time: %f", [WCPinYinTable sharedInstance].loadTimeInterval);
+        
+        // Case 1
+        string = @"至尊宝 2020😁";
+        output = [[WCPinYinTable sharedInstance] pinYinMatchPatternsWithText:string options:WCPinYinStringPatternOptionAll];
+        NSLog(@"%@", output);
+        
+        XCTestExpectation_FULFILL
+    } async:NO];
+    
+    XCTestExpectation_END(3)
+}
+
+#pragma mark - Testing
 
 - (void)test_createMarkedVowelPinYinWithPinYin_tone {
     NSString *string;
