@@ -10,6 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, WCPinYinStringType) {
+    WCPinYinStringTypePinYin,
+    WCPinYinStringTypeWithTone,
+    WCPinYinStringTypeFirstSyllable,
+};
+
 @interface WCPinYinInfo : NSObject
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic, assign) unichar unicode;
@@ -32,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)preloadWithFilePath:(NSString *)filePath completion:(nullable void (^)(BOOL success))completion async:(BOOL)async;
 - (void)cleanup;
 - (nullable WCPinYinInfo *)pinYinInfoWithTextCharacter:(NSString *)textCharacter;
+- (nullable NSString *)pinYinStringWithText:(NSString *)text type:(WCPinYinStringType)type separator:(nullable NSString *)separator;
 
 #pragma mark - UNAVAILABLE
 

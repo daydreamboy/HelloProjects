@@ -42,6 +42,7 @@
 		4F1AE81F24DB0BD1001D5AD5 /* Tests_WCPinYinTable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_WCPinYinTable.m; sourceTree = "<group>"; };
 		4F1D025624E250A200ECCB3C /* Unicode2Pinyin.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Unicode2Pinyin.txt; sourceTree = "<group>"; };
 		4F1D7DB4211F0F9A0021023C /* Tests_NSArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSArray.m; sourceTree = "<group>"; };
+		4F211F7D24E3CA9D008A2AE3 /* WCPinYinTable_Testing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCPinYinTable_Testing.h; sourceTree = "<group>"; };
 		4F2C159624DAE14500B3E209 /* WCPinYinTable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCPinYinTable.h; sourceTree = "<group>"; };
 		4F2C159724DAE14500B3E209 /* WCPinYinTable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCPinYinTable.m; sourceTree = "<group>"; };
 		4F3DE4FB20D8B85F00FCCE6A /* StringSizeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StringSizeViewController.h; sourceTree = "<group>"; };
@@ -164,6 +165,7 @@
 				4F591D73214D27BF00F3F30A /* WCStringTool+OpenSSL.m */,
 				4F2C159624DAE14500B3E209 /* WCPinYinTable.h */,
 				4F2C159724DAE14500B3E209 /* WCPinYinTable.m */,
+				4F211F7D24E3CA9D008A2AE3 /* WCPinYinTable_Testing.h */,
 			);
 			path = WCStringTool;
 			sourceTree = "<group>";

@@ -125,9 +125,22 @@ static dispatch_queue_t sQueue;
         return nil;
     }
     
-    __block NSNumber *unicode;
+    unichar buffer[2] = {0};
+    [textCharacter getBytes:buffer maxLength:sizeof(unichar) usedLength:NULL encoding:NSUTF16StringEncoding options:0 range:NSMakeRange(0, textCharacter.length) remainingRange:NULL];
+    NSNumber *unicode = [NSNumber numberWithUnsignedShort:buffer[0]];
     
-    [textCharacter enumerateSubstringsInRange:NSMakeRange(0, textCharacter.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+    return self.unicode2PinYinStorage[unicode];
+}
+
+- (nullable NSString *)pinYinStringWithText:(NSString *)text type:(WCPinYinStringType)type separator:(nullable NSString *)separator {
+    if (![text isKindOfClass:[NSString class]] || (separator && ![separator isKindOfClass:[NSString class]])) {
+        return nil;
+    }
+    
+    NSString *separatorL = separator ?: @" ";
+    
+    NSMutableString *stringM = [NSMutableString stringWithCapacity:text.length * 10];
+    [text enumerateSubstringsInRange:NSMakeRange(0, text.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
         
         NSUInteger lengthByUnichar = [substring length];
         
@@ -136,22 +149,36 @@ static dispatch_queue_t sQueue;
             
             [substring getBytes:buffer maxLength:sizeof(unichar) usedLength:NULL encoding:NSUTF16StringEncoding options:0 range:NSMakeRange(0, substring.length) remainingRange:NULL];
             
-            unicode = [NSNumber numberWithUnsignedShort:buffer[0]];
+            NSNumber *unicode = [NSNumber numberWithUnsignedShort:buffer[0]];
+            WCPinYinInfo *info = self.unicode2PinYinStorage[unicode];
+            if (info) {
+                if (type == WCPinYinStringTypePinYin) {
+                    [stringM appendString:info.pinYin];
+                }
+                else if (type == WCPinYinStringTypeWithTone) {
+                    [stringM appendString:info.pinYinWithTone];
+                }
+                else if (type == WCPinYinStringTypeFirstSyllable) {
+                    [stringM appendString:info.firstSyllable];
+                }
+                else {
+                    [stringM appendString:info.pinYin];
+                }
+                
+                if (substringRange.location != text.length - 1) {
+                    [stringM appendString:separatorL];
+                }
+            }
+            else {
+                [stringM appendString:substring];
+            }
         }
-        else if (lengthByUnichar == 2) {
-            unsigned int buffer[2] = {0};
-            
-            [substring getBytes:buffer maxLength:sizeof(unsigned int) usedLength:NULL encoding:NSUTF32StringEncoding options:0 range:NSMakeRange(0, substring.length) remainingRange:NULL];
-            
-            unicode = [NSNumber numberWithUnsignedInt:buffer[0]];
+        else {
+            [stringM appendString:substring];
         }
     }];
     
-    if (!unicode) {
-        return nil;
-    }
-    
-    return self.unicode2PinYinStorage[unicode];
+    return stringM;
 }
 
 #pragma mark -
@@ -211,7 +238,7 @@ static dispatch_queue_t sQueue;
             range = [pinYin rangeOfString:lookup];
             if (range.location != NSNotFound) {
                 NSString *letter = [pinYin substringWithRange:range];
-                if (tone >= 0 && tone < 4) {
+                if (tone >= 0 && tone <= 4) {
                     NSArray *markedVowels = translateMap[letter];
                     NSString *markedVowel = markedVowels[tone];
                     [stringM replaceCharactersInRange:range withString:markedVowel];

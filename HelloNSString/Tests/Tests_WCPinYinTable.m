@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "WCPinYinTable.h"
+#import "WCPinYinTable_Testing.h"
 
 /**
  Start of the asychronous task
@@ -58,7 +59,7 @@ XCTestExpectation *expectation__ = [self expectationWithDescription:description_
     }];
 }
 
-- (void)test_ {
+- (void)test_pinYinInfoWithTextCharacter {
     NSString *string = @"中文";
     __block NSMutableString *output;
     
@@ -93,6 +94,52 @@ XCTestExpectation *expectation__ = [self expectationWithDescription:description_
     } async:NO];
     
     XCTestExpectation_END(3)
+}
+
+- (void)test_pinYinStringWithText_type_separator {
+    __block NSString *string;
+    __block NSString *output;
+    
+    XCTestExpectation_BEGIN
+    
+    [[WCPinYinTable sharedInstance] preloadWithFilePath:self.filePath completion:^(BOOL success) {
+        
+        NSLog(@"load time: %f", [WCPinYinTable sharedInstance].loadTimeInterval);
+        
+        output = [NSMutableString string];
+        
+        // Case 1
+        string = @"我爱你祖国";
+        output = [[WCPinYinTable sharedInstance] pinYinStringWithText:string type:WCPinYinStringTypePinYin separator:nil];
+        NSLog(@"%@", output);
+        XCTAssertEqualObjects(output, @"wo ai ni zu guo");
+        
+        // Case 2
+        string = @"我要学习中文";
+        output = [[WCPinYinTable sharedInstance] pinYinStringWithText:string type:WCPinYinStringTypeWithTone separator:nil];
+        NSLog(@"%@", output);
+        XCTAssertEqualObjects(output, @"wŏ yào xué xí zhōng wén");
+        
+        // Case 3
+        string = @"我要学习英文haha😁";
+        output = [[WCPinYinTable sharedInstance] pinYinStringWithText:string type:WCPinYinStringTypeWithTone separator:nil];
+        NSLog(@"%@", output);
+        XCTAssertEqualObjects(output, @"wŏ yào xué xí yīng wén haha😁");
+        
+        XCTestExpectation_FULFILL
+    } async:NO];
+    
+    XCTestExpectation_END(3)
+}
+
+- (void)test_createMarkedVowelPinYinWithPinYin_tone {
+    NSString *string;
+    NSString *output;
+    
+    string = @"yao";
+    output = [WCPinYinTable createMarkedVowelPinYinWithPinYin:string tone:4];
+    NSLog(@"%@", output);
+    XCTAssertEqualObjects(output, @"yào");
 }
 
 @end
