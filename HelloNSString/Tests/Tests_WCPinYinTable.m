@@ -142,45 +142,66 @@ XCTestExpectation *expectation__ = [self expectationWithDescription:description_
         // Case 1
         string = @"至尊宝 2020😁";
         output = [[WCPinYinTable sharedInstance] pinYinMatchPatternsWithText:string options:WCPinYinStringPatternOptionAll];
-        XCTAssertTrue(output.count == 11);
         NSLog(@"%@", output);
+        XCTAssertTrue(output.count == 21);
         
         // Case 2
         string = @"至尊宝 2020😁";
         output = [[WCPinYinTable sharedInstance] pinYinMatchPatternsWithText:string options:kNilOptions];
-        XCTAssertTrue(output.count == 1);
         NSLog(@"%@", output);
+        XCTAssertTrue(output.count == 9);
         
         // Case 3
         string = @"至尊宝 2020😁";
-        output = [[WCPinYinTable sharedInstance] pinYinMatchPatternsWithText:string options:WCPinYinStringPatternOptionFullPinYin];
-        XCTAssertTrue(output.count == 1);
+        output = [[WCPinYinTable sharedInstance] pinYinMatchPatternsWithText:string options:WCPinYinStringPatternOptionOriginalPinYin];
         NSLog(@"%@", output);
+        XCTAssertTrue(output.count == 9);
         
         // Case 4
         string = @"至尊宝 2020😁";
-        output = [[WCPinYinTable sharedInstance] pinYinMatchPatternsWithText:string options:WCPinYinStringPatternOptionOriginalPinYin];
-        XCTAssertTrue(output.count == 1);
+        output = [[WCPinYinTable sharedInstance] pinYinMatchPatternsWithText:string options:WCPinYinStringPatternOptionSinglePinYin];
         NSLog(@"%@", output);
+        XCTAssertTrue(output.count == 3);
         
         // Case 5
         string = @"至尊宝 2020😁";
-        output = [[WCPinYinTable sharedInstance] pinYinMatchPatternsWithText:string options:WCPinYinStringPatternOptionSinglePinYin];
-        XCTAssertTrue(output.count == 3);
+        output = [[WCPinYinTable sharedInstance] pinYinMatchPatternsWithText:string options:WCPinYinStringPatternOptionSimplePinYin];
         NSLog(@"%@", output);
+        XCTAssertTrue(output.count == 3);
         
         // Case 6
         string = @"至尊宝 2020😁";
-        output = [[WCPinYinTable sharedInstance] pinYinMatchPatternsWithText:string options:WCPinYinStringPatternOptionSimplePinYin];
-        XCTAssertTrue(output.count == 3);
+        output = [[WCPinYinTable sharedInstance] pinYinMatchPatternsWithText:string options:WCPinYinStringPatternOptionFirstLetter];
         NSLog(@"%@", output);
+        XCTAssertTrue(output.count == 9);
         
         // Case 7
-        string = @"至尊宝 2020😁";
-        output = [[WCPinYinTable sharedInstance] pinYinMatchPatternsWithText:string options:WCPinYinStringPatternOptionFirstLetter];
-        XCTAssertTrue(output.count == 3);
+        string = @"Hello 至尊宝 2020😁 你好";
+        output = [[WCPinYinTable sharedInstance] pinYinMatchPatternsWithText:string options:WCPinYinStringPatternOptionAll];
         NSLog(@"%@", output);
+        XCTAssertTrue(output.count == 30);
         
+        XCTestExpectation_FULFILL
+    } async:NO];
+    
+    XCTestExpectation_END(3)
+}
+
+- (void)test_pinYinMatchPatternsWithText_options_with_polyphone {
+    __block NSString *string;
+    __block NSOrderedSet<NSString *> *output;
+    
+    XCTestExpectation_BEGIN
+    
+    [[WCPinYinTable sharedInstance] preloadWithFilePath:self.filePath completion:^(BOOL success) {
+        NSLog(@"load time: %f", [WCPinYinTable sharedInstance].loadTimeInterval);
+        
+        // Case 1
+        string = @"着重差参";
+        output = [[WCPinYinTable sharedInstance] pinYinMatchPatternsWithText:string options:WCPinYinStringPatternOptionAll];
+        NSLog(@"%@", output);
+        XCTAssertTrue(output.count == 105);
+
         XCTestExpectation_FULFILL
     } async:NO];
     

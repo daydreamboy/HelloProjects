@@ -132,6 +132,28 @@ static dispatch_queue_t sQueue;
     return self.unicode2PinYinStorage[unicode];
 }
 
+- (nullable NSArray<WCPinYinInfo *> *)pinYinInfosWithTextCharacter:(NSString *)textCharacter {
+    if (![textCharacter isKindOfClass:[NSString class]] || textCharacter.length != 1) {
+        return nil;
+    }
+    
+    unichar buffer[2] = {0};
+    [textCharacter getBytes:buffer maxLength:sizeof(unichar) usedLength:NULL encoding:NSUTF16StringEncoding options:0 range:NSMakeRange(0, textCharacter.length) remainingRange:NULL];
+    NSNumber *unicode = [NSNumber numberWithUnsignedShort:buffer[0]];
+    
+    NSMutableArray *pinYinInfos = [NSMutableArray arrayWithCapacity:5];
+    WCPinYinInfo *info = self.unicode2PinYinStorage[unicode];
+    
+    if (info) {
+        [pinYinInfos addObject:info];
+        if (info.alternatives.count) {
+            [pinYinInfos addObjectsFromArray:info.alternatives];
+        }
+    }
+    
+    return pinYinInfos;
+}
+
 - (nullable NSString *)pinYinStringWithText:(NSString *)text type:(WCPinYinStringType)type separator:(nullable NSString *)separator {
     if (![text isKindOfClass:[NSString class]] || (separator && ![separator isKindOfClass:[NSString class]])) {
         return nil;
@@ -186,69 +208,76 @@ static dispatch_queue_t sQueue;
         return nil;
     }
     
-    WCPinYinStringPatternOption optionsL = options == kNilOptions ? WCPinYinStringPatternOptionFullPinYin : options;
+    WCPinYinStringPatternOption optionsL = options == kNilOptions ? WCPinYinStringPatternOptionOriginalPinYin : options;
     
-    NSMutableOrderedSet *patternsFullPinYin = [NSMutableOrderedSet orderedSetWithCapacity:10];
-    NSMutableOrderedSet *patternsOriginalPinYin = [NSMutableOrderedSet orderedSetWithCapacity:10];
-    NSMutableOrderedSet *patternsSimplePinYin = [NSMutableOrderedSet orderedSetWithCapacity:10];
-    NSMutableOrderedSet *patternsFirstLetter = [NSMutableOrderedSet orderedSetWithCapacity:10];
-    NSMutableOrderedSet *patternsSinglePinYin = [NSMutableOrderedSet orderedSetWithCapacity:10];
-    
-    NSMutableString *fullPinYinPattern = [NSMutableString stringWithCapacity:text.length * 10];
-    NSMutableString *originalPinYinPattern = [NSMutableString stringWithCapacity:text.length * 10];
-    NSMutableString *simplePinYinPattern = [NSMutableString stringWithCapacity:text.length * 10];
-    NSMutableString *firstLetterPattern = [NSMutableString stringWithCapacity:text.length * 10];
-    //NSMutableString *singlePattern = [NSMutableString stringWithCapacity:text.length * 10];
+    NSMutableArray<NSMutableOrderedSet *> *originalPinYinSetArray = [NSMutableArray arrayWithCapacity:text.length * 2];
+    NSMutableArray<NSMutableOrderedSet *> *simplePinYinSetArray = [NSMutableArray arrayWithCapacity:text.length * 2];
+    NSMutableArray<NSMutableOrderedSet *> *firstLetterPinYinSetArray = [NSMutableArray arrayWithCapacity:text.length * 2];
+    NSMutableArray<NSMutableOrderedSet *> *singlePinYinSetArray = [NSMutableArray arrayWithCapacity:text.length * 2];
     
     [text enumerateSubstringsInRange:NSMakeRange(0, text.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
-        WCPinYinInfo *info = [self pinYinInfoWithTextCharacter:substring];
-        if (info) {
-            // Full PinYin
-            [fullPinYinPattern appendString:info.pinYin];
-            
-            // Original Full PinYin
-            [originalPinYinPattern appendString:info.pinYin];
-            
-            // Simple PinYin
-            [simplePinYinPattern appendString:info.firstSyllable];
-            [patternsSimplePinYin addObject:[simplePinYinPattern copy]];
-            
-            // First Letter PinYin
-            [firstLetterPattern appendString:info.firstLetter];
-            [patternsFirstLetter addObject:[firstLetterPattern copy]];
-            
-            // Single PinYin
-            [patternsSinglePinYin addObject:info.pinYin];
+        
+        NSMutableOrderedSet *originalPinYin = [NSMutableOrderedSet new];
+        NSMutableOrderedSet *simplePinYin = [NSMutableOrderedSet new];
+        NSMutableOrderedSet *firstLetterPinYin = [NSMutableOrderedSet new];
+        NSMutableOrderedSet *singlePinYin = [NSMutableOrderedSet new];
+        
+        NSArray<WCPinYinInfo *> *infos = [self pinYinInfosWithTextCharacter:substring];
+        if (infos.count) {
+            for (WCPinYinInfo *info in infos) {                
+                // Original PinYin
+                [originalPinYin addObject:info.pinYin];
+                
+                // Simple PinYin
+                [simplePinYin addObject:info.firstSyllable];
+                
+                // First Letter PinYin
+                [firstLetterPinYin addObject:info.firstLetter];
+                
+                // Single PinYin
+                [singlePinYin addObject:info.pinYin];
+            }
         }
         else {
-            [originalPinYinPattern appendString:substring];
+            // Original PinYin
+            [originalPinYin addObject:substring];
+            
+            // First Letter PinYin
+            [firstLetterPinYin addObject:substring];
         }
+        
+        [originalPinYinSetArray addObject:originalPinYin];
+        [simplePinYinSetArray addObject:simplePinYin];
+        [firstLetterPinYinSetArray addObject:firstLetterPinYin];
+        [singlePinYinSetArray addObject:singlePinYin];
     }];
+
     
-    [patternsFullPinYin addObject:fullPinYinPattern];
-    [patternsOriginalPinYin addObject:originalPinYinPattern];
-    
-    // Merge pattern set
-    NSMutableOrderedSet *patterns = [NSMutableOrderedSet orderedSetWithCapacity:15];
-    
-    if (optionsL & WCPinYinStringPatternOptionFullPinYin) {
-        [patterns unionOrderedSet:patternsFullPinYin];
-    }
-    
-    if (optionsL & WCPinYinStringPatternOptionOriginalPinYin) {
-        [patterns unionOrderedSet:patternsOriginalPinYin];
-    }
-    
-    if (optionsL & WCPinYinStringPatternOptionSimplePinYin) {
-        [patterns unionOrderedSet:patternsSimplePinYin];
-    }
+    // Merge all pattern set if needed
+    NSMutableOrderedSet *patterns = [NSMutableOrderedSet orderedSetWithCapacity:text.length * 20];
     
     if (optionsL & WCPinYinStringPatternOptionFirstLetter) {
+        NSMutableOrderedSet *patternsFirstLetter = [[self class] joinEachElementsByOrder:firstLetterPinYinSetArray];
+        
         [patterns unionOrderedSet:patternsFirstLetter];
     }
     
+    if (optionsL & WCPinYinStringPatternOptionSimplePinYin) {
+        NSMutableOrderedSet *patternsSimplePinYin = [[self class] joinEachElementsByOrder:simplePinYinSetArray];
+        
+        [patterns unionOrderedSet:patternsSimplePinYin];
+    }
+    
     if (optionsL & WCPinYinStringPatternOptionSinglePinYin) {
+        NSMutableOrderedSet *patternsSinglePinYin = [[self class] joinEachElementsByOrder:singlePinYinSetArray];
+        
         [patterns unionOrderedSet:patternsSinglePinYin];
+    }
+    
+    if (optionsL & WCPinYinStringPatternOptionOriginalPinYin) {
+        NSMutableOrderedSet *patternsOriginalPinYin = [[self class] joinEachElementsByOrder:originalPinYinSetArray];
+        
+        [patterns unionOrderedSet:patternsOriginalPinYin];
     }
     
     return [patterns copy];
@@ -335,6 +364,37 @@ static dispatch_queue_t sQueue;
     }
     
     return [stringM copy];
+}
+
++ (NSMutableOrderedSet *)joinEachElementsByOrder:(NSMutableArray<NSMutableOrderedSet *> *)patternsArray {
+    NSMutableOrderedSet *allPatterns = [NSMutableOrderedSet orderedSet];
+    
+    NSMutableOrderedSet *joinedPatterns = [patternsArray firstObject];
+    [patternsArray removeObjectAtIndex:0];
+    [allPatterns unionOrderedSet:joinedPatterns];
+    
+    do {
+        NSMutableOrderedSet *tempPatterns = [NSMutableOrderedSet orderedSet];
+        
+        for (NSInteger i = 0; i < joinedPatterns.count; ++i) {
+            NSString *element1 = [joinedPatterns objectAtIndex:i];
+            
+            NSMutableOrderedSet *nextPattersToMerge = [patternsArray firstObject];
+            for (NSInteger j = 0; j < nextPattersToMerge.count; ++j) {
+                NSString *element2 = [nextPattersToMerge objectAtIndex:j];
+                
+                [tempPatterns addObject:[NSString stringWithFormat:@"%@%@", element1, element2]];
+            }
+        }
+        
+        joinedPatterns = tempPatterns;
+        [allPatterns unionOrderedSet:joinedPatterns];
+        
+        [patternsArray removeObjectAtIndex:0];
+    }
+    while (patternsArray.count > 0);
+    
+    return allPatterns;
 }
 
 @end
