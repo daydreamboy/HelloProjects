@@ -62,7 +62,14 @@ XCTestExpectation *expectation__ = [self expectationWithDescription:description_
     NSString *string = @"中文";
     __block NSMutableString *output;
     
-    output = [NSString stringWithFormat:@"%C", (unichar)0x7AD5];
+    output = [NSString stringWithFormat:@"%C", (unichar)0x7AD3];
+    NSLog(@"%@", output);
+    
+    output = [NSString stringWithFormat:@"%C", (unichar)0x7ACF];
+    NSLog(@"%@", output);
+    
+    output = [NSString stringWithFormat:@"%C", (unichar)0x7ACD];
+    NSLog(@"%@", output);
     
     XCTestExpectation_BEGIN
     
@@ -75,7 +82,7 @@ XCTestExpectation *expectation__ = [self expectationWithDescription:description_
         [string enumerateSubstringsInRange:NSMakeRange(0, string.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
             WCPinYinInfo *info = [[WCPinYinTable sharedInstance] pinYinInfoWithTextCharacter:substring];
             if (info) {
-                [output appendString:info.pinYin];
+                [output appendString:info.pinYinWithTone];
                 [output appendString:@" "];
             }
         }];

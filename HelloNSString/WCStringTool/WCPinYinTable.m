@@ -166,7 +166,7 @@ static dispatch_queue_t sQueue;
     info.unicodeString = [NSString stringWithFormat:@"0x%@", unicodeString];
     info.pinYin = pinYin;
     info.tone = [tone integerValue];
-    info.pinYinWithTone = @"";
+    info.pinYinWithTone = [self createMarkedVowelPinYinWithPinYin:info.pinYin tone:info.tone];
     info.firstLetter = [pinYin substringToIndex:1];
     info.firstSyllable = ({
         NSString *firstSyllable = [pinYin substringToIndex:1];
@@ -179,6 +179,62 @@ static dispatch_queue_t sQueue;
     });
     
     return info;
+}
+
+// @see http://www.hwjyw.com/resource/content/2010/06/04/8183.shtml
++ (NSString *)createMarkedVowelPinYinWithPinYin:(NSString *)pinYin tone:(NSInteger)tone {
+    NSDictionary *translateMap = @{
+        @"a" : @[ @"a", @"ā", @"á", @"ă", @"à" ],
+        @"o" : @[ @"o", @"ō", @"ó", @"ŏ", @"ò" ],
+        @"e" : @[ @"e", @"ē", @"é", @"ĕ", @"è" ],
+        @"i" : @[ @"i", @"ī", @"í", @"ĭ", @"ì" ],
+        @"u" : @[ @"u", @"ū", @"ú", @"ŭ", @"ù" ],
+        @"v" : @[ @"ü", @"ǖ", @"ǘ", @"ǚ", @"ǜ" ],
+    };
+    
+    NSArray *lookups = @[
+        @"a",
+        @"o",
+        @"e",
+        @"iu",
+        @"ui",
+        @"i",
+        @"u",
+        @"v"
+    ];
+    
+    NSMutableString *stringM = [NSMutableString stringWithString:pinYin];
+    NSRange range;
+    
+    for (NSString *lookup in lookups) {
+        if (lookup.length == 1) {
+            range = [pinYin rangeOfString:lookup];
+            if (range.location != NSNotFound) {
+                NSString *letter = [pinYin substringWithRange:range];
+                if (tone >= 0 && tone < 4) {
+                    NSArray *markedVowels = translateMap[letter];
+                    NSString *markedVowel = markedVowels[tone];
+                    [stringM replaceCharactersInRange:range withString:markedVowel];
+                }
+                break;
+            }
+        }
+        else if (lookup.length == 2) {
+            range = [pinYin rangeOfString:lookup];
+            if (range.location != NSNotFound) {
+                NSRange newRange = NSMakeRange(range.location + 1, 1);
+                NSString *letter = [pinYin substringWithRange:newRange];
+                if (tone >= 0 && tone < 4) {
+                    NSArray *markedVowels = translateMap[letter];
+                    NSString *markedVowel = markedVowels[tone];
+                    [stringM replaceCharactersInRange:newRange withString:markedVowel];
+                }
+                break;
+            }
+        }
+    }
+    
+    return [stringM copy];
 }
 
 @end
