@@ -322,16 +322,28 @@ format string中允许内置的保留关键字（Reserved Keys），如下
 
 
 
-| 关键字            | 含义 | 示例 | 备注 |
-| ----------------- | ---- | ---- | ---- |
-| **ANY**, **SOME** |      |      |      |
-| **ALL**           |      |      |      |
-| **NONE**          |      |      |      |
-| **IN**            |      |      |      |
-| array[index]      |      |      |      |
-| array[**FIRST**]  |      |      |      |
-| array[**LAST**]   |      |      |      |
-| array[**SIZE**]   |      |      |      |
+| 关键字            | 含义                    | 示例                                    | 备注 |
+| ----------------- | ----------------------- | --------------------------------------- | ---- |
+| **ANY**, **SOME** |                         |                                         |      |
+| **ALL**           |                         |                                         |      |
+| **NONE**          |                         |                                         |      |
+| **IN**            | 和SQL中IN操作符是一样的 | @"name IN { 'Ben', 'Melissa', 'Nick' }" |      |
+| array[index]      |                         |                                         |      |
+| array[**FIRST**]  |                         |                                         |      |
+| array[**LAST**]   |                         |                                         |      |
+| array[**SIZE**]   |                         |                                         |      |
+
+
+
+#### IN
+
+IN和SQL中IN操作符是一样的，判断的条件是左边的属性必须在右边的集合中。示意代码，如下
+
+```objective-c
+NSPredicate *inPredicate = [NSPredicate predicateWithFormat: @"attribute IN %@", aCollection];
+```
+
+aCollection可以是NSArray、NSSet或NSDictionary实例（包括子类实例），以及对应的mutable实例
 
 
 
