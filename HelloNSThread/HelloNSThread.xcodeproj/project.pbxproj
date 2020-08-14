@@ -16,8 +16,13 @@
 		2BA4F85D1F83D31C00AE2BAD /* CreateThreadByNSObjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4F85C1F83D31C00AE2BAD /* CreateThreadByNSObjectViewController.m */; };
 		2BA4F8601F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4F85F1F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m */; };
 		2BF7F44A1F83DB3500B27A0F /* UseOSAtomicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BF7F4491F83DB3500B27A0F /* UseOSAtomicViewController.m */; };
+		4F0F734524E56758006EC880 /* WCAsyncTaskChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0F734424E56758006EC880 /* WCAsyncTaskChainManager.m */; };
 		4F1125E1246466F90059846D /* GetSymbolicCallStackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1125E0246466F90059846D /* GetSymbolicCallStackViewController.m */; };
 		4F161AAD231E0F0100A22350 /* WCServiceHubManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F161AAC231E0F0100A22350 /* WCServiceHubManager.m */; };
+		4F2A963324E646D400009E3B /* Tests_WCAsyncTaskChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2A963224E646D400009E3B /* Tests_WCAsyncTaskChainManager.m */; };
+		4F2A963724E6474B00009E3B /* TaskHandler1.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2A963624E6474B00009E3B /* TaskHandler1.m */; };
+		4F2A963A24E6475B00009E3B /* TaskHandler2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2A963924E6475B00009E3B /* TaskHandler2.m */; };
+		4F2A963D24E6476700009E3B /* TaskHandler3.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2A963C24E6476700009E3B /* TaskHandler3.m */; };
 		4F2E567324A3532300CF8881 /* TestWCAsyncTaskExecutorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2E567224A3532300CF8881 /* TestWCAsyncTaskExecutorViewController.m */; };
 		4F4F054D2294EFBA002BD87A /* Tests_benchmarking.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F054C2294EFBA002BD87A /* Tests_benchmarking.m */; };
 		4F4F05502294F8B7002BD87A /* CacheWithSemaphore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4F054F2294F8B7002BD87A /* CacheWithSemaphore.m */; };
@@ -86,11 +91,21 @@
 		2BA4F85F1F83D34600AE2BAD /* CreateThreadByPOSIXViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateThreadByPOSIXViewController.m; sourceTree = "<group>"; };
 		2BF7F4481F83DB3500B27A0F /* UseOSAtomicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseOSAtomicViewController.h; sourceTree = "<group>"; };
 		2BF7F4491F83DB3500B27A0F /* UseOSAtomicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseOSAtomicViewController.m; sourceTree = "<group>"; };
+		4F0F734324E56758006EC880 /* WCAsyncTaskChainManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAsyncTaskChainManager.h; sourceTree = "<group>"; };
+		4F0F734424E56758006EC880 /* WCAsyncTaskChainManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAsyncTaskChainManager.m; sourceTree = "<group>"; };
 		4F1125DF246466F90059846D /* GetSymbolicCallStackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetSymbolicCallStackViewController.h; sourceTree = "<group>"; };
 		4F1125E0246466F90059846D /* GetSymbolicCallStackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetSymbolicCallStackViewController.m; sourceTree = "<group>"; };
 		4F161AAB231E0F0100A22350 /* WCServiceHubManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCServiceHubManager.h; sourceTree = "<group>"; };
 		4F161AAC231E0F0100A22350 /* WCServiceHubManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCServiceHubManager.m; sourceTree = "<group>"; };
 		4F161AAE231E3EA700A22350 /* WCRouterService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCRouterService.h; sourceTree = "<group>"; };
+		4F2A963224E646D400009E3B /* Tests_WCAsyncTaskChainManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_WCAsyncTaskChainManager.m; sourceTree = "<group>"; };
+		4F2A963524E6474B00009E3B /* TaskHandler1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskHandler1.h; sourceTree = "<group>"; };
+		4F2A963624E6474B00009E3B /* TaskHandler1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskHandler1.m; sourceTree = "<group>"; };
+		4F2A963824E6475B00009E3B /* TaskHandler2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskHandler2.h; sourceTree = "<group>"; };
+		4F2A963924E6475B00009E3B /* TaskHandler2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskHandler2.m; sourceTree = "<group>"; };
+		4F2A963B24E6476700009E3B /* TaskHandler3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskHandler3.h; sourceTree = "<group>"; };
+		4F2A963C24E6476700009E3B /* TaskHandler3.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskHandler3.m; sourceTree = "<group>"; };
+		4F2A963E24E647A900009E3B /* WCAsyncTaskHandlerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAsyncTaskHandlerProtocol.h; sourceTree = "<group>"; };
 		4F2E567124A3532300CF8881 /* TestWCAsyncTaskExecutorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestWCAsyncTaskExecutorViewController.h; sourceTree = "<group>"; };
 		4F2E567224A3532300CF8881 /* TestWCAsyncTaskExecutorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestWCAsyncTaskExecutorViewController.m; sourceTree = "<group>"; };
 		4F4F054C2294EFBA002BD87A /* Tests_benchmarking.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_benchmarking.m; sourceTree = "<group>"; };
@@ -185,6 +200,7 @@
 		2B37F3051F83C4A500809F00 = {
 			isa = PBXGroup;
 			children = (
+				4F0F734224E56715006EC880 /* WCAsyncTaskChainManager */,
 				4F8591B624A267C5005EBAA1 /* WCAsyncTaskExecutor */,
 				4F161AAA231E0E5600A22350 /* WCServiceHubManager */,
 				4F513F0A22DF2A36003698DA /* WCSingletonObject */,
@@ -278,6 +294,16 @@
 			path = thread;
 			sourceTree = "<group>";
 		};
+		4F0F734224E56715006EC880 /* WCAsyncTaskChainManager */ = {
+			isa = PBXGroup;
+			children = (
+				4F0F734324E56758006EC880 /* WCAsyncTaskChainManager.h */,
+				4F0F734424E56758006EC880 /* WCAsyncTaskChainManager.m */,
+				4F2A963E24E647A900009E3B /* WCAsyncTaskHandlerProtocol.h */,
+			);
+			path = WCAsyncTaskChainManager;
+			sourceTree = "<group>";
+		};
 		4F1125DE246466820059846D /* callStack */ = {
 			isa = PBXGroup;
 			children = (
@@ -295,6 +321,19 @@
 				4F161AAE231E3EA700A22350 /* WCRouterService.h */,
 			);
 			path = WCServiceHubManager;
+			sourceTree = "<group>";
+		};
+		4F2A963424E6471E00009E3B /* WCAsyncTaskHandler Impls */ = {
+			isa = PBXGroup;
+			children = (
+				4F2A963524E6474B00009E3B /* TaskHandler1.h */,
+				4F2A963624E6474B00009E3B /* TaskHandler1.m */,
+				4F2A963824E6475B00009E3B /* TaskHandler2.h */,
+				4F2A963924E6475B00009E3B /* TaskHandler2.m */,
+				4F2A963B24E6476700009E3B /* TaskHandler3.h */,
+				4F2A963C24E6476700009E3B /* TaskHandler3.m */,
+			);
+			path = "WCAsyncTaskHandler Impls";
 			sourceTree = "<group>";
 		};
 		4F2E567024A352F100CF8881 /* test */ = {
@@ -420,6 +459,8 @@
 				4F513F0F22DF2AF6003698DA /* Tests_WCSingletonObject.m */,
 				4F68FB13246E749D00560439 /* Tests_WCThreadTool.m */,
 				4F8976EE24A34CA50094E792 /* Tests_WCAsyncTaskExecutor.m */,
+				4F2A963224E646D400009E3B /* Tests_WCAsyncTaskChainManager.m */,
+				4F2A963424E6471E00009E3B /* WCAsyncTaskHandler Impls */,
 				4FA9918B21AECD1200E928D8 /* Info.plist */,
 			);
 			path = Tests;
@@ -552,6 +593,7 @@
 				4F161AAD231E0F0100A22350 /* WCServiceHubManager.m in Sources */,
 				4F53C9922004AFE8003F79F6 /* KeepThreadLongAliveViewController.m in Sources */,
 				4F50C7392243E096002B00C9 /* UseNSLockIssueWithUnpairLockUnlockViewController.m in Sources */,
+				4F0F734524E56758006EC880 /* WCAsyncTaskChainManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,10 +602,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F96ECC82293035C00442F65 /* CacheWithSerialQueue.m in Sources */,
+				4F2A963724E6474B00009E3B /* TaskHandler1.m in Sources */,
 				4F96ECCB2293037000442F65 /* CacheWithConcurrentQueue.m in Sources */,
 				4F96ECBB2293011700442F65 /* Tests_synchronize_concurrent_writes.m in Sources */,
+				4F2A963A24E6475B00009E3B /* TaskHandler2.m in Sources */,
 				4F5005CA22B0E36E0026CB16 /* Tests_WCSharedContextManager.m in Sources */,
 				4F8976EF24A34CA50094E792 /* Tests_WCAsyncTaskExecutor.m in Sources */,
+				4F2A963324E646D400009E3B /* Tests_WCAsyncTaskChainManager.m in Sources */,
 				4F4F05532294FB34002BD87A /* CacheWithPthread_mutex.m in Sources */,
 				4F68FB14246E749D00560439 /* Tests_WCThreadTool.m in Sources */,
 				4F5005C822B0E33D0026CB16 /* WCSharedContextManager.m in Sources */,
@@ -571,6 +616,7 @@
 				4FA9918A21AECD1200E928D8 /* Tests.m in Sources */,
 				4F96ECC5229302DE00442F65 /* CacheWithCPPScopedMutex.mm in Sources */,
 				4F4F054D2294EFBA002BD87A /* Tests_benchmarking.m in Sources */,
+				4F2A963D24E6476700009E3B /* TaskHandler3.m in Sources */,
 				4F4FCEFA2293D4000063E9B7 /* CacheWithNSRecursiveLock.m in Sources */,
 				4F96ECC22293024F00442F65 /* CacheWithKeywordSynchronized.m in Sources */,
 				4F513F1022DF2AF6003698DA /* Tests_WCSingletonObject.m in Sources */,

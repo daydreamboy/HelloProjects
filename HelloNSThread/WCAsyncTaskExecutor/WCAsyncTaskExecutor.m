@@ -31,6 +31,7 @@
 @interface WCAsyncTaskExecutor ()
 @property (nonatomic, assign, readwrite) WCAsyncTaskExecuteMode executeMode;
 @property (nonatomic, strong) dispatch_queue_t serialQueue;
+@property (nonatomic, strong) dispatch_queue_t timeoutQueue;
 @property (nonatomic, strong) NSMutableArray<WCAsyncTask *> *taskList;
 @property (nonatomic, strong) WCAsyncTask *currentRunningTask;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, WCAsyncTask *> *enqueueMap;
@@ -44,6 +45,7 @@
     if (self) {
         _executeMode = WCAsyncTaskExecuteModeSerial;
         _serialQueue = dispatch_queue_create("com.wc.WCAsyncTaskExecutor", DISPATCH_QUEUE_SERIAL);
+        _timeoutQueue = dispatch_queue_create("com.wc.WCAsyncTaskExecutor.timeout", DISPATCH_QUEUE_SERIAL);
         _taskList = [NSMutableArray array];
         _enqueueMap = [NSMutableDictionary dictionary];
     }
@@ -121,8 +123,9 @@
         self.currentRunningTask.block(completion);
         
         if (!checkFlagIfCompletionCalled) {
-            NSLog(@"[Error] The task `%@` must call the WCAsyncTaskCompletion block. If not the task is not executed serially", self.currentRunningTask.key);
-            completion();
+            NSLog(@"[Warning] The task `%@` must call the WCAsyncTaskCompletion block. If not the task is not executed serially", self.currentRunningTask.key);
+            // Use timeout check instead
+            //completion();
         }
     }
     else {

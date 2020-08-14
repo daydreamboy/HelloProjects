@@ -30,7 +30,7 @@ typedef NS_ENUM(NSUInteger, WCAsyncTaskExecuteMode) {
 @end
 
 /**
- A task executor to execute aync task one by one
+ A task executor to execute async task one by one
  */
 @interface WCAsyncTaskExecutor : NSObject
 
