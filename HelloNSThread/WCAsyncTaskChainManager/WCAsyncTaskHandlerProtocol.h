@@ -41,6 +41,10 @@ typedef void(^TaskHandlerCompletion)(id data, NSError * _Nullable error);
 - (NSString *)name;
 - (void)handleWithContext:(WCAsyncTaskChainContext *)context taskHandlerCompletion:(TaskHandlerCompletion)taskHandlerCompletion;
 
+@optional
+
+- (NSTimeInterval)timeoutInterval;
+
 @end
 
 NS_ASSUME_NONNULL_END

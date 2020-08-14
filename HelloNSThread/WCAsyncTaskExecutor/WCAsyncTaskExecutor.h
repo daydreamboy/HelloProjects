@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^WCAsyncTaskCompletion)(void);
+typedef void (^WCAsyncTaskTimeoutBlock)(void);
 typedef void (^WCAsyncTaskBlock)(WCAsyncTaskCompletion completion);
 
 typedef NS_ENUM(NSUInteger, WCAsyncTaskExecuteMode) {
@@ -50,11 +51,14 @@ typedef NS_ENUM(NSUInteger, WCAsyncTaskExecuteMode) {
  
  @param block the task
  @param key the unique key to identify the task
+ @param timeout the timeout for the task. If timeout, this task is force completed
+ 
  @return YES if parameter is correct. NO if not
+ 
  @discussion If the key is same with the previous task has been added (running or wait to run), the current task is ignored.
  If the previous task has been added and run finished, the task with same key is OK to added.
  */
-- (BOOL)addAsyncTask:(WCAsyncTaskBlock)block forKey:(NSString *)key;
+- (BOOL)addAsyncTask:(WCAsyncTaskBlock)block forKey:(NSString *)key timeout:(NSTimeInterval)timeout timeoutBlock:(nullable WCAsyncTaskTimeoutBlock)timeoutBlock;
 
 @end
 

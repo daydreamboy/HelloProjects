@@ -14,6 +14,7 @@
 @property (nonatomic, strong, readwrite, nullable) NSError *error;
 @property (nonatomic, weak, readwrite, nullable) id<WCAsyncTaskHandler> previousHandler;
 @property (nonatomic, weak, readwrite, nullable) id<WCAsyncTaskHandler> nextHandler;
+@property (nonatomic, assign) BOOL aborted;
 @end
 
 @implementation WCAsyncTaskChainContext
@@ -69,7 +70,17 @@
         nextHandler = i + 1 < numberOfHandlers ? self.chainedTaskHandler[i + 1] : nil;
         
         id<WCAsyncTaskHandler> handler = self.chainedTaskHandler[i];
+        
+        NSTimeInterval timeoutInterval = -1;
+        if ([handler respondsToSelector:@selector(timeoutInterval)]) {
+            timeoutInterval = [handler timeoutInterval];
+        }
+        
         [self.taskExecutor addAsyncTask:^(WCAsyncTaskCompletion  _Nonnull completion) {
+            if (context.aborted) {
+                return;
+            }
+            
             if (context.error) {
                 allHandlersCompletion();
             }
@@ -92,7 +103,11 @@
                     allHandlersCompletion();
                 }
             }
-        } forKey:handler.name];
+        } forKey:handler.name timeout:timeoutInterval timeoutBlock:^{
+            context.error = [NSError errorWithDomain:@"Timeout" code:-1 userInfo:@{}];
+            context.aborted = YES;
+            allHandlersCompletion();
+        }];
     }
     
     return YES;

@@ -58,12 +58,13 @@ XCTestExpectation *expectation__ = [self expectationWithDescription:description_
     handlers = @[ NSStringFromClass([TaskHandler1 class]), NSStringFromClass([TaskHandler2 class]), NSStringFromClass([TaskHandler3 class]) ];
     WCAsyncTaskChainManager *manager = [[WCAsyncTaskChainManager alloc] initWithTaskHandlerClasses:handlers bizKey:@"default"];
     [manager startTaskHandlersWithData:data completion:^(WCAsyncTaskChainContext * _Nonnull context) {
-        NSLog(@"%@", context.data);
+        NSLog(@"data: %@", context.data);
+        NSLog(@"error: %@", context.error);
         
         XCTestExpectation_FULFILL
     }];
     
-    XCTestExpectation_END(10)
+    XCTestExpectation_END(60)
 }
 
 @end

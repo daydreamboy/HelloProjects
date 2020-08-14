@@ -59,7 +59,7 @@
             NSLog(@"Task %@ finished", timestamp);
             [self.timestamps addObject:timestamp];
             completion();
-        } forKey:timestamp];
+        } forKey:timestamp timeout:-1 timeoutBlock:nil];
     }
 }
 

@@ -8,20 +8,29 @@
 
 #import "WCAsyncTaskExecutor.h"
 #import "WCMacroTool.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface WCAsyncTask : NSObject
 @property (nonatomic, copy) WCAsyncTaskBlock block;
+@property (nonatomic, copy) WCAsyncTaskTimeoutBlock timeoutBlock;
 @property (nonatomic, copy) NSString *key;
 @property (nonatomic, assign) BOOL isRunning;
-+ (instancetype)taskWithBlock:(WCAsyncTaskBlock)block forKey:(NSString *)key;
+@property (nonatomic, assign) NSTimeInterval timeoutInterval;
+
+@property (nonatomic, assign) NSTimeInterval startTime;
+@property (nonatomic, assign) NSTimeInterval finishTime;
+
++ (instancetype)taskWithBlock:(WCAsyncTaskBlock)block forKey:(NSString *)key timeoutInterval:(NSTimeInterval)timeoutInterval timeoutBlock:(WCAsyncTaskTimeoutBlock)timeoutBlock;
 @end
 
 @implementation WCAsyncTask
 
-+ (instancetype)taskWithBlock:(WCAsyncTaskBlock)block forKey:(NSString *)key {
++ (instancetype)taskWithBlock:(WCAsyncTaskBlock)block forKey:(NSString *)key timeoutInterval:(NSTimeInterval)timeoutInterval timeoutBlock:(WCAsyncTaskTimeoutBlock)timeoutBlock {
     WCAsyncTask *holder = [WCAsyncTask new];
     holder.block = block;
     holder.key = key;
+    holder.timeoutInterval = timeoutInterval;
+    holder.timeoutBlock = timeoutBlock;
     
     return holder;
 }
@@ -53,10 +62,10 @@
 }
 
 - (BOOL)addAsyncTask:(WCAsyncTaskBlock)block {
-    return [self addAsyncTask:block forKey:[NSUUID UUID].UUIDString];
+    return [self addAsyncTask:block forKey:[NSUUID UUID].UUIDString timeout:-1 timeoutBlock:nil];
 }
 
-- (BOOL)addAsyncTask:(WCAsyncTaskBlock)block forKey:(NSString *)key {
+- (BOOL)addAsyncTask:(WCAsyncTaskBlock)block forKey:(NSString *)key timeout:(NSTimeInterval)timeout timeoutBlock:(nullable WCAsyncTaskTimeoutBlock)timeoutBlock {
     if (!block || ![key isKindOfClass:[NSString class]]) {
         return NO;
     }
@@ -69,7 +78,7 @@
             return;
         }
         
-        WCAsyncTask *taskToRun = [WCAsyncTask taskWithBlock:block forKey:key];
+        WCAsyncTask *taskToRun = [WCAsyncTask taskWithBlock:block forKey:key timeoutInterval:timeout timeoutBlock:timeoutBlock];
         self.enqueueMap[key] = taskToRun;
         [self.taskList addObject:taskToRun];
         
@@ -104,12 +113,13 @@
     [self.taskList removeObjectAtIndex:0];
     
     weakify(self);
-    __block BOOL checkFlagIfCompletionCalled = NO;
+    //__block BOOL checkFlagIfCompletionCalled = NO;
     WCAsyncTaskCompletion completion = ^{
         strongifyWithReturn(self, return;);
         
-        checkFlagIfCompletionCalled = YES;
+        //checkFlagIfCompletionCalled = YES;
         
+        self.currentRunningTask.finishTime = CACurrentMediaTime();
         self.currentRunningTask.isRunning = NO;
         [self.enqueueMap removeObjectForKey:self.currentRunningTask.key];
         
@@ -121,11 +131,19 @@
     
     if (self.currentRunningTask.block) {
         self.currentRunningTask.block(completion);
-        
-        if (!checkFlagIfCompletionCalled) {
-            NSLog(@"[Warning] The task `%@` must call the WCAsyncTaskCompletion block. If not the task is not executed serially", self.currentRunningTask.key);
-            // Use timeout check instead
-            //completion();
+        self.currentRunningTask.startTime = CACurrentMediaTime();
+        if (self.currentRunningTask.timeoutInterval > 0) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.currentRunningTask.timeoutInterval * NSEC_PER_SEC)), self.timeoutQueue, ^{
+                if (self.currentRunningTask.isRunning) {
+                    NSLog(@"[Warning] The task `%@` must call the WCAsyncTaskCompletion block. If not the task is not executed serially", self.currentRunningTask.key);
+                    
+                    dispatch_async(self.serialQueue, ^{
+                        strongify(self);
+                        completion();
+                        self.currentRunningTask.timeoutBlock();
+                    });
+                }
+            });
         }
     }
     else {
