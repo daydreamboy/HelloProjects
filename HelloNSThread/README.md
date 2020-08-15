@@ -361,7 +361,29 @@ NSLog(@"Avg. Runtime: %llu ns", t_0);
 
 
 
-WCAsyncTaskExecutor
+#### WCAsyncTaskExecutor
+
+WCAsyncTaskExecutor将block封装任务（task），然后支持task进行串行执行，并且task内部可以执行异步操作，例如网络请求等。
+
+主要feature，如下
+
+* 内部模型自动将block封装成task，调用者不感知
+* 支持异步task，即block里面可以执行异步操作
+* task有唯一key标识，方便debug排查
+* 提供异步task执行时的超时机制
+
+
+
+#### WCAsyncTaskChainManager
+
+WCAsyncTaskChainManager基于WCAsyncTaskExecutor的封装，支持数据在多个任务处理器（WCAsyncTaskHandler）之间传递，并得到最终处理结果。
+
+主要feature，如下
+
+* 提供WCAsyncTaskHandler协议，允许自定义Task Handler
+* 提供Task Handler注入方式，有序调用Task Handler
+
+
 
 
 

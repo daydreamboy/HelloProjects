@@ -42,6 +42,8 @@ typedef NS_ENUM(NSUInteger, WCAsyncTaskExecuteMode) {
  Add a block as Task to run or wait to run
  
  @param block the task
+        - completion, if task is finished, call the completion
+ 
  @return YES if parameter is correct. NO if not
  */
 - (BOOL)addAsyncTask:(WCAsyncTaskBlock)block;
@@ -50,8 +52,10 @@ typedef NS_ENUM(NSUInteger, WCAsyncTaskExecuteMode) {
  Add a block as Task to run or wait to run
  
  @param block the task
+        - completion, if task is finished, call the completion
  @param key the unique key to identify the task
- @param timeout the timeout for the task. If timeout, this task is force completed
+ @param timeout the timeout for the task. If timeout, timeoutBlock will be called
+ @param timeoutBlock the callback when the task is timeout
  
  @return YES if parameter is correct. NO if not
  
