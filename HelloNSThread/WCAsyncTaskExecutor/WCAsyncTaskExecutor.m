@@ -134,15 +134,15 @@
         self.currentRunningTask.startTime = CACurrentMediaTime();
         if (self.currentRunningTask.timeoutInterval > 0) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.currentRunningTask.timeoutInterval * NSEC_PER_SEC)), self.timeoutQueue, ^{
-                if (self.currentRunningTask.isRunning) {
-                    NSLog(@"[Warning] The task `%@` must call the WCAsyncTaskCompletion block. If not the task is not executed serially", self.currentRunningTask.key);
-                    
-                    dispatch_async(self.serialQueue, ^{
-                        strongify(self);
+                dispatch_async(self.serialQueue, ^{
+                    strongify(self);
+                    if (self.currentRunningTask.isRunning) {
+                        NSLog(@"[Warning] The task `%@` is timeout. Timeout block will be called", self.currentRunningTask.key);
+                        
                         completion();
                         self.currentRunningTask.timeoutBlock();
-                    });
-                }
+                    }
+                });
             });
         }
     }
