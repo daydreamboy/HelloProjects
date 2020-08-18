@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DebugBaseViewController.h"
 
-@interface UseYYLabelWithAttachmentViewController : UIViewController
+@interface UseYYLabelWithAttachmentViewController : DebugBaseViewController
 
 @end

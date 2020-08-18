@@ -15,6 +15,7 @@
 #import "LabelWithMaximumLinesViewController.h"
 #import "LabelWithHyphenationViewController.h"
 #import "TextAlignmentViewController.h"
+#import "UseYYTextViewViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -53,6 +54,7 @@
     ];
     
     NSArray<NSDictionary *> *section3 = @[
+        @{ kTitle: @"YYTextView", kClass: [UseYYTextViewViewController class] },
     ];
     
     NSArray<NSDictionary *> *section4 = @[
@@ -68,11 +70,13 @@
     _sectionTitles = @[
         @"UILabel",
         @"YYLabel",
+        @"YYTextView",
     ];
     
     _classes = @[
          section1,
          section2,
+         section3,
     ];
 }
 

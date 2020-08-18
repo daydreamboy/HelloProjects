@@ -25,8 +25,7 @@
 @implementation UseYYLabelWithAttachmentViewController
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
-    [YYTextExampleHelper addDebugOptionToViewController:self];
+    
 
     
     NSMutableAttributedString *text = [NSMutableAttributedString new];

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F1ADA3D24EC060A00BCF38F /* DebugBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1ADA3C24EC060A00BCF38F /* DebugBaseViewController.m */; };
+		4F1ADA4124EC071A00BCF38F /* UseYYTextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1ADA4024EC071A00BCF38F /* UseYYTextViewViewController.m */; };
 		4F1D7DCB2122B2D20021023C /* LabelWithMaximumLinesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1D7DCA2122B2D20021023C /* LabelWithMaximumLinesViewController.m */; };
 		4F4EF6B6245C15B3003F32F4 /* 079@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F4EF6B4245C15B2003F32F4 /* 079@2x.png */; };
 		4F4EF6B7245C15B3003F32F4 /* 090@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F4EF6B5245C15B2003F32F4 /* 090@2x.png */; };
@@ -118,6 +120,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F1ADA3B24EC060A00BCF38F /* DebugBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugBaseViewController.h; sourceTree = "<group>"; };
+		4F1ADA3C24EC060A00BCF38F /* DebugBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugBaseViewController.m; sourceTree = "<group>"; };
+		4F1ADA3F24EC071A00BCF38F /* UseYYTextViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseYYTextViewViewController.h; sourceTree = "<group>"; };
+		4F1ADA4024EC071A00BCF38F /* UseYYTextViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseYYTextViewViewController.m; sourceTree = "<group>"; };
 		4F1D7DC92122B2D20021023C /* LabelWithMaximumLinesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabelWithMaximumLinesViewController.h; sourceTree = "<group>"; };
 		4F1D7DCA2122B2D20021023C /* LabelWithMaximumLinesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelWithMaximumLinesViewController.m; sourceTree = "<group>"; };
 		4F4EF6B4245C15B2003F32F4 /* 079@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "079@2x.png"; sourceTree = "<group>"; };
@@ -337,6 +343,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F1ADA3E24EC06FD00BCF38F /* YYTextView */ = {
+			isa = PBXGroup;
+			children = (
+				4F1ADA3F24EC071A00BCF38F /* UseYYTextViewViewController.h */,
+				4F1ADA4024EC071A00BCF38F /* UseYYTextViewViewController.m */,
+			);
+			path = YYTextView;
+			sourceTree = "<group>";
+		};
 		4F4EF6BA245C19EF003F32F4 /* UILabel */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,6 +370,7 @@
 		4F4EF6BB245C1A4E003F32F4 /* YYLabel */ = {
 			isa = PBXGroup;
 			children = (
+				4F4EF6BF245C1B71003F32F4 /* Base */,
 				4F93835320C6E82F00568EE1 /* UseYYLabelWithAttachmentViewController.h */,
 				4F93835420C6E83000568EE1 /* UseYYLabelWithAttachmentViewController.m */,
 				4F7D8F35210B674D00145B00 /* UseYYLabelWithLinkViewController.h */,
@@ -365,6 +381,15 @@
 				4F93836020C6EA2C00568EE1 /* YYTextExampleHelper.m */,
 			);
 			path = YYLabel;
+			sourceTree = "<group>";
+		};
+		4F4EF6BF245C1B71003F32F4 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				4F1ADA3B24EC060A00BCF38F /* DebugBaseViewController.h */,
+				4F1ADA3C24EC060A00BCF38F /* DebugBaseViewController.m */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		4F52D11B21181B54004EE254 /* Tools */ = {
@@ -418,6 +443,7 @@
 		4F93830B20C6D6AE00568EE1 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F1ADA3E24EC06FD00BCF38F /* YYTextView */,
 				4F4EF6BB245C1A4E003F32F4 /* YYLabel */,
 				4F4EF6BA245C19EF003F32F4 /* UILabel */,
 			);
@@ -546,7 +572,6 @@
 				4FAF514221500F2B006A7509 /* YYTextKeyboardManager.h */,
 				4FAF514321500F2B006A7509 /* YYTextContainerView.m */,
 				4FAF514421500F2B006A7509 /* YYTextEffectWindow.m */,
-				4FAF514521500F2B006A7509 /* YYTextDebugOption.h */,
 				4FAF514621500F2B006A7509 /* YYTextInput.m */,
 				4FAF514721500F2B006A7509 /* YYTextLayout.m */,
 				4FAF514821500F2B006A7509 /* YYTextMagnifier.h */,
@@ -556,6 +581,7 @@
 				4FAF514C21500F2B006A7509 /* YYTextContainerView.h */,
 				4FAF514D21500F2B006A7509 /* YYTextKeyboardManager.m */,
 				4FAF514E21500F2B006A7509 /* YYTextInput.h */,
+				4FAF514521500F2B006A7509 /* YYTextDebugOption.h */,
 				4FAF514F21500F2B006A7509 /* YYTextDebugOption.m */,
 			);
 			path = Component;
@@ -681,8 +707,9 @@
 		4FAF51A721500F2B006A7509 /* Utility */ = {
 			isa = PBXGroup;
 			children = (
-				4FAF51A821500F2B006A7509 /* YYWeakProxy.m */,
+				4FAF51B421500F2B006A7509 /* YYAsyncLayer.h */,
 				4FAF51A921500F2B006A7509 /* YYAsyncLayer.m */,
+				4FAF51A821500F2B006A7509 /* YYWeakProxy.m */,
 				4FAF51AA21500F2B006A7509 /* YYKeychain.h */,
 				4FAF51AB21500F2B006A7509 /* YYDispatchQueuePool.h */,
 				4FAF51AC21500F2B006A7509 /* YYTransaction.h */,
@@ -693,7 +720,6 @@
 				4FAF51B121500F2B006A7509 /* YYReachability.h */,
 				4FAF51B221500F2B006A7509 /* YYThreadSafeArray.h */,
 				4FAF51B321500F2B006A7509 /* YYTimer.h */,
-				4FAF51B421500F2B006A7509 /* YYAsyncLayer.h */,
 				4FAF51B521500F2B006A7509 /* YYWeakProxy.h */,
 				4FAF51B621500F2B006A7509 /* YYThreadSafeDictionary.h */,
 				4FAF51B721500F2B006A7509 /* YYTransaction.m */,
@@ -820,6 +846,7 @@
 				4FAF51DD21500F2B006A7509 /* YYLabel.m in Sources */,
 				4FAF51E321500F2B006A7509 /* UIPasteboard+YYText.m in Sources */,
 				4F7D8F37210B674D00145B00 /* UseYYLabelWithLinkViewController.m in Sources */,
+				4F1ADA4124EC071A00BCF38F /* UseYYTextViewViewController.m in Sources */,
 				4FAF51EE21500F2B006A7509 /* UIScreen+YYAdd.m in Sources */,
 				4FAF51CC21500F2B006A7509 /* UIImageView+YYWebImage.m in Sources */,
 				4FAF51ED21500F2B006A7509 /* UIScrollView+YYAdd.m in Sources */,
@@ -842,6 +869,7 @@
 				4FAF51C221500F2B006A7509 /* YYKVStorage.m in Sources */,
 				4FAF51E221500F2B006A7509 /* NSAttributedString+YYText.m in Sources */,
 				4FAF521021500F2B006A7509 /* YYReachability.m in Sources */,
+				4F1ADA3D24EC060A00BCF38F /* DebugBaseViewController.m in Sources */,
 				4FAF51EF21500F2B006A7509 /* UIView+YYAdd.m in Sources */,
 				4FAF520C21500F2B006A7509 /* YYGestureRecognizer.m in Sources */,
 				4FAF51C421500F2B006A7509 /* YYImageCache.m in Sources */,

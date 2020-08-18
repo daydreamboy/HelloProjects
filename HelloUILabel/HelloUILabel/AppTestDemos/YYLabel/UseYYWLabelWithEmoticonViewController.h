@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DebugBaseViewController.h"
 
-@interface UseYYWLabelWithEmoticonViewController : UIViewController
+@interface UseYYWLabelWithEmoticonViewController : DebugBaseViewController
 
 @end
