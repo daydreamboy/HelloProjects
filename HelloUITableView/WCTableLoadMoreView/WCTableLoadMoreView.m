@@ -8,6 +8,7 @@
 
 #import "WCTableLoadMoreView.h"
 #import "WCScrollViewTool.h"
+#import "WCTableViewTool.h"
 
 #define FrameSetSize(frame, newWidth, newHeight) ({ \
 CGRect __internal_frame = (frame); \
@@ -90,6 +91,8 @@ __internal_frame; \
     return _loadingIndicator;
 }
 
+/// Start animating activity indicator
+/// @note must call this method in -[UIScrollView scrollViewDidScroll:]
 - (void)startActivityIndicatorIfNeeded {
     UITableView *tableView = self.tableView;
     if (tableView) {
@@ -111,12 +114,7 @@ __internal_frame; \
     }
 }
 
-- (void)stopActivityIndicator {
-    NSLog(@"stopAnimating");
-    [self.loadingIndicator stopAnimating];
-}
-
-- (void)dismissLoadingIndicatorWithTip:(NSString *)tip hide:(BOOL)hide animatedForHide:(BOOL)animated {
+- (void)stopLoadingIndicatorWithTip:(NSString *)tip hide:(BOOL)hide animatedForHide:(BOOL)animated {
     self.finishLoadAll = YES;
     [self.loadingIndicator stopAnimating];
     
@@ -162,6 +160,20 @@ __internal_frame; \
                 [WCScrollViewTool scrollToBottomOfListWithTableView:self.tableView animated:NO considerSafeArea:YES];
             }
         }
+    }
+}
+
+- (void)show {
+    self.hidden = NO;
+    self.frame = self.initialFrame;
+    
+    if (self.loadMoreType == WCTableLoadMoreTypeFromTop) {
+        [WCTableViewTool performOperationKeepStaticWithTableView:self.tableView block:^{
+            self.tableView.tableHeaderView = self;
+        }];
+    }
+    else if (self.loadMoreType == WCTableLoadMoreTypeFromBottom) {
+        self.tableView.tableFooterView = self;
     }
 }
 

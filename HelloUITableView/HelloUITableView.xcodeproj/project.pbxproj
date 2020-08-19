@@ -312,12 +312,20 @@
 		4F160E5A24ED268F00932EC9 /* WCTableLoadMoreView */ = {
 			isa = PBXGroup;
 			children = (
-				4F160E5724ED19DC00932EC9 /* WCScrollViewTool.h */,
-				4F160E5824ED19DC00932EC9 /* WCScrollViewTool.m */,
+				4F160E5C24ED277500932EC9 /* Tools */,
 				4F160E5024ECFEDD00932EC9 /* WCTableLoadMoreView.h */,
 				4F160E5124ECFEDD00932EC9 /* WCTableLoadMoreView.m */,
 			);
 			path = WCTableLoadMoreView;
+			sourceTree = "<group>";
+		};
+		4F160E5C24ED277500932EC9 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F160E5724ED19DC00932EC9 /* WCScrollViewTool.h */,
+				4F160E5824ED19DC00932EC9 /* WCScrollViewTool.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		4F519A11229B9052004C548A /* section5 */ = {

@@ -42,6 +42,8 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     [self.view addSubview:self.tableView];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Reset" style:UIBarButtonItemStylePlain target:self action:@selector(resetItemClicked:)];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -86,7 +88,7 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 if (self.listData.count > 9) {
                     loadMoreView.isRequesting = NO;
-                    [loadMoreView dismissLoadingIndicatorWithTip:@"没有更多了" hide:YES animatedForHide:YES];
+                    [loadMoreView stopLoadingIndicatorWithTip:@"没有更多了" hide:YES animatedForHide:YES];
                 }
                 else {
                     for (NSInteger i = 0; i < 3; i++) {
@@ -126,6 +128,12 @@
     cell.textLabel.text = self.listData[indexPath.row];
     
     return cell;
+}
+
+#pragma mark - Action
+
+- (void)resetItemClicked:(id)sender {
+    [self.loadMoreView show];
 }
 
 @end

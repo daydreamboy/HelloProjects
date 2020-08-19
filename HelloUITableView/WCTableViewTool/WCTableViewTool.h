@@ -13,6 +13,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WCTableViewTool : NSObject
 
+/**
+ Perform operate table view and keep table view not scrolling (static)
+ 
+ @param tableView the table view
+ @param block the operation in the block
+ 
+ @return YES if called successfully, or NO it failed
+ @see https://stackoverflow.com/questions/4279730/keep-uitableview-static-when-inserting-rows-at-the-top
+ */
++ (BOOL)performOperationKeepStaticWithTableView:(UITableView *)tableView block:(void (^)(void))block;
+
 @end
 
 

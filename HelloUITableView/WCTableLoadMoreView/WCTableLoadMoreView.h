@@ -37,21 +37,22 @@ typedef NS_ENUM(NSUInteger, WCTableLoadMoreType) {
 
 - (instancetype)initWithTableView:(UITableView *)tableView frame:(CGRect)frame loadMoreType:(WCTableLoadMoreType)type;
 
-///**
-// Start animating activity indicator
-// @note must call this method in -[UIScrollView scrollViewDidScroll:]
-// */
-//- (void)startActivityIndicatorIfNeeded;
-
 /**
- Dismiss activity indicator when table view has loaded all
+ Stop loading indicator when table view has loaded all
 
  @param tip the tip for finishing load all
- @param hide
+ @param hide YES if hide this view
+ @param animated YES if hide this view using animation.
  
+ @discussion animated parameter only works with hide parameter
  @note This method will make the didFirstShowActivityIndicatorBlock never being triggered again.
  */
-- (void)dismissLoadingIndicatorWithTip:(NSString *)tip hide:(BOOL)hide animatedForHide:(BOOL)animated;
+- (void)stopLoadingIndicatorWithTip:(NSString *)tip hide:(BOOL)hide animatedForHide:(BOOL)animated;
+
+/**
+ Show the load more view which not keep the table view scrolling
+ */
+- (void)show;
 
 @end
 

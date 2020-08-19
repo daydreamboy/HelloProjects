@@ -11,6 +11,7 @@
 #import "WCTableLoadMoreView.h"
 #import "WCMacroTool.h"
 #import "WCScrollViewTool.h"
+#import "WCTableViewTool.h"
 
 @interface LoadMoreFromTopViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -49,6 +50,8 @@
 //    self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 20, 0);
     
     [WCScrollViewTool scrollToBottomWithScrollView:self.tableView animated:NO];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Reset" style:UIBarButtonItemStylePlain target:self action:@selector(resetItemClicked:)];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -97,20 +100,16 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 if (self.listData.count > 9/*18*/) {
                     loadMoreView.isRequesting = NO;
-                    [loadMoreView dismissLoadingIndicatorWithTip:@"没有更多了" hide:NO animatedForHide:NO];
+                    [loadMoreView stopLoadingIndicatorWithTip:@"没有更多了" hide:YES animatedForHide:YES];
                 }
                 else {
                     for (NSInteger i = 0; i < 3; i++) {
                         [self.listData insertObject:[NSString stringWithFormat:@"%d", (int)(self.listData.count)] atIndex:0];
                     }
                     
-                    CGSize beforeContentSize = self.tableView.contentSize;
-                    [self.tableView reloadData];
-                    CGSize afterContentSize = self.tableView.contentSize;
-                    // @see https://stackoverflow.com/questions/4279730/keep-uitableview-static-when-inserting-rows-at-the-top
-                    CGPoint afterContentOffset = self.tableView.contentOffset;
-                    CGPoint newContentOffset = CGPointMake(afterContentOffset.x, afterContentOffset.y + afterContentSize.height - beforeContentSize.height);
-                    self.tableView.contentOffset = newContentOffset;
+                    [WCTableViewTool performOperationKeepStaticWithTableView:self.tableView block:^{
+                        [self.tableView reloadData];
+                    }];
                     
                     loadMoreView.isRequesting = NO;
                 }
@@ -151,6 +150,12 @@
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     NSLog(@"%@", NSStringFromCGPoint(scrollView.contentOffset));
+}
+
+#pragma mark - Action
+
+- (void)resetItemClicked:(id)sender {
+    [self.loadMoreView show];
 }
 
 @end

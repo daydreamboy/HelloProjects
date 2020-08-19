@@ -10,6 +10,24 @@
 
 @implementation WCTableViewTool
 
++ (BOOL)performOperationKeepStaticWithTableView:(UITableView *)tableView block:(void (^)(void))block {
+    if (![tableView isKindOfClass:[UITableView class]] || !block) {
+        return NO;
+    }
+    
+    CGSize beforeContentSize = tableView.contentSize;
+    
+    block();
+
+    CGSize afterContentSize = tableView.contentSize; 
+    CGPoint afterContentOffset = tableView.contentOffset;
+    CGPoint newContentOffset = CGPointMake(afterContentOffset.x, afterContentOffset.y + afterContentSize.height - beforeContentSize.height);
+    
+    tableView.contentOffset = newContentOffset;
+    
+    return YES;
+}
+
 @end
 
 
