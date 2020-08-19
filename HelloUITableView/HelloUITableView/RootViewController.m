@@ -32,7 +32,8 @@
 #import "PlainTableViewWithExpandableSectionHeaderViewController.h"
 #import "DetectUserScrollViewController.h"
 #import "HorizontalTableViewViewController.h"
-#import "LoadMoreViewController.h"
+#import "LoadMoreFromBottomViewController.h"
+#import "LoadMoreFromTopViewController.h"
 #import "ShowContextMenuInCellViewController.h"
 #import "ShowEmptyTipViewInUITableViewViewController.h"
 #import "CustomizeSelectMeViewController.h"
@@ -96,7 +97,8 @@
           @{ kTitle: @"Plain Table with expandable section header", kClass: [PlainTableViewWithExpandableSectionHeaderViewController class] },
           @{ kTitle: @"Detect user scrolling", kClass: [DetectUserScrollViewController class] },
           @{ kTitle: @"Horizontal table view", kClass: [HorizontalTableViewViewController class] },
-          @{ kTitle: @"Table view load more", kClass: [LoadMoreViewController class] },
+          @{ kTitle: @"Table view load more from bottom", kClass: [LoadMoreFromBottomViewController class] },
+          @{ kTitle: @"Table view load more from top", kClass: [LoadMoreFromTopViewController class] },
           @{ kTitle: @"Show context menu in cell", kClass: [ShowContextMenuInCellViewController class] },
           @{ kTitle: @"Show empty tip in table view", kClass: [ShowEmptyTipViewInUITableViewViewController class] },
           @{ kTitle: @"Customize select mode of table view", kClass: [CustomizeSelectMeViewController class] },

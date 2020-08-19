@@ -1,5 +1,5 @@
 //
-//  LoadMoreViewController.h
+//  LoadMoreFromBottomViewController.h
 //  HelloUITableView
 //
 //  Created by wesley_chen on 2018/10/25.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoadMoreViewController : UIViewController
+@interface LoadMoreFromBottomViewController : UIViewController
 
 @end

@@ -24,6 +24,8 @@
 		2BA442CC2261DFD60016C876 /* ShowContextMenuInCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA442CB2261DFD60016C876 /* ShowContextMenuInCellViewController.m */; };
 		4F090D2A2494D7F20034F246 /* WCIndexedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F090D292494D7F20034F246 /* WCIndexedCell.m */; };
 		4F090D2F2494FE860034F246 /* WCTintSystemCheckmarkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F090D2E2494FE860034F246 /* WCTintSystemCheckmarkCell.m */; };
+		4F160E4624ECD14400932EC9 /* LoadMoreFromTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F160E4524ECD14400932EC9 /* LoadMoreFromTopViewController.m */; };
+		4F160E4A24ECD2A500932EC9 /* WCLoadMoreTableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F160E4924ECD2A500932EC9 /* WCLoadMoreTableFooterView.m */; };
 		4F19589824DE92840034E547 /* GroupedSingleSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F19589724DE92840034E547 /* GroupedSingleSectionViewController.m */; };
 		4F39AE39241A7C4C0008FBE7 /* CheckNumberOfCellOnFirstRenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F39AE38241A7C4C0008FBE7 /* CheckNumberOfCellOnFirstRenderViewController.m */; };
 		4F50647122DC2DA200C54420 /* DetectCellOffscreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50647022DC2DA200C54420 /* DetectCellOffscreenViewController.m */; };
@@ -46,7 +48,7 @@
 		4F948A1E2011A0AE0030BC4A /* PlainTableViewWithNonFloatSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F948A1D2011A0AE0030BC4A /* PlainTableViewWithNonFloatSectionViewController.m */; };
 		4F948A222011C5CC0030BC4A /* WCExpandableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F948A212011C5CC0030BC4A /* WCExpandableHeaderView.m */; };
 		4F948A252011C8590030BC4A /* PlainTableViewWithExpandableSectionHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F948A242011C8590030BC4A /* PlainTableViewWithExpandableSectionHeaderViewController.m */; };
-		4FA85D3B21818EDE007AC0E8 /* LoadMoreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85D3A21818EDE007AC0E8 /* LoadMoreViewController.m */; };
+		4FA85D3B21818EDE007AC0E8 /* LoadMoreFromBottomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85D3A21818EDE007AC0E8 /* LoadMoreFromBottomViewController.m */; };
 		4FAAA5931FA4804600A80328 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAA5921FA4804600A80328 /* AppDelegate.m */; };
 		4FAAA59B1FA4804600A80328 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FAAA59A1FA4804600A80328 /* Assets.xcassets */; };
 		4FAAA59E1FA4804600A80328 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FAAA59C1FA4804600A80328 /* LaunchScreen.storyboard */; };
@@ -60,6 +62,7 @@
 		4FB17BC324937D05004D8B98 /* WCTableViewCellTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB17BC224937D05004D8B98 /* WCTableViewCellTool.m */; };
 		4FB55FC120E92EAC002DEF76 /* HorizontalTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB55FC020E92EAC002DEF76 /* HorizontalTableViewViewController.m */; };
 		4FBB4E0621A29E32000E9F61 /* WCTableViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBB4E0521A29E32000E9F61 /* WCTableViewTool.m */; };
+		4FE8D2DF24E170C00035E424 /* IndexedTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8D2DE24E170C00035E424 /* IndexedTableViewViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -93,6 +96,10 @@
 		4F090D292494D7F20034F246 /* WCIndexedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCIndexedCell.m; sourceTree = "<group>"; };
 		4F090D2D2494FE860034F246 /* WCTintSystemCheckmarkCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCTintSystemCheckmarkCell.h; sourceTree = "<group>"; };
 		4F090D2E2494FE860034F246 /* WCTintSystemCheckmarkCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCTintSystemCheckmarkCell.m; sourceTree = "<group>"; };
+		4F160E4424ECD14400932EC9 /* LoadMoreFromTopViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadMoreFromTopViewController.h; sourceTree = "<group>"; };
+		4F160E4524ECD14400932EC9 /* LoadMoreFromTopViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadMoreFromTopViewController.m; sourceTree = "<group>"; };
+		4F160E4824ECD2A500932EC9 /* WCLoadMoreTableFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCLoadMoreTableFooterView.h; sourceTree = "<group>"; };
+		4F160E4924ECD2A500932EC9 /* WCLoadMoreTableFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCLoadMoreTableFooterView.m; sourceTree = "<group>"; };
 		4F19589624DE92840034E547 /* GroupedSingleSectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupedSingleSectionViewController.h; sourceTree = "<group>"; };
 		4F19589724DE92840034E547 /* GroupedSingleSectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupedSingleSectionViewController.m; sourceTree = "<group>"; };
 		4F39AE37241A7C4C0008FBE7 /* CheckNumberOfCellOnFirstRenderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckNumberOfCellOnFirstRenderViewController.h; sourceTree = "<group>"; };
@@ -134,8 +141,8 @@
 		4F948A212011C5CC0030BC4A /* WCExpandableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCExpandableHeaderView.m; sourceTree = "<group>"; };
 		4F948A232011C8590030BC4A /* PlainTableViewWithExpandableSectionHeaderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlainTableViewWithExpandableSectionHeaderViewController.h; sourceTree = "<group>"; };
 		4F948A242011C8590030BC4A /* PlainTableViewWithExpandableSectionHeaderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlainTableViewWithExpandableSectionHeaderViewController.m; sourceTree = "<group>"; };
-		4FA85D3921818EDE007AC0E8 /* LoadMoreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadMoreViewController.h; sourceTree = "<group>"; };
-		4FA85D3A21818EDE007AC0E8 /* LoadMoreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadMoreViewController.m; sourceTree = "<group>"; };
+		4FA85D3921818EDE007AC0E8 /* LoadMoreFromBottomViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadMoreFromBottomViewController.h; sourceTree = "<group>"; };
+		4FA85D3A21818EDE007AC0E8 /* LoadMoreFromBottomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadMoreFromBottomViewController.m; sourceTree = "<group>"; };
 		4FAAA58E1FA4804600A80328 /* HelloUITableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUITableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FAAA5911FA4804600A80328 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FAAA5921FA4804600A80328 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -159,6 +166,8 @@
 		4FB55FC020E92EAC002DEF76 /* HorizontalTableViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HorizontalTableViewViewController.m; sourceTree = "<group>"; };
 		4FBB4E0421A29E32000E9F61 /* WCTableViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCTableViewTool.h; sourceTree = "<group>"; };
 		4FBB4E0521A29E32000E9F61 /* WCTableViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCTableViewTool.m; sourceTree = "<group>"; };
+		4FE8D2DD24E170BF0035E424 /* IndexedTableViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndexedTableViewViewController.h; sourceTree = "<group>"; };
+		4FE8D2DE24E170C00035E424 /* IndexedTableViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndexedTableViewViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,8 +232,6 @@
 				4FAD1F4120BD2D0100F4766D /* DetectUserScrollViewController.m */,
 				4FB55FBF20E92EAC002DEF76 /* HorizontalTableViewViewController.h */,
 				4FB55FC020E92EAC002DEF76 /* HorizontalTableViewViewController.m */,
-				4FA85D3921818EDE007AC0E8 /* LoadMoreViewController.h */,
-				4FA85D3A21818EDE007AC0E8 /* LoadMoreViewController.m */,
 				2BA442CA2261DFD60016C876 /* ShowContextMenuInCellViewController.h */,
 				2BA442CB2261DFD60016C876 /* ShowContextMenuInCellViewController.m */,
 				4F60E71E22A7E72100C27087 /* ShowEmptyTipViewInUITableViewViewController.h */,
@@ -241,6 +248,12 @@
 				4FB17BBE249376B8004D8B98 /* TintSystemCheckmarkCellViewController.m */,
 				4F19589624DE92840034E547 /* GroupedSingleSectionViewController.h */,
 				4F19589724DE92840034E547 /* GroupedSingleSectionViewController.m */,
+				4FE8D2DD24E170BF0035E424 /* IndexedTableViewViewController.h */,
+				4FE8D2DE24E170C00035E424 /* IndexedTableViewViewController.m */,
+				4FA85D3921818EDE007AC0E8 /* LoadMoreFromBottomViewController.h */,
+				4FA85D3A21818EDE007AC0E8 /* LoadMoreFromBottomViewController.m */,
+				4F160E4424ECD14400932EC9 /* LoadMoreFromTopViewController.h */,
+				4F160E4524ECD14400932EC9 /* LoadMoreFromTopViewController.m */,
 			);
 			path = section4;
 			sourceTree = "<group>";
@@ -282,6 +295,15 @@
 				4F090D2E2494FE860034F246 /* WCTintSystemCheckmarkCell.m */,
 			);
 			path = Subclass;
+			sourceTree = "<group>";
+		};
+		4F160E4724ECD28F00932EC9 /* LoadMore */ = {
+			isa = PBXGroup;
+			children = (
+				4F160E4824ECD2A500932EC9 /* WCLoadMoreTableFooterView.h */,
+				4F160E4924ECD2A500932EC9 /* WCLoadMoreTableFooterView.m */,
+			);
+			path = LoadMore;
 			sourceTree = "<group>";
 		};
 		4F519A11229B9052004C548A /* section5 */ = {
@@ -412,6 +434,7 @@
 		4FBB4E0321A29E21000E9F61 /* WCTableViewTool */ = {
 			isa = PBXGroup;
 			children = (
+				4F160E4724ECD28F00932EC9 /* LoadMore */,
 				4FBB4E0421A29E32000E9F61 /* WCTableViewTool.h */,
 				4FBB4E0521A29E32000E9F61 /* WCTableViewTool.m */,
 			);
@@ -509,18 +532,20 @@
 				4F39AE39241A7C4C0008FBE7 /* CheckNumberOfCellOnFirstRenderViewController.m in Sources */,
 				4F60E71B22A7E64400C27087 /* WCTableView.m in Sources */,
 				2B63BF39200FA22600A5D8D2 /* PlainTableViewViewController.m in Sources */,
+				4F160E4A24ECD2A500932EC9 /* WCLoadMoreTableFooterView.m in Sources */,
 				4F521F7222E85A7F00035664 /* CustomizeHighlightCellViewController.m in Sources */,
 				2B63BF38200FA22600A5D8D2 /* GroupedTableViewViewController.m in Sources */,
 				4F60E72022A7E72200C27087 /* ShowEmptyTipViewInUITableViewViewController.m in Sources */,
 				4FAAA5A11FA4804600A80328 /* main.m in Sources */,
 				2B63BF37200FA22600A5D8D2 /* FadeInCellRowByRowViewController.m in Sources */,
+				4FE8D2DF24E170C00035E424 /* IndexedTableViewViewController.m in Sources */,
 				4F9489CA20104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.m in Sources */,
 				4F5112BD22C39584005E5AAE /* CustomizeSelectMeViewController.m in Sources */,
 				4F19589824DE92840034E547 /* GroupedSingleSectionViewController.m in Sources */,
 				4F948A222011C5CC0030BC4A /* WCExpandableHeaderView.m in Sources */,
 				2B63BF1F200FA11200A5D8D2 /* InsertMeViewController.m in Sources */,
 				2B63BF34200FA22600A5D8D2 /* CompatiblePlainTableViewViewController.m in Sources */,
-				4FA85D3B21818EDE007AC0E8 /* LoadMoreViewController.m in Sources */,
+				4FA85D3B21818EDE007AC0E8 /* LoadMoreFromBottomViewController.m in Sources */,
 				2B63BF1C200FA11200A5D8D2 /* MoveMeViewController.m in Sources */,
 				4FB17BBF249376B8004D8B98 /* TintSystemCheckmarkCellViewController.m in Sources */,
 				4F60E71C22A7E64400C27087 /* WCTableViewCell.m in Sources */,
@@ -539,6 +564,7 @@
 				4F60E71D22A7E64400C27087 /* UITableViewCell+Addition.m in Sources */,
 				4F948A1B2010DC6C0030BC4A /* TableViewHeaderWithExtendedViewViewController.m in Sources */,
 				4FAAA5AD1FA4806F00A80328 /* RootViewController.m in Sources */,
+				4F160E4624ECD14400932EC9 /* LoadMoreFromTopViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,26 +1,27 @@
 //
-//  LoadMoreViewController.m
+//  LoadMoreFromBottomViewController.m
 //  HelloUITableView
 //
 //  Created by wesley_chen on 2018/10/25.
 //  Copyright © 2018 wesley_chen. All rights reserved.
 //
 
-#import "LoadMoreViewController.h"
+#import "LoadMoreFromBottomViewController.h"
 #import "WCTableViewTool.h"
+#import "WCLoadMoreTableFooterView.h"
 
 // >= `11.0`
 #ifndef IOS11_OR_LATER
 #define IOS11_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"11.0" options:NSNumericSearch] != NSOrderedAscending)
 #endif
 
-@interface LoadMoreViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface LoadMoreFromBottomViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *listData;
 @property (nonatomic, strong) WCLoadMoreTableFooterView *loadMoreView;
 @end
 
-@implementation LoadMoreViewController
+@implementation LoadMoreFromBottomViewController
 
 - (instancetype)init {
     self = [super init];
@@ -62,10 +63,12 @@
     if (!_tableView) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         CGRect frame = self.view.bounds;
-        frame = CGRectMake(0, 64, screenSize.width, 230);
+        frame = CGRectMake(0, 64, screenSize.width, 300);
         UITableView *tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
         tableView.delegate = self;
         tableView.dataSource = self;
+        tableView.layer.borderColor = [UIColor redColor].CGColor;
+        tableView.layer.borderWidth = 1.0;
         
         if (IOS11_OR_LATER) {
 #pragma GCC diagnostic push
@@ -83,7 +86,7 @@
         _loadMoreView.didFirstShowActivityIndicatorBlock = ^(WCLoadMoreTableFooterView * _Nonnull loadMoreView) {
             NSLog(@"block called");
             loadMoreView.isRequesting = YES;
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 if (weak_self.listData.count > 25) {
                     loadMoreView.isRequesting = NO;
                     [loadMoreView dismissActivityIndicatorWithTip:@"没有更多了"];
