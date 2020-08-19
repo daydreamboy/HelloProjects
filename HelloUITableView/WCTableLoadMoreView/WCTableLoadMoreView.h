@@ -1,5 +1,5 @@
 //
-//  WCLoadMoreTableFooterView.h
+//  WCTableLoadMoreView.h
 //  HelloUITableView
 //
 //  Created by wesley_chen on 2020/8/19.
@@ -10,15 +10,22 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WCLoadMoreTableFooterView : UIView
+typedef NS_ENUM(NSUInteger, WCTableLoadMoreType) {
+    WCTableLoadMoreTypeFromBottom,
+    WCTableLoadMoreTypeFromTop,
+};
 
+@interface WCTableLoadMoreView : UIView
+
+@property (nonatomic, assign, readonly) WCTableLoadMoreType loadMoreType;
+@property (nonatomic, weak, readonly) UITableView *tableView;
 @property (nonatomic, strong, readonly) UIActivityIndicatorView *loadingIndicator;
 
 /**
  The callback when WCLoadMoreTableFooterView first to show. The callback is triggered when isRequesting is NO
  @note call dismissActivityIndicatorWithTip: will make this callback never being triggered.
  */
-@property (nonatomic, copy) void (^didFirstShowActivityIndicatorBlock)(WCLoadMoreTableFooterView *view);
+@property (nonatomic, copy) void (^didFirstShowActivityIndicatorBlock)(WCTableLoadMoreView *view);
 
 /**
  The flag guides to need calling didFirstShowActivityIndicatorBlock.
@@ -28,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, assign) CGRect contentFrame;
 
-- (instancetype)initWithTableView:(UITableView *)tableView frame:(CGRect)frame;
+- (instancetype)initWithTableView:(UITableView *)tableView frame:(CGRect)frame loadMoreType:(WCTableLoadMoreType)type;
 
 ///**
 // Start animating activity indicator
@@ -44,7 +51,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @note This method will make the didFirstShowActivityIndicatorBlock never being triggered again.
  */
-- (void)dismissActivityIndicatorWithTip:(NSString *)tip hide:(BOOL)hide;
+- (void)dismissLoadingIndicatorWithTip:(NSString *)tip hide:(BOOL)hide animatedForHide:(BOOL)animated;
 
 @end
 

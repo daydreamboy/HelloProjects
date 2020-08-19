@@ -16,6 +16,8 @@
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *listData;
 @property (nonatomic, strong) WCTableLoadMoreView *loadMoreView;
+@property (nonatomic, strong) UISwitch *switchHide;
+@property (nonatomic, strong) UISwitch *switchAnimatedForHide;
 @end
 
 @implementation LoadMoreFromTopViewController
@@ -31,9 +33,9 @@
         [_listData insertObject:@"2" atIndex:0];
         [_listData insertObject:@"3" atIndex:0];
         // TEST: Comment the following lines to test
-//        [_listData insertObject:@"4" atIndex:0];
-//        [_listData insertObject:@"5" atIndex:0];
-//        [_listData insertObject:@"6" atIndex:0];
+        [_listData insertObject:@"4" atIndex:0];
+        [_listData insertObject:@"5" atIndex:0];
+        [_listData insertObject:@"6" atIndex:0];
     }
     return self;
 }
@@ -83,7 +85,7 @@
         UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 30)];
         contentView.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5];
         
-        WCTableLoadMoreView *view = [[WCTableLoadMoreView alloc] initWithTableView:tableView frame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 60)];
+        WCTableLoadMoreView *view = [[WCTableLoadMoreView alloc] initWithTableView:tableView frame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 60) loadMoreType:WCTableLoadMoreTypeFromTop];
         view.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:0.2];
         view.contentFrame = contentView.frame;
         
@@ -95,7 +97,7 @@
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 if (self.listData.count > 9/*18*/) {
                     loadMoreView.isRequesting = NO;
-                    [loadMoreView dismissActivityIndicatorWithTip:@"没有更多了" hide:YES];
+                    [loadMoreView dismissLoadingIndicatorWithTip:@"没有更多了" hide:NO animatedForHide:NO];
                 }
                 else {
                     for (NSInteger i = 0; i < 3; i++) {

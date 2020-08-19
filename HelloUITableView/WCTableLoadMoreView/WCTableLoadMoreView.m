@@ -21,19 +21,24 @@ __internal_frame; \
 })
 
 @interface WCTableLoadMoreView ()
+@property (nonatomic, assign, readwrite) WCTableLoadMoreType loadMoreType;
 @property (nonatomic, strong, readwrite) UIActivityIndicatorView *loadingIndicator;
 @property (nonatomic, strong) UILabel *labelTip;
 @property (nonatomic, assign) BOOL isShowingLoadMore;
 @property (nonatomic, assign) BOOL finishLoadAll;
-@property (nonatomic, weak) UITableView *tableView;
+@property (nonatomic, weak, readwrite) UITableView *tableView;
+@property (nonatomic, assign) CGRect initialFrame;
 @end
 
 @implementation WCTableLoadMoreView
 
-- (instancetype)initWithTableView:(UITableView *)tableView frame:(CGRect)frame {
+- (instancetype)initWithTableView:(UITableView *)tableView frame:(CGRect)frame loadMoreType:(WCTableLoadMoreType)type {
     self = [super initWithFrame:frame];
     if (self) {
         _tableView = tableView;
+        _initialFrame = frame;
+        _loadMoreType = type;
+        
         [_tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
         
         _contentFrame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
@@ -111,7 +116,7 @@ __internal_frame; \
     [self.loadingIndicator stopAnimating];
 }
 
-- (void)dismissActivityIndicatorWithTip:(NSString *)tip hide:(BOOL)hide {
+- (void)dismissLoadingIndicatorWithTip:(NSString *)tip hide:(BOOL)hide animatedForHide:(BOOL)animated {
     self.finishLoadAll = YES;
     [self.loadingIndicator stopAnimating];
     
@@ -122,15 +127,41 @@ __internal_frame; \
     
     if (hide) {
         self.hidden = YES;
-        [UIView animateWithDuration:0.25 animations:^{
-            [WCScrollViewTool scrollToTopOfListWithTableView:self.tableView animated:NO considerSafeArea:YES];
-        } completion:^(BOOL finished) {
-            UIView *header = self.tableView.tableHeaderView;
-            header.frame = FrameSetSize(self.tableView.tableFooterView.frame, NAN, 0);
-            self.tableView.tableHeaderView = header;
-//            [self.tableView reloadData]; // @see https://stackoverflow.com/questions/341256/how-to-resize-a-tableheaderview-of-a-uitableview
-            [WCScrollViewTool scrollToTopOfListWithTableView:self.tableView animated:NO considerSafeArea:YES];
-        }];
+        
+        if (self.loadMoreType == WCTableLoadMoreTypeFromTop) {
+            if (animated) {
+                [UIView animateWithDuration:0.25 animations:^{
+                    [WCScrollViewTool scrollToTopOfListWithTableView:self.tableView animated:NO considerSafeArea:YES];
+                } completion:^(BOOL finished) {
+                    // @see https://stackoverflow.com/questions/341256/how-to-resize-a-tableheaderview-of-a-uitableview
+                    self.frame = FrameSetSize(self.frame, NAN, 0);
+                    self.tableView.tableHeaderView = self;
+                    [WCScrollViewTool scrollToTopOfListWithTableView:self.tableView animated:NO considerSafeArea:YES];
+                }];
+            }
+            else {
+                self.frame = FrameSetSize(self.frame, NAN, 0);
+                self.tableView.tableHeaderView = self;
+                [WCScrollViewTool scrollToTopOfListWithTableView:self.tableView animated:NO considerSafeArea:YES];
+            }
+        }
+        else if (self.loadMoreType == WCTableLoadMoreTypeFromBottom) {
+            
+            if (animated) {
+                [UIView animateWithDuration:0.25 animations:^{
+                    [WCScrollViewTool scrollToBottomOfListWithTableView:self.tableView animated:NO considerSafeArea:YES];
+                } completion:^(BOOL finished) {
+                    self.frame = FrameSetSize(self.frame, NAN, 0);
+                    self.tableView.tableFooterView = self;
+                    [WCScrollViewTool scrollToBottomOfListWithTableView:self.tableView animated:NO considerSafeArea:YES];
+                }];
+            }
+            else {
+                self.frame = FrameSetSize(self.frame, NAN, 0);
+                self.tableView.tableFooterView = self;
+                [WCScrollViewTool scrollToBottomOfListWithTableView:self.tableView animated:NO considerSafeArea:YES];
+            }
+        }
     }
 }
 
