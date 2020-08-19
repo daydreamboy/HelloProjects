@@ -1,5 +1,5 @@
 //
-//  WCLoadMoreTableHeaderView.h
+//  WCTableLoadMoreView.h
 //  HelloUITableView
 //
 //  Created by wesley_chen on 2020/8/19.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WCLoadMoreTableHeaderView : UIView
+@interface WCTableLoadMoreView : UIView
 
 
 @property (nonatomic, strong, readonly) UIActivityIndicatorView *loadingIndicator;
@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
  The callback when WCLoadMoreTableFooterView first to show. The callback is triggered when isRequesting is NO
  @note call dismissActivityIndicatorWithTip: will make this callback never being triggered.
  */
-@property (nonatomic, copy) void (^didFirstShowActivityIndicatorBlock)(WCLoadMoreTableHeaderView *view);
+@property (nonatomic, copy) void (^didFirstShowActivityIndicatorBlock)(WCTableLoadMoreView *view);
 
 /**
  The flag guides to need calling didFirstShowActivityIndicatorBlock.

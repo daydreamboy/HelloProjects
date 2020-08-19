@@ -9,6 +9,7 @@
 #import "LoadMoreFromBottomViewController.h"
 #import "WCTableViewTool.h"
 #import "WCLoadMoreTableFooterView.h"
+#import "WCTableLoadMoreView.h"
 #import "WCMacroTool.h"
 
 @interface LoadMoreFromBottomViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -29,9 +30,9 @@
         [_listData addObject:@"2"];
         [_listData addObject:@"3"];
         // TEST: Comment the following lines to test
-        [_listData addObject:@"4"];
-        [_listData addObject:@"5"];
-        [_listData addObject:@"6"];
+//        [_listData addObject:@"4"];
+//        [_listData addObject:@"5"];
+//        [_listData addObject:@"6"];
     }
     return self;
 }
@@ -73,18 +74,18 @@
         UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 30, CGRectGetWidth(tableView.bounds), 30)];
         contentView.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5];
         
-        WCLoadMoreTableFooterView *view = [[WCLoadMoreTableFooterView alloc] initWithTableView:tableView frame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 60)];
+        WCTableLoadMoreView *view = [[WCTableLoadMoreView alloc] initWithTableView:tableView frame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 60)];
         view.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:0.2];
         view.contentFrame = contentView.frame;
         
         weakify(self);
-        view.didFirstShowActivityIndicatorBlock = ^(WCLoadMoreTableFooterView * loadMoreView) {
+        view.didFirstShowActivityIndicatorBlock = ^(WCTableLoadMoreView * loadMoreView) {
             strongifyWithReturn(self, return;);
             
             NSLog(@"block called");
             loadMoreView.isRequesting = YES;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                if (self.listData.count > 18) {
+                if (self.listData.count > 9) {
                     loadMoreView.isRequesting = NO;
                     [loadMoreView dismissActivityIndicatorWithTip:@"没有更多了" hide:YES];
                 }

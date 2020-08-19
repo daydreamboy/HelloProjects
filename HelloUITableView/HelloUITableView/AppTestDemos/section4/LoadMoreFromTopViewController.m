@@ -8,14 +8,14 @@
 
 #import "LoadMoreFromTopViewController.h"
 #import "WCTableViewTool.h"
-#import "WCLoadMoreTableHeaderView.h"
+#import "WCTableLoadMoreView.h"
 #import "WCMacroTool.h"
 #import "WCScrollViewTool.h"
 
 @interface LoadMoreFromTopViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *listData;
-@property (nonatomic, strong) WCLoadMoreTableHeaderView *loadMoreView;
+@property (nonatomic, strong) WCTableLoadMoreView *loadMoreView;
 @end
 
 @implementation LoadMoreFromTopViewController
@@ -31,9 +31,9 @@
         [_listData insertObject:@"2" atIndex:0];
         [_listData insertObject:@"3" atIndex:0];
         // TEST: Comment the following lines to test
-        [_listData insertObject:@"4" atIndex:0];
-        [_listData insertObject:@"5" atIndex:0];
-        [_listData insertObject:@"6" atIndex:0];
+//        [_listData insertObject:@"4" atIndex:0];
+//        [_listData insertObject:@"5" atIndex:0];
+//        [_listData insertObject:@"6" atIndex:0];
     }
     return self;
 }
@@ -44,7 +44,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     [self.view addSubview:self.tableView];
-    self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 20, 0);
+//    self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 20, 0);
     
     [WCScrollViewTool scrollToBottomWithScrollView:self.tableView animated:NO];
 }
@@ -83,12 +83,12 @@
         UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 30)];
         contentView.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5];
         
-        WCLoadMoreTableHeaderView *view = [[WCLoadMoreTableHeaderView alloc] initWithTableView:tableView frame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 60)];
+        WCTableLoadMoreView *view = [[WCTableLoadMoreView alloc] initWithTableView:tableView frame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 60)];
         view.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:0.2];
         view.contentFrame = contentView.frame;
         
         weakify(self);
-        view.didFirstShowActivityIndicatorBlock = ^(WCLoadMoreTableHeaderView * loadMoreView) {
+        view.didFirstShowActivityIndicatorBlock = ^(WCTableLoadMoreView * loadMoreView) {
             strongifyWithReturn(self, return;);
             NSLog(@"block called");
             loadMoreView.isRequesting = YES;
