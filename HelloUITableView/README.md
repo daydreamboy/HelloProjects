@@ -468,6 +468,16 @@ offscreen: row: 16, section: 0
 
 
 
+### （2）viewDidLayoutSubviews和viewDidAppear中获取contentSize不一样
+
+​      iOS 11上，UITableView引入高度估算的能力，默认是开启。contentSize的初始值是估算的值，不是最终的值，把每个cell的高度计算，放在UITableView滑动的时候。Apple Forum的回答，如下
+
+> In iOS 11, table views use estimated heights by default. This means that the contentSize is just as estimated value initially. If you need to use the contentSize, you’ll want to disable estimated heights by setting the 3 estimated height properties to zero: tableView.estimatedRowHeight = 0 tableView.estimatedSectionHeaderHeight = 0 tableView.estimatedSectionFooterHeight = 0
+
+
+
+
+
 ## 4、UITableView Internals
 
 （1）_subviewCache

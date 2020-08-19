@@ -1,12 +1,13 @@
 //
-//  WCLoadMoreTableFooterView.m
+//  WCLoadMoreTableHeaderView.m
 //  HelloUITableView
 //
 //  Created by wesley_chen on 2020/8/19.
 //  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
-#import "WCLoadMoreTableFooterView.h"
+#import "WCLoadMoreTableHeaderView.h"
+#import "WCScrollViewTool.h"
 
 #define FrameSetSize(frame, newWidth, newHeight) ({ \
 CGRect __internal_frame = (frame); \
@@ -19,7 +20,7 @@ if (!isnan((newHeight))) { \
 __internal_frame; \
 })
 
-@interface WCLoadMoreTableFooterView ()
+@interface WCLoadMoreTableHeaderView ()
 @property (nonatomic, strong, readwrite) UIActivityIndicatorView *loadingIndicator;
 @property (nonatomic, strong) UILabel *labelTip;
 @property (nonatomic, assign) BOOL isShowingLoadMore;
@@ -27,7 +28,7 @@ __internal_frame; \
 @property (nonatomic, weak) UITableView *tableView;
 @end
 
-@implementation WCLoadMoreTableFooterView
+@implementation WCLoadMoreTableHeaderView
 
 - (instancetype)initWithTableView:(UITableView *)tableView frame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -50,8 +51,15 @@ __internal_frame; \
 #pragma mark - KVO
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
-    if (object == _tableView && [keyPath isEqualToString:@"contentOffset"]) {        
-        [self startActivityIndicatorIfNeeded];
+    if (object == _tableView && [keyPath isEqualToString:@"contentOffset"]) {
+        NSValue *newValue = change[NSKeyValueChangeNewKey];
+        NSValue *oldValue = change[NSKeyValueChangeOldKey];
+        CGPoint newPoint = [newValue CGPointValue];
+        CGPoint oldPoint = [oldValue CGPointValue];
+        
+        if (!CGPointEqualToPoint(newPoint, oldPoint)) {
+            [self startActivityIndicatorIfNeeded];
+        }
     }
 }
 
@@ -113,8 +121,16 @@ __internal_frame; \
     self.labelTip.center = CGPointMake(CGRectGetWidth(self.frame) / 2.0, CGRectGetHeight(self.frame) / 2.0);;
     
     if (hide) {
-        self.frame = FrameSetSize(self.frame, NAN, 0);
-        [self.tableView reloadData];
+        self.hidden = YES;
+        [UIView animateWithDuration:0.25 animations:^{
+            [WCScrollViewTool scrollToTopOfListWithTableView:self.tableView animated:NO considerSafeArea:YES];
+        } completion:^(BOOL finished) {
+            UIView *header = self.tableView.tableHeaderView;
+            header.frame = FrameSetSize(self.tableView.tableFooterView.frame, NAN, 0);
+            self.tableView.tableHeaderView = header;
+//            [self.tableView reloadData]; // @see https://stackoverflow.com/questions/341256/how-to-resize-a-tableheaderview-of-a-uitableview
+            [WCScrollViewTool scrollToTopOfListWithTableView:self.tableView animated:NO considerSafeArea:YES];
+        }];
     }
 }
 

@@ -9,11 +9,7 @@
 #import "LoadMoreFromBottomViewController.h"
 #import "WCTableViewTool.h"
 #import "WCLoadMoreTableFooterView.h"
-
-// >= `11.0`
-#ifndef IOS11_OR_LATER
-#define IOS11_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"11.0" options:NSNumericSearch] != NSOrderedAscending)
-#endif
+#import "WCMacroTool.h"
 
 @interface LoadMoreFromBottomViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -51,10 +47,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    
     NSLog(@"contentInset: %@", NSStringFromUIEdgeInsets(self.tableView.contentInset));
-//    NSLog(@"adjustedContentInset: %@", NSStringFromUIEdgeInsets(self.tableView.adjustedContentInset));
-    [self.loadMoreView startActivityIndicatorIfNeeded];
 }
 
 #pragma mark - Getters
@@ -77,32 +70,37 @@
 #pragma GCC diagnostic pop
         }
         
-        UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 30)];
-        footerView.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:0.2];
+        UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 30, CGRectGetWidth(tableView.bounds), 30)];
+        contentView.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5];
         
-        __weak typeof(self) weak_self = self;
-        _loadMoreView = [[WCLoadMoreTableFooterView alloc] initWithFrame:CGRectMake(0, 10, CGRectGetWidth(tableView.bounds), 20) activityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-        _loadMoreView.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.1];
-        _loadMoreView.didFirstShowActivityIndicatorBlock = ^(WCLoadMoreTableFooterView * _Nonnull loadMoreView) {
+        WCLoadMoreTableFooterView *view = [[WCLoadMoreTableFooterView alloc] initWithTableView:tableView frame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 60)];
+        view.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:0.2];
+        view.contentFrame = contentView.frame;
+        
+        weakify(self);
+        view.didFirstShowActivityIndicatorBlock = ^(WCLoadMoreTableFooterView * loadMoreView) {
+            strongifyWithReturn(self, return;);
+            
             NSLog(@"block called");
             loadMoreView.isRequesting = YES;
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                if (weak_self.listData.count > 25) {
+                if (self.listData.count > 18) {
                     loadMoreView.isRequesting = NO;
-                    [loadMoreView dismissActivityIndicatorWithTip:@"没有更多了"];
+                    [loadMoreView dismissActivityIndicatorWithTip:@"没有更多了" hide:YES];
                 }
                 else {
                     for (NSInteger i = 0; i < 3; i++) {
-                        [weak_self.listData addObject:[NSString stringWithFormat:@"%d", (int)(weak_self.listData.count)]];
+                        [self.listData addObject:[NSString stringWithFormat:@"%d", (int)(self.listData.count)]];
                     }
-                    [weak_self.tableView reloadData];
+                    [self.tableView reloadData];
                     loadMoreView.isRequesting = NO;
                 }
             });
         };
-        [footerView addSubview:_loadMoreView];
+        [view addSubview:contentView];
         
-        tableView.tableFooterView = footerView;
+        _loadMoreView = view;
+        tableView.tableFooterView = _loadMoreView;
         
         _tableView = tableView;
     }
@@ -128,21 +126,6 @@
     cell.textLabel.text = self.listData[indexPath.row];
     
     return cell;
-}
-
-#pragma mark - UIScrollViewDelegate
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGPoint contentOffset = scrollView.contentOffset;
-    //NSLog(@"contentOffset: %@", NSStringFromCGPoint(contentOffset));
-    
-    CGRect visibleRect = scrollView.bounds;
-    CGSize contentSize = scrollView.contentSize;
-    CGRect tableFooterViewRect = _tableView.tableFooterView.frame;
-    //NSLog(@"tableFooterViewRect: %@", NSStringFromCGRect(tableFooterViewRect));
-    
-//    [self check];
-    [self.loadMoreView startActivityIndicatorIfNeeded];
 }
 
 @end
