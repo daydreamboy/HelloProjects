@@ -10,6 +10,12 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef NS_ENUM(NSUInteger, WCThumbnailNeedCropType) {
+    WCThumbnailNeedCropTypeUnknown,
+    WCThumbnailNeedCropTypeByWidth,
+    WCThumbnailNeedCropTypeByHeight,
+};
+
 @interface WCImageViewTool : NSObject
 
 /**
@@ -36,6 +42,12 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Creation
 
 + (UIImageView *)maskedImageViewWithFrame:(CGRect)frame maskImage:(UIImage *)maskImage contentImage:(UIImage *)contentImage capInsets:(UIEdgeInsets)capInsets;
+
+#pragma mark - Frame Calculation
+
+#pragma mark > Thumbnail
+
++ (CGSize)thumbnailSizeWithOriginalSize:(CGSize)originalSize maxBoundingSize:(CGSize)maxBoundingSize minBoundingSize:(CGSize)minBoundingSize needCropImage:(inout NSNumber * _Nonnull * _Nonnull)needCropImage;
 
 @end
 

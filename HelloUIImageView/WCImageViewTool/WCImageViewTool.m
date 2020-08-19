@@ -6,6 +6,7 @@
 //
 
 #import "WCImageViewTool.h"
+#import "WCViewTool.h"
 
 @implementation WCImageViewTool
 
@@ -131,6 +132,37 @@
     imageView.image = contentImage;
     
     return imageView;
+}
+
+#pragma mark - Frame Calculation
+
+#pragma mark > Thumbnail
+
++ (CGSize)thumbnailSizeWithOriginalSize:(CGSize)originalSize maxBoundingSize:(CGSize)maxBoundingSize minBoundingSize:(CGSize)minBoundingSize needCropImage:(inout NSNumber **)needCropImage {
+    CGRect rect = [WCViewTool makeAspectRatioRectWithContentSize:originalSize insideBoundingRect:CGRectMake(0, 0, maxBoundingSize.width, maxBoundingSize.height)];
+    CGSize scaledSize = rect.size;
+    
+    if (scaledSize.width < minBoundingSize.width) {
+        if (needCropImage) {
+            *needCropImage = @(WCThumbnailNeedCropTypeByWidth);
+        }
+        
+        return CGSizeMake(minBoundingSize.width, maxBoundingSize.height);
+    }
+    else if (scaledSize.height < minBoundingSize.height) {
+        if (needCropImage) {
+            *needCropImage = @(WCThumbnailNeedCropTypeByHeight);
+        }
+        
+        return CGSizeMake(maxBoundingSize.width, minBoundingSize.height);
+    }
+    else {
+        if (needCropImage) {
+            *needCropImage = @(WCThumbnailNeedCropTypeUnknown);
+        }
+        
+        return scaledSize;
+    }
 }
 
 @end
