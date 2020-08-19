@@ -107,8 +107,8 @@ __internal_frame; \
             [self.loadingIndicator startAnimating];
             self.labelTip.hidden = YES;
             
-            if (self.didFirstShowActivityIndicatorBlock && !self.isRequesting) {
-                self.didFirstShowActivityIndicatorBlock(self);
+            if (self.willShowLoadingIndicatorBlock && !self.isRequesting) {
+                self.willShowLoadingIndicatorBlock(self);
             }
         }
     }

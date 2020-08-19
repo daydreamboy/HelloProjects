@@ -80,7 +80,7 @@
         view.contentFrame = contentView.frame;
         
         weakify(self);
-        view.didFirstShowActivityIndicatorBlock = ^(WCTableLoadMoreView * loadMoreView) {
+        view.willShowLoadingIndicatorBlock = ^(WCTableLoadMoreView * loadMoreView) {
             strongifyWithReturn(self, return;);
             
             NSLog(@"block called");

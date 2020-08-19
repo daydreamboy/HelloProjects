@@ -17,6 +17,11 @@ typedef NS_ENUM(NSUInteger, WCTableLoadMoreType) {
 
 @interface WCTableLoadMoreView : UIView
 
+/**
+ The load more type
+ 
+ Default is WCTableLoadMoreTypeFromBottom
+ */
 @property (nonatomic, assign, readonly) WCTableLoadMoreType loadMoreType;
 @property (nonatomic, weak, readonly) UITableView *tableView;
 @property (nonatomic, strong, readonly) UIActivityIndicatorView *loadingIndicator;
@@ -25,14 +30,19 @@ typedef NS_ENUM(NSUInteger, WCTableLoadMoreType) {
  The callback when WCLoadMoreTableFooterView first to show. The callback is triggered when isRequesting is NO
  @note call dismissActivityIndicatorWithTip: will make this callback never being triggered.
  */
-@property (nonatomic, copy) void (^didFirstShowActivityIndicatorBlock)(WCTableLoadMoreView *view);
+@property (nonatomic, copy) void (^willShowLoadingIndicatorBlock)(WCTableLoadMoreView *view);
 
 /**
- The flag guides to need calling didFirstShowActivityIndicatorBlock.
- @note set to YES, when didFirstShowActivityIndicatorBlock trigger to request network data. And set to YES when the procedure finished
+ The flag guides to need calling willShowLoadingIndicatorBlock.
+ @note set to YES, when willShowLoadingIndicatorBlock trigger to request network data. And set to YES when the procedure finished
  */
 @property (nonatomic, assign) BOOL isRequesting;
 
+/**
+ The content frame which used to decide when to trigger the willShowLoadingIndicatorBlock
+ 
+ Default is the frame of this view
+ */
 @property (nonatomic, assign) CGRect contentFrame;
 
 - (instancetype)initWithTableView:(UITableView *)tableView frame:(CGRect)frame loadMoreType:(WCTableLoadMoreType)type;
@@ -45,7 +55,7 @@ typedef NS_ENUM(NSUInteger, WCTableLoadMoreType) {
  @param animated YES if hide this view using animation.
  
  @discussion animated parameter only works with hide parameter
- @note This method will make the didFirstShowActivityIndicatorBlock never being triggered again.
+ @note This method will make the willShowLoadingIndicatorBlock never being triggered again.
  */
 - (void)stopLoadingIndicatorWithTip:(NSString *)tip hide:(BOOL)hide animatedForHide:(BOOL)animated;
 
