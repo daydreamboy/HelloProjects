@@ -20,4 +20,9 @@ if (!isnan((newHeight))) { \
 __internal_frame; \
 })
 
+// >= `11.0`
+#ifndef IOS11_OR_LATER
+#define IOS11_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"11.0" options:NSNumericSearch] != NSOrderedAscending)
+#endif
+
 #endif /* WCMacroTool_h */

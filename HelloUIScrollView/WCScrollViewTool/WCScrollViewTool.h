@@ -79,6 +79,15 @@ typedef NS_ENUM(NSInteger, WCScrollViewContentInsetAdjustmentBehavior) {
  @param scrollView the scroll view
  @param animated YES if animated
  @return YES if operate successfully, NO if failed.
+ 
+ @see https://stackoverflow.com/a/38241928
+ 
+ @warning Use this method with UITableView, consider the following configuration
+ tableView.estimatedRowHeight = 0;
+ tableView.estimatedSectionHeaderHeight = 0;
+ tableView.estimatedSectionFooterHeight = 0
+ 
+ see for detail, https://developer.apple.com/forums/thread/81895
 */
 + (BOOL)scrollToTopWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated;
 
@@ -150,6 +159,16 @@ typedef NS_ENUM(NSInteger, WCScrollViewContentInsetAdjustmentBehavior) {
  @return YES if operate successfully, NO if failed.
 */
 + (BOOL)scrollToRightOfContentWithScrollView:(UIScrollView *)scrollView animated:(BOOL)animated considerSafeArea:(BOOL)considerSafeArea;
+
+#pragma mark > Scroll to edges of the list (UITableView)
+
++ (BOOL)scrollToTopOfListWithTableView:(UITableView *)tableView animated:(BOOL)animated considerSafeArea:(BOOL)considerSafeArea;
+
++ (BOOL)scrollToBottomOfListWithTableView:(UITableView *)tableView animated:(BOOL)animated considerSafeArea:(BOOL)considerSafeArea;
+
++ (BOOL)scrollToLeftOfListWithTableView:(UITableView *)tableView animated:(BOOL)animated considerSafeArea:(BOOL)considerSafeArea;
+
++ (BOOL)scrollToRightOfListWithTableView:(UITableView *)tableView animated:(BOOL)animated considerSafeArea:(BOOL)considerSafeArea;
 
 #pragma mark - Check Scrolling Over
 

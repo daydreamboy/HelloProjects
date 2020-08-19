@@ -11,6 +11,7 @@
 		4F0D00DF24BC0120002CC255 /* computers.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F0D00DE24BC0120002CC255 /* computers.plist */; };
 		4F12204123A4D7CF00F492B9 /* ContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F12204023A4D7CF00F492B9 /* ContentView.m */; };
 		4F12204523A4DDA600F492B9 /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F12204423A4DDA600F492B9 /* WCViewTool.m */; };
+		4F160E5524ED124900932EC9 /* ScrollToEdgesOfTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F160E5424ED124900932EC9 /* ScrollToEdgesOfTableViewViewController.m */; };
 		4F1728F424DD511300110D4C /* WCStickySectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1728F324DD511300110D4C /* WCStickySectionManager.m */; };
 		4F1728F724DD544000110D4C /* StickySectionInScrollViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1728F624DD544000110D4C /* StickySectionInScrollViewViewController.m */; };
 		4F1728FA24DD60AD00110D4C /* WCStickySidingSectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1728F924DD60AD00110D4C /* WCStickySidingSectionManager.m */; };
@@ -43,6 +44,8 @@
 		4F12204023A4D7CF00F492B9 /* ContentView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContentView.m; sourceTree = "<group>"; };
 		4F12204323A4DDA600F492B9 /* WCViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCViewTool.h; sourceTree = "<group>"; };
 		4F12204423A4DDA600F492B9 /* WCViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewTool.m; sourceTree = "<group>"; };
+		4F160E5324ED124900932EC9 /* ScrollToEdgesOfTableViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScrollToEdgesOfTableViewViewController.h; sourceTree = "<group>"; };
+		4F160E5424ED124900932EC9 /* ScrollToEdgesOfTableViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ScrollToEdgesOfTableViewViewController.m; sourceTree = "<group>"; };
 		4F1728F124DD46B700110D4C /* WCStickySection_Internal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStickySection_Internal.h; sourceTree = "<group>"; };
 		4F1728F224DD511300110D4C /* WCStickySectionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStickySectionManager.h; sourceTree = "<group>"; };
 		4F1728F324DD511300110D4C /* WCStickySectionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCStickySectionManager.m; sourceTree = "<group>"; };
@@ -216,6 +219,8 @@
 				4F12203E23A4D7B900F492B9 /* View */,
 				4F4D748120BE7CE20027DE7C /* ScrollToEdgesViewController.h */,
 				4F4D748220BE7CE20027DE7C /* ScrollToEdgesViewController.m */,
+				4F160E5324ED124900932EC9 /* ScrollToEdgesOfTableViewViewController.h */,
+				4F160E5424ED124900932EC9 /* ScrollToEdgesOfTableViewViewController.m */,
 				4FB1D48020CBA29200DBA776 /* NestedScrollViewViewController.h */,
 				4FB1D48120CBA29200DBA776 /* NestedScrollViewViewController.m */,
 				4F62BA3C233B66760020CC6D /* CheckUserScrollingViewController.h */,
@@ -331,6 +336,7 @@
 				4F6C4D282372719F00872371 /* PullRefreshViewController.m in Sources */,
 				4F1728F724DD544000110D4C /* StickySectionInScrollViewViewController.m in Sources */,
 				4F2762A7239BAD68003740C8 /* DisableCallScrollViewDidScrollAutomaticallyViewController.m in Sources */,
+				4F160E5524ED124900932EC9 /* ScrollToEdgesOfTableViewViewController.m in Sources */,
 				4F0D00DC24BBFF06002CC255 /* StickyHeaderSectionInScrollViewViewController.m in Sources */,
 				4F62BA42233B71DD0020CC6D /* WCScrollViewTool.m in Sources */,
 				4F4D747720BE48190027DE7C /* main.m in Sources */,
