@@ -11,6 +11,20 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface WCFontGlyphInfo : NSObject
+
+@property (nonatomic, assign, readonly) UTF16Char unicode;
+@property (nonatomic, assign, readonly) CGFontIndex index;
+@property (nonatomic, copy, readonly) NSString *name;
+@property (nonatomic, copy, readonly) NSString *character;
+
+@end
+
+@interface WCFontInfo : NSObject
+@property (nonatomic, strong, readonly) NSArray<WCFontGlyphInfo *> *glyphInfos;
+@end
+
+
 @interface WCFontTool : NSObject
 
 #pragma mark - Get Font Names
@@ -56,12 +70,14 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable UIFont *)systemFontWithFormattedName:(NSString *)formattedName;
 
++ (nullable UIFont *)fontWithName:(NSString *)fontName fontSize:(CGFloat)fontSize;
+
 #pragma mark - Load Font in Runtime
 
 + (BOOL)registerFontWithFilePath:(NSString *)filePath fontName:(NSString * _Nullable * _Nullable)fontName error:(NSError * _Nullable * _Nullable)error;
 + (BOOL)registerFontWithData:(NSData *)data fontName:(NSString * _Nullable * _Nullable)fontName error:(NSError * _Nullable * _Nullable)error;
 
-+ (nullable UIFont *)fontWithName:(NSString *)fontName fontSize:(CGFloat)fontSize;
++ (BOOL)unregisterIconFontWithName:(NSString *)name error:(NSError * _Nullable * _Nullable)error completionHandler:(void (^)(NSError *error))completionHandler;
 
 #pragma mark - Icon Image
 
@@ -70,6 +86,10 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Icon Text
 
 + (nullable NSString *)unicodePointStringWithIconText:(NSString *)iconText;
+
+#pragma mark - Font File Info
+
++ (nullable WCFontInfo *)fontInfoWithFilePath:(NSString *)filePath;
 
 @end
 

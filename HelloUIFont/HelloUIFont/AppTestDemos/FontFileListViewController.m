@@ -9,6 +9,7 @@
 #import "FontFileListViewController.h"
 #import "WCMacroTool.h"
 #import "WCFileManagerTool.h"
+#import "FontMetadataViewController.h"
 
 @interface FontFileListViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -103,13 +104,8 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *filePath = self.listData[indexPath.row];
     
-    NSError *error;
-    NSString *JSCode = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
-    if (!error) {
-    }
-    else {
-        NSLog(@"error: %@", error);
-    }
+    FontMetadataViewController *vc = [[FontMetadataViewController alloc] initWithFontFilePath:filePath];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

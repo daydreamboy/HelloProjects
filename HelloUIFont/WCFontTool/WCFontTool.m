@@ -8,6 +8,7 @@
 
 #import "WCFontTool.h"
 #import <CoreText/CoreText.h>
+#import <CoreFoundation/CoreFoundation.h>
 
 /**
  Safe set pointer's value
@@ -21,6 +22,43 @@ do { \
         *ptr = value; \
     } \
 } while (0)
+
+@interface WCFontGlyphInfo ()
+@property (nonatomic, assign, readwrite) UTF16Char unicode;
+@property (nonatomic, assign, readwrite) CGFontIndex index;
+@property (nonatomic, copy, readwrite) NSString *name;
+@property (nonatomic, copy, readwrite) NSString *character;
+@end
+
+@implementation WCFontGlyphInfo
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<%p : %@, unicode: %X; index = %@; name = %@; char = %@", self, NSStringFromClass([self class]), _unicode, @(_index), _name, _character];
+}
+
+@end
+
+@interface WCFontInfo ()
+@property (nonatomic, strong, readwrite) NSArray<WCFontGlyphInfo *> *glyphInfos;
+@property (nonatomic, copy, readwrite) NSString *postScriptName;
+@property (nonatomic, copy, readwrite) NSString *familyName;
+@property (nonatomic, copy, readwrite) NSString *fullName;
+@property (nonatomic, copy, readwrite) NSString *displayName;
+@property (nonatomic, assign, readwrite) CGFloat ascent;
+@property (nonatomic, assign, readwrite) CGFloat descent;
+@property (nonatomic, assign, readwrite) CGFloat leading;
+@property (nonatomic, assign, readwrite) CGFloat capHeight;
+@property (nonatomic, assign, readwrite) CGFloat xHeight;
+@property (nonatomic, assign, readwrite) CGFloat slantAngle;
+@property (nonatomic, assign, readwrite) CGFloat underlineThickness;
+@property (nonatomic, assign, readwrite) CGFloat underlinePosition;
+@property (nonatomic, assign, readwrite) CGRect boundingBox;
+@property (nonatomic, assign, readwrite) unsigned int unitsPerEm;
+@end
+
+@implementation WCFontInfo
+@end
+
 
 @implementation WCFontTool
 
@@ -149,7 +187,7 @@ do { \
         return NO;
     }
     
-    CFErrorRef errorRef;
+    CFErrorRef errorRef = NULL;
     CGDataProviderRef provider = CGDataProviderCreateWithCFData((CFDataRef)data);
     CGFontRef fontRef = CGFontCreateWithDataProvider(provider);
     
@@ -188,7 +226,7 @@ do { \
         return NO;
     }
     
-    CFErrorRef errorRef;
+    CFErrorRef errorRef = NULL;
     bool success = !CTFontManagerUnregisterGraphicsFont(fontRef, &errorRef);
     
     NSError *errorL = (__bridge NSError *)errorRef;
@@ -258,6 +296,84 @@ do { \
     }];
 
     return unicodePointString;
+}
+
+#pragma mark - Font File Info
+
++ (nullable WCFontInfo *)fontInfoWithFilePath:(NSString *)filePath {
+    if (![filePath isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    BOOL isDirectory = NO;
+    if (![[NSFileManager defaultManager] fileExistsAtPath:filePath isDirectory:&isDirectory]) {
+        return nil;
+    }
+    
+    if (isDirectory) {
+        return nil;
+    }
+    
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    CGDataProviderRef providerRef = CGDataProviderCreateWithCFData((CFDataRef)data);
+    
+    // @see https://stackoverflow.com/a/9821608
+    CGFontRef cgFontRef = CGFontCreateWithDataProvider(providerRef);
+    CTFontRef ctFontRef = CTFontCreateWithGraphicsFont(cgFontRef, 0.0, NULL, NULL);
+
+    WCFontInfo *fontInfo = [[WCFontInfo alloc] init];
+    
+    // Note: use __bridge_transfer, @see https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#:~:text=__bridge%20transfers%20a%20pointer,with%20no%20transfer%20of%20ownership.&text=__bridge_transfer%20or%20CFBridgingRelease%20moves,relinquishing%20ownership%20of%20the%20object.
+    fontInfo.postScriptName = (__bridge_transfer NSString *)(CTFontCopyPostScriptName(ctFontRef));
+    fontInfo.familyName = (__bridge_transfer NSString *)(CTFontCopyFamilyName(ctFontRef));
+    fontInfo.fullName = (__bridge_transfer NSString *)(CTFontCopyFullName(ctFontRef));
+    fontInfo.displayName = (__bridge_transfer NSString *)(CTFontCopyDisplayName(ctFontRef));
+    fontInfo.ascent = CTFontGetAscent(ctFontRef);
+    fontInfo.descent = CTFontGetDescent(ctFontRef);
+    fontInfo.leading = CTFontGetLeading(ctFontRef);
+    fontInfo.capHeight = CTFontGetCapHeight(ctFontRef);
+    fontInfo.xHeight = CTFontGetXHeight(ctFontRef);
+    fontInfo.slantAngle = CTFontGetSlantAngle(ctFontRef);
+    fontInfo.underlineThickness = CTFontGetUnderlineThickness(ctFontRef);
+    fontInfo.underlinePosition = CTFontGetUnderlinePosition(ctFontRef);
+    fontInfo.boundingBox = CTFontGetBoundingBox(ctFontRef);
+    fontInfo.unitsPerEm = CTFontGetUnitsPerEm(ctFontRef);
+    
+    CFIndex numberOfGlyphs = CTFontGetGlyphCount(ctFontRef);
+    CFCharacterSetRef characterSetRef = CTFontCopyCharacterSet(ctFontRef);
+    
+    NSMutableArray *glyphInfos = [NSMutableArray arrayWithCapacity:numberOfGlyphs];
+    
+    for (int plane = 0; plane <= 16; ++plane) {
+        if (CFCharacterSetHasMemberInPlane(characterSetRef, plane)) {
+            UTF32Char c;
+            for (c = plane << 16; c < (plane + 1) << 16; ++c) {
+                if (CFCharacterSetIsCharacterMember(characterSetRef, c) && c <= USHRT_MAX) {
+                    UniChar unicodes[1] = { c };
+                    CGGlyph glyphs[1];
+                    
+                    bool valid = CTFontGetGlyphsForCharacters(ctFontRef, unicodes, glyphs, 1);
+                    if (valid) {
+                        WCFontGlyphInfo *glyphInfo = [WCFontGlyphInfo new];
+                        glyphInfo.index = glyphs[0];
+                        glyphInfo.name = (__bridge_transfer NSString *)CGFontCopyGlyphNameForGlyph(cgFontRef, glyphs[0]);
+                        glyphInfo.unicode = c;
+                        glyphInfo.character = [NSString stringWithFormat:@"%C", unicodes[0]];
+                        [glyphInfos addObject:glyphInfo];
+                    }
+                }
+            }
+        }
+    }
+    fontInfo.glyphInfos = [glyphInfos copy];
+
+    
+    CFRelease(characterSetRef);
+    CFRelease(ctFontRef);
+    CFRelease(cgFontRef);
+    CFRelease(providerRef);
+    
+    return fontInfo;
 }
 
 @end
