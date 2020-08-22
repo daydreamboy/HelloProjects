@@ -1,5 +1,5 @@
 //
-//  FontMetadataViewController.h
+//  FontGlyphInfoViewController.h
 //  HelloUIFont
 //
 //  Created by wesley_chen on 2020/8/21.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface FontMetadataViewController : UIViewController
+@interface FontGlyphInfoViewController : UIViewController
 
 - (instancetype)initWithFontFilePath:(NSString *)filePath;
 

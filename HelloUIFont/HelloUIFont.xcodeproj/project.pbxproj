@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F17E1A424EFFC7100CD022F /* FontMetadataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F17E1A324EFFC7100CD022F /* FontMetadataViewController.m */; };
+		4F17E1A424EFFC7100CD022F /* FontGlyphInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F17E1A324EFFC7100CD022F /* FontGlyphInfoViewController.m */; };
 		4F17E1A724EFFC8400CD022F /* FontFileListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F17E1A624EFFC8400CD022F /* FontFileListViewController.m */; };
 		4F17E1AA24EFFD6800CD022F /* WCFileManagerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F17E1A924EFFD6800CD022F /* WCFileManagerTool.m */; };
 		4F32327F24546D3700BE0966 /* UseIconFontInUILabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F32327E24546D3700BE0966 /* UseIconFontInUILabelViewController.m */; };
@@ -27,8 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4F17E1A224EFFC7100CD022F /* FontMetadataViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FontMetadataViewController.h; sourceTree = "<group>"; };
-		4F17E1A324EFFC7100CD022F /* FontMetadataViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FontMetadataViewController.m; sourceTree = "<group>"; };
+		4F17E1A224EFFC7100CD022F /* FontGlyphInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FontGlyphInfoViewController.h; sourceTree = "<group>"; };
+		4F17E1A324EFFC7100CD022F /* FontGlyphInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FontGlyphInfoViewController.m; sourceTree = "<group>"; };
 		4F17E1A524EFFC8400CD022F /* FontFileListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FontFileListViewController.h; sourceTree = "<group>"; };
 		4F17E1A624EFFC8400CD022F /* FontFileListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FontFileListViewController.m; sourceTree = "<group>"; };
 		4F17E1A824EFFD6800CD022F /* WCFileManagerTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCFileManagerTool.h; sourceTree = "<group>"; };
@@ -129,8 +129,8 @@
 				4F32328124546D6C00BE0966 /* UseIconFontInUIButtonViewController.m */,
 				4F32328324546D7F00BE0966 /* UseIconFontInUIImageViewViewController.h */,
 				4F32328424546D7F00BE0966 /* UseIconFontInUIImageViewViewController.m */,
-				4F17E1A224EFFC7100CD022F /* FontMetadataViewController.h */,
-				4F17E1A324EFFC7100CD022F /* FontMetadataViewController.m */,
+				4F17E1A224EFFC7100CD022F /* FontGlyphInfoViewController.h */,
+				4F17E1A324EFFC7100CD022F /* FontGlyphInfoViewController.m */,
 				4F17E1A524EFFC8400CD022F /* FontFileListViewController.h */,
 				4F17E1A624EFFC8400CD022F /* FontFileListViewController.m */,
 			);
@@ -239,7 +239,7 @@
 				4F32327F24546D3700BE0966 /* UseIconFontInUILabelViewController.m in Sources */,
 				4F6B553B21AFF1C9009843E6 /* GetAllFontNamesViewController.m in Sources */,
 				4F6B553721AFF121009843E6 /* RootViewController.m in Sources */,
-				4F17E1A424EFFC7100CD022F /* FontMetadataViewController.m in Sources */,
+				4F17E1A424EFFC7100CD022F /* FontGlyphInfoViewController.m in Sources */,
 				4F6B552121AFF0F6009843E6 /* AppDelegate.m in Sources */,
 				4F17E1AA24EFFD6800CD022F /* WCFileManagerTool.m in Sources */,
 			);

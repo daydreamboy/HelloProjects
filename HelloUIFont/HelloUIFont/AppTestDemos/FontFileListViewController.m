@@ -9,7 +9,7 @@
 #import "FontFileListViewController.h"
 #import "WCMacroTool.h"
 #import "WCFileManagerTool.h"
-#import "FontMetadataViewController.h"
+#import "FontGlyphInfoViewController.h"
 
 @interface FontFileListViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -104,7 +104,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     NSString *filePath = self.listData[indexPath.row];
     
-    FontMetadataViewController *vc = [[FontMetadataViewController alloc] initWithFontFilePath:filePath];
+    FontGlyphInfoViewController *vc = [[FontGlyphInfoViewController alloc] initWithFontFilePath:filePath];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
