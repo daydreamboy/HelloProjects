@@ -13,6 +13,7 @@
 #import "UseIconFontInUILabelViewController.h"
 #import "UseIconFontInUIButtonViewController.h"
 #import "UseIconFontInUIImageViewViewController.h"
+#import "FontFileListViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -40,6 +41,7 @@
         @"Use IconFont in UILabel",
         @"Use IconFont in UIButton",
         @"Use IconFont in UIImage",
+        @"View Font List",
         @"call a test method",
     ];
     _classes = @[
@@ -48,6 +50,7 @@
         [UseIconFontInUILabelViewController class],
         [UseIconFontInUIButtonViewController class],
         [UseIconFontInUIImageViewViewController class],
+        [FontFileListViewController class],
         @"testMethod",
     ];
 }

@@ -7,7 +7,7 @@
 //
 
 #import "UseIconFontInUIButtonViewController.h"
-#import "WCIconFontTool.h"
+#import "WCFontTool.h"
 
 @interface UseIconFontInUIButtonViewController ()
 @property (nonatomic, strong) UIButton *button;
@@ -22,7 +22,7 @@
     
     NSString *fontFilePath = [[NSBundle mainBundle] pathForResource:@"app_font/iconfont" ofType:@"ttf"];
     NSString *fontName;
-    [WCIconFontTool registerIconFontWithFilePath:fontFilePath fontName:&fontName error:nil];
+    [WCFontTool registerFontWithFilePath:fontFilePath fontName:&fontName error:nil];
     self.fontName = fontName;
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];

@@ -7,7 +7,7 @@
 //
 
 #import "UseIconFontInUIImageViewViewController.h"
-#import "WCIconFontTool.h"
+#import "WCFontTool.h"
 
 @interface UseIconFontInUIImageViewViewController ()
 @property (nonatomic, strong) UIImageView *imageView;
@@ -22,7 +22,7 @@
     
     NSString *fontFilePath = [[NSBundle mainBundle] pathForResource:@"app_font/iconfont" ofType:@"ttf"];
     NSString *fontName;
-    [WCIconFontTool registerIconFontWithFilePath:fontFilePath fontName:&fontName error:nil];
+    [WCFontTool registerFontWithFilePath:fontFilePath fontName:&fontName error:nil];
     self.fontName = fontName;
     
     [self.view addSubview:self.imageView];
@@ -33,7 +33,7 @@
 - (UIImageView *)imageView {
     if (!_imageView) {
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 80, 80, 80)];
-        imageView.image = [WCIconFontTool imageWithIconFontName:self.fontName text:@"\U0000B04A" fontSize:25 color:[UIColor orangeColor]];
+        imageView.image = [WCFontTool imageWithIconFontName:self.fontName text:@"\U0000B04A" fontSize:25 color:[UIColor orangeColor]];
         imageView.layer.borderColor = [UIColor redColor].CGColor;
         imageView.layer.borderWidth = 1;
         

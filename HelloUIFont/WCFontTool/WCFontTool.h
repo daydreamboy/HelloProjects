@@ -56,6 +56,21 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable UIFont *)systemFontWithFormattedName:(NSString *)formattedName;
 
+#pragma mark - Load Font in Runtime
+
++ (BOOL)registerFontWithFilePath:(NSString *)filePath fontName:(NSString * _Nullable * _Nullable)fontName error:(NSError * _Nullable * _Nullable)error;
++ (BOOL)registerFontWithData:(NSData *)data fontName:(NSString * _Nullable * _Nullable)fontName error:(NSError * _Nullable * _Nullable)error;
+
++ (nullable UIFont *)fontWithName:(NSString *)fontName fontSize:(CGFloat)fontSize;
+
+#pragma mark - Icon Image
+
++ (UIImage *)imageWithIconFontName:(NSString *)iconFontName text:(NSString *)text fontSize:(CGFloat)fontSize color:(UIColor *)color;
+
+#pragma mark - Icon Text
+
++ (nullable NSString *)unicodePointStringWithIconText:(NSString *)iconText;
+
 @end
 
 NS_ASSUME_NONNULL_END
