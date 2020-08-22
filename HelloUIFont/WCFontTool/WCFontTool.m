@@ -344,6 +344,7 @@ do { \
     
     NSMutableArray *glyphInfos = [NSMutableArray arrayWithCapacity:numberOfGlyphs];
     
+    // @see https://stackoverflow.com/a/56785522
     for (int plane = 0; plane <= 16; ++plane) {
         if (CFCharacterSetHasMemberInPlane(characterSetRef, plane)) {
             UTF32Char c;
