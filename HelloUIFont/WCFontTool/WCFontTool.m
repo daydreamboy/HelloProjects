@@ -50,6 +50,8 @@ do { \
 
 @interface WCFontInfo ()
 @property (nonatomic, strong, readwrite) NSArray<WCFontGlyphInfo *> *glyphInfos;
+@property (nonatomic, copy, readwrite) NSString *fileName;
+@property (nonatomic, copy, readwrite) NSString *filePath;
 @property (nonatomic, copy, readwrite) NSString *postScriptName;
 @property (nonatomic, copy, readwrite) NSString *familyName;
 @property (nonatomic, copy, readwrite) NSString *fullName;
@@ -341,6 +343,8 @@ do { \
 
     WCFontInfo *fontInfo = [[WCFontInfo alloc] init];
     fontInfo.fontRef = ctFontRef;
+    fontInfo.filePath = filePath;
+    fontInfo.fileName = [filePath lastPathComponent];
     
     // Note: use __bridge_transfer, @see https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#:~:text=__bridge%20transfers%20a%20pointer,with%20no%20transfer%20of%20ownership.&text=__bridge_transfer%20or%20CFBridgingRelease%20moves,relinquishing%20ownership%20of%20the%20object.
     fontInfo.postScriptName = (__bridge_transfer NSString *)(CTFontCopyPostScriptName(ctFontRef));

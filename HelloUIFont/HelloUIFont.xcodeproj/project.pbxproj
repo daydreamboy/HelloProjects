@@ -26,6 +26,7 @@
 		4FA8919A24F24ACB0091CE24 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA8919924F24ACB0091CE24 /* Test.m */; };
 		4FA891A324F24BF60091CE24 /* FontGlyphDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA891A224F24BF60091CE24 /* FontGlyphDetailInfoViewController.m */; };
 		4FA891A624F261090091CE24 /* WCQuartzTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA891A524F261090091CE24 /* WCQuartzTool.m */; };
+		4FA891AD24F26A730091CE24 /* FontInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA891AC24F26A730091CE24 /* FontInfoViewController.m */; };
 		4FB91035247E12660089C697 /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB91034247E12660089C697 /* WCViewTool.m */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,8 @@
 		4FA891A224F24BF60091CE24 /* FontGlyphDetailInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FontGlyphDetailInfoViewController.m; sourceTree = "<group>"; };
 		4FA891A424F261090091CE24 /* WCQuartzTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCQuartzTool.h; sourceTree = "<group>"; };
 		4FA891A524F261090091CE24 /* WCQuartzTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCQuartzTool.m; sourceTree = "<group>"; };
+		4FA891AB24F26A730091CE24 /* FontInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FontInfoViewController.h; sourceTree = "<group>"; };
+		4FA891AC24F26A730091CE24 /* FontInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FontInfoViewController.m; sourceTree = "<group>"; };
 		4FB91032247E11B10089C697 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
 		4FB91033247E12660089C697 /* WCViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCViewTool.h; sourceTree = "<group>"; };
 		4FB91034247E12660089C697 /* WCViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewTool.m; sourceTree = "<group>"; };
@@ -158,12 +161,14 @@
 				4F32328124546D6C00BE0966 /* UseIconFontInUIButtonViewController.m */,
 				4F32328324546D7F00BE0966 /* UseIconFontInUIImageViewViewController.h */,
 				4F32328424546D7F00BE0966 /* UseIconFontInUIImageViewViewController.m */,
+				4F17E1A524EFFC8400CD022F /* FontFileListViewController.h */,
+				4F17E1A624EFFC8400CD022F /* FontFileListViewController.m */,
 				4F17E1A224EFFC7100CD022F /* FontGlyphInfoViewController.h */,
 				4F17E1A324EFFC7100CD022F /* FontGlyphInfoViewController.m */,
 				4FA891A124F24BF60091CE24 /* FontGlyphDetailInfoViewController.h */,
 				4FA891A224F24BF60091CE24 /* FontGlyphDetailInfoViewController.m */,
-				4F17E1A524EFFC8400CD022F /* FontFileListViewController.h */,
-				4F17E1A624EFFC8400CD022F /* FontFileListViewController.m */,
+				4FA891AB24F26A730091CE24 /* FontInfoViewController.h */,
+				4FA891AC24F26A730091CE24 /* FontInfoViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -306,6 +311,7 @@
 				4F32328224546D6C00BE0966 /* UseIconFontInUIButtonViewController.m in Sources */,
 				4F6B552F21AFF0F7009843E6 /* main.m in Sources */,
 				4F32328524546D7F00BE0966 /* UseIconFontInUIImageViewViewController.m in Sources */,
+				4FA891AD24F26A730091CE24 /* FontInfoViewController.m in Sources */,
 				4F17E1A724EFFC8400CD022F /* FontFileListViewController.m in Sources */,
 				4F8AD8F721B0EB65005DE01F /* SystemFontViewController.m in Sources */,
 				4FA891A624F261090091CE24 /* WCQuartzTool.m in Sources */,

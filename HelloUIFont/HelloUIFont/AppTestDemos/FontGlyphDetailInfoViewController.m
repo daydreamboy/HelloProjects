@@ -28,6 +28,7 @@
             @{ @"name": glyphInfo.name },
             @{ @"unicode": glyphInfo.unicodeString },
             @{ @"index": [NSString stringWithFormat:@"%@", @(glyphInfo.index)] },
+            @{ @"boundingBox": NSStringFromCGRect(glyphInfo.boundingRect) },
         ];
     }
     return self;

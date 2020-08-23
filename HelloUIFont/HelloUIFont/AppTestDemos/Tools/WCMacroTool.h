@@ -53,4 +53,10 @@ __internal_frame; \
 #define UICOLOR_RGB(color) ([UIColor colorWithRed: (((color) >> 16) & 0xFF) / 255.0 green: (((color) >> 8) & 0xFF) / 255.0 blue: ((color) & 0xFF) / 255.0 alpha: 1.0])
 #endif
 
+// float/double to string
+#define STR_OF_FLOAT(f)     ([NSString stringWithFormat:@"%f", (double)(f)])
+
+// NSInteger/int/long to string
+#define STR_OF_INTEGER(integer)     ([NSString stringWithFormat:@"%ld", (long)(integer)])
+
 #endif /* WCMacroTool_h */

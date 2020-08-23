@@ -26,6 +26,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WCFontInfo : NSObject
 @property (nonatomic, strong, readonly) NSArray<WCFontGlyphInfo *> *glyphInfos;
+@property (nonatomic, copy, readonly) NSString *fileName;
+@property (nonatomic, copy, readonly) NSString *filePath;
+@property (nonatomic, copy, readonly) NSString *postScriptName;
+@property (nonatomic, copy, readonly) NSString *familyName;
+@property (nonatomic, copy, readonly) NSString *fullName;
+@property (nonatomic, copy, readonly) NSString *displayName;
+@property (nonatomic, assign, readonly) CGFloat ascent;
+@property (nonatomic, assign, readonly) CGFloat descent;
+@property (nonatomic, assign, readonly) CGFloat leading;
+@property (nonatomic, assign, readonly) CGFloat capHeight;
+@property (nonatomic, assign, readonly) CGFloat xHeight;
+@property (nonatomic, assign, readonly) CGFloat slantAngle;
+@property (nonatomic, assign, readonly) CGFloat underlineThickness;
+@property (nonatomic, assign, readonly) CGFloat underlinePosition;
+@property (nonatomic, assign, readonly) CGRect boundingBox;
+@property (nonatomic, assign, readonly) unsigned int unitsPerEm;
 @end
 
 
