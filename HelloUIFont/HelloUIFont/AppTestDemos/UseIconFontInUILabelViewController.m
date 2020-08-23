@@ -21,7 +21,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    NSString *fontFilePath = [[NSBundle mainBundle] pathForResource:@"app_font/iconfont" ofType:@"ttf"];
+    NSString *fontFilePath = [[NSBundle mainBundle] pathForResource:@"FontFileList/iconfont_taobao" ofType:@"ttf"];
     NSString *fontName;
     [WCFontTool registerFontWithFilePath:fontFilePath fontName:&fontName error:nil];
     self.fontName = fontName;

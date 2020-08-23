@@ -13,7 +13,6 @@
 		4F32327F24546D3700BE0966 /* UseIconFontInUILabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F32327E24546D3700BE0966 /* UseIconFontInUILabelViewController.m */; };
 		4F32328224546D6C00BE0966 /* UseIconFontInUIButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F32328124546D6C00BE0966 /* UseIconFontInUIButtonViewController.m */; };
 		4F32328524546D7F00BE0966 /* UseIconFontInUIImageViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F32328424546D7F00BE0966 /* UseIconFontInUIImageViewViewController.m */; };
-		4F323287245475B900BE0966 /* my_iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4F323286245475B900BE0966 /* my_iconfont.ttf */; };
 		4F32328C245484B100BE0966 /* FontFileList in Resources */ = {isa = PBXBuildFile; fileRef = 4F32328B245484B100BE0966 /* FontFileList */; };
 		4F6B552121AFF0F6009843E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6B552021AFF0F6009843E6 /* AppDelegate.m */; };
 		4F6B552921AFF0F7009843E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F6B552821AFF0F7009843E6 /* Assets.xcassets */; };
@@ -53,7 +52,6 @@
 		4F32328124546D6C00BE0966 /* UseIconFontInUIButtonViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseIconFontInUIButtonViewController.m; sourceTree = "<group>"; };
 		4F32328324546D7F00BE0966 /* UseIconFontInUIImageViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseIconFontInUIImageViewViewController.h; sourceTree = "<group>"; };
 		4F32328424546D7F00BE0966 /* UseIconFontInUIImageViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseIconFontInUIImageViewViewController.m; sourceTree = "<group>"; };
-		4F323286245475B900BE0966 /* my_iconfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = my_iconfont.ttf; sourceTree = "<group>"; };
 		4F32328B245484B100BE0966 /* FontFileList */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FontFileList; sourceTree = "<group>"; };
 		4F6B551C21AFF0F5009843E6 /* HelloUIFont.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUIFont.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F6B551F21AFF0F5009843E6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -106,7 +104,6 @@
 			isa = PBXGroup;
 			children = (
 				4F32328B245484B100BE0966 /* FontFileList */,
-				4F323286245475B900BE0966 /* my_iconfont.ttf */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -286,7 +283,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F6B552C21AFF0F7009843E6 /* LaunchScreen.storyboard in Resources */,
-				4F323287245475B900BE0966 /* my_iconfont.ttf in Resources */,
 				4F6B552921AFF0F7009843E6 /* Assets.xcassets in Resources */,
 				4F32328C245484B100BE0966 /* FontFileList in Resources */,
 			);
