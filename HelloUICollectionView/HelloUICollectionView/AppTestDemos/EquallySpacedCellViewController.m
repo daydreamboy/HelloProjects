@@ -10,7 +10,6 @@
 #import "MyCustomCollectionViewCell.h"
 
 @interface EquallySpacedCellViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
-@property (nonatomic, strong) NSArray *colors;
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, assign) CGFloat spacing;
 @property (nonatomic, assign) NSUInteger numberOfCellPerRow;
@@ -45,16 +44,6 @@
 }
 
 #pragma mark - Getters
-
-- (NSArray *)colors {
-    return @[
-             [UIColor colorWithRed:0.02 green:0.25 blue:0.49 alpha:1],
-             [UIColor colorWithRed:0.32 green:0.66 blue:0.99 alpha:1],
-             [UIColor colorWithRed:0.05 green:0.52 blue:0.98 alpha:1],
-             [UIColor colorWithRed:0.18 green:0.34 blue:0.49 alpha:1],
-             [UIColor colorWithRed:0.03 green:0.41 blue:0.79 alpha:1],
-             ];
-}
 
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
@@ -96,7 +85,8 @@
     if (!self.collectionViewBackground.superview) {
         // Note: not works, use collectionViewContentSize instead
         //CGSize contentSize = self.collectionView.contentSize;
-        CGSize contentSize2 = self.collectionView.collectionViewLayout.collectionViewContentSize;// @see https://stackoverflow.com/a/13788641
+        // @see https://stackoverflow.com/a/13788641
+        CGSize contentSize2 = self.collectionView.collectionViewLayout.collectionViewContentSize;
         self.collectionViewBackground.frame = CGRectMake(0, 0, contentSize2.width, contentSize2.height);
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.collectionView insertSubview:self.collectionViewBackground atIndex:0];

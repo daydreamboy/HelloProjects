@@ -10,7 +10,7 @@
 
 > Flow layouts lay out their content using a fixed distance in one direction and a scrollable distance in the other.
 
-​       UICollectionViewFlowLayout的`scrollDirection`属性定义可以滚动的方向，则和这个方向垂直的另一个方向则是固定距离的。例如`scrollDirection`属性值是UICollectionViewScrollDirectionVertical（默认值），则UICollectionView是竖直滚动（垂直方向）的，item按照row方式（水平方向）排列，如果一行放不满则换行。
+​       UICollectionViewFlowLayout的`scrollDirection`属性定义可以滚动的方向，和这个方向垂直的另一个方向则是固定距离的。例如`scrollDirection`属性值是UICollectionViewScrollDirectionVertical（默认值），则UICollectionView是竖直滚动（垂直方向）的，item按照row方式（水平方向）排列，如果一行放不满则换行。
 
 
 
