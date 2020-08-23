@@ -271,6 +271,24 @@ UIBezierPath的使用，目前有两种方式
 
 #### a. UIBezierPath+CAShapeLayer[^5]
 
+CAShapeLayer的path属性是CGPathRef类型，可以创建UIBezierPath，将它提供给CAShapeLayer。简单的代码范式，如下
+
+```objective-c
+CAShapeLayer *layer = [CAShapeLayer layer];
+layer.frame = ...
+
+UIBezierPath *path = [UIBezierPath bezierPath];
+// construct the path
+
+layer.path = path.CGPath;
+```
+
+说明
+
+> layer.path可以设置path的颜色和宽度，应该使用strokeColor和lineWidth属性，而不是borderColor和borderWidth。
+
+
+
 
 
 

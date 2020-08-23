@@ -58,6 +58,7 @@
 		4F64C3C120ED1118008A2A1A /* CreateCircleProgressViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C3C020ED1118008A2A1A /* CreateCircleProgressViewViewController.m */; };
 		4F64C3C520ED114F008A2A1A /* WCCirlcleProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C3C420ED114F008A2A1A /* WCCirlcleProgressView.m */; };
 		4F64C3C920ED13A7008A2A1A /* LayerWithProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C3C820ED13A7008A2A1A /* LayerWithProgress.m */; };
+		4FA891AA24F2691F0091CE24 /* WCQuartzTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA891A924F2691F0091CE24 /* WCQuartzTool.m */; };
 		4FB4D205249F9C2900FB94B1 /* ShapeCurveBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB4D204249F9C2900FB94B1 /* ShapeCurveBezierPathViewController.m */; };
 		4FF3EAE8247D180F00227B3C /* DrawArcBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF3EAE7247D180F00227B3C /* DrawArcBezierPathViewController.m */; };
 		4FF3EAEB247D184E00227B3C /* DrawCurveBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF3EAEA247D184E00227B3C /* DrawCurveBezierPathViewController.m */; };
@@ -174,6 +175,8 @@
 		4F64C3C420ED114F008A2A1A /* WCCirlcleProgressView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCCirlcleProgressView.m; sourceTree = "<group>"; };
 		4F64C3C720ED13A7008A2A1A /* LayerWithProgress.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LayerWithProgress.h; sourceTree = "<group>"; };
 		4F64C3C820ED13A7008A2A1A /* LayerWithProgress.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LayerWithProgress.m; sourceTree = "<group>"; };
+		4FA891A824F2691F0091CE24 /* WCQuartzTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCQuartzTool.h; sourceTree = "<group>"; };
+		4FA891A924F2691F0091CE24 /* WCQuartzTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCQuartzTool.m; sourceTree = "<group>"; };
 		4FB4D203249F9C2900FB94B1 /* ShapeCurveBezierPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShapeCurveBezierPathViewController.h; sourceTree = "<group>"; };
 		4FB4D204249F9C2900FB94B1 /* ShapeCurveBezierPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShapeCurveBezierPathViewController.m; sourceTree = "<group>"; };
 		4FF3EAE6247D180F00227B3C /* DrawArcBezierPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawArcBezierPathViewController.h; sourceTree = "<group>"; };
@@ -203,6 +206,7 @@
 		2B0FD5E41FC99DFC0022E59D = {
 			isa = PBXGroup;
 			children = (
+				4FA891A724F2685D0091CE24 /* WCQuartzTool */,
 				2B0FD5EF1FC99DFC0022E59D /* HelloCoreGraphics */,
 				4F577725226F36A400AA0896 /* Tests */,
 				2B0FD5EE1FC99DFC0022E59D /* Products */,
@@ -447,6 +451,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		4FA891A724F2685D0091CE24 /* WCQuartzTool */ = {
+			isa = PBXGroup;
+			children = (
+				4FA891A824F2691F0091CE24 /* WCQuartzTool.h */,
+				4FA891A924F2691F0091CE24 /* WCQuartzTool.m */,
+			);
+			path = WCQuartzTool;
+			sourceTree = "<group>";
+		};
 		4FF3EAE4247D15A800227B3C /* BezierPath */ = {
 			isa = PBXGroup;
 			children = (
@@ -563,6 +576,7 @@
 				4F3526342008B9CF00891B09 /* AttachedBubbleWithDownArrowViewController.m in Sources */,
 				4F3525F120064D9200891B09 /* CreateAttachedBubbleLayerViewController.m in Sources */,
 				4F0C6C9924B219BD0040629C /* CircleAlphabetByCTM.m in Sources */,
+				4FA891AA24F2691F0091CE24 /* WCQuartzTool.m in Sources */,
 				4F0F1DCE249617F50034AAE9 /* ShapeFillPatternImageBezierPathViewController.m in Sources */,
 				4F3525FA20077D6200891B09 /* ExamplesOfWAttachedBubbleViewViewController.m in Sources */,
 				4FF3EAE8247D180F00227B3C /* DrawArcBezierPathViewController.m in Sources */,
