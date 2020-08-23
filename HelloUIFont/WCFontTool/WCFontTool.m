@@ -28,12 +28,22 @@ do { \
 @property (nonatomic, assign, readwrite) CGFontIndex index;
 @property (nonatomic, copy, readwrite) NSString *name;
 @property (nonatomic, copy, readwrite) NSString *character;
+@property (nonatomic, copy, readwrite) NSString *unicodeString;
+@property (nonatomic, assign, readwrite) CGRect boundingRect;
+@property (nonatomic, assign, readwrite) CTFontRef fontRef;
 @end
 
 @implementation WCFontGlyphInfo
 
+- (CGPathRef)pathWithTransform:(CGAffineTransform)transform {
+    // !!!: How to release this path 
+    CGPathRef path = CTFontCreatePathForGlyph(_fontRef, _index, &transform);
+    
+    return path;
+}
+
 - (NSString *)description {
-    return [NSString stringWithFormat:@"<%p : %@, unicode: %X; index = %@; name = %@; char = %@", self, NSStringFromClass([self class]), _unicode, @(_index), _name, _character];
+    return [NSString stringWithFormat:@"<%@ : %p, unicode: %X; index = %@; name = %@; char = %@", NSStringFromClass([self class]), self, _unicode, @(_index), _name, _character];
 }
 
 @end
@@ -54,9 +64,17 @@ do { \
 @property (nonatomic, assign, readwrite) CGFloat underlinePosition;
 @property (nonatomic, assign, readwrite) CGRect boundingBox;
 @property (nonatomic, assign, readwrite) unsigned int unitsPerEm;
+@property (nonatomic, assign, readwrite) CTFontRef fontRef;
 @end
 
 @implementation WCFontInfo
+
+- (void)dealloc {
+    if (_fontRef) {
+        CFRelease(_fontRef);
+    }
+}
+
 @end
 
 
@@ -213,7 +231,7 @@ do { \
     return success;
 }
 
-+ (BOOL)unregisterIconFontWithName:(NSString *)name error:(NSError * _Nullable * _Nullable)error completionHandler:(void (^)(NSError *error))completionHandler {
++ (BOOL)unregisterIconFontWithName:(NSString *)name error:(NSError * _Nullable * _Nullable)error completionHandler:(nullable void (^)(NSError *error))completionHandler {
     if (![name isKindOfClass:[NSString class]]) {
         PTR_SAFE_SET(error, [NSError errorWithDomain:NSStringFromClass([self class]) code:-1 userInfo:@{ NSLocalizedDescriptionKey: @"name is not a NSString" }]);
         return NO;
@@ -322,6 +340,7 @@ do { \
     CTFontRef ctFontRef = CTFontCreateWithGraphicsFont(cgFontRef, 0.0, NULL, NULL);
 
     WCFontInfo *fontInfo = [[WCFontInfo alloc] init];
+    fontInfo.fontRef = ctFontRef;
     
     // Note: use __bridge_transfer, @see https://developer.apple.com/library/archive/documentation/CoreFoundation/Conceptual/CFDesignConcepts/Articles/tollFreeBridgedTypes.html#:~:text=__bridge%20transfers%20a%20pointer,with%20no%20transfer%20of%20ownership.&text=__bridge_transfer%20or%20CFBridgingRelease%20moves,relinquishing%20ownership%20of%20the%20object.
     fontInfo.postScriptName = (__bridge_transfer NSString *)(CTFontCopyPostScriptName(ctFontRef));
@@ -355,11 +374,20 @@ do { \
                     
                     bool valid = CTFontGetGlyphsForCharacters(ctFontRef, unicodes, glyphs, 1);
                     if (valid) {
+                        CGGlyph glyph = glyphs[0];
+                        
                         WCFontGlyphInfo *glyphInfo = [WCFontGlyphInfo new];
-                        glyphInfo.index = glyphs[0];
-                        glyphInfo.name = (__bridge_transfer NSString *)CGFontCopyGlyphNameForGlyph(cgFontRef, glyphs[0]);
+                        glyphInfo.fontRef = ctFontRef;
+                        glyphInfo.index = glyph;
+                        glyphInfo.name = (__bridge_transfer NSString *)CGFontCopyGlyphNameForGlyph(cgFontRef, glyph);
                         glyphInfo.unicode = c;
+                        glyphInfo.unicodeString = [NSString stringWithFormat:@"%X", c];
                         glyphInfo.character = [NSString stringWithFormat:@"%C", unicodes[0]];
+                        
+                        CGRect boundings[1] = { CGRectZero };
+                        CTFontGetBoundingRectsForGlyphs(ctFontRef, kCTFontOrientationDefault, glyphs, boundings, 1);
+                        glyphInfo.boundingRect = boundings[0];
+                        
                         [glyphInfos addObject:glyphInfo];
                     }
                 }
@@ -368,9 +396,8 @@ do { \
     }
     fontInfo.glyphInfos = [glyphInfos copy];
 
-    
     CFRelease(characterSetRef);
-    CFRelease(ctFontRef);
+    //CFRelease(ctFontRef);
     CFRelease(cgFontRef);
     CFRelease(providerRef);
     

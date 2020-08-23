@@ -17,6 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign, readonly) CGFontIndex index;
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, copy, readonly) NSString *character;
+@property (nonatomic, copy, readonly) NSString *unicodeString;
+@property (nonatomic, assign, readonly) CGRect boundingRect;
+
+- (CGPathRef)pathWithTransform:(CGAffineTransform)transform;
 
 @end
 
@@ -77,7 +81,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)registerFontWithFilePath:(NSString *)filePath fontName:(NSString * _Nullable * _Nullable)fontName error:(NSError * _Nullable * _Nullable)error;
 + (BOOL)registerFontWithData:(NSData *)data fontName:(NSString * _Nullable * _Nullable)fontName error:(NSError * _Nullable * _Nullable)error;
 
-+ (BOOL)unregisterIconFontWithName:(NSString *)name error:(NSError * _Nullable * _Nullable)error completionHandler:(void (^)(NSError *error))completionHandler;
++ (BOOL)unregisterIconFontWithName:(NSString *)name error:(NSError * _Nullable * _Nullable)error completionHandler:(nullable void (^)(NSError *error))completionHandler;
 
 #pragma mark - Icon Image
 

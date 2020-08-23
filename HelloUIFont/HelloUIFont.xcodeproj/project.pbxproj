@@ -23,8 +23,21 @@
 		4F6B553B21AFF1C9009843E6 /* GetAllFontNamesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6B553A21AFF1C9009843E6 /* GetAllFontNamesViewController.m */; };
 		4F8AD8F421B0DAF1005DE01F /* WCFontTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8AD8F321B0DAF1005DE01F /* WCFontTool.m */; };
 		4F8AD8F721B0EB65005DE01F /* SystemFontViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8AD8F621B0EB65005DE01F /* SystemFontViewController.m */; };
+		4FA8919A24F24ACB0091CE24 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA8919924F24ACB0091CE24 /* Test.m */; };
+		4FA891A324F24BF60091CE24 /* FontGlyphDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA891A224F24BF60091CE24 /* FontGlyphDetailInfoViewController.m */; };
+		4FA891A624F261090091CE24 /* WCQuartzTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA891A524F261090091CE24 /* WCQuartzTool.m */; };
 		4FB91035247E12660089C697 /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB91034247E12660089C697 /* WCViewTool.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4FA8919C24F24ACB0091CE24 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F6B551421AFF0F5009843E6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F6B551B21AFF0F5009843E6;
+			remoteInfo = HelloUIFont;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4F17E1A224EFFC7100CD022F /* FontGlyphInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FontGlyphInfoViewController.h; sourceTree = "<group>"; };
@@ -56,6 +69,13 @@
 		4F8AD8F321B0DAF1005DE01F /* WCFontTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCFontTool.m; sourceTree = "<group>"; };
 		4F8AD8F521B0EB65005DE01F /* SystemFontViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemFontViewController.h; sourceTree = "<group>"; };
 		4F8AD8F621B0EB65005DE01F /* SystemFontViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemFontViewController.m; sourceTree = "<group>"; };
+		4FA8919724F24ACB0091CE24 /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FA8919924F24ACB0091CE24 /* Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
+		4FA8919B24F24ACB0091CE24 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4FA891A124F24BF60091CE24 /* FontGlyphDetailInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FontGlyphDetailInfoViewController.h; sourceTree = "<group>"; };
+		4FA891A224F24BF60091CE24 /* FontGlyphDetailInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FontGlyphDetailInfoViewController.m; sourceTree = "<group>"; };
+		4FA891A424F261090091CE24 /* WCQuartzTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCQuartzTool.h; sourceTree = "<group>"; };
+		4FA891A524F261090091CE24 /* WCQuartzTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCQuartzTool.m; sourceTree = "<group>"; };
 		4FB91032247E11B10089C697 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
 		4FB91033247E12660089C697 /* WCViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCViewTool.h; sourceTree = "<group>"; };
 		4FB91034247E12660089C697 /* WCViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewTool.m; sourceTree = "<group>"; };
@@ -63,6 +83,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		4F6B551921AFF0F5009843E6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FA8919424F24ACB0091CE24 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -86,6 +113,7 @@
 			children = (
 				4F8AD8F121B0DADE005DE01F /* WCFontTool */,
 				4F6B551E21AFF0F5009843E6 /* HelloUIFont */,
+				4FA8919824F24ACB0091CE24 /* Test */,
 				4F6B551D21AFF0F5009843E6 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -94,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				4F6B551C21AFF0F5009843E6 /* HelloUIFont.app */,
+				4FA8919724F24ACB0091CE24 /* Test.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -131,6 +160,8 @@
 				4F32328424546D7F00BE0966 /* UseIconFontInUIImageViewViewController.m */,
 				4F17E1A224EFFC7100CD022F /* FontGlyphInfoViewController.h */,
 				4F17E1A324EFFC7100CD022F /* FontGlyphInfoViewController.m */,
+				4FA891A124F24BF60091CE24 /* FontGlyphDetailInfoViewController.h */,
+				4FA891A224F24BF60091CE24 /* FontGlyphDetailInfoViewController.m */,
 				4F17E1A524EFFC8400CD022F /* FontFileListViewController.h */,
 				4F17E1A624EFFC8400CD022F /* FontFileListViewController.m */,
 			);
@@ -146,6 +177,15 @@
 			path = WCFontTool;
 			sourceTree = "<group>";
 		};
+		4FA8919824F24ACB0091CE24 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				4FA8919924F24ACB0091CE24 /* Test.m */,
+				4FA8919B24F24ACB0091CE24 /* Info.plist */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
 		4FB91031247E11900089C697 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +194,8 @@
 				4FB91034247E12660089C697 /* WCViewTool.m */,
 				4F17E1A824EFFD6800CD022F /* WCFileManagerTool.h */,
 				4F17E1A924EFFD6800CD022F /* WCFileManagerTool.m */,
+				4FA891A424F261090091CE24 /* WCQuartzTool.h */,
+				4FA891A524F261090091CE24 /* WCQuartzTool.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -178,6 +220,24 @@
 			productReference = 4F6B551C21AFF0F5009843E6 /* HelloUIFont.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4FA8919624F24ACB0091CE24 /* Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4FA891A024F24ACB0091CE24 /* Build configuration list for PBXNativeTarget "Test" */;
+			buildPhases = (
+				4FA8919324F24ACB0091CE24 /* Sources */,
+				4FA8919424F24ACB0091CE24 /* Frameworks */,
+				4FA8919524F24ACB0091CE24 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4FA8919D24F24ACB0091CE24 /* PBXTargetDependency */,
+			);
+			name = Test;
+			productName = Test;
+			productReference = 4FA8919724F24ACB0091CE24 /* Test.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -189,6 +249,10 @@
 				TargetAttributes = {
 					4F6B551B21AFF0F5009843E6 = {
 						CreatedOnToolsVersion = 9.4.1;
+					};
+					4FA8919624F24ACB0091CE24 = {
+						CreatedOnToolsVersion = 11.6;
+						TestTargetID = 4F6B551B21AFF0F5009843E6;
 					};
 				};
 			};
@@ -206,6 +270,7 @@
 			projectRoot = "";
 			targets = (
 				4F6B551B21AFF0F5009843E6 /* HelloUIFont */,
+				4FA8919624F24ACB0091CE24 /* Test */,
 			);
 		};
 /* End PBXProject section */
@@ -219,6 +284,13 @@
 				4F323287245475B900BE0966 /* my_iconfont.ttf in Resources */,
 				4F6B552921AFF0F7009843E6 /* Assets.xcassets in Resources */,
 				4F32328C245484B100BE0966 /* FontFileList in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4FA8919524F24ACB0091CE24 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,6 +308,8 @@
 				4F32328524546D7F00BE0966 /* UseIconFontInUIImageViewViewController.m in Sources */,
 				4F17E1A724EFFC8400CD022F /* FontFileListViewController.m in Sources */,
 				4F8AD8F721B0EB65005DE01F /* SystemFontViewController.m in Sources */,
+				4FA891A624F261090091CE24 /* WCQuartzTool.m in Sources */,
+				4FA891A324F24BF60091CE24 /* FontGlyphDetailInfoViewController.m in Sources */,
 				4F32327F24546D3700BE0966 /* UseIconFontInUILabelViewController.m in Sources */,
 				4F6B553B21AFF1C9009843E6 /* GetAllFontNamesViewController.m in Sources */,
 				4F6B553721AFF121009843E6 /* RootViewController.m in Sources */,
@@ -245,7 +319,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4FA8919324F24ACB0091CE24 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4FA8919A24F24ACB0091CE24 /* Test.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4FA8919D24F24ACB0091CE24 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F6B551B21AFF0F5009843E6 /* HelloUIFont */;
+			targetProxy = 4FA8919C24F24ACB0091CE24 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4F6B552A21AFF0F7009843E6 /* LaunchScreen.storyboard */ = {
@@ -401,6 +491,47 @@
 			};
 			name = Release;
 		};
+		4FA8919E24F24ACB0091CE24 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Test/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Test;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloUIFont.app/HelloUIFont";
+			};
+			name = Debug;
+		};
+		4FA8919F24F24ACB0091CE24 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Test/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Test;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloUIFont.app/HelloUIFont";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -418,6 +549,15 @@
 			buildConfigurations = (
 				4F6B553321AFF0F7009843E6 /* Debug */,
 				4F6B553421AFF0F7009843E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4FA891A024F24ACB0091CE24 /* Build configuration list for PBXNativeTarget "Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4FA8919E24F24ACB0091CE24 /* Debug */,
+				4FA8919F24F24ACB0091CE24 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
