@@ -54,6 +54,7 @@
 		4FA5AC1920FD955D0098A138 /* EmotionGroupIcon_2@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4FA5AC1120FD955D0098A138 /* EmotionGroupIcon_2@2x.png */; };
 		4FA5AC1C20FD97E80098A138 /* WCHorizontalSliderViewUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA5AC1B20FD97E80098A138 /* WCHorizontalSliderViewUtility.m */; };
 		4FA7A82B21D0D03F008A350C /* AutoFitHeightCollectionViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA7A82A21D0D03F008A350C /* AutoFitHeightCollectionViewViewController.m */; };
+		4FA8919224F214790091CE24 /* EquallySpacedCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA8919124F214790091CE24 /* EquallySpacedCellViewController.m */; };
 		4FAA229721BE45DE001F97B6 /* CollectionViewFlowLayoutDraggable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAA229621BE45DE001F97B6 /* CollectionViewFlowLayoutDraggable.m */; };
 		4FAA229A21BE50BE001F97B6 /* DraggableLayoutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAA229921BE50BE001F97B6 /* DraggableLayoutViewController.m */; };
 		4FB1D4B420CC0D5700DBA776 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB1D4B320CC0D5700DBA776 /* AppDelegate.m */; };
@@ -153,6 +154,8 @@
 		4FA5AC1B20FD97E80098A138 /* WCHorizontalSliderViewUtility.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCHorizontalSliderViewUtility.m; sourceTree = "<group>"; };
 		4FA7A82921D0D03F008A350C /* AutoFitHeightCollectionViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoFitHeightCollectionViewViewController.h; sourceTree = "<group>"; };
 		4FA7A82A21D0D03F008A350C /* AutoFitHeightCollectionViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoFitHeightCollectionViewViewController.m; sourceTree = "<group>"; };
+		4FA8919024F214790091CE24 /* EquallySpacedCellViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EquallySpacedCellViewController.h; sourceTree = "<group>"; };
+		4FA8919124F214790091CE24 /* EquallySpacedCellViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EquallySpacedCellViewController.m; sourceTree = "<group>"; };
 		4FAA229521BE45DE001F97B6 /* CollectionViewFlowLayoutDraggable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionViewFlowLayoutDraggable.h; sourceTree = "<group>"; };
 		4FAA229621BE45DE001F97B6 /* CollectionViewFlowLayoutDraggable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionViewFlowLayoutDraggable.m; sourceTree = "<group>"; };
 		4FAA229821BE50BE001F97B6 /* DraggableLayoutViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DraggableLayoutViewController.h; sourceTree = "<group>"; };
@@ -400,6 +403,8 @@
 				4FA7A82A21D0D03F008A350C /* AutoFitHeightCollectionViewViewController.m */,
 				4FAA229821BE50BE001F97B6 /* DraggableLayoutViewController.h */,
 				4FAA229921BE50BE001F97B6 /* DraggableLayoutViewController.m */,
+				4FA8919024F214790091CE24 /* EquallySpacedCellViewController.h */,
+				4FA8919124F214790091CE24 /* EquallySpacedCellViewController.m */,
 				4F961BA221328B66009402F3 /* FPSLabel.h */,
 				4F961BA321328B67009402F3 /* FPSLabel.m */,
 				4F748FDA20F6072C001CF507 /* Header&Footer */,
@@ -579,6 +584,7 @@
 				4FB1D4DA20CC324100DBA776 /* PagableCollectionViewViewController.m in Sources */,
 				4FA5ABF020FC93FF0098A138 /* WCSeparatorFlowLayout.m in Sources */,
 				4F7D0347247BC89300FD8C61 /* WCViewTool.m in Sources */,
+				4FA8919224F214790091CE24 /* EquallySpacedCellViewController.m in Sources */,
 				4FAA229A21BE50BE001F97B6 /* DraggableLayoutViewController.m in Sources */,
 				4FB1D4D720CC2CBD00DBA776 /* MyCustomCollectionViewCell.m in Sources */,
 				4F65BFA320F87D6B00CE86EB /* WCEmotionFooterView.m in Sources */,

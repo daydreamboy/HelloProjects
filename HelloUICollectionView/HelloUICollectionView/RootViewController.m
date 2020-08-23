@@ -21,6 +21,7 @@
 #import "ManyRoundedImageViewViewController.h"
 #import "DraggableLayoutViewController.h"
 #import "AutoFitHeightCollectionViewViewController.h"
+#import "EquallySpacedCellViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -56,6 +57,7 @@
         @"Many rounded image view in UICollectionView",
         @"Drag cell",
         @"Auto fit content height",
+        @"Equally spaced cell",
     ];
     _classes = @[
         [FlowLayoutViewController class],
@@ -71,6 +73,7 @@
         [ManyRoundedImageViewViewController class],
         [DraggableLayoutViewController class],
         [AutoFitHeightCollectionViewViewController class],
+        [EquallySpacedCellViewController class],
     ];
 }
 

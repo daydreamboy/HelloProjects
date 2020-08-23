@@ -22,6 +22,7 @@
 | itemSize                |                                      |
 | minimumLineSpacing      |                                      |
 | minimumInteritemSpacing |                                      |
+| sectionInset            | 每个section的inset                   |
 
 
 
