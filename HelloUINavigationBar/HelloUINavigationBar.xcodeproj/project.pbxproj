@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4F04330120EE1D7500AEFEC6 /* HideBackArrowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F04330020EE1D7500AEFEC6 /* HideBackArrowViewController.m */; };
+		4F160E3F24ECC3A700932EC9 /* CustomizedBackItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F160E3E24ECC3A700932EC9 /* CustomizedBackItemViewController.m */; };
 		4F5523162080903D00C137EC /* TransparentNavBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5523152080903D00C137EC /* TransparentNavBarViewController.m */; };
 		4F55235620809F8300C137EC /* SolidColoredNavBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F55235520809F8300C137EC /* SolidColoredNavBarViewController.m */; };
 		4F564546207F4ABA00CE60A5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F564545207F4ABA00CE60A5 /* AppDelegate.m */; };
@@ -25,6 +26,8 @@
 /* Begin PBXFileReference section */
 		4F0432FF20EE1D7500AEFEC6 /* HideBackArrowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HideBackArrowViewController.h; sourceTree = "<group>"; };
 		4F04330020EE1D7500AEFEC6 /* HideBackArrowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HideBackArrowViewController.m; sourceTree = "<group>"; };
+		4F160E3D24ECC3A700932EC9 /* CustomizedBackItemViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomizedBackItemViewController.h; sourceTree = "<group>"; };
+		4F160E3E24ECC3A700932EC9 /* CustomizedBackItemViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomizedBackItemViewController.m; sourceTree = "<group>"; };
 		4F5523142080903D00C137EC /* TransparentNavBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransparentNavBarViewController.h; sourceTree = "<group>"; };
 		4F5523152080903D00C137EC /* TransparentNavBarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransparentNavBarViewController.m; sourceTree = "<group>"; };
 		4F55235420809F8300C137EC /* SolidColoredNavBarViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SolidColoredNavBarViewController.h; sourceTree = "<group>"; };
@@ -110,6 +113,8 @@
 				4F04330020EE1D7500AEFEC6 /* HideBackArrowViewController.m */,
 				4F5D2EC421CA8C870023D825 /* PositionBarButtonItemViewController.h */,
 				4F5D2EC521CA8C870023D825 /* PositionBarButtonItemViewController.m */,
+				4F160E3D24ECC3A700932EC9 /* CustomizedBackItemViewController.h */,
+				4F160E3E24ECC3A700932EC9 /* CustomizedBackItemViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -208,6 +213,7 @@
 				4F70851021CB356600D4C868 /* WCNavigationBar.m in Sources */,
 				4F5D2EC621CA8C870023D825 /* PositionBarButtonItemViewController.m in Sources */,
 				4F564546207F4ABA00CE60A5 /* AppDelegate.m in Sources */,
+				4F160E3F24ECC3A700932EC9 /* CustomizedBackItemViewController.m in Sources */,
 				4F5523162080903D00C137EC /* TransparentNavBarViewController.m in Sources */,
 				4F04330120EE1D7500AEFEC6 /* HideBackArrowViewController.m in Sources */,
 				4F55235620809F8300C137EC /* SolidColoredNavBarViewController.m in Sources */,

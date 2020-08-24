@@ -84,6 +84,10 @@
 
 @end
 
+typedef NS_ENUM(NSUInteger, SortType) {
+    SortTypeByIndex,
+    SortTypeByUnicode,
+};
 
 @interface FontGlyphInfoViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) WCFontInfo *fontInfo;
@@ -93,6 +97,7 @@
 @property (nonatomic, assign) CGFloat spacing;
 @property (nonatomic, assign) NSUInteger numberOfCellPerRow;
 @property (nonatomic, strong) UIView *collectionViewBackground;
+@property (nonatomic, assign) SortType sortType;
 @end
 
 @implementation FontGlyphInfoViewController
@@ -125,10 +130,35 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.collectionView];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sort" style:UIBarButtonItemStylePlain target:self action:@selector(sortItemClicked:)];
 }
 
 - (void)dealloc {
     [WCFontTool unregisterIconFontWithName:self.fontName error:nil completionHandler:nil];
+}
+
+#pragma mark - Getter
+
+- (void)sortItemClicked:(id)sender {
+    if (self.sortType == SortTypeByIndex) {
+        self.sortType = SortTypeByUnicode;
+    }
+    else if (self.sortType == SortTypeByUnicode) {
+        self.sortType = SortTypeByIndex;
+    }
+    
+    if (self.sortType == SortTypeByIndex) {
+        NSSortDescriptor *sorter = [NSSortDescriptor sortDescriptorWithKey:@"index" ascending:YES];
+        self.glyphInfos = [_fontInfo.glyphInfos sortedArrayUsingDescriptors:@[sorter]];
+        
+        [self.collectionView reloadData];
+    }
+    else if (self.sortType == SortTypeByUnicode) {
+        self.glyphInfos = _fontInfo.glyphInfos;
+        
+        [self.collectionView reloadData];
+    }
 }
 
 - (UICollectionView *)collectionView {
