@@ -208,6 +208,27 @@ XCTestExpectation *expectation__ = [self expectationWithDescription:description_
     XCTestExpectation_END(3)
 }
 
+- (void)test_pinYinMatchPatternsWithText_options_with_abnormal {
+    __block NSString *string;
+    __block NSOrderedSet<NSString *> *output;
+    
+    XCTestExpectation_BEGIN
+    
+    [[WCPinYinTable sharedInstance] preloadWithFilePath:self.filePath completion:^(BOOL success) {
+        NSLog(@"load time: %f", [WCPinYinTable sharedInstance].loadTimeInterval);
+        
+        // Case 1
+        string = @"z";
+        output = [[WCPinYinTable sharedInstance] pinYinMatchPatternsWithText:string options:WCPinYinStringPatternOptionAll];
+        NSLog(@"%@", output);
+        XCTAssertTrue(output.count == 1);
+
+        XCTestExpectation_FULFILL
+    } async:NO];
+    
+    XCTestExpectation_END(3)
+}
+
 #pragma mark - Testing
 
 - (void)test_createMarkedVowelPinYinWithPinYin_tone {

@@ -366,34 +366,50 @@ static dispatch_queue_t sQueue;
     return [stringM copy];
 }
 
+/**
+ Combination of elements in multiple columns by order. e.g.
+ 
+ array1 (column1)  |  array2 (column2)  |  array3 (column3)
+ a  | b1 | c1
+   | b2 | c2
+   | b3 |
+ ==>
+ a, b1, c1
+ a, b1, c2
+ a, b2, c1
+ a, b2, c2
+ a, b3, c1
+ a, b3, c2
+ */
 + (NSMutableOrderedSet *)joinEachElementsByOrder:(NSMutableArray<NSMutableOrderedSet *> *)patternsArray {
     NSMutableOrderedSet *allPatterns = [NSMutableOrderedSet orderedSet];
     
-    NSMutableOrderedSet *joinedPatterns = [patternsArray firstObject];
-    [patternsArray removeObjectAtIndex:0];
-    [allPatterns unionOrderedSet:joinedPatterns];
-    
-    do {
-        NSMutableOrderedSet *tempPatterns = [NSMutableOrderedSet orderedSet];
-        
-        for (NSInteger i = 0; i < joinedPatterns.count; ++i) {
-            NSString *element1 = [joinedPatterns objectAtIndex:i];
-            
-            NSMutableOrderedSet *nextPattersToMerge = [patternsArray firstObject];
-            for (NSInteger j = 0; j < nextPattersToMerge.count; ++j) {
-                NSString *element2 = [nextPattersToMerge objectAtIndex:j];
-                
-                [tempPatterns addObject:[NSString stringWithFormat:@"%@%@", element1, element2]];
-            }
-        }
-        
-        joinedPatterns = tempPatterns;
+    if (patternsArray.count) {
+        NSMutableOrderedSet *joinedPatterns = [patternsArray firstObject];
+        [patternsArray removeObjectAtIndex:0];
         [allPatterns unionOrderedSet:joinedPatterns];
         
-        [patternsArray removeObjectAtIndex:0];
+        while (patternsArray.count > 0) {
+            NSMutableOrderedSet *tempPatterns = [NSMutableOrderedSet orderedSet];
+            
+            for (NSInteger i = 0; i < joinedPatterns.count; ++i) {
+                NSString *element1 = [joinedPatterns objectAtIndex:i];
+                
+                NSMutableOrderedSet *nextPattersToMerge = [patternsArray firstObject];
+                for (NSInteger j = 0; j < nextPattersToMerge.count; ++j) {
+                    NSString *element2 = [nextPattersToMerge objectAtIndex:j];
+                    
+                    [tempPatterns addObject:[NSString stringWithFormat:@"%@%@", element1, element2]];
+                }
+            }
+            
+            joinedPatterns = tempPatterns;
+            [allPatterns unionOrderedSet:joinedPatterns];
+            
+            [patternsArray removeObjectAtIndex:0];
+        }
     }
-    while (patternsArray.count > 0);
-    
+        
     return allPatterns;
 }
 
