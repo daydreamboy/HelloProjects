@@ -51,8 +51,9 @@
         //textView.text = @"Some Text";
         //textView.attributedPlaceholder = [[NSAttributedString alloc] initWithString:@"Type here..."];
         textView.font = [UIFont systemFontOfSize:17];
-        textView.placeholder = @"Test Test";
-        textView.placeholderColor = [UIColor greenColor];
+        textView.textAlignment = NSTextAlignmentNatural;
+        textView.placeholder = @"Test Test Test TestTest TestTest TestTest TestTest TestTest Test23";
+        //textView.placeholderColor = [UIColor greenColor];
         textView.layer.borderColor = [UIColor redColor].CGColor;
         textView.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
         

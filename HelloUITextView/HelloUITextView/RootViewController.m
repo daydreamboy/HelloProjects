@@ -8,7 +8,7 @@
 
 #import "RootViewController.h"
 
-#import "Demo1ViewController.h"
+#import "PlaceholderViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -31,11 +31,11 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"Demo1ViewController's title",
+        @"Attributed placeholder",
         @"call a test method",
     ];
     _classes = @[
-        [Demo1ViewController class],
+        [PlaceholderViewController class],
         @"testMethod",
     ];
 }

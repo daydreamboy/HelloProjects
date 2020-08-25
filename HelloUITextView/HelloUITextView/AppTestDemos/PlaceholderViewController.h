@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Demo1ViewController : UIViewController
+@interface PlaceholderViewController : UIViewController
 
 
 @end

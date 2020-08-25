@@ -11,7 +11,7 @@
 		4F86A70220C77C6B00DFCFD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F86A70120C77C6B00DFCFD0 /* Assets.xcassets */; };
 		4F86A70520C77C6B00DFCFD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F86A70320C77C6B00DFCFD0 /* LaunchScreen.storyboard */; };
 		4F86A70820C77C6B00DFCFD0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86A70720C77C6B00DFCFD0 /* main.m */; };
-		4F86A71220C77CFE00DFCFD0 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86A71020C77CFE00DFCFD0 /* Demo1ViewController.m */; };
+		4F86A71220C77CFE00DFCFD0 /* PlaceholderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86A71020C77CFE00DFCFD0 /* PlaceholderViewController.m */; };
 		4F86A71520C77D0E00DFCFD0 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86A71320C77D0E00DFCFD0 /* RootViewController.m */; };
 		4F86A71820C77D6F00DFCFD0 /* YYTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86A71720C77D6F00DFCFD0 /* YYTextView.m */; };
 		4F86A72920C780E000DFCFD0 /* YYTextLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86A72820C780E000DFCFD0 /* YYTextLayout.m */; };
@@ -35,6 +35,7 @@
 		4F86A76020C7852D00DFCFD0 /* UIView+YYText.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86A75F20C7852C00DFCFD0 /* UIView+YYText.m */; };
 		4F86A76320C7854000DFCFD0 /* YYTextTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86A76120C7853F00DFCFD0 /* YYTextTransaction.m */; };
 		4F86A76620C7856500DFCFD0 /* UIPasteboard+YYText.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86A76520C7856500DFCFD0 /* UIPasteboard+YYText.m */; };
+		4FDF805F24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF805E24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,8 +46,8 @@
 		4F86A70420C77C6B00DFCFD0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F86A70620C77C6B00DFCFD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F86A70720C77C6B00DFCFD0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4F86A71020C77CFE00DFCFD0 /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
-		4F86A71120C77CFE00DFCFD0 /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
+		4F86A71020C77CFE00DFCFD0 /* PlaceholderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderViewController.m; sourceTree = "<group>"; };
+		4F86A71120C77CFE00DFCFD0 /* PlaceholderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceholderViewController.h; sourceTree = "<group>"; };
 		4F86A71320C77D0E00DFCFD0 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F86A71420C77D0E00DFCFD0 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F86A71620C77D6F00DFCFD0 /* YYTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTextView.h; sourceTree = "<group>"; };
@@ -93,6 +94,8 @@
 		4F86A76220C7853F00DFCFD0 /* YYTextTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTextTransaction.h; sourceTree = "<group>"; };
 		4F86A76420C7856500DFCFD0 /* UIPasteboard+YYText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIPasteboard+YYText.h"; sourceTree = "<group>"; };
 		4F86A76520C7856500DFCFD0 /* UIPasteboard+YYText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIPasteboard+YYText.m"; sourceTree = "<group>"; };
+		4FDF805D24F3DE6B00BEBBB6 /* WCPlaceholderTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCPlaceholderTextView.h; sourceTree = "<group>"; };
+		4FDF805E24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCPlaceholderTextView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,7 @@
 		4F86A6EC20C77C6A00DFCFD0 = {
 			isa = PBXGroup;
 			children = (
+				4FDF805C24F3D8EA00BEBBB6 /* WCGrowingTextView */,
 				4F86A70E20C77CF500DFCFD0 /* WCTextView */,
 				4F86A6F720C77C6A00DFCFD0 /* HelloUITextView */,
 				4F86A6F620C77C6A00DFCFD0 /* Products */,
@@ -186,8 +190,8 @@
 		4F86A70F20C77CFE00DFCFD0 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F86A71120C77CFE00DFCFD0 /* Demo1ViewController.h */,
-				4F86A71020C77CFE00DFCFD0 /* Demo1ViewController.m */,
+				4F86A71120C77CFE00DFCFD0 /* PlaceholderViewController.h */,
+				4F86A71020C77CFE00DFCFD0 /* PlaceholderViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -205,6 +209,15 @@
 				4F86A76520C7856500DFCFD0 /* UIPasteboard+YYText.m */,
 			);
 			path = Addition;
+			sourceTree = "<group>";
+		};
+		4FDF805C24F3D8EA00BEBBB6 /* WCGrowingTextView */ = {
+			isa = PBXGroup;
+			children = (
+				4FDF805D24F3DE6B00BEBBB6 /* WCPlaceholderTextView.h */,
+				4FDF805E24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m */,
+			);
+			path = WCGrowingTextView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,9 +291,10 @@
 			files = (
 				4F86A72920C780E000DFCFD0 /* YYTextLayout.m in Sources */,
 				4F86A75720C784A600DFCFD0 /* YYTextMagnifier.m in Sources */,
-				4F86A71220C77CFE00DFCFD0 /* Demo1ViewController.m in Sources */,
+				4F86A71220C77CFE00DFCFD0 /* PlaceholderViewController.m in Sources */,
 				4F86A74220C7842300DFCFD0 /* NSParagraphStyle+YYText.m in Sources */,
 				4F86A73F20C7840F00DFCFD0 /* YYTextRunDelegate.m in Sources */,
+				4FDF805F24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m in Sources */,
 				4F86A73220C7811B00DFCFD0 /* YYTextAttribute.m in Sources */,
 				4F86A74520C7843800DFCFD0 /* YYTextDebugOption.m in Sources */,
 				4F86A70820C77C6B00DFCFD0 /* main.m in Sources */,
