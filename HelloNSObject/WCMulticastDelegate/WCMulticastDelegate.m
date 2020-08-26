@@ -132,4 +132,13 @@ static void *kAssociatedObjectKeyMulticastDelegate = &kAssociatedObjectKeyMultic
     return multicastDelegate;
 }
 
+- (BOOL)takeOverDelegate {
+    if ([self respondsToSelector:@selector(setDelegate:)]) {
+        [self performSelector:@selector(setDelegate:) withObject:self.multicastDelegate];
+        return YES;
+    }
+    
+    return NO;
+}
+
 @end

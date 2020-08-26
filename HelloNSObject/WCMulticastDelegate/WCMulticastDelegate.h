@@ -21,6 +21,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSObject (WCMulticastDelegate)
 @property (nonatomic, strong, readonly) WCMulticastDelegate *multicastDelegate;
+
+/**
+ Set delegate of the current object to the WCMulticastDelegate object if needed
+ 
+ @return YES if operate successfully
+ */
+- (BOOL)takeOverDelegate;
+
 @end
 
 NS_ASSUME_NONNULL_END

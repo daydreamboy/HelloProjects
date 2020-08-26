@@ -70,7 +70,10 @@
 
 - (void)test_multicastDelegate {
     AnObjectWithDelegate *anObject = [AnObjectWithDelegate new];
-    anObject.delegate = (id<MyDelegate>)anObject.multicastDelegate;
+    //
+    //anObject.delegate = (id<MyDelegate>)anObject.multicastDelegate;
+    
+    [anObject takeOverDelegate];
     
     [anObject.multicastDelegate addDelegate:[Delegate1 new]];
     [anObject.multicastDelegate addDelegate:[Delegate2 new]];
