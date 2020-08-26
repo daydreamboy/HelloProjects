@@ -25,6 +25,9 @@
     return self;
 }
 
+- (void)dealloc {
+}
+
 - (BOOL)addDelegate:(id)delegate {
     if (!delegate) {
         return NO;

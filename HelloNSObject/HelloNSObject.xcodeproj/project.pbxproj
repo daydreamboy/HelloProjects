@@ -18,6 +18,7 @@
 		4F2237D424595EB3000CC3C9 /* NSObject+WCDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2237D324595EB3000CC3C9 /* NSObject+WCDebug.m */; };
 		4F2237D6245963EA000CC3C9 /* Test_NSObject_WCDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2237D5245963EA000CC3C9 /* Test_NSObject_WCDebug.m */; };
 		4F23255C24F6024B0073BDC6 /* WCMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F23255B24F6024B0073BDC6 /* WCMulticastDelegate.m */; };
+		4F23255E24F6087E0073BDC6 /* Test_WCMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F23255D24F6087E0073BDC6 /* Test_WCMulticastDelegate.m */; };
 		4F35B9FB2324FC32001637AB /* SetIVarDirectlyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9DA2324FC30001637AB /* SetIVarDirectlyViewController.m */; };
 		4F35B9FC2324FC32001637AB /* CreateDynamicDelegateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9DC2324FC30001637AB /* CreateDynamicDelegateViewController.m */; };
 		4F35BA002324FC32001637AB /* IsaSwizzlingIssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9E12324FC31001637AB /* IsaSwizzlingIssueViewController.m */; };
@@ -95,6 +96,7 @@
 		4F2237D5245963EA000CC3C9 /* Test_NSObject_WCDebug.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_NSObject_WCDebug.m; sourceTree = "<group>"; };
 		4F23255A24F6024B0073BDC6 /* WCMulticastDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMulticastDelegate.h; sourceTree = "<group>"; };
 		4F23255B24F6024B0073BDC6 /* WCMulticastDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMulticastDelegate.m; sourceTree = "<group>"; };
+		4F23255D24F6087E0073BDC6 /* Test_WCMulticastDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_WCMulticastDelegate.m; sourceTree = "<group>"; };
 		4F35B9D92324FC30001637AB /* ObtainWeakVariableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObtainWeakVariableViewController.h; sourceTree = "<group>"; };
 		4F35B9DA2324FC30001637AB /* SetIVarDirectlyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetIVarDirectlyViewController.m; sourceTree = "<group>"; };
 		4F35B9DB2324FC30001637AB /* CreateDynamicDelegateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateDynamicDelegateViewController.h; sourceTree = "<group>"; };
@@ -377,6 +379,7 @@
 				4F5B7114229D686C0061A9D0 /* Test_NSObject.m */,
 				4F35BA2C23250101001637AB /* Test_property.m */,
 				4F2237D5245963EA000CC3C9 /* Test_NSObject_WCDebug.m */,
+				4F23255D24F6087E0073BDC6 /* Test_WCMulticastDelegate.m */,
 				4F5B65322249DD4600D40218 /* Info.plist */,
 			);
 			path = Test;
@@ -666,6 +669,7 @@
 				4F573291224B134500EFB1CF /* Person.m in Sources */,
 				4F5B65312249DD4600D40218 /* Test.mm in Sources */,
 				4F110EEF231F5E92006C9AFD /* Test_retainCount.m in Sources */,
+				4F23255E24F6087E0073BDC6 /* Test_WCMulticastDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
