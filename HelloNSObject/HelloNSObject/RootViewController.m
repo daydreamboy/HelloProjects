@@ -13,18 +13,15 @@
 #import "SwizzleMethodByCFunctionViewController.h"
 #import "CreateClassAtRuntimeViewController.h"
 
-//#import "GetPropertiesOfClassViewController.h"
-//#import "CheckNSObjectIsaVariableViewController.h"
+#import "IsaSwizzlingViewController.h"
+#import "IsaSwizzlingIssueViewController.h"
+#import "CreateClassAtRuntimeViewController.h"
+#import "SimpleDynamicSubclassViewController.h"
+#import "CreateDynamicParamModelViewController.h"
+#import "SetIVarDirectlyViewController.h"
+#import "ObtainWeakVariableViewController.h"
 
-//#import "IsaSwizzlingViewController.h"
-//#import "IsaSwizzlingIssueViewController.h"
-//#import "CreateClassAtRuntimeViewController.h"
-//#import "SimpleDynamicSubclassViewController.h"
-//#import "InterceptDoesNotRecognizeSelectorViewController.h"
-//#import "CreateDynamicParamModelViewController.h"
-//#import "SkipUnsafeMethodViewController.h"
-//#import "SetIVarDirectlyViewController.h"
-//#import "ObtainWeakVariableViewController.h"
+#import "UseMulticastDelegateViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -51,36 +48,32 @@
         @"Swizzle method by category method",
         @"Swizzle method by C function",
         @"Create class at runtime",
-//        @"Get properties of a class",
-//        @"浅析NSObject的isa实例变量",
+        @"Get properties of a class",
+        @"浅析NSObject的isa实例变量",
         
-//        @"isa swizzling",
-//        @"isa swizzling for overwriting (maybe cause crash)",
-//        @"Create Class at runtime",
-//        @"Simple dynamic subclass",
-//        @"Swizzle Usage (Capture unrecognized methods)",
-//        @"Create dynamic delegates",
-//        @"Skip unsafe method",
-//        @"Set ivar directly",
-//        @"Obtain weak variable by objc_loadWeakRetained()",
+        @"isa swizzling",
+        @"isa swizzling for overwriting (maybe cause crash)",
+        @"Create Class at runtime",
+        @"Simple dynamic subclass",
+        @"Swizzle Usage (Capture unrecognized methods)",
+        @"Create dynamic delegates",
+        @"Skip unsafe method",
+        @"Set ivar directly",
+        @"Obtain weak variable by objc_loadWeakRetained()",
     ];
     _classes = @[
         [SwizzleMethodByBlockViewController class],
         [SwizzleMethodByCategoryMethodViewController class],
         [SwizzleMethodByCFunctionViewController class],
         [CreateClassAtRuntimeViewController class],
-//        [GetPropertiesOfClassViewController class],
-//        [CheckNSObjectIsaVariableViewController class],
         
-//        [IsaSwizzlingViewController class],
-//        [IsaSwizzlingIssueViewController class],
-//        [CreateClassAtRuntimeViewController class],
-//        [SimpleDynamicSubclassViewController class],
-//        [InterceptDoesNotRecognizeSelectorViewController class],
-//        [CreateDynamicParamModelViewController class],
-//        [SkipUnsafeMethodViewController class],
-//        [SetIVarDirectlyViewController class],
-//        [ObtainWeakVariableViewController class],
+        [IsaSwizzlingViewController class],
+        [IsaSwizzlingIssueViewController class],
+        [CreateClassAtRuntimeViewController class],
+        [SimpleDynamicSubclassViewController class],
+        [CreateDynamicParamModelViewController class],
+        [SetIVarDirectlyViewController class],
+        [ObtainWeakVariableViewController class],
     ];
 }
 
