@@ -1700,7 +1700,7 @@
     NSString *output;
     
     // Case 1
-    string = @"中国🇨🇳美国🇺🇸文字";
+    string = @"中国🇨🇳美国🇺🇸哈哈😁";
     output = [WCStringTool stringCharWithString:string atIndex:0];
     XCTAssertEqualObjects(output, @"中");
     
@@ -1715,6 +1715,9 @@
     
     output = [WCStringTool stringCharWithString:string atIndex:5];
     XCTAssertEqualObjects(output, @"🇺🇸");
+    
+    output = [WCStringTool stringCharWithString:string atIndex:8];
+    XCTAssertEqualObjects(output, @"😁");
 }
 
 - (void)test_isLetterWithString_atIndex {
