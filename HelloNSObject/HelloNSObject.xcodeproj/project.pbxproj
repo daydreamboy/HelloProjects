@@ -17,6 +17,7 @@
 		4F161AB5231E935400A22350 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F161AB3231E935400A22350 /* RootViewController.m */; };
 		4F2237D424595EB3000CC3C9 /* NSObject+WCDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2237D324595EB3000CC3C9 /* NSObject+WCDebug.m */; };
 		4F2237D6245963EA000CC3C9 /* Test_NSObject_WCDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2237D5245963EA000CC3C9 /* Test_NSObject_WCDebug.m */; };
+		4F23255C24F6024B0073BDC6 /* WCMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F23255B24F6024B0073BDC6 /* WCMulticastDelegate.m */; };
 		4F35B9FB2324FC32001637AB /* SetIVarDirectlyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9DA2324FC30001637AB /* SetIVarDirectlyViewController.m */; };
 		4F35B9FC2324FC32001637AB /* CreateDynamicDelegateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9DC2324FC30001637AB /* CreateDynamicDelegateViewController.m */; };
 		4F35BA002324FC32001637AB /* IsaSwizzlingIssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9E12324FC31001637AB /* IsaSwizzlingIssueViewController.m */; };
@@ -92,6 +93,8 @@
 		4F2237D224595EB3000CC3C9 /* NSObject+WCDebug.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+WCDebug.h"; sourceTree = "<group>"; };
 		4F2237D324595EB3000CC3C9 /* NSObject+WCDebug.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+WCDebug.m"; sourceTree = "<group>"; };
 		4F2237D5245963EA000CC3C9 /* Test_NSObject_WCDebug.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_NSObject_WCDebug.m; sourceTree = "<group>"; };
+		4F23255A24F6024B0073BDC6 /* WCMulticastDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMulticastDelegate.h; sourceTree = "<group>"; };
+		4F23255B24F6024B0073BDC6 /* WCMulticastDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMulticastDelegate.m; sourceTree = "<group>"; };
 		4F35B9D92324FC30001637AB /* ObtainWeakVariableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObtainWeakVariableViewController.h; sourceTree = "<group>"; };
 		4F35B9DA2324FC30001637AB /* SetIVarDirectlyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetIVarDirectlyViewController.m; sourceTree = "<group>"; };
 		4F35B9DB2324FC30001637AB /* CreateDynamicDelegateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateDynamicDelegateViewController.h; sourceTree = "<group>"; };
@@ -294,6 +297,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4F42956924F5305200B1640B /* WCMulticastDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				4F23255A24F6024B0073BDC6 /* WCMulticastDelegate.h */,
+				4F23255B24F6024B0073BDC6 /* WCMulticastDelegate.m */,
+			);
+			path = WCMulticastDelegate;
+			sourceTree = "<group>";
+		};
 		4F54E6552238A08A001A9BE2 /* WCObjectTool */ = {
 			isa = PBXGroup;
 			children = (
@@ -388,6 +400,7 @@
 		4FFE71972236AC550020516E = {
 			isa = PBXGroup;
 			children = (
+				4F42956924F5305200B1640B /* WCMulticastDelegate */,
 				4F35BA0A2324FDA1001637AB /* WCObjCRuntime */,
 				4F54E6552238A08A001A9BE2 /* WCObjectTool */,
 				4FFE71A22236AC550020516E /* HelloNSObject */,
@@ -687,6 +700,7 @@
 				4F35BA042324FC32001637AB /* CreateDynamicParamModelViewController.m in Sources */,
 				4F35BA1B2324FDA1001637AB /* WCRTProtocol.m in Sources */,
 				4F35BA012324FC32001637AB /* IsaSwizzlingViewController.m in Sources */,
+				4F23255C24F6024B0073BDC6 /* WCMulticastDelegate.m in Sources */,
 				4F2237D424595EB3000CC3C9 /* NSObject+WCDebug.m in Sources */,
 				4F161AB2231E934000A22350 /* SwizzleMethodByBlockViewController.m in Sources */,
 				4F35BA052324FC32001637AB /* SomeSDK.m in Sources */,
