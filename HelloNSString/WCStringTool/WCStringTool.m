@@ -1326,6 +1326,75 @@
     return stringToReturn;
 }
 
+#pragma mark > String Char
+
++ (nullable NSString *)stringCharWithString:(NSString *)string atIndex:(NSUInteger)index {
+    if (![string isKindOfClass:[NSString class]] || string.length == 0) {
+        return nil;
+    }
+    
+    if (index >= string.length) {
+        return nil;
+    }
+    
+    NSMutableArray<NSString *> *stringChars = [NSMutableArray array];
+    
+    [string enumerateSubstringsInRange:NSMakeRange(0, string.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+        [stringChars addObject:substring];
+    }];
+    
+    if (index >= stringChars.count) {
+        return nil;
+    }
+    
+    return stringChars[index];
+}
+
++ (BOOL)isLetterWithString:(NSString *)string atIndex:(NSUInteger)index {
+    NSString *aChar = [self stringCharWithString:string atIndex:index];
+    
+    if (aChar.length != 1) {
+        return NO;
+    }
+    
+    unichar unicode = [aChar characterAtIndex:0];
+    if (('A' <= unicode && unicode <= 'Z') || ('a' <= unicode && unicode <= 'z')) {
+        return YES;
+    }
+
+    return NO;
+}
+
++ (BOOL)isUpperCaseLetterWithString:(NSString *)string atIndex:(NSUInteger)index {
+    NSString *aChar = [self stringCharWithString:string atIndex:index];
+    
+    if (aChar.length != 1) {
+        return NO;
+    }
+    
+    unichar unicode = [aChar characterAtIndex:0];
+    if (('A' <= unicode && unicode <= 'Z')) {
+        return YES;
+    }
+
+    return NO;
+}
+
++ (BOOL)isLowerCaseLetterWithString:(NSString *)string atIndex:(NSUInteger)index {
+    NSString *aChar = [self stringCharWithString:string atIndex:index];
+    
+    if (aChar.length != 1) {
+        return NO;
+    }
+    
+    unichar unicode = [aChar characterAtIndex:0];
+    if (('a' <= unicode && unicode <= 'z')) {
+        return YES;
+    }
+
+    return NO;
+}
+
 #pragma mark - Handle String As Url/Url-like
 
 + (nullable NSDictionary<NSString *, NSString *> *)keyValuePairsWithString:(NSString *)string usingConnector:(NSString *)connector usingSeparator:(NSString *)separator {

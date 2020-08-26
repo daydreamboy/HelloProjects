@@ -1693,6 +1693,96 @@
     XCTAssertEqualObjects(output, @"mODULE");
 }
 
+#pragma mark > String Char
+
+- (void)test_stringCharWithString_atIndex {
+    NSString *string;
+    NSString *output;
+    
+    // Case 1
+    string = @"中国🇨🇳美国🇺🇸文字";
+    output = [WCStringTool stringCharWithString:string atIndex:0];
+    XCTAssertEqualObjects(output, @"中");
+    
+    output = [WCStringTool stringCharWithString:string atIndex:1];
+    XCTAssertEqualObjects(output, @"国");
+    
+    output = [WCStringTool stringCharWithString:string atIndex:2];
+    XCTAssertEqualObjects(output, @"🇨🇳");
+    
+    output = [WCStringTool stringCharWithString:string atIndex:3];
+    XCTAssertEqualObjects(output, @"美");
+    
+    output = [WCStringTool stringCharWithString:string atIndex:5];
+    XCTAssertEqualObjects(output, @"🇺🇸");
+}
+
+- (void)test_isLetterWithString_atIndex {
+    NSString *string;
+    BOOL output;
+    
+    // Case 1
+    string = @"中国C🇨🇳c012";
+    output = [WCStringTool isLetterWithString:string atIndex:0];
+    XCTAssertFalse(output);
+    
+    output = [WCStringTool isLetterWithString:string atIndex:1];
+    XCTAssertFalse(output);
+    
+    output = [WCStringTool isLetterWithString:string atIndex:2];
+    XCTAssertTrue(output);
+    
+    output = [WCStringTool isLetterWithString:string atIndex:3];
+    XCTAssertFalse(output);
+    
+    output = [WCStringTool isLetterWithString:string atIndex:4];
+    XCTAssertTrue(output);
+}
+
+- (void)test_isUpperCaseLetterWithString_atIndex {
+    NSString *string;
+    BOOL output;
+    
+    // Case 1
+    string = @"中国C🇨🇳c012";
+    output = [WCStringTool isUpperCaseLetterWithString:string atIndex:0];
+    XCTAssertFalse(output);
+    
+    output = [WCStringTool isUpperCaseLetterWithString:string atIndex:1];
+    XCTAssertFalse(output);
+    
+    output = [WCStringTool isUpperCaseLetterWithString:string atIndex:2];
+    XCTAssertTrue(output);
+    
+    output = [WCStringTool isUpperCaseLetterWithString:string atIndex:3];
+    XCTAssertFalse(output);
+    
+    output = [WCStringTool isUpperCaseLetterWithString:string atIndex:4];
+    XCTAssertFalse(output);
+}
+
+- (void)test_isLowerCaseLetterWithString_atIndex {
+    NSString *string;
+    BOOL output;
+    
+    // Case 1
+    string = @"中国C🇨🇳c012";
+    output = [WCStringTool isLowerCaseLetterWithString:string atIndex:0];
+    XCTAssertFalse(output);
+    
+    output = [WCStringTool isLowerCaseLetterWithString:string atIndex:1];
+    XCTAssertFalse(output);
+    
+    output = [WCStringTool isLowerCaseLetterWithString:string atIndex:2];
+    XCTAssertFalse(output);
+    
+    output = [WCStringTool isLowerCaseLetterWithString:string atIndex:3];
+    XCTAssertFalse(output);
+    
+    output = [WCStringTool isLowerCaseLetterWithString:string atIndex:4];
+    XCTAssertTrue(output);
+}
+
 #pragma mark - Handle String As HTML
 
 - (void)test_stripTagsWithHTMLString {

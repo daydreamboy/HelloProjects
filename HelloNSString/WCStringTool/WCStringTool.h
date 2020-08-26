@@ -558,6 +558,14 @@ typedef NS_ENUM(NSUInteger, WCStringSplitInComponentsMode) {
  */
 + (nullable NSString *)changeCaseStringWithString:(NSString *)string range:(NSRange)range isUppercase:(BOOL)isUppercase;
 
+#pragma mark > String Char
+
++ (nullable NSString *)stringCharWithString:(NSString *)string atIndex:(NSUInteger)index;
+
++ (BOOL)isLetterWithString:(NSString *)string atIndex:(NSUInteger)index;
++ (BOOL)isUpperCaseLetterWithString:(NSString *)string atIndex:(NSUInteger)index;
++ (BOOL)isLowerCaseLetterWithString:(NSString *)string atIndex:(NSUInteger)index;
+
 #pragma mark - Handle String As Url/Url-like
 
 /**
