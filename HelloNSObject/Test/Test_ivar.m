@@ -1,12 +1,12 @@
 //
-//  SetIVarDirectlyViewController.m
-//  HelloObjCRuntime
+//  Test_ivar.m
+//  Test
 //
-//  Created by wesley_chen on 03/04/2018.
-//  Copyright © 2018 wesley chen. All rights reserved.
+//  Created by wesley_chen on 2020/8/26.
+//  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
-#import "SetIVarDirectlyViewController.h"
+#import <XCTest/XCTest.h>
 #import <objc/runtime.h>
 
 @interface Foo : NSObject
@@ -17,20 +17,22 @@
 @implementation Foo
 @end
 
-@interface SetIVarDirectlyViewController ()
+@interface Test_ivar : XCTestCase
+
 @end
 
-@implementation SetIVarDirectlyViewController
+@implementation Test_ivar
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    // @see http://alanduncan.me/2013/10/02/set-an-ivar-via-the-objective-c-runtime/
-    [self setIVarOfPrimitiveType];
-    [self setIVarOfObjectType];
+- (void)setUp {
+    NSLog(@"\n");
 }
 
-- (void)setIVarOfPrimitiveType {
+- (void)tearDown {
+    NSLog(@"\n");
+}
+
+- (void)test_setIVarOfPrimitiveType {
+    // @see http://alanduncan.me/2013/10/02/set-an-ivar-via-the-objective-c-runtime/
     Foo *myFoo = [[Foo alloc] init];
     char *property_name;
     CFTypeRef myFooRef;
@@ -45,9 +47,10 @@
 
     *ivarPtr = 15;
     NSLog(@"%ld", (long)myFoo.count);
+    XCTAssertTrue(myFoo.count == 15);
 }
 
-- (void)setIVarOfObjectType {
+- (void)test_setIVarOfObjectType {
     Foo *myFoo = [[Foo alloc] init];
     char *property_name;
     CFTypeRef myFooRef;
@@ -70,6 +73,7 @@
     CFBridgingRelease(myFooRef);
     
     NSLog(@"%@", myFoo.string);
+    XCTAssertEqualObjects(myFoo.string, @"test");
 }
 
 @end

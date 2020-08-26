@@ -20,7 +20,6 @@
 		4F23255C24F6024B0073BDC6 /* WCMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F23255B24F6024B0073BDC6 /* WCMulticastDelegate.m */; };
 		4F23255E24F6087E0073BDC6 /* Test_WCMulticastDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F23255D24F6087E0073BDC6 /* Test_WCMulticastDelegate.m */; };
 		4F23256B24F664730073BDC6 /* UseMulticastDelegateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F23256A24F664720073BDC6 /* UseMulticastDelegateViewController.m */; };
-		4F35B9FB2324FC32001637AB /* SetIVarDirectlyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9DA2324FC30001637AB /* SetIVarDirectlyViewController.m */; };
 		4F35B9FC2324FC32001637AB /* CreateDynamicDelegateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9DC2324FC30001637AB /* CreateDynamicDelegateViewController.m */; };
 		4F35BA002324FC32001637AB /* IsaSwizzlingIssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9E12324FC31001637AB /* IsaSwizzlingIssueViewController.m */; };
 		4F35BA012324FC32001637AB /* IsaSwizzlingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F35B9E32324FC31001637AB /* IsaSwizzlingViewController.m */; };
@@ -64,6 +63,7 @@
 		4F650EAE223967DD002BA46F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F650EAD223967DD002BA46F /* main.m */; };
 		4FD758C12324F10C00BC1C2F /* SwizzleMethodByCategoryMethodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7E7F84231ECE9700E91F0E /* SwizzleMethodByCategoryMethodViewController.m */; };
 		4FD758C42324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD758C32324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.m */; };
+		4FE4376824F67D9D00AEFB27 /* Test_ivar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4376724F67D9D00AEFB27 /* Test_ivar.m */; };
 		4FFE71A52236AC550020516E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFE71A42236AC550020516E /* AppDelegate.m */; };
 		4FFE71AD2236AC560020516E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE71AC2236AC560020516E /* Assets.xcassets */; };
 		4FFE71B02236AC560020516E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FFE71AE2236AC560020516E /* LaunchScreen.storyboard */; };
@@ -101,14 +101,12 @@
 		4F23256924F664720073BDC6 /* UseMulticastDelegateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseMulticastDelegateViewController.h; sourceTree = "<group>"; };
 		4F23256A24F664720073BDC6 /* UseMulticastDelegateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseMulticastDelegateViewController.m; sourceTree = "<group>"; };
 		4F35B9D92324FC30001637AB /* ObtainWeakVariableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObtainWeakVariableViewController.h; sourceTree = "<group>"; };
-		4F35B9DA2324FC30001637AB /* SetIVarDirectlyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetIVarDirectlyViewController.m; sourceTree = "<group>"; };
 		4F35B9DB2324FC30001637AB /* CreateDynamicDelegateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateDynamicDelegateViewController.h; sourceTree = "<group>"; };
 		4F35B9DC2324FC30001637AB /* CreateDynamicDelegateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateDynamicDelegateViewController.m; sourceTree = "<group>"; };
 		4F35B9DD2324FC30001637AB /* IsaSwizzlingIssueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IsaSwizzlingIssueViewController.h; sourceTree = "<group>"; };
 		4F35B9E12324FC31001637AB /* IsaSwizzlingIssueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IsaSwizzlingIssueViewController.m; sourceTree = "<group>"; };
 		4F35B9E22324FC31001637AB /* AllModelsProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AllModelsProtocol.h; sourceTree = "<group>"; };
 		4F35B9E32324FC31001637AB /* IsaSwizzlingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IsaSwizzlingViewController.m; sourceTree = "<group>"; };
-		4F35B9E72324FC31001637AB /* SetIVarDirectlyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetIVarDirectlyViewController.h; sourceTree = "<group>"; };
 		4F35B9E82324FC31001637AB /* CreateClassAtRuntimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateClassAtRuntimeViewController.h; sourceTree = "<group>"; };
 		4F35B9EA2324FC31001637AB /* CreateClassAtRuntimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateClassAtRuntimeViewController.m; sourceTree = "<group>"; };
 		4F35B9EB2324FC31001637AB /* ObtainWeakVariableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObtainWeakVariableViewController.m; sourceTree = "<group>"; };
@@ -182,6 +180,7 @@
 		4F7E7F85231ECE9700E91F0E /* SwizzleMethodByCategoryMethodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwizzleMethodByCategoryMethodViewController.h; sourceTree = "<group>"; };
 		4FD758C22324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwizzleMethodByCFunctionViewController.h; sourceTree = "<group>"; };
 		4FD758C32324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwizzleMethodByCFunctionViewController.m; sourceTree = "<group>"; };
+		4FE4376724F67D9D00AEFB27 /* Test_ivar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_ivar.m; sourceTree = "<group>"; };
 		4FFE71A02236AC550020516E /* HelloNSObject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSObject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FFE71A32236AC550020516E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FFE71A42236AC550020516E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -247,8 +246,6 @@
 				4F35B9E32324FC31001637AB /* IsaSwizzlingViewController.m */,
 				4F35B9D92324FC30001637AB /* ObtainWeakVariableViewController.h */,
 				4F35B9EB2324FC31001637AB /* ObtainWeakVariableViewController.m */,
-				4F35B9E72324FC31001637AB /* SetIVarDirectlyViewController.h */,
-				4F35B9DA2324FC30001637AB /* SetIVarDirectlyViewController.m */,
 				4F35B9F62324FC32001637AB /* SimpleDynamicSubclassViewController.h */,
 				4F35B9F82324FC32001637AB /* SimpleDynamicSubclassViewController.m */,
 				4F161AB1231E934000A22350 /* SwizzleMethodByBlockViewController.h */,
@@ -378,6 +375,7 @@
 				4F5B65302249DD4600D40218 /* Test.mm */,
 				4F110EE8231F5E92006C9AFD /* Test_bridge.m */,
 				4F110EE7231F5E92006C9AFD /* Test_IMP.m */,
+				4FE4376724F67D9D00AEFB27 /* Test_ivar.m */,
 				4F110EE9231F5E92006C9AFD /* Test_retainCount.m */,
 				4F110EE4231F5E92006C9AFD /* Test_selector.m */,
 				4F110EE5231F5E92006C9AFD /* Test_weak.m */,
@@ -662,6 +660,7 @@
 				4F110EEE231F5E92006C9AFD /* Test_bridge.m in Sources */,
 				4F110EED231F5E92006C9AFD /* Test_IMP.m in Sources */,
 				4F110EF2231F5EDD006C9AFD /* MyObject.m in Sources */,
+				4FE4376824F67D9D00AEFB27 /* Test_ivar.m in Sources */,
 				4F5B710D229D64710061A9D0 /* KeyedSubscriptingObject.m in Sources */,
 				4F57328E224B133400EFB1CF /* Thing.m in Sources */,
 				4F110EEB231F5E92006C9AFD /* Test_weak.m in Sources */,
@@ -701,7 +700,6 @@
 				4F35BA1A2324FDA1001637AB /* WCRTUnregisteredClass.m in Sources */,
 				4F35BA062324FC32001637AB /* PublicModelsForSomeSDK.m in Sources */,
 				4FD758C42324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.m in Sources */,
-				4F35B9FB2324FC32001637AB /* SetIVarDirectlyViewController.m in Sources */,
 				4F35BA172324FDA1001637AB /* WCRTProperty.m in Sources */,
 				4F54E6582238A0BB001A9BE2 /* WCObjectTool.m in Sources */,
 				4F35BA032324FC32001637AB /* ObtainWeakVariableViewController.m in Sources */,

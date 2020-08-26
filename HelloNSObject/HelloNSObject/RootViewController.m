@@ -18,7 +18,6 @@
 #import "CreateClassAtRuntimeViewController.h"
 #import "SimpleDynamicSubclassViewController.h"
 #import "CreateDynamicParamModelViewController.h"
-#import "SetIVarDirectlyViewController.h"
 #import "ObtainWeakVariableViewController.h"
 
 #import "UseMulticastDelegateViewController.h"
@@ -54,7 +53,6 @@
         @"Create Class at runtime",
         @"Simple dynamic subclass",
         @"Create dynamic delegates",
-        @"Set ivar directly",
         @"Obtain weak variable by objc_loadWeakRetained()",
     ];
     _classes = @[
@@ -68,7 +66,6 @@
         [CreateClassAtRuntimeViewController class],
         [SimpleDynamicSubclassViewController class],
         [CreateDynamicParamModelViewController class],
-        [SetIVarDirectlyViewController class],
         [ObtainWeakVariableViewController class],
     ];
 }
