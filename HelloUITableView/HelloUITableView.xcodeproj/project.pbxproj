@@ -22,6 +22,7 @@
 		2B63BF38200FA22600A5D8D2 /* GroupedTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63BF30200FA22600A5D8D2 /* GroupedTableViewViewController.m */; };
 		2B63BF39200FA22600A5D8D2 /* PlainTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B63BF31200FA22600A5D8D2 /* PlainTableViewViewController.m */; };
 		2BA442CC2261DFD60016C876 /* ShowContextMenuInCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BA442CB2261DFD60016C876 /* ShowContextMenuInCellViewController.m */; };
+		4F0484F324F6B16700D44B20 /* SearchBarTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0484F224F6B16700D44B20 /* SearchBarTableViewViewController.m */; };
 		4F090D2A2494D7F20034F246 /* WCIndexedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F090D292494D7F20034F246 /* WCIndexedCell.m */; };
 		4F090D2F2494FE860034F246 /* WCTintSystemCheckmarkCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F090D2E2494FE860034F246 /* WCTintSystemCheckmarkCell.m */; };
 		4F160E4624ECD14400932EC9 /* LoadMoreFromTopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F160E4524ECD14400932EC9 /* LoadMoreFromTopViewController.m */; };
@@ -93,6 +94,8 @@
 		2B63BF33200FA22600A5D8D2 /* PlainTableViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlainTableViewViewController.h; sourceTree = "<group>"; };
 		2BA442CA2261DFD60016C876 /* ShowContextMenuInCellViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowContextMenuInCellViewController.h; sourceTree = "<group>"; };
 		2BA442CB2261DFD60016C876 /* ShowContextMenuInCellViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowContextMenuInCellViewController.m; sourceTree = "<group>"; };
+		4F0484F124F6B16700D44B20 /* SearchBarTableViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchBarTableViewViewController.h; sourceTree = "<group>"; };
+		4F0484F224F6B16700D44B20 /* SearchBarTableViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchBarTableViewViewController.m; sourceTree = "<group>"; };
 		4F090D282494D7F20034F246 /* WCIndexedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCIndexedCell.h; sourceTree = "<group>"; };
 		4F090D292494D7F20034F246 /* WCIndexedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCIndexedCell.m; sourceTree = "<group>"; };
 		4F090D2D2494FE860034F246 /* WCTintSystemCheckmarkCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCTintSystemCheckmarkCell.h; sourceTree = "<group>"; };
@@ -258,6 +261,8 @@
 				4FA85D3A21818EDE007AC0E8 /* LoadMoreFromBottomViewController.m */,
 				4F160E4424ECD14400932EC9 /* LoadMoreFromTopViewController.h */,
 				4F160E4524ECD14400932EC9 /* LoadMoreFromTopViewController.m */,
+				4F0484F124F6B16700D44B20 /* SearchBarTableViewViewController.h */,
+				4F0484F224F6B16700D44B20 /* SearchBarTableViewViewController.m */,
 			);
 			path = section4;
 			sourceTree = "<group>";
@@ -561,6 +566,7 @@
 				4F60E72022A7E72200C27087 /* ShowEmptyTipViewInUITableViewViewController.m in Sources */,
 				4FAAA5A11FA4804600A80328 /* main.m in Sources */,
 				2B63BF37200FA22600A5D8D2 /* FadeInCellRowByRowViewController.m in Sources */,
+				4F0484F324F6B16700D44B20 /* SearchBarTableViewViewController.m in Sources */,
 				4FE8D2DF24E170C00035E424 /* IndexedTableViewViewController.m in Sources */,
 				4F9489CA20104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.m in Sources */,
 				4F5112BD22C39584005E5AAE /* CustomizeSelectMeViewController.m in Sources */,
