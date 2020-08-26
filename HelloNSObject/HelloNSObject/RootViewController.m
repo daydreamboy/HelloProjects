@@ -48,16 +48,12 @@
         @"Swizzle method by category method",
         @"Swizzle method by C function",
         @"Create class at runtime",
-        @"Get properties of a class",
-        @"浅析NSObject的isa实例变量",
         
         @"isa swizzling",
         @"isa swizzling for overwriting (maybe cause crash)",
         @"Create Class at runtime",
         @"Simple dynamic subclass",
-        @"Swizzle Usage (Capture unrecognized methods)",
         @"Create dynamic delegates",
-        @"Skip unsafe method",
         @"Set ivar directly",
         @"Obtain weak variable by objc_loadWeakRetained()",
     ];
