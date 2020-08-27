@@ -44,7 +44,7 @@
 
 说明
 
-> 1. Emoji标签也是普通字符串
+> 1. Emoji表情也是普通字符串
 > 2. UTF-8字符和Unicode字符，分别用小写u和大写U来区分，当Unicode字符只占一个UTF-8字符时，它们的值是一样的，例如@"\uF8FF"和@"\U0000F8FF"是等价的，多余位补零即可
 > 3. 控制字符，是不能使用UTF-8字符和Unicode字符，例如@"\U0000000A"和@"\u000A"（实际是@"\n"）会编译报错“Universal character name refers to a control character”
 
@@ -65,6 +65,14 @@ TODO
 TODO
 
 
+
+## 5、常用特殊字符的Unicode编码
+
+
+
+| 字符 | Unicode编码 |
+| ---- | ----------- |
+|      | \u2191      |
 
 
 
