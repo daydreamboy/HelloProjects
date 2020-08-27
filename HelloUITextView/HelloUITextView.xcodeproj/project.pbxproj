@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F0ED8BB24F4C649002128BF /* WCGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0ED8BA24F4C649002128BF /* WCGrowingTextView.m */; };
 		4F86A6FA20C77C6A00DFCFD0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86A6F920C77C6A00DFCFD0 /* AppDelegate.m */; };
 		4F86A70220C77C6B00DFCFD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F86A70120C77C6B00DFCFD0 /* Assets.xcassets */; };
 		4F86A70520C77C6B00DFCFD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F86A70320C77C6B00DFCFD0 /* LaunchScreen.storyboard */; };
@@ -39,6 +40,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F0ED8B924F4C649002128BF /* WCGrowingTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCGrowingTextView.h; sourceTree = "<group>"; };
+		4F0ED8BA24F4C649002128BF /* WCGrowingTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCGrowingTextView.m; sourceTree = "<group>"; };
 		4F86A6F520C77C6A00DFCFD0 /* HelloUITextView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUITextView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F86A6F820C77C6A00DFCFD0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F86A6F920C77C6A00DFCFD0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -216,6 +219,8 @@
 			children = (
 				4FDF805D24F3DE6B00BEBBB6 /* WCPlaceholderTextView.h */,
 				4FDF805E24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m */,
+				4F0ED8B924F4C649002128BF /* WCGrowingTextView.h */,
+				4F0ED8BA24F4C649002128BF /* WCGrowingTextView.m */,
 			);
 			path = WCGrowingTextView;
 			sourceTree = "<group>";
@@ -314,6 +319,7 @@
 				4F86A71520C77D0E00DFCFD0 /* RootViewController.m in Sources */,
 				4F86A72F20C7810700DFCFD0 /* YYTextUtilities.m in Sources */,
 				4F86A74820C7844A00DFCFD0 /* YYTextWeakProxy.m in Sources */,
+				4F0ED8BB24F4C649002128BF /* WCGrowingTextView.m in Sources */,
 				4F86A73C20C783EE00DFCFD0 /* YYTextArchiver.m in Sources */,
 				4F86A73920C783C600DFCFD0 /* YYTextRubyAnnotation.m in Sources */,
 			);

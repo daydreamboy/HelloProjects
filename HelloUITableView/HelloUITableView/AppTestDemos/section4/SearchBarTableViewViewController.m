@@ -120,6 +120,7 @@
     }
     else {
         [self.filteredSearchResult removeAllObjects];
+        [self.filteredSearchResult addObjectsFromArray:self.listData];
         [self.tableView reloadData];
     }
 }
