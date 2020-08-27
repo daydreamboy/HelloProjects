@@ -8,11 +8,12 @@
 
 #import "SearchBarTableViewViewController.h"
 
-@interface SearchBarTableViewViewController () <UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate>
+@interface SearchBarTableViewViewController () <UITableViewDelegate, UITableViewDataSource, UISearchControllerDelegate, UISearchResultsUpdating>
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *listArr;
+@property (nonatomic, strong) NSMutableArray *listData;
 @property (nonatomic, strong) UISearchController *searchController;
 @property (nonatomic, strong) UIView *statusBarView;
+@property (nonatomic, strong) NSMutableArray *filteredSearchResult;
 @end
 
 @implementation SearchBarTableViewViewController
@@ -22,10 +23,10 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
     
-    if (!_listArr) {
+    if (!_listData) {
         NSString *path = [[NSBundle mainBundle] pathForResource:@"computers" ofType:@"plist"];
         NSMutableArray *array = [[NSMutableArray alloc] initWithContentsOfFile:path];
-        _listArr = array;
+        _listData = array;
     }
 }
 
@@ -46,28 +47,27 @@
 - (UISearchController *)searchController {
     if (!_searchController) {
         _searchController = [[UISearchController alloc] initWithSearchResultsController:nil];
-        //_searchController.searchResultsUpdater = self;
+        _searchController.searchResultsUpdater = self;
+        // Note: disable dim to make filtered result list can be scrolling
         _searchController.dimsBackgroundDuringPresentation = NO;
         _searchController.delegate = self;
-        
-//        if (@available(iOS 13.0, *)) {
-//#if __IPHONE_13_0
-//            _searchController.searchBar.searchTextField.backgroundColor = [UIColor redColor];
-//#endif
-//        }
-//        else {
-            _searchController.searchBar.backgroundColor = [UIColor greenColor];
-//        }
         
         [_searchController.searchBar sizeToFit];
     }
     return _searchController;
 }
 
+- (NSMutableArray *)filteredSearchResult {
+    if (!_filteredSearchResult) {
+        _filteredSearchResult = [NSMutableArray array];
+    }
+    return _filteredSearchResult;
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _listArr.count;
+    return self.searchController.active ? self.filteredSearchResult.count : self.listData.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -76,10 +76,14 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifer];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifer];
-        cell.imageView.image = [UIImage imageNamed:@"babelfish"];
     }
 
-    cell.textLabel.text = [_listArr[indexPath.row] description];
+    if (self.searchController.active) {
+        cell.textLabel.text = [self.filteredSearchResult[indexPath.row] description];
+    }
+    else {
+        cell.textLabel.text = [self.listData[indexPath.row] description];
+    }
     
     return cell;
 }
@@ -87,7 +91,7 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [_tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - UISearchControllerDelegate
@@ -104,6 +108,31 @@
 
     // @see https://stackoverflow.com/questions/32234778/status-bar-changes-color-when-searching/34229176#34229176
     [self.searchController.view addSubview:self.statusBarView];
+}
+
+#pragma mark - UISearchResultsUpdating
+
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController {
+    if (self.searchController.searchBar.text.length) {
+        [self.filteredSearchResult removeAllObjects];
+        [self.filteredSearchResult addObjectsFromArray:[self filterByKeyword:self.searchController.searchBar.text]];
+        [self.tableView reloadData];
+    }
+    else {
+        [self.filteredSearchResult removeAllObjects];
+        [self.tableView reloadData];
+    }
+}
+
+#pragma mark - Filter
+
+- (NSArray *)filterByKeyword:(NSString *)keyword {
+    keyword = [keyword stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"self CONTAINS[c] %@", keyword];
+    NSArray *filteredItems = [self.listData filteredArrayUsingPredicate:predicate];
+    
+    return filteredItems;
 }
 
 @end
