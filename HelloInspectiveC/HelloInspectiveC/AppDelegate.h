@@ -1,14 +1,16 @@
 //
 //  AppDelegate.h
-//  HelloInspectiveC
+//  AppTest
 //
-//  Created by wesley_chen on 2020/8/30.
-//  Copyright © 2020 wesley_chen. All rights reserved.
+//  Created by wesley chen on 16/4/13.
+//
 //
 
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
+
+@property (strong, nonatomic) UIWindow *window;
 
 
 @end

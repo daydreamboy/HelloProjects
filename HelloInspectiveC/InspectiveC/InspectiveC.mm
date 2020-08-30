@@ -138,17 +138,17 @@ typedef struct ThreadCallStack_ {
 } ThreadCallStack;
 
 static inline void mapAddSelector(HashMapRef map, id obj_or_class, SEL _cmd) {
-  HashMapRef selectorSet = (HashMapRef)HMGet(map, (void *)obj_or_class);
+    HashMapRef selectorSet = (HashMapRef)HMGet(map, (__bridge void *)obj_or_class);
   if (selectorSet == NULL) {
     selectorSet = HMCreate(&pointerEquality, &pointerHash);
-    HMPut(map, (void *)obj_or_class, selectorSet);
+      HMPut(map, (__bridge void *)obj_or_class, selectorSet);
   }
 
   HMPut(selectorSet, _cmd, (void *)YES);
 }
 
 static inline void mapDestroySelectorSet(HashMapRef map, id obj_or_class) {
-  HashMapRef selectorSet = (HashMapRef)HMRemove(map, (void *)obj_or_class);
+    HashMapRef selectorSet = (HashMapRef)HMRemove(map, (__bridge void *)obj_or_class);
   if (selectorSet != NULL) {
     HMFree(selectorSet);
   }
@@ -198,7 +198,8 @@ extern "C" void InspectiveC_unwatchSelectorOnObject(id obj, SEL _cmd) {
     return;
   }
   performBlockOnProperThread(^(){
-      selectorSetRemoveSelector((HashMapRef)HMGet(objectsMap, obj), _cmd);
+      // TEMP
+      //selectorSetRemoveSelector((HashMapRef)HMGet(objectsMap, obj), _cmd);
   });
 }
 
@@ -232,7 +233,8 @@ extern "C" void InspectiveC_unwatchSelectorOnInstancesOfClass(Class clazz, SEL _
     return;
   }
   performBlockOnProperThread(^(){
-      selectorSetRemoveSelector((HashMapRef)HMGet(classMap, clazz), _cmd);
+      // TEMP
+      //selectorSetRemoveSelector((HashMapRef)HMGet(classMap, clazz), _cmd);
   });
 }
 
@@ -392,7 +394,7 @@ static inline void log(FILE *file, id obj, SEL _cmd, char *spaces) {
   if (isMetaClass) {
     fprintf(file, "%s%s+|%s %s|\n", spaces, spaces, class_getName(kind), sel_getName(_cmd));
   } else {
-    fprintf(file, "%s%s-|%s %s| @<%p>\n", spaces, spaces, class_getName(kind), sel_getName(_cmd), (void *)obj);
+      fprintf(file, "%s%s-|%s %s| @<%p>\n", spaces, spaces, class_getName(kind), sel_getName(_cmd), (__bridge void *)obj);
   }
 }
 
@@ -414,7 +416,7 @@ static inline void logWithArgs(ThreadCallStack *cs, FILE *file, id obj, SEL _cmd
     if (isMetaClass) {
       fprintf(file, metaClassFormatStr, spaces, spaces, class_getName(kind), sel_getName(_cmd));
     } else {
-      fprintf(file, normalFormatStr, spaces, spaces, class_getName(kind), (void *)obj, sel_getName(_cmd));
+        fprintf(file, normalFormatStr, spaces, spaces, class_getName(kind), (__bridge void *)obj, sel_getName(_cmd));
     }
     const char *typeEncoding = method_getTypeEncoding(method);
     if (!typeEncoding || classSupportsArbitraryPointerTypes(kind)) {
@@ -530,11 +532,11 @@ static inline void preObjc_msgSend_common(id self, uintptr_t lr, SEL _cmd, Threa
     Class clazz = object_getClass(self);
     RLOCK;
     // Critical section - check for hits.
-    BOOL isWatchedObject = selectorSetContainsSelector((HashMapRef)HMGet(objectsMap, (void *)self), _cmd);
-    BOOL isWatchedClass = selectorSetContainsSelector((HashMapRef)HMGet(classMap, (void *)clazz), _cmd);
+      BOOL isWatchedObject = selectorSetContainsSelector((HashMapRef)HMGet(objectsMap, (__bridge void *)self), _cmd);
+      BOOL isWatchedClass = selectorSetContainsSelector((HashMapRef)HMGet(classMap, (__bridge void *)clazz), _cmd);
     BOOL isWatchedSel = (HMGet(selsSet, (void *)_cmd) != NULL);
     UNLOCK;
-    if (isWatchedObject && _cmd == @selector(dealloc)) {
+    if (isWatchedObject && _cmd == NSSelectorFromString(@"dealloc")) {
       WLOCK;
       mapDestroySelectorSet(objectsMap, self);
       UNLOCK;
@@ -567,6 +569,7 @@ uintptr_t postObjc_msgSend() {
 #include "InspectiveCarm64.mm"
 #else
 #include "InspectiveCarm32.mm"
+#error "sf"
 #endif
 
 #if USE_FISHHOOK

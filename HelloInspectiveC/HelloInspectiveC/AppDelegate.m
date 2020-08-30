@@ -1,41 +1,36 @@
 //
 //  AppDelegate.m
-//  HelloInspectiveC
+//  AppTest
 //
-//  Created by wesley_chen on 2020/8/30.
-//  Copyright © 2020 wesley_chen. All rights reserved.
+//  Created by wesley chen on 16/4/13.
+//
 //
 
 #import "AppDelegate.h"
 
-@interface AppDelegate ()
+#import "RootViewController.h"
 
+@interface AppDelegate ()
+@property (nonatomic, strong) RootViewController *rootViewController;
+@property (nonatomic, strong) UINavigationController *navController;
 @end
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    
+    self.rootViewController = [RootViewController new];
+    self.navController = [[UINavigationController alloc] initWithRootViewController:self.rootViewController];
+    // Note: the translucent value of UITabBar and UINavigationBar are YES by default, this is cause off-screen rendering,
+    // so set it to NO
+    // @see https://stackoverflow.com/questions/45368350/is-there-something-wrong-of-ios-simulators-color-offscreen-rendered-function
+    self.navController.navigationBar.translucent = NO;
+    self.window.rootViewController = self.navController;
+    
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
-
-
-#pragma mark - UISceneSession lifecycle
-
-
-- (UISceneConfiguration *)application:(UIApplication *)application configurationForConnectingSceneSession:(UISceneSession *)connectingSceneSession options:(UISceneConnectionOptions *)options {
-    // Called when a new scene session is being created.
-    // Use this method to select a configuration to create the new scene with.
-    return [[UISceneConfiguration alloc] initWithName:@"Default Configuration" sessionRole:connectingSceneSession.role];
-}
-
-
-- (void)application:(UIApplication *)application didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
-    // Called when the user discards a scene session.
-    // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-    // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-}
-
 
 @end

@@ -44,7 +44,7 @@ void logObject(FILE *file, id obj) {
     logBlock(file, obj);
     return;
   }
-  fprintf(file, "<%s@%p>", class_getName(kind), reinterpret_cast<void *>(obj));
+    fprintf(file, "<%s@%p>", class_getName(kind), (__bridge void *)(obj));
 }
 
 #ifndef __arm64__
@@ -65,8 +65,9 @@ bool logArgument(FILE *file, const char *type, arg_list &args) {
     switch(*type) {
       case '#': // A class object (Class).
       case '@': { // An object (whether statically typed or typed id).
-        id value = pa_arg(args, id);
-        logObject(file, value);
+        void *value = pa_arg(args, void *);
+        id object = (__bridge id)value;
+        logObject(file, object);
       } break;
       case ':': { // A method selector (SEL).
         SEL value = pa_arg(args, SEL);

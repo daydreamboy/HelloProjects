@@ -1,3 +1,4 @@
+#import <Foundation/Foundation.h>
 
 struct ObjcMsgSendAndEnabled {
   uintptr_t msgSendPtr;
