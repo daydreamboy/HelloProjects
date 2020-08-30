@@ -67,6 +67,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Call Stack
 
+/**
+ Get the stack of current thread
+ 
+ @return the stack info
+ @discussion the appExecutableLoadAddress and callStackReturnAddresses is provided for atos command.
+ For usage
+ $ atos -o XXX.app.dSYM/Contents/Resources/DWARF/XXX -l <appExecutableLoadAddress> <callStackReturnAddresses>
+ */
 + (NSString *)currentThreadCallStackString;
 
 @end
