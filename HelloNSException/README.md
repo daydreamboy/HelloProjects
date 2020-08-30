@@ -387,6 +387,68 @@ CALayer的position(x,y)不允许有NaN值，否则会出现crash。（具体见H
 
 ## 7、Crash日志符号化
 
+Crash日志符号化，有几种方式
+
+* Xcode的View Device Logs，将Crash日志拖到左侧的日志列表中，Xcode自动符号化
+* 手动调用atos命令
+
+
+
+### atos命令
+
+atos用法，如下
+
+```shell
+Usage: atos [-p pid] [-o executable] [-f file] [-s slide | -l loadAddress] [-arch architecture] [-printHeader] [-fullPath] [address ...]
+```
+
+常见选项，如下
+
+* -o，指定符号文件
+* -l，某个镜像(image)的加载地址，该地址可以在Crash日志的Binary Images部分找到
+* address，每个函数符号都是一个地址，可以传入多个地址
+
+举个例子，如下
+
+```shell
+$ atos -o HelloNSException.app.dSYM/Contents/Resources/DWARF/HelloNSException -l 0x1029a0000 0x19e9b098c 0x19e6d90a4 0x19ea063f8 0x19ea05a8c 0x19e887fc0 0x1029ab524 0x1029ae868 0x1a2b84cf0 0x1a2b8480c 0x1a2b84f0c 0x1a29c7b98 0x1a29b77c0 0x1a29e7594 0x19e92dc48 0x19e928b34 0x19e929100 0x19e9288bc 0x1a8794328 0x1a29be6d4 0x1029a5f68 0x19e7b3460 
+0x19e9b098c
+0x19e6d90a4
+0x19ea063f8
+0x19ea05a8c
+0x19e887fc0
++[WCCrashCaseTool makeCrashWithNilParameter] (in HelloNSException) (WCCrashCaseTool.m:16)
+-[BaseTableViewController tableView:didSelectRowAtIndexPath:] (in HelloNSException) (BaseTableViewController.m:52)
+0x1a2b84cf0
+0x1a2b8480c
+0x1a2b84f0c
+0x1a29c7b98
+0x1a29b77c0
+0x1a29e7594
+0x19e92dc48
+0x19e928b34
+0x19e929100
+0x19e9288bc
+0x1a8794328
+0x1a29be6d4
+main (in HelloNSException) (main.m:14)
+0x19e7b3460
+```
+
+说明
+
+> 由于-l指定的加载地址是HelloNSException的加载地址，所以atos只能解析出HelloNSException镜像中的函数地址对应的符号。
+
+
+
+
+
+
+
+
+
+
+
 
 
 
