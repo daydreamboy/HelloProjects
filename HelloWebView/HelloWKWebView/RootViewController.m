@@ -16,6 +16,7 @@
 #import "DisableLinkPreviewWKViewController.h"
 #import "DisableUserSelectWKViewController.h"
 #import "WebViewFakeUIViewWKViewController.h"
+#import "MixRenderListWKViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -46,6 +47,7 @@
         @"Disable Link Preview",
         @"Disable User Select",
         @"WKWebView Fake as UIView",
+        @"同层渲染",
         @"call a test method",
     ];
     _classes = @[
@@ -57,6 +59,7 @@
         [DisableLinkPreviewWKViewController class],
         [DisableUserSelectWKViewController class],
         [WebViewFakeUIViewWKViewController class],
+        [MixRenderListWKViewController class],
         @"testMethod",
     ];
 }
