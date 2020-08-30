@@ -138,4 +138,13 @@
     XCTAssertEqualObjects(output, @"#111F2C3D");
 }
 
+- (void)test_print {
+    UIEdgeInsets insets = UIEdgeInsetsMake(1, 2, 3, 4);
+    [self callee:insets];
+}
+
+- (void)callee:(UIEdgeInsets)insets {
+    NSLog(@"%@", NSStringFromUIEdgeInsets(insets)); // p *(UIEdgeInsets *)($rbp+16)
+}
+
 @end
