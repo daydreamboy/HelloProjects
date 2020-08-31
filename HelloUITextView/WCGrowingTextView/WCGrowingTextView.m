@@ -28,7 +28,7 @@
 - (instancetype)initWithFrame:(CGRect)frame textContainer:(NSTextContainer *)textContainer {
     self = [super initWithFrame:frame textContainer:textContainer];
     if (self) {
-        [self commonInitializer];
+        commonInitializer(self);
     }
     return self;
 }
@@ -36,26 +36,18 @@
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     if (self) {
-        [self commonInitializer];
-    }
-    return self;
-}
-
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self commonInitializer];
+        commonInitializer(self);
     }
     return self;
 }
 
 #pragma mark ::
 
-- (void)commonInitializer {
-    _maximumNumberOfLines = 5;
-    _minimumNumberOfLines = 1;
-    _heightChangeAnimationDuration = 0.35;
-    _animateHeightChange = YES;
+static void commonInitializer(WCGrowingTextView *self) {
+    self->_maximumNumberOfLines = 5;
+    self->_minimumNumberOfLines = 1;
+    self->_heightChangeAnimationDuration = 0.35;
+    self->_enableHeightChangeAnimation = YES;
     
     [self.calculationLayoutManager addTextContainer:self.calculationTextContainer];
     
@@ -65,8 +57,8 @@
     
     for (NSLayoutConstraint *contraint in self.constraints) {
         if (contraint.firstAttribute == NSLayoutAttributeHeight && contraint.relation == NSLayoutRelationEqual) {
-            _heightConstraint = contraint;
-            _heightConstraint.constant = [self calculatedHeight];
+            self->_heightConstraint = contraint;
+            self->_heightConstraint.constant = [self calculatedHeight];
             break;
         }
     }
@@ -108,6 +100,12 @@
     [super setDelegate:growingTextViewDelegate];
 }
 
+- (void)setPlaceholder:(NSString *)placeholder {
+    [super setPlaceholder:placeholder];
+    
+    [self refreshHeightIfNeededAnimated:NO];
+}
+
 - (void)setAttributedPlaceholder:(NSAttributedString *)attributedPlaceholder {
     [super setAttributedPlaceholder:attributedPlaceholder];
     
@@ -128,7 +126,7 @@
     [super setContentSize:contentSize];
     
     if (self.window && self.isFirstResponder) {
-        [self refreshHeightIfNeededAnimated:self.animateHeightChange];
+        [self refreshHeightIfNeededAnimated:self.enableHeightChangeAnimation];
     }
     else {
         [self refreshHeightIfNeededAnimated:NO];
@@ -384,7 +382,7 @@
 #pragma mark - NSNotification
 
 - (void)handleUITextViewTextDidChangeNotification:(NSNotification *)notification {
-    [self refreshHeightIfNeededAnimated:self.animateHeightChange];
+    [self refreshHeightIfNeededAnimated:self.enableHeightChangeAnimation];
 }
 
 @end

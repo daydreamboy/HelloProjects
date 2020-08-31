@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PlaceholderViewController : UIViewController
+@interface UseWCPlaceholderTextViewViewController : UIViewController
 
 
 @end

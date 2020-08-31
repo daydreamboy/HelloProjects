@@ -23,18 +23,11 @@
 
 @implementation WCPlaceholderTextView
 
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self commonInitializer];
-    }
-    return self;
-}
-
 - (instancetype)initWithFrame:(CGRect)frame textContainer:(nullable NSTextContainer *)textContainer {
     self = [super initWithFrame:frame textContainer:textContainer];
     if (self) {
-        [self commonInitializer];
+        // @see https://stackoverflow.com/questions/12547823/preventing-subclasses-overriding-methods
+        commonInitializer(self);
     }
     return self;
 }
@@ -42,7 +35,7 @@
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     if (self) {
-        [self commonInitializer];
+        commonInitializer(self);
     }
     return self;
 }
@@ -70,7 +63,7 @@
 - (void)setFont:(UIFont *)font {
     [super setFont:font];
     
-    _placeholderAttributes[NSFontAttributeName] = font;
+    self.placeholderAttributes[NSFontAttributeName] = font;
 }
 
 - (void)setTextAlignment:(NSTextAlignment)textAlignment {
@@ -79,13 +72,13 @@
     NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
     paragraphStyle.alignment = textAlignment;
     paragraphStyle.lineBreakMode = self.textContainer.lineBreakMode;
-    _placeholderAttributes[NSParagraphStyleAttributeName] = paragraphStyle;
+    self.placeholderAttributes[NSParagraphStyleAttributeName] = paragraphStyle;
 }
 
 - (void)setPlaceholderColor:(UIColor *)placeholderColor {
     _placeholderColor = placeholderColor;
     
-    _placeholderAttributes[NSForegroundColorAttributeName] = placeholderColor;
+    self.placeholderAttributes[NSForegroundColorAttributeName] = placeholderColor;
 }
 
 #pragma mark -
@@ -152,32 +145,37 @@
     [self.attributedPlaceholder drawInRect:placeholderRect];
 }
 
+#pragma mark ::
+
 - (UIEdgeInsets)placeholderInsets {
     UIEdgeInsets insets = UIEdgeInsetsMake(self.contentInset.top + self.textContainerInset.top, self.contentInset.left + self.textContainerInset.left, self.contentInset.bottom + self.textContainerInset.bottom, self.contentInset.right + self.textContainerInset.right);
     
     return insets;
 }
 
-#pragma mark -
-
-- (void)commonInitializer {
+static void commonInitializer(WCPlaceholderTextView *self) {
     self.contentMode = UIViewContentModeTop;
-    _placeholderColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
+    self.placeholderColor = [UIColor colorWithRed:0.6 green:0.6 blue:0.6 alpha:1];
     
-    _placeholderAttributes = [NSMutableDictionary dictionary];
-    _placeholderAttributes[NSForegroundColorAttributeName] = _placeholderColor;
-    _placeholderAttributes[NSFontAttributeName] = self.font;
+    self.placeholderAttributes = [NSMutableDictionary dictionary];
+    self.placeholderAttributes[NSForegroundColorAttributeName] = self.placeholderColor;
+    self.placeholderAttributes[NSFontAttributeName] = self.font;
     
     NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
     paragraphStyle.alignment = self.textAlignment;
     paragraphStyle.lineBreakMode = self.textContainer.lineBreakMode;
-    _placeholderAttributes[NSParagraphStyleAttributeName] = paragraphStyle;
+    self.placeholderAttributes[NSParagraphStyleAttributeName] = paragraphStyle;
     
-    _placeholderLayoutManager = [NSLayoutManager new];
-    _placeholderTextContainer = [NSTextContainer new];
+    self.placeholderLayoutManager = [NSLayoutManager new];
+    self.placeholderTextContainer = [NSTextContainer new];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUITextViewTextDidChangeNotification:) name:UITextViewTextDidChangeNotification object:self];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleUITextViewTextDidChangeNotification_WCPlaceholderTextView:) name:UITextViewTextDidChangeNotification object:self];
 }
+
+#pragma mark ::
+
+
+#pragma mark -
 
 - (CGRect)placeholderUsedRectWithAttributedString:(NSAttributedString *)attributedString {
     if (self.placeholderTextContainer.layoutManager == nil) {
@@ -197,7 +195,7 @@
 
 #pragma mark - NSNotification
 
-- (void)handleUITextViewTextDidChangeNotification:(NSNotification *)notification {
+- (void)handleUITextViewTextDidChangeNotification_WCPlaceholderTextView:(NSNotification *)notification {
     if (notification.object == self) {
         [self setNeedsDisplay];
     }

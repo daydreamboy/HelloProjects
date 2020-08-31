@@ -62,7 +62,7 @@ typedef void(^heightChangeUserActionsBlockType)(CGFloat oldHeight, CGFloat newHe
 /**
  A Boolean value that determines whether the animation of the height change is enabled. Default value is `true`.
  */
-@property (nonatomic, assign) BOOL animateHeightChange;
+@property (nonatomic, assign) BOOL enableHeightChangeAnimation;
 /**
  The block which contains user defined actions that will run during the height change.
  */
@@ -71,6 +71,8 @@ typedef void(^heightChangeUserActionsBlockType)(CGFloat oldHeight, CGFloat newHe
  The receiver's delegate.
  */
 @property (nonatomic, weak) id<WCGrowingTextViewDelegate> growingTextViewDelegate;
+
+- (instancetype)initWithFrame:(CGRect)frame textContainer:(nullable NSTextContainer *)textContainer;
 
 @end
 

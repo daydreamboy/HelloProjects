@@ -8,7 +8,8 @@
 
 #import "RootViewController.h"
 
-#import "PlaceholderViewController.h"
+#import "UseWCPlaceholderTextViewViewController.h"
+#import "UseWCGrowingTextViewViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -31,12 +32,14 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"Attributed placeholder",
-        @"call a test method",
+        @"Use WCPlaceholderTextView",
+        @"Use WCGrowingTextView",
+        //@"call a test method",
     ];
     _classes = @[
-        [PlaceholderViewController class],
-        @"testMethod",
+        [UseWCPlaceholderTextViewViewController class],
+        [UseWCGrowingTextViewViewController class],
+        //@"testMethod",
     ];
 }
 

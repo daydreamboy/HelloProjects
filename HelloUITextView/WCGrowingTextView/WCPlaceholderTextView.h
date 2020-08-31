@@ -16,7 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) UIColor *placeholderColor;
 @property (nonatomic, copy, nullable) NSAttributedString *attributedPlaceholder;
 
-- (instancetype)initWithFrame:(CGRect)frame;
 - (instancetype)initWithFrame:(CGRect)frame textContainer:(nullable NSTextContainer *)textContainer;
 
 @end
