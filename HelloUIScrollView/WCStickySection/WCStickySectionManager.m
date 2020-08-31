@@ -30,7 +30,7 @@
 }
 
 - (BOOL)addStickySection:(WCStickySection *)section atInitialY:(CGFloat)initialY {
-    section.frame = CGRectMake(0, initialY, CGRectGetWidth(self.scrollView.bounds), section.height);
+    section.frame = CGRectMake(section.frame.origin.x, initialY, CGRectGetWidth(self.scrollView.bounds), section.height);
     section.initialY = initialY;
     [self.scrollView addSubview:section];
     [self.sectionsSet addObject:section];
