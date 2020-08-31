@@ -1,0 +1,32 @@
+//
+//  WCStickySection.m
+//  HelloUIScrollView
+//
+//  Created by wesley_chen on 2020/8/7.
+//  Copyright © 2020 wesley_chen. All rights reserved.
+//
+
+#import "WCStickySection.h"
+#import "WCStickySection_Internal.h"
+
+@interface WCStickySection ()
+
+@end
+
+@implementation WCStickySection
+
+- (instancetype)initWithFixedY:(CGFloat)fixedY height:(CGFloat)height {
+    self = [super initWithFrame:CGRectZero];
+    if (self) {
+        _sticky = YES;
+        _fixedY = fixedY;
+        _height = height;
+    }
+    return self;
+}
+
+- (NSString *)description {
+    return [NSString stringWithFormat:@"<WCStickyHeaderSection: %p; frame = %@; layer = <CALayer: %p>; sticky = %@>", self, NSStringFromCGRect(self.frame), self.layer, self.sticky ? @"YES": @"NO"];
+}
+
+@end

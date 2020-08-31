@@ -7,6 +7,7 @@
 //
 
 #import "WCGrowingTextView.h"
+#import "WCStickySectionManager.h"
 
 // >= `9.0`
 #ifndef IOS9_OR_LATER
@@ -19,6 +20,9 @@
 @property (nonatomic, assign, readonly) CGFloat maxHeight;
 @property (nonatomic, assign, readonly) CGFloat minHeight;
 @property (nonatomic, weak) NSLayoutConstraint *heightConstraint;
+@property (nonatomic, strong) WCStickySection *topMaskView;
+@property (nonatomic, strong) WCStickySection *bottomMaskView;
+@property (nonatomic, strong) WCStickySectionManager *stickyManager;
 @end
 
 @implementation WCGrowingTextView
@@ -48,12 +52,16 @@ static void commonInitializer(WCGrowingTextView *self) {
     self->_minimumNumberOfLines = 1;
     self->_heightChangeAnimationDuration = 0.35;
     self->_enableHeightChangeAnimation = YES;
+    self->_stickyManager = [[WCStickySectionManager alloc] initWithScrollView:self];
     
     [self.calculationLayoutManager addTextContainer:self.calculationTextContainer];
     
-    self.contentInset = UIEdgeInsetsMake(1, 0, 1, 0);
+    self.contentInset = UIEdgeInsetsMake(5, 5, 5, 5);
+    // Note: disable left/right padding on each line
+    self.textContainer.lineFragmentPadding = 0;
+    self.textContainerInset = UIEdgeInsetsZero;
     self.scrollsToTop = NO;
-    self.showsVerticalScrollIndicator = NO;
+    self.backgroundColor = [UIColor whiteColor];
     
     for (NSLayoutConstraint *contraint in self.constraints) {
         if (contraint.firstAttribute == NSLayoutAttributeHeight && contraint.relation == NSLayoutRelationEqual) {
@@ -133,6 +141,11 @@ static void commonInitializer(WCGrowingTextView *self) {
     }
 }
 
+- (void)setTextContainerInset:(UIEdgeInsets)textContainerInset {
+    // Note: disable set other UIEdgeInsets
+    [super setTextContainerInset:UIEdgeInsetsZero];
+}
+
 #pragma mark > Getter
 
 - (int)numberOfLines {
@@ -167,8 +180,54 @@ static void commonInitializer(WCGrowingTextView *self) {
 
 #pragma mark > Override
 
+- (CGRect)caretRectForPosition:(UITextPosition *)position {
+    CGRect caretRect = [super caretRectForPosition:position];
+    CGFloat lineHeight = [self heightForNumberOfLines:1] - [self insetHeight];
+    // Note: make caret correct match one line height, and shift y more accurate
+    return CGRectMake(caretRect.origin.x, ceil(caretRect.origin.y + 1), CGRectGetWidth(caretRect), lineHeight);
+}
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UITextViewTextDidChangeNotification object:self];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    if (!self.topMaskView.superview) {
+        [self.stickyManager addStickySection:({
+            UIEdgeInsets contentInsets = self.contentInset;
+            
+            WCStickySection *view = [[WCStickySection alloc] initWithFixedY:0 height:contentInsets.top];
+            
+            // Note: top mask view addSubview consider the contentInset, so use negative x and y
+            view.frame = CGRectMake(-contentInsets.left, 0, CGRectGetWidth(self.bounds), 0);
+            view.backgroundColor = self.backgroundColor;
+            [self insertSubview:view atIndex:0];
+            
+            _topMaskView = view;
+            view;
+        }) atInitialY:-self.contentInset.top];
+    }
+    
+    if (!self.bottomMaskView.superview) {
+        UIEdgeInsets contentInsets = self.contentInset;
+        CGFloat heightOfMaximumLines = [self maxHeight];
+        CGFloat fixedY = heightOfMaximumLines - contentInsets.bottom;
+        CGFloat initialY = heightOfMaximumLines - contentInsets.bottom - contentInsets.bottom;
+        
+        [self.stickyManager addStickySection:({
+            WCStickySection *view = [[WCStickySection alloc] initWithFixedY:fixedY height:contentInsets.bottom];
+            
+            // Note: top mask view addSubview consider the contentInset, so use negative x and y
+            view.frame = CGRectMake(-contentInsets.left, 0, CGRectGetWidth(self.bounds), 0);
+            view.backgroundColor = self.backgroundColor;
+            [self insertSubview:view atIndex:0];
+            
+            _bottomMaskView = view;
+            view;
+        }) atInitialY:initialY];
+    }
 }
 
 #pragma mark - Getter
@@ -231,7 +290,7 @@ static void commonInitializer(WCGrowingTextView *self) {
 }
 
 - (CGFloat)heightForNumberOfLines:(int)numberOfLines {
-    CGFloat height = self.contentInset.top + self.contentInset.bottom + self.textContainerInset.top + self.textContainerInset.bottom;
+    CGFloat height = [self insetHeight];
     
     NSUInteger numberOfNonEmptyLines = 0;
     NSUInteger index = 0;
@@ -279,6 +338,10 @@ static void commonInitializer(WCGrowingTextView *self) {
     return ceil(height);
 }
 
+- (CGFloat)insetHeight {
+    return self.contentInset.top + self.contentInset.bottom + self.textContainerInset.top + self.textContainerInset.bottom;
+}
+
 - (CGFloat)maxHeight {
     return [self heightForNumberOfLines:self.maximumNumberOfLines];
 }
@@ -303,7 +366,7 @@ static void commonInitializer(WCGrowingTextView *self) {
         
         void (^heightChangeCompletionBlock)(CGFloat, CGFloat) = ^(CGFloat oldHeight, CGFloat newHeight) {
             [self.layoutManager ensureLayoutForTextContainer:self.textContainer];
-            [self scrollToVisibleCaretIfNeeded];
+            //[self scrollToVisibleCaretIfNeeded];
             if ([self.growingTextViewDelegate respondsToSelector:@selector(growingTextViewDidChangeHeight:from:to:)]) {
                 [self.growingTextViewDelegate growingTextViewDidChangeHeight:self from:oldHeight to:newHeight];
             }
@@ -326,7 +389,7 @@ static void commonInitializer(WCGrowingTextView *self) {
         }
     }
     else {
-        [self scrollToVisibleCaretIfNeeded];
+        //[self scrollToVisibleCaretIfNeeded];
     }
 }
 

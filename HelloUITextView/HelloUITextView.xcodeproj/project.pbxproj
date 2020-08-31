@@ -37,6 +37,8 @@
 		4F86A76320C7854000DFCFD0 /* YYTextTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86A76120C7853F00DFCFD0 /* YYTextTransaction.m */; };
 		4F86A76620C7856500DFCFD0 /* UIPasteboard+YYText.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86A76520C7856500DFCFD0 /* UIPasteboard+YYText.m */; };
 		4F9BB3FD24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BB3FC24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.m */; };
+		4F9BB40424FD0818009C35D7 /* WCStickySectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BB40124FD0818009C35D7 /* WCStickySectionManager.m */; };
+		4F9BB40524FD0818009C35D7 /* WCStickySection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BB40324FD0818009C35D7 /* WCStickySection.m */; };
 		4FDF805F24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF805E24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +102,11 @@
 		4F86A76520C7856500DFCFD0 /* UIPasteboard+YYText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIPasteboard+YYText.m"; sourceTree = "<group>"; };
 		4F9BB3FB24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseWCGrowingTextViewViewController.h; sourceTree = "<group>"; };
 		4F9BB3FC24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCGrowingTextViewViewController.m; sourceTree = "<group>"; };
+		4F9BB3FF24FD0818009C35D7 /* WCStickySection_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCStickySection_Internal.h; sourceTree = "<group>"; };
+		4F9BB40024FD0818009C35D7 /* WCStickySectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCStickySectionManager.h; sourceTree = "<group>"; };
+		4F9BB40124FD0818009C35D7 /* WCStickySectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCStickySectionManager.m; sourceTree = "<group>"; };
+		4F9BB40224FD0818009C35D7 /* WCStickySection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCStickySection.h; sourceTree = "<group>"; };
+		4F9BB40324FD0818009C35D7 /* WCStickySection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCStickySection.m; sourceTree = "<group>"; };
 		4FDF805D24F3DE6B00BEBBB6 /* WCPlaceholderTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCPlaceholderTextView.h; sourceTree = "<group>"; };
 		4FDF805E24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCPlaceholderTextView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -219,9 +226,22 @@
 			path = Addition;
 			sourceTree = "<group>";
 		};
+		4F9BB3FE24FD07E9009C35D7 /* WCStickySection */ = {
+			isa = PBXGroup;
+			children = (
+				4F9BB3FF24FD0818009C35D7 /* WCStickySection_Internal.h */,
+				4F9BB40224FD0818009C35D7 /* WCStickySection.h */,
+				4F9BB40324FD0818009C35D7 /* WCStickySection.m */,
+				4F9BB40024FD0818009C35D7 /* WCStickySectionManager.h */,
+				4F9BB40124FD0818009C35D7 /* WCStickySectionManager.m */,
+			);
+			path = WCStickySection;
+			sourceTree = "<group>";
+		};
 		4FDF805C24F3D8EA00BEBBB6 /* WCGrowingTextView */ = {
 			isa = PBXGroup;
 			children = (
+				4F9BB3FE24FD07E9009C35D7 /* WCStickySection */,
 				4FDF805D24F3DE6B00BEBBB6 /* WCPlaceholderTextView.h */,
 				4FDF805E24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m */,
 				4F0ED8B924F4C649002128BF /* WCGrowingTextView.h */,
@@ -303,6 +323,7 @@
 				4F86A75720C784A600DFCFD0 /* YYTextMagnifier.m in Sources */,
 				4F86A71220C77CFE00DFCFD0 /* UseWCPlaceholderTextViewViewController.m in Sources */,
 				4F86A74220C7842300DFCFD0 /* NSParagraphStyle+YYText.m in Sources */,
+				4F9BB40424FD0818009C35D7 /* WCStickySectionManager.m in Sources */,
 				4F86A73F20C7840F00DFCFD0 /* YYTextRunDelegate.m in Sources */,
 				4FDF805F24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m in Sources */,
 				4F86A73220C7811B00DFCFD0 /* YYTextAttribute.m in Sources */,
@@ -327,6 +348,7 @@
 				4F0ED8BB24F4C649002128BF /* WCGrowingTextView.m in Sources */,
 				4F86A73C20C783EE00DFCFD0 /* YYTextArchiver.m in Sources */,
 				4F9BB3FD24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.m in Sources */,
+				4F9BB40524FD0818009C35D7 /* WCStickySection.m in Sources */,
 				4F86A73920C783C600DFCFD0 /* YYTextRubyAnnotation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

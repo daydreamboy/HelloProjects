@@ -35,11 +35,14 @@
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         WCGrowingTextView *textView = [[WCGrowingTextView alloc] initWithFrame:CGRectMake(10, 90 + 10, screenSize.width - 2 * 10, 300) textContainer:nil];
         textView.enableHeightChangeAnimation = NO;
+        textView.contentInset = UIEdgeInsetsMake(20, 10, 20, 10);
         textView.font = [UIFont systemFontOfSize:17];
         textView.textAlignment = NSTextAlignmentNatural;
+        textView.maximumNumberOfLines = 3;
         textView.placeholder = @"Write a message";
         textView.layer.borderColor = [UIColor redColor].CGColor;
         textView.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
+        textView.text = @"我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。";
         
         _textView = textView;
     }
