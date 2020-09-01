@@ -1,34 +1,34 @@
 //
-//  GetHardwareModelInfoViewController.m
+//  GetSystemInfoViewController.m
 //  HelloUIDevice
 //
 //  Created by wesley_chen on 2018/10/17.
 //  Copyright © 2018 wesley_chen. All rights reserved.
 //
 
-#import "GetHardwareModelInfoViewController.h"
+#import "GetSystemInfoViewController.h"
 
 #import "WCDeviceTool.h"
 
 #define kTitle      @"title"
 #define kSubtitle   @"subtitle"
 
-@interface GetHardwareModelInfoViewController ()
+@interface GetSystemInfoViewController ()
 @property (nonatomic, strong) NSArray<NSDictionary *> *listData;
 @end
 
-@implementation GetHardwareModelInfoViewController
+@implementation GetSystemInfoViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.listData = @[
-                      @{ kTitle: [WCDeviceTool deviceName], kSubtitle: @"device name" },
-                      @{ kTitle: [WCDeviceTool deviceModel], kSubtitle: @"device model" },
-                      @{ kTitle: [WCDeviceTool deviceLocalizedModel], kSubtitle: @"device localized model" },
-                      @{ kTitle: [WCDeviceTool deviceDetailedModel], kSubtitle: @"device detailed model" },
-                      @{ kTitle: [WCDeviceTool deviceModelPrettyPrinted:NO], kSubtitle: @"device model not pretty printed" },
-                      @{ kTitle: [WCDeviceTool deviceModelPrettyPrinted:YES], kSubtitle: @"device model pretty printed" },
+                      @{ kTitle: [WCDeviceTool systemName], kSubtitle: @"system name" },
+                      @{ kTitle: [WCDeviceTool systemVersion], kSubtitle: @"system version" },
+                      @{ kTitle: [WCDeviceTool systemLanguage], kSubtitle: @"system language" },
+                      @{ kTitle: [WCDeviceTool systemLanguageCode], kSubtitle: @"system language code" },
+                      @{ kTitle: [WCDeviceTool systemUptime], kSubtitle: @"system up time" },
+                      //@{ kTitle: [WCDeviceTool deviceModelPrettyPrinted:YES], kSubtitle: @"device model pretty printed" },
                       ];
 }
 

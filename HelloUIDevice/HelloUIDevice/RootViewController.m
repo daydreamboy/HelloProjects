@@ -8,8 +8,8 @@
 
 #import "RootViewController.h"
 
-#import "GetHardwareModelInfoViewController.h"
-#import "GetHardwareProcessorInfoViewController.h"
+#import "GetSystemInfoViewController.h"
+#import "GetDeviceInfoViewController.h"
 #import "GetSystemMemoryInfoViewController.h"
 
 @interface RootViewController ()
@@ -33,14 +33,14 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"Get hardware model",
-        @"Get processor info",
+        @"Get system info",
+        @"Get device info",
         @"Get memory info",
         @"call a test method",
     ];
     _classes = @[
-        [GetHardwareModelInfoViewController class],
-        [GetHardwareProcessorInfoViewController class],
+        [GetSystemInfoViewController class],
+        [GetDeviceInfoViewController class],
         [GetSystemMemoryInfoViewController class],
         @"testMethod",
     ];

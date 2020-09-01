@@ -8,12 +8,12 @@
 
 #import "GetDeviceInfoViewController.h"
 #import "WCDeviceTool.h"
+#import "WCMacroTool.h"
 
 #define kTitle      @"title"
 #define kSubtitle   @"subtitle"
 
 @interface GetDeviceInfoViewController ()
-@property (nonatomic, strong) NSArray<NSDictionary *> *listData;
 @property (nonatomic, strong) NSArray<NSArray *> *sectionListData;
 @property (nonatomic, strong) NSArray<NSString *> *sectionTitles;
 @end
@@ -28,6 +28,9 @@
         @"Processor",
         @"Memory",
         @"Identifier",
+        @"Screen",
+        @"Bettery",
+        @"Network",
     ];
     
     _sectionListData = @[
@@ -51,6 +54,22 @@
         ],
         @[
             @{ kTitle: [WCDeviceTool deviceIdentifierForVendor], kSubtitle: @"identifierForVendor" },
+        ],
+        @[
+            @{ kTitle: NSStringFromCGSize([WCDeviceTool deviceScreenSize]), kSubtitle: @"screen size by dp" },
+            @{ kTitle: NSStringFromCGSize([WCDeviceTool deviceScreenSizeInPixel]), kSubtitle: @"screen size by px" },
+            @{ kTitle: [@([WCDeviceTool deviceScreenScale]) stringValue], kSubtitle: @"screen scale" },
+            @{ kTitle: [@([WCDeviceTool deviceScreenBrightness]) stringValue], kSubtitle: @"screen brightness" },
+        ],
+        @[
+            @{ kTitle: STR_OF_BOOL([WCDeviceTool deviceBatteryMoniteringEnabled]), kSubtitle: @"battery monitor enabled" },
+            @{ kTitle: [WCDeviceTool deviceBatteryState], kSubtitle: @"battery state" },
+            @{ kTitle: [WCDeviceTool deviceBatteryLevel], kSubtitle: @"battery level" },
+        ],
+        @[
+            @{ kTitle: STR_OF_BOOL([WCDeviceTool deviceWiFiEnabled]), kSubtitle: @"WiFi enabled" },
+            @{ kTitle: [WCDeviceTool deviceWiFiAddress], kSubtitle: @"WiFi address" },
+            @{ kTitle: [WCDeviceTool deviceWiFiIPv6Address], kSubtitle: @"WiFi IPv6 address" },
         ]
     ];
 }

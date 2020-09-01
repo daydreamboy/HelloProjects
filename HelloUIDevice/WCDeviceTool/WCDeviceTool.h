@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -61,6 +62,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSString *)systemVersion;
 
+/**
+ Get system current language, e.g. `中文（繁體字）`
+ 
+ @see http://stackoverflow.com/questions/6829448/ios-how-to-get-the-device-current-language-setting
+ @see http://stackoverflow.com/a/15174562/4794665
+ */
++ (NSString *)systemLanguage;
+
+/**
+ Get system current language code, e.g. `en`
+ */
++ (NSString *)systemLanguageCode;
+
++ (NSString *)systemUptime;
+
 #pragma mark > System browser
 
 /**
@@ -70,6 +86,28 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion iOS 13+, the block is asynchronous and queried by WKWebView; iOS 12-, the block is synchronous and queried by UIWebView,
  */
 + (void)browserUserAgentWithBlock:(void (^)(NSString *userAgent))block;
+
+#pragma mark > Localization
+
+/**
+ Country
+ */
++ (NSString *)localizationCountry;
+
+/**
+ Language
+ */
++ (NSString *)localizationLanguage;
+
+/**
+ TimeZone
+ */
++ (NSString *)localizationTimeZone;
+
+/**
+ Currency Symbol
+ */
++ (NSString *)localizationCurrency;
 
 #pragma mark - Hardware Info
 
@@ -123,6 +161,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)deviceIsSimulator;
 
+/**
+ Get device platform, e.g. `iPhone`, `iPad`
+ */
++ (NSString *)devicePlatformType;
+
 #pragma mark > Processor
 
 /**
@@ -139,6 +182,18 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSInteger)deviceProcessorActiveNumber;
 
++ (NSUInteger)deviceProcessorFrequency;
+
+#pragma mark > Memory
+
++ (NSUInteger)deviceRAMSize;
+
++ (NSUInteger)deviceTotalMemorySize;
+
+#pragma mark > Bus
+
++ (NSInteger)deviceBusFrequency;
+
 #pragma mark > Screen
 
 /**
@@ -148,6 +203,64 @@ NS_ASSUME_NONNULL_BEGIN
  @see https://medium.com/@cafielo/how-to-detect-notch-screen-in-swift-56271827625d
  */
 + (BOOL)screenHasNotch;
+
+/**
+ Get screen size by dp
+ */
++ (CGSize)deviceScreenSize;
+
+/**
+ Get screen size by px
+ */
++ (CGSize)deviceScreenSizeInPixel;
+
+/**
+ Get screen scale, e.g. `2.0`
+ */
++ (CGFloat)deviceScreenScale;
+
++ (CGFloat)deviceScreenBrightness;
+
+#pragma mark - Device Battery
+
++ (BOOL)deviceBatteryMoniteringEnabled;
++ (void)setDeviceBatteryMoniteringEnabled:(BOOL)enabled;
+
+/**
+ Get battery state, e.g. `Full`
+ 
+ @warning Always return `Unknown`, when `deviceBatteryMoniteringEnabled` is NO
+ */
++ (NSString *)deviceBatteryState;
+
+/**
+ Get battery level, e.g. `100%`
+ 
+ @warning Always return `Unknown`, when `deviceBatteryMoniteringEnabled` is NO
+ */
++ (NSString *)deviceBatteryLevel;
+
+#pragma mark > Network
+
++ (BOOL)deviceWiFiEnabled;
++ (NSString *)deviceWiFiAddress;
++ (NSString *)deviceWiFiIPv6Address;
+
+#pragma mark > Identifier
+
++ (NSString *)deviceIdentifierForVendor;
+
+#pragma mark > Feature
+
++ (BOOL)deviceJailBroken;
+
++ (BOOL)deviceMultitaskingEnabled;
+
++ (BOOL)deviceProximitySensorEnabled;
+
++ (BOOL)deviceDebuggerAttached;
+
++ (BOOL)devicePluggedIn;
 
 @end
 

@@ -1,5 +1,5 @@
 //
-//  GetHardwareProcessorInfoViewController.h
+//  GetDeviceInfoViewController.h
 //  HelloUIDevice
 //
 //  Created by wesley_chen on 2018/10/19.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GetHardwareProcessorInfoViewController : UITableViewController
+@interface GetDeviceInfoViewController : UITableViewController
 
 @end

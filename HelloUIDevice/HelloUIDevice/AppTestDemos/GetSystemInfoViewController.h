@@ -1,5 +1,5 @@
 //
-//  GetHardwareModelInfoViewController.h
+//  GetSystemInfoViewController.h
 //  HelloUIDevice
 //
 //  Created by wesley_chen on 2018/10/17.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GetHardwareModelInfoViewController : UITableViewController
+@interface GetSystemInfoViewController : UITableViewController
 
 @end
