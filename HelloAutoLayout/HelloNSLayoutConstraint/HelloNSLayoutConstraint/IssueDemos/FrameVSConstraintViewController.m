@@ -44,7 +44,7 @@
     NSLayoutConstraint *constraint1 = [NSLayoutConstraint constraintWithItem:self.view1 attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
     [self.view addConstraint:constraint1];
     
-    // Warning: this layout constraint not confirm the frame when view2 initialied
+    // Warning: this layout constraint not confirm the frame when view2 initialized
     // REAMRK: change constant from 10 to 0, fix it temporarily
     NSLayoutConstraint *constraint2 = [NSLayoutConstraint constraintWithItem:self.view2 attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.view attribute:NSLayoutAttributeLeading multiplier:1 constant:10];
     [self.view addConstraint:constraint2];
