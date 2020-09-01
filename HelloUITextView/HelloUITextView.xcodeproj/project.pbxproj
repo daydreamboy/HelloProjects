@@ -39,6 +39,7 @@
 		4F9BB3FD24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BB3FC24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.m */; };
 		4F9BB40424FD0818009C35D7 /* WCStickySectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BB40124FD0818009C35D7 /* WCStickySectionManager.m */; };
 		4F9BB40524FD0818009C35D7 /* WCStickySection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BB40324FD0818009C35D7 /* WCStickySection.m */; };
+		4F9BB40924FD2D96009C35D7 /* WCKeyboardObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BB40824FD2D96009C35D7 /* WCKeyboardObserver.m */; };
 		4FDF805F24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF805E24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +108,8 @@
 		4F9BB40124FD0818009C35D7 /* WCStickySectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCStickySectionManager.m; sourceTree = "<group>"; };
 		4F9BB40224FD0818009C35D7 /* WCStickySection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCStickySection.h; sourceTree = "<group>"; };
 		4F9BB40324FD0818009C35D7 /* WCStickySection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCStickySection.m; sourceTree = "<group>"; };
+		4F9BB40724FD2D96009C35D7 /* WCKeyboardObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCKeyboardObserver.h; sourceTree = "<group>"; };
+		4F9BB40824FD2D96009C35D7 /* WCKeyboardObserver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCKeyboardObserver.m; sourceTree = "<group>"; };
 		4FDF805D24F3DE6B00BEBBB6 /* WCPlaceholderTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCPlaceholderTextView.h; sourceTree = "<group>"; };
 		4FDF805E24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCPlaceholderTextView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,6 +128,7 @@
 		4F86A6EC20C77C6A00DFCFD0 = {
 			isa = PBXGroup;
 			children = (
+				4F9BB40624FD2D4A009C35D7 /* WCKeyboardObserver */,
 				4FDF805C24F3D8EA00BEBBB6 /* WCGrowingTextView */,
 				4F86A70E20C77CF500DFCFD0 /* WCTextView */,
 				4F86A6F720C77C6A00DFCFD0 /* HelloUITextView */,
@@ -238,6 +242,15 @@
 			path = WCStickySection;
 			sourceTree = "<group>";
 		};
+		4F9BB40624FD2D4A009C35D7 /* WCKeyboardObserver */ = {
+			isa = PBXGroup;
+			children = (
+				4F9BB40724FD2D96009C35D7 /* WCKeyboardObserver.h */,
+				4F9BB40824FD2D96009C35D7 /* WCKeyboardObserver.m */,
+			);
+			path = WCKeyboardObserver;
+			sourceTree = "<group>";
+		};
 		4FDF805C24F3D8EA00BEBBB6 /* WCGrowingTextView */ = {
 			isa = PBXGroup;
 			children = (
@@ -321,6 +334,7 @@
 			files = (
 				4F86A72920C780E000DFCFD0 /* YYTextLayout.m in Sources */,
 				4F86A75720C784A600DFCFD0 /* YYTextMagnifier.m in Sources */,
+				4F9BB40924FD2D96009C35D7 /* WCKeyboardObserver.m in Sources */,
 				4F86A71220C77CFE00DFCFD0 /* UseWCPlaceholderTextViewViewController.m in Sources */,
 				4F86A74220C7842300DFCFD0 /* NSParagraphStyle+YYText.m in Sources */,
 				4F9BB40424FD0818009C35D7 /* WCStickySectionManager.m in Sources */,
