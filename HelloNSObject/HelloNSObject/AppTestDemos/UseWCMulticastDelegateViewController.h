@@ -1,8 +1,8 @@
 //
-//  UseMulticastDelegateViewController.h
+//  UseWCMulticastDelegateViewController.h
 //  HelloNSObject
 //
-//  Created by wesley_chen on 2020/8/26.
+//  Created by wesley_chen on 2020/9/2.
 //  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UseMulticastDelegateViewController : UIViewController
+@interface UseWCMulticastDelegateViewController : UIViewController
 
 @end
 

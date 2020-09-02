@@ -13,6 +13,13 @@ NS_ASSUME_NONNULL_BEGIN
 // @see https://blog.scottlogic.com/2012/11/19/a-multicast-delegate-pattern-for-ios-controls.html
 @interface WCMulticastDelegate : NSObject
 
+@property (nonatomic, weak, nullable) id middleMan;
+@property (nonatomic, readonly, copy, nullable) NSArray *interceptedProtocols;
+
+- (instancetype)init;
+- (instancetype)initWithMiddleMan:(id)middleMan interceptedProtocols:(Protocol *)firstInterceptedProtocol, ... NS_REQUIRES_NIL_TERMINATION;
+- (instancetype)initWithMiddleMan:(id)middleMan interceptedProtocolArray:(NSArray *)arrayOfInterceptedProtocols;
+
 - (BOOL)addDelegate:(id)delegate;
 - (BOOL)removeDelegate:(id)delegate;
 - (BOOL)removeAllDelegate;
@@ -20,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface NSObject (WCMulticastDelegate)
+
 @property (nonatomic, strong, readonly) WCMulticastDelegate *multicastDelegate;
 
 /**
@@ -27,7 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return YES if operate successfully
  */
-- (BOOL)takeOverDelegate;
+- (BOOL)takeOverDelegateIfNeeded;
 
 @end
 

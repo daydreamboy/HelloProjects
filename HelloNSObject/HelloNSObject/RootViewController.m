@@ -20,7 +20,7 @@
 #import "CreateDynamicParamModelViewController.h"
 #import "ObtainWeakVariableViewController.h"
 
-#import "UseMulticastDelegateViewController.h"
+#import "UseWCMulticastDelegateViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -54,6 +54,7 @@
         @"Simple dynamic subclass",
         @"Create dynamic delegates",
         @"Obtain weak variable by objc_loadWeakRetained()",
+        @"Use WCMulticastDelegate",
     ];
     _classes = @[
         [SwizzleMethodByBlockViewController class],
@@ -67,6 +68,7 @@
         [SimpleDynamicSubclassViewController class],
         [CreateDynamicParamModelViewController class],
         [ObtainWeakVariableViewController class],
+        [UseWCMulticastDelegateViewController class],
     ];
 }
 
