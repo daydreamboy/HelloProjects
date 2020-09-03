@@ -16,6 +16,8 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion This class support two mode: non-middle man, and middle man
  non-middle man, use init method
  middle man, use initWithMiddleManXXX methods
+ 
+ @see https://github.com/haifengkao/WZProtocolInterceptor, for middle man mode
  */
 @interface WCMulticastDelegate : NSObject
 
