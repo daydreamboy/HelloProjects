@@ -47,6 +47,7 @@
 
 // section 5
 #import "StaticCellHeightAboveiOS11IssuesViewController.h"
+#import "ReloadRowsWithEmptyListViewController.h"
 #import "CallReloadDataInsideCellForRowAtIndexPathViewController.h"
 
 #define kTitle @"Title"
@@ -115,6 +116,7 @@
     
     NSArray<NSDictionary *> *section5 = @[
           @{ kTitle: @"Static cell height iOS11+", kClass: [StaticCellHeightAboveiOS11IssuesViewController class] },
+          @{ kTitle: @"Reload rows with empty list", kClass: [ReloadRowsWithEmptyListViewController class] },
           @{ kTitle: @"Test", kClass: [CallReloadDataInsideCellForRowAtIndexPathViewController class] },
     ];
     

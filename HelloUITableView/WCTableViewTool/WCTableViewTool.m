@@ -28,6 +28,56 @@
     return YES;
 }
 
++ (BOOL)checkWithTableView:(UITableView *)tableView canReloadRowsAtIndexPaths:(NSArray *)indexPaths {
+    if (![tableView isKindOfClass:[UITableView class]] || !tableView.dataSource) {
+        return NO;
+    }
+    
+    if (![tableView.dataSource respondsToSelector:@selector(numberOfSectionsInTableView:)]) {
+        return NO;
+    }
+    
+    NSUInteger numberOfSections = [tableView.dataSource numberOfSectionsInTableView:tableView];
+    
+    __block BOOL indexPathsAreValid = YES;
+    
+    for (NSIndexPath *indexPath in indexPaths) {
+        if (indexPath.section >= numberOfSections || indexPath.section < 0) {
+            indexPathsAreValid = NO;
+            break;
+        }
+    }
+    
+    if (!indexPathsAreValid) {
+        return NO;
+    }
+        
+    NSMutableDictionary<NSNumber *, NSMutableArray *> *indexPathsGroupedBySection = [NSMutableDictionary dictionaryWithCapacity:indexPaths.count];
+    for (NSIndexPath *indexPath in indexPaths) {
+        NSMutableArray *indexPaths = indexPathsGroupedBySection[@(indexPath.section)];
+        
+        if (!indexPaths) {
+            indexPaths = [NSMutableArray array];
+        }
+        
+        [indexPaths addObject:indexPath];
+    }
+    
+    [indexPathsGroupedBySection enumerateKeysAndObjectsUsingBlock:^(NSNumber * _Nonnull key, NSMutableArray * _Nonnull indexPaths, BOOL * _Nonnull stop) {
+        NSUInteger numberOfRowsInSection = [tableView.dataSource tableView:tableView numberOfRowsInSection:[key unsignedIntegerValue]];
+        
+        for (NSIndexPath *indexPath in indexPaths) {
+            if (indexPath.row >= numberOfRowsInSection || indexPath.row < 0) {
+                indexPathsAreValid = NO;
+                *stop = YES;
+                break;
+            }
+        }
+    }];
+    
+    return indexPathsAreValid;
+}
+
 @end
 
 

@@ -24,6 +24,19 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)performOperationKeepStaticWithTableView:(UITableView *)tableView block:(void (^)(void))block;
 
+/**
+ Check the index paths if safe to reload rows
+ 
+ @param tableView the table view
+ @param indexPaths the index paths to reload rows
+ 
+ @example
+ if ([WCTableViewTool checkWithTableView:self.tableView canReloadRowsAtIndexPaths:indexPaths]) {
+     [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
+ }
+ */
++ (BOOL)checkWithTableView:(UITableView *)tableView canReloadRowsAtIndexPaths:(NSArray *)indexPaths;
+
 @end
 
 

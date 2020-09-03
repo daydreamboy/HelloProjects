@@ -29,6 +29,7 @@
 		4F160E5224ECFEDD00932EC9 /* WCTableLoadMoreView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F160E5124ECFEDD00932EC9 /* WCTableLoadMoreView.m */; };
 		4F160E5924ED19DC00932EC9 /* WCScrollViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F160E5824ED19DC00932EC9 /* WCScrollViewTool.m */; };
 		4F19589824DE92840034E547 /* GroupedSingleSectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F19589724DE92840034E547 /* GroupedSingleSectionViewController.m */; };
+		4F1E4900250135DA005ACA72 /* ReloadRowsWithEmptyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E48FF250135DA005ACA72 /* ReloadRowsWithEmptyListViewController.m */; };
 		4F39AE39241A7C4C0008FBE7 /* CheckNumberOfCellOnFirstRenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F39AE38241A7C4C0008FBE7 /* CheckNumberOfCellOnFirstRenderViewController.m */; };
 		4F50647122DC2DA200C54420 /* DetectCellOffscreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50647022DC2DA200C54420 /* DetectCellOffscreenViewController.m */; };
 		4F5112BD22C39584005E5AAE /* CustomizeSelectMeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5112BC22C39584005E5AAE /* CustomizeSelectMeViewController.m */; };
@@ -109,6 +110,8 @@
 		4F160E5824ED19DC00932EC9 /* WCScrollViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCScrollViewTool.m; sourceTree = "<group>"; };
 		4F19589624DE92840034E547 /* GroupedSingleSectionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupedSingleSectionViewController.h; sourceTree = "<group>"; };
 		4F19589724DE92840034E547 /* GroupedSingleSectionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupedSingleSectionViewController.m; sourceTree = "<group>"; };
+		4F1E48FE250135DA005ACA72 /* ReloadRowsWithEmptyListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReloadRowsWithEmptyListViewController.h; sourceTree = "<group>"; };
+		4F1E48FF250135DA005ACA72 /* ReloadRowsWithEmptyListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReloadRowsWithEmptyListViewController.m; sourceTree = "<group>"; };
 		4F39AE37241A7C4C0008FBE7 /* CheckNumberOfCellOnFirstRenderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckNumberOfCellOnFirstRenderViewController.h; sourceTree = "<group>"; };
 		4F39AE38241A7C4C0008FBE7 /* CheckNumberOfCellOnFirstRenderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckNumberOfCellOnFirstRenderViewController.m; sourceTree = "<group>"; };
 		4F50646F22DC2DA200C54420 /* DetectCellOffscreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectCellOffscreenViewController.h; sourceTree = "<group>"; };
@@ -338,6 +341,8 @@
 			children = (
 				4F52CA2222E957E600A59177 /* StaticCellHeightAboveiOS11IssuesViewController.h */,
 				4F52CA2322E957E700A59177 /* StaticCellHeightAboveiOS11IssuesViewController.m */,
+				4F1E48FE250135DA005ACA72 /* ReloadRowsWithEmptyListViewController.h */,
+				4F1E48FF250135DA005ACA72 /* ReloadRowsWithEmptyListViewController.m */,
 				4F519A12229B907A004C548A /* CallReloadDataInsideCellForRowAtIndexPathViewController.h */,
 				4F519A13229B907A004C548A /* CallReloadDataInsideCellForRowAtIndexPathViewController.m */,
 			);
@@ -558,6 +563,7 @@
 				2BA442CC2261DFD60016C876 /* ShowContextMenuInCellViewController.m in Sources */,
 				4FBB4E0621A29E32000E9F61 /* WCTableViewTool.m in Sources */,
 				4F39AE39241A7C4C0008FBE7 /* CheckNumberOfCellOnFirstRenderViewController.m in Sources */,
+				4F1E4900250135DA005ACA72 /* ReloadRowsWithEmptyListViewController.m in Sources */,
 				4F60E71B22A7E64400C27087 /* WCTableView.m in Sources */,
 				2B63BF39200FA22600A5D8D2 /* PlainTableViewViewController.m in Sources */,
 				4F521F7222E85A7F00035664 /* CustomizeHighlightCellViewController.m in Sources */,

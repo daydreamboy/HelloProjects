@@ -476,6 +476,44 @@ offscreen: row: 16, section: 0
 
 
 
+### （3）iOS 11+上调用tableView:cellForRowAtIndexPath:之后，系统修改cell高度为44
+
+​        iOS 11+上面，系统调用tableView:cellForRowAtIndexPath:后，会将cell高度修改为44，即使cell初始化有自定义的高度，也会被修改。因此，在tableView:heightForRowAtIndexPath:方法中，不能以cell的frame高度作为返回值。
+
+> 示例代码，见StaticCellHeightAboveiOS11IssuesViewController
+
+
+
+### （4）reloadRowsAtIndexPaths:withRowAnimation:方法抛出异常的问题
+
+​       UITableView调用reloadRowsAtIndexPaths:withRowAnimation:方法，当indexPaths参数，和dataSource已存在的数据不一致的时候，会抛出下面的异常，如下
+
+```shell
+2020-09-03 23:44:01.245799+0800 HelloUITableView[7952:125161] *** Assertion failure in -[UITableView _endCellAnimationsWithContext:], /BuildRoot/Library/Caches/com.apple.xbs/Sources/UIKit_Sim/UIKit-3698.21.8/UITableView.m:1683
+2020-09-03 23:44:01.250828+0800 HelloUITableView[7952:125161] *** Terminating app due to uncaught exception 'NSInternalInconsistencyException', reason: 'attempt to delete row 0 from section 0, but there are only 0 sections before the update'
+*** First throw call stack:
+(
+	0   CoreFoundation                      0x0000000106af51ab __exceptionPreprocess + 171
+	1   libobjc.A.dylib                     0x000000010618af41 objc_exception_throw + 48
+	2   CoreFoundation                      0x0000000106afa372 +[NSException raise:format:arguments:] + 98
+	3   Foundation                          0x0000000105c2f089 -[NSAssertionHandler handleFailureInMethod:object:file:lineNumber:description:] + 193
+	4   UIKit                               0x0000000107a3909a -[UITableView _endCellAnimationsWithContext:] + 5558
+	5   UIKit                               0x0000000107a582e4 -[UITableView _updateRowsAtIndexPaths:withUpdateAction:rowAnimation:usingPresentationValues:] + 1342
+	6   UIKit                               0x0000000107a5869d -[UITableView reloadRowsAtIndexPaths:withRowAnimation:] + 133
+...
+)
+libc++abi.dylib: terminating with uncaught exception of type NSException
+```
+
+
+
+解决方法，是检查indexPaths参数中所有indexPath的section和row，是否在dataSource的section和row的范围内，如果不在范围内，则不能调用reloadRowsAtIndexPaths:withRowAnimation:方法。
+
+> 1. 参考+[WCTableViewTool checkWithTableView:canReloadRowsAtIndexPaths:]工具方法
+> 2. 示例代码，见ReloadRowsWithEmptyListViewController
+
+
+
 
 
 ## 4、UITableView Internals
