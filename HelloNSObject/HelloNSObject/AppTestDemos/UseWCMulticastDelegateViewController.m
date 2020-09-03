@@ -25,6 +25,7 @@
 
 #pragma mark - Handle Delegate
 
+// Note: don't override the delegate getter, use userDelegate for outter
 //- (id<UITextViewDelegate>)delegate {
 //    //return (id<UITextViewDelegate>)self.multicastDelegate;
 //    return self;
@@ -33,7 +34,7 @@
 - (void)setDelegate:(id<UITextViewDelegate>)delegate {
     _userDelegte = delegate;
     if (delegate) {
-        [super setDelegate:self.multicastDelegate];
+        [super setDelegate:(id<UITextViewDelegate>)self.multicastDelegate];
     }
     else {
         [super setDelegate:nil];

@@ -137,8 +137,6 @@ static BOOL selector_belongsToProtocol(SEL selector, Protocol *protocol) {
 }
 
 - (BOOL)respondsToSelector:(SEL)selector {
-//    if ([super respondsToSelector:selector])
-//        return YES;
 
     // if any of the delegates respond to this selector, return YES
     __block BOOL returnValue = NO;
@@ -160,24 +158,21 @@ static BOOL selector_belongsToProtocol(SEL selector, Protocol *protocol) {
 }
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)selector {
-    // can this class create the signature?
-    __block NSMethodSignature *signature = [super methodSignatureForSelector:selector];
+    __block NSMethodSignature *signature = nil;
 
-    // if not, try our delegates
-    if (!signature) {
-        dispatch_sync(self.queue, ^{
-            if ([self.middleMan respondsToSelector:selector] && [self checkSelectorInInterceptedProtocols:selector]) {
-                signature = [self.middleMan methodSignatureForSelector:selector];
-            }
-            else {
-                for (id delegate in self.delegates) {
-                    if ([delegate respondsToSelector:selector]) {
-                        signature = [delegate methodSignatureForSelector:selector];
-                    }
+    dispatch_sync(self.queue, ^{
+        if ([self.middleMan respondsToSelector:selector] && [self checkSelectorInInterceptedProtocols:selector]) {
+            signature = [self.middleMan methodSignatureForSelector:selector];
+        }
+        else {
+            for (id delegate in self.delegates) {
+                if ([delegate respondsToSelector:selector]) {
+                    signature = [delegate methodSignatureForSelector:selector];
                 }
             }
-        });
-    }
+        }
+    });
+    
     return signature;
 }
 
