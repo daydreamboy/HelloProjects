@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4F0ED8BB24F4C649002128BF /* WCGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0ED8BA24F4C649002128BF /* WCGrowingTextView.m */; };
+		4F20C5C02504C9E800139BE0 /* MirroringUITextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F20C5BF2504C9E800139BE0 /* MirroringUITextViewViewController.m */; };
+		4F20C5C32504D65200139BE0 /* PagingUITextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F20C5C22504D65200139BE0 /* PagingUITextViewViewController.m */; };
+		4F20C5C62504DAF500139BE0 /* MixMirroringAndPagingUITextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F20C5C52504DAF500139BE0 /* MixMirroringAndPagingUITextViewViewController.m */; };
 		4F86A6FA20C77C6A00DFCFD0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86A6F920C77C6A00DFCFD0 /* AppDelegate.m */; };
 		4F86A70220C77C6B00DFCFD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F86A70120C77C6B00DFCFD0 /* Assets.xcassets */; };
 		4F86A70520C77C6B00DFCFD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F86A70320C77C6B00DFCFD0 /* LaunchScreen.storyboard */; };
@@ -46,6 +49,12 @@
 /* Begin PBXFileReference section */
 		4F0ED8B924F4C649002128BF /* WCGrowingTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCGrowingTextView.h; sourceTree = "<group>"; };
 		4F0ED8BA24F4C649002128BF /* WCGrowingTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCGrowingTextView.m; sourceTree = "<group>"; };
+		4F20C5BE2504C9E800139BE0 /* MirroringUITextViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MirroringUITextViewViewController.h; sourceTree = "<group>"; };
+		4F20C5BF2504C9E800139BE0 /* MirroringUITextViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MirroringUITextViewViewController.m; sourceTree = "<group>"; };
+		4F20C5C12504D65200139BE0 /* PagingUITextViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PagingUITextViewViewController.h; sourceTree = "<group>"; };
+		4F20C5C22504D65200139BE0 /* PagingUITextViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PagingUITextViewViewController.m; sourceTree = "<group>"; };
+		4F20C5C42504DAF500139BE0 /* MixMirroringAndPagingUITextViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixMirroringAndPagingUITextViewViewController.h; sourceTree = "<group>"; };
+		4F20C5C52504DAF500139BE0 /* MixMirroringAndPagingUITextViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MixMirroringAndPagingUITextViewViewController.m; sourceTree = "<group>"; };
 		4F86A6F520C77C6A00DFCFD0 /* HelloUITextView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUITextView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F86A6F820C77C6A00DFCFD0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F86A6F920C77C6A00DFCFD0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -211,6 +220,12 @@
 				4F86A71020C77CFE00DFCFD0 /* UseWCPlaceholderTextViewViewController.m */,
 				4F9BB3FB24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.h */,
 				4F9BB3FC24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.m */,
+				4F20C5BE2504C9E800139BE0 /* MirroringUITextViewViewController.h */,
+				4F20C5BF2504C9E800139BE0 /* MirroringUITextViewViewController.m */,
+				4F20C5C12504D65200139BE0 /* PagingUITextViewViewController.h */,
+				4F20C5C22504D65200139BE0 /* PagingUITextViewViewController.m */,
+				4F20C5C42504DAF500139BE0 /* MixMirroringAndPagingUITextViewViewController.h */,
+				4F20C5C52504DAF500139BE0 /* MixMirroringAndPagingUITextViewViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -335,10 +350,13 @@
 				4F86A72920C780E000DFCFD0 /* YYTextLayout.m in Sources */,
 				4F86A75720C784A600DFCFD0 /* YYTextMagnifier.m in Sources */,
 				4F9BB40924FD2D96009C35D7 /* WCKeyboardObserver.m in Sources */,
+				4F20C5C62504DAF500139BE0 /* MixMirroringAndPagingUITextViewViewController.m in Sources */,
 				4F86A71220C77CFE00DFCFD0 /* UseWCPlaceholderTextViewViewController.m in Sources */,
 				4F86A74220C7842300DFCFD0 /* NSParagraphStyle+YYText.m in Sources */,
 				4F9BB40424FD0818009C35D7 /* WCStickySectionManager.m in Sources */,
+				4F20C5C32504D65200139BE0 /* PagingUITextViewViewController.m in Sources */,
 				4F86A73F20C7840F00DFCFD0 /* YYTextRunDelegate.m in Sources */,
+				4F20C5C02504C9E800139BE0 /* MirroringUITextViewViewController.m in Sources */,
 				4FDF805F24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m in Sources */,
 				4F86A73220C7811B00DFCFD0 /* YYTextAttribute.m in Sources */,
 				4F86A74520C7843800DFCFD0 /* YYTextDebugOption.m in Sources */,
