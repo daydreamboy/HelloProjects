@@ -69,6 +69,9 @@
     if ([WCTableViewTool checkWithTableView:self.tableView canReloadRowsAtIndexPaths:indexPaths]) {
         [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
     }
+    else {
+        [self.tableView reloadData];
+    }
 }
 
 #pragma mark - UITableViewDataSource
