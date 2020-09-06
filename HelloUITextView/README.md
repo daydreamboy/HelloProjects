@@ -197,6 +197,69 @@ UITextView 3 -->  NSTextContainer 3 ---|
 
 
 
+#### 语法高亮
+
+​        前面提到NSTextStorage可以继承使用，但是重写父类方法，有一定工作量，这篇文章[^2]介绍使用内部组合一个backend对象的方式，将需要实现的方法，都转给这个backend对象。
+
+> Since `NSTextStorage` is a class cluster, subclassing requires a little bit of work. The idea here is to build a composite object: Implement all methods by just forwarding them to a concrete instance, modifying `inout` parameters or results as wished.
+
+以语法高亮为例，介绍NSTextStorage继承的用法。
+
+
+
+官方文档描述，如果要继承NSTextStorage，需要实现下面4个方法，如下
+
+```objective-c
+// Getter
+- (NSString *)string;
+- (NSDictionary *)attributesAtIndex:(NSUInteger)location effectiveRange:(NSRangePointer)range;
+// Setter
+- (void)replaceCharactersInRange:(NSRange)range withString:(NSString *)str;
+- (void)setAttributes:(NSDictionary *)attrs range:(NSRange)range;
+```
+
+官方文档，如下
+
+> subclasses manage by overriding the two `NSAttributedString` primitives:
+>
+> [`string`](dash-apple-api://load?topic_id=1412616&language=occ)
+>
+> [`attributesAtIndex:effectiveRange:`](dash-apple-api://load?topic_id=1415682&language=occ)
+>
+> Subclasses must also override two `NSMutableAttributedString` primitives:
+>
+> [`replaceCharactersInRange:withString:`](dash-apple-api://load?topic_id=1418451&language=occ)
+>
+> [`setAttributes:range:`](dash-apple-api://load?topic_id=1412179&language=occ)
+>
+> These primitives should perform the change, then call [`edited:range:changeInLength:`](dash-apple-api://load?request_key=hcIxzp7hxm#dash_1529793) to let the parent class know what changes were made.
+
+
+
+实际上，2个getter方法是重写NSAttributedString的方法，2个setter方法方法是重写NSMutableAttributedString的方法。
+
+需要注意的是，2个setter方法里面，需要调用父类的edited:range:changeInLength:方法，该方法是NSTextStorage的方法。
+
+
+
+edited:range:changeInLength:方法，有三个参数
+
+* edited参数: NSTextStorageEditActions类型，有2个选项，NSTextStorageEditedAttributes和NSTextStorageEditedCharacters，分别表示属性和字符有变更，即
+
+  > NSTextStorageEditedAttributes: Attributes were added, removed, or changed.
+  >
+  > NSTextStorageEditedCharacters: Characters were added, removed, or replaced.
+
+* range参数: 表示变更之前的字符范围
+
+* changeInLength参数: 表示长度变化的delta。举个例子，将“The files couldn’t be saved”中“The”替换为“Several”，range参数是{0, 3}，而changeInLength参数是4。注意：changeInLength参数是NSInteger类型，可以为负数。
+
+值得说明的是，该方法会自动触发调用processEditing方法，如果没有被包裹beginEditing方法。
+
+
+
+> 示例代码，参考WCHighlightTextStorage
+
 
 
 

@@ -12,6 +12,7 @@
 #import "MirroringUITextViewViewController.h"
 #import "PagingUITextViewViewController.h"
 #import "MixMirroringAndPagingUITextViewViewController.h"
+#import "SyntaxHighlightUITextViewViewController.h"
 
 // section 2
 #import "UseWCPlaceholderTextViewViewController.h"
@@ -44,6 +45,7 @@
           @{ kTitle: @"Mirroring UITextView", kClass: [MirroringUITextViewViewController class] },
           @{ kTitle: @"Paging UITextView", kClass: [PagingUITextViewViewController class] },
           @{ kTitle: @"Mix Mirroring & Paging UITextView", kClass: [MixMirroringAndPagingUITextViewViewController class] },
+          @{ kTitle: @"Syntax highlight in UITextView", kClass: [SyntaxHighlightUITextViewViewController class] },
     ];
     
     NSArray<NSDictionary *> *section2 = @[

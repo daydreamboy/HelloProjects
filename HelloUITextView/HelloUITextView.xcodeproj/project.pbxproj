@@ -11,6 +11,7 @@
 		4F20C5C02504C9E800139BE0 /* MirroringUITextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F20C5BF2504C9E800139BE0 /* MirroringUITextViewViewController.m */; };
 		4F20C5C32504D65200139BE0 /* PagingUITextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F20C5C22504D65200139BE0 /* PagingUITextViewViewController.m */; };
 		4F20C5C62504DAF500139BE0 /* MixMirroringAndPagingUITextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F20C5C52504DAF500139BE0 /* MixMirroringAndPagingUITextViewViewController.m */; };
+		4F20C5C92504E49000139BE0 /* SyntaxHighlightUITextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F20C5C82504E49000139BE0 /* SyntaxHighlightUITextViewViewController.m */; };
 		4F86A6FA20C77C6A00DFCFD0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86A6F920C77C6A00DFCFD0 /* AppDelegate.m */; };
 		4F86A70220C77C6B00DFCFD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F86A70120C77C6B00DFCFD0 /* Assets.xcassets */; };
 		4F86A70520C77C6B00DFCFD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F86A70320C77C6B00DFCFD0 /* LaunchScreen.storyboard */; };
@@ -43,6 +44,8 @@
 		4F9BB40424FD0818009C35D7 /* WCStickySectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BB40124FD0818009C35D7 /* WCStickySectionManager.m */; };
 		4F9BB40524FD0818009C35D7 /* WCStickySection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BB40324FD0818009C35D7 /* WCStickySection.m */; };
 		4F9BB40924FD2D96009C35D7 /* WCKeyboardObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BB40824FD2D96009C35D7 /* WCKeyboardObserver.m */; };
+		4FD06CE62505204500DE42E0 /* WCHighlightTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD06CE52505204500DE42E0 /* WCHighlightTextStorage.m */; };
+		4FD06CE925052E2B00DE42E0 /* iText.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4FD06CE825052E2B00DE42E0 /* iText.txt */; };
 		4FDF805F24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF805E24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +58,8 @@
 		4F20C5C22504D65200139BE0 /* PagingUITextViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PagingUITextViewViewController.m; sourceTree = "<group>"; };
 		4F20C5C42504DAF500139BE0 /* MixMirroringAndPagingUITextViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MixMirroringAndPagingUITextViewViewController.h; sourceTree = "<group>"; };
 		4F20C5C52504DAF500139BE0 /* MixMirroringAndPagingUITextViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MixMirroringAndPagingUITextViewViewController.m; sourceTree = "<group>"; };
+		4F20C5C72504E49000139BE0 /* SyntaxHighlightUITextViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SyntaxHighlightUITextViewViewController.h; sourceTree = "<group>"; };
+		4F20C5C82504E49000139BE0 /* SyntaxHighlightUITextViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SyntaxHighlightUITextViewViewController.m; sourceTree = "<group>"; };
 		4F86A6F520C77C6A00DFCFD0 /* HelloUITextView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUITextView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F86A6F820C77C6A00DFCFD0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F86A6F920C77C6A00DFCFD0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -119,6 +124,9 @@
 		4F9BB40324FD0818009C35D7 /* WCStickySection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCStickySection.m; sourceTree = "<group>"; };
 		4F9BB40724FD2D96009C35D7 /* WCKeyboardObserver.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCKeyboardObserver.h; sourceTree = "<group>"; };
 		4F9BB40824FD2D96009C35D7 /* WCKeyboardObserver.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCKeyboardObserver.m; sourceTree = "<group>"; };
+		4FD06CE42505204500DE42E0 /* WCHighlightTextStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCHighlightTextStorage.h; sourceTree = "<group>"; };
+		4FD06CE52505204500DE42E0 /* WCHighlightTextStorage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCHighlightTextStorage.m; sourceTree = "<group>"; };
+		4FD06CE825052E2B00DE42E0 /* iText.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = iText.txt; sourceTree = "<group>"; };
 		4FDF805D24F3DE6B00BEBBB6 /* WCPlaceholderTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCPlaceholderTextView.h; sourceTree = "<group>"; };
 		4FDF805E24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCPlaceholderTextView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -137,6 +145,7 @@
 		4F86A6EC20C77C6A00DFCFD0 = {
 			isa = PBXGroup;
 			children = (
+				4FD06CE325051D2000DE42E0 /* WCHighlightTextStorage */,
 				4F9BB40624FD2D4A009C35D7 /* WCKeyboardObserver */,
 				4FDF805C24F3D8EA00BEBBB6 /* WCGrowingTextView */,
 				4F86A70E20C77CF500DFCFD0 /* WCTextView */,
@@ -161,6 +170,7 @@
 				4F86A6F920C77C6A00DFCFD0 /* AppDelegate.m */,
 				4F86A71420C77D0E00DFCFD0 /* RootViewController.h */,
 				4F86A71320C77D0E00DFCFD0 /* RootViewController.m */,
+				4FD06CE725052E2B00DE42E0 /* Resources */,
 				4F86A70120C77C6B00DFCFD0 /* Assets.xcassets */,
 				4F86A70320C77C6B00DFCFD0 /* LaunchScreen.storyboard */,
 				4F86A70620C77C6B00DFCFD0 /* Info.plist */,
@@ -226,6 +236,8 @@
 				4F20C5C22504D65200139BE0 /* PagingUITextViewViewController.m */,
 				4F20C5C42504DAF500139BE0 /* MixMirroringAndPagingUITextViewViewController.h */,
 				4F20C5C52504DAF500139BE0 /* MixMirroringAndPagingUITextViewViewController.m */,
+				4F20C5C72504E49000139BE0 /* SyntaxHighlightUITextViewViewController.h */,
+				4F20C5C82504E49000139BE0 /* SyntaxHighlightUITextViewViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -264,6 +276,23 @@
 				4F9BB40824FD2D96009C35D7 /* WCKeyboardObserver.m */,
 			);
 			path = WCKeyboardObserver;
+			sourceTree = "<group>";
+		};
+		4FD06CE325051D2000DE42E0 /* WCHighlightTextStorage */ = {
+			isa = PBXGroup;
+			children = (
+				4FD06CE42505204500DE42E0 /* WCHighlightTextStorage.h */,
+				4FD06CE52505204500DE42E0 /* WCHighlightTextStorage.m */,
+			);
+			path = WCHighlightTextStorage;
+			sourceTree = "<group>";
+		};
+		4FD06CE725052E2B00DE42E0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4FD06CE825052E2B00DE42E0 /* iText.txt */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		4FDF805C24F3D8EA00BEBBB6 /* WCGrowingTextView */ = {
@@ -335,6 +364,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FD06CE925052E2B00DE42E0 /* iText.txt in Resources */,
 				4F86A70520C77C6B00DFCFD0 /* LaunchScreen.storyboard in Resources */,
 				4F86A70220C77C6B00DFCFD0 /* Assets.xcassets in Resources */,
 			);
@@ -359,6 +389,7 @@
 				4F20C5C02504C9E800139BE0 /* MirroringUITextViewViewController.m in Sources */,
 				4FDF805F24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m in Sources */,
 				4F86A73220C7811B00DFCFD0 /* YYTextAttribute.m in Sources */,
+				4F20C5C92504E49000139BE0 /* SyntaxHighlightUITextViewViewController.m in Sources */,
 				4F86A74520C7843800DFCFD0 /* YYTextDebugOption.m in Sources */,
 				4F86A70820C77C6B00DFCFD0 /* main.m in Sources */,
 				4F86A75D20C7851900DFCFD0 /* YYTextKeyboardManager.m in Sources */,
@@ -369,6 +400,7 @@
 				4F86A72C20C780F000DFCFD0 /* YYTextParser.m in Sources */,
 				4F86A76020C7852D00DFCFD0 /* UIView+YYText.m in Sources */,
 				4F86A76320C7854000DFCFD0 /* YYTextTransaction.m in Sources */,
+				4FD06CE62505204500DE42E0 /* WCHighlightTextStorage.m in Sources */,
 				4F86A75120C7847D00DFCFD0 /* YYTextContainerView.m in Sources */,
 				4F86A71820C77D6F00DFCFD0 /* YYTextView.m in Sources */,
 				4F86A75420C7849700DFCFD0 /* YYTextSelectionView.m in Sources */,
