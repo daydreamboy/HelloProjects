@@ -20,14 +20,28 @@
 
 | 函数签名                                                     | 作用 | 说明                                         |
 | ------------------------------------------------------------ | ---- | -------------------------------------------- |
-| `-[NSString rangeOfString:options:]`                         | 搜索 | options参数需要指定NSRegularExpressionSearch |
-| `-[NSString  stringByReplacingOccurrencesOfString:withString:options:range:]` | 替换 | options参数需要指定NSRegularExpressionSearch |
+| -rangeOfString:options:                                      | 搜索 | options参数需要指定NSRegularExpressionSearch |
+| -stringByReplacingOccurrencesOfString:withString:options:range: | 替换 | options参数需要指定NSRegularExpressionSearch |
 
 
 
 > NSRegularExpressionSearch的官方描述，"The search string is treated as an ICU-compatible regular expression. If set, no other options can apply except `NSCaseInsensitiveSearch` and `NSAnchoredSearch`. "。这里描述有误导性，实际上，pattern中指定`^`或`$`，不需要指定`NSAnchoredSearch`。而且`NSAnchoredSearch`含义是从前匹配，而对应的`NSBackwardsSearch`是从后匹配。
 >
 > 举个例子，当pattern中指定`$`，而options指定`NSAnchoredSearch`会导致匹配总是失败的。
+
+
+
+### （2）Range查询
+
+| 函数签名                 | 说明                                                         |
+| ------------------------ | ------------------------------------------------------------ |
+| -paragraphRangeForRange: | 指定range，查询包含该range的paragraph range。paragraph是由a carriage return (`U+000D`), newline (`U+000A`), or paragraph separator (`U+2029`)分隔的文本段 |
+
+
+
+
+
+
 
 
 
@@ -70,9 +84,12 @@ TODO
 
 
 
-| 字符 | Unicode编码 |
-| ---- | ----------- |
-|      | \u2191      |
+| 字符                | Unicode编码 |
+| ------------------- | ----------- |
+| ↑                   | \u2191      |
+| carriage return     | \u000d      |
+| newline             | \u000a      |
+| paragraph separator | \u2029      |
 
 
 
