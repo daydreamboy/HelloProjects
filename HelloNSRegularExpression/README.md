@@ -1,10 +1,10 @@
-## HelloNSRegularExpression
+# HelloNSRegularExpression
 
 [TOC]
 
----
 
-### 1、正则表达式（Regular Expression）
+
+## 1、关于正则表达式（Regular Expression）
 
 ​          正则表达式定义一个pattern，按照这个pattern去搜索需要匹配的字符串。这个pattern的描述，是按照Regular Expression规则来定义的，所以pattern也称为正则表达式。
 
@@ -12,7 +12,27 @@
 
 
 
-#### （1）元字符[^1]（Regular Expression Metacharacters）
+说明
+
+iOS的正则表达式，实际上采用的是ICU正则表达式。
+
+>  The ICU regular expressions supported by `NSRegularExpression` are described at http://userguide.icu-project.org/strings/regexp.
+
+http://userguide.icu-project.org/strings/regexp，已经迁移到新的网址，https://unicode-org.github.io/icu/
+
+
+
+Wikipedia对ICU的描述[^3]，如下
+
+> **International Components for Unicode** (**ICU**) is an [open-source](https://en.wikipedia.org/wiki/Open-source_software) project of mature [C](https://en.wikipedia.org/wiki/C_(programming_language))/[C++](https://en.wikipedia.org/wiki/C%2B%2B) and [Java](https://en.wikipedia.org/wiki/Java_(programming_language)) libraries for [Unicode](https://en.wikipedia.org/wiki/Unicode) support, software [internationalization](https://en.wikipedia.org/wiki/Internationalization_and_localization), and software globalization. ICU is widely portable to many operating systems and environments. It gives applications the same results on all platforms and between C, C++, and Java software. The ICU project is a technical committee of the [Unicode Consortium](https://en.wikipedia.org/wiki/Unicode_Consortium) and sponsored, supported, and used by [IBM](https://en.wikipedia.org/wiki/IBM) and many other companies.
+>
+> ICU provides the following services: [Unicode](https://en.wikipedia.org/wiki/Unicode) text handling, full character properties, and [character set](https://en.wikipedia.org/wiki/Character_set) conversions; Unicode [regular expressions](https://en.wikipedia.org/wiki/Regular_expression); full Unicode sets; character, word, and line boundaries; language-sensitive [collation](https://en.wikipedia.org/wiki/Collation) and searching; [normalization](https://en.wikipedia.org/wiki/Unicode_normalization), upper and lowercase conversion, and script [transliterations](https://en.wikipedia.org/wiki/Transliteration); comprehensive [locale](https://en.wikipedia.org/wiki/Locale_(computer_software)) data and resource bundle architecture via the [Common Locale Data Repository](https://en.wikipedia.org/wiki/Common_Locale_Data_Repository) (CLDR); multi-[calendar](https://en.wikipedia.org/wiki/Calendar) and [time zones](https://en.wikipedia.org/wiki/Time_zone); and rule-based formatting and parsing of dates, times, numbers, currencies, and messages. ICU provided [complex text layout](https://en.wikipedia.org/wiki/Complex_text_layout) service for Arabic, Hebrew, Indic, and Thai historically, but that was deprecated in version 54, and was completely removed in version 58 in favor of [HarfBuzz](https://en.wikipedia.org/wiki/HarfBuzz).
+
+简单来说，ICU是一个开源项目，提供C/C++和Java类库，主要处理Unicode相关的任务，比如Unicode字符集的定义、Unicode正则表达式定义等。
+
+
+
+### （1）元字符[^1]（Regular Expression Metacharacters）
 
 ​       有些字符是正则表达式语法中的特殊字符，或称为**元字符**。当这些元字符需要当成普通字符使用时，则需要进行转义。
 
@@ -72,13 +92,13 @@ XCTAssertFalse(valid);
 
 
 
-#### （2）常用操作符（Regular Expression Operators）
+### （2）常用操作符（Regular Expression Operators）
 
 操作符用于标记对元字符或普通字符的操作，操作符可以是单个字符，也可以多个字符的特定组合。
 
 
 
-##### 普通的操作符
+#### 普通的操作符
 
 | 操作符  | 含义                                                         | 示例                                                         |
 | ------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -91,7 +111,7 @@ XCTAssertFalse(valid);
 
 
 
-##### 应用`?`（reluctant quantifier）的操作符
+#### 应用`?`（reluctant quantifier）的操作符
 
 | 操作符   | 含义                                                         | 示例 |
 | -------- | ------------------------------------------------------------ | ---- |
@@ -104,7 +124,7 @@ XCTAssertFalse(valid);
 
 
 
-##### 应用`+`（possessive quantifier）的操作符
+#### 应用`+`（possessive quantifier）的操作符
 
 | 操作符   | 含义                                                         | 示例 |
 | -------- | ------------------------------------------------------------ | ---- |
@@ -117,7 +137,7 @@ XCTAssertFalse(valid);
 
 
 
-#### （3）Greedy、Reluctant和Possessive模式[^2]
+### （3）Greedy、Reluctant和Possessive模式[^2]
 
 ​           正则表达式操作符中，可以应用不同quantifier，`*`（greedy quantifier）、`?`（reluctant quantifier）或者`+`（possessive quantifier）来执行不同匹配模式，得到匹配结果也是不一样的。
 
@@ -157,3 +177,7 @@ XCTAssertFalse(valid);
 
 [^1]: https://www.raywenderlich.com/2725-nsregularexpression-tutorial-and-cheat-sheet 
 [^2]: https://stackoverflow.com/questions/5319840/greedy-vs-reluctant-vs-possessive-quantifiers 
+[^3]:https://en.wikipedia.org/wiki/International_Components_for_Unicode
+
+
+
