@@ -83,7 +83,7 @@
         for (id data in dataArray) {
             __block BOOL taskBlockFinishedCalled = NO;
             dispatch_async(task_queue, ^{
-                runTaskBlock(data, index, ^(id processedData, NSError * _Nullable error) {
+                runTaskBlock(data, index, ^(id _Nullable processedData, NSError * _Nullable error) {
                     
                     // Note: prevent this block called many times to cause the dispatch_group_leave
                     // not balance with dispatch_group_enter
