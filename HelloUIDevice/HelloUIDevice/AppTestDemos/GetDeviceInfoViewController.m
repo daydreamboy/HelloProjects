@@ -27,6 +27,7 @@
         @"Model",
         @"Processor",
         @"Memory",
+        @"Disk",
         @"Identifier",
         @"Screen",
         @"Bettery",
@@ -51,6 +52,11 @@
         @[
             @{ kTitle: [@([WCDeviceTool deviceRAMSize]) stringValue], kSubtitle: @"RAM size" },
             @{ kTitle: [NSByteCountFormatter stringFromByteCount:[WCDeviceTool deviceTotalMemorySize] countStyle:NSByteCountFormatterCountStyleMemory], kSubtitle: @"total memory size" },
+        ],
+        @[
+            @{ kTitle: [NSByteCountFormatter stringFromByteCount:[WCDeviceTool deviceDiskTotalSize] countStyle:NSByteCountFormatterCountStyleFile], kSubtitle: @"total disk size" },
+            @{ kTitle: [NSByteCountFormatter stringFromByteCount:[WCDeviceTool deviceDiskFreeSize] countStyle:NSByteCountFormatterCountStyleFile], kSubtitle: @"total free disk size" },
+            @{ kTitle: [NSByteCountFormatter stringFromByteCount:[WCDeviceTool deviceDiskUsedSize] countStyle:NSByteCountFormatterCountStyleFile], kSubtitle: @"total used disk size" },
         ],
         @[
             @{ kTitle: [WCDeviceTool deviceIdentifierForVendor], kSubtitle: @"identifierForVendor" },

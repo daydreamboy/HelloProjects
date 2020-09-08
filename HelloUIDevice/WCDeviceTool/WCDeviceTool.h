@@ -190,6 +190,29 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSUInteger)deviceTotalMemorySize;
 
+#pragma mark > Disk
+
+/**
+ Get disk total size in bytes
+  
+ @return the disk total size in bytes
+ 
+ @see https://github.com/erica/uidevice-extension
+ */
++ (unsigned long long)deviceDiskTotalSize;
+/**
+ Get disk free size in bytes
+ 
+ @return the disk free size in bytes
+ */
++ (unsigned long long)deviceDiskFreeSize;
+/**
+ Get disk used size in bytes
+ 
+ @return the disk used size in bytes
+ */
++ (unsigned long long)deviceDiskUsedSize;
+
 #pragma mark > Bus
 
 + (NSInteger)deviceBusFrequency;

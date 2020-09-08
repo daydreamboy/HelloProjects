@@ -216,16 +216,16 @@
     // Get the user's language
     @try {
         // Get the list of languages
-        NSArray *LanguageArray = [NSLocale preferredLanguages];
+        NSArray *languageArray = [NSLocale preferredLanguages];
         // Get the user's language
-        NSString *Language = [LanguageArray objectAtIndex:0];
+        NSString *language = [languageArray objectAtIndex:0];
         // Check for validity
-        if (Language == nil || Language.length <= 0) {
+        if (language == nil || language.length <= 0) {
             // Error, invalid language
             return nil;
         }
         // Completed Successfully
-        return Language;
+        return language;
     }
     @catch (NSException *exception) {
         // Error
@@ -238,16 +238,16 @@
     // Get the user's timezone
     @try {
         // Get the system timezone
-        NSTimeZone *LocalTime = [NSTimeZone systemTimeZone];
+        NSTimeZone *localTime = [NSTimeZone systemTimeZone];
         // Convert the time zone to a string
-        NSString *TimeZone = [LocalTime name];
+        NSString *timeZone = [localTime name];
         // Check for validity
-        if (TimeZone == nil || TimeZone.length <= 0) {
+        if (timeZone == nil || timeZone.length <= 0) {
             // Error, invalid TimeZone
             return nil;
         }
         // Completed Successfully
-        return TimeZone;
+        return timeZone;
     }
     @catch (NSException *exception) {
         // Error
@@ -613,23 +613,50 @@
     return [self getSysInfo:HW_PHYSMEM];
 }
 
+#pragma mark > Disk
+
++ (unsigned long long)deviceDiskTotalSize {
+    NSError *error = nil;
+    NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfFileSystemForPath:NSHomeDirectory() error:&error];
+    unsigned long long size = [[attributes objectForKey:NSFileSystemSize] unsignedLongLongValue];
+    
+    return size;
+}
+
++ (unsigned long long)deviceDiskFreeSize {
+    NSError *error = nil;
+    NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfFileSystemForPath:NSHomeDirectory() error:&error];
+    unsigned long long size = [[attributes objectForKey:NSFileSystemFreeSize] unsignedLongLongValue];
+    
+    return size;
+}
+
++ (unsigned long long)deviceDiskUsedSize {
+    NSError *error = nil;
+    NSDictionary *attributes = [[NSFileManager defaultManager] attributesOfFileSystemForPath:NSHomeDirectory() error:&error];
+    unsigned long long size = [[attributes objectForKey:NSFileSystemSize] unsignedLongLongValue] - [[attributes objectForKey:NSFileSystemFreeSize] unsignedLongLongValue];
+    
+    return size;
+}
+
 #pragma mark > Bus
 
 + (NSInteger)deviceBusFrequency {
     // Try to get the processor bus speed
     @try {
         // Set the variables
-        size_t size;
-        int speed[2];
+        size_t lengthOfMib;
+        int mib[2];
         int final;
         
         // Find the speeds
-        speed[0] = CTL_HW;
-        speed[1] = HW_BUS_FREQ;
-        size = sizeof(final);
+        // @see https://docs.huihoo.com/darwin/kernel-programming-guide/boundaries/chapter_14_section_7.html
+        mib[0] = CTL_HW;
+        mib[1] = HW_BUS_FREQ;
+        lengthOfMib = sizeof(final);
         
         // Get the actual speed
-        sysctl(speed, 2, &final, &size, NULL, 0);
+        sysctl(mib, 2, &final, &lengthOfMib, NULL, 0);
         if (final > 0)
             final /= 1000000;
         else
@@ -972,14 +999,16 @@
     // Is the debugger attached?
     @try {
         // Set up the variables
-        size_t size = sizeof(struct kinfo_proc); struct kinfo_proc info;
+        size_t size = sizeof(struct kinfo_proc);
+        struct kinfo_proc info;
         int ret = 0, name[4];
         memset(&info, 0, sizeof(struct kinfo_proc));
         
         // Get the process information
         name[0] = CTL_KERN;
         name[1] = KERN_PROC;
-        name[2] = KERN_PROC_PID; name[3] = getpid();
+        name[2] = KERN_PROC_PID;
+        name[3] = getpid();
         
         // Check to make sure the variables are correct
         if (ret == (sysctl(name, 4, &info, &size, NULL, 0))) {
