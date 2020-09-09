@@ -1,11 +1,15 @@
 # HelloUINavigationBar
 [TOC]
 
----
+
+
+## 1、UINavigationBar
 
 
 
-### 1、UINavigationBar的属性
+### （1）UINavigationBar的属性
+
+
 
 | 属性         | 说明                                                         |
 | ------------ | ------------------------------------------------------------ |
@@ -15,21 +19,53 @@
 
 
 
-### 2、UIBarButtonSystemItemFixedSpace的width问题
-
-​       在iOS 11+上设置UIBarButtonSystemItemFixedSpace的width为负数不在起作用[^1]，可以继承UINavigationBar，在子类设置UINavigationBar所有subview的layoutMargin。
-
-​       这种方法对CustomView方式初始化的UIBarButtonItem，在左边和右边的，用UIBarButtonSystemItemFixedSpace调节都是有效的。但是对initWithBarButtonSystemItem方式初始化的UIBarButtonItem，在左边的UIBarButtonItem，用UIBarButtonSystemItemFixedSpace调节无效。
+### （2）自定义UINavigationBar
 
 
 
-### 3、UIBarButtonItem在iOS 11+上的改动
+UINavigationController提供下面的API，允许传入UINavigationBar的子类，来实现导航栏定制
+
+```objective-c
+- (instancetype)initWithNavigationBarClass:(Class)navigationBarClass toolbarClass:(Class)toolbarClass;
+```
+
+
+
+
+
+
+
+
+
+## 2、UIBarButtonItem
+
+
+
+
+
+### （1）UIBarButtonItem在iOS 11+上的改动
 
 
 
 | 改动点                                 | iOS 10-                        | iOS 11+                            |
 | -------------------------------------- | ------------------------------ | ---------------------------------- |
 | -[UIBarButtonItem initWithCustomView:] | customView的宽度和高度是有效的 | customView的高度被忽略，仅宽度有效 |
+
+
+
+
+
+
+
+## 3、UINavigationBar常见问题
+
+
+
+### （1）UIBarButtonSystemItemFixedSpace的width问题
+
+​       在iOS 11+上设置UIBarButtonSystemItemFixedSpace的width为负数不在起作用[^1]，可以继承UINavigationBar，在子类设置UINavigationBar所有subview的layoutMargin。
+
+​       这种方法对CustomView方式初始化的UIBarButtonItem，在左边和右边的，用UIBarButtonSystemItemFixedSpace调节都是有效的。但是对initWithBarButtonSystemItem方式初始化的UIBarButtonItem，在左边的UIBarButtonItem，用UIBarButtonSystemItemFixedSpace调节无效。
 
 
 
