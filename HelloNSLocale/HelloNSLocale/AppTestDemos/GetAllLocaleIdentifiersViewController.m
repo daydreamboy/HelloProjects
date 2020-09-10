@@ -10,7 +10,7 @@
 
 @interface GetAllLocaleIdentifiersViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSArray<NSString *> *listData;
+@property (nonatomic, strong) NSArray<NSArray<NSString *> *> *listData;
 @end
 
 @implementation GetAllLocaleIdentifiersViewController
@@ -24,7 +24,29 @@
 }
 
 - (void)setup {
-    self.listData = [[NSLocale availableLocaleIdentifiers] sortedArrayUsingSelector:@selector(compare:)];
+    NSArray<NSString *> *identifiers = [NSLocale availableLocaleIdentifiers];
+    NSMutableDictionary<NSString *, NSMutableArray *> *buckets = [NSMutableDictionary dictionaryWithCapacity:identifiers.count];
+    
+    for (NSString *identifier in identifiers) {
+        NSString *prefixChar = [identifier substringToIndex:1];
+        
+        NSMutableArray *bucket = buckets[prefixChar];
+        if (!bucket) {
+            bucket = [NSMutableArray array];
+        }
+        
+        [bucket addObject:identifier];
+        buckets[prefixChar] = bucket;
+    }
+    
+    NSArray *prefixChars = [buckets.allKeys sortedArrayUsingSelector:@selector(compare:)];
+    NSMutableArray *arrM = [NSMutableArray arrayWithCapacity:prefixChars.count];
+    
+    for (NSString *prefixChar in prefixChars) {
+        [arrM addObject:[buckets[prefixChar] sortedArrayUsingSelector:@selector(compare:)]];
+    }
+    
+    self.listData = arrM;
 }
 
 #pragma mark - Getters
@@ -45,11 +67,11 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return [self.listData count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.listData count];
+    return [self.listData[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -59,9 +81,32 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
     }
     
-    cell.textLabel.text = self.listData[indexPath.row];
+    cell.textLabel.text = self.listData[indexPath.section][indexPath.row];
     
     return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    NSString *string = [self.listData[section] firstObject];
+    
+    return [string substringToIndex:1];
+}
+
+#pragma mark > Index Titles
+
+- (NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    NSMutableArray *sectionIndexTitles = [NSMutableArray array];
+    
+    for (NSArray *section in self.listData) {
+        NSString *prefix = [[section firstObject] substringToIndex:1];
+        [sectionIndexTitles addObject:prefix];
+    }
+    
+    return sectionIndexTitles;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+    return index;
 }
 
 @end
