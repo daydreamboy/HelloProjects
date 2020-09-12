@@ -13,6 +13,9 @@
 		4F1B383223B77F5900349B62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F1B383023B77F5900349B62 /* LaunchScreen.storyboard */; };
 		4F1B383523B77F5900349B62 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B383423B77F5900349B62 /* main.m */; };
 		4F1B384123B77F9600349B62 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1B383F23B77F9600349B62 /* RootViewController.m */; };
+		4F1D19A3250B295C009BEE0B /* FileTestList in Resources */ = {isa = PBXBuildFile; fileRef = 4F1D19A2250B295C009BEE0B /* FileTestList */; };
+		4F1D19A7250B29F7009BEE0B /* FileTestListWKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1D19A6250B29F7009BEE0B /* FileTestListWKViewController.m */; };
+		4F1D19AA250B2BBB009BEE0B /* FilePreviewWKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1D19A9250B2BBB009BEE0B /* FilePreviewWKViewController.m */; };
 		4F1DC2F3244DC098008E3E1F /* UseWKNavigationDelegateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DC2F2244DC098008E3E1F /* UseWKNavigationDelegateViewController.m */; };
 		4F1DC2F6244DCBCD008E3E1F /* UseWKUIDelegateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1DC2F5244DCBCD008E3E1F /* UseWKUIDelegateViewController.m */; };
 		4F214E0C23B78BD200A5911F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F214E0B23B78BD200A5911F /* AppDelegate.m */; };
@@ -70,6 +73,11 @@
 		4F1B383423B77F5900349B62 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F1B383E23B77F9500349B62 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F1B383F23B77F9600349B62 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		4F1D19A2250B295C009BEE0B /* FileTestList */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FileTestList; sourceTree = "<group>"; };
+		4F1D19A5250B29F7009BEE0B /* FileTestListWKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FileTestListWKViewController.h; sourceTree = "<group>"; };
+		4F1D19A6250B29F7009BEE0B /* FileTestListWKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FileTestListWKViewController.m; sourceTree = "<group>"; };
+		4F1D19A8250B2BBB009BEE0B /* FilePreviewWKViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FilePreviewWKViewController.h; sourceTree = "<group>"; };
+		4F1D19A9250B2BBB009BEE0B /* FilePreviewWKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FilePreviewWKViewController.m; sourceTree = "<group>"; };
 		4F1DC2F1244DC098008E3E1F /* UseWKNavigationDelegateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseWKNavigationDelegateViewController.h; sourceTree = "<group>"; };
 		4F1DC2F2244DC098008E3E1F /* UseWKNavigationDelegateViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWKNavigationDelegateViewController.m; sourceTree = "<group>"; };
 		4F1DC2F4244DCBCD008E3E1F /* UseWKUIDelegateViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseWKUIDelegateViewController.h; sourceTree = "<group>"; };
@@ -163,6 +171,7 @@
 			children = (
 				4FFE8818244EFF3C00CB11FA /* Resources */,
 				4FFE8815244EFE7300CB11FA /* HTMLTestList */,
+				4F1D19A2250B295C009BEE0B /* FileTestList */,
 				4FFE880D244EFA8300CB11FA /* Tools */,
 				4F214E2123B78C0500A5911F /* WCWebViewTool */,
 				4F1B382123B77F5500349B62 /* HelloWKWebView */,
@@ -199,6 +208,7 @@
 		4F1B383B23B77F9500349B62 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F1D19A4250B29C2009BEE0B /* FilePreview */,
 				4F4A9914244F4C6900071219 /* HTMLCodeEditWKViewController.h */,
 				4F4A9915244F4C6900071219 /* HTMLCodeEditWKViewController.m */,
 				4F4A9917244F4C8500071219 /* HTMLCodeTestListWKViewController.h */,
@@ -229,6 +239,17 @@
 				4F2772B924FB90F6007872A2 /* MixRenderWKViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F1D19A4250B29C2009BEE0B /* FilePreview */ = {
+			isa = PBXGroup;
+			children = (
+				4F1D19A5250B29F7009BEE0B /* FileTestListWKViewController.h */,
+				4F1D19A6250B29F7009BEE0B /* FileTestListWKViewController.m */,
+				4F1D19A8250B2BBB009BEE0B /* FilePreviewWKViewController.h */,
+				4F1D19A9250B2BBB009BEE0B /* FilePreviewWKViewController.m */,
+			);
+			path = FilePreview;
 			sourceTree = "<group>";
 		};
 		4F214E0923B78BD200A5911F /* HelloUIWebView */ = {
@@ -426,6 +447,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F1D19A3250B295C009BEE0B /* FileTestList in Resources */,
 				4FFE881E244EFF7000CB11FA /* run_prettify.js in Resources */,
 				4F1B383223B77F5900349B62 /* LaunchScreen.storyboard in Resources */,
 				4FFE8816244EFE7300CB11FA /* HTMLTestList in Resources */,
@@ -457,6 +479,7 @@
 			files = (
 				4F1B382423B77F5500349B62 /* AppDelegate.m in Sources */,
 				4F1DC2F6244DCBCD008E3E1F /* UseWKUIDelegateViewController.m in Sources */,
+				4F1D19A7250B29F7009BEE0B /* FileTestListWKViewController.m in Sources */,
 				4F2772BE24FB9B6B007872A2 /* WCViewTool.m in Sources */,
 				4FC1619C245072CE002A93C3 /* DisableUserSelectWKViewController.m in Sources */,
 				4F214E4923B78E0600A5911F /* WCWebViewTool.m in Sources */,
@@ -469,6 +492,7 @@
 				4F4A9919244F4C8500071219 /* HTMLCodeTestListWKViewController.m in Sources */,
 				4F2772B824FB850F007872A2 /* MixRenderListWKViewController.m in Sources */,
 				4F45F3B0244E9B3400043A35 /* LoadHTMLStringViewController.m in Sources */,
+				4F1D19AA250B2BBB009BEE0B /* FilePreviewWKViewController.m in Sources */,
 				4F1B384123B77F9600349B62 /* RootViewController.m in Sources */,
 				4FCDC7CA24509E2500428663 /* WebViewFakeUIViewWKViewController.m in Sources */,
 				4F1B383523B77F5900349B62 /* main.m in Sources */,
