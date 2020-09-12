@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param navigationBar the nav bar (from viewController.navigationController.navigationBar)
  @param color the color. If nil, set it to system-default. If clearColor, will hide the hair line
  */
-+ (void)setNavBar:(UINavigationBar *)navigationBar hairLineColor:(UIColor *)color;
++ (void)setNavBar:(UINavigationBar *)navigationBar hairLineColor:(nullable UIColor *)color;
 
 /**
  Set background and hair line to transparent

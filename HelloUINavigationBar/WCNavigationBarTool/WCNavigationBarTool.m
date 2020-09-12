@@ -53,9 +53,9 @@ SYNTHESIZE_ASSOCIATED_OBJ(wnbt_shadowImageView, setWnbt_shadowImageView, UIView 
 // abbr. wnbt
 @implementation WCNavigationBarTool
 
-+ (void)setNavBar:(UINavigationBar *)navigationBar hairLineColor:(UIColor *)color {
++ (void)setNavBar:(UINavigationBar *)navigationBar hairLineColor:(nullable UIColor *)color {
     
-    if (![navigationBar isKindOfClass:[UINavigationBar class]] || ![color isKindOfClass:[UIColor class]]) {
+    if (![navigationBar isKindOfClass:[UINavigationBar class]] || (color && ![color isKindOfClass:[UIColor class]])) {
         return;
     }
     

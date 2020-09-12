@@ -31,7 +31,7 @@ UINavigationController提供下面的API，允许传入UINavigationBar的子类�
 
 
 
-
+extendedLayoutIncludesOpaqueBars=YES，对当前viewController的view有效。如果parent和child的关系，需要都设置。
 
 
 
