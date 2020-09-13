@@ -120,6 +120,17 @@ Root View Controller是指UIWindow上的根View Controller，它和UIWindow的�
 
 
 
+### （4）Presentation
+
+Presentation是在当前View Controller上覆盖另一个View Controller。下面两个API完成present和dismiss的调用，如下
+
+```objective-c
+- (void)presentViewController:(UIViewController *)viewControllerToPresent animated:(BOOL)flag completion:(void (^)(void))completion;
+- (void)dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion;
+```
+
+
+
 
 
 

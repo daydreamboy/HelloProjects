@@ -57,7 +57,10 @@
     transition.subtype = kCATransitionFromRight;
     [self.view.window.layer addAnimation:transition forKey:nil];
     
-    [self.navigationController presentViewController:[DummyModalViewController new] animated:NO completion:nil];
+    DummyModalViewController *modalViewController = [DummyModalViewController new];
+    modalViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+    
+    [self.navigationController presentViewController:modalViewController animated:NO completion:nil];
     
     //[self.navigationController presentViewController:[DummyModalViewController new] animated:YES completion:nil];
 }

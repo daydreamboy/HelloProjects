@@ -8,10 +8,15 @@
 
 #import "RootViewController.h"
 
+// section 1
 #import "UseToolbarItemsViewController.h"
 #import "UseViewControllerAsSubviewViewController.h"
 #import "CheckAppearingAndDisappearingViewController.h"
+
+// section 2
+#import "UseModalPresentationStyleViewController.h"
 #import "CustomPresentationViewController.h"
+
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -47,6 +52,7 @@
     
     NSArray<NSDictionary *> *section3 = @[
           @{ kTitle: @"Custom presentation", kClass: [CustomPresentationViewController class] },
+          @{ kTitle: @"Use @modalPresentationStyle", kClass: [UseModalPresentationStyleViewController class] },
     ];
     
     _sectionTitles = @[
