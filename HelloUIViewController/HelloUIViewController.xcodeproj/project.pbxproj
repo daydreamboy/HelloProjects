@@ -58,6 +58,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F16F486250E115400CA21E2 /* ContentViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4F4E14AA2103576600D12D11 /* UseToolbarItemsViewController.h */,
+				4F4E14A92103576600D12D11 /* UseToolbarItemsViewController.m */,
+				4FB0291C21888B4A000E6516 /* CheckAppearingAndDisappearingViewController.h */,
+				4FB0291D21888B4A000E6516 /* CheckAppearingAndDisappearingViewController.m */,
+				4F7D8ED82109777300145B00 /* UseViewControllerAsSubviewViewController.h */,
+				4F7D8ED92109777300145B00 /* UseViewControllerAsSubviewViewController.m */,
+			);
+			path = ContentViewController;
+			sourceTree = "<group>";
+		};
+		4F16F487250E116600CA21E2 /* ContainerViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ContainerViewController;
+			sourceTree = "<group>";
+		};
+		4F16F488250E184800CA21E2 /* CustomizeViewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomizeViewController;
+			sourceTree = "<group>";
+		};
+		4F16F489250E187400CA21E2 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				4FEDD4182189A979008CB64F /* CustomPresentationViewController.h */,
+				4FEDD4192189A979008CB64F /* CustomPresentationViewController.m */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
 		4F4E14862103573700D12D11 = {
 			isa = PBXGroup;
 			children = (
@@ -94,15 +130,11 @@
 		4F4E14A82103576600D12D11 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F16F489250E187400CA21E2 /* Presentation */,
+				4F16F487250E116600CA21E2 /* ContainerViewController */,
+				4F16F486250E115400CA21E2 /* ContentViewController */,
+				4F16F488250E184800CA21E2 /* CustomizeViewController */,
 				4FB0291F2188A926000E6516 /* DummyViewControllers */,
-				4F4E14AA2103576600D12D11 /* UseToolbarItemsViewController.h */,
-				4F4E14A92103576600D12D11 /* UseToolbarItemsViewController.m */,
-				4F7D8ED82109777300145B00 /* UseViewControllerAsSubviewViewController.h */,
-				4F7D8ED92109777300145B00 /* UseViewControllerAsSubviewViewController.m */,
-				4FB0291C21888B4A000E6516 /* CheckAppearingAndDisappearingViewController.h */,
-				4FB0291D21888B4A000E6516 /* CheckAppearingAndDisappearingViewController.m */,
-				4FEDD4182189A979008CB64F /* CustomPresentationViewController.h */,
-				4FEDD4192189A979008CB64F /* CustomPresentationViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
