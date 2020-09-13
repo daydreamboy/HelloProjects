@@ -7,15 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F16F473250E0CD700CA21E2 /* ColorizeHairLineOfNavBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F16F466250E0CD600CA21E2 /* ColorizeHairLineOfNavBarViewController.m */; };
+		4F16F474250E0CD700CA21E2 /* SolidColoredNavBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F16F46A250E0CD600CA21E2 /* SolidColoredNavBarViewController.m */; };
+		4F16F475250E0CD700CA21E2 /* HideBackArrowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F16F46B250E0CD600CA21E2 /* HideBackArrowViewController.m */; };
+		4F16F476250E0CD700CA21E2 /* RemoveHairLineOfNavBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F16F46C250E0CD600CA21E2 /* RemoveHairLineOfNavBarViewController.m */; };
+		4F16F477250E0CD700CA21E2 /* TransparentNavBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F16F46D250E0CD600CA21E2 /* TransparentNavBarViewController.m */; };
+		4F16F478250E0CD700CA21E2 /* CustomizedBackItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F16F46E250E0CD600CA21E2 /* CustomizedBackItemViewController.m */; };
+		4F16F479250E0CD700CA21E2 /* PositionBarButtonItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F16F471250E0CD600CA21E2 /* PositionBarButtonItemViewController.m */; };
+		4F16F484250E0DEC00CA21E2 /* WCNavigationBarTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F16F47F250E0DEC00CA21E2 /* WCNavigationBarTool.m */; };
+		4F16F485250E0DEC00CA21E2 /* WCNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F16F483250E0DEC00CA21E2 /* WCNavigationBar.m */; };
+		4F1D403D250CCF5A00FC8E3F /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1D4039250CCF5A00FC8E3F /* SecondViewController.m */; };
+		4F1D403E250CCF5A00FC8E3F /* NavRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1D403B250CCF5A00FC8E3F /* NavRootViewController.m */; };
 		4F69416D250A4D3A00091C90 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F69416C250A4D3A00091C90 /* AppDelegate.m */; };
 		4F694178250A4D3B00091C90 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F694177250A4D3B00091C90 /* Assets.xcassets */; };
 		4F69417B250A4D3B00091C90 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F694179250A4D3B00091C90 /* LaunchScreen.storyboard */; };
 		4F69417E250A4D3B00091C90 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F69417D250A4D3B00091C90 /* main.m */; };
 		4F69418D250A57BB00091C90 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F694188250A57BB00091C90 /* RootViewController.m */; };
-		4F69418E250A57BB00091C90 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F69418A250A57BB00091C90 /* Demo1ViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F16F465250E0CD600CA21E2 /* TransparentNavBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentNavBarViewController.h; sourceTree = "<group>"; };
+		4F16F466250E0CD600CA21E2 /* ColorizeHairLineOfNavBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorizeHairLineOfNavBarViewController.m; sourceTree = "<group>"; };
+		4F16F467250E0CD600CA21E2 /* SolidColoredNavBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SolidColoredNavBarViewController.h; sourceTree = "<group>"; };
+		4F16F468250E0CD600CA21E2 /* HideBackArrowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HideBackArrowViewController.h; sourceTree = "<group>"; };
+		4F16F469250E0CD600CA21E2 /* RemoveHairLineOfNavBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RemoveHairLineOfNavBarViewController.h; sourceTree = "<group>"; };
+		4F16F46A250E0CD600CA21E2 /* SolidColoredNavBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SolidColoredNavBarViewController.m; sourceTree = "<group>"; };
+		4F16F46B250E0CD600CA21E2 /* HideBackArrowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HideBackArrowViewController.m; sourceTree = "<group>"; };
+		4F16F46C250E0CD600CA21E2 /* RemoveHairLineOfNavBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoveHairLineOfNavBarViewController.m; sourceTree = "<group>"; };
+		4F16F46D250E0CD600CA21E2 /* TransparentNavBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentNavBarViewController.m; sourceTree = "<group>"; };
+		4F16F46E250E0CD600CA21E2 /* CustomizedBackItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomizedBackItemViewController.m; sourceTree = "<group>"; };
+		4F16F46F250E0CD600CA21E2 /* ColorizeHairLineOfNavBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorizeHairLineOfNavBarViewController.h; sourceTree = "<group>"; };
+		4F16F470250E0CD600CA21E2 /* PositionBarButtonItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PositionBarButtonItemViewController.h; sourceTree = "<group>"; };
+		4F16F471250E0CD600CA21E2 /* PositionBarButtonItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PositionBarButtonItemViewController.m; sourceTree = "<group>"; };
+		4F16F472250E0CD600CA21E2 /* CustomizedBackItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomizedBackItemViewController.h; sourceTree = "<group>"; };
+		4F16F47F250E0DEC00CA21E2 /* WCNavigationBarTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCNavigationBarTool.m; sourceTree = "<group>"; };
+		4F16F480250E0DEC00CA21E2 /* WCNavigationBarTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCNavigationBarTool.h; sourceTree = "<group>"; };
+		4F16F482250E0DEC00CA21E2 /* WCNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCNavigationBar.h; sourceTree = "<group>"; };
+		4F16F483250E0DEC00CA21E2 /* WCNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCNavigationBar.m; sourceTree = "<group>"; };
+		4F1D4039250CCF5A00FC8E3F /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
+		4F1D403A250CCF5A00FC8E3F /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
+		4F1D403B250CCF5A00FC8E3F /* NavRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavRootViewController.m; sourceTree = "<group>"; };
+		4F1D403C250CCF5A00FC8E3F /* NavRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavRootViewController.h; sourceTree = "<group>"; };
 		4F694168250A4D3A00091C90 /* HelloUINavigationController.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUINavigationController.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F69416B250A4D3A00091C90 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F69416C250A4D3A00091C90 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -24,8 +56,6 @@
 		4F69417C250A4D3B00091C90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F69417D250A4D3B00091C90 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F694188250A57BB00091C90 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		4F69418A250A57BB00091C90 /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
-		4F69418B250A57BB00091C90 /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
 		4F69418C250A57BB00091C90 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -40,9 +70,68 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F16F463250E0B9800CA21E2 /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				4F16F46F250E0CD600CA21E2 /* ColorizeHairLineOfNavBarViewController.h */,
+				4F16F466250E0CD600CA21E2 /* ColorizeHairLineOfNavBarViewController.m */,
+				4F16F472250E0CD600CA21E2 /* CustomizedBackItemViewController.h */,
+				4F16F46E250E0CD600CA21E2 /* CustomizedBackItemViewController.m */,
+				4F16F468250E0CD600CA21E2 /* HideBackArrowViewController.h */,
+				4F16F46B250E0CD600CA21E2 /* HideBackArrowViewController.m */,
+				4F16F470250E0CD600CA21E2 /* PositionBarButtonItemViewController.h */,
+				4F16F471250E0CD600CA21E2 /* PositionBarButtonItemViewController.m */,
+				4F16F469250E0CD600CA21E2 /* RemoveHairLineOfNavBarViewController.h */,
+				4F16F46C250E0CD600CA21E2 /* RemoveHairLineOfNavBarViewController.m */,
+				4F16F467250E0CD600CA21E2 /* SolidColoredNavBarViewController.h */,
+				4F16F46A250E0CD600CA21E2 /* SolidColoredNavBarViewController.m */,
+				4F16F465250E0CD600CA21E2 /* TransparentNavBarViewController.h */,
+				4F16F46D250E0CD600CA21E2 /* TransparentNavBarViewController.m */,
+			);
+			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		4F16F464250E0BB500CA21E2 /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NavigationController;
+			sourceTree = "<group>";
+		};
+		4F16F47E250E0DEC00CA21E2 /* WCNavigationBarTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F16F480250E0DEC00CA21E2 /* WCNavigationBarTool.h */,
+				4F16F47F250E0DEC00CA21E2 /* WCNavigationBarTool.m */,
+			);
+			path = WCNavigationBarTool;
+			sourceTree = "<group>";
+		};
+		4F16F481250E0DEC00CA21E2 /* WCNavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				4F16F482250E0DEC00CA21E2 /* WCNavigationBar.h */,
+				4F16F483250E0DEC00CA21E2 /* WCNavigationBar.m */,
+			);
+			path = WCNavigationBar;
+			sourceTree = "<group>";
+		};
+		4F1D4038250CCEF800FC8E3F /* NavigationControllerIssues */ = {
+			isa = PBXGroup;
+			children = (
+				4F1D403C250CCF5A00FC8E3F /* NavRootViewController.h */,
+				4F1D403B250CCF5A00FC8E3F /* NavRootViewController.m */,
+				4F1D403A250CCF5A00FC8E3F /* SecondViewController.h */,
+				4F1D4039250CCF5A00FC8E3F /* SecondViewController.m */,
+			);
+			path = NavigationControllerIssues;
+			sourceTree = "<group>";
+		};
 		4F69415F250A4D3900091C90 = {
 			isa = PBXGroup;
 			children = (
+				4F16F481250E0DEC00CA21E2 /* WCNavigationBar */,
+				4F16F47E250E0DEC00CA21E2 /* WCNavigationBarTool */,
 				4F69416A250A4D3A00091C90 /* HelloUINavigationController */,
 				4F694169250A4D3A00091C90 /* Products */,
 			);
@@ -75,8 +164,9 @@
 		4F694189250A57BB00091C90 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F69418A250A57BB00091C90 /* Demo1ViewController.m */,
-				4F69418B250A57BB00091C90 /* Demo1ViewController.h */,
+				4F16F464250E0BB500CA21E2 /* NavigationController */,
+				4F16F463250E0B9800CA21E2 /* NavigationBar */,
+				4F1D4038250CCEF800FC8E3F /* NavigationControllerIssues */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -150,10 +240,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F69418E250A57BB00091C90 /* Demo1ViewController.m in Sources */,
+				4F1D403D250CCF5A00FC8E3F /* SecondViewController.m in Sources */,
+				4F1D403E250CCF5A00FC8E3F /* NavRootViewController.m in Sources */,
 				4F69416D250A4D3A00091C90 /* AppDelegate.m in Sources */,
+				4F16F477250E0CD700CA21E2 /* TransparentNavBarViewController.m in Sources */,
 				4F69417E250A4D3B00091C90 /* main.m in Sources */,
+				4F16F474250E0CD700CA21E2 /* SolidColoredNavBarViewController.m in Sources */,
+				4F16F484250E0DEC00CA21E2 /* WCNavigationBarTool.m in Sources */,
+				4F16F475250E0CD700CA21E2 /* HideBackArrowViewController.m in Sources */,
+				4F16F473250E0CD700CA21E2 /* ColorizeHairLineOfNavBarViewController.m in Sources */,
+				4F16F485250E0DEC00CA21E2 /* WCNavigationBar.m in Sources */,
+				4F16F479250E0CD700CA21E2 /* PositionBarButtonItemViewController.m in Sources */,
+				4F16F476250E0CD700CA21E2 /* RemoveHairLineOfNavBarViewController.m in Sources */,
 				4F69418D250A57BB00091C90 /* RootViewController.m in Sources */,
+				4F16F478250E0CD700CA21E2 /* CustomizedBackItemViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
