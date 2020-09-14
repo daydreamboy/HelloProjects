@@ -29,7 +29,13 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.baidu.com/"]];
     [self.webView loadRequest:request];
     
-    //[self.webView addObserver:self forKeyPath:NSStringFromSelector(@selector(estimatedProgress)) options:NSKeyValueObservingOptionNew context:NULL];
+    [self setUpObserversWithWebView:self.webView];
+}
+
+- (void)dealloc {
+    [self tearDownObserversWithWebView:_webView];
+    // dealloc 中要正确释放 WebView。
+    _webView = nil;
 }
 
 #pragma mark - Getter
@@ -105,5 +111,35 @@
 #pragma mark - WKUIDelegate
 
 #pragma mark - WKNavigationDelegate
+
+#pragma mark - KVO
+
+- (void)setUpObserversWithWebView:(WKWebView *)webView {
+    [webView addObserver:self forKeyPath:@"title" options:NSKeyValueObservingOptionNew context:nil];
+    [webView addObserver:self forKeyPath:@"estimatedProgress" options:NSKeyValueObservingOptionNew context:nil];
+}
+
+- (void)tearDownObserversWithWebView:(WKWebView *)webView {
+    [webView removeObserver:self forKeyPath:@"title"];
+    [webView removeObserver:self forKeyPath:@"estimatedProgress"];
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    if ([keyPath isEqual:@"title"]) {
+        self.navigationItem.title = change[NSKeyValueChangeNewKey]; // 就是新的页面标题。
+    }
+    else if ([keyPath isEqual:@"estimatedProgress"]) {
+        double progress = [change[NSKeyValueChangeNewKey] doubleValue]; //就是新的加载进度，范围是 0.0~1.0。
+        // 注意加载进度可能在非主线程触发，如果有 UI 操作注意切换线程。
+        if ([[NSThread currentThread] isMainThread]) {
+            [self.progressView setProgress:progress animated:YES];
+        }
+        else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.progressView setProgress:progress animated:YES];
+            });
+        }
+    }
+}
 
 @end
