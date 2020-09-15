@@ -172,7 +172,7 @@
 			path = AppTestDemos;
 			sourceTree = "<group>";
 		};
-		4F358EEA2510A11F00E95C41 /* Managers */ = {
+		4F358EEA2510A11F00E95C41 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
 				4F358EEB2510A14600E95C41 /* WCDynamicColorManager.h */,
@@ -180,7 +180,7 @@
 				4F34B017250F7C9300542FCC /* WCDynamicFontManager.h */,
 				4F34B018250F7C9300542FCC /* WCDynamicFontManager.m */,
 			);
-			path = Managers;
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		4F358EEE2510A23200E95C41 /* Color */ = {
@@ -246,7 +246,7 @@
 			children = (
 				4F358EEF2510A24900E95C41 /* Font */,
 				4F358EEE2510A23200E95C41 /* Color */,
-				4F358EEA2510A11F00E95C41 /* Managers */,
+				4F358EEA2510A11F00E95C41 /* Manager */,
 				4F358EF32510CAA000E95C41 /* WCTheme.h */,
 			);
 			path = WCThemeManager;
