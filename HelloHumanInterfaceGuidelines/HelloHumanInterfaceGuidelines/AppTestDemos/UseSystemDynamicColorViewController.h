@@ -1,5 +1,5 @@
 //
-//  UseDynamicColorViewController.h
+//  UseSystemDynamicColorViewController.h
 //  HelloHumanInterfaceGuidelines
 //
 //  Created by wesley_chen on 2020/8/7.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UseDynamicColorViewController : UIViewController
+@interface UseSystemDynamicColorViewController : UIViewController
 
 @end
 

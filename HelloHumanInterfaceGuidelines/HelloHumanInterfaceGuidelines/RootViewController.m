@@ -10,7 +10,7 @@
 
 #import "UseSystemColorViewController.h"
 #import "UseSemanticColorViewController.h"
-#import "UseDynamicColorViewController.h"
+#import "UseSystemDynamicColorViewController.h"
 #import "TestViewController.h"
 #import "UseDynamicFontToSetViewController.h"
 
@@ -45,7 +45,7 @@
     _classes = @[
         [UseSystemColorViewController class],
         [UseSemanticColorViewController class],
-        [UseDynamicColorViewController class],
+        [UseSystemDynamicColorViewController class],
         [TestViewController class],
         [UseDynamicFontToSetViewController class],
         //@"testMethod",

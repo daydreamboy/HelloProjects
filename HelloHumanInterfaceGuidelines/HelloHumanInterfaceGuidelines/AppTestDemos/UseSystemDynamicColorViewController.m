@@ -1,18 +1,18 @@
 //
-//  UseDynamicColorViewController.m
+//  UseSystemDynamicColorViewController.m
 //  HelloHumanInterfaceGuidelines
 //
 //  Created by wesley_chen on 2020/8/7.
 //  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
-#import "UseDynamicColorViewController.h"
+#import "UseSystemDynamicColorViewController.h"
 
-@interface UseDynamicColorViewController ()
+@interface UseSystemDynamicColorViewController ()
 
 @end
 
-@implementation UseDynamicColorViewController
+@implementation UseSystemDynamicColorViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

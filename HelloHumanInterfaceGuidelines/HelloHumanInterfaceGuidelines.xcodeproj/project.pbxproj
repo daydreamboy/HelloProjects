@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F17290224DD80AF00110D4C /* UseDynamicColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F17290124DD80AF00110D4C /* UseDynamicColorViewController.m */; };
+		4F17290224DD80AF00110D4C /* UseSystemDynamicColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F17290124DD80AF00110D4C /* UseSystemDynamicColorViewController.m */; };
 		4F2376ED241F334000389A64 /* UseSystemColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2376EC241F334000389A64 /* UseSystemColorViewController.m */; };
 		4F2376F1241F35B700389A64 /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2376F0241F35B700389A64 /* MyTableViewCell.m */; };
 		4F2820DF241B31D30032E16A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2820DE241B31D30032E16A /* AppDelegate.m */; };
@@ -32,8 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4F17290024DD80AF00110D4C /* UseDynamicColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseDynamicColorViewController.h; sourceTree = "<group>"; };
-		4F17290124DD80AF00110D4C /* UseDynamicColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseDynamicColorViewController.m; sourceTree = "<group>"; };
+		4F17290024DD80AF00110D4C /* UseSystemDynamicColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseSystemDynamicColorViewController.h; sourceTree = "<group>"; };
+		4F17290124DD80AF00110D4C /* UseSystemDynamicColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseSystemDynamicColorViewController.m; sourceTree = "<group>"; };
 		4F18EB32250FC5690014D88F /* WCColorProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCColorProvider.h; sourceTree = "<group>"; };
 		4F2376EB241F334000389A64 /* UseSystemColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseSystemColorViewController.h; sourceTree = "<group>"; };
 		4F2376EC241F334000389A64 /* UseSystemColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseSystemColorViewController.m; sourceTree = "<group>"; };
@@ -147,8 +147,8 @@
 				4F2376EC241F334000389A64 /* UseSystemColorViewController.m */,
 				4FD8E7ED24246A7000DD34AA /* UseSemanticColorViewController.h */,
 				4FD8E7EE24246A7000DD34AA /* UseSemanticColorViewController.m */,
-				4F17290024DD80AF00110D4C /* UseDynamicColorViewController.h */,
-				4F17290124DD80AF00110D4C /* UseDynamicColorViewController.m */,
+				4F17290024DD80AF00110D4C /* UseSystemDynamicColorViewController.h */,
+				4F17290124DD80AF00110D4C /* UseSystemDynamicColorViewController.m */,
 				4F34B011250F77F300542FCC /* UseDynamicFontToSetViewController.h */,
 				4F34B012250F77F300542FCC /* UseDynamicFontToSetViewController.m */,
 				4F34B021250F9E3A00542FCC /* UseDynamicFontToGetViewController.h */,
@@ -288,7 +288,7 @@
 				4FF255F224FF4CD4008B5F9A /* UIColor+DGUITheme.m in Sources */,
 				4FF255FC24FF7335008B5F9A /* DGIMUIThemeProvider.m in Sources */,
 				4FEC5B262421CA42008376EA /* WCImageTool.m in Sources */,
-				4F17290224DD80AF00110D4C /* UseDynamicColorViewController.m in Sources */,
+				4F17290224DD80AF00110D4C /* UseSystemDynamicColorViewController.m in Sources */,
 				4FF255F324FF4CD4008B5F9A /* DGUIThemeManager.m in Sources */,
 				4F2820DF241B31D30032E16A /* AppDelegate.m in Sources */,
 				4FD8E7EF24246A7000DD34AA /* UseSemanticColorViewController.m in Sources */,
