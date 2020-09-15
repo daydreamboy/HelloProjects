@@ -11,8 +11,9 @@
 #import "UseSystemColorViewController.h"
 #import "UseSemanticColorViewController.h"
 #import "UseSystemDynamicColorViewController.h"
-#import "TestViewController.h"
+#import "UseDynamicColorViewController.h"
 #import "UseDynamicFontToSetViewController.h"
+#import "UseNewDynamicColorViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -37,17 +38,19 @@
     _titles = @[
         @"Use system color",
         @"Use semantic color",
+        @"Use system dynamic color",
         @"Use dynamic color",
-        @"Test",
         @"Use dynamic font",
+        @"Use dynamic color2",
         //@"call a test method",
     ];
     _classes = @[
         [UseSystemColorViewController class],
         [UseSemanticColorViewController class],
         [UseSystemDynamicColorViewController class],
-        [TestViewController class],
+        [UseDynamicColorViewController class],
         [UseDynamicFontToSetViewController class],
+        [UseNewDynamicColorViewController class],
         //@"testMethod",
     ];
 }

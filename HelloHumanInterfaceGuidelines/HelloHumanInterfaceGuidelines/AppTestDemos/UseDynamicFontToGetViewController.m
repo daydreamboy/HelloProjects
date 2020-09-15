@@ -44,7 +44,7 @@
         label.layer.borderColor = [UIColor orangeColor].CGColor;
         label.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
         label.textAlignment = NSTextAlignmentCenter;
-        label.text = @"Hello, 中文!";
+        label.text = @"Hello, 你好!";
         
         _labelBody = label;
     }

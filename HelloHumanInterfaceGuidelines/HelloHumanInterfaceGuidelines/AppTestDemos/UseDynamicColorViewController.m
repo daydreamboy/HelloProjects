@@ -1,12 +1,12 @@
 //
-//  TestViewController.m
+//  UseDynamicColorViewController.m
 //  HelloHumanInterfaceGuidelines
 //
 //  Created by wesley_chen on 2020/9/2.
 //  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
-#import "TestViewController.h"
+#import "UseDynamicColorViewController.h"
 #import "DGUITheme.h"
 #import "WCMacroTool.h"
 #import "DGIMUIThemeProvider.h"
@@ -14,11 +14,11 @@
 #define font_color        @"font_color"
 #define unread_font_color @"unread_font_color"
 
-@interface TestViewController ()
+@interface UseDynamicColorViewController ()
 @property (nonatomic, strong) UILabel *label;
 @end
 
-@implementation TestViewController
+@implementation UseDynamicColorViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

@@ -1,8 +1,8 @@
 //
-//  TestViewController.h
+//  UseNewDynamicColorViewController.h
 //  HelloHumanInterfaceGuidelines
 //
-//  Created by wesley_chen on 2020/9/2.
+//  Created by wesley_chen on 2020/9/15.
 //  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TestViewController : UIViewController
+@interface UseNewDynamicColorViewController : UIViewController
 
 @end
 
