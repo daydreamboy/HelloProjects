@@ -52,7 +52,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @discussion This method will initialize the label's font
  */
-#define UILabelSetDynamicFont(label, key, defaultFont_, block) \
+#define WCSetDynamicFont(label, key, defaultFont_, block) \
 [[WCDynamicFontManager sharedManager] setDynamicFontWithObject:(label) defaultFont:defaultFont_ forKey:key fontDidChangeBlock:(block)];
 
 

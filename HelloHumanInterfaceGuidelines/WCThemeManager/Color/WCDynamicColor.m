@@ -8,6 +8,12 @@
 
 #import "WCDynamicColor.h"
 #import <objc/runtime.h>
+#import "WCDynamicInternalColor_Internal.h"
+
+// >= `12.0`
+#ifndef IOS12_OR_LATER
+#define IOS12_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"12.0" options:NSNumericSearch] != NSOrderedAscending)
+#endif
 
 const NSNotificationName WCDynamicColorDidChangeNotification = @"WCDynamicColorDidChangeNotification";
 const NSString *WCDynamicColorDidChangeNotificationUserInfoProvider = @"WCDynamicColorDidChangeNotificationUserInfoProvider";
@@ -80,7 +86,15 @@ static void * const kAssociatedKeyDynamicColor = (void *)&kAssociatedKeyDynamicC
             UIColor *color = [provider colorWithProviderName:providerName forKey:self.key];
             if (color) {
                 UILabel *label = (UILabel *)self.host;
-                [label setNeedsDisplay];
+                if (IOS12_OR_LATER) {
+                    [label setNeedsDisplay];
+                }
+                else {
+                    // Note: iOS 11-, use setNeedsDisplay not refresh textColor, must set it again by setTextColor:
+                    if ([WCDynamicInternalColor checkIsDynamicInternalColor:label.textColor]) {
+                        label.textColor = [[WCDynamicInternalColor alloc] initWithDefaultColor:color key:nil];
+                    }
+                }
             }
         }
         else if ([self.host isKindOfClass:[UITextView class]]) {

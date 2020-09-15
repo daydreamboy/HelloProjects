@@ -109,7 +109,7 @@
         label.textAlignment = NSTextAlignmentCenter;
         label.text = @"Hello, 你好!";
         
-        UILabelSetDynamicFont(label, @"label_body", [UIFont systemFontOfSize:12], ^(id object, UIFont *newFont) {
+        WCSetDynamicFont(label, @"label_body", [UIFont systemFontOfSize:12], ^(id object, UIFont *newFont) {
             UILabel *label = (UILabel *)object;
             CGRect frame = label.frame;
             [label sizeToFit];

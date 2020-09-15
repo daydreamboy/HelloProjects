@@ -105,13 +105,6 @@
     [WCDynamicColorManager removeColorDidChangeObserver:_labelAttributedString];
 }
 
-//- (void)viewDidLayoutSubviews {
-//    [super viewDidLayoutSubviews];
-//
-//    CGFloat y = CGRectGetHeight(self.view.bounds) - CGRectGetHeight(_pickerView.bounds) - [WCViewTool safeAreaInsetsWithView:self.view].bottom;
-//    self.pickerView.frame = FrameSetOrigin(self.pickerView.frame, NAN, y);
-//}
-
 #pragma mark - Getter
 
 - (UIPickerView *)pickerView {
@@ -141,6 +134,17 @@
         label.textAlignment = NSTextAlignmentCenter;
         label.text = @"Hello, 你好!";
         label.textColor = [WCDynamicColorManager dynamicColorWithDefaultColor:[UIColor blueColor] forKey:@"label_plain_string" attachToObject:label setType:WCDynamicColorSetTypeAutomatic];
+        __weak typeof(label) weak_label = label;
+        
+        // Note: iOS 11-, call setNeedDisplay not refresh textColor
+        /*
+        if (!IOS12_OR_LATER) {
+            [WCDynamicColorManager addColorDidChangeObserver:label callback:^(id<WCDynamicColorProvider>  _Nonnull colorProvider, NSString * _Nonnull colorProviderName) {
+                UIColor *color = [colorProvider colorWithProviderName:colorProviderName forKey:@"label_plain_string"];
+                weak_label.textColor = color;
+            }];
+        }
+         */
         
         _labelPlainString = label;
     }
@@ -179,6 +183,7 @@
         [WCDynamicColorManager addColorDidChangeObserver:textField callback:^(id<WCDynamicColorProvider>  _Nonnull colorProvider, NSString * _Nonnull colorProviderName) {
             UIColor *color = [colorProvider colorWithProviderName:colorProviderName forKey:@"textField_borderColor_1"];
             weak_textField.layer.borderColor = color.CGColor;
+            weak_textField.tintColor = [colorProvider colorWithProviderName:colorProviderName forKey:@"textField_tintColor_1"];
         }];
         
         textField.layer.borderWidth = 1;

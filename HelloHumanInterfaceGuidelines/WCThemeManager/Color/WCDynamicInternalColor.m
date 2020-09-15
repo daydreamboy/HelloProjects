@@ -12,7 +12,7 @@
 
 @implementation WCDynamicInternalColor
 
-- (instancetype)initWithDefaultColor:(UIColor *)defaultColor key:(NSString *)key {
+- (instancetype)initWithDefaultColor:(UIColor *)defaultColor key:(nullable NSString *)key {
     self = [super init];
     if (self) {
         _defaultColor = defaultColor;
@@ -52,13 +52,13 @@
 }
 
 - (id)forwardingTargetForSelector:(SEL)aSelector {
-    return _defaultColor;
+    return [self actualColor];
 }
 
 // Note:
 // Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '*** -hash not defined for the UIColor <WCDynamicInternalColor: 0x6000003c2940>; need to first convert colorspace.'
 - (NSUInteger)hash {
-    return [_defaultColor hash];
+    return [[self actualColor] hash];
 }
 
 // Note: 
@@ -68,7 +68,7 @@
 }
 
 - (CGColorRef)CGColor {
-    return [self actualColorRef];;
+    return [self actualColorRef];
 }
 
 - (id)copyWithZone:(NSZone *)zone {
@@ -97,7 +97,15 @@
 }
 
 - (BOOL)isDynamicColor {
-    return YES;
+    return self.key.length != 0;
+}
+
++ (BOOL)checkIsDynamicInternalColor:(UIColor *)color {
+    if ([color isKindOfClass:[WCDynamicInternalColor class]]) {
+        return YES;
+    }
+    
+    return NO;
 }
 
 @end

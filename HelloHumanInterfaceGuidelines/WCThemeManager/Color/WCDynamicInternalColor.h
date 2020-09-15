@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WCDynamicInternalColor : UIColor
 
-@property (nonatomic, copy, readonly) NSString *key;
+@property (nonatomic, copy, readonly, nullable) NSString *key;
 @property (nonatomic, strong, readonly) UIColor *defaultColor;
 @property (nonatomic, assign, readonly, getter=isDynamicColor) BOOL dynamicColor;
 

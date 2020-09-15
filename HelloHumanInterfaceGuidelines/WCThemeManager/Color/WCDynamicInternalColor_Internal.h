@@ -14,9 +14,11 @@ NS_ASSUME_NONNULL_BEGIN
 @interface WCDynamicInternalColor ()
 @property (nonatomic, assign, readwrite, getter=isDynamicColor) BOOL dynamicColor;
 @property (nonatomic, strong, readwrite) UIColor *defaultColor;
-@property (nonatomic, copy, readwrite) NSString *key;
+@property (nonatomic, copy, readwrite, nullable) NSString *key;
 
-- (instancetype)initWithDefaultColor:(UIColor *)defaultColor key:(NSString *)key;
+- (instancetype)initWithDefaultColor:(UIColor *)defaultColor key:(nullable NSString *)key;
+
++ (BOOL)checkIsDynamicInternalColor:(UIColor *)color;
 
 @end
 

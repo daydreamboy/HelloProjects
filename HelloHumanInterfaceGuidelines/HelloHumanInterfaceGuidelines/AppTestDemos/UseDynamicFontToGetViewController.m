@@ -21,7 +21,7 @@
     
     [self.view addSubview:self.labelBody];
     
-    UILabelSetDynamicFont(self.labelBody, @"label_body", [UIFont systemFontOfSize:15], ^(id object, UIFont *newFont) {
+    WCSetDynamicFont(self.labelBody, @"label_body", [UIFont systemFontOfSize:15], ^(id object, UIFont *newFont) {
         NSLog(@"%@", newFont);
         UILabel *label = (UILabel *)object;
         CGRect frame = label.frame;
