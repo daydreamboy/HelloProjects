@@ -10,6 +10,7 @@
 		4F17290224DD80AF00110D4C /* UseSystemDynamicColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F17290124DD80AF00110D4C /* UseSystemDynamicColorViewController.m */; };
 		4F2376ED241F334000389A64 /* UseSystemColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2376EC241F334000389A64 /* UseSystemColorViewController.m */; };
 		4F2376F1241F35B700389A64 /* MyTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2376F0241F35B700389A64 /* MyTableViewCell.m */; };
+		4F23F1532512352C004A391D /* UseDynamicFontInTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F23F1522512352C004A391D /* UseDynamicFontInTableViewViewController.m */; };
 		4F2820DF241B31D30032E16A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2820DE241B31D30032E16A /* AppDelegate.m */; };
 		4F2820EA241B31D60032E16A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F2820E9241B31D60032E16A /* Assets.xcassets */; };
 		4F2820ED241B31D60032E16A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F2820EB241B31D60032E16A /* LaunchScreen.storyboard */; };
@@ -32,6 +33,8 @@
 		4FF255F524FF4CD4008B5F9A /* UIColor+HexCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF255F124FF4CD4008B5F9A /* UIColor+HexCategory.m */; };
 		4FF255F824FF4D4F008B5F9A /* UseDynamicColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF255F724FF4D4F008B5F9A /* UseDynamicColorViewController.m */; };
 		4FF255FC24FF7335008B5F9A /* DGIMUIThemeProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF255FB24FF7335008B5F9A /* DGIMUIThemeProvider.m */; };
+		4FFECF5325125DF700E76EA4 /* WCDynamicValueManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFECF5225125DF700E76EA4 /* WCDynamicValueManager.m */; };
+		4FFECF562512614A00E76EA4 /* AppFontProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFECF552512614A00E76EA4 /* AppFontProvider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +45,8 @@
 		4F2376EC241F334000389A64 /* UseSystemColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseSystemColorViewController.m; sourceTree = "<group>"; };
 		4F2376EF241F35B700389A64 /* MyTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTableViewCell.h; sourceTree = "<group>"; };
 		4F2376F0241F35B700389A64 /* MyTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTableViewCell.m; sourceTree = "<group>"; };
+		4F23F1512512352C004A391D /* UseDynamicFontInTableViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseDynamicFontInTableViewViewController.h; sourceTree = "<group>"; };
+		4F23F1522512352C004A391D /* UseDynamicFontInTableViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseDynamicFontInTableViewViewController.m; sourceTree = "<group>"; };
 		4F2820DA241B31D30032E16A /* HelloHumanInterfaceGuidelines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloHumanInterfaceGuidelines.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F2820DD241B31D30032E16A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F2820DE241B31D30032E16A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -90,6 +95,10 @@
 		4FF255F924FF4E34008B5F9A /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
 		4FF255FA24FF7335008B5F9A /* DGIMUIThemeProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DGIMUIThemeProvider.h; sourceTree = "<group>"; };
 		4FF255FB24FF7335008B5F9A /* DGIMUIThemeProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DGIMUIThemeProvider.m; sourceTree = "<group>"; };
+		4FFECF5125125DF700E76EA4 /* WCDynamicValueManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCDynamicValueManager.h; sourceTree = "<group>"; };
+		4FFECF5225125DF700E76EA4 /* WCDynamicValueManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCDynamicValueManager.m; sourceTree = "<group>"; };
+		4FFECF542512614A00E76EA4 /* AppFontProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppFontProvider.h; sourceTree = "<group>"; };
+		4FFECF552512614A00E76EA4 /* AppFontProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppFontProvider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +119,21 @@
 				4F2376F0241F35B700389A64 /* MyTableViewCell.m */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		4F23F150251234F1004A391D /* DynamicFont */ = {
+			isa = PBXGroup;
+			children = (
+				4F34B011250F77F300542FCC /* UseDynamicFontToSetViewController.h */,
+				4F34B012250F77F300542FCC /* UseDynamicFontToSetViewController.m */,
+				4F34B021250F9E3A00542FCC /* UseDynamicFontToGetViewController.h */,
+				4F34B022250F9E3A00542FCC /* UseDynamicFontToGetViewController.m */,
+				4F23F1512512352C004A391D /* UseDynamicFontInTableViewViewController.h */,
+				4F23F1522512352C004A391D /* UseDynamicFontInTableViewViewController.m */,
+				4FFECF542512614A00E76EA4 /* AppFontProvider.h */,
+				4FFECF552512614A00E76EA4 /* AppFontProvider.m */,
+			);
+			path = DynamicFont;
 			sourceTree = "<group>";
 		};
 		4F2820D1241B31D30032E16A = {
@@ -150,6 +174,7 @@
 		4F2820F7241B32310032E16A /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F23F150251234F1004A391D /* DynamicFont */,
 				4FEC5B232421C9FF008376EA /* Tools */,
 				4F2376EE241F358700389A64 /* Cell */,
 				4FF255FA24FF7335008B5F9A /* DGIMUIThemeProvider.h */,
@@ -160,10 +185,6 @@
 				4FD8E7EE24246A7000DD34AA /* UseSemanticColorViewController.m */,
 				4F17290024DD80AF00110D4C /* UseSystemDynamicColorViewController.h */,
 				4F17290124DD80AF00110D4C /* UseSystemDynamicColorViewController.m */,
-				4F34B011250F77F300542FCC /* UseDynamicFontToSetViewController.h */,
-				4F34B012250F77F300542FCC /* UseDynamicFontToSetViewController.m */,
-				4F34B021250F9E3A00542FCC /* UseDynamicFontToGetViewController.h */,
-				4F34B022250F9E3A00542FCC /* UseDynamicFontToGetViewController.m */,
 				4FF255F624FF4D4F008B5F9A /* UseDynamicColorViewController.h */,
 				4FF255F724FF4D4F008B5F9A /* UseDynamicColorViewController.m */,
 				4F358EF02510AC7D00E95C41 /* UseNewDynamicColorViewController.h */,
@@ -179,6 +200,8 @@
 				4F358EEC2510A14600E95C41 /* WCDynamicColorManager.m */,
 				4F34B017250F7C9300542FCC /* WCDynamicFontManager.h */,
 				4F34B018250F7C9300542FCC /* WCDynamicFontManager.m */,
+				4FFECF5125125DF700E76EA4 /* WCDynamicValueManager.h */,
+				4FFECF5225125DF700E76EA4 /* WCDynamicValueManager.m */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -332,11 +355,14 @@
 				4FF255FC24FF7335008B5F9A /* DGIMUIThemeProvider.m in Sources */,
 				4FEC5B262421CA42008376EA /* WCImageTool.m in Sources */,
 				4F358EED2510A14600E95C41 /* WCDynamicColorManager.m in Sources */,
+				4FFECF562512614A00E76EA4 /* AppFontProvider.m in Sources */,
 				4F17290224DD80AF00110D4C /* UseSystemDynamicColorViewController.m in Sources */,
 				4FF255F324FF4CD4008B5F9A /* DGUIThemeManager.m in Sources */,
 				4F2820DF241B31D30032E16A /* AppDelegate.m in Sources */,
+				4F23F1532512352C004A391D /* UseDynamicFontInTableViewViewController.m in Sources */,
 				4FD8E7EF24246A7000DD34AA /* UseSemanticColorViewController.m in Sources */,
 				4F34B016250F799D00542FCC /* WCDynamicFont.m in Sources */,
+				4FFECF5325125DF700E76EA4 /* WCDynamicValueManager.m in Sources */,
 				4F358EF22510AC7D00E95C41 /* UseNewDynamicColorViewController.m in Sources */,
 				4FF255F524FF4CD4008B5F9A /* UIColor+HexCategory.m in Sources */,
 				4F358EE22510626F00E95C41 /* WCDynamicColor.m in Sources */,

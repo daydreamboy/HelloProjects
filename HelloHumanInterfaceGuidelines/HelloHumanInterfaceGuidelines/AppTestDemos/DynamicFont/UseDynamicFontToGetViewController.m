@@ -7,7 +7,8 @@
 //
 
 #import "UseDynamicFontToGetViewController.h"
-#import "WCDynamicFontManager.h"
+#import "WCTheme.h"
+#import "AppFontProvider.h"
 
 @interface UseDynamicFontToGetViewController ()
 @property (nonatomic, strong) UILabel *labelBody;
@@ -21,7 +22,7 @@
     
     [self.view addSubview:self.labelBody];
     
-    WCSetDynamicFont(self.labelBody, @"label_body", [UIFont systemFontOfSize:15], ^(id object, UIFont *newFont) {
+    WCThemeSetDynamicFont(self.labelBody, AppFontKey_label_body, [UIFont systemFontOfSize:15], ^(id object, UIFont *newFont) {
         NSLog(@"%@", newFont);
         UILabel *label = (UILabel *)object;
         CGRect frame = label.frame;

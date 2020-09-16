@@ -7,51 +7,11 @@
 //
 
 #import "UseDynamicFontToSetViewController.h"
-#import "WCDynamicFontManager.h"
+#import "WCTheme.h"
 #import "WCMacroTool.h"
 #import "WCViewTool.h"
 #import "UseDynamicFontToGetViewController.h"
-
-@interface ThemeFontProvider : NSObject <WCDynamicFontProvider>
-
-@end
-
-@implementation ThemeFontProvider
-
-- (UIFont *)fontWithProviderName:(NSString *)name forKey:(NSString *)key {
-    if ([name isEqualToString:@"large"]) {
-        
-        NSDictionary *fonts = @{
-            @"label_body": [UIFont systemFontOfSize:40],
-            @"label_callout": [UIFont systemFontOfSize:32],
-            @"label_caption1": [UIFont systemFontOfSize:32],
-            @"label_caption2": [UIFont systemFontOfSize:32],
-            @"label_headline": [UIFont systemFontOfSize:32],
-            @"label_subheadline": [UIFont systemFontOfSize:32],
-            @"label_largeTitle": [UIFont systemFontOfSize:32],
-            @"label_title1": [UIFont systemFontOfSize:32],
-            @"label_title2": [UIFont systemFontOfSize:32],
-            @"label_title3": [UIFont systemFontOfSize:32],
-        };
-        
-        return fonts[key];
-    }
-    else if ([name isEqualToString:@"medium"]) {
-        return [UIFont systemFontOfSize:22];
-    }
-    else if ([name isEqualToString:@"default"]) {
-        return [UIFont systemFontOfSize:16];
-    }
-    else if ([name isEqualToString:@"small"]) {
-        return [UIFont systemFontOfSize:10];
-    }
-    else {
-        return nil;
-    }
-}
-
-@end
-
+#import "AppFontProvider.h"
 
 @interface UseDynamicFontToSetViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
 @property (nonatomic, strong) UILabel *labelBody;
@@ -66,10 +26,10 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
-        [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[ThemeFontProvider new] forName:@"default"];
-        [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[ThemeFontProvider new] forName:@"small"];
-        [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[ThemeFontProvider new] forName:@"medium"];
-        [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[ThemeFontProvider new] forName:@"large"];
+        [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[AppFontProvider new] forName:@"default"];
+        [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[AppFontProvider new] forName:@"small"];
+        [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[AppFontProvider new] forName:@"medium"];
+        [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[AppFontProvider new] forName:@"large"];
         
         self.fontProviderList = [WCDynamicFontManager sharedManager].fontProviderNames;
         
@@ -109,7 +69,7 @@
         label.textAlignment = NSTextAlignmentCenter;
         label.text = @"Hello, 你好!";
         
-        WCSetDynamicFont(label, @"label_body", [UIFont systemFontOfSize:12], ^(id object, UIFont *newFont) {
+        WCThemeSetDynamicFont(label, AppFontKey_label_body, [UIFont systemFontOfSize:12], ^(id object, UIFont *newFont) {
             UILabel *label = (UILabel *)object;
             CGRect frame = label.frame;
             [label sizeToFit];

@@ -9,6 +9,9 @@
 #ifndef WCTheme_h
 #define WCTheme_h
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 #import "WCDynamicColorManager.h"
 #import "WCDynamicFontManager.h"
 

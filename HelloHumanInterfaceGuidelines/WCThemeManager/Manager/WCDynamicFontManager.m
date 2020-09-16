@@ -128,6 +128,16 @@
     return NO;
 }
 
+- (UIFont *)dynamicFontWithDefaultFont:(UIFont *)defaultFont forKey:(NSString *)key attachToObject:(nullable id)object fontDidChangeBlock:(nullable WCFontDidChangeBlockType)fontDidChangeBlock {
+    UIFont *font = [self.currentFontProvider fontWithProviderName:self.currentFontProviderName forKey:key];
+    
+    if (object) {
+        [WCDynamicFont setDynamicFontWithHost:object defaultFont:defaultFont forKey:key fontDidChangeBlock:fontDidChangeBlock forceReplace:NO];
+    }
+    
+    return font ?: defaultFont;
+}
+
 #pragma mark -
 
 - (instancetype)init {

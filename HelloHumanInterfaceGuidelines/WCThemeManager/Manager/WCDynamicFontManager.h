@@ -36,6 +36,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (BOOL)setDynamicFontWithObject:(id)object defaultFont:(UIFont *)defaultFont forKey:(NSString *)key fontDidChangeBlock:(nullable WCFontDidChangeBlockType)fontDidChangeBlock;
 
+- (UIFont *)dynamicFontWithDefaultFont:(UIFont *)defaultFont forKey:(NSString *)key attachToObject:(nullable id)object fontDidChangeBlock:(nullable WCFontDidChangeBlockType)fontDidChangeBlock;
+
 @end
 
 #pragma mark - Utility Macros
@@ -52,8 +54,10 @@ NS_ASSUME_NONNULL_BEGIN
  
  @discussion This method will initialize the label's font
  */
-#define WCSetDynamicFont(label, key, defaultFont_, block) \
-[[WCDynamicFontManager sharedManager] setDynamicFontWithObject:(label) defaultFont:defaultFont_ forKey:key fontDidChangeBlock:(block)];
+#define WCThemeSetDynamicFont(object, key, defaultFont_, block) \
+[[WCDynamicFontManager sharedManager] setDynamicFontWithObject:(object) defaultFont:defaultFont_ forKey:key fontDidChangeBlock:(block)];
 
+#define WCThemeGetDynamicFont(object, key, defaultFont_, block) \
+[[WCDynamicFontManager sharedManager] dynamicFontWithDefaultFont:(defaultFont_) forKey:(key) attachToObject:(object) fontDidChangeBlock:(block)];
 
 NS_ASSUME_NONNULL_END

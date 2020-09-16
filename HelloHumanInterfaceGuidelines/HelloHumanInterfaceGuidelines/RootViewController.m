@@ -14,6 +14,7 @@
 #import "UseDynamicColorViewController.h"
 #import "UseDynamicFontToSetViewController.h"
 #import "UseNewDynamicColorViewController.h"
+#import "UseDynamicFontInTableViewViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -42,6 +43,7 @@
         @"Use dynamic color",
         @"Use dynamic font",
         @"Use dynamic color2",
+        @"Use dynamic font in UITableView",
         //@"call a test method",
     ];
     _classes = @[
@@ -51,6 +53,7 @@
         [UseDynamicColorViewController class],
         [UseDynamicFontToSetViewController class],
         [UseNewDynamicColorViewController class],
+        [UseDynamicFontInTableViewViewController class],
         //@"testMethod",
     ];
 }
