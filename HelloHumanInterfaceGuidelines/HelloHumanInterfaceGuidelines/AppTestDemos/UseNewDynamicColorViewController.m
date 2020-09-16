@@ -133,11 +133,11 @@
         label.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
         label.textAlignment = NSTextAlignmentCenter;
         label.text = @"Hello, 你好!";
-        label.textColor = [WCDynamicColorManager dynamicColorWithDefaultColor:[UIColor blueColor] forKey:@"label_plain_string" attachToObject:label setType:WCDynamicColorSetTypeAutomatic];
-        __weak typeof(label) weak_label = label;
+        label.textColor = [WCDynamicColorManager dynamicColorWithDefaultColor:[UIColor blueColor] forKey:@"label_plain_string" attachToObject:label colorWillChangeBlock:nil];
         
         // Note: iOS 11-, call setNeedDisplay not refresh textColor
         /*
+        __weak typeof(label) weak_label = label;
         if (!IOS12_OR_LATER) {
             [WCDynamicColorManager addColorDidChangeObserver:label callback:^(id<WCDynamicColorProvider>  _Nonnull colorProvider, NSString * _Nonnull colorProviderName) {
                 UIColor *color = [colorProvider colorWithProviderName:colorProviderName forKey:@"label_plain_string"];
@@ -176,8 +176,8 @@
         
         UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_labelAttributedString.frame) + 10, screenSize.width, 30)];
         //textField.borderStyle = UITextBorderStyleRoundedRect;
-        textField.tintColor = [WCDynamicColorManager dynamicColorWithDefaultColor:[UIColor cyanColor] forKey:@"textField_tintColor_1" attachToObject:textField setType:WCDynamicColorSetTypeAutomatic];
-        textField.layer.borderColor = [WCDynamicColorManager dynamicColorWithDefaultColor:[UIColor redColor] forKey:@"textField_borderColor_1" attachToObject:textField setType:WCDynamicColorSetTypeAutomatic].CGColor;
+        textField.tintColor = [WCDynamicColorManager dynamicColorWithDefaultColor:[UIColor cyanColor] forKey:@"textField_tintColor_1" attachToObject:textField colorWillChangeBlock:nil];
+        textField.layer.borderColor = [WCDynamicColorManager dynamicColorWithDefaultColor:[UIColor redColor] forKey:@"textField_borderColor_1" attachToObject:textField colorWillChangeBlock:nil].CGColor;
         
         __weak typeof(textField) weak_textField = textField;
         [WCDynamicColorManager addColorDidChangeObserver:textField callback:^(id<WCDynamicColorProvider>  _Nonnull colorProvider, NSString * _Nonnull colorProviderName) {
@@ -200,13 +200,13 @@
 - (NSMutableAttributedString *)createAttributedString {
     NSMutableAttributedString *attrStringM = [[NSMutableAttributedString alloc] initWithString:@""];
     NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
-    attributes[NSForegroundColorAttributeName] = [WCDynamicColorManager dynamicColorWithDefaultColor:UICOLOR_RGBA(0x111F2C66) forKey:@"label_attributed_string_1" attachToObject:nil setType:WCDynamicColorSetTypeAutomatic];
+    attributes[NSForegroundColorAttributeName] = [WCDynamicColorManager dynamicColorWithDefaultColor:UICOLOR_RGBA(0x111F2C66) forKey:@"label_attributed_string_1" attachToObject:nil colorWillChangeBlock:nil];
     
     NSString *formatedValue = [NSString stringWithFormat:@"%@ ", @"[未读]"];
     [attrStringM appendAttributedString:ASTR2(formatedValue, attributes)];
     
     NSMutableDictionary *attributesM = [NSMutableDictionary dictionaryWithDictionary:attributes];
-    attributesM[NSForegroundColorAttributeName] = [WCDynamicColorManager dynamicColorWithDefaultColor:UICOLOR_RGBA(0x0089FF) forKey:@"label_attributed_string_2" attachToObject:nil setType:WCDynamicColorSetTypeAutomatic];
+    attributesM[NSForegroundColorAttributeName] = [WCDynamicColorManager dynamicColorWithDefaultColor:UICOLOR_RGBA(0x0089FF) forKey:@"label_attributed_string_2" attachToObject:nil colorWillChangeBlock:nil];
     
     [attrStringM appendAttributedString:ASTR2(@"为什么面膜", attributesM)];
     

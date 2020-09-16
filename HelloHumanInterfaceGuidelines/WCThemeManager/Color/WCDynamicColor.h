@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^WCColorDidChangeBlockType)(id object, UIColor *newColor);
+typedef void(^WCColorWillChangeBlockType)(id object, UIColor *newColor);
 
 @protocol WCDynamicColorProvider <NSObject>
 @required
@@ -24,7 +24,7 @@ FOUNDATION_EXPORT const NSString *WCDynamicColorDidChangeNotificationUserInfoPro
 
 @interface WCDynamicColor : NSObject
 
-+ (BOOL)setDynamicColorWithHost:(id)host defaultColor:(UIColor *)defaultColor forKey:(NSString *)key colorDidChangeBlock:(nullable WCColorDidChangeBlockType)colorDidChangeBlock forceReplace:(BOOL)forceReplace;
++ (BOOL)setDynamicColorWithHost:(id)host defaultColor:(UIColor *)defaultColor forKey:(NSString *)key colorWillChangeBlock:(nullable WCColorWillChangeBlockType)colorDidChangeBlock forceReplace:(BOOL)forceReplace;
 
 @end
 

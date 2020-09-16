@@ -23,15 +23,15 @@ const NSString *WCDynamicColorDidChangeNotificationUserInfoProviderName = @"WCDy
 @property (nonatomic, weak, readonly) id host;
 @property (nonatomic, strong, readonly, nullable) UIColor *defaultColor;
 @property (nonatomic, copy, readonly) NSString *key;
-@property (nonatomic, copy, readonly, nullable) WCColorDidChangeBlockType colorDidChangeBlock;
-- (instancetype)initWithHost:(id)host defaultColor:(UIColor *)defaultColor key:(NSString *)key colorDidChangeBlock:(nullable WCColorDidChangeBlockType)colorDidChangeBlock;
+@property (nonatomic, copy, readonly, nullable) WCColorWillChangeBlockType colorDidChangeBlock;
+- (instancetype)initWithHost:(id)host defaultColor:(UIColor *)defaultColor key:(NSString *)key colorDidChangeBlock:(nullable WCColorWillChangeBlockType)colorDidChangeBlock;
 @end
 
 @implementation WCDynamicColor
 
 static void * const kAssociatedKeyDynamicColor = (void *)&kAssociatedKeyDynamicColor;
 
-+ (BOOL)setDynamicColorWithHost:(id)host defaultColor:(UIColor *)defaultColor forKey:(NSString *)key colorDidChangeBlock:(nullable WCColorDidChangeBlockType)colorDidChangeBlock forceReplace:(BOOL)forceReplace {
++ (BOOL)setDynamicColorWithHost:(id)host defaultColor:(UIColor *)defaultColor forKey:(NSString *)key colorWillChangeBlock:(nullable WCColorWillChangeBlockType)colorDidChangeBlock forceReplace:(BOOL)forceReplace {
     if (!host || ![key isKindOfClass:[NSString class]]) {
         return NO;
     }
@@ -58,7 +58,7 @@ static void * const kAssociatedKeyDynamicColor = (void *)&kAssociatedKeyDynamicC
     return YES;
 }
 
-- (instancetype)initWithHost:(id)host defaultColor:(UIColor *)defaultColor key:(NSString *)key colorDidChangeBlock:(nullable WCColorDidChangeBlockType)colorDidChangeBlock {
+- (instancetype)initWithHost:(id)host defaultColor:(UIColor *)defaultColor key:(NSString *)key colorDidChangeBlock:(nullable WCColorWillChangeBlockType)colorDidChangeBlock {
     self = [super init];
     if (self) {
         _host = host;

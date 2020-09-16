@@ -12,17 +12,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef NS_ENUM(NSUInteger, WCDynamicColorSetType) {
-    /// update internally
-    WCDynamicColorSetTypeAutomatic,
-    /// .textColor
-    WCDynamicColorSetTypeTextColor,
-    /// .tintColor
-    WCDynamicColorSetTypeTintColor,
-    /// .backgroundColor
-    WCDynamicColorSetTypeBackgroundColor,
-};
-
 @interface WCDynamicColorManager : NSObject
 
 + (instancetype)sharedManager;
@@ -43,13 +32,13 @@ typedef NS_ENUM(NSUInteger, WCDynamicColorSetType) {
 - (BOOL)unregisterDynamicColorProvider:(id<WCDynamicColorProvider>)dynamicColorProvider;
 - (BOOL)unregisterDynamicColorProviderForName:(NSString *)name;
 
-#pragma mark > Set Color
-
-- (BOOL)setDynamicColorWithObject:(id)object defaultColor:(UIColor *)defaultColor forKey:(NSString *)key colorDidChangeBlock:(nullable WCColorDidChangeBlockType)colorDidChangeBlock;
+//#pragma mark > Set Color
+//
+//- (BOOL)setDynamicColorWithObject:(id)object defaultColor:(UIColor *)defaultColor forKey:(NSString *)key colorDidChangeBlock:(nullable WCColorWillChangeBlockType)colorDidChangeBlock;
 
 #pragma mark - Create Color
 
-+ (UIColor *)dynamicColorWithDefaultColor:(UIColor *)defaultColor forKey:(NSString *)key attachToObject:(nullable id)object setType:(WCDynamicColorSetType)setType;
++ (UIColor *)dynamicColorWithDefaultColor:(UIColor *)defaultColor forKey:(NSString *)key attachToObject:(nullable id)object colorWillChangeBlock:(nullable WCColorWillChangeBlockType)colorWillChangeBlock;
 
 + (void)addColorDidChangeObserver:(id)observer callback:(nullable void (^)(id<WCDynamicColorProvider> colorProvider, NSString *colorProviderName))callback;
 + (void)removeColorDidChangeObserver:(id)observer;

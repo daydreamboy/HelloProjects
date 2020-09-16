@@ -116,30 +116,30 @@
     return NO;
 }
 
-#pragma mark > Set Color
+//#pragma mark > Set Color
 
-- (BOOL)setDynamicColorWithObject:(id)object defaultColor:(UIColor *)defaultColor forKey:(NSString *)key colorDidChangeBlock:(nullable WCColorDidChangeBlockType)colorDidChangeBlock {
-    
-    if ([object isKindOfClass:[UIView class]]) {
-        if ([object isKindOfClass:[UILabel class]]) {
-            UILabel *label = (UILabel *)object;
-            label.textColor = [self.class dynamicColorWithDefaultColor:defaultColor forKey:key attachToObject:nil setType:WCDynamicColorSetTypeAutomatic];
-        }
-        
-        [WCDynamicColor setDynamicColorWithHost:object defaultColor:defaultColor forKey:key colorDidChangeBlock:colorDidChangeBlock forceReplace:NO];
-        
-        return YES;
-    }
-    
-    return NO;
-}
+//- (BOOL)setDynamicColorWithObject:(id)object defaultColor:(UIColor *)defaultColor forKey:(NSString *)key colorDidChangeBlock:(nullable WCColorWillChangeBlockType)colorDidChangeBlock {
+//
+//    if ([object isKindOfClass:[UIView class]]) {
+//        if ([object isKindOfClass:[UILabel class]]) {
+//            UILabel *label = (UILabel *)object;
+//            label.textColor = [self.class dynamicColorWithDefaultColor:defaultColor forKey:key attachToObject:nil colorWillChangeBlock:nil];
+//        }
+//
+//        [WCDynamicColor setDynamicColorWithHost:object defaultColor:defaultColor forKey:key colorWillChangeBlock:colorDidChangeBlock forceReplace:NO];
+//
+//        return YES;
+//    }
+//
+//    return NO;
+//}
 
 #pragma mark - Create Color
 
-+ (UIColor *)dynamicColorWithDefaultColor:(UIColor *)defaultColor forKey:(NSString *)key attachToObject:(nullable id)object setType:(WCDynamicColorSetType)setType {
++ (UIColor *)dynamicColorWithDefaultColor:(UIColor *)defaultColor forKey:(NSString *)key attachToObject:(nullable id)object colorWillChangeBlock:(nullable WCColorWillChangeBlockType)colorWillChangeBlock {
     
     if (object) {
-        [WCDynamicColor setDynamicColorWithHost:object defaultColor:defaultColor forKey:key colorDidChangeBlock:nil forceReplace:NO];
+        [WCDynamicColor setDynamicColorWithHost:object defaultColor:defaultColor forKey:key colorWillChangeBlock:colorWillChangeBlock forceReplace:NO];
     }
     
     return [[WCDynamicInternalColor alloc] initWithDefaultColor:defaultColor key:key];
