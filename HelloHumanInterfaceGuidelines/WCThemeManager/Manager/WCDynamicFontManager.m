@@ -112,7 +112,7 @@
 
 #pragma mark > Set Font
 
-- (BOOL)setDynamicFontWithObject:(id)object defaultFont:(UIFont *)defaultFont forKey:(NSString *)key fontDidChangeBlock:(nullable WCFontDidChangeBlockType)fontDidChangeBlock {
+- (BOOL)setDynamicFontWithDefaultFont:(UIFont *)defaultFont forKey:(NSString *)key attachToObject:(id)object fontDidChangeBlock:(nullable WCFontDidChangeBlockType)fontDidChangeBlock {
     
     // TODO: add more object type
     if ([object isKindOfClass:[UILabel class]]) {

@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef void(^WCColorWillChangeBlockType)(id object, UIColor *newColor);
+typedef BOOL(^WCColorWillChangeBlockType)(id object, UIColor *newColor);
 
 @protocol WCDynamicColorProvider <NSObject>
 @required

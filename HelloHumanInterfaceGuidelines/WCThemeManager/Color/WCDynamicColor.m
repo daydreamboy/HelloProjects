@@ -23,15 +23,15 @@ const NSString *WCDynamicColorDidChangeNotificationUserInfoProviderName = @"WCDy
 @property (nonatomic, weak, readonly) id host;
 @property (nonatomic, strong, readonly, nullable) UIColor *defaultColor;
 @property (nonatomic, copy, readonly) NSString *key;
-@property (nonatomic, copy, readonly, nullable) WCColorWillChangeBlockType colorDidChangeBlock;
-- (instancetype)initWithHost:(id)host defaultColor:(UIColor *)defaultColor key:(NSString *)key colorDidChangeBlock:(nullable WCColorWillChangeBlockType)colorDidChangeBlock;
+@property (nonatomic, copy, readonly, nullable) WCColorWillChangeBlockType colorWillChangeBlock;
+- (instancetype)initWithHost:(id)host defaultColor:(UIColor *)defaultColor key:(NSString *)key colorWillChangeBlock:(nullable WCColorWillChangeBlockType)colorWillChangeBlock;
 @end
 
 @implementation WCDynamicColor
 
 static void * const kAssociatedKeyDynamicColor = (void *)&kAssociatedKeyDynamicColor;
 
-+ (BOOL)setDynamicColorWithHost:(id)host defaultColor:(UIColor *)defaultColor forKey:(NSString *)key colorWillChangeBlock:(nullable WCColorWillChangeBlockType)colorDidChangeBlock forceReplace:(BOOL)forceReplace {
++ (BOOL)setDynamicColorWithHost:(id)host defaultColor:(UIColor *)defaultColor forKey:(NSString *)key colorWillChangeBlock:(nullable WCColorWillChangeBlockType)colorWillChangeBlock forceReplace:(BOOL)forceReplace {
     if (!host || ![key isKindOfClass:[NSString class]]) {
         return NO;
     }
@@ -42,7 +42,7 @@ static void * const kAssociatedKeyDynamicColor = (void *)&kAssociatedKeyDynamicC
     
     if (forceReplace) {
         WCDynamicColor *dynamicColor = objc_getAssociatedObject(host, kAssociatedKeyDynamicColor);
-        dynamicColor = [[WCDynamicColor alloc] initWithHost:self defaultColor:defaultColor key:key colorDidChangeBlock:colorDidChangeBlock];
+        dynamicColor = [[WCDynamicColor alloc] initWithHost:self defaultColor:defaultColor key:key colorWillChangeBlock:colorWillChangeBlock];
         objc_setAssociatedObject(host, kAssociatedKeyDynamicColor, dynamicColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     else {
@@ -51,20 +51,20 @@ static void * const kAssociatedKeyDynamicColor = (void *)&kAssociatedKeyDynamicC
             return NO;
         }
         
-        dynamicColor = [[WCDynamicColor alloc] initWithHost:host defaultColor:defaultColor key:key colorDidChangeBlock:colorDidChangeBlock];
+        dynamicColor = [[WCDynamicColor alloc] initWithHost:host defaultColor:defaultColor key:key colorWillChangeBlock:colorWillChangeBlock];
         objc_setAssociatedObject(host, kAssociatedKeyDynamicColor, dynamicColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     
     return YES;
 }
 
-- (instancetype)initWithHost:(id)host defaultColor:(UIColor *)defaultColor key:(NSString *)key colorDidChangeBlock:(nullable WCColorWillChangeBlockType)colorDidChangeBlock {
+- (instancetype)initWithHost:(id)host defaultColor:(UIColor *)defaultColor key:(NSString *)key colorWillChangeBlock:(nullable WCColorWillChangeBlockType)colorWillChangeBlock {
     self = [super init];
     if (self) {
         _host = host;
         _defaultColor = defaultColor;
         _key = key;
-        _colorDidChangeBlock = colorDidChangeBlock;
+        _colorWillChangeBlock = colorWillChangeBlock;
         
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleWCDynamicColorDidChangeNotification:) name:WCDynamicColorDidChangeNotification object:nil];
     }
@@ -85,14 +85,21 @@ static void * const kAssociatedKeyDynamicColor = (void *)&kAssociatedKeyDynamicC
         if ([self.host isKindOfClass:[UILabel class]]) {
             UIColor *color = [provider colorWithProviderName:providerName forKey:self.key];
             if (color) {
-                UILabel *label = (UILabel *)self.host;
-                if (IOS12_OR_LATER) {
-                    [label setNeedsDisplay];
+                BOOL shouldProcess = YES;
+                if (self.colorWillChangeBlock) {
+                    shouldProcess = self.colorWillChangeBlock(self.host, color);
                 }
-                else {
-                    // Note: iOS 11-, use setNeedsDisplay not refresh textColor, must set it again by setTextColor:
-                    if ([WCDynamicInternalColor checkIsDynamicInternalColor:label.textColor]) {
-                        label.textColor = [[WCDynamicInternalColor alloc] initWithDefaultColor:color key:nil];
+                
+                if (shouldProcess) {
+                    UILabel *label = (UILabel *)self.host;
+                    if (IOS12_OR_LATER) {
+                        [label setNeedsDisplay];
+                    }
+                    else {
+                        // Note: iOS 11-, use setNeedsDisplay not refresh textColor, must set it again by setTextColor:
+                        if ([WCDynamicInternalColor checkIsDynamicInternalColor:label.textColor]) {
+                            label.textColor = [[WCDynamicInternalColor alloc] initWithDefaultColor:color key:nil];
+                        }
                     }
                 }
             }
@@ -100,22 +107,43 @@ static void * const kAssociatedKeyDynamicColor = (void *)&kAssociatedKeyDynamicC
         else if ([self.host isKindOfClass:[UITextView class]]) {
             UIColor *color = [provider colorWithProviderName:providerName forKey:self.key];
             if (color) {
-                UITextView *textView = (UITextView *)self.host;
-                [textView setNeedsDisplay];
+                BOOL shouldProcess = YES;
+                if (self.colorWillChangeBlock) {
+                    shouldProcess = self.colorWillChangeBlock(self.host, color);
+                }
+                
+                if (shouldProcess) {
+                    UITextView *textView = (UITextView *)self.host;
+                    [textView setNeedsDisplay];
+                }
             }
         }
         else if ([self.host isKindOfClass:[UITextField class]]) {
             UIColor *color = [provider colorWithProviderName:providerName forKey:self.key];
             if (color) {
-                UITextField *textField = (UITextField *)self.host;
-                [textField setNeedsDisplay];
+                BOOL shouldProcess = YES;
+                if (self.colorWillChangeBlock) {
+                    shouldProcess = self.colorWillChangeBlock(self.host, color);
+                }
+                
+                if (shouldProcess) {
+                    UITextField *textField = (UITextField *)self.host;
+                    [textField setNeedsDisplay];
+                }
             }
         }
         else {
             UIColor *color = [provider colorWithProviderName:providerName forKey:self.key];
             if (color) {
-                UIView *view = (UIView *)self.host;
-                view.backgroundColor = color;
+                BOOL shouldProcess = YES;
+                if (self.colorWillChangeBlock) {
+                    shouldProcess = self.colorWillChangeBlock(self.host, color);
+                }
+                
+                if (shouldProcess) {
+                    UIView *view = (UIView *)self.host;
+                    view.backgroundColor = color;
+                }
             }
         }
     }

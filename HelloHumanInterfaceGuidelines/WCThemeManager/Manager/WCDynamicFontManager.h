@@ -34,7 +34,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark > Set Font
 
-- (BOOL)setDynamicFontWithObject:(id)object defaultFont:(UIFont *)defaultFont forKey:(NSString *)key fontDidChangeBlock:(nullable WCFontDidChangeBlockType)fontDidChangeBlock;
+- (BOOL)setDynamicFontWithDefaultFont:(UIFont *)defaultFont forKey:(NSString *)key attachToObject:(id)object fontDidChangeBlock:(nullable WCFontDidChangeBlockType)fontDidChangeBlock;
 
 - (UIFont *)dynamicFontWithDefaultFont:(UIFont *)defaultFont forKey:(NSString *)key attachToObject:(nullable id)object fontDidChangeBlock:(nullable WCFontDidChangeBlockType)fontDidChangeBlock;
 
@@ -43,7 +43,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Utility Macros
 
 /**
- Use this macro to register the key and default font
+ Set Dynamic Font
  
  @param label the UILabel object
  @param key the key for the keyed font
@@ -54,9 +54,14 @@ NS_ASSUME_NONNULL_BEGIN
  
  @discussion This method will initialize the label's font
  */
-#define WCThemeSetDynamicFont(object, key, defaultFont_, block) \
-[[WCDynamicFontManager sharedManager] setDynamicFontWithObject:(object) defaultFont:defaultFont_ forKey:key fontDidChangeBlock:(block)];
+#define WCThemeSetDynamicFont(object, key, defaultFont, block) \
+[[WCDynamicFontManager sharedManager] setDynamicFontWithDefaultFont:(defaultFont) forKey:(key) attachToObject:(object) fontDidChangeBlock:(block)];
 
+
+/**
+ Get Dynamic Font
+ 
+ */
 #define WCThemeGetDynamicFont(object, key, defaultFont_, block) \
 [[WCDynamicFontManager sharedManager] dynamicFontWithDefaultFont:(defaultFont_) forKey:(key) attachToObject:(object) fontDidChangeBlock:(block)];
 

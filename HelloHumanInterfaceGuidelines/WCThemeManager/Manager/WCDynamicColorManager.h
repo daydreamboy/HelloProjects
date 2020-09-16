@@ -32,16 +32,15 @@ NS_ASSUME_NONNULL_BEGIN
 - (BOOL)unregisterDynamicColorProvider:(id<WCDynamicColorProvider>)dynamicColorProvider;
 - (BOOL)unregisterDynamicColorProviderForName:(NSString *)name;
 
-//#pragma mark > Set Color
-//
-//- (BOOL)setDynamicColorWithObject:(id)object defaultColor:(UIColor *)defaultColor forKey:(NSString *)key colorDidChangeBlock:(nullable WCColorWillChangeBlockType)colorDidChangeBlock;
-
 #pragma mark - Create Color
 
 + (UIColor *)dynamicColorWithDefaultColor:(UIColor *)defaultColor forKey:(NSString *)key attachToObject:(nullable id)object colorWillChangeBlock:(nullable WCColorWillChangeBlockType)colorWillChangeBlock;
 
 + (void)addColorDidChangeObserver:(id)observer callback:(nullable void (^)(id<WCDynamicColorProvider> colorProvider, NSString *colorProviderName))callback;
 + (void)removeColorDidChangeObserver:(id)observer;
+
+#define WCThemeGetDynamicColor(object, key, defaultColor, block) \
+[[WCDynamicColorManager sharedManager] dynamicColorWithDefaultColor:(defaultColor) forKey:(key) attachToObject:(object) colorWillChangeBlock:(block)];
 
 @end
 

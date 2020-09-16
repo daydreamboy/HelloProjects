@@ -116,24 +116,6 @@
     return NO;
 }
 
-//#pragma mark > Set Color
-
-//- (BOOL)setDynamicColorWithObject:(id)object defaultColor:(UIColor *)defaultColor forKey:(NSString *)key colorDidChangeBlock:(nullable WCColorWillChangeBlockType)colorDidChangeBlock {
-//
-//    if ([object isKindOfClass:[UIView class]]) {
-//        if ([object isKindOfClass:[UILabel class]]) {
-//            UILabel *label = (UILabel *)object;
-//            label.textColor = [self.class dynamicColorWithDefaultColor:defaultColor forKey:key attachToObject:nil colorWillChangeBlock:nil];
-//        }
-//
-//        [WCDynamicColor setDynamicColorWithHost:object defaultColor:defaultColor forKey:key colorWillChangeBlock:colorDidChangeBlock forceReplace:NO];
-//
-//        return YES;
-//    }
-//
-//    return NO;
-//}
-
 #pragma mark - Create Color
 
 + (UIColor *)dynamicColorWithDefaultColor:(UIColor *)defaultColor forKey:(NSString *)key attachToObject:(nullable id)object colorWillChangeBlock:(nullable WCColorWillChangeBlockType)colorWillChangeBlock {
