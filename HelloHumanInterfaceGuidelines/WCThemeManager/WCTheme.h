@@ -14,5 +14,6 @@
 
 #import "WCDynamicColorManager.h"
 #import "WCDynamicFontManager.h"
+#import "WCDynamicValueManager.h"
 
 #endif /* WCTheme_h */

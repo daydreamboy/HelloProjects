@@ -35,6 +35,7 @@
 		4FF255FC24FF7335008B5F9A /* DGIMUIThemeProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF255FB24FF7335008B5F9A /* DGIMUIThemeProvider.m */; };
 		4FFECF5325125DF700E76EA4 /* WCDynamicValueManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFECF5225125DF700E76EA4 /* WCDynamicValueManager.m */; };
 		4FFECF562512614A00E76EA4 /* AppFontProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFECF552512614A00E76EA4 /* AppFontProvider.m */; };
+		4FFECF5A25126A9200E76EA4 /* WCDynamicValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFECF5925126A9200E76EA4 /* WCDynamicValue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +100,8 @@
 		4FFECF5225125DF700E76EA4 /* WCDynamicValueManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCDynamicValueManager.m; sourceTree = "<group>"; };
 		4FFECF542512614A00E76EA4 /* AppFontProvider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppFontProvider.h; sourceTree = "<group>"; };
 		4FFECF552512614A00E76EA4 /* AppFontProvider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppFontProvider.m; sourceTree = "<group>"; };
+		4FFECF5825126A9200E76EA4 /* WCDynamicValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCDynamicValue.h; sourceTree = "<group>"; };
+		4FFECF5925126A9200E76EA4 /* WCDynamicValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCDynamicValue.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,12 +270,22 @@
 		4FF2560124FFB9C3008B5F9A /* WCThemeManager */ = {
 			isa = PBXGroup;
 			children = (
+				4FFECF5725126A7A00E76EA4 /* Value */,
 				4F358EEF2510A24900E95C41 /* Font */,
 				4F358EEE2510A23200E95C41 /* Color */,
 				4F358EEA2510A11F00E95C41 /* Manager */,
 				4F358EF32510CAA000E95C41 /* WCTheme.h */,
 			);
 			path = WCThemeManager;
+			sourceTree = "<group>";
+		};
+		4FFECF5725126A7A00E76EA4 /* Value */ = {
+			isa = PBXGroup;
+			children = (
+				4FFECF5825126A9200E76EA4 /* WCDynamicValue.h */,
+				4FFECF5925126A9200E76EA4 /* WCDynamicValue.m */,
+			);
+			path = Value;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,6 +376,7 @@
 				4FD8E7EF24246A7000DD34AA /* UseSemanticColorViewController.m in Sources */,
 				4F34B016250F799D00542FCC /* WCDynamicFont.m in Sources */,
 				4FFECF5325125DF700E76EA4 /* WCDynamicValueManager.m in Sources */,
+				4FFECF5A25126A9200E76EA4 /* WCDynamicValue.m in Sources */,
 				4F358EF22510AC7D00E95C41 /* UseNewDynamicColorViewController.m in Sources */,
 				4FF255F524FF4CD4008B5F9A /* UIColor+HexCategory.m in Sources */,
 				4F358EE22510626F00E95C41 /* WCDynamicColor.m in Sources */,

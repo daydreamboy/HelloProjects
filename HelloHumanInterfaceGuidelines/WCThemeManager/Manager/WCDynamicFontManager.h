@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
  Get Dynamic Font
  
  */
-#define WCThemeGetDynamicFont(object, key, defaultFont_, block) \
-[[WCDynamicFontManager sharedManager] dynamicFontWithDefaultFont:(defaultFont_) forKey:(key) attachToObject:(object) fontDidChangeBlock:(block)];
+#define WCThemeGetDynamicFont(object, key, defaultFont, block) \
+[[WCDynamicFontManager sharedManager] dynamicFontWithDefaultFont:(defaultFont) forKey:(key) attachToObject:(object) fontDidChangeBlock:(block)];
 
 NS_ASSUME_NONNULL_END

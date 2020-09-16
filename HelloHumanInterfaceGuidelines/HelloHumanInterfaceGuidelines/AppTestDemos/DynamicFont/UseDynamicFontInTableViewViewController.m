@@ -24,6 +24,12 @@
     [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[AppFontProvider new] forName:@"small"];
     [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[AppFontProvider new] forName:@"medium"];
     [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[AppFontProvider new] forName:@"large"];
+
+    
+    [[WCDynamicValueManager sharedManager] registerDynamicValueProvider:[AppFontProvider new] forName:@"default"];
+    [[WCDynamicValueManager sharedManager] registerDynamicValueProvider:[AppFontProvider new] forName:@"small"];
+    [[WCDynamicValueManager sharedManager] registerDynamicValueProvider:[AppFontProvider new] forName:@"medium"];
+    [[WCDynamicValueManager sharedManager] registerDynamicValueProvider:[AppFontProvider new] forName:@"large"];
     
     [self setup];
     
@@ -91,6 +97,7 @@
     NSString *providerName = self.fontProviderNames[index];
     self.title = providerName;
     [[WCDynamicFontManager sharedManager] setCurrentFontProviderName:providerName];
+    [[WCDynamicValueManager sharedManager] setCurrentValueProviderName:providerName];
 }
 
 #pragma mark - Getters
@@ -131,6 +138,13 @@
     cell.textLabel.font = WCThemeGetDynamicFont(cell.textLabel, AppFontKey_cell_title, [UIFont systemFontOfSize:17], nil);
     
     return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    WCDynamicValue *dynamicValue = WCThemeGetDynamicValue(nil, AppValueKey_cell_height, WCDynamicValueDouble(44.0), nil);
+    return dynamicValue.doubleValue;
 }
 
 @end

@@ -11,6 +11,8 @@
 NSString *AppFontKey_label_body = @"label_body";
 NSString *AppFontKey_cell_title = @"cell_title";
 
+NSString *AppValueKey_cell_height = @"cell_height";
+
 @implementation AppFontProvider
 
 - (UIFont *)fontWithProviderName:(NSString *)name forKey:(NSString *)key {
@@ -79,6 +81,41 @@ NSString *AppFontKey_cell_title = @"cell_title";
             @"label_title1": [UIFont systemFontOfSize:32],
             @"label_title2": [UIFont systemFontOfSize:32],
             @"label_title3": [UIFont systemFontOfSize:32],
+        };
+        
+        return fonts[key];
+    }
+    else {
+        return nil;
+    }
+}
+
+- (nullable WCDynamicValue *)valueWithProviderName:(NSString *)name forKey:(NSString *)key {
+    if ([name isEqualToString:@"large"]) {
+        
+        NSDictionary *fonts = @{
+            AppValueKey_cell_height: WCDynamicValueDouble(80),
+        };
+        
+        return fonts[key];
+    }
+    else if ([name isEqualToString:@"medium"]) {
+        NSDictionary *fonts = @{
+            AppValueKey_cell_height: WCDynamicValueDouble(60),
+        };
+        
+        return fonts[key];
+    }
+    else if ([name isEqualToString:@"default"]) {
+        NSDictionary *fonts = @{
+            AppValueKey_cell_height: WCDynamicValueDouble(44),
+        };
+        
+        return fonts[key];
+    }
+    else if ([name isEqualToString:@"small"]) {
+        NSDictionary *fonts = @{
+            AppValueKey_cell_height: WCDynamicValueDouble(20),
         };
         
         return fonts[key];

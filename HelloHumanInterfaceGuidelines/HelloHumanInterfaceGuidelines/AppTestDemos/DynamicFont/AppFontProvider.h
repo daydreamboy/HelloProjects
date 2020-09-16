@@ -14,7 +14,9 @@ NS_ASSUME_NONNULL_BEGIN
 FOUNDATION_EXPORT NSString *AppFontKey_label_body;
 FOUNDATION_EXPORT NSString *AppFontKey_cell_title;
 
-@interface AppFontProvider : NSObject <WCDynamicFontProvider>
+FOUNDATION_EXPORT NSString *AppValueKey_cell_height;
+
+@interface AppFontProvider : NSObject <WCDynamicFontProvider, WCDynamicValueProvider>
 
 @end
 
