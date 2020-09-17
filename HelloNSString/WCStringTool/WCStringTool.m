@@ -214,9 +214,11 @@
     if (byVisualization) {
         NSMutableString *substringM = [NSMutableString string];
         __block NSUInteger substringLength = 0;
+        __block NSUInteger visualizedLocation = 0;
         
         [string enumerateSubstringsInRange:NSMakeRange(0, string.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
-            if (substringRange.location >= location) {
+            
+            if (visualizedLocation >= location) {
                 // Note: 1 length for visualized length
                 substringLength += 1;
                 if (substringLength <= length) {
@@ -226,6 +228,8 @@
                     *stop = YES;
                 }
             }
+            
+            ++visualizedLocation;
         }];
         
         return substringM;

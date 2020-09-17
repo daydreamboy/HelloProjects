@@ -540,6 +540,18 @@
     
     output = [WCStringTool substringWithString:string atLocation:0 length:2 byVisualization:YES];
     XCTAssertEqualObjects(@"🍎苹", output);
+    
+    output = [WCStringTool substringWithString:string atLocation:1 length:2 byVisualization:YES];
+    XCTAssertEqualObjects(@"苹果", output);
+    
+    output = [WCStringTool substringWithString:string atLocation:0 length:3 byVisualization:YES];
+    XCTAssertEqualObjects(@"🍎苹果", output);
+    
+    output = [WCStringTool substringWithString:string atLocation:0 length:4 byVisualization:YES];
+    XCTAssertEqualObjects(@"🍎苹果", output);
+    
+    output = [WCStringTool substringWithString:string atLocation:3 length:1 byVisualization:YES];
+    XCTAssertEqualObjects(@"", output);
 }
 
 - (void)test_substringWithString_range {
