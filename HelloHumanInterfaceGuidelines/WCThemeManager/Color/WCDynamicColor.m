@@ -16,8 +16,8 @@
 #endif
 
 const NSNotificationName WCDynamicColorDidChangeNotification = @"WCDynamicColorDidChangeNotification";
-const NSString *WCDynamicColorDidChangeNotificationUserInfoProvider = @"WCDynamicColorDidChangeNotificationUserInfoProvider";
-const NSString *WCDynamicColorDidChangeNotificationUserInfoProviderName = @"WCDynamicColorDidChangeNotificationUserInfoProviderName";
+const NSString *WCDynamicColorChangeNotificationUserInfoProvider = @"WCDynamicColorChangeNotificationUserInfoProvider";
+const NSString *WCDynamicColorChangeNotificationUserInfoProviderName = @"WCDynamicColorChangeNotificationUserInfoProviderName";
 
 @interface WCDynamicColor ()
 @property (nonatomic, weak, readonly) id host;
@@ -78,8 +78,8 @@ static void * const kAssociatedKeyDynamicColor = (void *)&kAssociatedKeyDynamicC
 #pragma mark - NSNotification
 
 - (void)handleWCDynamicColorDidChangeNotification:(NSNotification *)notification {
-    id<WCDynamicColorProvider> provider = notification.userInfo[WCDynamicColorDidChangeNotificationUserInfoProvider];
-    NSString *providerName = notification.userInfo[WCDynamicColorDidChangeNotificationUserInfoProviderName];
+    id<WCDynamicColorProvider> provider = notification.userInfo[WCDynamicColorChangeNotificationUserInfoProvider];
+    NSString *providerName = notification.userInfo[WCDynamicColorChangeNotificationUserInfoProviderName];
     
     if ([self.host isKindOfClass:[UIView class]]) {
         if ([self.host isKindOfClass:[UILabel class]]) {

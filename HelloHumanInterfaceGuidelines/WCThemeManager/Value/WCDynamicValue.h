@@ -22,8 +22,8 @@ typedef void(^WCValueDidChangeBlockType)(id object, WCDynamicValue *newValue);
 @end
 
 FOUNDATION_EXPORT const NSNotificationName WCDynamicValueDidChangeNotification;
-FOUNDATION_EXPORT const NSString *WCDynamicValueDidChangeNotificationUserInfoProvider;
-FOUNDATION_EXPORT const NSString *WCDynamicValueDidChangeNotificationUserInfoProviderName;
+FOUNDATION_EXPORT const NSString *WCDynamicValueChangeNotificationUserInfoProvider;
+FOUNDATION_EXPORT const NSString *WCDynamicValueChangeNotificationUserInfoProviderName;
 
 @interface WCDynamicValue : NSObject
 
@@ -53,6 +53,17 @@ FOUNDATION_EXPORT const NSString *WCDynamicValueDidChangeNotificationUserInfoPro
 + (instancetype)valueWithBool:(BOOL)value;
 + (instancetype)valueWithChar:(char)value;
 + (instancetype)valueWithDouble:(double)value;
++ (instancetype)valueWithFloat:(float)value;
++ (instancetype)valueWithInt:(int)value;
++ (instancetype)valueWithInteger:(NSInteger)value;
++ (instancetype)valueWithLongLong:(long long)value;
++ (instancetype)valueWithLong:(long)value;
++ (instancetype)valueWithShort:(short)value;
++ (instancetype)valueWithUnsignedChar:(unsigned char)value;
++ (instancetype)valueWithUnsignedInteger:(NSUInteger)value;
++ (instancetype)valueWithUnsignedInt:(unsigned int)value;
++ (instancetype)valueWithUnsignedLongLong:(unsigned long long)value;
+
 // TODO
 //...
 

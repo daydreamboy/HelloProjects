@@ -52,8 +52,8 @@
     _currentColorProvider = self.colorProviders[currentProviderName];
     
     NSMutableDictionary *userInfoM = [NSMutableDictionary dictionary];
-    userInfoM[WCDynamicColorDidChangeNotificationUserInfoProvider] = _currentColorProvider;
-    userInfoM[WCDynamicColorDidChangeNotificationUserInfoProviderName] = _currentColorProviderName;
+    userInfoM[WCDynamicColorChangeNotificationUserInfoProvider] = _currentColorProvider;
+    userInfoM[WCDynamicColorChangeNotificationUserInfoProviderName] = _currentColorProviderName;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:WCDynamicColorDidChangeNotification object:nil userInfo:userInfoM];
     
@@ -136,8 +136,8 @@
         }
         
         NSDictionary *userInfo = note.userInfo;
-        id<WCDynamicColorProvider> currentColorProvider = userInfo[WCDynamicColorDidChangeNotificationUserInfoProvider];
-        NSString *currentColorProviderName = userInfo[WCDynamicColorDidChangeNotificationUserInfoProviderName];
+        id<WCDynamicColorProvider> currentColorProvider = userInfo[WCDynamicColorChangeNotificationUserInfoProvider];
+        NSString *currentColorProviderName = userInfo[WCDynamicColorChangeNotificationUserInfoProviderName];
                                                       
         !callback ?: callback(currentColorProvider, currentColorProviderName);
     }];

@@ -98,12 +98,15 @@
         return NO;
     }
     
+    NSMutableDictionary *userInfoM = [NSMutableDictionary dictionary];
+    
+    userInfoM[WCDynamicFontChangeNotificationUserInfoProviderName] = currentFontProviderName;
+    userInfoM[WCDynamicFontChangeNotificationUserInfoProvider] = self.fontProviders[currentFontProviderName];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:WCDynamicFontWillChangeNotification object:nil userInfo:userInfoM];
+    
     _currentFontProviderName = currentFontProviderName;
     _currentFontProvider = self.fontProviders[currentFontProviderName];
-    
-    NSMutableDictionary *userInfoM = [NSMutableDictionary dictionary];
-    userInfoM[WCDynamicFontDidChangeNotificationUserInfoProvider] = _currentFontProvider;
-    userInfoM[WCDynamicFontDidChangeNotificationUserInfoProviderName] = _currentFontProviderName;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:WCDynamicFontDidChangeNotification object:nil userInfo:userInfoM];
     

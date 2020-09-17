@@ -10,8 +10,8 @@
 #import <objc/runtime.h>
 
 const NSNotificationName WCDynamicValueDidChangeNotification = @"WCDynamicValueDidChangeNotification";
-const NSString *WCDynamicValueDidChangeNotificationUserInfoProvider = @"WCDynamicValueDidChangeNotificationUserInfoProvider";
-const NSString *WCDynamicValueDidChangeNotificationUserInfoProviderName = @"WCDynamicValueDidChangeNotificationUserInfoProviderName";
+const NSString *WCDynamicValueChangeNotificationUserInfoProvider = @"WCDynamicValueChangeNotificationUserInfoProvider";
+const NSString *WCDynamicValueChangeNotificationUserInfoProviderName = @"WCDynamicValueChangeNotificationUserInfoProviderName";
 
 @interface WCDynamicValue ()
 
@@ -117,8 +117,8 @@ static void * const kAssociatedKeyDynamicValue = (void *)&kAssociatedKeyDynamicV
 #pragma mark - NSNotification
 
 - (void)handleWCDynamicValueDidChangeNotification:(NSNotification *)notification {
-    id<WCDynamicValueProvider> provider = notification.userInfo[WCDynamicValueDidChangeNotificationUserInfoProvider];
-    NSString *providerName = notification.userInfo[WCDynamicValueDidChangeNotificationUserInfoProviderName];
+    id<WCDynamicValueProvider> provider = notification.userInfo[WCDynamicValueChangeNotificationUserInfoProvider];
+    NSString *providerName = notification.userInfo[WCDynamicValueChangeNotificationUserInfoProviderName];
     
     WCDynamicValue *value = [provider valueWithProviderName:providerName forKey:self.key];
     

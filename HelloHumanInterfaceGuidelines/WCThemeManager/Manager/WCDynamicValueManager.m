@@ -102,8 +102,8 @@
     _currentValueProvider = self.valueProviders[currentValueProviderName];
     
     NSMutableDictionary *userInfoM = [NSMutableDictionary dictionary];
-    userInfoM[WCDynamicValueDidChangeNotificationUserInfoProvider] = _currentValueProvider;
-    userInfoM[WCDynamicValueDidChangeNotificationUserInfoProviderName] = _currentValueProviderName;
+    userInfoM[WCDynamicValueChangeNotificationUserInfoProvider] = _currentValueProvider;
+    userInfoM[WCDynamicValueChangeNotificationUserInfoProviderName] = _currentValueProviderName;
     
     [[NSNotificationCenter defaultCenter] postNotificationName:WCDynamicValueDidChangeNotification object:nil userInfo:userInfoM];
     

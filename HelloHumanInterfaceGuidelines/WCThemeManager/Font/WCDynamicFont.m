@@ -10,8 +10,10 @@
 #import <objc/runtime.h>
 
 const NSNotificationName WCDynamicFontDidChangeNotification = @"WCDynamicFontDidChangeNotification";
-const NSString *WCDynamicFontDidChangeNotificationUserInfoProvider = @"WCDynamicFontDidChangeNotificationUserInfoProvider";
-const NSString *WCDynamicFontDidChangeNotificationUserInfoProviderName = @"WCDynamicFontDidChangeNotificationUserInfoProviderName";
+const NSNotificationName WCDynamicFontWillChangeNotification = @"WCDynamicFontWillChangeNotification";
+
+const NSString *WCDynamicFontChangeNotificationUserInfoProvider = @"WCDynamicFontChangeNotificationUserInfoProvider";
+const NSString *WCDynamicFontChangeNotificationUserInfoProviderName = @"WCDynamicFontChangeNotificationUserInfoProviderName";
 
 @interface WCDynamicFont ()
 @property (nonatomic, weak, readonly) id host;
@@ -72,8 +74,8 @@ static void * const kAssociatedKeyDynamicFont = (void *)&kAssociatedKeyDynamicFo
 #pragma mark - NSNotification
 
 - (void)handleWCDynamicFontDidChangeNotification:(NSNotification *)notification {
-    id<WCDynamicFontProvider> provider = notification.userInfo[WCDynamicFontDidChangeNotificationUserInfoProvider];
-    NSString *providerName = notification.userInfo[WCDynamicFontDidChangeNotificationUserInfoProviderName];
+    id<WCDynamicFontProvider> provider = notification.userInfo[WCDynamicFontChangeNotificationUserInfoProvider];
+    NSString *providerName = notification.userInfo[WCDynamicFontChangeNotificationUserInfoProviderName];
     
     if ([self.host isKindOfClass:[UILabel class]]) {
         UIFont *font = [provider fontWithProviderName:providerName forKey:self.key];

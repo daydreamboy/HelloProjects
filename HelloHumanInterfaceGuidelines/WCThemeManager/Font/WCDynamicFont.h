@@ -19,8 +19,10 @@ typedef void(^WCFontDidChangeBlockType)(id object, UIFont *newFont);
 @end
 
 FOUNDATION_EXPORT const NSNotificationName WCDynamicFontDidChangeNotification;
-FOUNDATION_EXPORT const NSString *WCDynamicFontDidChangeNotificationUserInfoProvider;
-FOUNDATION_EXPORT const NSString *WCDynamicFontDidChangeNotificationUserInfoProviderName;
+FOUNDATION_EXPORT const NSNotificationName WCDynamicFontWillChangeNotification;
+
+FOUNDATION_EXPORT const NSString *WCDynamicFontChangeNotificationUserInfoProvider;
+FOUNDATION_EXPORT const NSString *WCDynamicFontChangeNotificationUserInfoProviderName;
 
 @interface WCDynamicFont : NSObject
 

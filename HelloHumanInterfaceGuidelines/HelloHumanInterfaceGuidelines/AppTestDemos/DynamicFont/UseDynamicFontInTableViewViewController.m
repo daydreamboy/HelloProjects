@@ -47,6 +47,8 @@
     self.navigationItem.rightBarButtonItem = adjustItem;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleWCDynamicFontDidChangeNotification:) name:WCDynamicFontDidChangeNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleWCDynamicFontWillChangeNotification:) name:WCDynamicFontWillChangeNotification object:nil];
 }
 
 - (void)dealloc {
@@ -90,6 +92,12 @@
     [self.tableView reloadData];
 }
 
+- (void)handleWCDynamicFontWillChangeNotification:(NSNotification *)notification {
+    NSString *providerName = notification.userInfo[WCDynamicFontChangeNotificationUserInfoProviderName];
+    
+    [[WCDynamicValueManager sharedManager] setCurrentValueProviderName:providerName];
+}
+
 #pragma mark - Action
 
 - (void)stepperValueChanged:(UIStepper *)sender {
@@ -97,7 +105,6 @@
     NSString *providerName = self.fontProviderNames[index];
     self.title = providerName;
     [[WCDynamicFontManager sharedManager] setCurrentFontProviderName:providerName];
-    [[WCDynamicValueManager sharedManager] setCurrentValueProviderName:providerName];
 }
 
 #pragma mark - Getters

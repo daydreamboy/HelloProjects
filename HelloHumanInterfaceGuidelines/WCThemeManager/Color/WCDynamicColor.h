@@ -19,8 +19,8 @@ typedef BOOL(^WCColorWillChangeBlockType)(id object, UIColor *newColor);
 @end
 
 FOUNDATION_EXPORT const NSNotificationName WCDynamicColorDidChangeNotification;
-FOUNDATION_EXPORT const NSString *WCDynamicColorDidChangeNotificationUserInfoProvider;
-FOUNDATION_EXPORT const NSString *WCDynamicColorDidChangeNotificationUserInfoProviderName;
+FOUNDATION_EXPORT const NSString *WCDynamicColorChangeNotificationUserInfoProvider;
+FOUNDATION_EXPORT const NSString *WCDynamicColorChangeNotificationUserInfoProviderName;
 
 @interface WCDynamicColor : NSObject
 
