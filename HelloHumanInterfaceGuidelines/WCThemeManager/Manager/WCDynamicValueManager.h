@@ -54,13 +54,13 @@ NS_ASSUME_NONNULL_BEGIN
  @discussion This method will initialize the label's value
  */
 #define WCThemeSetDynamicValue(object, key, defaultValue, block) \
-[[WCDynamicValueManager sharedManager] setDynamicValueWithDefaultValue:(defaultValue) forKey:(key) attachToObject:(object) valueDidChangeBlock:(block)];
+[[WCDynamicValueManager sharedManager] setDynamicValueWithDefaultValue:(defaultValue) forKey:(key) attachToObject:(object) valueDidChangeBlock:(block)]
 
 /**
  Get Dynamic Value
  
  */
 #define WCThemeGetDynamicValue(object, key, defaultValue, block) \
-[[WCDynamicValueManager sharedManager] dynamicValueWithDefaultValue:(defaultValue) forKey:(key) attachToObject:(object) valueDidChangeBlock:(block)];
+[[WCDynamicValueManager sharedManager] dynamicValueWithDefaultValue:(defaultValue) forKey:(key) attachToObject:(object) valueDidChangeBlock:(block)]
 
 NS_ASSUME_NONNULL_END

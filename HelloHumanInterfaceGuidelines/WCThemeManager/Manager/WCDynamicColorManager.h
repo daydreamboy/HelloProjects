@@ -40,7 +40,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (void)removeColorDidChangeObserver:(id)observer;
 
 #define WCThemeGetDynamicColor(object, key, defaultColor, block) \
-[[WCDynamicColorManager sharedManager] dynamicColorWithDefaultColor:(defaultColor) forKey:(key) attachToObject:(object) colorWillChangeBlock:(block)];
+[[WCDynamicColorManager sharedManager] dynamicColorWithDefaultColor:(defaultColor) forKey:(key) attachToObject:(object) colorWillChangeBlock:(block)]
 
 @end
 
