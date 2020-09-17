@@ -439,7 +439,7 @@ typedef NS_ENUM(NSUInteger, WCStringShowMode) {
         
         BOOL foundCode = NO;
         NSRange testRange = NSMakeRange(startIndex, endIndex - startIndex);
-        NSString *testCode = [WCStringTool substringWithString:string range:testRange];
+        NSString *testCode = [WCStringTool substringWithString:string range:testRange byVisualization:NO];
         if (testCode.length && emoticonCodeTestMap[testCode]) {
             foundCode = YES;
         }
@@ -451,6 +451,63 @@ typedef NS_ENUM(NSUInteger, WCStringShowMode) {
     }
     
     return renderMode;
+}
+
+- (void)test_methods {
+    NSString *string;
+    NSString *output;
+    
+    // Case 1
+    string = @"abcd";
+    output = [self.class nickNameFromUserName:string];
+    
+    // Case 2
+    NSLog(@"");
+}
+
++ (NSString *)nickNameFromUserName:(NSString *)userName
+{
+    NSString *result = [userName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    result = [result stringByReplacingOccurrencesOfString:@"." withString:@""];//去除字符串中所有的.号
+    result = [result stringByReplacingOccurrencesOfString:@"," withString:@""];//去除字符串中所有的,号
+    if ([result length] <= 2)
+    {
+        return result;
+    }
+
+    // 是纯英文
+    NSString *regex = @"^[a-zA-Z\\s]+$";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",regex];
+    BOOL isPureEnglish = [predicate evaluateWithObject:result];
+    NSCharacterSet *characterSet = [NSCharacterSet characterSetWithCharactersInString:@"    \n"];
+    NSArray *splitResults = [result componentsSeparatedByCharactersInSet:characterSet];
+    
+    if (isPureEnglish) {
+        if (splitResults.count >= 2) {
+            // matches 中的前两位
+            NSString *firstLetter = splitResults[0];
+            NSString *secondLetter = splitResults[1];
+            unichar firstChar = firstLetter.length > 0 ? [firstLetter characterAtIndex:0] : '\0';
+            unichar secondChar = secondLetter.length > 0 ? [secondLetter characterAtIndex:0] : '\0';
+            result = [NSString stringWithFormat:@"%C%C",firstChar, secondChar];
+        } else {
+            // result 前两位
+            result = [result substringToIndex:MIN(result.length, 2)];
+        }
+    } else {
+        if (splitResults.count >= 2) {
+            // matches 中的倒数两位
+            NSString *firstLetter = splitResults[splitResults.count - 2];
+            NSString *secondLetter = splitResults[splitResults.count - 1];
+            unichar firstChar = firstLetter.length > 0 ? [firstLetter characterAtIndex:0] : '\0';
+            unichar secondChar = secondLetter.length > 0 ? [secondLetter characterAtIndex:0] : '\0';
+            result = [NSString stringWithFormat:@"%C%C",firstChar, secondChar];
+        } else {
+            // result 倒数两位
+            result = [result substringWithRange:NSMakeRange([result length] - 2, 2)];
+        }
+    }
+    return result;
 }
 
 @end

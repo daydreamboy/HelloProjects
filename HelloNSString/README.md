@@ -95,6 +95,10 @@ TODO
 
 
 
+https://stackoverflow.com/questions/47130742/whats-an-example-of-an-nsstring-for-which-utf8string-returns-null
+
+
+
 
 
 ## References

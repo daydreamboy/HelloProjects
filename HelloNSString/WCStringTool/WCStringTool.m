@@ -206,7 +206,7 @@
 
 #pragma mark > Substring String
 
-+ (nullable NSString *)substringWithString:(NSString *)string atLocation:(NSUInteger)location length:(NSUInteger)length {
++ (nullable NSString *)substringWithString:(NSString *)string atLocation:(NSUInteger)location length:(NSUInteger)length byVisualization:(BOOL)byVisualization {
     if (![string isKindOfClass:[NSString class]]) {
         return nil;
     }
@@ -226,7 +226,7 @@
     }
 }
 
-+ (nullable NSString *)substringWithString:(NSString *)string range:(NSRange)range {
++ (nullable NSString *)substringWithString:(NSString *)string range:(NSRange)range byVisualization:(BOOL)byVisualization {
     if (![string isKindOfClass:[NSString class]]) {
         return nil;
     }
@@ -405,7 +405,7 @@
         }
         
         NSRange extractRange = NSMakeRange(previousRange.location + previousRange.length, currentRange.location - (previousRange.location + previousRange.length));
-        NSString *substring = [WCStringTool substringWithString:string range:extractRange];
+        NSString *substring = [WCStringTool substringWithString:string range:extractRange byVisualization:NO];
         if (substring) {
             [componentsM addObject:substring];
         }
@@ -420,7 +420,7 @@
             // last gap range
             NSRange extractRange = NSMakeRange(currentRange.location + currentRange.length, string.length - (previousRange.location + previousRange.length));
             
-            NSString *substring = [WCStringTool substringWithString:string range:extractRange];
+            NSString *substring = [WCStringTool substringWithString:string range:extractRange byVisualization:NO];
             if (substring) {
                 [componentsM addObject:substring];
             }
@@ -846,16 +846,16 @@
     
     switch (truncatingStyle) {
         case WCStringTruncatingStyleHead: {
-            return [NSString stringWithFormat:@"%@%@", separatorL, [self substringWithString:string atLocation:string.length - showedLength length:NSUIntegerMax]];
+            return [NSString stringWithFormat:@"%@%@", separatorL, [self substringWithString:string atLocation:string.length - showedLength length:NSUIntegerMax byVisualization:NO]];
         }
         case WCStringTruncatingStyleMiddle: {
             NSUInteger frontCharsLength = ceil(showedLength / 2.0);
             NSUInteger backCharsLength = floor(showedLength / 2.0);
             
-            return [NSString stringWithFormat:@"%@%@%@", [self substringWithString:string atLocation:0 length:frontCharsLength], separatorL, [self substringWithString:string atLocation:string.length - backCharsLength length:NSUIntegerMax]];
+            return [NSString stringWithFormat:@"%@%@%@", [self substringWithString:string atLocation:0 length:frontCharsLength byVisualization:NO], separatorL, [self substringWithString:string atLocation:string.length - backCharsLength length:NSUIntegerMax byVisualization:NO]];
         }
         case WCStringTruncatingStyleTrail: {
-            return [NSString stringWithFormat:@"%@%@", [self substringWithString:string atLocation:0 length:showedLength], separatorL];
+            return [NSString stringWithFormat:@"%@%@", [self substringWithString:string atLocation:0 length:showedLength  byVisualization:NO], separatorL];
         }
         case WCStringTruncatingStyleNone:
         default: {
@@ -1454,8 +1454,8 @@
             NSRange keyRange = [matchOfQueryItems rangeAtIndex:1];
             NSRange valueRange = [matchOfQueryItems rangeAtIndex:2];
             
-            NSString *key = [self substringWithString:urlString range:keyRange];
-            NSString *value = [self substringWithString:urlString range:valueRange];
+            NSString *key = [self substringWithString:urlString range:keyRange byVisualization:NO];
+            NSString *value = [self substringWithString:urlString range:valueRange byVisualization:NO];
             
             if (key && value) {
                 dictM[key] = value;

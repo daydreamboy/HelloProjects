@@ -477,31 +477,31 @@
     NSString *output;
     string = @"2014-11-07 18:36:04";
     
-    XCTAssertEqualObjects(@"11-07", [WCStringTool substringWithString:string atLocation:5 length:5]);
-    XCTAssertEqualObjects(@"18:36:04", [WCStringTool substringWithString:string atLocation:11 length:NSUIntegerMax]);
-    XCTAssertEqualObjects(@"4", [WCStringTool substringWithString:string atLocation:string.length - 1 length:1]);
-    XCTAssertEqualObjects(@"4", [WCStringTool substringWithString:string atLocation:string.length - 1 length:4]);
-    XCTAssertEqualObjects(@"", [WCStringTool substringWithString:string atLocation:string.length length:1]);
+    XCTAssertEqualObjects(@"11-07", [WCStringTool substringWithString:string atLocation:5 length:5 byVisualization:NO]);
+    XCTAssertEqualObjects(@"18:36:04", [WCStringTool substringWithString:string atLocation:11 length:NSUIntegerMax byVisualization:NO]);
+    XCTAssertEqualObjects(@"4", [WCStringTool substringWithString:string atLocation:string.length - 1 length:1 byVisualization:NO]);
+    XCTAssertEqualObjects(@"4", [WCStringTool substringWithString:string atLocation:string.length - 1 length:4 byVisualization:NO]);
+    XCTAssertEqualObjects(@"", [WCStringTool substringWithString:string atLocation:string.length length:1 byVisualization:NO]);
     
-    XCTAssertEqualObjects(@"", [WCStringTool substringWithString:@"abc" atLocation:0 length:0]);
-    XCTAssertEqualObjects(@"a", [WCStringTool substringWithString:@"abc" atLocation:0 length:1]);
-    XCTAssertEqualObjects(@"", [WCStringTool substringWithString:@"abc" atLocation:3 length:0]);
-    XCTAssertEqualObjects(@"", [WCStringTool substringWithString:@"abc" atLocation:3 length:1]);
-    XCTAssertEqualObjects(@"", [WCStringTool substringWithString:@"abc" atLocation:3 length:NSUIntegerMax]);
-    XCTAssertEqualObjects(@"", [WCStringTool substringWithString:@"" atLocation:0 length:1]);
-    XCTAssertEqualObjects(@"", [WCStringTool substringWithString:@"" atLocation:0 length:0]);
+    XCTAssertEqualObjects(@"", [WCStringTool substringWithString:@"abc" atLocation:0 length:0 byVisualization:NO]);
+    XCTAssertEqualObjects(@"a", [WCStringTool substringWithString:@"abc" atLocation:0 length:1 byVisualization:NO]);
+    XCTAssertEqualObjects(@"", [WCStringTool substringWithString:@"abc" atLocation:3 length:0 byVisualization:NO]);
+    XCTAssertEqualObjects(@"", [WCStringTool substringWithString:@"abc" atLocation:3 length:1 byVisualization:NO]);
+    XCTAssertEqualObjects(@"", [WCStringTool substringWithString:@"abc" atLocation:3 length:NSUIntegerMax byVisualization:NO]);
+    XCTAssertEqualObjects(@"", [WCStringTool substringWithString:@"" atLocation:0 length:1 byVisualization:NO]);
+    XCTAssertEqualObjects(@"", [WCStringTool substringWithString:@"" atLocation:0 length:0 byVisualization:NO]);
     
     // Case
     NSString *nilString = nil;
-    XCTAssertNil([WCStringTool substringWithString:nilString atLocation:0 length:1]);
+    XCTAssertNil([WCStringTool substringWithString:nilString atLocation:0 length:1 byVisualization:NO]);
     
     // Case 2
     string = @"123";
-    XCTAssertEqualObjects(@"123", [WCStringTool substringWithString:string atLocation:0 length:3]);
-    XCTAssertEqualObjects(@"23", [WCStringTool substringWithString:string atLocation:1 length:2]);
+    XCTAssertEqualObjects(@"123", [WCStringTool substringWithString:string atLocation:0 length:3 byVisualization:NO]);
+    XCTAssertEqualObjects(@"23", [WCStringTool substringWithString:string atLocation:1 length:2 byVisualization:NO]);
     
     string = @"123";
-    output = [WCStringTool substringWithString:string atLocation:0 length:4];
+    output = [WCStringTool substringWithString:string atLocation:0 length:4 byVisualization:NO];
     XCTAssertEqualObjects(string, @"123");
 }
 
@@ -511,34 +511,34 @@
     
     // Case 1
     string = @"2014-11-07 18:36:04";
-    output = [WCStringTool substringWithString:string range:NSMakeRange(5, 5)];
+    output = [WCStringTool substringWithString:string range:NSMakeRange(5, 5) byVisualization:NO];
     XCTAssertEqualObjects(output, @"11-07");
     
-    output = [WCStringTool substringWithString:string range:NSMakeRange(string.length - 1, 1)];
+    output = [WCStringTool substringWithString:string range:NSMakeRange(string.length - 1, 1) byVisualization:NO];
     XCTAssertEqualObjects(output, @"4");
     
-    output = [WCStringTool substringWithString:string range:NSMakeRange(string.length - 1, 4)];
+    output = [WCStringTool substringWithString:string range:NSMakeRange(string.length - 1, 4) byVisualization:NO];
     XCTAssertNil(output);
     
-    output = [WCStringTool substringWithString:string range:NSMakeRange(string.length, 1)];
+    output = [WCStringTool substringWithString:string range:NSMakeRange(string.length, 1) byVisualization:NO];
     XCTAssertNil(output);
     
     // Case 2
     string = @"abc";
-    output = [WCStringTool substringWithString:string range:NSMakeRange(0, 1)];
+    output = [WCStringTool substringWithString:string range:NSMakeRange(0, 1) byVisualization:NO];
     XCTAssertEqualObjects(output, @"a");
     
     // Abnormal Case 1
-    output = [WCStringTool substringWithString:string range:NSMakeRange(0, 4)];
+    output = [WCStringTool substringWithString:string range:NSMakeRange(0, 4) byVisualization:NO];
     XCTAssertNil(output);
     
-    output = [WCStringTool substringWithString:string range:NSMakeRange(3, 0)];
+    output = [WCStringTool substringWithString:string range:NSMakeRange(3, 0) byVisualization:NO];
     XCTAssertEqualObjects(output, @"");
     
-    output = [WCStringTool substringWithString:string range:NSMakeRange(3, 1)];
+    output = [WCStringTool substringWithString:string range:NSMakeRange(3, 1) byVisualization:NO];
     XCTAssertNil(output);
     
-    output = [WCStringTool substringWithString:string range:NSMakeRange(0, 0)];
+    output = [WCStringTool substringWithString:string range:NSMakeRange(0, 0) byVisualization:NO];
     XCTAssertEqualObjects(output, @"");
     
     output = [string substringWithRange:NSMakeRange(0, 0)];
@@ -546,13 +546,13 @@
     
     // Case 3
     string = @"";
-    output = [WCStringTool substringWithString:string range:NSMakeRange(0, 1)];
+    output = [WCStringTool substringWithString:string range:NSMakeRange(0, 1) byVisualization:NO];
     XCTAssertNil(output);
     
-    output = [WCStringTool substringWithString:string range:NSMakeRange(0, 0)];
+    output = [WCStringTool substringWithString:string range:NSMakeRange(0, 0) byVisualization:NO];
     XCTAssertEqualObjects(output, @"");
     
-    output = [WCStringTool substringWithString:string range:NSMakeRange(1, 0)];
+    output = [WCStringTool substringWithString:string range:NSMakeRange(1, 0) byVisualization:NO];
     XCTAssertNil(output);
 
     output = [string substringWithRange:NSMakeRange(0, 0)];
@@ -560,33 +560,33 @@
     
     // Case 4
     string = nil;
-    output = [WCStringTool substringWithString:string range:NSMakeRange(0, 1)];
+    output = [WCStringTool substringWithString:string range:NSMakeRange(0, 1) byVisualization:NO];
     XCTAssertNil(output);
 
-    output = [WCStringTool substringWithString:string range:NSMakeRange(0, 0)];
+    output = [WCStringTool substringWithString:string range:NSMakeRange(0, 0) byVisualization:NO];
     XCTAssertNil(output);
     
     // Case 5
     string = @"123";
-    output = [WCStringTool substringWithString:string range:NSMakeRange(2, 0)];
+    output = [WCStringTool substringWithString:string range:NSMakeRange(2, 0) byVisualization:NO];
     XCTAssertEqualObjects(output, @"");
 
     output = [string substringWithRange:NSMakeRange(3, 0)];
     XCTAssertEqualObjects(output, @"");
 
-    output = [WCStringTool substringWithString:string range:NSMakeRange(3, 1)];
+    output = [WCStringTool substringWithString:string range:NSMakeRange(3, 1) byVisualization:NO];
     XCTAssertNil(output);
 
-    output = [WCStringTool substringWithString:string range:NSMakeRange(4, 0)];
+    output = [WCStringTool substringWithString:string range:NSMakeRange(4, 0) byVisualization:NO];
     XCTAssertNil(output);
 
-    output = [WCStringTool substringWithString:string range:NSMakeRange(3, NSUIntegerMax)];
+    output = [WCStringTool substringWithString:string range:NSMakeRange(3, NSUIntegerMax) byVisualization:NO];
     XCTAssertNil(output);
     
-    output = [WCStringTool substringWithString:string range:NSMakeRange(NSUIntegerMax, 3)];
+    output = [WCStringTool substringWithString:string range:NSMakeRange(NSUIntegerMax, 3) byVisualization:NO];
     XCTAssertNil(output);
     
-    output = [WCStringTool substringWithString:string range:NSMakeRange(-1, 3)];
+    output = [WCStringTool substringWithString:string range:NSMakeRange(-1, 3) byVisualization:NO];
     XCTAssertNil(output);
 }
 

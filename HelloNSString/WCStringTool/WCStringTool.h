@@ -128,20 +128,24 @@ typedef NS_ENUM(NSUInteger, WCStringSplitInComponentsMode) {
  @param string the whole string
  @param location the start location which expected in the [0, string.length]. If location is equal to the length of the string, returns an empty string.
  @param length the length of substring. And the length > string.length - location, will return the substring from location to the end
+ @param byVisualization
+ 
  @return the substring. Return nil if the locatio or length is invalid, e.g. location out of the string index [0..string.length].
  @discussion The location is equal to the length of the string, returns an empty string. This is keep same as -[NSString substringFromIndex:].
  */
-+ (nullable NSString *)substringWithString:(NSString *)string atLocation:(NSUInteger)location length:(NSUInteger)length;
++ (nullable NSString *)substringWithString:(NSString *)string atLocation:(NSUInteger)location length:(NSUInteger)length byVisualization:(BOOL)byVisualization;
 
 /**
  Safe get substring with range
 
  @param string the whole string
  @param range the range.
+ @param byVisualization
+ 
  @return the substring. Return nil if the range is invalid, e.g. location out of the string index [0..string.length]
  @discussion If the location is string.length, the length is 0, return an empty string, but the length is > 0, return nil.
  */
-+ (nullable NSString *)substringWithString:(NSString *)string range:(NSRange)range;
++ (nullable NSString *)substringWithString:(NSString *)string range:(NSRange)range byVisualization:(BOOL)byVisualization;
 
 /**
  Get the first substring which matches the characterSet
