@@ -211,6 +211,10 @@
         return nil;
     }
     
+    if (location == NSNotFound) {
+        return nil;
+    }
+    
     if (byVisualization) {
         NSMutableString *substringM = [NSMutableString string];
         __block NSUInteger substringLength = 0;
@@ -252,26 +256,7 @@
 }
 
 + (nullable NSString *)substringWithString:(NSString *)string range:(NSRange)range byVisualization:(BOOL)byVisualization {
-    if (![string isKindOfClass:[NSString class]]) {
-        return nil;
-    }
-    
-    if (range.location == NSNotFound) {
-        return nil;
-    }
-    
-    if (range.location <= string.length) {
-        // Note: Don't use range.location + range.length <= string.length, because if length is too large (e.g. NSUIntegerMax), location + length will become smaller (upper overflow)
-        if (range.length <= string.length - range.location) {
-            return [string substringWithRange:range];
-        }
-        else {
-            return nil;;
-        }
-    }
-    else {
-        return nil;
-    }
+    return [self substringWithString:string atLocation:range.location length:range.length byVisualization:byVisualization];
 }
 
 + (NSString *)firstSubstringWithString:(NSString *)string substringInCharacterSet:(NSCharacterSet *)characterSet {
