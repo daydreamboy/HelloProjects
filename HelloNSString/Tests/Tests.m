@@ -537,6 +537,9 @@
     string = @"🍎苹果";
     output = [WCStringTool substringWithString:string atLocation:0 length:1 byVisualization:YES];
     XCTAssertEqualObjects(@"🍎", output);
+    
+    output = [WCStringTool substringWithString:string atLocation:0 length:2 byVisualization:YES];
+    XCTAssertEqualObjects(@"🍎苹", output);
 }
 
 - (void)test_substringWithString_range {

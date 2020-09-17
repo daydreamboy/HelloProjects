@@ -211,18 +211,39 @@
         return nil;
     }
     
-    if (location <= string.length) {
-        // Note: Don't use location + length <= string.length, because if length is too large (e.g. NSUIntegerMax), location + length will become smaller (upper overflow)
-        if (length <= string.length - location) {
-            return [string substringWithRange:NSMakeRange(location, length)];
-        }
-        else {
-            // Now substring from loc to the end of string
-            return [string substringFromIndex:location];
-        }
+    if (byVisualization) {
+        NSMutableString *substringM = [NSMutableString string];
+        __block NSUInteger substringLength = 0;
+        
+        [string enumerateSubstringsInRange:NSMakeRange(0, string.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+            if (substringRange.location >= location) {
+                // Note: 1 length for visualized length
+                substringLength += 1;
+                if (substringLength <= length) {
+                    [substringM appendString:substring];
+                }
+                else {
+                    *stop = YES;
+                }
+            }
+        }];
+        
+        return substringM;
     }
     else {
-        return nil;
+        if (location <= string.length) {
+            // Note: Don't use location + length <= string.length, because if length is too large (e.g. NSUIntegerMax), location + length will become smaller (upper overflow)
+            if (length <= string.length - location) {
+                return [string substringWithRange:NSMakeRange(location, length)];
+            }
+            else {
+                // Now substring from loc to the end of string
+                return [string substringFromIndex:location];
+            }
+        }
+        else {
+            return nil;
+        }
     }
 }
 
