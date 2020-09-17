@@ -471,38 +471,72 @@
     XCTAssertEqualObjects([WCStringTool URLUnescapedStringWithString:@"%E5%88%B7%E6%96%B0%E8%BF%87%E4%BA%8E%E9%A2%91%E7%B9%81%EF%BC%8C%E8%AF%B7%E7%A8%8D%E5%90%8E%E5%86%8D%E8%AF%95"], @"刷新过于频繁，请稍后再试");
 }
 
-- (void)test_substringWithString_atLocation_length {
-    // Case 1
+- (void)test_substringWithString_atLocation_length_byVisualization {
     NSString *string;
     NSString *output;
+    
+    // Case 1
     string = @"2014-11-07 18:36:04";
+    output = [WCStringTool substringWithString:string atLocation:5 length:5 byVisualization:NO];
+    XCTAssertEqualObjects(@"11-07", output);
     
-    XCTAssertEqualObjects(@"11-07", [WCStringTool substringWithString:string atLocation:5 length:5 byVisualization:NO]);
-    XCTAssertEqualObjects(@"18:36:04", [WCStringTool substringWithString:string atLocation:11 length:NSUIntegerMax byVisualization:NO]);
-    XCTAssertEqualObjects(@"4", [WCStringTool substringWithString:string atLocation:string.length - 1 length:1 byVisualization:NO]);
-    XCTAssertEqualObjects(@"4", [WCStringTool substringWithString:string atLocation:string.length - 1 length:4 byVisualization:NO]);
-    XCTAssertEqualObjects(@"", [WCStringTool substringWithString:string atLocation:string.length length:1 byVisualization:NO]);
+    output = [WCStringTool substringWithString:string atLocation:11 length:NSUIntegerMax byVisualization:NO];
+    XCTAssertEqualObjects(@"18:36:04", output);
     
-    XCTAssertEqualObjects(@"", [WCStringTool substringWithString:@"abc" atLocation:0 length:0 byVisualization:NO]);
-    XCTAssertEqualObjects(@"a", [WCStringTool substringWithString:@"abc" atLocation:0 length:1 byVisualization:NO]);
-    XCTAssertEqualObjects(@"", [WCStringTool substringWithString:@"abc" atLocation:3 length:0 byVisualization:NO]);
-    XCTAssertEqualObjects(@"", [WCStringTool substringWithString:@"abc" atLocation:3 length:1 byVisualization:NO]);
-    XCTAssertEqualObjects(@"", [WCStringTool substringWithString:@"abc" atLocation:3 length:NSUIntegerMax byVisualization:NO]);
-    XCTAssertEqualObjects(@"", [WCStringTool substringWithString:@"" atLocation:0 length:1 byVisualization:NO]);
-    XCTAssertEqualObjects(@"", [WCStringTool substringWithString:@"" atLocation:0 length:0 byVisualization:NO]);
+    output = [WCStringTool substringWithString:string atLocation:string.length - 1 length:1 byVisualization:NO];
+    XCTAssertEqualObjects(@"4", output);
     
-    // Case
-    NSString *nilString = nil;
-    XCTAssertNil([WCStringTool substringWithString:nilString atLocation:0 length:1 byVisualization:NO]);
+    output = [WCStringTool substringWithString:string atLocation:string.length - 1 length:4 byVisualization:NO];
+    XCTAssertEqualObjects(@"4", output);
+    
+    output = [WCStringTool substringWithString:string atLocation:string.length length:1 byVisualization:NO];
+    XCTAssertEqualObjects(@"", output);
     
     // Case 2
-    string = @"123";
-    XCTAssertEqualObjects(@"123", [WCStringTool substringWithString:string atLocation:0 length:3 byVisualization:NO]);
-    XCTAssertEqualObjects(@"23", [WCStringTool substringWithString:string atLocation:1 length:2 byVisualization:NO]);
+    string = @"abc";
     
+    output = [WCStringTool substringWithString:string atLocation:0 length:0 byVisualization:NO];
+    XCTAssertEqualObjects(@"", output);
+    
+    output = [WCStringTool substringWithString:string atLocation:0 length:1 byVisualization:NO];
+    XCTAssertEqualObjects(@"a", output);
+    
+    output = [WCStringTool substringWithString:string atLocation:3 length:0 byVisualization:NO];
+    XCTAssertEqualObjects(@"", output);
+    
+    output = [WCStringTool substringWithString:string atLocation:3 length:1 byVisualization:NO];
+    XCTAssertEqualObjects(@"", output);
+    
+    output = [WCStringTool substringWithString:string atLocation:3 length:NSUIntegerMax byVisualization:NO];
+    XCTAssertEqualObjects(@"", output);
+    
+    output = [WCStringTool substringWithString:@"" atLocation:0 length:1 byVisualization:NO];
+    XCTAssertEqualObjects(@"", output);
+    
+    output = [WCStringTool substringWithString:@"" atLocation:0 length:0 byVisualization:NO];
+    XCTAssertEqualObjects(@"", output);
+    
+    // Case 3
+    string = nil;
+    output = [WCStringTool substringWithString:string atLocation:0 length:1 byVisualization:NO];
+    XCTAssertNil(output);
+    
+    // Case 4
     string = @"123";
+    
+    output = [WCStringTool substringWithString:string atLocation:0 length:3 byVisualization:NO];
+    XCTAssertEqualObjects(@"123", output);
+    
+    output = [WCStringTool substringWithString:string atLocation:1 length:2 byVisualization:NO];
+    XCTAssertEqualObjects(@"23", output);
+    
     output = [WCStringTool substringWithString:string atLocation:0 length:4 byVisualization:NO];
     XCTAssertEqualObjects(string, @"123");
+    
+    // Case 5
+    string = @"🍎苹果";
+    output = [WCStringTool substringWithString:string atLocation:0 length:1 byVisualization:YES];
+    XCTAssertEqualObjects(@"🍎", output);
 }
 
 - (void)test_substringWithString_range {
@@ -785,7 +819,15 @@
 }
 
 - (void)test_checkStringComposedOfChineseCharactersWithString {
-    XCTAssertFalse([WCStringTool checkStringComposedOfChineseCharactersWithString:@""]);
+    NSString *string;
+    BOOL output;
+    
+    // Case 1
+    string = @"";
+    output = [WCStringTool checkStringComposedOfChineseCharactersWithString:string];
+    XCTAssertFalse(output);
+    
+    // Case 2
     XCTAssertFalse([WCStringTool checkStringComposedOfChineseCharactersWithString:@"a中"]);
     XCTAssertFalse([WCStringTool checkStringComposedOfChineseCharactersWithString:@"中a"]);
     XCTAssertFalse([WCStringTool checkStringComposedOfChineseCharactersWithString:@"中 文"]);
