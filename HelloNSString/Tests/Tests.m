@@ -1615,6 +1615,11 @@
     string = @"haha😁";
     output = [WCStringTool lengthByVisualizationWithString:string];
     XCTAssertTrue(output == 5);
+    
+    // Case 6
+    string = @"🍎";
+    output = [WCStringTool lengthByVisualizationWithString:string];
+    XCTAssertTrue(output == 1);
 }
 
 - (void)test_occurrenceOfSubstringInString_substring {
