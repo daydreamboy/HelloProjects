@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 #import "GetAllLocaleIdentifiersViewController.h"
+#import "GetAllISOCountryCodesViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -32,10 +33,12 @@
     // MARK: Configure titles and classes for table view
     _titles = @[
         @"Get all locale identifiers",
+        @"Get all ISO country codes",
         @"call a test method",
     ];
     _classes = @[
         [GetAllLocaleIdentifiersViewController class],
+        [GetAllISOCountryCodesViewController class],
         @"testMethod",
     ];
 }

@@ -1,8 +1,8 @@
 //
-//  GetAllLocaleIdentifiersViewController.h
+//  GetAllISOCountryCodesViewController.h
 //  HelloNSLocale
 //
-//  Created by wesley_chen on 2020/9/10.
+//  Created by wesley_chen on 2020/9/19.
 //  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GetAllLocaleIdentifiersViewController : BaseListViewController
+@interface GetAllISOCountryCodesViewController : BaseListViewController
 
 @end
 
