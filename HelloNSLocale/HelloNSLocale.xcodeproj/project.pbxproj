@@ -16,6 +16,8 @@
 		4F69414B250A01C700091C90 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F69414A250A01C700091C90 /* main.m */; };
 		4F694156250A020E00091C90 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F694151250A020E00091C90 /* RootViewController.m */; };
 		4F69415A250A029800091C90 /* GetAllLocaleIdentifiersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F694159250A029800091C90 /* GetAllLocaleIdentifiersViewController.m */; };
+		4FF903D02515F9C60075BE7A /* GetAllISOLanguageCodesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF903CF2515F9C60075BE7A /* GetAllISOLanguageCodesViewController.m */; };
+		4FF904072516112E0075BE7A /* GetAllISOCurrencyCodesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF904062516112E0075BE7A /* GetAllISOCurrencyCodesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +38,10 @@
 		4F694155250A020E00091C90 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F694158250A029800091C90 /* GetAllLocaleIdentifiersViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAllLocaleIdentifiersViewController.h; sourceTree = "<group>"; };
 		4F694159250A029800091C90 /* GetAllLocaleIdentifiersViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAllLocaleIdentifiersViewController.m; sourceTree = "<group>"; };
+		4FF903CE2515F9C60075BE7A /* GetAllISOLanguageCodesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAllISOLanguageCodesViewController.h; sourceTree = "<group>"; };
+		4FF903CF2515F9C60075BE7A /* GetAllISOLanguageCodesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAllISOLanguageCodesViewController.m; sourceTree = "<group>"; };
+		4FF904052516112E0075BE7A /* GetAllISOCurrencyCodesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAllISOCurrencyCodesViewController.h; sourceTree = "<group>"; };
+		4FF904062516112E0075BE7A /* GetAllISOCurrencyCodesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAllISOCurrencyCodesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +114,10 @@
 				4F694159250A029800091C90 /* GetAllLocaleIdentifiersViewController.m */,
 				4F14FD8E2515BCF600A4F8BC /* GetAllISOCountryCodesViewController.h */,
 				4F14FD8F2515BCF600A4F8BC /* GetAllISOCountryCodesViewController.m */,
+				4FF903CE2515F9C60075BE7A /* GetAllISOLanguageCodesViewController.h */,
+				4FF903CF2515F9C60075BE7A /* GetAllISOLanguageCodesViewController.m */,
+				4FF904052516112E0075BE7A /* GetAllISOCurrencyCodesViewController.h */,
+				4FF904062516112E0075BE7A /* GetAllISOCurrencyCodesViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -186,7 +196,9 @@
 				4F14FD8D2515BC3F00A4F8BC /* BaseListViewController.m in Sources */,
 				4F69415A250A029800091C90 /* GetAllLocaleIdentifiersViewController.m in Sources */,
 				4F69414B250A01C700091C90 /* main.m in Sources */,
+				4FF904072516112E0075BE7A /* GetAllISOCurrencyCodesViewController.m in Sources */,
 				4F694156250A020E00091C90 /* RootViewController.m in Sources */,
+				4FF903D02515F9C60075BE7A /* GetAllISOLanguageCodesViewController.m in Sources */,
 				4F14FD972515BD5F00A4F8BC /* WCArrayTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

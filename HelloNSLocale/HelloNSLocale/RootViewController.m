@@ -10,6 +10,8 @@
 
 #import "GetAllLocaleIdentifiersViewController.h"
 #import "GetAllISOCountryCodesViewController.h"
+#import "GetAllISOLanguageCodesViewController.h"
+#import "GetAllISOCurrencyCodesViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -34,11 +36,15 @@
     _titles = @[
         @"Get all locale identifiers",
         @"Get all ISO country codes",
+        @"Get all ISO language codes",
+        @"Get all ISO currency codes",
         @"call a test method",
     ];
     _classes = @[
         [GetAllLocaleIdentifiersViewController class],
         [GetAllISOCountryCodesViewController class],
+        [GetAllISOLanguageCodesViewController class],
+        [GetAllISOCurrencyCodesViewController class],
         @"testMethod",
     ];
 }
