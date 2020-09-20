@@ -8,6 +8,8 @@
 
 #import "WCDynamicFontManager.h"
 
+#define kWCThemeFontProviderName @"WCThemeFont"
+
 @interface WCDynamicFontManager ()
 @property (nonatomic, strong) NSMutableDictionary<NSString *, id<WCDynamicFontProvider>> *fontProviders;
 @property (nonatomic, strong, readwrite, nullable) id<WCDynamicFontProvider> currentFontProvider;
@@ -41,6 +43,12 @@
     }
     
     self.fontProviders[name] = dynamicFontProvider;
+    
+    NSString *currentFontProviderName = [[NSUserDefaults standardUserDefaults] stringForKey:kWCThemeFontProviderName];
+    if ([currentFontProviderName isEqualToString:name]) {
+        _currentFontProvider = dynamicFontProvider;
+        _currentFontProviderName = currentFontProviderName;
+    }
     
     return YES;
 }
@@ -107,6 +115,8 @@
     
     _currentFontProviderName = currentFontProviderName;
     _currentFontProvider = self.fontProviders[currentFontProviderName];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:_currentFontProviderName forKey:kWCThemeFontProviderName];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:WCDynamicFontDidChangeNotification object:nil userInfo:userInfoM];
     

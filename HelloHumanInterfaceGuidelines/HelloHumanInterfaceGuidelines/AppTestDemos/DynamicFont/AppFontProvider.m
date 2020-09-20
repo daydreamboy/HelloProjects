@@ -70,7 +70,7 @@ NSString *AppValueKey_cell_height = @"cell_height";
     }
     else if ([name isEqualToString:@"small"]) {
         NSDictionary *fonts = @{
-            AppFontKey_label_body: [UIFont systemFontOfSize:22],
+            AppFontKey_label_body: [UIFont systemFontOfSize:14],
             AppFontKey_cell_title: [UIFont systemFontOfSize:14],
             @"label_callout": [UIFont systemFontOfSize:32],
             @"label_caption1": [UIFont systemFontOfSize:32],

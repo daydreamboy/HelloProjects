@@ -10,6 +10,9 @@
 
 #import "RootViewController.h"
 
+#import "WCTheme.h"
+#import "AppFontProvider.h"
+
 @interface AppDelegate ()
 @property (nonatomic, strong) RootViewController *rootViewController;
 @property (nonatomic, strong) UINavigationController *navController;
@@ -29,8 +32,21 @@
     self.window.rootViewController = self.navController;
     
     [self.window makeKeyAndVisible];
+    [self setupTheme];
     
     return YES;
+}
+
+- (void)setupTheme {
+    [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[AppFontProvider new] forName:@"default"];
+    [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[AppFontProvider new] forName:@"small"];
+    [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[AppFontProvider new] forName:@"medium"];
+    [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[AppFontProvider new] forName:@"large"];
+
+    [[WCDynamicValueManager sharedManager] registerDynamicValueProvider:[AppFontProvider new] forName:@"default"];
+    [[WCDynamicValueManager sharedManager] registerDynamicValueProvider:[AppFontProvider new] forName:@"small"];
+    [[WCDynamicValueManager sharedManager] registerDynamicValueProvider:[AppFontProvider new] forName:@"medium"];
+    [[WCDynamicValueManager sharedManager] registerDynamicValueProvider:[AppFontProvider new] forName:@"large"];
 }
 
 @end

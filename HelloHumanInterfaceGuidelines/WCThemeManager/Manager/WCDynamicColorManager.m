@@ -10,6 +10,8 @@
 #import "WCDynamicInternalColor.h"
 #import "WCDynamicInternalColor_Internal.h"
 
+#define kWCThemeColorProviderName @"WCThemeColor"
+
 @interface WCDynamicColorManager ()
 @property (nonatomic, strong) NSMutableDictionary<NSString *, id<WCDynamicColorProvider>> *colorProviders;
 @property (nonatomic, strong, readwrite, nullable) id<WCDynamicColorProvider> currentColorProvider;
@@ -55,6 +57,8 @@
     userInfoM[WCDynamicColorChangeNotificationUserInfoProvider] = _currentColorProvider;
     userInfoM[WCDynamicColorChangeNotificationUserInfoProviderName] = _currentColorProviderName;
     
+    [[NSUserDefaults standardUserDefaults] setObject:_currentColorProviderName forKey:kWCThemeColorProviderName];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:WCDynamicColorDidChangeNotification object:nil userInfo:userInfoM];
     
     return YES;
@@ -64,8 +68,8 @@
 
 #pragma mark > Register Font Provider
 
-- (BOOL)registerDynamicColorProvider:(id<WCDynamicColorProvider>)dynamicFontProvider forName:(NSString *)name {
-    if (![dynamicFontProvider respondsToSelector:@selector(colorWithProviderName:forKey:)]) {
+- (BOOL)registerDynamicColorProvider:(id<WCDynamicColorProvider>)dynamicColorProvider forName:(NSString *)name {
+    if (![dynamicColorProvider respondsToSelector:@selector(colorWithProviderName:forKey:)]) {
         return NO;
     }
     
@@ -77,7 +81,13 @@
         return NO;
     }
     
-    self.colorProviders[name] = dynamicFontProvider;
+    self.colorProviders[name] = dynamicColorProvider;
+    
+    NSString *currentColorProviderName = [[NSUserDefaults standardUserDefaults] stringForKey:kWCThemeColorProviderName];
+    if ([currentColorProviderName isEqualToString:name]) {
+        _currentColorProvider = dynamicColorProvider;
+        _currentColorProviderName = currentColorProviderName;
+    }
     
     return YES;
 }

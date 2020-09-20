@@ -118,7 +118,9 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     NSInteger index = [self.pickerView selectedRowInComponent:0];
+    
     [[WCDynamicFontManager sharedManager] setCurrentFontProviderName:self.fontProviderList[index]];
+    [[WCDynamicValueManager sharedManager] setCurrentValueProviderName:self.fontProviderList[index]];
 }
 
 #pragma mark - UIPickerViewDataSource

@@ -20,25 +20,27 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[AppFontProvider new] forName:@"default"];
-    [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[AppFontProvider new] forName:@"small"];
-    [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[AppFontProvider new] forName:@"medium"];
-    [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[AppFontProvider new] forName:@"large"];
 
-    
-    [[WCDynamicValueManager sharedManager] registerDynamicValueProvider:[AppFontProvider new] forName:@"default"];
-    [[WCDynamicValueManager sharedManager] registerDynamicValueProvider:[AppFontProvider new] forName:@"small"];
-    [[WCDynamicValueManager sharedManager] registerDynamicValueProvider:[AppFontProvider new] forName:@"medium"];
-    [[WCDynamicValueManager sharedManager] registerDynamicValueProvider:[AppFontProvider new] forName:@"large"];
-    
     [self setup];
     
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
     
+    NSArray *providerNames = [[WCDynamicFontManager sharedManager] fontProviderNames];
+    NSInteger index = 0;
+    
+    NSString *currentFontProviderName = [[WCDynamicFontManager sharedManager] currentFontProviderName];
+    if (currentFontProviderName.length) {
+        self.title = currentFontProviderName;
+        NSInteger indexToFound = [providerNames indexOfObject:currentFontProviderName];
+        if (indexToFound != NSNotFound) {
+            index = indexToFound;
+        }
+    }
+    
     UIStepper *stepper = [UIStepper new];
     [stepper addTarget:self action:@selector(stepperValueChanged:) forControlEvents:UIControlEventValueChanged];
-    NSArray *providerNames = [[WCDynamicFontManager sharedManager] fontProviderNames];
+    stepper.value = index;
     stepper.minimumValue = 0;
     stepper.maximumValue = providerNames.count - 1;
     _fontProviderNames = providerNames;

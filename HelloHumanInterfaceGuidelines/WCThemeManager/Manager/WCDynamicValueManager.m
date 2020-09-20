@@ -8,6 +8,8 @@
 
 #import "WCDynamicValueManager.h"
 
+#define kWCThemeValueProviderName @"WCThemeValue"
+
 @interface WCDynamicValueManager ()
 @property (nonatomic, strong) NSMutableDictionary<NSString *, id<WCDynamicValueProvider>> *valueProviders;
 @property (nonatomic, strong, readwrite, nullable) id<WCDynamicValueProvider> currentValueProvider;
@@ -41,6 +43,12 @@
     }
     
     self.valueProviders[name] = dynamicValueProvider;
+    
+    NSString *currentValueProviderName = [[NSUserDefaults standardUserDefaults] stringForKey:kWCThemeValueProviderName];
+    if ([currentValueProviderName isEqualToString:name]) {
+        _currentValueProvider = dynamicValueProvider;
+        _currentValueProviderName = currentValueProviderName;
+    }
     
     return YES;
 }
@@ -104,6 +112,8 @@
     NSMutableDictionary *userInfoM = [NSMutableDictionary dictionary];
     userInfoM[WCDynamicValueChangeNotificationUserInfoProvider] = _currentValueProvider;
     userInfoM[WCDynamicValueChangeNotificationUserInfoProviderName] = _currentValueProviderName;
+    
+    [[NSUserDefaults standardUserDefaults] setObject:_currentValueProviderName forKey:kWCThemeValueProviderName];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:WCDynamicValueDidChangeNotification object:nil userInfo:userInfoM];
     
