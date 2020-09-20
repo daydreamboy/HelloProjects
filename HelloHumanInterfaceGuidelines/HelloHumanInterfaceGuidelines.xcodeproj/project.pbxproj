@@ -115,6 +115,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F010346251757EE00931D4E /* DynamicColor */ = {
+			isa = PBXGroup;
+			children = (
+				4FF255F624FF4D4F008B5F9A /* UseDynamicColorViewController.h */,
+				4FF255F724FF4D4F008B5F9A /* UseDynamicColorViewController.m */,
+				4F358EF02510AC7D00E95C41 /* UseNewDynamicColorViewController.h */,
+				4F358EF12510AC7D00E95C41 /* UseNewDynamicColorViewController.m */,
+			);
+			path = DynamicColor;
+			sourceTree = "<group>";
+		};
 		4F2376EE241F358700389A64 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,6 +188,7 @@
 		4F2820F7241B32310032E16A /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F010346251757EE00931D4E /* DynamicColor */,
 				4F23F150251234F1004A391D /* DynamicFont */,
 				4FEC5B232421C9FF008376EA /* Tools */,
 				4F2376EE241F358700389A64 /* Cell */,
@@ -188,10 +200,6 @@
 				4FD8E7EE24246A7000DD34AA /* UseSemanticColorViewController.m */,
 				4F17290024DD80AF00110D4C /* UseSystemDynamicColorViewController.h */,
 				4F17290124DD80AF00110D4C /* UseSystemDynamicColorViewController.m */,
-				4FF255F624FF4D4F008B5F9A /* UseDynamicColorViewController.h */,
-				4FF255F724FF4D4F008B5F9A /* UseDynamicColorViewController.m */,
-				4F358EF02510AC7D00E95C41 /* UseNewDynamicColorViewController.h */,
-				4F358EF12510AC7D00E95C41 /* UseNewDynamicColorViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
