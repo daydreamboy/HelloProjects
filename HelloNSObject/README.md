@@ -95,7 +95,7 @@ XCTAssertEqualObjects(address, hash);
 
 
 
-示例代码，参考WCOrderedDictionary
+>  示例代码，参考WCOrderedDictionary
 
 
 
@@ -120,6 +120,22 @@ XCTAssertEqualObjects(address, hash);
 > 上面三种方式，分别见SwizzleMethodByBlockViewController、SwizzleMethodByCategoryMethodViewController、SwizzleMethodByCFunctionViewController
 
 
+
+#### a. Block Swizzle
+
+
+
+#### b. Objective-C分类方法 Swizzle
+
+NSHipster的这篇文章[^11]介绍了使用Objective-C分类方法来Swizzle，原理如下图所示
+
+
+
+
+
+
+
+#### c. C函数 Swizzle
 
 
 
@@ -837,6 +853,8 @@ clang文档描述[^10]，如下
 [^8]:https://stackoverflow.com/questions/7017281/performselector-may-cause-a-leak-because-its-selector-is-unknown
 [^9]:https://www.jianshu.com/p/6517ab655be7
 [^10]:http://clang.llvm.org/docs/AutomaticReferenceCounting.html#retained-return-values
+
+[^11]:https://nshipster.com/method-swizzling/
 
 
 

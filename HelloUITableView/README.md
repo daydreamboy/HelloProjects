@@ -514,6 +514,12 @@ libc++abi.dylib: terminating with uncaught exception of type NSException
 
 
 
+### （5）UITableViewHeaderFooterView去掉默认背景颜色
+
+UITableViewHeaderFooterView用于section的header或者footer。设置backgroundView为[UIView new]，可以将UITableViewHeaderFooterView去掉默认背景颜色。
+
+
+
 
 
 ## 4、UITableView Internals
