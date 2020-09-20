@@ -18,6 +18,7 @@
 		4F69415A250A029800091C90 /* GetAllLocaleIdentifiersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F694159250A029800091C90 /* GetAllLocaleIdentifiersViewController.m */; };
 		4FF903D02515F9C60075BE7A /* GetAllISOLanguageCodesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF903CF2515F9C60075BE7A /* GetAllISOLanguageCodesViewController.m */; };
 		4FF904072516112E0075BE7A /* GetAllISOCurrencyCodesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF904062516112E0075BE7A /* GetAllISOCurrencyCodesViewController.m */; };
+		4FF9040E251623E60075BE7A /* GetCommonISOCurrencyCodesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF9040D251623E60075BE7A /* GetCommonISOCurrencyCodesViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,8 @@
 		4FF903CF2515F9C60075BE7A /* GetAllISOLanguageCodesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAllISOLanguageCodesViewController.m; sourceTree = "<group>"; };
 		4FF904052516112E0075BE7A /* GetAllISOCurrencyCodesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAllISOCurrencyCodesViewController.h; sourceTree = "<group>"; };
 		4FF904062516112E0075BE7A /* GetAllISOCurrencyCodesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAllISOCurrencyCodesViewController.m; sourceTree = "<group>"; };
+		4FF9040C251623E60075BE7A /* GetCommonISOCurrencyCodesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetCommonISOCurrencyCodesViewController.h; sourceTree = "<group>"; };
+		4FF9040D251623E60075BE7A /* GetCommonISOCurrencyCodesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetCommonISOCurrencyCodesViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +121,8 @@
 				4FF903CF2515F9C60075BE7A /* GetAllISOLanguageCodesViewController.m */,
 				4FF904052516112E0075BE7A /* GetAllISOCurrencyCodesViewController.h */,
 				4FF904062516112E0075BE7A /* GetAllISOCurrencyCodesViewController.m */,
+				4FF9040C251623E60075BE7A /* GetCommonISOCurrencyCodesViewController.h */,
+				4FF9040D251623E60075BE7A /* GetCommonISOCurrencyCodesViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -197,6 +202,7 @@
 				4F69415A250A029800091C90 /* GetAllLocaleIdentifiersViewController.m in Sources */,
 				4F69414B250A01C700091C90 /* main.m in Sources */,
 				4FF904072516112E0075BE7A /* GetAllISOCurrencyCodesViewController.m in Sources */,
+				4FF9040E251623E60075BE7A /* GetCommonISOCurrencyCodesViewController.m in Sources */,
 				4F694156250A020E00091C90 /* RootViewController.m in Sources */,
 				4FF903D02515F9C60075BE7A /* GetAllISOLanguageCodesViewController.m in Sources */,
 				4F14FD972515BD5F00A4F8BC /* WCArrayTool.m in Sources */,

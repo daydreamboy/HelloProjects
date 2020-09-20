@@ -12,6 +12,7 @@
 #import "GetAllISOCountryCodesViewController.h"
 #import "GetAllISOLanguageCodesViewController.h"
 #import "GetAllISOCurrencyCodesViewController.h"
+#import "GetCommonISOCurrencyCodesViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -38,6 +39,7 @@
         @"Get all ISO country codes",
         @"Get all ISO language codes",
         @"Get all ISO currency codes",
+        @"Get common ISO currency codes",
         @"call a test method",
     ];
     _classes = @[
@@ -45,6 +47,7 @@
         [GetAllISOCountryCodesViewController class],
         [GetAllISOLanguageCodesViewController class],
         [GetAllISOCurrencyCodesViewController class],
+        [GetCommonISOCurrencyCodesViewController class],
         @"testMethod",
     ];
 }
