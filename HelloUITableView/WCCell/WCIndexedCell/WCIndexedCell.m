@@ -30,7 +30,7 @@ static const void *kAssociatedObjectKeyTintSystemCheckmarkCell = &kAssociatedObj
     
     self.currentIndexPath = indexPath;
     self.isConfigureBlockRunning = YES;
-    configureBlock();
+    !configureBlock ?: configureBlock();
     self.isConfigureBlockRunning = NO;
 }
 
