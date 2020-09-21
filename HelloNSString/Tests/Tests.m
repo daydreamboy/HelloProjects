@@ -1432,6 +1432,29 @@
     outputString = [WCStringTool replaceCharactersInRangesWithString:inputString ranges:ranges replacementStrings:replacements replacementRanges:replacementRanges];
     XCTAssertNil(outputString);
     
+    // Case 11
+    NSDictionary *map = @{
+        @"123": @"A",
+        @"456": @"B",
+        @"789": @"C",
+    };
+    
+    NSString *string = @"@123 @456 哈哈 @789";
+    NSMutableArray *rangesM = [NSMutableArray array];
+    NSMutableArray *replacementsM = [NSMutableArray array];
+    
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
+    [regex enumerateMatchesInString:string options:kNilOptions range:NSMakeRange(0, string.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        NSString *capturedString = [string substringWithRange:[result rangeAtIndex:1]];
+        if (map[capturedString]) {
+            [rangesM addObject:[NSValue valueWithRange:result.range]];
+            [replacementsM addObject:map[capturedString]];
+        }
+    }];
+    
+    outputString = [WCStringTool replaceCharactersInRangesWithString:string ranges:rangesM replacementStrings:replacementsM replacementRanges:NULL];
+    XCTAssertEqualObjects(outputString, @"A B 哈哈 C");
+    
     // Abnormal Case 2: ranges has intersection
     inputString = @"0123456789";
     ranges = @[
