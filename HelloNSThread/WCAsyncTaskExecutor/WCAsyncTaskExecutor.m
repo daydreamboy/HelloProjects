@@ -94,6 +94,7 @@
                 [self.delegate batchTasksAllFinishedWithAsyncTaskExecutor:self];
             }
             
+            self.currentRunningTask = nil;
             self.isRunningTask = NO;
         }];
     });
@@ -103,7 +104,6 @@
 
 - (void)runTasksWithAllTasksFinished:(void (^)(void))allTasksFinishedBlock {
     if (self.taskList.count == 0) {
-        self.currentRunningTask = nil;
         allTasksFinishedBlock();
         return;
     }
