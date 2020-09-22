@@ -304,6 +304,68 @@
     return nil;
 }
 
++ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimeterRegExp:(NSRegularExpression *)delimeterRegExp componentRanges:(nullable inout NSMutableArray<NSValue *> *)componentRanges mode:(WCStringSplitInComponentsMode)mode {
+    if (![string isKindOfClass:[NSString class]] || ![delimeterRegExp isKindOfClass:[NSRegularExpression class]]) {
+        return nil;
+    }
+    
+    if (componentRanges && ![componentRanges isKindOfClass:[NSMutableArray class]]) {
+        return nil;
+    }
+    
+    [componentRanges removeAllObjects];
+    
+    NSMutableArray<NSValue *> *delimeteRangesM = [NSMutableArray array];
+    [delimeterRegExp enumerateMatchesInString:string options:kNilOptions range:NSMakeRange(0, string.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+        [delimeteRangesM addObject:[NSValue valueWithRange:result.range]];
+    }];
+    
+    if (delimeteRangesM.count == 0) {
+        return @[];
+    }
+    else {
+        NSRange lastDelimeterRange = NSMakeRange(string.length, 0);
+        [delimeteRangesM addObject:[NSValue valueWithRange:lastDelimeterRange]];
+        
+        NSMutableArray<NSString *> *components = [NSMutableArray array];
+        
+        NSRange previousDelimeterRange = NSMakeRange(0, 0);
+        
+        for (NSUInteger i = 0; i < delimeteRangesM.count; ++i) {
+            NSRange currentDelimeterRange = [delimeteRangesM[i] rangeValue];
+            
+            NSRange previousStringRange = NSMakeRange(previousDelimeterRange.location + previousDelimeterRange.length, currentDelimeterRange.location - previousDelimeterRange.location - previousDelimeterRange.length);
+            NSString *previousString = [self substringWithString:string range:previousStringRange byVisualization:YES];
+            previousString = previousString ?: previousString;
+            
+            if (mode == WCStringSplitInComponentsModeIncludeDelimiter) {
+                NSString *delimeterString = [self substringWithString:string range:currentDelimeterRange byVisualization:YES];
+                delimeterString = delimeterString ?: @"";
+                
+                if (previousStringRange.length != 0 && previousString.length != 0) {
+                    [componentRanges addObject:[NSValue valueWithRange:previousStringRange]];
+                    [components addObject:previousString];
+                }
+                
+                if (currentDelimeterRange.length != 0 && delimeterString.length != 0) {
+                    [componentRanges addObject:[NSValue valueWithRange:currentDelimeterRange]];
+                    [components addObject:delimeterString];
+                }
+            }
+            else if (mode == WCStringSplitInComponentsModeWithoutDelimiter) {
+                if (previousStringRange.length != 0 && previousString.length != 0) {
+                    [componentRanges addObject:[NSValue valueWithRange:previousStringRange]];
+                    [components addObject:previousString];
+                }
+            }
+            
+            previousDelimeterRange = currentDelimeterRange;
+        }
+        
+        return components;
+    }
+}
+
 #pragma mark ::
 
 + (NSArray<NSString *> *)splitStringWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters currentDelimeterIndex:(NSUInteger)currentDelimeterIndex {
@@ -448,7 +510,7 @@
     return componentsM;
 }
 
-+ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string charactersInSet:(NSCharacterSet *)charactersSet substringRangs:(inout NSMutableArray<NSValue *> *)substringRanges {
++ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string charactersInSet:(NSCharacterSet *)charactersSet substringRangs:(nullable inout NSMutableArray<NSValue *> *)substringRanges {
     
     if (![string isKindOfClass:[NSString class]] || ![charactersSet isKindOfClass:[NSCharacterSet class]]) {
         return nil;

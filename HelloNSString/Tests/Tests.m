@@ -198,6 +198,137 @@
     }
 }
 
+- (void)test_componentsWithString_delimeterRegExp_componentRanges_mode_WCStringSplitInComponentsModeIncludeDelimiter {
+    NSString *string;
+    NSArray *components;
+    NSMutableArray *componentRanges;
+    NSArray *expected;
+    NSRegularExpression *regExp;
+    
+    // Case 1
+    string = @" @123 @456 哈哈";
+    regExp = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
+    componentRanges = [NSMutableArray array];
+    
+    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitInComponentsModeIncludeDelimiter];
+    expected = @[
+        @" ",
+        @"@123",
+        @" ",
+        @"@456",
+        @" 哈哈",
+    ];
+    for (NSUInteger i = 0; i < components.count; ++i) {
+        XCTAssertEqualObjects(components[i], expected[i]);
+    }
+    
+    // Case 2
+    string = @" @123 @456 哈哈";
+    regExp = [NSRegularExpression regularExpressionWithPattern:@"(\\d+)" options:kNilOptions error:nil];
+    componentRanges = [NSMutableArray array];
+    
+    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitInComponentsModeIncludeDelimiter];
+    expected = @[
+        @" @",
+        @"123",
+        @" @",
+        @"456",
+        @" 哈哈",
+    ];
+    for (NSUInteger i = 0; i < components.count; ++i) {
+        XCTAssertEqualObjects(components[i], expected[i]);
+    }
+    
+    // Case 3
+    string = @"@123";
+    regExp = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
+    componentRanges = [NSMutableArray array];
+    
+    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitInComponentsModeIncludeDelimiter];
+    expected = @[
+        @"@123",
+    ];
+    for (NSUInteger i = 0; i < components.count; ++i) {
+        XCTAssertEqualObjects(components[i], expected[i]);
+    }
+    
+    // Case 4
+    string = @"@123@456";
+    regExp = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
+    componentRanges = [NSMutableArray array];
+    
+    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitInComponentsModeIncludeDelimiter];
+    expected = @[
+        @"@123",
+        @"@456",
+    ];
+    for (NSUInteger i = 0; i < components.count; ++i) {
+        XCTAssertEqualObjects(components[i], expected[i]);
+    }
+    
+    // Abnormal Case 1
+    string = @"abc def";
+    regExp = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
+    componentRanges = [NSMutableArray array];
+    
+    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitInComponentsModeIncludeDelimiter];
+    XCTAssertTrue(components.count == 0);
+}
+
+- (void)test_componentsWithString_delimeterRegExp_componentRanges_mode_WCStringSplitInComponentsModeWithoutDelimiter {
+    NSString *string;
+    NSArray *components;
+    NSMutableArray *componentRanges;
+    NSArray *expected;
+    NSRegularExpression *regExp;
+    
+    // Case 1
+    string = @" @123 @456 哈哈";
+    regExp = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
+    componentRanges = [NSMutableArray array];
+    
+    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitInComponentsModeWithoutDelimiter];
+    expected = @[
+        @" ",
+        @" ",
+        @" 哈哈",
+    ];
+    for (NSUInteger i = 0; i < components.count; ++i) {
+        XCTAssertEqualObjects(components[i], expected[i]);
+    }
+    
+    // Case 2
+    string = @" @123 @456 哈哈";
+    regExp = [NSRegularExpression regularExpressionWithPattern:@"(\\d+)" options:kNilOptions error:nil];
+    componentRanges = [NSMutableArray array];
+    
+    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitInComponentsModeWithoutDelimiter];
+    expected = @[
+        @" @",
+        @" @",
+        @" 哈哈",
+    ];
+    for (NSUInteger i = 0; i < components.count; ++i) {
+        XCTAssertEqualObjects(components[i], expected[i]);
+    }
+    
+    // Case 3
+    string = @"@123";
+    regExp = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
+    componentRanges = [NSMutableArray array];
+    
+    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitInComponentsModeWithoutDelimiter];
+    XCTAssertTrue(components.count == 0);
+    
+    // Case 4
+    string = @"@123@456";
+    regExp = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
+    componentRanges = [NSMutableArray array];
+    
+    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitInComponentsModeWithoutDelimiter];
+    XCTAssertTrue(components.count == 0);
+}
+
 - (void)test_componentsWithString_charactersInSet_substringRangs {
     NSString *string;
     NSArray *components;
@@ -1439,7 +1570,7 @@
         @"789": @"C",
     };
     
-    NSString *string = @"@123 @456 哈哈 @789";
+    NSString *string = @" @123 @456 哈哈 @789";
     NSMutableArray *rangesM = [NSMutableArray array];
     NSMutableArray *replacementsM = [NSMutableArray array];
     

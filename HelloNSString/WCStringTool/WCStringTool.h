@@ -179,6 +179,18 @@ typedef NS_ENUM(NSUInteger, WCStringSplitInComponentsMode) {
 + (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters mode:(WCStringSplitInComponentsMode)mode;
 
 /**
+ Split string into components by regular expression
+ 
+ @param string the original string
+ @param delimeterRegExp the delimeter which described by NSRegularExpression
+ @param componentRanges the ranges of components
+ @param mode the WCStringSplitInComponentsMode
+ 
+ @return the splited components
+ */
++ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimeterRegExp:(NSRegularExpression *)delimeterRegExp componentRanges:(nullable inout NSMutableArray<NSValue *> *)componentRanges mode:(WCStringSplitInComponentsMode)mode;
+
+/**
  Split string into components by multiple gap ranges
 
  @param string the string to split
@@ -195,7 +207,7 @@ typedef NS_ENUM(NSUInteger, WCStringSplitInComponentsMode) {
  @param substringRanges the ranges of components
  @return the components after spliting. 
  */
-+ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string charactersInSet:(NSCharacterSet *)charactersSet substringRangs:(inout NSMutableArray<NSValue *> *)substringRanges;
++ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string charactersInSet:(NSCharacterSet *)charactersSet substringRangs:(nullable inout NSMutableArray<NSValue *> *)substringRanges;
 
 #pragma mark > unichar
 
