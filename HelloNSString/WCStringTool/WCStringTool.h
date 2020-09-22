@@ -18,9 +18,9 @@ typedef NS_ENUM(NSUInteger, WCStringTruncatingStyle) {
     WCStringTruncatingStyleTrail,
 };
 
-typedef NS_ENUM(NSUInteger, WCStringSplitInComponentsMode) {
-    WCStringSplitInComponentsModeWithoutDelimiter,
-    WCStringSplitInComponentsModeIncludeDelimiter,
+typedef NS_ENUM(NSUInteger, WCStringSplitIntoComponentsMode) {
+    WCStringSplitIntoComponentsModeWithoutDelimiter,
+    WCStringSplitIntoComponentsModeIncludeDelimiter,
 };
 
 @interface WCStringTool : NSObject
@@ -176,7 +176,7 @@ typedef NS_ENUM(NSUInteger, WCStringSplitInComponentsMode) {
  */
 + (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters;
 
-+ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters mode:(WCStringSplitInComponentsMode)mode;
++ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters mode:(WCStringSplitIntoComponentsMode)mode;
 
 /**
  Split string into components by regular expression
@@ -184,11 +184,11 @@ typedef NS_ENUM(NSUInteger, WCStringSplitInComponentsMode) {
  @param string the original string
  @param delimeterRegExp the delimeter which described by NSRegularExpression
  @param componentRanges the ranges of components
- @param mode the WCStringSplitInComponentsMode
+ @param mode the WCStringSplitIntoComponentsMode
  
  @return the splited components
  */
-+ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimeterRegExp:(NSRegularExpression *)delimeterRegExp componentRanges:(nullable inout NSMutableArray<NSValue *> *)componentRanges mode:(WCStringSplitInComponentsMode)mode;
++ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimeterRegExp:(NSRegularExpression *)delimeterRegExp componentRanges:(nullable inout NSMutableArray<NSValue *> *)componentRanges mode:(WCStringSplitIntoComponentsMode)mode;
 
 /**
  Split string into components by multiple gap ranges

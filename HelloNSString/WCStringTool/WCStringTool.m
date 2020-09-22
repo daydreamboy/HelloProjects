@@ -280,31 +280,31 @@
 #pragma mark > Split String
 
 + (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters {
-    return [self componentsWithString:string delimeters:delimeters mode:WCStringSplitInComponentsModeWithoutDelimiter];
+    return [self componentsWithString:string delimeters:delimeters mode:WCStringSplitIntoComponentsModeWithoutDelimiter];
 }
 
-+ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters mode:(WCStringSplitInComponentsMode)mode {
++ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters mode:(WCStringSplitIntoComponentsMode)mode {
     if (![string isKindOfClass:[NSString class]] || ![delimeters isKindOfClass:[NSArray class]]) {
         return nil;
     }
     
-    if (mode != WCStringSplitInComponentsModeWithoutDelimiter && mode != WCStringSplitInComponentsModeIncludeDelimiter) {
+    if (mode != WCStringSplitIntoComponentsModeWithoutDelimiter && mode != WCStringSplitIntoComponentsModeIncludeDelimiter) {
         return nil;
     }
     
-    if (mode == WCStringSplitInComponentsModeWithoutDelimiter) {
+    if (mode == WCStringSplitIntoComponentsModeWithoutDelimiter) {
         NSMutableArray *strings = [NSMutableArray arrayWithObject:string];
         NSArray *components = [self splitStringWithComponents:strings delimeters:[delimeters mutableCopy]];
         return components;
     }
-    else if (mode == WCStringSplitInComponentsModeIncludeDelimiter) {
+    else if (mode == WCStringSplitIntoComponentsModeIncludeDelimiter) {
         return [self splitStringWithString:string delimeters:delimeters currentDelimeterIndex:0];
     }
     
     return nil;
 }
 
-+ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimeterRegExp:(NSRegularExpression *)delimeterRegExp componentRanges:(nullable inout NSMutableArray<NSValue *> *)componentRanges mode:(WCStringSplitInComponentsMode)mode {
++ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimeterRegExp:(NSRegularExpression *)delimeterRegExp componentRanges:(nullable inout NSMutableArray<NSValue *> *)componentRanges mode:(WCStringSplitIntoComponentsMode)mode {
     if (![string isKindOfClass:[NSString class]] || ![delimeterRegExp isKindOfClass:[NSRegularExpression class]]) {
         return nil;
     }
@@ -338,7 +338,7 @@
             NSString *previousString = [self substringWithString:string range:previousStringRange byVisualization:YES];
             previousString = previousString ?: previousString;
             
-            if (mode == WCStringSplitInComponentsModeIncludeDelimiter) {
+            if (mode == WCStringSplitIntoComponentsModeIncludeDelimiter) {
                 NSString *delimeterString = [self substringWithString:string range:currentDelimeterRange byVisualization:YES];
                 delimeterString = delimeterString ?: @"";
                 
@@ -352,7 +352,7 @@
                     [components addObject:delimeterString];
                 }
             }
-            else if (mode == WCStringSplitInComponentsModeWithoutDelimiter) {
+            else if (mode == WCStringSplitIntoComponentsModeWithoutDelimiter) {
                 if (previousStringRange.length != 0 && previousString.length != 0) {
                     [componentRanges addObject:[NSValue valueWithRange:previousStringRange]];
                     [components addObject:previousString];

@@ -159,7 +159,7 @@
     
     // Case 1
     string = @"abcsabc";
-    components = [WCStringTool componentsWithString:string delimeters:@[@"s", @"b"] mode:WCStringSplitInComponentsModeIncludeDelimiter];
+    components = [WCStringTool componentsWithString:string delimeters:@[@"s", @"b"] mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
     expected = @[
         @"a",
         @"b",
@@ -175,7 +175,7 @@
     
     // Case 2
     string = @"abcsabc";
-    components = [WCStringTool componentsWithString:string delimeters:@[@"s"] mode:WCStringSplitInComponentsModeIncludeDelimiter];
+    components = [WCStringTool componentsWithString:string delimeters:@[@"s"] mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
     expected = @[
         @"abc",
         @"s",
@@ -187,7 +187,7 @@
     
     // Case 3
     string = @"abcsabc";
-    components = [WCStringTool componentsWithString:string delimeters:@[@"abc", @"s"] mode:WCStringSplitInComponentsModeIncludeDelimiter];
+    components = [WCStringTool componentsWithString:string delimeters:@[@"abc", @"s"] mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
     expected = @[
         @"abc",
         @"s",
@@ -198,7 +198,7 @@
     }
 }
 
-- (void)test_componentsWithString_delimeterRegExp_componentRanges_mode_WCStringSplitInComponentsModeIncludeDelimiter {
+- (void)test_componentsWithString_delimeterRegExp_componentRanges_mode_WCStringSplitIntoComponentsModeIncludeDelimiter {
     NSString *string;
     NSArray *components;
     NSMutableArray *componentRanges;
@@ -210,7 +210,7 @@
     regExp = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
     componentRanges = [NSMutableArray array];
     
-    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitInComponentsModeIncludeDelimiter];
+    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
     expected = @[
         @" ",
         @"@123",
@@ -227,7 +227,7 @@
     regExp = [NSRegularExpression regularExpressionWithPattern:@"(\\d+)" options:kNilOptions error:nil];
     componentRanges = [NSMutableArray array];
     
-    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitInComponentsModeIncludeDelimiter];
+    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
     expected = @[
         @" @",
         @"123",
@@ -244,7 +244,7 @@
     regExp = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
     componentRanges = [NSMutableArray array];
     
-    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitInComponentsModeIncludeDelimiter];
+    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
     expected = @[
         @"@123",
     ];
@@ -257,7 +257,7 @@
     regExp = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
     componentRanges = [NSMutableArray array];
     
-    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitInComponentsModeIncludeDelimiter];
+    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
     expected = @[
         @"@123",
         @"@456",
@@ -271,11 +271,11 @@
     regExp = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
     componentRanges = [NSMutableArray array];
     
-    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitInComponentsModeIncludeDelimiter];
+    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
     XCTAssertTrue(components.count == 0);
 }
 
-- (void)test_componentsWithString_delimeterRegExp_componentRanges_mode_WCStringSplitInComponentsModeWithoutDelimiter {
+- (void)test_componentsWithString_delimeterRegExp_componentRanges_mode_WCStringSplitIntoComponentsModeWithoutDelimiter {
     NSString *string;
     NSArray *components;
     NSMutableArray *componentRanges;
@@ -287,7 +287,7 @@
     regExp = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
     componentRanges = [NSMutableArray array];
     
-    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitInComponentsModeWithoutDelimiter];
+    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeWithoutDelimiter];
     expected = @[
         @" ",
         @" ",
@@ -302,7 +302,7 @@
     regExp = [NSRegularExpression regularExpressionWithPattern:@"(\\d+)" options:kNilOptions error:nil];
     componentRanges = [NSMutableArray array];
     
-    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitInComponentsModeWithoutDelimiter];
+    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeWithoutDelimiter];
     expected = @[
         @" @",
         @" @",
@@ -317,7 +317,7 @@
     regExp = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
     componentRanges = [NSMutableArray array];
     
-    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitInComponentsModeWithoutDelimiter];
+    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeWithoutDelimiter];
     XCTAssertTrue(components.count == 0);
     
     // Case 4
@@ -325,7 +325,7 @@
     regExp = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
     componentRanges = [NSMutableArray array];
     
-    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitInComponentsModeWithoutDelimiter];
+    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeWithoutDelimiter];
     XCTAssertTrue(components.count == 0);
 }
 
