@@ -12,6 +12,10 @@
 		4F20C5C32504D65200139BE0 /* PagingUITextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F20C5C22504D65200139BE0 /* PagingUITextViewViewController.m */; };
 		4F20C5C62504DAF500139BE0 /* MixMirroringAndPagingUITextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F20C5C52504DAF500139BE0 /* MixMirroringAndPagingUITextViewViewController.m */; };
 		4F20C5C92504E49000139BE0 /* SyntaxHighlightUITextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F20C5C82504E49000139BE0 /* SyntaxHighlightUITextViewViewController.m */; };
+		4F3076A8251B54B200512410 /* WCMessageComposerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3076A7251B54B200512410 /* WCMessageComposerView.m */; };
+		4F3076AD251B54D700512410 /* UseWCMessageComposerViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3076AC251B54D700512410 /* UseWCMessageComposerViewViewController.m */; };
+		4F3076B1251B57AA00512410 /* WCMessageInputItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3076B0251B57AA00512410 /* WCMessageInputItem.m */; };
+		4F3076B9251B74D800512410 /* WCStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3076B8251B74D800512410 /* WCStringTool.m */; };
 		4F86A6FA20C77C6A00DFCFD0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86A6F920C77C6A00DFCFD0 /* AppDelegate.m */; };
 		4F86A70220C77C6B00DFCFD0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F86A70120C77C6B00DFCFD0 /* Assets.xcassets */; };
 		4F86A70520C77C6B00DFCFD0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F86A70320C77C6B00DFCFD0 /* LaunchScreen.storyboard */; };
@@ -60,6 +64,15 @@
 		4F20C5C52504DAF500139BE0 /* MixMirroringAndPagingUITextViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MixMirroringAndPagingUITextViewViewController.m; sourceTree = "<group>"; };
 		4F20C5C72504E49000139BE0 /* SyntaxHighlightUITextViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SyntaxHighlightUITextViewViewController.h; sourceTree = "<group>"; };
 		4F20C5C82504E49000139BE0 /* SyntaxHighlightUITextViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SyntaxHighlightUITextViewViewController.m; sourceTree = "<group>"; };
+		4F3076A6251B54B200512410 /* WCMessageComposerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMessageComposerView.h; sourceTree = "<group>"; };
+		4F3076A7251B54B200512410 /* WCMessageComposerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMessageComposerView.m; sourceTree = "<group>"; };
+		4F3076AB251B54D700512410 /* UseWCMessageComposerViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseWCMessageComposerViewViewController.h; sourceTree = "<group>"; };
+		4F3076AC251B54D700512410 /* UseWCMessageComposerViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCMessageComposerViewViewController.m; sourceTree = "<group>"; };
+		4F3076AF251B57AA00512410 /* WCMessageInputItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMessageInputItem.h; sourceTree = "<group>"; };
+		4F3076B0251B57AA00512410 /* WCMessageInputItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMessageInputItem.m; sourceTree = "<group>"; };
+		4F3076B5251B704200512410 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
+		4F3076B7251B74D800512410 /* WCStringTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStringTool.h; sourceTree = "<group>"; };
+		4F3076B8251B74D800512410 /* WCStringTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCStringTool.m; sourceTree = "<group>"; };
 		4F86A6F520C77C6A00DFCFD0 /* HelloUITextView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUITextView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F86A6F820C77C6A00DFCFD0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F86A6F920C77C6A00DFCFD0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -142,9 +155,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F3076A5251B547300512410 /* WCMessageComposerView */ = {
+			isa = PBXGroup;
+			children = (
+				4F3076B4251B703000512410 /* Tools */,
+				4F3076A6251B54B200512410 /* WCMessageComposerView.h */,
+				4F3076A7251B54B200512410 /* WCMessageComposerView.m */,
+				4F3076AF251B57AA00512410 /* WCMessageInputItem.h */,
+				4F3076B0251B57AA00512410 /* WCMessageInputItem.m */,
+			);
+			path = WCMessageComposerView;
+			sourceTree = "<group>";
+		};
+		4F3076B4251B703000512410 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F3076B5251B704200512410 /* WCMacroTool.h */,
+				4F3076B7251B74D800512410 /* WCStringTool.h */,
+				4F3076B8251B74D800512410 /* WCStringTool.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		4F86A6EC20C77C6A00DFCFD0 = {
 			isa = PBXGroup;
 			children = (
+				4F3076A5251B547300512410 /* WCMessageComposerView */,
 				4FD06CE325051D2000DE42E0 /* WCHighlightTextStorage */,
 				4F9BB40624FD2D4A009C35D7 /* WCKeyboardObserver */,
 				4FDF805C24F3D8EA00BEBBB6 /* WCGrowingTextView */,
@@ -230,6 +266,8 @@
 				4F86A71020C77CFE00DFCFD0 /* UseWCPlaceholderTextViewViewController.m */,
 				4F9BB3FB24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.h */,
 				4F9BB3FC24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.m */,
+				4F3076AB251B54D700512410 /* UseWCMessageComposerViewViewController.h */,
+				4F3076AC251B54D700512410 /* UseWCMessageComposerViewViewController.m */,
 				4F20C5BE2504C9E800139BE0 /* MirroringUITextViewViewController.h */,
 				4F20C5BF2504C9E800139BE0 /* MirroringUITextViewViewController.m */,
 				4F20C5C12504D65200139BE0 /* PagingUITextViewViewController.h */,
@@ -381,6 +419,7 @@
 				4F86A75720C784A600DFCFD0 /* YYTextMagnifier.m in Sources */,
 				4F9BB40924FD2D96009C35D7 /* WCKeyboardObserver.m in Sources */,
 				4F20C5C62504DAF500139BE0 /* MixMirroringAndPagingUITextViewViewController.m in Sources */,
+				4F3076B9251B74D800512410 /* WCStringTool.m in Sources */,
 				4F86A71220C77CFE00DFCFD0 /* UseWCPlaceholderTextViewViewController.m in Sources */,
 				4F86A74220C7842300DFCFD0 /* NSParagraphStyle+YYText.m in Sources */,
 				4F9BB40424FD0818009C35D7 /* WCStickySectionManager.m in Sources */,
@@ -391,9 +430,11 @@
 				4F86A73220C7811B00DFCFD0 /* YYTextAttribute.m in Sources */,
 				4F20C5C92504E49000139BE0 /* SyntaxHighlightUITextViewViewController.m in Sources */,
 				4F86A74520C7843800DFCFD0 /* YYTextDebugOption.m in Sources */,
+				4F3076A8251B54B200512410 /* WCMessageComposerView.m in Sources */,
 				4F86A70820C77C6B00DFCFD0 /* main.m in Sources */,
 				4F86A75D20C7851900DFCFD0 /* YYTextKeyboardManager.m in Sources */,
 				4F86A76620C7856500DFCFD0 /* UIPasteboard+YYText.m in Sources */,
+				4F3076AD251B54D700512410 /* UseWCMessageComposerViewViewController.m in Sources */,
 				4F86A74E20C7846C00DFCFD0 /* YYTextInput.m in Sources */,
 				4F86A75A20C784B600DFCFD0 /* YYTextEffectWindow.m in Sources */,
 				4F86A74B20C7845B00DFCFD0 /* YYTextLine.m in Sources */,
@@ -412,6 +453,7 @@
 				4F0ED8BB24F4C649002128BF /* WCGrowingTextView.m in Sources */,
 				4F86A73C20C783EE00DFCFD0 /* YYTextArchiver.m in Sources */,
 				4F9BB3FD24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.m in Sources */,
+				4F3076B1251B57AA00512410 /* WCMessageInputItem.m in Sources */,
 				4F9BB40524FD0818009C35D7 /* WCStickySection.m in Sources */,
 				4F86A73920C783C600DFCFD0 /* YYTextRubyAnnotation.m in Sources */,
 			);
