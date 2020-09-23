@@ -93,6 +93,10 @@ TODO
 
 
 
+## 6、NSString常见问题
+
+### （1）Emoji字符被截断的问题
+
 
 
 https://stackoverflow.com/questions/47130742/whats-an-example-of-an-nsstring-for-which-utf8string-returns-null

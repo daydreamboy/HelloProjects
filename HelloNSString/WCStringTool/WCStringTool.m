@@ -1105,7 +1105,7 @@
     }
 }
 
-+ (UIColor *)colorFromHexString:(NSString *)string {
++ (nullable UIColor *)colorFromHexString:(NSString *)string {
     if (![string isKindOfClass:[NSString class]]) {
         return nil;
     }

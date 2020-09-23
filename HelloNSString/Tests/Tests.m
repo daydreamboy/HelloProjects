@@ -1675,6 +1675,21 @@
     NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
 }
 
+- (void)test_colorFromHexString {
+    UIColor *output;
+    NSString *string;
+    
+    // Case 1
+    string = @"#FF0000";
+    output = [WCStringTool colorFromHexString:string];
+    NSLog(@"%@", output);
+    
+    // Case 2
+    string = @"#ff0000";
+    output = [WCStringTool colorFromHexString:string];
+    NSLog(@"%@", output);
+}
+
 #pragma mark >> Unicode
 
 - (void)test_unescapedUnicodeStringWithString {
