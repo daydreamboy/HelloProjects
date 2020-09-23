@@ -520,6 +520,32 @@ UITableViewHeaderFooterView用于section的header或者footer。设置background
 
 
 
+### （6）iOS 14+上UITableViewCell/UICollectionViewCell的subview不能接收点击事件
+
+​        iOS 14+上Cell (UITableViewCell/UICollectionViewCell)的contentView，层级发生变化，contentView会直接覆盖cell.subview之上。而iOS 13-之前，cell.subview是覆盖contentView之上。
+
+​       下面这种写法[^8]，将在iOS14+不能使用。
+
+```swift
+cell.addSubview(textField)
+```
+
+注意
+
+> 如果用Xcode 12之前的版本打包，则上面的代码可以安全运行在iOS 14+，但是用Xcode 12打包，则会出现上面的问题。目前没有弄明白，Xcode 12版本和iOS系统版本之间的联系。
+
+
+
+解决方法一：使用contentView来放置subview
+
+解决方法二[^9]：iOS 14+，将contentViewuserInteractionEnabled设置为NO。
+
+> 示例代码，见CellContentIssueAboveiOS14ViewController
+
+
+
+
+
 
 
 ## 4、UITableView Internals
@@ -558,6 +584,10 @@ References
 [^5]: https://stackoverflow.com/questions/14468449/the-selectedbackgroundview-modifies-the-contentview-subviews
 
 [^6]:https://developer.apple.com/documentation/uikit/drag_and_drop
+
+[^7]:https://stackoverflow.com/questions/63960541/can-no-longer-interact-with-content-within-uicollectionviewcell-or-uitableviewce
+[^8]:https://stackoverflow.com/questions/63947042/since-updating-to-xcode-12-i-am-not-able-to-place-any-uicontrol-inside-uitablevi
+[^9]:https://stackoverflow.com/a/63967596
 
 
 
