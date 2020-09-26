@@ -1,5 +1,5 @@
 //
-//  TextViewViewController.h
+//  TextViewIssueCaretViewController.h
 //  HelloUITextView
 //
 //  Created by wesley_chen on 2020/9/25.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TextViewViewController : UIViewController
+@interface TextViewIssueCaretViewController : UIViewController
 
 @end
 

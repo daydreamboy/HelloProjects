@@ -31,7 +31,6 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.messageComposerView];
-//    [self.messageComposerView layoutIfNeeded];
     
     [self.messageComposerView setupBottomAutoLayoutWithViewController:self keyboardWillAnimate:^(CGRect keyboardRectEnd, NSTimeInterval duration, BOOL isToShow) {
             

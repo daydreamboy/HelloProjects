@@ -45,7 +45,7 @@
 		4F86A76020C7852D00DFCFD0 /* UIView+YYText.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86A75F20C7852C00DFCFD0 /* UIView+YYText.m */; };
 		4F86A76320C7854000DFCFD0 /* YYTextTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86A76120C7853F00DFCFD0 /* YYTextTransaction.m */; };
 		4F86A76620C7856500DFCFD0 /* UIPasteboard+YYText.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86A76520C7856500DFCFD0 /* UIPasteboard+YYText.m */; };
-		4F9A2E77251E1A0E00349719 /* TextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A2E76251E1A0E00349719 /* TextViewViewController.m */; };
+		4F9A2E77251E1A0E00349719 /* TextViewIssueCaretViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A2E76251E1A0E00349719 /* TextViewIssueCaretViewController.m */; };
 		4F9BB3FD24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BB3FC24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.m */; };
 		4F9BB40424FD0818009C35D7 /* WCStickySectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BB40124FD0818009C35D7 /* WCStickySectionManager.m */; };
 		4F9BB40524FD0818009C35D7 /* WCStickySection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BB40324FD0818009C35D7 /* WCStickySection.m */; };
@@ -132,8 +132,8 @@
 		4F86A76220C7853F00DFCFD0 /* YYTextTransaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYTextTransaction.h; sourceTree = "<group>"; };
 		4F86A76420C7856500DFCFD0 /* UIPasteboard+YYText.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIPasteboard+YYText.h"; sourceTree = "<group>"; };
 		4F86A76520C7856500DFCFD0 /* UIPasteboard+YYText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIPasteboard+YYText.m"; sourceTree = "<group>"; };
-		4F9A2E75251E1A0E00349719 /* TextViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextViewViewController.h; sourceTree = "<group>"; };
-		4F9A2E76251E1A0E00349719 /* TextViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextViewViewController.m; sourceTree = "<group>"; };
+		4F9A2E75251E1A0E00349719 /* TextViewIssueCaretViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextViewIssueCaretViewController.h; sourceTree = "<group>"; };
+		4F9A2E76251E1A0E00349719 /* TextViewIssueCaretViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextViewIssueCaretViewController.m; sourceTree = "<group>"; };
 		4F9BB3FB24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseWCGrowingTextViewViewController.h; sourceTree = "<group>"; };
 		4F9BB3FC24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCGrowingTextViewViewController.m; sourceTree = "<group>"; };
 		4F9BB3FF24FD0818009C35D7 /* WCStickySection_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCStickySection_Internal.h; sourceTree = "<group>"; };
@@ -270,6 +270,8 @@
 		4F86A70F20C77CFE00DFCFD0 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4FD4A8EB251F261E00317233 /* UITextView Issues */,
+				4FD4A8EA251F260800317233 /* WCGrowingTextView Demo */,
 				4F9A2E79251E1EF200349719 /* UITextView Feature */,
 				4F86A71120C77CFE00DFCFD0 /* UseWCPlaceholderTextViewViewController.h */,
 				4F86A71020C77CFE00DFCFD0 /* UseWCPlaceholderTextViewViewController.m */,
@@ -277,8 +279,6 @@
 				4F9BB3FC24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.m */,
 				4F3076AB251B54D700512410 /* UseWCMessageComposerViewViewController.h */,
 				4F3076AC251B54D700512410 /* UseWCMessageComposerViewViewController.m */,
-				4F9A2E75251E1A0E00349719 /* TextViewViewController.h */,
-				4F9A2E76251E1A0E00349719 /* TextViewViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -349,6 +349,22 @@
 				4FD06CE825052E2B00DE42E0 /* iText.txt */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		4FD4A8EA251F260800317233 /* WCGrowingTextView Demo */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "WCGrowingTextView Demo";
+			sourceTree = "<group>";
+		};
+		4FD4A8EB251F261E00317233 /* UITextView Issues */ = {
+			isa = PBXGroup;
+			children = (
+				4F9A2E75251E1A0E00349719 /* TextViewIssueCaretViewController.h */,
+				4F9A2E76251E1A0E00349719 /* TextViewIssueCaretViewController.m */,
+			);
+			path = "UITextView Issues";
 			sourceTree = "<group>";
 		};
 		4FDF805C24F3D8EA00BEBBB6 /* WCGrowingTextView */ = {
@@ -461,7 +477,7 @@
 				4F86A76020C7852D00DFCFD0 /* UIView+YYText.m in Sources */,
 				4F86A76320C7854000DFCFD0 /* YYTextTransaction.m in Sources */,
 				4FD06CE62505204500DE42E0 /* WCHighlightTextStorage.m in Sources */,
-				4F9A2E77251E1A0E00349719 /* TextViewViewController.m in Sources */,
+				4F9A2E77251E1A0E00349719 /* TextViewIssueCaretViewController.m in Sources */,
 				4F86A75120C7847D00DFCFD0 /* YYTextContainerView.m in Sources */,
 				4F86A71820C77D6F00DFCFD0 /* YYTextView.m in Sources */,
 				4F86A75420C7849700DFCFD0 /* YYTextSelectionView.m in Sources */,
