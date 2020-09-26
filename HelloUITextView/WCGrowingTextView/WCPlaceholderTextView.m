@@ -116,9 +116,8 @@
             caretRect.origin.x = placeholderInsets.left + CGRectGetMaxX(placeholderUsedRect) - self.textContainer.lineFragmentPadding;
             break;
         case UIUserInterfaceLayoutDirectionLeftToRight:
-            break;
         default:
-            caretRect.origin.x = placeholderInsets.left + CGRectGetMinX(placeholderUsedRect) + self.textContainer.lineFragmentPadding;
+            caretRect.origin.x = placeholderInsets.left - self.contentInset.left + CGRectGetMinX(placeholderUsedRect) + self.textContainer.lineFragmentPadding;
             break;
     }
     
