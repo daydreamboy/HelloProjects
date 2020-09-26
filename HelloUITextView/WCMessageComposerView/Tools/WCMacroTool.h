@@ -90,5 +90,64 @@
  */
 #define stringValueOfJSONValue(JSONValue)   ([(JSONValue) isKindOfClass:[NSString class]] ? (JSONValue) : ([(JSONValue) isKindOfClass:[NSNumber class]]) ? [(NSNumber *)(JSONValue) stringValue] : nil)
 
+#ifndef UNSPECIFIED
+#define UNSPECIFIED 0
+#endif
+
+#define FrameSetSize(frame, newWidth, newHeight) ({ \
+CGRect __internal_frame = (frame); \
+if (!isnan((newWidth))) { \
+    __internal_frame.size.width = (newWidth); \
+} \
+if (!isnan((newHeight))) { \
+    __internal_frame.size.height = (newHeight); \
+} \
+__internal_frame; \
+})
+
+#define UIEdgeInsetsSet(insets, newTop, newLeft, newBottom, newRight) \
+({ \
+UIEdgeInsets __insets = insets; \
+if (!isnan((newTop))) { \
+    __insets = UIEdgeInsetsMake(newTop, __insets.left, __insets.bottom, __insets.right); \
+} \
+if (!isnan((newLeft))) { \
+    __insets = UIEdgeInsetsMake(__insets.top, newLeft, __insets.bottom, __insets.right); \
+} \
+if (!isnan((newBottom))) { \
+    __insets = UIEdgeInsetsMake(__insets.top, __insets.left, newBottom, __insets.right); \
+} \
+if (!isnan((newRight))) { \
+    __insets = UIEdgeInsetsMake(__insets.top, __insets.left, __insets.bottom, newRight); \
+} \
+\
+__insets; \
+});
+
+#define DOUBLE_SAFE_MAX(a, b) \
+({ \
+double __returnValue; \
+double __v1 = (a); \
+double __v2 = (b); \
+if (__v1 >= __v2) { \
+    __returnValue = __v1; \
+} \
+else { \
+    __returnValue = __v2; \
+} \
+__returnValue; \
+});
+
+#define weakify(object) \
+__weak __typeof__(object) object##_weak_ = object;
+
+#define strongify(object) \
+__strong __typeof__(object) object = object##_weak_;
+
+#define strongifyWithReturn(object, ...) \
+__strong __typeof__(object) object = object##_weak_; \
+if (!object) { \
+    __VA_ARGS__; \
+}
 
 #endif /* WCMacroTool_h */

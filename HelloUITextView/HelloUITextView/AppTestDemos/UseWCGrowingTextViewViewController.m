@@ -9,6 +9,7 @@
 #import "UseWCGrowingTextViewViewController.h"
 #import "WCGrowingTextView.h"
 #import "WCKeyboardObserver.h"
+#import "WCMacroTool.h"
 
 @interface UseWCGrowingTextViewViewController ()
 @property (nonatomic, strong) WCGrowingTextView *textViewPositional;
@@ -89,17 +90,28 @@
 - (WCGrowingTextView *)textViewPositional {
     if (!_textViewPositional) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        WCGrowingTextView *textView = [[WCGrowingTextView alloc] initWithFrame:CGRectMake(10, 90 + 10, screenSize.width - 2 * 10, 300) textContainer:nil];
-        textView.enableHeightChangeAnimation = NO;
-        textView.contentInset = UIEdgeInsetsMake(20, 10, 20, 10);
+        WCGrowingTextView *textView = [[WCGrowingTextView alloc] initWithFrame:CGRectMake(10, 90 + 10, 300, UNSPECIFIED) textContainer:nil];
+        //textView.enableHeightChangeAnimation = NO;
+//        textView.contentInset = UIEdgeInsetsMake(20, 10, 20, 10);
+//        textView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+//        textView.contentInset = UIEdgeInsetsMake(5, 5, 5, 5);
         textView.font = [UIFont systemFontOfSize:17];
-        textView.textAlignment = NSTextAlignmentNatural;
+        //textView.textAlignment = NSTextAlignmentNatural;
         textView.maximumNumberOfLines = 3;
-        //textView.placeholder = @"Write a message";
-        textView.layer.borderColor = [UIColor redColor].CGColor;
-        textView.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
+        textView.placeholder = @"Write a message";
+        //textView.layer.borderColor = [UIColor redColor].CGColor;
+        //textView.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
         textView.text = @"我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。";
         textView.text = @"";
+        textView.backgroundColor = [UIColor yellowColor];
+        
+        textView.frame = CGRectMake(10, 90 + 40, 400, 0);
+        textView.contentInset = UIEdgeInsetsMake(5, 5, 5, 5);
+//        textView.textContainer.size = CGSizeMake(400, 0);
+//        textView.contentInset = UIEdgeInsetsMake(5, 5, 5, 5);
+//        // Note: disable left/right padding on each line
+//        textView.textContainer.lineFragmentPadding = 0;
+//        textView.textContainerInset = UIEdgeInsetsZero;
         
         _textViewPositional = textView;
     }
@@ -110,11 +122,11 @@
 - (WCGrowingTextView *)textViewFollowing {
     if (!_textViewFollowing) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        CGFloat height = 30;
         
-        WCGrowingTextView *textView = [[WCGrowingTextView alloc] initWithFrame:CGRectMake(10, 0, screenSize.width - 2 * 10, height) textContainer:nil];
+        WCGrowingTextView *textView = [[WCGrowingTextView alloc] initWithFrame:CGRectMake(10, 0, screenSize.width - 2 * 10, UNSPECIFIED) textContainer:nil];
         textView.enableHeightChangeAnimation = NO;
         textView.contentInset = UIEdgeInsetsMake(20, 10, 20, 10);
+        textView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         textView.font = [UIFont systemFontOfSize:17];
         textView.textAlignment = NSTextAlignmentNatural;
         textView.maximumNumberOfLines = 3;
@@ -123,6 +135,7 @@
         textView.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
         textView.text = @"";
         textView.translatesAutoresizingMaskIntoConstraints = NO;
+        textView.backgroundColor = [UIColor yellowColor];
         
         _textViewFollowing = textView;
     }
@@ -134,8 +147,12 @@
 #pragma mark - Actions
 
 - (void)insertItemClicked:(id)sender {
-    NSString *insertingString = @"InsertedText";
-    [self.textViewPositional replaceRange:self.textViewPositional.selectedTextRange withText:insertingString];
+    //NSString *insertingString = @"InsertedText";
+    //[self.textViewPositional replaceRange:self.textViewPositional.selectedTextRange withText:insertingString];
+    
+//    self.textViewPositional.frame = FrameSetSize(self.textViewPositional.frame, 200, NAN);
+//    self.textViewPositional.contentInset = self.textViewPositional.contentInset;
+//    [self.textViewPositional layoutIfNeeded];
 }
 
 - (void)dismissItemClicked:(id)sender {

@@ -13,10 +13,12 @@
 #import "PagingUITextViewViewController.h"
 #import "MixMirroringAndPagingUITextViewViewController.h"
 #import "SyntaxHighlightUITextViewViewController.h"
+#import "TextViewViewController.h"
 
 // section 2
 #import "UseWCPlaceholderTextViewViewController.h"
 #import "UseWCGrowingTextViewViewController.h"
+#import "UseWCMessageComposerViewViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -46,11 +48,13 @@
           @{ kTitle: @"Paging UITextView", kClass: [PagingUITextViewViewController class] },
           @{ kTitle: @"Mix Mirroring & Paging UITextView", kClass: [MixMirroringAndPagingUITextViewViewController class] },
           @{ kTitle: @"Syntax highlight in UITextView", kClass: [SyntaxHighlightUITextViewViewController class] },
+          @{ kTitle: @"UITextView", kClass: [TextViewViewController class] },
     ];
     
     NSArray<NSDictionary *> *section2 = @[
           @{ kTitle: @"Use WCPlaceholderTextView", kClass: [UseWCPlaceholderTextViewViewController class] },
           @{ kTitle: @"Use WCGrowingTextView", kClass: [UseWCGrowingTextViewViewController class] },
+          @{ kTitle: @"Use WCMessageComposerView", kClass: [UseWCMessageComposerViewViewController class] },
     ];
     
     _sectionTitles = @[
