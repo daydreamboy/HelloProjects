@@ -34,15 +34,27 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
+    [self.view addSubview:self.textViewPositional];
+    [self.view addSubview:self.textViewFollowing];
+    
+    [self setupItems];
+    [self setupAttachToKeyboard];
+}
+
+- (void)setupItems {
     UIBarButtonItem *insertItem = [[UIBarButtonItem alloc] initWithTitle:@"Insert" style:UIBarButtonItemStylePlain target:self action:@selector(insertItemClicked:)];
     
     UIBarButtonItem *dismissItem = [[UIBarButtonItem alloc] initWithTitle:@"Dismiss" style:UIBarButtonItemStylePlain target:self action:@selector(dismissItemClicked:)];
     
-    self.navigationItem.rightBarButtonItems = @[insertItem, dismissItem];
+    UISwitch *switcher = [UISwitch new];
+    switcher.on = YES;
+    [switcher addTarget:self action:@selector(switcherToggled:) forControlEvents:UIControlEventValueChanged];
+    UIBarButtonItem *switcherItem = [[UIBarButtonItem alloc] initWithCustomView:switcher];
     
-    [self.view addSubview:self.textViewPositional];
-    [self.view addSubview:self.textViewFollowing];
-    
+    self.navigationItem.rightBarButtonItems = @[switcherItem, insertItem, dismissItem];
+}
+
+- (void)setupAttachToKeyboard {
     [self.keyboardObserver registerObserverWithKeyboardWillAnimate:nil inAnimate:^(CGRect keyboardRectEnd, NSTimeInterval duration, BOOL isToShow) {
         self.isVisibleKeyboard = isToShow;
         [self adjustContentWithKeyboardRect:keyboardRectEnd];
@@ -50,10 +62,6 @@
         self.isVisibleKeyboard = isToShow;
     }];
     
-    [self setupConstraint];
-}
-
-- (void)setupConstraint {
     NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:self.bottomLayoutGuide attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:self.textViewFollowing attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
     self.constraintSpaceBetweenBottomLayoutGuide = constraint;
     
@@ -90,28 +98,12 @@
 - (WCGrowingTextView *)textViewPositional {
     if (!_textViewPositional) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        WCGrowingTextView *textView = [[WCGrowingTextView alloc] initWithFrame:CGRectMake(10, 90 + 10, 300, UNSPECIFIED) textContainer:nil];
-        //textView.enableHeightChangeAnimation = NO;
-//        textView.contentInset = UIEdgeInsetsMake(20, 10, 20, 10);
-//        textView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-//        textView.contentInset = UIEdgeInsetsMake(5, 5, 5, 5);
+        WCGrowingTextView *textView = [[WCGrowingTextView alloc] initWithFrame:CGRectMake(10, 90 + 10, screenSize.width - 2 * 10, UNSPECIFIED) textContainer:nil];
         textView.font = [UIFont systemFontOfSize:17];
-        //textView.textAlignment = NSTextAlignmentNatural;
         textView.maximumNumberOfLines = 3;
         textView.placeholder = @"Write a message";
-        //textView.layer.borderColor = [UIColor redColor].CGColor;
-        //textView.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
-        textView.text = @"我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。";
-        textView.text = @"";
+        //textView.text = @"我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。";
         textView.backgroundColor = [UIColor yellowColor];
-        
-        textView.frame = CGRectMake(10, 90 + 40, 400, 0);
-        textView.contentInset = UIEdgeInsetsMake(5, 5, 5, 5);
-//        textView.textContainer.size = CGSizeMake(400, 0);
-//        textView.contentInset = UIEdgeInsetsMake(5, 5, 5, 5);
-//        // Note: disable left/right padding on each line
-//        textView.textContainer.lineFragmentPadding = 0;
-//        textView.textContainerInset = UIEdgeInsetsZero;
         
         _textViewPositional = textView;
     }
@@ -126,7 +118,6 @@
         WCGrowingTextView *textView = [[WCGrowingTextView alloc] initWithFrame:CGRectMake(10, 0, screenSize.width - 2 * 10, UNSPECIFIED) textContainer:nil];
         textView.enableHeightChangeAnimation = NO;
         textView.contentInset = UIEdgeInsetsMake(20, 10, 20, 10);
-        textView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
         textView.font = [UIFont systemFontOfSize:17];
         textView.textAlignment = NSTextAlignmentNatural;
         textView.maximumNumberOfLines = 3;
@@ -143,21 +134,31 @@
     return _textViewFollowing;
 }
 
-
 #pragma mark - Actions
 
 - (void)insertItemClicked:(id)sender {
-    //NSString *insertingString = @"InsertedText";
-    //[self.textViewPositional replaceRange:self.textViewPositional.selectedTextRange withText:insertingString];
+    NSString *insertingString = @"InsertedText";
     
-//    self.textViewPositional.frame = FrameSetSize(self.textViewPositional.frame, 200, NAN);
-//    self.textViewPositional.contentInset = self.textViewPositional.contentInset;
-//    [self.textViewPositional layoutIfNeeded];
+    if ([self.textViewPositional isFirstResponder]) {
+        [self.textViewPositional replaceRange:self.textViewPositional.selectedTextRange withText:insertingString];
+    }
 }
 
 - (void)dismissItemClicked:(id)sender {
     [self.textViewPositional resignFirstResponder];
     [self.textViewFollowing resignFirstResponder];
+}
+
+- (void)switcherToggled:(id)sender {
+    UISwitch *switcher = sender;
+    if (switcher.on) {
+        self.textViewPositional.enableHeightChangeAnimation = YES;
+        self.textViewFollowing.enableHeightChangeAnimation = YES;
+    }
+    else {
+        self.textViewPositional.enableHeightChangeAnimation = NO;
+        self.textViewFollowing.enableHeightChangeAnimation = NO;
+    }
 }
 
 @end

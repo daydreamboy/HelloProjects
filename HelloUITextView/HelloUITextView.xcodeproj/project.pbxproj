@@ -52,6 +52,7 @@
 		4F9BB40924FD2D96009C35D7 /* WCKeyboardObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BB40824FD2D96009C35D7 /* WCKeyboardObserver.m */; };
 		4FD06CE62505204500DE42E0 /* WCHighlightTextStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD06CE52505204500DE42E0 /* WCHighlightTextStorage.m */; };
 		4FD06CE925052E2B00DE42E0 /* iText.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4FD06CE825052E2B00DE42E0 /* iText.txt */; };
+		4FD4A8F7251F2CAF00317233 /* UseWCGrowingTextViewIssueCaretViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD4A8F6251F2CAF00317233 /* UseWCGrowingTextViewIssueCaretViewController.m */; };
 		4FDF805F24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF805E24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m */; };
 /* End PBXBuildFile section */
 
@@ -146,6 +147,8 @@
 		4FD06CE42505204500DE42E0 /* WCHighlightTextStorage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCHighlightTextStorage.h; sourceTree = "<group>"; };
 		4FD06CE52505204500DE42E0 /* WCHighlightTextStorage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCHighlightTextStorage.m; sourceTree = "<group>"; };
 		4FD06CE825052E2B00DE42E0 /* iText.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = iText.txt; sourceTree = "<group>"; };
+		4FD4A8F5251F2CAF00317233 /* UseWCGrowingTextViewIssueCaretViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseWCGrowingTextViewIssueCaretViewController.h; sourceTree = "<group>"; };
+		4FD4A8F6251F2CAF00317233 /* UseWCGrowingTextViewIssueCaretViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCGrowingTextViewIssueCaretViewController.m; sourceTree = "<group>"; };
 		4FDF805D24F3DE6B00BEBBB6 /* WCPlaceholderTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCPlaceholderTextView.h; sourceTree = "<group>"; };
 		4FDF805E24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCPlaceholderTextView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -275,8 +278,6 @@
 				4F9A2E79251E1EF200349719 /* UITextView Feature */,
 				4F86A71120C77CFE00DFCFD0 /* UseWCPlaceholderTextViewViewController.h */,
 				4F86A71020C77CFE00DFCFD0 /* UseWCPlaceholderTextViewViewController.m */,
-				4F9BB3FB24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.h */,
-				4F9BB3FC24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.m */,
 				4F3076AB251B54D700512410 /* UseWCMessageComposerViewViewController.h */,
 				4F3076AC251B54D700512410 /* UseWCMessageComposerViewViewController.m */,
 			);
@@ -354,6 +355,10 @@
 		4FD4A8EA251F260800317233 /* WCGrowingTextView Demo */ = {
 			isa = PBXGroup;
 			children = (
+				4F9BB3FB24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.h */,
+				4F9BB3FC24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.m */,
+				4FD4A8F5251F2CAF00317233 /* UseWCGrowingTextViewIssueCaretViewController.h */,
+				4FD4A8F6251F2CAF00317233 /* UseWCGrowingTextViewIssueCaretViewController.m */,
 			);
 			path = "WCGrowingTextView Demo";
 			sourceTree = "<group>";
@@ -489,6 +494,7 @@
 				4F0ED8BB24F4C649002128BF /* WCGrowingTextView.m in Sources */,
 				4F86A73C20C783EE00DFCFD0 /* YYTextArchiver.m in Sources */,
 				4F9BB3FD24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.m in Sources */,
+				4FD4A8F7251F2CAF00317233 /* UseWCGrowingTextViewIssueCaretViewController.m in Sources */,
 				4F3076B1251B57AA00512410 /* WCMessageInputItem.m in Sources */,
 				4F9BB40524FD0818009C35D7 /* WCStickySection.m in Sources */,
 				4F86A73920C783C600DFCFD0 /* YYTextRubyAnnotation.m in Sources */,

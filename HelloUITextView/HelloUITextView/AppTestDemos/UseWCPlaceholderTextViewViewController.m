@@ -40,6 +40,7 @@
         textView.textAlignment = NSTextAlignmentNatural;
         textView.placeholder = @"Test Test Test TestTest TestTest TestTest TestTest TestTest Test23";
         //textView.placeholderColor = [UIColor greenColor];
+        textView.contentInset = UIEdgeInsetsMake(10, 5, 10, 5);
         textView.layer.borderColor = [UIColor redColor].CGColor;
         textView.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
         

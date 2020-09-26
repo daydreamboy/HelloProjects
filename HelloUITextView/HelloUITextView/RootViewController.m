@@ -15,12 +15,15 @@
 #import "SyntaxHighlightUITextViewViewController.h"
 
 // section 2
-#import "UseWCPlaceholderTextViewViewController.h"
-#import "UseWCGrowingTextViewViewController.h"
-#import "UseWCMessageComposerViewViewController.h"
+#import "TextViewIssueCaretViewController.h"
 
 // section 3
-#import "TextViewIssueCaretViewController.h"
+#import "UseWCPlaceholderTextViewViewController.h"
+
+// section 4
+#import "UseWCGrowingTextViewViewController.h"
+#import "UseWCGrowingTextViewIssueCaretViewController.h"
+#import "UseWCMessageComposerViewViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -58,20 +61,26 @@
     
     NSArray<NSDictionary *> *section3 = @[
           @{ kTitle: @"Use WCPlaceholderTextView", kClass: [UseWCPlaceholderTextViewViewController class] },
+    ];
+    
+    NSArray<NSDictionary *> *section4 = @[
           @{ kTitle: @"Use WCGrowingTextView", kClass: [UseWCGrowingTextViewViewController class] },
+          @{ kTitle: @"Use WCGrowingTextView Issue", kClass: [UseWCGrowingTextViewIssueCaretViewController class] },
           @{ kTitle: @"Use WCMessageComposerView", kClass: [UseWCMessageComposerViewViewController class] },
     ];
     
     _sectionTitles = @[
         @"UITextView Feature",
         @"UITextView Issue",
-        @"Customized UITextView",
+        @"WCPlaceholderTextView",
+        @"WCGrowingTextView",
     ];
     
     _classes = @[
          section1,
          section2,
          section3,
+         section4,
     ];
 }
 

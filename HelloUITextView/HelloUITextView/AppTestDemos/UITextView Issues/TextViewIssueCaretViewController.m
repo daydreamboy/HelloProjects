@@ -9,7 +9,8 @@
 #import "TextViewIssueCaretViewController.h"
 
 @interface TextViewIssueCaretViewController ()
-@property (nonatomic, strong) UITextView *textViewPositional;
+@property (nonatomic, strong) UITextView *textViewNormal;
+@property (nonatomic, strong) UITextView *textViewIssue;
 @end
 
 @implementation TextViewIssueCaretViewController
@@ -18,41 +19,57 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    [self.view addSubview:self.textViewPositional];
+    [self.view addSubview:self.textViewNormal];
+    [self.view addSubview:self.textViewIssue];
 }
 
-- (UITextView *)textViewPositional {
-    if (!_textViewPositional) {
+#pragma mark - Getter
+
+- (UITextView *)textViewNormal {
+    if (!_textViewNormal) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(10, 90 + 10, screenSize.width - 2 * 10, 30) textContainer:nil];
+        UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(10, 90, screenSize.width - 2 * 10, 30) textContainer:nil];
         textView.contentInset = UIEdgeInsetsMake(5, 5, 5, 5);
+        
         // Note: disable left/right padding on each line
         textView.textContainer.lineFragmentPadding = 0;
         textView.textContainerInset = UIEdgeInsetsZero;
-        textView.textContainer.widthTracksTextView = NO;
-        textView.textContainer.heightTracksTextView = NO;
-        //textView.enableHeightChangeAnimation = NO;
-//        textView.contentInset = UIEdgeInsetsMake(20, 10, 20, 10);
-//        textView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        
         textView.font = [UIFont systemFontOfSize:17];
-        //textView.textAlignment = NSTextAlignmentNatural;
-        //textView.maximumNumberOfLines = 3;
-        //textView.placeholder = @"Write a message";
         textView.layer.borderColor = [UIColor redColor].CGColor;
         textView.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
-        textView.text = @"我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。";
-        textView.text = @"";
         textView.backgroundColor = [UIColor yellowColor];
         
-        textView.frame = CGRectMake(10, 90 + 40, 300, 30);
-        [textView.layoutManager ensureLayoutForTextContainer:textView.textContainer];
-        textView.textContainer.size = CGSizeMake(300, 0);
-        
-        
-        _textViewPositional = textView;
+        _textViewNormal = textView;
     }
     
-    return _textViewPositional;
+    return _textViewNormal;
+}
+
+- (UITextView *)textViewIssue {
+    if (!_textViewIssue) {
+        CGFloat startY = 150;
+        
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(10, startY, screenSize.width - 2 * 10, 30) textContainer:nil];
+        textView.contentInset = UIEdgeInsetsMake(5, 5, 5, 5);
+        
+        // Note: disable left/right padding on each line
+        textView.textContainer.lineFragmentPadding = 0;
+        textView.textContainerInset = UIEdgeInsetsZero;
+        
+        textView.font = [UIFont systemFontOfSize:17];
+        textView.layer.borderColor = [UIColor redColor].CGColor;
+        textView.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
+        textView.backgroundColor = [UIColor yellowColor];
+        
+        // !!!: Re-adjust frame will make caret position not correct
+        textView.frame = CGRectMake(10, startY, 300, 30);
+        
+        _textViewIssue = textView;
+    }
+    
+    return _textViewIssue;
 }
 
 @end
