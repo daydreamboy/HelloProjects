@@ -286,7 +286,8 @@ static void commonInitializer(WCGrowingTextView *self) {
         height = self.minHeight;
     }
     
-    return height;
+    // Note: fix UITextView appears a gray hairline when text reaches 3rd line while set maximumNumberOfLines = 3
+    return ceil(height);
 }
 
 - (CGFloat)heightForNumberOfLines:(int)numberOfLines {
@@ -357,7 +358,10 @@ static void commonInitializer(WCGrowingTextView *self) {
     if (oldHeight != newHeight) {
         void (^heightChangeSetHeightBlock)(CGFloat, CGFloat) = ^(CGFloat oldHeight, CGFloat newHeight) {
             [self setHeight:newHeight];
-            !self.heightChangeUserActionsBlock ?: self.heightChangeUserActionsBlock(oldHeight, newHeight);
+            
+            if (self.window) {
+                !self.heightChangeUserActionsBlock ?: self.heightChangeUserActionsBlock(oldHeight, newHeight);
+            }
             
             if (self.superview) {
                 [self layoutIfNeeded];
@@ -366,13 +370,16 @@ static void commonInitializer(WCGrowingTextView *self) {
         
         void (^heightChangeCompletionBlock)(CGFloat, CGFloat) = ^(CGFloat oldHeight, CGFloat newHeight) {
             [self.layoutManager ensureLayoutForTextContainer:self.textContainer];
-            //[self scrollToVisibleCaretIfNeeded];
-            if ([self.growingTextViewDelegate respondsToSelector:@selector(growingTextViewDidChangeHeight:from:to:)]) {
+            [self scrollToVisibleCaretIfNeeded];
+            
+            // Note: only when this view showing on screen to call delegate
+            if (self.window && [self.growingTextViewDelegate respondsToSelector:@selector(growingTextViewDidChangeHeight:from:to:)]) {
                 [self.growingTextViewDelegate growingTextViewDidChangeHeight:self from:oldHeight to:newHeight];
             }
         };
         
-        if ([self.growingTextViewDelegate respondsToSelector:@selector(growingTextViewWillChangeHeight:from:to:)]) {
+        // Note: only when this view showing on screen to call delegate
+        if (self.window && [self.growingTextViewDelegate respondsToSelector:@selector(growingTextViewWillChangeHeight:from:to:)]) {
             [self.growingTextViewDelegate growingTextViewWillChangeHeight:self from:oldHeight to:newHeight];
         }
         
@@ -389,7 +396,7 @@ static void commonInitializer(WCGrowingTextView *self) {
         }
     }
     else {
-        //[self scrollToVisibleCaretIfNeeded];
+        [self scrollToVisibleCaretIfNeeded];
     }
 }
 
@@ -427,7 +434,7 @@ static void commonInitializer(WCGrowingTextView *self) {
     // @see https://stackoverflow.com/a/27741676
     CGRect visibleRect = UIEdgeInsetsInsetRect(self.bounds, insets);
     
-    if (!CGRectContainsRect(visibleRect, rect)) {
+    if (CGRectContainsRect(visibleRect, rect)) {
         return;
     }
     
