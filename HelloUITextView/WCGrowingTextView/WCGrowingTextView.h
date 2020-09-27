@@ -73,6 +73,7 @@ typedef void(^heightChangeUserActionsBlockType)(CGFloat oldHeight, CGFloat newHe
 @property (nonatomic, weak) id<WCGrowingTextViewDelegate> growingTextViewDelegate;
 
 - (instancetype)initWithFrame:(CGRect)frame textContainer:(nullable NSTextContainer *)textContainer;
+- (CGFloat)currentHeight;
 
 @end
 

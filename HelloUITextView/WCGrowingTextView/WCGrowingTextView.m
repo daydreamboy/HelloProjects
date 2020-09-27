@@ -178,6 +178,10 @@ static void commonInitializer(WCGrowingTextView *self) {
     }
 }
 
+- (CGFloat)currentHeight {
+    return [self calculatedHeight];
+}
+
 #pragma mark > Override
 
 - (CGRect)caretRectForPosition:(UITextPosition *)position {

@@ -27,7 +27,6 @@
 
 @property (nonatomic, assign) CGFloat maximumItemHeight;
 @property (nonatomic, assign) BOOL autoSetTextInputAreaCornerRadius;
-@property (nonatomic, assign) BOOL autoSetTextInputAreaInsets;
 
 @property (nonatomic, copy) NSComparisonResult (^itemsComparatorBlock)(WCMessageInputItem *item1, WCMessageInputItem *item2);
 
@@ -54,7 +53,6 @@
         _spaceBetweenInnerItems = 5;
         _maximumItemHeight = 0;
         _autoSetTextInputAreaCornerRadius = YES;
-        _autoSetTextInputAreaInsets = YES;
         
         _leftItems = [NSMutableArray array];
         _leftInItems = [NSMutableArray array];
@@ -114,6 +112,10 @@
     }
 }
 
+- (CGFloat)currentTextInputHeight {
+    return [self.textInputView currentHeight];
+}
+
 - (void)setupBottomAutoLayoutWithViewController:(UIViewController *)viewController keyboardWillAnimate:(nullable WCMessageComposerViewKeyboardWillAnimateBlock)keyboardWillAnimate keyboardInAnimate:(nullable WCMessageComposerViewKeyboardInAnimateBlock)keyboardInAnimate keyboardDidAnimate:(nullable WCMessageComposerViewKeyboardDidAnimateBlock)keyboardDidAnimate {
     
     _viewController = viewController;
@@ -165,11 +167,6 @@
     [self.viewController.view layoutIfNeeded];
 }
 
-- (void)setTextInputAreaInsets:(UIEdgeInsets)textInputAreaInsets {
-    _textInputAreaInsets = textInputAreaInsets;
-    _autoSetTextInputAreaInsets = NO;
-}
-
 - (void)setTextInputAreaCornerRadius:(CGFloat)textInputAreaCornerRadius {
     _textInputAreaCornerRadius = textInputAreaCornerRadius;
     _autoSetTextInputAreaCornerRadius = NO;
@@ -178,6 +175,16 @@
 - (void)setTextFont:(UIFont *)textFont {
     _textFont = textFont;
     _textInputView.font = textFont;
+}
+
+- (void)setMaximumNumberOfLines:(int)maximumNumberOfLines {
+    _maximumNumberOfLines = maximumNumberOfLines;
+    _textInputView.maximumNumberOfLines = maximumNumberOfLines;
+}
+
+- (void)setMinimumNumberOfLines:(int)minimumNumberOfLines {
+    _minimumNumberOfLines = minimumNumberOfLines;
+    _textInputView.minimumNumberOfLines = minimumNumberOfLines;
 }
 
 #pragma mark -
@@ -220,7 +227,6 @@
         _textInputAreaView.frame = CGRectMake(x, y, width, UNSPECIFIED);
         _textInputView.frame = CGRectMake(0, 0, width - self.textInputAreaInsets.left - self.textInputAreaInsets.right, 0);
         
-        [self calculateTextInputAreaInsetsBaseOnTextInputView:_textInputView.bounds.size.height];
         [self adjustHeightBaseOnTextInputView:_textInputView.bounds.size.height];
         
         _textInputView.frame = ({
@@ -237,20 +243,6 @@
         else {
             _textInputAreaView.layer.cornerRadius = self.textInputAreaCornerRadius;
         }
-    }
-}
-
-- (void)calculateTextInputAreaInsetsBaseOnTextInputView:(CGFloat)textInputViewHeight {
-    if (textInputViewHeight + _textInputAreaInsets.top + _textInputAreaInsets.bottom <= _textInputAreaMinimumHeight) {
-        CGFloat delta = _textInputAreaMinimumHeight - (textInputViewHeight + _textInputAreaInsets.top + _textInputAreaInsets.bottom);
-        _textInputAreaInsets = UIEdgeInsetsMake(delta / 2.0, _textInputAreaInsets.left, delta / 2.0, _textInputAreaInsets.right);
-    }
-    
-    CGFloat textInputAreaViewHeight = DOUBLE_SAFE_MAX(_textInputAreaMinimumHeight, textInputViewHeight + _textInputAreaInsets.top + _textInputAreaInsets.bottom);
-    
-    if (_autoSetTextInputAreaInsets) {
-        CGFloat insetH = _autoSetTextInputAreaCornerRadius ? textInputAreaViewHeight / 2.0 : _textInputAreaCornerRadius;
-        _textInputAreaInsets = UIEdgeInsetsSet(_textInputAreaInsets, NAN, insetH, NAN, insetH);
     }
 }
 
@@ -282,7 +274,7 @@
 - (WCGrowingTextView *)textInputView {
     if (!_textInputView) {
         WCGrowingTextView *textView = [[WCGrowingTextView alloc] initWithFrame:CGRectMake(18, 7.5, 299, 0) textContainer:nil];
-        //textView.backgroundColor = [UIColor yellowColor];
+        textView.backgroundColor = [UIColor yellowColor];
         textView.font = [UIFont systemFontOfSize:17];
         textView.growingTextViewDelegate = self;
         textView.enableHeightChangeAnimation = NO;

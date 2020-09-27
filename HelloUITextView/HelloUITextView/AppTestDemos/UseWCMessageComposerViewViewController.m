@@ -64,8 +64,13 @@
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         WCMessageComposerView *view = [[WCMessageComposerView alloc] initWithFrame:CGRectMake(0, 100, screenSize.width, 0)];
         view.backgroundColor = [UIColor greenColor];
-        view.textInputAreaInsets = UIEdgeInsetsZero;
-        view.textFont = [UIFont systemFontOfSize:28];
+        view.textFont = [UIFont systemFontOfSize:17];
+        view.minimumNumberOfLines = 1;
+        
+        CGFloat textInputHeight = [view currentTextInputHeight];
+        CGFloat offset = textInputHeight <= view.textInputAreaMinimumHeight ? (view.textInputAreaMinimumHeight - textInputHeight) / 2.0 : 5;
+        view.textInputAreaInsets = UIEdgeInsetsMake(offset, 8, offset, 8);
+        
         _messageComposerView = view;
     }
     
