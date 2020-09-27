@@ -270,7 +270,20 @@ do { \
 
 #pragma mark - Icon Image
 
-+ (UIImage *)imageWithIconFontName:(NSString *)iconFontName text:(NSString *)text fontSize:(CGFloat)fontSize color:(UIColor *)color {
++ (nullable UIImage *)imageWithIconFontName:(NSString *)iconFontName text:(NSString *)text fontSize:(CGFloat)fontSize color:(UIColor *)color {
+    
+    if (iconFontName && [iconFontName isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    if (text && [text isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    if (color && [color isKindOfClass:[UIColor class]]) {
+        return nil;
+    }
+    
     UILabel *label = [[UILabel alloc] init];
     label.font = [self fontWithName:iconFontName fontSize:fontSize];
     label.text = text;
@@ -283,6 +296,18 @@ do { \
     UIGraphicsEndImageContext();
     
     return image;
+}
+
++ (nullable UIImageView *)imageViewWithIconFontName:(NSString *)iconFontName text:(NSString *)text fontSize:(CGFloat)fontSize color:(UIColor *)color {
+    UIImage *image = [self imageWithIconFontName:iconFontName text:text fontSize:fontSize color:color];
+    if (!image) {
+        return nil;
+    }
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
+    imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
+    
+    return imageView;
 }
 
 #pragma mark - Icon Text

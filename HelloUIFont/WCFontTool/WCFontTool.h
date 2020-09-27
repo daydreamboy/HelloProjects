@@ -101,7 +101,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Icon Image
 
-+ (UIImage *)imageWithIconFontName:(NSString *)iconFontName text:(NSString *)text fontSize:(CGFloat)fontSize color:(UIColor *)color;
++ (nullable UIImage *)imageWithIconFontName:(NSString *)iconFontName text:(NSString *)text fontSize:(CGFloat)fontSize color:(UIColor *)color;
+
++ (nullable UIImageView *)imageViewWithIconFontName:(NSString *)iconFontName text:(NSString *)text fontSize:(CGFloat)fontSize color:(UIColor *)color;
 
 #pragma mark - Icon Text
 
