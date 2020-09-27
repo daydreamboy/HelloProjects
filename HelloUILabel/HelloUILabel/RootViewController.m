@@ -12,9 +12,14 @@
 #import "UseUILabelViewController.h"
 #import "UseYYLabelWithLinkViewController.h"
 #import "UseYYWLabelWithEmoticonViewController.h"
+
+// section 1
 #import "LabelWithMaximumLinesViewController.h"
 #import "LabelWithHyphenationViewController.h"
 #import "TextAlignmentViewController.h"
+#import "AutoFontSizeNotWorkViewController.h"
+#import "AutoFontSizeViewController.h"
+
 #import "UseYYTextViewViewController.h"
 
 #define kTitle @"Title"
@@ -45,6 +50,8 @@
           @{ kTitle: @"LabelWithMaximumLinesViewController", kClass: [LabelWithMaximumLinesViewController class] },
           @{ kTitle: @"LabelWithHyphenationViewController", kClass: [LabelWithHyphenationViewController class] },
           @{ kTitle: @"TextAlignmentViewController", kClass: [TextAlignmentViewController class] },
+          @{ kTitle: @"Auto font size (not work)", kClass: [AutoFontSizeNotWorkViewController class] },
+          @{ kTitle: @"Auto font size", kClass: [AutoFontSizeViewController class] },
     ];
 
     NSArray<NSDictionary *> *section2 = @[

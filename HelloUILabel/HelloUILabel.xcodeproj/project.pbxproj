@@ -10,6 +10,9 @@
 		4F1ADA3D24EC060A00BCF38F /* DebugBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1ADA3C24EC060A00BCF38F /* DebugBaseViewController.m */; };
 		4F1ADA4124EC071A00BCF38F /* UseYYTextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1ADA4024EC071A00BCF38F /* UseYYTextViewViewController.m */; };
 		4F1D7DCB2122B2D20021023C /* LabelWithMaximumLinesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1D7DCA2122B2D20021023C /* LabelWithMaximumLinesViewController.m */; };
+		4F1F0C472520710D00C5FAFD /* AutoFontSizeNotWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F0C462520710D00C5FAFD /* AutoFontSizeNotWorkViewController.m */; };
+		4F1F0C4B25207BD800C5FAFD /* WCFontTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F0C4A25207BD800C5FAFD /* WCFontTool.m */; };
+		4F1F0C5025207F9300C5FAFD /* AutoFontSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F0C4F25207F9300C5FAFD /* AutoFontSizeViewController.m */; };
 		4F4EF6B6245C15B3003F32F4 /* 079@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F4EF6B4245C15B2003F32F4 /* 079@2x.png */; };
 		4F4EF6B7245C15B3003F32F4 /* 090@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F4EF6B5245C15B2003F32F4 /* 090@2x.png */; };
 		4F4EF6B9245C16AC003F32F4 /* EmoticonInfo_new.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F4EF6B8245C16AC003F32F4 /* EmoticonInfo_new.plist */; };
@@ -126,6 +129,12 @@
 		4F1ADA4024EC071A00BCF38F /* UseYYTextViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseYYTextViewViewController.m; sourceTree = "<group>"; };
 		4F1D7DC92122B2D20021023C /* LabelWithMaximumLinesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabelWithMaximumLinesViewController.h; sourceTree = "<group>"; };
 		4F1D7DCA2122B2D20021023C /* LabelWithMaximumLinesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelWithMaximumLinesViewController.m; sourceTree = "<group>"; };
+		4F1F0C452520710D00C5FAFD /* AutoFontSizeNotWorkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoFontSizeNotWorkViewController.h; sourceTree = "<group>"; };
+		4F1F0C462520710D00C5FAFD /* AutoFontSizeNotWorkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoFontSizeNotWorkViewController.m; sourceTree = "<group>"; };
+		4F1F0C4925207BD800C5FAFD /* WCFontTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCFontTool.h; sourceTree = "<group>"; };
+		4F1F0C4A25207BD800C5FAFD /* WCFontTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCFontTool.m; sourceTree = "<group>"; };
+		4F1F0C4E25207F9300C5FAFD /* AutoFontSizeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoFontSizeViewController.h; sourceTree = "<group>"; };
+		4F1F0C4F25207F9300C5FAFD /* AutoFontSizeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoFontSizeViewController.m; sourceTree = "<group>"; };
 		4F4EF6B4245C15B2003F32F4 /* 079@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "079@2x.png"; sourceTree = "<group>"; };
 		4F4EF6B5245C15B2003F32F4 /* 090@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "090@2x.png"; sourceTree = "<group>"; };
 		4F4EF6B8245C16AC003F32F4 /* EmoticonInfo_new.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = EmoticonInfo_new.plist; sourceTree = "<group>"; };
@@ -363,6 +372,10 @@
 				4F517B2C212E90C9008CE69F /* LabelWithHyphenationViewController.m */,
 				4FA253FC21AEE4DF00E4C6FC /* TextAlignmentViewController.h */,
 				4FA253FD21AEE4DF00E4C6FC /* TextAlignmentViewController.m */,
+				4F1F0C452520710D00C5FAFD /* AutoFontSizeNotWorkViewController.h */,
+				4F1F0C462520710D00C5FAFD /* AutoFontSizeNotWorkViewController.m */,
+				4F1F0C4E25207F9300C5FAFD /* AutoFontSizeViewController.h */,
+				4F1F0C4F25207F9300C5FAFD /* AutoFontSizeViewController.m */,
 			);
 			path = UILabel;
 			sourceTree = "<group>";
@@ -401,6 +414,8 @@
 				4F52D11D21181B72004EE254 /* WCMacroTool.m */,
 				4F52D19321194ADD004EE254 /* WCImageTool.h */,
 				4F52D19421194ADD004EE254 /* WCImageTool.m */,
+				4F1F0C4925207BD800C5FAFD /* WCFontTool.h */,
+				4F1F0C4A25207BD800C5FAFD /* WCFontTool.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -842,6 +857,7 @@
 				4FAF51E421500F2B006A7509 /* YYTextAttribute.m in Sources */,
 				4FAF51CF21500F2B006A7509 /* YYAnimatedImageView.m in Sources */,
 				4FAF520E21500F2B006A7509 /* YYTimer.m in Sources */,
+				4F1F0C4B25207BD800C5FAFD /* WCFontTool.m in Sources */,
 				4FAF51DC21500F2B006A7509 /* YYTextDebugOption.m in Sources */,
 				4FAF51DD21500F2B006A7509 /* YYLabel.m in Sources */,
 				4FAF51E321500F2B006A7509 /* UIPasteboard+YYText.m in Sources */,
@@ -854,6 +870,7 @@
 				4FAF51D121500F2B006A7509 /* NSObject+YYModel.m in Sources */,
 				4FAF51DA21500F2B006A7509 /* YYTextSelectionView.m in Sources */,
 				4FAF51FE21500F2B006A7509 /* NSDate+YYAdd.m in Sources */,
+				4F1F0C472520710D00C5FAFD /* AutoFontSizeNotWorkViewController.m in Sources */,
 				4FAF51E521500F2B006A7509 /* YYTextArchiver.m in Sources */,
 				4FAF51FA21500F2B006A7509 /* NSThread+YYAdd.m in Sources */,
 				4FAF51F621500F2B006A7509 /* NSNumber+YYAdd.m in Sources */,
@@ -902,6 +919,7 @@
 				4FAF51D221500F2B006A7509 /* YYClassInfo.m in Sources */,
 				4F93831420C6D6C900568EE1 /* RootViewController.m in Sources */,
 				4FAF51EB21500F2B006A7509 /* UIApplication+YYAdd.m in Sources */,
+				4F1F0C5025207F9300C5FAFD /* AutoFontSizeViewController.m in Sources */,
 				4FAF520021500F2B006A7509 /* NSNotificationCenter+YYAdd.m in Sources */,
 				4FAF520F21500F2B006A7509 /* YYThreadSafeArray.m in Sources */,
 				4FAF520221500F2B006A7509 /* NSObject+YYAddForKVO.m in Sources */,

@@ -46,6 +46,10 @@ typedef NS_ENUM(NSInteger, NSTextAlignment) {
 
 
 
+2、按照高度自适应字体大小
+
+
+
 ## References
 
 [^1]: https://useyourloaf.com/blog/natural-text-alignment-for-rtl-languages/
