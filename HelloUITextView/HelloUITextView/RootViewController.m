@@ -24,7 +24,10 @@
 #import "UseWCGrowingTextViewLimitedLinesViewController.h"
 #import "UseWCGrowingTextViewLimitedHeightViewController.h"
 #import "UseWCGrowingTextViewIssueCaretViewController.h"
+
+// section 5
 #import "UseWCMessageComposerViewViewController.h"
+#import "UseWCMessageComposerViewWithItemsViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -68,7 +71,11 @@
           @{ kTitle: @"Use WCGrowingTextView (numberOfLines)", kClass: [UseWCGrowingTextViewLimitedLinesViewController class] },
           @{ kTitle: @"Use WCGrowingTextView (height)", kClass: [UseWCGrowingTextViewLimitedHeightViewController class] },
           @{ kTitle: @"Use WCGrowingTextView Issue", kClass: [UseWCGrowingTextViewIssueCaretViewController class] },
+    ];
+    
+    NSArray<NSDictionary *> *section5 = @[
           @{ kTitle: @"Use WCMessageComposerView", kClass: [UseWCMessageComposerViewViewController class] },
+          @{ kTitle: @"Use WCMessageComposerView with items", kClass: [UseWCMessageComposerViewWithItemsViewController class] },
     ];
     
     _sectionTitles = @[
@@ -76,6 +83,7 @@
         @"UITextView Issue",
         @"WCPlaceholderTextView",
         @"WCGrowingTextView",
+        @"WCMessageComposerView",
     ];
     
     _classes = @[
@@ -83,6 +91,7 @@
          section2,
          section3,
          section4,
+         section5,
     ];
 }
 

@@ -142,6 +142,9 @@
     if ([self.textViewPositional isFirstResponder]) {
         [self.textViewPositional replaceRange:self.textViewPositional.selectedTextRange withText:insertingString];
     }
+    else if ([self.textViewFollowing isFirstResponder]) {
+        [self.textViewFollowing replaceRange:self.textViewFollowing.selectedTextRange withText:insertingString];
+    }
 }
 
 - (void)dismissItemClicked:(id)sender {

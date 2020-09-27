@@ -10,6 +10,7 @@
 		4F0ED8BB24F4C649002128BF /* WCGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0ED8BA24F4C649002128BF /* WCGrowingTextView.m */; };
 		4F160875251C4EC00077F0CF /* WCMessageInputItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F160874251C4EC00077F0CF /* WCMessageInputItemView.m */; };
 		4F1F0C3725203E3C00C5FAFD /* UseWCGrowingTextViewLimitedHeightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F0C3625203E3C00C5FAFD /* UseWCGrowingTextViewLimitedHeightViewController.m */; };
+		4F1F0C40252048B100C5FAFD /* UseWCMessageComposerViewWithItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F0C3F252048B100C5FAFD /* UseWCMessageComposerViewWithItemsViewController.m */; };
 		4F20C5C02504C9E800139BE0 /* MirroringUITextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F20C5BF2504C9E800139BE0 /* MirroringUITextViewViewController.m */; };
 		4F20C5C32504D65200139BE0 /* PagingUITextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F20C5C22504D65200139BE0 /* PagingUITextViewViewController.m */; };
 		4F20C5C62504DAF500139BE0 /* MixMirroringAndPagingUITextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F20C5C52504DAF500139BE0 /* MixMirroringAndPagingUITextViewViewController.m */; };
@@ -64,6 +65,8 @@
 		4F160874251C4EC00077F0CF /* WCMessageInputItemView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMessageInputItemView.m; sourceTree = "<group>"; };
 		4F1F0C3525203E3C00C5FAFD /* UseWCGrowingTextViewLimitedHeightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseWCGrowingTextViewLimitedHeightViewController.h; sourceTree = "<group>"; };
 		4F1F0C3625203E3C00C5FAFD /* UseWCGrowingTextViewLimitedHeightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCGrowingTextViewLimitedHeightViewController.m; sourceTree = "<group>"; };
+		4F1F0C3E252048B100C5FAFD /* UseWCMessageComposerViewWithItemsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseWCMessageComposerViewWithItemsViewController.h; sourceTree = "<group>"; };
+		4F1F0C3F252048B100C5FAFD /* UseWCMessageComposerViewWithItemsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCMessageComposerViewWithItemsViewController.m; sourceTree = "<group>"; };
 		4F20C5BE2504C9E800139BE0 /* MirroringUITextViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MirroringUITextViewViewController.h; sourceTree = "<group>"; };
 		4F20C5BF2504C9E800139BE0 /* MirroringUITextViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MirroringUITextViewViewController.m; sourceTree = "<group>"; };
 		4F20C5C12504D65200139BE0 /* PagingUITextViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PagingUITextViewViewController.h; sourceTree = "<group>"; };
@@ -167,6 +170,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F1F0C3C2520481000C5FAFD /* WCMessageComposerView Demo */ = {
+			isa = PBXGroup;
+			children = (
+				4F3076AB251B54D700512410 /* UseWCMessageComposerViewViewController.h */,
+				4F3076AC251B54D700512410 /* UseWCMessageComposerViewViewController.m */,
+				4F1F0C3E252048B100C5FAFD /* UseWCMessageComposerViewWithItemsViewController.h */,
+				4F1F0C3F252048B100C5FAFD /* UseWCMessageComposerViewWithItemsViewController.m */,
+			);
+			path = "WCMessageComposerView Demo";
+			sourceTree = "<group>";
+		};
 		4F3076A5251B547300512410 /* WCMessageComposerView */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,12 +291,11 @@
 			isa = PBXGroup;
 			children = (
 				4FD4A8EB251F261E00317233 /* UITextView Issues */,
-				4FD4A8EA251F260800317233 /* WCGrowingTextView Demo */,
 				4F9A2E79251E1EF200349719 /* UITextView Feature */,
+				4FD4A8EA251F260800317233 /* WCGrowingTextView Demo */,
+				4F1F0C3C2520481000C5FAFD /* WCMessageComposerView Demo */,
 				4F86A71120C77CFE00DFCFD0 /* UseWCPlaceholderTextViewViewController.h */,
 				4F86A71020C77CFE00DFCFD0 /* UseWCPlaceholderTextViewViewController.m */,
-				4F3076AB251B54D700512410 /* UseWCMessageComposerViewViewController.h */,
-				4F3076AC251B54D700512410 /* UseWCMessageComposerViewViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -491,6 +504,7 @@
 				4F86A75120C7847D00DFCFD0 /* YYTextContainerView.m in Sources */,
 				4F86A71820C77D6F00DFCFD0 /* YYTextView.m in Sources */,
 				4F1F0C3725203E3C00C5FAFD /* UseWCGrowingTextViewLimitedHeightViewController.m in Sources */,
+				4F1F0C40252048B100C5FAFD /* UseWCMessageComposerViewWithItemsViewController.m in Sources */,
 				4F86A75420C7849700DFCFD0 /* YYTextSelectionView.m in Sources */,
 				4F86A73620C7819A00DFCFD0 /* NSAttributedString+YYText.m in Sources */,
 				4F86A6FA20C77C6A00DFCFD0 /* AppDelegate.m in Sources */,

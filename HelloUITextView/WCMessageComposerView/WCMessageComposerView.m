@@ -86,7 +86,7 @@
         self.maximumItemHeight = item.size.height;
     }
     
-    switch (item.type) {
+    switch (item.position) {
         case WCMessageInputItemPositionLeft: {
             [self.leftItems addObject:item];
             [self.leftItems sortUsingComparator:self.itemsComparatorBlock];
@@ -185,6 +185,20 @@
 - (void)setMinimumNumberOfLines:(int)minimumNumberOfLines {
     _minimumNumberOfLines = minimumNumberOfLines;
     _textInputView.minimumNumberOfLines = minimumNumberOfLines;
+}
+
+- (void)setMinimumHeight:(CGFloat)minimumHeight {
+    _minimumHeight = minimumHeight;
+    
+    _textInputView.useHeightForNumberOfLines = YES;
+    _textInputView.minimumHeight = minimumHeight;
+}
+
+- (void)setMaximumHeight:(CGFloat)maximumHeight {
+    _maximumHeight = maximumHeight;
+    
+    _textInputView.useHeightForNumberOfLines = YES;
+    _textInputView.maximumHeight = maximumHeight;
 }
 
 #pragma mark -

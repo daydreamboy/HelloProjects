@@ -38,6 +38,19 @@ typedef void(^WCMessageComposerViewKeyboardDidAnimateBlock)(BOOL finished, BOOL 
  */
 @property (nonatomic, assign) int minimumNumberOfLines;
 
+@property (nonatomic, assign) BOOL useHeightForNumberOfLines;
+/**
+ The maximum height including contentInsets
+ */
+@property (nonatomic, assign) CGFloat maximumHeight;
+/**
+ The minimum height including contentInsets
+ 
+ @discussion the minimum height used for initial height. If text font (one line) height is greater than this
+ minimumHeight, use the actual text height (including contentInsets)
+ */
+@property (nonatomic, assign) CGFloat minimumHeight;
+
 // Items
 @property (nonatomic, assign) CGFloat spaceBetweenOutterItems;
 @property (nonatomic, assign) CGFloat spaceBetweenInnerItems;

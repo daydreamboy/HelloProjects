@@ -12,8 +12,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, WCMessageInputItemType) {
-    /// Text (support IconFont)
+    /// Text
     WCMessageInputItemTypeText,
+    /// IconFont
+    WCMessageInputItemTypeIconFont,
     /// Local Image
     WCMessageInputItemTypeLocalImage,
     /// Remote Image

@@ -34,6 +34,17 @@
                 _labelText = label;
                 break;
             }
+            case WCMessageInputItemTypeIconFont: {
+                UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, item.size.width, item.size.height)];
+                label.text = item.title;
+                label.font = item.titleFont;
+                [label sizeToFit];
+                label.center = CGPointMake(item.size.width / 2.0, item.size.height / 2.0);
+                [self addSubview:label];
+                
+                _labelText = label;
+                break;
+            }
             case WCMessageInputItemTypeLocalImage: {
                 UIImageView *imageView = [[UIImageView alloc] initWithImage:item.iconImage];
                 imageView.frame = CGRectMake(0, 0, item.iconImage.size.width, item.iconImage.size.height);
@@ -66,6 +77,9 @@
 
 - (void)setOrigin:(CGPoint)origin {
     _origin = origin;
+    
+    
+    
     self.frame = CGRectMake(origin.x, origin.y, self.item.size.width, self.item.size.height);
 }
 
