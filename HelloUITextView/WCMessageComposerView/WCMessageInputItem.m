@@ -27,6 +27,7 @@
 /// String Value: #RRGGBB / #RRGGBBAA
 @property (nonatomic, strong, readwrite) UIColor *titleColor;
 @property (nonatomic, assign, readwrite) CGFloat titleFontSize;
+@property (nonatomic, assign, readwrite) CGFloat titleMinimumFontSize;
 @property (nonatomic, strong, readwrite) UIFont *titleFont;
 @property (nonatomic, copy, readwrite, nullable) NSString *titleSelected;
 @property (nonatomic, strong, readwrite, nullable) UIColor *titleColorSelected;
@@ -55,6 +56,7 @@
         _width = kInputItemIconSide;
         _height = kInputItemIconSide;
         _size = CGSizeMake(_width, _height);
+        _titleMinimumFontSize = 17.0;
         
         [self updateWithDict:dict];
     }
@@ -111,6 +113,13 @@
         if (fontSize > 0) {
             _titleFontSize = fontSize;
             _titleFont = [UIFont systemFontOfSize:_titleFontSize];
+        }
+    }
+    
+    if (STR_TRIM_IF_NOT_EMPTY(dict[STR_OF_PROP(titleMinimumFontSize)])) {
+        CGFloat minimumfontSize = doubleValueOfJSONValue(dict[STR_OF_PROP(titleMinimumFontSize)]);
+        if (minimumfontSize > 0) {
+            _titleMinimumFontSize = minimumfontSize;
         }
     }
     

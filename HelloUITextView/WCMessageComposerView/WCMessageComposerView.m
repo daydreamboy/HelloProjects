@@ -219,11 +219,18 @@
         }
         
         CGFloat rightItemsTotalWidth = 0;
-        CGPoint originOfFirstItem = CGPointMake(CGRectGetWidth(self.bounds), self.contentInsets.top);
-        for (WCMessageInputItem *item in self.rightItems) {
+        CGPoint originOfFirstItem = CGPointMake(CGRectGetWidth(self.bounds) - self.contentInsets.right, self.contentInsets.top);
+        
+        for (WCMessageInputItem *item in [self.rightItems reverseObjectEnumerator]) {
             WCMessageInputItemView *itemView = [[WCMessageInputItemView alloc] initWithItem:item];
             
-            originOfFirstItem = CGPointMake(originOfFirstItem.x - self.spaceBetweenOutterItems - CGRectGetWidth(itemView.frame), self.contentInsets.top);
+            if (rightItemsTotalWidth == 0) {
+                originOfFirstItem = CGPointMake(originOfFirstItem.x - CGRectGetWidth(itemView.frame), self.contentInsets.top);
+            }
+            else {
+                originOfFirstItem = CGPointMake(originOfFirstItem.x - self.spaceBetweenOutterItems - CGRectGetWidth(itemView.frame), self.contentInsets.top);
+            }
+            
             itemView.origin = originOfFirstItem;
             [self addSubview:itemView];
             [self.rightViews addObject:itemView];

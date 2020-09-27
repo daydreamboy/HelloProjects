@@ -56,6 +56,7 @@
 		4FD06CE925052E2B00DE42E0 /* iText.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4FD06CE825052E2B00DE42E0 /* iText.txt */; };
 		4FD4A8F7251F2CAF00317233 /* UseWCGrowingTextViewIssueCaretViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD4A8F6251F2CAF00317233 /* UseWCGrowingTextViewIssueCaretViewController.m */; };
 		4FDF805F24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FDF805E24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m */; };
+		4FF967412520918C00CBA473 /* WCFontTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF967402520918C00CBA473 /* WCFontTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -157,6 +158,8 @@
 		4FD4A8F6251F2CAF00317233 /* UseWCGrowingTextViewIssueCaretViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCGrowingTextViewIssueCaretViewController.m; sourceTree = "<group>"; };
 		4FDF805D24F3DE6B00BEBBB6 /* WCPlaceholderTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCPlaceholderTextView.h; sourceTree = "<group>"; };
 		4FDF805E24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCPlaceholderTextView.m; sourceTree = "<group>"; };
+		4FF9673F2520918C00CBA473 /* WCFontTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCFontTool.h; sourceTree = "<group>"; };
+		4FF967402520918C00CBA473 /* WCFontTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCFontTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,6 +204,8 @@
 				4F3076B5251B704200512410 /* WCMacroTool.h */,
 				4F3076B7251B74D800512410 /* WCStringTool.h */,
 				4F3076B8251B74D800512410 /* WCStringTool.m */,
+				4FF9673F2520918C00CBA473 /* WCFontTool.h */,
+				4FF967402520918C00CBA473 /* WCFontTool.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -485,6 +490,7 @@
 				4F86A73F20C7840F00DFCFD0 /* YYTextRunDelegate.m in Sources */,
 				4F20C5C02504C9E800139BE0 /* MirroringUITextViewViewController.m in Sources */,
 				4FDF805F24F3DE6B00BEBBB6 /* WCPlaceholderTextView.m in Sources */,
+				4FF967412520918C00CBA473 /* WCFontTool.m in Sources */,
 				4F86A73220C7811B00DFCFD0 /* YYTextAttribute.m in Sources */,
 				4F20C5C92504E49000139BE0 /* SyntaxHighlightUITextViewViewController.m in Sources */,
 				4F86A74520C7843800DFCFD0 /* YYTextDebugOption.m in Sources */,

@@ -44,6 +44,7 @@
             @"position": @(WCMessageInputItemPositionLeft),
             @"order": @0,
             @"title": @"item1",
+            //@"titleFontSize": @"30",
         }];
         item;
     })];

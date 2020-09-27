@@ -7,6 +7,7 @@
 //
 
 #import "WCMessageInputItemView.h"
+#import "WCFontTool.h"
 
 @interface WCMessageInputItemView ()
 @property (nonatomic, strong) WCMessageInputItem *item;
@@ -26,12 +27,12 @@
             case WCMessageInputItemTypeText: {
                 UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
                 label.text = item.title;
-                label.font = item.titleFont;
+                label.font = [WCFontTool adaptiveFontWithInitialFont:item.titleFont minimumFontSize:item.titleMinimumFontSize contrainedSize:item.size mutilpleLines:NO textString:item.title];
                 [label sizeToFit];
-                label.center = CGPointMake(item.size.width / 2.0, item.size.height / 2.0);
                 [self addSubview:label];
-                
                 _labelText = label;
+                
+                [self setOrigin:CGPointZero];
                 break;
             }
             case WCMessageInputItemTypeIconFont: {
@@ -78,9 +79,14 @@
 - (void)setOrigin:(CGPoint)origin {
     _origin = origin;
     
-    
-    
-    self.frame = CGRectMake(origin.x, origin.y, self.item.size.width, self.item.size.height);
+    if (_item.type == WCMessageInputItemTypeText) {
+        CGFloat width = MAX(_item.size.width, _labelText.bounds.size.width);
+        self.frame = CGRectMake(origin.x, origin.y, width, self.item.size.height);
+        _labelText.center = CGPointMake(width / 2.0, _item.size.height / 2.0);
+    }
+    else {
+        self.frame = CGRectMake(origin.x, origin.y, self.item.size.width, self.item.size.height);
+    }
 }
 
 #pragma mark -

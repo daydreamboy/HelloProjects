@@ -45,7 +45,9 @@ typedef NS_ENUM(NSUInteger, WCMessageInputItemPosition) {
 @property (nonatomic, copy, readonly) NSString *title;
 /// String Value: #RRGGBB / #RRGGBBAA
 @property (nonatomic, strong, readonly) UIColor *titleColor;
+/// String Value
 @property (nonatomic, assign, readonly) CGFloat titleFontSize;
+@property (nonatomic, assign, readonly) CGFloat titleMinimumFontSize;
 @property (nonatomic, copy, readonly, nullable) NSString *titleSelected;
 @property (nonatomic, strong, readonly, nullable) UIColor *titleColorSelected;
 #pragma mark - Local Image
