@@ -92,6 +92,34 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (nullable UIFont *)fontWithName:(NSString *)fontName fontSize:(CGFloat)fontSize;
 
+/**
+ Find the adaptive font which fit the contrained size
+ 
+ @param initialFont the initial font which for reference
+ @param minimumFontSize the minimum font size
+ @param contrainedSize the contrained size
+ @param mutilpleLines the flag if multiple lines. If YES, use width/height of contrainedSize. If NO, use height of contrainedSize
+ @param textString the text string. If nil, use @"abcdefg..." instead.
+ 
+ @discussion If mutilpleLines = YES, textString should not be nil.
+ */
++ (nullable UIFont *)adaptiveFontWithInitialFont:(UIFont *)initialFont minimumFontSize:(NSUInteger)minimumFontSize contrainedSize:(CGSize)contrainedSize mutilpleLines:(BOOL)mutilpleLines textString:(nullable NSString *)textString;
+
+/**
+ Find the maximum font which fit the contrained size
+ 
+ @param initialFont the initial font which for reference
+ @param minimumFontSize the minimum font size
+ @param contrainedSize the contrained size
+ @param mutilpleLines the flag if multiple lines. If YES, use width/height of contrainedSize. If NO, use height of contrainedSize
+ @param textString the text string. If nil, use @"abcdefg..." instead.
+ 
+ @discussion If mutilpleLines = YES, textString should not be nil.
+ 
+ @see https://stackoverflow.com/a/17622215
+ */
++ (nullable UIFont *)adaptiveMaximumFontWithInitialFont:(UIFont *)initialFont minimumFontSize:(NSUInteger)minimumFontSize contrainedSize:(CGSize)contrainedSize mutilpleLines:(BOOL)mutilpleLines textString:(nullable NSString *)textString;
+
 #pragma mark - Load Font in Runtime
 
 + (BOOL)registerFontWithFilePath:(NSString *)filePath fontName:(NSString * _Nullable * _Nullable)fontName error:(NSError * _Nullable * _Nullable)error;
