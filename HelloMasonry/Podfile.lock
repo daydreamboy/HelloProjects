@@ -1,0 +1,16 @@
+PODS:
+  - Masonry (1.1.0)
+
+DEPENDENCIES:
+  - Masonry (from `Masonry/Masonry.podspec`)
+
+EXTERNAL SOURCES:
+  Masonry:
+    :path: Masonry/Masonry.podspec
+
+SPEC CHECKSUMS:
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+
+PODFILE CHECKSUM: 1605701ad8a5214ee69a1a18378afc0deaf98335
+
+COCOAPODS: 1.9.3
