@@ -348,11 +348,21 @@ static void commonInitializer(WCGrowingTextView *self) {
 }
 
 - (CGFloat)maxHeight {
-    return [self heightForNumberOfLines:self.maximumNumberOfLines];
+    if (self.useHeightForNumberOfLines) {
+        return self.maximumHeight;
+    }
+    else {
+        return [self heightForNumberOfLines:self.maximumNumberOfLines];
+    }
 }
 
 - (CGFloat)minHeight {
-    return [self heightForNumberOfLines:self.minimumNumberOfLines];
+    if (self.useHeightForNumberOfLines) {
+        return self.minimumHeight;
+    }
+    else {
+        return [self heightForNumberOfLines:self.minimumNumberOfLines];
+    }
 }
 
 - (void)refreshHeightIfNeededAnimated:(BOOL)animated {
@@ -429,7 +439,10 @@ static void commonInitializer(WCGrowingTextView *self) {
         CGRect caretRect = [self caretRectForPosition:textPosition];
         // ???: height and width is 0 ？
         CGRect caretCenterRect = CGRectMake(CGRectGetMidX(caretRect), CGRectGetMidY(caretRect), 0, 0);
-        [self scrollRectToVisibleConsideringInsets:caretCenterRect];
+        
+        // @see https://stackoverflow.com/a/31864330
+        [self scrollRectToVisible:caretCenterRect animated:NO];
+        //[self scrollRectToVisibleConsideringInsets:caretCenterRect];
     }
 }
 

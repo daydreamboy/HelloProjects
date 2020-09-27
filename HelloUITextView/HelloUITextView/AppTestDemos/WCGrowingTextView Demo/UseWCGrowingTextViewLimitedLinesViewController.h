@@ -1,5 +1,5 @@
 //
-//  UseWCGrowingTextViewViewController.h
+//  UseWCGrowingTextViewLimitedLinesViewController.h
 //  HelloUITextView
 //
 //  Created by wesley_chen on 2020/8/31.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UseWCGrowingTextViewViewController : UIViewController
+@interface UseWCGrowingTextViewLimitedLinesViewController : UIViewController
 
 @end
 

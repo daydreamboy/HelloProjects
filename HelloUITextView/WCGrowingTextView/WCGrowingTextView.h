@@ -56,6 +56,24 @@ typedef void(^heightChangeUserActionsBlockType)(CGFloat oldHeight, CGFloat newHe
  */
 @property (nonatomic, assign, readonly) int numberOfLines;
 /**
+ The flag for use maximumHeight/minimumHeight instead of maximumNumberOfLines/minimumNumberOfLines
+ 
+ Default is NO
+ */
+@property (nonatomic, assign) BOOL useHeightForNumberOfLines;
+/**
+ The maximum height including contentInsets
+ */
+@property (nonatomic, assign) CGFloat maximumHeight;
+/**
+ The minimum height including contentInsets
+ 
+ @discussion the minimum height used for initial height. If text font (one line) height is greater than this
+ minimumHeight, use the actual text height (including contentInsets)
+ */
+@property (nonatomic, assign) CGFloat minimumHeight;
+
+/**
  The duration of the animation of the height change. The default value is `0.35`.
  */
 @property (nonatomic, assign) double heightChangeAnimationDuration;

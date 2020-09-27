@@ -21,7 +21,8 @@
 #import "UseWCPlaceholderTextViewViewController.h"
 
 // section 4
-#import "UseWCGrowingTextViewViewController.h"
+#import "UseWCGrowingTextViewLimitedLinesViewController.h"
+#import "UseWCGrowingTextViewLimitedHeightViewController.h"
 #import "UseWCGrowingTextViewIssueCaretViewController.h"
 #import "UseWCMessageComposerViewViewController.h"
 
@@ -64,7 +65,8 @@
     ];
     
     NSArray<NSDictionary *> *section4 = @[
-          @{ kTitle: @"Use WCGrowingTextView", kClass: [UseWCGrowingTextViewViewController class] },
+          @{ kTitle: @"Use WCGrowingTextView (numberOfLines)", kClass: [UseWCGrowingTextViewLimitedLinesViewController class] },
+          @{ kTitle: @"Use WCGrowingTextView (height)", kClass: [UseWCGrowingTextViewLimitedHeightViewController class] },
           @{ kTitle: @"Use WCGrowingTextView Issue", kClass: [UseWCGrowingTextViewIssueCaretViewController class] },
           @{ kTitle: @"Use WCMessageComposerView", kClass: [UseWCMessageComposerViewViewController class] },
     ];

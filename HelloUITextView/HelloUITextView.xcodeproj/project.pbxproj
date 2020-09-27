@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4F0ED8BB24F4C649002128BF /* WCGrowingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0ED8BA24F4C649002128BF /* WCGrowingTextView.m */; };
 		4F160875251C4EC00077F0CF /* WCMessageInputItemView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F160874251C4EC00077F0CF /* WCMessageInputItemView.m */; };
+		4F1F0C3725203E3C00C5FAFD /* UseWCGrowingTextViewLimitedHeightViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F0C3625203E3C00C5FAFD /* UseWCGrowingTextViewLimitedHeightViewController.m */; };
 		4F20C5C02504C9E800139BE0 /* MirroringUITextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F20C5BF2504C9E800139BE0 /* MirroringUITextViewViewController.m */; };
 		4F20C5C32504D65200139BE0 /* PagingUITextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F20C5C22504D65200139BE0 /* PagingUITextViewViewController.m */; };
 		4F20C5C62504DAF500139BE0 /* MixMirroringAndPagingUITextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F20C5C52504DAF500139BE0 /* MixMirroringAndPagingUITextViewViewController.m */; };
@@ -46,7 +47,7 @@
 		4F86A76320C7854000DFCFD0 /* YYTextTransaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86A76120C7853F00DFCFD0 /* YYTextTransaction.m */; };
 		4F86A76620C7856500DFCFD0 /* UIPasteboard+YYText.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86A76520C7856500DFCFD0 /* UIPasteboard+YYText.m */; };
 		4F9A2E77251E1A0E00349719 /* TextViewIssueCaretViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9A2E76251E1A0E00349719 /* TextViewIssueCaretViewController.m */; };
-		4F9BB3FD24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BB3FC24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.m */; };
+		4F9BB3FD24FCDEB8009C35D7 /* UseWCGrowingTextViewLimitedLinesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BB3FC24FCDEB8009C35D7 /* UseWCGrowingTextViewLimitedLinesViewController.m */; };
 		4F9BB40424FD0818009C35D7 /* WCStickySectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BB40124FD0818009C35D7 /* WCStickySectionManager.m */; };
 		4F9BB40524FD0818009C35D7 /* WCStickySection.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BB40324FD0818009C35D7 /* WCStickySection.m */; };
 		4F9BB40924FD2D96009C35D7 /* WCKeyboardObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BB40824FD2D96009C35D7 /* WCKeyboardObserver.m */; };
@@ -61,6 +62,8 @@
 		4F0ED8BA24F4C649002128BF /* WCGrowingTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCGrowingTextView.m; sourceTree = "<group>"; };
 		4F160873251C4EC00077F0CF /* WCMessageInputItemView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMessageInputItemView.h; sourceTree = "<group>"; };
 		4F160874251C4EC00077F0CF /* WCMessageInputItemView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMessageInputItemView.m; sourceTree = "<group>"; };
+		4F1F0C3525203E3C00C5FAFD /* UseWCGrowingTextViewLimitedHeightViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseWCGrowingTextViewLimitedHeightViewController.h; sourceTree = "<group>"; };
+		4F1F0C3625203E3C00C5FAFD /* UseWCGrowingTextViewLimitedHeightViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCGrowingTextViewLimitedHeightViewController.m; sourceTree = "<group>"; };
 		4F20C5BE2504C9E800139BE0 /* MirroringUITextViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MirroringUITextViewViewController.h; sourceTree = "<group>"; };
 		4F20C5BF2504C9E800139BE0 /* MirroringUITextViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MirroringUITextViewViewController.m; sourceTree = "<group>"; };
 		4F20C5C12504D65200139BE0 /* PagingUITextViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PagingUITextViewViewController.h; sourceTree = "<group>"; };
@@ -135,8 +138,8 @@
 		4F86A76520C7856500DFCFD0 /* UIPasteboard+YYText.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIPasteboard+YYText.m"; sourceTree = "<group>"; };
 		4F9A2E75251E1A0E00349719 /* TextViewIssueCaretViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TextViewIssueCaretViewController.h; sourceTree = "<group>"; };
 		4F9A2E76251E1A0E00349719 /* TextViewIssueCaretViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TextViewIssueCaretViewController.m; sourceTree = "<group>"; };
-		4F9BB3FB24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseWCGrowingTextViewViewController.h; sourceTree = "<group>"; };
-		4F9BB3FC24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCGrowingTextViewViewController.m; sourceTree = "<group>"; };
+		4F9BB3FB24FCDEB8009C35D7 /* UseWCGrowingTextViewLimitedLinesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseWCGrowingTextViewLimitedLinesViewController.h; sourceTree = "<group>"; };
+		4F9BB3FC24FCDEB8009C35D7 /* UseWCGrowingTextViewLimitedLinesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCGrowingTextViewLimitedLinesViewController.m; sourceTree = "<group>"; };
 		4F9BB3FF24FD0818009C35D7 /* WCStickySection_Internal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCStickySection_Internal.h; sourceTree = "<group>"; };
 		4F9BB40024FD0818009C35D7 /* WCStickySectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCStickySectionManager.h; sourceTree = "<group>"; };
 		4F9BB40124FD0818009C35D7 /* WCStickySectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCStickySectionManager.m; sourceTree = "<group>"; };
@@ -355,8 +358,10 @@
 		4FD4A8EA251F260800317233 /* WCGrowingTextView Demo */ = {
 			isa = PBXGroup;
 			children = (
-				4F9BB3FB24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.h */,
-				4F9BB3FC24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.m */,
+				4F9BB3FB24FCDEB8009C35D7 /* UseWCGrowingTextViewLimitedLinesViewController.h */,
+				4F9BB3FC24FCDEB8009C35D7 /* UseWCGrowingTextViewLimitedLinesViewController.m */,
+				4F1F0C3525203E3C00C5FAFD /* UseWCGrowingTextViewLimitedHeightViewController.h */,
+				4F1F0C3625203E3C00C5FAFD /* UseWCGrowingTextViewLimitedHeightViewController.m */,
 				4FD4A8F5251F2CAF00317233 /* UseWCGrowingTextViewIssueCaretViewController.h */,
 				4FD4A8F6251F2CAF00317233 /* UseWCGrowingTextViewIssueCaretViewController.m */,
 			);
@@ -485,6 +490,7 @@
 				4F9A2E77251E1A0E00349719 /* TextViewIssueCaretViewController.m in Sources */,
 				4F86A75120C7847D00DFCFD0 /* YYTextContainerView.m in Sources */,
 				4F86A71820C77D6F00DFCFD0 /* YYTextView.m in Sources */,
+				4F1F0C3725203E3C00C5FAFD /* UseWCGrowingTextViewLimitedHeightViewController.m in Sources */,
 				4F86A75420C7849700DFCFD0 /* YYTextSelectionView.m in Sources */,
 				4F86A73620C7819A00DFCFD0 /* NSAttributedString+YYText.m in Sources */,
 				4F86A6FA20C77C6A00DFCFD0 /* AppDelegate.m in Sources */,
@@ -493,7 +499,7 @@
 				4F86A74820C7844A00DFCFD0 /* YYTextWeakProxy.m in Sources */,
 				4F0ED8BB24F4C649002128BF /* WCGrowingTextView.m in Sources */,
 				4F86A73C20C783EE00DFCFD0 /* YYTextArchiver.m in Sources */,
-				4F9BB3FD24FCDEB8009C35D7 /* UseWCGrowingTextViewViewController.m in Sources */,
+				4F9BB3FD24FCDEB8009C35D7 /* UseWCGrowingTextViewLimitedLinesViewController.m in Sources */,
 				4FD4A8F7251F2CAF00317233 /* UseWCGrowingTextViewIssueCaretViewController.m in Sources */,
 				4F3076B1251B57AA00512410 /* WCMessageInputItem.m in Sources */,
 				4F9BB40524FD0818009C35D7 /* WCStickySection.m in Sources */,

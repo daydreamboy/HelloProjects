@@ -1,17 +1,17 @@
 //
-//  UseWCGrowingTextViewViewController.m
+//  UseWCGrowingTextViewLimitedHeightViewController.m
 //  HelloUITextView
 //
-//  Created by wesley_chen on 2020/8/31.
+//  Created by wesley_chen on 2020/9/27.
 //  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
-#import "UseWCGrowingTextViewViewController.h"
+#import "UseWCGrowingTextViewLimitedHeightViewController.h"
 #import "WCGrowingTextView.h"
 #import "WCKeyboardObserver.h"
 #import "WCMacroTool.h"
 
-@interface UseWCGrowingTextViewViewController ()
+@interface UseWCGrowingTextViewLimitedHeightViewController ()
 @property (nonatomic, strong) WCGrowingTextView *textViewPositional;
 @property (nonatomic, strong) WCGrowingTextView *textViewFollowing;
 @property (nonatomic, strong) WCKeyboardObserver *keyboardObserver;
@@ -19,7 +19,7 @@
 @property (nonatomic, strong) NSLayoutConstraint *constraintSpaceBetweenBottomLayoutGuide;
 @end
 
-@implementation UseWCGrowingTextViewViewController
+@implementation UseWCGrowingTextViewLimitedHeightViewController
 
 - (instancetype)init {
     self = [super init];
@@ -100,7 +100,9 @@
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         WCGrowingTextView *textView = [[WCGrowingTextView alloc] initWithFrame:CGRectMake(10, 90 + 10, screenSize.width - 2 * 10, UNSPECIFIED) textContainer:nil];
         textView.font = [UIFont systemFontOfSize:17];
-        textView.maximumNumberOfLines = 3;
+        textView.useHeightForNumberOfLines = YES;
+        textView.maximumHeight = 120;
+        textView.minimumHeight = 36;
         textView.placeholder = @"Write a message";
         //textView.text = @"我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。我的生活方式就是这样吧🤭。";
         textView.backgroundColor = [UIColor yellowColor];
@@ -120,7 +122,9 @@
         textView.contentInset = UIEdgeInsetsMake(20, 10, 20, 10);
         textView.font = [UIFont systemFontOfSize:17];
         textView.textAlignment = NSTextAlignmentNatural;
-        textView.maximumNumberOfLines = 3;
+        textView.useHeightForNumberOfLines = YES;
+        textView.maximumHeight = 130;
+        textView.minimumHeight = 50;
         textView.placeholder = @"Write a message";
         textView.layer.borderColor = [UIColor redColor].CGColor;
         textView.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
