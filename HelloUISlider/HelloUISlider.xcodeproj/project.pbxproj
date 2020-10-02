@@ -11,8 +11,10 @@
 		4FF903F225160E740075BE7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FF903F125160E740075BE7A /* Assets.xcassets */; };
 		4FF903F525160E740075BE7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FF903F325160E740075BE7A /* LaunchScreen.storyboard */; };
 		4FF903F825160E740075BE7A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF903F725160E740075BE7A /* main.m */; };
-		4FF9040325160F4E0075BE7A /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF903FF25160F4E0075BE7A /* Demo1ViewController.m */; };
 		4FF9040425160F4E0075BE7A /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF9040225160F4E0075BE7A /* RootViewController.m */; };
+		4FFC0BC22527618B00A7A294 /* TapOnSliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC0BC12527618B00A7A294 /* TapOnSliderViewController.m */; };
+		4FFC0BC72527663400A7A294 /* WCSegmentedSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC0BC62527663400A7A294 /* WCSegmentedSlider.m */; };
+		4FFC0BCC252772C300A7A294 /* UseWCSegmentedSliderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FFC0BCB252772C300A7A294 /* UseWCSegmentedSliderViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,10 +25,14 @@
 		4FF903F425160E740075BE7A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4FF903F625160E740075BE7A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4FF903F725160E740075BE7A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4FF903FF25160F4E0075BE7A /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
-		4FF9040025160F4E0075BE7A /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
 		4FF9040125160F4E0075BE7A /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4FF9040225160F4E0075BE7A /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		4FFC0BC02527618B00A7A294 /* TapOnSliderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TapOnSliderViewController.h; sourceTree = "<group>"; };
+		4FFC0BC12527618B00A7A294 /* TapOnSliderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TapOnSliderViewController.m; sourceTree = "<group>"; };
+		4FFC0BC52527663400A7A294 /* WCSegmentedSlider.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCSegmentedSlider.h; sourceTree = "<group>"; };
+		4FFC0BC62527663400A7A294 /* WCSegmentedSlider.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCSegmentedSlider.m; sourceTree = "<group>"; };
+		4FFC0BCA252772C300A7A294 /* UseWCSegmentedSliderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseWCSegmentedSliderViewController.h; sourceTree = "<group>"; };
+		4FFC0BCB252772C300A7A294 /* UseWCSegmentedSliderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCSegmentedSliderViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +49,7 @@
 		4FF903D925160E700075BE7A = {
 			isa = PBXGroup;
 			children = (
+				4FFC0BC4252765CB00A7A294 /* WCSegmentedSlider */,
 				4FF903E425160E700075BE7A /* HelloUISlider */,
 				4FF903E325160E700075BE7A /* Products */,
 			);
@@ -75,10 +82,21 @@
 		4FF903FE25160F4E0075BE7A /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4FF9040025160F4E0075BE7A /* Demo1ViewController.h */,
-				4FF903FF25160F4E0075BE7A /* Demo1ViewController.m */,
+				4FFC0BC02527618B00A7A294 /* TapOnSliderViewController.h */,
+				4FFC0BC12527618B00A7A294 /* TapOnSliderViewController.m */,
+				4FFC0BCA252772C300A7A294 /* UseWCSegmentedSliderViewController.h */,
+				4FFC0BCB252772C300A7A294 /* UseWCSegmentedSliderViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4FFC0BC4252765CB00A7A294 /* WCSegmentedSlider */ = {
+			isa = PBXGroup;
+			children = (
+				4FFC0BC52527663400A7A294 /* WCSegmentedSlider.h */,
+				4FFC0BC62527663400A7A294 /* WCSegmentedSlider.m */,
+			);
+			path = WCSegmentedSlider;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,9 +169,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FF903E725160E700075BE7A /* AppDelegate.m in Sources */,
-				4FF9040325160F4E0075BE7A /* Demo1ViewController.m in Sources */,
+				4FFC0BC72527663400A7A294 /* WCSegmentedSlider.m in Sources */,
+				4FFC0BCC252772C300A7A294 /* UseWCSegmentedSliderViewController.m in Sources */,
 				4FF9040425160F4E0075BE7A /* RootViewController.m in Sources */,
 				4FF903F825160E740075BE7A /* main.m in Sources */,
+				4FFC0BC22527618B00A7A294 /* TapOnSliderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,7 +241,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -273,7 +293,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
