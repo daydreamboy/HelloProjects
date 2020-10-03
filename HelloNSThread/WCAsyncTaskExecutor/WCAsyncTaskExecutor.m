@@ -121,7 +121,9 @@
         
         self.currentRunningTask.finishTime = CACurrentMediaTime();
         self.currentRunningTask.isRunning = NO;
-        [self.enqueueMap removeObjectForKey:self.currentRunningTask.key];
+        if (self.currentRunningTask.key) {
+            [self.enqueueMap removeObjectForKey:self.currentRunningTask.key];
+        }
         
         dispatch_async(self.serialQueue, ^{
             strongify(self);
