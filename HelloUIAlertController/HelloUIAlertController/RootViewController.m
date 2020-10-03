@@ -13,6 +13,7 @@
 #import "UseWCAlertToolViewController.h"
 #import "AlertWithTextViewController.h"
 #import "AlertWithTextFieldViewController.h"
+#import "AlertWithPreferredActionViewController.h"
 #import "WCMacroTool.h"
 
 @interface RootViewController ()
@@ -42,6 +43,7 @@
         @"show alert/actionSheet by WCAlertTool",
         @"alert with text",
         @"alert with UITextField",
+        @"alert with preferred action",
         @"test",
     ];
     _classes = @[
@@ -51,6 +53,7 @@
         [UseWCAlertToolViewController class],
         [AlertWithTextViewController class],
         [AlertWithTextFieldViewController class],
+        [AlertWithPreferredActionViewController class],
         @"test",
     ];
 }

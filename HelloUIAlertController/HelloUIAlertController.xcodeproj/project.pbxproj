@@ -20,6 +20,7 @@
 		4F4513CF2123D5660065028A /* WCAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4513CE2123D5660065028A /* WCAlertController.m */; };
 		4F4DC06621EECE360066E96A /* WCAlertTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4DC06521EECE360066E96A /* WCAlertTool.m */; };
 		4F8C95A7221EF43000869CE7 /* WCBlockTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C95A6221EF43000869CE7 /* WCBlockTool.m */; };
+		4FAD66E62528A36E005B7836 /* AlertWithPreferredActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAD66E52528A36E005B7836 /* AlertWithPreferredActionViewController.m */; };
 		4FE3B7D2221CF624006790CD /* UseWCAlertToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE3B7D1221CF624006790CD /* UseWCAlertToolViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,8 @@
 		4F4DC06521EECE360066E96A /* WCAlertTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAlertTool.m; sourceTree = "<group>"; };
 		4F8C95A5221EF43000869CE7 /* WCBlockTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCBlockTool.h; sourceTree = "<group>"; };
 		4F8C95A6221EF43000869CE7 /* WCBlockTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCBlockTool.m; sourceTree = "<group>"; };
+		4FAD66E42528A36E005B7836 /* AlertWithPreferredActionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlertWithPreferredActionViewController.h; sourceTree = "<group>"; };
+		4FAD66E52528A36E005B7836 /* AlertWithPreferredActionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlertWithPreferredActionViewController.m; sourceTree = "<group>"; };
 		4FE3B7D0221CF624006790CD /* UseWCAlertToolViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseWCAlertToolViewController.h; sourceTree = "<group>"; };
 		4FE3B7D1221CF624006790CD /* UseWCAlertToolViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCAlertToolViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -111,6 +114,8 @@
 				4F19586B226584A5001562FB /* AlertWithTextViewController.m */,
 				4F19586C226584A5001562FB /* AlertWithTextFieldViewController.h */,
 				4F19586A226584A5001562FB /* AlertWithTextFieldViewController.m */,
+				4FAD66E42528A36E005B7836 /* AlertWithPreferredActionViewController.h */,
+				4FAD66E52528A36E005B7836 /* AlertWithPreferredActionViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -218,6 +223,7 @@
 				4FE3B7D2221CF624006790CD /* UseWCAlertToolViewController.m in Sources */,
 				4F4513BD2123CE9F0065028A /* main.m in Sources */,
 				4F19586E226584A5001562FB /* AlertWithTextViewController.m in Sources */,
+				4FAD66E62528A36E005B7836 /* AlertWithPreferredActionViewController.m in Sources */,
 				4F4513CB2123CEF30065028A /* TabledAlertController.m in Sources */,
 				4F2A55F22233B772008648AB /* WCMacroToolBackend.m in Sources */,
 				4F8C95A7221EF43000869CE7 /* WCBlockTool.m in Sources */,
