@@ -287,9 +287,32 @@ Clang编译器和链接器的文档，官方提供在[这里](https://clang.llvm
 
 ## 6、Xcode常见问题
 
+### （1）编译问题
+
+#### a. Xcode 12上将block签名和实现，参数类型不一致报错
+
+举个例子[^10]，如下
+
+```
+Incompatible block pointer types sending 'PINMemoryCacheObjectBlock _Nullable __strong' (aka 'void (^__strong)(PINMemoryCache * _Nonnull __strong, NSString * _Nonnull __strong, id _Nullable __strong)') to parameter of type 'PINCacheObjectBlock _Nonnull' (aka 'void (^)(id _Nonnull __strong, NSString * _Nonnull __strong, id _Nullable __strong)')
+```
+
+Xcode 12上将严格校验block签名和实现，上面block实现的第一个参数类型是PINMemoryCache *，而block签名的第一个参数类型是id。
 
 
-### （1）Expected in: /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 11.1.simruntime/Contents/Resources/RuntimeRoot/usr/lib/libobjc.A.dylib[^5]
+
+解决方法
+
+1. 修改代码将签名保持一致
+2. 在Build Settings的CFLAGS选项中添加`-Xclang -fcompatibility-qualified-id-block-type-checking`，抑制编译报错
+
+
+
+
+
+### （2）app启动问题
+
+#### a. Expected in: /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 11.1.simruntime/Contents/Resources/RuntimeRoot/usr/lib/libobjc.A.dylib[^5]
 
 
 
@@ -298,6 +321,10 @@ Clang编译器和链接器的文档，官方提供在[这里](https://clang.llvm
 原因：工程中存在子工程，而子工程的deployment target版本高于主工程的deployment target版本
 
 解决方法：修改所有子工程的deployment target版本，使它低于或等于主工程的deployment target版本
+
+
+
+### （3）运行时问题
 
 
 
@@ -413,6 +440,8 @@ $ defaults read com.apple.dt.Xcode ShowBuildOperationDuration
 [^8]:https://chaosky.tech/2020/04/20/optimize-xcode-build-time/
 
 [^9]:https://medium.com/@09mejohn/resource-bundles-in-ios-static-library-beba3070fafd
+
+[^10]:https://github.com/pinterest/PINCache/issues/275
 
 
 
