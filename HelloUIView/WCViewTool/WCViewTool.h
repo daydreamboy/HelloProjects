@@ -381,10 +381,10 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Get safeAreaInsets of the view. Wrapper of the view.safeAreaInsets
   
- @param view the view
+ @param view the view. Pass nil will treat as pass [[UIApplication sharedApplication] keyWindow]
  @return the safeAreaInsets.  iOS 11+, return by view.safeAreaInsets. iOS 10-, return UIEdgeInsetsZero.
 */
-+ (UIEdgeInsets)safeAreaInsetsWithView:(UIView *)view;
++ (UIEdgeInsets)safeAreaInsetsWithView:(nullable UIView *)view;
 
 /**
  Get safe area frame base on the parent view

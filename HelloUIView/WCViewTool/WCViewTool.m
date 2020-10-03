@@ -942,10 +942,16 @@ static void * const kAssociatedKeySubviewStates = (void *)&kAssociatedKeySubview
 
 #pragma mark > SafeArea
 
-+ (UIEdgeInsets)safeAreaInsetsWithView:(UIView *)view {
-    if (![view isKindOfClass:[UIView class]]) {
++ (UIEdgeInsets)safeAreaInsetsWithView:(nullable UIView *)view {
+    if (view && ![view isKindOfClass:[UIView class]]) {
         return UIEdgeInsetsZero;
     }
+    
+    // @see https://stackoverflow.com/questions/46829840/get-safe-area-inset-top-and-bottom-heights/49683870
+    if (!view) {        
+        view = [[UIApplication sharedApplication] keyWindow];
+    }
+    
 #ifdef __IPHONE_11_0
     if (IOS11_OR_LATER) {
 #pragma GCC diagnostic push
