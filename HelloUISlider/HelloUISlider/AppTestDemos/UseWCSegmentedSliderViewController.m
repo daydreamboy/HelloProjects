@@ -88,6 +88,7 @@
         slider.backgroundColor = [UIColor yellowColor];
         slider.trackLineBackgroundColor = [UIColor redColor];
         slider.trackLineProgressColor = [UIColor greenColor];
+        slider.trackLinePaddings = UIEdgeInsetsMake(0, 20, 0, 20);
         slider.delegate = self;
         
         _sliderProgressColor = slider;

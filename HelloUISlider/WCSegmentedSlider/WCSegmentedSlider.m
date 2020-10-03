@@ -25,7 +25,7 @@
         _numberOfSegments = numberOfSegments;
         
         // Note: default values
-        _indexViewSize = CGSizeMake(1.0, 9);
+        _indexViewSize = CGSizeMake(1.0, 9.0);
         _trackLineHeight = 1.0;
         _indexViewsBackgroundColor = [UIColor lightGrayColor];
         _trackLineBackgroundColor = [UIColor lightGrayColor];
@@ -67,8 +67,8 @@
     [self changeSliderValueWithIndex:currentIndex animated:animated];
 }
 
-- (void)setTrackViewPaddings:(UIEdgeInsets)trackViewPaddings {
-    _trackViewPaddings = trackViewPaddings;
+- (void)setTrackLinePaddings:(UIEdgeInsets)trackViewPaddings {
+    _trackLinePaddings = trackViewPaddings;
     _useTrackViewPaddings = YES;
 }
 
@@ -100,7 +100,7 @@
     CGRect rect = [super trackRectForBounds:bounds];
     
     if (_useTrackViewPaddings) {
-        _trackLine.frame = CGRectMake(_trackViewPaddings.left, (CGRectGetHeight(bounds) - _trackLineHeight) / 2.0, rect.size.width - _trackViewPaddings.left - _trackViewPaddings.right, _trackLineHeight);
+        _trackLine.frame = CGRectMake(_trackLinePaddings.left, (CGRectGetHeight(bounds) - _trackLineHeight) / 2.0, rect.size.width - _trackLinePaddings.left - _trackLinePaddings.right, _trackLineHeight);
     }
     else {
         _trackLine.frame = CGRectMake(rect.origin.x, (CGRectGetHeight(bounds) - _trackLineHeight) / 2.0, rect.size.width, _trackLineHeight);

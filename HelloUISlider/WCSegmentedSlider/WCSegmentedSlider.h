@@ -20,14 +20,48 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+/**
+ A slider with multiple segments which behaviors like the slider located in `Display & Brightness` > `Text Size`
+ */
 @interface WCSegmentedSlider : UISlider
 
+/**
+ The current index which is started by 0
+ */
 @property (nonatomic, assign, readonly) NSInteger currentIndex;
+/**
+ The delegate
+ */
 @property (nonatomic, weak) id<WCSegmentedSliderDelegate> delegate;
+/**
+ The size of index view (little stick)
+ 
+ Default is CGSizeMake(1.0, 9.0)
+ */
 @property (nonatomic, assign) CGSize indexViewSize;
-@property (nonatomic, assign) UIEdgeInsets trackViewPaddings;
+/**
+ The track line paddings only for left and right padding
+ 
+ Default is determined by system, which left and right padding is 3
+ */
+@property (nonatomic, assign) UIEdgeInsets trackLinePaddings;
+/**
+ The background color of the index views
+ 
+ Default is [UIColor lightGrayColor]
+ */
 @property (nonatomic, strong) UIColor *indexViewsBackgroundColor;
+/**
+ The background color of the track line
+ 
+ Default is [UIColor lightGrayColor]
+ */
 @property (nonatomic, strong) UIColor *trackLineBackgroundColor;
+/**
+ The background color of the progress
+ 
+ Default is [UIColor clearColor]
+ */
 @property (nonatomic, strong) UIColor *trackLineProgressColor;
 /**
  Default is YES
