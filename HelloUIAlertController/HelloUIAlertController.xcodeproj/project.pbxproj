@@ -68,9 +68,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F2C22D72529821A00CF4BE0 /* WCTabledAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				4F4513C62123CEF30065028A /* TabledAlertController.h */,
+				4F4513C72123CEF30065028A /* TabledAlertController.m */,
+			);
+			path = WCTabledAlertController;
+			sourceTree = "<group>";
+		};
+		4F2C22D82529822900CF4BE0 /* Use UIAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				4FAD66E42528A36E005B7836 /* AlertWithPreferredActionViewController.h */,
+				4FAD66E52528A36E005B7836 /* AlertWithPreferredActionViewController.m */,
+			);
+			path = "Use UIAlertController";
+			sourceTree = "<group>";
+		};
+		4F2C22D92529823D00CF4BE0 /* Use WCAlertTool */ = {
+			isa = PBXGroup;
+			children = (
+				4FE3B7D0221CF624006790CD /* UseWCAlertToolViewController.h */,
+				4FE3B7D1221CF624006790CD /* UseWCAlertToolViewController.m */,
+			);
+			path = "Use WCAlertTool";
+			sourceTree = "<group>";
+		};
+		4F2C22DA2529824D00CF4BE0 /* Use WCAlertController */ = {
+			isa = PBXGroup;
+			children = (
+				4F195869226584A5001562FB /* AlertWithTextViewController.h */,
+				4F19586B226584A5001562FB /* AlertWithTextViewController.m */,
+				4F19586C226584A5001562FB /* AlertWithTextFieldViewController.h */,
+				4F19586A226584A5001562FB /* AlertWithTextFieldViewController.m */,
+			);
+			path = "Use WCAlertController";
+			sourceTree = "<group>";
+		};
 		4F4513A12123CE9D0065028A = {
 			isa = PBXGroup;
 			children = (
+				4F2C22D72529821A00CF4BE0 /* WCTabledAlertController */,
 				4F4DC06321EECE070066E96A /* WCAlertTool */,
 				4F4513CC2123D5490065028A /* WCAlertController */,
 				4F4513AC2123CE9D0065028A /* HelloUIAlertController */,
@@ -106,16 +145,9 @@
 		4F4513C52123CEF30065028A /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F4513C62123CEF30065028A /* TabledAlertController.h */,
-				4F4513C72123CEF30065028A /* TabledAlertController.m */,
-				4FE3B7D0221CF624006790CD /* UseWCAlertToolViewController.h */,
-				4FE3B7D1221CF624006790CD /* UseWCAlertToolViewController.m */,
-				4F195869226584A5001562FB /* AlertWithTextViewController.h */,
-				4F19586B226584A5001562FB /* AlertWithTextViewController.m */,
-				4F19586C226584A5001562FB /* AlertWithTextFieldViewController.h */,
-				4F19586A226584A5001562FB /* AlertWithTextFieldViewController.m */,
-				4FAD66E42528A36E005B7836 /* AlertWithPreferredActionViewController.h */,
-				4FAD66E52528A36E005B7836 /* AlertWithPreferredActionViewController.m */,
+				4F2C22DA2529824D00CF4BE0 /* Use WCAlertController */,
+				4F2C22D92529823D00CF4BE0 /* Use WCAlertTool */,
+				4F2C22D82529822900CF4BE0 /* Use UIAlertController */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";

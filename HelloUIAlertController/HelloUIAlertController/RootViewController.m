@@ -16,9 +16,12 @@
 #import "AlertWithPreferredActionViewController.h"
 #import "WCMacroTool.h"
 
+#define kTitle @"Title"
+#define kClass @"Class"
+
 @interface RootViewController ()
-@property (nonatomic, strong) NSArray *titles;
-@property (nonatomic, strong) NSArray *classes;
+@property (nonatomic, strong) NSArray *sectionTitles;
+@property (nonatomic, strong) NSArray<NSArray<NSDictionary *> *> *classes;
 @end
 
 @implementation RootViewController
@@ -36,54 +39,78 @@
     self.title = @"AppTest";
 
     // MARK: Configure titles and classes for table view
-    _titles = @[
-        @"Show Tabled ActionSheet",
-        @"Show alert without view controller",
-        @"Show action sheet without view controller",
-        @"show alert/actionSheet by WCAlertTool",
-        @"alert with text",
-        @"alert with UITextField",
-        @"alert with preferred action",
-        @"test",
+    NSArray<NSDictionary *> *section1 = @[
+        @{ kTitle: @"alert with preferred action", kClass: [AlertWithPreferredActionViewController class] },
     ];
+    
+    NSArray<NSDictionary *> *section2 = @[
+        @{ kTitle: @"Show Tabled ActionSheet", kClass: @"showTabledActionSheet" },
+    ];
+
+    NSArray<NSDictionary *> *section3 = @[
+        @{ kTitle: @"Show alert without view controller", kClass: @"showGlobalAlert" },
+        @{ kTitle: @"Show action sheet without view controller", kClass: @"showGlobalActionSheet" },
+        @{ kTitle: @"alert with text", kClass: [AlertWithTextViewController class] },
+        @{ kTitle: @"alert with UITextField", kClass: [AlertWithTextFieldViewController class] },
+    ];
+
+    NSArray<NSDictionary *> *section4 = @[
+        @{ kTitle: @"show alert/actionSheet by WCAlertTool", kClass: [UseWCAlertToolViewController class] },
+    ];
+    
+    _sectionTitles = @[
+        @"Use UIAlertController",
+        @"Use TabledAlertController",
+        @"Use WCAlertController",
+        @"Use WCAlertTool",
+    ];
+    
     _classes = @[
-        @"showTabledActionSheet",
-        @"showGlobalAlert",
-        @"showGlobalActionSheet",
-        [UseWCAlertToolViewController class],
-        [AlertWithTextViewController class],
-        [AlertWithTextFieldViewController class],
-        [AlertWithPreferredActionViewController class],
-        @"test",
+         section1,
+         section2,
+         section3,
+         section4,
     ];
 }
 
 #pragma mark -
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self pushViewController:_classes[indexPath.row]];
+    
+    NSDictionary *dict = _classes[indexPath.section][indexPath.row];
+    [self pushViewController:dict];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return _sectionTitles[section];
 }
 
 #pragma mark -
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [_classes count];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_titles count];
+    return [_classes[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *sCellIdentifier = @"RootViewController_sCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
-
+    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-
-    cell.textLabel.text = _titles[indexPath.row];
-
+    
+    NSString *cellTitle = [_classes[indexPath.section][indexPath.row] objectForKey:kTitle];
+    cell.textLabel.text = cellTitle;
+    
     return cell;
 }
 
-- (void)pushViewController:(id)viewControllerClass {
+- (void)pushViewController:(NSDictionary *)dict {
+    id viewControllerClass = dict[kClass];
     
     id class = viewControllerClass;
     if ([class isKindOfClass:[NSString class]]) {
@@ -100,7 +127,7 @@
     }
     else if (class && [class isSubclassOfClass:[UIViewController class]]) {
         UIViewController *vc = [[class alloc] init];
-        vc.title = _titles[[_classes indexOfObject:viewControllerClass]];
+        vc.title = dict[kTitle];
         
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
         [self.navigationController pushViewController:vc animated:YES];
