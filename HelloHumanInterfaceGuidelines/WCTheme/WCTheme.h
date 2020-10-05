@@ -12,6 +12,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
+#import "WCThemeManager.h"
 #import "WCDynamicColorManager.h"
 #import "WCDynamicFontManager.h"
 #import "WCDynamicValueManager.h"

@@ -38,15 +38,19 @@
 }
 
 - (void)setupTheme {
-    [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[AppFontProvider new] forName:@"default"];
-    [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[AppFontProvider new] forName:@"small"];
-    [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[AppFontProvider new] forName:@"medium"];
-    [[WCDynamicFontManager sharedManager] registerDynamicFontProvider:[AppFontProvider new] forName:@"large"];
-
-    [[WCDynamicValueManager sharedManager] registerDynamicValueProvider:[AppFontProvider new] forName:@"default"];
-    [[WCDynamicValueManager sharedManager] registerDynamicValueProvider:[AppFontProvider new] forName:@"small"];
-    [[WCDynamicValueManager sharedManager] registerDynamicValueProvider:[AppFontProvider new] forName:@"medium"];
-    [[WCDynamicValueManager sharedManager] registerDynamicValueProvider:[AppFontProvider new] forName:@"large"];
+    [WCThemeManager registerFontProviders:@{
+        @"default": [AppFontProvider new],
+        @"small": [AppFontProvider new],
+        @"medium": [AppFontProvider new],
+        @"large": [AppFontProvider new],
+    }];
+    
+    [WCThemeManager registerValueProviders:@{
+        @"default": [AppFontProvider new],
+        @"small": [AppFontProvider new],
+        @"medium": [AppFontProvider new],
+        @"large": [AppFontProvider new],
+    }];
 }
 
 @end
