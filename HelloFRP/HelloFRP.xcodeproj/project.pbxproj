@@ -7,15 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F1E8CC3252C113F00CEAB6E /* WCThrottler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E8CC2252C113F00CEAB6E /* WCThrottler.m */; };
+		4F1E90A1252C4F9A00CEAB6E /* WCDebouncer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E90A0252C4F9A00CEAB6E /* WCDebouncer.m */; };
+		4F1E90AF252C872200CEAB6E /* Test_WCDebouncer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E90AE252C872200CEAB6E /* Test_WCDebouncer.m */; };
+		4F27DA1D252F02F4007ACBD0 /* UseWCDebouncerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F27DA1C252F02F4007ACBD0 /* UseWCDebouncerViewController.m */; };
 		4F2C26FA2529C4CB00CF4BE0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C26F92529C4CB00CF4BE0 /* AppDelegate.m */; };
 		4F2C27052529C4CE00CF4BE0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F2C27042529C4CE00CF4BE0 /* Assets.xcassets */; };
 		4F2C27082529C4CE00CF4BE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F2C27062529C4CE00CF4BE0 /* LaunchScreen.storyboard */; };
 		4F2C270B2529C4CE00CF4BE0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C270A2529C4CE00CF4BE0 /* main.m */; };
 		4F2C28632529CBA000CF4BE0 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C285E2529CBA000CF4BE0 /* RootViewController.m */; };
-		4F2C28642529CBA000CF4BE0 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C28602529CBA000CF4BE0 /* Demo1ViewController.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		4F1E90B1252C872200CEAB6E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F2C26ED2529C4CB00CF4BE0 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F2C26F42529C4CB00CF4BE0;
+			remoteInfo = HelloFRP;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		4F1E8CC1252C113F00CEAB6E /* WCThrottler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCThrottler.h; sourceTree = "<group>"; };
+		4F1E8CC2252C113F00CEAB6E /* WCThrottler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCThrottler.m; sourceTree = "<group>"; };
+		4F1E909F252C4F9A00CEAB6E /* WCDebouncer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCDebouncer.h; sourceTree = "<group>"; };
+		4F1E90A0252C4F9A00CEAB6E /* WCDebouncer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCDebouncer.m; sourceTree = "<group>"; };
+		4F1E90AC252C872200CEAB6E /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F1E90AE252C872200CEAB6E /* Test_WCDebouncer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_WCDebouncer.m; sourceTree = "<group>"; };
+		4F1E90B0252C872200CEAB6E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F27DA1B252F02F4007ACBD0 /* UseWCDebouncerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseWCDebouncerViewController.h; sourceTree = "<group>"; };
+		4F27DA1C252F02F4007ACBD0 /* UseWCDebouncerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCDebouncerViewController.m; sourceTree = "<group>"; };
 		4F2C26F52529C4CB00CF4BE0 /* HelloFRP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloFRP.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F2C26F82529C4CB00CF4BE0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F2C26F92529C4CB00CF4BE0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -24,12 +46,17 @@
 		4F2C27092529C4CE00CF4BE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F2C270A2529C4CE00CF4BE0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F2C285E2529CBA000CF4BE0 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		4F2C28602529CBA000CF4BE0 /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
-		4F2C28612529CBA000CF4BE0 /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
 		4F2C28622529CBA000CF4BE0 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4F1E90A9252C872200CEAB6E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4F2C26F22529C4CB00CF4BE0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -40,12 +67,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F1E90AD252C872200CEAB6E /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				4F1E90AE252C872200CEAB6E /* Test_WCDebouncer.m */,
+				4F1E90B0252C872200CEAB6E /* Info.plist */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
 		4F2C26EC2529C4CB00CF4BE0 = {
 			isa = PBXGroup;
 			children = (
 				4F2C28682529F99200CF4BE0 /* WCDebouncer */,
 				4F2C28662529CBB700CF4BE0 /* WCThrottler */,
 				4F2C26F72529C4CB00CF4BE0 /* HelloFRP */,
+				4F1E90AD252C872200CEAB6E /* Test */,
 				4F2C26F62529C4CB00CF4BE0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -54,6 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				4F2C26F52529C4CB00CF4BE0 /* HelloFRP.app */,
+				4F1E90AC252C872200CEAB6E /* Test.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -77,8 +115,8 @@
 		4F2C285F2529CBA000CF4BE0 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F2C28612529CBA000CF4BE0 /* Demo1ViewController.h */,
-				4F2C28602529CBA000CF4BE0 /* Demo1ViewController.m */,
+				4F27DA1B252F02F4007ACBD0 /* UseWCDebouncerViewController.h */,
+				4F27DA1C252F02F4007ACBD0 /* UseWCDebouncerViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -86,6 +124,8 @@
 		4F2C28662529CBB700CF4BE0 /* WCThrottler */ = {
 			isa = PBXGroup;
 			children = (
+				4F1E8CC1252C113F00CEAB6E /* WCThrottler.h */,
+				4F1E8CC2252C113F00CEAB6E /* WCThrottler.m */,
 			);
 			path = WCThrottler;
 			sourceTree = "<group>";
@@ -93,6 +133,8 @@
 		4F2C28682529F99200CF4BE0 /* WCDebouncer */ = {
 			isa = PBXGroup;
 			children = (
+				4F1E909F252C4F9A00CEAB6E /* WCDebouncer.h */,
+				4F1E90A0252C4F9A00CEAB6E /* WCDebouncer.m */,
 			);
 			path = WCDebouncer;
 			sourceTree = "<group>";
@@ -100,6 +142,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4F1E90AB252C872200CEAB6E /* Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F1E90B3252C872200CEAB6E /* Build configuration list for PBXNativeTarget "Test" */;
+			buildPhases = (
+				4F1E90A8252C872200CEAB6E /* Sources */,
+				4F1E90A9252C872200CEAB6E /* Frameworks */,
+				4F1E90AA252C872200CEAB6E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F1E90B2252C872200CEAB6E /* PBXTargetDependency */,
+			);
+			name = Test;
+			productName = Test;
+			productReference = 4F1E90AC252C872200CEAB6E /* Test.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		4F2C26F42529C4CB00CF4BE0 /* HelloFRP */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4F2C270E2529C4CE00CF4BE0 /* Build configuration list for PBXNativeTarget "HelloFRP" */;
@@ -125,6 +185,10 @@
 			attributes = {
 				LastUpgradeCheck = 1200;
 				TargetAttributes = {
+					4F1E90AB252C872200CEAB6E = {
+						CreatedOnToolsVersion = 12.0.1;
+						TestTargetID = 4F2C26F42529C4CB00CF4BE0;
+					};
 					4F2C26F42529C4CB00CF4BE0 = {
 						CreatedOnToolsVersion = 12.0;
 					};
@@ -144,11 +208,19 @@
 			projectRoot = "";
 			targets = (
 				4F2C26F42529C4CB00CF4BE0 /* HelloFRP */,
+				4F1E90AB252C872200CEAB6E /* Test */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4F1E90AA252C872200CEAB6E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4F2C26F32529C4CB00CF4BE0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -161,18 +233,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4F1E90A8252C872200CEAB6E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F1E90AF252C872200CEAB6E /* Test_WCDebouncer.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4F2C26F12529C4CB00CF4BE0 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				4F2C26FA2529C4CB00CF4BE0 /* AppDelegate.m in Sources */,
-				4F2C28642529CBA000CF4BE0 /* Demo1ViewController.m in Sources */,
+				4F1E90A1252C4F9A00CEAB6E /* WCDebouncer.m in Sources */,
 				4F2C270B2529C4CE00CF4BE0 /* main.m in Sources */,
+				4F27DA1D252F02F4007ACBD0 /* UseWCDebouncerViewController.m in Sources */,
 				4F2C28632529CBA000CF4BE0 /* RootViewController.m in Sources */,
+				4F1E8CC3252C113F00CEAB6E /* WCThrottler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4F1E90B2252C872200CEAB6E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F2C26F42529C4CB00CF4BE0 /* HelloFRP */;
+			targetProxy = 4F1E90B1252C872200CEAB6E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4F2C27062529C4CE00CF4BE0 /* LaunchScreen.storyboard */ = {
@@ -186,6 +276,44 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4F1E90B4252C872200CEAB6E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Test/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Test;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloFRP.app/HelloFRP";
+			};
+			name = Debug;
+		};
+		4F1E90B5252C872200CEAB6E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = Test/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.Test;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloFRP.app/HelloFRP";
+			};
+			name = Release;
+		};
 		4F2C270C2529C4CE00CF4BE0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -335,6 +463,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4F1E90B3252C872200CEAB6E /* Build configuration list for PBXNativeTarget "Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F1E90B4252C872200CEAB6E /* Debug */,
+				4F1E90B5252C872200CEAB6E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4F2C26F02529C4CB00CF4BE0 /* Build configuration list for PBXProject "HelloFRP" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
