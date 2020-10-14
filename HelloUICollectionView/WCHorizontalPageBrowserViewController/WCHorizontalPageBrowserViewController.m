@@ -109,6 +109,11 @@
     NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
 }
 
+// @see https://stackoverflow.com/a/57822698
+- (UIModalPresentationStyle)modalPresentationStyle {
+    return UIModalPresentationFullScreen;
+}
+
 #pragma mark - Actions
 
 - (void)backgroundTapGestureRecognized:(UITapGestureRecognizer *)recognizer {
@@ -242,7 +247,7 @@
             
         } completed:^(UIImage * _Nullable image, NSData * _Nullable data, NSError * _Nullable error, SDImageCacheType cacheType, BOOL finished, NSURL * _Nullable imageURL) {
             strongify(zoomableImagePage);
-            strongify(self);
+            strongifyWithReturn(self, return;);
             
             [zoomableImagePage stopActivityIndicatorView];
             
