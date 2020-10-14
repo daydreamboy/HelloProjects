@@ -7,10 +7,7 @@
 
 #import "WCDebouncer.h"
 
-@interface WCDispatchWorkItem : NSObject
-@property (nonatomic, assign) NSUInteger order;
-@property (nonatomic, strong) dispatch_block_t block;
-@end
+#define WCDEBUG 1
 
 @interface WCDebouncer ()
 @property (nonatomic, strong) dispatch_block_t dispatchWorkItem;
@@ -33,8 +30,9 @@
     if (!block) {
         return;
     }
-    
+#if WCDEBUG
     static NSUInteger count = 0;
+#endif
     
     __weak typeof(self) weak_self = self;
     dispatch_async(_workQueue, ^{

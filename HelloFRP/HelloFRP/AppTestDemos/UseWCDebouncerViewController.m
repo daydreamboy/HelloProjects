@@ -26,14 +26,16 @@
 
 - (void)test_debounceWithBlock {
     //dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+    static NSUInteger count = 0;
     
     CFTimeInterval startTime = CACurrentMediaTime();
     for (int i = 0; i < ITERATIONS; i++) {
 //        dispatch_group_enter(group);
         dispatch_async(dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), ^{
-            NSLog(@"submitted: %ld", (long)i);
+            count++;
+            NSLog(@"submitted: %ld", (long)count);
             [self.debouncer debounceWithBlock:^{
-                NSLog(@"handled: %ld", (long)i);
+                NSLog(@"handled: %ld", (long)count);
                 //dispatch_semaphore_signal(sema);
             }];
         });

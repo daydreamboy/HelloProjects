@@ -113,6 +113,10 @@ TODO
 
 > WCDebouncer
 
+https://daddycoding.com/2020/03/10/ios-tutorial-debounce-your-network-call/
+
+https://stackoverflow.com/questions/27116684/how-can-i-debounce-a-method-call
+
 
 
 
