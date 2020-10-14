@@ -21,6 +21,10 @@
     [self.view addSubview:self.buttonDismiss];
 }
 
+- (void)dealloc {
+    NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
+}
+
 #pragma mark - Getters
 
 - (UIButton *)buttonDismiss {

@@ -8,21 +8,34 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WCNavSystemPopTransitionAnimator : NSObject <UIViewControllerAnimatedTransitioning>
-@end
-
-@interface WCNavSystemPushTransitionAnimator : NSObject <UIViewControllerAnimatedTransitioning>
-@end
+NS_ASSUME_NONNULL_BEGIN
 
 @interface WCNavSystemPopTransitionInteractor : UIPercentDrivenInteractiveTransition
 @property (nonatomic, assign) BOOL interactionInProgress;
+
+- (void)attachToPresentedViewController:(UIViewController *)presentedViewController;
+- (nullable id<UIViewControllerInteractiveTransitioning>)handleInteractionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator;
+
 @end
 
 @class WCNavSystemPopTransitionInteractor;
 
 @interface UIViewController (NavPopStyleInteractiveAnimator)
-@property (nonatomic, strong) WCNavSystemPopTransitionInteractor *interactor;
+@property (nonatomic, strong) WCNavSystemPopTransitionInteractor *navSystemPopInteractor;
 @end
 
+@interface WCNavSystemTransition : NSObject
 
+#pragma mark - In/Out Transition
+
++ (id<UIViewControllerAnimatedTransitioning>)navSystemPushTransitionAnimator;
++ (id<UIViewControllerAnimatedTransitioning>)navSystemPopTransitionAnimator;
+
+#pragma mark - Out Interactor
+
++ (WCNavSystemPopTransitionInteractor *)navSystemPopTransitionInteractor;
+
+@end
+
+NS_ASSUME_NONNULL_END
 

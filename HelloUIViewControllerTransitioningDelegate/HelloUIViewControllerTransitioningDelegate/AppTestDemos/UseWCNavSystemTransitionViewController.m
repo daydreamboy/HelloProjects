@@ -18,8 +18,7 @@
 @property (nonatomic, strong) UIButton *buttonPresent;
 @property (nonatomic, strong) UIButton *buttonPresentNav;
 
-@property (nonatomic, strong) WCNavSystemPopTransitionInteractor *interactiveAnimator;
-//@property (nonatomic, strong) ONESwipeBackInteractionController *interactor;
+@property (nonatomic, strong) WCNavSystemPopTransitionInteractor *interactor;
 
 @end
 
@@ -32,8 +31,7 @@
     [self.view addSubview:self.buttonPresent];
     [self.view addSubview:self.buttonPresentNav];
     
-    self.interactiveAnimator = [WCNavSystemPopTransitionInteractor new];
-//    self.interactor = [ONESwipeBackInteractionController new];
+    self.interactor = [WCNavSystemPopTransitionInteractor new];
 }
 
 #pragma mark - Getters
@@ -112,8 +110,7 @@
 - (void)buttonPresentClicked:(id)sender {
     Demo1ModalViewController *vc = [Demo1ModalViewController new];
     vc.transitioningDelegate = self;
-    vc.interactor = self.interactiveAnimator;
-//    [self.interactor wireToViewController:vc];
+    [self.interactor attachToPresentedViewController:vc];
     [self presentViewController:vc animated:YES completion:nil];
 }
 
@@ -121,24 +118,23 @@
     Demo1ModalViewController *vc = [Demo1ModalViewController new];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc];
     navController.transitioningDelegate = self;
-    navController.interactor = self.interactiveAnimator;
+    [self.interactor attachToPresentedViewController:navController];
     [self.navigationController presentViewController:navController animated:YES completion:nil];
 }
 
 #pragma mark - UIViewControllerTransitioningDelegate
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
-    return [WCNavSystemPushTransitionAnimator new];
+    return [WCNavSystemTransition navSystemPushTransitionAnimator];
 }
 
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed {
-    return [WCNavSystemPopTransitionAnimator new];
+    return [WCNavSystemTransition navSystemPopTransitionAnimator];
 //    return nil;
 }
 
 - (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
-    return self.interactiveAnimator.interactionInProgress ? self.interactiveAnimator : nil;
-//    return self.interactor.interactionInProgress ? self.interactor : nil;
+    return [self.interactor handleInteractionControllerForDismissal:animator];
 }
 
 @end

@@ -26,4 +26,8 @@
     NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
 }
 
+- (void)dealloc {
+    NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
+}
+
 @end

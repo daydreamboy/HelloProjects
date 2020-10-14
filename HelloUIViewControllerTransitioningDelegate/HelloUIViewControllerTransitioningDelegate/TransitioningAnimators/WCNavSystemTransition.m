@@ -8,6 +8,9 @@
 
 #import "WCNavSystemTransition.h"
 
+@interface WCNavSystemPopTransitionAnimator : NSObject <UIViewControllerAnimatedTransitioning>
+@end
+
 @implementation WCNavSystemPopTransitionAnimator
 
 #pragma mark - UIViewControllerAnimatedTransitioning
@@ -62,19 +65,27 @@
 
 @end
 
+@interface WCNavSystemPushTransitionAnimator : NSObject <UIViewControllerAnimatedTransitioning>
+@end
 
 // @sa http://stackoverflow.com/questions/29290313/in-ios-how-to-drag-down-to-dismiss-a-modal
 @interface WCNavSystemPopTransitionInteractor ()
 @property (nonatomic, assign) BOOL shouldCompleteTransition;
-@property (nonatomic, strong) UIViewController *presentedViewController;
+@property (nonatomic, weak) UIViewController *presentedViewController;
 @end
 
 @implementation WCNavSystemPopTransitionInteractor
 
-- (void)setPresentedViewController:(UIViewController *)presentedViewController {
+- (void)attachToPresentedViewController:(UIViewController *)presentedViewController {
     _presentedViewController = presentedViewController;
     [self prepareGestureRecognizerInView:presentedViewController.view];
 }
+
+- (nullable id<UIViewControllerInteractiveTransitioning>)handleInteractionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
+    return self.interactionInProgress ? self : nil;
+}
+
+#pragma mark -
 
 - (void)prepareGestureRecognizerInView:(UIView *)view {
     UIScreenEdgePanGestureRecognizer *gesture = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:@selector(handleGesture:)];
@@ -205,10 +216,30 @@
 
 @implementation UIViewController (NavPopStyleInteractiveAnimator)
 
-@dynamic interactor;
+@dynamic navSystemPopInteractor;
 
-- (void)setInteractor:(WCNavSystemPopTransitionInteractor *)interactor {
+- (void)setNavSystemPopInteractor:(WCNavSystemPopTransitionInteractor *)interactor {
     interactor.presentedViewController = self;
+}
+
+@end
+
+@implementation WCNavSystemTransition
+
+#pragma mark - In/Out Transition
+
++ (WCNavSystemPushTransitionAnimator *)navSystemPushTransitionAnimator {
+    return [WCNavSystemPushTransitionAnimator new];
+}
+
++ (WCNavSystemPopTransitionAnimator *)navSystemPopTransitionAnimator {
+    return [WCNavSystemPopTransitionAnimator new];
+}
+
+#pragma mark - Out Interactor
+
++ (WCNavSystemPopTransitionInteractor *)navSystemPopTransitionInteractor {
+    return [WCNavSystemPopTransitionInteractor new];
 }
 
 @end
