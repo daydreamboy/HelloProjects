@@ -8,6 +8,11 @@
 
 #import "WCNavSystemTransition.h"
 
+// >= `13.0`
+#ifndef IOS13_OR_LATER
+#define IOS13_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"13.0" options:NSNumericSearch] != NSOrderedAscending)
+#endif
+
 @interface WCNavSystemPopTransitionAnimator : NSObject <UIViewControllerAnimatedTransitioning>
 @end
 
@@ -78,6 +83,11 @@
 
 - (void)attachToPresentedViewController:(UIViewController *)presentedViewController {
     _presentedViewController = presentedViewController;
+    
+    if (IOS13_OR_LATER) {
+        _presentedViewController.modalPresentationStyle = UIModalPresentationFullScreen;
+    }
+    
     [self prepareGestureRecognizerInView:presentedViewController.view];
 }
 

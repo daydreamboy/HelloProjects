@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 #import "UseWCNavSystemTransitionViewController.h"
+#import "UseWCDragDownTransitionViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -31,9 +32,11 @@
     // MARK: Configure titles and classes for table view
     _titles = @[
         @"Use WCNavSystemTransition",
+        @"Use WCDragDownTransition",
     ];
     _classes = @[
         [UseWCNavSystemTransitionViewController class],
+        [UseWCDragDownTransitionViewController class],
     ];
 }
 

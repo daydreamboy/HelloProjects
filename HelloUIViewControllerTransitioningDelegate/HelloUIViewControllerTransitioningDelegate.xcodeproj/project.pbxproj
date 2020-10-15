@@ -16,7 +16,13 @@
 		2BC33BA91D354E1400F3CB57 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC33BA81D354E1400F3CB57 /* RootViewController.m */; };
 		2BC33BAE1D354F0B00F3CB57 /* Demo1ModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC33BAB1D354F0B00F3CB57 /* Demo1ModalViewController.m */; };
 		2BC33BAF1D354F0B00F3CB57 /* Demo1StackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BC33BAD1D354F0B00F3CB57 /* Demo1StackViewController.m */; };
+		4F13C7D22536E20E007D0AC9 /* WCDragDownTransitionAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F13C7D12536E20E007D0AC9 /* WCDragDownTransitionAnimator.m */; };
+		4F2AD22C2537F3D500A369F3 /* UseWCDragDownTransitionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2AD22B2537F3D500A369F3 /* UseWCDragDownTransitionViewController.m */; };
+		4F2AD2352537F53F00A369F3 /* Xcode.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F2AD2342537F53F00A369F3 /* Xcode.png */; };
 		4F8FDA2A20EB4F1A00C766D4 /* WCNavSystemTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FDA2920EB4F1A00C766D4 /* WCNavSystemTransition.m */; };
+		4FB6AE1A2537F8DE00A86219 /* DragDownPresentedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB6AE192537F8DE00A86219 /* DragDownPresentedViewController.m */; };
+		4FB6AE1E2538024200A86219 /* WCViewControllerTransitioningTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB6AE1D2538024200A86219 /* WCViewControllerTransitioningTool.m */; };
+		4FB6AE252538076100A86219 /* WCDragDownTransitionInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB6AE242538076100A86219 /* WCDragDownTransitionInteractor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,8 +43,20 @@
 		2BC33BAB1D354F0B00F3CB57 /* Demo1ModalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ModalViewController.m; sourceTree = "<group>"; };
 		2BC33BAC1D354F0B00F3CB57 /* Demo1StackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1StackViewController.h; sourceTree = "<group>"; };
 		2BC33BAD1D354F0B00F3CB57 /* Demo1StackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1StackViewController.m; sourceTree = "<group>"; };
+		4F13C7D02536E20E007D0AC9 /* WCDragDownTransitionAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCDragDownTransitionAnimator.h; sourceTree = "<group>"; };
+		4F13C7D12536E20E007D0AC9 /* WCDragDownTransitionAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCDragDownTransitionAnimator.m; sourceTree = "<group>"; };
+		4F2AD22A2537F3D500A369F3 /* UseWCDragDownTransitionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseWCDragDownTransitionViewController.h; sourceTree = "<group>"; };
+		4F2AD22B2537F3D500A369F3 /* UseWCDragDownTransitionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCDragDownTransitionViewController.m; sourceTree = "<group>"; };
+		4F2AD2342537F53F00A369F3 /* Xcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Xcode.png; sourceTree = "<group>"; };
 		4F8FDA2820EB4F1A00C766D4 /* WCNavSystemTransition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCNavSystemTransition.h; sourceTree = "<group>"; };
 		4F8FDA2920EB4F1A00C766D4 /* WCNavSystemTransition.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCNavSystemTransition.m; sourceTree = "<group>"; };
+		4FB6AE182537F8DE00A86219 /* DragDownPresentedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragDownPresentedViewController.h; sourceTree = "<group>"; };
+		4FB6AE192537F8DE00A86219 /* DragDownPresentedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DragDownPresentedViewController.m; sourceTree = "<group>"; };
+		4FB6AE1C2538024200A86219 /* WCViewControllerTransitioningTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCViewControllerTransitioningTool.h; sourceTree = "<group>"; };
+		4FB6AE1D2538024200A86219 /* WCViewControllerTransitioningTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewControllerTransitioningTool.m; sourceTree = "<group>"; };
+		4FB6AE212538044C00A86219 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
+		4FB6AE232538076100A86219 /* WCDragDownTransitionInteractor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCDragDownTransitionInteractor.h; sourceTree = "<group>"; };
+		4FB6AE242538076100A86219 /* WCDragDownTransitionInteractor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCDragDownTransitionInteractor.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +73,9 @@
 		2B5E26DF1D3894F700417BA8 /* TransitioningAnimators */ = {
 			isa = PBXGroup;
 			children = (
+				4FB6AE2B253808B400A86219 /* Interactor */,
+				4FB6AE2A253808A900A86219 /* Animator */,
+				4FB6AE282538076800A86219 /* Tools */,
 				2B5E26E61D3894F700417BA8 /* ONESwipeBackInteractionController.h */,
 				2B5E26E71D3894F700417BA8 /* ONESwipeBackInteractionController.m */,
 				4F8FDA2820EB4F1A00C766D4 /* WCNavSystemTransition.h */,
@@ -82,6 +103,7 @@
 		2BC33B8B1D354D4000F3CB57 /* HelloUIViewControllerTransitioningDelegate */ = {
 			isa = PBXGroup;
 			children = (
+				4F2AD22F2537F50C00A369F3 /* Resources */,
 				2BC33B8F1D354D4000F3CB57 /* AppDelegate.h */,
 				2BC33B901D354D4000F3CB57 /* AppDelegate.m */,
 				2BC33BA71D354E1400F3CB57 /* RootViewController.h */,
@@ -107,14 +129,70 @@
 		2BC33BA31D354E0900F3CB57 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4FB6AE202538043B00A86219 /* Tools */,
+				4F2AD22E2537F3E000A369F3 /* Dummy */,
 				2BC33BA41D354E0900F3CB57 /* UseWCNavSystemTransitionViewController.h */,
 				2BC33BA51D354E0900F3CB57 /* UseWCNavSystemTransitionViewController.m */,
+				4F2AD22A2537F3D500A369F3 /* UseWCDragDownTransitionViewController.h */,
+				4F2AD22B2537F3D500A369F3 /* UseWCDragDownTransitionViewController.m */,
+			);
+			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F2AD22E2537F3E000A369F3 /* Dummy */ = {
+			isa = PBXGroup;
+			children = (
 				2BC33BAA1D354F0B00F3CB57 /* Demo1ModalViewController.h */,
 				2BC33BAB1D354F0B00F3CB57 /* Demo1ModalViewController.m */,
 				2BC33BAC1D354F0B00F3CB57 /* Demo1StackViewController.h */,
 				2BC33BAD1D354F0B00F3CB57 /* Demo1StackViewController.m */,
+				4FB6AE182537F8DE00A86219 /* DragDownPresentedViewController.h */,
+				4FB6AE192537F8DE00A86219 /* DragDownPresentedViewController.m */,
 			);
-			path = AppTestDemos;
+			path = Dummy;
+			sourceTree = "<group>";
+		};
+		4F2AD22F2537F50C00A369F3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4F2AD2342537F53F00A369F3 /* Xcode.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		4FB6AE202538043B00A86219 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4FB6AE212538044C00A86219 /* WCMacroTool.h */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		4FB6AE282538076800A86219 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4FB6AE1C2538024200A86219 /* WCViewControllerTransitioningTool.h */,
+				4FB6AE1D2538024200A86219 /* WCViewControllerTransitioningTool.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		4FB6AE2A253808A900A86219 /* Animator */ = {
+			isa = PBXGroup;
+			children = (
+				4F13C7D02536E20E007D0AC9 /* WCDragDownTransitionAnimator.h */,
+				4F13C7D12536E20E007D0AC9 /* WCDragDownTransitionAnimator.m */,
+			);
+			path = Animator;
+			sourceTree = "<group>";
+		};
+		4FB6AE2B253808B400A86219 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				4FB6AE232538076100A86219 /* WCDragDownTransitionInteractor.h */,
+				4FB6AE242538076100A86219 /* WCDragDownTransitionInteractor.m */,
+			);
+			path = Interactor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,6 +255,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BC33B9C1D354D4000F3CB57 /* LaunchScreen.storyboard in Resources */,
+				4F2AD2352537F53F00A369F3 /* Xcode.png in Resources */,
 				2BC33B991D354D4000F3CB57 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -191,10 +270,15 @@
 				2BC33B911D354D4000F3CB57 /* AppDelegate.m in Sources */,
 				2BC33BA61D354E0900F3CB57 /* UseWCNavSystemTransitionViewController.m in Sources */,
 				2BC33B8E1D354D4000F3CB57 /* main.m in Sources */,
+				4F13C7D22536E20E007D0AC9 /* WCDragDownTransitionAnimator.m in Sources */,
 				4F8FDA2A20EB4F1A00C766D4 /* WCNavSystemTransition.m in Sources */,
+				4F2AD22C2537F3D500A369F3 /* UseWCDragDownTransitionViewController.m in Sources */,
 				2BC33BA91D354E1400F3CB57 /* RootViewController.m in Sources */,
 				2BC33BAF1D354F0B00F3CB57 /* Demo1StackViewController.m in Sources */,
 				2BC33BAE1D354F0B00F3CB57 /* Demo1ModalViewController.m in Sources */,
+				4FB6AE1A2537F8DE00A86219 /* DragDownPresentedViewController.m in Sources */,
+				4FB6AE252538076100A86219 /* WCDragDownTransitionInteractor.m in Sources */,
+				4FB6AE1E2538024200A86219 /* WCViewControllerTransitioningTool.m in Sources */,
 				2B5E26EB1D3894F800417BA8 /* ONESwipeBackInteractionController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

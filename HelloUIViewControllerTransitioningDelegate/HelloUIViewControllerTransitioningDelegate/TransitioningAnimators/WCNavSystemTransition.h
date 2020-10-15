@@ -24,6 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) WCNavSystemPopTransitionInteractor *navSystemPopInteractor;
 @end
 
+/**
+ iOS 13+ simulator, Try enabling Window > Show Device Bezels for the iOS Simulator
+ @see https://stackoverflow.com/questions/58082831/uiscreenedgepangesturerecognizer-wont-work-in-ios-13-simulator
+ */
 @interface WCNavSystemTransition : NSObject
 
 #pragma mark - In/Out Transition
