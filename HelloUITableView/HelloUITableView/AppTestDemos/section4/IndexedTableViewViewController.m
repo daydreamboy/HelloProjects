@@ -10,7 +10,6 @@
 
 @interface IndexedTableViewViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *listData;
 @property (nonatomic, strong) NSMutableArray<NSArray *> *sectionListData;
 @end
 
@@ -21,30 +20,27 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
     
-    if (!_listData) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"computers" ofType:@"plist"];
-        NSMutableArray *array = [[NSMutableArray alloc] initWithContentsOfFile:path];
-        _listData = array;
-        
-        [_listData sortUsingSelector:@selector(compare:)];
-        
-        _sectionListData = [NSMutableArray array];
-        
-        NSString *previousPrefix = nil;
-        NSMutableArray *currentSection;
-        
-        for (NSString *string in _listData) {
-            NSString *prefix = [string substringToIndex:1];
-            if ([previousPrefix isEqualToString:prefix]) {
-                [currentSection addObject:string];
-            }
-            else {
-                currentSection = [NSMutableArray array];
-                [currentSection addObject:string];
-                [_sectionListData addObject:currentSection];
-                
-                previousPrefix = prefix;
-            }
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"computers" ofType:@"plist"];
+    NSMutableArray *array = [[NSMutableArray alloc] initWithContentsOfFile:path];
+    
+    [array sortUsingSelector:@selector(compare:)];
+    
+    _sectionListData = [NSMutableArray array];
+    
+    NSString *previousPrefix = nil;
+    NSMutableArray *currentSection;
+    
+    for (NSString *string in array) {
+        NSString *prefix = [string substringToIndex:1];
+        if ([previousPrefix isEqualToString:prefix]) {
+            [currentSection addObject:string];
+        }
+        else {
+            currentSection = [NSMutableArray array];
+            [currentSection addObject:string];
+            [_sectionListData addObject:currentSection];
+            
+            previousPrefix = prefix;
         }
     }
 }
