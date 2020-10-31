@@ -544,6 +544,35 @@ cell.addSubview(textField)
 
 
 
+### （7）UITableView首次设置tableHeaderView的问题
+
+​       UITableView首次设置tableHeaderView，会调用一次numberOfSectionsInTableView:方法。如果UITableView和numberOfSectionsInTableView:方法，是下面的代码结构，会导致循环调用，最终会crash。
+
+```objective-c
+- (UITableView *)tableView {
+    if (!_tableView) {
+        UITableView *tableView = [[UITableView alloc] init...];
+        // !!!: Firstly set tableHeaderView will call numberOfSectionsInTableView: method
+        tableView.tableHeaderView = ({
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 30)];
+            view.backgroundColor = [UIColor yellowColor];
+            view;
+        });
+        _tableView = tableView;
+    }
+    return _tableView;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {    
+    self.tableView.backgroundView = nil;
+    return 1;
+}
+```
+
+
+
+> 示例代码，见TableViewHeaderIssueCircularCallViewController
+
 
 
 

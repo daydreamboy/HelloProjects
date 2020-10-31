@@ -1,19 +1,20 @@
 //
-//  ShowEmptyTipViewInUITableViewViewController.m
+//  TableViewHeaderIssueViewController.m
 //  HelloUITableView
 //
-//  Created by wesley_chen on 2019/6/5.
-//  Copyright © 2019 wesley_chen. All rights reserved.
+//  Created by wesley_chen on 2020/10/31.
+//  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
-#import "ShowEmptyTipViewInUITableViewViewController.h"
+#import "TableViewHeaderIssueCircularCallViewController.h"
+#import "WCColorTool.h"
 
-@interface ShowEmptyTipViewInUITableViewViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface TableViewHeaderIssueCircularCallViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray<NSArray<NSString *> *> *listData;
 @end
 
-@implementation ShowEmptyTipViewInUITableViewViewController
+@implementation TableViewHeaderIssueCircularCallViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -65,6 +66,8 @@
         UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, screenSize.width, screenSize.height - 64) style:UITableViewStylePlain];
         tableView.delegate = self;
         tableView.dataSource = self;
+        
+        // !!!: Firstly set tableHeaderView will call numberOfSectionsInTableView: method
         tableView.tableHeaderView = ({
             UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 30)];
             view.backgroundColor = [UIColor yellowColor];
@@ -80,12 +83,17 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    NSLog(@"numberOfSectionsInTableView called");
+    __unused NSInteger numOfSections = [self.listData count];
     
-    // @see https://stackoverflow.com/a/28533438
-    NSInteger numOfSections = [self.listData count];
+    // !!!: self.tableView will call getter method which set tableHeaderView again, this make a cycle to crash
+    // MARK: Solution: use _tableView instead of self.tableView to break the cycle
+    /*
     if (numOfSections) {
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        _tableView.backgroundView = nil;
+     */
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+        self.tableView.backgroundView = nil;
+    /*
     }
     else {
         UILabel *noDataLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, self.tableView.bounds.size.height)];
@@ -95,6 +103,7 @@
         self.tableView.backgroundView = noDataLabel;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
+     */
     
     return 1;
 }
@@ -104,7 +113,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *sCellIdentifier = @"FadeInCellRowByRowViewController_sCellIdentifier";
+    static NSString *sCellIdentifier = @"TableViewHeaderIssueViewController_sCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
@@ -118,16 +127,11 @@
 #pragma mark - Action
 
 - (void)rightItemClicked:(id)sender {
-    static int count;
-    count++;
-    
-    if (count % 2 == 0) {
-        [self setup];
-    }
-    else {
-        self.listData = nil;
-    }
-    [self.tableView reloadData];
+    self.tableView.tableHeaderView = ({
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.tableView.bounds), 30)];
+        view.backgroundColor = [WCColorTool randomColor];
+        view;
+    });
 }
 
 @end

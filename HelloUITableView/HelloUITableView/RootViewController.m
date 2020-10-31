@@ -50,6 +50,7 @@
 #import "ReloadRowsWithEmptyListViewController.h"
 #import "CallReloadDataInsideCellForRowAtIndexPathViewController.h"
 #import "CellContentIssueAboveiOS14ViewController.h"
+#import "TableViewHeaderIssueCircularCallViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -120,6 +121,7 @@
           @{ kTitle: @"Reload rows with empty list", kClass: [ReloadRowsWithEmptyListViewController class] },
           @{ kTitle: @"Cell content issue iOS14+", kClass: [CellContentIssueAboveiOS14ViewController class] },
           @{ kTitle: @"Test", kClass: [CallReloadDataInsideCellForRowAtIndexPathViewController class] },
+          @{ kTitle: @"TableViewHeader circular call", kClass: [TableViewHeaderIssueCircularCallViewController class] },
     ];
     
     NSArray<NSDictionary *> *section6 = @[
