@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F12BD922550549C00C59CA9 /* WCLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F12BD912550549C00C59CA9 /* WCLabel.m */; };
+		4F12BD982550576400C59CA9 /* ShowLinkWithWCLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F12BD972550576400C59CA9 /* ShowLinkWithWCLabelViewController.m */; };
 		4F1ADA3D24EC060A00BCF38F /* DebugBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1ADA3C24EC060A00BCF38F /* DebugBaseViewController.m */; };
 		4F1ADA4124EC071A00BCF38F /* UseYYTextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1ADA4024EC071A00BCF38F /* UseYYTextViewViewController.m */; };
 		4F1D7DCB2122B2D20021023C /* LabelWithMaximumLinesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1D7DCA2122B2D20021023C /* LabelWithMaximumLinesViewController.m */; };
 		4F1F0C472520710D00C5FAFD /* AutoFontSizeNotWorkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F0C462520710D00C5FAFD /* AutoFontSizeNotWorkViewController.m */; };
 		4F1F0C4B25207BD800C5FAFD /* WCFontTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F0C4A25207BD800C5FAFD /* WCFontTool.m */; };
 		4F1F0C5025207F9300C5FAFD /* AutoFontSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F0C4F25207F9300C5FAFD /* AutoFontSizeViewController.m */; };
+		4F238EEC2546CC8600ACE383 /* WCLabelTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F238EEB2546CC8600ACE383 /* WCLabelTool.m */; };
+		4F238EF02546D90A00ACE383 /* LabelWithLinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F238EEF2546D90A00ACE383 /* LabelWithLinkViewController.m */; };
 		4F4EF6B6245C15B3003F32F4 /* 079@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F4EF6B4245C15B2003F32F4 /* 079@2x.png */; };
 		4F4EF6B7245C15B3003F32F4 /* 090@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F4EF6B5245C15B2003F32F4 /* 090@2x.png */; };
 		4F4EF6B9245C16AC003F32F4 /* EmoticonInfo_new.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4F4EF6B8245C16AC003F32F4 /* EmoticonInfo_new.plist */; };
@@ -123,6 +127,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F12BD902550549C00C59CA9 /* WCLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCLabel.h; sourceTree = "<group>"; };
+		4F12BD912550549C00C59CA9 /* WCLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCLabel.m; sourceTree = "<group>"; };
+		4F12BD962550576400C59CA9 /* ShowLinkWithWCLabelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowLinkWithWCLabelViewController.h; sourceTree = "<group>"; };
+		4F12BD972550576400C59CA9 /* ShowLinkWithWCLabelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowLinkWithWCLabelViewController.m; sourceTree = "<group>"; };
 		4F1ADA3B24EC060A00BCF38F /* DebugBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugBaseViewController.h; sourceTree = "<group>"; };
 		4F1ADA3C24EC060A00BCF38F /* DebugBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugBaseViewController.m; sourceTree = "<group>"; };
 		4F1ADA3F24EC071A00BCF38F /* UseYYTextViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseYYTextViewViewController.h; sourceTree = "<group>"; };
@@ -135,6 +143,10 @@
 		4F1F0C4A25207BD800C5FAFD /* WCFontTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCFontTool.m; sourceTree = "<group>"; };
 		4F1F0C4E25207F9300C5FAFD /* AutoFontSizeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoFontSizeViewController.h; sourceTree = "<group>"; };
 		4F1F0C4F25207F9300C5FAFD /* AutoFontSizeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoFontSizeViewController.m; sourceTree = "<group>"; };
+		4F238EEA2546CC8600ACE383 /* WCLabelTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCLabelTool.h; sourceTree = "<group>"; };
+		4F238EEB2546CC8600ACE383 /* WCLabelTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCLabelTool.m; sourceTree = "<group>"; };
+		4F238EEE2546D90A00ACE383 /* LabelWithLinkViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabelWithLinkViewController.h; sourceTree = "<group>"; };
+		4F238EEF2546D90A00ACE383 /* LabelWithLinkViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelWithLinkViewController.m; sourceTree = "<group>"; };
 		4F4EF6B4245C15B2003F32F4 /* 079@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "079@2x.png"; sourceTree = "<group>"; };
 		4F4EF6B5245C15B2003F32F4 /* 090@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "090@2x.png"; sourceTree = "<group>"; };
 		4F4EF6B8245C16AC003F32F4 /* EmoticonInfo_new.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = EmoticonInfo_new.plist; sourceTree = "<group>"; };
@@ -352,6 +364,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F12BD8F2550547300C59CA9 /* WCLabel */ = {
+			isa = PBXGroup;
+			children = (
+				4F12BD902550549C00C59CA9 /* WCLabel.h */,
+				4F12BD912550549C00C59CA9 /* WCLabel.m */,
+			);
+			path = WCLabel;
+			sourceTree = "<group>";
+		};
+		4F12BD952550573A00C59CA9 /* WCLabel */ = {
+			isa = PBXGroup;
+			children = (
+				4F12BD962550576400C59CA9 /* ShowLinkWithWCLabelViewController.h */,
+				4F12BD972550576400C59CA9 /* ShowLinkWithWCLabelViewController.m */,
+			);
+			path = WCLabel;
+			sourceTree = "<group>";
+		};
 		4F1ADA3E24EC06FD00BCF38F /* YYTextView */ = {
 			isa = PBXGroup;
 			children = (
@@ -359,6 +389,15 @@
 				4F1ADA4024EC071A00BCF38F /* UseYYTextViewViewController.m */,
 			);
 			path = YYTextView;
+			sourceTree = "<group>";
+		};
+		4F238EE92546CC2B00ACE383 /* WCLabelTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F238EEA2546CC8600ACE383 /* WCLabelTool.h */,
+				4F238EEB2546CC8600ACE383 /* WCLabelTool.m */,
+			);
+			path = WCLabelTool;
 			sourceTree = "<group>";
 		};
 		4F4EF6BA245C19EF003F32F4 /* UILabel */ = {
@@ -370,6 +409,8 @@
 				4F1D7DCA2122B2D20021023C /* LabelWithMaximumLinesViewController.m */,
 				4F517B2B212E90C9008CE69F /* LabelWithHyphenationViewController.h */,
 				4F517B2C212E90C9008CE69F /* LabelWithHyphenationViewController.m */,
+				4F238EEE2546D90A00ACE383 /* LabelWithLinkViewController.h */,
+				4F238EEF2546D90A00ACE383 /* LabelWithLinkViewController.m */,
 				4FA253FC21AEE4DF00E4C6FC /* TextAlignmentViewController.h */,
 				4FA253FD21AEE4DF00E4C6FC /* TextAlignmentViewController.m */,
 				4F1F0C452520710D00C5FAFD /* AutoFontSizeNotWorkViewController.h */,
@@ -423,6 +464,8 @@
 		4F9382E920C6D67C00568EE1 = {
 			isa = PBXGroup;
 			children = (
+				4F12BD8F2550547300C59CA9 /* WCLabel */,
+				4F238EE92546CC2B00ACE383 /* WCLabelTool */,
 				4FAF510F21500F2B006A7509 /* YYKit */,
 				4F9382F420C6D67C00568EE1 /* HelloUILabel */,
 				4F9382F320C6D67C00568EE1 /* Products */,
@@ -458,6 +501,7 @@
 		4F93830B20C6D6AE00568EE1 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F12BD952550573A00C59CA9 /* WCLabel */,
 				4F1ADA3E24EC06FD00BCF38F /* YYTextView */,
 				4F4EF6BB245C1A4E003F32F4 /* YYLabel */,
 				4F4EF6BA245C19EF003F32F4 /* UILabel */,
@@ -879,6 +923,7 @@
 				4FAF51F021500F2B006A7509 /* UIBarButtonItem+YYAdd.m in Sources */,
 				4FAF51D321500F2B006A7509 /* YYTextView.m in Sources */,
 				4FAF51D921500F2B006A7509 /* YYTextLine.m in Sources */,
+				4F238EF02546D90A00ACE383 /* LabelWithLinkViewController.m in Sources */,
 				4FAF51CA21500F2B006A7509 /* _YYWebImageSetter.m in Sources */,
 				4FAF520D21500F2B006A7509 /* YYFileHash.m in Sources */,
 				4FAF51FC21500F2B006A7509 /* NSTimer+YYAdd.m in Sources */,
@@ -911,6 +956,7 @@
 				4FAF51DF21500F2B006A7509 /* YYTextUtilities.m in Sources */,
 				4FAF51F521500F2B006A7509 /* NSArray+YYAdd.m in Sources */,
 				4FAF520121500F2B006A7509 /* NSDictionary+YYAdd.m in Sources */,
+				4F12BD982550576400C59CA9 /* ShowLinkWithWCLabelViewController.m in Sources */,
 				4FAF51F221500F2B006A7509 /* UIImage+YYAdd.m in Sources */,
 				4FAF51FF21500F2B006A7509 /* NSString+YYAdd.m in Sources */,
 				4FAF51C521500F2B006A7509 /* YYWebImageManager.m in Sources */,
@@ -919,6 +965,7 @@
 				4FAF51D221500F2B006A7509 /* YYClassInfo.m in Sources */,
 				4F93831420C6D6C900568EE1 /* RootViewController.m in Sources */,
 				4FAF51EB21500F2B006A7509 /* UIApplication+YYAdd.m in Sources */,
+				4F12BD922550549C00C59CA9 /* WCLabel.m in Sources */,
 				4F1F0C5025207F9300C5FAFD /* AutoFontSizeViewController.m in Sources */,
 				4FAF520021500F2B006A7509 /* NSNotificationCenter+YYAdd.m in Sources */,
 				4FAF520F21500F2B006A7509 /* YYThreadSafeArray.m in Sources */,
@@ -928,6 +975,7 @@
 				4FAF51F821500F2B006A7509 /* NSObject+YYAdd.m in Sources */,
 				4FAF51DB21500F2B006A7509 /* YYTextKeyboardManager.m in Sources */,
 				4FAF51EA21500F2B006A7509 /* UIDevice+YYAdd.m in Sources */,
+				4F238EEC2546CC8600ACE383 /* WCLabelTool.m in Sources */,
 				4FAF51E121500F2B006A7509 /* YYTextParser.m in Sources */,
 				4FAF51D721500F2B006A7509 /* YYTextInput.m in Sources */,
 			);
