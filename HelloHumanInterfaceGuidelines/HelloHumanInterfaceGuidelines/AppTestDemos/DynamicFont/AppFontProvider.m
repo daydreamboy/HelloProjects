@@ -17,7 +17,6 @@ NSString *AppValueKey_cell_height = @"cell_height";
 
 - (UIFont *)fontWithProviderName:(NSString *)name forKey:(NSString *)key {
     if ([name isEqualToString:@"large"]) {
-        
         NSDictionary *fonts = @{
             AppFontKey_label_body: [UIFont systemFontOfSize:40],
             AppFontKey_cell_title: [UIFont systemFontOfSize:30],

@@ -45,10 +45,10 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Set Dynamic Font
  
- @param label the UILabel object
+ @param object[nullable] the object which can set text
  @param key the key for the keyed font
- @param defaultFont_ the default font if the provider not find the keyed font
- @param block the callback when its font did change. The block type see WCFontDidChangeBlockType
+ @param defaultFont the default font if the provider not find the keyed font
+ @param block[nullable] the callback when its font did change. The block type see WCFontDidChangeBlockType
  
  @return YES if set successfully, NO if not
  

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F0E6E10253048F0007B12DF /* AppFont.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F0E6E0F253048F0007B12DF /* AppFont.json */; };
 		4F17290224DD80AF00110D4C /* UseSystemDynamicColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F17290124DD80AF00110D4C /* UseSystemDynamicColorViewController.m */; };
 		4F2017DB252AC14C004CF916 /* WCThemeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2017DA252AC14C004CF916 /* WCThemeManager.m */; };
 		4F2376ED241F334000389A64 /* UseSystemColorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2376EC241F334000389A64 /* UseSystemColorViewController.m */; };
@@ -40,6 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F0E6E0F253048F0007B12DF /* AppFont.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = AppFont.json; sourceTree = "<group>"; };
 		4F17290024DD80AF00110D4C /* UseSystemDynamicColorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseSystemDynamicColorViewController.h; sourceTree = "<group>"; };
 		4F17290124DD80AF00110D4C /* UseSystemDynamicColorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseSystemDynamicColorViewController.m; sourceTree = "<group>"; };
 		4F18EB32250FC5690014D88F /* WCColorProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCColorProvider.h; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 		4F201689252ABFCC004CF916 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F0E6E0F253048F0007B12DF /* AppFont.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -368,6 +371,7 @@
 			files = (
 				4F2820ED241B31D60032E16A /* LaunchScreen.storyboard in Resources */,
 				4F2820EA241B31D60032E16A /* Assets.xcassets in Resources */,
+				4F0E6E10253048F0007B12DF /* AppFont.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
