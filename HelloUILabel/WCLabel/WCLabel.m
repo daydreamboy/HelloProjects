@@ -8,11 +8,11 @@
 
 #import "WCLabel.h"
 
-@interface WCLabelLayoutManager : NSLayoutManager
+@interface WCLabel_LayoutManager : NSLayoutManager
 
 @end
 
-@implementation WCLabelLayoutManager
+@implementation WCLabel_LayoutManager
 
 - (void)drawUnderlineForGlyphRange:(NSRange)glyphRange
                      underlineType:(NSUnderlineStyle)underlineVal
@@ -48,78 +48,71 @@
 - (void)fillBackgroundRectArray:(const CGRect *)rectArray count:(NSUInteger)rectCount forCharacterRange:(NSRange)charRange color:(UIColor *)color {
     // @see https://stackoverflow.com/questions/21857408/how-to-set-nsstrings-background-cornerradius-on-ios7
     // @see https://stackoverflow.com/questions/16362407/nsattributedstring-background-color-and-rounded-corners
-     CGFloat halfLineWidth = 4.; // change this to change corners radius
+    CGFloat halfLineWidth = 4.; // change this to change corners radius
 
-     CGMutablePathRef path = CGPathCreateMutable();
+    CGMutablePathRef path = CGPathCreateMutable();
 
-     if (rectCount == 1
-         || (rectCount == 2 && (CGRectGetMaxX(rectArray[1]) < CGRectGetMinX(rectArray[0])))
-        )
-    {
+    if (rectCount == 1 || (rectCount == 2 && (CGRectGetMaxX(rectArray[1]) < CGRectGetMinX(rectArray[0])))) {
         // 1 rect or 2 rects without edges in contact
 
          CGPathAddRect(path, NULL, CGRectInset(rectArray[0], halfLineWidth, halfLineWidth));
          if (rectCount == 2)
-            CGPathAddRect(path, NULL, CGRectInset(rectArray[1], halfLineWidth, halfLineWidth));
+             CGPathAddRect(path, NULL, CGRectInset(rectArray[1], halfLineWidth, halfLineWidth));
     }
-     else
-    {
+    else {
         // 2 or 3 rects
-         NSUInteger lastRect = rectCount - 1;
+        NSUInteger lastRect = rectCount - 1;
 
-         CGPathMoveToPoint(path, NULL, CGRectGetMinX(rectArray[0]) + halfLineWidth, CGRectGetMaxY(rectArray[0]) + halfLineWidth);
+        CGPathMoveToPoint(path, NULL, CGRectGetMinX(rectArray[0]) + halfLineWidth, CGRectGetMaxY(rectArray[0]) + halfLineWidth);
 
-         CGPathAddLineToPoint(path, NULL, CGRectGetMinX(rectArray[0]) + halfLineWidth, CGRectGetMinY(rectArray[0]) + halfLineWidth);
-         CGPathAddLineToPoint(path, NULL, CGRectGetMaxX(rectArray[0]) - halfLineWidth, CGRectGetMinY(rectArray[0]) + halfLineWidth);
+        CGPathAddLineToPoint(path, NULL, CGRectGetMinX(rectArray[0]) + halfLineWidth, CGRectGetMinY(rectArray[0]) + halfLineWidth);
+        CGPathAddLineToPoint(path, NULL, CGRectGetMaxX(rectArray[0]) - halfLineWidth, CGRectGetMinY(rectArray[0]) + halfLineWidth);
 
-         CGPathAddLineToPoint(path, NULL, CGRectGetMaxX(rectArray[0]) - halfLineWidth, CGRectGetMinY(rectArray[lastRect]) - halfLineWidth);
-         CGPathAddLineToPoint(path, NULL, CGRectGetMaxX(rectArray[lastRect]) - halfLineWidth, CGRectGetMinY(rectArray[lastRect]) - halfLineWidth);
+        CGPathAddLineToPoint(path, NULL, CGRectGetMaxX(rectArray[0]) - halfLineWidth, CGRectGetMinY(rectArray[lastRect]) - halfLineWidth);
+        CGPathAddLineToPoint(path, NULL, CGRectGetMaxX(rectArray[lastRect]) - halfLineWidth, CGRectGetMinY(rectArray[lastRect]) - halfLineWidth);
 
-         CGPathAddLineToPoint(path, NULL, CGRectGetMaxX(rectArray[lastRect]) - halfLineWidth, CGRectGetMaxY(rectArray[lastRect]) - halfLineWidth);
-         CGPathAddLineToPoint(path, NULL, CGRectGetMinX(rectArray[lastRect]) + halfLineWidth, CGRectGetMaxY(rectArray[lastRect]) - halfLineWidth);
+        CGPathAddLineToPoint(path, NULL, CGRectGetMaxX(rectArray[lastRect]) - halfLineWidth, CGRectGetMaxY(rectArray[lastRect]) - halfLineWidth);
+        CGPathAddLineToPoint(path, NULL, CGRectGetMinX(rectArray[lastRect]) + halfLineWidth, CGRectGetMaxY(rectArray[lastRect]) - halfLineWidth);
 
-         CGPathAddLineToPoint(path, NULL, CGRectGetMinX(rectArray[lastRect]) + halfLineWidth, CGRectGetMaxY(rectArray[0]) + halfLineWidth);
+        CGPathAddLineToPoint(path, NULL, CGRectGetMinX(rectArray[lastRect]) + halfLineWidth, CGRectGetMaxY(rectArray[0]) + halfLineWidth);
 
-         CGPathCloseSubpath(path);
+        CGPathCloseSubpath(path);
+        
     }
-
+    
     [color set]; // set fill and stroke color
 
-     CGContextRef ctx = UIGraphicsGetCurrentContext();
-     CGContextSetLineWidth(ctx, halfLineWidth * 2.);
-     CGContextSetLineJoin(ctx, kCGLineJoinRound);
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSetLineWidth(ctx, halfLineWidth * 2.);
+    CGContextSetLineJoin(ctx, kCGLineJoinRound);
 
-     CGContextAddPath(ctx, path);
-     CGPathRelease(path);
+    CGContextAddPath(ctx, path);
+    CGPathRelease(path);
 
-     CGContextDrawPath(ctx, kCGPathFillStroke);
+    CGContextDrawPath(ctx, kCGPathFillStroke);
 }
 
 @end
 
-@interface TouchGestureRecognizer : UIGestureRecognizer
+@interface WCLabel_TouchGestureRecognizer : UIGestureRecognizer
 
 @end
 
-@implementation TouchGestureRecognizer
+@implementation WCLabel_TouchGestureRecognizer
  
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
    self.state = UIGestureRecognizerStateBegan;
 }
  
-- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
    self.state = UIGestureRecognizerStateChanged;
 }
  
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
    self.state = UIGestureRecognizerStateEnded;
 }
  
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
-{
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event {
    self.state = UIGestureRecognizerStateCancelled;
 }
  
@@ -130,7 +123,6 @@
 @property (nonatomic, strong) NSLayoutManager *layoutManager;
 @property (nonatomic, strong) NSTextContainer *textContainer;
 @property (nonatomic, assign) NSRange selectedRange;
-@property (nonatomic, strong) UIColor *selectedLinkBackgroundColor;
 @end
 
 @implementation WCLabel
@@ -138,7 +130,7 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self _commonSetup];
+        [self setupCommon];
     }
     return self;
 }
@@ -146,7 +138,7 @@
 - (instancetype)initWithCoder:(NSCoder *)coder {
     self = [super initWithCoder:coder];
     if (self) {
-        [self _commonSetup];
+        [self setupCommon];
     }
     return self;
 }
@@ -208,10 +200,8 @@
     // Measure the text with the new state
     CGRect textBounds;
     @try {
-        NSRange glyphRange = [self.layoutManager
-                              glyphRangeForTextContainer:self.textContainer];
-        textBounds = [self.layoutManager boundingRectForGlyphRange:glyphRange
-                                         inTextContainer:self.textContainer];
+        NSRange glyphRange = [self.layoutManager glyphRangeForTextContainer:self.textContainer];
+        textBounds = [self.layoutManager boundingRectForGlyphRange:glyphRange inTextContainer:self.textContainer];
    
         // Position the bounds and round up the size for good measure
         textBounds.origin = bounds.origin;
@@ -231,7 +221,7 @@
     // Calculate the offset of the text in the view
     CGPoint textOffset;
     NSRange glyphRange = [self.layoutManager glyphRangeForTextContainer:self.textContainer];
-    textOffset = [self _textOffsetForGlyphRange:glyphRange];
+    textOffset = [self textOffsetForGlyphRange:glyphRange];
   
     // Drawing code
     [self.layoutManager drawBackgroundForGlyphRange:glyphRange atPoint:textOffset];
@@ -243,19 +233,19 @@
 
 #pragma mark -
 
-- (void)_commonSetup {
+- (void)setupCommon {
     // Make sure user interaction is enabled so we can accept touches
     self.userInteractionEnabled = YES;
   
     // Default background colour looks good on a white background
-    self.selectedLinkBackgroundColor = [UIColor greenColor];// [UIColor colorWithWhite:0.95 alpha:1.0];
+    self.linkBackgroundColor = [UIColor greenColor];// [UIColor colorWithWhite:0.95 alpha:1.0];
   
-    TouchGestureRecognizer *touch = [[TouchGestureRecognizer alloc] initWithTarget:self action:@selector(_handleTouch:)];
+    WCLabel_TouchGestureRecognizer *touch = [[WCLabel_TouchGestureRecognizer alloc] initWithTarget:self action:@selector(labelTouched:)];
     touch.delegate = self;
     [self addGestureRecognizer:touch];
 }
 
-- (CGPoint)_textOffsetForGlyphRange:(NSRange)glyphRange {
+- (CGPoint)textOffsetForGlyphRange:(NSRange)glyphRange {
     CGPoint textOffset = CGPointZero;
   
     CGRect textBounds = [self.layoutManager boundingRectForGlyphRange:glyphRange inTextContainer:self.textContainer];
@@ -282,7 +272,7 @@
 - (NSLayoutManager *)layoutManager {
     if (!_layoutManager) {
        // Create a layout manager for rendering
-       _layoutManager = [[WCLabelLayoutManager alloc] init];
+       _layoutManager = [[WCLabel_LayoutManager alloc] init];
        _layoutManager.delegate = self;
        [_layoutManager addTextContainer:self.textContainer];
     }
@@ -307,7 +297,7 @@
 
 #pragma mark - Touching
 
-- (NSUInteger)_stringIndexAtLocation:(CGPoint)location {
+- (NSUInteger)stringIndexAtLocation:(CGPoint)location {
     // Do nothing if we have no text
     if (self.textStorage.string.length == 0) {
        return NSNotFound;
@@ -317,7 +307,7 @@
     CGPoint textOffset;
     NSRange glyphRange = [self.layoutManager
                           glyphRangeForTextContainer:self.textContainer];
-    textOffset = [self _textOffsetForGlyphRange:glyphRange];
+    textOffset = [self textOffsetForGlyphRange:glyphRange];
   
     // Get the touch location and use text offset to convert to text cotainer coords
     location.x -= textOffset.x;
@@ -347,7 +337,7 @@
   
     // Apply the new selection to the text
     if (range.length) {
-        [self.textStorage addAttribute:NSBackgroundColorAttributeName value:self.selectedLinkBackgroundColor range:range];
+        [self.textStorage addAttribute:NSBackgroundColorAttributeName value:self.linkBackgroundColor range:range];
     }
   
     // Save the new range
@@ -356,53 +346,45 @@
     [self setNeedsDisplay];
 }
 
-- (void)_handleTouch:(TouchGestureRecognizer *)gesture {
+- (void)labelTouched:(WCLabel_TouchGestureRecognizer *)gesture {
    // Get the info for the touched link if there is one
    CGPoint touchLocation = [gesture locationInView:self];
-   NSInteger index = [self _stringIndexAtLocation:touchLocation];
+   NSInteger index = [self stringIndexAtLocation:touchLocation];
  
    NSRange effectiveRange = NSMakeRange(NSNotFound, 0);
    NSString *touchedUrlString = nil;
  
-   if (index != NSNotFound)
-   {
+   if (index != NSNotFound) {
       touchedUrlString = [self.attributedText attribute:NSLinkAttributeName atIndex:index effectiveRange:&effectiveRange];
    }
  
-   switch (gesture.state)
-   {
-      case UIGestureRecognizerStateBegan:
-      {
-         if (touchedUrlString)
-         {
-            self.selectedRange = effectiveRange;
-         }
-         else
-         {
-            // no URL, cancel gesture
-            gesture.enabled = NO;
-            gesture.enabled = YES;
-         }
- 
-         break;
-      }
+   switch (gesture.state) {
+       case UIGestureRecognizerStateBegan: {
+          if (touchedUrlString) {
+             self.selectedRange = effectiveRange;
+          }
+          else {
+             // no URL, cancel gesture
+             gesture.enabled = NO;
+             gesture.enabled = YES;
+          }
+  
+          break;
+       }
        case UIGestureRecognizerStateChanged: {
            break;
        }
-      case UIGestureRecognizerStateEnded:
-      {
-         if (touchedUrlString && self.linkTappedBlock)
-         {
-             self.linkTappedBlock(touchedUrlString);
-         }
-      }
- 
-      default:
-      {
-         self.selectedRange = NSMakeRange(0, 0);
- 
-         break;
-      }
+       case UIGestureRecognizerStateEnded: {
+           if (touchedUrlString && self.linkTappedBlock) {
+               self.linkTappedBlock(touchedUrlString);
+           }
+           self.selectedRange = NSMakeRange(0, 0);
+           break;
+       }
+       default: {
+           self.selectedRange = NSMakeRange(0, 0);
+           break;
+       }
    }
 }
 
@@ -416,7 +398,7 @@
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     CGPoint touchLocation = [touch locationInView:self];
   
-    NSInteger index = [self _stringIndexAtLocation:touchLocation];
+    NSInteger index = [self stringIndexAtLocation:touchLocation];
   
     NSRange effectiveRange;
     NSString *touchedUrl = nil;

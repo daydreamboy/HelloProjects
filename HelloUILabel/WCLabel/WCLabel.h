@@ -11,7 +11,10 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WCLabel : UILabel
+
+@property (nonatomic, strong) UIColor *linkBackgroundColor;
 @property (nonatomic, copy) void (^linkTappedBlock)(NSString *linkString);
+
 @end
 
 NS_ASSUME_NONNULL_END

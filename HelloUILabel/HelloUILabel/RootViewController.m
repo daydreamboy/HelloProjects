@@ -16,11 +16,15 @@
 // section 1
 #import "LabelWithMaximumLinesViewController.h"
 #import "LabelWithHyphenationViewController.h"
+#import "LabelWithLinkViewController.h"
 #import "TextAlignmentViewController.h"
 #import "AutoFontSizeNotWorkViewController.h"
 #import "AutoFontSizeViewController.h"
 
 #import "UseYYTextViewViewController.h"
+
+// section 4
+#import "ShowLinkWithWCLabelViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -49,6 +53,7 @@
           @{ kTitle: @"TestUILabelViewController", kClass: [UseUILabelViewController class] },
           @{ kTitle: @"LabelWithMaximumLinesViewController", kClass: [LabelWithMaximumLinesViewController class] },
           @{ kTitle: @"LabelWithHyphenationViewController", kClass: [LabelWithHyphenationViewController class] },
+          @{ kTitle: @"Label with link", kClass: [LabelWithLinkViewController class] },          
           @{ kTitle: @"TextAlignmentViewController", kClass: [TextAlignmentViewController class] },
           @{ kTitle: @"Auto font size (not work)", kClass: [AutoFontSizeNotWorkViewController class] },
           @{ kTitle: @"Auto font size", kClass: [AutoFontSizeViewController class] },
@@ -65,6 +70,7 @@
     ];
     
     NSArray<NSDictionary *> *section4 = @[
+        @{ kTitle: @"Show link", kClass: [ShowLinkWithWCLabelViewController class] },
     ];
     
     NSArray<NSDictionary *> *section5 = @[
@@ -78,12 +84,14 @@
         @"UILabel",
         @"YYLabel",
         @"YYTextView",
+        @"WCLabel",
     ];
     
     _classes = @[
          section1,
          section2,
          section3,
+         section4,
     ];
 }
 
