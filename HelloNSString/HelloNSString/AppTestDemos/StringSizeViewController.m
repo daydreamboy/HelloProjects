@@ -27,13 +27,15 @@
 
 - (UILabel *)label1 {
     if (!_label1) {
-        NSString *text = @"60\"";
+        NSString *text = @"60\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc123";
+        
+        text = [text stringByReplacingOccurrencesOfString:@"\U0000fffc" withString:@"A"];
         
 //        CGSize textSize = [WCStringTool textSizeWithSingleLineString:text font:[UIFont systemFontOfSize:16]];
         CGSize textSize = [WCStringTool textSizeWithMultipleLineString:text width:100 font:[UIFont systemFontOfSize:16] mode:NSLineBreakByCharWrapping widthToFit:NO];
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(10, 64 + 10, textSize.width, textSize.height)];
         label.text = text;
-//        label.numberOfLines = 0;
+        label.numberOfLines = 0;
         label.lineBreakMode = NSLineBreakByCharWrapping;
         label.backgroundColor = [UIColor greenColor];
         

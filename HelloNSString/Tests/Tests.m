@@ -110,36 +110,36 @@
     XCTAssertNil([WCStringTool edgeInsetsValueFromString:str]);
 }
 
-- (void)test_componentsWithString_delimeters {
+- (void)test_componentsWithString_delimiters {
     NSString *string;
     NSArray *components;
     NSArray *expected;
     
     // Case 1
-    string = @"This is a test string, and should split into multiple parts by multiple delimeters.";
-    components = [WCStringTool componentsWithString:string delimeters:@[@"and", @"multiple", @"a"]];
+    string = @"This is a test string, and should split into multiple parts by multiple delimiters.";
+    components = [WCStringTool componentsWithString:string delimiters:@[@"and", @"multiple", @"a"]];
     expected = @[
         @"This is ",
         @" test string, ",
         @" should split into ",
         @" p",
         @"rts by ",
-        @" delimeters.",
+        @" delimiters.",
     ];
     for (NSUInteger i = 0; i < components.count; ++i) {
         XCTAssertEqualObjects(components[i], expected[i]);
     }
     
     // Case 2
-    string = @"This is a test string, and should split into multiple parts by multiple delimeters.";
-    components = [WCStringTool componentsWithString:string delimeters:@[@"multiple", @"a", @"and"]];
+    string = @"This is a test string, and should split into multiple parts by multiple delimiters.";
+    components = [WCStringTool componentsWithString:string delimiters:@[@"multiple", @"a", @"and"]];
     expected = @[
         @"This is ",
         @" test string, ",
         @"nd should split into ",
         @" p",
         @"rts by ",
-        @" delimeters.",
+        @" delimiters.",
     ];
     for (NSUInteger i = 0; i < components.count; ++i) {
         XCTAssertEqualObjects(components[i], expected[i]);
@@ -147,19 +147,19 @@
     
     // Case 3
     string = @"/:^_^/:^_^/:^_^/:^_^/:^_^";
-    components = [WCStringTool componentsWithString:string delimeters:@[@"/:^_^"]];
+    components = [WCStringTool componentsWithString:string delimiters:@[@"/:^_^"]];
     XCTAssertTrue(components.count == 0);
     NSLog(@"%@", components);
 }
 
-- (void)test_componentsWithString_delimeters_ {
+- (void)test_componentsWithString_delimiters_ {
     NSString *string;
     NSArray *components;
     NSArray *expected;
     
     // Case 1
     string = @"abcsabc";
-    components = [WCStringTool componentsWithString:string delimeters:@[@"s", @"b"] mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
+    components = [WCStringTool componentsWithString:string delimiters:@[@"s", @"b"] mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
     expected = @[
         @"a",
         @"b",
@@ -175,7 +175,7 @@
     
     // Case 2
     string = @"abcsabc";
-    components = [WCStringTool componentsWithString:string delimeters:@[@"s"] mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
+    components = [WCStringTool componentsWithString:string delimiters:@[@"s"] mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
     expected = @[
         @"abc",
         @"s",
@@ -187,7 +187,7 @@
     
     // Case 3
     string = @"abcsabc";
-    components = [WCStringTool componentsWithString:string delimeters:@[@"abc", @"s"] mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
+    components = [WCStringTool componentsWithString:string delimiters:@[@"abc", @"s"] mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
     expected = @[
         @"abc",
         @"s",
@@ -198,19 +198,19 @@
     }
 }
 
-- (void)test_componentsWithString_delimeterRegExp_componentRanges_mode_WCStringSplitIntoComponentsModeIncludeDelimiter {
+- (void)test_componentsWithString_delimiterRegex_componentRanges_mode_WCStringSplitIntoComponentsModeIncludeDelimiter {
     NSString *string;
     NSArray *components;
     NSMutableArray *componentRanges;
     NSArray *expected;
-    NSRegularExpression *regExp;
+    NSRegularExpression *regex;
     
     // Case 1
     string = @" @123 @456 哈哈";
-    regExp = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
+    regex = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
     componentRanges = [NSMutableArray array];
     
-    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
+    components = [WCStringTool componentsWithString:string delimiterRegex:regex componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
     expected = @[
         @" ",
         @"@123",
@@ -224,10 +224,10 @@
     
     // Case 2
     string = @" @123 @456 哈哈";
-    regExp = [NSRegularExpression regularExpressionWithPattern:@"(\\d+)" options:kNilOptions error:nil];
+    regex = [NSRegularExpression regularExpressionWithPattern:@"(\\d+)" options:kNilOptions error:nil];
     componentRanges = [NSMutableArray array];
     
-    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
+    components = [WCStringTool componentsWithString:string delimiterRegex:regex componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
     expected = @[
         @" @",
         @"123",
@@ -241,10 +241,10 @@
     
     // Case 3
     string = @"@123";
-    regExp = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
+    regex = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
     componentRanges = [NSMutableArray array];
     
-    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
+    components = [WCStringTool componentsWithString:string delimiterRegex:regex componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
     expected = @[
         @"@123",
     ];
@@ -254,10 +254,10 @@
     
     // Case 4
     string = @"@123@456";
-    regExp = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
+    regex = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
     componentRanges = [NSMutableArray array];
     
-    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
+    components = [WCStringTool componentsWithString:string delimiterRegex:regex componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
     expected = @[
         @"@123",
         @"@456",
@@ -268,26 +268,26 @@
     
     // Abnormal Case 1
     string = @"abc def";
-    regExp = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
+    regex = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
     componentRanges = [NSMutableArray array];
     
-    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
+    components = [WCStringTool componentsWithString:string delimiterRegex:regex componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeIncludeDelimiter];
     XCTAssertTrue(components.count == 0);
 }
 
-- (void)test_componentsWithString_delimeterRegExp_componentRanges_mode_WCStringSplitIntoComponentsModeWithoutDelimiter {
+- (void)test_componentsWithString_delimiterRegex_componentRanges_mode_WCStringSplitIntoComponentsModeWithoutDelimiter {
     NSString *string;
     NSArray *components;
     NSMutableArray *componentRanges;
     NSArray *expected;
-    NSRegularExpression *regExp;
+    NSRegularExpression *regex;
     
     // Case 1
     string = @" @123 @456 哈哈";
-    regExp = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
+    regex = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
     componentRanges = [NSMutableArray array];
     
-    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeWithoutDelimiter];
+    components = [WCStringTool componentsWithString:string delimiterRegex:regex componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeWithoutDelimiter];
     expected = @[
         @" ",
         @" ",
@@ -299,10 +299,10 @@
     
     // Case 2
     string = @" @123 @456 哈哈";
-    regExp = [NSRegularExpression regularExpressionWithPattern:@"(\\d+)" options:kNilOptions error:nil];
+    regex = [NSRegularExpression regularExpressionWithPattern:@"(\\d+)" options:kNilOptions error:nil];
     componentRanges = [NSMutableArray array];
     
-    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeWithoutDelimiter];
+    components = [WCStringTool componentsWithString:string delimiterRegex:regex componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeWithoutDelimiter];
     expected = @[
         @" @",
         @" @",
@@ -314,18 +314,18 @@
     
     // Case 3
     string = @"@123";
-    regExp = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
+    regex = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
     componentRanges = [NSMutableArray array];
     
-    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeWithoutDelimiter];
+    components = [WCStringTool componentsWithString:string delimiterRegex:regex componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeWithoutDelimiter];
     XCTAssertTrue(components.count == 0);
     
     // Case 4
     string = @"@123@456";
-    regExp = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
+    regex = [NSRegularExpression regularExpressionWithPattern:@"@(\\d+)" options:kNilOptions error:nil];
     componentRanges = [NSMutableArray array];
     
-    components = [WCStringTool componentsWithString:string delimeterRegExp:regExp componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeWithoutDelimiter];
+    components = [WCStringTool componentsWithString:string delimiterRegex:regex componentRanges:componentRanges mode:WCStringSplitIntoComponentsModeWithoutDelimiter];
     XCTAssertTrue(components.count == 0);
 }
 
@@ -394,6 +394,24 @@
     string = @"ThisStringIsJoined";
     output = [WCStringTool interpolatedStringWithCamelCaseString:string separator:@"_"];
     XCTAssertEqualObjects(output, @"This_String_Is_Joined");
+}
+
+- (void)test_textSizeWithMultipleLineString_width_font_mode_widthToFit {
+    NSString *string;
+    CGSize output1;
+    CGSize output2;
+    
+    // Casee 1
+    string = @"123567890\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc\U0000fffc123567890";
+    output1 = [WCStringTool textSizeWithMultipleLineString:string width:10 font:[UIFont systemFontOfSize:17] mode:NSLineBreakByCharWrapping widthToFit:NO];
+    NSLog(@"%@", NSStringFromCGSize(output1));
+    
+    // Note: textSizeWithMultipleLineString:width:font:mode:widthToFit: ignore \U0000fffc
+    string = @"123567890123567890";
+    output2 = [WCStringTool textSizeWithMultipleLineString:string width:10 font:[UIFont systemFontOfSize:17] mode:NSLineBreakByCharWrapping widthToFit:NO];
+    NSLog(@"%@", NSStringFromCGSize(output2));
+    
+    XCTAssertTrue(CGSizeEqualToSize(output1, output2));
 }
 
 #pragma mark - Handle String As JSON

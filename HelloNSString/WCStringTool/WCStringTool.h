@@ -128,7 +128,7 @@ typedef NS_ENUM(NSUInteger, WCStringSplitIntoComponentsMode) {
  @param string the whole string
  @param location the start location which expected in the [0, string.length]. If location is equal to the length of the string, returns an empty string.
  @param length the length of substring. And the length > string.length - location, will return the substring from location to the end
- @param byVisualization
+ @param byVisualization YES if treat a glyph, e.g. 😁 as 1 length not 2 length. NO if treat treat a glyph, e.g. 😁 as actual length
  
  @return the substring. Return nil if the locatio or length is invalid, e.g. location out of the string index [0..string.length].
  @discussion The location is equal to the length of the string, returns an empty string. This is keep same as -[NSString substringFromIndex:].
@@ -140,7 +140,7 @@ typedef NS_ENUM(NSUInteger, WCStringSplitIntoComponentsMode) {
 
  @param string the whole string
  @param range the range.
- @param byVisualization
+ @param byVisualization YES if treat a glyph, e.g. 😁 as 1 length not 2 length. NO if treat treat a glyph, e.g. 😁 as actual length
  
  @return the substring. Return nil if the range is invalid, e.g. location out of the string index [0..string.length]
  @discussion If the location is string.length, the length is 0, return an empty string, but the length is > 0, return nil.
@@ -166,29 +166,29 @@ typedef NS_ENUM(NSUInteger, WCStringSplitIntoComponentsMode) {
 #pragma mark > Split String
 
 /**
- Split string into components by multiple delimeters
+ Split string into components by multiple delimiters
 
  @param string the original string
- @param delimeters the multiple delimeters. Split the string with delimeters by the order of the array.
+ @param delimiters the multiple delimiters. Split the string with delimiters by the order of the array.
  @return the components after spliting. The components will remove empty strings before return it.
- @discussion If have multiple delimeters, will split the string one by one, and the order of the delimeters
+ @discussion If have multiple delimiters, will split the string one by one, and the order of the delimiters
  array will affect the return result.
  */
-+ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters;
++ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimiters:(NSArray<NSString *> *)delimiters;
 
-+ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimeters:(NSArray<NSString *> *)delimeters mode:(WCStringSplitIntoComponentsMode)mode;
++ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimiters:(NSArray<NSString *> *)delimiters mode:(WCStringSplitIntoComponentsMode)mode;
 
 /**
  Split string into components by regular expression
  
  @param string the original string
- @param delimeterRegExp the delimeter which described by NSRegularExpression
+ @param delimiterRegex the delimiter which described by NSRegularExpression
  @param componentRanges the ranges of components
  @param mode the WCStringSplitIntoComponentsMode
  
  @return the splited components
  */
-+ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimeterRegExp:(NSRegularExpression *)delimeterRegExp componentRanges:(nullable inout NSMutableArray<NSValue *> *)componentRanges mode:(WCStringSplitIntoComponentsMode)mode;
++ (nullable NSArray<NSString *> *)componentsWithString:(NSString *)string delimiterRegex:(NSRegularExpression *)delimiterRegex componentRanges:(nullable inout NSMutableArray<NSValue *> *)componentRanges mode:(WCStringSplitIntoComponentsMode)mode;
 
 /**
  Split string into components by multiple gap ranges
