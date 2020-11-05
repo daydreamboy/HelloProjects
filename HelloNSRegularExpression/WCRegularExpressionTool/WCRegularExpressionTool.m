@@ -70,7 +70,7 @@
     return [WCRegularExpressionTool substringWithString:string range:match.range];
 }
 
-#pragma mark > Traverse matched result/string
+#pragma mark > Traverse matched result
 
 - (BOOL)enumerateMatchesInString:(NSString *)string usingBlock:(void (^)(NSTextCheckingResult *_Nullable result, NSMatchingFlags flags, BOOL *stop))block {
     return [self enumerateMatchesInString:string options:kNilOptions range:NSMakeRange(0, string.length) usingBlock:block];
@@ -98,6 +98,8 @@
         return matched;
     }
 }
+
+#pragma mark > Traverse matched string
 
 - (BOOL)enumerateMatchedStringsInString:(NSString *)string usingBlock:(void (^)(NSString * _Nullable matchedString, NSMatchingFlags flags, BOOL *stop))block {
     return [self enumerateMatchedStringsInString:string options:kNilOptions range:NSMakeRange(0, string.length) usingBlock:block];
