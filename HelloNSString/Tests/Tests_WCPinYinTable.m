@@ -63,13 +63,13 @@ XCTestExpectation *expectation__ = [self expectationWithDescription:description_
     NSString *string = @"中文";
     __block NSMutableString *output;
     
-    output = [NSString stringWithFormat:@"%C", (unichar)0x7AD3];
+    output = [[NSString stringWithFormat:@"%C", (unichar)0x7AD3] mutableCopy];
     NSLog(@"%@", output);
     
-    output = [NSString stringWithFormat:@"%C", (unichar)0x7ACF];
+    output = [[NSString stringWithFormat:@"%C", (unichar)0x7ACF] mutableCopy];
     NSLog(@"%@", output);
     
-    output = [NSString stringWithFormat:@"%C", (unichar)0x7ACD];
+    output = [[NSString stringWithFormat:@"%C", (unichar)0x7ACD] mutableCopy];
     NSLog(@"%@", output);
     
     XCTestExpectation_BEGIN
