@@ -66,7 +66,7 @@
         [NSIndexPath indexPathForRow:0 inSection:0],
     ];
     
-    if ([WCTableViewTool checkWithTableView:self.tableView canReloadRowsAtIndexPaths:indexPaths]) {
+    if ([WCTableViewTool checkIndexPathsValidWithTableView:self.tableView indexPaths:indexPaths]) {
         [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
     }
     else {

@@ -33,11 +33,11 @@ NS_ASSUME_NONNULL_BEGIN
  @return YES if the indexPaths are safe to reload rows, or NO if not
  
  @example
- if ([WCTableViewTool checkWithTableView:self.tableView canReloadRowsAtIndexPaths:indexPaths]) {
+ if ([WCTableViewTool checkIndexPathsValidWithTableView:self.tableView indexPaths:indexPaths]) {
      [self.tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationAutomatic];
  }
  */
-+ (BOOL)checkWithTableView:(UITableView *)tableView canReloadRowsAtIndexPaths:(NSArray *)indexPaths;
++ (BOOL)checkIndexPathsValidWithTableView:(UITableView *)tableView indexPaths:(NSArray *)indexPaths;
 
 @end
 

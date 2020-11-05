@@ -28,7 +28,7 @@
     return YES;
 }
 
-+ (BOOL)checkWithTableView:(UITableView *)tableView canReloadRowsAtIndexPaths:(NSArray *)indexPaths {
++ (BOOL)checkIndexPathsValidWithTableView:(UITableView *)tableView indexPaths:(NSArray *)indexPaths {
     if (![tableView isKindOfClass:[UITableView class]] || !tableView.dataSource) {
         return NO;
     }
