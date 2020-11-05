@@ -701,6 +701,12 @@
     
     output = [WCStringTool substringWithString:string atLocation:3 length:1 byVisualization:YES];
     XCTAssertEqualObjects(@"", output);
+    
+    // Case 6
+    string = @"苹🍎果";
+    NSInteger lengthByVisualization = [WCStringTool lengthByVisualizationWithString:string];
+    output = [WCStringTool substringWithString:string atLocation:lengthByVisualization - 2 length:1 byVisualization:YES];
+    XCTAssertEqualObjects(@"🍎", output);
 }
 
 - (void)test_substringWithString_range_byVisualization {

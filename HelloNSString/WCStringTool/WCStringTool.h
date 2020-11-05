@@ -132,6 +132,7 @@ typedef NS_ENUM(NSUInteger, WCStringSplitIntoComponentsMode) {
  
  @return the substring. Return nil if the locatio or length is invalid, e.g. location out of the string index [0..string.length].
  @discussion The location is equal to the length of the string, returns an empty string. This is keep same as -[NSString substringFromIndex:].
+ @note when byVisualization is YES, the location and length are also treated by visualization
  */
 + (nullable NSString *)substringWithString:(NSString *)string atLocation:(NSUInteger)location length:(NSUInteger)length byVisualization:(BOOL)byVisualization;
 
@@ -144,6 +145,7 @@ typedef NS_ENUM(NSUInteger, WCStringSplitIntoComponentsMode) {
  
  @return the substring. Return nil if the range is invalid, e.g. location out of the string index [0..string.length]
  @discussion If the location is string.length, the length is 0, return an empty string, but the length is > 0, return nil.
+ @note when byVisualization is YES, the location and length are also treated by visualization
  */
 + (nullable NSString *)substringWithString:(NSString *)string range:(NSRange)range byVisualization:(BOOL)byVisualization;
 
