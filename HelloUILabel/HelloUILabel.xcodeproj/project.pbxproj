@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F12BD922550549C00C59CA9 /* WCLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F12BD912550549C00C59CA9 /* WCLabel.m */; };
+		4F119FBC2556C80600125B6D /* WCLinkLabel_GestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F119FBB2556C80600125B6D /* WCLinkLabel_GestureRecognizer.m */; };
+		4F119FC02556C85500125B6D /* WCLinkLabel_LayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F119FBF2556C85500125B6D /* WCLinkLabel_LayoutManager.m */; };
+		4F12BD922550549C00C59CA9 /* WCLinkLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F12BD912550549C00C59CA9 /* WCLinkLabel.m */; };
 		4F12BD982550576400C59CA9 /* ShowLinkWithWCLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F12BD972550576400C59CA9 /* ShowLinkWithWCLabelViewController.m */; };
 		4F1ADA3D24EC060A00BCF38F /* DebugBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1ADA3C24EC060A00BCF38F /* DebugBaseViewController.m */; };
 		4F1ADA4124EC071A00BCF38F /* UseYYTextViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1ADA4024EC071A00BCF38F /* UseYYTextViewViewController.m */; };
@@ -127,8 +129,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4F12BD902550549C00C59CA9 /* WCLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCLabel.h; sourceTree = "<group>"; };
-		4F12BD912550549C00C59CA9 /* WCLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCLabel.m; sourceTree = "<group>"; };
+		4F119FBA2556C80600125B6D /* WCLinkLabel_GestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCLinkLabel_GestureRecognizer.h; sourceTree = "<group>"; };
+		4F119FBB2556C80600125B6D /* WCLinkLabel_GestureRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCLinkLabel_GestureRecognizer.m; sourceTree = "<group>"; };
+		4F119FBE2556C85500125B6D /* WCLinkLabel_LayoutManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCLinkLabel_LayoutManager.h; sourceTree = "<group>"; };
+		4F119FBF2556C85500125B6D /* WCLinkLabel_LayoutManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCLinkLabel_LayoutManager.m; sourceTree = "<group>"; };
+		4F12BD902550549C00C59CA9 /* WCLinkLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCLinkLabel.h; sourceTree = "<group>"; };
+		4F12BD912550549C00C59CA9 /* WCLinkLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCLinkLabel.m; sourceTree = "<group>"; };
 		4F12BD962550576400C59CA9 /* ShowLinkWithWCLabelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowLinkWithWCLabelViewController.h; sourceTree = "<group>"; };
 		4F12BD972550576400C59CA9 /* ShowLinkWithWCLabelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowLinkWithWCLabelViewController.m; sourceTree = "<group>"; };
 		4F1ADA3B24EC060A00BCF38F /* DebugBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugBaseViewController.h; sourceTree = "<group>"; };
@@ -364,13 +370,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4F12BD8F2550547300C59CA9 /* WCLabel */ = {
+		4F12BD8F2550547300C59CA9 /* WCLinkLabel */ = {
 			isa = PBXGroup;
 			children = (
-				4F12BD902550549C00C59CA9 /* WCLabel.h */,
-				4F12BD912550549C00C59CA9 /* WCLabel.m */,
+				4F12BD902550549C00C59CA9 /* WCLinkLabel.h */,
+				4F12BD912550549C00C59CA9 /* WCLinkLabel.m */,
+				4F119FBA2556C80600125B6D /* WCLinkLabel_GestureRecognizer.h */,
+				4F119FBB2556C80600125B6D /* WCLinkLabel_GestureRecognizer.m */,
+				4F119FBE2556C85500125B6D /* WCLinkLabel_LayoutManager.h */,
+				4F119FBF2556C85500125B6D /* WCLinkLabel_LayoutManager.m */,
 			);
-			path = WCLabel;
+			path = WCLinkLabel;
 			sourceTree = "<group>";
 		};
 		4F12BD952550573A00C59CA9 /* WCLabel */ = {
@@ -464,7 +474,7 @@
 		4F9382E920C6D67C00568EE1 = {
 			isa = PBXGroup;
 			children = (
-				4F12BD8F2550547300C59CA9 /* WCLabel */,
+				4F12BD8F2550547300C59CA9 /* WCLinkLabel */,
 				4F238EE92546CC2B00ACE383 /* WCLabelTool */,
 				4FAF510F21500F2B006A7509 /* YYKit */,
 				4F9382F420C6D67C00568EE1 /* HelloUILabel */,
@@ -906,6 +916,7 @@
 				4FAF51DD21500F2B006A7509 /* YYLabel.m in Sources */,
 				4FAF51E321500F2B006A7509 /* UIPasteboard+YYText.m in Sources */,
 				4F7D8F37210B674D00145B00 /* UseYYLabelWithLinkViewController.m in Sources */,
+				4F119FC02556C85500125B6D /* WCLinkLabel_LayoutManager.m in Sources */,
 				4F1ADA4124EC071A00BCF38F /* UseYYTextViewViewController.m in Sources */,
 				4FAF51EE21500F2B006A7509 /* UIScreen+YYAdd.m in Sources */,
 				4FAF51CC21500F2B006A7509 /* UIImageView+YYWebImage.m in Sources */,
@@ -965,7 +976,7 @@
 				4FAF51D221500F2B006A7509 /* YYClassInfo.m in Sources */,
 				4F93831420C6D6C900568EE1 /* RootViewController.m in Sources */,
 				4FAF51EB21500F2B006A7509 /* UIApplication+YYAdd.m in Sources */,
-				4F12BD922550549C00C59CA9 /* WCLabel.m in Sources */,
+				4F12BD922550549C00C59CA9 /* WCLinkLabel.m in Sources */,
 				4F1F0C5025207F9300C5FAFD /* AutoFontSizeViewController.m in Sources */,
 				4FAF520021500F2B006A7509 /* NSNotificationCenter+YYAdd.m in Sources */,
 				4FAF520F21500F2B006A7509 /* YYThreadSafeArray.m in Sources */,
@@ -976,6 +987,7 @@
 				4FAF51DB21500F2B006A7509 /* YYTextKeyboardManager.m in Sources */,
 				4FAF51EA21500F2B006A7509 /* UIDevice+YYAdd.m in Sources */,
 				4F238EEC2546CC8600ACE383 /* WCLabelTool.m in Sources */,
+				4F119FBC2556C80600125B6D /* WCLinkLabel_GestureRecognizer.m in Sources */,
 				4FAF51E121500F2B006A7509 /* YYTextParser.m in Sources */,
 				4FAF51D721500F2B006A7509 /* YYTextInput.m in Sources */,
 			);
@@ -1110,6 +1122,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = HelloUILabel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1126,6 +1139,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = HelloUILabel/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

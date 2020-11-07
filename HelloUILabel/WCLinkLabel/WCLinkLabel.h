@@ -1,5 +1,5 @@
 //
-//  WCLabel.h
+//  WCLinkLabel.h
 //  HelloUILabel
 //
 //  Created by wesley_chen on 2020/11/2.
@@ -10,8 +10,9 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WCLabel : UILabel
+@interface WCLinkLabel : UILabel
 
+@property (nonatomic, strong) UIColor *linkColor;
 @property (nonatomic, strong) UIColor *linkBackgroundColor;
 @property (nonatomic, copy) void (^linkTappedBlock)(NSString *linkString);
 
