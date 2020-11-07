@@ -12,11 +12,16 @@
 		4F119F6D255694D400125B6D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F119F6B255694D400125B6D /* LaunchScreen.storyboard */; };
 		4F119F70255694D400125B6D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F119F6F255694D400125B6D /* main.m */; };
 		4F119F7D2556951B00125B6D /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F119F782556951B00125B6D /* RootViewController.m */; };
-		4F119F7E2556951B00125B6D /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F119F7A2556951B00125B6D /* Demo1ViewController.m */; };
 		4F119F842556994900125B6D /* DrawUnderlineStyleInLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F119F832556994900125B6D /* DrawUnderlineStyleInLabelViewController.m */; };
 		4F119F8925569CB900125B6D /* DrawBackgroundColorInLabelViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F119F8825569CB900125B6D /* DrawBackgroundColorInLabelViewController.m */; };
-		4F119F8E25569DB600125B6D /* DrawUnderlineStyleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F119F8D25569DB600125B6D /* DrawUnderlineStyleLabel.m */; };
+		4F119F8E25569DB600125B6D /* DrawUnderlineStyleLabelByEmptyLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F119F8D25569DB600125B6D /* DrawUnderlineStyleLabelByEmptyLayoutManager.m */; };
 		4F119F9425569EC200125B6D /* WCStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F119F9225569EC200125B6D /* WCStringTool.m */; };
+		4F119FAD2556BC3600125B6D /* LabelBaseRenderManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F119FAC2556BC3600125B6D /* LabelBaseRenderManager.m */; };
+		4F119FB62556BCDE00125B6D /* EmptyLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F119FB52556BCDE00125B6D /* EmptyLayoutManager.m */; };
+		4F119FC92556CAAC00125B6D /* UseEmptyLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F119FC82556CAAC00125B6D /* UseEmptyLayoutManager.m */; };
+		4F119FCE2556CC8A00125B6D /* OverrideUnderlineLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F119FCD2556CC8A00125B6D /* OverrideUnderlineLayoutManager.m */; };
+		4F119FD22556CCD100125B6D /* UseOverrideUnderlineLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F119FD12556CCD100125B6D /* UseOverrideUnderlineLayoutManager.m */; };
+		4F119FD82556CD7600125B6D /* DrawUnderlineStyleLabelByOverrideUnderlineLayoutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F119FD72556CD7600125B6D /* DrawUnderlineStyleLabelByOverrideUnderlineLayoutManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,17 +33,27 @@
 		4F119F6E255694D400125B6D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F119F6F255694D400125B6D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F119F782556951B00125B6D /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		4F119F7A2556951B00125B6D /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
-		4F119F7B2556951B00125B6D /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
 		4F119F7C2556951B00125B6D /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F119F822556994900125B6D /* DrawUnderlineStyleInLabelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawUnderlineStyleInLabelViewController.h; sourceTree = "<group>"; };
 		4F119F832556994900125B6D /* DrawUnderlineStyleInLabelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawUnderlineStyleInLabelViewController.m; sourceTree = "<group>"; };
 		4F119F8725569CB900125B6D /* DrawBackgroundColorInLabelViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawBackgroundColorInLabelViewController.h; sourceTree = "<group>"; };
 		4F119F8825569CB900125B6D /* DrawBackgroundColorInLabelViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawBackgroundColorInLabelViewController.m; sourceTree = "<group>"; };
-		4F119F8C25569DB600125B6D /* DrawUnderlineStyleLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawUnderlineStyleLabel.h; sourceTree = "<group>"; };
-		4F119F8D25569DB600125B6D /* DrawUnderlineStyleLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawUnderlineStyleLabel.m; sourceTree = "<group>"; };
+		4F119F8C25569DB600125B6D /* DrawUnderlineStyleLabelByEmptyLayoutManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawUnderlineStyleLabelByEmptyLayoutManager.h; sourceTree = "<group>"; };
+		4F119F8D25569DB600125B6D /* DrawUnderlineStyleLabelByEmptyLayoutManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawUnderlineStyleLabelByEmptyLayoutManager.m; sourceTree = "<group>"; };
 		4F119F9225569EC200125B6D /* WCStringTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCStringTool.m; sourceTree = "<group>"; };
 		4F119F9325569EC200125B6D /* WCStringTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCStringTool.h; sourceTree = "<group>"; };
+		4F119FAB2556BC3600125B6D /* LabelBaseRenderManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabelBaseRenderManager.h; sourceTree = "<group>"; };
+		4F119FAC2556BC3600125B6D /* LabelBaseRenderManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelBaseRenderManager.m; sourceTree = "<group>"; };
+		4F119FB42556BCDE00125B6D /* EmptyLayoutManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EmptyLayoutManager.h; sourceTree = "<group>"; };
+		4F119FB52556BCDE00125B6D /* EmptyLayoutManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EmptyLayoutManager.m; sourceTree = "<group>"; };
+		4F119FC72556CAAC00125B6D /* UseEmptyLayoutManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseEmptyLayoutManager.h; sourceTree = "<group>"; };
+		4F119FC82556CAAC00125B6D /* UseEmptyLayoutManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseEmptyLayoutManager.m; sourceTree = "<group>"; };
+		4F119FCC2556CC8A00125B6D /* OverrideUnderlineLayoutManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OverrideUnderlineLayoutManager.h; sourceTree = "<group>"; };
+		4F119FCD2556CC8A00125B6D /* OverrideUnderlineLayoutManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OverrideUnderlineLayoutManager.m; sourceTree = "<group>"; };
+		4F119FD02556CCD100125B6D /* UseOverrideUnderlineLayoutManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseOverrideUnderlineLayoutManager.h; sourceTree = "<group>"; };
+		4F119FD12556CCD100125B6D /* UseOverrideUnderlineLayoutManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseOverrideUnderlineLayoutManager.m; sourceTree = "<group>"; };
+		4F119FD62556CD7600125B6D /* DrawUnderlineStyleLabelByOverrideUnderlineLayoutManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawUnderlineStyleLabelByOverrideUnderlineLayoutManager.h; sourceTree = "<group>"; };
+		4F119FD72556CD7600125B6D /* DrawUnderlineStyleLabelByOverrideUnderlineLayoutManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawUnderlineStyleLabelByOverrideUnderlineLayoutManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +86,7 @@
 		4F119F5C255694D200125B6D /* HelloNSLayoutManager */ = {
 			isa = PBXGroup;
 			children = (
+				4F119FB12556BC8200125B6D /* WCLabelLayoutManager */,
 				4F119F792556951B00125B6D /* AppTestDemos */,
 				4F119F5D255694D200125B6D /* AppDelegate.h */,
 				4F119F5E255694D200125B6D /* AppDelegate.m */,
@@ -89,8 +105,6 @@
 			children = (
 				4F119F9125569EA300125B6D /* Tools */,
 				4F119F812556990A00125B6D /* UILabel */,
-				4F119F7B2556951B00125B6D /* Demo1ViewController.h */,
-				4F119F7A2556951B00125B6D /* Demo1ViewController.m */,
 				4F119F822556994900125B6D /* DrawUnderlineStyleInLabelViewController.h */,
 				4F119F832556994900125B6D /* DrawUnderlineStyleInLabelViewController.m */,
 				4F119F8725569CB900125B6D /* DrawBackgroundColorInLabelViewController.h */,
@@ -102,8 +116,10 @@
 		4F119F812556990A00125B6D /* UILabel */ = {
 			isa = PBXGroup;
 			children = (
-				4F119F8C25569DB600125B6D /* DrawUnderlineStyleLabel.h */,
-				4F119F8D25569DB600125B6D /* DrawUnderlineStyleLabel.m */,
+				4F119F8C25569DB600125B6D /* DrawUnderlineStyleLabelByEmptyLayoutManager.h */,
+				4F119F8D25569DB600125B6D /* DrawUnderlineStyleLabelByEmptyLayoutManager.m */,
+				4F119FD62556CD7600125B6D /* DrawUnderlineStyleLabelByOverrideUnderlineLayoutManager.h */,
+				4F119FD72556CD7600125B6D /* DrawUnderlineStyleLabelByOverrideUnderlineLayoutManager.m */,
 			);
 			path = UILabel;
 			sourceTree = "<group>";
@@ -115,6 +131,39 @@
 				4F119F9225569EC200125B6D /* WCStringTool.m */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		4F119FB12556BC8200125B6D /* WCLabelLayoutManager */ = {
+			isa = PBXGroup;
+			children = (
+				4F119FD42556CCF200125B6D /* Base */,
+				4F119FC32556CA2800125B6D /* LayoutManager */,
+				4F119FC72556CAAC00125B6D /* UseEmptyLayoutManager.h */,
+				4F119FC82556CAAC00125B6D /* UseEmptyLayoutManager.m */,
+				4F119FD02556CCD100125B6D /* UseOverrideUnderlineLayoutManager.h */,
+				4F119FD12556CCD100125B6D /* UseOverrideUnderlineLayoutManager.m */,
+			);
+			path = WCLabelLayoutManager;
+			sourceTree = "<group>";
+		};
+		4F119FC32556CA2800125B6D /* LayoutManager */ = {
+			isa = PBXGroup;
+			children = (
+				4F119FB42556BCDE00125B6D /* EmptyLayoutManager.h */,
+				4F119FB52556BCDE00125B6D /* EmptyLayoutManager.m */,
+				4F119FCC2556CC8A00125B6D /* OverrideUnderlineLayoutManager.h */,
+				4F119FCD2556CC8A00125B6D /* OverrideUnderlineLayoutManager.m */,
+			);
+			path = LayoutManager;
+			sourceTree = "<group>";
+		};
+		4F119FD42556CCF200125B6D /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				4F119FAB2556BC3600125B6D /* LabelBaseRenderManager.h */,
+				4F119FAC2556BC3600125B6D /* LabelBaseRenderManager.m */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -186,13 +235,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F119F9425569EC200125B6D /* WCStringTool.m in Sources */,
-				4F119F8E25569DB600125B6D /* DrawUnderlineStyleLabel.m in Sources */,
+				4F119F8E25569DB600125B6D /* DrawUnderlineStyleLabelByEmptyLayoutManager.m in Sources */,
 				4F119F8925569CB900125B6D /* DrawBackgroundColorInLabelViewController.m in Sources */,
+				4F119FC92556CAAC00125B6D /* UseEmptyLayoutManager.m in Sources */,
 				4F119F5F255694D200125B6D /* AppDelegate.m in Sources */,
-				4F119F7E2556951B00125B6D /* Demo1ViewController.m in Sources */,
+				4F119FCE2556CC8A00125B6D /* OverrideUnderlineLayoutManager.m in Sources */,
 				4F119F70255694D400125B6D /* main.m in Sources */,
+				4F119FB62556BCDE00125B6D /* EmptyLayoutManager.m in Sources */,
 				4F119F7D2556951B00125B6D /* RootViewController.m in Sources */,
 				4F119F842556994900125B6D /* DrawUnderlineStyleInLabelViewController.m in Sources */,
+				4F119FD82556CD7600125B6D /* DrawUnderlineStyleLabelByOverrideUnderlineLayoutManager.m in Sources */,
+				4F119FD22556CCD100125B6D /* UseOverrideUnderlineLayoutManager.m in Sources */,
+				4F119FAD2556BC3600125B6D /* LabelBaseRenderManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

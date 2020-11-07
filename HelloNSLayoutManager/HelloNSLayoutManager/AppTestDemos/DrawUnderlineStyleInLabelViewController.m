@@ -6,12 +6,16 @@
 //
 
 #import "DrawUnderlineStyleInLabelViewController.h"
-#import "DrawUnderlineStyleLabel.h"
+#import "DrawUnderlineStyleLabelByEmptyLayoutManager.h"
+#import "DrawUnderlineStyleLabelByOverrideUnderlineLayoutManager.h"
 #import "WCStringTool.h"
+
+#define LabelHeight 80
 
 @interface DrawUnderlineStyleInLabelViewController ()
 @property (nonatomic, strong) UILabel *labelSystem;
-@property (nonatomic, strong) DrawUnderlineStyleLabel *labelDemo1;
+@property (nonatomic, strong) DrawUnderlineStyleLabelByEmptyLayoutManager *labelDemo1;
+@property (nonatomic, strong) DrawUnderlineStyleLabelByOverrideUnderlineLayoutManager *labelDemo2;
 @end
 
 @implementation DrawUnderlineStyleInLabelViewController
@@ -22,6 +26,7 @@
     
     [self.view addSubview:self.labelSystem];
     [self.view addSubview:self.labelDemo1];
+    [self.view addSubview:self.labelDemo2];
 }
 
 #pragma mark - Getter
@@ -46,6 +51,7 @@
             for (NSValue *value in ranges) {
                 NSRange linkRange = [value rangeValue];
                 [attrStringM addAttributes:@{
+                    NSLinkAttributeName: linkString,
                     NSForegroundColorAttributeName: [UIColor greenColor],
                     NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
                     NSUnderlineColorAttributeName: [UIColor colorWithRed:51 / 255.0 green:154 / 255.0 blue:1.0 alpha:1.0],
@@ -61,13 +67,13 @@
     return _labelSystem;
 }
 
-- (DrawUnderlineStyleLabel *)label {
+- (DrawUnderlineStyleLabelByEmptyLayoutManager *)labelDemo1 {
     if (!_labelDemo1) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        DrawUnderlineStyleLabel *label = [[DrawUnderlineStyleLabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_labelSystem.frame) + 20, screenSize.width, 150)];
+        DrawUnderlineStyleLabelByEmptyLayoutManager *label = [[DrawUnderlineStyleLabelByEmptyLayoutManager alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_labelSystem.frame) + 20, screenSize.width, LabelHeight)];
         label.layer.borderColor = [UIColor redColor].CGColor;
         label.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
-        //label.numberOfLines = 0;
+        label.numberOfLines = 1;
         label.attributedText = ({
             NSString *string = @"This is a link https://www.baidu.com, blah, blah, blah, blah... This is a link https://www.baidu.com, blah, blah, blah, blah... This is a link https://www.baidu.com, blah, blah, blah, blah... This is a link https://www.baidu.com, blah, blah, blah, blah... This is a link https://www.baidu.com, blah, blah, blah, blah... ";
             
@@ -97,6 +103,44 @@
     }
     
     return _labelDemo1;
+}
+
+- (DrawUnderlineStyleLabelByOverrideUnderlineLayoutManager *)labelDemo2 {
+    if (!_labelDemo2) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        DrawUnderlineStyleLabelByOverrideUnderlineLayoutManager *label = [[DrawUnderlineStyleLabelByOverrideUnderlineLayoutManager alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_labelDemo1.frame) + 20, screenSize.width, 150)];
+        label.layer.borderColor = [UIColor redColor].CGColor;
+        label.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
+        label.numberOfLines = 1;
+        label.attributedText = ({
+            NSString *string = @"This is a link https://www.baidu.com, blah, blah, blah, blah... This is a link https://www.baidu.com, blah, blah, blah, blah... This is a link https://www.baidu.com, blah, blah, blah, blah... This is a link https://www.baidu.com, blah, blah, blah, blah... This is a link https://www.baidu.com, blah, blah, blah, blah... ";
+            
+            NSString *linkString = @"https://www.baidu.com";
+            NSArray<NSValue *> *ranges = [WCStringTool rangesOfSubstringWithString:string substring:linkString];
+            
+            NSMutableAttributedString *attrStringM = [[NSMutableAttributedString alloc] initWithString:string attributes:@{
+                NSFontAttributeName: [UIFont systemFontOfSize:17],
+            }];
+            
+            for (NSValue *value in ranges) {
+                NSRange linkRange = [value rangeValue];
+                [attrStringM addAttributes:@{
+                    NSForegroundColorAttributeName: [UIColor redColor],
+                    NSLinkAttributeName: linkString,
+                    
+//                    NSForegroundColorAttributeName: [UIColor redColor],
+//                    NSUnderlineStyleAttributeName: @(NSUnderlineStyleSingle),
+//                    NSUnderlineColorAttributeName: [UIColor colorWithRed:51 / 255.0 green:154 / 255.0 blue:1.0 alpha:1.0],
+                } range:linkRange];
+            }
+            
+            attrStringM;
+        });
+        
+        _labelDemo2 = label;
+    }
+    
+    return _labelDemo2;
 }
 
 @end

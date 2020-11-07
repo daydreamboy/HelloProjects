@@ -1,23 +1,23 @@
 //
-//  DrawUnderlineStyleLabel.m
+//  DrawUnderlineStyleLabelByOverrideUnderlineLayoutManager.m
 //  HelloNSLayoutManager
 //
 //  Created by wesley_chen on 2020/11/7.
 //
 
-#import "DrawUnderlineStyleLabelByEmptyLayoutManager.h"
-#import "UseEmptyLayoutManager.h"
+#import "DrawUnderlineStyleLabelByOverrideUnderlineLayoutManager.h"
+#import "UseOverrideUnderlineLayoutManager.h"
 
-@interface DrawUnderlineStyleLabelByEmptyLayoutManager ()
-@property (nonatomic, strong) UseEmptyLayoutManager *renderManager;
+@interface DrawUnderlineStyleLabelByOverrideUnderlineLayoutManager ()
+@property (nonatomic, strong) UseOverrideUnderlineLayoutManager *renderManager;
 @end
 
-@implementation DrawUnderlineStyleLabelByEmptyLayoutManager
+@implementation DrawUnderlineStyleLabelByOverrideUnderlineLayoutManager
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        _renderManager = [[UseEmptyLayoutManager alloc] initWithAttributedString:nil];
+        _renderManager = [[UseOverrideUnderlineLayoutManager alloc] initWithAttributedString:nil];
     }
     
     return self;
