@@ -13,6 +13,7 @@
 #import "PagingUITextViewViewController.h"
 #import "MixMirroringAndPagingUITextViewViewController.h"
 #import "SyntaxHighlightUITextViewViewController.h"
+#import "LinkInUITextViewViewController.h"
 
 // section 2
 #import "TextViewIssueCaretViewController.h"
@@ -57,6 +58,7 @@
           @{ kTitle: @"Paging UITextView", kClass: [PagingUITextViewViewController class] },
           @{ kTitle: @"Mix Mirroring & Paging UITextView", kClass: [MixMirroringAndPagingUITextViewViewController class] },
           @{ kTitle: @"Syntax highlight in UITextView", kClass: [SyntaxHighlightUITextViewViewController class] },
+          @{ kTitle: @"Link in UITextView", kClass: [LinkInUITextViewViewController class] },
     ];
     
     NSArray<NSDictionary *> *section2 = @[

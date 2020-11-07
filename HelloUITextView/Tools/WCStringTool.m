@@ -121,4 +121,36 @@
     }
 }
 
+#pragma mark > String Measuration (e.g. length, number of substring, range, ...)
+
++ (nullable NSArray<NSValue *> *)rangesOfSubstringWithString:(NSString *)string substring:(NSString *)substring {
+    if (![string isKindOfClass:[NSString class]] || ![substring isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    NSRange searchRange = NSMakeRange(0, string.length);
+    NSRange foundRange;
+    
+    NSMutableArray *arrM = [NSMutableArray array];
+    
+    while (searchRange.location < string.length) {
+        searchRange.length = string.length - searchRange.location;
+        foundRange = [string rangeOfString:substring options:kNilOptions range:searchRange];
+        
+        if (foundRange.location != NSNotFound) {
+            // found an occurrence of the substring, and add its range to NSArray
+            [arrM addObject:[NSValue valueWithRange:foundRange]];
+            
+            // move forward
+            searchRange.location = foundRange.location + foundRange.length;
+        }
+        else {
+            // no more substring to find
+            break;
+        }
+    }
+    
+    return arrM;
+}
+
 @end

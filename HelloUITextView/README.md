@@ -4,6 +4,18 @@
 
 ## 1、介绍UITextView
 
+### （1）UITextView常用属性
+
+| 属性     | 作用         | 说明                                                         |
+| -------- | ------------ | ------------------------------------------------------------ |
+| editable | 是否允许编辑 | 当设置NO时，需要配置textContainer的大小，否则默认是一行，不会换行 |
+
+
+
+
+
+## 2、介绍TextKit
+
 ​       在iOS 7+开始，UITextView换成TextKit实现，TextKit主要提供NSTextStorage、NSLayoutManager、NSTextContainer等[^1]，用于控制文本的布局。
 
 UITextView和NSTextStorage、NSLayoutManager、NSTextContainer的关系[^2]，如下
