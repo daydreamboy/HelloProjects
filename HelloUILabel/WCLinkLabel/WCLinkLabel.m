@@ -42,6 +42,9 @@
   
     // Update our container size when the view frame changes
     self.textContainer.size = self.bounds.size;
+    self.textContainer.maximumNumberOfLines = self.numberOfLines;
+    self.textContainer.lineBreakMode = self.lineBreakMode;
+    self.layoutManager.backgroundCornerRadius = self.linkBackgroundCornerRadius;
 }
 
 - (void)setAttributedText:(NSAttributedString *)attributedText {
@@ -96,10 +99,6 @@
 #pragma mark -
 
 - (void)setupCommon {
-    // Make sure user interaction is enabled so we can accept touches
-    self.userInteractionEnabled = YES;
-    self.numberOfLines = 0;
-  
     // Default background colour looks good on a white background
     self.linkBackgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.8];
   
@@ -146,8 +145,6 @@
    if (!_textContainer) {
       _textContainer = [[NSTextContainer alloc] init];
       _textContainer.lineFragmentPadding = 0;
-      _textContainer.maximumNumberOfLines = self.numberOfLines;
-      _textContainer.lineBreakMode = self.lineBreakMode;
       _textContainer.widthTracksTextView = YES;
       _textContainer.size = self.frame.size;
  
@@ -234,8 +231,8 @@
            break;
        }
        case UIGestureRecognizerStateEnded: {
-           if (touchedUrlString && self.linkTappedBlock) {
-               self.linkTappedBlock(touchedUrlString);
+           if (touchedUrlString && self.linkTappedBlock && NSEqualRanges(self.selectedRange, effectiveRange)) {
+               self.linkTappedBlock(touchedUrlString, self.selectedRange);
            }
            self.selectedRange = NSMakeRange(0, 0);
            break;

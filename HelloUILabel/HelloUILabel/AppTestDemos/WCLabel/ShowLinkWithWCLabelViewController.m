@@ -9,6 +9,7 @@
 #import "ShowLinkWithWCLabelViewController.h"
 #import "WCLinkLabel.h"
 #import "WCStringTool.h"
+#import "WCMacroTool.h"
 
 @interface ShowLinkWithWCLabelViewController ()
 @property (nonatomic, strong) UILabel *labelSystem;
@@ -66,30 +67,32 @@
     if (!_label) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         WCLinkLabel *label = [[WCLinkLabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_labelSystem.frame) + 20, screenSize.width, 150)];
+        label.linkBackgroundCornerRadius = 4;
         label.layer.borderColor = [UIColor redColor].CGColor;
         label.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
         label.numberOfLines = 0;
+        label.userInteractionEnabled = YES;
         label.attributedText = ({
-            NSString *string = @"This is a link https://www.baidu.com, blah, blah, blah, blah... This is a link https://www.baidu.com, blah, blah, blah, blah... This is a link https://www.baidu.com, blah, blah, blah, blah... This is a link https://www.baidu.com, blah, blah, blah, blah... This is a link https://www.baidu.com, blah, blah, blah, blah... ";
-            
-            NSString *linkString = @"https://www.baidu.com";
-            NSArray<NSValue *> *ranges = [WCStringTool rangesOfSubstringWithString:string substring:linkString];
+            NSString *string = @"This is a link https://www.baidu1.com, blah, blah, blah, blah... This is a link https://www.baidu2.com, blah, blah, blah, blah... This is a link https://www.baidu3.com, blah, blah, blah, blah... This is a link https://www.baidu4.com, blah, blah, blah, blah... This is a link https://www.baidu5.com, blah, blah, blah, blah... ";
             
             NSMutableAttributedString *attrStringM = [[NSMutableAttributedString alloc] initWithString:string attributes:@{
                 NSFontAttributeName: [UIFont systemFontOfSize:17],
             }];
             
-            for (NSValue *value in ranges) {
-                NSRange linkRange = [value rangeValue];
-                [attrStringM addAttributes:@{
-                    NSForegroundColorAttributeName: [UIColor redColor],
-                    //NSBackgroundColorAttributeName: [[UIColor lightGrayColor] colorWithAlphaComponent:0.8],
-                    NSLinkAttributeName: linkString,
-                } range:linkRange];
-            }
+            NSDataDetector *detector = [[NSDataDetector alloc] initWithTypes:NSTextCheckingTypeLink error:nil];
+            [detector enumerateMatchesInString:string options:kNilOptions range:NSMakeRange(0, string.length) usingBlock:^(NSTextCheckingResult * _Nullable result, NSMatchingFlags flags, BOOL * _Nonnull stop) {
+                NSString *linkString = [string substringWithRange:result.range];
+                
+                [attrStringM addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:result.range];
+                [attrStringM addAttribute:NSLinkAttributeName value:linkString range:result.range];
+            }];
             
             attrStringM;
         });
+        label.linkTappedBlock = ^(NSString * _Nonnull linkString, NSRange linkRange) {
+            NSString *message = [NSString stringWithFormat:@"%@ tapped at range %@", linkString, NSStringFromRange(linkRange)];
+            SHOW_ALERT(@"Link Tapped", message, @"Ok", nil);
+        };
         
         _label = label;
     }

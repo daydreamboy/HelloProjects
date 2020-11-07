@@ -14,7 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UIColor *linkColor;
 @property (nonatomic, strong) UIColor *linkBackgroundColor;
-@property (nonatomic, copy) void (^linkTappedBlock)(NSString *linkString);
+@property (nonatomic, assign) CGFloat linkBackgroundCornerRadius;
+@property (nonatomic, copy) void (^linkTappedBlock)(NSString *linkString, NSRange linkRange);
 
 @end
 
