@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "RootViewController.h"
+#import "WCEmoticonDataSource.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) RootViewController *rootViewController;
@@ -25,8 +26,26 @@
     self.window.rootViewController = self.navController;
     
     [self.window makeKeyAndVisible];
+    
+    [self setupEmoticonDataSource];
     						
     return YES;
+}
+
+- (void)setupEmoticonDataSource {
+    NSTimeInterval startTime = CACurrentMediaTime();
+    
+    NSLog(@"start load emoticon image: %f", startTime);
+    [[WCEmoticonDataSource sharedInstance] preloadEmoticonImageWithCompletion:^{
+        NSTimeInterval endTime = CACurrentMediaTime();
+        NSLog(@"end load emoticon image: %f, consume time: %f", endTime, endTime - startTime);
+    }];
+    
+    NSLog(@"start load emoticon order:: %f", startTime);
+    [[WCEmoticonDataSource sharedInstance] preloadEmoticonOrderWithCompletion:^{
+        NSTimeInterval endTime = CACurrentMediaTime();
+        NSLog(@"end load emoticon order: %f, consume time: %f", endTime, endTime - startTime);
+    }];
 }
 
 @end

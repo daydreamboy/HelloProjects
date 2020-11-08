@@ -20,6 +20,12 @@
 		4F26FCC21FBEC4D6002A28AF /* AttributedStringWithImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F26FCC11FBEC4D6002A28AF /* AttributedStringWithImageViewController.m */; };
 		4F26FCCA1FBEC924002A28AF /* img1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4F26FCC81FBEC924002A28AF /* img1.jpg */; };
 		4F26FCCB1FBEC924002A28AF /* img2.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F26FCC91FBEC924002A28AF /* img2.png */; };
+		4F32F8C82557EE47000F26B7 /* WCEmoticonDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F32F8C72557EE47000F26B7 /* WCEmoticonDataSource.m */; };
+		4F32F8D52557F602000F26B7 /* WCBundleTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F32F8D32557F602000F26B7 /* WCBundleTool.m */; };
+		4F32F8DA2557F7C3000F26B7 /* WCJSONTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F32F8D92557F7C3000F26B7 /* WCJSONTool.m */; };
+		4F32F8E02557F9A1000F26B7 /* emoticon_icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F32F8DD2557F9A1000F26B7 /* emoticon_icon.json */; };
+		4F32F8E12557F9A1000F26B7 /* emoticon_order.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F32F8DE2557F9A1000F26B7 /* emoticon_order.json */; };
+		4F32F8E22557F9A1000F26B7 /* emoticon_trans2en_US.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F32F8DF2557F9A1000F26B7 /* emoticon_trans2en_US.json */; };
 		4F63396E219335270041056F /* ReplaceAttributedStringViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F63396D219335270041056F /* ReplaceAttributedStringViewController.m */; };
 		4FEEC40A218726DA00EF46D9 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FEEC409218726DA00EF46D9 /* Tests.m */; };
 		4FEEC4122187274F00EF46D9 /* Tests_NSAttributedString.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FEEC4112187274F00EF46D9 /* Tests_NSAttributedString.m */; };
@@ -59,6 +65,16 @@
 		4F26FCC11FBEC4D6002A28AF /* AttributedStringWithImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AttributedStringWithImageViewController.m; sourceTree = "<group>"; };
 		4F26FCC81FBEC924002A28AF /* img1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = img1.jpg; sourceTree = "<group>"; };
 		4F26FCC91FBEC924002A28AF /* img2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img2.png; sourceTree = "<group>"; };
+		4F32F8C62557EE47000F26B7 /* WCEmoticonDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCEmoticonDataSource.h; sourceTree = "<group>"; };
+		4F32F8C72557EE47000F26B7 /* WCEmoticonDataSource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCEmoticonDataSource.m; sourceTree = "<group>"; };
+		4F32F8CE2557F349000F26B7 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
+		4F32F8D32557F602000F26B7 /* WCBundleTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCBundleTool.m; sourceTree = "<group>"; };
+		4F32F8D42557F602000F26B7 /* WCBundleTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCBundleTool.h; sourceTree = "<group>"; };
+		4F32F8D82557F7C3000F26B7 /* WCJSONTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCJSONTool.h; sourceTree = "<group>"; };
+		4F32F8D92557F7C3000F26B7 /* WCJSONTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCJSONTool.m; sourceTree = "<group>"; };
+		4F32F8DD2557F9A1000F26B7 /* emoticon_icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emoticon_icon.json; sourceTree = "<group>"; };
+		4F32F8DE2557F9A1000F26B7 /* emoticon_order.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emoticon_order.json; sourceTree = "<group>"; };
+		4F32F8DF2557F9A1000F26B7 /* emoticon_trans2en_US.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emoticon_trans2en_US.json; sourceTree = "<group>"; };
 		4F63396C219335270041056F /* ReplaceAttributedStringViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReplaceAttributedStringViewController.h; sourceTree = "<group>"; };
 		4F63396D219335270041056F /* ReplaceAttributedStringViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReplaceAttributedStringViewController.m; sourceTree = "<group>"; };
 		4FEEC407218726DA00EF46D9 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -88,6 +104,8 @@
 		2B0591221A26BF6800E36EF7 = {
 			isa = PBXGroup;
 			children = (
+				4F32F8CD2557EEFE000F26B7 /* Tools */,
+				4F32F8C52557EE16000F26B7 /* WCEmoticonDataSource */,
 				4F1C61092180B525000D5548 /* WCAttributedStringTool */,
 				2B05912D1A26BF6800E36EF7 /* HelloNSAttributedString */,
 				4FEEC408218726DA00EF46D9 /* Tests */,
@@ -168,10 +186,34 @@
 		4F26FCC31FBEC5D9002A28AF /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F32F8DD2557F9A1000F26B7 /* emoticon_icon.json */,
+				4F32F8DE2557F9A1000F26B7 /* emoticon_order.json */,
+				4F32F8DF2557F9A1000F26B7 /* emoticon_trans2en_US.json */,
 				4F26FCC81FBEC924002A28AF /* img1.jpg */,
 				4F26FCC91FBEC924002A28AF /* img2.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		4F32F8C52557EE16000F26B7 /* WCEmoticonDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				4F32F8C62557EE47000F26B7 /* WCEmoticonDataSource.h */,
+				4F32F8C72557EE47000F26B7 /* WCEmoticonDataSource.m */,
+			);
+			path = WCEmoticonDataSource;
+			sourceTree = "<group>";
+		};
+		4F32F8CD2557EEFE000F26B7 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F32F8D82557F7C3000F26B7 /* WCJSONTool.h */,
+				4F32F8D92557F7C3000F26B7 /* WCJSONTool.m */,
+				4F32F8D42557F602000F26B7 /* WCBundleTool.h */,
+				4F32F8D32557F602000F26B7 /* WCBundleTool.m */,
+				4F32F8CE2557F349000F26B7 /* WCMacroTool.h */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		4FEEC408218726DA00EF46D9 /* Tests */ = {
@@ -247,6 +289,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 2B0591221A26BF6800E36EF7;
@@ -265,8 +308,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F32F8E12557F9A1000F26B7 /* emoticon_order.json in Resources */,
 				4F26FCCA1FBEC924002A28AF /* img1.jpg in Resources */,
+				4F32F8E22557F9A1000F26B7 /* emoticon_trans2en_US.json in Resources */,
 				4F26FCCB1FBEC924002A28AF /* img2.png in Resources */,
+				4F32F8E02557F9A1000F26B7 /* emoticon_icon.json in Resources */,
 				2B4AC4101D0FF0920026BE19 /* Launch Screen.storyboard in Resources */,
 				2B0591391A26BF6800E36EF7 /* Images.xcassets in Resources */,
 			);
@@ -286,8 +332,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F32F8DA2557F7C3000F26B7 /* WCJSONTool.m in Sources */,
 				2B4AC40E1D0FF00F0026BE19 /* RootViewController.m in Sources */,
+				4F32F8C82557EE47000F26B7 /* WCEmoticonDataSource.m in Sources */,
 				2B0591341A26BF6800E36EF7 /* AppDelegate.m in Sources */,
+				4F32F8D52557F602000F26B7 /* WCBundleTool.m in Sources */,
 				4F1C610C2180B53B000D5548 /* WCAttributedStringTool.m in Sources */,
 				4F26FCBC1FBEB299002A28AF /* NSString+Addition.m in Sources */,
 				4F63396E219335270041056F /* ReplaceAttributedStringViewController.m in Sources */,
