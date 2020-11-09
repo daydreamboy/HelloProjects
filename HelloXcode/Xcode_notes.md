@@ -211,6 +211,19 @@ GCC_INPUT_FILETYPE=automatic
 
 
 
+### （2）常用编译配置
+
+
+
+| Declaration                                   | Value Type | Summary                                                      | Comment                                                      |
+| --------------------------------------------- | ---------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| CLANG_ENABLE_MODULES                          | BOOL       | Enables the use of modules for system APIs. System headers are imported as semantic modules instead of raw headers. This can result in faster builds and project indexing. | 当某个target开启CLANG_ENABLE_MODULES=YES，它依赖的target也必须是module，否则会报下面错误，“error: include of non-modular header inside framework module 'XXX.YYY': 'zzz.h' [-Werror,-Wnon-modular-include-in-framework-module]” |
+| CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER | TODO       |                                                              |                                                              |
+
+
+
+
+
 ## 4、Xcode安装低版本模拟器
 
 Xcode默认内置一个版本的模拟器运行时文件（后简称simruntime文件），如下

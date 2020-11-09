@@ -479,6 +479,16 @@ runtime.h中提供运行时创建类的API，主要分为三个步骤
 
 
 
+### （5）检查非主线程刷新UI
+
+autolayout检查
+
+https://stackoverflow.com/a/39712843
+
+
+
+
+
 ## 5、常见Runtime问题
 
 主要列举Objective-C Runtime中遇到的特殊情况以及Crash问题。
