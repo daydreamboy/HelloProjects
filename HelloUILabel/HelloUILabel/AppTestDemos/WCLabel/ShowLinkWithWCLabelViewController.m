@@ -31,12 +31,12 @@
 - (UILabel *)labelSystem {
     if (!_labelSystem) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, 150)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, screenSize.width, 100)];
         label.layer.borderColor = [UIColor redColor].CGColor;
         label.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
         label.numberOfLines = 0;
         label.attributedText = ({
-            NSString *string = @"This is a link https://www.baidu.com, blah, blah, blah, blah... This is a link https://www.baidu.com, blah, blah, blah, blah... This is a link https://www.baidu.com, blah, blah, blah, blah... This is a link https://www.baidu.com, blah, blah, blah, blah... This is a link https://www.baidu.com, blah, blah, blah, blah... ";
+            NSString *string = @"This is a link https://www.baidu.com, blah, blah, blah, blahhThis is a link https://www.baidu.com, blah, blah, blah, blahhThis is a link https://www.baidu.com, blah, blah, blah, blahhThis is a link https://www.baidu.com, blah, blah, blah, blahhThis is a link https://www.baidu.com, blah, blah, blah, blahh";
             
             NSString *linkString = @"https://www.baidu.com";
             NSArray<NSValue *> *ranges = [WCStringTool rangesOfSubstringWithString:string substring:linkString];
@@ -66,14 +66,14 @@
 - (WCLinkLabel *)label {
     if (!_label) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        WCLinkLabel *label = [[WCLinkLabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_labelSystem.frame) + 20, screenSize.width, 150)];
+        WCLinkLabel *label = [[WCLinkLabel alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_labelSystem.frame) + 20, screenSize.width, 100)];
         label.linkBackgroundCornerRadius = 4;
         label.layer.borderColor = [UIColor redColor].CGColor;
         label.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
         label.numberOfLines = 0;
         label.userInteractionEnabled = YES;
         label.attributedText = ({
-            NSString *string = @"This is a link https://www.baidu1.com, blah, blah, blah, blah... This is a link https://www.baidu2.com, blah, blah, blah, blah... This is a link https://www.baidu3.com, blah, blah, blah, blah... This is a link https://www.baidu4.com, blah, blah, blah, blah... This is a link https://www.baidu5.com, blah, blah, blah, blah... ";
+            NSString *string = @"This is a link https://www.baidu1.com, blah, blah, blah, blahhThis is a link https://www.baidu2.com, blah, blah, blah, blahhThis is a link https://www.baidu3.com, blah, blah, blah, blahhThis is a link https://www.baidu4.com, blah, blah, blah, blahhThis is a link https://www.baidu5.com, blah, blah, blah, blahh";
             
             NSMutableAttributedString *attrStringM = [[NSMutableAttributedString alloc] initWithString:string attributes:@{
                 NSFontAttributeName: [UIFont systemFontOfSize:17],

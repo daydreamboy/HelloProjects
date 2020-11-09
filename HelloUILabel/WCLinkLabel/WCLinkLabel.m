@@ -92,8 +92,13 @@
     textOffset = [self textOffsetForGlyphRange:glyphRange];
     
     [self.layoutManager drawBackgroundForGlyphRange:glyphRange atPoint:textOffset];
+    
+    // Note: drawGlyphsForGlyphRange:atPoint: must used for iOS device, not for Simulator,
+    // because on Simulator, no ellipsis show
+    [self.layoutManager drawGlyphsForGlyphRange:glyphRange atPoint:textOffset];
   
-    [super drawTextInRect:rect];
+    // Note: This method not trigger drawUnderlineForGlyphRange:xxx method
+    //[super drawTextInRect:rect];
 }
 
 #pragma mark -
