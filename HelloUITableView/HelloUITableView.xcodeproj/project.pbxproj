@@ -32,6 +32,7 @@
 		4F1C7E0F254D375C00E6BA13 /* TableViewHeaderIssueCircularCallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C7E0E254D375C00E6BA13 /* TableViewHeaderIssueCircularCallViewController.m */; };
 		4F1C7E15254D395D00E6BA13 /* WCColorTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C7E14254D395D00E6BA13 /* WCColorTool.m */; };
 		4F1E4900250135DA005ACA72 /* ReloadRowsWithEmptyListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1E48FF250135DA005ACA72 /* ReloadRowsWithEmptyListViewController.m */; };
+		4F1F3424255A380600C56458 /* TableViewBeginEndUpdatesNotPairedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1F3423255A380600C56458 /* TableViewBeginEndUpdatesNotPairedViewController.m */; };
 		4F3076A2251B2C8000512410 /* CellContentIssueAboveiOS14ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3076A1251B2C8000512410 /* CellContentIssueAboveiOS14ViewController.m */; };
 		4F39AE39241A7C4C0008FBE7 /* CheckNumberOfCellOnFirstRenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F39AE38241A7C4C0008FBE7 /* CheckNumberOfCellOnFirstRenderViewController.m */; };
 		4F50647122DC2DA200C54420 /* DetectCellOffscreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F50647022DC2DA200C54420 /* DetectCellOffscreenViewController.m */; };
@@ -119,6 +120,8 @@
 		4F1C7E14254D395D00E6BA13 /* WCColorTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCColorTool.m; sourceTree = "<group>"; };
 		4F1E48FE250135DA005ACA72 /* ReloadRowsWithEmptyListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReloadRowsWithEmptyListViewController.h; sourceTree = "<group>"; };
 		4F1E48FF250135DA005ACA72 /* ReloadRowsWithEmptyListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReloadRowsWithEmptyListViewController.m; sourceTree = "<group>"; };
+		4F1F3422255A380600C56458 /* TableViewBeginEndUpdatesNotPairedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TableViewBeginEndUpdatesNotPairedViewController.h; sourceTree = "<group>"; };
+		4F1F3423255A380600C56458 /* TableViewBeginEndUpdatesNotPairedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TableViewBeginEndUpdatesNotPairedViewController.m; sourceTree = "<group>"; };
 		4F3076A0251B2C8000512410 /* CellContentIssueAboveiOS14ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CellContentIssueAboveiOS14ViewController.h; sourceTree = "<group>"; };
 		4F3076A1251B2C8000512410 /* CellContentIssueAboveiOS14ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CellContentIssueAboveiOS14ViewController.m; sourceTree = "<group>"; };
 		4F39AE37241A7C4C0008FBE7 /* CheckNumberOfCellOnFirstRenderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckNumberOfCellOnFirstRenderViewController.h; sourceTree = "<group>"; };
@@ -360,6 +363,8 @@
 				4F3076A1251B2C8000512410 /* CellContentIssueAboveiOS14ViewController.m */,
 				4F1C7E0D254D375C00E6BA13 /* TableViewHeaderIssueCircularCallViewController.h */,
 				4F1C7E0E254D375C00E6BA13 /* TableViewHeaderIssueCircularCallViewController.m */,
+				4F1F3422255A380600C56458 /* TableViewBeginEndUpdatesNotPairedViewController.h */,
+				4F1F3423255A380600C56458 /* TableViewBeginEndUpdatesNotPairedViewController.m */,
 			);
 			path = section5;
 			sourceTree = "<group>";
@@ -590,6 +595,7 @@
 				4F1C7E0F254D375C00E6BA13 /* TableViewHeaderIssueCircularCallViewController.m in Sources */,
 				2B63BF37200FA22600A5D8D2 /* FadeInCellRowByRowViewController.m in Sources */,
 				4F0484F324F6B16700D44B20 /* SearchBarTableViewViewController.m in Sources */,
+				4F1F3424255A380600C56458 /* TableViewBeginEndUpdatesNotPairedViewController.m in Sources */,
 				4FE8D2DF24E170C00035E424 /* IndexedTableViewViewController.m in Sources */,
 				4F9489CA20104B130030BC4A /* PlainTableViewRemoveRedundantSeparatorsViewController.m in Sources */,
 				4F5112BD22C39584005E5AAE /* CustomizeSelectMeViewController.m in Sources */,

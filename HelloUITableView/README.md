@@ -575,6 +575,22 @@ cell.addSubview(textField)
 
 
 
+### （8）UITableView的beginUpdates和endUpdates没有配对使用
+
+​      如果UITableView的beginUpdates和endUpdates没有配对使用的话，UITableView不会出现crash，但是UITableView在滚动时不再调用UITableViewDataSource的相关方法，比如tableView:cellForRowAtIndexPath:方法，导致列表上下没有cell显示而出现空白。
+
+
+
+iOS  11开始，提供新的API，如下
+
+```objective-c
+- (void)performBatchUpdates:(void (^)(void))updates completion:(void (^)(BOOL finished))completion;
+```
+
+
+
+> 示例代码，见TableViewBeginEndUpdatesNotPairedViewController
+
 
 
 ## 4、UITableView Internals
