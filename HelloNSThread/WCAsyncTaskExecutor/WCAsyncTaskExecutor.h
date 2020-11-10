@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^WCAsyncTaskCompletion)(void);
-typedef void (^WCAsyncTaskTimeoutBlock)(void);
+typedef void (^WCAsyncTaskTimeoutBlock)(BOOL *shouldContinue);
 typedef void (^WCAsyncTaskBlock)(WCAsyncTaskCompletion completion);
 
 typedef NS_ENUM(NSUInteger, WCAsyncTaskExecuteMode) {
@@ -21,22 +21,14 @@ typedef NS_ENUM(NSUInteger, WCAsyncTaskExecuteMode) {
 
 @class WCAsyncTaskExecutor;
 
-@protocol WCAsyncTaskExecutorDelegate <NSObject>
-/**
- The notification when all tasks finished in the task queue
- 
- @discussion This method maybe call many times when all tasks finished in the task queue
- */
-- (void)batchTasksAllFinishedWithAsyncTaskExecutor:(WCAsyncTaskExecutor *)exectuor;
-@end
-
 /**
  A task executor to execute async task one by one
  */
 @interface WCAsyncTaskExecutor : NSObject
 
 @property (nonatomic, assign, readonly) WCAsyncTaskExecuteMode executeMode;
-@property (nonatomic, weak) id<WCAsyncTaskExecutorDelegate> delegate;
+/// The completion when all tasks finished
+@property (nonatomic, copy) void (^allTaskFinishedCompletion)(WCAsyncTaskExecutor *executor);
 
 /**
  Add a block as Task to run or wait to run
@@ -47,6 +39,7 @@ typedef NS_ENUM(NSUInteger, WCAsyncTaskExecuteMode) {
  @return YES if parameter is correct. NO if not
  */
 - (BOOL)addAsyncTask:(WCAsyncTaskBlock)block;
+- (BOOL)addAsyncTask:(WCAsyncTaskBlock)block forKey:(NSString *)key timeout:(NSTimeInterval)timeout timeoutBlock:(nullable WCAsyncTaskTimeoutBlock)timeoutBlock;
 
 /**
  Add a block as Task to run or wait to run

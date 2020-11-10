@@ -10,7 +10,7 @@
 #import "WCAsyncTaskExecutor.h"
 #import "WCMacroTool.h"
 
-@interface TestWCAsyncTaskExecutorViewController () <WCAsyncTaskExecutorDelegate>
+@interface TestWCAsyncTaskExecutorViewController ()
 @property (nonatomic, strong) WCAsyncTaskExecutor *asyncTaskExecutor;
 @property (nonatomic, strong) NSMutableArray *timestamps;
 @property (nonatomic, assign) BOOL ignoreClick;
@@ -21,8 +21,13 @@
 - (instancetype)init {
     self = [super init];
     if (self) {
+        weakify(self);
         _asyncTaskExecutor = [WCAsyncTaskExecutor new];
-        _asyncTaskExecutor.delegate = self;
+        _asyncTaskExecutor.allTaskFinishedCompletion = ^(WCAsyncTaskExecutor * _Nonnull executor) {
+            strongifyWithReturn(self, return;);
+            
+            [self batchTasksAllFinishedWithAsyncTaskExecutor:executor];
+        };
         _timestamps = [NSMutableArray array];
     }
     return self;

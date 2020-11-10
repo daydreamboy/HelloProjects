@@ -72,7 +72,7 @@
     
     weakify(self);
     dispatch_async(self.serialQueue, ^{
-        strongify(self);
+        strongifyWithReturn(self, return;);
         
         if (self.enqueueMap[key]) {
             return;
@@ -88,14 +88,12 @@
         
         self.isRunningTask = YES;
         [self runTasksWithAllTasksFinished:^{
-            strongify(self);
-            
-            if ([self.delegate respondsToSelector:@selector(batchTasksAllFinishedWithAsyncTaskExecutor:)]) {
-                [self.delegate batchTasksAllFinishedWithAsyncTaskExecutor:self];
-            }
+            strongifyWithReturn(self, return;);
             
             self.currentRunningTask = nil;
             self.isRunningTask = NO;
+            
+            !self.allTaskFinishedCompletion ?: self.allTaskFinishedCompletion(self);
         }];
     });
     
@@ -142,7 +140,12 @@
                         NSLog(@"[Warning] The task `%@` is timeout. Timeout block will be called", self.currentRunningTask.key);
                         
                         completion();
-                        self.currentRunningTask.timeoutBlock();
+                        BOOL shouldContinue = YES;
+                        self.currentRunningTask.timeoutBlock(&shouldContinue);
+                        if (!shouldContinue) {
+                            [self.taskList removeAllObjects];
+                            allTasksFinishedBlock();
+                        }
                     }
                 });
             });

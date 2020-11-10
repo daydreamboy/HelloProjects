@@ -23,7 +23,7 @@
 
 NSString *WCAsyncTaskChainManagerErrorDomain = @"WCAsyncTaskChainManager";
 
-@interface WCAsyncTaskChainManager () <WCAsyncTaskExecutorDelegate>
+@interface WCAsyncTaskChainManager ()
 @property (nonatomic, copy) NSString *bizKey;
 @property (nonatomic, strong) NSArray<NSString *> *handlerClasses;
 @property (nonatomic, strong) NSMutableArray<id<WCAsyncTaskHandler>> *chainedTaskHandler;
@@ -39,7 +39,7 @@ NSString *WCAsyncTaskChainManagerErrorDomain = @"WCAsyncTaskChainManager";
         _handlerClasses = classes;
         _bizKey = bizKey;
         _taskExecutor = [[WCAsyncTaskExecutor alloc] init];
-        _taskExecutor.delegate = self;
+        //_taskExecutor.delegate = self;
         
         _chainedTaskHandler = [NSMutableArray array];
         for (NSString *clzString in classes) {
@@ -105,9 +105,12 @@ NSString *WCAsyncTaskChainManagerErrorDomain = @"WCAsyncTaskChainManager";
                     allHandlersCompletion();
                 }
             }
-        } forKey:handler.name timeout:timeoutInterval timeoutBlock:^{
+        } forKey:handler.name timeout:timeoutInterval timeoutBlock:^(BOOL * _Nonnull shouldContinue) {
             context.error = [NSError errorWithDomain:WCAsyncTaskChainManagerErrorDomain code:WCAsyncTaskChainManagerErrorHandlerTimeout userInfo:@{ NSLocalizedFailureReasonErrorKey: [NSString stringWithFormat:@"handler %@ is timeout", handler.name] }];
             context.aborted = YES;
+            
+            *shouldContinue = YES;
+            
             allHandlersCompletion();
         }];
     }
