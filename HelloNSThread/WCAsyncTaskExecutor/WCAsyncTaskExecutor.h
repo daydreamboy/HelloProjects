@@ -39,7 +39,6 @@ typedef NS_ENUM(NSUInteger, WCAsyncTaskExecuteMode) {
  @return YES if parameter is correct. NO if not
  */
 - (BOOL)addAsyncTask:(WCAsyncTaskBlock)block;
-- (BOOL)addAsyncTask:(WCAsyncTaskBlock)block forKey:(NSString *)key timeout:(NSTimeInterval)timeout timeoutBlock:(nullable WCAsyncTaskTimeoutBlock)timeoutBlock;
 
 /**
  Add a block as Task to run or wait to run
