@@ -1,3 +1,6 @@
 [submodule "HelloMasonry/Masonry"]
 	path = HelloMasonry/Masonry
 	url = https://github.com/daydreamboy/Masonry.git
+[submodule "HelloYYKit/YYKit"]
+	path = HelloYYKit/YYKit
+	url = /Users/wesley_chen/GitHub_Projects/HelloProjects/HelloYYKit/YYKit
