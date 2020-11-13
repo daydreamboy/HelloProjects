@@ -1,9 +1,9 @@
 //
 //  AppDelegate.h
-//  AppTest
+//  HelloUITableView
 //
-//  Created by wesley chen on 16/4/13.
-//
+//  Created by wesley_chen on 28/10/2017.
+//  Copyright © 2017 wesley_chen. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

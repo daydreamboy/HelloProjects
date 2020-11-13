@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F155DD0255E3059002EC297 /* MisuseUIImageWithYYAnimatedViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F155DCF255E3059002EC297 /* MisuseUIImageWithYYAnimatedViewViewController.m */; };
+		4F155F20255E8C77002EC297 /* 001@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F155F1F255E8C77002EC297 /* 001@2x.png */; };
+		4F155F23255E9210002EC297 /* cube@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F155F22255E9210002EC297 /* cube@2x.png */; };
 		4F2FB421255D23D5007B779C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FB420255D23D5007B779C /* AppDelegate.m */; };
 		4F2FB42C255D23D6007B779C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F2FB42B255D23D6007B779C /* Assets.xcassets */; };
 		4F2FB42F255D23D6007B779C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F2FB42D255D23D6007B779C /* LaunchScreen.storyboard */; };
 		4F2FB432255D23D6007B779C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FB431255D23D6007B779C /* main.m */; };
 		4F2FB440255D241D007B779C /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FB43B255D241C007B779C /* RootViewController.m */; };
-		4F2FB441255D241D007B779C /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FB43D255D241D007B779C /* Demo1ViewController.m */; };
 		4F2FBA1B255D3139007B779C /* YYDiskCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FB96C255D3136007B779C /* YYDiskCache.m */; };
 		4F2FBA1C255D3139007B779C /* YYCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FB96E255D3136007B779C /* YYCache.m */; };
 		4F2FBA1D255D3139007B779C /* YYKVStorage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2FB972255D3137007B779C /* YYKVStorage.m */; };
@@ -97,6 +99,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F155DCE255E3059002EC297 /* MisuseUIImageWithYYAnimatedViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MisuseUIImageWithYYAnimatedViewViewController.h; sourceTree = "<group>"; };
+		4F155DCF255E3059002EC297 /* MisuseUIImageWithYYAnimatedViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MisuseUIImageWithYYAnimatedViewViewController.m; sourceTree = "<group>"; };
+		4F155F1F255E8C77002EC297 /* 001@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "001@2x.png"; sourceTree = "<group>"; };
+		4F155F22255E9210002EC297 /* cube@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cube@2x.png"; sourceTree = "<group>"; };
 		4F2FB41C255D23D5007B779C /* HelloYYKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloYYKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F2FB41F255D23D5007B779C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F2FB420255D23D5007B779C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -105,8 +111,6 @@
 		4F2FB430255D23D6007B779C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F2FB431255D23D6007B779C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F2FB43B255D241C007B779C /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		4F2FB43D255D241D007B779C /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
-		4F2FB43E255D241D007B779C /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
 		4F2FB43F255D241D007B779C /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F2FB96C255D3136007B779C /* YYDiskCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYDiskCache.m; sourceTree = "<group>"; };
 		4F2FB96D255D3136007B779C /* YYKVStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYKVStorage.h; sourceTree = "<group>"; };
@@ -285,6 +289,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F155F1E255E8C61002EC297 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4F155F22255E9210002EC297 /* cube@2x.png */,
+				4F155F1F255E8C77002EC297 /* 001@2x.png */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		4F2FB413255D23D4007B779C = {
 			isa = PBXGroup;
 			children = (
@@ -311,6 +324,7 @@
 				4F2FB43F255D241D007B779C /* RootViewController.h */,
 				4F2FB43B255D241C007B779C /* RootViewController.m */,
 				4F2FB42B255D23D6007B779C /* Assets.xcassets */,
+				4F155F1E255E8C61002EC297 /* Resources */,
 				4F2FB42D255D23D6007B779C /* LaunchScreen.storyboard */,
 				4F2FB430255D23D6007B779C /* Info.plist */,
 				4F2FB431255D23D6007B779C /* main.m */,
@@ -322,8 +336,6 @@
 			isa = PBXGroup;
 			children = (
 				4F2FB969255D3113007B779C /* Issues */,
-				4F2FB43E255D241D007B779C /* Demo1ViewController.h */,
-				4F2FB43D255D241D007B779C /* Demo1ViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -331,6 +343,8 @@
 		4F2FB969255D3113007B779C /* Issues */ = {
 			isa = PBXGroup;
 			children = (
+				4F155DCE255E3059002EC297 /* MisuseUIImageWithYYAnimatedViewViewController.h */,
+				4F155DCF255E3059002EC297 /* MisuseUIImageWithYYAnimatedViewViewController.m */,
 			);
 			path = Issues;
 			sourceTree = "<group>";
@@ -353,13 +367,13 @@
 		4F2FB96B255D3136007B779C /* Cache */ = {
 			isa = PBXGroup;
 			children = (
-				4F2FB96C255D3136007B779C /* YYDiskCache.m */,
-				4F2FB96D255D3136007B779C /* YYKVStorage.h */,
-				4F2FB96E255D3136007B779C /* YYCache.m */,
-				4F2FB96F255D3136007B779C /* YYMemoryCache.h */,
 				4F2FB970255D3137007B779C /* YYDiskCache.h */,
+				4F2FB96C255D3136007B779C /* YYDiskCache.m */,
 				4F2FB971255D3137007B779C /* YYCache.h */,
+				4F2FB96E255D3136007B779C /* YYCache.m */,
+				4F2FB96D255D3136007B779C /* YYKVStorage.h */,
 				4F2FB972255D3137007B779C /* YYKVStorage.m */,
+				4F2FB96F255D3136007B779C /* YYMemoryCache.h */,
 				4F2FB973255D3137007B779C /* YYMemoryCache.m */,
 			);
 			path = Cache;
@@ -660,7 +674,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F2FB42F255D23D6007B779C /* LaunchScreen.storyboard in Resources */,
+				4F155F20255E8C77002EC297 /* 001@2x.png in Resources */,
 				4F2FB42C255D23D6007B779C /* Assets.xcassets in Resources */,
+				4F155F23255E9210002EC297 /* cube@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,7 +699,6 @@
 				4F2FBA64255D3139007B779C /* YYTransaction.m in Sources */,
 				4F2FBA3E255D3139007B779C /* UIPasteboard+YYText.m in Sources */,
 				4F2FBA29255D3139007B779C /* CALayer+YYWebImage.m in Sources */,
-				4F2FB441255D241D007B779C /* Demo1ViewController.m in Sources */,
 				4F2FBA6B255D3139007B779C /* YYReachability.m in Sources */,
 				4F2FBA27255D3139007B779C /* UIImageView+YYWebImage.m in Sources */,
 				4F2FBA37255D3139007B779C /* YYTextDebugOption.m in Sources */,
@@ -755,6 +770,7 @@
 				4F2FBA2A255D3139007B779C /* YYAnimatedImageView.m in Sources */,
 				4F2FBA33255D3139007B779C /* YYTextLayout.m in Sources */,
 				4F2FBA32255D3139007B779C /* YYTextInput.m in Sources */,
+				4F155DD0255E3059002EC297 /* MisuseUIImageWithYYAnimatedViewViewController.m in Sources */,
 				4F2FBA48255D3139007B779C /* UIScrollView+YYAdd.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

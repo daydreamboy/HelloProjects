@@ -22,10 +22,6 @@
     
     self.rootViewController = [RootViewController new];
     self.navController = [[UINavigationController alloc] initWithRootViewController:self.rootViewController];
-    // Note: the translucent value of UITabBar and UINavigationBar are YES by default, this is cause off-screen rendering,
-    // so set it to NO
-    // @see https://stackoverflow.com/questions/45368350/is-there-something-wrong-of-ios-simulators-color-offscreen-rendered-function
-    self.navController.navigationBar.translucent = NO;
     self.window.rootViewController = self.navController;
     
     [self.window makeKeyAndVisible];
