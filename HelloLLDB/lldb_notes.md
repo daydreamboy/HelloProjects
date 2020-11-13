@@ -2185,6 +2185,37 @@ instance method 'YW_lyk_size' also declared here
 
 
 
+### 5. 打印UIEdgeInsets
+
+​        参数是UIEdgeInsets类型，实际上是一个结构体，需要使用特殊的寄存器变量结合特定偏移量来打印。
+
+```shell
+$ p *(UIEdgeInsets *)($rbp+16)
+```
+
+
+
+举个例子，如下
+
+```objective-c
+- (void)test_print_UIEdgeInsets_variable {
+    UIEdgeInsets insets = UIEdgeInsetsMake(1, 2, 3, 4);
+    [self callee:insets];
+}
+
+- (void)callee:(UIEdgeInsets)insets {
+    NSLog(@"%@", NSStringFromUIEdgeInsets(insets)); // p *(UIEdgeInsets *)($rbp+16)
+}
+```
+
+
+
+
+
+
+
+
+
 ## 12、常用私有调试API
 
 

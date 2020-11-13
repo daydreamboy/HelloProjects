@@ -138,7 +138,7 @@
     XCTAssertEqualObjects(output, @"#111F2C3D");
 }
 
-- (void)test_print {
+- (void)test_print_UIEdgeInsets_variable {
     UIEdgeInsets insets = UIEdgeInsetsMake(1, 2, 3, 4);
     [self callee:insets];
 }
