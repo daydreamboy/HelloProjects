@@ -15,6 +15,11 @@
 #define IOS13_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"13.0" options:NSNumericSearch] != NSOrderedAscending)
 #endif
 
+// >= `9.0`
+#ifndef IOS9_OR_LATER
+#define IOS9_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending)
+#endif
+
 #pragma mark > Substring String
 
 + (nullable NSAttributedString *)attributedSubstringWithAttributedString:(NSAttributedString *)attributedString range:(NSRange)range {
@@ -243,6 +248,76 @@
     CGSize textSize = rect.size;
     
     return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
+}
+
++ (CGSize)textSizeWithFixedLineAttributedString:(NSAttributedString *)attributedString width:(CGFloat)width maximumNumberOfLines:(NSUInteger)maximumNumberOfLines widthToFit:(BOOL)widthToFit {
+    if (![attributedString isKindOfClass:[NSAttributedString class]] || !attributedString.length || width <= 0) {
+        return CGSizeZero;
+    }
+    
+    if (maximumNumberOfLines <= 0) {
+        return [self textSizeWithMultipleLineAttributedString:attributedString width:width widthToFit:widthToFit];
+    }
+    else {
+        CGFloat height = 0;
+        
+        NSTextStorage *textStorage = [[NSTextStorage alloc] initWithAttributedString:attributedString];
+        NSLayoutManager *layoutManager = [[NSLayoutManager alloc] init];
+        NSTextContainer *textContainer = [[NSTextContainer alloc] init];
+        textContainer.lineFragmentPadding = 0;
+        textContainer.size = CGSizeMake(width, 0.0);
+        
+        [textStorage addLayoutManager:layoutManager];
+        [layoutManager addTextContainer:textContainer];
+        
+        NSUInteger numberOfNonEmptyLines = 0;
+        NSUInteger index = 0;
+        NSUInteger numberOfGlyphs = layoutManager.numberOfGlyphs;
+        while (index < numberOfGlyphs && numberOfNonEmptyLines < maximumNumberOfLines) {
+            NSRange lineRange = {0, 0};
+            if (IOS9_OR_LATER) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability"
+                height += [layoutManager lineFragmentRectForGlyphAtIndex:index effectiveRange:&lineRange withoutAdditionalLayout:NO].size.height;
+#pragma GCC diagnostic pop
+            }
+            else {
+                height += [layoutManager lineFragmentRectForGlyphAtIndex:index effectiveRange:&lineRange].size.height;
+            }
+            
+            index = NSMaxRange(lineRange);
+            numberOfNonEmptyLines += 1;
+        }
+        
+        NSInteger numberOfEmptyLines = maximumNumberOfLines - numberOfNonEmptyLines;
+        if (numberOfEmptyLines > 0) {
+            NSRange effectiveRange = NSMakeRange(NSNotFound, 0);
+            UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:0 effectiveRange:&effectiveRange];
+            font = font ?: [UIFont systemFontOfSize:[UIFont systemFontSize]];
+            
+            CGFloat lineHeight = font.lineHeight;
+            NSParagraphStyle *paragraphStyle = [attributedString attribute:NSParagraphStyleAttributeName atIndex:0 effectiveRange:&effectiveRange];
+            paragraphStyle = paragraphStyle ?: [NSParagraphStyle defaultParagraphStyle];
+            
+            if (paragraphStyle) {
+                if (paragraphStyle.lineHeightMultiple > 0) {
+                    lineHeight *= paragraphStyle.lineHeightMultiple;
+                }
+                
+                if (paragraphStyle.minimumLineHeight > 0 && lineHeight < paragraphStyle.minimumLineHeight) {
+                    lineHeight = paragraphStyle.minimumLineHeight;
+                }
+                else if (paragraphStyle.maximumLineHeight > 0 && lineHeight > paragraphStyle.maximumLineHeight) {
+                    lineHeight = paragraphStyle.maximumLineHeight;
+                }
+                
+                lineHeight += paragraphStyle.lineSpacing;
+            }
+            height += lineHeight * numberOfEmptyLines;
+        }
+        
+        return CGSizeMake(width, ceil(height));
+    }
 }
 
 #pragma mark - Attachment

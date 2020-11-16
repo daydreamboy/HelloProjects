@@ -85,6 +85,18 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (CGSize)textSizeWithSingleLineAttributedString:(NSAttributedString *)attributedString;
 
+/**
+ Calculate text size for fixed lines (numberOfLines > 0)
+ 
+ @param attributedString the attributed string
+ @param width the fixed width
+ @param maximumNumberOfLines the maximum number of lines. maximumNumberOfLines <= 0, will treat as multiple lines (maximumNumberOfLines = 0)
+ @param widthToFit If NO, the width of calculated text size always is the input width. If YES, the width of calculated text size as it. Note: this flag only works when maximumNumberOfLines > 0
+ 
+ @return the text size
+ */
++ (CGSize)textSizeWithFixedLineAttributedString:(NSAttributedString *)attributedString width:(CGFloat)width maximumNumberOfLines:(NSUInteger)maximumNumberOfLines widthToFit:(BOOL)widthToFit;
+
 #pragma mark - Attachment
 
 /**

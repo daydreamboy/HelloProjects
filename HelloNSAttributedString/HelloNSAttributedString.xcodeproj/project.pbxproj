@@ -14,6 +14,7 @@
 		2B4AC40E1D0FF00F0026BE19 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AC40D1D0FF00F0026BE19 /* RootViewController.m */; };
 		2B4AC4101D0FF0920026BE19 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B4AC40F1D0FF0920026BE19 /* Launch Screen.storyboard */; };
 		2B4AC4131D0FF1C80026BE19 /* NSParagraphStyleAttributeNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2B4AC4121D0FF1C80026BE19 /* NSParagraphStyleAttributeNameViewController.m */; };
+		4F0C4C942562D2EE009DF119 /* FixedLineHeightWithImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F0C4C932562D2EE009DF119 /* FixedLineHeightWithImageViewController.m */; };
 		4F1C610C2180B53B000D5548 /* WCAttributedStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C610B2180B53B000D5548 /* WCAttributedStringTool.m */; };
 		4F26FCBC1FBEB299002A28AF /* NSString+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F26FCBB1FBEB299002A28AF /* NSString+Addition.m */; };
 		4F26FCBF1FBEB55B002A28AF /* UIView+Addition.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F26FCBE1FBEB55B002A28AF /* UIView+Addition.m */; };
@@ -55,6 +56,8 @@
 		2B4AC40F1D0FF0920026BE19 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		2B4AC4111D0FF1C80026BE19 /* NSParagraphStyleAttributeNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSParagraphStyleAttributeNameViewController.h; sourceTree = "<group>"; };
 		2B4AC4121D0FF1C80026BE19 /* NSParagraphStyleAttributeNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSParagraphStyleAttributeNameViewController.m; sourceTree = "<group>"; };
+		4F0C4C922562D2EE009DF119 /* FixedLineHeightWithImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FixedLineHeightWithImageViewController.h; sourceTree = "<group>"; };
+		4F0C4C932562D2EE009DF119 /* FixedLineHeightWithImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FixedLineHeightWithImageViewController.m; sourceTree = "<group>"; };
 		4F1C610A2180B53B000D5548 /* WCAttributedStringTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAttributedStringTool.h; sourceTree = "<group>"; };
 		4F1C610B2180B53B000D5548 /* WCAttributedStringTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAttributedStringTool.m; sourceTree = "<group>"; };
 		4F26FCBA1FBEB299002A28AF /* NSString+Addition.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+Addition.h"; sourceTree = "<group>"; };
@@ -159,6 +162,8 @@
 				4F26FCC11FBEC4D6002A28AF /* AttributedStringWithImageViewController.m */,
 				4F63396C219335270041056F /* ReplaceAttributedStringViewController.h */,
 				4F63396D219335270041056F /* ReplaceAttributedStringViewController.m */,
+				4F0C4C922562D2EE009DF119 /* FixedLineHeightWithImageViewController.h */,
+				4F0C4C932562D2EE009DF119 /* FixedLineHeightWithImageViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -340,6 +345,7 @@
 				4F1C610C2180B53B000D5548 /* WCAttributedStringTool.m in Sources */,
 				4F26FCBC1FBEB299002A28AF /* NSString+Addition.m in Sources */,
 				4F63396E219335270041056F /* ReplaceAttributedStringViewController.m in Sources */,
+				4F0C4C942562D2EE009DF119 /* FixedLineHeightWithImageViewController.m in Sources */,
 				2B4AC4131D0FF1C80026BE19 /* NSParagraphStyleAttributeNameViewController.m in Sources */,
 				4F26FCC21FBEC4D6002A28AF /* AttributedStringWithImageViewController.m in Sources */,
 				4F26FCBF1FBEB55B002A28AF /* UIView+Addition.m in Sources */,

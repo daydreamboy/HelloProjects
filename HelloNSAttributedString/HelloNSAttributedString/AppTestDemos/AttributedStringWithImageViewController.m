@@ -42,8 +42,9 @@
         
         CGFloat paddingH = 19;
         CGFloat width = 280 - 2 * paddingH;
+        CGFloat startY = CGRectGetMaxY(self.navigationController.navigationBar.frame);
         
-        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(paddingH, 64 + 5, width, 0)];
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(paddingH, startY + 5, width, 0)];
         label.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:0.8];
         label.attributedText = attributedText;
         label.numberOfLines = 0;
