@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^WCGCDToolAsyncTaskSynchronizedCompletion)(BOOL success);
+
 @interface WCGCDGroupTaskInfo : NSObject
 @property (nonatomic, copy, nullable) NSString *groupName;
 @property (nonatomic, strong) dispatch_queue_t taskQueue;
@@ -43,6 +45,32 @@ NS_ASSUME_NONNULL_BEGIN
  allTaskCompletionBlock on groupTaskInfo.completionQueue
  */
 + (BOOL)safeDispatchGroupEnterLeavePairWithGroupTaskInfo:(WCGCDGroupTaskInfo *)groupTaskInfo runTaskBlock:(void(^)(id data, NSUInteger index, void (^taskBlockFinished)(id _Nullable processedData, NSError * _Nullable error)))singleTaskBlock allTaskCompletionBlock:(void (^)(NSArray *dataArray, NSArray *errorArray))allTaskCompletionBlock;
+
+/**
+ Synchronize an asynchronous task. The thread which call this method will wait for the asynchronous task
+ 
+ @param asyncTask the block to encapsulate the asynchronous task. The type is WCGCDToolAsyncTaskSynchronizedCompletion
+ -  completion, call completion when finished the asynchronous task, and pass a BOOL to indicate the return value of this method
+ @param timeout the time interval for timeout. Pass DISPATCH_TIME_FOREVER or dispatch_time(DISPATCH_TIME_NOW, (int64_t)(N * NSEC_PER_SEC))
+ @return the value of completion pass. Or return NO if timeout
+ 
+ @discussion asyncTask is expected to execute asynchronous task, e.g.
+ dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{...});, but also support a synchronous task.
+ 
+ @code
+ BOOL success = [WCGCDTool performAsyncTaskSynchronously:^(WCGCDToolAsyncTaskSynchronizedCompletion  _Nonnull completion) {
+     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        completion(YES/NO);
+     });
+ } timeout:dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC)];
+ 
+ // Note: the current thread will wait here for asynchronous task finished
+ if (sucess) {
+    // continue
+ }
+ @endcode
+ */
++ (BOOL)performAsyncTaskSynchronously:(void (^)(WCGCDToolAsyncTaskSynchronizedCompletion completion))asyncTask timeout:(dispatch_time_t)timeout;
 
 @end
 

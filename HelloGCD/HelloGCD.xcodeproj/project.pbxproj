@@ -40,6 +40,7 @@
 		2BE3503D1F837497008C3B4F /* CreateDataBufferDispatchSourceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2BE3503C1F837497008C3B4F /* CreateDataBufferDispatchSourceViewController.m */; };
 		4F01E34B1FDE238700E290BD /* ExampleOfBatchDownloadImagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F01E3491FDE238700E290BD /* ExampleOfBatchDownloadImagesViewController.m */; };
 		4F06A3A62064E05E00DDDAF1 /* DispatchOnceIssueCallStackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F06A3A52064E05E00DDDAF1 /* DispatchOnceIssueCallStackViewController.m */; };
+		4F609AA5254A6B2400C48D90 /* DispatchSemaphoreIssueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F609AA4254A6B2400C48D90 /* DispatchSemaphoreIssueViewController.m */; };
 		4F82BB1C2297C6D20020C78A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F82BB1B2297C6D20020C78A /* Tests.m */; };
 		4F82BB272297C74F0020C78A /* Tests_issues.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F82BB262297C74F0020C78A /* Tests_issues.m */; };
 		4F82BB2B2297C7920020C78A /* CacheWithConcurrentQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F82BB292297C7920020C78A /* CacheWithConcurrentQueue.m */; };
@@ -128,6 +129,8 @@
 		4F01E34A1FDE238700E290BD /* ExampleOfBatchDownloadImagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExampleOfBatchDownloadImagesViewController.h; sourceTree = "<group>"; };
 		4F06A3A42064E05E00DDDAF1 /* DispatchOnceIssueCallStackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DispatchOnceIssueCallStackViewController.h; sourceTree = "<group>"; };
 		4F06A3A52064E05E00DDDAF1 /* DispatchOnceIssueCallStackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DispatchOnceIssueCallStackViewController.m; sourceTree = "<group>"; };
+		4F609AA3254A6B2400C48D90 /* DispatchSemaphoreIssueViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DispatchSemaphoreIssueViewController.h; sourceTree = "<group>"; };
+		4F609AA4254A6B2400C48D90 /* DispatchSemaphoreIssueViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DispatchSemaphoreIssueViewController.m; sourceTree = "<group>"; };
 		4F82BB192297C6D20020C78A /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F82BB1B2297C6D20020C78A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		4F82BB1D2297C6D20020C78A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -227,6 +230,7 @@
 		2B2390BD1DE0541800E5E107 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F609AA2254A6AD700C48D90 /* dispatch semaphore */,
 				2B401FD91E06E9A500D998FA /* dispatch queue */,
 				4FF514FD23290DFD006753C2 /* dispatch group */,
 				2B401FF21E06E9A500D998FA /* dispatch source */,
@@ -333,8 +337,17 @@
 			children = (
 				4F06A3A42064E05E00DDDAF1 /* DispatchOnceIssueCallStackViewController.h */,
 				4F06A3A52064E05E00DDDAF1 /* DispatchOnceIssueCallStackViewController.m */,
+				4F609AA3254A6B2400C48D90 /* DispatchSemaphoreIssueViewController.h */,
+				4F609AA4254A6B2400C48D90 /* DispatchSemaphoreIssueViewController.m */,
 			);
 			path = "GCD issues";
+			sourceTree = "<group>";
+		};
+		4F609AA2254A6AD700C48D90 /* dispatch semaphore */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "dispatch semaphore";
 			sourceTree = "<group>";
 		};
 		4F82BB1A2297C6D20020C78A /* Tests */ = {
@@ -567,6 +580,7 @@
 				4F06A3A62064E05E00DDDAF1 /* DispatchOnceIssueCallStackViewController.m in Sources */,
 				2B37F3041F83C09900809F00 /* UseDispatchIOViewController.m in Sources */,
 				2B401FF71E06E9A500D998FA /* CreateDispatchQueuesViewController.m in Sources */,
+				4F609AA5254A6B2400C48D90 /* DispatchSemaphoreIssueViewController.m in Sources */,
 				4F01E34B1FDE238700E290BD /* ExampleOfBatchDownloadImagesViewController.m in Sources */,
 				4F9578EF1FDFC37F009693CF /* SetMultipleContextDataToQueueViewController.m in Sources */,
 				2B2390A81DE053E000E5E107 /* main.m in Sources */,

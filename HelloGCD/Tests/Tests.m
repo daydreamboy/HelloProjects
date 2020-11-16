@@ -80,6 +80,8 @@
     XCTestExpectation_END(1000);
 }
 
+#pragma mark ::
+
 - (NSArray *)createTestDataWithCount:(NSUInteger)count {
     
     NSMutableArray *arrM = [NSMutableArray arrayWithCapacity:count];
@@ -92,6 +94,63 @@
     }
     
     return arrM;
+}
+
+#pragma mark ::
+
+- (void)test_performAsyncTaskSynchronously_timeout {
+    BOOL output;
+    
+    // Case 1
+//    output = [WCGCDTool performAsyncTaskSynchronously:^(WCGCDToolAsyncTaskSynchronizedCompletion  _Nonnull completion) {
+//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//            sleep(3);
+//            BOOL finished = YES;
+//            if (finished) {
+//                completion(YES);
+//            }
+//            else {
+//                completion(NO);
+//            }
+//        });
+//    } timeout:DISPATCH_TIME_FOREVER];
+//
+//    // continue to process
+//    NSLog(@"output: %@", output ? @"YES" : @"NO");
+//    XCTAssertTrue(output);
+//
+//    // Case 2
+//    output = [WCGCDTool performAsyncTaskSynchronously:^(WCGCDToolAsyncTaskSynchronizedCompletion  _Nonnull completion) {
+//        BOOL finished = YES;
+//        if (finished) {
+//            completion(YES);
+//        }
+//        else {
+//            completion(NO);
+//        }
+//    } timeout:DISPATCH_TIME_FOREVER];
+//
+//    // continue to process
+//    NSLog(@"output: %@", output ? @"YES" : @"NO");
+//    XCTAssertTrue(output);
+    
+    // Case 3
+    output = [WCGCDTool performAsyncTaskSynchronously:^(WCGCDToolAsyncTaskSynchronizedCompletion  _Nonnull completion) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            sleep(5);
+            BOOL finished = YES;
+            if (finished) {
+                completion(YES);
+            }
+            else {
+                completion(NO);
+            }
+        });
+    } timeout:dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC)];
+    
+    // continue to process
+    NSLog(@"output: %@", output ? @"YES" : @"NO");
+    XCTAssertFalse(output);
 }
 
 @end

@@ -40,6 +40,7 @@
 
 // section 5
 #import "DispatchOnceIssueCallStackViewController.h"
+#import "DispatchSemaphoreIssueViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -113,6 +114,7 @@
     
     NSArray<NSDictionary *> *section5 = @[
           @{ kTitle: @"Crash happen in dispatch_once", kClass: [DispatchOnceIssueCallStackViewController class] },
+          @{ kTitle: @"DispatchSemaphoreIssue", kClass: [DispatchSemaphoreIssueViewController class] },
     ];
     
     _sectionTitles = @[

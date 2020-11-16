@@ -115,4 +115,37 @@
     return YES;
 }
 
++ (BOOL)performAsyncTaskSynchronously:(void (^)(WCGCDToolAsyncTaskSynchronizedCompletion completion))asyncTask timeout:(dispatch_time_t)timeout {
+    if (!asyncTask) {
+        return NO;
+    }
+    
+    // @see https://stackoverflow.com/a/21191050
+    dispatch_semaphore_t sema = dispatch_semaphore_create(0);
+    
+    __block BOOL status = NO;
+    __block BOOL isTimeout = NO;
+    WCGCDToolAsyncTaskSynchronizedCompletion completion = ^(BOOL success) {
+        if (!isTimeout) {
+            status = success;
+            dispatch_semaphore_signal(sema);
+        }
+    };
+    
+    if (asyncTask) {
+        asyncTask(completion);
+    }
+    else {
+        completion(NO);
+    }
+    
+    intptr_t code = dispatch_semaphore_wait(sema, timeout); // the current queue is waiting
+    isTimeout = code == 0 ? NO : YES;
+    if (isTimeout) {
+        return NO;
+    }
+    
+    return status;
+}
+
 @end
