@@ -468,6 +468,23 @@
     NSLog(@"%@", outputString);
 }
 
+- (void)test_escapedJSONStringWithJSONString {
+    NSData *JSONData = nil;
+    NSError *error = nil;
+    id JSONObject;
+    NSString *JSONString;
+    
+    // Case 1
+    JSONObject = @{@"num": @1};
+    JSONData = [NSJSONSerialization dataWithJSONObject:JSONObject options:kNilOptions error:&error];
+    JSONString = [[NSString alloc] initWithData:JSONData encoding:NSUTF8StringEncoding];
+    
+    NSString *output = [WCJSONTool escapedJSONStringWithJSONString:JSONString];
+    
+    NSLog(@"%@", output);
+    XCTAssertEqualObjects(output, @"\"{\\\"num\\\":1}\"");
+}
+
 #pragma mark - Assistant Methods
 
 #pragma mark > Merge two JSON Objects

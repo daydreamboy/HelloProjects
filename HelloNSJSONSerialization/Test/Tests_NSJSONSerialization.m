@@ -213,4 +213,25 @@
     NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
 }
 
+- (void)test_NSJSONSerialization_escaped_JSONString {
+    NSData *jsonData = nil;
+    NSError *error = nil;
+    id JSONObject;
+    NSString *jsonString;
+    
+    // Case 1
+    JSONObject = @{@"num": @1};
+    jsonData = [NSJSONSerialization dataWithJSONObject:JSONObject options:kNilOptions error:&error];
+    jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    NSDictionary *container = @{@"key": jsonString};
+    
+    NSData *JSONData2 = [NSJSONSerialization dataWithJSONObject:container options:kNilOptions error:&error];
+    NSMutableString *JSONString2 = [[[NSString alloc] initWithData:JSONData2 encoding:NSUTF8StringEncoding] mutableCopy];
+    [JSONString2 deleteCharactersInRange:NSMakeRange(JSONString2.length - 1, @"}".length)];
+    [JSONString2 deleteCharactersInRange:NSMakeRange(0, @"{\"key\":".length)];
+    
+    NSLog(@"%@", JSONString2);
+    XCTAssertEqualObjects(JSONString2, @"\"{\\\"num\\\":1}\"");
+}
+
 @end

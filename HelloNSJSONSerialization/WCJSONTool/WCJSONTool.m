@@ -283,6 +283,28 @@
     return [NSString stringWithString:stringM];
 }
 
++ (nullable NSString *)escapedJSONStringWithJSONString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    if (string.length == 0) {
+        return string;
+    }
+    
+    NSDictionary *container = @{@"key": string};
+    NSError *error = nil;
+    
+    NSData *JSONData = [NSJSONSerialization dataWithJSONObject:container options:kNilOptions error:&error];
+    NSString *JSONString = [[NSString alloc] initWithData:JSONData encoding:NSUTF8StringEncoding];
+    NSMutableString *JSONStringM = [NSMutableString stringWithString:JSONString];
+    
+    [JSONStringM deleteCharactersInRange:NSMakeRange(JSONString.length - 1, @"}".length)];
+    [JSONStringM deleteCharactersInRange:NSMakeRange(0, @"{\"key\":".length)];
+    
+    return [JSONStringM copy];
+}
+
 #pragma mark - Assistant Methods
 
 #pragma mark > Safe JSON Object

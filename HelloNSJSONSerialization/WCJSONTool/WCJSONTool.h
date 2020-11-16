@@ -177,6 +177,15 @@ NS_AVAILABLE_IOS(5_0)
  */
 + (nullable NSString *)JSONEscapedStringWithString:(NSString *)string;
 
+/**
+ Convert JSON string to escaped string
+ 
+ @param string the JSON string
+ @return the JSON escaped string from the JSON string
+ @discussion This method is expected work same as +[WCJSONTool JSONEscapedStringWithString:]
+ */
++ (nullable NSString *)escapedJSONStringWithJSONString:(NSString *)string;
+
 #pragma mark - Assistant Methods
 
 #pragma mark > Safe JSON Object
