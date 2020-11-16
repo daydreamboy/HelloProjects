@@ -39,6 +39,18 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)checkIndexPathsValidWithTableView:(UITableView *)tableView indexPaths:(NSArray *)indexPaths;
 
+/**
+ Safe perform table view update operations
+ 
+ @param tableView the table view
+ @param updates the block to perform update (insert, delete, move, reload)
+ @param completion the block to completion when update finished
+ 
+ @return YES if called successfully, or NO it failed
+ @discussion If iOS >= 11, use -[UITableView performBatchUpdates:completion:] internally, otherwise use beginUpdates/endUpdates instead
+ */
++ (BOOL)performBatchUpdatesWithTableView:(UITableView *)tableView batchUpdates:(void (^)(void))updates completion:(void (^)(BOOL finished))completion;
+
 @end
 
 

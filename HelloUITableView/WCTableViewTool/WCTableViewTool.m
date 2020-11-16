@@ -8,6 +8,11 @@
 
 #import "WCTableViewTool.h"
 
+// >= `11.0`
+#ifndef IOS11_OR_LATER
+#define IOS11_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"11.0" options:NSNumericSearch] != NSOrderedAscending)
+#endif
+
 @implementation WCTableViewTool
 
 + (BOOL)performOperationKeepStaticWithTableView:(UITableView *)tableView block:(void (^)(void))block {
@@ -76,6 +81,28 @@
     }];
     
     return indexPathsAreValid;
+}
+
++ (BOOL)performBatchUpdatesWithTableView:(UITableView *)tableView batchUpdates:(void (^)(void))updates completion:(void (^)(BOOL finished))completion {
+    if (![tableView isKindOfClass:[UITableView class]] || !tableView.dataSource) {
+        return NO;
+    }
+    
+    if (IOS11_OR_LATER) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+        [tableView performBatchUpdates:updates completion:completion];
+#pragma GCC diagnostic pop
+    }
+    else {
+        [tableView beginUpdates];
+        !updates ?: updates();
+        [tableView endUpdates];
+        
+        !completion ?: completion(YES);
+    }
+    
+    return YES;
 }
 
 @end
