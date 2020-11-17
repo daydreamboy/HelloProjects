@@ -17,6 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 @synthesize imageName = _imageName; \
 @synthesize image = _image; \
 
+#define WCEmoticonInfoKey_range @"range"
+#define WCEmoticonInfoKey_emoticon @"emoticon"
+#define WCEmoticonInfoKey_matchString @"matchString"
+
 @protocol WCEmoticon <NSObject>
 ///< [微笑]
 @property (nonatomic, copy, readonly) NSString *codeString;
@@ -44,6 +48,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable id<WCEmoticon>)emoticonWithCode:(NSString *)code;
 - (nullable NSString *)emoticonDisplayStringWithCode:(NSString *)code;
 - (nullable NSDictionary<NSNumber *, NSDictionary *> *)emoticonInfoWithString:(NSString *)string;
+
+#pragma mark - Utility
+
+- (nullable NSAttributedString *)emoticonizedStringWithString:(NSString *)string attributes:(nullable NSDictionary<NSAttributedStringKey, id> *)attributes;
 
 @end
 

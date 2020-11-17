@@ -13,6 +13,7 @@
 #import "AttributedStringWithImageViewController.h"
 #import "ReplaceAttributedStringViewController.h"
 #import "FixedLineHeightWithImageViewController.h"
+#import "UseWCEmoticonDataSourceViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -40,6 +41,7 @@
         @"NSAttributedString with image",
         @"Replace NSAttributedString with substring",
         @"height of NSAttributedString with image",
+        @"Use WCEmoticonDataSource",
     ];
     _classes = @[
         [AttributedStringWithFormatViewController class],
@@ -47,6 +49,7 @@
         [AttributedStringWithImageViewController class],
         [ReplaceAttributedStringViewController class],
         [FixedLineHeightWithImageViewController class],
+        [UseWCEmoticonDataSourceViewController class],
     ];
 }
 

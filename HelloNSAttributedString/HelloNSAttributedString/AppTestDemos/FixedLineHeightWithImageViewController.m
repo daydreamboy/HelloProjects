@@ -63,7 +63,7 @@
         CGSize textSize = [WCAttributedStringTool textSizeWithMultipleLineAttributedString:attributedText width:label.frame.size.width widthToFit:NO];
         label.height = textSize.height;
         
-        CGSize textSize2 = [WCAttributedStringTool textSizeWithFixedLineAttributedString:attributedText width:label.frame.size.width maximumNumberOfLines:1 widthToFit:NO];
+        CGSize textSize2 = [WCAttributedStringTool textSizeWithFixedLineAttributedString:attributedText width:label.frame.size.width maximumNumberOfLines:1 forceUseFixedLineHeight:NO widthToFit:NO];
         NSLog(@"%@", NSStringFromCGSize(textSize2));
         NSAssert(CGSizeEqualToSize(textSize, textSize2), @"not pass");
         
@@ -89,7 +89,7 @@
         CGSize textSize = [WCAttributedStringTool textSizeWithMultipleLineAttributedString:attributedText width:label.frame.size.width widthToFit:NO];
         label.height = textSize.height;
         
-        CGSize textSize2 = [WCAttributedStringTool textSizeWithFixedLineAttributedString:attributedText width:label.frame.size.width maximumNumberOfLines:1 widthToFit:NO];
+        CGSize textSize2 = [WCAttributedStringTool textSizeWithFixedLineAttributedString:attributedText width:label.frame.size.width maximumNumberOfLines:1 forceUseFixedLineHeight:NO widthToFit:NO];
         NSLog(@"%@", NSStringFromCGSize(textSize2));
         NSAssert(CGSizeEqualToSize(textSize, textSize2), @"not pass");
         
@@ -116,7 +116,7 @@
         CGSize textSize = [WCAttributedStringTool textSizeWithMultipleLineAttributedString:attributedText width:label.frame.size.width widthToFit:NO];
         label.height = textSize.height;
         
-        CGSize textSize2 = [WCAttributedStringTool textSizeWithFixedLineAttributedString:attributedText width:label.frame.size.width maximumNumberOfLines:1 widthToFit:NO];
+        CGSize textSize2 = [WCAttributedStringTool textSizeWithFixedLineAttributedString:attributedText width:label.frame.size.width maximumNumberOfLines:1 forceUseFixedLineHeight:NO widthToFit:NO];
         NSLog(@"%@", NSStringFromCGSize(textSize2));
         NSAssert(CGSizeEqualToSize(textSize, textSize2), @"not pass");
         
@@ -143,7 +143,7 @@
         CGSize textSize = [WCAttributedStringTool textSizeWithMultipleLineAttributedString:attributedText width:label.frame.size.width widthToFit:NO];
         label.height = textSize.height;
         
-        CGSize textSize2 = [WCAttributedStringTool textSizeWithFixedLineAttributedString:attributedText width:label.frame.size.width maximumNumberOfLines:1 widthToFit:NO];
+        CGSize textSize2 = [WCAttributedStringTool textSizeWithFixedLineAttributedString:attributedText width:label.frame.size.width maximumNumberOfLines:1 forceUseFixedLineHeight:NO widthToFit:NO];
         NSLog(@"%@", NSStringFromCGSize(textSize2));
         NSAssert(CGSizeEqualToSize(textSize, textSize2), @"not pass");
         
@@ -170,7 +170,7 @@
         CGSize textSize = [WCAttributedStringTool textSizeWithMultipleLineAttributedString:attributedText width:label.frame.size.width widthToFit:NO];
         label.height = textSize.height;
         
-        CGSize textSize2 = [WCAttributedStringTool textSizeWithFixedLineAttributedString:attributedText width:label.frame.size.width maximumNumberOfLines:1 widthToFit:NO];
+        CGSize textSize2 = [WCAttributedStringTool textSizeWithFixedLineAttributedString:attributedText width:label.frame.size.width maximumNumberOfLines:1 forceUseFixedLineHeight:NO widthToFit:NO];
         NSLog(@"%@", NSStringFromCGSize(textSize2));
         NSAssert(CGSizeEqualToSize(textSize, textSize2), @"not pass");
         
@@ -197,7 +197,7 @@
         CGSize textSize = [WCAttributedStringTool textSizeWithMultipleLineAttributedString:attributedText width:label.frame.size.width widthToFit:NO];
         label.height = textSize.height;
         
-        CGSize textSize2 = [WCAttributedStringTool textSizeWithFixedLineAttributedString:attributedText width:label.frame.size.width maximumNumberOfLines:label.numberOfLines widthToFit:NO];
+        CGSize textSize2 = [WCAttributedStringTool textSizeWithFixedLineAttributedString:attributedText width:label.frame.size.width maximumNumberOfLines:label.numberOfLines forceUseFixedLineHeight:NO widthToFit:NO];
         NSLog(@"%@", NSStringFromCGSize(textSize2));
         NSAssert(CGSizeEqualToSize(textSize, textSize2), @"not pass");
         
@@ -224,7 +224,7 @@
         CGSize textSize = [WCAttributedStringTool textSizeWithMultipleLineAttributedString:attributedText width:label.frame.size.width widthToFit:NO];
         label.height = textSize.height;
         
-        CGSize textSize2 = [WCAttributedStringTool textSizeWithFixedLineAttributedString:attributedText width:label.frame.size.width maximumNumberOfLines:label.numberOfLines widthToFit:NO];
+        CGSize textSize2 = [WCAttributedStringTool textSizeWithFixedLineAttributedString:attributedText width:label.frame.size.width maximumNumberOfLines:label.numberOfLines forceUseFixedLineHeight:NO widthToFit:NO];
         NSLog(@"%@", NSStringFromCGSize(textSize2));
         label.height = textSize2.height;
         NSAssert(CGSizeEqualToSize(textSize, textSize2), @"not pass");
@@ -252,7 +252,7 @@
         CGSize textSize = [WCAttributedStringTool textSizeWithMultipleLineAttributedString:attributedText width:label.frame.size.width widthToFit:NO];
         label.height = textSize.height;
         
-        CGSize textSize2 = [WCAttributedStringTool textSizeWithFixedLineAttributedString:attributedText width:label.frame.size.width maximumNumberOfLines:label.numberOfLines widthToFit:NO];
+        CGSize textSize2 = [WCAttributedStringTool textSizeWithFixedLineAttributedString:attributedText width:label.frame.size.width maximumNumberOfLines:label.numberOfLines forceUseFixedLineHeight:NO widthToFit:NO];
         NSLog(@"%@", NSStringFromCGSize(textSize2));
         label.height = textSize2.height;
         
@@ -279,7 +279,7 @@
         CGSize textSize = [WCAttributedStringTool textSizeWithMultipleLineAttributedString:attributedText width:label.frame.size.width widthToFit:NO];
         label.height = textSize.height;
         
-        CGSize textSize2 = [WCAttributedStringTool textSizeWithFixedLineAttributedString:attributedText width:label.frame.size.width maximumNumberOfLines:label.numberOfLines widthToFit:NO];
+        CGSize textSize2 = [WCAttributedStringTool textSizeWithFixedLineAttributedString:attributedText width:label.frame.size.width maximumNumberOfLines:label.numberOfLines forceUseFixedLineHeight:NO widthToFit:NO];
         NSLog(@"%@", NSStringFromCGSize(textSize2));
         label.height = textSize2.height;
         NSAssert(CGSizeEqualToSize(textSize, textSize2), @"not pass");
@@ -307,7 +307,7 @@
         CGSize textSize = [WCAttributedStringTool textSizeWithMultipleLineAttributedString:attributedText width:label.frame.size.width widthToFit:NO];
         label.height = textSize.height;
         
-        CGSize textSize2 = [WCAttributedStringTool textSizeWithFixedLineAttributedString:attributedText width:label.frame.size.width maximumNumberOfLines:label.numberOfLines widthToFit:NO];
+        CGSize textSize2 = [WCAttributedStringTool textSizeWithFixedLineAttributedString:attributedText width:label.frame.size.width maximumNumberOfLines:label.numberOfLines forceUseFixedLineHeight:NO widthToFit:NO];
         NSLog(@"%@", NSStringFromCGSize(textSize2));
         label.height = textSize2.height;
         NSAssert(CGSizeEqualToSize(textSize, textSize2), @"not pass");
@@ -335,7 +335,7 @@
         CGSize textSize = [WCAttributedStringTool textSizeWithMultipleLineAttributedString:attributedText width:label.frame.size.width widthToFit:NO];
         label.height = textSize.height;
         
-        CGSize textSize2 = [WCAttributedStringTool textSizeWithFixedLineAttributedString:attributedText width:label.frame.size.width maximumNumberOfLines:label.numberOfLines widthToFit:NO];
+        CGSize textSize2 = [WCAttributedStringTool textSizeWithFixedLineAttributedString:attributedText width:label.frame.size.width maximumNumberOfLines:label.numberOfLines forceUseFixedLineHeight:NO widthToFit:NO];
         NSLog(@"%@", NSStringFromCGSize(textSize2));
         label.height = textSize2.height;
         //NSAssert(CGSizeEqualToSize(textSize, textSize2), @"not pass");

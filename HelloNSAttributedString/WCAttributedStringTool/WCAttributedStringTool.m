@@ -250,7 +250,7 @@
     return CGSizeMake(ceil(textSize.width), ceil(textSize.height));
 }
 
-+ (CGSize)textSizeWithFixedLineAttributedString:(NSAttributedString *)attributedString width:(CGFloat)width maximumNumberOfLines:(NSUInteger)maximumNumberOfLines widthToFit:(BOOL)widthToFit {
++ (CGSize)textSizeWithFixedLineAttributedString:(NSAttributedString *)attributedString width:(CGFloat)width maximumNumberOfLines:(NSUInteger)maximumNumberOfLines forceUseFixedLineHeight:(BOOL)forceUseFixedLineHeight widthToFit:(BOOL)widthToFit {
     if (![attributedString isKindOfClass:[NSAttributedString class]] || !attributedString.length || width <= 0) {
         return CGSizeZero;
     }
@@ -290,7 +290,7 @@
         }
         
         NSInteger numberOfEmptyLines = maximumNumberOfLines - numberOfNonEmptyLines;
-        if (numberOfEmptyLines > 0) {
+        if (forceUseFixedLineHeight && numberOfEmptyLines > 0) {
             NSRange effectiveRange = NSMakeRange(NSNotFound, 0);
             UIFont *font = [attributedString attribute:NSFontAttributeName atIndex:0 effectiveRange:&effectiveRange];
             font = font ?: [UIFont systemFontOfSize:[UIFont systemFontSize]];
