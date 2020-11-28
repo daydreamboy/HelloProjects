@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4F19586D226584A5001562FB /* AlertWithTextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F19586A226584A5001562FB /* AlertWithTextFieldViewController.m */; };
 		4F19586E226584A5001562FB /* AlertWithTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F19586B226584A5001562FB /* AlertWithTextViewController.m */; };
+		4F2805FE2570A2D200227A1D /* AlertWithUITextFieldViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2805FD2570A2D200227A1D /* AlertWithUITextFieldViewController.m */; };
 		4F2A55F22233B772008648AB /* WCMacroToolBackend.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2A55F12233B772008648AB /* WCMacroToolBackend.m */; };
 		4F4513AF2123CE9E0065028A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4513AE2123CE9E0065028A /* AppDelegate.m */; };
 		4F4513B72123CE9F0065028A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F4513B62123CE9F0065028A /* Assets.xcassets */; };
@@ -29,6 +30,8 @@
 		4F19586A226584A5001562FB /* AlertWithTextFieldViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertWithTextFieldViewController.m; sourceTree = "<group>"; };
 		4F19586B226584A5001562FB /* AlertWithTextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlertWithTextViewController.m; sourceTree = "<group>"; };
 		4F19586C226584A5001562FB /* AlertWithTextFieldViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlertWithTextFieldViewController.h; sourceTree = "<group>"; };
+		4F2805FC2570A2D200227A1D /* AlertWithUITextFieldViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlertWithUITextFieldViewController.h; sourceTree = "<group>"; };
+		4F2805FD2570A2D200227A1D /* AlertWithUITextFieldViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlertWithUITextFieldViewController.m; sourceTree = "<group>"; };
 		4F2A55EF2233B75A008648AB /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
 		4F2A55F02233B772008648AB /* WCMacroToolBackend.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroToolBackend.h; sourceTree = "<group>"; };
 		4F2A55F12233B772008648AB /* WCMacroToolBackend.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMacroToolBackend.m; sourceTree = "<group>"; };
@@ -82,6 +85,8 @@
 			children = (
 				4FAD66E42528A36E005B7836 /* AlertWithPreferredActionViewController.h */,
 				4FAD66E52528A36E005B7836 /* AlertWithPreferredActionViewController.m */,
+				4F2805FC2570A2D200227A1D /* AlertWithUITextFieldViewController.h */,
+				4F2805FD2570A2D200227A1D /* AlertWithUITextFieldViewController.m */,
 			);
 			path = "Use UIAlertController";
 			sourceTree = "<group>";
@@ -256,6 +261,7 @@
 				4F4513BD2123CE9F0065028A /* main.m in Sources */,
 				4F19586E226584A5001562FB /* AlertWithTextViewController.m in Sources */,
 				4FAD66E62528A36E005B7836 /* AlertWithPreferredActionViewController.m in Sources */,
+				4F2805FE2570A2D200227A1D /* AlertWithUITextFieldViewController.m in Sources */,
 				4F4513CB2123CEF30065028A /* TabledAlertController.m in Sources */,
 				4F2A55F22233B772008648AB /* WCMacroToolBackend.m in Sources */,
 				4F8C95A7221EF43000869CE7 /* WCBlockTool.m in Sources */,

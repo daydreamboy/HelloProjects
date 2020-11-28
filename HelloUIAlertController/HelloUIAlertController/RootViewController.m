@@ -7,14 +7,23 @@
 //
 
 #import "RootViewController.h"
+#import "WCMacroTool.h"
 
+// section 1
+#import "AlertWithPreferredActionViewController.h"
+#import "AlertWithUITextFieldViewController.h"
+
+// section 2
 #import "TabledAlertController.h"
-#import "WCAlertController.h"
-#import "UseWCAlertToolViewController.h"
+
+// section 3
 #import "AlertWithTextViewController.h"
 #import "AlertWithTextFieldViewController.h"
-#import "AlertWithPreferredActionViewController.h"
-#import "WCMacroTool.h"
+#import "WCAlertController.h"
+
+// section 4
+#import "UseWCAlertToolViewController.h"
+
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -41,6 +50,7 @@
     // MARK: Configure titles and classes for table view
     NSArray<NSDictionary *> *section1 = @[
         @{ kTitle: @"alert with preferred action", kClass: [AlertWithPreferredActionViewController class] },
+        @{ kTitle: @"alert with UITextField", kClass: [AlertWithUITextFieldViewController class] },
     ];
     
     NSArray<NSDictionary *> *section2 = @[
