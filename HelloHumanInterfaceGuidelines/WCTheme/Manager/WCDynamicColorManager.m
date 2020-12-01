@@ -9,6 +9,7 @@
 #import "WCDynamicColorManager.h"
 #import "WCDynamicInternalColor.h"
 #import "WCDynamicInternalColor_Internal.h"
+#import <objc/runtime.h>
 
 #define kWCThemeColorProviderName @"WCThemeColor"
 
@@ -137,9 +138,20 @@
     return [[WCDynamicInternalColor alloc] initWithDefaultColor:defaultColor key:key];
 }
 
-+ (void)addColorDidChangeObserver:(id)observer callback:(nullable void (^)(id<WCDynamicColorProvider> colorProvider, NSString *colorProviderName))callback {
+static void * const kAssociatedKeyColorDidChangeObserver = (void *)&kAssociatedKeyColorDidChangeObserver;
+
++ (BOOL)addColorDidChangeObserver:(id)observer callback:(nullable void (^)(id<WCDynamicColorProvider> colorProvider, NSString *colorProviderName))callback {
+    if (!observer) {
+        return NO;
+    }
+    
+    id<NSObject> actualObserver = objc_getAssociatedObject(observer, kAssociatedKeyColorDidChangeObserver);
+    if (actualObserver) {
+        return NO;
+    }
+    
     __weak typeof(observer) weak_observer = observer;
-    [[NSNotificationCenter defaultCenter] addObserverForName:WCDynamicColorDidChangeNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
+    actualObserver = [[NSNotificationCenter defaultCenter] addObserverForName:WCDynamicColorDidChangeNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull note) {
         __strong typeof(observer) strong_observer = weak_observer;
         if ([strong_observer isKindOfClass:[UIView class]]) {
             [strong_observer setNeedsDisplay];
@@ -151,13 +163,29 @@
                                                       
         !callback ?: callback(currentColorProvider, currentColorProviderName);
     }];
+    
+    objc_setAssociatedObject(observer, kAssociatedKeyColorDidChangeObserver, actualObserver, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    return YES;
 }
 
-+ (void)removeColorDidChangeObserver:(id)observer {
++ (BOOL)removeColorDidChangeObserver:(id)observer {
+    if (!observer) {
+        return NO;
+    }
+    
+    id<NSObject> actualObserver = objc_getAssociatedObject(observer, kAssociatedKeyColorDidChangeObserver);
+    if (!actualObserver) {
+        return NO;
+    }
+    
     @try {
-        [[NSNotificationCenter defaultCenter] removeObserver:observer];
+        [[NSNotificationCenter defaultCenter] removeObserver:actualObserver];
+        objc_setAssociatedObject(observer, kAssociatedKeyColorDidChangeObserver, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
     @catch (NSException *exception) {}
+    
+    return YES;
 }
 
 #pragma mark -
