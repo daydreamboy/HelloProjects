@@ -138,6 +138,8 @@
     return [[WCDynamicInternalColor alloc] initWithDefaultColor:defaultColor key:key];
 }
 
+#pragma mark - Color Change Observer
+
 static void * const kAssociatedKeyColorDidChangeObserver = (void *)&kAssociatedKeyColorDidChangeObserver;
 
 + (BOOL)addColorDidChangeObserver:(id)observer callback:(nullable void (^)(id<WCDynamicColorProvider> colorProvider, NSString *colorProviderName))callback {
