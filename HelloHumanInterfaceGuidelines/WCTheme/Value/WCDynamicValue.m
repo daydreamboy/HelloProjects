@@ -70,6 +70,76 @@ static void * const kAssociatedKeyDynamicValue = (void *)&kAssociatedKeyDynamicV
     return object;
 }
 
++ (instancetype)valueWithFloat:(float)value {
+    WCDynamicValue *object = [[WCDynamicValue alloc] init];
+    object.floatValue = value;
+    
+    return object;
+}
+
++ (instancetype)valueWithInt:(int)value {
+    WCDynamicValue *object = [[WCDynamicValue alloc] init];
+    object.intValue = value;
+    
+    return object;
+}
+
++ (instancetype)valueWithInteger:(NSInteger)value {
+    WCDynamicValue *object = [[WCDynamicValue alloc] init];
+    object.integerValue = value;
+    
+    return object;
+}
+
++ (instancetype)valueWithLongLong:(long long)value {
+    WCDynamicValue *object = [[WCDynamicValue alloc] init];
+    object.longLongValue = value;
+    
+    return object;
+}
+
++ (instancetype)valueWithLong:(long)value {
+    WCDynamicValue *object = [[WCDynamicValue alloc] init];
+    object.longValue = value;
+    
+    return object;
+}
+
++ (instancetype)valueWithShort:(short)value {
+    WCDynamicValue *object = [[WCDynamicValue alloc] init];
+    object.shortValue = value;
+    
+    return object;
+}
+
++ (instancetype)valueWithUnsignedChar:(unsigned char)value {
+    WCDynamicValue *object = [[WCDynamicValue alloc] init];
+    object.unsignedCharValue = value;
+    
+    return object;
+}
+
++ (instancetype)valueWithUnsignedInteger:(NSUInteger)value {
+    WCDynamicValue *object = [[WCDynamicValue alloc] init];
+    object.unsignedIntegerValue = value;
+    
+    return object;
+}
+
++ (instancetype)valueWithUnsignedInt:(unsigned int)value {
+    WCDynamicValue *object = [[WCDynamicValue alloc] init];
+    object.unsignedIntValue = value;
+    
+    return object;
+}
+
++ (instancetype)valueWithUnsignedLongLong:(unsigned long long)value {
+    WCDynamicValue *object = [[WCDynamicValue alloc] init];
+    object.unsignedLongLongValue = value;
+    
+    return object;
+}
+
 + (BOOL)setDynamicValueWithHost:(id)host defaultValue:(WCDynamicValue *)defaultValue forKey:(NSString *)key valueDidChangeBlock:(nullable WCValueDidChangeBlockType)valueDidChangeBlock forceReplace:(BOOL)forceReplace {
     if (!host || ![key isKindOfClass:[NSString class]]) {
         return NO;

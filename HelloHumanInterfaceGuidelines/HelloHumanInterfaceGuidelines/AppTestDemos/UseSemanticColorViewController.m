@@ -38,7 +38,10 @@
         @"systemGray6",
     ] mutableCopy];
     
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
     self.view.backgroundColor = [UIColor systemBackgroundColor];
+#pragma GCC diagnostic pop
     [self.view addSubview:self.tableView];
     
     UIMenuItem *menuItemDelete = [[UIMenuItem alloc] initWithTitle:@"Delete" action:@selector(deleteCell:)];

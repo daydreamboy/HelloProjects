@@ -16,6 +16,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
     self.view.backgroundColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
         if (traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
             return [UIColor greenColor];
@@ -36,11 +38,12 @@
     UIColor *resovedColor = [dynamicColor resolvedColorWithTraitCollection:self.traitCollection];
     NSLog(@"%@", dynamicColor);
     NSLog(@"%@", resovedColor);
+#pragma GCC diagnostic pop
 }
 
 - (void)change:(id)sender {
     @try {
-        [self.view.backgroundColor setValue:[UIColor orangeColor].CGColor forKey:@"CGColor"];
+        [self.view.backgroundColor setValue:(id)[UIColor orangeColor].CGColor forKey:@"CGColor"];
     }
     @catch (NSException *exception) {
         NSLog(@"%@", exception);
