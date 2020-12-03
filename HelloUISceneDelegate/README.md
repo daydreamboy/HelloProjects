@@ -15,7 +15,7 @@ UIWindowSceneDelegate --|> UISceneDelegate : Inheritance
 
 
 
-## 2、不使用Storyboard文件的工程模板
+## 2、不使用Storyboard文件的工程模板[^1]
 
 
 
@@ -40,6 +40,26 @@ UIWindowSceneDelegate --|> UISceneDelegate : Inheritance
 
 
 
+## 3、常用Tips
+
+### （1）检查设备是否支持分屏[^2]
+
+iOS 13+上UIApplication有supportsMultipleScenes属性，可以判断当前App是否支持MultipleScenes，如下
+
+```objective-c
+[UIApplication sharedApplication].supportsMultipleScenes
+```
+
+实际上，当系统支持（iPad并且iOS 13+），同时App的Info.plist中 `UIApplicationSupportsMultipleScenes` 设置为YES，supportsMultipleScenes属性才为YES。
+
+
+
+官方文档，描述如下
+
+> UIKit sets this property to [`YES`](dash-apple-api://load?request_key=lc/documentation/objectivec/yes) when the system allows the app to display multiple scenes and the app's `Info.plist` file includes the [`UIApplicationSupportsMultipleScenes`](dash-apple-api://load?request_key=lc/documentation/bundleresources/information_property_list/uiapplicationscenemanifest/uiapplicationsupportsmultiplescenes) key with a value of [`YES`](dash-apple-api://load?request_key=lc/documentation/objectivec/yes). If either of those conditions is not true, the value of this property is [`NO`](dash-apple-api://load?request_key=lc/documentation/objectivec/no).
+
+
+
 
 
 
@@ -47,6 +67,9 @@ UIWindowSceneDelegate --|> UISceneDelegate : Inheritance
 
 
 ## References
+
+[^1]:https://medium.com/@dpeachesdev/how-to-start-an-ios-app-with-scenedelegate-without-storyboards-f313d70a3710
+[^2]:https://stackoverflow.com/questions/57900007/how-to-launch-multiple-instances-of-a-scene-on-iphone-with-ios-13
 
 
 
