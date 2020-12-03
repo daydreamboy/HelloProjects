@@ -139,6 +139,17 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)allowUserInteractionEvents:(BOOL)isAllow;
 
+#pragma mark - App Screen
+
+/**
+ Check app if support multiple scenes
+ 
+ @return YES if support, NO if not
+ 
+ @see https://stackoverflow.com/questions/57900007/how-to-launch-multiple-instances-of-a-scene-on-iphone-with-ios-13
+ */
++ (BOOL)checkIfSupportMultipleScenes;
+
 #pragma mark - App Utility
 
 #pragma mark > Get debug configuration

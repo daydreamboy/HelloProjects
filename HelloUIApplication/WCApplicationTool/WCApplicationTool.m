@@ -9,6 +9,13 @@
 #import "WCApplicationTool.h"
 #import <sys/utsname.h>
 
+#define IS_IPAD             ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
+
+// >= `13.0`
+#ifndef IOS13_OR_LATER
+#define IOS13_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"13.0" options:NSNumericSearch] != NSOrderedAscending)
+#endif
+
 @implementation WCApplicationTool
 
 #pragma mark - App Info
@@ -153,6 +160,25 @@
     }
     
     return NO;
+}
+
+#pragma mark - App Screen
+
++ (BOOL)checkIfSupportMultipleScenes {
+    if (IS_IPAD) {
+        if (IOS13_OR_LATER) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+            return [UIApplication sharedApplication].supportsMultipleScenes;
+#pragma GCC diagnostic pop
+        }
+        else {
+            return NO;
+        }
+    }
+    else {
+        return NO;
+    }
 }
 
 #pragma mark - App Utility
