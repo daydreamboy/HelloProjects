@@ -21,6 +21,7 @@
 #import "DeleteMeViewController.h"
 #import "SelectMeViewController.h"
 #import "InsertMeViewController.h"
+#import "CombineInsertionAndDeletionViewController.h"
 
 // section 4
 #import "FadeInCellRowByRowViewController.h"
@@ -91,6 +92,7 @@
           @{ kTitle: @"Delete Me", kClass: [DeleteMeViewController class] },
           @{ kTitle: @"Select Me", kClass: [SelectMeViewController class] },
           @{ kTitle: @"Insert Me", kClass: [InsertMeViewController class] },
+          @{ kTitle: @"Combine insertion and deletion", kClass: [CombineInsertionAndDeletionViewController class] },
     ];
     
     NSArray<NSDictionary *> *section4 = @[

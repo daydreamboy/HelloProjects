@@ -69,6 +69,7 @@
 		4FB17BC324937D05004D8B98 /* WCTableViewCellTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB17BC224937D05004D8B98 /* WCTableViewCellTool.m */; };
 		4FB55FC120E92EAC002DEF76 /* HorizontalTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB55FC020E92EAC002DEF76 /* HorizontalTableViewViewController.m */; };
 		4FBB4E0621A29E32000E9F61 /* WCTableViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBB4E0521A29E32000E9F61 /* WCTableViewTool.m */; };
+		4FCA13DA257913CE0083FA3E /* CombineInsertionAndDeletionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCA13D9257913CE0083FA3E /* CombineInsertionAndDeletionViewController.m */; };
 		4FE8D2DF24E170C00035E424 /* IndexedTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE8D2DE24E170C00035E424 /* IndexedTableViewViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -188,6 +189,8 @@
 		4FB55FC020E92EAC002DEF76 /* HorizontalTableViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HorizontalTableViewViewController.m; sourceTree = "<group>"; };
 		4FBB4E0421A29E32000E9F61 /* WCTableViewTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCTableViewTool.h; sourceTree = "<group>"; };
 		4FBB4E0521A29E32000E9F61 /* WCTableViewTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCTableViewTool.m; sourceTree = "<group>"; };
+		4FCA13D8257913CD0083FA3E /* CombineInsertionAndDeletionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CombineInsertionAndDeletionViewController.h; sourceTree = "<group>"; };
+		4FCA13D9257913CE0083FA3E /* CombineInsertionAndDeletionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CombineInsertionAndDeletionViewController.m; sourceTree = "<group>"; };
 		4FE8D2DD24E170BF0035E424 /* IndexedTableViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndexedTableViewViewController.h; sourceTree = "<group>"; };
 		4FE8D2DE24E170C00035E424 /* IndexedTableViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndexedTableViewViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -365,6 +368,8 @@
 				4F1C7E0E254D375C00E6BA13 /* TableViewHeaderIssueCircularCallViewController.m */,
 				4F1F3422255A380600C56458 /* TableViewBeginEndUpdatesNotPairedViewController.h */,
 				4F1F3423255A380600C56458 /* TableViewBeginEndUpdatesNotPairedViewController.m */,
+				4FCA13D8257913CD0083FA3E /* CombineInsertionAndDeletionViewController.h */,
+				4FCA13D9257913CE0083FA3E /* CombineInsertionAndDeletionViewController.m */,
 			);
 			path = section5;
 			sourceTree = "<group>";
@@ -617,6 +622,7 @@
 				4F50647122DC2DA200C54420 /* DetectCellOffscreenViewController.m in Sources */,
 				4F160E5224ECFEDD00932EC9 /* WCTableLoadMoreView.m in Sources */,
 				4F090D2F2494FE860034F246 /* WCTintSystemCheckmarkCell.m in Sources */,
+				4FCA13DA257913CE0083FA3E /* CombineInsertionAndDeletionViewController.m in Sources */,
 				4F60E71922A7E64400C27087 /* UITableView+Addition.m in Sources */,
 				4F1C7E15254D395D00E6BA13 /* WCColorTool.m in Sources */,
 				4FAAA5931FA4804600A80328 /* AppDelegate.m in Sources */,
