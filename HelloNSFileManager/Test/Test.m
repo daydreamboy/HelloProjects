@@ -147,7 +147,7 @@
     
     // Case 1:
     path = @"/Users/wesley chen/Test1/Test2";
-    isCreated = [WCFileManagerTool createNewDirectoryIfNeededAtPath:path];
+    isCreated = [WCFileManagerTool createNewDirectoryIfNeededAtPath:path error:nil];
     XCTAssertTrue(isCreated);
     XCTAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:path]);
     

@@ -176,9 +176,12 @@ FOUNDATION_EXPORT NSFileAttributeKey const WCFileName;
  Create a new directory
 
  @param path the path of a directory
+ @param error the error
+ 
  @return YES if the directory created successfully or the directory is existed, or NO if created failed
+ @discussion Should always consider the return value. error maybe nil when the return value is NO
  */
-+ (BOOL)createNewDirectoryIfNeededAtPath:(NSString *)path;
++ (BOOL)createNewDirectoryIfNeededAtPath:(NSString *)path error:(NSError * _Nullable * _Nullable)error;
 
 #pragma mark > Directory Deletion
 

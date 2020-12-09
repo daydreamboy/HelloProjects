@@ -348,12 +348,37 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
 
 #pragma mark > Directory Creation
 
-+ (BOOL)createNewDirectoryIfNeededAtPath:(NSString *)path {
++ (BOOL)createNewDirectoryIfNeededAtPath:(NSString *)path error:(NSError * _Nullable * _Nullable)error {
     if (![path isKindOfClass:[NSString class]]) {
+        if (*error) {
+            *error = nil;
+        }
         return NO;
     }
-    // Note: path - This parameter must not be nil.
-    return [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
+    
+    if ([path isKindOfClass:[NSString class]] && path.length == 0) {
+        if (*error) {
+            *error = nil;
+        }
+        return NO;
+    }
+    
+    BOOL isExists = [self directoryExistsAtPath:path];
+    
+    if (isExists) {
+        return YES;
+    }
+    else {
+        // Note: path - This parameter must not be nil.
+        NSError *errorL = nil;
+        BOOL success = [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&errorL];
+        
+        if (*error) {
+            *error = errorL;
+        }
+        
+        return success;
+    }
 }
 
 #pragma mark > Directory Deletion
