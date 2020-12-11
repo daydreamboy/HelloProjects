@@ -102,37 +102,37 @@
     BOOL output;
     
     // Case 1
-//    output = [WCGCDTool performSynchronouslyWithAsyncTask:^(WCGCDToolAsyncTaskSynchronizedCompletion  _Nonnull completion) {
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//            sleep(3);
-//            BOOL finished = YES;
-//            if (finished) {
-//                completion(YES);
-//            }
-//            else {
-//                completion(NO);
-//            }
-//        });
-//    } timeout:DISPATCH_TIME_FOREVER];
-//
-//    // continue to process
-//    NSLog(@"output: %@", output ? @"YES" : @"NO");
-//    XCTAssertTrue(output);
+    output = [WCGCDTool performSynchronouslyWithAsyncTask:^(WCGCDToolAsyncTaskSynchronizedCompletion  _Nonnull completion) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            sleep(3);
+            BOOL finished = YES;
+            if (finished) {
+                completion(YES);
+            }
+            else {
+                completion(NO);
+            }
+        });
+    } timeout:DISPATCH_TIME_FOREVER];
+
+    // continue to process
+    NSLog(@"output: %@", output ? @"YES" : @"NO");
+    XCTAssertTrue(output);
 
     // Case 2: call completion directly with YES
-//    output = [WCGCDTool performSynchronouslyWithAsyncTask:^(WCGCDToolAsyncTaskSynchronizedCompletion  _Nonnull completion) {
-//        BOOL finished = YES;
-//        if (finished) {
-//            completion(YES);
-//        }
-//        else {
-//            completion(NO);
-//        }
-//    } timeout:DISPATCH_TIME_FOREVER];
-//
-//    // continue to process
-//    NSLog(@"output: %@", output ? @"YES" : @"NO");
-//    XCTAssertTrue(output);
+    output = [WCGCDTool performSynchronouslyWithAsyncTask:^(WCGCDToolAsyncTaskSynchronizedCompletion  _Nonnull completion) {
+        BOOL finished = YES;
+        if (finished) {
+            completion(YES);
+        }
+        else {
+            completion(NO);
+        }
+    } timeout:DISPATCH_TIME_FOREVER];
+
+    // continue to process
+    NSLog(@"output: %@", output ? @"YES" : @"NO");
+    XCTAssertTrue(output);
     
     // Case 3: call completion directly with NO
     output = [WCGCDTool performSynchronouslyWithAsyncTask:^(WCGCDToolAsyncTaskSynchronizedCompletion  _Nonnull completion) {
@@ -150,26 +150,29 @@
     XCTAssertFalse(output);
     
     // Case 4
-//    output = [WCGCDTool performAsyncTaskSynchronously:^(WCGCDToolAsyncTaskSynchronizedCompletion  _Nonnull completion) {
-//        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-//            sleep(5);
-//            BOOL finished = YES;
-//            if (finished) {
-//                completion(YES);
-//            }
-//            else {
-//                completion(NO);
-//            }
-//        });
-//    } timeout:dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC)];
-//
-//    // continue to process
-//    NSLog(@"output: %@", output ? @"YES" : @"NO");
-//    XCTAssertFalse(output);
+    output = [WCGCDTool performSynchronouslyWithAsyncTask:^(WCGCDToolAsyncTaskSynchronizedCompletion  _Nonnull completion) {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            sleep(5);
+            BOOL finished = YES;
+            if (finished) {
+                completion(YES);
+            }
+            else {
+                completion(NO);
+            }
+        });
+    } timeout:dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC)];
+
+    // continue to process
+    NSLog(@"output: %@", output ? @"YES" : @"NO");
+    XCTAssertFalse(output);
     
     // Abnormal Case 1: pass nil task
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wnonnull"
     output = [WCGCDTool performSynchronouslyWithAsyncTask:nil timeout:DISPATCH_TIME_FOREVER];
-
+#pragma GCC diagnostic pop
+    
     // continue to process
     NSLog(@"output: %@", output ? @"YES" : @"NO");
     XCTAssertFalse(output);
