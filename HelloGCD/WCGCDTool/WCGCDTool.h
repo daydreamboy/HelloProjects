@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+#define DISPATCH_TIME_IN_SEC(seconds) (dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds * NSEC_PER_SEC)))
+
 typedef void(^WCGCDToolAsyncTaskSynchronizedCompletion)(BOOL success);
 
 @interface WCGCDGroupTaskInfo : NSObject

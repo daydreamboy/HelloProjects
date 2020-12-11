@@ -161,7 +161,7 @@
                 completion(NO);
             }
         });
-    } timeout:dispatch_time(DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC)];
+    } timeout:DISPATCH_TIME_IN_SEC(1)];
 
     // continue to process
     NSLog(@"output: %@", output ? @"YES" : @"NO");
