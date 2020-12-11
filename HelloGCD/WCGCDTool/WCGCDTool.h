@@ -49,16 +49,16 @@ typedef void(^WCGCDToolAsyncTaskSynchronizedCompletion)(BOOL success);
 /**
  Synchronize an asynchronous task. The thread which call this method will wait for the asynchronous task
  
- @param asyncTask the block to encapsulate the asynchronous task. The type is WCGCDToolAsyncTaskSynchronizedCompletion
+ @param asyncTask the block to encapsulate the asynchronous task. The type is WCGCDToolAsyncTaskSynchronizedCompletion. If nil will always return NO.
  -  completion, call completion when finished the asynchronous task, and pass a BOOL to indicate the return value of this method
  @param timeout the time interval for timeout. Pass DISPATCH_TIME_FOREVER or dispatch_time(DISPATCH_TIME_NOW, (int64_t)(N * NSEC_PER_SEC))
- @return the value of completion pass. Or return NO if timeout
+ @return the value of completion block's parameter. Or return NO if timeout
  
  @discussion asyncTask is expected to execute asynchronous task, e.g.
  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{...});, but also support a synchronous task.
  
  @code
- BOOL success = [WCGCDTool performAsyncTaskSynchronously:^(WCGCDToolAsyncTaskSynchronizedCompletion  _Nonnull completion) {
+ BOOL success = [WCGCDTool performSynchronouslyWithAsyncTask:^(WCGCDToolAsyncTaskSynchronizedCompletion  _Nonnull completion) {
      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         completion(YES/NO);
      });
@@ -70,7 +70,7 @@ typedef void(^WCGCDToolAsyncTaskSynchronizedCompletion)(BOOL success);
  }
  @endcode
  */
-+ (BOOL)performAsyncTaskSynchronously:(void (^)(WCGCDToolAsyncTaskSynchronizedCompletion completion))asyncTask timeout:(dispatch_time_t)timeout;
++ (BOOL)performSynchronouslyWithAsyncTask:(void (^)(WCGCDToolAsyncTaskSynchronizedCompletion completion))asyncTask timeout:(dispatch_time_t)timeout;
 
 @end
 

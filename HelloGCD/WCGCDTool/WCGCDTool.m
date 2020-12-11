@@ -115,7 +115,7 @@
     return YES;
 }
 
-+ (BOOL)performAsyncTaskSynchronously:(void (^)(WCGCDToolAsyncTaskSynchronizedCompletion completion))asyncTask timeout:(dispatch_time_t)timeout {
++ (BOOL)performSynchronouslyWithAsyncTask:(void (^)(WCGCDToolAsyncTaskSynchronizedCompletion completion))asyncTask timeout:(dispatch_time_t)timeout {
     if (!asyncTask) {
         return NO;
     }
