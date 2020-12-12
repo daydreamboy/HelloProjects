@@ -44,10 +44,8 @@
     
     self.valueProviders[name] = dynamicValueProvider;
     
-    NSString *currentValueProviderName = [[NSUserDefaults standardUserDefaults] stringForKey:kWCThemeValueProviderName];
-    if ([currentValueProviderName isEqualToString:name]) {
+    if ([_currentValueProviderName isEqualToString:name]) {
         _currentValueProvider = dynamicValueProvider;
-        _currentValueProviderName = currentValueProviderName;
     }
     
     return YES;
@@ -145,6 +143,7 @@
     self = [super init];
     if (self) {
         _valueProviders = [NSMutableDictionary dictionary];
+        _currentValueProviderName = [[NSUserDefaults standardUserDefaults] stringForKey:kWCThemeValueProviderName];
     }
     return self;
 }

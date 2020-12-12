@@ -84,10 +84,8 @@
     
     self.colorProviders[name] = dynamicColorProvider;
     
-    NSString *currentColorProviderName = [[NSUserDefaults standardUserDefaults] stringForKey:kWCThemeColorProviderName];
-    if ([currentColorProviderName isEqualToString:name]) {
+    if ([_currentColorProviderName isEqualToString:name]) {
         _currentColorProvider = dynamicColorProvider;
-        _currentColorProviderName = currentColorProviderName;
     }
     
     return YES;
@@ -196,6 +194,7 @@ static void * const kAssociatedKeyColorDidChangeObserver = (void *)&kAssociatedK
     self = [super init];
     if (self) {
         _colorProviders = [NSMutableDictionary dictionary];
+        _currentColorProviderName = [[NSUserDefaults standardUserDefaults] stringForKey:kWCThemeColorProviderName];
     }
     return self;
 }

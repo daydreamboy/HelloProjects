@@ -44,10 +44,8 @@
     
     self.fontProviders[name] = dynamicFontProvider;
     
-    NSString *currentFontProviderName = [[NSUserDefaults standardUserDefaults] stringForKey:kWCThemeFontProviderName];
-    if ([currentFontProviderName isEqualToString:name]) {
+    if ([_currentFontProviderName isEqualToString:name]) {
         _currentFontProvider = dynamicFontProvider;
-        _currentFontProviderName = currentFontProviderName;
     }
     
     return YES;
@@ -157,6 +155,7 @@
     self = [super init];
     if (self) {
         _fontProviders = [NSMutableDictionary dictionary];
+        _currentFontProviderName = [[NSUserDefaults standardUserDefaults] stringForKey:kWCThemeFontProviderName];
     }
     return self;
 }
