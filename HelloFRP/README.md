@@ -1,8 +1,12 @@
-# Functional Reactive Programming (FRP)
+# Programming Paradigm
 
 [TOC]
 
-## 1、介绍FRP
+
+
+## 1、FRP (Functional Reactive Programming)
+
+### （1）介绍FRP
 
 FRP是Functional Reactive Programming的缩写，Wiki对FRP释义，如下
 
@@ -22,7 +26,7 @@ FRP是Functional Reactive Programming的缩写，Wiki对FRP释义，如下
 
 
 
-### （1）FRP使用的常见场景
+### （2）FRP使用的常见场景
 
 * 用户输入搜索词，确定最终的搜索词
 * 鼠标移动，计算最终停下来的坐标
@@ -32,9 +36,9 @@ FRP是Functional Reactive Programming的缩写，Wiki对FRP释义，如下
 
 
 
-## 2、常用FRP函数
+### （3）常用FRP函数
 
-### （1）Throttle和Debounce函数
+#### a. Throttle和Debounce函数
 
 Throttle和Debounce函数，都是用于频率控制的函数，防止某个函数被频繁的调用。Throttle和Debounce函数，都有一个时间参数，它们的区别在于如何使用这个时间参数。
 
@@ -116,6 +120,12 @@ TODO
 https://daddycoding.com/2020/03/10/ios-tutorial-debounce-your-network-call/
 
 https://stackoverflow.com/questions/27116684/how-can-i-debounce-a-method-call
+
+
+
+## 2、ReactiveX
+
+
 
 
 
