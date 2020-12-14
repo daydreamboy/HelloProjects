@@ -39,6 +39,10 @@
 #pragma mark > Change Color Provider
 
 - (BOOL)setCurrentColorProviderName:(NSString *)currentProviderName {
+    return [self setCurrentColorProviderName:currentProviderName persistent:YES postNotification:YES];
+}
+
+- (BOOL)setCurrentColorProviderName:(NSString *)currentProviderName persistent:(BOOL)persistent postNotification:(BOOL)postNotification {
     if (![currentProviderName isKindOfClass:[NSString class]]) {
         return NO;
     }
@@ -58,9 +62,13 @@
     userInfoM[WCDynamicColorChangeNotificationUserInfoProvider] = _currentColorProvider;
     userInfoM[WCDynamicColorChangeNotificationUserInfoProviderName] = _currentColorProviderName;
     
-    [[NSUserDefaults standardUserDefaults] setObject:_currentColorProviderName forKey:kWCThemeColorProviderName];
+    if (persistent) {
+        [[NSUserDefaults standardUserDefaults] setObject:_currentColorProviderName forKey:kWCThemeColorProviderName];
+    }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:WCDynamicColorDidChangeNotification object:nil userInfo:userInfoM];
+    if (postNotification) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:WCDynamicColorDidChangeNotification object:nil userInfo:userInfoM];
+    }
     
     return YES;
 }

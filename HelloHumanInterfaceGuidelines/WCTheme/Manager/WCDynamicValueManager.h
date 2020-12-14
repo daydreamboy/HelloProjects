@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark > Change Value Provider
 
 - (BOOL)setCurrentValueProviderName:(NSString *)currentProviderName;
+- (BOOL)setCurrentValueProviderName:(NSString *)currentValueProviderName persistent:(BOOL)persistent postNotification:(BOOL)postNotification;
 
 #pragma mark > Register Value Provider
 

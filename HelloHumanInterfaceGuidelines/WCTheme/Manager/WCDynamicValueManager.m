@@ -92,6 +92,10 @@
 #pragma mark > Change Value Provider
 
 - (BOOL)setCurrentValueProviderName:(NSString *)currentValueProviderName {
+    return [self setCurrentValueProviderName:currentValueProviderName persistent:YES postNotification:YES];
+}
+
+- (BOOL)setCurrentValueProviderName:(NSString *)currentValueProviderName persistent:(BOOL)persistent postNotification:(BOOL)postNotification {
     if (![currentValueProviderName isKindOfClass:[NSString class]]) {
         return NO;
     }
@@ -111,9 +115,13 @@
     userInfoM[WCDynamicValueChangeNotificationUserInfoProvider] = _currentValueProvider;
     userInfoM[WCDynamicValueChangeNotificationUserInfoProviderName] = _currentValueProviderName;
     
-    [[NSUserDefaults standardUserDefaults] setObject:_currentValueProviderName forKey:kWCThemeValueProviderName];
+    if (persistent) {
+        [[NSUserDefaults standardUserDefaults] setObject:_currentValueProviderName forKey:kWCThemeValueProviderName];
+    }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:WCDynamicValueDidChangeNotification object:nil userInfo:userInfoM];
+    if (postNotification) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:WCDynamicValueDidChangeNotification object:nil userInfo:userInfoM];
+    }
     
     return YES;
 }

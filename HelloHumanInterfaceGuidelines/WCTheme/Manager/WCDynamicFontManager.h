@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark > Change Font Provider
 
 - (BOOL)setCurrentFontProviderName:(NSString *)currentProviderName;
+- (BOOL)setCurrentFontProviderName:(NSString *)currentFontProviderName persistent:(BOOL)persistent postNotification:(BOOL)postNotification;
 
 #pragma mark > Register Font Provider
 

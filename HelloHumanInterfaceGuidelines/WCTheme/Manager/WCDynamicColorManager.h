@@ -28,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark > Change Color Provider
 
 - (BOOL)setCurrentColorProviderName:(NSString *)currentProviderName;
+- (BOOL)setCurrentColorProviderName:(NSString *)currentProviderName persistent:(BOOL)persistent postNotification:(BOOL)postNotification;
 
 #pragma mark > Register Font Provider
 

@@ -92,6 +92,10 @@
 #pragma mark > Change Font Provider
 
 - (BOOL)setCurrentFontProviderName:(NSString *)currentFontProviderName {
+    return [self setCurrentFontProviderName:currentFontProviderName persistent:YES postNotification:YES];
+}
+
+- (BOOL)setCurrentFontProviderName:(NSString *)currentFontProviderName persistent:(BOOL)persistent postNotification:(BOOL)postNotification {
     if (![currentFontProviderName isKindOfClass:[NSString class]]) {
         return NO;
     }
@@ -109,14 +113,20 @@
     userInfoM[WCDynamicFontChangeNotificationUserInfoProviderName] = currentFontProviderName;
     userInfoM[WCDynamicFontChangeNotificationUserInfoProvider] = self.fontProviders[currentFontProviderName];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:WCDynamicFontWillChangeNotification object:nil userInfo:userInfoM];
+    if (postNotification) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:WCDynamicFontWillChangeNotification object:nil userInfo:userInfoM];
+    }
     
     _currentFontProviderName = currentFontProviderName;
     _currentFontProvider = self.fontProviders[currentFontProviderName];
     
-    [[NSUserDefaults standardUserDefaults] setObject:_currentFontProviderName forKey:kWCThemeFontProviderName];
+    if (persistent) {
+        [[NSUserDefaults standardUserDefaults] setObject:_currentFontProviderName forKey:kWCThemeFontProviderName];
+    }
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:WCDynamicFontDidChangeNotification object:nil userInfo:userInfoM];
+    if (postNotification) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:WCDynamicFontDidChangeNotification object:nil userInfo:userInfoM];
+    }
     
     return YES;
 }
