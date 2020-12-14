@@ -130,6 +130,29 @@
     return [UIColor colorWithRed:r / 255.0 green:g / 255.0 blue:b / 255.0 alpha:a / 255.0];
 }
 
+#pragma mark > UIColor to NSNumber
+
++ (nullable NSNumber *)numberFromUIColor:(UIColor *)color {
+    if (![color isKindOfClass:[UIColor class]]) {
+        return nil;
+    }
+    
+    CGFloat r = 0, g = 0, b = 0, a = 0;
+    BOOL success = [color getRed:&r green:&g blue:&b alpha:&a];
+    if (!success) {
+        return nil;
+    }
+    
+    long long red = llroundf(r * 255);
+    long long green = llroundf(g * 255);
+    long long blue = llroundf(b * 255);
+    long long alpha = llroundf(a * 255);
+    
+    NSNumber *number = @(((red << 24) + (green << 16) + (blue << 8) + alpha));
+    
+    return number;
+}
+
 #pragma mark - Assistant Methods
 
 #pragma mark > Others

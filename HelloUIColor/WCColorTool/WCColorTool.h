@@ -65,6 +65,17 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable UIColor *)colorWithHexString:(NSString *)string prefix:(nullable NSString *)prefix;
 
+#pragma mark > UIColor to NSNumber
+
+/**
+ Convert UIColor to NSNumber (long long)
+ 
+ @param color the UIColor
+ 
+ @return the NSNumber (long long). Return nil if failed.
+ */
++ (nullable NSNumber *)numberFromUIColor:(UIColor *)color;
+
 #pragma mark - Assistant Methods
 
 #pragma mark > Color Checks
