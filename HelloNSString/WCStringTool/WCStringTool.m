@@ -1540,7 +1540,7 @@
 
 #pragma mark > URL Encode/Decode
 
-+ (NSString *)URLEscapedStringWithString:(nullable NSString *)string {
++ (nullable NSString *)URLEscapedStringWithString:(nullable NSString *)string {
     if (![string isKindOfClass:[NSString class]]) {
         return nil;
     }
