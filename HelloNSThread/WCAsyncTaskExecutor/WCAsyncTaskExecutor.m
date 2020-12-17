@@ -12,22 +12,24 @@
 
 @interface WCAsyncTask : NSObject
 @property (nonatomic, copy) WCAsyncTaskBlock block;
-@property (nonatomic, copy) WCAsyncTaskTimeoutBlock timeoutBlock;
+@property (nonatomic, copy, nullable) WCAsyncTaskTimeoutBlock timeoutBlock;
 @property (nonatomic, copy) NSString *key;
+@property (nonatomic, strong, nullable) id data;
 @property (nonatomic, assign) BOOL isRunning;
 @property (nonatomic, assign) NSTimeInterval timeoutInterval;
 
 @property (nonatomic, assign) NSTimeInterval startTime;
 @property (nonatomic, assign) NSTimeInterval finishTime;
 
-+ (instancetype)taskWithBlock:(WCAsyncTaskBlock)block forKey:(NSString *)key timeoutInterval:(NSTimeInterval)timeoutInterval timeoutBlock:(WCAsyncTaskTimeoutBlock)timeoutBlock;
++ (instancetype)taskWithBlock:(WCAsyncTaskBlock)block data:(nullable id)data forKey:(NSString *)key timeoutInterval:(NSTimeInterval)timeoutInterval timeoutBlock:(WCAsyncTaskTimeoutBlock)timeoutBlock;
 @end
 
 @implementation WCAsyncTask
 
-+ (instancetype)taskWithBlock:(WCAsyncTaskBlock)block forKey:(NSString *)key timeoutInterval:(NSTimeInterval)timeoutInterval timeoutBlock:(WCAsyncTaskTimeoutBlock)timeoutBlock {
++ (instancetype)taskWithBlock:(WCAsyncTaskBlock)block data:(nullable id)data forKey:(NSString *)key timeoutInterval:(NSTimeInterval)timeoutInterval timeoutBlock:(nullable WCAsyncTaskTimeoutBlock)timeoutBlock {
     WCAsyncTask *holder = [WCAsyncTask new];
     holder.block = block;
+    holder.data = data;
     holder.key = key;
     holder.timeoutInterval = timeoutInterval;
     holder.timeoutBlock = timeoutBlock;
@@ -62,10 +64,10 @@
 }
 
 - (BOOL)addAsyncTask:(WCAsyncTaskBlock)block {
-    return [self addAsyncTask:block forKey:[NSUUID UUID].UUIDString timeout:-1 timeoutBlock:nil];
+    return [self addAsyncTask:block data:nil forKey:[NSUUID UUID].UUIDString timeout:0 timeoutBlock:nil];
 }
 
-- (BOOL)addAsyncTask:(WCAsyncTaskBlock)block forKey:(NSString *)key timeout:(NSTimeInterval)timeout timeoutBlock:(nullable WCAsyncTaskTimeoutBlock)timeoutBlock {
+- (BOOL)addAsyncTask:(WCAsyncTaskBlock)block data:(nullable id)data forKey:(NSString *)key timeout:(NSTimeInterval)timeout timeoutBlock:(nullable WCAsyncTaskTimeoutBlock)timeoutBlock {
     if (!block || ![key isKindOfClass:[NSString class]]) {
         return NO;
     }
@@ -78,7 +80,7 @@
             return;
         }
         
-        WCAsyncTask *taskToRun = [WCAsyncTask taskWithBlock:block forKey:key timeoutInterval:timeout timeoutBlock:timeoutBlock];
+        WCAsyncTask *taskToRun = [WCAsyncTask taskWithBlock:block data:data forKey:key timeoutInterval:timeout timeoutBlock:timeoutBlock];
         self.enqueueMap[key] = taskToRun;
         [self.taskList addObject:taskToRun];
         
@@ -110,12 +112,14 @@
     self.currentRunningTask.isRunning = YES;
     [self.taskList removeObjectAtIndex:0];
     
+    NSString *taskKey = self.currentRunningTask.key;
     weakify(self);
-    //__block BOOL checkFlagIfCompletionCalled = NO;
     WCAsyncTaskCompletion completion = ^{
         strongifyWithReturn(self, return;);
         
-        //checkFlagIfCompletionCalled = YES;
+        if (![self.currentRunningTask.key isEqualToString:taskKey]) {
+            return;
+        }
         
         self.currentRunningTask.finishTime = CACurrentMediaTime();
         self.currentRunningTask.isRunning = NO;
@@ -129,31 +133,36 @@
         });
     };
     
-    if (self.currentRunningTask.block) {
-        self.currentRunningTask.block(completion);
-        self.currentRunningTask.startTime = CACurrentMediaTime();
-        if (self.currentRunningTask.timeoutInterval > 0) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.currentRunningTask.timeoutInterval * NSEC_PER_SEC)), self.timeoutQueue, ^{
-                dispatch_async(self.serialQueue, ^{
-                    strongify(self);
-                    if (self.currentRunningTask.isRunning) {
-                        NSLog(@"[Warning] The task `%@` is timeout. Timeout block will be called", self.currentRunningTask.key);
-                        
-                        completion();
-                        BOOL shouldContinue = YES;
-                        self.currentRunningTask.timeoutBlock(&shouldContinue);
-                        if (!shouldContinue) {
-                            [self.taskList removeAllObjects];
-                            allTasksFinishedBlock();
-                        }
-                    }
-                });
-            });
-        }
-    }
-    else {
+    if (!self.currentRunningTask.block) {
         NSLog(@"[Error] The task `%@` 's block is nil.", self.currentRunningTask.key);
         completion();
+        return;
+    }
+    
+    self.currentRunningTask.startTime = CACurrentMediaTime();
+    self.currentRunningTask.block(self.currentRunningTask.data, completion);
+    
+    if (self.currentRunningTask.timeoutInterval > 0) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(self.currentRunningTask.timeoutInterval * NSEC_PER_SEC)), self.timeoutQueue, ^{
+            dispatch_async(self.serialQueue, ^{
+                strongify(self);
+                if (self.currentRunningTask.isRunning) {
+                    NSLog(@"[Warning] The task `%@` is timeout. Timeout block will be called", self.currentRunningTask.key);
+                    
+                    completion();
+                    BOOL shouldContinue = YES;
+                    
+                    if (self.currentRunningTask.timeoutBlock) {
+                        self.currentRunningTask.timeoutBlock(&shouldContinue);
+                    }
+                    
+                    if (!shouldContinue) {
+                        [self.taskList removeAllObjects];
+                        allTasksFinishedBlock();
+                    }
+                }
+            });
+        });
     }
 }
 

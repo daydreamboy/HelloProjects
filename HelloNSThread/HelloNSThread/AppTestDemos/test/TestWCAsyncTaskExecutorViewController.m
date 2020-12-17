@@ -55,7 +55,7 @@
         NSLog(@"adding task %@", timestamp);
         
         weakify(self);
-        [self.asyncTaskExecutor addAsyncTask:^(WCAsyncTaskCompletion  _Nonnull completion) {
+        [self.asyncTaskExecutor addAsyncTask:^(id _Nullable data, WCAsyncTaskCompletion  _Nonnull completion) {
             strongify(self);
             
             NSTimeInterval seconds = (arc4random() % 1000 + 500) / 1000.0;
@@ -64,7 +64,7 @@
             NSLog(@"Task %@ finished", timestamp);
             [self.timestamps addObject:timestamp];
             completion();
-        } forKey:timestamp timeout:-1 timeoutBlock:nil];
+        } data:nil forKey:timestamp timeout:0 timeoutBlock:nil];
     }
 }
 

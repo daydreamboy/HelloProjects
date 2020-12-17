@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^WCAsyncTaskCompletion)(void);
 typedef void (^WCAsyncTaskTimeoutBlock)(BOOL *shouldContinue);
-typedef void (^WCAsyncTaskBlock)(WCAsyncTaskCompletion completion);
+typedef void (^WCAsyncTaskBlock)(id _Nullable data, WCAsyncTaskCompletion completion);
 
 typedef NS_ENUM(NSUInteger, WCAsyncTaskExecuteMode) {
     WCAsyncTaskExecuteModeSerial,
@@ -54,7 +54,7 @@ typedef NS_ENUM(NSUInteger, WCAsyncTaskExecuteMode) {
  @discussion If the key is same with the previous task has been added (running or wait to run), the current task is ignored.
  If the previous task has been added and run finished, the task with same key is OK to added.
  */
-- (BOOL)addAsyncTask:(WCAsyncTaskBlock)block forKey:(NSString *)key timeout:(NSTimeInterval)timeout timeoutBlock:(nullable WCAsyncTaskTimeoutBlock)timeoutBlock;
+- (BOOL)addAsyncTask:(WCAsyncTaskBlock)block data:(nullable id)data forKey:(NSString *)key timeout:(NSTimeInterval)timeout timeoutBlock:(nullable WCAsyncTaskTimeoutBlock)timeoutBlock;
 
 @end
 

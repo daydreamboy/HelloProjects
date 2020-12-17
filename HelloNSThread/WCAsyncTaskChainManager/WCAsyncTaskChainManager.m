@@ -78,7 +78,7 @@ NSString *WCAsyncTaskChainManagerErrorDomain = @"WCAsyncTaskChainManager";
             timeoutInterval = [handler timeoutInterval];
         }
         
-        [self.taskExecutor addAsyncTask:^(WCAsyncTaskCompletion  _Nonnull completion) {
+        [self.taskExecutor addAsyncTask:^(id _Nullable data, WCAsyncTaskCompletion  _Nonnull completion) {
             if (context.aborted) {
                 return;
             }
@@ -105,7 +105,7 @@ NSString *WCAsyncTaskChainManagerErrorDomain = @"WCAsyncTaskChainManager";
                     allHandlersCompletion();
                 }
             }
-        } forKey:handler.name timeout:timeoutInterval timeoutBlock:^(BOOL * _Nonnull shouldContinue) {
+        } data:nil forKey:handler.name timeout:timeoutInterval timeoutBlock:^(BOOL * _Nonnull shouldContinue) {
             context.error = [NSError errorWithDomain:WCAsyncTaskChainManagerErrorDomain code:WCAsyncTaskChainManagerErrorHandlerTimeout userInfo:@{ NSLocalizedFailureReasonErrorKey: [NSString stringWithFormat:@"handler %@ is timeout", handler.name] }];
             context.aborted = YES;
             
