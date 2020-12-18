@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "WCAsyncTaskChainManager.h"
 #import "TaskHandlerChain1.h"
+#import "TaskHandlerChain2.h"
 
 /**
  Start of the asychronous task
@@ -45,7 +46,7 @@ XCTestExpectation *expectation__ = [self expectationWithDescription:description_
     NSLog(@"\n");
 }
 
-- (void)test_startTaskHandlersWithData_completion {
+- (void)test_startTaskHandlersWithData_completion_order {
     id data;
     NSArray *handlers;
     
@@ -54,20 +55,86 @@ XCTestExpectation *expectation__ = [self expectationWithDescription:description_
     // Case 1
     data = [NSMutableArray array];
     handlers = @[
-        NSStringFromClass([TaskHandler1 class]),
-        NSStringFromClass([TaskHandler2 class]),
-        NSStringFromClass([TaskHandler3 class])
+        NSStringFromClass([Chain1_TaskHandler1 class]),
+        NSStringFromClass([Chain1_TaskHandler2 class]),
+        NSStringFromClass([Chain1_TaskHandler3 class])
     ];
     WCAsyncTaskChainManager *manager = [[WCAsyncTaskChainManager alloc] initWithTaskHandlerClasses:handlers bizKey:@"default"];
     [manager startTaskHandlersWithData:data completion:^(WCAsyncTaskChainContext * _Nonnull context) {
         NSLog(@"data: %@", context.data);
         NSLog(@"error: %@", context.error);
         NSLog(@"abort: %@", context.shouldAbort ? @"YES" : @"NO");
+        NSLog(@"timeout handlers: %@", context.handlersOfTimeout);
         
         XCTestExpectation_FULFILL
     }];
     
     XCTestExpectation_END(60)
+}
+
+- (void)test_startTaskHandlersWithData_completion_timeout {
+    id data;
+    NSArray *handlers;
+    
+    XCTestExpectation_BEGIN
+    
+    // Case 1
+    data = [NSMutableArray array];
+    handlers = @[
+        NSStringFromClass([Chain2_TaskHandler1 class]),
+        NSStringFromClass([Chain2_TaskHandler2 class]),
+        NSStringFromClass([Chain2_TaskHandler3 class])
+    ];
+    WCAsyncTaskChainManager *manager = [[WCAsyncTaskChainManager alloc] initWithTaskHandlerClasses:handlers bizKey:@"default"];
+    [manager startTaskHandlersWithData:data completion:^(WCAsyncTaskChainContext * _Nonnull context) {
+        NSLog(@"data: %@", context.data);
+        NSLog(@"error: %@", context.error);
+        NSLog(@"abort: %@", context.shouldAbort ? @"YES" : @"NO");
+        NSLog(@"timeout handlers: %@", context.handlersOfTimeout);
+        
+        XCTestExpectation_FULFILL
+    }];
+    
+    XCTestExpectation_END(60)
+}
+
+- (void)test_startTaskHandlersWithData_completion_multiple_call {
+    id data;
+    NSArray *handlers;
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    dispatch_group_enter(group);
+    dispatch_group_enter(group);
+    
+    // Case 1
+    data = [NSMutableArray array];
+    handlers = @[
+        NSStringFromClass([Chain1_TaskHandler1 class]),
+        NSStringFromClass([Chain1_TaskHandler2 class]),
+        NSStringFromClass([Chain1_TaskHandler3 class])
+    ];
+    WCAsyncTaskChainManager *manager = [[WCAsyncTaskChainManager alloc] initWithTaskHandlerClasses:handlers bizKey:@"default"];
+    [manager startTaskHandlersWithData:data completion:^(WCAsyncTaskChainContext * _Nonnull context) {
+        NSLog(@"data: %@", context.data);
+        NSLog(@"error: %@", context.error);
+        NSLog(@"abort: %@", context.shouldAbort ? @"YES" : @"NO");
+        NSLog(@"timeout handlers: %@", context.handlersOfTimeout);
+        
+        dispatch_group_leave(group);
+    }];
+    
+    data = [NSMutableArray array];
+    [manager startTaskHandlersWithData:data completion:^(WCAsyncTaskChainContext * _Nonnull context) {
+        NSLog(@"data: %@", context.data);
+        NSLog(@"error: %@", context.error);
+        NSLog(@"abort: %@", context.shouldAbort ? @"YES" : @"NO");
+        NSLog(@"timeout handlers: %@", context.handlersOfTimeout);
+        
+        dispatch_group_leave(group);
+    }];
+    
+    dispatch_group_wait(group, dispatch_time(DISPATCH_TIME_NOW, 10));
 }
 
 @end

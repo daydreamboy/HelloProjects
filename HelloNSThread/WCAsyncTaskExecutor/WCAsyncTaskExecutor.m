@@ -63,6 +63,12 @@
     return self;
 }
 
+- (void)dealloc {
+#if DEBUG
+    NSLog(@"WCAsyncTaskExecutor: %@, %@", NSStringFromSelector(_cmd), self);
+#endif
+}
+
 - (BOOL)addAsyncTask:(WCAsyncTaskBlock)block {
     return [self addAsyncTask:block data:nil forKey:[NSUUID UUID].UUIDString timeout:0 timeoutBlock:nil];
 }

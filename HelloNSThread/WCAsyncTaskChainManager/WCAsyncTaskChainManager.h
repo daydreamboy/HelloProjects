@@ -11,12 +11,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-FOUNDATION_EXPORT NSString *WCAsyncTaskChainManagerErrorDomain;
-
-typedef NS_ENUM(NSUInteger, WCAsyncTaskChainManagerError) {
-    WCAsyncTaskChainManagerErrorHandlerTimeout = 100,
-};
-
 @protocol WCAsyncTaskHandler;
 
 /**
@@ -36,7 +30,7 @@ typedef NS_ENUM(NSUInteger, WCAsyncTaskChainManagerError) {
 - (instancetype)initWithTaskHandlerClasses:(NSArray<NSString *> *)classes bizKey:(NSString *)bizKey;
 
 /**
- Start processing data by passing through data between  handlers
+ Start processing data by passing through data between handlers
  
  @param data the data to process
  @param completion the calback when all handlers finished

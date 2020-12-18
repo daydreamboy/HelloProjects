@@ -1,5 +1,5 @@
 //
-//  TaskHandler1.h
+//  TaskHandlerChain1.h
 //  Tests
 //
 //  Created by wesley_chen on 2020/8/14.
@@ -11,13 +11,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TaskHandler1 : NSObject <WCAsyncTaskHandler>
+@interface Chain1_TaskHandler1 : NSObject <WCAsyncTaskHandler>
 @end
 
-@interface TaskHandler2 : NSObject <WCAsyncTaskHandler>
+@interface Chain1_TaskHandler2 : NSObject <WCAsyncTaskHandler>
 @end
 
-@interface TaskHandler3 : NSObject <WCAsyncTaskHandler>
+@interface Chain1_TaskHandler3 : NSObject <WCAsyncTaskHandler>
 @end
 
 NS_ASSUME_NONNULL_END

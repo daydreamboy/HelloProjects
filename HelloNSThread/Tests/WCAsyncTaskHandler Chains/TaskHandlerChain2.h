@@ -11,6 +11,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface Chain2_TaskHandler1 : NSObject <WCAsyncTaskHandler>
+@end
 
+@interface Chain2_TaskHandler2 : NSObject <WCAsyncTaskHandler>
+@end
+
+@interface Chain2_TaskHandler3 : NSObject <WCAsyncTaskHandler>
+@end
 
 NS_ASSUME_NONNULL_END

@@ -26,15 +26,17 @@ typedef void(^TaskHandlerCompletion)(id data, NSError * _Nullable error);
 @property (nonatomic, readonly, nullable) id<WCAsyncTaskHandler> previousHandler;
 /// The next handler
 @property (nonatomic, readonly, nullable) id<WCAsyncTaskHandler> nextHandler;
-/// If need to cancel continue process data, set cancelled to YES
+/// The flag which should let next handler continue to process
 @property (nonatomic, assign) BOOL shouldAbort;
+/// The handlers which timeout
+@property (nonatomic, strong, readonly) NSMutableArray *handlersOfTimeout;
 
 + (instancetype)contextWithData:(id)data;
 
 @end
 
 /**
- The specification for custom handlers
+ The protocol for async task handler
  */
 @protocol WCAsyncTaskHandler <NSObject>
 
@@ -42,7 +44,7 @@ typedef void(^TaskHandlerCompletion)(id data, NSError * _Nullable error);
 
 /// Initialization
 - (instancetype)initWithBizKey:(NSString *)bizKey;
-/// The name of handlers
+/// The name of handler
 - (NSString *)name;
 /**
  The processing method of the handler
@@ -56,9 +58,19 @@ typedef void(^TaskHandlerCompletion)(id data, NSError * _Nullable error);
 
 @optional
 
-/// The interval of timeout. If forever, pass <=0, or not implements this method
+/**
+ The interval of timeout. If forever, pass <=0, or not implements this method
+ 
+ @return the interval of timeout
+ */
 - (NSTimeInterval)timeoutInterval;
 
+/**
+ This method call when the handler is timeout
+ 
+ @param context the context
+ @discussion This method not implemented, the context.shouldAbort is set to YES.
+ */
 - (void)handleTimeoutWithContext:(WCAsyncTaskChainContext *)context;
 
 @end

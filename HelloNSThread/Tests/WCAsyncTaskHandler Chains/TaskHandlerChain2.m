@@ -1,14 +1,14 @@
 //
-//  TaskHandlerChain1.m
+//  TaskHandler2.m
 //  Tests
 //
 //  Created by wesley_chen on 2020/8/14.
 //  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
-#import "TaskHandlerChain1.h"
+#import "TaskHandlerChain2.h"
 
-@implementation Chain1_TaskHandler1
+@implementation Chain2_TaskHandler1
 
 - (instancetype)initWithBizKey:(NSString *)bizKey {
     self = [super init];
@@ -35,11 +35,11 @@
 
 @end
 
-@interface Chain1_TaskHandler2 ()
+@interface Chain2_TaskHandler2 ()
 @property (nonatomic, strong) dispatch_queue_t queue;
 @end
 
-@implementation Chain1_TaskHandler2
+@implementation Chain2_TaskHandler2
 
 - (instancetype)initWithBizKey:(NSString *)bizKey {
     self = [super init];
@@ -61,9 +61,9 @@
         }];
         
         // Note: Toggle dispatch_after to make timeout
-//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), self.queue, ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), self.queue, ^{
             taskHandlerCompletion(newData, nil);
-//        });
+        });
     }
 }
 
@@ -72,12 +72,12 @@
 }
 
 - (void)handleTimeoutWithContext:(WCAsyncTaskChainContext *)context {
-    context.shouldAbort = NO;
+    context.shouldAbort = YES;
 }
 
 @end
 
-@implementation Chain1_TaskHandler3
+@implementation Chain2_TaskHandler3
 
 - (instancetype)initWithBizKey:(NSString *)bizKey {
     self = [super init];
@@ -103,3 +103,4 @@
 }
 
 @end
+

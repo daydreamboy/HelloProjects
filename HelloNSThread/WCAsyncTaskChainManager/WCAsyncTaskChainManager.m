@@ -14,12 +14,14 @@
 @property (nonatomic, strong, readwrite, nullable) NSError *error;
 @property (nonatomic, readwrite, nullable) id<WCAsyncTaskHandler> previousHandler;
 @property (nonatomic, readwrite, nullable) id<WCAsyncTaskHandler> nextHandler;
+@property (nonatomic, strong, readwrite) NSMutableArray *handlersOfTimeout;
 @end
 
 @implementation WCAsyncTaskChainContext
 + (instancetype)contextWithData:(id)data {
     WCAsyncTaskChainContext *context = [[WCAsyncTaskChainContext alloc] init];
     context.data = data;
+    context.handlersOfTimeout = [NSMutableArray array];
     
     return context;
 }
@@ -59,7 +61,7 @@ NSString *WCAsyncTaskChainManagerErrorDomain = @"WCAsyncTaskChainManager";
 
 - (BOOL)startTaskHandlersWithData:(id)data completion:(void (^)(WCAsyncTaskChainContext *context))completion {
     if (!data || !completion) {
-        return nil;
+        return NO;
     }
     
     dispatch_async(self.enqueue, ^{
@@ -120,6 +122,10 @@ NSString *WCAsyncTaskChainManagerErrorDomain = @"WCAsyncTaskChainManager";
                 else {
                     context.shouldAbort = YES;
                     *shouldContinue = NO;
+                }
+                
+                if (currentHandler) {
+                    [context.handlersOfTimeout addObject:currentHandler];
                 }
             }];
         }
