@@ -8,9 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "WCAsyncTaskChainManager.h"
-#import "TaskHandler1.h"
-#import "TaskHandler2.h"
-#import "TaskHandler3.h"
+#import "TaskHandlerChain1.h"
 
 /**
  Start of the asychronous task
@@ -54,12 +52,17 @@ XCTestExpectation *expectation__ = [self expectationWithDescription:description_
     XCTestExpectation_BEGIN
     
     // Case 1
-    data = [NSMutableDictionary dictionary];
-    handlers = @[ NSStringFromClass([TaskHandler1 class]), NSStringFromClass([TaskHandler2 class]), NSStringFromClass([TaskHandler3 class]) ];
+    data = [NSMutableArray array];
+    handlers = @[
+        NSStringFromClass([TaskHandler1 class]),
+        NSStringFromClass([TaskHandler2 class]),
+        NSStringFromClass([TaskHandler3 class])
+    ];
     WCAsyncTaskChainManager *manager = [[WCAsyncTaskChainManager alloc] initWithTaskHandlerClasses:handlers bizKey:@"default"];
     [manager startTaskHandlersWithData:data completion:^(WCAsyncTaskChainContext * _Nonnull context) {
         NSLog(@"data: %@", context.data);
         NSLog(@"error: %@", context.error);
+        NSLog(@"abort: %@", context.shouldAbort ? @"YES" : @"NO");
         
         XCTestExpectation_FULFILL
     }];

@@ -11,7 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void (^WCAsyncTaskCompletion)(void);
-typedef void (^WCAsyncTaskTimeoutBlock)(BOOL *shouldContinue);
+typedef void (^WCAsyncTaskTimeoutBlock)(id _Nullable data, BOOL *shouldContinue);
 typedef void (^WCAsyncTaskBlock)(id _Nullable data, WCAsyncTaskCompletion completion);
 
 typedef NS_ENUM(NSUInteger, WCAsyncTaskExecuteMode) {

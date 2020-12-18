@@ -12,13 +12,17 @@
 @interface WCAsyncTaskChainContext ()
 @property (nonatomic, strong, readwrite) id data;
 @property (nonatomic, strong, readwrite, nullable) NSError *error;
-@property (nonatomic, weak, readwrite, nullable) id<WCAsyncTaskHandler> previousHandler;
-@property (nonatomic, weak, readwrite, nullable) id<WCAsyncTaskHandler> nextHandler;
-@property (nonatomic, assign) BOOL aborted;
+@property (nonatomic, readwrite, nullable) id<WCAsyncTaskHandler> previousHandler;
+@property (nonatomic, readwrite, nullable) id<WCAsyncTaskHandler> nextHandler;
 @end
 
 @implementation WCAsyncTaskChainContext
-
++ (instancetype)contextWithData:(id)data {
+    WCAsyncTaskChainContext *context = [[WCAsyncTaskChainContext alloc] init];
+    context.data = data;
+    
+    return context;
+}
 @end
 
 NSString *WCAsyncTaskChainManagerErrorDomain = @"WCAsyncTaskChainManager";
@@ -27,8 +31,9 @@ NSString *WCAsyncTaskChainManagerErrorDomain = @"WCAsyncTaskChainManager";
 @property (nonatomic, copy) NSString *bizKey;
 @property (nonatomic, strong) NSArray<NSString *> *handlerClasses;
 @property (nonatomic, strong) NSMutableArray<id<WCAsyncTaskHandler>> *chainedTaskHandler;
-@property (nonatomic, strong) WCAsyncTaskExecutor *taskExecutor;
 @property (nonatomic, copy) void (^completionBlock)(void);
+@property (nonatomic, strong) NSMutableDictionary<NSString *, WCAsyncTaskExecutor *> *keeper;
+@property (nonatomic, strong) dispatch_queue_t enqueue;
 @end
 
 @implementation WCAsyncTaskChainManager
@@ -38,8 +43,8 @@ NSString *WCAsyncTaskChainManagerErrorDomain = @"WCAsyncTaskChainManager";
     if (self) {
         _handlerClasses = classes;
         _bizKey = bizKey;
-        _taskExecutor = [[WCAsyncTaskExecutor alloc] init];
-        //_taskExecutor.delegate = self;
+        _keeper = [NSMutableDictionary dictionary];
+        _enqueue = dispatch_queue_create("com.wc.WCAsyncTaskChainManager", DISPATCH_QUEUE_SERIAL);
         
         _chainedTaskHandler = [NSMutableArray array];
         for (NSString *clzString in classes) {
@@ -57,70 +62,70 @@ NSString *WCAsyncTaskChainManagerErrorDomain = @"WCAsyncTaskChainManager";
         return nil;
     }
     
-    WCAsyncTaskChainContext *context = [WCAsyncTaskChainContext new];
-    context.data = data;
-    void (^allHandlersCompletion)(void) = ^{
-        completion(context);
-    };
-    
-    id<WCAsyncTaskHandler> previousHandler;
-    id<WCAsyncTaskHandler> nextHandler;
-    
-    NSUInteger numberOfHandlers = self.chainedTaskHandler.count;
-    for (NSInteger i = 0; i < numberOfHandlers; ++i) {
-        previousHandler = i - 1 >= 0 ? self.chainedTaskHandler[i - 1] : nil;
-        nextHandler = i + 1 < numberOfHandlers ? self.chainedTaskHandler[i + 1] : nil;
+    dispatch_async(self.enqueue, ^{
+        NSString *taskId = [NSUUID UUID].UUIDString;
+        WCAsyncTaskChainContext *context = [WCAsyncTaskChainContext contextWithData:data];
         
-        id<WCAsyncTaskHandler> handler = self.chainedTaskHandler[i];
+        WCAsyncTaskExecutor *taskExecutor = [[WCAsyncTaskExecutor alloc] init];
+        taskExecutor.allTaskFinishedCompletion = ^(WCAsyncTaskExecutor * _Nonnull executor) {
+            completion(context);
+            self.keeper[taskId] = nil;
+        };
+        self.keeper[taskId] = taskExecutor;
         
-        NSTimeInterval timeoutInterval = -1;
-        if ([handler respondsToSelector:@selector(timeoutInterval)]) {
-            timeoutInterval = [handler timeoutInterval];
-        }
+        NSUInteger numberOfHandlers = self.chainedTaskHandler.count;
         
-        [self.taskExecutor addAsyncTask:^(id _Nullable data, WCAsyncTaskCompletion  _Nonnull completion) {
-            if (context.aborted) {
-                return;
-            }
+        for (NSInteger i = 0; i < numberOfHandlers; ++i) {
+            id<WCAsyncTaskHandler> data = self.chainedTaskHandler[i];
+            NSTimeInterval timeoutInterval = [data respondsToSelector:@selector(timeoutInterval)] ? [data timeoutInterval] : 0;
             
-            if (context.error) {
-                allHandlersCompletion();
-            }
-            else {
-                if (!context.cancelled) {
-                    context.previousHandler = previousHandler;
-                    context.nextHandler = nextHandler;
-                    [handler handleWithContext:context taskHandlerCompletion:^(id  _Nonnull data, NSError * _Nullable error) {
-                        context.data = data;
-                        context.error = error;
-                        
-                        completion();
-                        
-                        if (i == numberOfHandlers - 1) {
-                            allHandlersCompletion();
-                        }
-                    }];
+            [taskExecutor addAsyncTask:^(id _Nullable data, WCAsyncTaskCompletion  _Nonnull completion) {
+                if (context.shouldAbort) {
+                    return;
+                }
+                
+                id<WCAsyncTaskHandler> currentHandler = data;
+                
+                context.previousHandler = ({
+                    id<WCAsyncTaskHandler> handler = nil;
+                    NSUInteger index = [self.chainedTaskHandler indexOfObject:currentHandler];
+                    if (index != NSNotFound && index >= 1) {
+                        handler = self.chainedTaskHandler[index - 1];
+                    }
+                    handler;
+                });
+                
+                context.nextHandler = ({
+                    id<WCAsyncTaskHandler> handler = nil;
+                    NSUInteger index = [self.chainedTaskHandler indexOfObject:currentHandler];
+                    if (index != NSNotFound && i + 1 < numberOfHandlers) {
+                        handler = self.chainedTaskHandler[index + 1];
+                    }
+                    handler;
+                });
+
+                [currentHandler handleWithContext:context taskHandlerCompletion:^(id  _Nonnull data, NSError * _Nullable error) {
+                    context.data = data;
+                    context.error = error;
+                    
+                    completion();
+                }];
+            } data:data forKey:data.name timeout:timeoutInterval timeoutBlock:^(id _Nullable data, BOOL * _Nonnull shouldContinue) {
+                id<WCAsyncTaskHandler> currentHandler = data;
+                
+                if ([currentHandler respondsToSelector:@selector(handleTimeoutWithContext:)]) {
+                    [currentHandler handleTimeoutWithContext:context];
+                    *shouldContinue = context.shouldAbort ? NO : YES;
                 }
                 else {
-                    allHandlersCompletion();
+                    context.shouldAbort = YES;
+                    *shouldContinue = NO;
                 }
-            }
-        } data:nil forKey:handler.name timeout:timeoutInterval timeoutBlock:^(BOOL * _Nonnull shouldContinue) {
-            context.error = [NSError errorWithDomain:WCAsyncTaskChainManagerErrorDomain code:WCAsyncTaskChainManagerErrorHandlerTimeout userInfo:@{ NSLocalizedFailureReasonErrorKey: [NSString stringWithFormat:@"handler %@ is timeout", handler.name] }];
-            context.aborted = YES;
-            
-            *shouldContinue = YES;
-            
-            allHandlersCompletion();
-        }];
-    }
-    
+            }];
+        }
+    });
+
     return YES;
-}
-
-#pragma mark - WCAsyncTaskExecutorDelegate
-
-- (void)batchTasksAllFinishedWithAsyncTaskExecutor:(WCAsyncTaskExecutor *)exectuor {
 }
 
 @end

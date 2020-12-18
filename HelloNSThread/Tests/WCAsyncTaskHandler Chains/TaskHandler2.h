@@ -11,8 +11,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TaskHandler2 : NSObject <WCAsyncTaskHandler>
 
-@end
 
 NS_ASSUME_NONNULL_END

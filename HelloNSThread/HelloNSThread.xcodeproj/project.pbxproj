@@ -20,7 +20,7 @@
 		4F1125E1246466F90059846D /* GetSymbolicCallStackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1125E0246466F90059846D /* GetSymbolicCallStackViewController.m */; };
 		4F161AAD231E0F0100A22350 /* WCServiceHubManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F161AAC231E0F0100A22350 /* WCServiceHubManager.m */; };
 		4F2A963324E646D400009E3B /* Tests_WCAsyncTaskChainManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2A963224E646D400009E3B /* Tests_WCAsyncTaskChainManager.m */; };
-		4F2A963724E6474B00009E3B /* TaskHandler1.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2A963624E6474B00009E3B /* TaskHandler1.m */; };
+		4F2A963724E6474B00009E3B /* TaskHandlerChain1.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2A963624E6474B00009E3B /* TaskHandlerChain1.m */; };
 		4F2A963A24E6475B00009E3B /* TaskHandler2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2A963924E6475B00009E3B /* TaskHandler2.m */; };
 		4F2A963D24E6476700009E3B /* TaskHandler3.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2A963C24E6476700009E3B /* TaskHandler3.m */; };
 		4F2E567324A3532300CF8881 /* TestWCAsyncTaskExecutorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2E567224A3532300CF8881 /* TestWCAsyncTaskExecutorViewController.m */; };
@@ -99,8 +99,8 @@
 		4F161AAC231E0F0100A22350 /* WCServiceHubManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCServiceHubManager.m; sourceTree = "<group>"; };
 		4F161AAE231E3EA700A22350 /* WCRouterService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCRouterService.h; sourceTree = "<group>"; };
 		4F2A963224E646D400009E3B /* Tests_WCAsyncTaskChainManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_WCAsyncTaskChainManager.m; sourceTree = "<group>"; };
-		4F2A963524E6474B00009E3B /* TaskHandler1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskHandler1.h; sourceTree = "<group>"; };
-		4F2A963624E6474B00009E3B /* TaskHandler1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskHandler1.m; sourceTree = "<group>"; };
+		4F2A963524E6474B00009E3B /* TaskHandlerChain1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskHandlerChain1.h; sourceTree = "<group>"; };
+		4F2A963624E6474B00009E3B /* TaskHandlerChain1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskHandlerChain1.m; sourceTree = "<group>"; };
 		4F2A963824E6475B00009E3B /* TaskHandler2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskHandler2.h; sourceTree = "<group>"; };
 		4F2A963924E6475B00009E3B /* TaskHandler2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TaskHandler2.m; sourceTree = "<group>"; };
 		4F2A963B24E6476700009E3B /* TaskHandler3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TaskHandler3.h; sourceTree = "<group>"; };
@@ -323,17 +323,17 @@
 			path = WCServiceHubManager;
 			sourceTree = "<group>";
 		};
-		4F2A963424E6471E00009E3B /* WCAsyncTaskHandler Impls */ = {
+		4F2A963424E6471E00009E3B /* WCAsyncTaskHandler Chains */ = {
 			isa = PBXGroup;
 			children = (
-				4F2A963524E6474B00009E3B /* TaskHandler1.h */,
-				4F2A963624E6474B00009E3B /* TaskHandler1.m */,
+				4F2A963524E6474B00009E3B /* TaskHandlerChain1.h */,
+				4F2A963624E6474B00009E3B /* TaskHandlerChain1.m */,
 				4F2A963824E6475B00009E3B /* TaskHandler2.h */,
 				4F2A963924E6475B00009E3B /* TaskHandler2.m */,
 				4F2A963B24E6476700009E3B /* TaskHandler3.h */,
 				4F2A963C24E6476700009E3B /* TaskHandler3.m */,
 			);
-			path = "WCAsyncTaskHandler Impls";
+			path = "WCAsyncTaskHandler Chains";
 			sourceTree = "<group>";
 		};
 		4F2E567024A352F100CF8881 /* test */ = {
@@ -460,7 +460,7 @@
 				4F68FB13246E749D00560439 /* Tests_WCThreadTool.m */,
 				4F8976EE24A34CA50094E792 /* Tests_WCAsyncTaskExecutor.m */,
 				4F2A963224E646D400009E3B /* Tests_WCAsyncTaskChainManager.m */,
-				4F2A963424E6471E00009E3B /* WCAsyncTaskHandler Impls */,
+				4F2A963424E6471E00009E3B /* WCAsyncTaskHandler Chains */,
 				4FA9918B21AECD1200E928D8 /* Info.plist */,
 			);
 			path = Tests;
@@ -602,7 +602,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F96ECC82293035C00442F65 /* CacheWithSerialQueue.m in Sources */,
-				4F2A963724E6474B00009E3B /* TaskHandler1.m in Sources */,
+				4F2A963724E6474B00009E3B /* TaskHandlerChain1.m in Sources */,
 				4F96ECCB2293037000442F65 /* CacheWithConcurrentQueue.m in Sources */,
 				4F96ECBB2293011700442F65 /* Tests_synchronize_concurrent_writes.m in Sources */,
 				4F2A963A24E6475B00009E3B /* TaskHandler2.m in Sources */,

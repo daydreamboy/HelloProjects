@@ -68,7 +68,7 @@
     }
 }
 
-#pragma mark - WCAsyncTaskExecutorDelegate
+#pragma mark - 
 
 - (void)batchTasksAllFinishedWithAsyncTaskExecutor:(WCAsyncTaskExecutor *)exectuor {
     self.ignoreClick = YES;

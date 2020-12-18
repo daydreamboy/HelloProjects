@@ -153,7 +153,7 @@
                     BOOL shouldContinue = YES;
                     
                     if (self.currentRunningTask.timeoutBlock) {
-                        self.currentRunningTask.timeoutBlock(&shouldContinue);
+                        self.currentRunningTask.timeoutBlock(self.currentRunningTask.data, &shouldContinue);
                     }
                     
                     if (!shouldContinue) {

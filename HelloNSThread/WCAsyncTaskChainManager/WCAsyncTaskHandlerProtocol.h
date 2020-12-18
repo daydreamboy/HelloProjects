@@ -23,11 +23,14 @@ typedef void(^TaskHandlerCompletion)(id data, NSError * _Nullable error);
 /// The error if occurred in some one handler
 @property (nonatomic, strong, readonly, nullable) NSError *error;
 /// The previous handler
-@property (nonatomic, weak, readonly, nullable) id<WCAsyncTaskHandler> previousHandler;
+@property (nonatomic, readonly, nullable) id<WCAsyncTaskHandler> previousHandler;
 /// The next handler
-@property (nonatomic, weak, readonly, nullable) id<WCAsyncTaskHandler> nextHandler;
+@property (nonatomic, readonly, nullable) id<WCAsyncTaskHandler> nextHandler;
 /// If need to cancel continue process data, set cancelled to YES
-@property (nonatomic, assign) BOOL cancelled;
+@property (nonatomic, assign) BOOL shouldAbort;
+
++ (instancetype)contextWithData:(id)data;
+
 @end
 
 /**
@@ -55,6 +58,8 @@ typedef void(^TaskHandlerCompletion)(id data, NSError * _Nullable error);
 
 /// The interval of timeout. If forever, pass <=0, or not implements this method
 - (NSTimeInterval)timeoutInterval;
+
+- (void)handleTimeoutWithContext:(WCAsyncTaskChainContext *)context;
 
 @end
 
