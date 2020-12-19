@@ -131,6 +131,14 @@ Presentation是在当前View Controller上覆盖另一个View Controller。下�
 
 
 
+## 3、UIViewController常见使用问题
+
+### （1）ChildViewController的navigationItem无法读取
+
+当ChildViewController设置rightBarButtonItem等，而不是在ParentViewController上，导致UINavigationController读不到该设置[^3]。
+
+解决方法：ParentViewController重写navigationItem方法，获取ChildViewController的navigationItem。
+
 
 
 
@@ -153,6 +161,8 @@ Presentation是在当前View Controller上覆盖另一个View Controller。下�
 
 [^1]:https://developer.apple.com/documentation/uikit/view_controllers/managing_content_in_your_app_s_windows?language=objc
 [^2]:https://developer.apple.com/documentation/uikit/view_controllers?language=objc
+
+[^3]:https://stackoverflow.com/questions/26772629/how-to-set-uibarbuttonitem-created-by-a-child-view-controller-to-a-parent-view-c
 
 
 

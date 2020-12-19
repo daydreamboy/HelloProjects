@@ -20,6 +20,24 @@
     return [viewController isViewLoaded] && viewController.view.window;
 }
 
++ (BOOL)checkIfViewIsUnderNavBarWithViewController:(UIViewController *)viewController {
+    // Note: the viewController not on navigation stack
+    UINavigationController *navController = viewController.navigationController;
+    if (!navController.navigationBar) {
+        return NO;
+    }
+    
+    CGPoint toPoint = [navController.view convertPoint:CGPointZero fromView:viewController.view];
+    CGFloat navBarMaxY = CGRectGetMaxY(navController.navigationBar.frame);
+    
+    if (toPoint.y < navBarMaxY) {
+        return YES;
+    }
+    else {
+        return NO;
+    }
+}
+
 #pragma mark - Transition
 
 #pragma mark > Check Appearing

@@ -41,6 +41,15 @@ typedef NS_ENUM(NSUInteger, WCViewControllerDisappearingReason) {
  */
 + (BOOL)checkViewVisibleWithViewController:(UIViewController *)viewController;
 
+/**
+ Check view controller's view if under the navigation bar
+ 
+ @param viewController the view controller
+ 
+ @return YES if the view is under the navigation bar. NO if not.
+ */
++ (BOOL)checkIfViewIsUnderNavBarWithViewController:(UIViewController *)viewController;
+
 #pragma mark - Transition
 
 #pragma mark > Check Appearing

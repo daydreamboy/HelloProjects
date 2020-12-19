@@ -16,6 +16,8 @@
 		4F4E14AE2103576600D12D11 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E14AC2103576600D12D11 /* RootViewController.m */; };
 		4F68564A218954740080CF0B /* DummyStackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F685649218954740080CF0B /* DummyStackViewController.m */; };
 		4F68564D218954840080CF0B /* DummyModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F68564C218954840080CF0B /* DummyModalViewController.m */; };
+		4F6EBA15258B56DD0047CED7 /* ParentGetNavigationItemFromChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6EBA14258B56DD0047CED7 /* ParentGetNavigationItemFromChildViewController.m */; };
+		4F6EBA19258B56EA0047CED7 /* ChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6EBA18258B56EA0047CED7 /* ChildViewController.m */; };
 		4F7D8EDA2109777300145B00 /* UseViewControllerAsSubviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8ED92109777300145B00 /* UseViewControllerAsSubviewViewController.m */; };
 		4FB0291B2188558D000E6516 /* WCViewControllerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0291A2188558D000E6516 /* WCViewControllerTool.m */; };
 		4FB0291E21888B4A000E6516 /* CheckAppearingAndDisappearingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0291D21888B4A000E6516 /* CheckAppearingAndDisappearingViewController.m */; };
@@ -40,6 +42,10 @@
 		4F685649218954740080CF0B /* DummyStackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DummyStackViewController.m; sourceTree = "<group>"; };
 		4F68564B218954840080CF0B /* DummyModalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DummyModalViewController.h; sourceTree = "<group>"; };
 		4F68564C218954840080CF0B /* DummyModalViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DummyModalViewController.m; sourceTree = "<group>"; };
+		4F6EBA13258B56DD0047CED7 /* ParentGetNavigationItemFromChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ParentGetNavigationItemFromChildViewController.h; sourceTree = "<group>"; };
+		4F6EBA14258B56DD0047CED7 /* ParentGetNavigationItemFromChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ParentGetNavigationItemFromChildViewController.m; sourceTree = "<group>"; };
+		4F6EBA17258B56EA0047CED7 /* ChildViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChildViewController.h; sourceTree = "<group>"; };
+		4F6EBA18258B56EA0047CED7 /* ChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChildViewController.m; sourceTree = "<group>"; };
 		4F7D8ED82109777300145B00 /* UseViewControllerAsSubviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseViewControllerAsSubviewViewController.h; sourceTree = "<group>"; };
 		4F7D8ED92109777300145B00 /* UseViewControllerAsSubviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseViewControllerAsSubviewViewController.m; sourceTree = "<group>"; };
 		4FB029192188558D000E6516 /* WCViewControllerTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCViewControllerTool.h; sourceTree = "<group>"; };
@@ -77,6 +83,10 @@
 		4F16F487250E116600CA21E2 /* ContainerViewController */ = {
 			isa = PBXGroup;
 			children = (
+				4F6EBA13258B56DD0047CED7 /* ParentGetNavigationItemFromChildViewController.h */,
+				4F6EBA14258B56DD0047CED7 /* ParentGetNavigationItemFromChildViewController.m */,
+				4F6EBA17258B56EA0047CED7 /* ChildViewController.h */,
+				4F6EBA18258B56EA0047CED7 /* ChildViewController.m */,
 			);
 			path = ContainerViewController;
 			sourceTree = "<group>";
@@ -234,7 +244,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F4E14AD2103576600D12D11 /* UseToolbarItemsViewController.m in Sources */,
+				4F6EBA19258B56EA0047CED7 /* ChildViewController.m in Sources */,
 				4F68564D218954840080CF0B /* DummyModalViewController.m in Sources */,
+				4F6EBA15258B56DD0047CED7 /* ParentGetNavigationItemFromChildViewController.m in Sources */,
 				4F4E14A22103573900D12D11 /* main.m in Sources */,
 				4F7D8EDA2109777300145B00 /* UseViewControllerAsSubviewViewController.m in Sources */,
 				4FEDD41A2189A979008CB64F /* CustomPresentationViewController.m in Sources */,

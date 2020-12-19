@@ -17,6 +17,7 @@
 #import "UseModalPresentationStyleViewController.h"
 #import "CustomPresentationViewController.h"
 
+#import "ParentGetNavigationItemFromChildViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -45,6 +46,7 @@
           @{ kTitle: @"Use @toolbarItems of UIViewController", kClass: [UseToolbarItemsViewController class] },
           @{ kTitle: @"Use UIViewController as subview", kClass: [UseViewControllerAsSubviewViewController class] },
           @{ kTitle: @"Check ViewController appearing and disappearing", kClass: [CheckAppearingAndDisappearingViewController class] },
+          @{ kTitle: @"Get navigation item from child vc", kClass: [ParentGetNavigationItemFromChildViewController class] },
     ];
     
     NSArray<NSDictionary *> *section2 = @[
