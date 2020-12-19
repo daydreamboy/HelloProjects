@@ -5,15 +5,9 @@
 
 ## 1、char字面常量，存放多个字符
 
-char字面常量，存放多个字符。例如'abc'、'abcd'、'abcde'等。
+​      char字面常量，存放多个字符。例如'abc'、'abcd'、'abcde'等。根据赋值的数据类型长度和编译器选择little endian或big endian，决定是从前还是从后选择N个字符，赋值到对应类型的变量中[^7]。
 
-根据[SO](https://stackoverflow.com/questions/6944730/multiple-characters-in-a-character-constant)上面的说法，这种情况根据系统和编译器，情况会不一样。
-
-在MacOS用Xcode编译，得出如下规则：
-
-总是从后到前取最后4个字节的数据，如果不满足4个字节，填充0x00。
-
-举个例子
+举个例子，如下
 
 ```c
 unsigned value;
@@ -26,12 +20,20 @@ value = 'ABC';
 printf("'ABC'  = %02x%02x%02x%02x = %08x\n", ptr[0], ptr[1], ptr[2], ptr[3], value);
 ```
 
-输出是
+> unsigned类型，即unsigned int类型，可以存放4个char类型
+
+
+
+在MacOS用Xcode编译上面的代码，输出结果，如下
 
 'ABCD' = 44434241 = 41424344    
 'ABC'  = 43424100 = 00414243
 
-由于是little endian，低地址的字节放在word（4个字节）的低位。
+
+
+得出如下规则：
+
+由于是little endian，低地址的字节放在word（4个字节）的低位，总是从后到前取最后4个字节的数据，如果不满足4个字节，填充0x00。
 
 
 
@@ -133,6 +135,7 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 
 > 1. 手动实现setter或者getter方法，其中之一，这个`_property`实例变量也是自动合成的。
 > 2. 如果同时实现setter和getter方法，需要手动synthesize @property
+> 3. 可以使用`__has_feature(objc_default_synthesize_properties)`来检查编译器是否此特性[^9]
 
 
 
@@ -211,7 +214,17 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 
 
 
-## 6、使用Category
+## 6、使用@synthesize
+
+@synthesize的作用是指示编译自动生成对应的实例变量，以及setter和getter方法[^8]。
+
+类的定义中声明@property，就可以不用使用@synthesize，但是如果类实现协议中的@property，就需要使用@synthesize
+
+
+
+
+
+## 7、使用Category
 
 ​         Category方法的使用，一般是创建Category Class，定义新的方法（即分类方法），这样Primary Class也拥有这个方法。
 
@@ -238,23 +251,149 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 
 
 
+## 8、使用`__attribute__`
+
+### （1）介绍`__attribute__`
+
+`__attribute__`是编译器的指令，其结构是两对括号构成[^11]，如`__attribute__((xxx))`。xxx是属性名，如果有多个属性名，则用逗号分隔，如`__attribute__((xxx, yyy))`。举个例子，如下
+
+```c
+// Send printf-like message to stderr and exit
+extern void die(const char *format, ...)
+  __attribute__((noreturn, format(printf, 1, 2)));
+```
+
+上面有两个属性名，分别是noreturn和format
+
+从GCC开始就支持`__attribute__`，而LLVM继续支持`__attribute__`，并且增加很多属性名。
+
+
+
+### （2）常用属性的使用
+
+常用属性列表，如下
+
+| 属性                          | 系统别名   | 作用                                                      |
+| ----------------------------- | ---------- | --------------------------------------------------------- |
+| `cleanup`                     |            |                                                           |
+| `objc_boxable`                | CG_BOXABLE | 用于标记struct或union，可以使用@()语法糖封箱成NSValue对象 |
+| `objc_requires_super`         |            | 该方法里面需要调用super方法                               |
+| `objc_subclassing_restricted` |            | 禁止某个类被继承                                          |
+|                               |            |                                                           |
 
 
 
 
 
+#### a. `cleanup`
 
 
 
-## 7、\_\_attribute\_\_ ((\_\_cleanup\_\_(\<callback\>)))的用法
+#### b. `objc_boxable`
+
+`objc_boxable`用于标记struct或union，可以使用@()语法糖封箱成NSValue对象。
+
+举个例子，如下
+
+```objective-c
+// Note: make some_struct into objc_boxable
+struct __attribute__((objc_boxable)) some_struct {
+    int i;
+};
+
+// Note: some_union into objc_boxable
+union __attribute__((objc_boxable)) some_union {
+    int i;
+    float f;
+};
+
+// Note: make existing type into objc_boxable
+typedef struct __attribute__((objc_boxable)) CGRect WCRect;
+
+- (void)test_WCRect {
+    NSValue *value;
+    CGRect rect;
+    
+    CGRect rect2 = CGRectMake(0, 0, 100, 100);
+    value = @(rect2);
+    NSLog(@"%@", value);
+    rect = [value CGRectValue];
+    NSLog(@"{%f, %f, %f, %f}", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+    
+    WCRect rect3 = CGRectMake(0, 0, 200, 200);
+    value = @(rect3);
+    NSLog(@"%@", value);
+    rect = [value CGRectValue];
+    NSLog(@"{%f, %f, %f, %f}", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height);
+}
+```
+
+> 示例代码，见Tests_objc_boxable.m
 
 
 
-示例代码见**GCCAttributeCleanupViewController**
+#### c. `objc_requires_super`
+
+`objc_requires_super`用标记该方法，在重写时，必现使用super调用父类方法，否则会产生警告[^12]
+
+举个例子，如下
+
+```objective-c
+@interface Tests_objc_requires_super_BaseClass : NSObject
+- (void)aMethodNeedCallSuperWhenOverride __attribute__((objc_requires_super));
+@end
+@implementation Tests_objc_requires_super_BaseClass
+- (void)aMethodNeedCallSuperWhenOverride {
+}
+@end
+
+@interface Tests_objc_requires_super_DerivedClass : Tests_objc_requires_super_BaseClass
+@end
+@implementation Tests_objc_requires_super_DerivedClass
+- (void)aMethodNeedCallSuperWhenOverride {
+    // Note: a warning here if not call [super aMethodNeedCallSuperWhenOverride]
+}
+@end
+```
+
+> 示例代码，见Tests_objc_requires_super.m
 
 
 
-## 8、Objective-C常见关键词
+#### d. `objc_subclassing_restricted`
+
+`objc_subclassing_restricted`用标记该类不能被继承使用，否则编译时产生错误[^12]
+
+举个例子，如下
+
+```objective-c
+__attribute__((objc_subclassing_restricted))
+@interface ClassNotSuppoertInheritance : NSObject
+@end
+@implementation ClassNotSuppoertInheritance
+@end
+
+@interface DerivedFromClassNotSuppoertInheritance : ClassNotSuppoertInheritance
+@end
+@implementation DerivedFromClassNotSuppoertInheritance
+@end
+```
+
+> 示例代码，见Tests_objc_subclassing_restricted.m
+
+
+
+
+
+\_\_attribute\_\_ ((\_\_cleanup\_\_(\<callback\>)))的用法
+
+
+
+示例代码，见**GCCAttributeCleanupViewController**
+
+
+
+## 9、Objective-C常见关键词
 
 ### （1）@package
 
@@ -262,7 +401,9 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 
 ### （2）template
 
-template在Objective-C++是关键词，不能作为参数使用，否则编译器（Xcode 10）会报错。举个例子
+template在Objective-C++是关键词，不能作为参数使用，否则编译器（Xcode 10）会报错。
+
+举个例子，如下
 
 ```objective-c
 - (void)callDelegateOfHookHandleWithTemplate:(TemplateModel *)template data:(DataModel *)data nameSpace:(NSString *)nameSpace { // error: expected identifier; 'template' is a keyword in Objective-C++
@@ -271,7 +412,7 @@ template在Objective-C++是关键词，不能作为参数使用，否则编译�
 
 
 
-## 9、Objective-C常用方法命名方式
+## 10、Objective-C常用方法命名方式
 
 
 
@@ -283,7 +424,7 @@ template在Objective-C++是关键词，不能作为参数使用，否则编译�
 
 
 
-## 10、随机化处理[^4]
+## 11、随机化处理[^4]
 
 
 
@@ -320,15 +461,34 @@ NSLog(@"%f", random);
 
 
 
-## 11、extern "C"[^5]
+## 12、extern "C"[^5]
 
 
 
-## 12、数据类型最大最小值[^6]
+## 13、数据类型最大最小值[^6]
 
 limits.h提供整型数据类型最大最小值的宏定义
 
 float.h提供float型数据类型最大最小值的宏定义
+
+
+
+## 14、__has_feature检查
+
+__has_feature(xxx)可以传入下面的参数，来检查编译是否支持某个特性。
+
+| 参数                               | 作用                                                |
+| ---------------------------------- | --------------------------------------------------- |
+| objc_default_synthesize_properties | 检查声明@property是否自动生成setter和getter方法[^9] |
+| objc_array_literals                | 检查是否支持数组字面常量[^10]                       |
+| objc_dictionary_literals           | 检查是否支持词典字面常量[^10]                       |
+| objc_subscripting                  | 检查是否支持下标引用[^10]                           |
+
+
+
+
+
+
 
 
 
@@ -346,6 +506,13 @@ float.h提供float型数据类型最大最小值的宏定义
 [^5]:https://stackoverflow.com/questions/1041866/what-is-the-effect-of-extern-c-in-c
 
 [^6]:https://stackoverflow.com/questions/2053843/min-and-max-value-of-data-type-in-c
+
+[^7]:https://stackoverflow.com/questions/6944730/multiple-characters-in-a-character-constant
+[^8]:https://stackoverflow.com/questions/14658142/purpose-of-synthesize
+[^9]:http://clang.llvm.org/docs/LanguageExtensions.html#objective-c-autosynthesis-of-properties
+[^10]:http://clang.llvm.org/docs/LanguageExtensions.html#object-literals-and-subscripting
+[^11]:https://nshipster.com/__attribute__/
+[^12]:https://blog.sunnyxx.com/2016/05/14/clang-attributes/
 
 
 
