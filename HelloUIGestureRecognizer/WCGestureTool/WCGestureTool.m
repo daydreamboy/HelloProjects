@@ -199,9 +199,9 @@ static void * const kAssociatedKeyMockTapGesture = (void *)&kAssociatedKeyMockTa
 
 static void *kAssocaitedObjectKeyTapGesture = (void *)&kAssocaitedObjectKeyTapGesture;
 
-+ (BOOL)addTapGestureWithView:(UIView *)view numberOfTaps:(NSUInteger)numberOfTaps tapBlock:(void (^)(UIView *view))tapBlock {
++ (nullable UITapGestureRecognizer *)addTapGestureWithView:(UIView *)view numberOfTaps:(NSUInteger)numberOfTaps tapBlock:(void (^)(UIView *view))tapBlock {
     if (![view isKindOfClass:[UIView class]] || numberOfTaps == 0 || !tapBlock) {
-        return NO;
+        return nil;
     }
     
     id object = objc_getAssociatedObject(view, kAssocaitedObjectKeyTapGesture);
@@ -210,28 +210,30 @@ static void *kAssocaitedObjectKeyTapGesture = (void *)&kAssocaitedObjectKeyTapGe
         wrapper.tapBlock = tapBlock;
         wrapper.tapGesture.numberOfTapsRequired = numberOfTaps;
         
-        return NO;
+        return wrapper.tapGesture;
     }
     
     WCViewTapGestureWrapper *wrapper = [[WCViewTapGestureWrapper alloc] initWithView:view numberOfTaps:numberOfTaps tapBlock:tapBlock];
     objc_setAssociatedObject(view, kAssocaitedObjectKeyTapGesture, wrapper, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
-    return YES;
+    return wrapper.tapGesture;
 }
 
-+ (BOOL)removeTapGestureWithView:(UIView *)view {
++ (nullable UITapGestureRecognizer *)removeTapGestureWithView:(UIView *)view {
     if (![view isKindOfClass:[UIView class]]) {
-        return NO;
+        return nil;
     }
     
     id object = objc_getAssociatedObject(view, kAssocaitedObjectKeyTapGesture);
     if (![object isKindOfClass:[WCViewTapGestureWrapper class]]) {
-        return NO;
+        return nil;
     }
+    
+    WCViewTapGestureWrapper *wrapper = (WCViewTapGestureWrapper *)object;
     
     objc_setAssociatedObject(view, kAssocaitedObjectKeyTapGesture, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     
-    return YES;
+    return wrapper.tapGesture;
 }
 
 @end

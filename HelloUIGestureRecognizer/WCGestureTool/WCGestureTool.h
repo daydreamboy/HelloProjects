@@ -59,17 +59,20 @@ NS_ASSUME_NONNULL_BEGIN
  @param numberOfTaps the number of taps. If 0, will not add the tap gesture
  @param tapBlock the callback when tap
  
- @return Return YES if add sucessfully, NO if not
+ @return Return the tap gesture which maybe configured again. Return nil if parameters are not correct.
  
  @discussion This method called multiple times with different numberOfTaps/tapBlock parameters, will update the tap gesture of the same view 
  */
-+ (BOOL)addTapGestureWithView:(UIView *)view numberOfTaps:(NSUInteger)numberOfTaps tapBlock:(void (^)(UIView *view))tapBlock;
++ (nullable UITapGestureRecognizer *)addTapGestureWithView:(UIView *)view numberOfTaps:(NSUInteger)numberOfTaps tapBlock:(void (^)(UIView *view))tapBlock;
 
 /**
+ Remove the tap gesture from the view
  
  @param view the target view
+ 
+ @return Return the tap gesture which added to the view. Return nil if parameters are not correct or remove failed.
  */
-+ (BOOL)removeTapGestureWithView:(UIView *)view;
++ (nullable UITapGestureRecognizer *)removeTapGestureWithView:(UIView *)view;
 
 @end
 
