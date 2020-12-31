@@ -12,6 +12,43 @@
 #import "WCViewTool.h"
 #import <objc/runtime.h>
 
+@interface WCViewTapGestureWrapper : NSObject
+@property (nonatomic, weak) UIView *view;
+@property (nonatomic, assign) NSUInteger numberOfTaps;
+@property (nonatomic, copy) void (^tapBlock)(UIView *view);
+@property (nonatomic, weak) UITapGestureRecognizer *tapGesture;
+@end
+
+@implementation WCViewTapGestureWrapper
+
+- (instancetype)initWithView:(UIView *)view numberOfTaps:(NSUInteger)numberOfTaps tapBlock:(void (^)(UIView *view))tapBlock {
+    self = [super init];
+    if (self) {
+        _view = view;
+        _numberOfTaps = numberOfTaps;
+        _tapBlock = tapBlock;
+        
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapGesture:)];
+        tapGesture.numberOfTapsRequired = _numberOfTaps;
+        [view addGestureRecognizer:tapGesture];
+        _tapGesture = tapGesture;
+    }
+    return self;
+}
+
+#pragma mark - Action
+
+- (void)handleTapGesture:(UITapGestureRecognizer *)recognizer {
+    if (![recognizer.view isKindOfClass:[UIView class]]) {
+        return;
+    }
+    
+    UIView *view = (UIView *)recognizer.view;
+    !self.tapBlock ?: self.tapBlock(view);
+}
+
+@end
+
 @implementation WCGestureTool
 
 #pragma mark - Mock Tap Gesture
@@ -157,5 +194,44 @@ static void * const kAssociatedKeyMockTapGesture = (void *)&kAssociatedKeyMockTa
 }
 
 #pragma mark ::
+
+#pragma mark - Block
+
+static void *kAssocaitedObjectKeyTapGesture = (void *)&kAssocaitedObjectKeyTapGesture;
+
++ (BOOL)addTapGestureWithView:(UIView *)view numberOfTaps:(NSUInteger)numberOfTaps tapBlock:(void (^)(UIView *view))tapBlock {
+    if (![view isKindOfClass:[UIView class]] || numberOfTaps == 0 || !tapBlock) {
+        return NO;
+    }
+    
+    id object = objc_getAssociatedObject(view, kAssocaitedObjectKeyTapGesture);
+    if ([object isKindOfClass:[WCViewTapGestureWrapper class]]) {
+        WCViewTapGestureWrapper *wrapper = (WCViewTapGestureWrapper *)object;
+        wrapper.tapBlock = tapBlock;
+        wrapper.tapGesture.numberOfTapsRequired = numberOfTaps;
+        
+        return NO;
+    }
+    
+    WCViewTapGestureWrapper *wrapper = [[WCViewTapGestureWrapper alloc] initWithView:view numberOfTaps:numberOfTaps tapBlock:tapBlock];
+    objc_setAssociatedObject(view, kAssocaitedObjectKeyTapGesture, wrapper, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    return YES;
+}
+
++ (BOOL)removeTapGestureWithView:(UIView *)view {
+    if (![view isKindOfClass:[UIView class]]) {
+        return NO;
+    }
+    
+    id object = objc_getAssociatedObject(view, kAssocaitedObjectKeyTapGesture);
+    if (![object isKindOfClass:[WCViewTapGestureWrapper class]]) {
+        return NO;
+    }
+    
+    objc_setAssociatedObject(view, kAssocaitedObjectKeyTapGesture, nil, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+    return YES;
+}
 
 @end

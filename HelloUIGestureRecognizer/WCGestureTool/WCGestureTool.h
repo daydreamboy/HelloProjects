@@ -50,6 +50,27 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)addMirroredTapGesturesWithView:(UIView *)view target:(id)target action:(SEL)action recursive:(BOOL)recursive;
 
+#pragma mark - Block
+
+/**
+ Add a tap gesture to the view
+ 
+ @param view the target view
+ @param numberOfTaps the number of taps. If 0, will not add the tap gesture
+ @param tapBlock the callback when tap
+ 
+ @return Return YES if add sucessfully, NO if not
+ 
+ @discussion This method called multiple times with different numberOfTaps/tapBlock parameters, will update the tap gesture of the same view 
+ */
++ (BOOL)addTapGestureWithView:(UIView *)view numberOfTaps:(NSUInteger)numberOfTaps tapBlock:(void (^)(UIView *view))tapBlock;
+
+/**
+ 
+ @param view the target view
+ */
++ (BOOL)removeTapGestureWithView:(UIView *)view;
+
 @end
 
 NS_ASSUME_NONNULL_END

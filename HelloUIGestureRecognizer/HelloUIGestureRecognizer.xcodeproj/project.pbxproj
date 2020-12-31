@@ -33,6 +33,7 @@
 		4F8FDA2D20EB566300C766D4 /* DragDownAndScaleImageViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8FDA2C20EB566300C766D4 /* DragDownAndScaleImageViewViewController.m */; };
 		4F8FDA3020EB571300C766D4 /* Xcode.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8FDA2F20EB571300C766D4 /* Xcode.png */; };
 		4F9DC2B921F05709002114D7 /* UseCancelsTouchesInView2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9DC2B821F05709002114D7 /* UseCancelsTouchesInView2ViewController.m */; };
+		4FA32C77259D7237007DA34B /* UseDelaysTouchesEndedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA32C76259D7237007DA34B /* UseDelaysTouchesEndedViewController.m */; };
 		4FF207BE24CD763A0068D0E7 /* UseTapGestureRecognizerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF207BD24CD763A0068D0E7 /* UseTapGestureRecognizerViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -87,6 +88,8 @@
 		4F8FDA2F20EB571300C766D4 /* Xcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Xcode.png; sourceTree = "<group>"; };
 		4F9DC2B721F05709002114D7 /* UseCancelsTouchesInView2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCancelsTouchesInView2ViewController.h; sourceTree = "<group>"; };
 		4F9DC2B821F05709002114D7 /* UseCancelsTouchesInView2ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCancelsTouchesInView2ViewController.m; sourceTree = "<group>"; };
+		4FA32C75259D7237007DA34B /* UseDelaysTouchesEndedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseDelaysTouchesEndedViewController.h; sourceTree = "<group>"; };
+		4FA32C76259D7237007DA34B /* UseDelaysTouchesEndedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseDelaysTouchesEndedViewController.m; sourceTree = "<group>"; };
 		4FF207BC24CD763A0068D0E7 /* UseTapGestureRecognizerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseTapGestureRecognizerViewController.h; sourceTree = "<group>"; };
 		4FF207BD24CD763A0068D0E7 /* UseTapGestureRecognizerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseTapGestureRecognizerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -212,6 +215,8 @@
 				4F190305245AC9A40054FA3C /* UseUIGestureRecognizerDelegateViewController.m */,
 				4FF207BC24CD763A0068D0E7 /* UseTapGestureRecognizerViewController.h */,
 				4FF207BD24CD763A0068D0E7 /* UseTapGestureRecognizerViewController.m */,
+				4FA32C75259D7237007DA34B /* UseDelaysTouchesEndedViewController.h */,
+				4FA32C76259D7237007DA34B /* UseDelaysTouchesEndedViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -303,6 +308,7 @@
 				4F9DC2B921F05709002114D7 /* UseCancelsTouchesInView2ViewController.m in Sources */,
 				4F2237D9245973A3000CC3C9 /* MirrorTapGestureViewController.m in Sources */,
 				4F4990311F9DB95400D313B5 /* DetectSwipeUsingUIPanGestureRecognizerViewController.m in Sources */,
+				4FA32C77259D7237007DA34B /* UseDelaysTouchesEndedViewController.m in Sources */,
 				4F4C964C24CD36340022284B /* WCPannedView.m in Sources */,
 				4F190300245A804E0054FA3C /* WCViewTool.m in Sources */,
 				4F8FDA2D20EB566300C766D4 /* DragDownAndScaleImageViewViewController.m in Sources */,

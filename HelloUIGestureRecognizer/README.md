@@ -132,19 +132,27 @@ UIControlEvents事件的回调方法，调用栈如下
 
 ### （1）cancelsTouchesInView
 
-`cancelsTouchesInView`属性默认值是YES。官方文档释义，如下
+`cancelsTouchesInView`属性默认值是YES。官方文档描述，如下
+
+> When this property is `YES` (the default) and the receiver recognizes its gesture, the touches of that gesture that are pending are not delivered to the view and previously delivered touches are cancelled through a [`touchesCancelled:withEvent:`](dash-apple-api://load?request_key=lc/documentation/uikit/uiresponder/1621116-touchescancelled) message sent to the view. If a gesture recognizer doesn’t recognize its gesture or if the value of this property is `NO`, the view receives all touches in the multi-touch sequence.
+
+总结上面的描述，归纳有2条规则，如下
 
 * 设置YES并手势被识别，pending中的touch事件不再发送给UIView，并且发送`touchesCancelled:withEvent:`消息给UIView。
 
 * 设置NO或者手势不识别时，touch事件都会发送给UIView
 
-
+说明
 
 > 这里touch事件指的是UIView的四个touch方法，touchesBegan/touchesMoved/touchesEnded/touchesCancalled
 
 
 
-举个UIControl控件的例子
+上面的描述，仅针对UIGestureRecognizer添加到UIView上的情况，不同UIView子类（UIControl、非UIControl但继承自UIView，如UICollectionView），它们特有的事件回调方法，会因为`cancelsTouchesInView`属性设置YES或者NO，有所不同处理。
+
+
+
+#### 举个UIControl控件的例子
 
 ​       UIButton有UIControlEventTouchUpInside事件，如果再添加一个UITapGestureRecognizer，由于UITapGestureRecognizer优先级高于UIControlEventTouchUpInside，并且`cancelsTouchesInView`默认为YES，则UIControlEventTouchUpInside事件的回调方法不触发，只触发UITapGestureRecognizer的回调方法。
 
@@ -154,7 +162,7 @@ UIControlEvents事件的回调方法，调用栈如下
 
 
 
-举个自定义UIView的例子
+#### 举个自定义UIView的例子
 
 当`cancelsTouchesInView`为YES，手势识别成功后，自定义UIView的touchesCancelled:withEvent:会被调用
 
@@ -164,7 +172,7 @@ UIControlEvents事件的回调方法，调用栈如下
 
 
 
-举个非UIControl控件的例子
+#### 举个非UIControl控件的例子
 
 ​         UICollectionView不是继承自UIControl，但是collectionView:didSelectItemAtIndexPath:方法触发是通过touchesEnd:withEvent:（可以看调用栈）。当前UICollectionView自身或者父视图添加了UITapGestureRecognizer，如果`cancelsTouchesInView`设置为YES，则collectionView:didSelectItemAtIndexPath:方法不会被触发。如果`cancelsTouchesInView`设置为NO，则先触发手势回调方法，再触发collectionView:didSelectItemAtIndexPath:方法。
 
@@ -176,6 +184,14 @@ UIControlEvents事件的回调方法，调用栈如下
 
 > 1. 如果需要UICollectionView能响应点击，而它的父视图，除UICollectionView之外的区域也能响应点击，而且两者是独立，不同时触发，就不要采用父视图添加手势的方法。尽管可以使用手势的delegate方法来判断要不是手势响应，但不是最佳实践方法。最佳实践是，和响应点击的front视图的平级后面添加一个backend视图，在这个视图添加手势或UIButton。
 > 2. 尽管UICollectionView内部也有手势，但是没有UITapGestureRecognizer手势。
+
+
+
+### （2）delaysTouchesEnded
+
+`delaysTouchesEnded`属性默认值是YES。官方文档描述，如下
+
+
 
 
 

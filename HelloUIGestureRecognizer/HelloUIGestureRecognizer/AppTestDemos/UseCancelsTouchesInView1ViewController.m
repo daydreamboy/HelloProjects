@@ -117,8 +117,6 @@
 }
 
 - (void)switchEnableUIControlEventTouchUpInsideToggle:(UISwitch *)switcher {
-    switcher.on = !switcher.on;
-    
     self.gestureTap.cancelsTouchesInView = self.switchEnableUIControlEventTouchUpInside.on;
 }
 
