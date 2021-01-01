@@ -7,10 +7,7 @@
 //
 
 #import "FlowLayoutViewController.h"
-
-#ifndef UICOLOR_randomColor
-#define UICOLOR_randomColor [UIColor colorWithRed:(arc4random() % 255 / 255.0f) green:(arc4random() % 255 / 255.0f) blue:(arc4random() % 255 / 255.0f) alpha:1]
-#endif
+#import "WCMacroTool.h"
 
 @interface FlowLayoutViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (nonatomic, strong) NSArray<UIColor *> *collectionData;
@@ -62,12 +59,13 @@
 - (UICollectionView *)collectionView1 {
     if (!_collectionView1) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        CGFloat startY = CGRectGetMaxY(self.navigationController.navigationBar.frame) + 10;
         
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.itemSize = CGSizeMake(44, 44);
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
-        UICollectionView *view = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 64 + 10, screenSize.width, 50) collectionViewLayout:layout];
+        UICollectionView *view = [[UICollectionView alloc] initWithFrame:CGRectMake(0, startY, screenSize.width, 50) collectionViewLayout:layout];
         view.dataSource = self;
         view.delegate = self;
         view.backgroundColor = [UIColor greenColor];

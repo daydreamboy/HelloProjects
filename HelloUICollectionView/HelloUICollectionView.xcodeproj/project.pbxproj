@@ -235,6 +235,10 @@
 				4F519A16229BE2AB004C548A /* WCStringTool.h */,
 				4F519A17229BE2AB004C548A /* WCStringTool.m */,
 				4F519A19229BE499004C548A /* WCMacroTool.h */,
+				4F5B090521FF07E700EE7C2E /* WCArrayTool.h */,
+				4F5B090621FF07E700EE7C2E /* WCArrayTool.m */,
+				4F7D0345247BC89300FD8C61 /* WCViewTool.h */,
+				4F7D0346247BC89300FD8C61 /* WCViewTool.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -242,23 +246,11 @@
 		4F519A1A229C18D9004C548A /* WCHorizontalPageBrowserViewController */ = {
 			isa = PBXGroup;
 			children = (
-				4F519A15229BE182004C548A /* Tools */,
 				4F32D09120FDF3BA00D68A32 /* Pages */,
 				4F8767AE20EA5FAD00F2B02F /* WCHorizontalPageBrowserViewController.h */,
 				4F8767AF20EA5FAD00F2B02F /* WCHorizontalPageBrowserViewController.m */,
 			);
 			path = WCHorizontalPageBrowserViewController;
-			sourceTree = "<group>";
-		};
-		4F5B090421FF07B900EE7C2E /* Tools */ = {
-			isa = PBXGroup;
-			children = (
-				4F5B090521FF07E700EE7C2E /* WCArrayTool.h */,
-				4F5B090621FF07E700EE7C2E /* WCArrayTool.m */,
-				4F7D0345247BC89300FD8C61 /* WCViewTool.h */,
-				4F7D0346247BC89300FD8C61 /* WCViewTool.m */,
-			);
-			path = Tools;
 			sourceTree = "<group>";
 		};
 		4F748FDA20F6072C001CF507 /* Header&Footer */ = {
@@ -335,6 +327,7 @@
 		4FB1D4A620CC0D5700DBA776 = {
 			isa = PBXGroup;
 			children = (
+				4F519A15229BE182004C548A /* Tools */,
 				4F519A1A229C18D9004C548A /* WCHorizontalPageBrowserViewController */,
 				4FA5ABFA20FCBC720098A138 /* WCHorizontalSliderView */,
 				4F48FC3320F6318D00DB26EE /* WCCrossDirectionEmotionPickerView */,
@@ -357,7 +350,6 @@
 		4FB1D4B120CC0D5700DBA776 /* HelloUICollectionView */ = {
 			isa = PBXGroup;
 			children = (
-				4F5B090421FF07B900EE7C2E /* Tools */,
 				4FB1D4C820CC0D7F00DBA776 /* AppTestDemos */,
 				4FB1D4B220CC0D5700DBA776 /* AppDelegate.h */,
 				4FB1D4B320CC0D5700DBA776 /* AppDelegate.m */,

@@ -366,8 +366,7 @@
 }
 
 //- (id<UIViewControllerInteractiveTransitioning>)interactionControllerForDismissal:(id<UIViewControllerAnimatedTransitioning>)animator {
-//    return self.interactiveAnimator.interactionInProgress ? self.interactiveAnimator : nil;
-//    //    return self.interactor.interactionInProgress ? self.interactor : nil;
+//    return self.transitionAnimator.interactionInProgress ? self.transitionAnimator : nil;
 //}
 
 @end

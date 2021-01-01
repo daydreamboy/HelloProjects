@@ -102,4 +102,22 @@
     }
 }
 
+#pragma mark - UIViewControllerInteractiveTransitioning
+
+- (void)startInteractiveTransition:(id<UIViewControllerContextTransitioning>)transitionContext {
+    
+}
+
+- (BOOL)wantsInteractiveStart {
+    return YES;
+}
+
+- (UIViewAnimationCurve)completionCurve {
+    return UIViewAnimationCurveEaseInOut;
+}
+
+- (CGFloat)completionSpeed {
+    return 1.0;
+}
+
 @end

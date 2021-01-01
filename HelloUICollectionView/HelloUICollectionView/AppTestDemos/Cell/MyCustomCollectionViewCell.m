@@ -16,10 +16,10 @@
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        NSLog(@"%@: %@ %@", NSStringFromSelector(_cmd), self, NSStringFromCGRect(frame));
         UILabel *label = [[UILabel alloc] initWithFrame:self.bounds];
         label.textAlignment = NSTextAlignmentCenter;
-        label.font = [UIFont systemFontOfSize:14];
+        label.font = [UIFont boldSystemFontOfSize:14];
+        label.textColor = [UIColor whiteColor];
         
         // Note: not add subview to itself according to Apple Doc
         //[self addSubview:label];

@@ -66,12 +66,13 @@
 - (UICollectionView *)collectionView1 {
     if (!_collectionView1) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        CGFloat startY = CGRectGetMaxY(self.navigationController.navigationBar.frame) + 10;
         
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];
         layout.itemSize = CGSizeMake(44, 44);
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
-        UICollectionView *view = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 64 + 10, screenSize.width, 50) collectionViewLayout:layout];
+        UICollectionView *view = [[UICollectionView alloc] initWithFrame:CGRectMake(0, startY, screenSize.width, 50) collectionViewLayout:layout];
         view.dataSource = self;
         view.delegate = self;
         view.backgroundColor = [UIColor greenColor];
@@ -214,7 +215,6 @@
 #pragma mark - UICollectionViewDelegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"indexPath: %@", @(indexPath.row));
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldHighlightItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -222,6 +222,8 @@
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    UICollectionViewCell *cell = [collectionView cellForItemAtIndexPath:indexPath];
+    NSLog(@"indexPath: %@, selected: %@", @(indexPath.row), cell.isSelected ? @"YES": @"NO");
     return YES;
 }
 

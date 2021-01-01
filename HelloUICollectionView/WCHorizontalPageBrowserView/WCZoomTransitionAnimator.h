@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@interface WCZoomTransitionAnimator : NSObject <UIViewControllerAnimatedTransitioning>
+@interface WCZoomTransitionAnimator : NSObject <UIViewControllerAnimatedTransitioning, UIViewControllerInteractiveTransitioning>
 @property (nonatomic, assign, readonly) CGRect fromRect;
 - (instancetype)initWithFromRect:(CGRect)fromRect;
 @end
