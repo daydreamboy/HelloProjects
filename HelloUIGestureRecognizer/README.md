@@ -124,7 +124,13 @@ UIControlEvents事件的回调方法，调用栈如下
 
 ![](images/UIControlEvents事件回调方法的调用栈.png)
 
-示例代码见**GestureRecognizerVSControlEventsViewController**
+
+
+一般来说UIGestureRecognizer被识别后触发响应方法，要高于UIView的`touchesEnded:withEvent:`方法。参考下面”（2）delaysTouchesEnded“一节
+
+
+
+> 示例代码见**GestureRecognizerVSControlEventsViewController**
 
 
 
@@ -237,7 +243,7 @@ UIControlEvents事件的回调方法，调用栈如下
 
 
 
-> 示例代码，见UseDelaysTouchesEndedViewController
+> 示例代码，见**UseDelaysTouchesEndedViewController**
 
 
 
