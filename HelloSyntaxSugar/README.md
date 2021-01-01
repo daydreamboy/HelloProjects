@@ -418,8 +418,9 @@ template在Objective-C++是关键词，不能作为参数使用，否则编译�
 
 | 格式                             | 作用                       | 说明 |
 | -------------------------------- | -------------------------- | ---- |
-|                                  |                            |      |
-|                                  |                            |      |
+| `view`Tapped                     | view单击的方法             |      |
+| `view`DoubleTapped               | view双击的方法             |      |
+| `UISwitchVarName`Toggled         | UISwitch点击切换的方法     |      |
 | callDelelgateOf`protocol_method` | 调用delegate方法的包装方法 |      |
 
 
