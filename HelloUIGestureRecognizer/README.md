@@ -193,7 +193,51 @@ UIControlEvents事件的回调方法，调用栈如下
 
 > When the value of this property is `YES` (the default) and the receiver is analyzing touch events, the window suspends delivery of touch objects in the [`UITouchPhaseEnded`](dash-apple-api://load?request_key=lc/documentation/uikit/uitouchphase/uitouchphaseended) phase to the attached view. If the gesture recognizer subsequently recognizes its gesture, these touch objects are cancelled (via a [`touchesCancelled:withEvent:`](dash-apple-api://load?request_key=lc/documentation/uikit/uiresponder/1621116-touchescancelled) message). If the gesture recognizer does not recognize its gesture, the window delivers these objects in an invocation of the view’s [`touchesEnded:withEvent:`](dash-apple-api://load?request_key=lc/documentation/uikit/uiresponder/1621084-touchesended) method. Set this property to `NO` to have touch objects in the [`UITouchPhaseEnded`](dash-apple-api://load?request_key=lc/documentation/uikit/uitouchphase/uitouchphaseended) delivered to the view while the gesture recognizer is analyzing the same touches.
 
+总结上面的描述，分为两种情况
 
+#### a. 设置`delaysTouchesEnded`为YES
+
+* 在window发送处于UITouchPhaseEnded状态的touch给对应view时，会挂起一会儿，不会立即调用view的`touchesEnded:withEvent:`方法，为了腾出短暂的时间，让view的手势（如果添加有手势）去识别。比如长按手势、双击手势都需要时间间隔来判断。
+
+* 当手势识别成功后，系统默认会调用view的`touchesCancelled:withEvent:`方法
+
+  > 如果设置`cancelsTouchesInView`为NO（默认值是YES），则系统还是会调用view的`touchesEnded:withEvent:`方法
+
+* 当手势识别不成功后，系统会调用view的`touchesEnded:withEvent:`方法
+
+
+
+#### b. 设置`delaysTouchesEnded`为NO
+
+​        当设置`delaysTouchesEnded`为NO，在window发送处于UITouchPhaseEnded状态的touch给对应view时，会同时让手势识别。这样`touchesEnded:withEvent:`方法能立即被处理，不需要等待手势识别的时间。
+
+​        举个例子，UICollectionView的collectionView:didSelectItemAtIndexPath:方法是通过touchesEnd:withEvent:方法触发的（可以参考”举个非UIControl控件的例子“这一节）。如果在UICollectionView添加一个双击手势的，则有可能导致collectionView:didSelectItemAtIndexPath:方法调用被延迟。
+
+
+
+正常情况下，touch ended之后会立马调用collectionView:didSelectItemAtIndexPath:方法，日志如下
+
+```shell
+2021-01-04 22:45:17.559308+0800 HelloUIGestureRecognizer[10633:978769] touch event: 136745.814831, number: 1, phase: begin
+2021-01-04 22:45:17.656444+0800 HelloUIGestureRecognizer[10633:978769] touch event: 136745.914703, number: 1, phase: ended
+2021-01-04 22:45:17.658606+0800 HelloUIGestureRecognizer[10633:978769] _cmd: collectionView:didSelectItemAtIndexPath:
+```
+
+
+
+添加手势之后，在来回点击cell，则发现cell被选中的效果存在明显延迟（大概400ms左右），日志如下
+
+```shell
+2021-01-04 22:45:21.798157+0800 HelloUIGestureRecognizer[10633:978769] touch event: 136750.048831, number: 1, phase: begin
+2021-01-04 22:45:21.860925+0800 HelloUIGestureRecognizer[10633:978769] touch event: 136750.115368, number: 1, phase: ended
+2021-01-04 22:45:22.214305+0800 HelloUIGestureRecognizer[10633:978769] _cmd: collectionView:didSelectItemAtIndexPath:
+```
+
+可以设置`delaysTouchesEnded`为NO，这样collectionView:didSelectItemAtIndexPath:方法，能及时被调用，而且如果切换选中的cell时，连续点击两次，则会触发两个事件：cell被选中，以及collectionView被双击两次。
+
+
+
+> 示例代码，见UseDelaysTouchesEndedViewController
 
 
 

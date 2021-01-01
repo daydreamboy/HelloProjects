@@ -142,8 +142,5 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"_cmd: %@", NSStringFromSelector(_cmd));
-//    NSString *title = [NSString stringWithFormat:@"didSelectItemAtIndexPath: %@", @(indexPath.item)];
-//    NSString *msg = [NSString stringWithFormat:@"%@", collectionView];
-//    [WCAlertTool presentAlertWithTitle:title message:msg cancelButtonTitle:@"Ok" cancelButtonDidClickBlock:nil];
 }
 @end
