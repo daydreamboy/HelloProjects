@@ -15,6 +15,8 @@
 		4F2237D9245973A3000CC3C9 /* MirrorTapGestureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2237D8245973A3000CC3C9 /* MirrorTapGestureViewController.m */; };
 		4F2237DC245987BB000CC3C9 /* WCMirroringTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2237DB245987BB000CC3C9 /* WCMirroringTapGestureRecognizer.m */; };
 		4F338286239E946B00AA444F /* MockTapGestureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F338285239E946B00AA444F /* MockTapGestureViewController.m */; };
+		4F3A6C90259F194F004B3D31 /* MyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A6C8F259F194F004B3D31 /* MyApplication.m */; };
+		4F3A6C98259F2321004B3D31 /* WCApplicationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3A6C97259F2321004B3D31 /* WCApplicationTool.m */; };
 		4F4990261F9D987F00D313B5 /* UsePanGestureRecognizer1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4990251F9D987F00D313B5 /* UsePanGestureRecognizer1ViewController.m */; };
 		4F49902B1F9D99C400D313B5 /* UsePanGestureRecognizer2ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F49902A1F9D99C400D313B5 /* UsePanGestureRecognizer2ViewController.m */; };
 		4F49902E1F9D9D6600D313B5 /* DragViewRestrictedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F49902D1F9D9D6600D313B5 /* DragViewRestrictedViewController.m */; };
@@ -54,6 +56,10 @@
 		4F2237DB245987BB000CC3C9 /* WCMirroringTapGestureRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCMirroringTapGestureRecognizer.m; sourceTree = "<group>"; };
 		4F338284239E946B00AA444F /* MockTapGestureViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MockTapGestureViewController.h; sourceTree = "<group>"; };
 		4F338285239E946B00AA444F /* MockTapGestureViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MockTapGestureViewController.m; sourceTree = "<group>"; };
+		4F3A6C8E259F194F004B3D31 /* MyApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyApplication.h; sourceTree = "<group>"; };
+		4F3A6C8F259F194F004B3D31 /* MyApplication.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyApplication.m; sourceTree = "<group>"; };
+		4F3A6C96259F2321004B3D31 /* WCApplicationTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCApplicationTool.h; sourceTree = "<group>"; };
+		4F3A6C97259F2321004B3D31 /* WCApplicationTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCApplicationTool.m; sourceTree = "<group>"; };
 		4F4990241F9D987F00D313B5 /* UsePanGestureRecognizer1ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UsePanGestureRecognizer1ViewController.h; sourceTree = "<group>"; };
 		4F4990251F9D987F00D313B5 /* UsePanGestureRecognizer1ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UsePanGestureRecognizer1ViewController.m; sourceTree = "<group>"; };
 		4F4990291F9D99C400D313B5 /* UsePanGestureRecognizer2ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UsePanGestureRecognizer2ViewController.h; sourceTree = "<group>"; };
@@ -134,6 +140,8 @@
 			children = (
 				4F4DC06821EED0840066E96A /* WCAlertTool.h */,
 				4F4DC06721EED0840066E96A /* WCAlertTool.m */,
+				4F3A6C96259F2321004B3D31 /* WCApplicationTool.h */,
+				4F3A6C97259F2321004B3D31 /* WCApplicationTool.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -165,6 +173,8 @@
 				4F671A301F944F5B0031E9C9 /* AppDelegate.m */,
 				4F671A471F944FAD0031E9C9 /* RootViewController.h */,
 				4F671A481F944FAD0031E9C9 /* RootViewController.m */,
+				4F3A6C8E259F194F004B3D31 /* MyApplication.h */,
+				4F3A6C8F259F194F004B3D31 /* MyApplication.m */,
 				4F671A381F944F5B0031E9C9 /* Assets.xcassets */,
 				4F671A3A1F944F5B0031E9C9 /* LaunchScreen.storyboard */,
 				4F671A3D1F944F5B0031E9C9 /* Info.plist */,
@@ -304,6 +314,7 @@
 				4F2237DC245987BB000CC3C9 /* WCMirroringTapGestureRecognizer.m in Sources */,
 				4F190303245AC2200054FA3C /* ParentViewObserveChildViewTapEventViewController.m in Sources */,
 				4F7F7F7724CC1F3300BD012C /* UsePanGestureRecognizer3ViewController.m in Sources */,
+				4F3A6C98259F2321004B3D31 /* WCApplicationTool.m in Sources */,
 				4F671A311F944F5B0031E9C9 /* AppDelegate.m in Sources */,
 				4F9DC2B921F05709002114D7 /* UseCancelsTouchesInView2ViewController.m in Sources */,
 				4F2237D9245973A3000CC3C9 /* MirrorTapGestureViewController.m in Sources */,
@@ -315,6 +326,7 @@
 				4F338286239E946B00AA444F /* MockTapGestureViewController.m in Sources */,
 				4F190306245AC9A40054FA3C /* UseUIGestureRecognizerDelegateViewController.m in Sources */,
 				4F4DC06921EED0850066E96A /* WCAlertTool.m in Sources */,
+				4F3A6C90259F194F004B3D31 /* MyApplication.m in Sources */,
 				4F854D0621EF88C5005656F2 /* UseCancelsTouchesInView1ViewController.m in Sources */,
 				4F7113B221A6B03700DCB8FA /* TapGesturesBothOnParentChildViewViewController.m in Sources */,
 				4F4DC06221EECC8F0066E96A /* GestureRecognizerVSControlEventsViewController.m in Sources */,

@@ -27,6 +27,7 @@
 #import "UseCancelsTouchesInView2ViewController.h"
 #import "MockTapGestureViewController.h"
 #import "MirrorTapGestureViewController.h"
+#import "UseDelaysTouchesEndedViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -70,6 +71,7 @@
           @{ kTitle: @"UIGestureRecognizer vs. UIControlEvents", kClass: [GestureRecognizerVSControlEventsViewController class] },
           @{ kTitle: @"Use cancelsTouchesInView (UIButton example)", kClass: [UseCancelsTouchesInView1ViewController class] },
           @{ kTitle: @"Use cancelsTouchesInView (UICollectionView example)", kClass: [UseCancelsTouchesInView2ViewController class] },
+          @{ kTitle: @"Use delaysTouchesEnded (UICollectionView example)", kClass: [UseDelaysTouchesEndedViewController class] },
           @{ kTitle: @"Mock TapGesture", kClass: [MockTapGestureViewController class] },
           @{ kTitle: @"Use Mirrored TapGesture", kClass: [MirrorTapGestureViewController class] },
     ];

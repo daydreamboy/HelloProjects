@@ -191,6 +191,10 @@ UIControlEvents事件的回调方法，调用栈如下
 
 `delaysTouchesEnded`属性默认值是YES。官方文档描述，如下
 
+> When the value of this property is `YES` (the default) and the receiver is analyzing touch events, the window suspends delivery of touch objects in the [`UITouchPhaseEnded`](dash-apple-api://load?request_key=lc/documentation/uikit/uitouchphase/uitouchphaseended) phase to the attached view. If the gesture recognizer subsequently recognizes its gesture, these touch objects are cancelled (via a [`touchesCancelled:withEvent:`](dash-apple-api://load?request_key=lc/documentation/uikit/uiresponder/1621116-touchescancelled) message). If the gesture recognizer does not recognize its gesture, the window delivers these objects in an invocation of the view’s [`touchesEnded:withEvent:`](dash-apple-api://load?request_key=lc/documentation/uikit/uiresponder/1621084-touchesended) method. Set this property to `NO` to have touch objects in the [`UITouchPhaseEnded`](dash-apple-api://load?request_key=lc/documentation/uikit/uitouchphase/uitouchphaseended) delivered to the view while the gesture recognizer is analyzing the same touches.
+
+
+
 
 
 
