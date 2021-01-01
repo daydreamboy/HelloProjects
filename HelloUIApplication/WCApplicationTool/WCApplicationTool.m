@@ -162,6 +162,29 @@
     return NO;
 }
 
++ (NSString *)stringFromUITouchPhase:(UITouchPhase)phase {
+    switch (phase) {
+        case UITouchPhaseBegan:
+            return @"begin";
+        case UITouchPhaseMoved:
+            return @"moved";
+        case UITouchPhaseStationary:
+            return @"stationary";
+        case UITouchPhaseEnded:
+            return @"ended";
+        case UITouchPhaseCancelled:
+            return @"cancelled";
+        case UITouchPhaseRegionEntered:
+            return @"regionEntered";
+        case UITouchPhaseRegionMoved:
+            return @"regionMoved";
+        case UITouchPhaseRegionExited:
+            return @"regionExited";
+        default:
+            return @"unknown";
+    }
+}
+
 #pragma mark - App Screen
 
 + (BOOL)checkIfSupportMultipleScenes {

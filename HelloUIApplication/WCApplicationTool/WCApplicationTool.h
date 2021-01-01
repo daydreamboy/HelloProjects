@@ -127,17 +127,27 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - App Event
 
-/*!
- *  enable/disable user interaction
- *
- *  @param isAllow YES, enable user interaction; NO, disable user interaction
- *
- *  @return If YES, operation is done. If NO, operation is ignored
- *  @warning
- *  <br/> 1. This method must be paired with YES and NO
- *  <br/> 2. This method doesn't work with third-party keyboard on iOS 8+, when disable user interaction but user still can press key
+/**
+ enable/disable user interaction
+ 
+ @param isAllow isAllow YES, enable user interaction; NO, disable user interaction
+ 
+ @return If YES, operation is done. If NO, operation is ignored
+ 
+ @warning
+ <br/> 1. This method must be paired with YES and NO
+ <br/> 2. This method doesn't work with third-party keyboard on iOS 8+, when disable user interaction but user still can press key
  */
 + (BOOL)allowUserInteractionEvents:(BOOL)isAllow;
+
+/**
+ Convert UITouchPhase to NSString
+ 
+ @param phase the UITouchPhase
+ 
+ @return the string for UITouchPhase. If out of the range of enum type, return the "unknown"
+ */
++ (NSString *)stringFromUITouchPhase:(UITouchPhase)phase;
 
 #pragma mark - App Screen
 
