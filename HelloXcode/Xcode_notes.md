@@ -399,6 +399,18 @@ $ xcrun simctl push <device> com.example.my-app ExamplePush.apns
 
 
 
+### （3）显示touch indicator[^12]
+
+执行下面的命令，如下
+
+```shell
+$ defaults write com.apple.dt.Xcode IDEIndexerActivityShowNumericProgress 1
+```
+
+当鼠标按下时，模拟器会显示圆形的touch indicator。
+
+
+
 ## 8、Xcode常用配置
 
 ### （1）开启Xcode编译的耗时统计[^8]
@@ -461,6 +473,8 @@ TODO
 [^10]:https://github.com/pinterest/PINCache/issues/275
 
 [^11]:https://stackoverflow.com/questions/7600435/what-source-comments-does-xcode-recognize-as-tags
+
+[^12]:https://apple.stackexchange.com/questions/203044/enable-touch-indicator-for-ios-app-demo-video-recording
 
 
 
