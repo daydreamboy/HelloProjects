@@ -14,8 +14,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - Image Generation
 
-#pragma mark > From Image
-
 /**
  Get an image with pure color
 
@@ -43,6 +41,8 @@ NS_ASSUME_NONNULL_BEGIN
  @see https://stackoverflow.com/questions/2835448/how-to-draw-a-rounded-rectangle-in-core-graphics-quartz-2d
  */
 + (nullable UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size cornerRadius:(CGFloat)cornerRadius;
+
+#pragma mark > From Image
 
 /**
  Get a alpha version of UIImage
@@ -97,7 +97,19 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark > From Video
 
+#pragma mark > QR Code
 
+/**
+ Create a QR image from string
+ 
+ @param string the string in QR image
+ @param size the image size
+ 
+ @return the QR image
+ 
+ @see https://stackoverflow.com/a/37967191
+ */
++ (nullable UIImage *)QRImageWithString:(NSString *)string size:(CGSize)size;
 
 #pragma mark - Image Modification
 
