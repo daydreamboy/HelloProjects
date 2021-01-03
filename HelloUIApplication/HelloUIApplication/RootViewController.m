@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 #import "SimulateMemoryWarningViewController.h"
+#import "ShowTouchIndicatorViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -31,11 +32,13 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"simulate memory warning",
+        @"Simulate memory warning",
+        @"Show Touch Indicator",
         @"call a test method",
     ];
     _classes = @[
-        @"SimulateMemoryWarningViewController",
+        [SimulateMemoryWarningViewController class],
+        [ShowTouchIndicatorViewController class],
         @"testMethod",
     ];
 }
@@ -65,19 +68,10 @@
     return cell;
 }
 
-- (void)pushViewController:(NSString *)viewControllerClass {
-    NSAssert([viewControllerClass isKindOfClass:[NSString class]], @"%@ is not NSString", viewControllerClass);
+- (void)pushViewController:(id)viewControllerClass {
     
-    Class class = NSClassFromString(viewControllerClass);
-    if (class && [class isSubclassOfClass:[UIViewController class]]) {
-        
-        UIViewController *vc = [[class alloc] init];
-        vc.title = _titles[[_classes indexOfObject:viewControllerClass]];
-        
-        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-    else {
+    id class = viewControllerClass;
+    if ([class isKindOfClass:[NSString class]]) {
         SEL selector = NSSelectorFromString(viewControllerClass);
         if ([self respondsToSelector:selector]) {
 #pragma GCC diagnostic push
@@ -88,6 +82,13 @@
         else {
             NSAssert(NO, @"can't handle selector `%@`", viewControllerClass);
         }
+    }
+    else if (class && [class isSubclassOfClass:[UIViewController class]]) {
+        UIViewController *vc = [[class alloc] init];
+        vc.title = _titles[[_classes indexOfObject:viewControllerClass]];
+        
+        self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 

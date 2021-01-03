@@ -14,6 +14,11 @@
 		4F11935A1FF632C900B653F3 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1193591FF632C900B653F3 /* RootViewController.m */; };
 		4F11935E1FF632CF00B653F3 /* SimulateMemoryWarningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F11935C1FF632CE00B653F3 /* SimulateMemoryWarningViewController.m */; };
 		4F23A77A23FEC1C30056376E /* WCApplicationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7E2D7C222395E1007D190E /* WCApplicationTool.m */; };
+		4F56B27325A214C200AD7478 /* MyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F56B27225A214C100AD7478 /* MyApplication.m */; };
+		4F56B27A25A216E700AD7478 /* WCTouchWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F56B27925A216E700AD7478 /* WCTouchWindow.m */; };
+		4F56B28325A2179500AD7478 /* WCTouchFingerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F56B28225A2179500AD7478 /* WCTouchFingerView.m */; };
+		4F56B28925A219B200AD7478 /* WCTouchFingerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F56B28825A219B200AD7478 /* WCTouchFingerViewController.m */; };
+		4F56B28F25A21CA900AD7478 /* ShowTouchIndicatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F56B28E25A21CA900AD7478 /* ShowTouchIndicatorViewController.m */; };
 		4F5998B923026C25001B0E09 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5998B823026C25001B0E09 /* Test.m */; };
 		4F7E2D7D222395E1007D190E /* WCApplicationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7E2D7C222395E1007D190E /* WCApplicationTool.m */; };
 		4FE77A8B234442A6000EA68D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE77A8A234442A6000EA68D /* AppDelegate.m */; };
@@ -45,6 +50,16 @@
 		4F1193591FF632C900B653F3 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F11935C1FF632CE00B653F3 /* SimulateMemoryWarningViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimulateMemoryWarningViewController.m; sourceTree = "<group>"; };
 		4F11935D1FF632CE00B653F3 /* SimulateMemoryWarningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulateMemoryWarningViewController.h; sourceTree = "<group>"; };
+		4F56B27125A214C100AD7478 /* MyApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyApplication.h; sourceTree = "<group>"; };
+		4F56B27225A214C100AD7478 /* MyApplication.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyApplication.m; sourceTree = "<group>"; };
+		4F56B27825A216E700AD7478 /* WCTouchWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCTouchWindow.h; sourceTree = "<group>"; };
+		4F56B27925A216E700AD7478 /* WCTouchWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCTouchWindow.m; sourceTree = "<group>"; };
+		4F56B28125A2179500AD7478 /* WCTouchFingerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCTouchFingerView.h; sourceTree = "<group>"; };
+		4F56B28225A2179500AD7478 /* WCTouchFingerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCTouchFingerView.m; sourceTree = "<group>"; };
+		4F56B28725A219B200AD7478 /* WCTouchFingerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCTouchFingerViewController.h; sourceTree = "<group>"; };
+		4F56B28825A219B200AD7478 /* WCTouchFingerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCTouchFingerViewController.m; sourceTree = "<group>"; };
+		4F56B28D25A21CA900AD7478 /* ShowTouchIndicatorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowTouchIndicatorViewController.h; sourceTree = "<group>"; };
+		4F56B28E25A21CA900AD7478 /* ShowTouchIndicatorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowTouchIndicatorViewController.m; sourceTree = "<group>"; };
 		4F5998B623026C25001B0E09 /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F5998B823026C25001B0E09 /* Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		4F5998BA23026C25001B0E09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -89,6 +104,7 @@
 		4F1193361FF6328800B653F3 = {
 			isa = PBXGroup;
 			children = (
+				4F56B27725A216CD00AD7478 /* WCTouchWindow */,
 				4F7E2D7A222395CD007D190E /* WCApplicationTool */,
 				4F1193411FF6328800B653F3 /* HelloUIApplication */,
 				4F5998B723026C25001B0E09 /* Test */,
@@ -119,6 +135,8 @@
 				4F11934D1FF6328800B653F3 /* LaunchScreen.storyboard */,
 				4F1193501FF6328800B653F3 /* Info.plist */,
 				4F1193511FF6328800B653F3 /* main.m */,
+				4F56B27125A214C100AD7478 /* MyApplication.h */,
+				4F56B27225A214C100AD7478 /* MyApplication.m */,
 			);
 			path = HelloUIApplication;
 			sourceTree = "<group>";
@@ -128,8 +146,23 @@
 			children = (
 				4F11935D1FF632CE00B653F3 /* SimulateMemoryWarningViewController.h */,
 				4F11935C1FF632CE00B653F3 /* SimulateMemoryWarningViewController.m */,
+				4F56B28D25A21CA900AD7478 /* ShowTouchIndicatorViewController.h */,
+				4F56B28E25A21CA900AD7478 /* ShowTouchIndicatorViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F56B27725A216CD00AD7478 /* WCTouchWindow */ = {
+			isa = PBXGroup;
+			children = (
+				4F56B27825A216E700AD7478 /* WCTouchWindow.h */,
+				4F56B27925A216E700AD7478 /* WCTouchWindow.m */,
+				4F56B28125A2179500AD7478 /* WCTouchFingerView.h */,
+				4F56B28225A2179500AD7478 /* WCTouchFingerView.m */,
+				4F56B28725A219B200AD7478 /* WCTouchFingerViewController.h */,
+				4F56B28825A219B200AD7478 /* WCTouchFingerViewController.m */,
+			);
+			path = WCTouchWindow;
 			sourceTree = "<group>";
 		};
 		4F5998B723026C25001B0E09 /* Test */ = {
@@ -305,11 +338,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F56B27325A214C200AD7478 /* MyApplication.m in Sources */,
+				4F56B28325A2179500AD7478 /* WCTouchFingerView.m in Sources */,
 				4F7E2D7D222395E1007D190E /* WCApplicationTool.m in Sources */,
 				4F1193521FF6328800B653F3 /* main.m in Sources */,
+				4F56B28925A219B200AD7478 /* WCTouchFingerViewController.m in Sources */,
+				4F56B28F25A21CA900AD7478 /* ShowTouchIndicatorViewController.m in Sources */,
 				4F11935E1FF632CF00B653F3 /* SimulateMemoryWarningViewController.m in Sources */,
 				4F1193441FF6328800B653F3 /* AppDelegate.m in Sources */,
 				4F11935A1FF632C900B653F3 /* RootViewController.m in Sources */,
+				4F56B27A25A216E700AD7478 /* WCTouchWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
