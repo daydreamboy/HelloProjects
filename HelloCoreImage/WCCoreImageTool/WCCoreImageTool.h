@@ -34,6 +34,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSString *)stringWithQRCodeImage:(UIImage *)QRCodeImage;
 
+#pragma mark > QR Code from String
+
++ (nullable UIImage *)QRImageWithString:(NSString *)string size:(CGSize)size tintColor:(nullable UIColor *)tintColor;
+
+#pragma mark - CIImage Processing
+
++ (nullable CIImage *)invertColorsWithImage:(CIImage *)image;
++ (nullable CIImage *)blackColorToTransparentWithImage:(CIImage *)image;
+
 @end
 
 NS_ASSUME_NONNULL_END

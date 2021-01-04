@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 #import "DecodeQRImageViewController.h"
+#import "CreateQRCodeImageViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -32,10 +33,12 @@
     // MARK: Configure titles and classes for table view
     _titles = @[
         @"Get QRCode from UIImage",
+        @"Create QR Code Image",
         @"call a test method",
     ];
     _classes = @[
         [DecodeQRImageViewController class],
+        [CreateQRCodeImageViewController class],
         @"testMethod",
     ];
 }
