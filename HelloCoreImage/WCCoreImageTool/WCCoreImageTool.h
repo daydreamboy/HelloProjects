@@ -36,6 +36,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark > QR Code from String
 
+/**
+ Create a QR image from string
+ 
+ @param string the string in QR image
+ @param size the image size
+ @param tintColor the tint color. If nil, use the default style
+ 
+ @return the QR image
+ 
+ @see https://stackoverflow.com/a/37967191
+ */
 + (nullable UIImage *)QRImageWithString:(NSString *)string size:(CGSize)size tintColor:(nullable UIColor *)tintColor;
 
 #pragma mark - CIImage Processing
