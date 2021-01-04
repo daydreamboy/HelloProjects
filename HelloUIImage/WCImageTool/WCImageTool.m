@@ -214,41 +214,6 @@
     return newImage;
 }
 
-#pragma mark > QR Code
-
-+ (nullable UIImage *)QRImageWithString:(NSString *)string size:(CGSize)size {
-    if (![string isKindOfClass:[NSString class]] || size.width <= 0 || size.height <= 0) {
-        return nil;
-    }
-    
-    if (string.length == 0) {
-        return nil;
-    }
-    
-    NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
-    CIFilter *filter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
-    if (!filter) {
-        return nil;
-    }
-    
-    [filter setValue:data forKey:@"inputMessage"];
-    // Note: see https://github.com/ScottLogic/iOS7-day-by-day/blob/master/15-core-image-filters/15-core-image-filters.md
-    [filter setValue:@"H" forKey:@"inputCorrectionLevel"];
-    
-    CIImage *ciImage = filter.outputImage;
-    if (!ciImage) {
-        return nil;
-    }
-    
-    double scaleX = size.width / ciImage.extent.size.width;
-    double scaleY = size.height / ciImage.extent.size.height;
-
-    ciImage = [ciImage imageByApplyingTransform:CGAffineTransformMakeScale(scaleX, scaleY)];
-    
-    UIImage *image = [UIImage imageWithCIImage:ciImage scale:[UIScreen mainScreen].scale orientation:UIImageOrientationUp];
-    return image;
-}
-
 #pragma mark - Image Modify
 
 + (nullable UIImage *)imageWithImage:(UIImage *)image tintColor:(UIColor *)tintColor {

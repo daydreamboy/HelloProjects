@@ -18,7 +18,6 @@
 #import "CheckImageMemorySizeViewController.h"
 #import "CreateThumbnailImageViewController.h"
 #import "GetImageSizeWithoutCreateUIImageViewController.h"
-#import "CreateQRCodeImageViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -51,7 +50,6 @@
         @"Check UIImage memory size",
         @"Create thumbnail image",
         @"Get image size without create UIImage",
-        @"Create QR Code",
     ];
     _classes = @[
         [CreateOnePixelHeightLineViewController class],
@@ -64,7 +62,6 @@
         [CheckImageMemorySizeViewController class],
         [CreateThumbnailImageViewController class],
         [GetImageSizeWithoutCreateUIImageViewController class],
-        [CreateQRCodeImageViewController class],
     ];
 }
 

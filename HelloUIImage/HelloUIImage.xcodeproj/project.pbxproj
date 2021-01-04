@@ -38,7 +38,6 @@
 		4F636E692134F2F3003DE979 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F636E682134F2F3003DE979 /* Assets.xcassets */; };
 		4F636E6C2134F2F3003DE979 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F636E6A2134F2F3003DE979 /* LaunchScreen.storyboard */; };
 		4F636E6F2134F2F3003DE979 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F636E6E2134F2F3003DE979 /* main.m */; };
-		4F8242652590C5DE003E22D9 /* CreateQRCodeImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8242642590C5DE003E22D9 /* CreateQRCodeImageViewController.m */; };
 		4F8591AE24A1F3A4005EBAA1 /* WCStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8591AD24A1F3A4005EBAA1 /* WCStringTool.m */; };
 		4F8BB40B21526BEB00F0AD99 /* fake.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8BB40821526BEB00F0AD99 /* fake.png */; };
 		4F8BB40C21526BEB00F0AD99 /* fake@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F8BB40921526BEB00F0AD99 /* fake@1x.png */; };
@@ -109,8 +108,6 @@
 		4F636E6B2134F2F3003DE979 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F636E6D2134F2F3003DE979 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F636E6E2134F2F3003DE979 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4F8242632590C5DE003E22D9 /* CreateQRCodeImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CreateQRCodeImageViewController.h; sourceTree = "<group>"; };
-		4F8242642590C5DE003E22D9 /* CreateQRCodeImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CreateQRCodeImageViewController.m; sourceTree = "<group>"; };
 		4F85917124A1B7D9005EBAA1 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
 		4F8591AC24A1F3A4005EBAA1 /* WCStringTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStringTool.h; sourceTree = "<group>"; };
 		4F8591AD24A1F3A4005EBAA1 /* WCStringTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCStringTool.m; sourceTree = "<group>"; };
@@ -176,8 +173,6 @@
 				4F2CADF824A4CAAC008C9C27 /* CreateThumbnailImageViewController.m */,
 				4F2CADFC24A5DAA0008C9C27 /* GetImageSizeWithoutCreateUIImageViewController.h */,
 				4F2CADFD24A5DAA0008C9C27 /* GetImageSizeWithoutCreateUIImageViewController.m */,
-				4F8242632590C5DE003E22D9 /* CreateQRCodeImageViewController.h */,
-				4F8242642590C5DE003E22D9 /* CreateQRCodeImageViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -412,7 +407,6 @@
 				4F8591AE24A1F3A4005EBAA1 /* WCStringTool.m in Sources */,
 				4F6061DD2134F5B300D049DF /* WCImageTool.m in Sources */,
 				4F6061D92134F5A300D049DF /* ScaleImageViewController.m in Sources */,
-				4F8242652590C5DE003E22D9 /* CreateQRCodeImageViewController.m in Sources */,
 				4F9909AC219C6CD000606B97 /* WCViewTool.m in Sources */,
 				4F6061CD2134F57C00D049DF /* RootViewController.m in Sources */,
 				4F6061D72134F5A300D049DF /* CreateOnePixelHeightLineViewController.m in Sources */,

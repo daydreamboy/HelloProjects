@@ -97,20 +97,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark > From Video
 
-#pragma mark > QR Code
-
-/**
- Create a QR image from string
- 
- @param string the string in QR image
- @param size the image size
- 
- @return the QR image
- 
- @see https://stackoverflow.com/a/37967191
- */
-+ (nullable UIImage *)QRImageWithString:(NSString *)string size:(CGSize)size;
-
 #pragma mark - Image Modification
 
 /**
