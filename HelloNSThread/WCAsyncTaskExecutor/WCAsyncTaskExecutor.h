@@ -54,7 +54,7 @@ typedef NS_ENUM(NSUInteger, WCAsyncTaskExecuteMode) {
  @discussion If the key is same with the previous task has been added (running or wait to run), the current task is ignored.
  If the previous task has been added and run finished, the task with same key is OK to added.
  */
-- (BOOL)addAsyncTask:(WCAsyncTaskBlock)block data:(nullable id)data forKey:(NSString *)key timeout:(NSTimeInterval)timeout timeoutBlock:(nullable WCAsyncTaskTimeoutBlock)timeoutBlock;
+- (BOOL)addAsyncTask:(WCAsyncTaskBlock)block data:(nullable id)data forKey:(nullable NSString *)key timeout:(NSTimeInterval)timeout timeoutBlock:(nullable WCAsyncTaskTimeoutBlock)timeoutBlock;
 
 @end
 

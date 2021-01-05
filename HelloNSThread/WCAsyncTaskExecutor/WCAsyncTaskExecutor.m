@@ -73,9 +73,17 @@
     return [self addAsyncTask:block data:nil forKey:[NSUUID UUID].UUIDString timeout:0 timeoutBlock:nil];
 }
 
-- (BOOL)addAsyncTask:(WCAsyncTaskBlock)block data:(nullable id)data forKey:(NSString *)key timeout:(NSTimeInterval)timeout timeoutBlock:(nullable WCAsyncTaskTimeoutBlock)timeoutBlock {
-    if (!block || ![key isKindOfClass:[NSString class]]) {
+- (BOOL)addAsyncTask:(WCAsyncTaskBlock)block data:(nullable id)data forKey:(nullable NSString *)key timeout:(NSTimeInterval)timeout timeoutBlock:(nullable WCAsyncTaskTimeoutBlock)timeoutBlock {
+    if (!block) {
         return NO;
+    }
+    
+    if (key && ![key isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    
+    if (!key) {
+        key = [NSUUID UUID].UUIDString;
     }
     
     weakify(self);
