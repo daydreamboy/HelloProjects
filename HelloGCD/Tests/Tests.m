@@ -167,6 +167,16 @@
     NSLog(@"output: %@", output ? @"YES" : @"NO");
     XCTAssertFalse(output);
     
+    // Case 5: call completion twice
+    output = [WCGCDTool performSynchronouslyWithAsyncTask:^(WCGCDToolAsyncTaskSynchronizedCompletion  _Nonnull completion) {
+        completion(YES);
+        completion(NO);
+    } timeout:DISPATCH_TIME_FOREVER];
+
+    // continue to process
+    NSLog(@"output: %@", output ? @"YES" : @"NO");
+    XCTAssertTrue(output);
+    
     // Abnormal Case 1: pass nil task
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wnonnull"

@@ -125,11 +125,19 @@
     
     __block BOOL status = NO;
     __block BOOL isTimeout = NO;
+    __block BOOL isCompletionCalled = NO;
     WCGCDToolAsyncTaskSynchronizedCompletion completion = ^(BOOL success) {
+        // Note: protect `status` to write different values if completion called many times
+        if (isCompletionCalled) {
+            return;
+        }
+        
         if (!isTimeout) {
             status = success;
             dispatch_semaphore_signal(sema);
         }
+        
+        isCompletionCalled = YES;
     };
     
     if (asyncTask) {

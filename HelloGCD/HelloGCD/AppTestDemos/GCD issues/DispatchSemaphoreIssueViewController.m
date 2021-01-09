@@ -44,11 +44,12 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         sleep(5);
         intptr_t count = dispatch_semaphore_signal(sema);
-        //count = dispatch_semaphore_signal(sema);
+        NSLog(@"count: %ld", count);
+        count = dispatch_semaphore_signal(sema);
         NSLog(@"count: %ld", count);
     });
     
-    intptr_t timeout = dispatch_semaphore_wait(sema, dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)));
+    intptr_t timeout = dispatch_semaphore_wait(sema, dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)));
     NSLog(@"timeout: %@", timeout != 0 ? @"YES" : @"NO");
 }
 
