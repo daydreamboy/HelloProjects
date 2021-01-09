@@ -47,9 +47,27 @@
 @property (nonatomic, strong) WCAsyncTask *currentRunningTask;
 @property (nonatomic, strong) NSMutableDictionary<NSString *, WCAsyncTask *> *enqueueMap;
 @property (nonatomic, assign) BOOL isRunningTask;
+@property (nonatomic, copy) void (^autoreleaseBlock)(WCAsyncTaskExecutor *executor);
 @end
 
 @implementation WCAsyncTaskExecutor
+
+static NSMutableArray *sKeeper;
+
++ (WCAsyncTaskExecutor *)autoreleaseTaskExecutor {
+    if (!sKeeper) {
+        sKeeper = [NSMutableArray array];
+    }
+    
+    WCAsyncTaskExecutor *executor = [[WCAsyncTaskExecutor alloc] init];
+    executor.autoreleaseBlock = ^(WCAsyncTaskExecutor * _Nonnull executor) {
+        [sKeeper removeObject:executor];
+    };
+    
+    [sKeeper addObject:executor];
+    
+    return executor;
+}
 
 - (instancetype)init {
     self = [super init];
@@ -110,6 +128,7 @@
             self.isRunningTask = NO;
             
             !self.allTaskFinishedCompletion ?: self.allTaskFinishedCompletion(self);
+            !self.autoreleaseBlock ?: self.autoreleaseBlock(self);
         }];
     });
     

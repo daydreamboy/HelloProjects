@@ -31,6 +31,16 @@ typedef NS_ENUM(NSUInteger, WCAsyncTaskExecuteMode) {
 @property (nonatomic, copy) void (^allTaskFinishedCompletion)(WCAsyncTaskExecutor *executor);
 
 /**
+ Create an autorelease WCAsyncTaskExecutor
+ 
+ @return the WCAsyncTaskExecutor instance
+ 
+ @discussion After allTaskFinishedCompletion has been called, the WCAsyncTaskExecutor object will be released.
+ You don't need to hold the returned WCAsyncTaskExecutor instance
+ */
++ (WCAsyncTaskExecutor *)autoreleaseTaskExecutor;
+
+/**
  Add a block as Task to run or wait to run
  
  @param block the task

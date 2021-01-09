@@ -14,6 +14,7 @@
 @property (nonatomic, strong) WCAsyncTaskExecutor *asyncTaskExecutor;
 @property (nonatomic, strong) NSMutableArray *timestamps;
 @property (nonatomic, assign) BOOL ignoreClick;
+@property (nonatomic, strong) UIBarButtonItem *itemAddBatchTask;
 @end
 
 @implementation TestWCAsyncTaskExecutorViewController
@@ -38,7 +39,11 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     UIBarButtonItem *addTaskItem = [[UIBarButtonItem alloc] initWithTitle:@"AddTask" style:UIBarButtonItemStylePlain target:self action:@selector(addTaskItemClicked:)];
-    self.navigationItem.rightBarButtonItem = addTaskItem;
+    
+    UIBarButtonItem *addBatchTaskItem = [[UIBarButtonItem alloc] initWithTitle:@"AddBatchTask" style:UIBarButtonItemStylePlain target:self action:@selector(addBatchTaskItemClicked:)];
+    self.itemAddBatchTask = addBatchTaskItem;
+    
+    self.navigationItem.rightBarButtonItems = @[addBatchTaskItem, addTaskItem];
 }
 
 #pragma mark - Action
@@ -65,6 +70,35 @@
             [self.timestamps addObject:timestamp];
             completion();
         } data:nil forKey:timestamp timeout:0 timeoutBlock:nil];
+    }
+}
+
+- (void)addBatchTaskItemClicked:(id)sender {
+    self.itemAddBatchTask.enabled = NO;
+    
+    WCAsyncTaskExecutor *asyncTaskExecutor = [WCAsyncTaskExecutor autoreleaseTaskExecutor];
+    
+    weakify(self);
+    asyncTaskExecutor.allTaskFinishedCompletion = ^(WCAsyncTaskExecutor * _Nonnull executor) {
+        strongify(self);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.itemAddBatchTask.enabled = YES;
+        });
+    };
+    
+    NSUInteger numberOfTasks = arc4random() % 10 + 1;
+    NSLog(@"--- add %@ tasks", @(numberOfTasks));
+    for (NSUInteger i = 0; i < numberOfTasks; ++i) {
+        NSString *timestamp = [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]];
+        NSLog(@"adding task %@", timestamp);
+        
+        [asyncTaskExecutor addAsyncTask:^(id _Nullable data, WCAsyncTaskCompletion  _Nonnull completion) {
+            NSTimeInterval seconds = (arc4random() % 1000 + 500) / 1000.0;
+            [NSThread sleepForTimeInterval:seconds];
+            
+            NSLog(@"Task %@ finished", timestamp);
+            completion();
+        } data:nil forKey:nil timeout:0 timeoutBlock:nil];
     }
 }
 
