@@ -13,6 +13,7 @@
 
 #define kFilterOriginal     @"Original"
 #define kFilterColorInvert  @"CIColorInvert"
+#define kFilterMaskToAlpha  @"CIMaskToAlpha"
 
 @interface UseCIFilterViewController () <UIPickerViewDelegate, UIPickerViewDataSource>
 @property (nonatomic, strong) UILabel *labelFilterName;
@@ -30,7 +31,7 @@
         _filterNames = @[
             kFilterOriginal,
             kFilterColorInvert,
-            @"b",
+            kFilterMaskToAlpha,
         ];
     }
     return self;
@@ -75,6 +76,8 @@
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(marginH, CGRectGetMaxY(_labelFilterName.frame) + 10, screenSize.width - 2 * marginH, screenSize.width - 2 * marginH)];
         imageView.image = _imageOriginal;
+        imageView.layer.borderColor = [UIColor redColor].CGColor;
+        imageView.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
         
         _imageView = imageView;
     }
@@ -110,8 +113,13 @@
     self.labelFilterName.text = filterName;
     NSLog(@"selected filter: %@", filterName);
     
+    CIImage *originalCIImage = [CIImage imageWithCGImage:self.imageOriginal.CGImage];
     if ([filterName isEqualToString:kFilterColorInvert]) {
-        CIImage *ciImage = [WCCoreImageTool invertColorsWithImage:[CIImage imageWithCGImage:self.imageOriginal.CGImage]];
+        CIImage *ciImage = [WCCoreImageTool invertColorsWithImage:originalCIImage];
+        self.imageView.image = [UIImage imageWithCIImage:ciImage];
+    }
+    else if ([filterName isEqualToString:kFilterMaskToAlpha]) {
+        CIImage *ciImage = [WCCoreImageTool blackColorToTransparentWithImage:originalCIImage];
         self.imageView.image = [UIImage imageWithCIImage:ciImage];
     }
     else {
