@@ -49,10 +49,13 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable UIImage *)QRImageWithString:(NSString *)string size:(CGSize)size tintColor:(nullable UIColor *)tintColor;
 
++ (nullable UIImage *)QRImageWithString:(NSString *)string size:(CGSize)size tintColor:(nullable UIColor *)tintColor frontImage:(nullable UIImage *)frontImage;
+
 #pragma mark - CIImage Processing
 
 + (nullable CIImage *)invertColorsWithImage:(CIImage *)image;
 + (nullable CIImage *)blackColorToTransparentWithImage:(CIImage *)image;
++ (nullable CIImage *)overlapImageWithImage:(CIImage *)image frontImage:(CIImage *)frontImage;
 
 @end
 

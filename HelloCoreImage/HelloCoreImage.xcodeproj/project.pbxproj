@@ -15,7 +15,10 @@
 		4F5BAD3321F0AC84008453E4 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5BAD3121F0AC84008453E4 /* RootViewController.m */; };
 		4F5BAD3621F0ACAC008453E4 /* DecodeQRImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5BAD3521F0ACAB008453E4 /* DecodeQRImageViewController.m */; };
 		4F74C2C921FB35E000A87393 /* WCCoreImageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F74C2C821FB35E000A87393 /* WCCoreImageTool.m */; };
+		4F9DB17E25A561EB00779312 /* chrome.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F9DB17D25A561EB00779312 /* chrome.png */; };
+		4F9DB19825A5A47900779312 /* UseCIFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9DB19725A5A47900779312 /* UseCIFilterViewController.m */; };
 		4FA367A625A36BA0002A4EC2 /* CreateQRCodeImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA367A425A36BA0002A4EC2 /* CreateQRCodeImageViewController.m */; };
+		4FBB27F125A9525400E26B55 /* WCViewTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBB27EF25A9525400E26B55 /* WCViewTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,8 +36,14 @@
 		4F5BAD3521F0ACAB008453E4 /* DecodeQRImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DecodeQRImageViewController.m; sourceTree = "<group>"; };
 		4F74C2C721FB35E000A87393 /* WCCoreImageTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCCoreImageTool.h; sourceTree = "<group>"; };
 		4F74C2C821FB35E000A87393 /* WCCoreImageTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCCoreImageTool.m; sourceTree = "<group>"; };
+		4F9DB17D25A561EB00779312 /* chrome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chrome.png; sourceTree = "<group>"; };
+		4F9DB19625A5A47900779312 /* UseCIFilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseCIFilterViewController.h; sourceTree = "<group>"; };
+		4F9DB19725A5A47900779312 /* UseCIFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseCIFilterViewController.m; sourceTree = "<group>"; };
 		4FA367A425A36BA0002A4EC2 /* CreateQRCodeImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateQRCodeImageViewController.m; sourceTree = "<group>"; };
 		4FA367A525A36BA0002A4EC2 /* CreateQRCodeImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateQRCodeImageViewController.h; sourceTree = "<group>"; };
+		4FBB27EE25A9525400E26B55 /* WCViewTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCViewTool.h; sourceTree = "<group>"; };
+		4FBB27EF25A9525400E26B55 /* WCViewTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCViewTool.m; sourceTree = "<group>"; };
+		4FBB27F025A9525400E26B55 /* WCMacroTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +60,7 @@
 		4F58499321F1F0D70085B231 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F9DB17D25A561EB00779312 /* chrome.png */,
 				4F58499421F1F0D70085B231 /* QRCode1.png */,
 			);
 			path = Resources;
@@ -102,11 +112,14 @@
 		4F5BAD2D21F0AC84008453E4 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4FBB27ED25A9521300E26B55 /* Tools */,
 				4FA367AB25A3724C002A4EC2 /* Base */,
 				4FA367A525A36BA0002A4EC2 /* CreateQRCodeImageViewController.h */,
 				4FA367A425A36BA0002A4EC2 /* CreateQRCodeImageViewController.m */,
 				4F5BAD3421F0ACAB008453E4 /* DecodeQRImageViewController.h */,
 				4F5BAD3521F0ACAB008453E4 /* DecodeQRImageViewController.m */,
+				4F9DB19625A5A47900779312 /* UseCIFilterViewController.h */,
+				4F9DB19725A5A47900779312 /* UseCIFilterViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -116,6 +129,16 @@
 			children = (
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		4FBB27ED25A9521300E26B55 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4FBB27F025A9525400E26B55 /* WCMacroTool.h */,
+				4FBB27EE25A9525400E26B55 /* WCViewTool.h */,
+				4FBB27EF25A9525400E26B55 /* WCViewTool.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,6 +201,7 @@
 				4F5BAD2421F0AC53008453E4 /* LaunchScreen.storyboard in Resources */,
 				4F58499521F1F0D70085B231 /* QRCode1.png in Resources */,
 				4F5BAD2121F0AC53008453E4 /* Assets.xcassets in Resources */,
+				4F9DB17E25A561EB00779312 /* chrome.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,6 +213,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FA367A625A36BA0002A4EC2 /* CreateQRCodeImageViewController.m in Sources */,
+				4F9DB19825A5A47900779312 /* UseCIFilterViewController.m in Sources */,
+				4FBB27F125A9525400E26B55 /* WCViewTool.m in Sources */,
 				4F5BAD3621F0ACAC008453E4 /* DecodeQRImageViewController.m in Sources */,
 				4F74C2C921FB35E000A87393 /* WCCoreImageTool.m in Sources */,
 				4F5BAD2721F0AC53008453E4 /* main.m in Sources */,

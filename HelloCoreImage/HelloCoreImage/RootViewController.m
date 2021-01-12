@@ -10,6 +10,7 @@
 
 #import "DecodeQRImageViewController.h"
 #import "CreateQRCodeImageViewController.h"
+#import "UseCIFilterViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -34,12 +35,12 @@
     _titles = @[
         @"Get QRCode from UIImage",
         @"Create QR Code Image",
-        @"call a test method",
+        @"Use CIFilter",
     ];
     _classes = @[
         [DecodeQRImageViewController class],
         [CreateQRCodeImageViewController class],
-        @"testMethod",
+        [UseCIFilterViewController class],
     ];
 }
 

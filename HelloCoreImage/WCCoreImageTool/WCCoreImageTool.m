@@ -63,6 +63,10 @@
 #pragma mark > QR Code from String
 
 + (nullable UIImage *)QRImageWithString:(NSString *)string size:(CGSize)size tintColor:(nullable UIColor *)tintColor {
+    return [self QRImageWithString:string size:size tintColor:tintColor frontImage:nil];
+}
+
++ (nullable UIImage *)QRImageWithString:(NSString *)string size:(CGSize)size tintColor:(nullable UIColor *)tintColor frontImage:(nullable UIImage *)frontImage {
     if (![string isKindOfClass:[NSString class]] || size.width <= 0 || size.height <= 0) {
         return nil;
     }
@@ -155,6 +159,25 @@
     }
     
     [filter setValue:image forKey:@"inputImage"];
+    
+    return filter.outputImage;
+}
+
+/// Combines the current image with the given image centered.
++ (nullable CIImage *)overlapImageWithImage:(CIImage *)image frontImage:(CIImage *)frontImage {
+    if (![image isKindOfClass:[CIImage class]] || ![frontImage isKindOfClass:[CIImage class]]) {
+        return nil;
+    }
+    
+    CIFilter *filter = [CIFilter filterWithName:@"CISourceOverCompositing"];
+    if (!filter) {
+        return nil;
+    }
+    
+    CGAffineTransform centerTransform = CGAffineTransformMakeTranslation(CGRectGetMidX(image.extent) - (frontImage.extent.size.width / 2), CGRectGetMidY(image.extent) - (frontImage.extent.size.height / 2));
+    
+    [filter setValue:[frontImage imageByApplyingTransform:centerTransform] forKey:@"inputImage"];
+    [filter setValue:image forKey:@"inputBackgroundImage"];
     
     return filter.outputImage;
 }
