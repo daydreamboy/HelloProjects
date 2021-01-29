@@ -20,6 +20,7 @@
 		4F818F4424C57C840023CAF0 /* emoticon_icon.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F818F4124C57C840023CAF0 /* emoticon_icon.json */; };
 		4F818F4524C57C840023CAF0 /* emoticon_order.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F818F4224C57C840023CAF0 /* emoticon_order.json */; };
 		4F818F4624C57C840023CAF0 /* emoticon_trans2en_US.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F818F4324C57C840023CAF0 /* emoticon_trans2en_US.json */; };
+		4FA31F1725C4012B00C0B809 /* Tests_Pattern.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA31F1625C4012B00C0B809 /* Tests_Pattern.m */; };
 		4FAA229C21BEA770001F97B6 /* Tests_NSRegularExpression.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAA229B21BEA770001F97B6 /* Tests_NSRegularExpression.m */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		4F818F4124C57C840023CAF0 /* emoticon_icon.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emoticon_icon.json; sourceTree = "<group>"; };
 		4F818F4224C57C840023CAF0 /* emoticon_order.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emoticon_order.json; sourceTree = "<group>"; };
 		4F818F4324C57C840023CAF0 /* emoticon_trans2en_US.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = emoticon_trans2en_US.json; sourceTree = "<group>"; };
+		4FA31F1625C4012B00C0B809 /* Tests_Pattern.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_Pattern.m; sourceTree = "<group>"; };
 		4FAA229B21BEA770001F97B6 /* Tests_NSRegularExpression.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSRegularExpression.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -125,6 +127,7 @@
 			children = (
 				4F20CB252061073200C4463B /* Tests.m */,
 				4FAA229B21BEA770001F97B6 /* Tests_NSRegularExpression.m */,
+				4FA31F1625C4012B00C0B809 /* Tests_Pattern.m */,
 				4F20CB272061073200C4463B /* Info.plist */,
 			);
 			path = Tests;
@@ -270,6 +273,7 @@
 			files = (
 				4F20CB262061073200C4463B /* Tests.m in Sources */,
 				4FAA229C21BEA770001F97B6 /* Tests_NSRegularExpression.m in Sources */,
+				4FA31F1725C4012B00C0B809 /* Tests_Pattern.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
