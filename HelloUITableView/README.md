@@ -538,9 +538,15 @@ cell.addSubview(textField)
 
 解决方法一：使用contentView来放置subview
 
-解决方法二[^9]：iOS 14+，将contentViewuserInteractionEnabled设置为NO。
+解决方法二[^9]：iOS 14+，将contentView.userInteractionEnabled设置为NO。
 
 > 示例代码，见CellContentIssueAboveiOS14ViewController
+
+
+
+为了防止有人不清楚这个问题，可以在iOS14上hook的UITableViewCell的addSubview方法，检查这种情况的发生。
+
+
 
 
 

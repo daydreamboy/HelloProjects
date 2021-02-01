@@ -53,6 +53,7 @@
 #import "CellContentIssueAboveiOS14ViewController.h"
 #import "TableViewHeaderIssueCircularCallViewController.h"
 #import "TableViewBeginEndUpdatesNotPairedViewController.h"
+#import "TableViewEndUpdatesExceptionViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -126,6 +127,7 @@
           @{ kTitle: @"Test", kClass: [CallReloadDataInsideCellForRowAtIndexPathViewController class] },
           @{ kTitle: @"TableViewHeader circular call", kClass: [TableViewHeaderIssueCircularCallViewController class] },
           @{ kTitle: @"TableView begin/endUpdates not paired", kClass: [TableViewBeginEndUpdatesNotPairedViewController class] },
+          @{ kTitle: @"TableView endUpdates exception", kClass: [TableViewEndUpdatesExceptionViewController class] },
     ];
     
     NSArray<NSDictionary *> *section6 = @[

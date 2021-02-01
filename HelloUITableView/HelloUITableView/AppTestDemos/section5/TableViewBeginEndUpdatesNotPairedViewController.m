@@ -10,7 +10,7 @@
 
 @interface TableViewBeginEndUpdatesNotPairedViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
-@property (strong, nonatomic) NSMutableArray *listArr;
+@property (nonatomic, strong) NSMutableArray *listArr;
 @end
 
 @implementation TableViewBeginEndUpdatesNotPairedViewController
@@ -23,27 +23,27 @@
         @"viewDidLoad",
         @"UITableView",
         @"UITableView2",
-        @"screenSize",
-        @"UITableViewCell",
-        @"UIScreen",
-        @"backgroundColor",
-        @"view",
-        @"self",
-        @"whiteColor",
-        @"UIColor",
-        @"initWithFrame",
-        @"UITableViewStylePlain",
-        @"delegate",
-        @"dataSource",
-        @"UITableViewDelegate",
-        @"UITableViewDataSource",
-        @"FadeInCellRowByRowViewController",
-        @"listData",
-        @"dataSource",
-        @"UITableViewDelegate",
-        @"UITableViewDataSource",
-        @"FadeInCellRowByRowViewController",
-        @"listData",
+//        @"screenSize",
+//        @"UITableViewCell",
+//        @"UIScreen",
+//        @"backgroundColor",
+//        @"view",
+//        @"self",
+//        @"whiteColor",
+//        @"UIColor",
+//        @"initWithFrame",
+//        @"UITableViewStylePlain",
+//        @"delegate",
+//        @"dataSource",
+//        @"UITableViewDelegate",
+//        @"UITableViewDataSource",
+//        @"FadeInCellRowByRowViewController",
+//        @"listData",
+//        @"dataSource",
+//        @"UITableViewDelegate",
+//        @"UITableViewDataSource",
+//        @"FadeInCellRowByRowViewController",
+//        @"listData",
     ];
     
     _listArr = [arr mutableCopy];
@@ -85,25 +85,37 @@
 #pragma mark - Action
 
 - (void)updateTableView:(id)sender {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"computers" ofType:@"plist"];
-    NSMutableArray *array = [[NSMutableArray alloc] initWithContentsOfFile:path];
-
-    for (NSInteger i = 0; i < array.count; ++i) {
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
-        
-        [_listArr insertObject:array[i] atIndex:i];
-        
-        [self.tableView beginUpdates];
-        
-        // !!!: Here cause to beginUpdates/endUpdates not paired
-        if (i == 10) {
-            continue;
-        }
-        
-        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-        
-        [self.tableView endUpdates];
-    }
+    
+    [self.tableView beginUpdates];
+    
+    [_listArr addObject:@"3423"];
+    
+    [self.tableView endUpdates];
+    
+    
+    
+    //[self.tableView deleteRowsAtIndexPaths:@[deleteIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+    //[self.tableView insertRowsAtIndexPaths:@[insertIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+    
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"computers" ofType:@"plist"];
+//    NSMutableArray *array = [[NSMutableArray alloc] initWithContentsOfFile:path];
+//
+//    for (NSInteger i = 0; i < array.count; ++i) {
+//        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+//
+//        [_listArr insertObject:array[i] atIndex:i];
+//
+//        [self.tableView beginUpdates];
+//
+//        // !!!: Here cause to beginUpdates/endUpdates not paired
+//        if (i == 10) {
+//            continue;
+//        }
+//
+//        [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+//
+//        [self.tableView endUpdates];
+//    }
 }
 
 @end
