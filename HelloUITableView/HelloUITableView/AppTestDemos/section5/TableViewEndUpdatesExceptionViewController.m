@@ -66,6 +66,15 @@
     [_listArr addObject:@"3423"];
     
     [self.tableView endUpdates];
+    
+    // !!!: same as beginUpdates/endUpdates, also crash
+    /*
+    [self.tableView performBatchUpdates:^{
+        [_listArr addObject:@"3423"];
+    } completion:^(BOOL finished) {
+            
+    }];
+     */
 }
 
 @end
