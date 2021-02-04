@@ -8,6 +8,7 @@
 
 #import "RootViewController.h"
 
+// section 1
 #import "AttributedStringWithFormatViewController.h"
 #import "NSParagraphStyleAttributeNameViewController.h"
 #import "AttributedStringWithImageViewController.h"
@@ -15,9 +16,15 @@
 #import "FixedLineHeightWithImageViewController.h"
 #import "UseWCEmoticonDataSourceViewController.h"
 
+// section 2
+#import "UseWCLinkLabelWithAttachmentNoFontViewController.h"
+
+#define kTitle @"Title"
+#define kClass @"Class"
+
 @interface RootViewController ()
-@property (nonatomic, strong) NSArray *titles;
-@property (nonatomic, strong) NSArray *classes;
+@property (nonatomic, strong) NSArray *sectionTitles;
+@property (nonatomic, strong) NSArray<NSArray<NSDictionary *> *> *classes;
 @end
 
 @implementation RootViewController
@@ -35,50 +42,68 @@
     self.title = @"AppTest";
 
     // MARK: Configure titles and classes for table view
-    _titles = @[
-        @"NSAttributedString with format",
-        @"Use NSParagraphStyleAttributeName",
-        @"NSAttributedString with image",
-        @"Replace NSAttributedString with substring",
-        @"height of NSAttributedString with image",
-        @"Use WCEmoticonDataSource",
+    NSArray<NSDictionary *> *section1 = @[
+          @{ kTitle: @"NSAttributedString with format", kClass: [AttributedStringWithFormatViewController class] },
+          @{ kTitle: @"Use NSParagraphStyleAttributeName", kClass: [NSParagraphStyleAttributeNameViewController class] },
+          @{ kTitle: @"NSAttributedString with image", kClass: [AttributedStringWithImageViewController class] },
+          @{ kTitle: @"Replace NSAttributedString with substring", kClass: [ReplaceAttributedStringViewController class] },
+          @{ kTitle: @"height of NSAttributedString with image", kClass: [FixedLineHeightWithImageViewController class] },
+          @{ kTitle: @"Use WCEmoticonDataSource", kClass: [UseWCEmoticonDataSourceViewController class] },
     ];
+    
+    NSArray<NSDictionary *> *section2 = @[
+          @{ kTitle: @"NSAttachment without UIFont", kClass: [UseWCLinkLabelWithAttachmentNoFontViewController class] },
+    ];
+    
+    _sectionTitles = @[
+        @"Use NSAttributedString",
+        @"Issue",
+    ];
+    
     _classes = @[
-        [AttributedStringWithFormatViewController class],
-        [NSParagraphStyleAttributeNameViewController class],
-        [AttributedStringWithImageViewController class],
-        [ReplaceAttributedStringViewController class],
-        [FixedLineHeightWithImageViewController class],
-        [UseWCEmoticonDataSourceViewController class],
+         section1,
+         section2,
     ];
 }
 
 #pragma mark -
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self pushViewController:_classes[indexPath.row]];
+    
+    NSDictionary *dict = _classes[indexPath.section][indexPath.row];
+    [self pushViewController:dict];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return _sectionTitles[section];
 }
 
 #pragma mark -
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [_classes count];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_titles count];
+    return [_classes[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *sCellIdentifier = @"RootViewController_sCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
-
+    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-
-    cell.textLabel.text = _titles[indexPath.row];
-
+    
+    NSString *cellTitle = [_classes[indexPath.section][indexPath.row] objectForKey:kTitle];
+    cell.textLabel.text = cellTitle;
+    
     return cell;
 }
 
-- (void)pushViewController:(id)viewControllerClass {
+- (void)pushViewController:(NSDictionary *)dict {
+    id viewControllerClass = dict[kClass];
     
     id class = viewControllerClass;
     if ([class isKindOfClass:[NSString class]]) {
@@ -95,7 +120,7 @@
     }
     else if (class && [class isSubclassOfClass:[UIViewController class]]) {
         UIViewController *vc = [[class alloc] init];
-        vc.title = _titles[[_classes indexOfObject:viewControllerClass]];
+        vc.title = dict[kTitle];
         
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
         [self.navigationController pushViewController:vc animated:YES];

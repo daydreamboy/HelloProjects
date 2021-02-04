@@ -53,6 +53,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (nullable NSAttributedString *)emoticonizedStringWithString:(NSString *)string attributes:(nullable NSDictionary<NSAttributedStringKey, id> *)attributes;
 
+#pragma mark - Only for debug
+
+#if DEBUG
+
+- (nullable NSAttributedString *)issue_emoticonizedStringWithString:(NSString *)string attributes:(nullable NSDictionary<NSAttributedStringKey, id> *)attributes;
+
+#endif
+
 @end
 
 NS_ASSUME_NONNULL_END

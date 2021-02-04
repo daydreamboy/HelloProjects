@@ -308,6 +308,53 @@ WCEmoticonSynthesize
     }
 }
 
+#if DEBUG
+
+- (nullable NSAttributedString *)issue_emoticonizedStringWithString:(NSString *)string attributes:(nullable NSDictionary<NSAttributedStringKey, id> *)attributes {
+    
+    NSTextCheckingResult *result = [self.emoticonRegex firstMatchInString:string options:kNilOptions range:NSMakeRange(0, string.length)];
+    if (result.range.location != NSNotFound && result.range.length != 0) {
+        UIFont *font = attributes[NSFontAttributeName];
+        
+        NSMutableAttributedString *attrStringM = [[NSMutableAttributedString alloc] initWithString:string attributes:attributes];
+        
+        NSDictionary<NSNumber *, NSDictionary *> *emoticonInfo = [[WCEmoticonDataSource sharedInstance] emoticonInfoWithString:string];
+        
+        NSMutableArray *ranges = [NSMutableArray array];
+        NSMutableArray<NSAttributedString *> *emoticonStrings = [NSMutableArray array];
+        for (NSNumber *emoticonIndex in emoticonInfo) {
+            NSDictionary *info = emoticonInfo[emoticonIndex];
+            id<WCEmoticon> emoticon = info[WCEmoticonInfoKey_emoticon];
+            if (emoticon.image) {
+                NSValue *range = info[WCEmoticonInfoKey_range];
+                [ranges addObject:range];
+                
+                [emoticonStrings addObject:({
+                    NSAttributedString *emoticonString = [WCAttributedStringTool attributedStringWithImage:emoticon.image imageSize:CGSizeZero alignToFont:font];
+                    NSMutableAttributedString *emoticonStringM = [[NSMutableAttributedString alloc] initWithAttributedString:emoticonString];
+                    
+                    // !!!: NSTextAttachment without UIFont, maybe cause UI issues
+                    //[emoticonStringM addAttribute:NSFontAttributeName value:font range:NSMakeRange(0, emoticonStringM.length)];
+                    emoticonStringM;
+                })];
+            }
+        }
+        
+        if (ranges.count) {
+            NSAttributedString *emoticonizedString = [WCAttributedStringTool replaceCharactersInRangesWithAttributedString:attrStringM ranges:ranges replacementAttributedStrings:emoticonStrings replacementRanges:nil];
+            return emoticonizedString;
+        }
+        else {
+            return attrStringM;
+        }
+    }
+    else {
+        return [[NSAttributedString alloc] initWithString:string attributes:attributes];
+    }
+}
+
+#endif
+
 #pragma mark - Getter
 
 - (NSUInteger)emoticonCount {
