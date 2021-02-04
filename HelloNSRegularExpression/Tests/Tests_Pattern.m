@@ -23,6 +23,7 @@
 }
 
 - (void)test_strip_HTML_tag {
+    // @see https://stackoverflow.com/questions/9661690/use-regular-expression-to-find-replace-substring-in-nsstring
     NSString *string;
     NSString *pattern = @"</?.*?>";
     
