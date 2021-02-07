@@ -69,8 +69,8 @@
     [self changeSliderValueWithIndex:currentIndex animated:animated];
 }
 
-- (void)setTrackLinePaddings:(UIEdgeInsets)trackViewPaddings {
-    _trackLinePaddings = trackViewPaddings;
+- (void)setTrackLinePaddings:(UIEdgeInsets)trackLinePaddings {
+    _trackLinePaddings = trackLinePaddings;
     _useTrackViewPaddings = YES;
 }
 
@@ -85,12 +85,13 @@
     
     self.tintColor = _trackLineProgressColor;
     
-    CGFloat segmentWidth = (_trackLine.bounds.size.width - _indexViewSize.width) / _numberOfSegments;
+    // Note: the segmentWidth is distance between the index view, and track line width include the index view width
+    CGFloat segmentWidth = (_trackLine.bounds.size.width - (_numberOfSegments + 1) * _indexViewSize.width) / _numberOfSegments;
     CGFloat x = _trackLine.frame.origin.x;
     CGFloat y = (self.bounds.size.height - _indexViewSize.height) / 2.0;
     for (UIView *indexView in _indexViews) {
         indexView.frame = CGRectMake(x, y, _indexViewSize.width, _indexViewSize.height);
-        x += segmentWidth;
+        x = CGRectGetMaxX(indexView.frame) + segmentWidth;
         indexView.backgroundColor = _indexViewsBackgroundColor;
         
         if (!_debugging) {
@@ -101,13 +102,13 @@
 
 - (CGRect)trackRectForBounds:(CGRect)bounds {
     // Note: bounds for self.bounds
-    CGRect rect = [super trackRectForBounds:bounds];
+    CGRect trackRect = [super trackRectForBounds:bounds];
     
     if (_useTrackViewPaddings) {
-        _trackLine.frame = CGRectMake(_trackLinePaddings.left, (CGRectGetHeight(bounds) - _trackLineHeight) / 2.0, rect.size.width - _trackLinePaddings.left - _trackLinePaddings.right, _trackLineHeight);
+        _trackLine.frame = CGRectMake(_trackLinePaddings.left, (CGRectGetHeight(bounds) - _trackLineHeight) / 2.0, bounds.size.width - _trackLinePaddings.left - _trackLinePaddings.right, _trackLineHeight);
     }
     else {
-        _trackLine.frame = CGRectMake(rect.origin.x, (CGRectGetHeight(bounds) - _trackLineHeight) / 2.0, rect.size.width, _trackLineHeight);
+        _trackLine.frame = CGRectMake(trackRect.origin.x, (CGRectGetHeight(bounds) - _trackLineHeight) / 2.0, trackRect.size.width, _trackLineHeight);
     }
     
     _trackLine.backgroundColor = _trackLineBackgroundColor;
@@ -120,12 +121,18 @@
     _thumbSize = thumbRect.size;
     
     NSUInteger index = (NSUInteger)value;
-    if (index == 0 || index == _numberOfSegments) {
-        return thumbRect;
-    }
-    else {
+    if (self.enableThumbOnEdgeIndex) {
         UIView *indexView = _indexViews[index];
         return CGRectMake(indexView.center.x - CGRectGetWidth(thumbRect) / 2.0, thumbRect.origin.y, thumbRect.size.width, thumbRect.size.height);
+    }
+    else {
+        if (index == 0 || index == _numberOfSegments) {
+            return thumbRect;
+        }
+        else {
+            UIView *indexView = _indexViews[index];
+            return CGRectMake(indexView.center.x - CGRectGetWidth(thumbRect) / 2.0, thumbRect.origin.y, thumbRect.size.width, thumbRect.size.height);
+        }
     }
 }
 

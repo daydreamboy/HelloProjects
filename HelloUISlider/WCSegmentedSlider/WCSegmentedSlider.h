@@ -76,6 +76,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign, readonly) CGSize thumbSize;
 /**
+ Allow the thumb on the edge index view (left most and right most index view)
+ 
+ Default is NO
+ 
+ @discussion The default value is NO that bevihor like system set font size, which the thumb never
+ out of the track line edge. If set YES, the thumb will stand on the left most or right most index view
+ */
+@property (nonatomic, assign) BOOL enableThumbOnEdgeIndex;
+/**
  Default is NO
  */
 @property (nonatomic, assign) BOOL debugging;

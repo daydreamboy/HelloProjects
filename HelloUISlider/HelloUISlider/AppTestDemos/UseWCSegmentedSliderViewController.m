@@ -93,6 +93,7 @@
         slider.backgroundColor = [UIColor yellowColor];
         slider.debugging = YES;
         slider.trackLineBackgroundColor = [UIColor redColor];
+        slider.enableThumbOnEdgeIndex = YES;
         slider.delegate = self;
         
         _sliderDebugging = slider;
@@ -128,7 +129,10 @@
         slider.trackLineProgressColor = [UIColor greenColor];
         slider.indexViewsBackgroundColor = [UIColor redColor];
         slider.indexViewSize = CGSizeMake(6, 9);
+        slider.enableThumbOnEdgeIndex = YES;
+        slider.trackLinePaddings = UIEdgeInsetsMake(0, slider.thumbSize.width / 2.0, 0, slider.thumbSize.width / 2.0);
         slider.delegate = self;
+        slider.debugging = YES;
         
         _sliderCustomizedColor = slider;
     }
@@ -141,7 +145,7 @@
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
         label.text = @"标准";
         [label sizeToFit];
-        label.cx = CGRectGetMinX(_sliderCustomizedColor.frame) + _sliderCustomizedColor.thumbSize.width / 2.0;
+        label.cx = CGRectGetMinX(_sliderCustomizedColor.frame) + _sliderCustomizedColor.thumbSize.width / 2.0 + _sliderCustomizedColor.indexViewSize.width / 2.0;
         label.y = CGRectGetMaxY(_sliderCustomizedColor.frame);
         
         _labelSmallest = label;
@@ -155,7 +159,7 @@
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
         label.text = @"大";
         [label sizeToFit];
-        label.cx = CGRectGetMaxX(_sliderCustomizedColor.frame) - _sliderCustomizedColor.thumbSize.width / 2.0;
+        label.cx = CGRectGetMaxX(_sliderCustomizedColor.frame) - _sliderCustomizedColor.thumbSize.width / 2.0 - _sliderCustomizedColor.indexViewSize.width / 2.0;
         label.y = CGRectGetMaxY(_sliderCustomizedColor.frame);
         
         _labelBiggest = label;
