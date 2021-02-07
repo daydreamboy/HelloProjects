@@ -30,8 +30,24 @@
     [self.view addSubview:self.sliderDebugging];
     [self.view addSubview:self.sliderProgressColor];
     [self.view addSubview:self.sliderCustomizedColor];
+    
+    UISwitch *switcher = [UISwitch new];
+    switcher.on = YES;
+    [switcher addTarget:self action:@selector(switcherToggled:) forControlEvents:UIControlEventValueChanged];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:switcher];
 }
 
+#pragma mark - Action
+
+- (void)switcherToggled:(UISwitch *)sender {
+    BOOL on = sender.on;
+    
+    self.sliderDefault.tapOnTrackLineEnabled = on;
+    self.sliderDebugging.tapOnTrackLineEnabled = on;
+    self.sliderProgressColor.tapOnTrackLineEnabled = on;
+    self.sliderCustomizedColor.tapOnTrackLineEnabled = on;
+}
 
 #pragma mark - Getter
 

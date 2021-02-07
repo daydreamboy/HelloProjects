@@ -66,7 +66,14 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Default is YES
  */
+@property (nonatomic, assign) BOOL tapOnTrackLineEnabled;
+/**
+ Default is YES
+ */
 @property (nonatomic, assign) BOOL tapOnTrackLineAnimated;
+/**
+ Default is NO
+ */
 @property (nonatomic, assign) BOOL debugging;
 
 - (instancetype)initWithFrame:(CGRect)frame numberOfSegments:(NSUInteger)numberOfSegments;

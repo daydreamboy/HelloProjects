@@ -31,6 +31,7 @@
         _trackLineBackgroundColor = [UIColor lightGrayColor];
         _trackLineProgressColor = [UIColor clearColor];
         _tapOnTrackLineAnimated = YES;
+        _tapOnTrackLineEnabled = YES;
         
         self.minimumValue = 0;
         self.maximumValue = numberOfSegments;
@@ -38,9 +39,9 @@
         self.value = 0;
         
         // Note: hide
-//        self.tintColor = [UIColor clearColor];
-//        self.minimumTrackTintColor = [UIColor clearColor];
-//        self.maximumTrackTintColor = [UIColor clearColor];
+        self.tintColor = [UIColor clearColor];
+        self.minimumTrackTintColor = [UIColor clearColor];
+        self.maximumTrackTintColor = [UIColor clearColor];
         
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sliderTapped:)];
         [self addGestureRecognizer:tapGesture];
@@ -148,6 +149,10 @@
 #pragma mark - Action
 
 - (void)sliderTapped:(UITapGestureRecognizer *)recognizer {
+    if (!self.tapOnTrackLineEnabled) {
+        return;
+    }
+    
     UISlider *slider = (UISlider *)recognizer.view;
     
     // @see https://stackoverflow.com/questions/14356528/how-to-change-a-uislider-value-using-a-single-touch/14356751
@@ -156,7 +161,7 @@
     CGFloat delta = percentage * (slider.maximumValue - slider.minimumValue);
     CGFloat value = slider.minimumValue + delta;
     
-    [self changeSliderToNearestIndexWithValue:value animated:YES];
+    [self changeSliderToNearestIndexWithValue:value animated:self.tapOnTrackLineAnimated];
 }
 
 - (void)sliderValueChanged:(UISlider *)sender {
