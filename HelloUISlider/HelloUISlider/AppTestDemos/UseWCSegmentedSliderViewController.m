@@ -8,6 +8,7 @@
 
 #import "UseWCSegmentedSliderViewController.h"
 #import "WCSegmentedSlider.h"
+#import "UIView+Position.h"
 
 #define kSpace 10
 
@@ -17,6 +18,8 @@
 @property (nonatomic, strong) WCSegmentedSlider *sliderProgressColor;
 @property (nonatomic, strong) WCSegmentedSlider *sliderCustomizedColor;
 @property (nonatomic, strong) UILabel *label;
+@property (nonatomic, strong) UILabel *labelSmallest;
+@property (nonatomic, strong) UILabel *labelBiggest;
 @end
 
 @implementation UseWCSegmentedSliderViewController
@@ -30,6 +33,8 @@
     [self.view addSubview:self.sliderDebugging];
     [self.view addSubview:self.sliderProgressColor];
     [self.view addSubview:self.sliderCustomizedColor];
+    [self.view addSubview:self.labelSmallest];
+    [self.view addSubview:self.labelBiggest];
     
     UISwitch *switcher = [UISwitch new];
     switcher.on = YES;
@@ -117,7 +122,7 @@
     if (!_sliderCustomizedColor) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         CGFloat paddingH = 30;
-        WCSegmentedSlider *slider = [[WCSegmentedSlider alloc] initWithFrame:CGRectMake(paddingH, CGRectGetMaxY(_sliderProgressColor.frame) + kSpace, screenSize.width - 2 * paddingH, 80) numberOfSegments:6];
+        WCSegmentedSlider *slider = [[WCSegmentedSlider alloc] initWithFrame:CGRectMake(paddingH, CGRectGetMaxY(_sliderProgressColor.frame) + kSpace, screenSize.width - 2 * paddingH, 40) numberOfSegments:6];
         slider.backgroundColor = [UIColor yellowColor];
         slider.trackLineBackgroundColor = [UIColor redColor];
         slider.trackLineProgressColor = [UIColor greenColor];
@@ -129,6 +134,34 @@
     }
     
     return _sliderCustomizedColor;
+}
+
+- (UILabel *)labelSmallest {
+    if (!_labelSmallest) {
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+        label.text = @"标准";
+        [label sizeToFit];
+        label.cx = CGRectGetMinX(_sliderCustomizedColor.frame) + _sliderCustomizedColor.thumbSize.width / 2.0;
+        label.y = CGRectGetMaxY(_sliderCustomizedColor.frame);
+        
+        _labelSmallest = label;
+    }
+    
+    return _labelSmallest;
+}
+
+- (UILabel *)labelBiggest {
+    if (!_labelBiggest) {
+        UILabel *label = [[UILabel alloc] initWithFrame:CGRectZero];
+        label.text = @"大";
+        [label sizeToFit];
+        label.cx = CGRectGetMaxX(_sliderCustomizedColor.frame) - _sliderCustomizedColor.thumbSize.width / 2.0;
+        label.y = CGRectGetMaxY(_sliderCustomizedColor.frame);
+        
+        _labelBiggest = label;
+    }
+    
+    return _labelBiggest;
 }
 
 #pragma mark - WCSegmentedSliderDelegate

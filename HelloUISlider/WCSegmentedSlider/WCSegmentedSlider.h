@@ -72,6 +72,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property (nonatomic, assign) BOOL tapOnTrackLineAnimated;
 /**
+ The size of thumb
+ */
+@property (nonatomic, assign, readonly) CGSize thumbSize;
+/**
  Default is NO
  */
 @property (nonatomic, assign) BOOL debugging;

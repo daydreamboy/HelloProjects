@@ -11,6 +11,7 @@
 @interface WCSegmentedSlider ()
 @property (nonatomic, assign) NSUInteger numberOfSegments;
 @property (nonatomic, assign, readwrite) NSInteger currentIndex;
+@property (nonatomic, assign, readwrite) CGSize thumbSize;
 @property (nonatomic, strong) NSMutableArray<UIView *> *indexViews;
 @property (nonatomic, strong) UIView *trackLine;
 @property (nonatomic, assign) CGFloat trackLineHeight;
@@ -73,6 +74,8 @@
     _useTrackViewPaddings = YES;
 }
 
+#pragma mark - Override
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     
@@ -114,6 +117,7 @@
 
 - (CGRect)thumbRectForBounds:(CGRect)bounds trackRect:(CGRect)rect value:(float)value {
     CGRect thumbRect = [super thumbRectForBounds:bounds trackRect:rect value:value];
+    _thumbSize = thumbRect.size;
     
     NSUInteger index = (NSUInteger)value;
     if (index == 0 || index == _numberOfSegments) {

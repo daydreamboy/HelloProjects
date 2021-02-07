@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F572DF725CFF21600F5EC70 /* UIView+Position.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F572DF625CFF21500F5EC70 /* UIView+Position.m */; };
 		4FF903E725160E700075BE7A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF903E625160E700075BE7A /* AppDelegate.m */; };
 		4FF903F225160E740075BE7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FF903F125160E740075BE7A /* Assets.xcassets */; };
 		4FF903F525160E740075BE7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FF903F325160E740075BE7A /* LaunchScreen.storyboard */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F572DF525CFF21500F5EC70 /* UIView+Position.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Position.h"; sourceTree = "<group>"; };
+		4F572DF625CFF21500F5EC70 /* UIView+Position.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Position.m"; sourceTree = "<group>"; };
 		4FF903E225160E700075BE7A /* HelloUISlider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUISlider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FF903E525160E700075BE7A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FF903E625160E700075BE7A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -46,6 +49,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F572DF425CFF1F000F5EC70 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F572DF525CFF21500F5EC70 /* UIView+Position.h */,
+				4F572DF625CFF21500F5EC70 /* UIView+Position.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		4FF903D925160E700075BE7A = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +78,7 @@
 		4FF903E425160E700075BE7A /* HelloUISlider */ = {
 			isa = PBXGroup;
 			children = (
+				4F572DF425CFF1F000F5EC70 /* Tools */,
 				4FF903FE25160F4E0075BE7A /* AppTestDemos */,
 				4FF903E525160E700075BE7A /* AppDelegate.h */,
 				4FF903E625160E700075BE7A /* AppDelegate.m */,
@@ -169,6 +182,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FF903E725160E700075BE7A /* AppDelegate.m in Sources */,
+				4F572DF725CFF21600F5EC70 /* UIView+Position.m in Sources */,
 				4FFC0BC72527663400A7A294 /* WCSegmentedSlider.m in Sources */,
 				4FFC0BCC252772C300A7A294 /* UseWCSegmentedSliderViewController.m in Sources */,
 				4FF9040425160F4E0075BE7A /* RootViewController.m in Sources */,
