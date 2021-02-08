@@ -8,6 +8,11 @@
 
 #import "WCSegmentedSlider.h"
 
+// >= `13.0`
+#ifndef IOS13_OR_LATER
+#define IOS13_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"13.0" options:NSNumericSearch] != NSOrderedAscending)
+#endif
+
 @interface WCSegmentedSlider ()
 @property (nonatomic, assign) NSUInteger numberOfSegments;
 @property (nonatomic, assign, readwrite) NSInteger currentIndex;
@@ -44,8 +49,10 @@
         self.minimumTrackTintColor = [UIColor clearColor];
         self.maximumTrackTintColor = [UIColor clearColor];
         
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sliderTapped:)];
-        [self addGestureRecognizer:tapGesture];
+        if (IOS13_OR_LATER) {
+            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(sliderTapped:)];
+            [self addGestureRecognizer:tapGesture];
+        }
         [self addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
         
         _indexViews = [NSMutableArray arrayWithCapacity:_numberOfSegments];
@@ -150,7 +157,20 @@
         [self.delegate segmentedSlider:self willChangeValueToIndex:index fromIndex:self.value animated:animated];
     }
     
-    [self setValue:index animated:animated];
+    if (IOS13_OR_LATER) {
+        [self setValue:index animated:animated];
+    }
+    else {
+        if (animated) {
+            // @see https://stackoverflow.com/a/28907133
+            [UIView animateWithDuration:0.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+                [self setValue:index animated:YES];
+            } completion:nil];
+        }
+        else {
+            [self setValue:index animated:NO];
+        }
+    }
     
     if ([self.delegate respondsToSelector:@selector(segmentedSlider:didChangeValueToIndex:fromIndex:animated:)]) {
         [self.delegate segmentedSlider:self didChangeValueToIndex:index fromIndex:self.value animated:animated];
@@ -160,7 +180,18 @@
 #pragma mark - Action
 
 - (void)sliderTapped:(UITapGestureRecognizer *)recognizer {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability"
     if (!self.tapOnTrackLineEnabled) {
+        return;
+    }
+#pragma GCC diagnostic pop
+    
+    CGPoint touchPoint = [recognizer locationInView:self];
+    
+    CGRect trackRect = [self trackRectForBounds:self.bounds];
+    CGRect thumbRect = [self thumbRectForBounds:self.bounds trackRect:trackRect value:self.value];
+    if (CGRectContainsPoint(thumbRect, touchPoint)) {
         return;
     }
     
@@ -171,8 +202,10 @@
     CGFloat percentage = point.x / slider.bounds.size.width;
     CGFloat delta = percentage * (slider.maximumValue - slider.minimumValue);
     CGFloat value = slider.minimumValue + delta;
-    
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability"
     [self changeSliderToNearestIndexWithValue:value animated:self.tapOnTrackLineAnimated];
+#pragma GCC diagnostic pop
 }
 
 - (void)sliderValueChanged:(UISlider *)sender {

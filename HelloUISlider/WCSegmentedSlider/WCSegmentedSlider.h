@@ -66,11 +66,11 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  Default is YES
  */
-@property (nonatomic, assign) BOOL tapOnTrackLineEnabled;
+@property (nonatomic, assign) BOOL tapOnTrackLineEnabled NS_AVAILABLE_IOS(13_0);
 /**
  Default is YES
  */
-@property (nonatomic, assign) BOOL tapOnTrackLineAnimated;
+@property (nonatomic, assign) BOOL tapOnTrackLineAnimated NS_AVAILABLE_IOS(13_0);
 /**
  The size of thumb
  */

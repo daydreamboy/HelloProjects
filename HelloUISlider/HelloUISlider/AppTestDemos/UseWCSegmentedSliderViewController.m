@@ -47,11 +47,13 @@
 
 - (void)switcherToggled:(UISwitch *)sender {
     BOOL on = sender.on;
-    
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability"
     self.sliderDefault.tapOnTrackLineEnabled = on;
     self.sliderDebugging.tapOnTrackLineEnabled = on;
     self.sliderProgressColor.tapOnTrackLineEnabled = on;
     self.sliderCustomizedColor.tapOnTrackLineEnabled = on;
+#pragma GCC diagnostic pop
 }
 
 #pragma mark - Getter
@@ -123,7 +125,7 @@
     if (!_sliderCustomizedColor) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
         CGFloat paddingH = 30;
-        WCSegmentedSlider *slider = [[WCSegmentedSlider alloc] initWithFrame:CGRectMake(paddingH, CGRectGetMaxY(_sliderProgressColor.frame) + kSpace, screenSize.width - 2 * paddingH, 40) numberOfSegments:6];
+        WCSegmentedSlider *slider = [[WCSegmentedSlider alloc] initWithFrame:CGRectMake(paddingH, CGRectGetMaxY(_sliderProgressColor.frame) + kSpace, screenSize.width - 2 * paddingH, 50) numberOfSegments:6];
         slider.backgroundColor = [UIColor yellowColor];
         slider.trackLineBackgroundColor = [UIColor redColor];
         slider.trackLineProgressColor = [UIColor greenColor];
