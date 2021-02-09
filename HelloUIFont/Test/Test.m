@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import <UIKit/UIKit.h>
 
 @interface Test : XCTestCase
 
@@ -15,11 +16,11 @@
 @implementation Test
 
 - (void)setUp {
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    NSLog(@"\n");
 }
 
 - (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    NSLog(@"\n");
 }
 
 - (void)testExample {
@@ -27,6 +28,14 @@
     
     string = @"\u1F604";
     NSLog(@"%@", string);
+}
+
+- (void)test_fontCopy {
+    UIFont *font = [UIFont boldSystemFontOfSize:14];
+    NSLog(@"%@", font);
+    
+    UIFont *fontCopy = [UIFont fontWithDescriptor:font.fontDescriptor size:font.pointSize];
+    NSLog(@"%@", fontCopy);
 }
 
 @end
