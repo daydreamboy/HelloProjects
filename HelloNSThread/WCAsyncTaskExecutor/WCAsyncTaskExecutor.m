@@ -8,6 +8,7 @@
 
 #import "WCAsyncTaskExecutor.h"
 #import "WCMacroTool.h"
+#import "WCThreadSafeArray.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface WCAsyncTask : NSObject
@@ -52,12 +53,13 @@
 
 @implementation WCAsyncTaskExecutor
 
-static NSMutableArray *sKeeper;
+static WCThreadSafeArray *sKeeper;
 
 + (WCAsyncTaskExecutor *)autoreleaseTaskExecutor {
-    if (!sKeeper) {
-        sKeeper = [NSMutableArray array];
-    }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sKeeper = [WCThreadSafeArray array];
+    });
     
     WCAsyncTaskExecutor *executor = [[WCAsyncTaskExecutor alloc] init];
     executor.autoreleaseBlock = ^(WCAsyncTaskExecutor * _Nonnull executor) {

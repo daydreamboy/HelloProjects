@@ -50,6 +50,8 @@
 		4F68FB14246E749D00560439 /* Tests_WCThreadTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F68FB13246E749D00560439 /* Tests_WCThreadTool.m */; };
 		4F68FB22246EC56300560439 /* WCMachOTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F68FB21246EC56300560439 /* WCMachOTool.m */; };
 		4F6E71A122420F2000478327 /* UseNSLockViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6E71A022420F2000478327 /* UseNSLockViewController.m */; };
+		4F6F065125D68E1D009E3440 /* WCThreadSafeArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F065025D68E1D009E3440 /* WCThreadSafeArray.m */; };
+		4F6F065225D68E1D009E3440 /* WCThreadSafeArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F065025D68E1D009E3440 /* WCThreadSafeArray.m */; };
 		4F8591B924A26809005EBAA1 /* WCAsyncTaskExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8591B824A26809005EBAA1 /* WCAsyncTaskExecutor.m */; };
 		4F8976EF24A34CA50094E792 /* Tests_WCAsyncTaskExecutor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8976EE24A34CA50094E792 /* Tests_WCAsyncTaskExecutor.m */; };
 		4F9578E51FDF8A40009693CF /* WCThreadTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9578E41FDF8A40009693CF /* WCThreadTool.m */; };
@@ -155,6 +157,8 @@
 		4F68FB21246EC56300560439 /* WCMachOTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCMachOTool.m; sourceTree = "<group>"; };
 		4F6E719F22420F2000478327 /* UseNSLockViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseNSLockViewController.h; sourceTree = "<group>"; };
 		4F6E71A022420F2000478327 /* UseNSLockViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseNSLockViewController.m; sourceTree = "<group>"; };
+		4F6F064F25D68E1D009E3440 /* WCThreadSafeArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCThreadSafeArray.h; sourceTree = "<group>"; };
+		4F6F065025D68E1D009E3440 /* WCThreadSafeArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCThreadSafeArray.m; sourceTree = "<group>"; };
 		4F8591B724A26809005EBAA1 /* WCAsyncTaskExecutor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAsyncTaskExecutor.h; sourceTree = "<group>"; };
 		4F8591B824A26809005EBAA1 /* WCAsyncTaskExecutor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAsyncTaskExecutor.m; sourceTree = "<group>"; };
 		4F8591BF24A306E5005EBAA1 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
@@ -394,6 +398,8 @@
 		4F8591BE24A306D3005EBAA1 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				4F6F064F25D68E1D009E3440 /* WCThreadSafeArray.h */,
+				4F6F065025D68E1D009E3440 /* WCThreadSafeArray.m */,
 				4F8591BF24A306E5005EBAA1 /* WCMacroTool.h */,
 			);
 			path = Tools;
@@ -570,6 +576,7 @@
 			files = (
 				4F50C7332243D5F6002B00C9 /* UseNSLockWithTimeoutViewController.m in Sources */,
 				4F53C98F2004A911003F79F6 /* PerformDispatchBlockOnThreadViewController.m in Sources */,
+				4F6F065125D68E1D009E3440 /* WCThreadSafeArray.m in Sources */,
 				2BA4F85D1F83D31C00AE2BAD /* CreateThreadByNSObjectViewController.m in Sources */,
 				4F6E71A122420F2000478327 /* UseNSLockViewController.m in Sources */,
 				4F6580112247AC4400FFBAEE /* UseNSConditionLockViewController.m in Sources */,
@@ -605,6 +612,7 @@
 				4F2A963724E6474B00009E3B /* TaskHandlerChain1.m in Sources */,
 				4F96ECCB2293037000442F65 /* CacheWithConcurrentQueue.m in Sources */,
 				4F96ECBB2293011700442F65 /* Tests_synchronize_concurrent_writes.m in Sources */,
+				4F6F065225D68E1D009E3440 /* WCThreadSafeArray.m in Sources */,
 				4F2A963A24E6475B00009E3B /* TaskHandlerChain2.m in Sources */,
 				4F5005CA22B0E36E0026CB16 /* Tests_WCSharedContextManager.m in Sources */,
 				4F8976EF24A34CA50094E792 /* Tests_WCAsyncTaskExecutor.m in Sources */,
