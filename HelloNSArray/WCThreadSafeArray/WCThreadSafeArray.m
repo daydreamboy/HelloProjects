@@ -154,6 +154,18 @@
     });
 }
 
+- (void)removeObject:(id)object {
+    dispatch_barrier_async(_internal_queue, ^{
+        CFIndex cfIndex = CFArrayGetFirstIndexOfValue(self->_storage, CFRangeMake(0, CFArrayGetCount(self->_storage)), (__bridge const void *)object);
+        if (cfIndex != -1) {
+            CFIndex count = CFArrayGetCount(self->_storage);
+            if (cfIndex <= count) {
+                CFArrayRemoveValueAtIndex(self->_storage, cfIndex);
+            }
+        }
+    });
+}
+
 #pragma mark - Query
 
 - (NSUInteger)count {

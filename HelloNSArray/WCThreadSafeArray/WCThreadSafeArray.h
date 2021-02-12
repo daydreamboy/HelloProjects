@@ -33,6 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)removeAllObjects;
 - (void)removeLastObject;
 - (void)removeObjectAtIndex:(NSUInteger)index;
+- (void)removeObject:(ObjectType)object;
 
 #pragma mark - Query
 
