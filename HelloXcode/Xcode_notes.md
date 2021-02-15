@@ -298,11 +298,52 @@ Clang编译器和链接器的文档，官方提供在[这里](https://clang.llvm
 
 
 
+### （1）常用Build Settings
+
+#### INCLUDED_SOURCE_FILE_NAMES
+
+作用：包含特定的源文件
+
+值类型：数组，元素是pattern（A list of patterns）
+
+示例[^13]
+
+```properties
+MACOS_FILES = */macOS/* *~macos.*
+IOS_FILES = */iOS/* *~ios.*
+TVOS_FILES = */tvOS/* *~tvos.*
+WATCHOS_FILES = */watchOS/* *~watchos.*
+
+EXCLUDED_SOURCE_FILE_NAMES = $(MACOS_FILES) $(IOS_FILES) $(TVOS_FILES) $(WATCHOS_FILES)
+
+INCLUDED_SOURCE_FILE_NAMES =
+INCLUDED_SOURCE_FILE_NAMES[sdk=mac*] = $(MACOS_FILES)
+INCLUDED_SOURCE_FILE_NAMES[sdk=iphone*] = $(IOS_FILES)
+INCLUDED_SOURCE_FILE_NAMES[sdk=appletv*] = $(TVOS_FILES)
+INCLUDED_SOURCE_FILE_NAMES[sdk=watch*] = $(WATCHOS_FILES)
+```
+
+
+
+#### EXCLUDED_SOURCE_FILE_NAMES
+
+作用：过滤掉特定的源文件
+
+值类型：数组，元素是pattern（A list of patterns）
+
+示例，见INCLUDED_SOURCE_FILE_NAMES
+
+
+
+
+
+
+
 ## 6、Xcode常见问题
 
 ### （1）编译问题
 
-#### a. Xcode 12上将block签名和实现，参数类型不一致报错
+#### a. Xcode 12上block签名和实现，参数类型不一致报错
 
 举个例子[^10]，如下
 
@@ -317,7 +358,13 @@ Xcode 12上将严格校验block签名和实现，上面block实现的第一个�
 解决方法
 
 1. 修改代码将签名保持一致
-2. 在Build Settings的CFLAGS选项中添加`-Xclang -fcompatibility-qualified-id-block-type-checking`，抑制编译报错
+2. 在Build Settings的`OTHER_CFLAGS`选项中添加`-Xclang -fcompatibility-qualified-id-block-type-checking`，抑制编译报错
+
+```ruby
+s.pod_target_xcconfig = { 
+  'OTHER_CFLAGS' => '-Xclang -fcompatibility-qualified-id-block-type-checking',
+}
+```
 
 
 
@@ -475,6 +522,8 @@ TODO
 [^11]:https://stackoverflow.com/questions/7600435/what-source-comments-does-xcode-recognize-as-tags
 
 [^12]:https://apple.stackexchange.com/questions/203044/enable-touch-indicator-for-ios-app-demo-video-recording
+
+[^13]:https://davedelong.com/blog/2018/07/25/conditional-compilation-in-swift-part-2/
 
 
 
