@@ -255,7 +255,17 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 
 ### （1）介绍`__attribute__`
 
-`__attribute__`是编译器的指令，其结构是两对括号构成[^11]，如`__attribute__((xxx))`。xxx是属性名，如果有多个属性名，则用逗号分隔，如`__attribute__((xxx, yyy))`。举个例子，如下
+`__attribute__`指令可以修饰C/C++和Objective-C的代码，用于代码优化、消除警告、提高代码可读性等。
+
+参考Twitter上的这篇文章[^13]的描述，如下
+
+> The __attribute__ directive is used to decorate a code declaration in C, C++ and Objective-C programming languages. This gives the declared code additional attributes that would help the compiler incorporate optimizations or elicit useful warnings to the consumer of that code.
+
+简单来说，`__attribute__`指令为编译器提供上下文。
+
+
+
+`__attribute__`是编译器提供的指令，其结构是两对括号构成[^11]，如`__attribute__((xxx))`。xxx是属性名，如果有多个属性名，则用逗号分隔，如`__attribute__((xxx, yyy))`。举个例子，如下
 
 ```c
 // Send printf-like message to stderr and exit
@@ -273,13 +283,15 @@ extern void die(const char *format, ...)
 
 常用属性列表，如下
 
-| 属性                          | 系统别名   | 作用                                                      |
-| ----------------------------- | ---------- | --------------------------------------------------------- |
-| `cleanup`                     |            |                                                           |
-| `objc_boxable`                | CG_BOXABLE | 用于标记struct或union，可以使用@()语法糖封箱成NSValue对象 |
-| `objc_requires_super`         |            | 该方法里面需要调用super方法                               |
-| `objc_subclassing_restricted` |            | 禁止某个类被继承                                          |
-|                               |            |                                                           |
+| 属性                          | 系统别名   | 作用                                                         |
+| ----------------------------- | ---------- | ------------------------------------------------------------ |
+| `cleanup`                     |            |                                                              |
+| `const`                       |            | 标记某个函数的返回值，仅依赖于函数的参数，因此运行时采用缓存直接返回之前计算过的值 |
+| `objc_boxable`                | CG_BOXABLE | 用于标记struct或union，可以使用@()语法糖封箱成NSValue对象    |
+| `objc_requires_super`         |            | 该方法里面需要调用super方法                                  |
+| `objc_subclassing_restricted` |            | 禁止某个类被继承                                             |
+|                               |            |                                                              |
+|                               |            |                                                              |
 
 
 
@@ -380,6 +392,46 @@ __attribute__((objc_subclassing_restricted))
 ```
 
 > 示例代码，见Tests_objc_subclassing_restricted.m
+
+
+
+
+
+#### e. `const`
+
+`const`用于标记函数的返回值，完全依赖它的参数，而且内部不依赖其他变量。这样编译器可以在调用的地方，增加缓存，用于提高性能。
+
+NSHipster的这篇文章[^11]对const描述，如下
+
+> The `const` attribute specifies that a function does not examine any values except their arguments, and have no effects except the return value. 
+
+
+
+举个例子，如下
+
+```c
+int square(int n) __attribute__((const));
+```
+
+求平方的函数，它的返回值仅依赖输入的参数，因此非常适合使用`const`修饰。
+
+但是需要注意的是
+
+* 如果函数的参数是指针，并且内部会检查指针指向的数据，则一定不能使用`const`修饰
+* 如果函数是非`const`修饰，则调用它的函数同样不能使用`const`修饰
+* 如果函数的返回值是void，则使用`const`修饰是没有意义的
+
+> Note that a function that has pointer arguments and examines the data pointed to must not be declared const. Likewise, a function that calls a non-`const` function usually must not be `const`. It does not make sense for a `const` function to return `void`.
+
+
+
+如果错误地使用`const`，则会产生非常难调试排查的bug，而且一般在Debug编译下不会复现，则在使用某些高度优化的编译选项的app才出现。
+
+参考Twitter上的这篇文章[^13]的描述，如下
+
+> The worst of this is that the optimization that would cause this crash will only happen in builds that are highly optimized. Since debug builds often have optimizations turned down, you can run your app in a debugger forever and never reproduce it, making this bug, like most __attribute__ based bugs, very hard to figure out and fix.
+
+
 
 
 
@@ -514,6 +566,8 @@ __has_feature(xxx)可以传入下面的参数，来检查编译是否支持某�
 [^10]:http://clang.llvm.org/docs/LanguageExtensions.html#object-literals-and-subscripting
 [^11]:https://nshipster.com/__attribute__/
 [^12]:https://blog.sunnyxx.com/2016/05/14/clang-attributes/
+
+[^13]:https://blog.twitter.com/engineering/en_us/a/2014/attribute-directives-in-objective-c.html
 
 
 
