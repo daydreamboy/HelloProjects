@@ -1,0 +1,16 @@
+PODS:
+  - SharedLibrary (0.0.1)
+
+DEPENDENCIES:
+  - SharedLibrary (from `SharedLibrary/SharedLibrary.podspec`)
+
+EXTERNAL SOURCES:
+  SharedLibrary:
+    :path: SharedLibrary/SharedLibrary.podspec
+
+SPEC CHECKSUMS:
+  SharedLibrary: 983cb120297203f2524482615f1b67ab0448a265
+
+PODFILE CHECKSUM: 90a1893407bd8c14d52eb2bc6aa359c938461515
+
+COCOAPODS: 1.9.3

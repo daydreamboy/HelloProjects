@@ -57,6 +57,136 @@ App extension是app提供的功能，用于和系统或者其他app进行交互�
 
 
 
+### （2）关于App Extension的官方文档
+
+编程文档：[App Extension Programming Guide](https://developer.apple.com/library/content/documentation/General/Conceptual/ExtensibilityPG/index.html)
+
+HIG规范描述：https://developer.apple.com/design/human-interface-guidelines/ios/extensions
+
+
+
+### （3）常用App Extension
+
+#### a. Sharing and Actions[^2]
+
+分享 (Sharing)和操作 (Action)是系统Share Sheet提供的功能，常见于Safari的分享按钮唤起的界面，如下
+
+<img src="https://developer.apple.com/design/human-interface-guidelines/ios/images/sharing-action_2x.png" alt="Sharing and Actions" style="zoom:50%;" />
+
+值得说明的是
+
+* Action的图标大小是70px X 70px
+
+
+
+## 2、Unavailable API for App extensions
+
+​       由于App Extension仅完成特定的功能，官方文档[^3]描述App Extension不能使用用宏`NS_EXTENSION_UNAVAILABLE_IOS`标记的API。
+
+举个例子，不能使用UIApplication的sharedApplication属性
+
+```objective-c
+@property(class, nonatomic, readonly) UIApplication *sharedApplication NS_EXTENSION_UNAVAILABLE_IOS("Use view controller based solutions where appropriate instead.");
+```
+
+如果使用sharedApplication属性，编译App Extension，则会报错。
+
+
+
+系统提供下面的宏，用于标记哪些API不能用于App Extension
+
+```c
+#define NS_EXTENSION_UNAVAILABLE(_msg)      __OS_EXTENSION_UNAVAILABLE(_msg)
+#define NS_EXTENSION_UNAVAILABLE_MAC(_msg)  __OSX_EXTENSION_UNAVAILABLE(_msg)
+#define NS_EXTENSION_UNAVAILABLE_IOS(_msg)  __IOS_EXTENSION_UNAVAILABLE(_msg)
+```
+
+
+
+## 3、CocoaPods支持App Extension[^4]
+
+CocoaPods 1.1.0开始在pod xcconfig添加APPLICATION_EXTENSION_API_ONLY属性，如下
+
+```properties
+APPLICATION_EXTENSION_API_ONLY = YES
+```
+
+但是该属性对于同时支持App和App Extension的Pod并不适用，因为不能单独编译App Extension或App。
+
+
+
+### （1）App和App Extension采用subspec方式
+
+这篇文章[^4]采用App和App Extension区分代码的方式，将仅支持App Extension的代码采用subspec方式。
+
+举个例子，如下
+
+podspec文件，如下
+
+```ruby
+Pod::Spec.new do |s|
+  s.name             = "MyLibrary"
+  # Omitting metadata stuff and deployment targets
+  s.default_subspec = 'Core'
+
+  s.subspec 'Core' do |core|
+    core.source_files = 'MyLibrary/*.{m,h}'
+  end
+
+  s.subspec 'AppExtension' do |ext|
+    ext.source_files = 'MyLibrary/*.{m,h}'
+    # For app extensions, disabling code paths using unavailable API
+    ext.pod_target_xcconfig = { 'GCC_PREPROCESSOR_DEFINITIONS' => 'MYLIBRARY_APP_EXTENSIONS=1' }
+  end
+end
+```
+
+Podfile文件，如下
+
+```ruby
+abstract_target 'App' do
+  # Shared pods between App and extension, compiled with same preprocessor macros
+  pod 'AFNetworking'
+
+  target 'MyApp' do
+    pod 'MyLibrary/Core'
+  end
+
+  target 'MyExtension' do
+    pod 'MyLibrary/AppExtension'
+  end
+end
+```
+
+
+
+### （2）采用运行时方式
+
+对于需要同时支持App和App Extension的代码，不能采用subspec方式，可以采用运行时方式。
+
+举个例子，如下
+
+```objective-c
++ (nullable UIApplication *)getSharedApplication {
+#if COCOAPODS
+//#error "compile by cocoapods"
+    id object = nil;
+    if ([UIApplication respondsToSelector:@selector(sharedApplication)]) {
+        object = [UIApplication performSelector:@selector(sharedApplication)];
+    }
+    return object;
+#else
+//#error "compile not by cocoapods"
+    return UIApplication.sharedApplication;
+#endif
+}
+```
+
+* 如果该代码采用源码集成到App和App Extension，则COCOAPODS宏生效，走运行时方式，保证App能获取sharedApplication对象。
+* 如果该代码采用二进制集成，则COCOAPODS不生效，直接使用sharedApplication属性
+
+
+
 
 
 
@@ -64,4 +194,7 @@ App extension是app提供的功能，用于和系统或者其他app进行交互�
 ## References
 
 [^1]:https://developer.apple.com/app-extensions/
+[^2]:https://developer.apple.com/design/human-interface-guidelines/ios/extensions/sharing-and-actions/
+[^3]:https://developer.apple.com/library/archive/documentation/General/Conceptual/ExtensibilityPG/ExtensionOverview.html#//apple_ref/doc/uid/TP40014214-CH2-SW2
+[^4]:https://miqu.me/blog/2016/11/28/app-extensions-xcode-and-cocoapods-omg/
 
