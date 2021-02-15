@@ -8,7 +8,6 @@
 
 #import "RootViewController.h"
 
-#import "Demo1ViewController.h"
 #import "StringSizeViewController.h"
 
 @interface RootViewController ()
