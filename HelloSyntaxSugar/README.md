@@ -291,9 +291,10 @@ extern void die(const char *format, ...)
 | `enable_if`                   |            | 用于静态检查函数的参数，是否满足特定判断if条件               |
 | `objc_boxable`                | CG_BOXABLE | 用于标记struct或union，可以使用@()语法糖封箱成NSValue对象    |
 | `objc_requires_super`         |            | 该方法里面需要调用super方法                                  |
+| `objc_runtime_name`           |            | 用于重命名OC类或OC协议                                       |
 | `objc_subclassing_restricted` |            | 禁止某个类被继承                                             |
-|                               |            |                                                              |
-|                               |            |                                                              |
+| `overloadable`                |            | 用于重载C函数，编译器根据参数类型匹配对应的函数调用          |
+| `weak`                        |            |                                                              |
 
 
 
@@ -455,6 +456,10 @@ int square(int n) __attribute__((const));
 
 `enable_if`用于静态检查函数的参数是否满足特定条件，一般比较适合检查整型枚举值的参数。
 
+> 因为使用到函数的参数，`enable_if`只能放在函数名后面修饰
+
+
+
 举个例子，如下
 
 ```objective-c
@@ -495,7 +500,64 @@ static NSString *NSStringFromMyEnumType(MyEnumType type) __attribute__((enable_i
 
 
 
+#### h. `overloadable`
 
+`overloadable`用于重载C函数，编译器根据参数类型匹配对应的函数调用。
+
+举个例子，如下
+
+```objective-c
+__attribute__((overloadable))
+static void logAnything(id obj) {
+    NSLog(@"id: %@", obj);
+}
+
+__attribute__((overloadable))
+static void logAnything(int number) {
+    NSLog(@"int: %@", @(number));
+}
+
+__attribute__((overloadable))
+static void logAnything(CGRect rect) {
+    NSLog(@"CGRect: %@", NSStringFromCGRect(rect));
+}
+
+- (void)test_overloadable {
+    logAnything(@[@"1", @"2"]);
+    logAnything(233);
+    logAnything(CGRectMake(1, 2, 3, 4));
+}
+```
+
+
+
+#### i. `objc_runtime_name`
+
+`objc_runtime_name`可以修饰OC的类或协议进行重命名，一般用于代码混淆、代码注解等。
+
+举个例子，如下
+
+```objective-c
+__attribute__((objc_runtime_name("7eceb275788590faefc1097c0f903ce5")))
+@protocol MySecretProtcol <NSObject>
+- (void)test_objc_runtime_name;
+@end
+
+__attribute__((objc_runtime_name("544cd1f719a0cb56dce50fd51b39852d")))
+@interface MySecretClass : NSObject
+@end
+
+- (void)test_objc_runtime_name {
+    NSLog(@"class: %@", NSStringFromClass([MySecretClass class])); // class: 544cd1f719a0cb56dce50fd51b39852d
+    NSLog(@"protocol: %@", NSStringFromProtocol(@protocol(MySecretProtcol))); // protocol: 7eceb275788590faefc1097c0f903ce5
+}
+```
+
+值得注意的是，重命名可以打破编译时命名规则，可以使用数字开头。
+
+
+
+// TODO: 代码注解示例
 
 
 

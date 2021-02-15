@@ -51,6 +51,9 @@
 		4FCB423325DABB1C000FB615 /* const_dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCB423225DABB1C000FB615 /* const_dummy.m */; };
 		4FCB423925DAC30A000FB615 /* Tests_constructor_destructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCB423825DAC30A000FB615 /* Tests_constructor_destructor.m */; };
 		4FCB424325DAC54D000FB615 /* Tests_enable_if.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCB424225DAC54D000FB615 /* Tests_enable_if.m */; };
+		4FCB424925DAC90A000FB615 /* Tests_overloadable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCB424825DAC90A000FB615 /* Tests_overloadable.m */; };
+		4FCB425325DACB95000FB615 /* Tests_objc_runtime_name.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCB425225DACB95000FB615 /* Tests_objc_runtime_name.m */; };
+		4FCB425A25DACBA5000FB615 /* objc_runtime_name_dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCB425925DACBA5000FB615 /* objc_runtime_name_dummy.m */; };
 		4FD2932F258E01B7000E1E5A /* Tests_objc_subclassing_restricted.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD2932E258E01B7000E1E5A /* Tests_objc_subclassing_restricted.m */; };
 		4FD29339258E02FE000E1E5A /* Tests_objc_requires_super.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD29338258E02FE000E1E5A /* Tests_objc_requires_super.m */; };
 		4FD2933F258E06DF000E1E5A /* Tests_objc_boxable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD2933E258E06DF000E1E5A /* Tests_objc_boxable.m */; };
@@ -175,6 +178,10 @@
 		4FCB423225DABB1C000FB615 /* const_dummy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = const_dummy.m; sourceTree = "<group>"; };
 		4FCB423825DAC30A000FB615 /* Tests_constructor_destructor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_constructor_destructor.m; sourceTree = "<group>"; };
 		4FCB424225DAC54D000FB615 /* Tests_enable_if.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_enable_if.m; sourceTree = "<group>"; };
+		4FCB424825DAC90A000FB615 /* Tests_overloadable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_overloadable.m; sourceTree = "<group>"; };
+		4FCB425225DACB95000FB615 /* Tests_objc_runtime_name.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_objc_runtime_name.m; sourceTree = "<group>"; };
+		4FCB425825DACBA5000FB615 /* objc_runtime_name_dummy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = objc_runtime_name_dummy.h; sourceTree = "<group>"; };
+		4FCB425925DACBA5000FB615 /* objc_runtime_name_dummy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = objc_runtime_name_dummy.m; sourceTree = "<group>"; };
 		4FD2932E258E01B7000E1E5A /* Tests_objc_subclassing_restricted.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_objc_subclassing_restricted.m; sourceTree = "<group>"; };
 		4FD29338258E02FE000E1E5A /* Tests_objc_requires_super.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_objc_requires_super.m; sourceTree = "<group>"; };
 		4FD2933E258E06DF000E1E5A /* Tests_objc_boxable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_objc_boxable.m; sourceTree = "<group>"; };
@@ -418,8 +425,12 @@
 				4FCB422B25DABAE0000FB615 /* Tests_const.m */,
 				4FCB423825DAC30A000FB615 /* Tests_constructor_destructor.m */,
 				4FCB424225DAC54D000FB615 /* Tests_enable_if.m */,
+				4FCB425225DACB95000FB615 /* Tests_objc_runtime_name.m */,
+				4FCB424825DAC90A000FB615 /* Tests_overloadable.m */,
 				4FCB423125DABB1C000FB615 /* const_dummy.h */,
 				4FCB423225DABB1C000FB615 /* const_dummy.m */,
+				4FCB425825DACBA5000FB615 /* objc_runtime_name_dummy.h */,
+				4FCB425925DACBA5000FB615 /* objc_runtime_name_dummy.m */,
 			);
 			path = __attribute__;
 			sourceTree = "<group>";
@@ -592,6 +603,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F53472B22C630C4000710B9 /* Event.m in Sources */,
+				4FCB424925DAC90A000FB615 /* Tests_overloadable.m in Sources */,
 				4F5112B622C375A0005E5AAE /* Tests_AccessIvarOfExtension.m in Sources */,
 				4FD29339258E02FE000E1E5A /* Tests_objc_requires_super.m in Sources */,
 				4FCB423325DABB1C000FB615 /* const_dummy.m in Sources */,
@@ -602,7 +614,9 @@
 				4F4FF49922C714A6007B0833 /* ChildHandler.m in Sources */,
 				4F21ADC9244852BF00B58E33 /* Tests_Category_hook_setter.m in Sources */,
 				4F4FF49622C7109A007B0833 /* DerivedClassB1.m in Sources */,
+				4FCB425A25DACBA5000FB615 /* objc_runtime_name_dummy.m in Sources */,
 				4F51129322C315D0005E5AAE /* Tests_AccessPublicIvar.m in Sources */,
+				4FCB425325DACB95000FB615 /* Tests_objc_runtime_name.m in Sources */,
 				4F51128422C31102005E5AAE /* Tests_AccessIvarOfProperty.m in Sources */,
 				4F4FF48C22C70725007B0833 /* BaseClassA1.m in Sources */,
 				4F5112BA22C3771E005E5AAE /* BaseClass3.m in Sources */,
