@@ -10,8 +10,25 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ The task completion block
+ 
+ @discussion If the task finished, you must call this completion
+ */
 typedef void (^WCAsyncTaskCompletion)(void);
+/**
+ The timeout block
+ 
+ @param data the input data for the task
+ @param shouldContinue the flag for should continue process next task  if the current task is timeout
+ */
 typedef void (^WCAsyncTaskTimeoutBlock)(id _Nullable data, BOOL *shouldContinue);
+/**
+ The task block
+ 
+ @param data the input data for the task
+ @param completion the completion. If the task block finished, you must call this completion
+ */
 typedef void (^WCAsyncTaskBlock)(id _Nullable data, WCAsyncTaskCompletion completion);
 
 typedef NS_ENUM(NSUInteger, WCAsyncTaskExecuteMode) {
@@ -55,6 +72,7 @@ typedef NS_ENUM(NSUInteger, WCAsyncTaskExecuteMode) {
  
  @param block the task
         - completion, if task is finished, call the completion
+ @param data the input data for the task
  @param key the unique key to identify the task
  @param timeout the timeout for the task. If timeout, timeoutBlock will be called
  @param timeoutBlock the callback when the task is timeout
