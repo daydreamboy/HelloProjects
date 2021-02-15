@@ -49,6 +49,8 @@
 		4FC2CF9E2031B84F00A416DC /* Cpp11FeatureRawStringViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4FC2CF9D2031B84F00A416DC /* Cpp11FeatureRawStringViewController.mm */; };
 		4FCB422C25DABAE0000FB615 /* Tests_const.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCB422B25DABAE0000FB615 /* Tests_const.m */; };
 		4FCB423325DABB1C000FB615 /* const_dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCB423225DABB1C000FB615 /* const_dummy.m */; };
+		4FCB423925DAC30A000FB615 /* Tests_constructor_destructor.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCB423825DAC30A000FB615 /* Tests_constructor_destructor.m */; };
+		4FCB424325DAC54D000FB615 /* Tests_enable_if.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FCB424225DAC54D000FB615 /* Tests_enable_if.m */; };
 		4FD2932F258E01B7000E1E5A /* Tests_objc_subclassing_restricted.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD2932E258E01B7000E1E5A /* Tests_objc_subclassing_restricted.m */; };
 		4FD29339258E02FE000E1E5A /* Tests_objc_requires_super.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD29338258E02FE000E1E5A /* Tests_objc_requires_super.m */; };
 		4FD2933F258E06DF000E1E5A /* Tests_objc_boxable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD2933E258E06DF000E1E5A /* Tests_objc_boxable.m */; };
@@ -171,6 +173,8 @@
 		4FCB422B25DABAE0000FB615 /* Tests_const.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_const.m; sourceTree = "<group>"; };
 		4FCB423125DABB1C000FB615 /* const_dummy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = const_dummy.h; sourceTree = "<group>"; };
 		4FCB423225DABB1C000FB615 /* const_dummy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = const_dummy.m; sourceTree = "<group>"; };
+		4FCB423825DAC30A000FB615 /* Tests_constructor_destructor.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_constructor_destructor.m; sourceTree = "<group>"; };
+		4FCB424225DAC54D000FB615 /* Tests_enable_if.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_enable_if.m; sourceTree = "<group>"; };
 		4FD2932E258E01B7000E1E5A /* Tests_objc_subclassing_restricted.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_objc_subclassing_restricted.m; sourceTree = "<group>"; };
 		4FD29338258E02FE000E1E5A /* Tests_objc_requires_super.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_objc_requires_super.m; sourceTree = "<group>"; };
 		4FD2933E258E06DF000E1E5A /* Tests_objc_boxable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_objc_boxable.m; sourceTree = "<group>"; };
@@ -412,6 +416,8 @@
 				4FD29338258E02FE000E1E5A /* Tests_objc_requires_super.m */,
 				4FD2933E258E06DF000E1E5A /* Tests_objc_boxable.m */,
 				4FCB422B25DABAE0000FB615 /* Tests_const.m */,
+				4FCB423825DAC30A000FB615 /* Tests_constructor_destructor.m */,
+				4FCB424225DAC54D000FB615 /* Tests_enable_if.m */,
 				4FCB423125DABB1C000FB615 /* const_dummy.h */,
 				4FCB423225DABB1C000FB615 /* const_dummy.m */,
 			);
@@ -603,11 +609,13 @@
 				4F4FF48922C70497007B0833 /* Tests_CategoryConflict.m in Sources */,
 				4F21ADC4244851C500B58E33 /* BaseClassC.m in Sources */,
 				4FD2933F258E06DF000E1E5A /* Tests_objc_boxable.m in Sources */,
+				4FCB424325DAC54D000FB615 /* Tests_enable_if.m in Sources */,
 				4FCB422C25DABAE0000FB615 /* Tests_const.m in Sources */,
 				4F4FF49C22C751CF007B0833 /* RootHandler.m in Sources */,
 				4F53472722C61AC6000710B9 /* NSObject+EventChaining.m in Sources */,
 				4F4FF48722C7042B007B0833 /* ParentHandler.m in Sources */,
 				4F4FF48F22C7075E007B0833 /* BaseClassA1+Category.m in Sources */,
+				4FCB423925DAC30A000FB615 /* Tests_constructor_destructor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

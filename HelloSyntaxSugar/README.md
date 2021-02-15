@@ -287,6 +287,8 @@ extern void die(const char *format, ...)
 | ----------------------------- | ---------- | ------------------------------------------------------------ |
 | `cleanup`                     |            |                                                              |
 | `const`                       |            | 标记某个函数的返回值，仅依赖于函数的参数，因此运行时采用缓存直接返回之前计算过的值 |
+| `constructor`和`destructor`   |            | 在main之前，调用用`constructor`修饰的函数<br/>在main之后，调用用`destructor`修饰的函数 |
+| `enable_if`                   |            | 用于静态检查函数的参数，是否满足特定判断if条件               |
 | `objc_boxable`                | CG_BOXABLE | 用于标记struct或union，可以使用@()语法糖封箱成NSValue对象    |
 | `objc_requires_super`         |            | 该方法里面需要调用super方法                                  |
 | `objc_subclassing_restricted` |            | 禁止某个类被继承                                             |
@@ -430,6 +432,66 @@ int square(int n) __attribute__((const));
 参考Twitter上的这篇文章[^13]的描述，如下
 
 > The worst of this is that the optimization that would cause this crash will only happen in builds that are highly optimized. Since debug builds often have optimizations turned down, you can run your app in a debugger forever and never reproduce it, making this bug, like most __attribute__ based bugs, very hard to figure out and fix.
+
+
+
+#### f. `constructor`和`destructor`
+
+构造器`constructor`和析构器`destructor`，使用这两个属性修饰的函数会在分别在可执行文件（包括动态库）load和 unload时被调用，可以理解为在 `main()` 函数调用前和 return 后执行[^12]。
+
+
+
+##### `constructor`和`+load`的顺序[^12]
+
+`constructor`在`+load`的之后，如下
+
+> constructor 和 `+load` 都是在 main 函数执行前调用，但 `+load` 比 constructor 更加早一丢丢，因为 dyld（动态链接器，程序的最初起点）在加载 image（可以理解成 Mach-O 文件）时会先通知 `objc runtime` 去加载其中所有的类，每加载一个类时，它的 `+load` 随之调用，全部加载完成后，dyld 才会调用这个 image 中所有的 constructor 方法。
+
+可以看出`constructor`比`+load`更适合进行swizzle。
+
+
+
+#### g. `enable_if`
+
+`enable_if`用于静态检查函数的参数是否满足特定条件，一般比较适合检查整型枚举值的参数。
+
+举个例子，如下
+
+```objective-c
+typedef NS_ENUM(NSInteger, MyEnumType) {
+    MyEnumTypeA,
+    MyEnumTypeB,
+};
+
+static NSString *NSStringFromMyEnumType(MyEnumType type) __attribute__((enable_if(type > MyEnumTypeA - 1 && type < MyEnumTypeB + 1, "枚举值不在范围中"))) {
+    switch (type) {
+        case MyEnumTypeA:
+            return @"A";
+        case MyEnumTypeB:
+            return @"B";
+        default:
+            break;
+    }
+    return nil;
+}
+
+- (void)test_enable_if {
+    NSString *string;
+    __unused NSInteger type = 200;
+    
+    string = NSStringFromMyEnumType(MyEnumTypeA);
+    string = NSStringFromMyEnumType(MyEnumTypeB);
+    
+    // Errors: error: no matching function for call to 'NSStringFromMyEnumType'
+    /*
+    string = NSStringFromMyEnumType(-1);
+    string = NSStringFromMyEnumType(100);
+    string = NSStringFromMyEnumType(type);
+     */
+}
+```
+
+但是编译报错不是`enable_if`的第二个字符串参数，导致编译报错提示有点不友好。
 
 
 
