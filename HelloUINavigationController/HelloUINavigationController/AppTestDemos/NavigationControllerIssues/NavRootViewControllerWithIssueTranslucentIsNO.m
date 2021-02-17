@@ -1,21 +1,21 @@
 //
-//  NavRootViewController.m
+//  NavRootViewControllerWithIssueTranslucentIsNO.m
 //  HelloUINavigationBar
 //
 //  Created by wesley_chen on 2020/9/10.
 //  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
-#import "NavRootViewController.h"
-#import "SecondViewController.h"
+#import "NavRootViewControllerWithIssueTranslucentIsNO.h"
+#import "SecondViewControllerCauseTranslucentIsNO.h"
 
-@interface NavRootViewController ()
+@interface NavRootViewControllerWithIssueTranslucentIsNO ()
 @property (nonatomic, strong) UIButton *buttonPush;
 @property (nonatomic, strong) UIButton *buttonDismiss;
 @property (nonatomic, strong) UIView *subview;
 @end
 
-@implementation NavRootViewController
+@implementation NavRootViewControllerWithIssueTranslucentIsNO
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -88,12 +88,14 @@
 #pragma mark - Action
 
 - (void)buttonPushClicked:(id)sender {
-    SecondViewController *vc = [SecondViewController new];
+    SecondViewControllerCauseTranslucentIsNO *vc = [SecondViewControllerCauseTranslucentIsNO new];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)buttonDismissClicked:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    });
 }
 
 @end

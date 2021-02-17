@@ -54,6 +54,22 @@ extendedLayoutIncludesOpaqueBars=YES，对当前viewController的view有效。�
 
 ​       这种方法对CustomView方式初始化的UIBarButtonItem，在左边和右边的，用UIBarButtonSystemItemFixedSpace调节都是有效的。但是对initWithBarButtonSystemItem方式初始化的UIBarButtonItem，在左边的UIBarButtonItem，用UIBarButtonSystemItemFixedSpace调节无效。
 
+注意
+
+> 在iOS 13+设置UINavigationBar下面的subview的layoutMargins，会导致异常
+
+
+
+#### b. 设置translucent为NO导致View下移
+
+​      在导航栈中，从ViewController A (translucent=YES) 压入ViewController B (translucent=NO) ，由于UINavigationBar是共用的，导致返回到ViewController A时，UINavigationBar是不透明的，系统对于不透明的UINavigationBar，会自动将ViewController的view下移到UINavigationBar的下面。
+
+> 示例代码，见NavRootViewControllerWithIssueTranslucentIsNO
+
+
+
+
+
 
 
 

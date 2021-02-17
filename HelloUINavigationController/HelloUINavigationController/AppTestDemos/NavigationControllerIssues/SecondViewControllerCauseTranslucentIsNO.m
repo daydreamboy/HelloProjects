@@ -1,18 +1,18 @@
 //
-//  SecondViewController.m
+//  SecondViewControllerCauseTranslucentIsNO.m
 //  HelloUINavigationBar
 //
 //  Created by wesley_chen on 2020/9/10.
 //  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
-#import "SecondViewController.h"
+#import "SecondViewControllerCauseTranslucentIsNO.h"
 
-@interface SecondViewController ()
+@interface SecondViewControllerCauseTranslucentIsNO ()
 
 @end
 
-@implementation SecondViewController
+@implementation SecondViewControllerCauseTranslucentIsNO
 
 - (void)viewDidLoad {
     [super viewDidLoad];

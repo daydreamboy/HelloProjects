@@ -18,7 +18,7 @@
 #import "WCNavigationBar.h"
 
 // section 3
-#import "NavRootViewController.h"
+#import "NavRootViewControllerWithIssueTranslucentIsNO.h"
 
 
 #define kTitle @"Title"
@@ -146,7 +146,7 @@
 }
 
 - (void)present_navbar_translucent {
-    NavRootViewController *rootViewController = [NavRootViewController new];
+    NavRootViewControllerWithIssueTranslucentIsNO *rootViewController = [NavRootViewControllerWithIssueTranslucentIsNO new];
     UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:rootViewController];
     
     [self presentViewController:navController animated:YES completion:nil];

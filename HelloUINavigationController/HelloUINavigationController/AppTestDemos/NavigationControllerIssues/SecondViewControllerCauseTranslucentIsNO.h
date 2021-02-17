@@ -1,5 +1,5 @@
 //
-//  NavRootViewController.h
+//  SecondViewControllerCauseTranslucentIsNO.h
 //  HelloUINavigationBar
 //
 //  Created by wesley_chen on 2020/9/10.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NavRootViewController : UIViewController
+@interface SecondViewControllerCauseTranslucentIsNO : UIViewController
 
 @end
 
