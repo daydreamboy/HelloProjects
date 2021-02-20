@@ -363,7 +363,6 @@
 				4FB4D1FF249F553F00FB94B1 /* CAAnimationGroup */,
 				4F7F2097249E681B00EE6E0F /* CAKeyframeAnimation */,
 				4F7F2087249E483100EE6E0F /* CABasicAnimation */,
-				4F0F1DE8249648270034AAE9 /* CAShapeLayer */,
 				4F517B0A212D64CB008CE69F /* Layers */,
 				2B718B7D1A73BA6F00C0BF2A /* FadeViewController.h */,
 				2B718B7E1A73BA6F00C0BF2A /* FadeViewController.m */,
@@ -534,6 +533,7 @@
 		4F7F2093249E51C300EE6E0F /* CALayer Animation */ = {
 			isa = PBXGroup;
 			children = (
+				4F0F1DE8249648270034AAE9 /* CAShapeLayer */,
 				4F7F2094249E525300EE6E0F /* LayerAnimateWithPositionController.h */,
 				4F7F2095249E525300EE6E0F /* LayerAnimateWithPositionController.m */,
 			);
