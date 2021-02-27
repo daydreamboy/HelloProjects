@@ -11,9 +11,7 @@
 
 @implementation WCSwizzleTool
 
-#pragma mark - Runtime Modify
-
-#pragma mark > Swizzle Method
+#pragma mark - Swizzle with block
 
 + (BOOL)exchangeIMPWithClass:(Class)class originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector swizzledBlock:(id)block {
     
@@ -90,19 +88,36 @@
     }
 }
 
-+ (BOOL)exchangeIMPWithClass:(Class)class selector1:(SEL)selector1 selector2:(SEL)selector2 {
+#pragma mark - Swizzle with selector
+
++ (BOOL)exchangeIMPWithClass:(Class)cls originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector forClassMethod:(BOOL)forClassMethod {
     
-    if (class == NULL || !sel_isMapped(selector1) || !sel_isMapped(selector2)) {
+    if (cls == NULL || !sel_isMapped(originalSelector) || !sel_isMapped(swizzledSelector)) {
         return NO;
     }
     
-    Method originalMethod = class_getInstanceMethod(class, selector1);
-    Method swizzledMethod = class_getInstanceMethod(class, selector2);
+    Method originalMethod = forClassMethod ? class_getClassMethod(cls, originalSelector) : class_getInstanceMethod(cls, originalSelector);
+    Method swizzledMethod = forClassMethod ? class_getClassMethod(cls, swizzledSelector) : class_getInstanceMethod(cls, swizzledSelector);
     
-    method_exchangeImplementations(originalMethod, swizzledMethod);
+    if (originalMethod == NULL || swizzledMethod == NULL) {
+        return NO;
+    }
+    
+    if (forClassMethod) {
+        cls = object_getClass((id)cls);
+    }
+    
+    if (class_addMethod(cls, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod))) {
+        class_replaceMethod(cls, swizzledSelector, method_getImplementation(originalMethod), method_getTypeEncoding(originalMethod));
+    }
+    else {
+        method_exchangeImplementations(originalMethod, swizzledMethod);
+    }
     
     return YES;
 }
+
+#pragma mark - Swizzle with C function
 
 + (BOOL)exchangeIMPWithClass:(Class)class swizzledIMP:(IMP)swizzledIMP originalSelector:(SEL)originalSelector originalIMPPtr:(inout WCIMPPtr _Nullable)originalIMPPtr {
     
@@ -134,10 +149,10 @@
 
 + (SEL)swizzledSelectorWithSelector:(SEL)selector {
     if (selector == NULL) {
-        return NSSelectorFromString([NSString stringWithFormat:@"WCObjectTool_swizzle_%x", arc4random()]);
+        return NSSelectorFromString([NSString stringWithFormat:@"WCSwizzleTool_swizzle_%x", arc4random()]);
     }
     
-    return NSSelectorFromString([NSString stringWithFormat:@"WCObjectTool_swizzle_%@_%x", NSStringFromSelector(selector), arc4random()]);
+    return NSSelectorFromString([NSString stringWithFormat:@"WCSwizzleTool_swizzle_%@_%x", NSStringFromSelector(selector), arc4random()]);
 }
 
 @end

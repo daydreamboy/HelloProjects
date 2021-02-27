@@ -58,7 +58,7 @@
     self = [super init];
     if (self) {
         // Warning: the swizzled method `my_setFrame:` will pollute all UIView's subclasses' setFrame: method
-        [WCSwizzleTool exchangeIMPWithClass:[UIView class] selector1:@selector(setFrame:) selector2:@selector(my_setFrame:)];
+        [WCSwizzleTool exchangeIMPWithClass:[UIView class] originalSelector:@selector(setFrame:) swizzledSelector:@selector(my_setFrame:) forClassMethod:NO];
     }
     return self;
 }
