@@ -1,17 +1,17 @@
 //
-//  WCTouchFingerView.m
+//  WCTouchIndicatorFingerView.m
 //  HelloUIApplication
 //
 //  Created by wesley_chen on 2021/1/3.
 //  Copyright © 2021 wesley_chen. All rights reserved.
 //
 
-#import "WCTouchFingerView.h"
+#import "WCTouchIndicatorFingerView.h"
 
 static CGFloat const ALPHADefaultMaxFingerRadius = 22.0;
 static CGFloat const ALPHADefaultForceTouchScale = 0.75;
 
-@interface WCTouchFingerView ()
+@interface WCTouchIndicatorFingerView ()
 @property (nonatomic, strong) UIColor *color;
 @property (nonatomic, assign) CATransform3D touchEndTransform;
 @property (nonatomic, assign) CGFloat touchEndAnimationDuration;
@@ -19,7 +19,7 @@ static CGFloat const ALPHADefaultForceTouchScale = 0.75;
 @property (nonatomic, assign) CGPoint lastScale;
 @end
 
-@implementation WCTouchFingerView
+@implementation WCTouchIndicatorFingerView
 
 #pragma mark - Public Methods
 

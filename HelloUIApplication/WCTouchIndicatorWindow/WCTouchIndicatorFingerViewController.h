@@ -1,5 +1,5 @@
 //
-//  WCTouchFingerViewController.h
+//  WCTouchIndicatorFingerViewController.h
 //  HelloUIApplication
 //
 //  Created by wesley_chen on 2021/1/3.
@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
  This view controller controls the style of the status bar when Touch display
  is active, as the window overrides it.
  */
-@interface WCTouchFingerViewController : UIViewController
+@interface WCTouchIndicatorFingerViewController : UIViewController
 
 @end
 

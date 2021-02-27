@@ -1,30 +1,30 @@
 //
-//  WCTouchWindow.m
+//  WCTouchIndicatorWindow.m
 //  HelloUIApplication
 //
 //  Created by wesley_chen on 2021/1/3.
 //  Copyright © 2021 wesley_chen. All rights reserved.
 //
 
-#import "WCTouchWindow.h"
+#import "WCTouchIndicatorWindow.h"
 #import <objc/runtime.h>
-#import "WCTouchFingerView.h"
-#import "WCTouchFingerViewController.h"
+#import "WCTouchIndicatorFingerView.h"
+#import "WCTouchIndicatorFingerViewController.h"
 
 NSString * const WCTouchWindow_InterfaceEventNotification = @"WCTouchWindow_InterfaceEventNotification";
 
 static const void * kAssociatedObjectKeyFingerView = @"kAssociatedKeyFingerView";
 
-@interface WCTouchWindow ()
+@interface WCTouchIndicatorWindow ()
 @property (nonatomic, strong) UIView *touchingView;
 @property (nonatomic, assign) BOOL notificationRegistered;
 @end
 
-@implementation WCTouchWindow
+@implementation WCTouchIndicatorWindow
 
 + (instancetype)defaultTouchWindow {
-    WCTouchWindow *touchWindow = [[WCTouchWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    touchWindow.rootViewController = [WCTouchFingerViewController new];
+    WCTouchIndicatorWindow *touchWindow = [[WCTouchIndicatorWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    touchWindow.rootViewController = [WCTouchIndicatorFingerViewController new];
     touchWindow.userInteractionEnabled = NO;
     touchWindow.hidden = NO;
     
@@ -93,12 +93,12 @@ static const void * kAssociatedObjectKeyFingerView = @"kAssociatedKeyFingerView"
 }
 
 - (void)updateFingerViewForTouch:(UITouch *)touch {
-    WCTouchFingerView *fingerView = objc_getAssociatedObject(touch, kAssociatedObjectKeyFingerView);
+    WCTouchIndicatorFingerView *fingerView = objc_getAssociatedObject(touch, kAssociatedObjectKeyFingerView);
     
     if (!fingerView) {
         CGPoint point = [touch locationInView:self.touchingView];
         
-        fingerView = [[WCTouchFingerView alloc] initWithPoint:point];
+        fingerView = [[WCTouchIndicatorFingerView alloc] initWithPoint:point];
         
         objc_setAssociatedObject(touch, kAssociatedObjectKeyFingerView, fingerView, OBJC_ASSOCIATION_ASSIGN);
         
@@ -109,7 +109,7 @@ static const void * kAssociatedObjectKeyFingerView = @"kAssociatedKeyFingerView"
 }
 
 - (void)removeFingerViewForTouch:(UITouch *)touch {
-    WCTouchFingerView * fingerView = objc_getAssociatedObject(touch, kAssociatedObjectKeyFingerView);
+    WCTouchIndicatorFingerView * fingerView = objc_getAssociatedObject(touch, kAssociatedObjectKeyFingerView);
     
     if (fingerView) {
         objc_setAssociatedObject(touch, kAssociatedObjectKeyFingerView, nil, OBJC_ASSOCIATION_ASSIGN);

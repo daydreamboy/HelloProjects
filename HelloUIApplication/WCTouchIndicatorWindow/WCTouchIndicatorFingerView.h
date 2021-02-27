@@ -1,5 +1,5 @@
 //
-//  WCTouchFingerView.h
+//  WCTouchIndicatorFingerView.h
 //  HelloUIApplication
 //
 //  Created by wesley_chen on 2021/1/3.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface WCTouchFingerView : UIView
+@interface WCTouchIndicatorFingerView : UIView
 
 - (instancetype)initWithPoint:(CGPoint)point;
 - (void)updateWithTouch:(UITouch *)touch;

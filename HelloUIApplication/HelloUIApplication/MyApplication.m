@@ -7,7 +7,7 @@
 //
 
 #import "MyApplication.h"
-#import "WCTouchWindow.h"
+#import "WCTouchIndicatorWindow.h"
 
 @implementation MyApplication
 

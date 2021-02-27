@@ -1,18 +1,18 @@
 //
-//  WCTouchFingerViewController.m
+//  WCTouchIndicatorFingerViewController.m
 //  HelloUIApplication
 //
 //  Created by wesley_chen on 2021/1/3.
 //  Copyright © 2021 wesley_chen. All rights reserved.
 //
 
-#import "WCTouchFingerViewController.h"
+#import "WCTouchIndicatorFingerViewController.h"
 
-@interface WCTouchFingerViewController ()
+@interface WCTouchIndicatorFingerViewController ()
 
 @end
 
-@implementation WCTouchFingerViewController
+@implementation WCTouchIndicatorFingerViewController
 
 - (void)viewDidLoad {
     //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setNeedsStatusBarAppearanceUpdate) name:ALPHAStatusBarUpdateNotification object:nil];

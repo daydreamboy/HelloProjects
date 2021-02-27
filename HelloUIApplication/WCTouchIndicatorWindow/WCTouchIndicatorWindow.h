@@ -1,5 +1,5 @@
 //
-//  WCTouchWindow.h
+//  WCTouchIndicatorWindow.h
 //  HelloUIApplication
 //
 //  Created by wesley_chen on 2021/1/3.
@@ -17,7 +17,7 @@ FOUNDATION_EXPORT NSString * const WCTouchWindow_InterfaceEventNotification;
  
  @see https://github.com/Legoless/Alpha
  */
-@interface WCTouchWindow : UIWindow
+@interface WCTouchIndicatorWindow : UIWindow
 
 /**
  The flag for showing the touch point indicator
@@ -56,7 +56,7 @@ FOUNDATION_EXPORT NSString * const WCTouchWindow_InterfaceEventNotification;
 /**
  Show touch indicator
  
- @discussion If the window created by +[WCTouchWindow defaultTouchWindow], you don't
+ @discussion If the window created by +[WCTouchIndicatorWindow defaultTouchWindow], you don't
  need to call this method. If the window create by +initXX Method, you should call this method
  */
 - (void)displayTouchIndicatorWithEvent:(UIEvent *)event;

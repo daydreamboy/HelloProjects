@@ -7,10 +7,10 @@
 //
 
 #import "ShowTouchIndicatorViewController.h"
-#import "WCTouchWindow.h"
+#import "WCTouchIndicatorWindow.h"
 
 @interface ShowTouchIndicatorViewController ()
-@property (nonatomic, strong) WCTouchWindow *touchWindow;
+@property (nonatomic, strong) WCTouchIndicatorWindow *touchWindow;
 @end
 
 @implementation ShowTouchIndicatorViewController
@@ -25,7 +25,7 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:switchShowTouchIndicator];
     
-    self.touchWindow = [WCTouchWindow defaultTouchWindow];
+    self.touchWindow = [WCTouchIndicatorWindow defaultTouchWindow];
 }
 
 #pragma mark - Action

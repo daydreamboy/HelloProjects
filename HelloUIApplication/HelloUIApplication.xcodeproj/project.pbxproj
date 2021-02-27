@@ -15,9 +15,9 @@
 		4F11935E1FF632CF00B653F3 /* SimulateMemoryWarningViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F11935C1FF632CE00B653F3 /* SimulateMemoryWarningViewController.m */; };
 		4F23A77A23FEC1C30056376E /* WCApplicationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7E2D7C222395E1007D190E /* WCApplicationTool.m */; };
 		4F56B27325A214C200AD7478 /* MyApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F56B27225A214C100AD7478 /* MyApplication.m */; };
-		4F56B27A25A216E700AD7478 /* WCTouchWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F56B27925A216E700AD7478 /* WCTouchWindow.m */; };
-		4F56B28325A2179500AD7478 /* WCTouchFingerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F56B28225A2179500AD7478 /* WCTouchFingerView.m */; };
-		4F56B28925A219B200AD7478 /* WCTouchFingerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F56B28825A219B200AD7478 /* WCTouchFingerViewController.m */; };
+		4F56B27A25A216E700AD7478 /* WCTouchIndicatorWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F56B27925A216E700AD7478 /* WCTouchIndicatorWindow.m */; };
+		4F56B28325A2179500AD7478 /* WCTouchIndicatorFingerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F56B28225A2179500AD7478 /* WCTouchIndicatorFingerView.m */; };
+		4F56B28925A219B200AD7478 /* WCTouchIndicatorFingerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F56B28825A219B200AD7478 /* WCTouchIndicatorFingerViewController.m */; };
 		4F56B28F25A21CA900AD7478 /* ShowTouchIndicatorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F56B28E25A21CA900AD7478 /* ShowTouchIndicatorViewController.m */; };
 		4F5998B923026C25001B0E09 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5998B823026C25001B0E09 /* Test.m */; };
 		4F70D8D825EA396E0088F1CA /* WCKeyboardShortcutManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70D8D625EA396E0088F1CA /* WCKeyboardShortcutManager.m */; };
@@ -55,12 +55,12 @@
 		4F11935D1FF632CE00B653F3 /* SimulateMemoryWarningViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimulateMemoryWarningViewController.h; sourceTree = "<group>"; };
 		4F56B27125A214C100AD7478 /* MyApplication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyApplication.h; sourceTree = "<group>"; };
 		4F56B27225A214C100AD7478 /* MyApplication.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyApplication.m; sourceTree = "<group>"; };
-		4F56B27825A216E700AD7478 /* WCTouchWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCTouchWindow.h; sourceTree = "<group>"; };
-		4F56B27925A216E700AD7478 /* WCTouchWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCTouchWindow.m; sourceTree = "<group>"; };
-		4F56B28125A2179500AD7478 /* WCTouchFingerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCTouchFingerView.h; sourceTree = "<group>"; };
-		4F56B28225A2179500AD7478 /* WCTouchFingerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCTouchFingerView.m; sourceTree = "<group>"; };
-		4F56B28725A219B200AD7478 /* WCTouchFingerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCTouchFingerViewController.h; sourceTree = "<group>"; };
-		4F56B28825A219B200AD7478 /* WCTouchFingerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCTouchFingerViewController.m; sourceTree = "<group>"; };
+		4F56B27825A216E700AD7478 /* WCTouchIndicatorWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCTouchIndicatorWindow.h; sourceTree = "<group>"; };
+		4F56B27925A216E700AD7478 /* WCTouchIndicatorWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCTouchIndicatorWindow.m; sourceTree = "<group>"; };
+		4F56B28125A2179500AD7478 /* WCTouchIndicatorFingerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCTouchIndicatorFingerView.h; sourceTree = "<group>"; };
+		4F56B28225A2179500AD7478 /* WCTouchIndicatorFingerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCTouchIndicatorFingerView.m; sourceTree = "<group>"; };
+		4F56B28725A219B200AD7478 /* WCTouchIndicatorFingerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCTouchIndicatorFingerViewController.h; sourceTree = "<group>"; };
+		4F56B28825A219B200AD7478 /* WCTouchIndicatorFingerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCTouchIndicatorFingerViewController.m; sourceTree = "<group>"; };
 		4F56B28D25A21CA900AD7478 /* ShowTouchIndicatorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowTouchIndicatorViewController.h; sourceTree = "<group>"; };
 		4F56B28E25A21CA900AD7478 /* ShowTouchIndicatorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowTouchIndicatorViewController.m; sourceTree = "<group>"; };
 		4F5998B623026C25001B0E09 /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,7 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				4F70D8D325EA39370088F1CA /* WCKeyboardShortcutManager */,
-				4F56B27725A216CD00AD7478 /* WCTouchWindow */,
+				4F56B27725A216CD00AD7478 /* WCTouchIndicatorWindow */,
 				4F7E2D7A222395CD007D190E /* WCApplicationTool */,
 				4F1193411FF6328800B653F3 /* HelloUIApplication */,
 				4F5998B723026C25001B0E09 /* Test */,
@@ -164,17 +164,17 @@
 			path = AppTestDemos;
 			sourceTree = "<group>";
 		};
-		4F56B27725A216CD00AD7478 /* WCTouchWindow */ = {
+		4F56B27725A216CD00AD7478 /* WCTouchIndicatorWindow */ = {
 			isa = PBXGroup;
 			children = (
-				4F56B27825A216E700AD7478 /* WCTouchWindow.h */,
-				4F56B27925A216E700AD7478 /* WCTouchWindow.m */,
-				4F56B28125A2179500AD7478 /* WCTouchFingerView.h */,
-				4F56B28225A2179500AD7478 /* WCTouchFingerView.m */,
-				4F56B28725A219B200AD7478 /* WCTouchFingerViewController.h */,
-				4F56B28825A219B200AD7478 /* WCTouchFingerViewController.m */,
+				4F56B27825A216E700AD7478 /* WCTouchIndicatorWindow.h */,
+				4F56B27925A216E700AD7478 /* WCTouchIndicatorWindow.m */,
+				4F56B28125A2179500AD7478 /* WCTouchIndicatorFingerView.h */,
+				4F56B28225A2179500AD7478 /* WCTouchIndicatorFingerView.m */,
+				4F56B28725A219B200AD7478 /* WCTouchIndicatorFingerViewController.h */,
+				4F56B28825A219B200AD7478 /* WCTouchIndicatorFingerViewController.m */,
 			);
-			path = WCTouchWindow;
+			path = WCTouchIndicatorWindow;
 			sourceTree = "<group>";
 		};
 		4F5998B723026C25001B0E09 /* Test */ = {
@@ -370,18 +370,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F56B27325A214C200AD7478 /* MyApplication.m in Sources */,
-				4F56B28325A2179500AD7478 /* WCTouchFingerView.m in Sources */,
+				4F56B28325A2179500AD7478 /* WCTouchIndicatorFingerView.m in Sources */,
 				4F70D8DF25EA39A90088F1CA /* WCSwizzleTool.m in Sources */,
 				4F70D8EA25EA3DB20088F1CA /* UseWCKeyboardShortcutManagerViewController.m in Sources */,
 				4F7E2D7D222395E1007D190E /* WCApplicationTool.m in Sources */,
 				4F1193521FF6328800B653F3 /* main.m in Sources */,
 				4F70D8D825EA396E0088F1CA /* WCKeyboardShortcutManager.m in Sources */,
-				4F56B28925A219B200AD7478 /* WCTouchFingerViewController.m in Sources */,
+				4F56B28925A219B200AD7478 /* WCTouchIndicatorFingerViewController.m in Sources */,
 				4F56B28F25A21CA900AD7478 /* ShowTouchIndicatorViewController.m in Sources */,
 				4F11935E1FF632CF00B653F3 /* SimulateMemoryWarningViewController.m in Sources */,
 				4F1193441FF6328800B653F3 /* AppDelegate.m in Sources */,
 				4F11935A1FF632C900B653F3 /* RootViewController.m in Sources */,
-				4F56B27A25A216E700AD7478 /* WCTouchWindow.m in Sources */,
+				4F56B27A25A216E700AD7478 /* WCTouchIndicatorWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
