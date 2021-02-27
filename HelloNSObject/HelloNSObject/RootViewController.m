@@ -12,6 +12,10 @@
 #import "SwizzleMethodByCategoryMethodViewController.h"
 #import "SwizzleMethodByCFunctionViewController.h"
 #import "CreateClassAtRuntimeViewController.h"
+#import "GetPropertiesOfClassViewController.h"
+
+#import "CheckNSObjectIsaVariableViewController.h"
+#import "SetIVarDirectlyViewController.h"
 
 #import "IsaSwizzlingViewController.h"
 #import "IsaSwizzlingIssueViewController.h"
@@ -47,6 +51,10 @@
         @"Swizzle method by category method",
         @"Swizzle method by C function",
         @"Create class at runtime",
+        @"Get properties of a class",
+        
+        @"浅析NSObject的isa实例变量",
+        @"Set ivar directly",
         
         @"isa swizzling",
         @"isa swizzling for overwriting (maybe cause crash)",
@@ -61,6 +69,10 @@
         [SwizzleMethodByCategoryMethodViewController class],
         [SwizzleMethodByCFunctionViewController class],
         [CreateClassAtRuntimeViewController class],
+        [GetPropertiesOfClassViewController class],
+        
+        [CheckNSObjectIsaVariableViewController class],
+        [SetIVarDirectlyViewController class],
         
         [IsaSwizzlingViewController class],
         [IsaSwizzlingIssueViewController class],
