@@ -52,7 +52,7 @@
     return YES;
 }
 
-+ (BOOL)replaceIMPWithClass:(Class)class originalSelector:(SEL)originalSelector swizzledBlock:(id)block originalIMPPtr:(IMPPtr _Nullable)originalIMPPtr {
++ (BOOL)replaceIMPWithClass:(Class)class originalSelector:(SEL)originalSelector swizzledBlock:(id)block originalIMPPtr:(inout WCIMPPtr _Nullable)originalIMPPtr {
     
     if (class == NULL || !sel_isMapped(originalSelector) || !block) {
         return NO;
@@ -104,7 +104,7 @@
     return YES;
 }
 
-+ (BOOL)exchangeIMPWithClass:(Class)class swizzledIMP:(IMP)swizzledIMP originalSelector:(SEL)originalSelector originalIMPPtr:(IMPPtr)originalIMPPtr {
++ (BOOL)exchangeIMPWithClass:(Class)class swizzledIMP:(IMP)swizzledIMP originalSelector:(SEL)originalSelector originalIMPPtr:(inout WCIMPPtr _Nullable)originalIMPPtr {
     
     if (class == NULL || swizzledIMP == NULL || !sel_isMapped(originalSelector)) {
         return NO;

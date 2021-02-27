@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef IMP _Nonnull *IMPPtr;
+typedef IMP _Nonnull *WCIMPPtr;
 
 @interface WCSwizzleTool : NSObject
 
@@ -41,7 +41,7 @@ typedef IMP _Nonnull *IMPPtr;
  If the `originalSelector` exists, the IMP is the old IMP.
  @return YES if the operate successfull. NO if any error occurred internally.
  */
-+ (BOOL)replaceIMPWithClass:(Class)cls originalSelector:(SEL)originalSelector swizzledBlock:(id)block originalIMPPtr:(IMPPtr _Nullable)originalIMPPtr;
++ (BOOL)replaceIMPWithClass:(Class)cls originalSelector:(SEL)originalSelector swizzledBlock:(id)block originalIMPPtr:(inout WCIMPPtr _Nullable)originalIMPPtr;
 
 /**
  Exchange the IMP for two existing selectors
@@ -62,7 +62,7 @@ typedef IMP _Nonnull *IMPPtr;
  @param originalIMPPtr the original C function
  @return YES if the operate successfull. NO if any error occurred internally.
  */
-+ (BOOL)exchangeIMPWithClass:(Class)cls swizzledIMP:(IMP)swizzledIMP originalSelector:(SEL)originalSelector originalIMPPtr:(IMPPtr _Nonnull)originalIMPPtr;
++ (BOOL)exchangeIMPWithClass:(Class)cls swizzledIMP:(IMP)swizzledIMP originalSelector:(SEL)originalSelector originalIMPPtr:(inout WCIMPPtr _Nullable)originalIMPPtr;
 
 #pragma mark > Swizzle Assistant Method
 
