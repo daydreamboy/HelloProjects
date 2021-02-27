@@ -242,32 +242,11 @@
 		4F161AAF231E92D400A22350 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F70D87E25EA21B10088F1CA /* Swizzling */,
 				4F70D86D25EA20A60088F1CA /* NSObject */,
 				4F70D86225EA1FD90088F1CA /* ObjCRuntime */,
-				4F35B9EC2324FC31001637AB /* CreateDynamicParamModel */,
+				4F70D87E25EA21B10088F1CA /* Swizzling */,
+				4F70D89525EA26420088F1CA /* UseWCMulticastDelegate */,
 				4F35B9E22324FC31001637AB /* AllModelsProtocol.h */,
-				4F35B9E82324FC31001637AB /* CreateClassAtRuntimeViewController.h */,
-				4F35B9EA2324FC31001637AB /* CreateClassAtRuntimeViewController.m */,
-				4F35B9DB2324FC30001637AB /* CreateDynamicDelegateViewController.h */,
-				4F35B9DC2324FC30001637AB /* CreateDynamicDelegateViewController.m */,
-				4F35B9F42324FC31001637AB /* CreateDynamicDelegateViewController.xib */,
-				4F35B9DD2324FC30001637AB /* IsaSwizzlingIssueViewController.h */,
-				4F35B9E12324FC31001637AB /* IsaSwizzlingIssueViewController.m */,
-				4F35B9F72324FC32001637AB /* IsaSwizzlingViewController.h */,
-				4F35B9E32324FC31001637AB /* IsaSwizzlingViewController.m */,
-				4F35B9D92324FC30001637AB /* ObtainWeakVariableViewController.h */,
-				4F35B9EB2324FC31001637AB /* ObtainWeakVariableViewController.m */,
-				4F35B9F62324FC32001637AB /* SimpleDynamicSubclassViewController.h */,
-				4F35B9F82324FC32001637AB /* SimpleDynamicSubclassViewController.m */,
-				4F161AB1231E934000A22350 /* SwizzleMethodByBlockViewController.h */,
-				4F161AB0231E934000A22350 /* SwizzleMethodByBlockViewController.m */,
-				4F7E7F85231ECE9700E91F0E /* SwizzleMethodByCategoryMethodViewController.h */,
-				4F7E7F84231ECE9700E91F0E /* SwizzleMethodByCategoryMethodViewController.m */,
-				4FD758C22324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.h */,
-				4FD758C32324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.m */,
-				4FF2560924FFC374008B5F9A /* UseWCMulticastDelegateViewController.h */,
-				4FF2560A24FFC374008B5F9A /* UseWCMulticastDelegateViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -418,8 +397,18 @@
 		4F70D86225EA1FD90088F1CA /* ObjCRuntime */ = {
 			isa = PBXGroup;
 			children = (
+				4F35B9EC2324FC31001637AB /* CreateDynamicParamModel */,
 				4F70D86625EA203E0088F1CA /* GetPropertiesOfClassViewController.h */,
 				4F70D86525EA203E0088F1CA /* GetPropertiesOfClassViewController.m */,
+				4F35B9E82324FC31001637AB /* CreateClassAtRuntimeViewController.h */,
+				4F35B9EA2324FC31001637AB /* CreateClassAtRuntimeViewController.m */,
+				4F35B9DB2324FC30001637AB /* CreateDynamicDelegateViewController.h */,
+				4F35B9DC2324FC30001637AB /* CreateDynamicDelegateViewController.m */,
+				4F35B9F42324FC31001637AB /* CreateDynamicDelegateViewController.xib */,
+				4F35B9D92324FC30001637AB /* ObtainWeakVariableViewController.h */,
+				4F35B9EB2324FC31001637AB /* ObtainWeakVariableViewController.m */,
+				4F35B9F62324FC32001637AB /* SimpleDynamicSubclassViewController.h */,
+				4F35B9F82324FC32001637AB /* SimpleDynamicSubclassViewController.m */,
 			);
 			path = ObjCRuntime;
 			sourceTree = "<group>";
@@ -427,10 +416,10 @@
 		4F70D86D25EA20A60088F1CA /* NSObject */ = {
 			isa = PBXGroup;
 			children = (
-				4F70D88A25EA22FC0088F1CA /* SetIVarDirectlyViewController.h */,
-				4F70D88925EA22FC0088F1CA /* SetIVarDirectlyViewController.m */,
 				4F70D86E25EA20D30088F1CA /* CheckNSObjectIsaVariableViewController.h */,
 				4F70D86F25EA20D30088F1CA /* CheckNSObjectIsaVariableViewController.m */,
+				4F70D88A25EA22FC0088F1CA /* SetIVarDirectlyViewController.h */,
+				4F70D88925EA22FC0088F1CA /* SetIVarDirectlyViewController.m */,
 			);
 			path = NSObject;
 			sourceTree = "<group>";
@@ -438,8 +427,27 @@
 		4F70D87E25EA21B10088F1CA /* Swizzling */ = {
 			isa = PBXGroup;
 			children = (
+				4F35B9DD2324FC30001637AB /* IsaSwizzlingIssueViewController.h */,
+				4F35B9E12324FC31001637AB /* IsaSwizzlingIssueViewController.m */,
+				4F35B9F72324FC32001637AB /* IsaSwizzlingViewController.h */,
+				4F35B9E32324FC31001637AB /* IsaSwizzlingViewController.m */,
+				4F161AB1231E934000A22350 /* SwizzleMethodByBlockViewController.h */,
+				4F161AB0231E934000A22350 /* SwizzleMethodByBlockViewController.m */,
+				4F7E7F85231ECE9700E91F0E /* SwizzleMethodByCategoryMethodViewController.h */,
+				4F7E7F84231ECE9700E91F0E /* SwizzleMethodByCategoryMethodViewController.m */,
+				4FD758C22324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.h */,
+				4FD758C32324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.m */,
 			);
 			path = Swizzling;
+			sourceTree = "<group>";
+		};
+		4F70D89525EA26420088F1CA /* UseWCMulticastDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				4FF2560924FFC374008B5F9A /* UseWCMulticastDelegateViewController.h */,
+				4FF2560A24FFC374008B5F9A /* UseWCMulticastDelegateViewController.m */,
+			);
+			path = UseWCMulticastDelegate;
 			sourceTree = "<group>";
 		};
 		4FFE71972236AC550020516E = {

@@ -8,27 +8,36 @@
 
 #import "RootViewController.h"
 
-#import "SwizzleMethodByBlockViewController.h"
-#import "SwizzleMethodByCategoryMethodViewController.h"
-#import "SwizzleMethodByCFunctionViewController.h"
-#import "CreateClassAtRuntimeViewController.h"
-#import "GetPropertiesOfClassViewController.h"
-
+// section1
 #import "CheckNSObjectIsaVariableViewController.h"
 #import "SetIVarDirectlyViewController.h"
 
-#import "IsaSwizzlingViewController.h"
-#import "IsaSwizzlingIssueViewController.h"
+// section2
 #import "CreateClassAtRuntimeViewController.h"
+#import "GetPropertiesOfClassViewController.h"
+#import "CreateDynamicDelegateViewController.h"
 #import "SimpleDynamicSubclassViewController.h"
 #import "CreateDynamicParamModelViewController.h"
+
+#import "SwizzleMethodByBlockViewController.h"
+#import "SwizzleMethodByCategoryMethodViewController.h"
+#import "SwizzleMethodByCFunctionViewController.h"
+
+
+#import "IsaSwizzlingViewController.h"
+#import "IsaSwizzlingIssueViewController.h"
+
+
 #import "ObtainWeakVariableViewController.h"
 
 #import "UseWCMulticastDelegateViewController.h"
 
+#define kTitle @"Title"
+#define kClass @"Class"
+
 @interface RootViewController ()
-@property (nonatomic, strong) NSArray *titles;
-@property (nonatomic, strong) NSArray *classes;
+@property (nonatomic, strong) NSArray *sectionTitles;
+@property (nonatomic, strong) NSArray<NSArray<NSDictionary *> *> *classes;
 @end
 
 @implementation RootViewController
@@ -45,71 +54,86 @@
 - (void)prepareForInit {
     self.title = @"HelloObjCRuntime";
 
-    // MARK: Configure titles and classes for table view
-    _titles = @[
-        @"Swizzle method by block",
-        @"Swizzle method by category method",
-        @"Swizzle method by C function",
-        @"Create class at runtime",
-        @"Get properties of a class",
-        
-        @"浅析NSObject的isa实例变量",
-        @"Set ivar directly",
-        
-        @"isa swizzling",
-        @"isa swizzling for overwriting (maybe cause crash)",
-        @"Create Class at runtime",
-        @"Simple dynamic subclass",
-        @"Create dynamic delegates",
-        @"Obtain weak variable by objc_loadWeakRetained()",
-        @"Use WCMulticastDelegate",
+    // MARK: Configure sectionTitles and classes for table view
+    NSArray<NSDictionary *> *section1 = @[
+          @{ kTitle: @"Check NSObject isa", kClass: [CheckNSObjectIsaVariableViewController class] },
+          @{ kTitle: @"Set ivar directly", kClass: [SetIVarDirectlyViewController class] },
     ];
+
+    NSArray<NSDictionary *> *section2 = @[
+          @{ kTitle: @"Get properties of a class", kClass: [GetPropertiesOfClassViewController class] },
+          @{ kTitle: @"Create Class at runtime", kClass: [CreateClassAtRuntimeViewController class] },
+          @{ kTitle: @"Simple dynamic subclass", kClass: [SimpleDynamicSubclassViewController class] },
+          @{ kTitle: @"Create dynamic delegates", kClass: [CreateDynamicDelegateViewController class] },
+          @{ kTitle: @"Create dynamic param model", kClass: [CreateDynamicParamModelViewController class] },
+          @{ kTitle: @"Obtain weak variable by objc_loadWeakRetained()", kClass: [ObtainWeakVariableViewController class] },
+    ];
+    
+    NSArray<NSDictionary *> *section3 = @[
+          @{ kTitle: @"Swizzle method by category method", kClass: [SwizzleMethodByCategoryMethodViewController class] },
+          @{ kTitle: @"Swizzle method by block", kClass: [SwizzleMethodByBlockViewController class] },
+          @{ kTitle: @"Swizzle method by C function", kClass: [SwizzleMethodByCFunctionViewController class] },
+          @{ kTitle: @"isa swizzling", kClass: [IsaSwizzlingViewController class] },
+          @{ kTitle: @"isa swizzling for overwriting (maybe cause crash)", kClass: [IsaSwizzlingIssueViewController class] },
+    ];
+    
+    NSArray<NSDictionary *> *section4 = @[
+          @{ kTitle: @"Use WCMulticastDelegate", kClass: [UseWCMulticastDelegateViewController class] },
+    ];
+    
+    _sectionTitles = @[
+        @"NSObject",
+        @"ObjC Runtime",
+        @"Swizzling",
+        @"WCMultipleDelegate",
+    ];
+    
     _classes = @[
-        [SwizzleMethodByBlockViewController class],
-        [SwizzleMethodByCategoryMethodViewController class],
-        [SwizzleMethodByCFunctionViewController class],
-        [CreateClassAtRuntimeViewController class],
-        [GetPropertiesOfClassViewController class],
-        
-        [CheckNSObjectIsaVariableViewController class],
-        [SetIVarDirectlyViewController class],
-        
-        [IsaSwizzlingViewController class],
-        [IsaSwizzlingIssueViewController class],
-        [CreateClassAtRuntimeViewController class],
-        [SimpleDynamicSubclassViewController class],
-        [CreateDynamicParamModelViewController class],
-        [ObtainWeakVariableViewController class],
-        [UseWCMulticastDelegateViewController class],
+         section1,
+         section2,
+         section3,
+         section4,
     ];
 }
 
 #pragma mark -
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    [self pushViewController:_classes[indexPath.row]];
+    
+    NSDictionary *dict = _classes[indexPath.section][indexPath.row];
+    [self pushViewController:dict];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return _sectionTitles[section];
 }
 
 #pragma mark -
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return [_classes count];
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [_titles count];
+    return [_classes[section] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *sCellIdentifier = @"RootViewController_sCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
-
+    
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
-
-    cell.textLabel.text = _titles[indexPath.row];
-
+    
+    NSString *cellTitle = [_classes[indexPath.section][indexPath.row] objectForKey:kTitle];
+    cell.textLabel.text = cellTitle;
+    
     return cell;
 }
 
-- (void)pushViewController:(id)viewControllerClass {
+- (void)pushViewController:(NSDictionary *)dict {
+    id viewControllerClass = dict[kClass];
     
     id class = viewControllerClass;
     if ([class isKindOfClass:[NSString class]]) {
@@ -126,7 +150,7 @@
     }
     else if (class && [class isSubclassOfClass:[UIViewController class]]) {
         UIViewController *vc = [[class alloc] init];
-        vc.title = _titles[[_classes indexOfObject:viewControllerClass]];
+        vc.title = dict[kTitle];
         
         self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStylePlain target:nil action:nil];
         [self.navigationController pushViewController:vc animated:YES];
