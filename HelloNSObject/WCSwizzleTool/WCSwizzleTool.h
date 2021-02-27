@@ -54,7 +54,7 @@ typedef IMP _Nonnull *WCIMPPtr;
  @discussion This method will create new selector (`swizzledSelector`) and its IMP if the IMP not exists. And
  replace the swizzled selector's IMP if the swizzled selector already has the previous one.
  */
-+ (BOOL)exchangeIMPWithClass:(Class)cls originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector swizzledBlock:(id)block;
++ (BOOL)exchangeIMPWithClass:(Class)cls originalSelector:(SEL)originalSelector swizzledSelector:(SEL _Nullable)swizzledSelector swizzledBlock:(id)block;
 
 /**
  Replace the IMP of the original selector with block or add the new IMP to the original selector with block
@@ -107,7 +107,7 @@ typedef IMP _Nonnull *WCIMPPtr;
  @param selector the original selector
  @return the modified selector which created with prefix
  */
-+ (SEL)swizzledSelectorWithSelector:(SEL)selector;
++ (SEL)swizzledSelectorWithSelector:(SEL _Nullable)selector;
 
 @end
 

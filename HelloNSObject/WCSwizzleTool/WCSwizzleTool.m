@@ -13,7 +13,7 @@
 
 #pragma mark - Swizzle with block
 
-+ (BOOL)exchangeIMPWithClass:(Class)class originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector swizzledBlock:(id)block {
++ (BOOL)exchangeIMPWithClass:(Class)class originalSelector:(SEL)originalSelector swizzledSelector:(SEL _Nullable)swizzledSelector swizzledBlock:(id)block {
     
     if (class == NULL || !sel_isMapped(originalSelector) || !block) {
         return NO;
@@ -27,6 +27,10 @@
     IMP swizzledIMP = imp_implementationWithBlock(block);
     if (swizzledIMP == NULL) {
         return NO;
+    }
+    
+    if (swizzledSelector == NULL) {
+        swizzledSelector = [self swizzledSelectorWithSelector:NULL];
     }
     
     // Note: create a new Method with swizzledSelector and block IMP
@@ -147,7 +151,7 @@
 
 #pragma mark > Swizzle Assistant Method
 
-+ (SEL)swizzledSelectorWithSelector:(SEL)selector {
++ (SEL)swizzledSelectorWithSelector:(SEL _Nullable)selector {
     if (selector == NULL) {
         return NSSelectorFromString([NSString stringWithFormat:@"WCSwizzleTool_swizzle_%x", arc4random()]);
     }
