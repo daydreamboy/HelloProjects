@@ -15,6 +15,7 @@
 #import "UseExceptionHanderViewController.h"
 #import "UseSignalHandlerViewController.h"
 #import "InterceptDoesNotRecognizeSelectorViewController.h"
+#import "CreateWeakSelfInDeallocViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -44,6 +45,7 @@
                 @"Use exception handler",
                 @"Use signal handler",
                 @"Intercept does not recognized selectors",
+                @"Create weak self in dealloc",
                 @"call a test method",
                 ];
     _classes = @[
@@ -54,6 +56,7 @@
                  [UseExceptionHanderViewController class],
                  [UseSignalHandlerViewController class],
                  [InterceptDoesNotRecognizeSelectorViewController class],
+                 [CreateWeakSelfInDeallocViewController class],
                  @"testMethod",
                  ];
 }

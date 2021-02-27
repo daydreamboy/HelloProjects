@@ -443,7 +443,7 @@ main (in HelloNSException) (main.m:14)
 
 
 
-
+## 8、Watchdog Terminations[^2]
 
 
 
@@ -460,6 +460,8 @@ main (in HelloNSException) (main.m:14)
 ## Reference
 
 [^1]: https://www.plausible.coop/blog/?p=176 "Exploring iOS Crash Reports"
+
+[^2]:https://developer.apple.com/documentation/xcode/diagnosing_issues_using_crash_reports_and_device_logs/identifying_the_cause_of_common_crashes/addressing_watchdog_terminations
 
 
 

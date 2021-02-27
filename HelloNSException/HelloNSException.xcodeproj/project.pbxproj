@@ -27,10 +27,10 @@
 		4F5B08F621FEAC4100EE7C2E /* WCUncaughtExceptionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B08F321FEAC4100EE7C2E /* WCUncaughtExceptionTool.m */; };
 		4F5B08F721FEAC4100EE7C2E /* WCCrashCaseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B08F421FEAC4100EE7C2E /* WCCrashCaseTool.m */; };
 		4F5B08FB21FEADAF00EE7C2E /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5B08F921FEADAF00EE7C2E /* Reveal.framework */; };
-		4F5B08FD21FEAE0300EE7C2E /* WCDebugKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5B08F821FEADAF00EE7C2E /* WCDebugKit.framework */; };
-		4F5B08FF21FEAE2800EE7C2E /* WCDebugKit.framework in Copy Files (1 item) */ = {isa = PBXBuildFile; fileRef = 4F5B08F821FEADAF00EE7C2E /* WCDebugKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4F5B08FD21FEAE0300EE7C2E /* WCDebugKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F5B08F821FEADAF00EE7C2E /* WCDebugKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4F5B090321FEB2D500EE7C2E /* WCExceptionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B090221FEB2D500EE7C2E /* WCExceptionTool.m */; };
 		4F68FB1C246EC43100560439 /* WCMachOTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F68FB1B246EC43100560439 /* WCMachOTool.m */; };
+		4F70D8F025EA40970088F1CA /* CreateWeakSelfInDeallocViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70D8EF25EA40970088F1CA /* CreateWeakSelfInDeallocViewController.m */; };
 		4F746927214E42B30079F654 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F746926214E42B30079F654 /* AppDelegate.m */; };
 		4F74692F214E42B50079F654 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F74692E214E42B50079F654 /* Assets.xcassets */; };
 		4F746932214E42B50079F654 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F746930214E42B50079F654 /* LaunchScreen.storyboard */; };
@@ -64,7 +64,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4F5B08FF21FEAE2800EE7C2E /* WCDebugKit.framework in Copy Files (1 item) */,
 				4F35BA3F23250299001637AB /* UnsafeFramework.framework in Copy Files (1 item) */,
 			);
 			name = "Copy Files (1 item)";
@@ -113,6 +112,8 @@
 		4F5B090221FEB2D500EE7C2E /* WCExceptionTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCExceptionTool.m; sourceTree = "<group>"; };
 		4F68FB1A246EC43100560439 /* WCMachOTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCMachOTool.h; sourceTree = "<group>"; };
 		4F68FB1B246EC43100560439 /* WCMachOTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCMachOTool.m; sourceTree = "<group>"; };
+		4F70D8EE25EA40970088F1CA /* CreateWeakSelfInDeallocViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateWeakSelfInDeallocViewController.h; sourceTree = "<group>"; };
+		4F70D8EF25EA40970088F1CA /* CreateWeakSelfInDeallocViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateWeakSelfInDeallocViewController.m; sourceTree = "<group>"; };
 		4F746922214E42B30079F654 /* HelloNSException.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSException.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F746925214E42B30079F654 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F746926214E42B30079F654 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -214,6 +215,8 @@
 				4F5B08E621FEABEF00EE7C2E /* UseExceptionHanderViewController.m */,
 				4F5B08E321FEABEF00EE7C2E /* UseSignalHandlerViewController.h */,
 				4F5B08E921FEABEF00EE7C2E /* UseSignalHandlerViewController.m */,
+				4F70D8EE25EA40970088F1CA /* CreateWeakSelfInDeallocViewController.h */,
+				4F70D8EF25EA40970088F1CA /* CreateWeakSelfInDeallocViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 				4F5B08F521FEAC4100EE7C2E /* UncaughtExceptionHandler.m in Sources */,
 				4F35BA2A2324FF78001637AB /* MethodUnrecognizedGuard.m in Sources */,
 				4F5B08EB21FEABEF00EE7C2E /* DisplayTextViewController.m in Sources */,
+				4F70D8F025EA40970088F1CA /* CreateWeakSelfInDeallocViewController.m in Sources */,
 				4F35BA222324FF45001637AB /* InterceptDoesNotRecognizeSelectorViewController.m in Sources */,
 				4F5B08EC21FEABEF00EE7C2E /* UseExceptionHanderViewController.m in Sources */,
 				4F5B08F721FEAC4100EE7C2E /* WCCrashCaseTool.m in Sources */,
