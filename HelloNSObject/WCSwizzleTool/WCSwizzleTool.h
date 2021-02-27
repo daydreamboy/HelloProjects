@@ -10,6 +10,22 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ Use WC_SWIZZLE_CLASS_BEGIN/WC_SWIZZLE_CLASS_END to declare a class at any where for
+ swizzling by category method
+ 
+ @param clz the class to swizzle
+ @code
+ WC_SWIZZLE_CLASS_BEGIN(UIView)
+ - (void)my_setFrame:(CGRect)frame {
+     // do something
+     [self my_setFrame:frame];
+ }
+ WC_SWIZZLE_CLASS_END
+ @endcode
+ 
+ @discussion the clz is derived from NSObject
+ */
 #define WC_SWIZZLE_CLASS_BEGIN(clz) \
 @interface clz : NSObject \
 @end \
