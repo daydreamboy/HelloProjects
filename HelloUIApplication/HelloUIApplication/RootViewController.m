@@ -10,6 +10,7 @@
 
 #import "SimulateMemoryWarningViewController.h"
 #import "ShowTouchIndicatorViewController.h"
+#import "UseWCKeyboardShortcutManagerViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -34,11 +35,13 @@
     _titles = @[
         @"Simulate memory warning",
         @"Show Touch Indicator",
+        @"Use WCKeyboardShortcutManager",
         @"call a test method",
     ];
     _classes = @[
         [SimulateMemoryWarningViewController class],
         [ShowTouchIndicatorViewController class],
+        [UseWCKeyboardShortcutManagerViewController class],
         @"testMethod",
     ];
 }
