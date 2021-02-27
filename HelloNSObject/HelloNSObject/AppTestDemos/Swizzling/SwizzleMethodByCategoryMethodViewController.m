@@ -8,6 +8,7 @@
 
 #import "SwizzleMethodByCategoryMethodViewController.h"
 #import "WCObjectTool.h"
+#import "WCSwizzleTool.h"
 
 @interface MyViewController : UIViewController @end
 @implementation MyViewController
@@ -57,7 +58,7 @@
     self = [super init];
     if (self) {
         // Warning: the swizzled method `my_setFrame:` will pollute all UIView's subclasses' setFrame: method
-        [WCObjectTool exchangeIMPWithClass:[UIView class] selector1:@selector(setFrame:) selector2:@selector(my_setFrame:)];
+        [WCSwizzleTool exchangeIMPWithClass:[UIView class] selector1:@selector(setFrame:) selector2:@selector(my_setFrame:)];
     }
     return self;
 }

@@ -63,6 +63,9 @@
 		4F70D86725EA203E0088F1CA /* GetPropertiesOfClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70D86525EA203E0088F1CA /* GetPropertiesOfClassViewController.m */; };
 		4F70D87025EA20D30088F1CA /* CheckNSObjectIsaVariableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70D86F25EA20D30088F1CA /* CheckNSObjectIsaVariableViewController.m */; };
 		4F70D88B25EA22FC0088F1CA /* SetIVarDirectlyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70D88925EA22FC0088F1CA /* SetIVarDirectlyViewController.m */; };
+		4F70D8A325EA29940088F1CA /* WCSwizzleTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70D8A225EA29940088F1CA /* WCSwizzleTool.m */; };
+		4F70D8A425EA29940088F1CA /* WCSwizzleTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70D8A225EA29940088F1CA /* WCSwizzleTool.m */; };
+		4F70D8B025EA29B30088F1CA /* Test_WCSwizzleTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70D8AF25EA29B30088F1CA /* Test_WCSwizzleTool.m */; };
 		4FD758C12324F10C00BC1C2F /* SwizzleMethodByCategoryMethodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7E7F84231ECE9700E91F0E /* SwizzleMethodByCategoryMethodViewController.m */; };
 		4FD758C42324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD758C32324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.m */; };
 		4FE4376824F67D9D00AEFB27 /* Test_ivar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4376724F67D9D00AEFB27 /* Test_ivar.m */; };
@@ -183,6 +186,9 @@
 		4F70D86F25EA20D30088F1CA /* CheckNSObjectIsaVariableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckNSObjectIsaVariableViewController.m; sourceTree = "<group>"; };
 		4F70D88925EA22FC0088F1CA /* SetIVarDirectlyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetIVarDirectlyViewController.m; sourceTree = "<group>"; };
 		4F70D88A25EA22FC0088F1CA /* SetIVarDirectlyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetIVarDirectlyViewController.h; sourceTree = "<group>"; };
+		4F70D8A125EA29940088F1CA /* WCSwizzleTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCSwizzleTool.h; sourceTree = "<group>"; };
+		4F70D8A225EA29940088F1CA /* WCSwizzleTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCSwizzleTool.m; sourceTree = "<group>"; };
+		4F70D8AF25EA29B30088F1CA /* Test_WCSwizzleTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_WCSwizzleTool.m; sourceTree = "<group>"; };
 		4F7E7F84231ECE9700E91F0E /* SwizzleMethodByCategoryMethodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwizzleMethodByCategoryMethodViewController.m; sourceTree = "<group>"; };
 		4F7E7F85231ECE9700E91F0E /* SwizzleMethodByCategoryMethodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwizzleMethodByCategoryMethodViewController.h; sourceTree = "<group>"; };
 		4FD758C22324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwizzleMethodByCFunctionViewController.h; sourceTree = "<group>"; };
@@ -374,6 +380,7 @@
 				4F35BA2C23250101001637AB /* Test_property.m */,
 				4F2237D5245963EA000CC3C9 /* Test_NSObject_WCDebug.m */,
 				4F23255D24F6087E0073BDC6 /* Test_WCMulticastDelegate.m */,
+				4F70D8AF25EA29B30088F1CA /* Test_WCSwizzleTool.m */,
 				4F5B65322249DD4600D40218 /* Info.plist */,
 			);
 			path = Test;
@@ -450,12 +457,22 @@
 			path = UseWCMulticastDelegate;
 			sourceTree = "<group>";
 		};
+		4F70D8A025EA29760088F1CA /* WCSwizzleTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F70D8A125EA29940088F1CA /* WCSwizzleTool.h */,
+				4F70D8A225EA29940088F1CA /* WCSwizzleTool.m */,
+			);
+			path = WCSwizzleTool;
+			sourceTree = "<group>";
+		};
 		4FFE71972236AC550020516E = {
 			isa = PBXGroup;
 			children = (
 				4F42956924F5305200B1640B /* WCMulticastDelegate */,
 				4F35BA0A2324FDA1001637AB /* WCObjCRuntime */,
 				4F54E6552238A08A001A9BE2 /* WCObjectTool */,
+				4F70D8A025EA29760088F1CA /* WCSwizzleTool */,
 				4FFE71A22236AC550020516E /* HelloNSObject */,
 				4F54E65E2238A1C7001A9BE2 /* OrderOfCallLoadMethodInNSObject */,
 				4F54E6782238B49F001A9BE2 /* OrderOfCallInitializeMethodInNSObject */,
@@ -705,6 +722,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F110EEE231F5E92006C9AFD /* Test_bridge.m in Sources */,
+				4F70D8B025EA29B30088F1CA /* Test_WCSwizzleTool.m in Sources */,
 				4F110EED231F5E92006C9AFD /* Test_IMP.m in Sources */,
 				4F110EF2231F5EDD006C9AFD /* MyObject.m in Sources */,
 				4FE4376824F67D9D00AEFB27 /* Test_ivar.m in Sources */,
@@ -718,6 +736,7 @@
 				4F5B7115229D686C0061A9D0 /* Test_NSObject.m in Sources */,
 				4F35BA2D23250101001637AB /* Test_property.m in Sources */,
 				4F573291224B134500EFB1CF /* Person.m in Sources */,
+				4F70D8A425EA29940088F1CA /* WCSwizzleTool.m in Sources */,
 				4F5B65312249DD4600D40218 /* Test.mm in Sources */,
 				4F110EEF231F5E92006C9AFD /* Test_retainCount.m in Sources */,
 				4F23255E24F6087E0073BDC6 /* Test_WCMulticastDelegate.m in Sources */,
@@ -746,6 +765,7 @@
 				4FD758C12324F10C00BC1C2F /* SwizzleMethodByCategoryMethodViewController.m in Sources */,
 				4F35BA1A2324FDA1001637AB /* WCRTUnregisteredClass.m in Sources */,
 				4F35BA062324FC32001637AB /* PublicModelsForSomeSDK.m in Sources */,
+				4F70D8A325EA29940088F1CA /* WCSwizzleTool.m in Sources */,
 				4FD758C42324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.m in Sources */,
 				4F35BA172324FDA1001637AB /* WCRTProperty.m in Sources */,
 				4F54E6582238A0BB001A9BE2 /* WCObjectTool.m in Sources */,

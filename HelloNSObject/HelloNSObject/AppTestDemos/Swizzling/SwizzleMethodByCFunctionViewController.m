@@ -8,6 +8,7 @@
 
 #import "SwizzleMethodByCFunctionViewController.h"
 #import "WCObjectTool.h"
+#import "WCSwizzleTool.h"
 
 @interface UIButton (Category_A)
 @end
@@ -53,7 +54,7 @@ static void MySetBackgroundColor(id self, SEL _cmd, UIColor *color) {
     self = [super init];
     if (self) {
         // Note: a more safe swizzling by using C funtion (IMP)
-        [WCObjectTool exchangeIMPWithClass:[UIView class] swizzledIMP:(IMP)MySetBackgroundColor originalSelector:@selector(setBackgroundColor:) originalIMPPtr:(IMP *)&SetBackgroundColorIMP];
+        [WCSwizzleTool exchangeIMPWithClass:[UIView class] swizzledIMP:(IMP)MySetBackgroundColor originalSelector:@selector(setBackgroundColor:) originalIMPPtr:(IMP *)&SetBackgroundColorIMP];
     }
     return self;
 }
