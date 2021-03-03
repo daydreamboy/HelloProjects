@@ -10,6 +10,8 @@
 #import "WCPinYinTable.h"
 #import <QuartzCore/QuartzCore.h>
 
+#define kResourceBundleName @"WCPinYinTable"
+
 static dispatch_queue_t sQueue;
 
 @implementation WCPinYinInfo
@@ -37,6 +39,22 @@ static dispatch_queue_t sQueue;
     });
     
     return sInstance;
+}
+
+- (void)preloadWithCompletion:(nullable void (^)(BOOL success))completion async:(BOOL)async {
+    if (self.loaded) {
+        !completion ?: completion(YES);
+    }
+    
+    NSString *bundlePath = [[NSBundle mainBundle] pathForResource:kResourceBundleName ofType:@"bundle"];
+    if (bundlePath && [[NSFileManager defaultManager] fileExistsAtPath:bundlePath]) {
+        NSString *filePath = [[NSBundle bundleWithPath:bundlePath] pathForResource:@"Unicode2Pinyin" ofType:@"txt"];
+        [self preloadWithFilePath:filePath completion:completion async:async];
+    }
+    else {
+        NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Unicode2Pinyin" ofType:@"txt"];
+        [self preloadWithFilePath:filePath completion:completion async:async];
+    }
 }
 
 - (void)preloadWithFilePath:(NSString *)filePath completion:(nullable void (^)(BOOL success))completion async:(BOOL)async {

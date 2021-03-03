@@ -58,13 +58,23 @@ typedef NS_OPTIONS(NSUInteger, WCPinYinStringPatternOption) {
 + (instancetype)sharedInstance;
 
 /**
- Preload the configuration file
+ Preload the configuration file with file path
  
  @param filePath the configuration file
  @param completion the callback
  @param async the flag if load the file asynchronous or synchronous
  */
 - (void)preloadWithFilePath:(NSString *)filePath completion:(nullable void (^)(BOOL success))completion async:(BOOL)async;
+
+/**
+ Preload the configuration file with file path
+ 
+ @param completion the callback
+ @param async the flag if load the file asynchronous or synchronous
+ 
+ @discussion Use this method must configure macro `kResourceBundleName`
+ */
+- (void)preloadWithCompletion:(nullable void (^)(BOOL success))completion async:(BOOL)async;
 
 /**
  Clean up all WCPinYinInfo objects
