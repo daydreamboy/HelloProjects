@@ -41,18 +41,75 @@ typedef NS_OPTIONS(NSUInteger, WCPinYinStringPatternOption) {
 @property (nonatomic, strong, nullable) NSArray<WCPinYinInfo *> *alternatives;
 @end
 
+/**
+ A table for querying PinYin info of chinese characters
+ */
 @interface WCPinYinTable : NSObject
 
+/**
+ The time for loading configuration file
+ */
 @property (nonatomic, assign, readonly) NSTimeInterval loadTimeInterval;
+/**
+ The flag for loading configuration file. YES if loaded, NO if not loaded yet
+ */
 @property (atomic, assign, readonly) BOOL loaded;
 
 + (instancetype)sharedInstance;
 
+/**
+ Preload the configuration file
+ 
+ @param filePath the configuration file
+ @param completion the callback
+ @param async the flag if load the file asynchronous or synchronous
+ */
 - (void)preloadWithFilePath:(NSString *)filePath completion:(nullable void (^)(BOOL success))completion async:(BOOL)async;
+
+/**
+ Clean up all WCPinYinInfo objects
+ 
+ @discussion This method called usually when you will never use WCPinYinTable sharedInstance
+ */
 - (void)cleanup;
+
+/**
+ Get PinYin info with a character
+ 
+ @param textCharacter the character which length is 1
+ 
+ @return the WCPinYinInfo object
+ */
 - (nullable WCPinYinInfo *)pinYinInfoWithTextCharacter:(NSString *)textCharacter;
+
+/**
+ Get multiple PinYin infos with a character which maybe a polyphone
+ 
+ @param textCharacter the character which length is 1
+ 
+ @return the WCPinYinInfo array
+ */
 - (nullable NSArray<WCPinYinInfo *> *)pinYinInfosWithTextCharacter:(NSString *)textCharacter;
+
+/**
+ Convert text to PinYin string
+ 
+ @param text the text string
+ @param type the WCPinYinStringType
+ @param separator the separator. If nil, use @" " by default
+ 
+ @return the PinYin string
+ */
 - (nullable NSString *)pinYinStringWithText:(NSString *)text type:(WCPinYinStringType)type separator:(nullable NSString *)separator;
+
+/**
+ Get match patterns of the text
+ 
+ @param text the text string
+ @param options the WCPinYinStringPatternOption
+ 
+ @return the PinYin match patterns
+ */
 - (nullable NSOrderedSet<NSString *> *)pinYinMatchPatternsWithText:(NSString *)text options:(WCPinYinStringPatternOption)options;
 
 #pragma mark - UNAVAILABLE
