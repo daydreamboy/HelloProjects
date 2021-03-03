@@ -91,6 +91,7 @@
 		4F4D749E20BED6CA0027DE7C = {
 			isa = PBXGroup;
 			children = (
+				4F79CC7625EF45C500121B8C /* WCPinYinTable */,
 				4F591D75214D284600F3F30A /* Library */,
 				4F731A8920BEE27D00D095F9 /* WCStringTool */,
 				4F4D74A920BED6CA0027DE7C /* HelloNSString */,
@@ -137,7 +138,6 @@
 		4F577FFE24336AA500880ACB /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				4F1D025624E250A200ECCB3C /* Unicode2Pinyin.txt */,
 				4F577FFF24336B7C00880ACB /* Emoticon_new.plist */,
 			);
 			path = Resources;
@@ -158,9 +158,6 @@
 				4F731A8B20BEE28F00D095F9 /* WCStringTool.m */,
 				4F591D72214D27BF00F3F30A /* WCStringTool+OpenSSL.h */,
 				4F591D73214D27BF00F3F30A /* WCStringTool+OpenSSL.m */,
-				4F2C159624DAE14500B3E209 /* WCPinYinTable.h */,
-				4F2C159724DAE14500B3E209 /* WCPinYinTable.m */,
-				4F211F7D24E3CA9D008A2AE3 /* WCPinYinTable_Testing.h */,
 			);
 			path = WCStringTool;
 			sourceTree = "<group>";
@@ -177,6 +174,17 @@
 				4F731A9520BEE34F00D095F9 /* Info.plist */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		4F79CC7625EF45C500121B8C /* WCPinYinTable */ = {
+			isa = PBXGroup;
+			children = (
+				4F1D025624E250A200ECCB3C /* Unicode2Pinyin.txt */,
+				4F2C159624DAE14500B3E209 /* WCPinYinTable.h */,
+				4F2C159724DAE14500B3E209 /* WCPinYinTable.m */,
+				4F211F7D24E3CA9D008A2AE3 /* WCPinYinTable_Testing.h */,
+			);
+			path = WCPinYinTable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
