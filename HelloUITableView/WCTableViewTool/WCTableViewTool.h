@@ -13,6 +13,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WCTableViewTool : NSObject
 
+#pragma mark - Update TableView
+
 /**
  Perform operate table view and keep table view not scrolling (static)
  
@@ -23,6 +25,22 @@ NS_ASSUME_NONNULL_BEGIN
  @see https://stackoverflow.com/questions/4279730/keep-uitableview-static-when-inserting-rows-at-the-top
  */
 + (BOOL)performOperationKeepStaticWithTableView:(UITableView *)tableView block:(void (^)(void))block;
+
+/**
+ Safe perform table view update operations
+ 
+ @param tableView the table view
+ @param updates the block to perform update (insert, delete, move, reload)
+ @param completion the block to completion when update finished
+ 
+ @return YES if called successfully, or NO it failed
+ @discussion If iOS >= 11, use -[UITableView performBatchUpdates:completion:] internally, otherwise use beginUpdates/endUpdates instead
+ */
++ (BOOL)performBatchUpdatesWithTableView:(UITableView *)tableView batchUpdates:(void (^)(void))updates completion:(void (^)(BOOL finished))completion;
+
+#pragma mark - NSIndexPath
+
+#pragma mark > Check NSIndexPath
 
 /**
  Check the index paths if safe to reload rows
@@ -39,20 +57,18 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)checkIndexPathsValidWithTableView:(UITableView *)tableView indexPaths:(NSArray *)indexPaths;
 
+#pragma mark > Query NSIndexPath
+
 /**
- Safe perform table view update operations
+ Get index path for the subview in table view cell
  
+ @param subview the subview which expected in UITableViewCell
  @param tableView the table view
- @param updates the block to perform update (insert, delete, move, reload)
- @param completion the block to completion when update finished
  
- @return YES if called successfully, or NO it failed
- @discussion If iOS >= 11, use -[UITableView performBatchUpdates:completion:] internally, otherwise use beginUpdates/endUpdates instead
+ @return the index path for the subview. Return nil if the subview in the UITableViewCell, or the subview's hierarchy level nested in subview exceed 30
  */
-+ (BOOL)performBatchUpdatesWithTableView:(UITableView *)tableView batchUpdates:(void (^)(void))updates completion:(void (^)(BOOL finished))completion;
++ (nullable NSIndexPath *)indexPathForSubviewInTableViewCell:(UIView *)subview tableView:(UITableView *)tableView;
 
 @end
-
-
 
 NS_ASSUME_NONNULL_END

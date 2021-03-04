@@ -15,6 +15,8 @@
 
 @implementation WCTableViewTool
 
+#pragma mark - Update TableView
+
 + (BOOL)performOperationKeepStaticWithTableView:(UITableView *)tableView block:(void (^)(void))block {
     if (![tableView isKindOfClass:[UITableView class]] || !block) {
         return NO;
@@ -32,6 +34,32 @@
     
     return YES;
 }
+
++ (BOOL)performBatchUpdatesWithTableView:(UITableView *)tableView batchUpdates:(void (^)(void))updates completion:(void (^)(BOOL finished))completion {
+    if (![tableView isKindOfClass:[UITableView class]] || !tableView.dataSource) {
+        return NO;
+    }
+    
+    if (IOS11_OR_LATER) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+        [tableView performBatchUpdates:updates completion:completion];
+#pragma GCC diagnostic pop
+    }
+    else {
+        [tableView beginUpdates];
+        !updates ?: updates();
+        [tableView endUpdates];
+        
+        !completion ?: completion(YES);
+    }
+    
+    return YES;
+}
+
+#pragma mark - NSIndexPath
+
+#pragma mark > Check NSIndexPath
 
 + (BOOL)checkIndexPathsValidWithTableView:(UITableView *)tableView indexPaths:(NSArray *)indexPaths {
     if (![tableView isKindOfClass:[UITableView class]] || !tableView.dataSource) {
@@ -83,26 +111,31 @@
     return indexPathsAreValid;
 }
 
-+ (BOOL)performBatchUpdatesWithTableView:(UITableView *)tableView batchUpdates:(void (^)(void))updates completion:(void (^)(BOOL finished))completion {
-    if (![tableView isKindOfClass:[UITableView class]] || !tableView.dataSource) {
-        return NO;
+#pragma mark > Query NSIndexPath
+
++ (nullable NSIndexPath *)indexPathForSubviewInTableViewCell:(UIView *)subview tableView:(UITableView *)tableView {
+    if (![subview isKindOfClass:[UIView class]] || ![tableView isKindOfClass:[UITableView class]]) {
+        return nil;
     }
     
-    if (IOS11_OR_LATER) {
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wunguarded-availability-new"
-        [tableView performBatchUpdates:updates completion:completion];
-#pragma GCC diagnostic pop
+    UIView *cell = subview;
+    static const NSUInteger sMaxCount = 30;
+    NSUInteger count = 0;
+    while (![cell isKindOfClass:[UITableViewCell class]] || count <= sMaxCount) {
+        cell = (UIView *)[cell nextResponder];
+        if (![cell isKindOfClass:[UIView class]]) {
+            break;
+        }
+        
+        ++count;
+    }
+    
+    if ([cell isKindOfClass:[UITableViewCell class]]) {
+        return [tableView indexPathForCell:(UITableViewCell *)cell];
     }
     else {
-        [tableView beginUpdates];
-        !updates ?: updates();
-        [tableView endUpdates];
-        
-        !completion ?: completion(YES);
+        return nil;
     }
-    
-    return YES;
 }
 
 @end
