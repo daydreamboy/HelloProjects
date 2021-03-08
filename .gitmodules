@@ -4,3 +4,6 @@
 [submodule "HelloYYKit/YYKit"]
 	path = HelloYYKit/YYKit
 	url = https://github.com/daydreamboy/YYKit.git
+[submodule "HelloLottie/Lottie"]
+	path = HelloLottie/Lottie
+	url = https://github.com/daydreamboy/lottie-ios.git
