@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F44406225F796B400DF418F /* BlockCaptureAutoreleaseOutParameterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F44406125F796B400DF418F /* BlockCaptureAutoreleaseOutParameterViewController.m */; };
 		4FD218132179D37400FB23DD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD218122179D37400FB23DD /* AppDelegate.m */; };
 		4FD2181B2179D37500FB23DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FD2181A2179D37500FB23DD /* Assets.xcassets */; };
 		4FD2181E2179D37500FB23DD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FD2181C2179D37500FB23DD /* LaunchScreen.storyboard */; };
@@ -16,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F44406025F796B400DF418F /* BlockCaptureAutoreleaseOutParameterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockCaptureAutoreleaseOutParameterViewController.h; sourceTree = "<group>"; };
+		4F44406125F796B400DF418F /* BlockCaptureAutoreleaseOutParameterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockCaptureAutoreleaseOutParameterViewController.m; sourceTree = "<group>"; };
 		4FD2180E2179D37400FB23DD /* HelloIssueMemoryCrash_Samples.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloIssueMemoryCrash_Samples.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FD218112179D37400FB23DD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FD218122179D37400FB23DD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -77,6 +80,8 @@
 			children = (
 				4FD2182E2179D70500FB23DD /* NSArray_initWithObjects_ViewController.h */,
 				4FD2182F2179D70500FB23DD /* NSArray_initWithObjects_ViewController.m */,
+				4F44406025F796B400DF418F /* BlockCaptureAutoreleaseOutParameterViewController.h */,
+				4F44406125F796B400DF418F /* BlockCaptureAutoreleaseOutParameterViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -154,6 +159,7 @@
 				4FD2182D2179D3C400FB23DD /* RootViewController.m in Sources */,
 				4FD218302179D70500FB23DD /* NSArray_initWithObjects_ViewController.m in Sources */,
 				4FD218132179D37400FB23DD /* AppDelegate.m in Sources */,
+				4F44406225F796B400DF418F /* BlockCaptureAutoreleaseOutParameterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

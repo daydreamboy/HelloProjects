@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 #import "NSArray_initWithObjects_ViewController.h"
+#import "BlockCaptureAutoreleaseOutParameterViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -32,10 +33,12 @@
     // MARK: Configure titles and classes for table view
     _titles = @[
         @"Unsafe -[NSArray initWithObjects:]",
+        @"Issue of block capture autorelease out parameter",
         @"call a test method",
     ];
     _classes = @[
         [NSArray_initWithObjects_ViewController class],
+        [BlockCaptureAutoreleaseOutParameterViewController class],
         @"testMethod",
     ];
 }
