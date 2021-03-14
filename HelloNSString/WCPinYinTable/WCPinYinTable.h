@@ -88,7 +88,7 @@ typedef NS_OPTIONS(NSUInteger, WCPinYinStringPatternOption) {
  
  @param textCharacter the character which length is 1
  
- @return the WCPinYinInfo object
+ @return the WCPinYinInfo object. Return nil if the textCharacter
  */
 - (nullable WCPinYinInfo *)pinYinInfoWithTextCharacter:(NSString *)textCharacter;
 
