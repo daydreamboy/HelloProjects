@@ -40,6 +40,10 @@
     // Abnormal Case 1: derived class has method, but its super class has one
     success = [WCSwizzleTool exchangeIMPWithClass:[DerivedClass class] originalSelector:@selector(doSomething) swizzledSelector:@selector(swizzled_doSomething) forClassMethod:NO];
     XCTAssertFalse(success);
+    
+    // Abnormal Case 2: originalSelector not exists
+    success = [WCSwizzleTool exchangeIMPWithClass:[DerivedClass class] originalSelector:NSSelectorFromString(@"doSomething2") swizzledSelector:@selector(swizzled_doSomething) forClassMethod:NO];
+    XCTAssertFalse(success);
 }
 
 @end
