@@ -1,5 +1,5 @@
 //
-//  BaseListViewController.h
+//  BaseSectionListViewController.h
 //  HelloNSLocale
 //
 //  Created by wesley_chen on 2020/9/19.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BaseListViewController : UIViewController
+@interface BaseSectionListViewController : UIViewController
 @property (nonatomic, strong) NSArray<NSArray<NSString *> *> *listData;
 @end
 

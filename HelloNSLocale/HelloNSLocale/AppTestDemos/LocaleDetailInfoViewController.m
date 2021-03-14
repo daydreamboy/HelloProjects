@@ -1,18 +1,35 @@
 //
-//  BaseListViewController.m
+//  LocaleDetailInfoViewController.m
 //  HelloNSLocale
 //
-//  Created by wesley_chen on 2020/9/19.
+//  Created by wesley_chen on 2020/9/20.
 //  Copyright © 2020 wesley_chen. All rights reserved.
 //
 
-#import "BaseListViewController.h"
+#import "LocaleDetailInfoViewController.h"
 
-@interface BaseListViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface LocaleDetailInfoViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSLocale *locale;
+@property (nonatomic, strong) NSArray<NSArray<NSString *> *> *listData;
 @end
 
-@implementation BaseListViewController
+@implementation LocaleDetailInfoViewController
+
+- (instancetype)initWithLocale:(NSLocale *)locale {
+    self = [super init];
+    if (self) {
+        _locale = locale;
+        
+        _listData = @[
+        @[
+            [NSString stringWithFormat:@"localeIdentifier: %@", _locale.localeIdentifier],
+            [NSString stringWithFormat:@"countryCode: %@", _locale.countryCode],
+        ],
+        ];
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,29 +73,6 @@
     cell.textLabel.text = self.listData[indexPath.section][indexPath.row];
     
     return cell;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    NSString *string = [self.listData[section] firstObject];
-    
-    return [string substringToIndex:1];
-}
-
-#pragma mark > Index Titles
-
-- (NSArray<NSString *> *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-    NSMutableArray *sectionIndexTitles = [NSMutableArray array];
-    
-    for (NSArray *section in self.listData) {
-        NSString *prefix = [[section firstObject] substringToIndex:1];
-        [sectionIndexTitles addObject:prefix];
-    }
-    
-    return sectionIndexTitles;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-    return index;
 }
 
 @end

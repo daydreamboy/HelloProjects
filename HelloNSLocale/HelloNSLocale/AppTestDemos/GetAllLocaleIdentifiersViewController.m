@@ -8,6 +8,7 @@
 
 #import "GetAllLocaleIdentifiersViewController.h"
 #import "WCArrayTool.h"
+#import "LocaleDetailInfoViewController.h"
 
 @interface GetAllLocaleIdentifiersViewController ()
 @property (nonatomic, strong) NSMutableDictionary<NSString *, NSLocale *> *locales;
@@ -45,6 +46,18 @@
     
     return cell;
 }
+
+#pragma mark -
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSString *localIdentifier = self.listData[indexPath.section][indexPath.row];
+    NSLocale *locale = self.locales[localIdentifier];
+    
+    LocaleDetailInfoViewController *vc = [[LocaleDetailInfoViewController alloc] initWithLocale:locale];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark -
 
 - (NSString *)detailStringWithLocal:(NSLocale *)local {
     if (@available(iOS 10.0, *)) {

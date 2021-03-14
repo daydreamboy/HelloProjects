@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseListViewController.h"
+#import "BaseSectionListViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface GetAllISOCountryCodesViewController : BaseListViewController
+@interface GetAllISOCountryCodesViewController : BaseSectionListViewController
 
 @end
 

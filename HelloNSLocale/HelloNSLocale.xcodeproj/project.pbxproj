@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F14FD8D2515BC3F00A4F8BC /* BaseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F14FD8C2515BC3F00A4F8BC /* BaseListViewController.m */; };
+		4F01034925175C6B00931D4E /* LocaleDetailInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F01034825175C6B00931D4E /* LocaleDetailInfoViewController.m */; };
+		4F14FD8D2515BC3F00A4F8BC /* BaseSectionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F14FD8C2515BC3F00A4F8BC /* BaseSectionListViewController.m */; };
 		4F14FD902515BCF600A4F8BC /* GetAllISOCountryCodesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F14FD8F2515BCF600A4F8BC /* GetAllISOCountryCodesViewController.m */; };
 		4F14FD972515BD5F00A4F8BC /* WCArrayTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F14FD952515BD5F00A4F8BC /* WCArrayTool.m */; };
 		4F69413A250A01C300091C90 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F694139250A01C300091C90 /* AppDelegate.m */; };
@@ -22,8 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4F14FD8B2515BC3F00A4F8BC /* BaseListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseListViewController.h; sourceTree = "<group>"; };
-		4F14FD8C2515BC3F00A4F8BC /* BaseListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseListViewController.m; sourceTree = "<group>"; };
+		4F01034725175C6B00931D4E /* LocaleDetailInfoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LocaleDetailInfoViewController.h; sourceTree = "<group>"; };
+		4F01034825175C6B00931D4E /* LocaleDetailInfoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LocaleDetailInfoViewController.m; sourceTree = "<group>"; };
+		4F14FD8B2515BC3F00A4F8BC /* BaseSectionListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseSectionListViewController.h; sourceTree = "<group>"; };
+		4F14FD8C2515BC3F00A4F8BC /* BaseSectionListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseSectionListViewController.m; sourceTree = "<group>"; };
 		4F14FD8E2515BCF600A4F8BC /* GetAllISOCountryCodesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAllISOCountryCodesViewController.h; sourceTree = "<group>"; };
 		4F14FD8F2515BCF600A4F8BC /* GetAllISOCountryCodesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAllISOCountryCodesViewController.m; sourceTree = "<group>"; };
 		4F14FD952515BD5F00A4F8BC /* WCArrayTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCArrayTool.m; sourceTree = "<group>"; };
@@ -61,8 +64,8 @@
 		4F14FD8A2515BC1B00A4F8BC /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				4F14FD8B2515BC3F00A4F8BC /* BaseListViewController.h */,
-				4F14FD8C2515BC3F00A4F8BC /* BaseListViewController.m */,
+				4F14FD8B2515BC3F00A4F8BC /* BaseSectionListViewController.h */,
+				4F14FD8C2515BC3F00A4F8BC /* BaseSectionListViewController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -123,6 +126,8 @@
 				4FF904062516112E0075BE7A /* GetAllISOCurrencyCodesViewController.m */,
 				4FF9040C251623E60075BE7A /* GetCommonISOCurrencyCodesViewController.h */,
 				4FF9040D251623E60075BE7A /* GetCommonISOCurrencyCodesViewController.m */,
+				4F01034725175C6B00931D4E /* LocaleDetailInfoViewController.h */,
+				4F01034825175C6B00931D4E /* LocaleDetailInfoViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -198,11 +203,12 @@
 			files = (
 				4F69413A250A01C300091C90 /* AppDelegate.m in Sources */,
 				4F14FD902515BCF600A4F8BC /* GetAllISOCountryCodesViewController.m in Sources */,
-				4F14FD8D2515BC3F00A4F8BC /* BaseListViewController.m in Sources */,
+				4F14FD8D2515BC3F00A4F8BC /* BaseSectionListViewController.m in Sources */,
 				4F69415A250A029800091C90 /* GetAllLocaleIdentifiersViewController.m in Sources */,
 				4F69414B250A01C700091C90 /* main.m in Sources */,
 				4FF904072516112E0075BE7A /* GetAllISOCurrencyCodesViewController.m in Sources */,
 				4FF9040E251623E60075BE7A /* GetCommonISOCurrencyCodesViewController.m in Sources */,
+				4F01034925175C6B00931D4E /* LocaleDetailInfoViewController.m in Sources */,
 				4F694156250A020E00091C90 /* RootViewController.m in Sources */,
 				4FF903D02515F9C60075BE7A /* GetAllISOLanguageCodesViewController.m in Sources */,
 				4F14FD972515BD5F00A4F8BC /* WCArrayTool.m in Sources */,
