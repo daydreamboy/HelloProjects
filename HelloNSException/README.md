@@ -391,10 +391,11 @@ Crash日志符号化，有几种方式
 
 * Xcode的View Device Logs，将Crash日志拖到左侧的日志列表中，Xcode自动符号化
 * 手动调用atos命令
+* 手动调用symbolicatecrash脚本
 
 
 
-### atos命令
+### （1）atos命令
 
 atos用法，如下
 
@@ -441,6 +442,55 @@ main (in HelloNSException) (main.m:14)
 
 
 
+### （2）symbolicatecrash脚本
+
+#### a. 检查系统符号文件
+
+如果要符号化系统的符号，需要检查系统符号文件是否在本地路径`~/Library/Developer/Xcode/iOS DeviceSupport`中。如果没有，需要从真机中获取，还有其他方法[^4]可以获取系统符号文件。
+
+
+
+#### b. 执行symbolicatecrash脚本
+
+使用下面的命令找到symbolicatecrash脚本的位置
+
+```shell
+$ find /Applications/Xcode.app -name symbolicatecrash -type f
+```
+
+一般会找到多个路径，但实际对应的是同一个文件。
+
+> symbolicatecrash脚本是Perl语言编写的
+
+
+
+可以直接使用下面的路径，如下
+
+```shell
+/Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Resources/symbolicatecrash
+```
+
+
+
+然后配置DEVELOPER_DIR环境变量，使用symbolicatecrash脚本符号化crash文件[^3]，如下
+
+```shell
+$ export DEVELOPER_DIR="/Applications/Xcode.App/Contents/Developer"
+$ /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Resources/symbolicatecrash 1.crash > 1.log
+```
+
+
+
+#### c. 符号化app的符号
+
+如果要符号化app的符号，使用`-d`选项指定dSYM路径，如下
+
+```shell
+$ symbolicatecrash log.crash -d TheElement.App.dSYM > result.log
+```
+
+
+
 
 
 ## 8、Watchdog Terminations[^2]
@@ -462,6 +512,9 @@ main (in HelloNSException) (main.m:14)
 [^1]: https://www.plausible.coop/blog/?p=176 "Exploring iOS Crash Reports"
 
 [^2]:https://developer.apple.com/documentation/xcode/diagnosing_issues_using_crash_reports_and_device_logs/identifying_the_cause_of_common_crashes/addressing_watchdog_terminations
+
+[^3]:https://www.infoq.cn/article/jltuf3pgfjv6ovjzu1sq
+[^4]:https://zuikyo.github.io/2016/12/18/iOS%20Crash%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%BF%85%E5%A4%87%EF%BC%9A%E7%AC%A6%E5%8F%B7%E5%8C%96%E7%B3%BB%E7%BB%9F%E5%BA%93%E6%96%B9%E6%B3%95/
 
 
 
