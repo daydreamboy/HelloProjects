@@ -475,7 +475,7 @@ $ find /Applications/Xcode.app -name symbolicatecrash -type f
 然后配置DEVELOPER_DIR环境变量，使用symbolicatecrash脚本符号化crash文件[^3]，如下
 
 ```shell
-$ export DEVELOPER_DIR="/Applications/Xcode.App/Contents/Developer"
+$ export DEVELOPER_DIR="/Applications/Xcode.app/Contents/Developer"
 $ /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Resources/symbolicatecrash 1.crash > 1.log
 ```
 
@@ -486,7 +486,7 @@ $ /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Reso
 如果要符号化app的符号，使用`-d`选项指定dSYM路径，如下
 
 ```shell
-$ symbolicatecrash log.crash -d TheElement.App.dSYM > result.log
+$ symbolicatecrash log.crash -d YourApp.app.dSYM > result.log
 ```
 
 
