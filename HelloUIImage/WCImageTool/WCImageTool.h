@@ -167,8 +167,28 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark > Size
 
+/**
+ Get image size with file
+ 
+ @param path the path to image file
+ @param scale the scale for returned size, e.g. returnedSize.width = (widthInPixel / scale).
+        If scale = 0, use [UIScreen mainScreen].scale
+ 
+ @return the point size which is  (widthInPixel / scale, heightInPixel / scale)
+ 
+ @discussion This method get image size without loading image into memory.
+ */
 + (CGSize)imageSizeWithPath:(NSString *)path scale:(CGFloat)scale;
 
+/**
+ Get image size with data
+ 
+ @param data the data of image
+ @param scale the scale for returned size, e.g. returnedSize.width = (widthInPixel / scale).
+        If scale = 0, use [UIScreen mainScreen].scale
+ 
+ @return the point size which is  (widthInPixel / scale, heightInPixel / scale)
+ */
 + (CGSize)imageSizeWithData:(NSData *)data scale:(CGFloat)scale;
 
 #pragma mark > File
