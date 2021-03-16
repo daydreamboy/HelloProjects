@@ -1114,14 +1114,16 @@ do { \
         
         NSData *resizedImageData = nil;
         for (CGFloat compressQuality = 1.0; compressQuality > 0;) {
-            NSData *resizedData = UIImageJPEGRepresentation(image, compressQuality);
-            
-            if (resizedData.length <= maximumBytes) {
-                resizedImageData = resizedData;
-                break;
+            @autoreleasepool {
+                NSData *resizedData = UIImageJPEGRepresentation(image, compressQuality);
+                
+                if (resizedData.length <= maximumBytes) {
+                    resizedImageData = resizedData;
+                    break;
+                }
+                
+                compressQuality -= 0.1;
             }
-            
-            compressQuality -= 0.1;
         }
         
         return resizedImageData;
