@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ Options for mapping an array
+ */
+typedef NS_OPTIONS(NSUInteger, WCArrayMappingOption) {
+    /// If mapping failed, use [NSNull null] as placeholder
+    WCArrayMappingOptionUseNullIfError = 1 << 0,
+};
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface WCArrayTool : NSObject
@@ -94,6 +102,21 @@ NS_ASSUME_NONNULL_BEGIN
  @see https://stackoverflow.com/a/586529
  */
 + (nullable NSArray *)reversedArrayWithArray:(NSArray *)array;
+
+/**
+ Mapping an array by item's key path
+ 
+ @param array the original array
+ @param keyPath the key path, e.g. @"a.b", @"a.[1].c"
+ @param options the options
+ - kNilOptions If mapped the item failed, will filter out the item
+ - WCArrayMappingOptionUseNullIfError If mapped the item failed, use [NSNull null] as placeholder
+ 
+ @return the mapped array
+ */
++ (nullable NSArray *)mappedArrayWithArray:(NSArray *)array keyPath:(NSString *)keyPath options:(WCArrayMappingOption)options;
+
++ (nullable NSArray *)mappedArrayWithArray:(NSArray *)array usingBlock:(id _Nullable(^ _Nullable)(id item, NSUInteger idx, BOOL * _Nonnull stop))block options:(WCArrayMappingOption)options;
 
 #pragma mark - Subarray
 

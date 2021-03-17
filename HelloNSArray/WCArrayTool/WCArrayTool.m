@@ -14,6 +14,8 @@
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v) ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 #endif
 
+#define NSPREDICATE(expression)    ([NSPredicate predicateWithFormat:@"SELF MATCHES %@", expression])
+
 @implementation WCArrayTool
 
 #pragma mark - Creation
@@ -185,6 +187,114 @@
     
     NSArray *reversedArray = [[array reverseObjectEnumerator] allObjects];
     return reversedArray;
+}
+
++ (nullable NSArray *)mappedArrayWithArray:(NSArray *)array keyPath:(NSString *)keyPath options:(WCArrayMappingOption)options {
+    if (![array isKindOfClass:[NSArray class]] || ![keyPath isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    if (keyPath.length == 0) {
+        return array;
+    }
+    
+    NSArray *parts = [keyPath componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@".[]"]];
+    NSMutableArray *keys = [NSMutableArray arrayWithArray:parts];
+    // Note: remove all empty string
+    [keys removeObject:@""];
+    
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:array.count];
+    [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSMutableArray *keysM = [NSMutableArray arrayWithArray:keys];
+        id value = obj;
+        while (keysM.count) {
+            NSString *key = [keysM firstObject];;
+                        
+            if ([value isKindOfClass:[NSArray class]]) {
+                // Note: handle NSArray container
+                if (![NSPREDICATE(@"0|[1-9]\\d*") evaluateWithObject:key]) {
+                    NSLog(@"Error: %@ is not a subscript of NSArray", key);
+                    value = nil;
+                    break;
+                }
+                
+                NSInteger subscript = [key integerValue];
+                NSArray *arr = (NSArray *)value;
+                
+                if (subscript < 0 || subscript >= arr.count) {
+                    NSLog(@"Error: subscript %@ is out of bounds [0..%ld]", key, (long)arr.count - 1);
+                    value = nil;
+                    break;
+                }
+                
+                value = arr[subscript];
+            }
+            else if ([value isKindOfClass:[NSDictionary class]]) {
+                // Note: handle NSDictionary container
+                NSDictionary *dict = (NSDictionary *)value;
+                
+                value = dict[key];
+            }
+            else if ([value isKindOfClass:[NSObject class]]) {
+                // Note: handle custom container
+                NSObject *KVCObject = (NSObject *)value;
+                @try {
+                    value = [KVCObject valueForKey:key];
+                }
+                @catch (NSException *e) {
+                    NSLog(@"Error: object %@ is not KVC compliant for key `%@`", KVCObject, key);
+                    value = nil;
+                    break;
+                }
+            }
+            else {
+                NSLog(@"Error: unsupported object %@", value);
+                value = nil;
+                break;
+            }
+            
+            [keysM removeObjectAtIndex:0];
+        }
+        
+        if (value) {
+            [result addObject:value];
+        }
+        else {
+            if (options & WCArrayMappingOptionUseNullIfError) {
+                [result addObject:[NSNull null]];
+            }
+        }
+    }];
+    
+    return [result copy];
+}
+
++ (nullable NSArray *)mappedArrayWithArray:(NSArray *)array usingBlock:(id _Nullable(^ _Nullable)(id item, NSUInteger idx, BOOL * _Nonnull stop))block options:(WCArrayMappingOption)options {
+    if (![array isKindOfClass:[NSArray class]]) {
+        return nil;
+    }
+    
+    if (!block) {
+        return array;
+    }
+    
+    NSMutableArray *result = [NSMutableArray arrayWithCapacity:array.count];
+    [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        BOOL stopL = NO;
+        id retVal = !block ? block(obj, idx, &stopL) : nil;
+        *stop = stopL;
+        
+        if (retVal) {
+            [result addObject:retVal];
+        }
+        else {
+            if (options & WCArrayMappingOptionUseNullIfError) {
+                [result addObject:[NSNull null]];
+            }
+        }
+    }];
+    
+    return result;
 }
 
 #pragma mark - Subarray

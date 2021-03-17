@@ -246,6 +246,41 @@
     XCTAssertNil(output);
 }
 
+- (void)test_mappedArrayWithArray_keyPath_options {
+    NSArray *array;
+    id output;
+    
+    // Case 1
+    array = @[
+        [Person personWithFirstName:@"Lily" lastName:@"Chen" age:12],
+        [Person personWithFirstName:@"John" lastName:@"Li" age:16],
+    ];
+    
+    output = [WCArrayTool mappedArrayWithArray:array keyPath:@"firstName" options:kNilOptions];
+    
+    // Case 2
+    array = @[
+        [Person personWithFirstName:@"Lily" lastName:@"Chen" age:12 jobName:@"Teacher"],
+        [Person personWithFirstName:@"John" lastName:@"Li" age:16 jobName:@"Doctor"],
+        [Person personWithFirstName:@"Ben" lastName:@"Zhou" age:16],
+    ];
+    output = [WCArrayTool mappedArrayWithArray:array keyPath:@"job.name" options:kNilOptions];
+    
+    // Case 3
+    array = @[
+        [Person personWithFirstName:@"Lily" lastName:@"Chen" age:12 jobName:@"Teacher"],
+        [Person personWithFirstName:@"John" lastName:@"Li" age:16 jobName:@"Doctor"],
+        [Person personWithFirstName:@"Ben" lastName:@"Zhou" age:16],
+    ];
+    output = [WCArrayTool mappedArrayWithArray:array keyPath:@"job.name" options:WCArrayMappingOptionUseNullIfError];
+}
+
+- (void)test_mappedArrayWithArray_usingBlock_options {
+    NSArray *array;
+    id output;
+    [WCArrayTool mappedArrayWithArray:array usingBlock:nil options:kNilOptions];
+}
+
 #pragma mark - Subarray
 
 - (void)test_subarrayWithArray_range {
