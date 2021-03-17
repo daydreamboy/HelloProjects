@@ -383,7 +383,7 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
 
 #pragma mark > Directory Deletion
 
-+ (BOOL)deleteDirectoryAtPath:(NSString *)path force:(BOOL)force error:(NSError * _Nullable * _Nullable)error {
++ (BOOL)deleteDirectoryAtPathIfNeeded:(NSString *)path force:(BOOL)force error:(NSError * _Nullable * _Nullable)error {
     BOOL isDirectory = NO;
     BOOL isExisted = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory];
     

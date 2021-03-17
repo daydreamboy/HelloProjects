@@ -194,7 +194,7 @@ FOUNDATION_EXPORT NSFileAttributeKey const WCFileName;
  
  @return YES if deleted successfully or no need to delete (the path not exists). Return NO if 1. deletion failed, or 2. the path is not a directory when force is NO
  */
-+ (BOOL)deleteDirectoryAtPath:(NSString *)path force:(BOOL)force error:(NSError * _Nullable * _Nullable)error;
++ (BOOL)deleteDirectoryAtPathIfNeeded:(NSString *)path force:(BOOL)force error:(NSError * _Nullable * _Nullable)error;
 
 #pragma mark > Directory Check
 
