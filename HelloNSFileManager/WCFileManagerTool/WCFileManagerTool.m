@@ -383,16 +383,27 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
 
 #pragma mark > Directory Deletion
 
-+ (BOOL)deleteDirectoryAtPath:(NSString *)path {
++ (BOOL)deleteDirectoryAtPath:(NSString *)path force:(BOOL)force error:(NSError * _Nullable * _Nullable)error {
     BOOL isDirectory = NO;
     BOOL isExisted = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory];
     
-    if (!isDirectory || !isExisted) {
-        // If the path is a file, or the path not exists
+    if (!isExisted) {
+        return YES;
+    }
+    
+    if (!force && !isDirectory) {
+        // If the path is a file, return NO
+        NSError *errorL = [NSError errorWithDomain:NSStringFromClass([WCFileManagerTool class]) code:-1 userInfo:@{ NSLocalizedFailureReasonErrorKey: @"path is not a directory" }];
+        PTR_SAFE_SET(error, errorL);
+        
         return NO;
     }
     
-    return [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
+    NSError *errorL = nil;
+    BOOL success = [[NSFileManager defaultManager] removeItemAtPath:path error:&errorL];
+    PTR_SAFE_SET(error, errorL);
+    
+    return success;
 }
 
 #pragma mark > Directory Check

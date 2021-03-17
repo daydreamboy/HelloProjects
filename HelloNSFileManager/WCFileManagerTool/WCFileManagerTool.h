@@ -186,12 +186,15 @@ FOUNDATION_EXPORT NSFileAttributeKey const WCFileName;
 #pragma mark > Directory Deletion
 
 /**
- Delete a directory only
+ Delete a directory if needed
 
  @param path the path of a directory
- @return YES if deleted successfully or NO if 1. deletion failed, or 2. the path is not a directory, or 3. the path is not existed
+ @param force the flag should force delete. Set YES to force delete, even though the path is a file path.
+ @param error the error
+ 
+ @return YES if deleted successfully or no need to delete (the path not exists). Return NO if 1. deletion failed, or 2. the path is not a directory when force is NO
  */
-+ (BOOL)deleteDirectoryAtPath:(NSString *)path;
++ (BOOL)deleteDirectoryAtPath:(NSString *)path force:(BOOL)force error:(NSError * _Nullable * _Nullable)error;
 
 #pragma mark > Directory Check
 
