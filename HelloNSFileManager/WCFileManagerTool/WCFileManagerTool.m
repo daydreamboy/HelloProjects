@@ -23,6 +23,13 @@
 
 #define CheckErrorAndBreak(error) { if (error) { break; } }
 
+#define PTR_SAFE_SET(ptr, value) \
+do { \
+    if (ptr) { \
+        *ptr = value; \
+    } \
+} while (0)
+
 NSFileAttributeKey const WCFileName = @"WCFileName";
 
 @implementation WCFileManagerTool
@@ -350,16 +357,12 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
 
 + (BOOL)createNewDirectoryIfNeededAtPath:(NSString *)path error:(NSError * _Nullable * _Nullable)error {
     if (![path isKindOfClass:[NSString class]]) {
-        if (*error) {
-            *error = nil;
-        }
+        PTR_SAFE_SET(error, nil);
         return NO;
     }
     
     if ([path isKindOfClass:[NSString class]] && path.length == 0) {
-        if (*error) {
-            *error = nil;
-        }
+        PTR_SAFE_SET(error, nil);
         return NO;
     }
     
@@ -372,10 +375,7 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
         // Note: path - This parameter must not be nil.
         NSError *errorL = nil;
         BOOL success = [[NSFileManager defaultManager] createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:&errorL];
-        
-        if (*error) {
-            *error = errorL;
-        }
+        PTR_SAFE_SET(error, errorL);
         
         return success;
     }
@@ -398,6 +398,10 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
 #pragma mark > Directory Check
 
 + (BOOL)directoryExistsAtPath:(NSString *)path {
+    if (![path isKindOfClass:[NSString class]] || path.length == 0) {
+        return NO;
+    }
+    
     BOOL isDirectory = NO;
     BOOL isExisted = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory];
     
@@ -406,7 +410,11 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
 
 #pragma mark > Directory Display Name
 
-+ (NSString *)directoryNameAtPath:(NSString *)path {
++ (nullable NSString *)directoryNameAtPath:(NSString *)path {
+    if (![path isKindOfClass:[NSString class]] || path.length == 0) {
+        return nil;
+    }
+    
     BOOL isDirectory = NO;
     BOOL isExisted = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDirectory];
     

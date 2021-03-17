@@ -217,7 +217,7 @@ FOUNDATION_EXPORT NSFileAttributeKey const WCFileName;
 
 #pragma mark > Directory Display Name
 
-+ (NSString *)directoryNameAtPath:(NSString *)path;
++ (nullable NSString *)directoryNameAtPath:(NSString *)path;
 
 @end
 
