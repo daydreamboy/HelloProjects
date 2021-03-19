@@ -8,6 +8,7 @@
 
 #import "WCXCTestCaseTool.h"
 #import <objc/runtime.h>
+#import <QuartzCore/QuartzCore.h>
 
 @implementation WCXCTestCaseTool
 
