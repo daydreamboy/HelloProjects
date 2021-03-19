@@ -72,7 +72,7 @@ typedef IMP _Nonnull *WCIMPPtr;
 #pragma mark - Swizzle with selector
 
 /**
- Exchange the IMP for two existing selectors
+ Exchange the IMP for two existing selectors (method_exchangeImplementations style)
  
  @param cls the Class to modify
  @param originalSelector the original selector which should exist
@@ -86,6 +86,21 @@ typedef IMP _Nonnull *WCIMPPtr;
  */
 + (BOOL)exchangeIMPWithClass:(Class)cls originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector forClassMethod:(BOOL)forClassMethod;
 
+/**
+ Fast exchange the IMP for two existing selectors (two class_replaceMethod style)
+ 
+ @param cls the Class to modify
+ @param originalSelector the original selector which should exist
+ @param swizzledSelector the swizzled selector which should also exist, e.g. a category method
+ @param forClassMethod If YES, the `originalSelector` and `swizzledSelector` are both class method, or NO if
+ the `originalSelector` and `swizzledSelector` are both instance method
+ 
+ @return YES if the operate successfull. NO if any error occurred internally.
+ 
+ @discussion This  method is faster than +[WCSwizzleTool exchangeIMPWithClass:originalSelector:swizzledSelector:forClassMethod:] which
+ uses method_exchangeImplementations, but method_exchangeImplementations's implementation: flushCaches(Class cls) is slow when cls is nil.
+ See https://github.com/opensource-apple/objc4/blob/master/runtime/objc-runtime-new.mm#L2090 for more detail.
+ */
 + (BOOL)fastExchangeIMPWithClass:(Class)cls originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector forClassMethod:(BOOL)forClassMethod;
 
 #pragma mark - Swizzle with C function

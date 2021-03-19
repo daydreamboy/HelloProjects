@@ -66,6 +66,7 @@
 		4F70D8A325EA29940088F1CA /* WCSwizzleTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70D8A225EA29940088F1CA /* WCSwizzleTool.m */; };
 		4F70D8A425EA29940088F1CA /* WCSwizzleTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70D8A225EA29940088F1CA /* WCSwizzleTool.m */; };
 		4F70D8B025EA29B30088F1CA /* Test_WCSwizzleTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70D8AF25EA29B30088F1CA /* Test_WCSwizzleTool.m */; };
+		4F8910F426050BEB00FBEE19 /* WCXCTestCaseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8910F326050BEB00FBEE19 /* WCXCTestCaseTool.m */; };
 		4FD758C12324F10C00BC1C2F /* SwizzleMethodByCategoryMethodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7E7F84231ECE9700E91F0E /* SwizzleMethodByCategoryMethodViewController.m */; };
 		4FD758C42324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD758C32324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.m */; };
 		4FE4376824F67D9D00AEFB27 /* Test_ivar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4376724F67D9D00AEFB27 /* Test_ivar.m */; };
@@ -191,6 +192,8 @@
 		4F70D8AF25EA29B30088F1CA /* Test_WCSwizzleTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_WCSwizzleTool.m; sourceTree = "<group>"; };
 		4F7E7F84231ECE9700E91F0E /* SwizzleMethodByCategoryMethodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwizzleMethodByCategoryMethodViewController.m; sourceTree = "<group>"; };
 		4F7E7F85231ECE9700E91F0E /* SwizzleMethodByCategoryMethodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwizzleMethodByCategoryMethodViewController.h; sourceTree = "<group>"; };
+		4F8910F226050BEB00FBEE19 /* WCXCTestCaseTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCXCTestCaseTool.h; sourceTree = "<group>"; };
+		4F8910F326050BEB00FBEE19 /* WCXCTestCaseTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCXCTestCaseTool.m; sourceTree = "<group>"; };
 		4FD758C22324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwizzleMethodByCFunctionViewController.h; sourceTree = "<group>"; };
 		4FD758C32324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwizzleMethodByCFunctionViewController.m; sourceTree = "<group>"; };
 		4FE4376724F67D9D00AEFB27 /* Test_ivar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_ivar.m; sourceTree = "<group>"; };
@@ -368,6 +371,7 @@
 		4F5B652F2249DD4600D40218 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				4F8910F126050BD400FBEE19 /* Tools */,
 				4F57328B224B131C00EFB1CF /* DummyClasses */,
 				4F5B65302249DD4600D40218 /* Test.mm */,
 				4F110EE8231F5E92006C9AFD /* Test_bridge.m */,
@@ -464,6 +468,15 @@
 				4F70D8A225EA29940088F1CA /* WCSwizzleTool.m */,
 			);
 			path = WCSwizzleTool;
+			sourceTree = "<group>";
+		};
+		4F8910F126050BD400FBEE19 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F8910F226050BEB00FBEE19 /* WCXCTestCaseTool.h */,
+				4F8910F326050BEB00FBEE19 /* WCXCTestCaseTool.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		4FFE71972236AC550020516E = {
@@ -733,6 +746,7 @@
 				4F110EEA231F5E92006C9AFD /* Test_selector.m in Sources */,
 				4F5B65382249DDAE00D40218 /* WCObjectTool.m in Sources */,
 				4F5B7110229D64840061A9D0 /* IndexedSubscriptingObject.m in Sources */,
+				4F8910F426050BEB00FBEE19 /* WCXCTestCaseTool.m in Sources */,
 				4F5B7115229D686C0061A9D0 /* Test_NSObject.m in Sources */,
 				4F35BA2D23250101001637AB /* Test_property.m in Sources */,
 				4F573291224B134500EFB1CF /* Person.m in Sources */,
@@ -906,8 +920,8 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = Test/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -927,8 +941,8 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = Test/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1089,6 +1103,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = HelloNSObject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1105,6 +1120,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = HelloNSObject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
