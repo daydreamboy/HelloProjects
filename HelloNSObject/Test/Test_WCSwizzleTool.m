@@ -28,6 +28,23 @@
 }
 @end
 
+@interface DummyClass : NSObject
+- (void)doSomething;
+@end
+
+@implementation DummyClass
+
+- (void)doSomething {
+    NSLog(@"doSomething");
+}
+
+- (void)swizzled_doSomething {
+    [self swizzled_doSomething];
+    NSLog(@"doSomething for swizzling");
+}
+
+@end
+
 @interface Test_WCSwizzleTool : XCTestCase
 
 @end
@@ -44,6 +61,18 @@
     // Abnormal Case 2: originalSelector not exists
     success = [WCSwizzleTool exchangeIMPWithClass:[DerivedClass class] originalSelector:NSSelectorFromString(@"doSomething2") swizzledSelector:@selector(swizzled_doSomething) forClassMethod:NO];
     XCTAssertFalse(success);
+}
+
+- (void)test_fastExchangeIMPWithClass_originalSelector_swizzledSelector_forClassMethod {
+    BOOL success;
+    id object;
+    
+    // #0    0x00007fff2017c4a8 in flushCaches(objc_class*, char const*, bool (objc_class*) block_pointer) ()
+    success = [WCSwizzleTool fastExchangeIMPWithClass:[DummyClass class] originalSelector:@selector(doSomething) swizzledSelector:@selector(swizzled_doSomething) forClassMethod:NO];
+    XCTAssertTrue(success);
+    
+    object = [DummyClass new];
+    [object doSomething];
 }
 
 @end

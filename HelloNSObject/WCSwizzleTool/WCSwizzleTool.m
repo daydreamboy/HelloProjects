@@ -121,6 +121,32 @@
     return YES;
 }
 
++ (BOOL)fastExchangeIMPWithClass:(Class)cls originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector forClassMethod:(BOOL)forClassMethod {
+    if (cls == NULL || !sel_isMapped(originalSelector) || !sel_isMapped(swizzledSelector)) {
+        return NO;
+    }
+    
+    Method originalMethod = forClassMethod ? class_getClassMethod(cls, originalSelector) : class_getInstanceMethod(cls, originalSelector);
+    Method swizzledMethod = forClassMethod ? class_getClassMethod(cls, swizzledSelector) : class_getInstanceMethod(cls, swizzledSelector);
+    
+    if (originalMethod == NULL || swizzledMethod == NULL) {
+        return NO;
+    }
+    
+    if (forClassMethod) {
+        cls = object_getClass((id)cls);
+    }
+    
+    IMP originalIMP = class_replaceMethod(cls, originalSelector, method_getImplementation(swizzledMethod), method_getTypeEncoding(swizzledMethod));
+    if (originalIMP == NULL) {
+        return NO;
+    }
+    
+    class_replaceMethod(cls, swizzledSelector, originalIMP, method_getTypeEncoding(originalMethod));
+    
+    return YES;
+}
+
 #pragma mark - Swizzle with C function
 
 + (BOOL)exchangeIMPWithClass:(Class)class swizzledIMP:(IMP)swizzledIMP originalSelector:(SEL)originalSelector originalIMPPtr:(inout WCIMPPtr _Nullable)originalIMPPtr {

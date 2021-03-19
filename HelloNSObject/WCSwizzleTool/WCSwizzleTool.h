@@ -86,6 +86,8 @@ typedef IMP _Nonnull *WCIMPPtr;
  */
 + (BOOL)exchangeIMPWithClass:(Class)cls originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector forClassMethod:(BOOL)forClassMethod;
 
++ (BOOL)fastExchangeIMPWithClass:(Class)cls originalSelector:(SEL)originalSelector swizzledSelector:(SEL)swizzledSelector forClassMethod:(BOOL)forClassMethod;
+
 #pragma mark - Swizzle with C function
 
 /**
