@@ -135,12 +135,16 @@ typedef NS_ENUM(NSUInteger, WCMIMEType) {
 /**
  Resize image data under the maximum bytes
 
- @param imageData the NSData for image
+ @param image the UIImage which will get data by UIImageJPEGRepresentation
  @param maximumBytes the maximum bytes expect greater than 0
- @return the resized JPEG image data. Return nil if resize data failed.
+ @param compressRatio the maximum compress ratio which make returned data' size <= maximumBytes. Pass NULL if not get this info.
+ 
+ @return the resized JPEG image data. Return nil if parameters are not correct.
+ @discussion This method not must make sure the returned data's size <= maximumBytes.
+ 
  @see https://stackoverflow.com/a/47490970
  */
-+ (nullable NSData *)resizedJPEGImageDataWithImageData:(NSData *)imageData maximumBytes:(long long)maximumBytes;
++ (nullable NSData *)resizedJPEGImageDataWithImage:(UIImage *)image maximumBytes:(long long)maximumBytes compressRatio:(CGFloat *)compressRatio;
 
 #pragma mark - Data Enctyption
 
