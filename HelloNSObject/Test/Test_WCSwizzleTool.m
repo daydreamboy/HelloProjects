@@ -10,22 +10,25 @@
 #import "WCSwizzleTool.h"
 #import "WCXCTestCaseTool.h"
 
-@interface TestBaseClass : NSObject
-- (void)doSomething;
+@interface WCSwizzleTool_BaseClass : NSObject
+- (NSString *)doSomething;
 @end
 
-@implementation TestBaseClass
-- (void)doSomething {
+@implementation WCSwizzleTool_BaseClass
+- (NSString *)doSomething {
     NSLog(@"%@: %@", self, NSStringFromSelector(_cmd));
+    return @"doSomething";
 }
 @end
 
-@interface DerivedClass: NSObject
+@interface WCSwizzleTool_DerivedClass: WCSwizzleTool_BaseClass
 @end
 
-@implementation DerivedClass
-- (void)swizzled_doSomething {
+@implementation WCSwizzleTool_DerivedClass
+- (NSString *)swizzled_doSomething {
     NSLog(@"%@: %@", self, NSStringFromSelector(_cmd));
+    
+    return @"doSomething for swizzling";
 }
 @end
 
@@ -71,13 +74,19 @@
 
 - (void)test_exchangeIMPWithClass_originalSelector_swizzledSelector_forClassMethod {
     BOOL success;
+    WCSwizzleTool_DerivedClass *object;
+    id output;
     
-    // Abnormal Case 1: derived class has method, but its super class has one
-    success = [WCSwizzleTool exchangeIMPWithClass:[DerivedClass class] originalSelector:@selector(doSomething) swizzledSelector:@selector(swizzled_doSomething) forClassMethod:NO];
-    XCTAssertFalse(success);
+    // Case 1: derived class has method, but its super class has one
+    success = [WCSwizzleTool exchangeIMPWithClass:[WCSwizzleTool_DerivedClass class] originalSelector:@selector(doSomething) swizzledSelector:@selector(swizzled_doSomething) forClassMethod:NO];
+    XCTAssertTrue(success);
+    
+    object = [WCSwizzleTool_DerivedClass new];
+    output =[object doSomething];
+    XCTAssertEqualObjects(output, @"doSomething for swizzling");
     
     // Abnormal Case 2: originalSelector not exists
-    success = [WCSwizzleTool exchangeIMPWithClass:[DerivedClass class] originalSelector:NSSelectorFromString(@"doSomething2") swizzledSelector:@selector(swizzled_doSomething) forClassMethod:NO];
+    success = [WCSwizzleTool exchangeIMPWithClass:[WCSwizzleTool_DerivedClass class] originalSelector:NSSelectorFromString(@"doSomething2") swizzledSelector:@selector(swizzled_doSomething) forClassMethod:NO];
     XCTAssertFalse(success);
 }
 
