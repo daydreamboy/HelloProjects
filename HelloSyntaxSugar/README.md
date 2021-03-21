@@ -569,7 +569,73 @@ __attribute__((objc_runtime_name("544cd1f719a0cb56dce50fd51b39852d")))
 
 
 
-## 9、Objective-C常见关键词
+## 9、使用`__builtin_xxx`系列函数
+
+​       GCC编译器提供一些内置函数，例如`__builtin_trap`等。这里统称为`__builtin_xxx`系列函数。Clang也支持`__builtin_xxx`系列函数，但是作为可选的。因此需要使用宏`__has_builtin`测试是否编译器支持[^14]，如下
+
+```c
+#ifndef __has_builtin         // Optional of course.
+  #define __has_builtin(x) 0  // Compatibility with non-clang compilers.
+#endif
+
+...
+#if __has_builtin(__builtin_trap)
+  __builtin_trap();
+#else
+  abort();
+#endif
+```
+
+
+
+由于，这里只介绍常用的函数，如下
+
+| 函数                       | 作用                                                   | 说明 |
+| -------------------------- | ------------------------------------------------------ | ---- |
+| `__builtin_return_address` | 获取当前函数的返回地址，即返回后要执行的下个指令的地址 |      |
+
+
+
+### （1）`__builtin_return_address`
+
+`__builtin_return_address`函数签名[^15]，如下
+
+```c
+void * __builtin_return_address (unsigned int level);
+```
+
+注意：level参数只能传0，因为可能会出现crash。GCC文档描述，如下
+
+> Calling this function with a nonzero argument can have unpredictable effects, including crashing the calling program. 
+
+该函数返回值是被调用函数返回到调用处执行的下一个指令的内存地址，如下面截图
+
+![](images/使用__builtin_return_address.png)
+
+current值是get_function_adress函数的内存地址，而return值是下个指令的内存地址。
+
+示例代码，如下
+
+```objective-c
+void get_function_address(void)
+{
+    void *current_function_ptr = get_function_address;
+    printf("current: %p\n", current_function_ptr);
+    printf("return: %p\n", __builtin_return_address(0));
+}
+
+- (void)test__builtin_return_address {
+    get_function_address();
+}
+```
+
+
+
+
+
+
+
+## 10、Objective-C常见关键词
 
 ### （1）@package
 
@@ -588,7 +654,7 @@ template在Objective-C++是关键词，不能作为参数使用，否则编译�
 
 
 
-## 10、Objective-C常用方法命名方式
+## 11、Objective-C常用方法命名方式
 
 
 
@@ -601,7 +667,7 @@ template在Objective-C++是关键词，不能作为参数使用，否则编译�
 
 
 
-## 11、随机化处理[^4]
+## 12、随机化处理[^4]
 
 
 
@@ -638,11 +704,11 @@ NSLog(@"%f", random);
 
 
 
-## 12、extern "C"[^5]
+## 13、extern "C"[^5]
 
 
 
-## 13、数据类型最大最小值[^6]
+## 14、数据类型最大最小值[^6]
 
 limits.h提供整型数据类型最大最小值的宏定义
 
@@ -650,7 +716,7 @@ float.h提供float型数据类型最大最小值的宏定义
 
 
 
-## 14、__has_feature检查
+## 15、__has_feature检查
 
 __has_feature(xxx)可以传入下面的参数，来检查编译是否支持某个特性。
 
@@ -692,6 +758,9 @@ __has_feature(xxx)可以传入下面的参数，来检查编译是否支持某�
 [^12]:https://blog.sunnyxx.com/2016/05/14/clang-attributes/
 
 [^13]:https://blog.twitter.com/engineering/en_us/a/2014/attribute-directives-in-objective-c.html
+
+[^14]:https://clang.llvm.org/docs/LanguageExtensions.html#feature-checking-macros
+[^15]:https://gcc.gnu.org/onlinedocs/gcc/Return-Address.html
 
 
 

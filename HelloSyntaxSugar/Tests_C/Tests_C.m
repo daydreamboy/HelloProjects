@@ -9,6 +9,10 @@
 #import <XCTest/XCTest.h>
 #import "WCTuple.h"
 
+#include <execinfo.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 typedef struct StructTypeA {
     int field1;
     float field2;
@@ -123,6 +127,44 @@ typedef struct StructTypeA {
     
     size_t len = strlen([stringMaybeNil UTF8String]); // Crash: pass NULL to strlen
     printf("%zu\n", len);
+}
+
+void
+print_trace (void)
+{
+  void *array[10];
+  char **strings;
+  int size, i;
+
+  size = backtrace (array, 10);
+  strings = backtrace_symbols (array, size);
+  if (strings != NULL)
+  {
+
+    printf ("Obtained %d stack frames.\n", size);
+    for (i = 0; i < size; i++)
+      printf ("%s\n", strings[i]);
+  }
+
+  free (strings);
+}
+
+
+void myFunction()
+{
+    // Note: get c function address at runtime
+    void *myImplementation = myFunction;
+    printf("%p\n", myImplementation);
+    /*
+    void (*p)(void) = myImplementation;
+    p();
+     */
+    
+    print_trace();
+}
+
+- (void)test_c_function_pointer {
+    myFunction();
 }
 
 @end
