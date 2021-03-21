@@ -81,70 +81,62 @@ static void * const kAssociatedKeyDynamicColor = (void *)&kAssociatedKeyDynamicC
     id<WCDynamicColorProvider> provider = notification.userInfo[WCDynamicColorChangeNotificationUserInfoProvider];
     NSString *providerName = notification.userInfo[WCDynamicColorChangeNotificationUserInfoProviderName];
     
-    if ([self.host isKindOfClass:[UIView class]]) {
-        if ([self.host isKindOfClass:[UILabel class]]) {
-            UIColor *color = [provider colorWithProviderName:providerName forKey:self.key];
-            if (color) {
-                BOOL shouldProcess = YES;
-                if (self.colorWillChangeBlock) {
-                    shouldProcess = self.colorWillChangeBlock(self.host, color);
-                }
-                
-                if (shouldProcess) {
-                    UILabel *label = (UILabel *)self.host;
-                    if (IOS12_OR_LATER) {
-                        [label setNeedsDisplay];
-                    }
-                    else {
-                        // Note: iOS 11-, use setNeedsDisplay not refresh textColor, must set it again by setTextColor:
-                        if ([WCDynamicInternalColor checkIsDynamicInternalColor:label.textColor]) {
-                            label.textColor = [[WCDynamicInternalColor alloc] initWithDefaultColor:color key:nil];
-                        }
-                    }
+    if (![self.host isKindOfClass:[UIView class]]) {
+        return;
+    }
+    
+    UIColor *color = [provider colorWithProviderName:providerName forKey:self.key];
+    if (![color isKindOfClass:[UIColor class]]) {
+        return;
+    }
+    
+    BOOL shouldProcess = YES;
+    if ([self.host isKindOfClass:[UILabel class]]) {
+        if (self.colorWillChangeBlock) {
+            shouldProcess = self.colorWillChangeBlock(self.host, color);
+        }
+        
+        if (shouldProcess) {
+            UILabel *label = (UILabel *)self.host;
+            if (IOS12_OR_LATER) {
+                [label setNeedsDisplay];
+            }
+            else {
+                // Note: iOS 11-, use setNeedsDisplay not refresh textColor, must set it again by setTextColor:
+                if ([WCDynamicInternalColor checkIsDynamicInternalColor:label.textColor]) {
+                    label.textColor = [[WCDynamicInternalColor alloc] initWithDefaultColor:color key:nil];
                 }
             }
         }
-        else if ([self.host isKindOfClass:[UITextView class]]) {
-            UIColor *color = [provider colorWithProviderName:providerName forKey:self.key];
-            if (color) {
-                BOOL shouldProcess = YES;
-                if (self.colorWillChangeBlock) {
-                    shouldProcess = self.colorWillChangeBlock(self.host, color);
-                }
-                
-                if (shouldProcess) {
-                    UITextView *textView = (UITextView *)self.host;
-                    [textView setNeedsDisplay];
-                }
-            }
+    }
+    else if ([self.host isKindOfClass:[UITextView class]]) {
+        if (self.colorWillChangeBlock) {
+            shouldProcess = self.colorWillChangeBlock(self.host, color);
         }
-        else if ([self.host isKindOfClass:[UITextField class]]) {
-            UIColor *color = [provider colorWithProviderName:providerName forKey:self.key];
-            if (color) {
-                BOOL shouldProcess = YES;
-                if (self.colorWillChangeBlock) {
-                    shouldProcess = self.colorWillChangeBlock(self.host, color);
-                }
-                
-                if (shouldProcess) {
-                    UITextField *textField = (UITextField *)self.host;
-                    [textField setNeedsDisplay];
-                }
-            }
+        
+        if (shouldProcess) {
+            UITextView *textView = (UITextView *)self.host;
+            [textView setNeedsDisplay];
         }
-        else {
-            UIColor *color = [provider colorWithProviderName:providerName forKey:self.key];
-            if (color) {
-                BOOL shouldProcess = YES;
-                if (self.colorWillChangeBlock) {
-                    shouldProcess = self.colorWillChangeBlock(self.host, color);
-                }
-                
-                if (shouldProcess) {
-                    UIView *view = (UIView *)self.host;
-                    view.backgroundColor = color;
-                }
-            }
+    }
+    else if ([self.host isKindOfClass:[UITextField class]]) {
+        if (self.colorWillChangeBlock) {
+            shouldProcess = self.colorWillChangeBlock(self.host, color);
+        }
+        
+        if (shouldProcess) {
+            UITextField *textField = (UITextField *)self.host;
+            [textField setNeedsDisplay];
+        }
+    }
+    else {
+        if (self.colorWillChangeBlock) {
+            shouldProcess = self.colorWillChangeBlock(self.host, color);
+        }
+        
+        if (shouldProcess) {
+            UIView *view = (UIView *)self.host;
+            view.backgroundColor = color;
         }
     }
 }
