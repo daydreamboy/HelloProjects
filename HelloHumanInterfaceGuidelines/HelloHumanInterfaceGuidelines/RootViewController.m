@@ -11,9 +11,8 @@
 #import "UseSystemColorViewController.h"
 #import "UseSemanticColorViewController.h"
 #import "UseSystemDynamicColorViewController.h"
-#import "UseDynamicColorViewController.h"
 #import "UseDynamicFontToSetViewController.h"
-#import "UseNewDynamicColorViewController.h"
+#import "UseDynamicColorViewController.h"
 #import "UseDynamicFontInTableViewViewController.h"
 
 @interface RootViewController ()
@@ -40,9 +39,8 @@
         @"Use system color",
         @"Use semantic color",
         @"Use system dynamic color",
-        @"Use dynamic color",
         @"Use dynamic font",
-        @"Use dynamic color2",
+        @"Use dynamic color",
         @"Use dynamic font in UITableView",
         //@"call a test method",
     ];
@@ -50,9 +48,8 @@
         [UseSystemColorViewController class],
         [UseSemanticColorViewController class],
         [UseSystemDynamicColorViewController class],
-        [UseDynamicColorViewController class],
         [UseDynamicFontToSetViewController class],
-        [UseNewDynamicColorViewController class],
+        [UseDynamicColorViewController class],
         [UseDynamicFontInTableViewViewController class],
         //@"testMethod",
     ];
