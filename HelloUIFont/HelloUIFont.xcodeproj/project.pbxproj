@@ -14,6 +14,7 @@
 		4F32328224546D6C00BE0966 /* UseIconFontInUIButtonViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F32328124546D6C00BE0966 /* UseIconFontInUIButtonViewController.m */; };
 		4F32328524546D7F00BE0966 /* UseIconFontInUIImageViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F32328424546D7F00BE0966 /* UseIconFontInUIImageViewViewController.m */; };
 		4F32328C245484B100BE0966 /* FontFileList in Resources */ = {isa = PBXBuildFile; fileRef = 4F32328B245484B100BE0966 /* FontFileList */; };
+		4F6937ED25E682D700C53B7F /* SystemSettingBoldTextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6937EC25E682D700C53B7F /* SystemSettingBoldTextViewController.m */; };
 		4F6B552121AFF0F6009843E6 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6B552021AFF0F6009843E6 /* AppDelegate.m */; };
 		4F6B552921AFF0F7009843E6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F6B552821AFF0F7009843E6 /* Assets.xcassets */; };
 		4F6B552C21AFF0F7009843E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F6B552A21AFF0F7009843E6 /* LaunchScreen.storyboard */; };
@@ -54,6 +55,8 @@
 		4F32328324546D7F00BE0966 /* UseIconFontInUIImageViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseIconFontInUIImageViewViewController.h; sourceTree = "<group>"; };
 		4F32328424546D7F00BE0966 /* UseIconFontInUIImageViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseIconFontInUIImageViewViewController.m; sourceTree = "<group>"; };
 		4F32328B245484B100BE0966 /* FontFileList */ = {isa = PBXFileReference; lastKnownFileType = folder; path = FontFileList; sourceTree = "<group>"; };
+		4F6937EB25E682D700C53B7F /* SystemSettingBoldTextViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SystemSettingBoldTextViewController.h; sourceTree = "<group>"; };
+		4F6937EC25E682D700C53B7F /* SystemSettingBoldTextViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemSettingBoldTextViewController.m; sourceTree = "<group>"; };
 		4F6B551C21AFF0F5009843E6 /* HelloUIFont.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUIFont.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F6B551F21AFF0F5009843E6 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F6B552021AFF0F6009843E6 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -169,6 +172,8 @@
 				4FA891A224F24BF60091CE24 /* FontGlyphDetailInfoViewController.m */,
 				4FA891AB24F26A730091CE24 /* FontInfoViewController.h */,
 				4FA891AC24F26A730091CE24 /* FontInfoViewController.m */,
+				4F6937EB25E682D700C53B7F /* SystemSettingBoldTextViewController.h */,
+				4F6937EC25E682D700C53B7F /* SystemSettingBoldTextViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -331,6 +336,7 @@
 				4F6B553721AFF121009843E6 /* RootViewController.m in Sources */,
 				4F17E1A424EFFC7100CD022F /* FontGlyphInfoViewController.m in Sources */,
 				4F6B552121AFF0F6009843E6 /* AppDelegate.m in Sources */,
+				4F6937ED25E682D700C53B7F /* SystemSettingBoldTextViewController.m in Sources */,
 				4F17E1AA24EFFD6800CD022F /* WCFileManagerTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -480,6 +486,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = HelloUIFont/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -496,6 +503,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = HelloUIFont/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

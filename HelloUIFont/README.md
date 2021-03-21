@@ -40,7 +40,7 @@ Georgia-Italic
 
 * `+[UIFont fontWithName:size:]`的name参数传入nil，得到不是系统字体，而是Helvetica字体。
 
-```
+```shell
 (lldb) po [UIFont fontWithName:nil size:18]
 <UICTFont: 0x7fda85a26090> font-family: "Helvetica"; font-weight: normal; font-style: normal; font-size: 18.00pt
 ```
@@ -49,18 +49,18 @@ Georgia-Italic
 
 ## 2、使用Icon Font
 
-### Icon Font介绍
+### （1）Icon Font介绍
 
 ​       Icon Font类似Apple Emoji，比如Unicode编码为@"\U0001F604"，打印文字为😄。而Icon Font类似这样的用法，每个Icon Font图标对应有一个Unicode编码，这个编码是在字体文件中（例如ttf文件）。当这个字体文件加载到系统中，就可以通过`[UIFont fontWithName:fontName size:fontSize]`来获取对应的字体。如果渲染的文本中使用到该字体中存在的Unicode编码，则该Unicode编码会被渲染成对应的图标。
 
 
 
 > 1. 可以通过[这个表](https://unicode.org/emoji/charts/full-emoji-list.html)，查询到Apple支持的Emoji的Unicode编码
-> 2. 可以[这个网站](https://char-map.herokuapp.com/)来解析字体文件中的图标信息
+> 2. 可以用[这个网站](https://char-map.herokuapp.com/)来解析字体文件中的图标信息
 
 
 
-### 加载自定义Font
+### （2）加载自定义Font
 
 加载自定义Font有两种方式：
 
@@ -71,11 +71,11 @@ Georgia-Italic
 
 
 
-### 渲染Icon Font
+### （3）渲染Icon Font
 
 
 
-#### UILabel使用Icon Font
+#### a. UILabel使用Icon Font
 
 将UILabel设置自定义Font以及文本包含特定Unicode，系统就渲染出icon图标
 
@@ -87,15 +87,54 @@ label.text = @"Display a \U0000EEA0, \uEEA0 on label \U0000C03A";
 
 
 
-#### UIImageView使用Icon Font
+#### b. UIImageView使用Icon Font
 
 基本原理就是UILabel使用icon font，然后把UILabel内容创建成UIImage对象，最后提供给UIImageView[^2]
 
 
 
-#### UIButton使用Icon Font
+#### c. UIButton使用Icon Font
 
 和UILabel使用Icon Font类似
+
+
+
+
+
+## 3、Bold Text
+
+​        iOS 8+的系统设置支持粗体字体，即在Settings > General > Bold Text可以选择设置粗体字体。在iOS 14设置该开关不会重新系统，而在iOS 11.4上会重新系统。
+
+iOS 8+提供下面的API可以查询该开关的状态[^3]，如下
+
+```objective-c
+BOOL UIAccessibilityIsBoldTextEnabled(void);
+```
+
+如果是设置粗体字体为YES，则下面某些系统API会自动返回粗体版本的字体，列举如下
+
+```objective-c
++ (UIFont *)systemFontOfSize:(CGFloat)fontSize;
++ (UIFont *)systemFontOfSize:(CGFloat)fontSize weight:(UIFontWeight)weight API_AVAILABLE(ios(8.2));
+```
+
+> 如果是自定义字体名称的字体，则不受该开关控制。例如`[UIFont fontWithName:@"ArialMT" size:14]`。
+
+iOS 8+也提供一个通知，用于通知该开关的变化，如下
+
+```objective-c
+const NSNotificationName UIAccessibilityBoldTextStatusDidChangeNotification;
+```
+
+> 该通知不带任何信息，所以收到通知后，需要再次用UIAccessibilityIsBoldTextEnabled函数查询开关状态
+
+
+
+
+
+
+
+
 
 
 
@@ -124,6 +163,8 @@ https://icofont.com/icons
 [^1]: https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/typography/
 
 [^2]:https://medium.com/@ankoma22/working-with-icon-fonts-in-ios-code-example-in-swift-3-561d47ae9d40
+
+[^3]:https://stackoverflow.com/questions/23329238/possible-to-detect-bold-text-setting-in-settings-accessibility
 
 
 
