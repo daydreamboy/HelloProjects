@@ -44,6 +44,13 @@
     return executableName;
 }
 
++ (NSString *)appExecutableFilePath {
+    NSString *executableName = [[self plistInfo] objectForKey:@"CFBundleExecutable"];
+    
+    NSString *filePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:executableName];
+    return filePath;
+}
+
 + (NSString *)appBundleName {
     // (NSString *)kCFBundleNameKey is same as \@"CFBundleName"
     NSString *bundleName = [[self plistInfo] objectForKey:@"CFBundleName"];

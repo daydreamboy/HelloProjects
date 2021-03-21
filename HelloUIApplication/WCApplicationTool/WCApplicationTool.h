@@ -46,6 +46,13 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)appExecutableName;
 
 /**
+ App Binary Executable File Path
+ 
+ @return the app executable file path
+ */
++ (NSString *)appExecutableFilePath;
+
+/**
  App Bundle Name
 
  @return the app bundle name
