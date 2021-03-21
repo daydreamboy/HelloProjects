@@ -12,6 +12,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 FOUNDATION_EXPORT NSFileAttributeKey const WCFileName;
 
+typedef NS_ENUM(NSUInteger, WCMIMEType) {
+    WCMIMETypeBmp,
+    WCMIMETypeGif,
+    WCMIMETypeHeic,
+    WCMIMETypeHeif,
+    WCMIMETypeIco,
+    WCMIMETypeJpg,
+    WCMIMETypePng,
+    WCMIMETypeTtf,
+};
+
 @interface WCFileTool : NSObject
 
 #pragma mark - File
@@ -73,6 +84,24 @@ FOUNDATION_EXPORT NSFileAttributeKey const WCFileName;
  @return YES if the file exists, or NO if the file not exists or it's a directory
  */
 + (BOOL)fileExistsAtPath:(NSString *)path;
+
+/**
+ Check the path if an image file (e.g. bmp, gif, jpg,...)
+ 
+ @param path the path of file. If the path is not a file path, or not exists, the return value is NO
+ @param imageTypes the image types for checking. See WCMIMEType, only support the following types:
+        WCMIMETypeBmp,
+        WCMIMETypeGif,
+        WCMIMETypeHeic,
+        WCMIMETypeHeif,
+        WCMIMETypeIco,
+        WCMIMETypeJpg,
+        WCMIMETypePng,
+        WCMIMETypeTtf,
+ 
+ @return YES if the file is an image file, or return NO otherwise
+ */
++ (BOOL)checkImageFileExistsAtPath:(NSString *)path imageTypes:(NSArray<NSNumber *> *)imageTypes;
 
 #pragma mark > File Attributes
 
