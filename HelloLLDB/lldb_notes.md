@@ -1764,13 +1764,15 @@ error: attach failed: lost connection
 
 ## 7、Hooking Functions
 
-#### Hooking c functions
+### （1）Hooking c functions
 
-Hook c函数的技术，主要用到dlopen和dlsym两个函数。
+​         下面这种Hook c函数的技术，实际上覆盖系统API调用，即定义和系统API一样的函数签名，让调用者使用hook函数，hook函数的实现中通过dlopen和dlsym两个函数，获取到原始的系统函数的函数指针，通过函数指针方式调用系统API。这样达到插入hook代码的目的。
 
-* dlopen，用于获取image的句柄handle。第一个参数是image路径（可以用image list查看路径），第二个参数是加载模式，一般使用RTLD_NOW立即加载。
+用到的dlopen和dlsym两个函数，如下
 
-```
+* dlopen，用于获取image的句柄handle。第一个参数是image路径（可以用`image list`命令查看路径），第二个参数是加载模式，一般使用RTLD_NOW立即加载。
+
+```c
 #include <dlfcn.h>
 
 void* dlopen(const char* path, int mode);
@@ -1778,7 +1780,7 @@ void* dlopen(const char* path, int mode);
 
 * dlsym，用于获取函数符号。第一个参数是image句柄（可以用dlopen获取），第二个参数是函数符号名。
 
-```
+```c
 #include <dlfcn.h>
 
 void* dlsym(void* handle, const char* symbol);
@@ -1795,30 +1797,48 @@ void* dlsym(void* handle, const char* symbol);
 
 char * getenv(const char *name)
 {
-  static void *handle;
-  static char * (*real_getenv)(const char *);
+    static void *handle;
+    static char * (*real_getenv)(const char *);
   
-  static dispatch_once_t onceToken;
-  dispatch_once(&onceToken, ^{
-    handle = dlopen("/usr/lib/system/libsystem_c.dylib", RTLD_NOW);
-    assert(handle);
-    real_getenv = dlsym(handle, "getenv");
-  });
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        handle = dlopen("/usr/lib/system/libsystem_c.dylib", RTLD_NOW);
+#if DEBUG
+        assert(handle);
+#endif
+        
+        if (handle) {
+            real_getenv = dlsym(handle, "getenv");
+            if (real_getenv == NULL)
+            {
+                const char* error = dlerror();
+                printf("can't not find symbol: %s", error);
+            }
+            dlclose(handle);
+        }
+    });
   
-  if (strcmp(name, "HOME") == 0) {
-    return "/";
-  }
-  
-  return real_getenv(name);
+    if (strcmp(name, "HOME") == 0) {
+        return "/";
+    }
+    
+    if (real_getenv != NULL) {
+        return real_getenv(name);
+    }
+    else {
+        return "";
+    }
 }
 ```
 
-说明
+注意
 >1. 如果dlopen和dlsym执行失败，会返回NULL
 >2. hook的getenv函数是否被调用，和dyld如何解决外部函数符号有关。如果UIKit中有函数调用getenv，但是getenv地址解释成/usr/lib/system/libsystem_c.dylib中的getenv地址，则自定义hook的getenv不调用了
 
 
-#### Hooking swift functions
+
+
+### （2）Hooking swift functions
 
 Hook swift函数，要比hook c函数难一些，有两点需要解决
 
@@ -2210,9 +2230,41 @@ $ p *(UIEdgeInsets *)($rbp+16)
 
 
 
+### 6. 监听Objective-C方法调用
 
 
 
+objc_msgSend
+
+
+
+模拟器上
+
+```shell
+expr -- (void)printf("[%s %s]\n",(char *) object_getClassName(*(long*)($rdi)), (char *)($rsi))
+```
+
+
+
+NSObjCMessageLoggingEnabled设置为YES （不起作用）
+
+```
+/tmp/msgSends-<pid>
+```
+
+
+
+https://stackoverflow.com/questions/25515730/log-objective-c-message-sends-on-a-device
+
+
+
+https://stackoverflow.com/questions/7270502/how-to-log-all-methods-used-in-ios-app
+
+https://stackoverflow.com/questions/6886353/is-there-a-way-to-track-trace-and-log-all-the-methods-by-class-and-method-name
+
+https://debugtrap.com/2016/02/28/ARM64-method-tracing/
+
+http://phrack.org/issues/66/4.html
 
 
 

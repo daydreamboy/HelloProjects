@@ -10,6 +10,47 @@
 
 #import "RootViewController.h"
 
+#import <dlfcn.h>
+#import <assert.h>
+#import <stdio.h>
+#import <dispatch/dispatch.h>
+#import <string.h>
+
+char * getenv(const char *name)
+{
+    static void *handle;
+    static char * (*real_getenv)(const char *);
+  
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        handle = dlopen("/usr/lib/system/libsystem_c.dylib", RTLD_NOW);
+#if DEBUG
+        assert(handle);
+#endif
+        
+        if (handle) {
+            real_getenv = dlsym(handle, "getenv");
+            if (real_getenv == NULL)
+            {
+                const char* error = dlerror();
+                printf("can't not find symbol: %s", error);
+            }
+            dlclose(handle);
+        }
+    });
+  
+    if (strcmp(name, "HOME") == 0) {
+        return "/";
+    }
+    
+    if (real_getenv != NULL) {
+        return real_getenv(name);
+    }
+    else {
+        return "";
+    }
+}
+
 @interface AppDelegate ()
 @property (nonatomic, strong) RootViewController *rootViewController;
 @property (nonatomic, strong) UINavigationController *navController;
@@ -26,6 +67,9 @@
     
     [self.window makeKeyAndVisible];
     
+    NSLog(@"HOME env: %s", getenv("HOME"));
+    NSLog(@"PATH env: %s", getenv("PATH"));
+
     return YES;
 }
 

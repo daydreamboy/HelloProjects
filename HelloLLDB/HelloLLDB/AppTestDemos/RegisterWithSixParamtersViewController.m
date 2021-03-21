@@ -18,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self test_register_read];
+    
+    NSLog(@"HOME env: %s", getenv("HOME"));
 }
 
 - (void)test_register_read {
