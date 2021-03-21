@@ -7,7 +7,7 @@
 //
 
 #import "SortFileNamesInDirectoryViewController.h"
-#import "WCFileManagerTool.h"
+#import "WCFileTool.h"
 
 @interface SortFileNamesInDirectoryViewController ()
 
@@ -25,24 +25,24 @@
 - (void)test_sorted_file_names_by_name {
     NSString *directoryPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"SampleData"];
     
-    NSArray *fileNames1 = [WCFileManagerTool sortedFileNamesInDirectoryPath:directoryPath ascend:YES];
+    NSArray *fileNames1 = [WCFileTool sortedFileNamesInDirectoryPath:directoryPath ascend:YES];
     NSLog(@"sorted ascend------------------");
     NSLog(@"%@", fileNames1);
     
     NSLog(@"sorted descend------------------");
-    NSArray *fileNames2 = [WCFileManagerTool sortedFileNamesInDirectoryPath:directoryPath ascend:NO];
+    NSArray *fileNames2 = [WCFileTool sortedFileNamesInDirectoryPath:directoryPath ascend:NO];
     NSLog(@"%@", fileNames2);
 }
 
 - (void)test_sorted_file_names_by_size {
     NSString *directoryPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"SampleData"];
     
-    NSArray *fileNamesBySize1 = [WCFileManagerTool sortedFileNamesBySizeInDirectoryPath:directoryPath ascend:YES];
+    NSArray *fileNamesBySize1 = [WCFileTool sortedFileNamesBySizeInDirectoryPath:directoryPath ascend:YES];
     NSLog(@"sorted ascend------------------");
     NSLog(@"%@", fileNamesBySize1);
     
     NSLog(@"sorted descend------------------");
-    NSArray *fileNamesBySize2 = [WCFileManagerTool sortedFileNamesBySizeInDirectoryPath:directoryPath ascend:NO];
+    NSArray *fileNamesBySize2 = [WCFileTool sortedFileNamesBySizeInDirectoryPath:directoryPath ascend:NO];
     NSLog(@"%@", fileNamesBySize2);
 }
 

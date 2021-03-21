@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "WCFileManagerTool.h"
+#import "WCFileTool.h"
 
 @interface Test : XCTestCase
 
@@ -33,13 +33,13 @@
     
     // Case 1: Create new file
     filePath = @"/Users/wesley_chen/test.txt";
-    isCreated = [WCFileManagerTool createNewFileAtPath:filePath content:@"" overwrite:NO];
+    isCreated = [WCFileTool createNewFileAtPath:filePath content:@"" overwrite:NO];
     XCTAssertTrue(isCreated);
     XCTAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:filePath]);
     
     // Case 2: Create new file with the existing one
     NSString *text = @"1234";
-    isCreated = [WCFileManagerTool createNewFileAtPath:filePath content:text overwrite:NO];
+    isCreated = [WCFileTool createNewFileAtPath:filePath content:text overwrite:NO];
     XCTAssertTrue(isCreated);
     XCTAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:filePath]);
     NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
@@ -47,7 +47,7 @@
     
     // Case 3: Create new file at absolute path with new parent folder
     filePath = @"/Users/wesley chen/Test/test.txt";
-    isCreated = [WCFileManagerTool createNewFileAtPath:filePath content:text overwrite:NO];
+    isCreated = [WCFileTool createNewFileAtPath:filePath content:text overwrite:NO];
     XCTAssertTrue(isCreated);
     XCTAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:filePath]);
     
@@ -55,7 +55,7 @@
     NSLog(@"%@", [[NSFileManager defaultManager] currentDirectoryPath]);
     
     filePath = @"test/test.txt";
-    isCreated = [WCFileManagerTool createNewFileAtPath:filePath content:text overwrite:NO];
+    isCreated = [WCFileTool createNewFileAtPath:filePath content:text overwrite:NO];
     XCTAssertTrue(isCreated);
     XCTAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:filePath]);
 }
@@ -64,7 +64,7 @@
     BOOL isSuccess;
     NSString *filePath = @"/Users/wesley chen/test.txt";
     
-    isSuccess = [WCFileManagerTool createNewFileAtPath:filePath overwrite:NO];
+    isSuccess = [WCFileTool createNewFileAtPath:filePath overwrite:NO];
     XCTAssertTrue(isSuccess);
     XCTAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:filePath]);
 }
@@ -82,16 +82,16 @@
     XCTAssertTrue(isCreated);
     XCTAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:filePath]);
     
-    isDeleted = [WCFileManagerTool deleteFileAtPath:filePath];
+    isDeleted = [WCFileTool deleteFileAtPath:filePath];
     XCTAssertTrue(isDeleted);
     
     // Case 2: Delete a non-existed file
     filePath = @"/Users/wesley chen/file_not_exists.txt";
-    isDeleted = [WCFileManagerTool deleteFileAtPath:filePath];
+    isDeleted = [WCFileTool deleteFileAtPath:filePath];
     XCTAssertFalse(isDeleted);
     
     filePath = @"/Users/wesley chen/Test";
-    isDeleted = [WCFileManagerTool deleteFileAtPath:filePath];
+    isDeleted = [WCFileTool deleteFileAtPath:filePath];
 }
 
 #pragma mark - File Check
@@ -102,13 +102,13 @@
     
     // Case 1: Check directory existed
     filePath = @"/Users/wesley chen/";
-    isExisted = [WCFileManagerTool fileExistsAtPath:filePath];
+    isExisted = [WCFileTool fileExistsAtPath:filePath];
     
     XCTAssertTrue(isExisted);
     
     // Case 2: Check file existed
     filePath = @"/Applications/iTunes.app/Contents/Info.plist";
-    isExisted = [WCFileManagerTool fileExistsAtPath:filePath];
+    isExisted = [WCFileTool fileExistsAtPath:filePath];
     
     XCTAssertTrue(isExisted);
 }
@@ -121,7 +121,7 @@
     
     // Case 1
     filePath = [[NSBundle bundleForClass:self.class] pathForResource:@"3" ofType:@"txt"];
-    size = [WCFileManagerTool sizeOfFileAtPath:filePath];
+    size = [WCFileTool sizeOfFileAtPath:filePath];
     XCTAssertTrue(size == 0);
 }
 
@@ -147,7 +147,7 @@
     
     // Case 1:
     path = @"/Users/wesley chen/Test1/Test2";
-    isCreated = [WCFileManagerTool createNewDirectoryIfNeededAtPath:path error:nil];
+    isCreated = [WCFileTool createNewDirectoryIfNeededAtPath:path error:nil];
     XCTAssertTrue(isCreated);
     XCTAssertTrue([[NSFileManager defaultManager] fileExistsAtPath:path]);
     

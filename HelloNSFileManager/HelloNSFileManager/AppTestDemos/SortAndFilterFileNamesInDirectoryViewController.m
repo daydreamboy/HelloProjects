@@ -7,7 +7,7 @@
 //
 
 #import "SortAndFilterFileNamesInDirectoryViewController.h"
-#import "WCFileManagerTool.h"
+#import "WCFileTool.h"
 
 @interface SortAndFilterFileNamesInDirectoryViewController ()
 
@@ -24,12 +24,12 @@
 - (void)test_filtered_file_names_by_extension {
     NSString *directoryPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"SampleData"];
     
-    NSArray *fileNames1 = [WCFileManagerTool filteredFileNamesInDirectoryPath:directoryPath ascend:YES extensions:@[@"json"]];
+    NSArray *fileNames1 = [WCFileTool filteredFileNamesInDirectoryPath:directoryPath ascend:YES extensions:@[@"json"]];
     NSLog(@"sorted ascend------------------");
     NSLog(@"%@", fileNames1);
     
     NSLog(@"sorted descend------------------");
-    NSArray *fileNames2 = [WCFileManagerTool filteredFileNamesInDirectoryPath:directoryPath ascend:NO extensions:@[@"json", @"txt"]];
+    NSArray *fileNames2 = [WCFileTool filteredFileNamesInDirectoryPath:directoryPath ascend:NO extensions:@[@"json", @"txt"]];
     NSLog(@"%@", fileNames2);
 }
 

@@ -12,7 +12,7 @@
 		4F4E1423210311C500D12D11 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F4E1421210311C500D12D11 /* LaunchScreen.storyboard */; };
 		4F4E1426210311C500D12D11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E1425210311C500D12D11 /* main.m */; };
 		4F4E1431210311F800D12D11 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E142C210311F800D12D11 /* RootViewController.m */; };
-		4F4E14392103125B00D12D11 /* WCFileManagerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E14382103125B00D12D11 /* WCFileManagerTool.m */; };
+		4F4E14392103125B00D12D11 /* WCFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E14382103125B00D12D11 /* WCFileTool.m */; };
 		4F4E1441210312EC00D12D11 /* Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E1440210312EC00D12D11 /* Test.m */; };
 		4F52D24A211B08D3004EE254 /* SampleData in Resources */ = {isa = PBXBuildFile; fileRef = 4F52D249211B08D3004EE254 /* SampleData */; };
 		4F52D24D211B08F8004EE254 /* SortFileNamesInDirectoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F52D24C211B08F8004EE254 /* SortFileNamesInDirectoryViewController.m */; };
@@ -45,8 +45,8 @@
 		4F4E1425210311C500D12D11 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F4E142C210311F800D12D11 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F4E1430210311F800D12D11 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		4F4E14372103125B00D12D11 /* WCFileManagerTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCFileManagerTool.h; sourceTree = "<group>"; };
-		4F4E14382103125B00D12D11 /* WCFileManagerTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCFileManagerTool.m; sourceTree = "<group>"; };
+		4F4E14372103125B00D12D11 /* WCFileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCFileTool.h; sourceTree = "<group>"; };
+		4F4E14382103125B00D12D11 /* WCFileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCFileTool.m; sourceTree = "<group>"; };
 		4F4E143E210312EC00D12D11 /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F4E1440210312EC00D12D11 /* Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		4F4E1442210312EC00D12D11 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 		4F4E140A210311C000D12D11 = {
 			isa = PBXGroup;
 			children = (
-				4F4E14332103121A00D12D11 /* WCFileManagerTool */,
+				4F4E14332103121A00D12D11 /* WCFileTool */,
 				4F4E1415210311C000D12D11 /* HelloNSFileManager */,
 				4F4E143F210312EC00D12D11 /* Test */,
 				4F4E1414210311C000D12D11 /* Products */,
@@ -128,13 +128,13 @@
 			path = AppTestDemos;
 			sourceTree = "<group>";
 		};
-		4F4E14332103121A00D12D11 /* WCFileManagerTool */ = {
+		4F4E14332103121A00D12D11 /* WCFileTool */ = {
 			isa = PBXGroup;
 			children = (
-				4F4E14372103125B00D12D11 /* WCFileManagerTool.h */,
-				4F4E14382103125B00D12D11 /* WCFileManagerTool.m */,
+				4F4E14372103125B00D12D11 /* WCFileTool.h */,
+				4F4E14382103125B00D12D11 /* WCFileTool.m */,
 			);
-			path = WCFileManagerTool;
+			path = WCFileTool;
 			sourceTree = "<group>";
 		};
 		4F4E143F210312EC00D12D11 /* Test */ = {
@@ -279,7 +279,7 @@
 				4F4E1431210311F800D12D11 /* RootViewController.m in Sources */,
 				4F4E1418210311C000D12D11 /* AppDelegate.m in Sources */,
 				4F52D250211B1582004EE254 /* SortAndFilterFileNamesInDirectoryViewController.m in Sources */,
-				4F4E14392103125B00D12D11 /* WCFileManagerTool.m in Sources */,
+				4F4E14392103125B00D12D11 /* WCFileTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,5 +1,5 @@
 //
-//  WCFileManagerTool.h
+//  WCFileTool.h
 //  HelloNSFileManager
 //
 //  Created by wesley_chen on 2018/7/21.
@@ -12,7 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 FOUNDATION_EXPORT NSFileAttributeKey const WCFileName;
 
-@interface WCFileManagerTool : NSObject
+@interface WCFileTool : NSObject
 
 #pragma mark - File
 

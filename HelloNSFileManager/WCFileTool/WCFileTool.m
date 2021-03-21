@@ -1,12 +1,12 @@
 //
-//  WCFileManagerTool.m
+//  WCFileTool.m
 //  HelloNSFileManager
 //
 //  Created by wesley_chen on 2018/7/21.
 //  Copyright © 2018 wesley_chen. All rights reserved.
 //
 
-#import "WCFileManagerTool.h"
+#import "WCFileTool.h"
 
 
 // DEBUG_LOG
@@ -32,7 +32,7 @@ do { \
 
 NSFileAttributeKey const WCFileName = @"WCFileName";
 
-@implementation WCFileManagerTool
+@implementation WCFileTool
 
 #pragma mark - File
 
@@ -393,7 +393,7 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
     
     if (!force && !isDirectory) {
         // If the path is a file, return NO
-        NSError *errorL = [NSError errorWithDomain:NSStringFromClass([WCFileManagerTool class]) code:-1 userInfo:@{ NSLocalizedFailureReasonErrorKey: @"path is not a directory" }];
+        NSError *errorL = [NSError errorWithDomain:NSStringFromClass([WCFileTool class]) code:-1 userInfo:@{ NSLocalizedFailureReasonErrorKey: @"path is not a directory" }];
         PTR_SAFE_SET(error, errorL);
         
         return NO;
@@ -440,7 +440,7 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
 #pragma mark > Directory Attributes
 
 + (long long)sizeOfDirectoryAtPath:(NSString *)path {
-    if (![WCFileManagerTool directoryExistsAtPath:path]) {
+    if (![WCFileTool directoryExistsAtPath:path]) {
         return -1;
     }
     
