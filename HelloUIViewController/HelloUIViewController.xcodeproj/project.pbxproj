@@ -21,6 +21,7 @@
 		4F7D8EDA2109777300145B00 /* UseViewControllerAsSubviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8ED92109777300145B00 /* UseViewControllerAsSubviewViewController.m */; };
 		4FB0291B2188558D000E6516 /* WCViewControllerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0291A2188558D000E6516 /* WCViewControllerTool.m */; };
 		4FB0291E21888B4A000E6516 /* CheckAppearingAndDisappearingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0291D21888B4A000E6516 /* CheckAppearingAndDisappearingViewController.m */; };
+		4FB7A95325AD3A6E007701FD /* UseUIImagePickerControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB7A95225AD3A6E007701FD /* UseUIImagePickerControllerViewController.m */; };
 		4FEDD41A2189A979008CB64F /* CustomPresentationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FEDD4192189A979008CB64F /* CustomPresentationViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,8 @@
 		4FB0291A2188558D000E6516 /* WCViewControllerTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewControllerTool.m; sourceTree = "<group>"; };
 		4FB0291C21888B4A000E6516 /* CheckAppearingAndDisappearingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckAppearingAndDisappearingViewController.h; sourceTree = "<group>"; };
 		4FB0291D21888B4A000E6516 /* CheckAppearingAndDisappearingViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckAppearingAndDisappearingViewController.m; sourceTree = "<group>"; };
+		4FB7A95125AD3A6E007701FD /* UseUIImagePickerControllerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseUIImagePickerControllerViewController.h; sourceTree = "<group>"; };
+		4FB7A95225AD3A6E007701FD /* UseUIImagePickerControllerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseUIImagePickerControllerViewController.m; sourceTree = "<group>"; };
 		4FEDD4182189A979008CB64F /* CustomPresentationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomPresentationViewController.h; sourceTree = "<group>"; };
 		4FEDD4192189A979008CB64F /* CustomPresentationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomPresentationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -145,6 +148,7 @@
 		4F4E14A82103576600D12D11 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4FB7A95025AD3A4D007701FD /* SystemViewController */,
 				4F16F489250E187400CA21E2 /* Presentation */,
 				4F16F487250E116600CA21E2 /* ContainerViewController */,
 				4F16F486250E115400CA21E2 /* ContentViewController */,
@@ -172,6 +176,15 @@
 				4F68564C218954840080CF0B /* DummyModalViewController.m */,
 			);
 			path = DummyViewControllers;
+			sourceTree = "<group>";
+		};
+		4FB7A95025AD3A4D007701FD /* SystemViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4FB7A95125AD3A6E007701FD /* UseUIImagePickerControllerViewController.h */,
+				4FB7A95225AD3A6E007701FD /* UseUIImagePickerControllerViewController.m */,
+			);
+			path = SystemViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,6 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FB7A95325AD3A6E007701FD /* UseUIImagePickerControllerViewController.m in Sources */,
 				4F4E14AD2103576600D12D11 /* UseToolbarItemsViewController.m in Sources */,
 				4F6EBA19258B56EA0047CED7 /* ChildViewController.m in Sources */,
 				4F68564D218954840080CF0B /* DummyModalViewController.m in Sources */,

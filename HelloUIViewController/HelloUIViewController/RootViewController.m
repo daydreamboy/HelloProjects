@@ -12,12 +12,15 @@
 #import "UseToolbarItemsViewController.h"
 #import "UseViewControllerAsSubviewViewController.h"
 #import "CheckAppearingAndDisappearingViewController.h"
+#import "ParentGetNavigationItemFromChildViewController.h"
 
 // section 2
+#import "UseUIImagePickerControllerViewController.h"
+
+// section 3
 #import "UseModalPresentationStyleViewController.h"
 #import "CustomPresentationViewController.h"
 
-#import "ParentGetNavigationItemFromChildViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -50,6 +53,7 @@
     ];
     
     NSArray<NSDictionary *> *section2 = @[
+        @{ kTitle: @"Use UIImagePickerController", kClass: [UseUIImagePickerControllerViewController class] },
     ];
     
     NSArray<NSDictionary *> *section3 = @[
