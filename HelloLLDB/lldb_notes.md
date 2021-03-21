@@ -1255,13 +1255,13 @@ Index   UserID DSX Type            File Address/Value Load Address       Size   
 
 
 
-#### （3） image lookup
+#### （3）image lookup
 
 格式：image lookup [options] \<regex\>
 
 * -n，搜索特定的符号名或者函数名
 
-```
+```shell
 (lldb) image lookup -n "-[UIViewController viewDidLoad]"
 1 match found in /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/System/Library/Frameworks/UIKit.framework/UIKit:
         Address: UIKit[0x00000000001d1df6] (UIKit.__TEXT.__text + 1900502)
@@ -1270,7 +1270,7 @@ Index   UserID DSX Type            File Address/Value Load Address       Size   
 
 * -rn，正则匹配搜索特定的符号名
 
-```
+```shell
 (lldb) image lookup -rn UIViewController
 (lldb) image lookup -rn '\[UIViewController\ '
 (lldb) image lookup -rn '\[UIViewController\(\w+)\ '
@@ -1283,7 +1283,7 @@ Index   UserID DSX Type            File Address/Value Load Address       Size   
 	* order number，如果函数中有多个block，则number是序号，但是第一个block序号不是0或1，而直接是<function name>\_block\_invoke，第二个block则是<function name>\_block\_invoke\_2。注意是从2开始的。    
 	* module name，指定特定module    
 
-```
+```shell
 (lldb) image lookup -rn _block_invoke
 (lldb) image lookup -rn _block_invoke Commons
 6 matches found in /Users/wesley_chen/Library/Developer/Xcode/DerivedData/Signals-ezwjdgxtmgvixuaawmjotragooie/Build/Products/Debug-iphonesimulator/Signals.app/Frameworks/Commons.framework/Commons:
@@ -1298,7 +1298,7 @@ Index   UserID DSX Type            File Address/Value Load Address       Size   
 
 * -v，输出详细信息。注意：v和r、n组合，只能是-vrn或者-rvn
 
-```
+```shell
 (lldb) image lookup -rvn "\-\[RegisterWithSixParamtersViewController\ viewDidLoad]"
 1 match found in /Users/wesley_chen/Library/Developer/Xcode/DerivedData/HelloLLDB-eqmlveobenalktcpgudrgrnfyltk/Build/Products/Debug-iphonesimulator/HelloLLDB.app/HelloLLDB:
         Address: HelloLLDB[0x0000000100002380] (HelloLLDB.__TEXT.__text + 4816)
@@ -1320,7 +1320,7 @@ Blocks一行，range表示函数的加载地址范围，[0x1095bb380-0x1095bb3cf
 
 * -s，搜索特定的符号名
 
-```
+```shell
 (lldb) image lookup -s getenv
 1 symbols match 'getenv' in /Users/wesley_chen/Library/Developer/Xcode/DerivedData/Watermark-bljnfutbpwxeipdlfbnqaxepnglx/Build/Products/Debug-iphonesimulator/Watermark.app/Frameworks/HookingC.framework/HookingC:
         Address: HookingC[0x0000000000000f60] (HookingC.__TEXT.__text + 0)
@@ -1334,7 +1334,7 @@ Blocks一行，range表示函数的加载地址范围，[0x1095bb380-0x1095bb3cf
 
 ### 22. run
 
-```
+```shell
 (lldb) run
 ```
 
