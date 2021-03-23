@@ -8,6 +8,7 @@
 
 #import "WCApplicationTool.h"
 #import <sys/utsname.h>
+#import <sys/sysctl.h>
 
 #define IS_IPAD             ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad)
 
@@ -70,6 +71,29 @@
 + (NSURL *)appInfoPlistURL {
     NSURL *infoPlistURL = [[self plistInfo] objectForKey:@"CFBundleInfoPlistURL"];
     return infoPlistURL;
+}
+
++ (NSTimeInterval)appProcessStartTime {
+    pid_t pid = getpid();
+    int mib[4] = {
+        CTL_KERN,
+        KERN_PROC,
+        KERN_PROC_PID,
+        pid
+    };
+    struct kinfo_proc proc;
+    size_t size2 = sizeof(proc);
+    int ret = sysctl(mib, 4, &proc, &size2, NULL, 0);
+    if (ret != 0) {
+        return 0;
+    }
+
+    NSTimeInterval ti1 = proc.kp_proc.p_starttime.tv_sec; // seconds
+    NSTimeInterval ti2 = proc.kp_proc.p_starttime.tv_usec; // microseconds
+
+    NSTimeInterval timestamp = ti1 + ti2 / 1000000;
+    
+    return timestamp;
 }
 
 #pragma mark ::

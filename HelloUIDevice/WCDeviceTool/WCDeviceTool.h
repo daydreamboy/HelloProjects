@@ -281,6 +281,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (BOOL)deviceProximitySensorEnabled;
 
+/**
+ 
+ @header #import <sys/sysctl.h>
+ */
 + (BOOL)deviceDebuggerAttached;
 
 + (BOOL)devicePluggedIn;

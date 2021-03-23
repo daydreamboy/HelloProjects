@@ -24,6 +24,7 @@
 		4F70D8DF25EA39A90088F1CA /* WCSwizzleTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70D8DE25EA39A90088F1CA /* WCSwizzleTool.m */; };
 		4F70D8EA25EA3DB20088F1CA /* UseWCKeyboardShortcutManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70D8E925EA3DB20088F1CA /* UseWCKeyboardShortcutManagerViewController.m */; };
 		4F7E2D7D222395E1007D190E /* WCApplicationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7E2D7C222395E1007D190E /* WCApplicationTool.m */; };
+		4FD02EC82609C63A00E0F2C8 /* GetAppLaunchTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD02EC72609C63A00E0F2C8 /* GetAppLaunchTimeViewController.m */; };
 		4FE77A8B234442A6000EA68D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE77A8A234442A6000EA68D /* AppDelegate.m */; };
 		4FE77A93234442A8000EA68D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FE77A92234442A8000EA68D /* Assets.xcassets */; };
 		4FE77A96234442A8000EA68D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FE77A94234442A8000EA68D /* LaunchScreen.storyboard */; };
@@ -74,6 +75,8 @@
 		4F70D8E925EA3DB20088F1CA /* UseWCKeyboardShortcutManagerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCKeyboardShortcutManagerViewController.m; sourceTree = "<group>"; };
 		4F7E2D7B222395E1007D190E /* WCApplicationTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCApplicationTool.h; sourceTree = "<group>"; };
 		4F7E2D7C222395E1007D190E /* WCApplicationTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCApplicationTool.m; sourceTree = "<group>"; };
+		4FD02EC62609C63A00E0F2C8 /* GetAppLaunchTimeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAppLaunchTimeViewController.h; sourceTree = "<group>"; };
+		4FD02EC72609C63A00E0F2C8 /* GetAppLaunchTimeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAppLaunchTimeViewController.m; sourceTree = "<group>"; };
 		4FE77A87234442A5000EA68D /* PreventSensitivityFromTaskSwitcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PreventSensitivityFromTaskSwitcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FE77A89234442A6000EA68D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FE77A8A234442A6000EA68D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -160,6 +163,8 @@
 				4F56B28E25A21CA900AD7478 /* ShowTouchIndicatorViewController.m */,
 				4F70D8E825EA3DB20088F1CA /* UseWCKeyboardShortcutManagerViewController.h */,
 				4F70D8E925EA3DB20088F1CA /* UseWCKeyboardShortcutManagerViewController.m */,
+				4FD02EC62609C63A00E0F2C8 /* GetAppLaunchTimeViewController.h */,
+				4FD02EC72609C63A00E0F2C8 /* GetAppLaunchTimeViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -371,6 +376,7 @@
 			files = (
 				4F56B27325A214C200AD7478 /* MyApplication.m in Sources */,
 				4F56B28325A2179500AD7478 /* WCTouchIndicatorFingerView.m in Sources */,
+				4FD02EC82609C63A00E0F2C8 /* GetAppLaunchTimeViewController.m in Sources */,
 				4F70D8DF25EA39A90088F1CA /* WCSwizzleTool.m in Sources */,
 				4F70D8EA25EA3DB20088F1CA /* UseWCKeyboardShortcutManagerViewController.m in Sources */,
 				4F7E2D7D222395E1007D190E /* WCApplicationTool.m in Sources */,

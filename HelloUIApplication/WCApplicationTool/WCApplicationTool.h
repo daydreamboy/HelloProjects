@@ -80,6 +80,17 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (NSURL *)appInfoPlistURL;
 
+/**
+ Get app process start time
+ 
+ @return the timestamp in seconds when app process started
+ 
+ @header #import <sys/sysctl.h>
+ 
+ @see https://stackoverflow.com/questions/40649964/ios-get-self-process-start-time-after-the-fact/40677286
+ */
++ (NSTimeInterval)appProcessStartTime;
+
 #pragma mark - App Directories
 
 /**
