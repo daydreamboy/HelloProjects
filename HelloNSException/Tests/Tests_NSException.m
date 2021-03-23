@@ -1,5 +1,5 @@
 //
-//  Tests_Nil_Exception.m
+//  Tests_NSException.m
 //  Tests
 //
 //  Created by wesley_chen on 2018/9/16.
@@ -10,21 +10,11 @@
 
 static id nilObject = nil;
 
-@interface Tests_Nil_Exception : XCTestCase
+@interface Tests_NSException : XCTestCase
 
 @end
 
-@implementation Tests_Nil_Exception
-
-- (void)setUp {
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-}
-
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
+@implementation Tests_NSException
 
 - (void)test_NSString_APIs {
     /*
@@ -42,7 +32,9 @@ static id nilObject = nil;
     XCTAssertThrows([[NSString alloc] initWithString:nilObject]);
 }
 
-- (void)test_nil_NSMutableArray_addObject {
+#pragma mark - NSException
+
+- (void)test_NSInvalidArgumentException {
     // Note: set objc_exception_throw/__cxa_throw/__cxa_begin_catch as symbol breakpoint
     @try {
         NSMutableArray *arrM = [NSMutableArray array];
@@ -50,6 +42,23 @@ static id nilObject = nil;
     }
     @catch (NSException *exception) {
         NSLog(@"%@", exception);
+        XCTAssertEqualObjects(exception.name, @"NSInvalidArgumentException");
+    }
+    @finally {
+        NSLog(@"finally");
+    }
+}
+
+- (void)test_NSMallocException {
+    // @see https://blog.csdn.net/skylin19840101/article/details/51944701
+    @try {
+        NSMutableData *data = [[NSMutableData alloc] initWithCapacity:1];
+        NSInteger len = 2032935142;
+        [data increaseLengthBy:len];
+    }
+    @catch (NSException *exception) {
+        NSLog(@"%@", exception);
+        XCTAssertEqualObjects(exception.name, @"NSMallocException");
     }
     @finally {
         NSLog(@"finally");
