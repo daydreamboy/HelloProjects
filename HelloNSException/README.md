@@ -486,7 +486,7 @@ $ /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Reso
 如果要符号化app的符号，使用`-d`选项指定dSYM路径，如下
 
 ```shell
-$ symbolicatecrash log.crash -d YourApp.app.dSYM > result.log
+$ /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Resources/symbolicatecrash log.crash -d YourApp.app.dSYM > result.log
 ```
 
 
