@@ -4,10 +4,31 @@
 
 ## 1、Xcode环境变量[^1]
 
+`⌘ + ⇧ + ,`打开弹出框，Arguments > Environment Variables，输入环境变量。
+
+
+
+常用环境变量，如下
+
 | Environment variable | 作用 | 说明 |
 |----------------------|-----|------|
 | DYLD\_PRINT\_LIBRARIES | 输出image加载日志 | |
 | DYLD\_PRINT\_ENV | 输出环境变量 | 通过C函数getenv也可以获取环境变量 |
+| OBJC_PRINT_REPLACED_METHODS | 检测分类方法是否重复[^14] | 设置值为YES |
+
+
+
+### （1）检测分类方法是否重复
+
+
+
+```shell
+objc[7366]: REPLACED: -[UIView setMultipleTouchEnabled:]  by category Addition  (IMP was 0x7fff24bda842 (/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/UIKitCore.framework/UIKitCore), now 0x1094b8700 (/Users/wesley_chen/Library/Developer/CoreSimulator/Devices/0F9D6E29-1CE0-43E7-B104-26C2CCD84DAE/data/Containers/Bundle/Application/2309AD94-8BDD-4F42-BC73-F1DDE8FAE81F/HelloXcode_CheckCategroyMethodConflict.app/HelloXcode_CheckCategroyMethodConflict))
+```
+
+TODO：脚本提取REPLACED:信息
+
+
 
 
 
@@ -17,7 +38,7 @@
 
 Xcode打开Address Sanitizer（简称ASan）设置，如下
 
-![](images/Turn On Address Sanitizer.png)
+<img src="images/Turn On Address Sanitizer.png" style="zoom:50%;" />
 
 
 
@@ -35,7 +56,7 @@ Address Sanitizer支持检查的类型，如下
   * Detects when stack variable memory is accessed after its declaring function returns.
   * 开启这个功能，需要单独打开下面这个Detect use of stack after return设置
 
-![](images/Turn On Detect use of stack after return.png)
+<img src="images/Turn On Detect use of stack after return.png" style="zoom:50%;" />
 
 * Use of Out-of-Scope Stack Memory
   * Detects when variables are accessed outside of their declared scope.（访问栈上作用域之外的变量）
@@ -55,7 +76,7 @@ Address Sanitizer支持检查的类型，如下
 
 Xcode打开Thread Sanitizer（简称TSan）设置，如下
 
-![](images/Turn On Thread Sanitizer.png)
+<img src="images/Turn On Thread Sanitizer.png" style="zoom:50%;" />
 
 目前TSan仅支持模拟器，不支持设备。
 
@@ -92,7 +113,7 @@ Thread Sanitizer支持检查的情况，如下
 
 Xcode默认打开Main Thread Checker设置，如下
 
-![](images/Turn On Main Thread Checker.png)
+<img src="images/Turn On Main Thread Checker.png" style="zoom:50%;" />
 
 ​        文档上描述，Main Thread Checker设置，用于检测非主线程中更新UI的操作，同时指出非主线程中更新UI，会导致视图错误、数据损坏以及crash等问题。
 
@@ -110,7 +131,7 @@ Xcode默认打开Main Thread Checker设置，如下
 
 Xcode打开Undefined Behavior Sanitizer（简称UBSan）设置，如下
 
-![](images/Turn On Undefined Behavior Sanitizer.png)
+<img src="images/Turn On Undefined Behavior Sanitizer.png" style="zoom:50%;" />
 
 
 
@@ -462,7 +483,7 @@ $ defaults write com.apple.dt.Xcode IDEIndexerActivityShowNumericProgress 1
 
 ### （1）开启Xcode编译的耗时统计[^8]
 
-```shel
+```shell
 $ defaults write com.apple.dt.Xcode ShowBuildOperationDuration -bool YES
 $ defaults read com.apple.dt.Xcode ShowBuildOperationDuration           
 1
@@ -524,6 +545,8 @@ TODO
 [^12]:https://apple.stackexchange.com/questions/203044/enable-touch-indicator-for-ios-app-demo-video-recording
 
 [^13]:https://davedelong.com/blog/2018/07/25/conditional-compilation-in-swift-part-2/
+
+[^14]:https://developer.apple.com/library/archive/qa/qa1908/_index.html#//apple_ref/doc/uid/DTS40016829-CH1-FIND
 
 
 
