@@ -17,6 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     UIImage *image = [UIImage imageNamed:@"QRCode1"];
     NSString *string = [WCCoreImageTool stringWithQRCodeImage:image];
     NSLog(@"%@", string);

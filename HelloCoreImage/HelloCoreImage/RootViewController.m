@@ -33,7 +33,7 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"Get QRCode from UIImage",
+        @"Decode QRCode from Image",
         @"Create QR Code Image",
         @"Use CIFilter",
     ];
