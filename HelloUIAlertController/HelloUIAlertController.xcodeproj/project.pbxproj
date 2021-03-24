@@ -20,6 +20,7 @@
 		4F4513CB2123CEF30065028A /* TabledAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4513C72123CEF30065028A /* TabledAlertController.m */; };
 		4F4513CF2123D5660065028A /* WCAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4513CE2123D5660065028A /* WCAlertController.m */; };
 		4F4DC06621EECE360066E96A /* WCAlertTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4DC06521EECE360066E96A /* WCAlertTool.m */; };
+		4F547D45260B373C00ED1378 /* AlertWithAttributedMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F547D44260B373C00ED1378 /* AlertWithAttributedMessageViewController.m */; };
 		4F8C95A7221EF43000869CE7 /* WCBlockTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8C95A6221EF43000869CE7 /* WCBlockTool.m */; };
 		4FAD66E62528A36E005B7836 /* AlertWithPreferredActionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAD66E52528A36E005B7836 /* AlertWithPreferredActionViewController.m */; };
 		4FE3B7D2221CF624006790CD /* UseWCAlertToolViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE3B7D1221CF624006790CD /* UseWCAlertToolViewController.m */; };
@@ -51,6 +52,8 @@
 		4F4513CE2123D5660065028A /* WCAlertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAlertController.m; sourceTree = "<group>"; };
 		4F4DC06421EECE360066E96A /* WCAlertTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCAlertTool.h; sourceTree = "<group>"; };
 		4F4DC06521EECE360066E96A /* WCAlertTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCAlertTool.m; sourceTree = "<group>"; };
+		4F547D43260B373C00ED1378 /* AlertWithAttributedMessageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlertWithAttributedMessageViewController.h; sourceTree = "<group>"; };
+		4F547D44260B373C00ED1378 /* AlertWithAttributedMessageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlertWithAttributedMessageViewController.m; sourceTree = "<group>"; };
 		4F8C95A5221EF43000869CE7 /* WCBlockTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCBlockTool.h; sourceTree = "<group>"; };
 		4F8C95A6221EF43000869CE7 /* WCBlockTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCBlockTool.m; sourceTree = "<group>"; };
 		4FAD66E42528A36E005B7836 /* AlertWithPreferredActionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlertWithPreferredActionViewController.h; sourceTree = "<group>"; };
@@ -87,6 +90,8 @@
 				4FAD66E52528A36E005B7836 /* AlertWithPreferredActionViewController.m */,
 				4F2805FC2570A2D200227A1D /* AlertWithUITextFieldViewController.h */,
 				4F2805FD2570A2D200227A1D /* AlertWithUITextFieldViewController.m */,
+				4F547D43260B373C00ED1378 /* AlertWithAttributedMessageViewController.h */,
+				4F547D44260B373C00ED1378 /* AlertWithAttributedMessageViewController.m */,
 			);
 			path = "Use UIAlertController";
 			sourceTree = "<group>";
@@ -150,9 +155,9 @@
 		4F4513C52123CEF30065028A /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F2C22D82529822900CF4BE0 /* Use UIAlertController */,
 				4F2C22DA2529824D00CF4BE0 /* Use WCAlertController */,
 				4F2C22D92529823D00CF4BE0 /* Use WCAlertTool */,
-				4F2C22D82529822900CF4BE0 /* Use UIAlertController */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -262,6 +267,7 @@
 				4F19586E226584A5001562FB /* AlertWithTextViewController.m in Sources */,
 				4FAD66E62528A36E005B7836 /* AlertWithPreferredActionViewController.m in Sources */,
 				4F2805FE2570A2D200227A1D /* AlertWithUITextFieldViewController.m in Sources */,
+				4F547D45260B373C00ED1378 /* AlertWithAttributedMessageViewController.m in Sources */,
 				4F4513CB2123CEF30065028A /* TabledAlertController.m in Sources */,
 				4F2A55F22233B772008648AB /* WCMacroToolBackend.m in Sources */,
 				4F8C95A7221EF43000869CE7 /* WCBlockTool.m in Sources */,

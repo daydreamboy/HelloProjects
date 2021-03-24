@@ -12,6 +12,7 @@
 // section 1
 #import "AlertWithPreferredActionViewController.h"
 #import "AlertWithUITextFieldViewController.h"
+#import "AlertWithAttributedMessageViewController.h"
 
 // section 2
 #import "TabledAlertController.h"
@@ -51,6 +52,7 @@
     NSArray<NSDictionary *> *section1 = @[
         @{ kTitle: @"alert with preferred action", kClass: [AlertWithPreferredActionViewController class] },
         @{ kTitle: @"alert with UITextField", kClass: [AlertWithUITextFieldViewController class] },
+        @{ kTitle: @"alert with attributed message", kClass: [AlertWithAttributedMessageViewController class] },
     ];
     
     NSArray<NSDictionary *> *section2 = @[
