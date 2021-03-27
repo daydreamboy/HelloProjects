@@ -14,6 +14,26 @@
 - (void)sendEvent:(UIEvent *)event {
     [[NSNotificationCenter defaultCenter] postNotificationName:WCTouchWindow_InterfaceEventNotification object:event];
     
+    if (event.type == UIEventTypeMotion && event.subtype == UIEventSubtypeMotionShake) {
+        
+        NSNumber *shakeState;
+        @try {
+            if ([event isKindOfClass:NSClassFromString(@"UIMotionEvent")]) {
+                shakeState = [event valueForKey:@"shakeState"];
+            }
+        }
+        @catch (NSException *exception) {
+            
+        }
+        @finally {
+            if (shakeState == nil || shakeState.intValue > 0) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"WCShakeMotionNotification" object:event];
+            }
+        }
+        
+        NSLog(@"detected shake in UIApplication");
+    }
+    
     [super sendEvent:event];
 }
 

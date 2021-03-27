@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MyWindow.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) MyWindow *window;
 
 
 @end

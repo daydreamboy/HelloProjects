@@ -12,6 +12,7 @@
 #import "ShowTouchIndicatorViewController.h"
 #import "UseWCKeyboardShortcutManagerViewController.h"
 #import "GetAppLaunchTimeViewController.h"
+#import "DetectShakeMotionViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -38,6 +39,7 @@
         @"Show Touch Indicator",
         @"Use WCKeyboardShortcutManager",
         @"Get App Launch Time",
+        @"Detect Shake Motion",
         //@"call a test method",
     ];
     _classes = @[
@@ -45,6 +47,7 @@
         [ShowTouchIndicatorViewController class],
         [UseWCKeyboardShortcutManagerViewController class],
         [GetAppLaunchTimeViewController class],
+        [DetectShakeMotionViewController class],
         //@"testMethod",
     ];
 }
