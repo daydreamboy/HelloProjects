@@ -387,6 +387,16 @@
                 newDeviceType = @"iPhone 11 Pro";
             else if ([deviceType isEqualToString:@"iPhone12,5"])
                 newDeviceType = @"iPhone 11 Pro Max";
+            else if ([deviceType isEqualToString:@"iPhone12,8"])
+                newDeviceType = @"iPhone SE 2nd Gen";
+            else if ([deviceType isEqualToString:@"iPhone13,1"])
+                newDeviceType = @"iPhone 12 Mini";
+            else if ([deviceType isEqualToString:@"iPhone13,2"])
+                newDeviceType = @"iPhone 12";
+            else if ([deviceType isEqualToString:@"iPhone13,3"])
+                newDeviceType = @"iPhone 12 Pro";
+            else if ([deviceType isEqualToString:@"iPhone13,4"])
+                newDeviceType = @"iPhone 12 Pro Max";
             // iPods
             else if ([deviceType isEqualToString:@"iPod1,1"])
                 newDeviceType = @"iPod Touch 1G";
@@ -400,9 +410,13 @@
                 newDeviceType = @"iPod Touch 5G";
             else if ([deviceType isEqualToString:@"iPod7,1"])
                 newDeviceType = @"iPod Touch 6G";
+            else if ([deviceType isEqualToString:@"iPod9,1"])
+                newDeviceType = @"iPod Touch 7G";
             // iPads
             else if ([deviceType isEqualToString:@"iPad1,1"])
                 newDeviceType = @"iPad";
+            else if ([deviceType isEqualToString:@"iPad1,2"])
+                newDeviceType = @"iPad 3G";
             else if ([deviceType isEqualToString:@"iPad2,1"])
                 newDeviceType = @"iPad 2 (WiFi)";
             else if ([deviceType isEqualToString:@"iPad2,2"])
