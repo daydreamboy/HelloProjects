@@ -1,0 +1,359 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4F6E6498260F51CA00F718E4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6E6497260F51CA00F718E4 /* AppDelegate.m */; };
+		4F6E64A3260F51CD00F718E4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F6E64A2260F51CD00F718E4 /* Assets.xcassets */; };
+		4F6E64A6260F51CD00F718E4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F6E64A4260F51CD00F718E4 /* LaunchScreen.storyboard */; };
+		4F6E64A9260F51CD00F718E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6E64A8260F51CD00F718E4 /* main.m */; };
+		4F6E64B7260F521A00F718E4 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6E64B5260F521A00F718E4 /* RootViewController.m */; };
+		4F6E64BB260F528F00F718E4 /* DetectShakeMotionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6E64BA260F528F00F718E4 /* DetectShakeMotionViewController.m */; };
+		4F6E64C0260F541400F718E4 /* WCCoreMotionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6E64BF260F541400F718E4 /* WCCoreMotionTool.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		4F6E6493260F51CA00F718E4 /* HelloCoreMotion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloCoreMotion.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F6E6496260F51CA00F718E4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4F6E6497260F51CA00F718E4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4F6E64A2260F51CD00F718E4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4F6E64A5260F51CD00F718E4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4F6E64A7260F51CD00F718E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F6E64A8260F51CD00F718E4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4F6E64B1260F521900F718E4 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		4F6E64B5260F521A00F718E4 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		4F6E64B9260F528F00F718E4 /* DetectShakeMotionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectShakeMotionViewController.h; sourceTree = "<group>"; };
+		4F6E64BA260F528F00F718E4 /* DetectShakeMotionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetectShakeMotionViewController.m; sourceTree = "<group>"; };
+		4F6E64BE260F541400F718E4 /* WCCoreMotionTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCCoreMotionTool.h; sourceTree = "<group>"; };
+		4F6E64BF260F541400F718E4 /* WCCoreMotionTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCCoreMotionTool.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4F6E6490260F51CA00F718E4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4F6E648A260F51CA00F718E4 = {
+			isa = PBXGroup;
+			children = (
+				4F6E64BD260F540000F718E4 /* WCCoreMotionTool */,
+				4F6E6495260F51CA00F718E4 /* HelloCoreMotion */,
+				4F6E6494260F51CA00F718E4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		4F6E6494260F51CA00F718E4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4F6E6493260F51CA00F718E4 /* HelloCoreMotion.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4F6E6495260F51CA00F718E4 /* HelloCoreMotion */ = {
+			isa = PBXGroup;
+			children = (
+				4F6E64B2260F521A00F718E4 /* AppTestDemos */,
+				4F6E6496260F51CA00F718E4 /* AppDelegate.h */,
+				4F6E6497260F51CA00F718E4 /* AppDelegate.m */,
+				4F6E64B1260F521900F718E4 /* RootViewController.h */,
+				4F6E64B5260F521A00F718E4 /* RootViewController.m */,
+				4F6E64A2260F51CD00F718E4 /* Assets.xcassets */,
+				4F6E64A4260F51CD00F718E4 /* LaunchScreen.storyboard */,
+				4F6E64A7260F51CD00F718E4 /* Info.plist */,
+				4F6E64A8260F51CD00F718E4 /* main.m */,
+			);
+			path = HelloCoreMotion;
+			sourceTree = "<group>";
+		};
+		4F6E64B2260F521A00F718E4 /* AppTestDemos */ = {
+			isa = PBXGroup;
+			children = (
+				4F6E64B9260F528F00F718E4 /* DetectShakeMotionViewController.h */,
+				4F6E64BA260F528F00F718E4 /* DetectShakeMotionViewController.m */,
+			);
+			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F6E64BD260F540000F718E4 /* WCCoreMotionTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F6E64BE260F541400F718E4 /* WCCoreMotionTool.h */,
+				4F6E64BF260F541400F718E4 /* WCCoreMotionTool.m */,
+			);
+			path = WCCoreMotionTool;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4F6E6492260F51CA00F718E4 /* HelloCoreMotion */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F6E64AC260F51CD00F718E4 /* Build configuration list for PBXNativeTarget "HelloCoreMotion" */;
+			buildPhases = (
+				4F6E648F260F51CA00F718E4 /* Sources */,
+				4F6E6490260F51CA00F718E4 /* Frameworks */,
+				4F6E6491260F51CA00F718E4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HelloCoreMotion;
+			productName = HelloCMMotionManager;
+			productReference = 4F6E6493260F51CA00F718E4 /* HelloCoreMotion.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4F6E648B260F51CA00F718E4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					4F6E6492260F51CA00F718E4 = {
+						CreatedOnToolsVersion = 12.4;
+					};
+				};
+			};
+			buildConfigurationList = 4F6E648E260F51CA00F718E4 /* Build configuration list for PBXProject "HelloCoreMotion" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4F6E648A260F51CA00F718E4;
+			productRefGroup = 4F6E6494260F51CA00F718E4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4F6E6492260F51CA00F718E4 /* HelloCoreMotion */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4F6E6491260F51CA00F718E4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F6E64A6260F51CD00F718E4 /* LaunchScreen.storyboard in Resources */,
+				4F6E64A3260F51CD00F718E4 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4F6E648F260F51CA00F718E4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F6E6498260F51CA00F718E4 /* AppDelegate.m in Sources */,
+				4F6E64BB260F528F00F718E4 /* DetectShakeMotionViewController.m in Sources */,
+				4F6E64B7260F521A00F718E4 /* RootViewController.m in Sources */,
+				4F6E64C0260F541400F718E4 /* WCCoreMotionTool.m in Sources */,
+				4F6E64A9260F51CD00F718E4 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4F6E64A4260F51CD00F718E4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F6E64A5260F51CD00F718E4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4F6E64AA260F51CD00F718E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		4F6E64AB260F51CD00F718E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4F6E64AD260F51CD00F718E4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
+				INFOPLIST_FILE = "$(SRCROOT)/HelloCoreMotion/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloCMMotionManager;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4F6E64AE260F51CD00F718E4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
+				INFOPLIST_FILE = "$(SRCROOT)/HelloCoreMotion/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloCMMotionManager;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4F6E648E260F51CA00F718E4 /* Build configuration list for PBXProject "HelloCoreMotion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F6E64AA260F51CD00F718E4 /* Debug */,
+				4F6E64AB260F51CD00F718E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F6E64AC260F51CD00F718E4 /* Build configuration list for PBXNativeTarget "HelloCoreMotion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F6E64AD260F51CD00F718E4 /* Debug */,
+				4F6E64AE260F51CD00F718E4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4F6E648B260F51CA00F718E4 /* Project object */;
+}
