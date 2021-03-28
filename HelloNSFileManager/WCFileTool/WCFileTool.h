@@ -8,10 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
-
-FOUNDATION_EXPORT NSFileAttributeKey const WCFileName;
-
 typedef NS_ENUM(NSUInteger, WCMIMEType) {
     WCMIMETypeBmp,
     WCMIMETypeGif,
@@ -21,7 +17,12 @@ typedef NS_ENUM(NSUInteger, WCMIMEType) {
     WCMIMETypeJpg,
     WCMIMETypePng,
     WCMIMETypeTtf,
+    WCMIMETypeWebp,
 };
+
+NS_ASSUME_NONNULL_BEGIN
+
+FOUNDATION_EXPORT NSFileAttributeKey const WCFileName;
 
 @interface WCFileTool : NSObject
 

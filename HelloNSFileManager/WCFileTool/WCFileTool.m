@@ -266,6 +266,11 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
                 isImageFile = (chunkData.length >= sizeof(bytes) && memcmp(byteOrder, bytes, sizeof(bytes)) == 0);
                 break;
             }
+            case WCMIMETypeWebp: {
+                const unsigned char bytes[] = { 0x57, 0x45, 0x42, 0x50 };
+                isImageFile = (chunkData.length >= sizeof(bytes) && memcmp(byteOrder, bytes, sizeof(bytes)) == 0);
+                break;
+            }
             default:
                 break;
         }
