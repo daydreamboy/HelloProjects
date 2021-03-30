@@ -9,12 +9,14 @@
 #import "TouchThroughToUnderneathViewViewController.h"
 #import "WCTouchThroughView.h"
 
-@interface TouchThroughToUnderneathViewViewController ()
+@interface TouchThroughToUnderneathViewViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) WCTouchThroughView *touchThroughView;
 @property (nonatomic, strong) UISwitch *switchEnableTouchThroughInOverlay;
 @property (nonatomic, strong) UIButton *buttonInOverlay;
 @property (nonatomic, strong) UIButton *buttonUnderOverlay;
 @property (nonatomic, assign) BOOL enableTouchThroughWhenHitBackgroundRegion;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSArray *listData;
 @end
 
 @implementation TouchThroughToUnderneathViewViewController
@@ -24,6 +26,16 @@
     self.enableTouchThroughWhenHitBackgroundRegion = YES;
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.buttonUnderOverlay];
+    [self.view addSubview:self.tableView];
+    self.listData = @[
+        @"A",
+        @"B",
+        @"C",
+        @"D",
+        @"E",
+        @"F",
+        @"G",
+    ];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -98,6 +110,45 @@
     }
     
     return _switchEnableTouchThroughInOverlay;
+}
+
+- (UITableView *)tableView {
+    if (!_tableView) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(_buttonUnderOverlay.frame) + 10, screenSize.width, 300) style:UITableViewStylePlain];
+        tableView.delegate = self;
+        tableView.dataSource = self;
+        tableView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        tableView.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
+        
+        _tableView = tableView;
+    }
+    
+    return _tableView;
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [self.listData count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *sCellIdentifier = @"TouchThroughToUnderneathViewViewController_sCellIdentifier";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:sCellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifier];
+    }
+    
+    cell.textLabel.text = self.listData[indexPath.row];
+    
+    return cell;
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Actions
