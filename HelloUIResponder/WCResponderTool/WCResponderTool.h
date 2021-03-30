@@ -34,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable id)findFirstResponder;
 
++ (nullable NSArray<UIResponder *> *)responderChainWithResponder:(UIResponder *)responder;
+
 @end
 
 NS_ASSUME_NONNULL_END

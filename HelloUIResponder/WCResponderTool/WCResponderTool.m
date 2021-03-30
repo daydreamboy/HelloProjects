@@ -48,6 +48,22 @@ static __weak id sCurrentFirstResponder;
     return currentFirstResponder;
 }
 
++ (nullable NSArray<UIResponder *> *)responderChainWithResponder:(UIResponder *)responder {
+    if (![responder isKindOfClass:[UIResponder class]]) {
+        return nil;
+    }
+    
+    NSMutableArray<UIResponder *> *responders = [NSMutableArray array];
+    id nextResponder = responder;
+    do {
+        [responders addObject:nextResponder];
+        nextResponder = responder.nextResponder;
+    }
+    while ([nextResponder isKindOfClass:[UIResponder class]] && [responder respondsToSelector:@selector(nextResponder)]);
+    
+    return [responders copy];
+}
+
 #pragma mark ::
 
 + (id)findFirstResponderWithView:(UIView *)view {

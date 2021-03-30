@@ -2,7 +2,71 @@
 
 [TOC]
 
-## 1、UIResponderStandardEditActions协议
+## 1、Responder Chain
+
+​        响应者链（Responder Chain）是UIKit提供的让App处理各种系统事件（Touch、Motion等）的机制[^3]，其中UIResponder类是处理事件的响应者。由一个串在一起的UIResponder对象构造一条响应者链（Responder Chain），当某个响应者不处理事件，则把事件交个下个响应者处理。响应者链的第一个响应者，则称为第一响应者（First Responder）。
+
+
+
+### （1）UIResponder类
+
+​        一般情况下，没有直接使用UIResponder类，而经常使用它的子类，比如UIControl、UIView、UIViewController、UIWindow、UIApplication等。
+
+UIResponder类提供下面一些常见的API提供子类重写，如下
+
+```objective-c
+// Touch事件的系列方法
+- (void)touchesBegan/Moved/Ended/Cancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event;
+// Motion事件的系列方法
+- (void)motionBegan/Ended/Cancelled:(UIEventSubtype)motion withEvent:(UIEvent *)event;
+// Press事件的系列方法
+- (void)pressesBegan/Changed/Ended/Cancelled:(NSSet<UIPress *> *)presses withEvent:(UIPressesEvent *)event;
+// 第一响应者的系列方法
+@property(nonatomic, readonly, nullable) UIResponder *nextResponder;
+@property(nonatomic, readonly) BOOL isFirstResponder;
+@property(nonatomic, readonly) BOOL canBecomeFirstResponder;
+- (BOOL)becomeFirstResponder;
+@property(nonatomic, readonly) BOOL canResignFirstResponder;
+- (BOOL)resignFirstResponder;
+```
+
+上面3类系列方法（Touch、Motion、Press），都带有一个UIEvent参数。
+
+这个UIEvent对象是UIKit构造出来，并分发到对应的UIResponder对象上的。一般来说，首先会发给First Responder，然后通过Responder Chain传递到下一个Responder，直至有Responder能处理，并不再传递（通过不调用super方法，这样将传递结束掉）。
+
+
+
+这篇文章[^3]描述了Touch事件和非Touch事件的处理过程，如下
+
+> When a system event like a screen touched is detected, UIKit internally creates `UIEvent` instances and dispatches it to the system event queue by calling `UIApplication.shared.sendEvent()`. When the event is retrieved from the queue, UIKit internally determines the first `UIResponder` capable of handling the event and sends it to the selected one. The selection process differs depending on the event type - while touch events go directly to the touched view itself, other event types will be dispatched to the so called **first responder**.
+
+简单来说，UIEvent对象通过UIApplication的sendEvent方法发出，然后找第一响应者或者第一个Touched View，把这个事件发给对应处理者，即通过回调第一响应者（UIResponder对象） 的上面几个Touch、Motion、Press方法之一，把UIEvent对象传入该方法。
+
+注意
+
+> Touch事件传递的第一个响应者，是通过Hit-test确定出来的。而其他非Touch事件传递的第一个响应者，是通过UIResponder对象主动调用becomeFirstResponder，成为First Responder确定出来的。
+>
+> 所以Touch事件的第一个响应者，如果调用isFirstResponder来检查自己是否第一个响应者，实际返回的是NO。
+
+
+
+### （2）手动调用发送UIEvent
+
+通过上面介绍UIKit会调用UIApplication的sendEvent方法，那么是否可以手动调用该方法呢
+
+
+
+
+
+
+
+
+
+
+
+
+
+## 2、UIResponderStandardEditActions协议
 
 UIResponder实现UIResponderStandardEditActions协议，该协议描述系统的context menu中一些菜单行为，例如剪切、复制、粘贴等。
 
@@ -23,7 +87,7 @@ UIView的特定子类(UITextField、UITextView)，可以实现UIResponderStandar
 
 
 
-## 2、使用UIMenuController
+## 3、使用UIMenuController
 
 ​        UIMenuController用于显示上下文菜单，上下文菜单可以通过两种方式配置
 
@@ -97,7 +161,7 @@ UITableViewCell的上下文菜单可以用两种方式实现
 
 
 
-## 3、使用WCMenuItem
+## 4、使用WCMenuItem
 
 WCMenuItem支持block方式，获取firstResponder的UIView中无侵入写处理action的代码。
 
@@ -109,6 +173,8 @@ WCMenuItem支持block方式，获取firstResponder的UIView中无侵入写处理
 
 [^1]: https://stackoverflow.com/a/3673790
 [^2]: https://stackoverflow.com/questions/13601643/uimenucontroller-hides-the-keyboard
+
+[^3]: https://swiftrocks.com/understanding-the-ios-responder-chain.html
 
 
 
