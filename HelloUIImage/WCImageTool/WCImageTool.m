@@ -7,6 +7,7 @@
 
 #import "WCImageTool.h"
 #import <ImageIO/ImageIO.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 
 #if __has_feature(objc_arc)
 
@@ -777,6 +778,81 @@
 }
 
 #pragma mark ::
+
+#pragma mark - Thumbnail Image Data
+
++ (nullable NSData *)thumbnailImageDataWithPath:(NSString *)path boundingSize:(CGSize)boundingSize {
+    return [self thumbnailImageDataWithData:nil path:path boundingSize:boundingSize];
+}
+
++ (nullable NSData *)thumbnailImageDataWithData:(NSData *)data boundingSize:(CGSize)boundingSize {
+    return [self thumbnailImageDataWithData:data path:nil boundingSize:boundingSize];
+}
+
+#pragma mark ::
+
++ (nullable NSData *)thumbnailImageDataWithData:(NSData *)data path:(NSString *)path boundingSize:(CGSize)boundingSize {
+    if (boundingSize.width <= 0 || boundingSize.height <= 0) {
+        return nil;
+    }
+    
+    if ((![data isKindOfClass:[NSData class]] || data.length == 0) &&
+        (![path isKindOfClass:[NSString class]] || path.length == 0)) {
+        return nil;
+    }
+    
+    CGImageSourceRef imageSourceRef = NULL;
+    NSDictionary *options = @{
+        fromCF kCGImageSourceShouldCache: @NO,
+    };
+    
+    if (data) {
+        imageSourceRef = CGImageSourceCreateWithData(toCF data, toCF options);
+    }
+    else {
+        if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            return nil;
+        }
+        
+        NSURL *fileURL = [NSURL fileURLWithPath:path];
+        if (!fileURL) {
+            return nil;
+        }
+        
+        imageSourceRef = CGImageSourceCreateWithURL(toCF fileURL, toCF options);
+    }
+    
+    if (imageSourceRef == NULL) {
+        return nil;
+    }
+    
+    CGFloat maxDimensionInPixels = MAX(boundingSize.width, boundingSize.height);
+    
+    NSDictionary *downsampledOptions = @{
+        fromCF kCGImageSourceCreateThumbnailFromImageAlways: @YES,
+        fromCF kCGImageSourceShouldCacheImmediately: @YES,
+        fromCF kCGImageSourceThumbnailMaxPixelSize: @(maxDimensionInPixels),
+        fromCF kCGImageSourceCreateThumbnailWithTransform: @YES,
+    };
+    
+    CGImageRef downsampledImageRef = CGImageSourceCreateThumbnailAtIndex(imageSourceRef, 0, toCF downsampledOptions);
+
+    // @see https://stackoverflow.com/questions/38916484/cgimagedestinationcreatewithdata-constants-in-ios
+    CFMutableDataRef newImageData = CFDataCreateMutable(NULL, 0);
+    CGImageDestinationRef destination = CGImageDestinationCreateWithData(newImageData, kUTTypePNG, 1, NULL);
+    CGImageDestinationAddImage(destination, downsampledImageRef, nil);
+    if (!CGImageDestinationFinalize(destination)) {
+        return nil;
+    }
+    
+    NSData *thumbnailImageData = (NSData *)CFBridgingRelease(newImageData);
+    
+    // cleanup
+    CF_SAFE_RELEASE(imageSourceRef);
+    CF_SAFE_RELEASE(downsampledImageRef);
+    
+    return thumbnailImageData;
+}
 
 #pragma mark - Utility
 

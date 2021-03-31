@@ -45,4 +45,20 @@
     NSLog(@"%lu", (unsigned long)[data length]);
 }
 
+- (void)test_thumbnailImageDataWithPath_boundingSize {
+    NSData *output;
+    NSData *data;
+    NSString *imagePath;
+    UIImage *thumbnailImage;
+    
+    // Case 1
+    imagePath = [[NSBundle mainBundle] pathForResource:@"sample_1920×1280" ofType:@"bmp"];
+    data = [NSData dataWithContentsOfFile:imagePath];
+    output = [WCImageTool thumbnailImageDataWithData:data boundingSize:CGSizeMake(1024, 1024)];
+    
+    thumbnailImage = [UIImage imageWithData:output];
+    XCTAssertNotNil(thumbnailImage);
+    NSLog(@"%@", thumbnailImage);
+}
+
 @end

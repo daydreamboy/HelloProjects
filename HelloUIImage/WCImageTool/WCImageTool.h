@@ -225,6 +225,32 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable UIImage *)thumbnailImageWithData:(NSData *)data boundingSize:(CGSize)boundingSize scale:(CGFloat)scale;
 
+#pragma mark - Thumbnail Image Data
+
+/**
+ Get thumbnail image data from path
+ 
+ @param path the path of image file
+ @param boundingSize the bouding size which unit is pixel
+ 
+ @return the thumbnail image data
+ 
+ @header #import <MobileCoreServices/MobileCoreServices.h>
+ */
++ (nullable NSData *)thumbnailImageDataWithPath:(NSString *)path boundingSize:(CGSize)boundingSize;
+
+/**
+ Get thumbnail image data from original image data
+ 
+ @param data the original image data
+ @param boundingSize the bouding size which unit is pixel
+ 
+ @return the thumbnail image data
+ 
+ @header #import <MobileCoreServices/MobileCoreServices.h>
+ */
++ (nullable NSData *)thumbnailImageDataWithData:(NSData *)data boundingSize:(CGSize)boundingSize;
+
 @end
 
 NS_ASSUME_NONNULL_END
