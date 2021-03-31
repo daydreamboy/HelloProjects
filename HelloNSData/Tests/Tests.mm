@@ -343,6 +343,42 @@ using namespace std;
 
 #pragma mark -
 
+- (void)test_imageSizeWithData {
+    CGSize output;
+    NSData *data;
+    NSString *imagePath;
+    
+    // Case 1
+    imagePath = [[NSBundle mainBundle] pathForResource:@"png" ofType:@"png"];
+    data = [NSData dataWithContentsOfFile:imagePath];
+    output = [WCDataTool imageSizeWithData:data];
+    XCTAssertTrue(output.width == 500);
+    XCTAssertTrue(output.height == 208);
+    
+    // Case 2
+    imagePath = [[NSBundle mainBundle] pathForResource:@"gif" ofType:@"gif"];
+    data = [NSData dataWithContentsOfFile:imagePath];
+    output = [WCDataTool imageSizeWithData:data];
+    XCTAssertTrue(output.width == 304);
+    XCTAssertTrue(output.height == 102);
+    
+    // Case 3
+    imagePath = [[NSBundle mainBundle] pathForResource:@"jpg" ofType:@"jpeg"];
+    data = [NSData dataWithContentsOfFile:imagePath];
+    output = [WCDataTool imageSizeWithData:data];
+    XCTAssertTrue(output.width == 1000);
+    XCTAssertTrue(output.height == 1500);
+    
+    // Case 4
+    imagePath = [[NSBundle mainBundle] pathForResource:@"bmp" ofType:@"bmp"];
+    data = [NSData dataWithContentsOfFile:imagePath];
+    output = [WCDataTool imageSizeWithData:data];
+    XCTAssertTrue(output.width == 512);
+    XCTAssertTrue(output.height == 512);
+}
+
+#pragma mark -
+
 - (void)test_float {
     long double f = 28.0 / (488.0 / 12.0);
     NSLog(@"%Lf", f);

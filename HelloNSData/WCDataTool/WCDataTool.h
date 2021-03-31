@@ -187,6 +187,19 @@ typedef NS_ENUM(NSUInteger, WCMIMEType) {
 
 + (nullable NSArray<NSData *> *)subdataArrayWithData:(NSData *)data referringRanges:(NSArray<WCReferringRange *> *)ranges;
 
+#pragma mark > Image Data Info
+
+/**
+ Get image size from NSData
+ 
+ @param data the image data.
+ 
+ @return the image size in pixel. If the data is not a image, return CGSizeZero
+ 
+ @see https://stackoverflow.com/questions/12478502/how-to-get-image-metadata-in-ios
+ */
++ (CGSize)imageSizeWithData:(NSData *)data;
+
 #pragma mark - Data Translation
 
 + (nullable NSString *)ASCIIStringWithData:(NSData *)data;

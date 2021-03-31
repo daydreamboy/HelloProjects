@@ -1433,6 +1433,36 @@ do { \
     return arrM;
 }
 
+#pragma mark > Image Data Info
+
++ (CGSize)imageSizeWithData:(NSData *)data {
+    if (![data isKindOfClass:[NSData class]]) {
+        return CGSizeZero;
+    }
+    
+    if (data.length == 0) {
+        return CGSizeZero;
+    }
+    
+    CGSize imageSize = CGSizeZero;
+    CGImageSourceRef sourceRef = CGImageSourceCreateWithData((CFDataRef)data, NULL);
+    if (sourceRef == NULL) {
+        return CGSizeZero;
+    }
+    
+    NSDictionary *metadata = (NSDictionary *)CFBridgingRelease(CGImageSourceCopyPropertiesAtIndex(sourceRef, 0, NULL));
+    CFRelease(sourceRef);
+    
+    CGFloat width = [metadata[(NSString *)kCGImagePropertyPixelWidth] doubleValue];
+    CGFloat height = [metadata[(NSString *)kCGImagePropertyPixelHeight] doubleValue];
+    
+    if (width >= 0 && height >= 0) {
+        imageSize = CGSizeMake(width, height);
+    }
+    
+    return imageSize;
+}
+
 #pragma mark - Data Translation
 
 + (nullable NSString *)ASCIIStringWithData:(NSData *)data {
