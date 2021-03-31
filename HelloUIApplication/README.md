@@ -126,6 +126,20 @@ UIView的子类实现canBecomeFirstResponder和motionEnded:withEvent:方法，�
 
 #### a. 使用UIApplication的子类
 
+UIApplication提供sendEvent:方法用于子类继承实现，该方法把系统事件分发到对应的responder对象上，其中也包括设备Shake事件。
+
+示例代码，如下
+
+```objective-c
+- (void)sendEvent:(UIEvent *)event {
+    if (event.type == UIEventTypeMotion && event.subtype == UIEventSubtypeMotionShake) {
+        NSLog(@"detected shake in UIApplication");
+    }
+    
+    [super sendEvent:event];
+}
+```
+
 TODO
 
 
