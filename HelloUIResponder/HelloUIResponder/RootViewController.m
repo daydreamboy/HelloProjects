@@ -15,7 +15,8 @@
 #import "UIMenuControllerKeepKeyboardShowViewController.h"
 #import "TableViewCellShowCustomContextMenuViewController.h"
 #import "UseWCMenuItemViewController.h"
-#import "ManuallySendUIEventViewController.h"
+#import "ManuallySendActionViewController.h"
+#import "ManuallySendActionAndPopUpwardEventViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -45,7 +46,8 @@
         @"Use UIMenuController",
         @"UIMenuController keep keyboard show",
         @"Use WCMenuItem with block",
-        @"Manually send UIEvent",
+        @"Manually send action with UIEvent",
+        @"Manually pop upward action with UIEvent",
         @"call a test method",
     ];
     _classes = @[
@@ -56,7 +58,8 @@
         [UseUIMenuControllerViewController class],
         [UIMenuControllerKeepKeyboardShowViewController class],
         [UseWCMenuItemViewController class],
-        [ManuallySendUIEventViewController class],
+        [ManuallySendActionViewController class],
+        [ManuallySendActionAndPopUpwardEventViewController class],
         @"testMethod",
     ];
 }

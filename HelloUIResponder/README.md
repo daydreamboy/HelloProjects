@@ -50,15 +50,77 @@ UIResponder类提供下面一些常见的API提供子类重写，如下
 
 
 
-### （2）手动调用发送UIEvent
+### （2）基于Responder Chain的UIControl类
 
-通过上面介绍UIKit会调用UIApplication的sendEvent方法，那么是否可以手动调用该方法呢
+UIKit中UIControl类，基本都实现了Touch系列方法，用于Target-Action机制，即UIControl类在Touch系列方法中处理UIEvent事件，然后将action事件发给对应注册的target对象。
+
+以UIButton的UIControlEventTouchUpInside为例，在点击UIButton后，会触发下面的符号断点，如下
+
+![](images/sendAction方法.png)
+
+通过左边调用栈，比较清楚看到，UIEvent由UIApplication发给“第一响应者”button对象，调用了button对象的touchedEnded方法，在touchedEnded方法中又将UIControlEventTouchUpInside事件通过`sendAction:to:from:forEvent:`方法发给通过Target-Action机制注册的target对象以及对应的action方法。
+
+UIApplication的`sendAction:to:from:forEvent:`方法签名，如下
+
+```objective-c
+- (BOOL)sendAction:(SEL)action to:(id)target from:(id)sender forEvent:(UIEvent *)event;
+```
+
+通过打印上面方法的参数，可以看到具体的target对象和sender对象。
+
+注意
+
+> action方法，必现在target对象有实现的方法，不然会出现方法找不到的crash。而sender可以任意指定，但是一般message触发者，这里就是UIButton对象
+
+了解UIApplication的`sendAction:to:from:forEvent:`方法的参数含义后，也可以手动调用该方法，如下
+
+```objective-c
+UIEvent *event = [UIEvent new];
+[[UIApplication sharedApplication] sendAction:@selector(buttonClicked:) to:self from:self.buttonClick forEvent:event];
+```
+
+注意
+
+> 一般不要手动调用该方法，但是如果要模拟UIControl的各种点击事件可以使用该方法，但是UIControl已经提供`sendAction:(SEL)action to:(id)target forEvent:(UIEvent *)event`方法，而且不用传sender对象。
 
 
 
+值得说明的是，如果target参数是nil，则UIKit会按照响应者链的顺序来去找action方法。如果找不到方法，则该action被丢弃。
+
+官方文档，描述如下
+
+> The object to receive the action message. If target is nil, the app sends the message to the first responder, from whence it progresses up the responder chain until it is handled.
 
 
 
+举个例子，如下
+
+```objective-c
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [[UIApplication sharedApplication] sendAction:@selector(myCustomMethod) to:nil from:self.view forEvent:nil];
+}
+
+- (void)myCustomMethod {
+    NSLog(@"SwiftRocks!");
+}
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+    NSLog(@"canPerformAction: %@, sender: %@", NSStringFromSelector(action), sender);
+    return YES;
+}
+```
+
+canPerformAction会被调用，用于检查是否可以执行action方法。
+
+注意
+
+> 在viewDidLoad方法中，还没有建立完整的Responder Chain，即UIViewController的nextResponder可能为nil，这里执行上面的代码，不会传递到UIWindow等外层对象。
+
+
+
+> 示例代码，见ManuallySendActionViewControllerh和ManuallySendActionAndPopUpwardEventViewController。
 
 
 

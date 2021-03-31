@@ -1,24 +1,27 @@
 //
-//  ManuallySendUIEventViewController.m
+//  ManuallySendActionViewController.m
 //  HelloUIResponder
 //
 //  Created by wesley_chen on 2021/3/31.
 //  Copyright © 2021 wesley_chen. All rights reserved.
 //
 
-#import "ManuallySendUIEventViewController.h"
+#import "ManuallySendActionViewController.h"
 
-@interface ManuallySendUIEventViewController ()
+@interface ManuallySendActionViewController ()
 @property (nonatomic, strong) UIButton *buttonClick;
 @end
 
-@implementation ManuallySendUIEventViewController
+@implementation ManuallySendActionViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.buttonClick];
+    
+    // Note: self.buttonClick -> self.view -> self (UIViewController)
+    //[[UIApplication sharedApplication] sendAction:@selector(myCustomMethod) to:nil from:self.buttonClick forEvent:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -29,13 +32,18 @@
     
     [[UIApplication sharedApplication] sendAction:@selector(buttonClicked:) to:self from:self.buttonClick forEvent:event];
     
-    [[UIApplication sharedApplication] sendAction:@selector(myCustomMethod:) to:nil from:self.view forEvent:nil];
+    [[UIApplication sharedApplication] sendAction:@selector(myCustomMethod) to:nil from:self.view forEvent:nil];
 }
 
 #pragma mark -
 
 - (void)myCustomMethod {
     NSLog(@"SwiftRocks!");
+}
+
+- (BOOL)canPerformAction:(SEL)action withSender:(id)sender {
+    NSLog(@"canPerformAction: %@, sender: %@", NSStringFromSelector(action), sender);
+    return YES;
 }
 
 #pragma mark - Getter

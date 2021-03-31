@@ -33,4 +33,10 @@
     return YES;
 }
 
+#pragma mark -
+
+- (void)myCustomMethod {
+    NSLog(@"SwiftRocks, too!");
+}
+
 @end

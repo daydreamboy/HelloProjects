@@ -1,5 +1,5 @@
 //
-//  ManuallySendUIEventViewController.h
+//  ManuallySendActionAndPopUpwardEventViewController.h
 //  HelloUIResponder
 //
 //  Created by wesley_chen on 2021/3/31.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ManuallySendUIEventViewController : UIViewController
+@interface ManuallySendActionAndPopUpwardEventViewController : UIViewController
 
 @end
 
