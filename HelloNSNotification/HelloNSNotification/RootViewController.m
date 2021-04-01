@@ -9,6 +9,7 @@
 #import "RootViewController.h"
 
 #import "PostAsynchronousNotificationViewController.h"
+#import "AutoRemoveObserverViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -32,10 +33,12 @@
     // MARK: Configure titles and classes for table view
     _titles = @[
         @"Post asynchronous notification",
+        @"Auto remove observer",
         @"call a test method",
     ];
     _classes = @[
         [PostAsynchronousNotificationViewController class],
+        [AutoRemoveObserverViewController class],
         @"testMethod",
     ];
 }

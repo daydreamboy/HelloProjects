@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F45CE772615A5A5009332B8 /* WCNotificationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F45CE762615A5A5009332B8 /* WCNotificationTool.m */; };
+		4F45CE7C2615B44B009332B8 /* AutoRemoveObserverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F45CE7B2615B44B009332B8 /* AutoRemoveObserverViewController.m */; };
 		4FB6AA26257A35BF00D0239B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB6AA25257A35BF00D0239B /* AppDelegate.m */; };
 		4FB6AA31257A35C000D0239B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FB6AA30257A35C000D0239B /* Assets.xcassets */; };
 		4FB6AA34257A35C000D0239B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FB6AA32257A35C000D0239B /* LaunchScreen.storyboard */; };
@@ -17,6 +19,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F45CE752615A5A5009332B8 /* WCNotificationTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCNotificationTool.h; sourceTree = "<group>"; };
+		4F45CE762615A5A5009332B8 /* WCNotificationTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCNotificationTool.m; sourceTree = "<group>"; };
+		4F45CE7A2615B44B009332B8 /* AutoRemoveObserverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoRemoveObserverViewController.h; sourceTree = "<group>"; };
+		4F45CE7B2615B44B009332B8 /* AutoRemoveObserverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoRemoveObserverViewController.m; sourceTree = "<group>"; };
 		4FB6AA21257A35BF00D0239B /* HelloNSNotification.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSNotification.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FB6AA24257A35BF00D0239B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FB6AA25257A35BF00D0239B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -44,9 +50,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F45CE742615A58C009332B8 /* WCNotificationTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F45CE752615A5A5009332B8 /* WCNotificationTool.h */,
+				4F45CE762615A5A5009332B8 /* WCNotificationTool.m */,
+			);
+			path = WCNotificationTool;
+			sourceTree = "<group>";
+		};
 		4FB6AA18257A35BF00D0239B = {
 			isa = PBXGroup;
 			children = (
+				4F45CE742615A58C009332B8 /* WCNotificationTool */,
 				4FB6AA23257A35BF00D0239B /* HelloNSNotification */,
 				4FB6AA22257A35BF00D0239B /* Products */,
 			);
@@ -82,6 +98,8 @@
 				4FD5D1BF257CE5A100A37CCE /* Tools */,
 				4FD5D1B6257CDDEF00A37CCE /* PostAsynchronousNotificationViewController.h */,
 				4FD5D1B7257CDDEF00A37CCE /* PostAsynchronousNotificationViewController.m */,
+				4F45CE7A2615B44B009332B8 /* AutoRemoveObserverViewController.h */,
+				4F45CE7B2615B44B009332B8 /* AutoRemoveObserverViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -165,7 +183,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4FB6AA26257A35BF00D0239B /* AppDelegate.m in Sources */,
+				4F45CE7C2615B44B009332B8 /* AutoRemoveObserverViewController.m in Sources */,
 				4FD5D1B8257CDDEF00A37CCE /* PostAsynchronousNotificationViewController.m in Sources */,
+				4F45CE772615A5A5009332B8 /* WCNotificationTool.m in Sources */,
 				4FD5D1C4257CE61100A37CCE /* WCViewTool.m in Sources */,
 				4FD5D1B4257CDDAA00A37CCE /* RootViewController.m in Sources */,
 				4FB6AA37257A35C000D0239B /* main.m in Sources */,
