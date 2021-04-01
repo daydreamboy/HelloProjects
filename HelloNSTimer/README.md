@@ -52,8 +52,8 @@
 
 * NSTimer调用invalidate方法，必须和NSTimer创建时是同一个线程，即NSTimer加入和移出RunLoop，都必须是同一个线程，否则invalidate方法有可能无效。
 
-  > invalidate方法描述，如下
-  >
+  invalidate方法描述，如下
+  
   > You must send this message from the thread on which the timer was installed. If you send this message from another thread, the input source associated with the timer may not be removed from its run loop, which could prevent the thread from exiting properly.
 
 * NSTimer的invalidate方法，是唯一将NSTimer移出RunLoop的方式。调用invalidate方法，在invalidate方法返回之前或者在更晚的时间点，RunLoop才会解除对NSTimer的引用。同时，也会解除对target和userInfo参数引用的对象。
@@ -152,11 +152,13 @@ NSTimer的API提供三种创建NSTimer对象的方式，如下
 @end
 ```
 
-示例代码见TimerRetainCycleViewController
+
+
+> 示例代码，见TimerRetainCycleViewController
 
 
 
-​      如果将target传入weakSelf，将timer的属性修饰符换成weak是否解决循环引用问题呢？如下面代码所示。当然不行，原因这篇SO[^2]上有解释
+​      如果将target传入weakSelf，将timer的属性修饰符换成weak是否解决循环引用问题呢？如下面代码所示。当然不行，原因在这篇SO[^2]上有解释
 
 ```objective-c
 @interface TimerRetainCycleWithWeakSelfViewController ()
@@ -183,11 +185,13 @@ NSTimer的API提供三种创建NSTimer对象的方式，如下
 @end
 ```
 
+不管target参数，传入的是strong还是weak变量，NSTimer内部都会强持有target对象。因此，上面方法是无效的。
+
 
 
 针对上面循环引用问题，有几种解法[^2]
 
-#### 1. 使用block方式的API
+#### a. 使用block方式的API
 
 大致代码如下
 
@@ -220,19 +224,21 @@ NSTimer的API提供三种创建NSTimer对象的方式，如下
 
 
 
-注意：NSTimer的带block参数的API，例如`+[NSTimer scheduledTimerWithTimeInterval:repeats:block:]`，都在iOS 10+才有，低版本系统不能使用。
+注意
+
+> NSTimer的带block参数的API，例如`+[NSTimer scheduledTimerWithTimeInterval:repeats:block:]`，都在iOS 10+才有，低版本系统不能使用。
 
 
 
-#### 2. 使用GCD方式的timer
+#### b. 使用GCD方式的timer
 
-示例代码参考**CreateTimerDispatchSourceViewController**
+> 示例代码，参考**CreateTimerDispatchSourceViewController**
 
 
 
-#### 3. 不要在dealloc中调用NSTimer的invalidate方法
+#### c. 不要在dealloc中调用NSTimer的invalidate方法
 
-大致代码如下
+大致代码，如下
 
 ```objective-c
 @interface ViewController ()
@@ -260,21 +266,25 @@ NSTimer的API提供三种创建NSTimer对象的方式，如下
 @end
 ```
 
-​        这种方式有一定局限性，即适用于可以在dealloc中调用invalidate方法之外的场景中，比如viewDidDisappear触发时就不需要timer定时了。
+说明        
+
+> 上面这种方式有一定局限性，即适用于可以在dealloc中调用invalidate方法之外的场景中，比如viewDidDisappear触发时就不需要timer定时了。
 
 
 
-#### 4. 使用Wrapper类弱引用target对象（e.g. WCWeakProxy）
+#### d. 使用Wrapper类的weak属性弱引用target对象
 
 ​       利用@property(weak)在对象释放时，也将weak属性进行引用解除，达到属性对象被释放的目的。WCWeakProxy参考YYKit代码，根据这个方式进行实现。
 
-示例代码见**UseScheduledRepeatedTimerViewController**
+> 示例代码，见**UseScheduledRepeatedTimerViewController**
 
 
 
 ### （2）创建非主线程的NSTimer
 
-​      创建非主线程的NSTimer的目的在于触发timer的回调是在非主线程执行。如果直接在非主线程创建scheduled NSTimer，timer的回调不会触发。原因是非主线程的NSRunLoop都不是运行状态。测试代码,如下
+​      创建非主线程的NSTimer的目的，在于触发timer的回调是在非主线程执行。如果直接在非主线程创建scheduled NSTimer，timer的回调不会触发。原因是，非主线程的NSRunLoop都不是运行状态。
+
+示例代码，如下
 
 ```objective-c
 @interface TimerInNonMainTheadNotFiredViewController ()
@@ -307,7 +317,9 @@ NSTimer的API提供三种创建NSTimer对象的方式，如下
 
 
 
-这个文章[^3]给出创建非主线程的NSTimer的方法。示例代码，如下
+这个文章[^3]给出创建非主线程的NSTimer的方法。
+
+示例代码，如下
 
 ```objective-c
 - (void)viewDidLoad {
@@ -361,7 +373,9 @@ NSTimer的API提供三种创建NSTimer对象的方式，如下
 
 
 
-注意：不同于scheduled timer，需要调用`-[WCTimer start]`让timer开始运行。
+注意
+
+> 不同于scheduled timer，需要调用`-[WCTimer start]`让timer开始运行。
 
 
 
