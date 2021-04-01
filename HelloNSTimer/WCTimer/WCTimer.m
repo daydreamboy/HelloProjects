@@ -8,16 +8,15 @@
 
 #import "WCTimer.h"
 
-#define DEBUG_LOG 1
+#define DEBUG_LOG 0
 
 @interface WCTimer ()
 @property (nonatomic, strong) dispatch_source_t timer;
 @property (nonatomic, readwrite) NSTimeInterval interval;
 @property (nonatomic, readwrite) BOOL repeats;
-@property (nonatomic, readwrite, copy) void (^timerBlock)(WCTimer *timer);
+@property (nonatomic, readwrite, copy) void (^timerFiredBlock)(WCTimer *timer);
 @property (nonatomic, strong, readwrite) dispatch_queue_t queue;
 @property (nonatomic, assign, readwrite) WCTimerState state;
-@property (nonatomic, strong) NSNumber *toleranceNumber;
 @end
 
 @implementation WCTimer
@@ -27,7 +26,7 @@
     timer.interval = interval;
     timer.repeats = repeats;
     timer.queue = queue;
-    timer.timerBlock = block;
+    timer.timerFiredBlock = block;
     timer.state = WCTimerStateReady;
     return timer;
 }
@@ -39,10 +38,6 @@
 #endif
 }
 
-- (void)setTolerance:(NSTimeInterval)tolerance {
-    self.toleranceNumber = @(tolerance);
-}
-
 - (BOOL)start {
     dispatch_queue_t runningQueue = self.queue ?: dispatch_get_main_queue();
     self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, runningQueue);
@@ -50,19 +45,27 @@
         return NO;
     }
     
-    NSTimeInterval tolerance = self.toleranceNumber ? [self.toleranceNumber doubleValue] : (self.interval * 0.1);
+    NSTimeInterval tolerance = self.tolerance > 0 ? self.tolerance : 0;
     dispatch_source_set_timer(self.timer, DISPATCH_TIME_NOW, self.interval * NSEC_PER_SEC, tolerance * NSEC_PER_SEC);
     
     __weak typeof(self) weak_self = self;
     dispatch_source_set_event_handler(self.timer, ^{
         @autoreleasepool {
-            if (weak_self.timerBlock) {
-                weak_self.timerBlock(weak_self);
+            __strong typeof(weak_self) strong_self = weak_self;
+            if (strong_self.timerFiredBlock) {
+                strong_self.timerFiredBlock(strong_self);
+            }
+            
+            if (strong_self.repeats == NO) {
+                [strong_self stop];
             }
         }
     });
     dispatch_source_set_cancel_handler(self.timer, ^{
-        NSLog(@"timer is cancelled");
+        __strong typeof(weak_self) strong_self = weak_self;
+        if (strong_self.timerCancelledBlock) {
+            strong_self.timerCancelledBlock(strong_self);
+        }
     });
     
     if ([self resume]) {

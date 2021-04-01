@@ -11,12 +11,15 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef NS_ENUM(NSUInteger, WCTimerState) {
-    WCTimerStateUnknown,
+    WCTimerStateUninitialized,
     WCTimerStateReady,
     WCTimerStateRunning,
     WCTimerStatePaused,
 };
 
+/**
+ A timer with its current state (ready, running, paused)
+ */
 @interface WCTimer : NSObject
 
 @property (nonatomic, readonly) NSTimeInterval interval;
@@ -27,6 +30,7 @@ typedef NS_ENUM(NSUInteger, WCTimerState) {
  */
 @property (nonatomic, assign) NSTimeInterval tolerance;
 @property (nonatomic, assign, readonly) WCTimerState state;
+@property (nonatomic, copy) void (^timerCancelledBlock)(WCTimer *timer);
 
 /**
  Create a timer with ready state
@@ -35,6 +39,7 @@ typedef NS_ENUM(NSUInteger, WCTimerState) {
  @param repeats YES if repeated, NO if not repeated
  @param queue the queue to call the block. If nil. use the main thread
  @param block the callback when timer is fired
+ 
  @return the timer object
  @discussion
  1. This method not start the timer automatically, use -[WCTimer start] to start it.
@@ -42,9 +47,40 @@ typedef NS_ENUM(NSUInteger, WCTimerState) {
  */
 + (instancetype)timerWithTimeInterval:(NSTimeInterval)interval repeats:(BOOL)repeats queue:(nullable dispatch_queue_t)queue block:(void (^)(WCTimer *timer))block;
 
+/**
+ Start the timer
+ 
+ @return YES if the timer can start. NO if fails to start
+ 
+ @note This metod change the state to WCTimerStateRunning
+ */
 - (BOOL)start;
+
+/**
+ Pause the timer
+ 
+ @return YES if the timer can pause. NO if fails to pause
+ 
+ @note This metod change the state to WCTimerStatePaused
+ */
 - (BOOL)pause;
+
+/**
+ Resume the timer
+ 
+ @return YES if the timer can resume. NO if fails to resume
+ 
+ @note This metod change the state to WCTimerStateRunning
+ */
 - (BOOL)resume;
+
+/**
+ Stop the timer
+ 
+ @return YES if the timer can stop. NO if fails to stop
+ 
+ @note This metod change the state to WCTimerStateReady
+ */
 - (BOOL)stop;
 
 @end
