@@ -401,7 +401,7 @@ CALayer的position(x,y)不允许有NaN值，否则会出现crash。（具体见H
 
 
 
-## 9、Crash Report
+## 9、介绍Crash Report
 
 Apple提供三种方式用于诊断App的问题[^5]
 
@@ -642,7 +642,7 @@ xcarchive文件，是上传AppStore的归档文件，需要妥善保留
 
 
 
-##### atos命令符号化
+##### 使用atos命令符号化
 
 ​      一般用atos命令来符号化调用帧，即调用栈的一个frame。当然也可以写脚本调用atos命令符号化所有的调用帧（实际上Xcode符号化的symbolicatecrash脚本也用到atos命令）。
 
@@ -715,7 +715,7 @@ main (in HelloNSException) (main.m:14)
 
 
 
-##### symbolicatecrash脚本
+##### 使用symbolicatecrash脚本符号化
 
 symbolicatecrash脚本，是Xcode符号化的脚本。我们自己也可以手动调用来符号化。
 
@@ -766,6 +766,124 @@ $ /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Reso
 
 
 
+#### c. 介绍Crash Report格式[^13]
+
+
+
+#### d. 分析常见Crash类型
+
+官方这篇文章[^12]提供常见的几种Crash类型
+
+* Swift Runtime Error
+* Language Exception
+* Watchdog Exception
+* Zombie objects
+* Memory Access Issue
+* Framework Missing
+
+
+
+上面几种类型，主要通过Exception Information和Backtrace来判断出来，如下图所示
+
+<img src="images/crash_report_mani_two_section.png" style="zoom: 50%;" />
+
+
+
+##### Swift Runtime Error
+
+​      Swift相比Objective-C，在内存安全上多了一层保护，因此某些判断nil的地方，Swift在Runtime时提前触发Crash。
+
+官方描述[^14]，如下
+
+> If you use the `!` operator to force unwrap an optional value that’s `nil`, or if you force a type downcast that fails with the `as!` operator, the Swift runtime catches these errors and intentionally crashes the app.
+
+Swift Runtime Error在ARM处理器上的Crash特征，如下
+
+```properties
+Exception Type:  EXC_BREAKPOINT (SIGTRAP)
+...
+Termination Signal: Trace/BPT trap: 5
+Termination Reason: Namespace SIGNAL, Code 0x5
+```
+
+而在Interl处理器上Crash特征，如下
+
+```properties
+Exception Type:        EXC_BAD_INSTRUCTION (SIGILL)
+...
+Exception Note:        EXC_CORPSE_NOTIFY
+
+Termination Signal:    Illegal instruction: 4
+Termination Reason:    Namespace SIGNAL, Code 0x4
+```
+
+Swift的堆栈信息，也一般比较容易排查，
+
+举个例子，如下
+
+```properties
+Thread 0 Crashed:
+0   MyCoolApp                         0x0000000100a71a88 @objc ViewController.viewDidLoad() (in MyCoolApp) (ViewController.swift:18)
+1   MyCoolApp                         0x0000000100a71a40 @objc ViewController.viewDidLoad() (in MyCoolApp) (ViewController.swift:18)
+2   UIKitCore                         0x00000001c569e920 -[UIViewController _sendViewDidLoadWithAppearanceProxyObjectTaggingEnabled] + 100
+3   UIKitCore                         0x00000001c56a3430 -[UIViewController loadViewIfRequired] + 936
+4   UIKitCore                         0x00000001c56a3838 -[UIViewController view] + 28
+```
+
+在Thread 0，即主线程出现Crash，具体位置在ViewController.swift文件的第18行，viewDidLoad方法中
+
+
+
+官方也提供了几个修复nil问题的示例代码，如下
+
+示例1
+
+```swift
+let image = UIImage(named: "aMissingIcon")!
+print("Image size: \(image.size)") // ISSUE: maybe crash
+```
+
+正确写法，如下
+
+```swift
+if let image = UIImage(named: "aMissingIcon") {
+    print("Image size: \(image.size)")
+}
+```
+
+
+
+示例2
+
+```swift
+for item in library {
+    let song = item as! Song
+    print("Song: \(song.name), by \(song.artist)")
+}
+```
+
+正确写法，如下
+
+```swift
+for item in library {
+    if let song = item as? Song {
+         print("Song: \(song.name), by \(song.artist)")
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### （2）Jetsam Event Report
@@ -811,6 +929,9 @@ $ /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Reso
 [^9]:https://stackoverflow.com/questions/2025471/do-i-need-to-disable-nslog-before-release-application
 [^10]:https://developer.apple.com/documentation/xcode/diagnosing_issues_using_crash_reports_and_device_logs/adding_identifiable_symbol_names_to_a_crash_report
 [^11]:https://help.apple.com/xcode/mac/current/#/devef5928039
+[^12]:https://developer.apple.com/documentation/xcode/diagnosing_issues_using_crash_reports_and_device_logs/identifying_the_cause_of_common_crashes
+[^13]:https://developer.apple.com/documentation/xcode/diagnosing_issues_using_crash_reports_and_device_logs/examining_the_fields_in_a_crash_report
+[^14]:https://developer.apple.com/documentation/xcode/diagnosing_issues_using_crash_reports_and_device_logs/identifying_the_cause_of_common_crashes/addressing_crashes_from_swift_runtime_errors
 
 
 
