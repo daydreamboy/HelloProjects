@@ -387,6 +387,188 @@ CALayer的position(x,y)不允许有NaN值，否则会出现crash。（具体见H
 
 ## 7、Crash日志符号化
 
+
+
+
+
+
+
+
+
+## 8、Watchdog Terminations[^2]
+
+
+
+
+
+## 9、Crash Report
+
+Apple提供三种方式用于诊断App的问题[^5]
+
+* Crash报告（Crash Report），用于描述App如何被terminated，以及当时的每个线程堆栈信息。
+* Jetsam事件报告（Jetsam Event Report），用于描述App由于内存问题被系统terminate时的系统内存信息。
+* 设备控制日志（Device Console Log），当iOS设备连接Mac电脑，用Console可以查看
+
+下面主要介绍Crash Report，最后介绍Jetsam Event Report和Device Console Log
+
+
+
+### （1）Crash Report
+
+通过Crash Report来分析Crash问题，需要下面几个步骤来完成
+
+* 编译带dSYM文件的app，发布到AppStore也需要dSYM文件
+* 收集Crash Report日志文件
+* 符号化Crash Report日志文件
+* 分析Crash Report日志文件
+* 代码上修复Crash问题
+* 如果有可能，添加XCTest的Test Case
+
+
+
+#### a. 如何收集Crash Report[^6]
+
+Crash Report来自下面三个途径
+
+* App Store
+* TestFlight
+* 直接来自设备上
+
+
+
+##### Crashes Organizer
+
+​         App Store、TestFlight的Crash Report可以用使用Crashes Organizer（Xcode > Window > Organizer > Crashes)来查看，如下图所示（Xcode版本不同，可能界面会不一样）
+
+![](images/crashes_organizer.png)
+
+Crash Report会自动下载到~/Library/Developer/Xcode/Products/<app_bundle_identifier>目录下面。
+
+注意
+
+> 1. 来自App Store、TestFlight的Crash Report，必须在用户的设备上将“Share With Developers”的开关开启，这样设备上Crash Report才会传到Apple网址上，Crashes Report才可以下载到[^7]。
+>
+> “Share With Developers”的开关，如下图所示
+>
+> <img src="images/ios_share_crashes.png" style="zoom:50%;" />
+>
+> 2. 不是所有的Crash Report都会出现在Crashes Organizer中，这时需要直接从iOS设备上获取
+
+
+
+##### View Device Logs
+
+把iOS连接到Mac电脑上，选择Xcode > Devices and Simulators window，点击View Device Logs，可以查看该设备的Crash Report[^8]。如下图所示
+
+![](images/view_crash_logs.png)
+
+
+
+##### 在iOS设备上分享Crash Report
+
+​      Settings > Privacy > Analytics & Improvements，可以看到该设备上所有Crash的列表。根据文件名`<AppBinaryName>_<DateTime>`找到Crash Report，或者`JetsamEvent_<DateTime>`找到Jetsam Event Report。点击打开日志，然后点击右上角，分享到Mac电脑上或其他地方。
+
+
+
+##### 在Debug时创建Crash Report
+
+​      如果在调试app时出现Crash，尽管LLDB拦截住Crash时的堆栈，但是还是可以生成Crash Report日志，在Xcode中选择Debug > Detach，这样可以在iOS设备上生成Crash Report。
+
+
+
+#### b. 符号化Crash Report
+
+Crash Report由系统收集app在Crash时的诊断信息，其中比较重要的信息有thread backtrace，但是它是十六进制的地址，需要通过工具将它转成可读的函数名和源码行号，这个过程叫符号化（symbolication）。
+
+说明
+
+> 使用Crashes Organizer可以自动完成符号化，因为Crash Report收集自AppStore和TestFlight，而且dSYM文件已经上传。
+
+
+
+Crash Report经过符号化后，不一定能得到完全符号化的日志，因此分为下面三种类型的Crash Report[^10]
+
+* 完全符号化的Crash Report
+* 部分符号化的Crash Report
+* 没有符号化的Crash Report
+
+
+
+举个例子，如下
+
+完全符号化的Crash Report
+
+```properties
+Thread 0 name:  Dispatch queue: com.apple.main-thread
+Thread 0 Crashed:
+0   libswiftCore.dylib                0x00000001bd38da70 specialized _fatalErrorMessage+ 2378352 (_:_:file:line:flags:) + 384
+1   libswiftCore.dylib                0x00000001bd38da70 specialized _fatalErrorMessage+ 2378352 (_:_:file:line:flags:) + 384
+2   libswiftCore.dylib                0x00000001bd15958c _ArrayBuffer._checkInoutAndNativeTypeCheckedBounds+ 66956 (_:wasNativeTypeChecked:) + 200
+3   libswiftCore.dylib                0x00000001bd15c814 Array.subscript.getter + 88
+4   TouchCanvas                       0x00000001022cbfa8 Line.updateRectForExistingPoint(_:) (in TouchCanvas) + 656
+5   TouchCanvas                       0x00000001022c90b0 Line.updateWithTouch(_:) (in TouchCanvas) + 464
+6   TouchCanvas                       0x00000001022e7374 CanvasView.updateEstimatedPropertiesForTouches(_:) (in TouchCanvas) + 708
+7   TouchCanvas                       0x00000001022df754 ViewController.touchesEstimatedPropertiesUpdated(_:) (in TouchCanvas) + 304
+8   TouchCanvas                       0x00000001022df7e8 @objc ViewController.touchesEstimatedPropertiesUpdated(_:) (in TouchCanvas) + 120
+9   UIKitCore                         0x00000001b3da6230 forwardMethod1 + 136
+10  UIKitCore                         0x00000001b3da6230 forwardMethod1 + 136
+11  UIKitCore                         0x00000001b3e01e24 -[_UIEstimatedTouchRecord dispatchUpdateWithPressure:stillEstimated:] + 340
+```
+
+完全符号化的Crash Report中，线程的堆栈每一帧都显示了可读的函数名和行号
+
+
+
+部分符号化的Crash Report
+
+```properties
+Thread 0 name:  Dispatch queue: com.apple.main-thread
+Thread 0 Crashed:
+0   libswiftCore.dylib                0x00000001bd38da70 specialized _fatalErrorMessage+ 2378352 (_:_:file:line:flags:) + 384
+1   libswiftCore.dylib                0x00000001bd38da70 specialized _fatalErrorMessage+ 2378352 (_:_:file:line:flags:) + 384
+2   libswiftCore.dylib                0x00000001bd15958c _ArrayBuffer._checkInoutAndNativeTypeCheckedBounds+ 66956 (_:wasNativeTypeChecked:) + 200
+3   libswiftCore.dylib                0x00000001bd15c814 Array.subscript.getter + 88
+4   TouchCanvas                       0x00000001022cbfa8 0x1022c0000 + 49064
+5   TouchCanvas                       0x00000001022c90b0 0x1022c0000 + 37040
+6   TouchCanvas                       0x00000001022e7374 0x1022c0000 + 160628
+7   TouchCanvas                       0x00000001022df754 0x1022c0000 + 128852
+8   TouchCanvas                       0x00000001022df7e8 0x1022c0000 + 129000
+9   UIKitCore                         0x00000001b3da6230 forwardMethod1 + 136
+10  UIKitCore                         0x00000001b3da6230 forwardMethod1 + 136
+11  UIKitCore                         0x00000001b3e01e24 -[_UIEstimatedTouchRecord dispatchUpdateWithPressure:stillEstimated:] + 340
+```
+
+部分符号化的Crash Report中，线程的堆栈中部分帧都显示了可读的函数名和行号，有些则没有，比如TouchCanvas，原因在于符号化过程没有找到TouchCanvas对应dSYM符号信息。
+
+说明
+
+> 一般来说，app的调用帧没有符号化，需要app的dSYM文件。而系统的调用帧没有符号化，需要检查`~/Library/Developer/Xcode/iOS DeviceSupport`下面有没有对应iOS系统的文件夹。
+
+
+
+没有符号化的Crash Report
+
+```properties
+Thread 0 name:  Dispatch queue: com.apple.main-thread
+Thread 0 Crashed:
+0   libswiftCore.dylib                0x00000001bd38da70 0x1bd149000 + 2378352
+1   libswiftCore.dylib                0x00000001bd38da70 0x1bd149000 + 2378352
+2   libswiftCore.dylib                0x00000001bd15958c 0x1bd149000 + 66956
+3   libswiftCore.dylib                0x00000001bd15c814 0x1bd149000 + 79892
+4   TouchCanvas                       0x00000001022cbfa8 0x1022c0000 + 49064
+5   TouchCanvas                       0x00000001022c90b0 0x1022c0000 + 37040
+6   TouchCanvas                       0x00000001022e7374 0x1022c0000 + 160628
+7   TouchCanvas                       0x00000001022df754 0x1022c0000 + 128852
+8   TouchCanvas                       0x00000001022df7e8 0x1022c0000 + 129000
+9   UIKitCore                         0x00000001b3da6230 0x1b3348000 + 10871344
+10  UIKitCore                         0x00000001b3da6230 0x1b3348000 + 10871344
+11  UIKitCore                         0x00000001b3e01e24 0x1b3348000 + 11247140
+```
+
+没有符号化的Crash Report，如果一直符号化不了，需要检查dSYM文件是否正确。
+
+
+
 Crash日志符号化，有几种方式
 
 * Xcode的View Device Logs，将Crash日志拖到左侧的日志列表中，Xcode自动符号化
@@ -395,15 +577,106 @@ Crash日志符号化，有几种方式
 
 
 
-### （1）atos命令
+##### 使用Xcode符号化
 
-atos用法，如下
+​      Xcode中，选择Devices and Simulators > View Device Logs > All Logs，将Crash Report文件的后缀名改成`.crash`，然后将文件拖到All Logs中，选择刚才拖的文件，右键选择“Re-Symbolicate Log”进行符号化。
+
+注意
+
+> 1. 如果app的调用帧没有符号化成功，需要检查app的dSYM文件是否在MacOS系统上，一般将app的dSYM文件和.crash文件放在同级目录下面。
+>
+> 2. 如果app是AppStore或TestFlight上的，需要下载dSYM文件。通过Archive Organizer，选择对应app archive文件，然后在右侧点击“Download Debug Symbols”来dSYM文件[^11]。
+>
+>    <img src="images/download_dsym_file.png" style="zoom:50%;" />
+>
+>    说明：一般来说上传app也需要上传dSYM文件，但是如果不上传也可以，那么dSYM文件由开发者自己管理。
+>
+> 3. 如果app开启了bitcode，则最终app产物是由AppStore编译生成的，那么则需要使用Archive Organizer来下载dSYM文件
+
+
+
+###### 用mdfind查找dSYM文件
+
+使用Xcode符号化会自动找MacOS上dSYM文件，主要是通过Spotlight工具（mdfind）。如果使用Xcode符号化失败，可以通过mdfind命令手动确认MacOS上是否有dSYM文件。
+
+首先，查看Crash Report文件，找到Binary Image Name和对应的UUID，如下图所示
+
+![](images/find_uuid.png)
+
+可以使用下面命令，去查询Binary Image Name和对应的UUID，也可以直接肉眼看一下
 
 ```shell
-Usage: atos [-p pid] [-o executable] [-f file] [-s slide | -l loadAddress] [-arch architecture] [-printHeader] [-fullPath] [address ...]
+$ grep --after-context=1000 "Binary Images:" <Path to Crash Report> | grep TouchCanvas
+0x1022c0000 - 0x1022effff TouchCanvas arm64  <9cc89c5e55163f4ab40c5821e99f05c6>
 ```
 
-常见选项，如下
+
+
+然后，使用mdfind命令，如下
+
+```shell
+$ mdfind "com_apple_xcode_dsym_uuids == DD698BD4-71CE-3439-8BDF-BA96C0320562"
+```
+
+注意
+
+> 需要将全部小写uuid换成全部大写，而且满足8-4-4-4-12 (`XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`)格式。这个有点不方便，需要写脚本来代替手工了。
+
+如果mdfind能找到对应dSYM文件，则会输出文件路径，否则无任何输出
+
+mdfind也可以查找系统image的dSYM，一般在`~/Library/Developer/Xcode/iOS DeviceSupport`中。如果没有，需要Xcode连接iOS设备，Xcode将自动Copy符号文件到iOS DeviceSupport目录。还有其他方法[^4]可以获取系统符号文件。
+
+
+
+###### 恢复隐藏符号文件
+
+如果app编译开启bitcode，则app的dSYM中符号会被混淆，例如`_hidden#109_`。这时下载到dSYM文件也无法直接使用，需要调用dsymutil命令恢复到正常的dSYM。
+
+命令如下
+
+```shell
+$ dsymutil -symbol-map <PathToXcodeArchive>/MyGreatApp.xcarchive/BCSymbolMaps <PathToDownloadedDSYMs>/<UUID>.dSYM
+```
+
+xcarchive文件，是上传AppStore的归档文件，需要妥善保留
+
+
+
+##### atos命令符号化
+
+​      一般用atos命令来符号化调用帧，即调用栈的一个frame。当然也可以写脚本调用atos命令符号化所有的调用帧（实际上Xcode符号化的symbolicatecrash脚本也用到atos命令）。
+
+在使用atos命令之前，需要完成下面的准备工作
+
+* 在Crash Report中，找到需要符号化的帧，确定镜像名字（image name）和符号地址（symbol address）
+* 在Crash Report的Binary Image中，找到image name对应加载地址（load address）、UUID和image架构
+* 获取dSYM文件，确认dSYM文件的UUID和image name对应的UUID是一样的
+* 最后调用atos命令进行符号化，如下
+
+```shell
+$ atos -arch <BinaryArchitecture> -o <PathToDSYMFile>/Contents/Resources/DWARF/<BinaryName>  -l <LoadAddress> <AddressesToSymbolicate>
+```
+
+说明
+
+> 可以有多个AddressesToSymbolicate，如果每个AddressesToSymbolicate都是对应同一个LoadAddress，则每个AddressesToSymbolicate都能符号化，否则某些AddressesToSymbolicate不能符号化。这时需要修改-o参数，多次调用atos命令。
+
+
+
+用个示意图，说明atos命令如何传参数，如下
+
+![](images/atos.png)
+
+对应的atos命令，如下
+
+```shell
+$ atos -arch arm64 -o TouchCanvas.app.dSYM/Contents/Resources/DWARF/TouchCanvas -l 0x1022c0000 0x00000001022df754
+ViewController.touchesEstimatedPropertiesUpdated(_:) (in TouchCanvas) + 304
+```
+
+
+
+atos的常见选项，如下
 
 * -o，指定符号文件
 * -l，某个镜像(image)的加载地址，该地址可以在Crash日志的Binary Images部分找到
@@ -438,19 +711,17 @@ main (in HelloNSException) (main.m:14)
 
 说明
 
-> 由于-l指定的加载地址是HelloNSException的加载地址，所以atos只能解析出HelloNSException镜像中的函数地址对应的符号。
+> 由于-l指定的加载地址是HelloNSException镜像的加载地址，所以atos只能解析出HelloNSException镜像中的函数地址对应的符号。
 
 
 
-### （2）symbolicatecrash脚本
+##### symbolicatecrash脚本
 
-#### a. 检查系统符号文件
-
-如果要符号化系统的符号，需要检查系统符号文件是否在本地路径`~/Library/Developer/Xcode/iOS DeviceSupport`中。如果没有，需要从真机中获取，还有其他方法[^4]可以获取系统符号文件。
+symbolicatecrash脚本，是Xcode符号化的脚本。我们自己也可以手动调用来符号化。
 
 
 
-#### b. 执行symbolicatecrash脚本
+###### 确定symbolicatecrash脚本路径
 
 使用下面的命令找到symbolicatecrash脚本的位置
 
@@ -460,7 +731,9 @@ $ find /Applications/Xcode.app -name symbolicatecrash -type f
 
 一般会找到多个路径，但实际对应的是同一个文件。
 
-> symbolicatecrash脚本是Perl语言编写的
+说明
+
+> symbolicatecrash脚本是Perl语言编写的，使用到atos命令
 
 
 
@@ -472,6 +745,8 @@ $ find /Applications/Xcode.app -name symbolicatecrash -type f
 
 
 
+###### 导出DEVELOPER_DIR环境变量
+
 然后配置DEVELOPER_DIR环境变量，使用symbolicatecrash脚本符号化crash文件[^3]，如下
 
 ```shell
@@ -481,7 +756,7 @@ $ /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Reso
 
 
 
-#### c. 符号化app的符号
+###### 调用symbolicatecrash脚本
 
 如果要符号化app的符号，使用`-d`选项指定dSYM路径，如下
 
@@ -493,11 +768,23 @@ $ /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Reso
 
 
 
-## 8、Watchdog Terminations[^2]
+### （2）Jetsam Event Report
 
 
 
 
+
+### （3）Device Console Log
+
+当iOS设备连接Mac电脑，可以使用Console.app来查看app的NSLog输出以及iOS系统的输出。
+
+打开Console.app，侧边栏Devices选择对应iOS设备，将App名复制粘贴到右上角的过滤框中，选择Process，就可以看到app的NSLog输出。
+
+注意
+
+> 1. 经测试，Console.app只打印NSLog的输出，并不打印printf的输出
+> 2. 如果日志输出太多，可以使用pause按钮，暂时日志的打印
+> 3. 谨慎使用NSLog，因为App的Release版本或者AppStore版本，连接Console.app，也会打印输出。所以不能使用NSLog打印敏感信息，或者在Release版本中，将NSLog输出失效，可以参考这篇SO[^9]的做法
 
 
 
@@ -515,6 +802,15 @@ $ /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Reso
 
 [^3]:https://www.infoq.cn/article/jltuf3pgfjv6ovjzu1sq
 [^4]:https://zuikyo.github.io/2016/12/18/iOS%20Crash%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90%E5%BF%85%E5%A4%87%EF%BC%9A%E7%AC%A6%E5%8F%B7%E5%8C%96%E7%B3%BB%E7%BB%9F%E5%BA%93%E6%96%B9%E6%B3%95/
+
+[^5]:https://developer.apple.com/documentation/xcode/diagnosing_issues_using_crash_reports_and_device_logs
+[^6]:https://developer.apple.com/documentation/xcode/diagnosing_issues_using_crash_reports_and_device_logs/acquiring_crash_reports_and_diagnostic_logs
+[^7]:https://help.apple.com/xcode/mac/current/#/deve2819c518
+[^8]:https://help.apple.com/xcode/mac/current/#/dev85c64ec79?sub=devc8ddd72c5
+
+[^9]:https://stackoverflow.com/questions/2025471/do-i-need-to-disable-nslog-before-release-application
+[^10]:https://developer.apple.com/documentation/xcode/diagnosing_issues_using_crash_reports_and_device_logs/adding_identifiable_symbol_names_to_a_crash_report
+[^11]:https://help.apple.com/xcode/mac/current/#/devef5928039
 
 
 
