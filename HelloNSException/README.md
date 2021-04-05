@@ -874,9 +874,97 @@ for item in library {
 
 
 
+##### Language Exception
+
+Apple系统framework在遇到特定编程错误时，会抛出语言异常（Language Exception），比如NSArray的数组越界。
+
+判断Crash类型是否属于Language Exception，Crash Report有2个特征，如下
+
+* Exception Information，满足下面的格式
+
+  ```properties
+  Exception Type:  EXC_CRASH (SIGABRT)
+  Exception Codes: 0x0000000000000000, 0x0000000000000000
+  Exception Note:  EXC_CORPSE_NOTIFY
+  ```
+
+* 存在Last Exception Backtrace，如下
+
+  ```properties
+  Last Exception Backtrace:
+  0   CoreFoundation                    0x19aae2a48 __exceptionPreprocess + 220
+  1   libobjc.A.dylib                   0x19a809fa4 objc_exception_throw + 55
+  ```
 
 
 
+举个排查Language Exception的例子[^15]
+
+```properties
+Last Exception Backtrace:
+0   CoreFoundation                    0x1bf596a48 __exceptionPreprocess + 220
+1   libobjc.A.dylib                   0x1bf2bdfa4 objc_exception_throw + 55
+2   CoreFoundation                    0x1bf49b0ec -[NSException raise] + 11
+3   Foundation                        0x1bf879170 -[NSObject+ 205168 (NSKeyValueCoding) setValue:forKey:] + 311
+4   UIKitCore                         0x1c2ffa0b4 -[UIViewController setValue:forKey:] + 99
+5   UIKitCore                         0x1c32c1234 -[UIRuntimeOutletConnection connect] + 123
+6   CoreFoundation                    0x1bf470f3c -[NSArray makeObjectsPerformSelector:] + 251
+7   UIKitCore                         0x1c32be3a4 -[UINib instantiateWithOwner:options:] + 1967
+8   UIKitCore                         0x1c3000f18 -[UIViewController _loadViewFromNibNamed:bundle:] + 363
+9   UIKitCore                         0x1c30019a4 -[UIViewController loadView] + 175
+10  UIKitCore                         0x1c3001c5c -[UIViewController loadViewIfRequired] + 171
+11  UIKitCore                         0x1c3002360 -[UIViewController view] + 27
+12  UIKitCore                         0x1c3017a98 -[UIViewController _setPresentationController:] + 107
+13  UIKitCore                         0x1c30108a4 -[UIViewController _presentViewController:modalSourceViewController:presentationController:animationController:interactionController:completion:] + 1343
+14  UIKitCore                         0x1c30122b8 -[UIViewController _presentViewController:withAnimationController:completion:] + 4255
+15  UIKitCore                         0x1c3014794 __63-[UIViewController _presentViewController:animated:completion:]_block_invoke + 103
+16  UIKitCore                         0x1c3014c90 -[UIViewController _performCoordinatedPresentOrDismiss:animated:] + 507
+17  UIKitCore                         0x1c30146e4 -[UIViewController _presentViewController:animated:completion:] + 195
+18  UIKitCore                         0x1c301494c -[UIViewController presentViewController:animated:completion:] + 159
+19  MyCoolApp                         0x104e8b1ac MasterViewController.viewDidLoad() (in MyCoolApp) (MasterViewController.swift:35)
+```
+
+这里不列出Exception Information，因为都是一样的。根据Last Exception Backtrace的第0到2帧，是系统抛出的异常。第3到18帧是系统的调用过程，而第19帧是app的代码，可以定位到源码来分析Crash问题。
+
+
+
+值得说明的是，Language Exception在调试时LLDB会输出更多的Crash信息，如下
+
+```shell
+Application Specific Information:
+*** Terminating app due to uncaught exception 'NSUnknownKeyException', 
+    reason: '[<MyCoolApp.MyViewController 0x105510d50> setValue:forUndefinedKey:]: 
+    this class is not key value coding-compliant for the key refreshButton.'
+```
+
+Apple解释说iOS设备的Crash Report中不会有有Application Specific Information这个信息，是因为防止用户的信息通过异常泄漏出去。而Mac app的Crash Report会有Application Specific Information这个信息。
+
+官方描述，如下
+
+> iOS, iPadOS, watchOS, and tvOS crash reports don’t contain the exception message to prevent disclosing private information about the user through an exception message. Mac apps include the exception message in the `Application Specific Information` field of a crash report.
+
+
+
+一般遇到Language Exception，可以通过复现（Reproduce）和设置异常断点，来定位到Crash时的堆栈。然后，查看系统API的文档，判断满足什么条件，该API可能会抛出异常。另外，也可以绕过该API的调用，换成其他方式来实现逻辑。
+
+
+
+上面提出的Language Exception是系统framework抛出的，但是用户代码也可以抛出异常。但是有2点需要注意
+
+* 编译用户代码（Objective-C）时，不要指定`-no_compact_unwind`，以免用户代码抛出OC异常，没有调用栈信息
+* 编译用户代码（C）时，可以指定`-funwind-tables`，以免用户代码抛出C的异常，没有调用栈信息
+
+
+
+
+
+// TODO
+
+Crash Report格式：https://developer.apple.com/documentation/xcode/diagnosing_issues_using_crash_reports_and_device_logs/examining_the_fields_in_a_crash_report
+
+
+
+分析Crash Report：https://developer.apple.com/documentation/xcode/diagnosing_issues_using_crash_reports_and_device_logs/analyzing_a_crash_report
 
 
 
@@ -932,6 +1020,8 @@ for item in library {
 [^12]:https://developer.apple.com/documentation/xcode/diagnosing_issues_using_crash_reports_and_device_logs/identifying_the_cause_of_common_crashes
 [^13]:https://developer.apple.com/documentation/xcode/diagnosing_issues_using_crash_reports_and_device_logs/examining_the_fields_in_a_crash_report
 [^14]:https://developer.apple.com/documentation/xcode/diagnosing_issues_using_crash_reports_and_device_logs/identifying_the_cause_of_common_crashes/addressing_crashes_from_swift_runtime_errors
+
+[^15]:https://developer.apple.com/documentation/xcode/diagnosing_issues_using_crash_reports_and_device_logs/identifying_the_cause_of_common_crashes/addressing_language_exception_crashes
 
 
 
