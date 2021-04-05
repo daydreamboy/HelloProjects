@@ -25,6 +25,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (BOOL)dumpString:(NSString *)string outputToFileName:(nullable NSString *)fileName;
 
++ (BOOL)dumpData:(NSData *)data outputToFileName:(nullable NSString *)fileName extension:(nullable NSString *)extension;
+
 #pragma mark > Read String from File
 
 /**
