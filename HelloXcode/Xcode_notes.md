@@ -20,6 +20,8 @@
 
 ### （1）检测分类方法是否重复
 
+OBJC_PRINT_REPLACED_METHODS = YES
+
 
 
 ```shell
@@ -27,6 +29,16 @@ objc[7366]: REPLACED: -[UIView setMultipleTouchEnabled:]  by category Addition  
 ```
 
 TODO：脚本提取REPLACED:信息
+
+
+
+## 2、Options
+
+
+
+Queue Debugging：Enable backtrace recording
+
+https://developer.apple.com/forums/thread/113167
 
 
 

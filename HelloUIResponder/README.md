@@ -124,6 +124,12 @@ canPerformAction会被调用，用于检查是否可以执行action方法。
 
 
 
+（3）基于Responder Chain Custom Uses
+
+// TODO Responder Chain Custom Uses
+
+https://swiftrocks.com/understanding-the-ios-responder-chain.html
+
 
 
 
