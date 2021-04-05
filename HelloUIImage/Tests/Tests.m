@@ -61,4 +61,94 @@
     NSLog(@"%@", thumbnailImage);
 }
 
+- (void)test_imageSizeWithPath_scale {
+    NSData *output;
+    NSData *data;
+    NSString *imagePath;
+    UIImage *thumbnailImage;
+    id object;
+    
+    // Case 1
+    imagePath = [[NSBundle mainBundle] pathForResource:@"heic" ofType:@"heic"];
+    object = [WCImageTool imagePropertiesWithPath:imagePath];
+    NSLog(@"%@", object);
+    
+    // Case 2
+    imagePath = [[NSBundle mainBundle] pathForResource:@"bmp" ofType:@"bmp"];
+    object = [WCImageTool imagePropertiesWithPath:imagePath];
+    NSLog(@"%@", object);
+    
+    // Case 3
+    imagePath = [[NSBundle mainBundle] pathForResource:@"jpg" ofType:@"jpeg"];
+    object = [WCImageTool imagePropertiesWithPath:imagePath];
+    NSLog(@"%@", object);
+    
+    // Case 4
+    imagePath = [[NSBundle mainBundle] pathForResource:@"png" ofType:@"png"];
+    object = [WCImageTool imagePropertiesWithPath:imagePath];
+    NSLog(@"%@", object);
+    
+    // Case 5
+    imagePath = [[NSBundle mainBundle] pathForResource:@"gif" ofType:@"gif"];
+    object = [WCImageTool imagePropertiesWithPath:imagePath];
+    NSLog(@"%@", object);
+}
+
+- (void)test_ {
+    NSData *output;
+    NSData *data;
+    NSString *imagePath;
+    UIImage *thumbnailImage;
+    id object;
+    
+    // Case 1
+    imagePath = [[NSBundle mainBundle] pathForResource:@"big_1" ofType:@"gif"];
+    data = [NSData dataWithContentsOfFile:imagePath];
+    output = [WCImageTool thumbnailAnimatedImageDataWithData:data path:nil boundingSize:CGSizeMake(300, 300) scale:1];
+    
+    [self.class dumpData:output outputToFileName:nil extension:@"gif"];
+    
+    NSLog(@"%@", object);
+}
+
++ (BOOL)dumpData:(NSData *)data outputToFileName:(nullable NSString *)fileName extension:(nullable NSString *)extension {
+    if (![data isKindOfClass:[NSData class]]) {
+        return NO;
+    }
+    
+    if (fileName && ![fileName isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    
+    if (extension && ![extension isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    
+    NSString *filePath;
+    NSString *userHomeFileName = fileName.length
+    ? [fileName stringByAppendingPathExtension:(extension.length > 0 ? extension : @"")]
+    : [NSString stringWithFormat:@"lldb_output_%f.%@", [[NSDate date] timeIntervalSince1970], (extension.length > 0 ? extension : @"")];
+    
+#if TARGET_OS_SIMULATOR
+    NSString *appHomeDirectoryPath = [@"~" stringByExpandingTildeInPath];
+    NSArray *pathParts = [appHomeDirectoryPath componentsSeparatedByString:@"/"];
+    if (pathParts.count < 2) {
+        return NO;
+    }
+    
+    NSMutableArray *components = [NSMutableArray arrayWithObject:@"/"];
+    // Note: pathParts is @"", @"Users", @"<your name>", ...
+    [components addObjectsFromArray:[pathParts subarrayWithRange:NSMakeRange(1, 2)]];
+    [components addObject:userHomeFileName];
+    
+    filePath = [NSString pathWithComponents:components];
+#else
+    filePath = [NSHomeDirectory() stringByAppendingPathComponent:userHomeFileName];
+#endif
+    
+    BOOL success = [data writeToFile:filePath atomically:YES];
+    
+    return success;
+}
+
 @end

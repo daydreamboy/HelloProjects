@@ -599,6 +599,16 @@
     return [self imageSizeWithData:data path:nil scale:scale];
 }
 
+#pragma mark > Metadata
+
++ (nullable NSDictionary *)imagePropertiesWithPath:(NSString *)path {
+    return [self imagePropertiesWithData:nil path:path];
+}
+
++ (nullable NSDictionary *)imagePropertiesWithData:(NSData *)data {
+    return [self imagePropertiesWithData:data path:nil];
+}
+
 #pragma mark ::
 
 + (CGSize)imageSizeWithData:(NSData *)data path:(NSString *)path scale:(CGFloat)scale {
@@ -663,6 +673,64 @@
     CGFloat height = heightInPixel == -1 ? -1 : (heightInPixel / (CGFloat)scale);
     
     return CGSizeMake(width, height);
+}
+
++ (nullable NSDictionary *)imagePropertiesWithData:(NSData *)data path:(NSString *)path {
+    if ((![data isKindOfClass:[NSData class]] || data.length == 0) &&
+        (![path isKindOfClass:[NSString class]] || path.length == 0)) {
+        return nil;
+    }
+    
+    CGImageSourceRef imageSourceRef = NULL;
+    
+    if (data) {
+        imageSourceRef = CGImageSourceCreateWithData(toCF data, NULL);
+    }
+    else {
+        if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            return nil;
+        }
+        
+        NSURL *fileURL = [NSURL fileURLWithPath:path];
+        if (!fileURL) {
+            return nil;
+        }
+        
+        imageSourceRef = CGImageSourceCreateWithURL(toCF fileURL, NULL);
+    }
+    
+    if (imageSourceRef == NULL) {
+        return nil;
+    }
+    
+    CFDictionaryRef imagePropertiesRef = CGImageSourceCopyPropertiesAtIndex(imageSourceRef, 0, NULL);
+    if (imagePropertiesRef == NULL) {
+        return nil;
+    }
+    
+    NSDictionary *imageProperties = CFBridgingRelease(imagePropertiesRef);
+    
+    /*
+    NSArray<NSString *> *types = @[
+        (NSString *)kCGImagePropertyGIFDictionary,
+        (NSString *)kCGImagePropertyJFIFDictionary,
+        (NSString *)kCGImagePropertyTIFFDictionary,
+    ];
+     */
+    
+    NSMutableDictionary *imagePropertiesM = [NSMutableDictionary dictionary];
+    
+    imagePropertiesM[@"width"] = imageProperties[(NSString *)kCGImagePropertyPixelWidth];  // type: NSNumber *
+    imagePropertiesM[@"height"] = imageProperties[(NSString *)kCGImagePropertyPixelHeight];
+    
+    // @see https://medium.com/@inc0gnit0/extracting-metadata-from-jpgs-or-image-urls-by-using-cgimageproperties-cgimagesource-nsdata-and-38df6cd900df
+    NSDictionary *exifGPSDictionary = imageProperties[(NSString *)kCGImagePropertyGPSDictionary];
+    imagePropertiesM[@"latitude"] = exifGPSDictionary[@"Latitude"]; // type: NSNumber *
+    imagePropertiesM[@"longitude"] = exifGPSDictionary[@"Longitude"];
+    
+    // TODO: more properties
+    
+    return [imagePropertiesM copy];
 }
 
 #pragma mark ::
@@ -850,6 +918,91 @@
     // cleanup
     CF_SAFE_RELEASE(imageSourceRef);
     CF_SAFE_RELEASE(downsampledImageRef);
+    
+    return thumbnailImageData;
+}
+
+#pragma mark - Thumbnail Animated Image Data
+
+#pragma mark ::
+
++ (nullable NSData *)thumbnailAnimatedImageDataWithData:(NSData *)data path:(NSString *)path boundingSize:(CGSize)boundingSize scale:(CGFloat)scale {
+    if (boundingSize.width <= 0 || boundingSize.height <= 0) {
+        return nil;
+    }
+    
+    if ((![data isKindOfClass:[NSData class]] || data.length == 0) &&
+        (![path isKindOfClass:[NSString class]] || path.length == 0)) {
+        return nil;
+    }
+    
+    CGImageSourceRef imageSourceRef = NULL;
+    NSDictionary *options = @{
+        fromCF kCGImageSourceShouldCache: @NO,
+    };
+    
+    if (data) {
+        imageSourceRef = CGImageSourceCreateWithData(toCF data, toCF options);
+    }
+    else {
+        if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
+            return nil;
+        }
+        
+        NSURL *fileURL = [NSURL fileURLWithPath:path];
+        if (!fileURL) {
+            return nil;
+        }
+        
+        imageSourceRef = CGImageSourceCreateWithURL(toCF fileURL, toCF options);
+    }
+    
+    if (imageSourceRef == NULL) {
+        return nil;
+    }
+    
+    size_t imageCount = CGImageSourceGetCount(imageSourceRef);
+    CFMutableDataRef newImageData = CFDataCreateMutable(NULL, 0);
+    CGImageDestinationRef destination = CGImageDestinationCreateWithData(newImageData, kUTTypeGIF, imageCount, NULL);
+    
+    for (size_t i = 0; i < imageCount; ++i) {
+        scale = scale <= 0 ? [UIScreen mainScreen].scale : scale;
+        CGFloat maxDimensionInPixels = MAX(boundingSize.width, boundingSize.height) * scale;
+        
+        NSDictionary *downsampledOptions = @{
+            fromCF kCGImageSourceCreateThumbnailFromImageAlways: @YES,
+            fromCF kCGImageSourceShouldCacheImmediately: @YES,
+            fromCF kCGImageSourceThumbnailMaxPixelSize: @(maxDimensionInPixels),
+            fromCF kCGImageSourceCreateThumbnailWithTransform: @YES,
+        };
+        
+        CGImageRef downsampledImageRef = CGImageSourceCreateThumbnailAtIndex(imageSourceRef, i, toCF downsampledOptions);
+        CFDictionaryRef framePropertiesRef = CGImageSourceCopyPropertiesAtIndex(imageSourceRef, i, NULL);
+
+        // @see https://github.com/eduardourso/GIFGenerator/blob/master/Pod/Classes/GIFGenerator.swift#L30
+        CGImageDestinationAddImage(destination, downsampledImageRef, framePropertiesRef);
+        
+        CF_SAFE_RELEASE(downsampledImageRef);
+    }
+    
+    CFDictionaryRef imagePropertiesRef = CGImageSourceCopyPropertiesAtIndex(imageSourceRef, 0, NULL);
+    if (imagePropertiesRef != NULL) {
+        CFDictionaryRef GIFPropertiesRef = CFDictionaryGetValue(imagePropertiesRef, kCGImagePropertyGIFDictionary);
+        if (GIFPropertiesRef != NULL) {
+            CGImageDestinationSetProperties(destination, GIFPropertiesRef);
+        }
+        
+        CF_SAFE_RELEASE(imagePropertiesRef);
+    }
+    
+    if (!CGImageDestinationFinalize(destination)) {
+        return nil;
+    }
+    
+    NSData *thumbnailImageData = (NSData *)CFBridgingRelease(newImageData);
+    
+    // cleanup
+    CF_SAFE_RELEASE(imageSourceRef);
     
     return thumbnailImageData;
 }

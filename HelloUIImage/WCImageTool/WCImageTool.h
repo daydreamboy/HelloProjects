@@ -191,6 +191,11 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (CGSize)imageSizeWithData:(NSData *)data scale:(CGFloat)scale;
 
+#pragma mark > Metadata
+
++ (nullable NSDictionary *)imagePropertiesWithPath:(NSString *)path;
++ (nullable NSDictionary *)imagePropertiesWithData:(NSData *)data;
+
 #pragma mark > File
 
 + (nullable NSString *)fileNameWithImage:(UIImage *)image;
@@ -250,6 +255,11 @@ NS_ASSUME_NONNULL_BEGIN
  @header #import <MobileCoreServices/MobileCoreServices.h>
  */
 + (nullable NSData *)thumbnailImageDataWithData:(NSData *)data boundingSize:(CGSize)boundingSize;
+
+
+#pragma mark - Thumbnail Animated Image Data
+
++ (nullable NSData *)thumbnailAnimatedImageDataWithData:(NSData *)data path:(NSString *)path boundingSize:(CGSize)boundingSize scale:(CGFloat)scale;
 
 @end
 
