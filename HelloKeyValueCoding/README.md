@@ -2,6 +2,16 @@
 
 [TOC]
 
+1、accessInstanceVariablesDirectly
+
+TODO:
+
+ https://stackoverflow.com/questions/6122398/objective-c-why-private-ivars-are-not-hidden-from-the-outside-access-when-using
+
+https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/SearchImplementation.html#//apple_ref/doc/uid/20000955
+
+
+
 
 
 ## 1、集合操作符（Collection Operators）[^1]

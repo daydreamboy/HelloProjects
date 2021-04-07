@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "Person.h"
+#import "KVCProhibitedPerson.h"
 #import "Transaction.h"
 
 @interface Tests_KVC : XCTestCase
@@ -41,6 +42,57 @@
 - (void)tearDown {
     NSLog(@"\n");
     [super tearDown];
+}
+
+#pragma mark -
+
+- (void)test_set_private_ivar_by_KVC {
+    NSString *output;
+    
+    Person *p = [[Person alloc] initWithAge:@"12"];
+    p.name = @"John";
+    
+    [p setValue:@"1" forKey:@"age"];
+    output = p.age;
+    XCTAssertEqualObjects(output, @"1");
+    
+    // Note: use _age same with age, but age is better
+    [p setValue:@"2" forKey:@"_age"];
+    output = p.age;
+    XCTAssertEqualObjects(output, @"2");
+}
+
+- (void)test_key_vs__key_by_KVC {
+    NSString *output;
+    
+    Person *p = [[Person alloc] initWithAge:@"12"];
+    p.name = @"John";
+    
+    output = [p valueForKey:@"name"]; // Note: call name getter method
+    XCTAssertEqualObjects(output, @"John");
+    
+    output = [p valueForKey:@"_name"]; // Note: similar as p -> _name
+    XCTAssertEqualObjects(output, @"John");
+}
+
+- (void)test_prohibited_private_ivar_by_KVC {
+    NSString *output;
+    
+    KVCProhibitedPerson *p = [[KVCProhibitedPerson alloc] initWithAge:@"12"];
+    p.name = @"John";
+    
+    XCTAssertThrows([p setValue:@"1" forKey:@"age"]);
+    output = p.age;
+    XCTAssertEqualObjects(output, @"12");
+    
+    // Note: use _age same with age, but age is better
+    XCTAssertThrows([p setValue:@"2" forKey:@"_age"]);
+    output = p.age;
+    XCTAssertEqualObjects(output, @"12");
+    
+    XCTAssertThrows([p valueForKey:@"_age"]); //  [<KVCProhibitedPerson 0x600000338780> valueForUndefinedKey:]: this class is not key value coding-compliant for the key _age. (NSUnknownKeyException)
+    output = [p valueForKey:@"age"]; // Ok
+    XCTAssertEqualObjects(output, @"12");
 }
 
 #pragma mark - Keywords

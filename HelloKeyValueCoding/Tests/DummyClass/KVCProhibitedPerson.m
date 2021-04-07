@@ -1,14 +1,14 @@
 //
-//  Person.m
-//  HelloKeyValueCoding
+//  KVCProhibitedPerson.m
+//  Tests
 //
-//  Created by wesley_chen on 2019/7/16.
-//  Copyright © 2019 wesley_chen. All rights reserved.
+//  Created by wesley_chen on 2021/4/7.
+//  Copyright © 2021 wesley_chen. All rights reserved.
 //
 
-#import "Person.h"
+#import "KVCProhibitedPerson.h"
 
-@implementation Person
+@implementation KVCProhibitedPerson
 
 @synthesize age = _age;
 @synthesize name = _name;
@@ -19,6 +19,10 @@
         _age = age;
     }
     return self;
+}
+
++ (BOOL)accessInstanceVariablesDirectly {
+    return NO;
 }
 
 - (NSString *)name {

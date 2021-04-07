@@ -19,6 +19,7 @@
 		4F83D39720CE119F00F2FE80 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F83D39620CE119F00F2FE80 /* main.m */; };
 		4F83D3A220CE11C800F2FE80 /* FlattenArrayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F83D39E20CE11C800F2FE80 /* FlattenArrayViewController.m */; };
 		4F83D3A320CE11C800F2FE80 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F83D3A120CE11C800F2FE80 /* RootViewController.m */; };
+		4F993AA4261D9B950063861E /* KVCProhibitedPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F993AA3261D9B950063861E /* KVCProhibitedPerson.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,8 @@
 		4F83D39F20CE11C800F2FE80 /* FlattenArrayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlattenArrayViewController.h; sourceTree = "<group>"; };
 		4F83D3A020CE11C800F2FE80 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F83D3A120CE11C800F2FE80 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		4F993AA2261D9B950063861E /* KVCProhibitedPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVCProhibitedPerson.h; sourceTree = "<group>"; };
+		4F993AA3261D9B950063861E /* KVCProhibitedPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVCProhibitedPerson.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +86,8 @@
 				4F4FEB8C22DDBDB600C6B052 /* Transaction.m */,
 				4F1C728D23A12D5B008FE2C0 /* PrimitivePropertyObject.h */,
 				4F1C728E23A12D5B008FE2C0 /* PrimitivePropertyObject.m */,
+				4F993AA2261D9B950063861E /* KVCProhibitedPerson.h */,
+				4F993AA3261D9B950063861E /* KVCProhibitedPerson.m */,
 			);
 			path = DummyClass;
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 				4F4FEB8D22DDBDB600C6B052 /* Transaction.m in Sources */,
 				4F1C728F23A12D5B008FE2C0 /* PrimitivePropertyObject.m in Sources */,
 				4F5640AE22127B570039D6F6 /* Tests.m in Sources */,
+				4F993AA4261D9B950063861E /* KVCProhibitedPerson.m in Sources */,
 				4F1C729123A12D97008FE2C0 /* Tests_Primitive.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
