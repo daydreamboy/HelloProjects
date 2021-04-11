@@ -545,11 +545,40 @@ XXX是属性的getter名。
 
 
 
+#### b. Basic Setter的Search Pattern
+
+给定key的情况下，setValue:forKey:方法的实现，按照下面搜索顺序去设置对应的值
+
+1. 按照`set<Key>`、`_set<Key>`的顺序，检查实例对象的accessor方法是否存在。如果存在，设置值然后结束，否则继续下一步骤。
+
+2. 检查类方法`accessInstanceVariablesDirectly` 。如果该类方法返回YES（默认是返回YES），说明可以访问实例变量，否则转到第3步。如果允许访问实例变量，则按照 `_<key>`、`_is<Key>`、 `<key>`、`is<Key>`的顺序，设置实例变量
+3. 走到这一步说明找不到对应的key，调用setValue:forUndefinedKey:方法。该方法默认抛出NSUndefinedKeyException异常
 
 
-https://useyourloaf.com/blog/private-ivars/
+
+#### c. Search Pattern for Mutable Arrays
+
+// The default implementation of mutableArrayValueForKey:, 
 
 
+
+#### d. Search Pattern for Mutable Ordered Sets
+
+// The default implementation of mutableOrderedSetValueForKey:
+
+
+
+#### e. Search Pattern for Mutable Sets
+
+// The default implementation of mutableSetValueForKey:
+
+
+
+
+
+// TODO: Achieving Basic Key-Value Coding Compliance
+
+https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/AccessorConventions.html#//apple_ref/doc/uid/20002174-BAJEAIEE
 
 
 
@@ -631,7 +660,7 @@ NSArray *flattedArray = [twoDimensionalArray valueForKeyPath:@"@unionOfArrays.se
 
 
 
-## 3、KVC常见问题
+## 4、KVC常见问题
 
 
 

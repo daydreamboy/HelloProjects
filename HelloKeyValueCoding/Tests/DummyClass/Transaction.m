@@ -8,7 +8,12 @@
 
 #import "Transaction.h"
 
-@implementation Transaction
+@implementation Transaction {
+    NSString *_privateIvarName1;
+    NSString *_isPrivateIvarName2;
+    NSString *privateIvarName3;
+    NSString *isPrivateIvarName4;
+}
 
 + (instancetype)transactionWithPayee:(NSString *)payee amount:(NSNumber *)amount date:(NSDate *)date {
     Transaction *transaction = [Transaction new];
@@ -19,6 +24,14 @@
     transaction.balance = [amount doubleValue];
     
     return transaction;
+}
+
+- (void)setPayee:(NSString *)payee {
+    _payee = payee;
+}
+
+- (void)_setAmount:(NSNumber *)amount {
+    _amount = amount;
 }
 
 @end

@@ -340,6 +340,46 @@
     XCTAssertThrowsSpecificNamed([account valueForKey:@"never_existed_key"], NSException, NSUndefinedKeyException);
 }
 
+- (void)test_setValue_forKey_search_pattern {
+    Transaction *transaction = [[Transaction alloc] init];
+    id output;
+    
+    // Step1: first loop to check accessor methods
+    
+    // Case 1: set<Key> accessor method
+    [transaction setValue:@"John" forKey:@"payee"];
+    XCTAssertEqualObjects(transaction.payee, @"John");
+    
+    // Case 2: _set<key> accessor method
+    [transaction setValue:@(3.14) forKey:@"amount"];
+    XCTAssertEqualObjects(transaction.amount, @(3.14));
+    
+    // Step2: second loop to check the transaction's ivar
+    
+    // Case 1: _<key>
+    [transaction setValue:@"private_ivar1" forKey:@"privateIvarName1"];
+    output = [transaction valueForKey:@"privateIvarName1"];
+    XCTAssertEqualObjects(output, @"private_ivar1");
+    
+    // Case 2: _is<Key>
+    [transaction setValue:@"private_ivar2" forKey:@"privateIvarName2"];
+    output = [transaction valueForKey:@"privateIvarName2"];
+    XCTAssertEqualObjects(output, @"private_ivar2");
+    
+    // Case 3: <key>
+    [transaction setValue:@"private_ivar3" forKey:@"privateIvarName3"];
+    output = [transaction valueForKey:@"privateIvarName3"];
+    XCTAssertEqualObjects(output, @"private_ivar3");
+    
+    // Case 4: is<Key>
+    [transaction setValue:@"private_ivar4" forKey:@"privateIvarName4"];
+    output = [transaction valueForKey:@"privateIvarName4"];
+    XCTAssertEqualObjects(output, @"private_ivar4");
+    
+    // Step3: finally, call setValue:forUndefinedKey:, and throw exception by default
+    XCTAssertThrowsSpecificNamed([transaction setValue:@"1" forKey:@"never_existed_key"], NSException, NSUndefinedKeyException);
+}
+
 #pragma mark - Keywords
 
 #pragma mark > self
