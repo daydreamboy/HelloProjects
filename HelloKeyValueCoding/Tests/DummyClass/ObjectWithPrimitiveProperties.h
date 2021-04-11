@@ -1,5 +1,5 @@
 //
-//  PrimitivePropertyObject.h
+//  ObjectWithPrimitiveProperties.h
 //  Tests
 //
 //  Created by wesley_chen on 2019/12/11.
@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PrimitivePropertyObject : NSObject
+@interface ObjectWithPrimitiveProperties : NSObject
 
 @property (nonatomic, assign) int integerNumber;
 @property (nonatomic, assign) float floatNumber;

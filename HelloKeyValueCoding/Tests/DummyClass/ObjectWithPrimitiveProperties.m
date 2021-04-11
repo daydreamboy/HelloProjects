@@ -1,13 +1,13 @@
 //
-//  PrimitivePropertyObject.m
+//  ObjectWithPrimitiveProperties.m
 //  Tests
 //
 //  Created by wesley_chen on 2019/12/11.
 //  Copyright © 2019 wesley_chen. All rights reserved.
 //
 
-#import "PrimitivePropertyObject.h"
+#import "ObjectWithPrimitiveProperties.h"
 
-@implementation PrimitivePropertyObject
+@implementation ObjectWithPrimitiveProperties
 
 @end

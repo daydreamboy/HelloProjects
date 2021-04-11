@@ -10,11 +10,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class Account;
+
 @interface Person : NSObject
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, readonly) NSString *age;
+@property (nonatomic, readonly) NSUInteger age;
 
-- (instancetype)initWithAge:(NSString *)age;
+@property (nonatomic, strong) Account *basicAccount;
+@property (nonatomic, strong) NSMutableArray<Account *> *accounts;
+@property (nonatomic, strong) NSArray<Account *> *frozenAccounts;
+
+- (instancetype)initWithAge:(NSUInteger)age;
+- (void)addAccount:(Account *)account;
 
 @end
 

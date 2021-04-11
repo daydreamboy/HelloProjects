@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F1C728F23A12D5B008FE2C0 /* PrimitivePropertyObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C728E23A12D5B008FE2C0 /* PrimitivePropertyObject.m */; };
-		4F1C729123A12D97008FE2C0 /* Tests_Primitive.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C729023A12D97008FE2C0 /* Tests_Primitive.m */; };
+		4F1C728F23A12D5B008FE2C0 /* ObjectWithPrimitiveProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1C728E23A12D5B008FE2C0 /* ObjectWithPrimitiveProperties.m */; };
 		4F4FEB8822DDB9A800C6B052 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FEB8622DDB97500C6B052 /* Person.m */; };
 		4F4FEB8A22DDBABE00C6B052 /* Tests_KVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FEB8922DDBABE00C6B052 /* Tests_KVC.m */; };
 		4F4FEB8D22DDBDB600C6B052 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FEB8C22DDBDB600C6B052 /* Transaction.m */; };
@@ -20,6 +19,7 @@
 		4F83D3A220CE11C800F2FE80 /* FlattenArrayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F83D39E20CE11C800F2FE80 /* FlattenArrayViewController.m */; };
 		4F83D3A320CE11C800F2FE80 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F83D3A120CE11C800F2FE80 /* RootViewController.m */; };
 		4F993AA4261D9B950063861E /* KVCProhibitedPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F993AA3261D9B950063861E /* KVCProhibitedPerson.m */; };
+		4FA87F432622D5FA00D5ED39 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA87F412622D5FA00D5ED39 /* Account.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,9 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4F1C728D23A12D5B008FE2C0 /* PrimitivePropertyObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrimitivePropertyObject.h; sourceTree = "<group>"; };
-		4F1C728E23A12D5B008FE2C0 /* PrimitivePropertyObject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PrimitivePropertyObject.m; sourceTree = "<group>"; };
-		4F1C729023A12D97008FE2C0 /* Tests_Primitive.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_Primitive.m; sourceTree = "<group>"; };
+		4F1C728D23A12D5B008FE2C0 /* ObjectWithPrimitiveProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ObjectWithPrimitiveProperties.h; sourceTree = "<group>"; };
+		4F1C728E23A12D5B008FE2C0 /* ObjectWithPrimitiveProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjectWithPrimitiveProperties.m; sourceTree = "<group>"; };
 		4F4FEB8522DDB97500C6B052 /* Person.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Person.h; sourceTree = "<group>"; };
 		4F4FEB8622DDB97500C6B052 /* Person.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Person.m; sourceTree = "<group>"; };
 		4F4FEB8922DDBABE00C6B052 /* Tests_KVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_KVC.m; sourceTree = "<group>"; };
@@ -57,6 +56,8 @@
 		4F83D3A120CE11C800F2FE80 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F993AA2261D9B950063861E /* KVCProhibitedPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KVCProhibitedPerson.h; sourceTree = "<group>"; };
 		4F993AA3261D9B950063861E /* KVCProhibitedPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KVCProhibitedPerson.m; sourceTree = "<group>"; };
+		4FA87F412622D5FA00D5ED39 /* Account.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Account.m; sourceTree = "<group>"; };
+		4FA87F422622D5FA00D5ED39 /* Account.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Account.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,12 +81,14 @@
 		4F4FEB8422DDB95600C6B052 /* DummyClass */ = {
 			isa = PBXGroup;
 			children = (
+				4FA87F422622D5FA00D5ED39 /* Account.h */,
+				4FA87F412622D5FA00D5ED39 /* Account.m */,
 				4F4FEB8522DDB97500C6B052 /* Person.h */,
 				4F4FEB8622DDB97500C6B052 /* Person.m */,
 				4F4FEB8B22DDBDB600C6B052 /* Transaction.h */,
 				4F4FEB8C22DDBDB600C6B052 /* Transaction.m */,
-				4F1C728D23A12D5B008FE2C0 /* PrimitivePropertyObject.h */,
-				4F1C728E23A12D5B008FE2C0 /* PrimitivePropertyObject.m */,
+				4F1C728D23A12D5B008FE2C0 /* ObjectWithPrimitiveProperties.h */,
+				4F1C728E23A12D5B008FE2C0 /* ObjectWithPrimitiveProperties.m */,
 				4F993AA2261D9B950063861E /* KVCProhibitedPerson.h */,
 				4F993AA3261D9B950063861E /* KVCProhibitedPerson.m */,
 			);
@@ -98,7 +101,6 @@
 				4F4FEB8422DDB95600C6B052 /* DummyClass */,
 				4F5640AD22127B570039D6F6 /* Tests.m */,
 				4F4FEB8922DDBABE00C6B052 /* Tests_KVC.m */,
-				4F1C729023A12D97008FE2C0 /* Tests_Primitive.m */,
 				4F5640AF22127B570039D6F6 /* Info.plist */,
 			);
 			path = Tests;
@@ -247,12 +249,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F4FEB8822DDB9A800C6B052 /* Person.m in Sources */,
+				4FA87F432622D5FA00D5ED39 /* Account.m in Sources */,
 				4F4FEB8A22DDBABE00C6B052 /* Tests_KVC.m in Sources */,
 				4F4FEB8D22DDBDB600C6B052 /* Transaction.m in Sources */,
-				4F1C728F23A12D5B008FE2C0 /* PrimitivePropertyObject.m in Sources */,
+				4F1C728F23A12D5B008FE2C0 /* ObjectWithPrimitiveProperties.m in Sources */,
 				4F5640AE22127B570039D6F6 /* Tests.m in Sources */,
 				4F993AA4261D9B950063861E /* KVCProhibitedPerson.m in Sources */,
-				4F1C729123A12D97008FE2C0 /* Tests_Primitive.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
