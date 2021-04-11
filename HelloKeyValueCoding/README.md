@@ -358,53 +358,194 @@ XXX是属性的getter名。
 
 
 
+### （5）KVC的Search Pattern[^6]
+
+通过上面的介绍，NSKeyValueCoding的API中最核心的API，是下面2个方法
+
+```objective-c
+// Basic Getter
+- (id)valueForKey:(NSString *)key;
+// Basic Setter
+- (void)setValue:(id)value forKey:(NSString *)key;
+```
+
+这里分别称为Basic Getter和Basic Setter。
+
+
+
+#### a. Basic Getter的Search Pattern
+
+给定key的情况下，valueForKey:方法的实现，按照下面搜索顺序去获取对应的值
+
+1. 按照`get<Key>`、`<key>`、 `is<Key>`、`_<key>`的顺序，检查实例对象的accessor方法是否存在。如果存在，转到第5步，否则继续下一步骤。
+
+   > 注意：(1) `_<key>`也是方法名，并不是实例变量名; (2) `is<Key>`必须是@property中声明的getter方法，而不是只实现形如`is<Key>`方法名，这样是不能被调用到的。
+
+2. 检查实例对象是否具有NSArray行为。看是否都实现下面3个方法，缺一个都不行
+
+   ```objective-c
+   countOf<Key>
+   objectIn<Key>AtIndex:
+   <key>AtIndexes:
+   ```
+
+   如果都满足，则调用相应方法获取实例对象的每个“元素”，并对每个对象进行调用valueForKey:方法，组成NSArray结果返回出来。如果不满足，则继续下一步骤。
+
+3. 检查实例对象是否具有NSSet行为。看是否都实现下面3个方法，缺一个都不行
+
+   ```objective-c
+   countOf<Key>
+   enumeratorOf<Key>
+   memberOf<Key>:
+   ```
+
+   如果都满足，处理过程和第2个步骤类似。如果不满足，则继续下一步骤。
+
+4. 如果没有找到对应的accessor方法，检查实例对象的行为也不是集合（NSArray或NSSet），则检查类方法`accessInstanceVariablesDirectly` 。如果该类方法返回YES（默认是返回YES），说明可以访问实例变量，否则转到第6步。如果允许访问实例变量，则按照 `_<key>`、`_is<Key>`、 `<key>`、`is<Key>`的顺序，查找实例变量，如果找到转到第5步，否则转到第6步。
+
+5. 到这一步，将获取到值，进行类型判断，如果是对象类型，则直接返回；如果是可以转成NSNumber，则转成NSNumber返回；如果是可以转成NSValue，则转成NSValue返回
+
+6. 到这一步，说明没有找到对应的key，调用valueForUndefinedKey:方法。该方法默认会抛出NSUndefinedKeyException异常
+
+
+
+官方描述，如下
+
+> The default implementation of `valueForKey:`, given a `key` parameter as input, carries out the following procedure, operating from within the class instance receiving the `valueForKey:` call.
+>
+> 1. Search the instance for the first accessor method found with a name like `get<Key>`, `<key>`, `is<Key>`, or `_<key>`, in that order. If found, invoke it and proceed to step 5 with the result. Otherwise proceed to the next step.
+>
+> 2. If no simple accessor method is found, search the instance for methods whose names match the patterns `countOf<Key>` and `objectIn<Key>AtIndex:` (corresponding to the primitive methods defined by the `NSArray` class) and `<key>AtIndexes:` (corresponding to the `NSArray` method `objectsAtIndexes:`).
+>
+>    If the first of these and at least one of the other two is found, create a collection proxy object that responds to all `NSArray` methods and return that. Otherwise, proceed to step 3.
+>
+>    The proxy object subsequently converts any `NSArray` messages it receives to some combination of `countOf<Key>`, `objectIn<Key>AtIndex:`, and `<key>AtIndexes:` messages to the key-value coding compliant object that created it. If the original object also implements an optional method with a name like `get<Key>:range:`, the proxy object uses that as well, when appropriate. In effect, the proxy object working together with the key-value coding compliant object allows the underlying property to behave as if it were an `NSArray`, even if it is not.
+>
+> 3. If no simple accessor method or group of array access methods is found, look for a triple of methods named `countOf<Key>`, `enumeratorOf<Key>`, and `memberOf<Key>:` (corresponding to the primitive methods defined by the `NSSet` class).
+>
+>    If all three methods are found, create a collection proxy object that responds to all `NSSet` methods and return that. Otherwise, proceed to step 4.
+>
+>    This proxy object subsequently converts any `NSSet` message it receives into some combination of `countOf<Key>`, `enumeratorOf<Key>`, and `memberOf<Key>:` messages to the object that created it. In effect, the proxy object working together with the key-value coding compliant object allows the underlying property to behave as if it were an `NSSet`, even if it is not.
+>
+> 4. If no simple accessor method or group of collection access methods is found, and if the receiver's class method `accessInstanceVariablesDirectly` returns `YES`, search for an instance variable named `_<key>`, `_is<Key>`, `<key>`, or `is<Key>`, in that order. If found, directly obtain the value of the instance variable and proceed to step 5. Otherwise, proceed to step 6.
+>
+> 5. If the retrieved property value is an object pointer, simply return the result.
+>
+>    If the value is a scalar type supported by `NSNumber`, store it in an `NSNumber` instance and return that.
+>
+>    If the result is a scalar type not supported by NSNumber, convert to an `NSValue` object and return that.
+>
+> 6. If all else fails, invoke `valueForUndefinedKey:`. This raises an exception by default, but a subclass of `NSObject` may provide key-specific behavior.
+
+
+
+举个例子，如下
+
+```objective-c
+@class Transaction;
+
+@interface Account : NSObject
+@property (nonatomic, copy)  NSString *name;
+@property (nonatomic, assign) double openingBalance;
+@property (nonatomic, assign, getter=isCountOfItemChanged) NSInteger countOfItemChanged;
+@property (nonatomic, strong) NSMutableArray<Transaction *> *transactions;
+@end
+
+@implementation Account {
+    NSString *_privateIvarName1;
+    NSString *_isPrivateIvarName2;
+    NSString *privateIvarName3;
+    NSString *isPrivateIvarName4;
+}
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _privateIvarName1 = @"private_ivar1";
+        _isPrivateIvarName2 = @"private_ivar2";
+        privateIvarName3 = @"private_ivar3";
+        isPrivateIvarName4 = @"private_ivar4";
+    }
+    return self;
+}
+- (NSString *)getName {
+    return @"Anonymous";
+}
+- (double)openingBalance {
+    return 3.14;
+}
+// Note: for test to compare with isCountOfItemChanged
+/*
+- (NSInteger)countOfItemChanged {
+    return 5;
+}
+ */
+- (NSInteger)isCountOfItemChanged {
+    return 5;
+}
+- (NSMutableArray *)_privateTransactions {
+    return [@[] copy];
+}
+@end
+  
+- (void)test_valueForKey_search_pattern {
+    Account *account = [[Account alloc] init];
+    id output;
+    
+    // Step1: first loop to check accessor methods
+    
+    // Case 1: get<Key> accessor method
+    output = [account valueForKey:@"name"];
+    XCTAssertEqualObjects(output, @"Anonymous");
+    
+    // Case 2: <key> accessor method
+    output = [account valueForKey:@"openingBalance"];
+    XCTAssertEqualObjects(output, @(3.14));
+    
+    // Case 3: is<Key> accessor method
+    output = [account valueForKey:@"countOfItemChanged"];
+    XCTAssertEqualObjects(output, @(5));
+    
+    // Case 4: _key accessor method
+    output = [account valueForKey:@"privateTransactions"];
+    XCTAssertEqualObjects(output, @[]);
+    
+    // Step2: second loop to check the account if behavor as NSArray
+    
+    // Step3: third loop to check the account if behavor as NSSet
+    
+    // Step4: fourth loop to check the account's ivar
+    
+    // Case 1: _<key>
+    output = [account valueForKey:@"privateIvarName1"];
+    XCTAssertEqualObjects(output, @"private_ivar1");
+    
+    // Case 2: _is<Key>
+    output = [account valueForKey:@"privateIvarName2"];
+    XCTAssertEqualObjects(output, @"private_ivar2");
+    
+    // Case 3: <key>
+    output = [account valueForKey:@"privateIvarName3"];
+    XCTAssertEqualObjects(output, @"private_ivar3");
+    
+    // Case 4: is<Key>
+    output = [account valueForKey:@"privateIvarName4"];
+    XCTAssertEqualObjects(output, @"private_ivar4");
+    
+    // Step5: finally, call valueForUndefinedKey:, and throw exception by default
+    XCTAssertThrowsSpecificNamed([account valueForKey:@"never_existed_key"], NSException, NSUndefinedKeyException);
+}
+```
+
+
+
+通过上面的分析，可以看出
+
+* 通过KVC可以获取对象的私有实例变量，而且通过类方法`accessInstanceVariablesDirectly`可以阻止这一行为。当然除了使用KVC方式，还有其他方式可以访问对象的私有实例变量[^7]
+* 最好不要将方法命名以`_`开头，以免被KVC误调用。
 
 
 
 
-
-
-
-
-
-
-
-
-## 2、使用KVC访问ivar变量
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-1、accessInstanceVariablesDirectly
-
-TODO:
-
- https://stackoverflow.com/questions/6122398/objective-c-why-private-ivars-are-not-hidden-from-the-outside-access-when-using
-
-https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/SearchImplementation.html#//apple_ref/doc/uid/20000955
-
-http://jerrymarino.com/2014/01/31/objective-c-private-instance-variable-access.html
 
 https://useyourloaf.com/blog/private-ivars/
 
@@ -504,4 +645,8 @@ NSArray *flattedArray = [twoDimensionalArray valueForKeyPath:@"@unionOfArrays.se
 [^3]:https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/BasicPrinciples.html#//apple_ref/doc/uid/20002170-BAJEAIEE
 [^4]:https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/AccessingCollectionProperties.html#//apple_ref/doc/uid/10000107i-CH4-SW1
 [^5]:https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/ValidatingProperties.html#//apple_ref/doc/uid/10000107i-CH18-SW1
+[^6]:https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/SearchImplementation.html#//apple_ref/doc/uid/20000955-CJBBBFFA
+[^7]:http://jerrymarino.com/2014/01/31/objective-c-private-instance-variable-access.html
+
+
 

@@ -290,6 +290,56 @@
     XCTAssertTrue(output);
 }
 
+#pragma mark - NSKeyValueCoding Search Pattern
+
+- (void)test_valueForKey_search_pattern {
+    Account *account = [[Account alloc] init];
+    id output;
+    
+    // Step1: first loop to check accessor methods
+    
+    // Case 1: get<Key> accessor method
+    output = [account valueForKey:@"name"];
+    XCTAssertEqualObjects(output, @"Anonymous");
+    
+    // Case 2: <key> accessor method
+    output = [account valueForKey:@"openingBalance"];
+    XCTAssertEqualObjects(output, @(3.14));
+    
+    // Case 3: is<Key> accessor method
+    output = [account valueForKey:@"countOfItemChanged"];
+    XCTAssertEqualObjects(output, @(5));
+    
+    // Case 4: _key accessor method
+    output = [account valueForKey:@"privateTransactions"];
+    XCTAssertEqualObjects(output, @[]);
+    
+    // Step2: second loop to check the account if behavor as NSArray
+    
+    // Step3: third loop to check the account if behavor as NSSet
+    
+    // Step4: fourth loop to check the account's ivar
+    
+    // Case 1: _<key>
+    output = [account valueForKey:@"privateIvarName1"];
+    XCTAssertEqualObjects(output, @"private_ivar1");
+    
+    // Case 2: _is<Key>
+    output = [account valueForKey:@"privateIvarName2"];
+    XCTAssertEqualObjects(output, @"private_ivar2");
+    
+    // Case 3: <key>
+    output = [account valueForKey:@"privateIvarName3"];
+    XCTAssertEqualObjects(output, @"private_ivar3");
+    
+    // Case 4: is<Key>
+    output = [account valueForKey:@"privateIvarName4"];
+    XCTAssertEqualObjects(output, @"private_ivar4");
+    
+    // Step5: finally, call valueForUndefinedKey:, and throw exception by default
+    XCTAssertThrowsSpecificNamed([account valueForKey:@"never_existed_key"], NSException, NSUndefinedKeyException);
+}
+
 #pragma mark - Keywords
 
 #pragma mark > self

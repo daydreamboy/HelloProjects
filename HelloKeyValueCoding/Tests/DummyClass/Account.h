@@ -13,7 +13,7 @@
 @interface Account : NSObject
 @property (nonatomic, copy)  NSString *name;
 @property (nonatomic, assign) double openingBalance;
-@property (nonatomic, assign) NSInteger countOfItemChanged;
+@property (nonatomic, assign, getter=isCountOfItemChanged) NSInteger countOfItemChanged;
 
 @property (nonatomic, strong) NSMutableArray<Transaction *> *transactions;
 
