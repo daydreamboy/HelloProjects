@@ -10,6 +10,7 @@
 
 // section 1
 #import "AutoFitTextSizeViewController.h"
+#import "UpdateContraintsViewController.h"
 
 // section 2
 #import "ExceptionNotFindCommonSuperviewViewController.h"
@@ -40,6 +41,7 @@
     // MARK: Configure sectionTitles and classes for table view
     NSArray<NSDictionary *> *section1 = @[
           @{ kTitle: @"UILabel auto fit text size", kClass: [AutoFitTextSizeViewController class] },
+          @{ kTitle: @"update contraints", kClass: [UpdateContraintsViewController class] },
     ];
 
     NSArray<NSDictionary *> *section2 = @[

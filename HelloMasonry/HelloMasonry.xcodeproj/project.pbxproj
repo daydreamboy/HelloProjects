@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4F94AC26262711D100E40675 /* AutoFitTextSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F94AC25262711D100E40675 /* AutoFitTextSizeViewController.m */; };
 		4F94AC2B2627153500E40675 /* ExceptionNotFindCommonSuperviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F94AC2A2627153500E40675 /* ExceptionNotFindCommonSuperviewViewController.m */; };
+		4FA87AA526273AC8001ADB54 /* UpdateContraintsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA87AA426273AC8001ADB54 /* UpdateContraintsViewController.m */; };
 		4FF967512520BCD100CBA473 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF967502520BCD100CBA473 /* AppDelegate.m */; };
 		4FF9675C2520BCD200CBA473 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FF9675B2520BCD200CBA473 /* Assets.xcassets */; };
 		4FF9675F2520BCD200CBA473 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FF9675D2520BCD200CBA473 /* LaunchScreen.storyboard */; };
@@ -25,6 +26,8 @@
 		4F94AC292627153500E40675 /* ExceptionNotFindCommonSuperviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExceptionNotFindCommonSuperviewViewController.h; sourceTree = "<group>"; };
 		4F94AC2A2627153500E40675 /* ExceptionNotFindCommonSuperviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExceptionNotFindCommonSuperviewViewController.m; sourceTree = "<group>"; };
 		4F94AC2E2627156700E40675 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
+		4FA87AA326273AC8001ADB54 /* UpdateContraintsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UpdateContraintsViewController.h; sourceTree = "<group>"; };
+		4FA87AA426273AC8001ADB54 /* UpdateContraintsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UpdateContraintsViewController.m; sourceTree = "<group>"; };
 		4FF9674C2520BCD100CBA473 /* HelloMasonry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloMasonry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FF9674F2520BCD100CBA473 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FF967502520BCD100CBA473 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -110,6 +113,8 @@
 				4F94AC282627150500E40675 /* Issues */,
 				4F94AC24262711D100E40675 /* AutoFitTextSizeViewController.h */,
 				4F94AC25262711D100E40675 /* AutoFitTextSizeViewController.m */,
+				4FA87AA326273AC8001ADB54 /* UpdateContraintsViewController.h */,
+				4FA87AA426273AC8001ADB54 /* UpdateContraintsViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -247,6 +252,7 @@
 			files = (
 				4F94AC2B2627153500E40675 /* ExceptionNotFindCommonSuperviewViewController.m in Sources */,
 				4FF967512520BCD100CBA473 /* AppDelegate.m in Sources */,
+				4FA87AA526273AC8001ADB54 /* UpdateContraintsViewController.m in Sources */,
 				4FF967A92520C7D000CBA473 /* WCStringTool.m in Sources */,
 				4FF967622520BCD200CBA473 /* main.m in Sources */,
 				4F94AC26262711D100E40675 /* AutoFitTextSizeViewController.m in Sources */,
