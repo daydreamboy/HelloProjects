@@ -8,15 +8,34 @@
 #import "WCNotificationTool.h"
 #import <objc/runtime.h>
 
-@interface WCNotificationObserverWrapper : NSObject
+#define DEBUG_WCNotificationObserverWrapper 1
+
+/**
+ The remover for auto removing the registered observer from NSNotificationCenter
+ */
+@interface WCNotificationObserverRemover : NSObject
 @property (nonatomic, weak) id observer;
 @property (nonatomic, strong) id blockObserver;
-@property (nonatomic, copy) NSString *notificationName;
+@property (nonatomic, copy) NSNotificationName notificationName;
 @property (nonatomic, strong) id object;
 @end
 
-@implementation WCNotificationObserverWrapper
+@implementation WCNotificationObserverRemover
+
++ (instancetype)removerWithObserver:(id)observer notificationName:(NSNotificationName)notificationName object:(id)object {
+    WCNotificationObserverRemover *wrapper = [[WCNotificationObserverRemover alloc] init];
+    wrapper.observer = observer;
+    wrapper.notificationName = notificationName;
+    wrapper.object = object;
+    
+    return wrapper;
+}
+
 - (void)dealloc {
+#if DEBUG_WCNotificationObserverWrapper
+    NSLog(@"%@: %@, %@", self, NSStringFromSelector(_cmd), self.notificationName);
+#endif
+    
     if (self.blockObserver) {
         // A block based notification center observer
         [[NSNotificationCenter defaultCenter] removeObserver:self.blockObserver];
@@ -31,31 +50,64 @@
 }
 @end
 
+@interface WCNotificationObserverStorage : NSObject
+@property (nonatomic, strong) NSMutableDictionary<NSNotificationName, NSMutableArray<WCNotificationObserverRemover *> *> *storage;
+@end
+
+@implementation WCNotificationObserverStorage
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _storage = [NSMutableDictionary dictionary];
+    }
+    return self;
+}
+
+- (void)addRemover:(WCNotificationObserverRemover *)remover forNoticationName:(NSNotificationName)noticationName {
+    if (noticationName && remover) {
+        NSMutableArray *removers = _storage[noticationName];
+        if (!removers) {
+            removers = [NSMutableArray array];
+        }
+        [removers addObject:remover];
+        
+        _storage[noticationName] = removers;
+    }
+}
+
+- (void)dealloc {
+#if DEBUG_WCNotificationObserverWrapper
+    NSLog(@"%@: %@", self, NSStringFromSelector(_cmd));
+#endif
+}
+
+@end
+
 @implementation WCNotificationTool
 
-static const void *kAssociatedObjectKey_WCNotificationObserverWrapper = &kAssociatedObjectKey_WCNotificationObserverWrapper;
+static const void *kAssociatedObjectKey_WCNotificationObserverStorage = &kAssociatedObjectKey_WCNotificationObserverStorage;
 
 + (BOOL)addObserver:(id)observer selector:(SEL)selector name:(nullable NSNotificationName)name object:(nullable id)object {
     if (!observer || selector == nil) {
         return NO;
     }
     
-    id associatedObject = objc_getAssociatedObject(observer, kAssociatedObjectKey_WCNotificationObserverWrapper);
-    if (!associatedObject) {
-        WCNotificationObserverWrapper *wrapper = [[WCNotificationObserverWrapper alloc] init];
-        wrapper.observer = observer;
-        wrapper.notificationName = name;
-        wrapper.object = object;
-        
-        objc_setAssociatedObject(observer, kAssociatedObjectKey_WCNotificationObserverWrapper, wrapper, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-        
-        [[NSNotificationCenter defaultCenter] addObserver:observer selector:selector name:name object:object];
-        
-        return YES;
+    WCNotificationObserverStorage *storage = nil;
+    id associatedObject = objc_getAssociatedObject(observer, kAssociatedObjectKey_WCNotificationObserverStorage);
+    if ([associatedObject isKindOfClass:[WCNotificationObserverStorage class]]) {
+        storage = (WCNotificationObserverStorage *)associatedObject;
     }
     else {
-        return NO;
+        storage = [[WCNotificationObserverStorage alloc] init];
+        objc_setAssociatedObject(observer, kAssociatedObjectKey_WCNotificationObserverStorage, storage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
+    
+    WCNotificationObserverRemover *remover = [WCNotificationObserverRemover removerWithObserver:observer notificationName:name object:object];
+    [storage addRemover:remover forNoticationName:name];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:observer selector:selector name:name object:object];
+    
+    return YES;
 }
 
 + (BOOL)addObserver:(id)observer name:(nullable NSNotificationName)name object:(nullable id)object queue:(nullable NSOperationQueue *)queue usingBlock:(void (^)(NSNotification *notification))block {
@@ -63,20 +115,24 @@ static const void *kAssociatedObjectKey_WCNotificationObserverWrapper = &kAssoci
         return NO;
     }
     
-    id associatedObject = objc_getAssociatedObject(observer, kAssociatedObjectKey_WCNotificationObserverWrapper);
-    if (!associatedObject) {
-        WCNotificationObserverWrapper *wrapper = [[WCNotificationObserverWrapper alloc] init];
-        id blockObserver = [[NSNotificationCenter defaultCenter] addObserverForName:name object:object queue:queue usingBlock:block];
-        
-        objc_setAssociatedObject(observer, kAssociatedObjectKey_WCNotificationObserverWrapper, wrapper, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
-            
-        wrapper.blockObserver = blockObserver;
-        
-        return YES;
+    WCNotificationObserverStorage *storage = nil;
+    id associatedObject = objc_getAssociatedObject(observer, kAssociatedObjectKey_WCNotificationObserverStorage);
+    if ([associatedObject isKindOfClass:[WCNotificationObserverStorage class]]) {
+        storage = (WCNotificationObserverStorage *)associatedObject;
     }
     else {
-        return NO;
+        storage = [[WCNotificationObserverStorage alloc] init];
+        objc_setAssociatedObject(observer, kAssociatedObjectKey_WCNotificationObserverStorage, storage, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
+    
+    WCNotificationObserverRemover *remover = [[WCNotificationObserverRemover alloc] init];
+    id blockObserver = [[NSNotificationCenter defaultCenter] addObserverForName:name object:object queue:queue usingBlock:block];
+    remover.notificationName = name;
+    remover.blockObserver = blockObserver;
+    
+    [storage addRemover:remover forNoticationName:name];
+    
+    return YES;
 }
 
 @end
