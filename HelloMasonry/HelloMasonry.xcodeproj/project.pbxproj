@@ -3,21 +3,28 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F94AC26262711D100E40675 /* AutoFitTextSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F94AC25262711D100E40675 /* AutoFitTextSizeViewController.m */; };
+		4F94AC2B2627153500E40675 /* ExceptionNotFindCommonSuperviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F94AC2A2627153500E40675 /* ExceptionNotFindCommonSuperviewViewController.m */; };
 		4FF967512520BCD100CBA473 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF967502520BCD100CBA473 /* AppDelegate.m */; };
 		4FF9675C2520BCD200CBA473 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FF9675B2520BCD200CBA473 /* Assets.xcassets */; };
 		4FF9675F2520BCD200CBA473 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4FF9675D2520BCD200CBA473 /* LaunchScreen.storyboard */; };
 		4FF967622520BCD200CBA473 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF967612520BCD200CBA473 /* main.m */; };
 		4FF967902520BDCD00CBA473 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF9678F2520BDCD00CBA473 /* RootViewController.m */; };
-		4FF967952520BDD700CBA473 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF967932520BDD600CBA473 /* Demo1ViewController.m */; };
+		4FF967A92520C7D000CBA473 /* WCStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF967A72520C7D000CBA473 /* WCStringTool.m */; };
 		797499689FA333597BD790B2 /* Pods_HelloMasonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7D4306A728BF532BE4983334 /* Pods_HelloMasonry.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		19642FB859123031F447F1DF /* Pods-HelloMasonry.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloMasonry.debug.xcconfig"; path = "Target Support Files/Pods-HelloMasonry/Pods-HelloMasonry.debug.xcconfig"; sourceTree = "<group>"; };
+		4F94AC24262711D100E40675 /* AutoFitTextSizeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AutoFitTextSizeViewController.h; sourceTree = "<group>"; };
+		4F94AC25262711D100E40675 /* AutoFitTextSizeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AutoFitTextSizeViewController.m; sourceTree = "<group>"; };
+		4F94AC292627153500E40675 /* ExceptionNotFindCommonSuperviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ExceptionNotFindCommonSuperviewViewController.h; sourceTree = "<group>"; };
+		4F94AC2A2627153500E40675 /* ExceptionNotFindCommonSuperviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ExceptionNotFindCommonSuperviewViewController.m; sourceTree = "<group>"; };
+		4F94AC2E2627156700E40675 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
 		4FF9674C2520BCD100CBA473 /* HelloMasonry.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloMasonry.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FF9674F2520BCD100CBA473 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4FF967502520BCD100CBA473 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -27,8 +34,8 @@
 		4FF967612520BCD200CBA473 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4FF9678E2520BDCD00CBA473 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4FF9678F2520BDCD00CBA473 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		4FF967932520BDD600CBA473 /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
-		4FF967942520BDD600CBA473 /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
+		4FF967A72520C7D000CBA473 /* WCStringTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCStringTool.m; sourceTree = "<group>"; };
+		4FF967A82520C7D000CBA473 /* WCStringTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCStringTool.h; sourceTree = "<group>"; };
 		7D4306A728BF532BE4983334 /* Pods_HelloMasonry.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HelloMasonry.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5735BA4324C76A7AA8179CA /* Pods-HelloMasonry.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HelloMasonry.release.xcconfig"; path = "Target Support Files/Pods-HelloMasonry/Pods-HelloMasonry.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -53,6 +60,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		4F94AC282627150500E40675 /* Issues */ = {
+			isa = PBXGroup;
+			children = (
+				4F94AC292627153500E40675 /* ExceptionNotFindCommonSuperviewViewController.h */,
+				4F94AC2A2627153500E40675 /* ExceptionNotFindCommonSuperviewViewController.m */,
+			);
+			path = Issues;
+			sourceTree = "<group>";
+		};
 		4FF967432520BCD100CBA473 = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +90,7 @@
 		4FF9674E2520BCD100CBA473 /* HelloMasonry */ = {
 			isa = PBXGroup;
 			children = (
+				4FF967A62520C79400CBA473 /* Tools */,
 				4FF967922520BDD600CBA473 /* AppTestDemos */,
 				4FF9674F2520BCD100CBA473 /* AppDelegate.h */,
 				4FF967502520BCD100CBA473 /* AppDelegate.m */,
@@ -90,10 +107,21 @@
 		4FF967922520BDD600CBA473 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4FF967942520BDD600CBA473 /* Demo1ViewController.h */,
-				4FF967932520BDD600CBA473 /* Demo1ViewController.m */,
+				4F94AC282627150500E40675 /* Issues */,
+				4F94AC24262711D100E40675 /* AutoFitTextSizeViewController.h */,
+				4F94AC25262711D100E40675 /* AutoFitTextSizeViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4FF967A62520C79400CBA473 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4FF967A82520C7D000CBA473 /* WCStringTool.h */,
+				4FF967A72520C7D000CBA473 /* WCStringTool.m */,
+				4F94AC2E2627156700E40675 /* WCMacroTool.h */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		61A500200EAD1219A9B29E77 /* Pods */ = {
@@ -102,7 +130,6 @@
 				19642FB859123031F447F1DF /* Pods-HelloMasonry.debug.xcconfig */,
 				F5735BA4324C76A7AA8179CA /* Pods-HelloMasonry.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -218,9 +245,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F94AC2B2627153500E40675 /* ExceptionNotFindCommonSuperviewViewController.m in Sources */,
 				4FF967512520BCD100CBA473 /* AppDelegate.m in Sources */,
-				4FF967952520BDD700CBA473 /* Demo1ViewController.m in Sources */,
+				4FF967A92520C7D000CBA473 /* WCStringTool.m in Sources */,
 				4FF967622520BCD200CBA473 /* main.m in Sources */,
+				4F94AC26262711D100E40675 /* AutoFitTextSizeViewController.m in Sources */,
 				4FF967902520BDCD00CBA473 /* RootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
