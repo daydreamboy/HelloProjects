@@ -178,6 +178,26 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)checkIfSupportMultipleScenes;
 
+#pragma mark - App Settings
+
+/**
+ Open Settings.app
+ 
+ @return YES if open successfully, NO if not.
+ */
++ (BOOL)openSettings;
+
+#pragma mark - App Extension
+
+/**
+ Check if current code running in  an app extension
+ 
+ @see https://stackoverflow.com/questions/25048026/how-to-detect-if-code-is-running-in-main-app-or-app-extension-target
+ 
+ @return YES if current code running in  an app extension, NO if not.
+ */
++ (BOOL)isAppExtension;
+
 #pragma mark - App Utility
 
 #pragma mark > Get debug configuration
@@ -236,6 +256,12 @@ Check if sampled when use  mod as 5000
  @discussion Use this method on your risk for it uses private class
  */
 + (nullable UIWindow *)currentKeyboardWindow;
+
+#pragma mark > App User Data
+
++ (BOOL)backupAppSandboxWithPath:(nullable NSString *)path;
+
++ (BOOL)restoreBackupedAppSandboxWithPath:(nullable NSString *)path;
 
 @end
 

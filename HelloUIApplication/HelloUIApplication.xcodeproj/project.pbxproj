@@ -26,6 +26,7 @@
 		4F70D8DF25EA39A90088F1CA /* WCSwizzleTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70D8DE25EA39A90088F1CA /* WCSwizzleTool.m */; };
 		4F70D8EA25EA3DB20088F1CA /* UseWCKeyboardShortcutManagerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70D8E925EA3DB20088F1CA /* UseWCKeyboardShortcutManagerViewController.m */; };
 		4F7E2D7D222395E1007D190E /* WCApplicationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7E2D7C222395E1007D190E /* WCApplicationTool.m */; };
+		4FA1D8552627E3DF000C3ED1 /* OpenSystemSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA1D8542627E3DF000C3ED1 /* OpenSystemSettingsViewController.m */; };
 		4FD02EC82609C63A00E0F2C8 /* GetAppLaunchTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD02EC72609C63A00E0F2C8 /* GetAppLaunchTimeViewController.m */; };
 		4FE77A8B234442A6000EA68D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE77A8A234442A6000EA68D /* AppDelegate.m */; };
 		4FE77A93234442A8000EA68D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FE77A92234442A8000EA68D /* Assets.xcassets */; };
@@ -81,6 +82,8 @@
 		4F70D8E925EA3DB20088F1CA /* UseWCKeyboardShortcutManagerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseWCKeyboardShortcutManagerViewController.m; sourceTree = "<group>"; };
 		4F7E2D7B222395E1007D190E /* WCApplicationTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCApplicationTool.h; sourceTree = "<group>"; };
 		4F7E2D7C222395E1007D190E /* WCApplicationTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCApplicationTool.m; sourceTree = "<group>"; };
+		4FA1D8532627E3DF000C3ED1 /* OpenSystemSettingsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenSystemSettingsViewController.h; sourceTree = "<group>"; };
+		4FA1D8542627E3DF000C3ED1 /* OpenSystemSettingsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenSystemSettingsViewController.m; sourceTree = "<group>"; };
 		4FD02EC62609C63A00E0F2C8 /* GetAppLaunchTimeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GetAppLaunchTimeViewController.h; sourceTree = "<group>"; };
 		4FD02EC72609C63A00E0F2C8 /* GetAppLaunchTimeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GetAppLaunchTimeViewController.m; sourceTree = "<group>"; };
 		4FE77A87234442A5000EA68D /* PreventSensitivityFromTaskSwitcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PreventSensitivityFromTaskSwitcher.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -175,6 +178,8 @@
 				4FD02EC72609C63A00E0F2C8 /* GetAppLaunchTimeViewController.m */,
 				4F6E647B260F2E1100F718E4 /* DetectShakeMotionViewController.h */,
 				4F6E647C260F2E1100F718E4 /* DetectShakeMotionViewController.m */,
+				4FA1D8532627E3DF000C3ED1 /* OpenSystemSettingsViewController.h */,
+				4FA1D8542627E3DF000C3ED1 /* OpenSystemSettingsViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -390,6 +395,7 @@
 				4F6E6486260F348100F718E4 /* MyWindow.m in Sources */,
 				4F70D8DF25EA39A90088F1CA /* WCSwizzleTool.m in Sources */,
 				4F70D8EA25EA3DB20088F1CA /* UseWCKeyboardShortcutManagerViewController.m in Sources */,
+				4FA1D8552627E3DF000C3ED1 /* OpenSystemSettingsViewController.m in Sources */,
 				4F7E2D7D222395E1007D190E /* WCApplicationTool.m in Sources */,
 				4F1193521FF6328800B653F3 /* main.m in Sources */,
 				4F70D8D825EA396E0088F1CA /* WCKeyboardShortcutManager.m in Sources */,
@@ -502,7 +508,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -553,7 +559,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

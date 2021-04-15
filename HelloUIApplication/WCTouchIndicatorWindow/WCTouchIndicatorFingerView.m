@@ -8,6 +8,11 @@
 
 #import "WCTouchIndicatorFingerView.h"
 
+// >= `9.0`
+#ifndef IOS9_OR_LATER
+#define IOS9_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"9.0" options:NSNumericSearch] != NSOrderedAscending)
+#endif
+
 static CGFloat const ALPHADefaultMaxFingerRadius = 22.0;
 static CGFloat const ALPHADefaultForceTouchScale = 0.75;
 
@@ -46,18 +51,25 @@ static CGFloat const ALPHADefaultForceTouchScale = 0.75;
 
 - (void)updateWithTouch:(UITouch *)touch {
     CGPoint point = [touch locationInView:self.superview];
-    
     self.center = point;
     
-    self.lastScale = CGPointMake(MAX(1, touch.force * ALPHADefaultForceTouchScale), MAX(1, touch.force * ALPHADefaultForceTouchScale));
-    
-    self.transform = CGAffineTransformMakeScale(self.lastScale.x, self.lastScale.y);
-    
-    CGFloat force = touch.maximumPossibleForce - touch.force;
-    
-    UIColor *forceColor = [self.class alpha_interpolatedColorFromStartColor:[UIColor redColor] endColor:self.color fraction:force];
-    
-    self.backgroundColor = [forceColor colorWithAlphaComponent:0.4];
+    if (IOS9_OR_LATER) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability"
+        self.lastScale = CGPointMake(MAX(1, touch.force * ALPHADefaultForceTouchScale), MAX(1, touch.force * ALPHADefaultForceTouchScale));
+        
+        self.transform = CGAffineTransformMakeScale(self.lastScale.x, self.lastScale.y);
+        
+        CGFloat force = touch.maximumPossibleForce - touch.force;
+        
+        UIColor *forceColor = [self.class alpha_interpolatedColorFromStartColor:[UIColor redColor] endColor:self.color fraction:force];
+        
+        self.backgroundColor = [forceColor colorWithAlphaComponent:0.4];
+#pragma GCC diagnostic pop
+    }
+    else {
+        self.backgroundColor = [UIColor redColor];
+    }
 }
 
 #pragma mark -

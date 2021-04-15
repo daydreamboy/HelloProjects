@@ -1,26 +1,20 @@
 //
-//  RootViewController.m
-//  AppTest
+//  OpenSystemSettingsViewController.m
+//  HelloUIApplication
 //
-//  Created by wesley chen on 15/6/26.
-//
+//  Created by wesley_chen on 2021/4/15.
+//  Copyright © 2021 wesley_chen. All rights reserved.
 //
 
-#import "RootViewController.h"
-
-#import "SimulateMemoryWarningViewController.h"
-#import "ShowTouchIndicatorViewController.h"
-#import "UseWCKeyboardShortcutManagerViewController.h"
-#import "GetAppLaunchTimeViewController.h"
-#import "DetectShakeMotionViewController.h"
 #import "OpenSystemSettingsViewController.h"
+#import "WCApplicationTool.h"
 
-@interface RootViewController ()
+@interface OpenSystemSettingsViewController ()
 @property (nonatomic, strong) NSArray *titles;
 @property (nonatomic, strong) NSArray *classes;
 @end
 
-@implementation RootViewController
+@implementation OpenSystemSettingsViewController
 
 - (instancetype)init {
     self = [super initWithStyle:UITableViewStylePlain];
@@ -36,22 +30,10 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"Simulate memory warning",
-        @"Show Touch Indicator",
-        @"Use WCKeyboardShortcutManager",
-        @"Get App Launch Time",
-        @"Detect Shake Motion",
-        @"Open System Settings",
-        //@"call a test method",
+        @"Open Settings",
     ];
     _classes = @[
-        [SimulateMemoryWarningViewController class],
-        [ShowTouchIndicatorViewController class],
-        [UseWCKeyboardShortcutManagerViewController class],
-        [GetAppLaunchTimeViewController class],
-        [DetectShakeMotionViewController class],
-        [OpenSystemSettingsViewController class],
-        //@"testMethod",
+        @"open_settings",
     ];
 }
 
@@ -104,10 +86,10 @@
     }
 }
 
-#pragma mark - Test Methods
+#pragma mark - Open Methods
 
-- (void)testMethod {
-    NSLog(@"test something");
+- (void)open_settings {
+    [WCApplicationTool openSettings];
 }
 
 @end
