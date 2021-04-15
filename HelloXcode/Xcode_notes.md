@@ -380,7 +380,7 @@ INCLUDED_SOURCE_FILE_NAMES[sdk=watch*] = $(WATCHOS_FILES)
 
 举个例子[^10]，如下
 
-```
+```objective-c
 Incompatible block pointer types sending 'PINMemoryCacheObjectBlock _Nullable __strong' (aka 'void (^__strong)(PINMemoryCache * _Nonnull __strong, NSString * _Nonnull __strong, id _Nullable __strong)') to parameter of type 'PINCacheObjectBlock _Nonnull' (aka 'void (^)(id _Nonnull __strong, NSString * _Nonnull __strong, id _Nullable __strong)')
 ```
 
@@ -398,6 +398,61 @@ s.pod_target_xcconfig = {
   'OTHER_CFLAGS' => '-Xclang -fcompatibility-qualified-id-block-type-checking',
 }
 ```
+
+
+
+#### b. 使用App Extension不支持的系统API
+
+​       系统某些API，例如UIApplication的`openURL:options:completionHandler:`，不支持在App Extension Target中使用，因此编译器在编译App Extension Target时，如果编译到使用不支持的API，则下面类似的错误，如下
+
+```properties
+error: 'sharedApplication' is unavailable: not available on iOS (App Extension) - Use view controller based solutions where appropriate instead.
+error: 'openURL:options:completionHandler:' is unavailable: not available on iOS (App Extension)
+```
+
+
+
+解决方法
+
+1. 在对应Target中，在Build Settings中将`APPLICATION_EXTENSION_API_ONLY`设置为NO，取消产生编译错误[^15]。推荐使用第二种方式。
+
+   > 如果代码在CocoaPod的Pod库中，可以设置podspec，如下
+   >
+   > ```ruby
+   > s.pod_target_xcconfig = { 
+   >   'APPLICATION_EXTENSION_API_ONLY' => 'NO',
+   > }
+   > ```
+   >
+   > 说明：这种方式只是抑制编译器报错，但是运行时不做平台校验，可能产生异常，需要代码在运行时检查是否在App Extension中运行。
+   >
+   > 举个例子，如下
+   >
+   > ```objective-c
+   > + (BOOL)openSettings {
+   >     // Note: in app extension, [UIApplication sharedApplication] not available in runtime
+   >     if (![self isAppExtension]) {
+   >         return NO;
+   >     }
+   >   
+   >   	// do something with [UIApplication sharedApplication]
+   >   	return YES;
+   > }
+   > 
+   > + (BOOL)isAppExtension {
+   >     if ([[[NSBundle mainBundle] bundlePath] hasSuffix:@".appex"]) {
+   >         // this is an app extension
+   >         return YES;
+   >     }
+   >     else {
+   >         return NO;
+   >     }
+   > }
+   > ```
+   >
+   > 
+
+2. 将代码分成2个组织方式（App和App Extension），不同用途的代码仅在特定的target下编译。推荐使用CocoaPod的subspec方式
 
 
 
@@ -559,6 +614,8 @@ TODO
 [^13]:https://davedelong.com/blog/2018/07/25/conditional-compilation-in-swift-part-2/
 
 [^14]:https://developer.apple.com/library/archive/qa/qa1908/_index.html#//apple_ref/doc/uid/DTS40016829-CH1-FIND
+
+[^15]:https://stackoverflow.com/questions/34225213/uiapplication-sharedapplication-not-available
 
 
 
