@@ -244,7 +244,7 @@
 
 + (BOOL)openSettings {
     // Note: in app extension, [UIApplication sharedApplication] not available in runtime
-    if (![self isAppExtension]) {
+    if ([self isAppExtension]) {
         return NO;
     }
     
