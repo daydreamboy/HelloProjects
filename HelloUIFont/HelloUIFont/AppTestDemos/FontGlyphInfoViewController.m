@@ -168,7 +168,7 @@ typedef NS_ENUM(NSUInteger, SortType) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
     
         CGFloat width = CGRectGetWidth(self.view.bounds);
-        CGFloat widthLeftBySpace = width - (self.numberOfCellPerRow + 1) * self.spacing;
+        CGFloat widthLeftBySpace = width - (self.numberOfCellPerRow + 1) * self.spacing - 2 * self.spacing;
         CGFloat itemWidth = widthLeftBySpace / self.numberOfCellPerRow;
         
         UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc] init];

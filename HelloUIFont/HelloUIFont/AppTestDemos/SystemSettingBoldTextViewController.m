@@ -8,8 +8,6 @@
 
 #import "SystemSettingBoldTextViewController.h"
 
-@end
-
 @interface SystemSettingBoldTextViewController ()
 @property (nonatomic, assign) BOOL systemBoldTextEnabled;
 @property (nonatomic, strong) UILabel *labelSystemBoldTextEnabled;
