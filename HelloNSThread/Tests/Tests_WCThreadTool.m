@@ -7,6 +7,8 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "WCThreadTool.h"
+#import "WCXCTestCaseTool.h"
 
 @interface Tests_WCThreadTool : XCTestCase
 
@@ -14,12 +16,45 @@
 
 @implementation Tests_WCThreadTool
 
-- (void)setUp {
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+- (void)test_recursiveCallWithIterateBlock_completionBlock {
+    XCTestExpectation_BEGIN
+    
+    [WCThreadTool recursiveCallWithIterateBlock:^(NSMutableArray *container, NSUInteger iterateCount, WCThreadTool_shouldContinueBlockType shouldContinueBlock) {
+        
+        NSMutableDictionary *paramM = [NSMutableDictionary dictionary];
+        paramM[@"pageIndex"] = @(iterateCount);
+        [self requestWithParameter:paramM completion:^(NSString *data, NSError *error) {
+            NSLog(@"once request: %@, error: %@", data, error);
+            if (error) {
+                !shouldContinueBlock ?: shouldContinueBlock(container, error, NO);
+            }
+            else {
+                [container addObject:data];
+                !shouldContinueBlock ?: shouldContinueBlock(container, nil, YES);
+            }
+        }];
+    } completionBlock:^(NSMutableArray *container, NSError *error, NSUInteger iterateCount) {
+        NSLog(@"iterateCount: %ld, error: %@, container: %@", (long)iterateCount, error, container);
+        XCTestExpectation_FULFILL
+    }];
+    
+    XCTestExpectation_END(60 * 5)
 }
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
+#pragma mark - Dummy Methods
+
+- (void)requestWithParameter:(NSDictionary *)parameter completion:(void (^)(NSString *data, NSError *error))completion {
+    NSTimeInterval sleepInSeconds = (int)(arc4random() % 10);
+    [NSThread sleepForTimeInterval:sleepInSeconds];
+
+    NSString *string = [NSString stringWithFormat:@"%d", (int)sleepInSeconds];
+    if (sleepInSeconds == 0) {
+        NSError *error = [NSError errorWithDomain:@"" code:-1 userInfo:@{ NSLocalizedFailureReasonErrorKey: @"sleepInSeconds == 0" }];
+        completion(string, error);
+    }
+    else {
+        completion(string, nil);
+    }
 }
 
 @end

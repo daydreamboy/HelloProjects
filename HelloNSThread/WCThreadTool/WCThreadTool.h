@@ -10,6 +10,31 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ The WCThreadTool_shouldContinueBlockType block type
+ 
+ @param container the container for adding data in every iterate block
+ @param error the error in every iterate block, and maybe nil
+ @param shouldContinue the flag should continue next iteration
+ */
+typedef void(^WCThreadTool_shouldContinueBlockType)(NSMutableArray *container, NSError * _Nullable error, BOOL shouldContinue);
+/**
+ The WCThreadTool_iterateBlockType block type
+ 
+ @param container the container for adding data in every iterate block
+ @param iterateCount the count for iterating which started by 1, not 0
+ @param shouldContinueBlock the block of WCThreadTool_shouldContinueBlockType type. See WCThreadTool_shouldContinueBlockType for more details.
+ */
+typedef void(^WCThreadTool_iterateBlockType)(NSMutableArray *container, NSUInteger iterateCount, WCThreadTool_shouldContinueBlockType shouldContinueBlock);
+/**
+ The WCThreadTool_completionBlockType block type
+ 
+ @param container the container for adding data in every iterate block
+ @param error the error in iterate block when set shouldContinue = NO , and maybe nil.
+ @param iterateCount the count for iterating which started by 1, not 0
+ */
+typedef void(^WCThreadTool_completionBlockType)(NSMutableArray *container, NSError * _Nullable error, NSUInteger iterateCount);
+
 @interface WCThreadTool : NSObject
 
 #pragma mark - Execute Task on Thread
@@ -76,6 +101,39 @@ NS_ASSUME_NONNULL_BEGIN
  $ atos -o XXX.app.dSYM/Contents/Resources/DWARF/XXX -l <appExecutableLoadAddress> <callStackReturnAddresses>
  */
 + (NSString *)currentThreadCallStackString;
+
+#pragma mark - Task Schedule
+
+/**
+ Recursively call the task block with a completion block
+
+ @param iterateBlock the each iterate block. See WCThreadTool_iterateBlockType for more details.
+ @param completionBlock the completion called only when set shouldContinue = NO in iterateBlock
+ 
+ @return YES if the parameters are correct, NO if not
+ 
+ @discussion This method simplify recursively calling the same task. Do customization for the task in iterateBlock and be careful to set shouldContinue = NO
+ 
+ @example
+ [WCThreadTool recursiveCallWithIterateBlock:^(NSMutableArray *container, NSUInteger iterateCount, WCThreadTool_shouldContinueBlockType shouldContinueBlock) {
+     
+     NSMutableDictionary *paramM = [NSMutableDictionary dictionary];
+     paramM[@"pageIndex"] = @(iterateCount);
+     [self requestWithParameter:paramM completion:^(NSString *data, NSError *error) {
+         NSLog(@"once request: %@, error: %@", data, error);
+         if (error) {
+             !shouldContinueBlock ?: shouldContinueBlock(container, error, NO);
+         }
+         else {
+             [container addObject:data];
+             !shouldContinueBlock ?: shouldContinueBlock(container, nil, YES);
+         }
+     }];
+ } completionBlock:^(NSMutableArray *container, NSError *error, NSUInteger iterateCount) {
+     NSLog(@"iterateCount: %ld, error: %@, container: %@", (long)iterateCount, error, container);
+ }];
+ */
++ (BOOL)recursiveCallWithIterateBlock:(WCThreadTool_iterateBlockType)iterateBlock completionBlock:(WCThreadTool_completionBlockType)completionBlock;
 
 @end
 

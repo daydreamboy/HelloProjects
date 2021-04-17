@@ -61,6 +61,7 @@
 		4F96ECC5229302DE00442F65 /* CacheWithCPPScopedMutex.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F96ECC4229302DE00442F65 /* CacheWithCPPScopedMutex.mm */; };
 		4F96ECC82293035C00442F65 /* CacheWithSerialQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F96ECC72293035C00442F65 /* CacheWithSerialQueue.m */; };
 		4F96ECCB2293037000442F65 /* CacheWithConcurrentQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F96ECCA2293037000442F65 /* CacheWithConcurrentQueue.m */; };
+		4FA1C6D3262AE12800A36531 /* WCXCTestCaseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA1C6D2262AE12800A36531 /* WCXCTestCaseTool.m */; };
 		4FA9918A21AECD1200E928D8 /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA9918921AECD1200E928D8 /* Tests.m */; };
 		4FE77AAA2344C230000EA68D /* CreateResidentThreadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE77AA92344C230000EA68D /* CreateResidentThreadViewController.m */; };
 /* End PBXBuildFile section */
@@ -176,6 +177,8 @@
 		4F96ECC72293035C00442F65 /* CacheWithSerialQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheWithSerialQueue.m; sourceTree = "<group>"; };
 		4F96ECC92293037000442F65 /* CacheWithConcurrentQueue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CacheWithConcurrentQueue.h; sourceTree = "<group>"; };
 		4F96ECCA2293037000442F65 /* CacheWithConcurrentQueue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CacheWithConcurrentQueue.m; sourceTree = "<group>"; };
+		4FA1C6D1262AE12800A36531 /* WCXCTestCaseTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCXCTestCaseTool.h; sourceTree = "<group>"; };
+		4FA1C6D2262AE12800A36531 /* WCXCTestCaseTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCXCTestCaseTool.m; sourceTree = "<group>"; };
 		4FA9918721AECD1100E928D8 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4FA9918921AECD1200E928D8 /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		4FA9918B21AECD1200E928D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -451,9 +454,19 @@
 			path = Caches;
 			sourceTree = "<group>";
 		};
+		4FA1C6D0262AE11300A36531 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4FA1C6D1262AE12800A36531 /* WCXCTestCaseTool.h */,
+				4FA1C6D2262AE12800A36531 /* WCXCTestCaseTool.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		4FA9918821AECD1200E928D8 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				4FA1C6D0262AE11300A36531 /* Tools */,
 				4F96ECBC229301CE00442F65 /* Caches */,
 				4F5005CB22B0E3E70026CB16 /* WrongContextManager.h */,
 				4F5005CC22B0E3E70026CB16 /* WrongContextManager.m */,
@@ -608,6 +621,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FA1C6D3262AE12800A36531 /* WCXCTestCaseTool.m in Sources */,
 				4F96ECC82293035C00442F65 /* CacheWithSerialQueue.m in Sources */,
 				4F2A963724E6474B00009E3B /* TaskHandlerChain1.m in Sources */,
 				4F96ECCB2293037000442F65 /* CacheWithConcurrentQueue.m in Sources */,

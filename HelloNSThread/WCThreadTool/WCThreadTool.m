@@ -171,4 +171,32 @@ static const void *sAssociatedObjectKeyAddress = &sAssociatedObjectKeyAddress;
     return logContent;
 }
 
++ (BOOL)recursiveCallWithIterateBlock:(WCThreadTool_iterateBlockType)iterateBlock completionBlock:(WCThreadTool_completionBlockType)completionBlock {
+    if (!iterateBlock || !completionBlock) {
+        return NO;
+    }
+    
+    NSMutableArray *containerM = [NSMutableArray array];
+    NSUInteger i = 1;
+    
+    [self recursive_recursiveCallWithContainer:containerM count:i iterateBlock:(WCThreadTool_iterateBlockType)iterateBlock completionBlock:completionBlock];
+    
+    return YES;
+}
+
++ (void)recursive_recursiveCallWithContainer:(NSMutableArray *)container count:(NSUInteger)count iterateBlock:(WCThreadTool_iterateBlockType)iterateBlock completionBlock:(WCThreadTool_completionBlockType)completionBlock {
+    
+    WCThreadTool_shouldContinueBlockType checkShouldContinueBlock = ^(NSMutableArray *container, NSError *error, BOOL shouldContinue) {
+        if (shouldContinue) {
+            [self recursive_recursiveCallWithContainer:container count:count + 1 iterateBlock:iterateBlock completionBlock:completionBlock];
+        }
+        else {
+            completionBlock(container, error, count);
+        }
+    };
+    
+    iterateBlock(container, count, checkShouldContinueBlock);
+}
+
+
 @end
