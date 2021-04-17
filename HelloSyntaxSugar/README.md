@@ -285,9 +285,11 @@ extern void die(const char *format, ...)
 
 | 属性                          | 系统别名   | 作用                                                         |
 | ----------------------------- | ---------- | ------------------------------------------------------------ |
+| `annotate("xxx")`             |            | https://blog.quarkslab.com/implementing-a-custom-directive-handler-in-clang.html |
 | `cleanup`                     |            |                                                              |
 | `const`                       |            | 标记某个函数的返回值，仅依赖于函数的参数，因此运行时采用缓存直接返回之前计算过的值 |
 | `constructor`和`destructor`   |            | 在main之前，调用用`constructor`修饰的函数<br/>在main之后，调用用`destructor`修饰的函数 |
+| `deprecated`                  |            |                                                              |
 | `enable_if`                   |            | 用于静态检查函数的参数，是否满足特定判断if条件               |
 | `objc_boxable`                | CG_BOXABLE | 用于标记struct或union，可以使用@()语法糖封箱成NSValue对象    |
 | `objc_requires_super`         |            | 该方法里面需要调用super方法                                  |
@@ -297,6 +299,10 @@ extern void die(const char *format, ...)
 | `weak`                        |            |                                                              |
 
 
+
+// TODO
+
+https://prafullkumar77.medium.com/clang-attributes-4f20cdd1e04
 
 
 
@@ -732,6 +738,10 @@ __has_feature(xxx)可以传入下面的参数，来检查编译是否支持某�
 
 
 
+
+## 16、ivar变量
+
+https://useyourloaf.com/blog/private-ivars/
 
 
 

@@ -36,6 +36,7 @@
 		4F714A98219535F5006CB8C4 /* GCCAttributeCleanupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F714A97219535F5006CB8C4 /* GCCAttributeCleanupViewController.m */; };
 		4F745F5525C2C1E000C770AB /* Tests_StateExpression_return.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F745F5425C2C1E000C770AB /* Tests_StateExpression_return.m */; };
 		4F793B242174CF57000067AF /* DelayReleaseObjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F793B232174CF57000067AF /* DelayReleaseObjectViewController.m */; };
+		4F9B576326257BFE003EC625 /* Tests_Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B576226257BFE003EC625 /* Tests_Block.m */; };
 		4FBB4E0921A2E6C4000E9F61 /* SynthesizePropertyDerivedFromBaseClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBB4E0821A2E6C4000E9F61 /* SynthesizePropertyDerivedFromBaseClassViewController.m */; };
 		4FBB4E0D21A2E707000E9F61 /* MyEmoticonGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBB4E0C21A2E707000E9F61 /* MyEmoticonGroupModel.m */; };
 		4FBB4E1021A2E733000E9F61 /* MyCustomEmoticonGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBB4E0F21A2E733000E9F61 /* MyCustomEmoticonGroupModel.m */; };
@@ -155,6 +156,7 @@
 		4F745F5425C2C1E000C770AB /* Tests_StateExpression_return.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_StateExpression_return.m; sourceTree = "<group>"; };
 		4F793B222174CF57000067AF /* DelayReleaseObjectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelayReleaseObjectViewController.h; sourceTree = "<group>"; };
 		4F793B232174CF57000067AF /* DelayReleaseObjectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelayReleaseObjectViewController.m; sourceTree = "<group>"; };
+		4F9B576226257BFE003EC625 /* Tests_Block.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_Block.m; sourceTree = "<group>"; };
 		4FBB4E0721A2E6C4000E9F61 /* SynthesizePropertyDerivedFromBaseClassViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SynthesizePropertyDerivedFromBaseClassViewController.h; sourceTree = "<group>"; };
 		4FBB4E0821A2E6C4000E9F61 /* SynthesizePropertyDerivedFromBaseClassViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SynthesizePropertyDerivedFromBaseClassViewController.m; sourceTree = "<group>"; };
 		4FBB4E0B21A2E707000E9F61 /* MyEmoticonGroupModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyEmoticonGroupModel.h; sourceTree = "<group>"; };
@@ -288,6 +290,7 @@
 		4F51128222C31102005E5AAE /* Tests_OC */ = {
 			isa = PBXGroup;
 			children = (
+				4F9B576126257B81003EC625 /* Block */,
 				4FE2754226074CF200F0DD02 /* objc_runtime */,
 				4FE275372607468B00F0DD02 /* __builtin_xxx */,
 				4F745F5325C2C1A500C770AB /* StateExpression */,
@@ -342,6 +345,14 @@
 				4F745F5425C2C1E000C770AB /* Tests_StateExpression_return.m */,
 			);
 			path = StateExpression;
+			sourceTree = "<group>";
+		};
+		4F9B576126257B81003EC625 /* Block */ = {
+			isa = PBXGroup;
+			children = (
+				4F9B576226257BFE003EC625 /* Tests_Block.m */,
+			);
+			path = Block;
 			sourceTree = "<group>";
 		};
 		4FBB4E0A21A2E6CD000E9F61 /* DummyClasses */ = {
@@ -632,6 +643,7 @@
 				4F5112B622C375A0005E5AAE /* Tests_AccessIvarOfExtension.m in Sources */,
 				4FD29339258E02FE000E1E5A /* Tests_objc_requires_super.m in Sources */,
 				4FCCA26425DF6D2100986C4B /* Tests_cleanup.m in Sources */,
+				4F9B576326257BFE003EC625 /* Tests_Block.m in Sources */,
 				4FCB423325DABB1C000FB615 /* const_dummy.m in Sources */,
 				4F4FF49222C707E9007B0833 /* Tests_Category.m in Sources */,
 				4FD2932F258E01B7000E1E5A /* Tests_objc_subclassing_restricted.m in Sources */,
