@@ -171,6 +171,8 @@ static const void *sAssociatedObjectKeyAddress = &sAssociatedObjectKeyAddress;
     return logContent;
 }
 
+#pragma mark - Task Schedule
+
 + (BOOL)recursiveCallWithIterateBlock:(WCThreadTool_iterateBlockType)iterateBlock completionBlock:(WCThreadTool_completionBlockType)completionBlock {
     if (!iterateBlock || !completionBlock) {
         return NO;
@@ -183,6 +185,8 @@ static const void *sAssociatedObjectKeyAddress = &sAssociatedObjectKeyAddress;
     
     return YES;
 }
+
+#pragma mark ::
 
 + (void)recursive_recursiveCallWithContainer:(NSMutableArray *)container count:(NSUInteger)count iterateBlock:(WCThreadTool_iterateBlockType)iterateBlock completionBlock:(WCThreadTool_completionBlockType)completionBlock {
     
@@ -198,5 +202,6 @@ static const void *sAssociatedObjectKeyAddress = &sAssociatedObjectKeyAddress;
     iterateBlock(container, count, checkShouldContinueBlock);
 }
 
+#pragma mark ::
 
 @end
