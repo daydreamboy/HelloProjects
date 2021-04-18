@@ -71,11 +71,11 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *CellIdentifer = @"SearchBarTableViewViewController_CellIdentifer";
+    static NSString *sCellIdentifer = @"SearchBarTableViewViewController_CellIdentifer";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifer];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:sCellIdentifer];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifer];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:sCellIdentifer];
     }
 
     if (self.searchController.active) {

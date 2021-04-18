@@ -45,6 +45,7 @@
 #import "GroupedSingleSectionViewController.h"
 #import "IndexedTableViewViewController.h"
 #import "SearchBarTableViewViewController.h"
+#import "IndexedSearchBarTableViewViewController.h"
 
 // section 5
 #import "StaticCellHeightAboveiOS11IssuesViewController.h"
@@ -116,8 +117,9 @@
           @{ kTitle: @"Customize highlight cell", kClass: [CustomizeHighlightCellViewController class] },
           @{ kTitle: @"Tint system checkmark cell", kClass: [TintSystemCheckmarkCellViewController class] },
           @{ kTitle: @"Grouped single section", kClass: [GroupedSingleSectionViewController class] },
-          @{ kTitle: @"Indexed table view", kClass: [IndexedTableViewViewController class] },//
+          @{ kTitle: @"Indexed table view", kClass: [IndexedTableViewViewController class] },
           @{ kTitle: @"SearchBar table view", kClass: [SearchBarTableViewViewController class] },
+          @{ kTitle: @"Indexed searchable table view", kClass: [IndexedSearchBarTableViewViewController class] },
     ];
     
     NSArray<NSDictionary *> *section5 = @[
