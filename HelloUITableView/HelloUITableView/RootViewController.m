@@ -46,6 +46,7 @@
 #import "IndexedTableViewViewController.h"
 #import "SearchBarTableViewViewController.h"
 #import "IndexedSearchBarTableViewViewController.h"
+#import "CustomizedIndexedTableViewViewController.h"
 
 // section 5
 #import "StaticCellHeightAboveiOS11IssuesViewController.h"
@@ -120,6 +121,7 @@
           @{ kTitle: @"Indexed table view", kClass: [IndexedTableViewViewController class] },
           @{ kTitle: @"SearchBar table view", kClass: [SearchBarTableViewViewController class] },
           @{ kTitle: @"Indexed searchable table view", kClass: [IndexedSearchBarTableViewViewController class] },
+          @{ kTitle: @"Customized indexed table view", kClass: [CustomizedIndexedTableViewViewController class] },
     ];
     
     NSArray<NSDictionary *> *section5 = @[

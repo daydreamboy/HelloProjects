@@ -56,6 +56,8 @@
 		4F948A222011C5CC0030BC4A /* WCExpandableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F948A212011C5CC0030BC4A /* WCExpandableHeaderView.m */; };
 		4F948A252011C8590030BC4A /* PlainTableViewWithExpandableSectionHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F948A242011C8590030BC4A /* PlainTableViewWithExpandableSectionHeaderViewController.m */; };
 		4F9D3439262C768600FD8CB6 /* IndexedSearchBarTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D3438262C768600FD8CB6 /* IndexedSearchBarTableViewViewController.m */; };
+		4F9D343D262C931A00FD8CB6 /* CustomizedIndexedTableViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D343C262C931A00FD8CB6 /* CustomizedIndexedTableViewViewController.m */; };
+		4F9D3442262C939800FD8CB6 /* WCTableViewIndexView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9D3441262C939800FD8CB6 /* WCTableViewIndexView.m */; };
 		4FA85D3B21818EDE007AC0E8 /* LoadMoreFromBottomViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA85D3A21818EDE007AC0E8 /* LoadMoreFromBottomViewController.m */; };
 		4FAAA5931FA4804600A80328 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FAAA5921FA4804600A80328 /* AppDelegate.m */; };
 		4FAAA59B1FA4804600A80328 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4FAAA59A1FA4804600A80328 /* Assets.xcassets */; };
@@ -168,6 +170,10 @@
 		4F948A242011C8590030BC4A /* PlainTableViewWithExpandableSectionHeaderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlainTableViewWithExpandableSectionHeaderViewController.m; sourceTree = "<group>"; };
 		4F9D3437262C768600FD8CB6 /* IndexedSearchBarTableViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IndexedSearchBarTableViewViewController.h; sourceTree = "<group>"; };
 		4F9D3438262C768600FD8CB6 /* IndexedSearchBarTableViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IndexedSearchBarTableViewViewController.m; sourceTree = "<group>"; };
+		4F9D343B262C931A00FD8CB6 /* CustomizedIndexedTableViewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomizedIndexedTableViewViewController.h; sourceTree = "<group>"; };
+		4F9D343C262C931A00FD8CB6 /* CustomizedIndexedTableViewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomizedIndexedTableViewViewController.m; sourceTree = "<group>"; };
+		4F9D3440262C939800FD8CB6 /* WCTableViewIndexView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCTableViewIndexView.h; sourceTree = "<group>"; };
+		4F9D3441262C939800FD8CB6 /* WCTableViewIndexView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCTableViewIndexView.m; sourceTree = "<group>"; };
 		4FA85D3921818EDE007AC0E8 /* LoadMoreFromBottomViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoadMoreFromBottomViewController.h; sourceTree = "<group>"; };
 		4FA85D3A21818EDE007AC0E8 /* LoadMoreFromBottomViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoadMoreFromBottomViewController.m; sourceTree = "<group>"; };
 		4FAAA58E1FA4804600A80328 /* HelloUITableView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUITableView.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -289,6 +295,8 @@
 				4F0484F224F6B16700D44B20 /* SearchBarTableViewViewController.m */,
 				4F9D3437262C768600FD8CB6 /* IndexedSearchBarTableViewViewController.h */,
 				4F9D3438262C768600FD8CB6 /* IndexedSearchBarTableViewViewController.m */,
+				4F9D343B262C931A00FD8CB6 /* CustomizedIndexedTableViewViewController.h */,
+				4F9D343C262C931A00FD8CB6 /* CustomizedIndexedTableViewViewController.m */,
 			);
 			path = section4;
 			sourceTree = "<group>";
@@ -417,9 +425,19 @@
 			path = WCExpandableHeaderView;
 			sourceTree = "<group>";
 		};
+		4F9D343F262C938000FD8CB6 /* WCTableViewIndexView */ = {
+			isa = PBXGroup;
+			children = (
+				4F9D3440262C939800FD8CB6 /* WCTableViewIndexView.h */,
+				4F9D3441262C939800FD8CB6 /* WCTableViewIndexView.m */,
+			);
+			path = WCTableViewIndexView;
+			sourceTree = "<group>";
+		};
 		4FAAA5851FA4804600A80328 = {
 			isa = PBXGroup;
 			children = (
+				4F9D343F262C938000FD8CB6 /* WCTableViewIndexView */,
 				4F160E5A24ED268F00932EC9 /* WCTableLoadMoreView */,
 				4F090D2B2494FE3D0034F246 /* WCCell */,
 				4FB17BC024937CEA004D8B98 /* WCTableViewCellTool */,
@@ -600,9 +618,11 @@
 				4FBB4E0621A29E32000E9F61 /* WCTableViewTool.m in Sources */,
 				4F39AE39241A7C4C0008FBE7 /* CheckNumberOfCellOnFirstRenderViewController.m in Sources */,
 				4F1E4900250135DA005ACA72 /* ReloadRowsWithEmptyListViewController.m in Sources */,
+				4F9D3442262C939800FD8CB6 /* WCTableViewIndexView.m in Sources */,
 				4F60E71B22A7E64400C27087 /* WCTableView.m in Sources */,
 				4F3076A2251B2C8000512410 /* CellContentIssueAboveiOS14ViewController.m in Sources */,
 				2B63BF39200FA22600A5D8D2 /* PlainTableViewViewController.m in Sources */,
+				4F9D343D262C931A00FD8CB6 /* CustomizedIndexedTableViewViewController.m in Sources */,
 				4F521F7222E85A7F00035664 /* CustomizeHighlightCellViewController.m in Sources */,
 				4F160E5924ED19DC00932EC9 /* WCScrollViewTool.m in Sources */,
 				2B63BF38200FA22600A5D8D2 /* GroupedTableViewViewController.m in Sources */,
