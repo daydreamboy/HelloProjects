@@ -19,22 +19,25 @@
 - (void)test_recursiveCallWithIterateBlock_completionBlock {
     XCTestExpectation_BEGIN
     
-    [WCThreadTool recursiveCallWithIterateBlock:^(NSMutableArray *container, NSUInteger iterateCount, WCThreadTool_shouldContinueBlockType shouldContinueBlock) {
+    NSString *initialIndex = @"0";
+    
+    [WCThreadTool recursiveCallWithIterateBlock:^(NSMutableArray *container, NSUInteger iterateCount, id  _Nullable transmitData, WCThreadTool_shouldContinueBlockType shouldContinueBlock) {
         
         NSMutableDictionary *paramM = [NSMutableDictionary dictionary];
         paramM[@"pageIndex"] = @(iterateCount);
         [self requestWithParameter:paramM completion:^(NSString *data, NSError *error) {
             NSLog(@"once request: %@, error: %@", data, error);
+            NSString *passedData = [NSString stringWithFormat:@"%@-%@", transmitData, data];
             if (error) {
-                !shouldContinueBlock ?: shouldContinueBlock(container, error, NO);
+                !shouldContinueBlock ?: shouldContinueBlock(container, error, NO, passedData);
             }
             else {
                 [container addObject:data];
-                !shouldContinueBlock ?: shouldContinueBlock(container, nil, YES);
+                !shouldContinueBlock ?: shouldContinueBlock(container, nil, YES, passedData);
             }
         }];
-    } completionBlock:^(NSMutableArray *container, NSError *error, NSUInteger iterateCount) {
-        NSLog(@"iterateCount: %ld, error: %@, container: %@", (long)iterateCount, error, container);
+    } transmitData:initialIndex completionBlock:^(NSMutableArray * _Nonnull container, NSError * _Nullable error, NSUInteger iterateCount, id  _Nullable transmitData) {
+        NSLog(@"iterateCount: %ld, error: %@, container: %@, transmitData: %@", (long)iterateCount, error, container, transmitData);
         XCTestExpectation_FULFILL
     }];
     

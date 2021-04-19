@@ -173,7 +173,7 @@ static const void *sAssociatedObjectKeyAddress = &sAssociatedObjectKeyAddress;
 
 #pragma mark - Task Schedule
 
-+ (BOOL)recursiveCallWithIterateBlock:(WCThreadTool_iterateBlockType)iterateBlock completionBlock:(WCThreadTool_completionBlockType)completionBlock {
++ (BOOL)recursiveCallWithIterateBlock:(WCThreadTool_iterateBlockType)iterateBlock transmitData:(id _Nullable)transmitData completionBlock:(WCThreadTool_completionBlockType)completionBlock {
     if (!iterateBlock || !completionBlock) {
         return NO;
     }
@@ -181,25 +181,25 @@ static const void *sAssociatedObjectKeyAddress = &sAssociatedObjectKeyAddress;
     NSMutableArray *containerM = [NSMutableArray array];
     NSUInteger i = 1;
     
-    [self recursive_recursiveCallWithContainer:containerM count:i iterateBlock:(WCThreadTool_iterateBlockType)iterateBlock completionBlock:completionBlock];
+    [self recursive_recursiveCallWithContainer:containerM count:i transmitData:transmitData iterateBlock:(WCThreadTool_iterateBlockType)iterateBlock completionBlock:completionBlock];
     
     return YES;
 }
 
 #pragma mark ::
 
-+ (void)recursive_recursiveCallWithContainer:(NSMutableArray *)container count:(NSUInteger)count iterateBlock:(WCThreadTool_iterateBlockType)iterateBlock completionBlock:(WCThreadTool_completionBlockType)completionBlock {
++ (void)recursive_recursiveCallWithContainer:(NSMutableArray *)container count:(NSUInteger)count transmitData:(id _Nullable)transmitData iterateBlock:(WCThreadTool_iterateBlockType)iterateBlock completionBlock:(WCThreadTool_completionBlockType)completionBlock {
     
-    WCThreadTool_shouldContinueBlockType checkShouldContinueBlock = ^(NSMutableArray *container, NSError *error, BOOL shouldContinue) {
+    WCThreadTool_shouldContinueBlockType checkShouldContinueBlock = ^(NSMutableArray *container, NSError *error, BOOL shouldContinue, id _Nullable transmitData) {
         if (shouldContinue) {
-            [self recursive_recursiveCallWithContainer:container count:count + 1 iterateBlock:iterateBlock completionBlock:completionBlock];
+            [self recursive_recursiveCallWithContainer:container count:count + 1 transmitData:transmitData iterateBlock:iterateBlock completionBlock:completionBlock];
         }
         else {
-            completionBlock(container, error, count);
+            completionBlock(container, error, count, transmitData);
         }
     };
     
-    iterateBlock(container, count, checkShouldContinueBlock);
+    iterateBlock(container, count, transmitData, checkShouldContinueBlock);
 }
 
 #pragma mark ::

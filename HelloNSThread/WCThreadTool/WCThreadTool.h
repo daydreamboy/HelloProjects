@@ -16,24 +16,27 @@ NS_ASSUME_NONNULL_BEGIN
  @param container the container for adding data in every iterate block
  @param error the error in every iterate block, and maybe nil
  @param shouldContinue the flag should continue next iteration
+ @param transmitData the transmited data from WCThreadTool_shouldContinueBlockType block or the initial transmitedData in +[WCThreadTool recursiveCallWithIterateBlock:transmitData:completionBlock:]
  */
-typedef void(^WCThreadTool_shouldContinueBlockType)(NSMutableArray *container, NSError * _Nullable error, BOOL shouldContinue);
+typedef void(^WCThreadTool_shouldContinueBlockType)(NSMutableArray *container, NSError * _Nullable error, BOOL shouldContinue, id _Nullable transmitData);
 /**
  The WCThreadTool_iterateBlockType block type
  
  @param container the container for adding data in every iterate block
  @param iterateCount the count for iterating which started by 1, not 0
+ @param transmitData the transmited data from WCThreadTool_shouldContinueBlockType block or the initial transmitedData in +[WCThreadTool recursiveCallWithIterateBlock:transmitData:completionBlock:]
  @param shouldContinueBlock the block of WCThreadTool_shouldContinueBlockType type. See WCThreadTool_shouldContinueBlockType for more details.
  */
-typedef void(^WCThreadTool_iterateBlockType)(NSMutableArray *container, NSUInteger iterateCount, WCThreadTool_shouldContinueBlockType shouldContinueBlock);
+typedef void(^WCThreadTool_iterateBlockType)(NSMutableArray *container, NSUInteger iterateCount, id _Nullable transmitData, WCThreadTool_shouldContinueBlockType shouldContinueBlock);
 /**
  The WCThreadTool_completionBlockType block type
  
  @param container the container for adding data in every iterate block
  @param error the error in iterate block when set shouldContinue = NO , and maybe nil.
  @param iterateCount the count for iterating which started by 1, not 0
+ @param transmitData the transmited data from WCThreadTool_shouldContinueBlockType block or the initial transmitedData in +[WCThreadTool recursiveCallWithIterateBlock:transmitData:completionBlock:]
  */
-typedef void(^WCThreadTool_completionBlockType)(NSMutableArray *container, NSError * _Nullable error, NSUInteger iterateCount);
+typedef void(^WCThreadTool_completionBlockType)(NSMutableArray *container, NSError * _Nullable error, NSUInteger iterateCount, id _Nullable transmitData);
 
 @interface WCThreadTool : NSObject
 
@@ -108,6 +111,7 @@ typedef void(^WCThreadTool_completionBlockType)(NSMutableArray *container, NSErr
  Recursively call the task block with a completion block
 
  @param iterateBlock the each iterate block. See WCThreadTool_iterateBlockType for more details.
+ @param transmitData the transmit data passed to the next iterate block. Can be nil.
  @param completionBlock the completion called only when set shouldContinue = NO in iterateBlock
  
  @return YES if the parameters are correct, NO if not
@@ -115,25 +119,27 @@ typedef void(^WCThreadTool_completionBlockType)(NSMutableArray *container, NSErr
  @discussion This method simplify recursively calling the same task. Do customization for the task in iterateBlock and be careful to set shouldContinue = NO
  
  @example
- [WCThreadTool recursiveCallWithIterateBlock:^(NSMutableArray *container, NSUInteger iterateCount, WCThreadTool_shouldContinueBlockType shouldContinueBlock) {
+ NSString *initialIndex = @"0";
+ 
+ [WCThreadTool recursiveCallWithIterateBlock:^(NSMutableArray *container, NSUInteger iterateCount, id  _Nullable transmitData, WCThreadTool_shouldContinueBlockType shouldContinueBlock) {
      
      NSMutableDictionary *paramM = [NSMutableDictionary dictionary];
      paramM[@"pageIndex"] = @(iterateCount);
      [self requestWithParameter:paramM completion:^(NSString *data, NSError *error) {
-         NSLog(@"once request: %@, error: %@", data, error);
+         NSString *passedData = [NSString stringWithFormat:@"%@-%@", transmitData, data];
          if (error) {
-             !shouldContinueBlock ?: shouldContinueBlock(container, error, NO);
+             !shouldContinueBlock ?: shouldContinueBlock(container, error, NO, passedData);
          }
          else {
              [container addObject:data];
-             !shouldContinueBlock ?: shouldContinueBlock(container, nil, YES);
+             !shouldContinueBlock ?: shouldContinueBlock(container, nil, YES, passedData);
          }
      }];
- } completionBlock:^(NSMutableArray *container, NSError *error, NSUInteger iterateCount) {
-     NSLog(@"iterateCount: %ld, error: %@, container: %@", (long)iterateCount, error, container);
+ } transmitData:initialIndex completionBlock:^(NSMutableArray * _Nonnull container, NSError * _Nullable error, NSUInteger iterateCount, id  _Nullable transmitData) {
+     NSLog(@"iterateCount: %ld, error: %@, container: %@, transmitData: %@", (long)iterateCount, error, container, transmitData);
  }];
  */
-+ (BOOL)recursiveCallWithIterateBlock:(WCThreadTool_iterateBlockType)iterateBlock completionBlock:(WCThreadTool_completionBlockType)completionBlock;
++ (BOOL)recursiveCallWithIterateBlock:(WCThreadTool_iterateBlockType)iterateBlock transmitData:(id _Nullable)transmitData completionBlock:(WCThreadTool_completionBlockType)completionBlock;
 
 @end
 
