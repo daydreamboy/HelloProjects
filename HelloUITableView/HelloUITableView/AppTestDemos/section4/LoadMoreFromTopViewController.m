@@ -64,9 +64,9 @@
 - (UITableView *)tableView {
     if (!_tableView) {
         CGSize screenSize = [[UIScreen mainScreen] bounds].size;
-        CGRect frame = self.view.bounds;
-        frame = CGRectMake(0, 64, screenSize.width, 300);
-        UITableView *tableView = [[UITableView alloc] initWithFrame:frame style:UITableViewStylePlain];
+        CGFloat startY = CGRectGetMaxY(self.navigationController.navigationBar.frame);
+        
+        UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, startY, screenSize.width, 300) style:UITableViewStylePlain];
         tableView.delegate = self;
         tableView.dataSource = self;
         tableView.layer.borderColor = [UIColor redColor].CGColor;

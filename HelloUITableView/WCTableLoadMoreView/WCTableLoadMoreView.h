@@ -28,13 +28,15 @@ typedef NS_ENUM(NSUInteger, WCTableLoadMoreType) {
 
 /**
  The callback when WCLoadMoreTableFooterView first to show. The callback is triggered when isRequesting is NO
- @note call dismissActivityIndicatorWithTip: will make this callback never being triggered.
+ 
+ @note call stopLoadingIndicatorWithTip:hide:animatedForHide: will make this callback never being triggered.
  */
 @property (nonatomic, copy) void (^willShowLoadingIndicatorBlock)(WCTableLoadMoreView *view);
 
 /**
  The flag guides to need calling willShowLoadingIndicatorBlock.
- @note set to YES, when willShowLoadingIndicatorBlock trigger to request network data. And set to YES when the procedure finished
+ 
+ @note set to YES, when willShowLoadingIndicatorBlock trigger to request network data. And set to NO when the procedure finished
  */
 @property (nonatomic, assign) BOOL isRequesting;
 
@@ -54,7 +56,7 @@ typedef NS_ENUM(NSUInteger, WCTableLoadMoreType) {
  @param hide YES if hide this view
  @param animated YES if hide this view using animation.
  
- @discussion animated parameter only works with hide parameter
+ @discussion animated parameter only works with hide parameter is YES
  @note This method will make the willShowLoadingIndicatorBlock never being triggered again.
  */
 - (void)stopLoadingIndicatorWithTip:(NSString *)tip hide:(BOOL)hide animatedForHide:(BOOL)animated;

@@ -69,6 +69,22 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSIndexPath *)indexPathForSubviewInTableViewCell:(UIView *)subview tableView:(UITableView *)tableView;
 
+#pragma mark - TableView Accessory View
+
+/**
+ Show empty view for UITableView
+ 
+ @param tableView the UITableView
+ @param numberOfRows the number of rows which decide if show empty view (>0) or not (<=0)
+ @param customizeBlock the block for adding custom tip when empty view showing
+ 
+ @return YES if operate successfully. NO if not
+ @note This method should be called
+ 
+ @see https://stackoverflow.com/a/28533438
+ */
++ (BOOL)showEmptyViewWithTableView:(UITableView *)tableView numberOfRows:(NSUInteger)numberOfRows customizeBlock:(void (^)(UITableView *tableView, UIView *contentView))customizeBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

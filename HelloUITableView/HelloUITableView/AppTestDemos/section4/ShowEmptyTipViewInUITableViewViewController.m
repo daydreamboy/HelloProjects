@@ -7,6 +7,8 @@
 //
 
 #import "ShowEmptyTipViewInUITableViewViewController.h"
+#import "WCMacroTool.h"
+#import "WCTableViewTool.h"
 
 @interface ShowEmptyTipViewInUITableViewViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -80,27 +82,26 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    
-    // @see https://stackoverflow.com/a/28533438
     NSInteger numOfSections = [self.listData count];
-    if (numOfSections) {
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        _tableView.backgroundView = nil;
-    }
-    else {
-        UILabel *noDataLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.tableView.bounds.size.width, self.tableView.bounds.size.height)];
+    
+    tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+    
+    [WCTableViewTool showEmptyViewWithTableView:tableView numberOfRows:numOfSections customizeBlock:^(UITableView * _Nonnull tableView, UIView * _Nonnull contentView) {
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        UILabel *noDataLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, contentView.bounds.size.width, contentView.bounds.size.height)];
         noDataLabel.text = @"No data available";
         noDataLabel.textColor = [UIColor redColor];
         noDataLabel.textAlignment = NSTextAlignmentCenter;
-        self.tableView.backgroundView = noDataLabel;
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    }
+        
+        [contentView addSubview:noDataLabel];
+    }];
     
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.listData[section] count];
+    return [ARR_SAFE_GET(self.listData, section) count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

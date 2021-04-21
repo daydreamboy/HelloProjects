@@ -138,6 +138,29 @@
     }
 }
 
+#pragma mark - TableView Accessory View
+
++ (BOOL)showEmptyViewWithTableView:(UITableView *)tableView numberOfRows:(NSUInteger)numberOfRows customizeBlock:(void (^)(UITableView *tableView, UIView *contentView))customizeBlock {
+    if (![tableView isKindOfClass:[UITableView class]] || !customizeBlock) {
+        return NO;
+    }
+    
+    if (![tableView.dataSource respondsToSelector:@selector(numberOfSectionsInTableView:)]) {
+        return NO;
+    }
+    
+    if (numberOfRows) {
+        tableView.backgroundView = nil;
+    }
+    else {
+        UIView *contentView = [[UIView alloc] initWithFrame:tableView.bounds];
+        !customizeBlock ?: customizeBlock(tableView, contentView);
+        tableView.backgroundView = contentView;
+    }
+    
+    return YES;
+}
+
 @end
 
 

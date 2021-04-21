@@ -61,4 +61,15 @@ do { \
     } \
 } while (0)
 
+#ifndef ARR_SAFE_GET
+#define ARR_SAFE_GET(array, index)                      \
+    ({                                                      \
+        id __value = nil;                                   \
+        if ([array isKindOfClass:[NSArray class]] && 0 <= index && index < [(NSArray *)array count]) { \
+            __value = [(NSArray *)array objectAtIndex:index];          \
+        }                                                   \
+        __value;                                            \
+    })
+#endif /* ARR_SAFE_GET */
+
 #endif /* WCMacroTool_h */
