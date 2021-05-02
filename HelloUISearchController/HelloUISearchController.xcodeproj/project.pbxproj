@@ -11,8 +11,11 @@
 		4F3451B824F75AB9008AB3D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3451B724F75AB9008AB3D4 /* Assets.xcassets */; };
 		4F3451BB24F75ABA008AB3D4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F3451B924F75ABA008AB3D4 /* LaunchScreen.storyboard */; };
 		4F3451BE24F75ABA008AB3D4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3451BD24F75ABA008AB3D4 /* main.m */; };
-		4F3451C924F75B21008AB3D4 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3451C524F75B21008AB3D4 /* Demo1ViewController.m */; };
 		4F3451CA24F75B21008AB3D4 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F3451C824F75B21008AB3D4 /* RootViewController.m */; };
+		4FA3D58F263EEF7500D0905F /* ResultsTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA3D58E263EEF7500D0905F /* ResultsTableController.m */; };
+		4FA3D595263EFC7200D0905F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4FA3D593263EFC7200D0905F /* Localizable.strings */; };
+		4FBE8C85263ED8BA0069BF8A /* UseUISearchControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE8C84263ED8BA0069BF8A /* UseUISearchControllerViewController.m */; };
+		4FBE8C8B263ED8DA0069BF8A /* Product.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBE8C8A263ED8DA0069BF8A /* Product.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,10 +26,15 @@
 		4F3451BA24F75ABA008AB3D4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4F3451BC24F75ABA008AB3D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F3451BD24F75ABA008AB3D4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		4F3451C524F75B21008AB3D4 /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
-		4F3451C624F75B21008AB3D4 /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
 		4F3451C724F75B21008AB3D4 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F3451C824F75B21008AB3D4 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		4FA3D58D263EEF7500D0905F /* ResultsTableController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ResultsTableController.h; sourceTree = "<group>"; };
+		4FA3D58E263EEF7500D0905F /* ResultsTableController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ResultsTableController.m; sourceTree = "<group>"; };
+		4FA3D594263EFC7200D0905F /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4FBE8C83263ED8BA0069BF8A /* UseUISearchControllerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseUISearchControllerViewController.h; sourceTree = "<group>"; };
+		4FBE8C84263ED8BA0069BF8A /* UseUISearchControllerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseUISearchControllerViewController.m; sourceTree = "<group>"; };
+		4FBE8C89263ED8DA0069BF8A /* Product.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Product.h; sourceTree = "<group>"; };
+		4FBE8C8A263ED8DA0069BF8A /* Product.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Product.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +76,7 @@
 				4F3451B924F75ABA008AB3D4 /* LaunchScreen.storyboard */,
 				4F3451BC24F75ABA008AB3D4 /* Info.plist */,
 				4F3451BD24F75ABA008AB3D4 /* main.m */,
+				4FA3D593263EFC7200D0905F /* Localizable.strings */,
 			);
 			path = HelloUISearchController;
 			sourceTree = "<group>";
@@ -75,10 +84,22 @@
 		4F3451C424F75B21008AB3D4 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F3451C524F75B21008AB3D4 /* Demo1ViewController.m */,
-				4F3451C624F75B21008AB3D4 /* Demo1ViewController.h */,
+				4FBE8C88263ED8C20069BF8A /* UseUISearchController */,
+				4FBE8C83263ED8BA0069BF8A /* UseUISearchControllerViewController.h */,
+				4FBE8C84263ED8BA0069BF8A /* UseUISearchControllerViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4FBE8C88263ED8C20069BF8A /* UseUISearchController */ = {
+			isa = PBXGroup;
+			children = (
+				4FBE8C89263ED8DA0069BF8A /* Product.h */,
+				4FBE8C8A263ED8DA0069BF8A /* Product.m */,
+				4FA3D58D263EEF7500D0905F /* ResultsTableController.h */,
+				4FA3D58E263EEF7500D0905F /* ResultsTableController.m */,
+			);
+			path = UseUISearchController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F3451BB24F75ABA008AB3D4 /* LaunchScreen.storyboard in Resources */,
+				4FA3D595263EFC7200D0905F /* Localizable.strings in Resources */,
 				4F3451B824F75AB9008AB3D4 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,8 +172,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FBE8C85263ED8BA0069BF8A /* UseUISearchControllerViewController.m in Sources */,
+				4FA3D58F263EEF7500D0905F /* ResultsTableController.m in Sources */,
+				4FBE8C8B263ED8DA0069BF8A /* Product.m in Sources */,
 				4F3451AD24F75AB6008AB3D4 /* AppDelegate.m in Sources */,
-				4F3451C924F75B21008AB3D4 /* Demo1ViewController.m in Sources */,
 				4F3451CA24F75B21008AB3D4 /* RootViewController.m in Sources */,
 				4F3451BE24F75ABA008AB3D4 /* main.m in Sources */,
 			);
@@ -166,6 +190,14 @@
 				4F3451BA24F75ABA008AB3D4 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		4FA3D593263EFC7200D0905F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4FA3D594263EFC7200D0905F /* Base */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

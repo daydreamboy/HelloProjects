@@ -26,6 +26,11 @@
     // so set it to NO
     // @see https://stackoverflow.com/questions/45368350/is-there-something-wrong-of-ios-simulators-color-offscreen-rendered-function
     self.navController.navigationBar.translucent = NO;
+    
+    // Note: when push a UITableViewController, if its nav bar height more than 44px, will do pull-down animation for nav bar,
+    // but black background will appear so set the navController.view's backgroundColor to white color
+    self.navController.view.backgroundColor = [UIColor whiteColor];
+    
     self.window.rootViewController = self.navController;
     
     [self.window makeKeyAndVisible];

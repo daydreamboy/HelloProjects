@@ -7,8 +7,7 @@
 //
 
 #import "RootViewController.h"
-
-#import "Demo1ViewController.h"
+#import "UseUISearchControllerViewController.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -31,11 +30,11 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"Demo1ViewController's title",
+        @"Use UISearchController",
         @"call a test method",
     ];
     _classes = @[
-        [Demo1ViewController class],
+        [UseUISearchControllerViewController class],
         @"testMethod",
     ];
 }

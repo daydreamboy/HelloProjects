@@ -1,0 +1,31 @@
+/* 
+  Localizable.strings
+  HelloUISearchController
+
+  Created by wesley_chen on 2021/5/2.
+  Copyright © 2021 wesley_chen. All rights reserved.
+*/
+
+"GingerTitle" = "Ginger";
+"Gladiolus" = "Gladiolus";
+"Orchid" = "Orchid";
+"Poinsettia" = "Poinsettia";
+"Poinsettia Pink" = "Poinsettia Pink";
+"Red Rose" = "Red Rose";
+"White Rose" = "White Rose";
+"Tulip" = "Tulip";
+"Carnation Pink" = "Carnation Pink";
+"Carnation White" = "Carnation White";
+"Sunflower" = "Sunflower";
+"Gardenia" = "Gardenia";
+"Geranium" = "Geranium";
+"Daisy" = "Daisy";
+"Daffodil" = "Daffodil";
+
+"AllTitle" = "All";
+"BirthdaysTitle" = "Birthdays";
+"WeddingsTitle" = "Weddings";
+"FuneralsTitle" = "Funerals";
+
+"Items found: %ld" = "Items found: %ld";
+"NoItemsFoundTitle" = "No items found";
