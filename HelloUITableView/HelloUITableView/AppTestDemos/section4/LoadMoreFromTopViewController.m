@@ -81,14 +81,16 @@
         if (IOS11_OR_LATER) {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+#if IOS11_SDK_OR_LATER_AVAILABLE
             tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+#endif
 #pragma GCC diagnostic pop
         }
         
         UIView *contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 30)];
         contentView.backgroundColor = [[UIColor lightGrayColor] colorWithAlphaComponent:0.5];
         
-        WCTableLoadMoreView *view = [[WCTableLoadMoreView alloc] initWithTableView:tableView frame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 60) loadMoreType:WCTableLoadMoreTypeFromTop];
+        WCTableLoadMoreView *view = [[WCTableLoadMoreView alloc] initWithTableView:tableView viewController:self frame:CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), 60) loadMoreType:WCTableLoadMoreTypeFromTop];
         view.backgroundColor = [[UIColor yellowColor] colorWithAlphaComponent:0.2];
         view.contentFrame = contentView.frame;
         

@@ -47,7 +47,17 @@ typedef NS_ENUM(NSUInteger, WCTableLoadMoreType) {
  */
 @property (nonatomic, assign) CGRect contentFrame;
 
-- (instancetype)initWithTableView:(UITableView *)tableView frame:(CGRect)frame loadMoreType:(WCTableLoadMoreType)type;
+/**
+ Create a WCTableLoadMoreView
+ 
+ @param tableView the table view
+ @param viewController the view controller which hold the table view
+ @param frame the frame of the WCTableLoadMoreView
+ @param type the WCTableLoadMoreType
+ 
+ @note on iOS 10-, the viewController must not be nil
+ */
+- (instancetype)initWithTableView:(UITableView *)tableView viewController:(UIViewController *)viewController frame:(CGRect)frame loadMoreType:(WCTableLoadMoreType)type;
 
 /**
  Stop loading indicator when table view has loaded all

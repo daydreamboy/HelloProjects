@@ -13,6 +13,13 @@
 #define IOS11_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"11.0" options:NSNumericSearch] != NSOrderedAscending)
 #endif
 
+// >= `11.0` Base SDK
+#if defined(__IPHONE_11_0)
+#define IOS11_SDK_OR_LATER_AVAILABLE 1
+#else
+#define IOS11_SDK_OR_LATER_AVAILABLE 0
+#endif
+
 @implementation WCTableViewTool
 
 #pragma mark - Update TableView
@@ -43,7 +50,9 @@
     if (IOS11_OR_LATER) {
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunguarded-availability-new"
+#if IOS11_SDK_OR_LATER_AVAILABLE
         [tableView performBatchUpdates:updates completion:completion];
+#endif
 #pragma GCC diagnostic pop
     }
     else {

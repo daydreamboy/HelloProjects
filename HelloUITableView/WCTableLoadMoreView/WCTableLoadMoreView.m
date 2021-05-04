@@ -9,6 +9,7 @@
 #import "WCTableLoadMoreView.h"
 #import "WCScrollViewTool.h"
 #import "WCTableViewTool.h"
+#import <objc/runtime.h>
 
 #define FrameSetSize(frame, newWidth, newHeight) ({ \
 CGRect __internal_frame = (frame); \
@@ -21,6 +22,66 @@ if (!isnan((newHeight))) { \
 __internal_frame; \
 })
 
+// >= `11.0`
+#ifndef IOS11_OR_LATER
+#define IOS11_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"11.0" options:NSNumericSearch] != NSOrderedAscending)
+#endif
+
+@class WCKVOObserver;
+
+typedef void(^WCKVOObserverEventCallback)(id observedObject, WCKVOObserver *observer, NSDictionary<NSKeyValueChangeKey,id> *change, void *context);
+
+@interface WCKVOObserver : NSObject
+@property (nonatomic, weak, readonly) id observedObject;
+@property (nonatomic, copy, readonly) WCKVOObserverEventCallback eventCallback;
+@property (nonatomic, copy, readonly) NSString *keyPath;
+@property (nonatomic, assign, readonly) NSKeyValueObservingOptions options;
+@end
+
+@interface WCKVOObserver ()
+@property (nonatomic, weak, readwrite) id observedObject;
+@property (nonatomic, copy, readwrite) void(^eventCallback)(id observedObject, WCKVOObserver *observer, NSDictionary<NSKeyValueChangeKey,id> *change, void *context);
+@property (nonatomic, copy, readwrite) NSString *keyPath;
+@property (nonatomic, assign, readwrite) NSKeyValueObservingOptions options;
+@end
+
+@implementation WCKVOObserver
+
+- (instancetype)initWithObservedObject:(id)observedObject keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options eventCallback:(WCKVOObserverEventCallback)eventCallback  {
+    self = [super init];
+    if (self) {
+        _observedObject = observedObject;
+        _keyPath = keyPath;
+        _options = options;
+        _eventCallback = eventCallback;
+        
+        [_observedObject addObserver:self forKeyPath:keyPath options:options context:nil];
+    }
+    return self;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
+    if (_observedObject == object && [keyPath isEqualToString:_keyPath]) {
+        !_eventCallback ?: _eventCallback(_observedObject, self, change, context);
+    }
+}
+
+- (void)dealloc {
+    @try {
+        [_observedObject removeObserver:self forKeyPath:_keyPath];
+    }
+    @catch (NSException *exception) {
+#if DEBUG
+        NSLog(@"an exception occurred: %@", exception);
+#endif
+    }
+}
+
+@end
+
+static const void *kAssociatedObjectKey_WCTableLoadMoreView = &kAssociatedObjectKey_WCTableLoadMoreView;
+
+// @see https://developer.apple.com/forums/thread/53636
 @interface WCTableLoadMoreView ()
 @property (nonatomic, assign, readwrite) WCTableLoadMoreType loadMoreType;
 @property (nonatomic, strong, readwrite) UIActivityIndicatorView *loadingIndicator;
@@ -33,15 +94,29 @@ __internal_frame; \
 
 @implementation WCTableLoadMoreView
 
-- (instancetype)initWithTableView:(UITableView *)tableView frame:(CGRect)frame loadMoreType:(WCTableLoadMoreType)type {
+- (instancetype)initWithTableView:(UITableView *)tableView viewController:(UIViewController *)viewController frame:(CGRect)frame loadMoreType:(WCTableLoadMoreType)type {
     self = [super initWithFrame:frame];
     if (self) {
         _tableView = tableView;
         _initialFrame = frame;
         _loadMoreType = type;
         
-        [_tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
-        
+        if (IOS11_OR_LATER) {
+            [_tableView addObserver:self forKeyPath:@"contentOffset" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld context:nil];
+        }
+        else {
+            /**
+             Workaround for iOS 10- KVO crash, the crash see https://developer.apple.com/forums/thread/53636.
+             
+             CRASH: when UITableView is deallocating, remove its observers takes no effect, and still trigger the exception:
+             An instance XXX of class UITableView was deallocated while key value observers were still registered with it.
+             */
+            WCKVOObserver *observer = [[WCKVOObserver alloc] initWithObservedObject:_tableView keyPath:@"contentOffset" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld eventCallback:^(id observedObject, WCKVOObserver *observer, NSDictionary<NSKeyValueChangeKey,id> *change, void *context) {
+                [self observeValueForKeyPath:@"contentOffset" ofObject:observedObject change:change context:context];
+            }];
+            objc_setAssociatedObject(viewController, kAssociatedObjectKey_WCTableLoadMoreView, observer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        }
+
         _contentFrame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
         
         [self addSubview:self.loadingIndicator];
@@ -51,7 +126,9 @@ __internal_frame; \
 }
 
 - (void)dealloc {
-    [_tableView removeObserver:self forKeyPath:@"contentOffset"];
+    if (IOS11_OR_LATER) {
+        [_tableView removeObserver:self forKeyPath:@"contentOffset"];
+    }
 }
 
 #pragma mark - KVO

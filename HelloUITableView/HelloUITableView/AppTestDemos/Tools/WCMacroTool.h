@@ -14,6 +14,13 @@
 #define IOS11_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"11.0" options:NSNumericSearch] != NSOrderedAscending)
 #endif
 
+// >= `11.0` Base SDK
+#if defined(__IPHONE_11_0)
+#define IOS11_SDK_OR_LATER_AVAILABLE 1
+#else
+#define IOS11_SDK_OR_LATER_AVAILABLE 0
+#endif
+
 #define FrameSetSize(frame, newWidth, newHeight) ({ \
 CGRect __internal_frame = (frame); \
 if (!isnan((newWidth))) { \
