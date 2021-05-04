@@ -68,7 +68,7 @@
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
     BOOL isOn = [_switcherOnStatuses[indexPath.row] boolValue];
     ToggleOptionPriorViewController *vc = [[ToggleOptionPriorViewController alloc] initWithSwitcherOn:isOn switcherToggled:^(BOOL isOn) {
-        _switcherOnStatuses[indexPath.row] = @(isOn);
+        self.switcherOnStatuses[indexPath.row] = @(isOn);
     }];
     vc.title = @"Toggle OptionPrior for KVO register";
     
