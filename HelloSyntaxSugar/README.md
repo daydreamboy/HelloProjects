@@ -577,6 +577,163 @@ __attribute__((objc_runtime_name("544cd1f719a0cb56dce50fd51b39852d")))
 
 
 
+### （3）让Xcode生成Availability提示
+
+Xcode中按住Option键，同时点击某个方法、类、属性，会弹出相关的文档，其中有一项是Availability（如下图），作用是告知该方法、类或属性，在什么版本引入，在什么版本不推荐使用，方便开发者知晓API版本和系统版本的兼容性。
+
+<img src="images/Xcode的Availability提示.png" style="zoom:50%;" />
+
+
+
+下面介绍一些相关的宏，如下表
+
+| 宏                                                           | 修饰内容 | 含义                         |
+| ------------------------------------------------------------ | -------- | ---------------------------- |
+| NS_AVAILABLE(_mac, _ios)                                     | 方法     | 在mac和ios平台上可用起始版本 |
+| NS_AVAILABLE_MAC(_mac)                                       | 方法     | 在mac平台上可用起始版本      |
+| NS_AVAILABLE_IOS(_ios)                                       | 方法     | 在ios平台上可用起始版本      |
+| NS_DEPRECATED(_macIntro, _macDep, _iosIntro, _iosDep, ...)   | 方法     |                              |
+| NS_DEPRECATED_MAC(_macIntro, _macDep, ...)                   | 方法     |                              |
+| NS_DEPRECATED_IOS(_iosIntro, _iosDep, ...)                   | 方法     |                              |
+| NS_CLASS_AVAILABLE(_mac, _ios)                               | 类       |                              |
+| NS_CLASS_AVAILABLE_IOS(_ios)                                 | 类       |                              |
+| NS_CLASS_AVAILABLE_MAC(_mac)                                 | 类       |                              |
+| NS_CLASS_DEPRECATED(_mac, _macDep, _ios, _iosDep, ...)       | 类       |                              |
+| NS_CLASS_DEPRECATED_MAC(_macIntro, _macDep, ...)             | 类       |                              |
+| NS_CLASS_DEPRECATED_IOS(_iosIntro, _iosDep, ...)             | 类       |                              |
+| NS_ENUM_AVAILABLE(_mac, _ios)                                | 枚举     |                              |
+| NS_ENUM_AVAILABLE_MAC(_mac)                                  | 枚举     |                              |
+| NS_ENUM_AVAILABLE_IOS(_ios)                                  | 枚举     |                              |
+| NS_ENUM_DEPRECATED(_macIntro, _macDep, _iosIntro, _iosDep, ...) | 枚举     |                              |
+| NS_ENUM_DEPRECATED_MAC(_macIntro, _macDep, ...)              | 枚举     |                              |
+| NS_ENUM_DEPRECATED_IOS(_iosIntro, _iosDep, ...)              | 枚举     |                              |
+
+
+
+在Foundation.framework中NSObjCRuntime.h定义了一些宏，用于显示Availability，主要有AVAILABLE和DEPRECATED两类，分别标志什么版本开始引入的和什么版本开始弃用的
+
+
+
+#### a. 修饰方法
+
+
+
+- AVAILABLE类
+
+```objective-c
+#define NS_AVAILABLE(_mac, _ios) CF_AVAILABLE(_mac, _ios)
+#define NS_AVAILABLE_MAC(_mac) CF_AVAILABLE_MAC(_mac)
+#define NS_AVAILABLE_IOS(_ios) CF_AVAILABLE_IOS(_ios)
+```
+
+`_MAC`和`_IOS`后缀分别对应Mac OS X和iOS平台，没有后缀则是针对两者平台的。
+
+
+
+注意
+
+> 版本号，必须是x_y格式的，例如NS_AVAILABLE_IOS(5_0)则显示iOS (5.0 or later)
+
+
+
+- DEPRECATED类
+
+```objective-c
+#define NS_DEPRECATED(_macIntro, _macDep, _iosIntro, _iosDep, ...) CF_DEPRECATED(_macIntro, _macDep, _iosIntro, _iosDep, __VA_ARGS__)
+#define NS_DEPRECATED_MAC(_macIntro, _macDep, ...) CF_DEPRECATED_MAC(_macIntro, _macDep, __VA_ARGS__)
+#define NS_DEPRECATED_IOS(_iosIntro, _iosDep, ...) CF_DEPRECATED_IOS(_iosIntro, _iosDep, __VA_ARGS__)
+```
+
+同样，`_MAC`和`_IOS`后缀分别对应Mac OS X和iOS平台，没有后缀则是针对两者平台的
+
+
+
+   与AVAILABLE类，相比DEPRECATED类至少提供引入版本号和弃用版本号，还可以在第三个宏参数提供替换的API，如下图所示
+
+<img src="images/DEPRECATED宏.png" style="zoom:50%;" />
+
+注意
+
+> 弃用版本号必须大于引入版本号，第三个宏参数是可选的
+
+
+
+#### b. 修饰类
+
+
+
+除了上面通用的AVAILABLE宏和DEPRECATED宏，还有针对类和枚举的AVAILABLE宏和DEPRECATED宏
+
+- NS_CLASS_AVAILABLE_xxx类
+
+```objective-c
+#if (__MAC_OS_X_VERSION_MIN_REQUIRED >= __MAC_10_6 || __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_1) && \
+    ((__has_feature(objc_weak_class) || \
+     (defined(__llvm__) && defined(__APPLE_CC__) && (__APPLE_CC__ >= 5658)) || \
+     (defined(__APPLE_CC__) && (__APPLE_CC__ >= 5666))))
+#define NS_CLASS_AVAILABLE(_mac, _ios) __attribute__((visibility("default"))) NS_AVAILABLE(_mac, _ios)
+...
+#else
+#define NS_CLASS_AVAILABLE(_mac, _ios)
+...
+#endif
+
+#define NS_CLASS_AVAILABLE_IOS(_ios) NS_CLASS_AVAILABLE(NA, _ios)
+#define NS_CLASS_AVAILABLE_MAC(_mac) NS_CLASS_AVAILABLE(_mac, NA)
+```
+
+
+
+* NS_CLASS_DEPRECATED_xxx类
+
+```objective-c
+#if (__MAC_OS_X_VERSION_MIN_REQUIRED >= __MAC_10_6 || __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_3_1) && \
+    ((__has_feature(objc_weak_class) || \
+     (defined(__llvm__) && defined(__APPLE_CC__) && (__APPLE_CC__ >= 5658)) || \
+     (defined(__APPLE_CC__) && (__APPLE_CC__ >= 5666))))
+...
+#define NS_CLASS_DEPRECATED(_mac, _macDep, _ios, _iosDep, ...) __attribute__((visibility("default"))) NS_DEPRECATED(_mac, _macDep, _ios, _iosDep, __VA_ARGS__)
+#else
+...
+#define NS_CLASS_DEPRECATED(_mac, _macDep, _ios, _iosDep, ...)
+#endif
+
+#define NS_CLASS_DEPRECATED_MAC(_macIntro, _macDep, ...) NS_CLASS_DEPRECATED(_macIntro, _macDep, NA, NA, __VA_ARGS__)
+#define NS_CLASS_DEPRECATED_IOS(_iosIntro, _iosDep, ...) NS_CLASS_DEPRECATED(NA, NA, _iosIntro, _iosDep, __VA_ARGS__)
+```
+
+
+
+举个例子如下图
+
+<img src="images/NS_CLASS_AVAILABLE示例.png" style="zoom:50%;" />
+
+注意：AVAILABLE和DEPRECATED宏，是区分平台的，这里只显示了iOS编译环境下的提示“iOS (5.0 or later)”，另外宏是需要编译的，因此Option+Clicking在头文件中或对应的.m文件有可能Availability不会出现，这时需要在其他文件引入.h文件编译后，在第三方文件（.h或.m文件）中使用该类才会出现Availability提示。
+
+
+
+#### c. 修饰枚举
+
+
+
+- NS_ENUM_AVAILABLE_xxx类和NS_ENUM_DEPRECATED_xxx类
+
+```objective-c
+#define NS_ENUM_AVAILABLE(_mac, _ios) CF_ENUM_AVAILABLE(_mac, _ios)
+#define NS_ENUM_AVAILABLE_MAC(_mac) CF_ENUM_AVAILABLE_MAC(_mac)
+#define NS_ENUM_AVAILABLE_IOS(_ios) CF_ENUM_AVAILABLE_IOS(_ios)
+
+#define NS_ENUM_DEPRECATED(_macIntro, _macDep, _iosIntro, _iosDep, ...) CF_ENUM_DEPRECATED(_macIntro, _macDep, _iosIntro, _iosDep, __VA_ARGS__)
+#define NS_ENUM_DEPRECATED_MAC(_macIntro, _macDep, ...) CF_ENUM_DEPRECATED_MAC(_macIntro, _macDep, __VA_ARGS__)
+#define NS_ENUM_DEPRECATED_IOS(_iosIntro, _iosDep, ...) CF_ENUM_DEPRECATED_IOS(_iosIntro, _iosDep, __VA_ARGS__)
+```
+
+
+
+
+
+
+
 ## 9、使用`__builtin_xxx`系列函数
 
 ​       GCC编译器提供一些内置函数，例如`__builtin_trap`等。这里统称为`__builtin_xxx`系列函数。Clang也支持`__builtin_xxx`系列函数，但是作为可选的。因此需要使用宏`__has_builtin`测试是否编译器支持[^14]，如下
