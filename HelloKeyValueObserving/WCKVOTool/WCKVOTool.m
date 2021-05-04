@@ -11,7 +11,7 @@
 
 @interface WCKVOObserver ()
 @property (nonatomic, weak, readwrite) id observedObject;
-@property (nonatomic, copy, readwrite) void(^eventCallback)(id observedObject, WCKVOObserver *observer, NSDictionary<NSKeyValueChangeKey,id> *change, void *context);
+@property (nonatomic, copy, readwrite) WCKVOObserverEventCallback eventCallback;
 @property (nonatomic, copy, readwrite) NSString *keyPath;
 @property (nonatomic, assign, readwrite) NSKeyValueObservingOptions options;
 @end
