@@ -583,6 +583,144 @@ TODO
 
 
 
+## 11、Xcode编译代码处理版本兼容
+
+   编译器在编译时提供两个宏，`*_VERSION_MAX_ALLOWED`和`*_VERSION_MIN_REQUIRED`，这两个宏不在文件中定义，类型都是整型。
+
+  定义规则如下
+
+- `*_VERSION_MAX_ALLOWED`（编译时的最高版本，即Base SDK）
+
+`__IPHONE_OS_VERSION_MAX_ALLOWED` = y0z00，y是主版本号，z是次版本号，例如100200对应的就是10.2版本
+
+`__MAC_OS_X_VERSION_MAX_ALLOWED`=10x0，x是版本号，例如101202是10.12.2版本
+
+- `*_VERSION_MIN_REQUIRED`（编译时的最低版本，即Deployment Target）
+
+`__IPHONE_OS_VERSION_MIN_REQUIRED`，同上
+
+`__MAC_OS_X_VERSION_MIN_REQUIRED`，同上
+
+   Availability.h文件中提供了`*_VERSION_MAX_ALLOWED`和`*_VERSION_MIN_REQUIRED`可以比较的宏，分别是`__MAC_*`和`__IPHONE_*`等，这些宏不能直接使用，而是使用它们对应的值。（因为可能使用不同版本的Xcode编译，这些宏未必已经定义了）。另外，每次Xcode发布，Availability.h会增加新的宏。
+
+举个例子，如下
+
+```objective-c
+// code only compiled when targeting Mac OS X and not iPhone
+// note use of 1050 instead of __MAC_10_5
+#if __MAC_OS_X_VERSION_MIN_REQUIRED < 1050
+// code in here might run on pre-Leopard OS
+#else
+// code here can assume Leopard or later
+#endif
+```
+
+如果编译时最低版本小于10.5，则走if部分，否则走else部分
+
+一般很少使用`*_VERSION_MAX_ALLOWED`，因为不限制最高版本
+
+​    另外，使用`*_VERSION_MAX_ALLOWED`和`*_VERSION_MIN_REQUIRED`，只是保证编译时的兼容性，但不保证运行时的兼容性。（如果运行时的API不兼容，则出现crash，找不到对应的selector。）[^16]
+
+   举个例子，说明一下
+
+```objective-c
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 50000
+    //you can use iOS 5 APIs here because the SDK supports them
+    //but the code may still crash if run on an iOS 4 device
+#else
+    //this code can't use iOS 5 APIs as the SDK version doesn't support them
+#endif
+```
+
+
+
+```objective-c
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= 50000
+    //minimum deployment target is 5.0, so it's safe to use iOS 5-only code
+#else
+    //you can use iOS5 APIs, but the code will need to be backwards
+    //compatible or it will crash when run on an iOS 4 device
+#endif
+```
+
+
+
+```objective-c
+// .h
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 110000
+FOUNDATION_EXPORT const NSAttributedStringKey YWTextBorderAttributeName;
+#else
+FOUNDATION_EXPORT const NSString *YWTextBorderAttributeName;
+#endif
+
+// .m
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 110000
+const NSAttributedStringKey YWTextBorderAttributeName = @"YWTextBorderAttributeName";
+#else
+const NSString *YWTextBorderAttributeName = @"YWTextBorderAttributeName";
+#endif
+```
+
+
+
+如果同时要解决运行时的兼容性，可以参考下面的例子
+
+```objective-c
+#if __IPHONE_OS_VERSION_MIN_REQUIRED >= __IPHONE_8_0
+
+#define ALERT_TIP(title, msg, cancel) \
+\
+do { \
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:(title) message:(msg) preferredStyle:UIAlertControllerStyleAlert]; \
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:(cancel) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) { \
+        [alert dismissViewControllerAnimated:YES completion:nil]; \
+    }]; \
+    [alert addAction:okAction]; \
+    [self presentViewController:alert animated:YES completion:nil]; \
+} while (0)
+
+#else
+
+#define ALERT_TIP(title, msg, cancel) \
+\
+do { \
+    if ([UIAlertController class]) { \
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:(title) message:(msg) preferredStyle:UIAlertControllerStyleAlert]; \
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:(cancel) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) { \
+            [alert dismissViewControllerAnimated:YES completion:nil]; \
+        }]; \
+        [alert addAction:okAction]; \
+        [self presentViewController:alert animated:YES completion:nil]; \
+    } \
+    else { \
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:(title) message:(msg) delegate:nil cancelButtonTitle:(cancel) otherButtonTitles:nil]; \
+        [alert show]; \
+    } \
+} while (0)
+
+#endif
+```
+
+
+
+   借这个例子，说明使用宏需要注意的几点：
+
+* 使用这样大段代码的宏，如果在很多地方使用，会扩展出很多相同的代码，增加编译后二进制大小，可以使用另一个方法将这个宏进行封装。如下
+
+```objective-c
+- (void)showAlertWithTitle:(NSString *)title message:(NSString *)message cancel:(NSString *)cancel {
+    ALERT_TIP(title, message, cancel);
+}
+```
+
+
+
+* 使用宏的上下文需要注意，因为有些宏的实现是依赖上下文的，比如上面的ALERT_TIP实现中用到self，这样必须在ViewController中使用该宏才不会有问题。好的宏实现，应该是不依赖使用的上下文，写宏定义应该注意到这一点。
+
+> 关于UIAlertController如何不在ViewController上下文环境下使用，可以参考这篇SO[^17]
+
+
+
 
 
 
@@ -616,6 +754,9 @@ TODO
 [^14]:https://developer.apple.com/library/archive/qa/qa1908/_index.html#//apple_ref/doc/uid/DTS40016829-CH1-FIND
 
 [^15]:https://stackoverflow.com/questions/34225213/uiapplication-sharedapplication-not-available
+
+[^16]:http://stackoverflow.com/questions/7542480/what-are-the-common-use-cases-for-iphone-os-version-max-allowed
+[^17]:http://stackoverflow.com/questions/26554894/how-to-present-uialertcontroller-when-not-in-a-view-controller
 
 
 
