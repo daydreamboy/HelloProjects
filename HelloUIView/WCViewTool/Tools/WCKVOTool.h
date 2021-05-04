@@ -10,9 +10,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class WCKVOObserver;
+
+typedef void(^WCKVOObserverEventCallback)(id observedObject, WCKVOObserver *observer, NSDictionary<NSKeyValueChangeKey,id> *change, void *context);
+
 @interface WCKVOObserver : NSObject
 @property (nonatomic, weak, readonly) id observedObject;
-@property (nonatomic, copy, readonly) void(^eventCallback)(id observedObject, WCKVOObserver *observer);
+@property (nonatomic, copy, readonly) WCKVOObserverEventCallback eventCallback;
 @property (nonatomic, copy, readonly) NSString *keyPath;
 @property (nonatomic, assign, readonly) NSKeyValueObservingOptions options;
 @end
@@ -23,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface WCKVOTool ()
 
-+ (BOOL)observeKVOEventWithObject:(NSObject *)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options associatedKey:(const void *)associatedKey eventCallback:(void (^)(id object, WCKVOObserver *observer))eventCallback;
++ (BOOL)observeKVOEventWithObject:(NSObject *)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options associatedKey:(const void *)associatedKey eventCallback:(WCKVOObserverEventCallback)eventCallback;
 
 @end
 

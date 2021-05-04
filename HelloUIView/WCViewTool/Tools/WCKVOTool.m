@@ -11,14 +11,14 @@
 
 @interface WCKVOObserver ()
 @property (nonatomic, weak, readwrite) id observedObject;
-@property (nonatomic, copy, readwrite) void(^eventCallback)(id observedObject, WCKVOObserver *observer);
+@property (nonatomic, copy, readwrite) WCKVOObserverEventCallback eventCallback;
 @property (nonatomic, copy, readwrite) NSString *keyPath;
 @property (nonatomic, assign, readwrite) NSKeyValueObservingOptions options;
 @end
 
 @implementation WCKVOObserver
 
-- (instancetype)initWithObservedObject:(id)observedObject keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options eventCallback:(void(^)(id observedObject, WCKVOObserver *observer))eventCallback  {
+- (instancetype)initWithObservedObject:(id)observedObject keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options eventCallback:(WCKVOObserverEventCallback)eventCallback  {
     self = [super init];
     if (self) {
         _observedObject = observedObject;
@@ -33,7 +33,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context {
     if (_observedObject == object && [keyPath isEqualToString:_keyPath]) {
-        !_eventCallback ?: _eventCallback(_observedObject, self);
+        !_eventCallback ?: _eventCallback(_observedObject, self, change, context);
     }
 }
 
@@ -54,7 +54,7 @@
 
 #pragma mark - Auto KVO
 
-+ (BOOL)observeKVOEventWithObject:(NSObject *)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options associatedKey:(const void *)associatedKey eventCallback:(void (^)(id object, WCKVOObserver *observer))eventCallback {
++ (BOOL)observeKVOEventWithObject:(NSObject *)object keyPath:(NSString *)keyPath options:(NSKeyValueObservingOptions)options associatedKey:(const void *)associatedKey eventCallback:(WCKVOObserverEventCallback)eventCallback {
     if (![object isKindOfClass:[NSObject class]] || eventCallback == nil) {
         return NO;
     }

@@ -370,7 +370,8 @@ static void * const kAssociatedKeyaddGradientLayerWithView = (void *)&kAssociate
         
         if (observeViewBoundsChange) {
             __weak typeof(gradientLayer) weak_gradientLayer = gradientLayer;
-            [WCKVOTool observeKVOEventWithObject:view.layer keyPath:@"bounds" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew associatedKey:kAssociatedKeyaddGradientLayerWithView eventCallback:^(CALayer * _Nonnull layer, WCKVOObserver *observer) {
+            [WCKVOTool observeKVOEventWithObject:view.layer keyPath:@"bounds" options:NSKeyValueObservingOptionOld | NSKeyValueObservingOptionNew associatedKey:kAssociatedKeyaddGradientLayerWithView eventCallback:^(id  _Nonnull observedObject, WCKVOObserver * _Nonnull observer, NSDictionary<NSKeyValueChangeKey,id> * _Nonnull change, void * _Nonnull context) {
+                CALayer *layer = observedObject;
                 [CATransaction begin];
                 [CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
                 weak_gradientLayer.frame = layer.bounds;
