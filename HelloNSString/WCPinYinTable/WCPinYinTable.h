@@ -14,6 +14,7 @@ typedef NS_ENUM(NSUInteger, WCPinYinStringType) {
     WCPinYinStringTypePinYin,
     WCPinYinStringTypeWithTone,
     WCPinYinStringTypeFirstSyllable,
+    WCPinYinStringTypeFirstLetter,
 };
 
 typedef NS_OPTIONS(NSUInteger, WCPinYinStringPatternOption) {

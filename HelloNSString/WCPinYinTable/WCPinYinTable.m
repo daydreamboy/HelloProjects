@@ -201,6 +201,9 @@ static dispatch_queue_t sQueue;
                 else if (type == WCPinYinStringTypeFirstSyllable) {
                     [stringM appendString:info.firstSyllable];
                 }
+                else if (type == WCPinYinStringTypeFirstLetter) {
+                    [stringM appendString:info.firstLetter];
+                }
                 else {
                     [stringM appendString:info.pinYin];
                 }

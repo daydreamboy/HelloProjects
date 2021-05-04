@@ -124,6 +124,12 @@ XCTestExpectation *expectation__ = [self expectationWithDescription:description_
         NSLog(@"%@", output);
         XCTAssertEqualObjects(output, @"wŏ yào xué xí yīng wén haha😁");
         
+        // Case 3
+        string = @"我要学习英文haha😁";
+        output = [[WCPinYinTable sharedInstance] pinYinStringWithText:string type:WCPinYinStringTypeFirstLetter separator:nil];
+        NSLog(@"%@", output);
+        XCTAssertEqualObjects(output, @"w y x x y w haha😁");
+        
         XCTestExpectation_FULFILL
     } async:NO];
     
