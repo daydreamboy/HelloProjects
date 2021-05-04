@@ -40,7 +40,7 @@ typedef void(^WCKVOObserverEventCallback)(id observedObject, WCKVOObserver *obse
 
 @interface WCKVOObserver ()
 @property (nonatomic, weak, readwrite) id observedObject;
-@property (nonatomic, copy, readwrite) void(^eventCallback)(id observedObject, WCKVOObserver *observer, NSDictionary<NSKeyValueChangeKey,id> *change, void *context);
+@property (nonatomic, copy, readwrite) WCKVOObserverEventCallback eventCallback;
 @property (nonatomic, copy, readwrite) NSString *keyPath;
 @property (nonatomic, assign, readwrite) NSKeyValueObservingOptions options;
 @end
@@ -81,7 +81,7 @@ typedef void(^WCKVOObserverEventCallback)(id observedObject, WCKVOObserver *obse
 
 static const void *kAssociatedObjectKey_WCTableLoadMoreView = &kAssociatedObjectKey_WCTableLoadMoreView;
 
-// @see https://developer.apple.com/forums/thread/53636
+NS_CLASS_AVAILABLE_IOS(9_0)
 @interface WCTableLoadMoreView ()
 @property (nonatomic, assign, readwrite) WCTableLoadMoreType loadMoreType;
 @property (nonatomic, strong, readwrite) UIActivityIndicatorView *loadingIndicator;
@@ -114,7 +114,10 @@ static const void *kAssociatedObjectKey_WCTableLoadMoreView = &kAssociatedObject
             WCKVOObserver *observer = [[WCKVOObserver alloc] initWithObservedObject:_tableView keyPath:@"contentOffset" options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld eventCallback:^(id observedObject, WCKVOObserver *observer, NSDictionary<NSKeyValueChangeKey,id> *change, void *context) {
                 [self observeValueForKeyPath:@"contentOffset" ofObject:observedObject change:change context:context];
             }];
-            objc_setAssociatedObject(viewController, kAssociatedObjectKey_WCTableLoadMoreView, observer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            
+            if (viewController) {
+                objc_setAssociatedObject(viewController, kAssociatedObjectKey_WCTableLoadMoreView, observer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+            }
         }
 
         _contentFrame = CGRectMake(0, 0, self.bounds.size.width, self.bounds.size.height);
