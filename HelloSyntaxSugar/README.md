@@ -111,7 +111,9 @@ NSLog(@"%@", NSStringFromCGRect(rect)); // {{nan, nan}, {nan, nan}}
 
 ## 4、延迟释放对象
 
-ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/)提到一种简便的延迟释放对象的方法，举个例子，如下。详见`DelayReleaseObjectViewController`
+ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfaces_for_ios/)提到一种简便的延迟释放对象的方法。主要思路是，在延迟释放对象的持有者要释放时，将延迟释放的对象，用本地变量临时强引用一下，同时将本地变量放到block中引用，并将延迟释放对象设置为nil。
+
+举个例子，如下。
 
 ```objective-c
 - (void)dealloc {
@@ -124,6 +126,8 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
     });
 }
 ```
+
+> 示例代码，见DelayReleaseObjectViewController
 
 文章也提到，如果对象可以在后台线程释放，可以放在非主线程去释放这个对象，这样可以减少主线程的开销。
 

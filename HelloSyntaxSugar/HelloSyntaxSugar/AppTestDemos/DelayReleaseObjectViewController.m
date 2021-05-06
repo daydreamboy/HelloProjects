@@ -8,6 +8,14 @@
 
 #import "DelayReleaseObjectViewController.h"
 
+#define DELAY_RELEASE_AFTER(object_, seconds_, queue_) \
+typeof(object_) tempObject__ = object_; \
+object_ = nil; \
+dispatch_queue_t release_queue__ = (queue_) == nil ? dispatch_get_main_queue() : (queue_); \
+dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(seconds_ * NSEC_PER_SEC)), release_queue__, ^{ \
+    [tempObject__ class]; \
+});
+
 @interface MyObject : NSObject
 @end
 
@@ -29,7 +37,8 @@
 }
 
 - (void)dealloc {
-    [self test_safe_delay_release];
+    //[self test_safe_delay_release];
+    [self test_safe_delay_release_by_macro];
     //[self test_bad_delay_release];
     //[self test_delay_release_not_work];
 }
@@ -43,6 +52,10 @@
         // Note: use it to avoid warning
         [tempObject class];
     });
+}
+
+- (void)test_safe_delay_release_by_macro {
+    DELAY_RELEASE_AFTER(_myObject, 3, nil);
 }
 
 - (void)test_bad_delay_release {
