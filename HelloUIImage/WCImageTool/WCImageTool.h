@@ -201,7 +201,9 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable NSString *)fileNameWithImage:(UIImage *)image;
 + (nullable NSString *)containerBundlePathWithImage:(UIImage *)image;
 
-#pragma mark - Thumbnail Image
+#pragma mark - Thumbnail
+
+#pragma mark > Thumbnail UIImage
 
 /**
  Create a thumbnail image from path
@@ -230,7 +232,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable UIImage *)thumbnailImageWithData:(NSData *)data boundingSize:(CGSize)boundingSize scale:(CGFloat)scale;
 
-#pragma mark - Thumbnail Image Data
++ (nullable UIImage *)thumbnailImageWithData:(NSData *)data limitedToMemorySize:(long long)memorySize;
+
+#pragma mark > Thumbnail NSData
 
 /**
  Get thumbnail image data from path
@@ -256,6 +260,20 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (nullable NSData *)thumbnailImageDataWithData:(NSData *)data boundingSize:(CGSize)boundingSize;
 
++ (nullable NSData *)thumbnailImageDataWithData:(NSData *)data boundingSize:(CGSize)boundingSize limitedToMemorySize:(long long)memorySize;
+
+#pragma mark - Thumbnail Image Utility
+
+/**
+ Calculate the max length of side which make the image memory not greater than the specific memory size
+ 
+ @param imageSize the size (width, height) of image, which width, height are expected > 0
+ @param memorySize the limited memory size, which are expected > 0
+ 
+ @return the calculated max length of side make the image memory not greater than the `memorySize`.
+ Return 0 if the paramters are not correct.
+ */
++ (CGFloat)calculateMaxLengthWithImageSize:(CGSize)imageSize limitedToMemorySize:(long long)memorySize;
 
 #pragma mark - Thumbnail Animated Image Data
 

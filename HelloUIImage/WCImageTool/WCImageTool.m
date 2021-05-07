@@ -777,89 +777,39 @@
     return bundlePath;
 }
 
-#pragma mark - Thumbnail Image
+#pragma mark - Thumbnail
+
+#pragma mark > Thumbnail UIImage
 
 + (nullable UIImage *)thumbnailImageWithPath:(NSString *)path boundingSize:(CGSize)boundingSize scale:(CGFloat)scale {
-    return [self thumbnailImageWithData:nil path:path boundingSize:boundingSize scale:scale];
+    return [self thumbnailImageObjectWithData:nil path:path boundingSize:boundingSize scale:scale returnImage:YES limitedToMemorySize:0];
 }
 
 + (nullable UIImage *)thumbnailImageWithData:(NSData *)data boundingSize:(CGSize)boundingSize scale:(CGFloat)scale {
-    return [self thumbnailImageWithData:data path:nil boundingSize:boundingSize scale:scale];
+    return [self thumbnailImageObjectWithData:data path:nil boundingSize:boundingSize scale:scale returnImage:YES limitedToMemorySize:0];
 }
 
-#pragma mark ::
-
-+ (nullable UIImage *)thumbnailImageWithData:(NSData *)data path:(NSString *)path boundingSize:(CGSize)boundingSize scale:(CGFloat)scale {
-    if (boundingSize.width <= 0 || boundingSize.height <= 0) {
-        return nil;
-    }
-    
-    if ((![data isKindOfClass:[NSData class]] || data.length == 0) &&
-        (![path isKindOfClass:[NSString class]] || path.length == 0)) {
-        return nil;
-    }
-    
-    CGImageSourceRef imageSourceRef = NULL;
-    NSDictionary *options = @{
-        fromCF kCGImageSourceShouldCache: @NO,
-    };
-    
-    if (data) {
-        imageSourceRef = CGImageSourceCreateWithData(toCF data, toCF options);
-    }
-    else {
-        if (![[NSFileManager defaultManager] fileExistsAtPath:path]) {
-            return nil;
-        }
-        
-        NSURL *fileURL = [NSURL fileURLWithPath:path];
-        if (!fileURL) {
-            return nil;
-        }
-        
-        imageSourceRef = CGImageSourceCreateWithURL(toCF fileURL, toCF options);
-    }
-    
-    if (imageSourceRef == NULL) {
-        return nil;
-    }
-    
-    scale = scale <= 0 ? [UIScreen mainScreen].scale : scale;
-    CGFloat maxDimensionInPixels = MAX(boundingSize.width, boundingSize.height) * scale;
-    
-    NSDictionary *downsampledOptions = @{
-        fromCF kCGImageSourceCreateThumbnailFromImageAlways: @YES,
-        fromCF kCGImageSourceShouldCacheImmediately: @YES,
-        fromCF kCGImageSourceThumbnailMaxPixelSize: @(maxDimensionInPixels),
-        fromCF kCGImageSourceCreateThumbnailWithTransform: @YES,
-    };
-    
-    CGImageRef downsampledImageRef = CGImageSourceCreateThumbnailAtIndex(imageSourceRef, 0, toCF downsampledOptions);
-    
-    UIImage *thumbnailImage = [UIImage imageWithCGImage:downsampledImageRef scale:scale orientation:UIImageOrientationUp];
-    
-    // cleanup
-    CF_SAFE_RELEASE(imageSourceRef);
-    CF_SAFE_RELEASE(downsampledImageRef);
-    
-    return thumbnailImage;
++ (nullable UIImage *)thumbnailImageWithData:(NSData *)data limitedToMemorySize:(long long)memorySize {
+    return [self thumbnailImageObjectWithData:data path:nil boundingSize:CGSizeZero scale:0 returnImage:YES limitedToMemorySize:memorySize];
 }
 
-#pragma mark ::
-
-#pragma mark - Thumbnail Image Data
+#pragma mark - Thumbnail NSData
 
 + (nullable NSData *)thumbnailImageDataWithPath:(NSString *)path boundingSize:(CGSize)boundingSize {
-    return [self thumbnailImageDataWithData:nil path:path boundingSize:boundingSize];
+    return [self thumbnailImageObjectWithData:nil path:path boundingSize:boundingSize scale:0 returnImage:NO limitedToMemorySize:0];
 }
 
 + (nullable NSData *)thumbnailImageDataWithData:(NSData *)data boundingSize:(CGSize)boundingSize {
-    return [self thumbnailImageDataWithData:data path:nil boundingSize:boundingSize];
+    return [self thumbnailImageObjectWithData:data path:nil boundingSize:boundingSize scale:0 returnImage:NO limitedToMemorySize:0];
+}
+
++ (nullable NSData *)thumbnailImageDataWithData:(NSData *)data boundingSize:(CGSize)boundingSize limitedToMemorySize:(long long)memorySize {
+    return [self thumbnailImageObjectWithData:data path:nil boundingSize:boundingSize scale:0 returnImage:NO limitedToMemorySize:memorySize];
 }
 
 #pragma mark ::
 
-+ (nullable NSData *)thumbnailImageDataWithData:(NSData *)data path:(NSString *)path boundingSize:(CGSize)boundingSize {
++ (nullable id)thumbnailImageObjectWithData:(NSData *)data path:(NSString *)path boundingSize:(CGSize)boundingSize scale:(CGFloat)scale returnImage:(BOOL)returnImage limitedToMemorySize:(long long)memorySize {
     if (boundingSize.width <= 0 || boundingSize.height <= 0) {
         return nil;
     }
@@ -894,7 +844,36 @@
         return nil;
     }
     
-    CGFloat maxDimensionInPixels = MAX(boundingSize.width, boundingSize.height);
+    CGFloat maxDimensionInPixels = ({
+        CGFloat value = 0;
+        if (memorySize > 0) {
+            CFDictionaryRef imagePropertiesRef = CGImageSourceCopyPropertiesAtIndex(imageSourceRef, 0, NULL);
+            
+            if (imagePropertiesRef != NULL) {
+                NSDictionary *imageProperties = CFBridgingRelease(imagePropertiesRef);
+                
+                CGFloat width = [imageProperties[(NSString *)kCGImagePropertyPixelWidth] doubleValue];  // type: NSNumber *
+                CGFloat height = [imageProperties[(NSString *)kCGImagePropertyPixelHeight] doubleValue];
+                
+                value = [self calculateMaxLengthWithImageSize:CGSizeMake(width, height) limitedToMemorySize:memorySize];
+            }
+        }
+        else {
+            if (returnImage) {
+                scale = scale <= 0 ? [UIScreen mainScreen].scale : scale;
+                value = MAX(boundingSize.width, boundingSize.height) * scale;
+            }
+            else {
+                value = MAX(boundingSize.width, boundingSize.height);
+            }
+        }
+        
+        value;
+    });
+    
+    if (maxDimensionInPixels <= 0) {
+        return nil;
+    }
     
     NSDictionary *downsampledOptions = @{
         fromCF kCGImageSourceCreateThumbnailFromImageAlways: @YES,
@@ -904,23 +883,36 @@
     };
     
     CGImageRef downsampledImageRef = CGImageSourceCreateThumbnailAtIndex(imageSourceRef, 0, toCF downsampledOptions);
-
-    // @see https://stackoverflow.com/questions/38916484/cgimagedestinationcreatewithdata-constants-in-ios
-    CFMutableDataRef newImageData = CFDataCreateMutable(NULL, 0);
-    CGImageDestinationRef destination = CGImageDestinationCreateWithData(newImageData, kUTTypePNG, 1, NULL);
-    CGImageDestinationAddImage(destination, downsampledImageRef, nil);
-    if (!CGImageDestinationFinalize(destination)) {
-        return nil;
+    
+    id returnedObject = nil;
+    
+    if (returnImage) {
+        UIImage *thumbnailImage = [UIImage imageWithCGImage:downsampledImageRef scale:scale orientation:UIImageOrientationUp];
+        
+        returnedObject = thumbnailImage;
     }
-    
-    NSData *thumbnailImageData = (NSData *)CFBridgingRelease(newImageData);
-    
+    else {
+        // @see https://stackoverflow.com/questions/38916484/cgimagedestinationcreatewithdata-constants-in-ios
+        CFMutableDataRef newImageData = CFDataCreateMutable(NULL, 0);
+        CGImageDestinationRef destination = CGImageDestinationCreateWithData(newImageData, kUTTypePNG, 1, NULL);
+        CGImageDestinationAddImage(destination, downsampledImageRef, nil);
+        if (!CGImageDestinationFinalize(destination)) {
+            return nil;
+        }
+        
+        NSData *thumbnailImageData = (NSData *)CFBridgingRelease(newImageData);
+        
+        returnedObject = thumbnailImageData;
+    }
+
     // cleanup
     CF_SAFE_RELEASE(imageSourceRef);
     CF_SAFE_RELEASE(downsampledImageRef);
     
-    return thumbnailImageData;
+    return returnedObject;
 }
+
+#pragma mark ::
 
 #pragma mark - Thumbnail Animated Image Data
 
@@ -1005,6 +997,32 @@
     CF_SAFE_RELEASE(imageSourceRef);
     
     return thumbnailImageData;
+}
+
+#pragma mark - Thumbnail Image Utility
+
++ (CGFloat)calculateMaxLengthWithImageSize:(CGSize)imageSize limitedToMemorySize:(long long)memorySize {
+    if (!(imageSize.width > 0 && imageSize.height > 0 && memorySize > 0)) {
+        return 0;
+    }
+    
+    CGFloat maxLengthOfSide = 0;
+    
+    if (memorySize == 0) {
+        maxLengthOfSide = MAX(imageSize.width, imageSize.height);
+        return maxLengthOfSide;
+    }
+    
+    long long estimatedMemorySize = imageSize.width * imageSize.height * 4;
+    if (estimatedMemorySize > memorySize) {
+        CGFloat ratio = imageSize.height / imageSize.width;
+        CGFloat preferredWidth = 0.5 * sqrt(memorySize / ratio);
+        CGFloat preferredHeight = ratio * preferredWidth;
+        
+        maxLengthOfSide = MAX(preferredWidth, preferredHeight);
+    }
+    
+    return maxLengthOfSide;
 }
 
 #pragma mark - Utility
