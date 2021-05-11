@@ -42,6 +42,10 @@ typedef NS_ENUM(NSUInteger, WCJSONToolMergeMode) {
     WCJSONToolMergeModeArrayOverwriteMapUnionSet,
 };
 
+@protocol WCJSONModel <NSObject>
+
+@end
+
 NS_AVAILABLE_IOS(5_0)
 @interface WCJSONTool : NSObject
 
@@ -145,6 +149,10 @@ NS_AVAILABLE_IOS(5_0)
  @return the JSON object. If the string is not JSON formatted, return nil. If the JSON object not match the objectClass, return nil.
  */
 + (nullable id)JSONObjectWithString:(NSString *)string options:(NSJSONReadingOptions)options objectClass:(nullable Class)objectClass;
+
+#pragma mark > to model
+
++ (nullable id<WCJSONModel>)JSONModelWithString:(NSString *)string modelClassMapping:(NSDictionary<NSString *, Class> *)modelClassMapping;
 
 #pragma mark - Data to Object
 

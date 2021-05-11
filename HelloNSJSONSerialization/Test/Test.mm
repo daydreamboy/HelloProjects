@@ -366,6 +366,150 @@
     NSLog(@"%@", object);
 }
 
+#pragma mark > to id
+
+- (void)test_JSONModelWithString_modelClassMapping {
+    NSString *JSONString;
+    NSDictionary *modelClassMapping;
+    id expected;
+    
+    // Case 1
+    JSONString = STR_OF_JSON(
+                             {
+                                 "name": "thumb",
+                                 "index": 1
+                             }
+    );
+    modelClassMapping = @{
+        @"_root": [FingerModel class]
+    };
+    expected = [WCJSONTool JSONModelWithString:JSONString modelClassMapping:modelClassMapping];
+    XCTAssertTrue([expected isKindOfClass:[FingerModel class]]);
+    XCTAssertEqualObjects([(FingerModel *)expected name], @"thumb");
+    XCTAssertTrue([(FingerModel *)expected index] == 1);
+    
+    // Case 2
+    JSONString = STR_OF_JSON(
+                             [
+                                 {
+                                     "name": "thumb",
+                                     "index": 1
+                                 },
+                                 {
+                                     "name": "index",
+                                     "index": 2
+                                 },
+                                 {
+                                     "name": "middle",
+                                     "index": 3
+                                 },
+                                 {
+                                     "name": "ring",
+                                     "index": 4
+                                 },
+                                 {
+                                     "name": "little",
+                                     "index": 5
+                                 }
+                             ]
+    );
+    modelClassMapping = @{
+        @"_root": [FingerModel class]
+    };
+    expected = [WCJSONTool JSONModelWithString:JSONString modelClassMapping:modelClassMapping];
+    XCTAssertTrue([expected isKindOfClass:[NSArray class]]);
+    XCTAssertTrue([(NSArray *)expected count] == 5);
+    [(NSArray *)expected enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        XCTAssertTrue([(FingerModel *)obj index] == idx + 1);
+        switch (idx) {
+            case 0: {
+                XCTAssertEqualObjects([(FingerModel *)obj name], @"thumb");
+                break;
+            }
+            case 1: {
+                XCTAssertEqualObjects([(FingerModel *)obj name], @"index");
+                break;
+            }
+            case 2: {
+                XCTAssertEqualObjects([(FingerModel *)obj name], @"middle");
+                break;
+            }
+            case 3: {
+                XCTAssertEqualObjects([(FingerModel *)obj name], @"ring");
+                break;
+            }
+            case 4: {
+                XCTAssertEqualObjects([(FingerModel *)obj name], @"little");
+                break;
+            }
+            default:
+                break;
+        }
+    }];
+    
+    // Case 3
+    JSONString = STR_OF_JSON(
+                             {
+                                 "leftFingers": [
+                                     {
+                                         "name": "thumb",
+                                         "index": 1
+                                     },
+                                     {
+                                         "name": "index",
+                                         "index": 2
+                                     },
+                                     {
+                                         "name": "middle",
+                                         "index": 3
+                                     },
+                                     {
+                                         "name": "ring",
+                                         "index": 4
+                                     },
+                                     {
+                                         "name": "little",
+                                         "index": 5
+                                     }
+                                 ]
+                             }
+    );
+    modelClassMapping = @{
+        @"_root": [HumanModel class],
+        @"leftFingers": [FingerModel class]
+    };
+    expected = [WCJSONTool JSONModelWithString:JSONString modelClassMapping:modelClassMapping];
+    XCTAssertTrue([expected isKindOfClass:[HumanModel class]]);
+    XCTAssertTrue([[(HumanModel *)expected leftFingers] count] == 5);
+    [[(HumanModel *)expected leftFingers] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        XCTAssertTrue([(FingerModel *)obj index] == idx + 1);
+        switch (idx) {
+            case 0: {
+                XCTAssertEqualObjects([(FingerModel *)obj name], @"thumb");
+                break;
+            }
+            case 1: {
+                XCTAssertEqualObjects([(FingerModel *)obj name], @"index");
+                break;
+            }
+            case 2: {
+                XCTAssertEqualObjects([(FingerModel *)obj name], @"middle");
+                break;
+            }
+            case 3: {
+                XCTAssertEqualObjects([(FingerModel *)obj name], @"ring");
+                break;
+            }
+            case 4: {
+                XCTAssertEqualObjects([(FingerModel *)obj name], @"little");
+                break;
+            }
+            default:
+                break;
+        }
+    }];
+}
+
 #pragma mark - Data to Object
 
 #pragma mark > to NSDictionary/NSArray

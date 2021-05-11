@@ -202,6 +202,74 @@
     return [self JSONObjectWithData:[string dataUsingEncoding:NSUTF8StringEncoding] options:options objectClass:objectClass];
 }
 
+#pragma mark > to model
+
++ (nullable id)JSONModelWithString:(NSString *)string modelClassMapping:(NSDictionary<NSString *, Class> *)modelClassMapping {
+    if (![string isKindOfClass:[NSString class]] || ![modelClassMapping isKindOfClass:[NSDictionary class]]) {
+        return nil;
+    }
+    
+    if ([string isKindOfClass:[NSString class]] && string.length == 0) {
+        return nil;
+    }
+    
+    id JSONObject = [self JSONObjectWithString:string options:kNilOptions objectClass:nil];
+    
+    if ([JSONObject isKindOfClass:[NSArray class]] || [JSONObject isKindOfClass:[NSDictionary class]]) {
+        if ([modelClassMapping isKindOfClass:[NSDictionary class]] && modelClassMapping[@"_root"] == nil) {
+            return nil;
+        }
+    }
+
+    return [self safeJSONModelWithJSONObject:JSONObject rootModelKey:@"_root" modelClassMapping:modelClassMapping];
+}
+
+#pragma mark ::
+
++ (nullable id)safeJSONModelWithJSONObject:(id)JSONObject rootModelKey:(NSString *)rootKey modelClassMapping:(NSDictionary<NSString *, Class> *)modelClassMapping {
+    if ([JSONObject isKindOfClass:[NSNumber class]] || [JSONObject isKindOfClass:[NSString class]] || JSONObject == [NSNull null]) {
+        return JSONObject;
+    }
+    else if ([JSONObject isKindOfClass:[NSArray class]]) {
+        NSMutableArray *arrM = [NSMutableArray array];
+        for (id element in (NSArray *)JSONObject) {
+            id item = [self safeJSONModelWithJSONObject:element rootModelKey:rootKey modelClassMapping:modelClassMapping];
+            if (item) {
+                [arrM addObject:item];
+            }
+        }
+        return arrM;
+    }
+    else if ([JSONObject isKindOfClass:[NSDictionary class]]) {
+        Class modelClass = modelClassMapping[rootKey];
+        id model = [[modelClass alloc] init];
+        
+        if (model) {
+            [(NSDictionary *)JSONObject enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
+                if ([key isKindOfClass:[NSString class]]) {
+                    id value = [self safeJSONModelWithJSONObject:obj rootModelKey:key modelClassMapping:modelClassMapping];
+                    if (value) {
+                        // @see https://stackoverflow.com/questions/25213707/parsing-json-to-a-predefined-class-in-objective-c
+                        @try {
+                            [model setValue:value forKey:key];
+                        }
+                        @catch (NSException *exception) {
+                            NSLog(@"[%@] an exception occured:\n%@", NSStringFromClass([self class]), exception);
+                        }
+                    }
+                }
+            }];
+        }
+        
+        return model;
+    }
+    else {
+        return nil;
+    }
+}
+
+#pragma mark ::
+
 #pragma mark - Data to Object
 
 #pragma mark > to NSDictionary/NSArray

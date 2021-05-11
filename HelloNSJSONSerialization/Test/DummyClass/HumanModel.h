@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface FingerModel : NSObject
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, assign) NSInteger index;
 - (instancetype)initWithName:(NSString *)name;
 @end
 
@@ -29,6 +30,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) HandModel *leftHand;
 @property (nonatomic, strong) HandModel *rightHand;
+
+@property (nonatomic, strong) NSArray<FingerModel *> *leftFingers;
+@property (nonatomic, strong) NSArray<FingerModel *> *rightFingers;
+
 @property (nonatomic, strong) NSDictionary *map;
 @property (nonatomic, strong) NSDictionary *mapHands;
 
