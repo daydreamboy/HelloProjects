@@ -204,12 +204,16 @@
 
 #pragma mark > to model
 
-+ (nullable id)JSONModelWithString:(NSString *)string modelClassMapping:(NSDictionary<NSString *, Class> *)modelClassMapping {
++ (nullable id)JSONModelWithString:(NSString *)string modelClassMapping:(NSDictionary<NSString *, Class> *)modelClassMapping JSONKeysToModelKeys:(nullable NSDictionary *)JSONKeysToModelKeys {
     if (![string isKindOfClass:[NSString class]] || ![modelClassMapping isKindOfClass:[NSDictionary class]]) {
         return nil;
     }
     
     if ([string isKindOfClass:[NSString class]] && string.length == 0) {
+        return nil;
+    }
+    
+    if (JSONKeysToModelKeys && ![JSONKeysToModelKeys isKindOfClass:[NSDictionary class]]) {
         return nil;
     }
     
@@ -221,19 +225,19 @@
         }
     }
 
-    return [self safeJSONModelWithJSONObject:JSONObject rootModelKey:@"_root" modelClassMapping:modelClassMapping];
+    return [self safeJSONModelWithJSONObject:JSONObject rootModelKey:@"_root" modelClassMapping:modelClassMapping JSONKeysToModelKeys:JSONKeysToModelKeys];
 }
 
 #pragma mark ::
 
-+ (nullable id)safeJSONModelWithJSONObject:(id)JSONObject rootModelKey:(NSString *)rootKey modelClassMapping:(NSDictionary<NSString *, Class> *)modelClassMapping {
++ (nullable id)safeJSONModelWithJSONObject:(id)JSONObject rootModelKey:(NSString *)rootKey modelClassMapping:(NSDictionary<NSString *, Class> *)modelClassMapping JSONKeysToModelKeys:(nullable NSDictionary *)JSONKeysToModelKeys {
     if ([JSONObject isKindOfClass:[NSNumber class]] || [JSONObject isKindOfClass:[NSString class]] || JSONObject == [NSNull null]) {
         return JSONObject;
     }
     else if ([JSONObject isKindOfClass:[NSArray class]]) {
         NSMutableArray *arrM = [NSMutableArray array];
         for (id element in (NSArray *)JSONObject) {
-            id item = [self safeJSONModelWithJSONObject:element rootModelKey:rootKey modelClassMapping:modelClassMapping];
+            id item = [self safeJSONModelWithJSONObject:element rootModelKey:rootKey modelClassMapping:modelClassMapping JSONKeysToModelKeys:JSONKeysToModelKeys];
             if (item) {
                 [arrM addObject:item];
             }
@@ -242,16 +246,29 @@
     }
     else if ([JSONObject isKindOfClass:[NSDictionary class]]) {
         Class modelClass = modelClassMapping[rootKey];
-        id model = [[modelClass alloc] init];
+        NSObject<WCJSONModel> *model = [[modelClass alloc] init];
+        if ([model respondsToSelector:@selector(JSONModelClassDidInit:JSONKey:)]) {
+            [model JSONModelClassDidInit:model JSONKey:rootKey];
+        }
         
         if (model) {
             [(NSDictionary *)JSONObject enumerateKeysAndObjectsUsingBlock:^(id  _Nonnull key, id  _Nonnull obj, BOOL * _Nonnull stop) {
                 if ([key isKindOfClass:[NSString class]]) {
-                    id value = [self safeJSONModelWithJSONObject:obj rootModelKey:key modelClassMapping:modelClassMapping];
+                    id value = [self safeJSONModelWithJSONObject:obj rootModelKey:key modelClassMapping:modelClassMapping JSONKeysToModelKeys:JSONKeysToModelKeys];
                     if (value) {
-                        // @see https://stackoverflow.com/questions/25213707/parsing-json-to-a-predefined-class-in-objective-c
                         @try {
-                            [model setValue:value forKey:key];
+                            NSString *modelKey = key;
+                            
+                            if (JSONKeysToModelKeys[key]) {
+                                modelKey = JSONKeysToModelKeys[key];
+                            }
+                            
+                            // @see https://stackoverflow.com/questions/25213707/parsing-json-to-a-predefined-class-in-objective-c
+                            [model setValue:value forKey:modelKey];
+                            
+                            if ([model respondsToSelector:@selector(JSONModelClassDidSetValueForKey:modelKey:JSONKey:value:)]) {
+                                [model JSONModelClassDidSetValueForKey:model modelKey:modelKey JSONKey:key value:value];
+                            }
                         }
                         @catch (NSException *exception) {
                             NSLog(@"[%@] an exception occured:\n%@", NSStringFromClass([self class]), exception);

@@ -43,7 +43,24 @@ typedef NS_ENUM(NSUInteger, WCJSONToolMergeMode) {
 };
 
 @protocol WCJSONModel <NSObject>
+@optional
+/**
+ Called after model class init
+ 
+ @param model the model instance
+ @param JSONKey the JSON key which in JSON string
+ */
+- (void)JSONModelClassDidInit:(id<WCJSONModel>)model JSONKey:(NSString *)JSONKey;
 
+/**
+ Called after setValue:forKey:
+ 
+ @param model the model instance
+ @param modelKey the model key used for setValue:forKey:
+ @param JSONKey the JSON key which in JSON string
+ @param value the value used for setValue:forKey:
+ */
+- (void)JSONModelClassDidSetValueForKey:(id<WCJSONModel>)model modelKey:(NSString *)modelKey JSONKey:(NSString *)JSONKey value:(id)value;
 @end
 
 NS_AVAILABLE_IOS(5_0)
@@ -140,7 +157,7 @@ NS_AVAILABLE_IOS(5_0)
 #pragma mark > to id
 
 /**
- Convert the JSON formatted string to the object
+ Convert the JSON formatted string to the JSON object
 
  @param string the JSON formatted string
  @param options the NSJSONReadingOptions
@@ -152,7 +169,21 @@ NS_AVAILABLE_IOS(5_0)
 
 #pragma mark > to model
 
-+ (nullable id<WCJSONModel>)JSONModelWithString:(NSString *)string modelClassMapping:(NSDictionary<NSString *, Class> *)modelClassMapping;
+/**
+ Convert the JSON formatted string to the customized object
+ 
+ @param string the JSON formatted string
+ @param modelClassMapping the mapping for JSON key to model class. Use @"_root" for root model class
+ @param JSONKeysToModelKeys the converted mapping for JSON key to model key
+ 
+ @return the converted customized object which properties are filled or remained as default value (nil, NO, etc.).
+ The return object maybe confirm the protocol WCJSONModel or not which decided by  root model class (@"_root") if confirm the protocol WCJSONModel
+ 
+ @note the modelClassMapping at least has @"_root" for root model class or the JSON string is a fragment node, such as string, number, bool
+ 
+ @discussion the other model class except @"_root" also can confirm the protocol WCJSONModel
+ */
++ (nullable id<WCJSONModel>)JSONModelWithString:(NSString *)string modelClassMapping:(NSDictionary<NSString *, Class> *)modelClassMapping JSONKeysToModelKeys:(nullable NSDictionary *)JSONKeysToModelKeys;
 
 #pragma mark - Data to Object
 

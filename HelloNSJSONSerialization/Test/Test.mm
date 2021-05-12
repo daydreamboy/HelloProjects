@@ -373,7 +373,7 @@
     NSDictionary *modelClassMapping;
     id expected;
     
-    // Case 1
+    // Case 1: only root container is dictionary, use _root key
     JSONString = STR_OF_JSON(
                              {
                                  "name": "thumb",
@@ -383,12 +383,12 @@
     modelClassMapping = @{
         @"_root": [FingerModel class]
     };
-    expected = [WCJSONTool JSONModelWithString:JSONString modelClassMapping:modelClassMapping];
+    expected = [WCJSONTool JSONModelWithString:JSONString modelClassMapping:modelClassMapping JSONKeysToModelKeys:nil];
     XCTAssertTrue([expected isKindOfClass:[FingerModel class]]);
     XCTAssertEqualObjects([(FingerModel *)expected name], @"thumb");
     XCTAssertTrue([(FingerModel *)expected index] == 1);
     
-    // Case 2
+    // Case 2: only root container is array, use _root key
     JSONString = STR_OF_JSON(
                              [
                                  {
@@ -416,7 +416,7 @@
     modelClassMapping = @{
         @"_root": [FingerModel class]
     };
-    expected = [WCJSONTool JSONModelWithString:JSONString modelClassMapping:modelClassMapping];
+    expected = [WCJSONTool JSONModelWithString:JSONString modelClassMapping:modelClassMapping JSONKeysToModelKeys:nil];
     XCTAssertTrue([expected isKindOfClass:[NSArray class]]);
     XCTAssertTrue([(NSArray *)expected count] == 5);
     [(NSArray *)expected enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -447,7 +447,7 @@
         }
     }];
     
-    // Case 3
+    // Case 3: the HumanModel class's leftFingers property which is NSArray
     JSONString = STR_OF_JSON(
                              {
                                  "leftFingers": [
@@ -478,7 +478,71 @@
         @"_root": [HumanModel class],
         @"leftFingers": [FingerModel class]
     };
-    expected = [WCJSONTool JSONModelWithString:JSONString modelClassMapping:modelClassMapping];
+    expected = [WCJSONTool JSONModelWithString:JSONString modelClassMapping:modelClassMapping JSONKeysToModelKeys:nil];
+    XCTAssertTrue([expected isKindOfClass:[HumanModel class]]);
+    XCTAssertTrue([[(HumanModel *)expected leftFingers] count] == 5);
+    [[(HumanModel *)expected leftFingers] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        XCTAssertTrue([(FingerModel *)obj index] == idx + 1);
+        switch (idx) {
+            case 0: {
+                XCTAssertEqualObjects([(FingerModel *)obj name], @"thumb");
+                break;
+            }
+            case 1: {
+                XCTAssertEqualObjects([(FingerModel *)obj name], @"index");
+                break;
+            }
+            case 2: {
+                XCTAssertEqualObjects([(FingerModel *)obj name], @"middle");
+                break;
+            }
+            case 3: {
+                XCTAssertEqualObjects([(FingerModel *)obj name], @"ring");
+                break;
+            }
+            case 4: {
+                XCTAssertEqualObjects([(FingerModel *)obj name], @"little");
+                break;
+            }
+            default:
+                break;
+        }
+    }];
+    
+    // Case 4: the JSON key can used to the property name, use JSONKeysToModelKeys parameter
+    JSONString = STR_OF_JSON(
+                             {
+                                 "left fingers": [
+                                     {
+                                         "name": "thumb",
+                                         "index": 1
+                                     },
+                                     {
+                                         "name": "index",
+                                         "index": 2
+                                     },
+                                     {
+                                         "name": "middle",
+                                         "index": 3
+                                     },
+                                     {
+                                         "name": "ring",
+                                         "index": 4
+                                     },
+                                     {
+                                         "name": "little",
+                                         "index": 5
+                                     }
+                                 ]
+                             }
+    );
+    modelClassMapping = @{
+        @"_root": [HumanModel class],
+        @"left fingers": [FingerModel class]
+    };
+    expected = [WCJSONTool JSONModelWithString:JSONString modelClassMapping:modelClassMapping JSONKeysToModelKeys:@{
+        @"left fingers": @"leftFingers",
+    }];
     XCTAssertTrue([expected isKindOfClass:[HumanModel class]]);
     XCTAssertTrue([[(HumanModel *)expected leftFingers] count] == 5);
     [[(HumanModel *)expected leftFingers] enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
