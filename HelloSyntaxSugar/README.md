@@ -1074,6 +1074,18 @@ ivar变量可以设置访问级别，有4种[^16]，如下
 
 
 
+> 以上代码，见
+>
+> Tests_AccessPrivateIvar.m
+>
+> Tests_AccessProtectedIvar.m
+>
+> Tests_AccessPublicIvar.m
+>
+> Tests_AccessPackageIvar.m
+
+
+
 通过上面的例子，可以4种访问级别，可以归纳如下表
 
 | 级别       | 定义类中访问 | 子类中访问 | 实例外访问 | 可执行bundle代码访问另一个可执行bundle代码（子类中访问、实例外访问） |
@@ -1087,7 +1099,71 @@ ivar变量可以设置访问级别，有4种[^16]，如下
 
 ### （2）访问私有ivar变量
 
+根据上面一节，可以看到@private修饰的ivar变量访问限制是最小的，因此如果要通过实例对象来访问私有ivar变量，需要一些hook操作。
 
+目前有下面几种方式可以实现[^17]
+
+* 直接使用指针地址
+* 通过runtime api（`class_getInstanceVariable`和`object_getIvar`）
+* 通过KVC
+* 声明ivar变量为@public
+
+
+
+以访问下面两个私有变量为例
+
+```objective-c
+@implementation HiddenPrivateIvarClass {
+@private
+    NSString *_name;
+    NSString *_job;
+}
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _name = @"w";
+        _job = @"hacker";
+    }
+    return self;
+}
+
+@end
+```
+
+
+
+#### a. 直接使用指针地址
+
+由于Objective-C对象的内存都是分配在堆上，因此根据实例对象的地址，加上特定的偏移量，就能计算出实例变量在内存的地址。
+
+示例代码，如下
+
+```objective-c
+- (void)test_hook_by_pointer_arithmetic {
+    HiddenPrivateIvarClass *foo = [[HiddenPrivateIvarClass alloc] init];
+    
+    __unsafe_unretained NSString *name = (__bridge id)*(void **)((__bridge void *)foo + 8);
+    NSLog(@"name: %@", name);
+    XCTAssertEqualObjects(name, @"w");
+    
+    __unsafe_unretained NSString *job = (__bridge id)*(void **)((__bridge void *)foo + 16);
+    NSLog(@"job: %@", job);
+    XCTAssertEqualObjects(job, @"hacker");
+}
+```
+
+说明
+
+> 1. 每个Objective-C对象默认有个isa变量，在64bit系统中，isa占8个字节，因此计算第一个实例变量的偏移量是8
+> 2. 在ARC下，需要使用`__unsafe_unretained`修饰获取到ivar变量对象，不需要持有该对象
+> 3. 上面这种方法，获取到实例变量不一定是Objective-C对象，也可能是基本类型，容易产生内存问题，因此不适合用于生产中
+
+
+
+#### b. 通过runtime api
+
+主要通过`class_getInstanceVariable`和`object_getIvar`这两个API
 
 
 
@@ -1131,6 +1207,7 @@ ivar变量可以设置访问级别，有4种[^16]，如下
 [^15]:https://gcc.gnu.org/onlinedocs/gcc/Return-Address.html
 
 [^16]:https://useyourloaf.com/blog/private-ivars/
+[^17]:http://jerrymarino.com/2014/01/31/objective-c-private-instance-variable-access.html
 
 
 

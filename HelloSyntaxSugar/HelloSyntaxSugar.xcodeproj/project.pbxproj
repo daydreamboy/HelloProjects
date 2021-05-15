@@ -44,6 +44,8 @@
 		4F954B79264FC3630076BE47 /* DynamicFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F954B71264FC3630076BE47 /* DynamicFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4F954B80264FC3810076BE47 /* DynamicFrameworkClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F954B7E264FC3810076BE47 /* DynamicFrameworkClass.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4F954B81264FC3810076BE47 /* DynamicFrameworkClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F954B7F264FC3810076BE47 /* DynamicFrameworkClass.m */; };
+		4F954B88264FCC120076BE47 /* Tests_HookPrivateIvar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F954B87264FCC120076BE47 /* Tests_HookPrivateIvar.m */; };
+		4F954B8B264FCC7D0076BE47 /* HiddenPrivateIvarClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F954B8A264FCC7D0076BE47 /* HiddenPrivateIvarClass.m */; };
 		4F9B576326257BFE003EC625 /* Tests_Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B576226257BFE003EC625 /* Tests_Block.m */; };
 		4FBB4E0921A2E6C4000E9F61 /* SynthesizePropertyDerivedFromBaseClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBB4E0821A2E6C4000E9F61 /* SynthesizePropertyDerivedFromBaseClassViewController.m */; };
 		4FBB4E0D21A2E707000E9F61 /* MyEmoticonGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBB4E0C21A2E707000E9F61 /* MyEmoticonGroupModel.m */; };
@@ -197,6 +199,9 @@
 		4F954B74264FC3630076BE47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F954B7E264FC3810076BE47 /* DynamicFrameworkClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamicFrameworkClass.h; sourceTree = "<group>"; };
 		4F954B7F264FC3810076BE47 /* DynamicFrameworkClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicFrameworkClass.m; sourceTree = "<group>"; };
+		4F954B87264FCC120076BE47 /* Tests_HookPrivateIvar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_HookPrivateIvar.m; sourceTree = "<group>"; };
+		4F954B89264FCC7D0076BE47 /* HiddenPrivateIvarClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HiddenPrivateIvarClass.h; sourceTree = "<group>"; };
+		4F954B8A264FCC7D0076BE47 /* HiddenPrivateIvarClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HiddenPrivateIvarClass.m; sourceTree = "<group>"; };
 		4F9B576226257BFE003EC625 /* Tests_Block.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_Block.m; sourceTree = "<group>"; };
 		4FBB4E0721A2E6C4000E9F61 /* SynthesizePropertyDerivedFromBaseClassViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SynthesizePropertyDerivedFromBaseClassViewController.h; sourceTree = "<group>"; };
 		4FBB4E0821A2E6C4000E9F61 /* SynthesizePropertyDerivedFromBaseClassViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SynthesizePropertyDerivedFromBaseClassViewController.m; sourceTree = "<group>"; };
@@ -362,6 +367,9 @@
 				4F51129222C315D0005E5AAE /* Tests_AccessPublicIvar.m */,
 				4F954B6A264FC1B20076BE47 /* Tests_AccessPackageIvar.m */,
 				4F5112B522C375A0005E5AAE /* Tests_AccessIvarOfExtension.m */,
+				4F954B87264FCC120076BE47 /* Tests_HookPrivateIvar.m */,
+				4F954B89264FCC7D0076BE47 /* HiddenPrivateIvarClass.h */,
+				4F954B8A264FCC7D0076BE47 /* HiddenPrivateIvarClass.m */,
 				4F5112B722C3760E005E5AAE /* BaseClass3_Internal.h */,
 				4F5112B822C3771E005E5AAE /* BaseClass3.h */,
 				4F5112B922C3771E005E5AAE /* BaseClass3.m */,
@@ -751,6 +759,7 @@
 				4FCB424925DAC90A000FB615 /* Tests_overloadable.m in Sources */,
 				4F954B69264FBFA80076BE47 /* Tests_AccessProtectedIvar.m in Sources */,
 				4F5112B622C375A0005E5AAE /* Tests_AccessIvarOfExtension.m in Sources */,
+				4F954B8B264FCC7D0076BE47 /* HiddenPrivateIvarClass.m in Sources */,
 				4FD29339258E02FE000E1E5A /* Tests_objc_requires_super.m in Sources */,
 				4FCCA26425DF6D2100986C4B /* Tests_cleanup.m in Sources */,
 				4F9B576326257BFE003EC625 /* Tests_Block.m in Sources */,
@@ -765,6 +774,7 @@
 				4F21ADC9244852BF00B58E33 /* Tests_Category_hook_setter.m in Sources */,
 				4F4FF49622C7109A007B0833 /* DerivedClassB1.m in Sources */,
 				4FCB425A25DACBA5000FB615 /* objc_runtime_name_dummy.m in Sources */,
+				4F954B88264FCC120076BE47 /* Tests_HookPrivateIvar.m in Sources */,
 				4F51129322C315D0005E5AAE /* Tests_AccessPublicIvar.m in Sources */,
 				4FCB425325DACB95000FB615 /* Tests_objc_runtime_name.m in Sources */,
 				4F51128422C31102005E5AAE /* Tests_AccessIvarOfProperty.m in Sources */,
