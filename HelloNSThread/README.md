@@ -247,7 +247,57 @@ NSConditionLock比较适合生产者和消费者情况[^3]，示例代码见**Us
 
 
 
-## 4、常用技巧
+## 4、@synchronized
+
+@synchronized是一个编译指令，支持多线程的加锁，允许一个隐式的加锁并关联到任意Objective-C对象上。语法格式，如下
+
+```objective-c
+@synchronized(object) {
+  ...
+}
+```
+
+支持Objective-C的gcc编译器，能上面的代码，转成下面的形式
+
+```objective-c
+[[object getLock] lock];
+...
+[[object getLock] unlock];
+```
+
+
+
+使用@synchronized优势在于
+
+* 使用block方式来加锁和解锁，可读性好
+* @synchronized块内部会处理NSException异常，即使出现异常，锁也可以安全释放
+* @synchronized块允许block中有return语句，因此锁也可以释放
+
+
+
+参考的这篇文章的描述[^7]，如下
+
+> Not having to explicitly create or destroy locks can make code easier to write and easier to read. `@synchronized `is also aware of return statements and exceptions, so you can be sure that the lock is always released even if the flow of control exits from the middle of the block.
+
+
+
+使用@synchronized需要注意，下面几点
+
+* @synchronized比显式使用要慢一些，慢在找隐式的锁
+* @synchronized的实现使用递归锁，递归锁本来就比非递归锁要慢一些
+* @synchronized不支持条件变量
+
+
+
+参考的这篇文章的描述[^7]，如下
+
+> `@synchronized `is slower than explicit locks, because the overhead of looking up the implicit lock is significant. It also always uses a recursive lock, which is slower than a non-recursive lock. It is also less flexible, not supporting condition variables or other advanced threading concepts.
+
+
+
+
+
+## 5、常用技巧
 
 ### （1）判断当前线程是否是主线程
 
@@ -397,5 +447,6 @@ WCAsyncTaskChainManager基于WCAsyncTaskExecutor的封装，支持数据在多�
 
 [^6]: https://nshipster.com/benchmarking/
 
+[^7]:http://nextstep.sdf-eu.org/clocFAQ/#sync-advs
 
 
