@@ -8,6 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@interface StaticLibrary : NSObject
+@interface StaticLibrary : NSObject {
+@package
+    NSString *_packageIvar;
+@public
+    NSString *_publicIvar;
+}
+
 - (void)setSomeData:(NSDictionary *)data;
+
 @end

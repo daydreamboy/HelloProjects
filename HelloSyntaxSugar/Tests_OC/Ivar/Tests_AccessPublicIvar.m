@@ -8,48 +8,58 @@
 
 #import <XCTest/XCTest.h>
 #import <Foundation/Foundation.h>
+#import <StaticLibrary/StaticLibrary.h>
 
-@interface BaseClass2 : NSObject {
-    NSInteger _number;
+@interface AccessPublicIvar1 : NSObject {
+@public
+    NSString *_publicIvar;
 }
-@property (nonatomic, assign) NSInteger number;
 @end
-@implementation BaseClass2
+@implementation AccessPublicIvar1
+@end
+
+@interface AccessPublicIvar2 : AccessPublicIvar1
+@end
+@implementation AccessPublicIvar2
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _number = 3;
-        NSLog(@"%@ self.number: %ld", NSStringFromClass([self class]), (long)self.number);
-        NSLog(@"%@ _number: %ld", NSStringFromClass([self class]), (long)_number);
+        _publicIvar = @"abc";
     }
     return self;
 }
 @end
 
-@interface DerivedClass2 : BaseClass2
+#pragma mark -
+
+@interface AccessPublicIvarFromStaticLibrary : StaticLibrary
 @end
-@implementation DerivedClass2
+@implementation AccessPublicIvarFromStaticLibrary
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _number = 10;
-        NSLog(@"%@ self.number: %ld", NSStringFromClass([self class]), (long)self.number);
-        NSLog(@"%@ _number: %ld", NSStringFromClass([self class]), (long)_number);
+        _publicIvar = @"abc";
     }
     return self;
 }
 @end
 
+#pragma mark -
+
+@interface Tests_AccessPrivateIvar : XCTestCase
+@end
 
 @interface Tests_AccessPublicIvar : XCTestCase
 @end
 
 @implementation Tests_AccessPublicIvar
 
-- (void)test_ivar {
-    DerivedClass2 *derivedObject = [DerivedClass2 new];
-    NSLog(@"%ld", (long)derivedObject.number);
-    XCTAssertTrue(derivedObject.number == 10);
+- (void)test_access_public_ivar {
+    __unused AccessPublicIvar2 *object = [AccessPublicIvar2 new];
+    NSLog(@"%@", object->_publicIvar);
+    
+    object->_publicIvar = @"123";
+    XCTAssertEqualObjects(object->_publicIvar, @"123");
 }
 
 @end

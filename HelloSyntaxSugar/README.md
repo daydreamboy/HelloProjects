@@ -806,11 +806,7 @@ void get_function_address(void)
 
 ## 10、Objective-C常见关键词
 
-### （1）@package
-
-
-
-### （2）template
+### （1）template
 
 template在Objective-C++是关键词，不能作为参数使用，否则编译器（Xcode 10）会报错。
 
@@ -902,7 +898,206 @@ __has_feature(xxx)可以传入下面的参数，来检查编译是否支持某�
 
 ## 16、ivar变量
 
-https://useyourloaf.com/blog/private-ivars/
+Objective-C实例的内部变量，称为ivar变量（或者实例变量）。一般来说，访问ivar变量，需要通过对应setter和getter方法来访问。
+
+
+
+### （1）ivar变量访问级别
+
+ivar变量可以设置访问级别，有4种[^16]，如下
+
+* @private，仅在定义该变量的类中访问。属性的私有变量，就是@private级别
+* @protected，在定义该变量的类中以及所有子类中访问。如果定义ivar变量，默认就是@protected级别
+
+* @package，在可执行的包（例如framework）的代码中任意访问，但是在另一个可执行包的编译链接中不能访问
+* @public，任意访问
+
+
+
+举个例子，如下
+
+@private
+
+```objective-c
+@interface AccessPrivateIvar1 : NSObject {
+@private
+    NSString *_privateIvar;
+}
+@end
+@implementation AccessPrivateIvar1
+@end
+
+@interface AccessPrivateIvar2 : AccessPrivateIvar1
+@end
+@implementation AccessPrivateIvar2
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _privateIvar = @"abc"; // Compile Error: Instance variable '_privateIvar' is private
+    }
+    return self;
+}
+@end
+
+- (void)test_access_private_ivar {
+    AccessPrivateIvar2 *object = [AccessPrivateIvar2 new];
+    NSLog(@"%@", object->_privateIvar);  // Compile Error: Instance variable '_privateIvar' is private
+}
+```
+
+
+
+@protected
+
+```objective-c
+@interface AccessProtectedIvar1 : NSObject {
+@protected
+    NSString *_protectedIvar;
+}
+@end
+@implementation AccessProtectedIvar1
+@end
+
+@interface AccessProtectedIvar2 : AccessProtectedIvar1
+@end
+@implementation AccessProtectedIvar2
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _protectedIvar = @"abc";
+    }
+    return self;
+}
+@end
+  
+- (void)test_access_protected_ivar {
+    __unused AccessProtectedIvar2 *object = [AccessProtectedIvar2 new];
+    NSLog(@"%@", object->_protectedIvar);  // Compile Error: Instance variable '_protectedIvar' is protected
+}
+```
+
+
+
+@public
+
+```objective-c
+@interface AccessPublicIvar1 : NSObject {
+@public
+    NSString *_publicIvar;
+}
+@end
+@implementation AccessPublicIvar1
+@end
+
+@interface AccessPublicIvar2 : AccessPublicIvar1
+@end
+@implementation AccessPublicIvar2
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _publicIvar = @"abc";
+    }
+    return self;
+}
+@end
+  
+- (void)test_access_public_ivar {
+    __unused AccessPublicIvar2 *object = [AccessPublicIvar2 new];
+    NSLog(@"%@", object->_publicIvar);
+    
+    object->_publicIvar = @"123";
+    XCTAssertEqualObjects(object->_publicIvar, @"123");
+}
+```
+
+
+
+@package
+
+```objective-c
+@interface AccessPackageIvar1 : NSObject {
+@package
+    NSString *_packageIvar;
+}
+@end
+@implementation AccessPackageIvar1
+@end
+
+@interface AccessPackageIvar2 : AccessPackageIvar1
+@end
+@implementation AccessPackageIvar2
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        _packageIvar = @"abc";
+    }
+    return self;
+}
+@end
+
+#pragma mark -
+
+@interface AccessPackageIvarFromDynamicFramework : DynamicFrameworkClass
+@end
+@implementation AccessPackageIvarFromDynamicFramework
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        /**
+         Undefined symbols for architecture x86_64:
+         "_OBJC_IVAR_$_DynamicFrameworkClass._packageIvar", referenced from:
+             -[AccessPackageIvarFromStaticLibrary init] in Tests_AccessPackageIvar.o
+         */
+        //_packageIvar = @"123";
+        _publicIvar = @"123";
+    }
+    return self;
+}
+@end
+  
+- (void)test_access_package_ivar {
+    __unused AccessPackageIvar2 *object = [AccessPackageIvar2 new];
+    NSLog(@"%@", object->_packageIvar);
+    
+    object->_packageIvar = @"123";
+    XCTAssertEqualObjects(object->_packageIvar, @"123");
+}
+
+- (void)test_access_public_ivar_from_dynamic_framework {
+    __unused AccessPackageIvarFromDynamicFramework *object = [AccessPackageIvarFromDynamicFramework new];
+    NSLog(@"%@", object->_publicIvar);
+    
+    object->_publicIvar = @"123";
+    XCTAssertEqualObjects(object->_publicIvar, @"123");
+}
+```
+
+
+
+通过上面的例子，可以4种访问级别，可以归纳如下表
+
+| 级别       | 定义类中访问 | 子类中访问 | 实例外访问 | 可执行bundle代码访问另一个可执行bundle代码（子类中访问、实例外访问） |
+| ---------- | ------------ | ---------- | ---------- | ------------------------------------------------------------ |
+| @private   | ✅            | ❌          | ❌          | ❌                                                            |
+| @protected | ✅            | ✅          | ❌          | ❌                                                            |
+| @package   | ✅            | ✅          | ✅          | ❌                                                            |
+| @public    | ✅            | ✅          | ✅          | ✅                                                            |
+
+
+
+### （2）访问私有ivar变量
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -934,6 +1129,8 @@ https://useyourloaf.com/blog/private-ivars/
 
 [^14]:https://clang.llvm.org/docs/LanguageExtensions.html#feature-checking-macros
 [^15]:https://gcc.gnu.org/onlinedocs/gcc/Return-Address.html
+
+[^16]:https://useyourloaf.com/blog/private-ivars/
 
 
 

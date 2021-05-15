@@ -36,6 +36,14 @@
 		4F714A98219535F5006CB8C4 /* GCCAttributeCleanupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F714A97219535F5006CB8C4 /* GCCAttributeCleanupViewController.m */; };
 		4F745F5525C2C1E000C770AB /* Tests_StateExpression_return.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F745F5425C2C1E000C770AB /* Tests_StateExpression_return.m */; };
 		4F793B242174CF57000067AF /* DelayReleaseObjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F793B232174CF57000067AF /* DelayReleaseObjectViewController.m */; };
+		4F954B67264FBE0E0076BE47 /* Tests_AccessPrivateIvar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F954B66264FBE0E0076BE47 /* Tests_AccessPrivateIvar.m */; };
+		4F954B69264FBFA80076BE47 /* Tests_AccessProtectedIvar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F954B68264FBFA80076BE47 /* Tests_AccessProtectedIvar.m */; };
+		4F954B6B264FC1B20076BE47 /* Tests_AccessPackageIvar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F954B6A264FC1B20076BE47 /* Tests_AccessPackageIvar.m */; };
+		4F954B75264FC3630076BE47 /* DynamicFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F954B73264FC3630076BE47 /* DynamicFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4F954B78264FC3630076BE47 /* DynamicFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F954B71264FC3630076BE47 /* DynamicFramework.framework */; };
+		4F954B79264FC3630076BE47 /* DynamicFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4F954B71264FC3630076BE47 /* DynamicFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4F954B80264FC3810076BE47 /* DynamicFrameworkClass.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F954B7E264FC3810076BE47 /* DynamicFrameworkClass.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4F954B81264FC3810076BE47 /* DynamicFrameworkClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F954B7F264FC3810076BE47 /* DynamicFrameworkClass.m */; };
 		4F9B576326257BFE003EC625 /* Tests_Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9B576226257BFE003EC625 /* Tests_Block.m */; };
 		4FBB4E0921A2E6C4000E9F61 /* SynthesizePropertyDerivedFromBaseClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBB4E0821A2E6C4000E9F61 /* SynthesizePropertyDerivedFromBaseClassViewController.m */; };
 		4FBB4E0D21A2E707000E9F61 /* MyEmoticonGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBB4E0C21A2E707000E9F61 /* MyEmoticonGroupModel.m */; };
@@ -86,6 +94,20 @@
 			remoteGlobalIDString = 4FC2CF782031B10300A416DC;
 			remoteInfo = HelloSyntaxSugar;
 		};
+		4F954B76264FC3630076BE47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FC2CF712031B10300A416DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F954B70264FC3630076BE47;
+			remoteInfo = DynamicFramework;
+		};
+		4F954B82264FC3C00076BE47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4FC2CF712031B10300A416DC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F954B70264FC3630076BE47;
+			remoteInfo = DynamicFramework;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -97,6 +119,17 @@
 			files = (
 				4F21ADD32448750900B58E33 /* StaticLibrary.h in CopyFiles */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F954B7D264FC3630076BE47 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				4F954B79264FC3630076BE47 /* DynamicFramework.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -156,6 +189,14 @@
 		4F745F5425C2C1E000C770AB /* Tests_StateExpression_return.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_StateExpression_return.m; sourceTree = "<group>"; };
 		4F793B222174CF57000067AF /* DelayReleaseObjectViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DelayReleaseObjectViewController.h; sourceTree = "<group>"; };
 		4F793B232174CF57000067AF /* DelayReleaseObjectViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DelayReleaseObjectViewController.m; sourceTree = "<group>"; };
+		4F954B66264FBE0E0076BE47 /* Tests_AccessPrivateIvar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_AccessPrivateIvar.m; sourceTree = "<group>"; };
+		4F954B68264FBFA80076BE47 /* Tests_AccessProtectedIvar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_AccessProtectedIvar.m; sourceTree = "<group>"; };
+		4F954B6A264FC1B20076BE47 /* Tests_AccessPackageIvar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_AccessPackageIvar.m; sourceTree = "<group>"; };
+		4F954B71264FC3630076BE47 /* DynamicFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = DynamicFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F954B73264FC3630076BE47 /* DynamicFramework.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamicFramework.h; sourceTree = "<group>"; };
+		4F954B74264FC3630076BE47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F954B7E264FC3810076BE47 /* DynamicFrameworkClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DynamicFrameworkClass.h; sourceTree = "<group>"; };
+		4F954B7F264FC3810076BE47 /* DynamicFrameworkClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DynamicFrameworkClass.m; sourceTree = "<group>"; };
 		4F9B576226257BFE003EC625 /* Tests_Block.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_Block.m; sourceTree = "<group>"; };
 		4FBB4E0721A2E6C4000E9F61 /* SynthesizePropertyDerivedFromBaseClassViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SynthesizePropertyDerivedFromBaseClassViewController.h; sourceTree = "<group>"; };
 		4FBB4E0821A2E6C4000E9F61 /* SynthesizePropertyDerivedFromBaseClassViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SynthesizePropertyDerivedFromBaseClassViewController.m; sourceTree = "<group>"; };
@@ -219,10 +260,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4F954B6E264FC3630076BE47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		4FC2CF762031B10300A416DC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F954B78264FC3630076BE47 /* DynamicFramework.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,7 +357,10 @@
 			isa = PBXGroup;
 			children = (
 				4F51128322C31102005E5AAE /* Tests_AccessIvarOfProperty.m */,
+				4F954B66264FBE0E0076BE47 /* Tests_AccessPrivateIvar.m */,
+				4F954B68264FBFA80076BE47 /* Tests_AccessProtectedIvar.m */,
 				4F51129222C315D0005E5AAE /* Tests_AccessPublicIvar.m */,
+				4F954B6A264FC1B20076BE47 /* Tests_AccessPackageIvar.m */,
 				4F5112B522C375A0005E5AAE /* Tests_AccessIvarOfExtension.m */,
 				4F5112B722C3760E005E5AAE /* BaseClass3_Internal.h */,
 				4F5112B822C3771E005E5AAE /* BaseClass3.h */,
@@ -347,6 +399,17 @@
 			path = StateExpression;
 			sourceTree = "<group>";
 		};
+		4F954B72264FC3630076BE47 /* DynamicFramework */ = {
+			isa = PBXGroup;
+			children = (
+				4F954B73264FC3630076BE47 /* DynamicFramework.h */,
+				4F954B7E264FC3810076BE47 /* DynamicFrameworkClass.h */,
+				4F954B7F264FC3810076BE47 /* DynamicFrameworkClass.m */,
+				4F954B74264FC3630076BE47 /* Info.plist */,
+			);
+			path = DynamicFramework;
+			sourceTree = "<group>";
+		};
 		4F9B576126257B81003EC625 /* Block */ = {
 			isa = PBXGroup;
 			children = (
@@ -375,6 +438,7 @@
 				4F5C35E2223B5C5400C08119 /* Tests_C */,
 				4F51128222C31102005E5AAE /* Tests_OC */,
 				4F21ADCF2448750900B58E33 /* StaticLibrary */,
+				4F954B72264FC3630076BE47 /* DynamicFramework */,
 				4FC2CF7A2031B10300A416DC /* Products */,
 				4F21ADD72448751900B58E33 /* Frameworks */,
 			);
@@ -387,6 +451,7 @@
 				4F5C35E1223B5C5400C08119 /* Tests_C.xctest */,
 				4F51128122C31102005E5AAE /* Tests_OC.xctest */,
 				4F21ADCE2448750800B58E33 /* libStaticLibrary.a */,
+				4F954B71264FC3630076BE47 /* DynamicFramework.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -481,6 +546,18 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		4F954B6C264FC3630076BE47 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F954B80264FC3810076BE47 /* DynamicFrameworkClass.h in Headers */,
+				4F954B75264FC3630076BE47 /* DynamicFramework.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		4F21ADCD2448750800B58E33 /* StaticLibrary */ = {
 			isa = PBXNativeTarget;
@@ -510,6 +587,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4F954B83264FC3C00076BE47 /* PBXTargetDependency */,
 				4F21ADDA2448751F00B58E33 /* PBXTargetDependency */,
 				4F51128722C31102005E5AAE /* PBXTargetDependency */,
 			);
@@ -536,6 +614,24 @@
 			productReference = 4F5C35E1223B5C5400C08119 /* Tests_C.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		4F954B70264FC3630076BE47 /* DynamicFramework */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F954B7A264FC3630076BE47 /* Build configuration list for PBXNativeTarget "DynamicFramework" */;
+			buildPhases = (
+				4F954B6C264FC3630076BE47 /* Headers */,
+				4F954B6D264FC3630076BE47 /* Sources */,
+				4F954B6E264FC3630076BE47 /* Frameworks */,
+				4F954B6F264FC3630076BE47 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = DynamicFramework;
+			productName = DynamicFramework;
+			productReference = 4F954B71264FC3630076BE47 /* DynamicFramework.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		4FC2CF782031B10300A416DC /* HelloSyntaxSugar */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4FC2CF8F2031B10400A416DC /* Build configuration list for PBXNativeTarget "HelloSyntaxSugar" */;
@@ -543,10 +639,12 @@
 				4FC2CF752031B10300A416DC /* Sources */,
 				4FC2CF762031B10300A416DC /* Frameworks */,
 				4FC2CF772031B10300A416DC /* Resources */,
+				4F954B7D264FC3630076BE47 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				4F954B77264FC3630076BE47 /* PBXTargetDependency */,
 			);
 			name = HelloSyntaxSugar;
 			productName = HelloSyntaxSugar;
@@ -573,6 +671,9 @@
 						CreatedOnToolsVersion = 9.4.1;
 						TestTargetID = 4FC2CF782031B10300A416DC;
 					};
+					4F954B70264FC3630076BE47 = {
+						CreatedOnToolsVersion = 12.5;
+					};
 					4FC2CF782031B10300A416DC = {
 						CreatedOnToolsVersion = 9.3;
 					};
@@ -595,6 +696,7 @@
 				4F5C35E0223B5C5400C08119 /* Tests_C */,
 				4F51128022C31102005E5AAE /* Tests_OC */,
 				4F21ADCD2448750800B58E33 /* StaticLibrary */,
+				4F954B70264FC3630076BE47 /* DynamicFramework */,
 			);
 		};
 /* End PBXProject section */
@@ -608,6 +710,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4F5C35DF223B5C5400C08119 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F954B6F264FC3630076BE47 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -640,6 +749,7 @@
 			files = (
 				4F53472B22C630C4000710B9 /* Event.m in Sources */,
 				4FCB424925DAC90A000FB615 /* Tests_overloadable.m in Sources */,
+				4F954B69264FBFA80076BE47 /* Tests_AccessProtectedIvar.m in Sources */,
 				4F5112B622C375A0005E5AAE /* Tests_AccessIvarOfExtension.m in Sources */,
 				4FD29339258E02FE000E1E5A /* Tests_objc_requires_super.m in Sources */,
 				4FCCA26425DF6D2100986C4B /* Tests_cleanup.m in Sources */,
@@ -648,6 +758,7 @@
 				4F4FF49222C707E9007B0833 /* Tests_Category.m in Sources */,
 				4FD2932F258E01B7000E1E5A /* Tests_objc_subclassing_restricted.m in Sources */,
 				4F745F5525C2C1E000C770AB /* Tests_StateExpression_return.m in Sources */,
+				4F954B6B264FC1B20076BE47 /* Tests_AccessPackageIvar.m in Sources */,
 				4FE9F4A0232B36420096092F /* Tests_Random.m in Sources */,
 				4FE2754426074D1600F0DD02 /* Test_GetCurrentMethodIMP.m in Sources */,
 				4F4FF49922C714A6007B0833 /* ChildHandler.m in Sources */,
@@ -670,6 +781,7 @@
 				4F4FF48722C7042B007B0833 /* ParentHandler.m in Sources */,
 				4F4FF48F22C7075E007B0833 /* BaseClassA1+Category.m in Sources */,
 				4FCB423925DAC30A000FB615 /* Tests_constructor_destructor.m in Sources */,
+				4F954B67264FBE0E0076BE47 /* Tests_AccessPrivateIvar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,6 +791,14 @@
 			files = (
 				4F55810F22AA5C9800961935 /* WCTupleClass.m in Sources */,
 				4F5C35E4223B5C5400C08119 /* Tests_C.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F954B6D264FC3630076BE47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F954B81264FC3810076BE47 /* DynamicFrameworkClass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,6 +842,16 @@
 			isa = PBXTargetDependency;
 			target = 4FC2CF782031B10300A416DC /* HelloSyntaxSugar */;
 			targetProxy = 4F5C35E6223B5C5400C08119 /* PBXContainerItemProxy */;
+		};
+		4F954B77264FC3630076BE47 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F954B70264FC3630076BE47 /* DynamicFramework */;
+			targetProxy = 4F954B76264FC3630076BE47 /* PBXContainerItemProxy */;
+		};
+		4F954B83264FC3C00076BE47 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F954B70264FC3630076BE47 /* DynamicFramework */;
+			targetProxy = 4F954B82264FC3C00076BE47 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -842,6 +972,65 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HelloSyntaxSugar.app/HelloSyntaxSugar";
+			};
+			name = Release;
+		};
+		4F954B7B264FC3630076BE47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QVRKK2EEDF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = DynamicFramework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.DynamicFramework;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4F954B7C264FC3630076BE47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = QVRKK2EEDF;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = DynamicFramework/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.DynamicFramework;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -1016,6 +1205,15 @@
 			buildConfigurations = (
 				4F5C35E8223B5C5400C08119 /* Debug */,
 				4F5C35E9223B5C5400C08119 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F954B7A264FC3630076BE47 /* Build configuration list for PBXNativeTarget "DynamicFramework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F954B7B264FC3630076BE47 /* Debug */,
+				4F954B7C264FC3630076BE47 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
