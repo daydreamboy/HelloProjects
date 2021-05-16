@@ -256,7 +256,7 @@ static NSString * JSONEscapedStringFromString(NSString *string) {
 
 #pragma mark > Ivar
 
-+ (nullable NSArray<NSString *> *)ivarsWithClass:(Class)clz {
++ (nullable NSArray<NSString *> *)ivarsDescriptionWithClass:(Class)clz {
     if (clz == nil) {
         return nil;
     }
@@ -277,9 +277,36 @@ static NSString * JSONEscapedStringFromString(NSString *string) {
     return result.count ? [result copy] : nil;
 }
 
-+ (nullable NSArray<NSString *> *)ivarsWithInstance:(id)instance {
-    return [self ivarsWithClass:[instance class]];
++ (nullable NSArray<NSString *> *)ivarsDescriptionWithInstance:(id)instance {
+    return [self ivarsDescriptionWithClass:[instance class]];
 }
+
++ (nullable id)objectIvarWithInstance:(id)instance ivarName:(NSString *)ivarName {
+    const char * _Nonnull name = [ivarName UTF8String];
+    Ivar ivar = class_getInstanceVariable([instance class], name);
+    id value = object_getIvar(instance, ivar);
+    
+    return value;
+}
+
++ (nullable NSValue *)valueIvarWithInstance:(id)instance ivarName:(NSString *)ivarName objCType:(const char *)objCType {
+    const char * _Nonnull name = [ivarName UTF8String];
+    Ivar ivar = class_getInstanceVariable([instance class], name);
+    ptrdiff_t offset = ivar_getOffset(ivar);
+    
+    unsigned char *stuffBytes = (unsigned char *)(__bridge void *)instance;
+    
+    if (strcmp(objCType, @encode(CGSize)) == 0) {
+        //CGSize outSize = CGSizeZero;
+        //outSize = *((CGSize *)(stuffBytes + offset));
+        
+        return [NSValue value:stuffBytes + offset withObjCType:objCType];
+    }
+    else {
+        return nil;
+    }
+}
+
 
 #pragma mark > Class Method
 

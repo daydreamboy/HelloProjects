@@ -5,7 +5,7 @@
 
 ## 1、char字面常量，存放多个字符
 
-​      char字面常量，存放多个字符。例如'abc'、'abcd'、'abcde'等。根据赋值的数据类型长度和编译器选择little endian或big endian，决定是从前还是从后选择N个字符，赋值到对应类型的变量中[^7]。
+​      char字面常量，存放多个字符。例如'abc'、'abcd'、'abcde'等。根据赋值的数据类型长度和编译器选择little endian或big endian，决定是从前还是从后选择N个字符，赋值到对应类型的变量中[^16]。
 
 举个例子，如下
 
@@ -139,7 +139,7 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 
 > 1. 手动实现setter或者getter方法，其中之一，这个`_property`实例变量也是自动合成的。
 > 2. 如果同时实现setter和getter方法，需要手动synthesize @property
-> 3. 可以使用`__has_feature(objc_default_synthesize_properties)`来检查编译器是否此特性[^9]
+> 3. 可以使用`__has_feature(objc_default_synthesize_properties)`来检查编译器是否此特性[^18]
 
 
 
@@ -200,7 +200,7 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 
 
 
-### （3）Ivar在子类中访问[^3]
+### （3）Ivar在子类中访问[^12]
 
 * property合成的Ivar变量是private类型，不能在子类使用_ivar访问。
 
@@ -220,7 +220,7 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 
 ## 6、使用@synthesize
 
-@synthesize的作用是指示编译自动生成对应的实例变量，以及setter和getter方法[^8]。
+@synthesize的作用是指示编译自动生成对应的实例变量，以及setter和getter方法[^17]。
 
 类的定义中声明@property，就可以不用使用@synthesize，但是如果类实现协议中的@property，就需要使用@synthesize
 
@@ -261,7 +261,7 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 
 `__attribute__`指令可以修饰C/C++和Objective-C的代码，用于代码优化、消除警告、提高代码可读性等。
 
-参考Twitter上的这篇文章[^13]的描述，如下
+参考Twitter上的这篇文章[^22]的描述，如下
 
 > The __attribute__ directive is used to decorate a code declaration in C, C++ and Objective-C programming languages. This gives the declared code additional attributes that would help the compiler incorporate optimizations or elicit useful warnings to the consumer of that code.
 
@@ -269,7 +269,7 @@ ibireme的[这篇文章](https://blog.ibireme.com/2015/11/12/smooth_user_interfa
 
 
 
-`__attribute__`是编译器提供的指令，其结构是两对括号构成[^11]，如`__attribute__((xxx))`。xxx是属性名，如果有多个属性名，则用逗号分隔，如`__attribute__((xxx, yyy))`。举个例子，如下
+`__attribute__`是编译器提供的指令，其结构是两对括号构成[^20]，如`__attribute__((xxx))`。xxx是属性名，如果有多个属性名，则用逗号分隔，如`__attribute__((xxx, yyy))`。举个例子，如下
 
 ```c
 // Send printf-like message to stderr and exit
@@ -359,7 +359,7 @@ typedef struct __attribute__((objc_boxable)) CGRect WCRect;
 
 #### c. `objc_requires_super`
 
-`objc_requires_super`用标记该方法，在重写时，必现使用super调用父类方法，否则会产生警告[^12]
+`objc_requires_super`用标记该方法，在重写时，必现使用super调用父类方法，否则会产生警告[^21]
 
 举个例子，如下
 
@@ -387,7 +387,7 @@ typedef struct __attribute__((objc_boxable)) CGRect WCRect;
 
 #### d. `objc_subclassing_restricted`
 
-`objc_subclassing_restricted`用标记该类不能被继承使用，否则编译时产生错误[^12]
+`objc_subclassing_restricted`用标记该类不能被继承使用，否则编译时产生错误[^21]
 
 举个例子，如下
 
@@ -414,7 +414,7 @@ __attribute__((objc_subclassing_restricted))
 
 `const`用于标记函数的返回值，完全依赖它的参数，而且内部不依赖其他变量。这样编译器可以在调用的地方，增加缓存，用于提高性能。
 
-NSHipster的这篇文章[^11]对const描述，如下
+NSHipster的这篇文章[^20]对const描述，如下
 
 > The `const` attribute specifies that a function does not examine any values except their arguments, and have no effects except the return value. 
 
@@ -440,7 +440,7 @@ int square(int n) __attribute__((const));
 
 如果错误地使用`const`，则会产生非常难调试排查的bug，而且一般在Debug编译下不会复现，则在使用某些高度优化的编译选项的app才出现。
 
-参考Twitter上的这篇文章[^13]的描述，如下
+参考Twitter上的这篇文章[^22]的描述，如下
 
 > The worst of this is that the optimization that would cause this crash will only happen in builds that are highly optimized. Since debug builds often have optimizations turned down, you can run your app in a debugger forever and never reproduce it, making this bug, like most __attribute__ based bugs, very hard to figure out and fix.
 
@@ -448,11 +448,11 @@ int square(int n) __attribute__((const));
 
 #### f. `constructor`和`destructor`
 
-构造器`constructor`和析构器`destructor`，使用这两个属性修饰的函数会在分别在可执行文件（包括动态库）load和 unload时被调用，可以理解为在 `main()` 函数调用前和 return 后执行[^12]。
+构造器`constructor`和析构器`destructor`，使用这两个属性修饰的函数会在分别在可执行文件（包括动态库）load和 unload时被调用，可以理解为在 `main()` 函数调用前和 return 后执行[^21]。
 
 
 
-##### `constructor`和`+load`的顺序[^12]
+##### `constructor`和`+load`的顺序[^21]
 
 `constructor`在`+load`的之后，如下
 
@@ -740,7 +740,7 @@ Xcode中按住Option键，同时点击某个方法、类、属性，会弹出相
 
 ## 9、使用`__builtin_xxx`系列函数
 
-​       GCC编译器提供一些内置函数，例如`__builtin_trap`等。这里统称为`__builtin_xxx`系列函数。Clang也支持`__builtin_xxx`系列函数，但是作为可选的。因此需要使用宏`__has_builtin`测试是否编译器支持[^14]，如下
+​       GCC编译器提供一些内置函数，例如`__builtin_trap`等。这里统称为`__builtin_xxx`系列函数。Clang也支持`__builtin_xxx`系列函数，但是作为可选的。因此需要使用宏`__has_builtin`测试是否编译器支持[^23]，如下
 
 ```c
 #ifndef __has_builtin         // Optional of course.
@@ -767,7 +767,7 @@ Xcode中按住Option键，同时点击某个方法、类、属性，会弹出相
 
 ### （1）`__builtin_return_address`
 
-`__builtin_return_address`函数签名[^15]，如下
+`__builtin_return_address`函数签名[^24]，如下
 
 ```c
 void * __builtin_return_address (unsigned int level);
@@ -832,7 +832,7 @@ template在Objective-C++是关键词，不能作为参数使用，否则编译�
 
 
 
-## 12、随机化处理[^4]
+## 12、随机化处理[^13]
 
 
 
@@ -869,11 +869,11 @@ NSLog(@"%f", random);
 
 
 
-## 13、extern "C"[^5]
+## 13、extern "C"[^14]
 
 
 
-## 14、数据类型最大最小值[^6]
+## 14、数据类型最大最小值[^15]
 
 limits.h提供整型数据类型最大最小值的宏定义
 
@@ -887,10 +887,10 @@ __has_feature(xxx)可以传入下面的参数，来检查编译是否支持某�
 
 | 参数                               | 作用                                                |
 | ---------------------------------- | --------------------------------------------------- |
-| objc_default_synthesize_properties | 检查声明@property是否自动生成setter和getter方法[^9] |
-| objc_array_literals                | 检查是否支持数组字面常量[^10]                       |
-| objc_dictionary_literals           | 检查是否支持词典字面常量[^10]                       |
-| objc_subscripting                  | 检查是否支持下标引用[^10]                           |
+| objc_default_synthesize_properties | 检查声明@property是否自动生成setter和getter方法[^18] |
+| objc_array_literals                | 检查是否支持数组字面常量[^19]                       |
+| objc_dictionary_literals           | 检查是否支持词典字面常量[^19]                       |
+| objc_subscripting                  | 检查是否支持下标引用[^19]                           |
 
 
 
@@ -904,7 +904,7 @@ Objective-C实例的内部变量，称为ivar变量（或者实例变量）。�
 
 ### （1）ivar变量访问级别
 
-ivar变量可以设置访问级别，有4种[^16]，如下
+ivar变量可以设置访问级别，有4种[^25]，如下
 
 * @private，仅在定义该变量的类中访问。属性的私有变量，就是@private级别
 * @protected，在定义该变量的类中以及所有子类中访问。如果定义ivar变量，默认就是@protected级别
@@ -1101,7 +1101,7 @@ ivar变量可以设置访问级别，有4种[^16]，如下
 
 根据上面一节，可以看到@private修饰的ivar变量访问限制是最小的，因此如果要通过实例对象来访问私有ivar变量，需要一些hook操作。
 
-目前有下面几种方式可以实现[^17]
+目前有下面几种方式可以实现[^26]
 
 * 直接使用指针地址
 * 通过runtime api（`class_getInstanceVariable`和`object_getIvar`）
@@ -1208,7 +1208,7 @@ object_getIvar(id _Nullable obj, Ivar _Nonnull ivar)
 
 
 
-这篇SO[^18]给一个方式来获取基本类型的实例变量，基本思路还是直接使用指针地址，加偏移量来计算，然后强制转成基本类型的变量。
+这篇SO[^27]给一个方式来获取基本类型的实例变量，基本思路还是直接使用指针地址，加偏移量来计算，然后强制转成基本类型的变量。
 
 
 
@@ -1255,33 +1255,30 @@ object_getIvar(id _Nullable obj, Ivar _Nonnull ivar)
 
 ## References
 
-[1]: https://stackoverflow.com/questions/34574933/a-good-and-idiomatic-way-to-use-gcc-and-clang-attribute-cleanup-and-point
-[ 2 ]: http://echorand.me/site/notes/articles/c_cleanup/cleanup_attribute_c.html
+[^12]:http://blog.benjamin-encz.de/post/objective-c-backing-ivars-subclasses/
 
-[^3]:http://blog.benjamin-encz.de/post/objective-c-backing-ivars-subclasses/
+[^13]:https://nshipster.com/random/
 
-[^4]:https://nshipster.com/random/
+[^14]:https://stackoverflow.com/questions/1041866/what-is-the-effect-of-extern-c-in-c
 
-[^5]:https://stackoverflow.com/questions/1041866/what-is-the-effect-of-extern-c-in-c
+[^15]:https://stackoverflow.com/questions/2053843/min-and-max-value-of-data-type-in-c
 
-[^6]:https://stackoverflow.com/questions/2053843/min-and-max-value-of-data-type-in-c
+[^16]:https://stackoverflow.com/questions/6944730/multiple-characters-in-a-character-constant
+[^17]:https://stackoverflow.com/questions/14658142/purpose-of-synthesize
+[^18]:http://clang.llvm.org/docs/LanguageExtensions.html#objective-c-autosynthesis-of-properties
+[^19]:http://clang.llvm.org/docs/LanguageExtensions.html#object-literals-and-subscripting
+[^20]:https://nshipster.com/__attribute__/
+[^21]:https://blog.sunnyxx.com/2016/05/14/clang-attributes/
 
-[^7]:https://stackoverflow.com/questions/6944730/multiple-characters-in-a-character-constant
-[^8]:https://stackoverflow.com/questions/14658142/purpose-of-synthesize
-[^9]:http://clang.llvm.org/docs/LanguageExtensions.html#objective-c-autosynthesis-of-properties
-[^10]:http://clang.llvm.org/docs/LanguageExtensions.html#object-literals-and-subscripting
-[^11]:https://nshipster.com/__attribute__/
-[^12]:https://blog.sunnyxx.com/2016/05/14/clang-attributes/
+[^22]:https://blog.twitter.com/engineering/en_us/a/2014/attribute-directives-in-objective-c.html
 
-[^13]:https://blog.twitter.com/engineering/en_us/a/2014/attribute-directives-in-objective-c.html
+[^23]:https://clang.llvm.org/docs/LanguageExtensions.html#feature-checking-macros
+[^24]:https://gcc.gnu.org/onlinedocs/gcc/Return-Address.html
 
-[^14]:https://clang.llvm.org/docs/LanguageExtensions.html#feature-checking-macros
-[^15]:https://gcc.gnu.org/onlinedocs/gcc/Return-Address.html
+[^25]:https://useyourloaf.com/blog/private-ivars/
+[^26]:http://jerrymarino.com/2014/01/31/objective-c-private-instance-variable-access.html
 
-[^16]:https://useyourloaf.com/blog/private-ivars/
-[^17]:http://jerrymarino.com/2014/01/31/objective-c-private-instance-variable-access.html
-
-[^18]:https://stackoverflow.com/a/24107536
+[^27]:https://stackoverflow.com/a/24107536
 
 
 

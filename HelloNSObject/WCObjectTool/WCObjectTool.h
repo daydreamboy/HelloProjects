@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -97,22 +98,33 @@ typedef struct selBlockPair {
 #pragma mark > Ivar
 
 /**
- Get all ivars of the class
+ Get all ivars description of the class
 
  @param clz the class
  @return the ivar string array.
  @discussion the property string format is `type _ivar`, e.g. NSString* _name
  */
-+ (nullable NSArray<NSString *> *)ivarsWithClass:(Class)clz;
++ (nullable NSArray<NSString *> *)ivarsDescriptionWithClass:(Class)clz;
 
 /**
- Get all ivars of the class
+ Get all ivars description of the class
  
  @param instance the object
  @return the ivar string array.
- @discussion see +[WCObjectTool ivarsWithClass:] for detail.
+ @discussion see +[WCObjectTool ivarsDescriptionWithClass:] for detail.
  */
-+ (nullable NSArray<NSString *> *)ivarsWithInstance:(id)instance;
++ (nullable NSArray<NSString *> *)ivarsDescriptionWithInstance:(id)instance;
+
+/**
+ Get value (object type) of ivar
+ 
+ @param instance the object
+ @param ivarName the ivar name
+ 
+ @return the pointer of the value (object type) of ivar
+ @note This method only get the value of object ivar, not for primitive ivar
+ */
++ (nullable id)objectIvarWithInstance:(id)instance ivarName:(NSString *)ivarName;
 
 #pragma mark > Class Method
 

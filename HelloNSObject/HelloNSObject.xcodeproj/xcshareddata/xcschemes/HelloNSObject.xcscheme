@@ -47,6 +47,26 @@
                ReferencedContainer = "container:HelloNSObject.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4F6034B12650FA6A0044B4E7"
+               BuildableName = "Test_C.xctest"
+               BlueprintName = "Test_C"
+               ReferencedContainer = "container:HelloNSObject.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4F6034BF2650FA750044B4E7"
+               BuildableName = "Test_OC.xctest"
+               BlueprintName = "Test_OC"
+               ReferencedContainer = "container:HelloNSObject.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

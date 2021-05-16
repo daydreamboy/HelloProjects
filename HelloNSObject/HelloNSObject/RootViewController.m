@@ -13,6 +13,17 @@
 #import "SetIVarDirectlyViewController.h"
 
 // section2
+#import "MultipleCharsInOneCharViewController.h"
+#import "Cpp11FeatureRawStringViewController.h"
+#import "NaNViewController.h"
+#import "GenericSelectionExpressionViewController.h"
+#import "NamespacedGlobalVarsAndFuncsViewController.h"
+#import "DelayReleaseObjectViewController.h"
+#import "SynthesizePropertyBothSetterGetterViewController.h"
+#import "GCCAttributeCleanupViewController.h"
+#import "SynthesizePropertyDerivedFromBaseClassViewController.h"
+
+// section3
 #import "CreateClassAtRuntimeViewController.h"
 #import "GetPropertiesOfClassViewController.h"
 #import "CreateDynamicDelegateViewController.h"
@@ -59,8 +70,22 @@
           @{ kTitle: @"Check NSObject isa", kClass: [CheckNSObjectIsaVariableViewController class] },
           @{ kTitle: @"Set ivar directly", kClass: [SetIVarDirectlyViewController class] },
     ];
-
+    
     NSArray<NSDictionary *> *section2 = @[
+          @{ kTitle: @"Multiple characters in char", kClass: [MultipleCharsInOneCharViewController class] },
+          @{ kTitle: @"C++ 11 feature: raw string", kClass: [Cpp11FeatureRawStringViewController class] },
+          @{ kTitle: @"Use NaN", kClass: [NaNViewController class] },
+          @{ kTitle: @"Use Generic Selection Expression (C11 feature)", kClass: [GenericSelectionExpressionViewController class] },
+          @{ kTitle: @"Namespaced global vars and C funcs", kClass: [NamespacedGlobalVarsAndFuncsViewController class] },
+          @{ kTitle: @"Delay release object", kClass: [DelayReleaseObjectViewController class] },
+          
+          @{ kTitle: @"Synthesize property 1 manually", kClass: [SynthesizePropertyBothSetterGetterViewController class] },
+          
+          @{ kTitle: @"Synthesize property 2 manually", kClass: [SynthesizePropertyDerivedFromBaseClassViewController class] },
+          @{ kTitle: @"GCC attribute __cleanup__", kClass: [GCCAttributeCleanupViewController class] },
+    ];
+
+    NSArray<NSDictionary *> *section3 = @[
           @{ kTitle: @"Get properties of a class", kClass: [GetPropertiesOfClassViewController class] },
           @{ kTitle: @"Create Class at runtime", kClass: [CreateClassAtRuntimeViewController class] },
           @{ kTitle: @"Simple dynamic subclass", kClass: [SimpleDynamicSubclassViewController class] },
@@ -69,7 +94,7 @@
           @{ kTitle: @"Obtain weak variable by objc_loadWeakRetained()", kClass: [ObtainWeakVariableViewController class] },
     ];
     
-    NSArray<NSDictionary *> *section3 = @[
+    NSArray<NSDictionary *> *section4 = @[
           @{ kTitle: @"Swizzle method by category method", kClass: [SwizzleMethodByCategoryMethodViewController class] },
           @{ kTitle: @"Swizzle method by block", kClass: [SwizzleMethodByBlockViewController class] },
           @{ kTitle: @"Swizzle method by C function", kClass: [SwizzleMethodByCFunctionViewController class] },
@@ -77,12 +102,13 @@
           @{ kTitle: @"isa swizzling for overwriting (maybe cause crash)", kClass: [IsaSwizzlingIssueViewController class] },
     ];
     
-    NSArray<NSDictionary *> *section4 = @[
+    NSArray<NSDictionary *> *section5 = @[
           @{ kTitle: @"Use WCMulticastDelegate", kClass: [UseWCMulticastDelegateViewController class] },
     ];
     
     _sectionTitles = @[
         @"NSObject",
+        @"ObjC Syntax",
         @"ObjC Runtime",
         @"Swizzling",
         @"WCMultipleDelegate",
@@ -93,6 +119,7 @@
          section2,
          section3,
          section4,
+         section5,
     ];
 }
 
