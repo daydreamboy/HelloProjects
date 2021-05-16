@@ -1163,7 +1163,79 @@ ivar变量可以设置访问级别，有4种[^16]，如下
 
 #### b. 通过runtime api
 
-主要通过`class_getInstanceVariable`和`object_getIvar`这两个API
+Objective-C的runtime提供获取实例变量的API，主要通过`class_getInstanceVariable`和`object_getIvar`这两个函数。
+
+
+
+在runtime中，实例变量类型定义为Ivar，如下
+
+```objective-c
+/// An opaque type that represents an instance variable.
+typedef struct objc_ivar *Ivar;
+```
+
+
+
+通过`class_getInstanceVariable`函数，如下
+
+```objective-c
+OBJC_EXPORT Ivar _Nullable
+class_getInstanceVariable(Class _Nullable cls, const char * _Nonnull name)
+    OBJC_AVAILABLE(10.0, 2.0, 9.0, 1.0, 2.0);
+```
+
+可以根据实例变量名获取到Ivar。
+
+注意
+
+> class_getInstanceVariable是class_系列函数，可以不用传实例对象
+
+
+
+通过`object_getIvar`函数，如下
+
+```objective-c
+OBJC_EXPORT id _Nullable
+object_getIvar(id _Nullable obj, Ivar _Nonnull ivar) 
+    OBJC_AVAILABLE(10.5, 2.0, 9.0, 1.0, 2.0);
+```
+
+可以拿到实例变量。
+
+注意
+
+> 如果实例变量是基本类型，则不能使用`object_getIvar`函数，否则返回的地址并不是实例对象的。
+
+
+
+这篇SO[^18]给一个方式来获取基本类型的实例变量，基本思路还是直接使用指针地址，加偏移量来计算，然后强制转成基本类型的变量。
+
+
+
+针对实例变量为对象类型和基本类型的情况。举个例子，如下
+
+```objective-c
+- (void)test_hook_by_runtime_api {
+    HiddenPrivateIvarClass *foo = [[HiddenPrivateIvarClass alloc] init];
+    
+    // Case 1: object ivar
+    Ivar nameIVar = class_getInstanceVariable([foo class], "_name");
+    NSString *name = object_getIvar(foo, nameIVar);
+    NSLog(@"name: %@", name);
+    XCTAssertEqualObjects(name, @"w");
+    
+    // Case 2: primitive ivar
+    CGSize outSize;
+    Ivar sizeIVar = class_getInstanceVariable([foo class], "_size");
+    ptrdiff_t offset = ivar_getOffset(sizeIVar);
+    unsigned char *stuffBytes = (unsigned char *)(__bridge void *)foo;
+    outSize = *((CGSize *)(stuffBytes + offset));
+    XCTAssertTrue(outSize.width == 1);
+    XCTAssertTrue(outSize.height == 2);
+}
+```
+
+
 
 
 
@@ -1208,6 +1280,8 @@ ivar变量可以设置访问级别，有4种[^16]，如下
 
 [^16]:https://useyourloaf.com/blog/private-ivars/
 [^17]:http://jerrymarino.com/2014/01/31/objective-c-private-instance-variable-access.html
+
+[^18]:https://stackoverflow.com/a/24107536
 
 
 

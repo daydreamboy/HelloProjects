@@ -101,6 +101,10 @@ XCTAssertEqualObjects(address, hash);
 
 ## 3、运行时Runtime
 
+TODO
+
+https://bignerdranch.com/blog/inside-the-bracket-part-5-runtime-api/
+
 
 
 ### （1）Swizzle方法
