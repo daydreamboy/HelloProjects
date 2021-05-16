@@ -12,6 +12,17 @@
 #import "WCObjectTool.h"
 #import "WCMacroTool.h"
 
+@interface HiddenPrivateIvarClass () {
+    // Note: Ivar without any modifier in extension is private by default
+    // Redeclare private ivars as public
+@public
+    NSString *_name;
+    NSString *_job;
+    CGSize _size;
+    double _double;
+}
+@end
+
 @interface Tests_HookPrivateIvar : XCTestCase
 
 @end
@@ -69,7 +80,7 @@
     XCTAssertTrue(outSize.width == 1);
     XCTAssertTrue(outSize.height == 2);
     
-    // Case 2: double - primitive ivar
+    // Case 3: double - primitive ivar
     double outDouble;
     Ivar doubleIVar = class_getInstanceVariable([foo class], "_double");
     offset = ivar_getOffset(doubleIVar);
@@ -82,5 +93,46 @@
     XCTAssertTrue(outDouble == 3.14);
 }
 
+- (void)test_hook_by_KVC {
+    HiddenPrivateIvarClass *foo = [[HiddenPrivateIvarClass alloc] init];
+    NSValue *value;
+    
+    // Case 1: object ivar
+    NSString *name = [foo valueForKey:@"_name"];
+    XCTAssertEqualObjects(name, @"w");
+    
+    NSString *job = [foo valueForKey:@"_job"];
+    XCTAssertEqualObjects(job, @"hacker");
+    
+    // Case 2: CGSize - primitive ivar
+    value = [foo valueForKey:@"_size"];
+    CGSize outSize = [value CGSizeValue];
+    XCTAssertTrue(outSize.width == 1);
+    XCTAssertTrue(outSize.height == 2);
+    
+    // Case 3: double - primitive ivar
+    value = [foo valueForKey:@"_double"];
+    double outDouble = primitiveValueFromNSValue(value, double);
+    XCTAssertTrue(outDouble == 3.14);
+}
+
+- (void)test_hook_by_redeclare_as_public_ivar {
+    HiddenPrivateIvarClass *foo = [[HiddenPrivateIvarClass alloc] init];
+    // Case 1: object ivar
+    NSString *name = foo->_name;
+    XCTAssertEqualObjects(name, @"w");
+    
+    NSString *job = foo->_job;
+    XCTAssertEqualObjects(job, @"hacker");
+    
+    // Case 2: CGSize - primitive ivar
+    CGSize outSize = foo->_size;
+    XCTAssertTrue(outSize.width == 1);
+    XCTAssertTrue(outSize.height == 2);
+    
+    // Case 3: double - primitive ivar
+    double outDouble = foo->_double;
+    XCTAssertTrue(outDouble == 3.14);
+}
 
 @end

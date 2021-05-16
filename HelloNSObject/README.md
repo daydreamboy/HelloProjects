@@ -1246,6 +1246,91 @@ object_getIvar(id _Nullable obj, Ivar _Nonnull ivar)
 
 
 
+说明
+
+> WCObjectTool提供的工具方法，采用上面的方法，来获取ivar变量
+
+
+
+##### 3. 通过KVC
+
+每个NSObje对象都是符合KVC机制的，因此可以通过KVC的API直接访问私有实例变量。
+
+举个例子，如下
+
+```objective-c
+- (void)test_hook_by_KVC {
+    HiddenPrivateIvarClass *foo = [[HiddenPrivateIvarClass alloc] init];
+    NSValue *value;
+    
+    // Case 1: object ivar
+    NSString *name = [foo valueForKey:@"_name"];
+    XCTAssertEqualObjects(name, @"w");
+    
+    NSString *job = [foo valueForKey:@"_job"];
+    XCTAssertEqualObjects(job, @"hacker");
+    
+    // Case 2: CGSize - primitive ivar
+    value = [foo valueForKey:@"_size"];
+    CGSize outSize = [value CGSizeValue];
+    XCTAssertTrue(outSize.width == 1);
+    XCTAssertTrue(outSize.height == 2);
+    
+    // Case 3: double - primitive ivar
+    value = [foo valueForKey:@"_double"];
+    double outDouble = primitiveValueFromNSValue(value, double);
+    XCTAssertTrue(outDouble == 3.14);
+}
+```
+
+
+
+##### 4. 声明ivar变量为@public
+
+除了上面的通过运行时来获取私有实例变量，可以通过在类的扩展中重新声明私有实例变量为@public，这样在编译期间，编译器生成计算实例变量的低级代码。
+
+举个例子，如下
+
+```objective-c
+#import "HiddenPrivateIvarClass.h"
+
+@interface HiddenPrivateIvarClass () {
+    // Note: Ivar without any modifier in extension is private by default
+    // Redeclare private ivars as public
+@public
+    NSString *_name;
+    NSString *_job;
+    CGSize _size;
+    double _double;
+}
+@end
+
+- (void)test_hook_by_redeclare_as_public_ivar {
+    HiddenPrivateIvarClass *foo = [[HiddenPrivateIvarClass alloc] init];
+    // Case 1: object ivar
+    NSString *name = foo->_name;
+    XCTAssertEqualObjects(name, @"w");
+    
+    NSString *job = foo->_job;
+    XCTAssertEqualObjects(job, @"hacker");
+    
+    // Case 2: CGSize - primitive ivar
+    CGSize outSize = foo->_size;
+    XCTAssertTrue(outSize.width == 1);
+    XCTAssertTrue(outSize.height == 2);
+    
+    // Case 3: double - primitive ivar
+    double outDouble = foo->_double;
+    XCTAssertTrue(outDouble == 3.14);
+}
+```
+
+注意
+
+> 在类扩展中，没有指定访问级别，默认是@private而不是@protected，这个和在类定义中声明不一样（默认是@protected）。
+
+
+
 
 
 ## 2、ObjC Runtime

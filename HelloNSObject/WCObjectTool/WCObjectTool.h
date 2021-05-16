@@ -135,6 +135,8 @@ typedef struct selBlockPair {
  
  @return the NSValue which encapsulate the primitive value. For example, use CGSizeValue to get CGSize struct,
  and use getValue: or getValue:size: to get double/int/.. and so on
+ 
+ @discussion Use primitiveValueFromNSValue macro extract primitive value from NSValue object
  */
 + (nullable NSValue *)primitiveValueIvarWithInstance:(id)instance ivarName:(NSString *)ivarName objCType:(const char *)objCType;
 
