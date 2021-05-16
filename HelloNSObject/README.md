@@ -1283,6 +1283,20 @@ object_getIvar(id _Nullable obj, Ivar _Nonnull ivar)
 }
 ```
 
+注意
+
+> 如果KVC的类实现了accessInstanceVariablesDirectly方法并返回NO，则不能使用KVC访问实例变量。如果还是要采用KVC方式，则需要通过分类方法hook让accessInstanceVariablesDirectly方法并返回YES。
+>
+> 如下
+>
+> ```objective-c
+> @implementation Foo (Exposed)
+> + (BOOL)accessInstanceVariablesDirectly {
+>     return YES;
+> }
+> @end
+> ```
+
 
 
 ##### 4. 声明ivar变量为@public
