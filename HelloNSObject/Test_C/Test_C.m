@@ -150,7 +150,7 @@ print_trace (void)
 }
 
 
-void myFunction()
+void myFunction(void)
 {
     // Note: get c function address at runtime
     void *myImplementation = myFunction;

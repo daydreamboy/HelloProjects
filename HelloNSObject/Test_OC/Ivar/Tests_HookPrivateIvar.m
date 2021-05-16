@@ -9,6 +9,8 @@
 #import <XCTest/XCTest.h>
 #import "HiddenPrivateIvarClass.h"
 #import <objc/runtime.h>
+#import "WCObjectTool.h"
+#import "WCMacroTool.h"
 
 @interface Tests_HookPrivateIvar : XCTestCase
 
@@ -30,6 +32,9 @@
 
 - (void)test_hook_by_runtime_api {
     HiddenPrivateIvarClass *foo = [[HiddenPrivateIvarClass alloc] init];
+    ptrdiff_t offset;
+    unsigned char *stuffBytes;
+    NSValue *value;
     
     // Case 1: object ivar
     Ivar nameIVar = class_getInstanceVariable([foo class], "_name");
@@ -42,7 +47,7 @@
     NSLog(@"job: %@", job);
     XCTAssertEqualObjects(job, @"hacker");
     
-    // Case 2: primitive ivar
+    // Case 2: CGSize - primitive ivar
     CGSize outSize;
     /*
     object_getInstanceVariable(foo, "_size", (void *)&outSize); // Compile Error: 'object_getInstanceVariable' is unavailable: not available in automatic reference counting mode
@@ -52,11 +57,29 @@
     
     // @see https://stackoverflow.com/a/24107536
     Ivar sizeIVar = class_getInstanceVariable([foo class], "_size");
-    ptrdiff_t offset = ivar_getOffset(sizeIVar);
-    unsigned char *stuffBytes = (unsigned char *)(__bridge void *)foo;
+    offset = ivar_getOffset(sizeIVar);
+    stuffBytes = (unsigned char *)(__bridge void *)foo;
     outSize = *((CGSize *)(stuffBytes + offset));
     XCTAssertTrue(outSize.width == 1);
     XCTAssertTrue(outSize.height == 2);
+    
+    // Use NSValue
+    value = [NSValue value:stuffBytes + offset withObjCType:@encode(CGSize)];
+    outSize = [value CGSizeValue];
+    XCTAssertTrue(outSize.width == 1);
+    XCTAssertTrue(outSize.height == 2);
+    
+    // Case 2: double - primitive ivar
+    double outDouble;
+    Ivar doubleIVar = class_getInstanceVariable([foo class], "_double");
+    offset = ivar_getOffset(doubleIVar);
+    stuffBytes = (unsigned char *)(__bridge void *)foo;
+    outDouble = *((double *)(stuffBytes + offset));
+    
+    value = [NSValue value:stuffBytes + offset withObjCType:@encode(double)];
+    outDouble = primitiveValueFromNSValue(value, double);
+    
+    XCTAssertTrue(outDouble == 3.14);
 }
 
 

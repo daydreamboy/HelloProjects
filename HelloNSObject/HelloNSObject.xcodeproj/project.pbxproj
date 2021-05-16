@@ -99,7 +99,6 @@
 		4F60354D2650FB4D0044B4E7 /* Tests_AccessProtectedIvar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6035272650FB4C0044B4E7 /* Tests_AccessProtectedIvar.m */; };
 		4F60354E2650FB4D0044B4E7 /* Tests_AccessPublicIvar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6035282650FB4D0044B4E7 /* Tests_AccessPublicIvar.m */; };
 		4F60354F2650FB4D0044B4E7 /* Tests_AccessIvarOfExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60352A2650FB4D0044B4E7 /* Tests_AccessIvarOfExtension.m */; };
-		4F6035502650FB4D0044B4E7 /* HiddenPrivateIvarClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60352B2650FB4D0044B4E7 /* HiddenPrivateIvarClass.m */; };
 		4F6035532650FBA90044B4E7 /* libStaticLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F6034CE2650FA8F0044B4E7 /* libStaticLibrary.a */; };
 		4F6035592650FBF40044B4E7 /* WCTupleClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6035572650FBF40044B4E7 /* WCTupleClass.m */; };
 		4F6035762650FDDE0044B4E7 /* SynthesizePropertyDerivedFromBaseClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60355B2650FDDD0044B4E7 /* SynthesizePropertyDerivedFromBaseClassViewController.m */; };
@@ -115,6 +114,8 @@
 		4F6035802650FDDE0044B4E7 /* GCCAttributeCleanupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6035712650FDDE0044B4E7 /* GCCAttributeCleanupViewController.m */; };
 		4F6035812650FDDE0044B4E7 /* DelayReleaseObjectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6035732650FDDE0044B4E7 /* DelayReleaseObjectViewController.m */; };
 		4F6035822650FDDE0044B4E7 /* NamespacedGlobalVarsAndFuncsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6035742650FDDE0044B4E7 /* NamespacedGlobalVarsAndFuncsViewController.m */; };
+		4F60358326510E1C0044B4E7 /* HiddenPrivateIvarClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60352B2650FB4D0044B4E7 /* HiddenPrivateIvarClass.m */; };
+		4F6035842651105D0044B4E7 /* HiddenPrivateIvarClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60352B2650FB4D0044B4E7 /* HiddenPrivateIvarClass.m */; };
 		4F650EA0223967DB002BA46F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F650E9F223967DB002BA46F /* AppDelegate.m */; };
 		4F650EA3223967DB002BA46F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F650EA2223967DB002BA46F /* ViewController.m */; };
 		4F650EA8223967DD002BA46F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F650EA7223967DD002BA46F /* Assets.xcassets */; };
@@ -378,6 +379,7 @@
 		4F6035732650FDDE0044B4E7 /* DelayReleaseObjectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DelayReleaseObjectViewController.m; sourceTree = "<group>"; };
 		4F6035742650FDDE0044B4E7 /* NamespacedGlobalVarsAndFuncsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NamespacedGlobalVarsAndFuncsViewController.m; sourceTree = "<group>"; };
 		4F6035752650FDDE0044B4E7 /* SynthesizePropertyBothSetterGetterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizePropertyBothSetterGetterViewController.h; sourceTree = "<group>"; };
+		4F603587265110AF0044B4E7 /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
 		4F650E9C223967DB002BA46F /* InitializeMethodInCategory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InitializeMethodInCategory.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F650E9E223967DB002BA46F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F650E9F223967DB002BA46F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -588,28 +590,29 @@
 			path = OrderOfCallInitializeMethodInNSObject;
 			sourceTree = "<group>";
 		};
-		4F57328B224B131C00EFB1CF /* DummyClasses */ = {
+		4F57328B224B131C00EFB1CF /* Test_DummyClasses */ = {
 			isa = PBXGroup;
 			children = (
-				4F110EF1231F5EDD006C9AFD /* MyObject.h */,
-				4F110EF0231F5EDD006C9AFD /* MyObject.m */,
-				4F57328C224B133400EFB1CF /* Thing.h */,
-				4F57328D224B133400EFB1CF /* Thing.m */,
-				4F57328F224B134500EFB1CF /* Person.h */,
-				4F573290224B134500EFB1CF /* Person.m */,
-				4F5B710B229D64710061A9D0 /* KeyedSubscriptingObject.h */,
-				4F5B710C229D64710061A9D0 /* KeyedSubscriptingObject.m */,
+				4F6035222650FB4C0044B4E7 /* HiddenPrivateIvarClass.h */,
+				4F60352B2650FB4D0044B4E7 /* HiddenPrivateIvarClass.m */,
 				4F5B710E229D64840061A9D0 /* IndexedSubscriptingObject.h */,
 				4F5B710F229D64840061A9D0 /* IndexedSubscriptingObject.m */,
+				4F5B710B229D64710061A9D0 /* KeyedSubscriptingObject.h */,
+				4F5B710C229D64710061A9D0 /* KeyedSubscriptingObject.m */,
+				4F110EF1231F5EDD006C9AFD /* MyObject.h */,
+				4F110EF0231F5EDD006C9AFD /* MyObject.m */,
+				4F57328F224B134500EFB1CF /* Person.h */,
+				4F573290224B134500EFB1CF /* Person.m */,
+				4F57328C224B133400EFB1CF /* Thing.h */,
+				4F57328D224B133400EFB1CF /* Thing.m */,
 			);
-			path = DummyClasses;
+			path = Test_DummyClasses;
 			sourceTree = "<group>";
 		};
 		4F5B652F2249DD4600D40218 /* Test */ = {
 			isa = PBXGroup;
 			children = (
 				4F8910F126050BD400FBEE19 /* Tools */,
-				4F57328B224B131C00EFB1CF /* DummyClasses */,
 				4F5B65302249DD4600D40218 /* Test.mm */,
 				4F110EE8231F5E92006C9AFD /* Test_bridge.m */,
 				4F110EE7231F5E92006C9AFD /* Test_IMP.m */,
@@ -630,11 +633,11 @@
 		4F6034B32650FA6A0044B4E7 /* Test_C */ = {
 			isa = PBXGroup;
 			children = (
-				4F6034B62650FA6A0044B4E7 /* Info.plist */,
 				4F6034B42650FA6A0044B4E7 /* Test_C.m */,
 				4F6035562650FBF30044B4E7 /* WCTuple.h */,
 				4F6035542650FBF30044B4E7 /* WCTupleClass.h */,
 				4F6035572650FBF40044B4E7 /* WCTupleClass.m */,
+				4F6034B62650FA6A0044B4E7 /* Info.plist */,
 			);
 			path = Test_C;
 			sourceTree = "<group>";
@@ -794,8 +797,6 @@
 				4F6035202650FB4C0044B4E7 /* BaseClass3_Internal.h */,
 				4F6035292650FB4D0044B4E7 /* BaseClass3.h */,
 				4F6035232650FB4C0044B4E7 /* BaseClass3.m */,
-				4F6035222650FB4C0044B4E7 /* HiddenPrivateIvarClass.h */,
-				4F60352B2650FB4D0044B4E7 /* HiddenPrivateIvarClass.m */,
 				4F60352A2650FB4D0044B4E7 /* Tests_AccessIvarOfExtension.m */,
 				4F6035242650FB4C0044B4E7 /* Tests_AccessIvarOfProperty.m */,
 				4F6035252650FB4C0044B4E7 /* Tests_AccessPackageIvar.m */,
@@ -846,6 +847,14 @@
 				4F6035682650FDDE0044B4E7 /* MyManager.m */,
 			);
 			path = DummyClasses;
+			sourceTree = "<group>";
+		};
+		4F603586265110990044B4E7 /* Test_Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F603587265110AF0044B4E7 /* WCMacroTool.h */,
+			);
+			path = Test_Tools;
 			sourceTree = "<group>";
 		};
 		4F650E9D223967DB002BA46F /* InitializeMethodInCategory */ = {
@@ -948,6 +957,8 @@
 				4F54E65E2238A1C7001A9BE2 /* OrderOfCallLoadMethodInNSObject */,
 				4F54E6782238B49F001A9BE2 /* OrderOfCallInitializeMethodInNSObject */,
 				4F650E9D223967DB002BA46F /* InitializeMethodInCategory */,
+				4F57328B224B131C00EFB1CF /* Test_DummyClasses */,
+				4F603586265110990044B4E7 /* Test_Tools */,
 				4F5B652F2249DD4600D40218 /* Test */,
 				4F6034B32650FA6A0044B4E7 /* Test_C */,
 				4F6034C12650FA750044B4E7 /* Test_OC */,
@@ -1330,6 +1341,7 @@
 				4F110EED231F5E92006C9AFD /* Test_IMP.m in Sources */,
 				4F110EF2231F5EDD006C9AFD /* MyObject.m in Sources */,
 				4FE4376824F67D9D00AEFB27 /* Test_ivar.m in Sources */,
+				4F60358326510E1C0044B4E7 /* HiddenPrivateIvarClass.m in Sources */,
 				4F5B710D229D64710061A9D0 /* KeyedSubscriptingObject.m in Sources */,
 				4F57328E224B133400EFB1CF /* Thing.m in Sources */,
 				4F110EEB231F5E92006C9AFD /* Test_weak.m in Sources */,
@@ -1365,10 +1377,10 @@
 				4F60354D2650FB4D0044B4E7 /* Tests_AccessProtectedIvar.m in Sources */,
 				4F6035442650FB4D0044B4E7 /* Tests_overloadable.m in Sources */,
 				4F60354B2650FB4D0044B4E7 /* Tests_AccessPackageIvar.m in Sources */,
+				4F6035842651105D0044B4E7 /* HiddenPrivateIvarClass.m in Sources */,
 				4F6035412650FB4D0044B4E7 /* Tests_constructor_destructor.m in Sources */,
 				4F60354F2650FB4D0044B4E7 /* Tests_AccessIvarOfExtension.m in Sources */,
 				4F60353D2650FB4D0044B4E7 /* Tests_objc_subclassing_restricted.m in Sources */,
-				4F6035502650FB4D0044B4E7 /* HiddenPrivateIvarClass.m in Sources */,
 				4F60353B2650FB4D0044B4E7 /* Test_GetCurrentMethodIMP.m in Sources */,
 				4F6035362650FB4D0044B4E7 /* ParentHandler.m in Sources */,
 				4F60354A2650FB4D0044B4E7 /* Tests_AccessIvarOfProperty.m in Sources */,

@@ -12,6 +12,8 @@
 #import "WCObjectTool.h"
 #import "Thing.h"
 #import "Person.h"
+#import "HiddenPrivateIvarClass.h"
+#import "WCMacroTool.h"
 
 @protocol ProtocolA <NSObject>
 @end
@@ -305,19 +307,48 @@ R"JSON([
 
 #pragma mark > Ivar
 
-- (void)test_ivarsWithClass {
+- (void)test_ivarsDescriptionWithClass {
     NSArray<NSString *> *output;
     
     // Case 1
-    output = [WCObjectTool ivarsWithClass:[NSString class]];
+    output = [WCObjectTool ivarsDescriptionWithClass:[NSString class]];
     NSLog(@"%@", output);
     XCTAssertNil(output);
     
     // Case 2
-    output = [WCObjectTool ivarsWithClass:[Person class]];
+    output = [WCObjectTool ivarsDescriptionWithClass:[Person class]];
     NSLog(@"%@", output);
     XCTAssertTrue(output.count == 1);
     XCTAssertEqualObjects(output[0], @"NSString* _name");
+}
+
+- (void)test_objectIvarWithInstance_ivarName {
+    HiddenPrivateIvarClass *foo = [[HiddenPrivateIvarClass alloc] init];
+    
+    // Case 1: object ivar
+    NSString *name = [WCObjectTool objectIvarWithInstance:foo ivarName:@"_name"];
+    NSLog(@"name: %@", name);
+    XCTAssertEqualObjects(name, @"w");
+    
+    NSString *job = [WCObjectTool objectIvarWithInstance:foo ivarName:@"_job"];
+    NSLog(@"job: %@", job);
+    XCTAssertEqualObjects(job, @"hacker");
+}
+
+- (void)test_primitiveValueIvarWithInstance_ivarName_objCType {
+    HiddenPrivateIvarClass *foo = [[HiddenPrivateIvarClass alloc] init];
+    NSValue *value;
+    
+    // Case 2: CGSize - primitive ivar
+    value = [WCObjectTool primitiveValueIvarWithInstance:foo ivarName:@"_size" objCType:@encode(CGSize)];
+    CGSize outSize = [value CGSizeValue];
+    XCTAssertTrue(outSize.width == 1);
+    XCTAssertTrue(outSize.height == 2);
+    
+    // Case 3: double - primitive ivar
+    value = [WCObjectTool primitiveValueIvarWithInstance:foo ivarName:@"_double" objCType:@encode(double)];
+    double outDouble = primitiveValueFromNSValue(value, double);
+    XCTAssertTrue(outDouble == 3.14);
 }
 
 #pragma mark > Class Method

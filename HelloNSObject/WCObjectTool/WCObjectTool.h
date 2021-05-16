@@ -116,7 +116,7 @@ typedef struct selBlockPair {
 + (nullable NSArray<NSString *> *)ivarsDescriptionWithInstance:(id)instance;
 
 /**
- Get value (object type) of ivar
+ Get object value of ivar
  
  @param instance the object
  @param ivarName the ivar name
@@ -125,6 +125,18 @@ typedef struct selBlockPair {
  @note This method only get the value of object ivar, not for primitive ivar
  */
 + (nullable id)objectIvarWithInstance:(id)instance ivarName:(NSString *)ivarName;
+
+/**
+ Get primitive value of ivar
+ 
+ @param instance the object
+ @param ivarName the ivar name
+ @param objCType the type string by \@encode(type)
+ 
+ @return the NSValue which encapsulate the primitive value. For example, use CGSizeValue to get CGSize struct,
+ and use getValue: or getValue:size: to get double/int/.. and so on
+ */
++ (nullable NSValue *)primitiveValueIvarWithInstance:(id)instance ivarName:(NSString *)ivarName objCType:(const char *)objCType;
 
 #pragma mark > Class Method
 

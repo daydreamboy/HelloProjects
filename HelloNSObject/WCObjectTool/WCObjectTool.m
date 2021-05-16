@@ -289,24 +289,14 @@ static NSString * JSONEscapedStringFromString(NSString *string) {
     return value;
 }
 
-+ (nullable NSValue *)valueIvarWithInstance:(id)instance ivarName:(NSString *)ivarName objCType:(const char *)objCType {
++ (nullable NSValue *)primitiveValueIvarWithInstance:(id)instance ivarName:(NSString *)ivarName objCType:(const char *)objCType {
     const char * _Nonnull name = [ivarName UTF8String];
     Ivar ivar = class_getInstanceVariable([instance class], name);
     ptrdiff_t offset = ivar_getOffset(ivar);
-    
     unsigned char *stuffBytes = (unsigned char *)(__bridge void *)instance;
     
-    if (strcmp(objCType, @encode(CGSize)) == 0) {
-        //CGSize outSize = CGSizeZero;
-        //outSize = *((CGSize *)(stuffBytes + offset));
-        
-        return [NSValue value:stuffBytes + offset withObjCType:objCType];
-    }
-    else {
-        return nil;
-    }
+    return [NSValue value:stuffBytes + offset withObjCType:objCType];
 }
-
 
 #pragma mark > Class Method
 

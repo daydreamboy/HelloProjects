@@ -14,6 +14,7 @@
     NSString *_name;
     NSString *_job;
     CGSize _size;
+    double _double;
 }
 
 - (instancetype)init {
@@ -22,6 +23,7 @@
         _name = @"w";
         _job = @"hacker";
         _size = CGSizeMake(1, 2);
+        _double = 3.14;
     }
     return self;
 }
