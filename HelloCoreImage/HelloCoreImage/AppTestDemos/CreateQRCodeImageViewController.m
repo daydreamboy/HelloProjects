@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UITextView *textView;
 @property (nonatomic, strong) UIImageView *imageViewQRCode;
 @property (nonatomic, strong) UIImageView *imageViewQRCodeColour;
+@property (nonatomic, strong) UIImageView *imageViewQRCodeLogo;
 @end
 
 @implementation CreateQRCodeImageViewController
@@ -24,6 +25,7 @@
     [self.view addSubview:self.textView];
     [self.view addSubview:self.imageViewQRCode];
     [self.view addSubview:self.imageViewQRCodeColour];
+    [self.view addSubview:self.imageViewQRCodeLogo];
     
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(viewTapped:)];
     [self.view addGestureRecognizer:tapGesture];
@@ -75,6 +77,20 @@
     return _imageViewQRCodeColour;
 }
 
+- (UIImageView *)imageViewQRCodeLogo {
+    if (!_imageViewQRCodeLogo) {
+        CGSize screenSize = [[UIScreen mainScreen] bounds].size;
+        CGFloat side = 200;
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((screenSize.width - side) / 2.0, CGRectGetMaxY(_imageViewQRCodeColour.frame) + 10, side, side)];
+        imageView.layer.borderColor = [UIColor redColor].CGColor;
+        imageView.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
+        
+        _imageViewQRCodeLogo = imageView;
+    }
+    
+    return _imageViewQRCodeLogo;
+}
+
 #pragma mark - Action
 
 - (void)viewTapped:(UITapGestureRecognizer *)recognizer {
@@ -91,6 +107,8 @@
     
     UIColor *tintColor = [UIColor colorWithRed:0.93 green:0.31 blue:0.23 alpha:0.8];
     self.imageViewQRCodeColour.image = [WCCoreImageTool QRImageWithString:textView.text size:self.imageViewQRCodeColour.bounds.size tintColor:tintColor];
+    
+    self.imageViewQRCodeLogo.image = [WCCoreImageTool QRImageWithString:textView.text size:self.imageViewQRCodeColour.bounds.size tintColor:tintColor frontImage:[UIImage imageNamed:@"chrome.png"]];
 }
 
 @end

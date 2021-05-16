@@ -14,6 +14,10 @@
 		4F5BAD2721F0AC53008453E4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5BAD2621F0AC53008453E4 /* main.m */; };
 		4F5BAD3321F0AC84008453E4 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5BAD3121F0AC84008453E4 /* RootViewController.m */; };
 		4F5BAD3621F0ACAC008453E4 /* DecodeQRImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5BAD3521F0ACAB008453E4 /* DecodeQRImageViewController.m */; };
+		4F60358A265117760044B4E7 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F603589265117760044B4E7 /* CoreImage.framework */; };
+		4F60358D26511DD50044B4E7 /* UseBuiltinFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60358C26511DD50044B4E7 /* UseBuiltinFilterViewController.m */; };
+		4F60358F26511E5C0044B4E7 /* sky.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4F60358E26511E5C0044B4E7 /* sky.jpeg */; };
+		4F60359226511EDC0044B4E7 /* ListDemoViewBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F60359126511EDC0044B4E7 /* ListDemoViewBaseViewController.m */; };
 		4F74C2C921FB35E000A87393 /* WCCoreImageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F74C2C821FB35E000A87393 /* WCCoreImageTool.m */; };
 		4F9DB17E25A561EB00779312 /* chrome.png in Resources */ = {isa = PBXBuildFile; fileRef = 4F9DB17D25A561EB00779312 /* chrome.png */; };
 		4F9DB19825A5A47900779312 /* UseCIFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9DB19725A5A47900779312 /* UseCIFilterViewController.m */; };
@@ -34,6 +38,12 @@
 		4F5BAD3121F0AC84008453E4 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F5BAD3421F0ACAB008453E4 /* DecodeQRImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DecodeQRImageViewController.h; sourceTree = "<group>"; };
 		4F5BAD3521F0ACAB008453E4 /* DecodeQRImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DecodeQRImageViewController.m; sourceTree = "<group>"; };
+		4F603589265117760044B4E7 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		4F60358B26511DD50044B4E7 /* UseBuiltinFilterViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseBuiltinFilterViewController.h; sourceTree = "<group>"; };
+		4F60358C26511DD50044B4E7 /* UseBuiltinFilterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseBuiltinFilterViewController.m; sourceTree = "<group>"; };
+		4F60358E26511E5C0044B4E7 /* sky.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sky.jpeg; sourceTree = "<group>"; };
+		4F60359026511EDC0044B4E7 /* ListDemoViewBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListDemoViewBaseViewController.h; sourceTree = "<group>"; };
+		4F60359126511EDC0044B4E7 /* ListDemoViewBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListDemoViewBaseViewController.m; sourceTree = "<group>"; };
 		4F74C2C721FB35E000A87393 /* WCCoreImageTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCCoreImageTool.h; sourceTree = "<group>"; };
 		4F74C2C821FB35E000A87393 /* WCCoreImageTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCCoreImageTool.m; sourceTree = "<group>"; };
 		4F9DB17D25A561EB00779312 /* chrome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chrome.png; sourceTree = "<group>"; };
@@ -51,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F60358A265117760044B4E7 /* CoreImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +71,7 @@
 		4F58499321F1F0D70085B231 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4F60358E26511E5C0044B4E7 /* sky.jpeg */,
 				4F9DB17D25A561EB00779312 /* chrome.png */,
 				4F58499421F1F0D70085B231 /* QRCode1.png */,
 			);
@@ -81,6 +93,7 @@
 				4F58499621F1F4AB0085B231 /* WCCoreImageTool */,
 				4F5BAD1621F0AC50008453E4 /* HelloCoreImage */,
 				4F5BAD1521F0AC50008453E4 /* Products */,
+				4F603588265117760044B4E7 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,13 +133,25 @@
 				4F5BAD3521F0ACAB008453E4 /* DecodeQRImageViewController.m */,
 				4F9DB19625A5A47900779312 /* UseCIFilterViewController.h */,
 				4F9DB19725A5A47900779312 /* UseCIFilterViewController.m */,
+				4F60358B26511DD50044B4E7 /* UseBuiltinFilterViewController.h */,
+				4F60358C26511DD50044B4E7 /* UseBuiltinFilterViewController.m */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F603588265117760044B4E7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4F603589265117760044B4E7 /* CoreImage.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		4FA367AB25A3724C002A4EC2 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				4F60359026511EDC0044B4E7 /* ListDemoViewBaseViewController.h */,
+				4F60359126511EDC0044B4E7 /* ListDemoViewBaseViewController.m */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -198,6 +223,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F60358F26511E5C0044B4E7 /* sky.jpeg in Resources */,
 				4F5BAD2421F0AC53008453E4 /* LaunchScreen.storyboard in Resources */,
 				4F58499521F1F0D70085B231 /* QRCode1.png in Resources */,
 				4F5BAD2121F0AC53008453E4 /* Assets.xcassets in Resources */,
@@ -212,7 +238,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F60358D26511DD50044B4E7 /* UseBuiltinFilterViewController.m in Sources */,
 				4FA367A625A36BA0002A4EC2 /* CreateQRCodeImageViewController.m in Sources */,
+				4F60359226511EDC0044B4E7 /* ListDemoViewBaseViewController.m in Sources */,
 				4F9DB19825A5A47900779312 /* UseCIFilterViewController.m in Sources */,
 				4FBB27F125A9525400E26B55 /* WCViewTool.m in Sources */,
 				4F5BAD3621F0ACAC008453E4 /* DecodeQRImageViewController.m in Sources */,
