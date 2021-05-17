@@ -40,6 +40,8 @@
         imageSize = CGSizeMake(imageSize.width / 3.0, imageSize.height / 3.0);
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((screenSize.width - imageSize.width) / 2.0, 0, imageSize.width, imageSize.height)];
+        imageView.layer.borderColor = [UIColor redColor].CGColor;
+        imageView.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
         
         CIImage *originalCIImage = [CIImage imageWithCGImage:image.CGImage];
         imageView.image = [UIImage imageWithCIImage:originalCIImage];
@@ -59,9 +61,12 @@
         imageSize = CGSizeMake(imageSize.width / 3.0, imageSize.height / 3.0);
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((screenSize.width - imageSize.width) / 2.0, CGRectGetMaxY(_imageViewOriginal.frame) + SpaceV, imageSize.width, imageSize.height)];
+        imageView.layer.borderColor = [UIColor redColor].CGColor;
+        imageView.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
         
         CIImage *originalCIImage = [CIImage imageWithCGImage:image.CGImage];
-        imageView.image = [UIImage imageWithCIImage:originalCIImage];
+        CIImage *sepiaCIImage = [self sepiaFilterImage:originalCIImage withIntensity:0.9];
+        imageView.image = [UIImage imageWithCIImage:sepiaCIImage];
         
         _imageViewSepia = imageView;
     }
@@ -78,9 +83,13 @@
         imageSize = CGSizeMake(imageSize.width / 3.0, imageSize.height / 3.0);
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((screenSize.width - imageSize.width) / 2.0, CGRectGetMaxY(_imageViewSepia.frame) + SpaceV, imageSize.width, imageSize.height)];
+        imageView.layer.borderColor = [UIColor redColor].CGColor;
+        imageView.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
         
         CIImage *originalCIImage = [CIImage imageWithCGImage:image.CGImage];
-        imageView.image = [UIImage imageWithCIImage:originalCIImage];
+        CIImage *sepiaCIImage = [self sepiaFilterImage:originalCIImage withIntensity:0.9];
+        CIImage *bloomCIImage = [self bloomFilterImage:sepiaCIImage withIntensity:1 radius:10];
+        imageView.image = [UIImage imageWithCIImage:bloomCIImage];
         
         _imageViewSepiaBloom = imageView;
     }
@@ -97,9 +106,17 @@
         imageSize = CGSizeMake(imageSize.width / 3.0, imageSize.height / 3.0);
         
         UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake((screenSize.width - imageSize.width) / 2.0, CGRectGetMaxY(_imageViewSepiaBloom.frame) + SpaceV, imageSize.width, imageSize.height)];
+        imageView.layer.borderColor = [UIColor redColor].CGColor;
+        imageView.layer.borderWidth = 1.0 / [UIScreen mainScreen].scale;
         
         CIImage *originalCIImage = [CIImage imageWithCGImage:image.CGImage];
-        imageView.image = [UIImage imageWithCIImage:originalCIImage];
+        CIImage *sepiaCIImage = [self sepiaFilterImage:originalCIImage withIntensity:0.9];
+        CIImage *bloomCIImage = [self bloomFilterImage:sepiaCIImage withIntensity:1 radius:10];
+        CGFloat imageWidth = image.size.width;
+        CGFloat imageHeight = image.size.height;
+        CGFloat aspectRatio = imageHeight / imageWidth;
+        CIImage *scaledCIImage = [self scaleFilterImage:bloomCIImage withAspectRatio:aspectRatio scale:0.05];
+        imageView.image = [UIImage imageWithCIImage:scaledCIImage];
         
         _imageViewSepiaBloomScaled = imageView;
     }
