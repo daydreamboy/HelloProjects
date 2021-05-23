@@ -1,9 +1,7 @@
 # HelloARMAssembly
 [TOC]
 
----
-
-### 1、汇编语法基础知识[^3]
+## 1、汇编语法基础知识[^3]
 
 （1） ;或者@开头是注释
 
@@ -101,7 +99,7 @@ mov	r0, #12
 
 @2，将值12放到r0（注意，destination和@1不一样）
 
-### 2、addFunction例子
+## 2、addFunction例子
 
 ```c
 int addFunction(int a, int b)
@@ -195,9 +193,11 @@ Lfunc_end0:
 
 为了方便学习，需要阻止这样的编译器优化，可以加上`__attribute__((noinline))。`
 
-### 3、指令简化手册
 
-```
+
+## 3、指令简化手册
+
+```assembly
 mov r0, r1 => r0 = r1
 mov r0, #10 => r0 = 10
 ldr r0, [sp] => r0 = *sp
@@ -214,7 +214,9 @@ stp x29, x30, [sp, #16] => *(sp + 16) = x29, *(sp + 20) = x30
 stp指令[^1]
 adrp指令[^2]
 
-### 4、x86_64的Call Convention
+
+
+## 4、x86_64的Call Convention
 
 ```
 First Argument: RDI
@@ -243,15 +245,15 @@ NSLog(RDI, RSI, RDX, RCX);
 
 
 
-### 5、leaq vs. movq的区别
+## 5、leaq vs. movq的区别
 
 举个例子[^4]，如下
 
-![leaq vs. movq_1.png](images/leaq vs. movq_1.png)
+<img src="images/leaq vs. movq_1.png" alt="leaq vs. movq_1.png" style="zoom: 33%;" />
 
 执行leaq和movq指令后，寄存器的结果，如下
 
-![leaq vs. movq_2.png](images/leaq vs. movq_2.png)
+<img src="images/leaq vs. movq_2.png" alt="leaq vs. movq_2.png" style="zoom:33%;" />
 
 几点说明，如下
 
@@ -260,7 +262,7 @@ NSLog(RDI, RSI, RDX, RCX);
 
 另外，leaq还有两个操作符的写法，举个例子[^6]，如下
 
-```
+```assembly
 lea    0x4(%rsi),%rcx
 ```
 
@@ -280,13 +282,13 @@ lea    0x4(%rsi),%rcx
 
 
 
-### 6、xorl   %ecx, %ecx
+## 6、xorl   %ecx, %ecx
 
 xor的作用是按位异或[^8]。xor S, D ，将S和D按位异或，结果放在D。
 
 通常使用这种将某个寄存器置为零。举个例子，如下
 
-```
+```assembly
 xorl   %ecx, %ecx
 ```
 
