@@ -127,6 +127,11 @@
 		4F70D8A325EA29940088F1CA /* WCSwizzleTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70D8A225EA29940088F1CA /* WCSwizzleTool.m */; };
 		4F70D8A425EA29940088F1CA /* WCSwizzleTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70D8A225EA29940088F1CA /* WCSwizzleTool.m */; };
 		4F70D8B025EA29B30088F1CA /* Test_WCSwizzleTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70D8AF25EA29B30088F1CA /* Test_WCSwizzleTool.m */; };
+		4F813B4C265A7EE000684D5E /* Tests_weak.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F813B4B265A7EE000684D5E /* Tests_weak.m */; };
+		4F813B50265A7F5900684D5E /* Tests_weak_class1.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F813B4F265A7F5900684D5E /* Tests_weak_class1.m */; };
+		4F813B53265A7F6600684D5E /* Tests_weak_class2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F813B52265A7F6600684D5E /* Tests_weak_class2.m */; };
+		4F813B55265A87F900684D5E /* Tests_used.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F813B54265A87F900684D5E /* Tests_used.m */; };
+		4F813B57265A881400684D5E /* Tests_unused.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F813B56265A881400684D5E /* Tests_unused.m */; };
 		4F8910F426050BEB00FBEE19 /* WCXCTestCaseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8910F326050BEB00FBEE19 /* WCXCTestCaseTool.m */; };
 		4FD758C12324F10C00BC1C2F /* SwizzleMethodByCategoryMethodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7E7F84231ECE9700E91F0E /* SwizzleMethodByCategoryMethodViewController.m */; };
 		4FD758C42324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD758C32324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.m */; };
@@ -400,6 +405,13 @@
 		4F70D8AF25EA29B30088F1CA /* Test_WCSwizzleTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_WCSwizzleTool.m; sourceTree = "<group>"; };
 		4F7E7F84231ECE9700E91F0E /* SwizzleMethodByCategoryMethodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwizzleMethodByCategoryMethodViewController.m; sourceTree = "<group>"; };
 		4F7E7F85231ECE9700E91F0E /* SwizzleMethodByCategoryMethodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwizzleMethodByCategoryMethodViewController.h; sourceTree = "<group>"; };
+		4F813B4B265A7EE000684D5E /* Tests_weak.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_weak.m; sourceTree = "<group>"; };
+		4F813B4E265A7F5900684D5E /* Tests_weak_class1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tests_weak_class1.h; sourceTree = "<group>"; };
+		4F813B4F265A7F5900684D5E /* Tests_weak_class1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_weak_class1.m; sourceTree = "<group>"; };
+		4F813B51265A7F6600684D5E /* Tests_weak_class2.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tests_weak_class2.h; sourceTree = "<group>"; };
+		4F813B52265A7F6600684D5E /* Tests_weak_class2.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_weak_class2.m; sourceTree = "<group>"; };
+		4F813B54265A87F900684D5E /* Tests_used.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_used.m; sourceTree = "<group>"; };
+		4F813B56265A881400684D5E /* Tests_unused.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_unused.m; sourceTree = "<group>"; };
 		4F8910F226050BEB00FBEE19 /* WCXCTestCaseTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCXCTestCaseTool.h; sourceTree = "<group>"; };
 		4F8910F326050BEB00FBEE19 /* WCXCTestCaseTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCXCTestCaseTool.m; sourceTree = "<group>"; };
 		4FD758C22324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwizzleMethodByCFunctionViewController.h; sourceTree = "<group>"; };
@@ -787,6 +799,10 @@
 				4F60351A2650FB4C0044B4E7 /* Tests_objc_runtime_name.m */,
 				4F6035122650FB4C0044B4E7 /* Tests_objc_subclassing_restricted.m */,
 				4F60351B2650FB4C0044B4E7 /* Tests_overloadable.m */,
+				4F813B54265A87F900684D5E /* Tests_used.m */,
+				4F813B56265A881400684D5E /* Tests_unused.m */,
+				4F813B4B265A7EE000684D5E /* Tests_weak.m */,
+				4F813B4D265A7F2B00684D5E /* Tests_weak */,
 			);
 			path = __attribute__;
 			sourceTree = "<group>";
@@ -935,6 +951,17 @@
 				4F70D8A225EA29940088F1CA /* WCSwizzleTool.m */,
 			);
 			path = WCSwizzleTool;
+			sourceTree = "<group>";
+		};
+		4F813B4D265A7F2B00684D5E /* Tests_weak */ = {
+			isa = PBXGroup;
+			children = (
+				4F813B4E265A7F5900684D5E /* Tests_weak_class1.h */,
+				4F813B4F265A7F5900684D5E /* Tests_weak_class1.m */,
+				4F813B51265A7F6600684D5E /* Tests_weak_class2.h */,
+				4F813B52265A7F6600684D5E /* Tests_weak_class2.m */,
+			);
+			path = Tests_weak;
 			sourceTree = "<group>";
 		};
 		4F8910F126050BD400FBEE19 /* Tools */ = {
@@ -1378,12 +1405,15 @@
 				4F6035442650FB4D0044B4E7 /* Tests_overloadable.m in Sources */,
 				4F60354B2650FB4D0044B4E7 /* Tests_AccessPackageIvar.m in Sources */,
 				4F6035842651105D0044B4E7 /* HiddenPrivateIvarClass.m in Sources */,
+				4F813B55265A87F900684D5E /* Tests_used.m in Sources */,
 				4F6035412650FB4D0044B4E7 /* Tests_constructor_destructor.m in Sources */,
 				4F60354F2650FB4D0044B4E7 /* Tests_AccessIvarOfExtension.m in Sources */,
 				4F60353D2650FB4D0044B4E7 /* Tests_objc_subclassing_restricted.m in Sources */,
 				4F60353B2650FB4D0044B4E7 /* Test_GetCurrentMethodIMP.m in Sources */,
 				4F6035362650FB4D0044B4E7 /* ParentHandler.m in Sources */,
+				4F813B50265A7F5900684D5E /* Tests_weak_class1.m in Sources */,
 				4F60354A2650FB4D0044B4E7 /* Tests_AccessIvarOfProperty.m in Sources */,
+				4F813B4C265A7EE000684D5E /* Tests_weak.m in Sources */,
 				4F60353C2650FB4D0044B4E7 /* Test__builtin_return_address.m in Sources */,
 				4F6035352650FB4D0044B4E7 /* RootHandler.m in Sources */,
 				4F6035472650FB4D0044B4E7 /* Tests_objc_requires_super.m in Sources */,
@@ -1397,11 +1427,13 @@
 				4F6035452650FB4D0044B4E7 /* Tests_cleanup.m in Sources */,
 				4F6035432650FB4D0044B4E7 /* Tests_objc_runtime_name.m in Sources */,
 				4F6035372650FB4D0044B4E7 /* Tests_CategoryConflict.m in Sources */,
+				4F813B57265A881400684D5E /* Tests_unused.m in Sources */,
 				4F60352F2650FB4D0044B4E7 /* BaseClassA1.m in Sources */,
 				4F6035312650FB4D0044B4E7 /* DerivedClassB1.m in Sources */,
 				4F60353A2650FB4D0044B4E7 /* NSObject+EventChaining.m in Sources */,
 				4F6035322650FB4D0044B4E7 /* Tests_Category_hook_setter.m in Sources */,
 				4F60352E2650FB4D0044B4E7 /* BaseClassC.m in Sources */,
+				4F813B53265A7F6600684D5E /* Tests_weak_class2.m in Sources */,
 				4F60353E2650FB4D0044B4E7 /* Tests_objc_boxable.m in Sources */,
 				4F6035382650FB4D0044B4E7 /* ChildHandler.m in Sources */,
 				4F6035392650FB4D0044B4E7 /* Event.m in Sources */,

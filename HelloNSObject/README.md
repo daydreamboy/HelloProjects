@@ -296,20 +296,21 @@ extern void die(const char *format, ...)
 
 常用属性列表，如下
 
-| 属性                          | 系统别名   | 作用                                                         |
-| ----------------------------- | ---------- | ------------------------------------------------------------ |
-| `annotate("xxx")`             |            | https://blog.quarkslab.com/implementing-a-custom-directive-handler-in-clang.html |
-| `cleanup`                     |            |                                                              |
-| `const`                       |            | 标记某个函数的返回值，仅依赖于函数的参数，因此运行时采用缓存直接返回之前计算过的值 |
-| `constructor`和`destructor`   |            | 在main之前，调用用`constructor`修饰的函数<br/>在main之后，调用用`destructor`修饰的函数 |
-| `deprecated`                  |            |                                                              |
-| `enable_if`                   |            | 用于静态检查函数的参数，是否满足特定判断if条件               |
-| `objc_boxable`                | CG_BOXABLE | 用于标记struct或union，可以使用@()语法糖封箱成NSValue对象    |
-| `objc_requires_super`         |            | 该方法里面需要调用super方法                                  |
-| `objc_runtime_name`           |            | 用于重命名OC类或OC协议                                       |
-| `objc_subclassing_restricted` |            | 禁止某个类被继承                                             |
-| `overloadable`                |            | 用于重载C函数，编译器根据参数类型匹配对应的函数调用          |
-| `weak`                        |            |                                                              |
+| 属性                          | 作用                                                         |
+| ----------------------------- | ------------------------------------------------------------ |
+| `annotate("xxx")`             | https://blog.quarkslab.com/implementing-a-custom-directive-handler-in-clang.html |
+| `cleanup`                     |                                                              |
+| `const`                       | 标记某个函数的返回值，仅依赖于函数的参数，因此运行时采用缓存直接返回之前计算过的值 |
+| `constructor`和`destructor`   | 在main之前，调用用`constructor`修饰的函数<br/>在main之后，调用用`destructor`修饰的函数 |
+| `deprecated`                  |                                                              |
+| `enable_if`                   | 用于静态检查函数的参数，是否满足特定判断if条件               |
+| `objc_boxable`                | 用于标记struct或union，可以使用@()语法糖封箱成NSValue对象。系统别名CG_BOXABLE |
+| `objc_requires_super`         | 该方法里面需要调用super方法                                  |
+| `objc_runtime_name`           | 用于重命名OC类或OC协议                                       |
+| `objc_subclassing_restricted` | 禁止某个类被继承                                             |
+| `overloadable`                | 用于重载C函数，编译器根据参数类型匹配对应的函数调用          |
+| `used`和`unused`              | 用于标记函数符号在二进制中有使用或者没有使用                 |
+| `weak`                        | 修饰函数符号为weak                                           |
 
 
 
@@ -461,7 +462,7 @@ int square(int n) __attribute__((const));
 
 
 
-##### `constructor`和`+load`的顺序[^21]
+**`constructor`和`+load`的顺序[^21]**
 
 `constructor`在`+load`的之后，如下
 
@@ -587,6 +588,139 @@ __attribute__((objc_runtime_name("544cd1f719a0cb56dce50fd51b39852d")))
 
 
 示例代码，见**GCCAttributeCleanupViewController**
+
+
+
+##### 10. `used`和`unused`
+
+`__attribute__((used))`和`__attribute__((unused))`用于标记函数符号在二进制中有使用或者没有使用。
+
+一般来说，如果一个函数没有被使用，编译器在生成.o文件时，会把这个函数优化掉，即.o文件中没有该函数符号。这个默认效果和使用`__attribute__((unused))`修饰是一样的。
+
+如果不想这个函数被优化掉，可以使用`__attribute__((used))`修饰。
+
+举个例子，如下
+
+```objective-c
+// Tests_used.m
+__attribute__((used))
+static NSString *funtion_not_call_but_still_keep_in_binary(void) {
+    return NSStringFromClass([XCTestCase class]);
+}
+
+// Tests_unused.m
+__attribute__((unused))
+static NSString *funtion_not_call_should_not_keep_in_binary(void) {
+    return NSStringFromClass([XCTestCase class]);
+}
+
+static NSString *funtion_not_call(void) {
+    return NSStringFromClass([XCTestCase class]);
+}
+```
+
+
+
+经过编译后，找到对应.o文件，用nm命令查看.o文件，如下
+
+```shell
+$ nm -m Tests_used.o | grep funtion_not_call_but_still_keep_in_binary  
+0000000000000000 (__TEXT,__text) non-external [no dead strip] _funtion_not_call_but_still_keep_in_binary
+
+$ nm -m Tests_unused.o | grep funtion_not_call_should_not_keep_in_binary
+Tests_unused.o: no symbols
+
+$ nm -m Tests_unused.o | grep funtion_not_call                          
+Tests_unused.o: no symbols
+```
+
+
+
+##### 11. `weak`
+
+​        默认函数的定义是strong definition（强定义），而 `__attribute__((weak))`修饰的函数定义为weak（弱定义）definition。
+
+举个例子，如下
+
+```objective-c
+NSString *foo_maybe_exist_yet_another(void) __attribute__((weak));
+
+NSString *foo_maybe_exist_yet_another(void);
+```
+
+说明
+
+> `__attribute__((weak))`可以只修饰函数声明，或者函数定义。但是为了清楚表示该函数是一个弱定义，最好声明和定义都加上`__attribute__((weak))`
+
+
+
+经过编译后，找到对应.o文件，用nm命令查看符号的类型，如下
+
+```shell
+x86_64 $ nm --defined-only -m Tests_weak_class1.o
+0000000000000000 (__TEXT,__text) weak external _foo_maybe_exist_yet_another
+...
+x86_64 $ nm --defined-only -m Tests_weak_class2.o
+0000000000000000 (__TEXT,__text) external _foo_maybe_exist_yet_another
+...
+```
+
+可见在Tests_weak_class1.o中foo_maybe_exist_yet_another是弱定义，而在Tests_weak_class2.o中foo_maybe_exist_yet_another是强定义。
+
+
+
+编译器生成符号，可以区分出弱定义和强定义后，链接器（ld）可以这个区分优先链接强定义的符号。
+
+当ld链接多个.o文件或者多个.a文件时，具体规则，如下[^28]
+
+* 如果有多个强定义符号在同一个.o文件或者.a文件中，则编译报错符号冲突
+* 如果有多个强定义符号在不同一个.o文件或者.a文件中。随机使用一个强定义符号。
+* 最多只有1个强定义符号，可以有多个弱定义符号
+* 如果有1个强定义符号，有多个弱定义符号。使用强定义符号。
+* 如果有没有强定义符号，有1个弱定义符号。使用这个弱定义符号。
+* 如果有没有强定义符号，有多个弱定义符号。随机使用一个弱定义符号。
+
+注意
+
+> 如果`__attribute__((weak))`可以只修饰函数声明，但函数没有定义，则同样ld会报错找不到符号定义。
+
+
+
+举个示例代码，如下
+
+```objective-c
+- (void)test_only_one_strong_multiple_weak {
+    NSString *output;
+    output = foo_maybe_exist_yet_another();
+    NSLog(@"%@", output);
+    
+    XCTAssertEqualObjects(output, @"Tests_weak_class2");
+}
+
+- (void)test_multiple_strong_one_weak {
+    NSString *output;
+    // Note: expect use bar_maybe_exist_yet_another function in this file, but not in fact
+    output = bar_maybe_exist_yet_another();
+    NSLog(@"%@", output);
+    
+    XCTAssertEqualObjects(output, @"Tests_weak_class2");
+}
+
+- (void)test_no_strong_multiple_weak {
+    NSString *output;
+    output = weak_bar_maybe_exist_yet_another();
+    NSLog(@"%@", output);
+    
+    XCTAssertEqualObjects(output, @"Tests_weak_class1");
+}
+
+- (void)test_weak_function_definition_not_exist {
+    // Link Error: "_weak_bar_not_exist" not found
+    //weak_bar_not_exist();
+}
+```
+
+> 示例代码，见Tests_weak.m
 
 
 
@@ -2242,5 +2376,5 @@ clang文档描述[^10]，如下
 
 [^27]: https://stackoverflow.com/a/24107536
 
-
+[^28]:https://stackoverflow.com/questions/51656838/attribute-weak-and-static-libraries
 
