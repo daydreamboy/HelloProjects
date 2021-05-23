@@ -1,16 +1,16 @@
 //
-//  GlobalAndMallocBlocks.m
+//  GlobalBlocks.m
 //  HelloBlocks
 //
-//  Created by wesley_chen on 27/01/2018.
-//  Copyright © 2018 wesley_chen. All rights reserved.
+//  Created by wesley_chen on 2021/5/23.
+//  Copyright © 2021 wesley_chen. All rights reserved.
 //
 
-#import "GlobalAndMallocBlocks.h"
+#import "GlobalBlocks.h"
 
-static int a = 0;
-int b = 1;
-const int c = 2;
+static int g_a = 0;
+int g_b = 1;
+const int g_c = 2;
 
 @implementation GlobalBlocks
 + (id)block1 {
@@ -24,7 +24,7 @@ const int c = 2;
 + (id)block2 {
     void (^globalBlock)(void) = ^{
         // Note: __NSGlobalBlock__
-        int sum = a + b + 1;
+        int sum = g_a + g_b + 1;
         NSLog(@"sum is %d", sum);
     };
     return globalBlock;
@@ -35,7 +35,7 @@ const int c = 2;
     void (^globalBlock)(void) = ^{
         int a = 1;
         int b = 2;
-        int sum = a + b + c;
+        int sum = a + b + g_c;
         NSLog(@"sum is %d", sum);
     };
     return globalBlock;
@@ -45,7 +45,7 @@ const int c = 2;
     // Note: __NSGlobalBlock__
     void (^mallocBlock)(int) = ^(int a) {
         // Note: __NSGlobalBlock__
-        int sum = a + b + 1;
+        int sum = a + g_b + 1;
         NSLog(@"sum is %d", sum);
     };
     
@@ -65,37 +65,3 @@ const int c = 2;
 }
 
 @end
-
-@implementation MallocBlocks
-
-+ (id)block1 {
-    int a = 1;
-    void (^mallocBlock)(void) = ^{
-        // Note: __NSMallocBlock__
-        int sum = a + b + 1;
-        NSLog(@"sum is %d", sum);
-    };
-    return mallocBlock;
-}
-
-+ (id)block2 {
-    void (^mallocBlock)(void) = ^{
-        // Note: __NSMallocBlock__
-        int sum = a + b + 1;
-        NSLog(@"sum is %d %@", sum, self);
-    };
-    return mallocBlock;
-}
-
-+ (id)block3 {
-    __block int sum = 1;
-    void (^mallocBlock)(void) = ^{
-        // Note: __NSMallocBlock__
-        sum = a + b + 1;
-        NSLog(@"sum is %d", sum);
-    };
-    return mallocBlock;
-}
-
-@end
-

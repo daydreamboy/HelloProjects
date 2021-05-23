@@ -54,7 +54,7 @@ void (^simpleBlock)(void) = ^{
 }
 ```
 
-void (^simpleBlock)(void) = ^{    NSLog(@"This is a block");}
+
 
 ### （5）block变量调用
 
@@ -83,13 +83,13 @@ int main(int argc, const char * argv[])
         double (^multiplyTwoValues)(double, double);
          
         // Fully specify the block with return type and parameters
-        multiplyTwoValues = ^ double (double fisrtValue, double secondValue) {
-            return fisrtValue * secondValue;
+        multiplyTwoValues = ^ double (double firstValue, double secondValue) {
+            return firstValue * secondValue;
         };
          
         // Ok, without return type
-        multiplyTwoValues = ^ (double fisrtValue, double secondValue) {
-            return fisrtValue * secondValue;
+        multiplyTwoValues = ^ (double firstValue, double secondValue) {
+            return firstValue * secondValue;
         };
  
         // Use block variable
@@ -104,9 +104,9 @@ int main(int argc, const char * argv[])
 
 Block的作用域： 
 
-（1）可以使用在它之前定义的变量，没有加__block修饰的，是只读的，在block不能修改该变量； 
+（1）可以使用在它之前定义的变量，没有加`__block`修饰的，是只读的，在block不能修改该变量； 
 
-（2）加上__block的变量，是Block和外围作用域共享的变量，因此可以随时修改，而且在Block回调时使用块变量最新的值； 
+（2）加上`__block`的变量，是Block和外围作用域共享的变量，因此可以随时修改，而且在Block回调时使用块变量最新的值； 
 
 （3）Block中声明的变量，在外围作用域中是不能访问的。 
 
@@ -153,7 +153,6 @@ int main(int argc, const char * argv[])
 }
 ```
 
-#import <Foundation/Foundation.h> void testFunc() {    int a = 42;    __block int c = 32;         void (^testBlock)(void) = ^{        NSLog(@"a: %d", a); // 42        NSLog(@"c: %d", c); // 12        // Compilation Error: undefined variable b, but b is defined below        //NSLog(@"b: %d", b);                 // Compilation Error: a is readonly, cannot change in block        //a = 100;        c = 120; // Ok, c is a __block var like a var in block                 int d __attribute__ ((unused)) = 200;    };         a = 55; // Assign new value to a, but don't change value in block    c = 12; // Ok, __block variable change always reflects in block         int b __attribute__((unused)) = 24; // Suppress waring of unused variable         testBlock();    NSLog(@"new c: %d", c);    //NSLog(@"%d", d); // Error, don't know d in block} int main(int argc, const char * argv[]){    @autoreleasepool {        testFunc();    }    return 0;}
 
 
 
@@ -258,7 +257,9 @@ int main(int argc, const char * argv[])
 
 ​     Block类型不仅可以用于形参，也可以用于返回值类型。一个复杂的Block变量定义，如下 
 
-注意：Block中可以修改全局变量，而不用指定__block修改符，这不同于前面提到的函数中局部变量加上__block修饰符。 
+注意
+
+> Block中可以修改全局变量，而不用指定__block修改符，这不同于前面提到的函数中局部变量加上__block修饰符。 
 
 
 
@@ -276,7 +277,7 @@ void (^(^complexBlock)(void (^)(void)))(void) = ^ (void (^aBlock)(void)) {
     aBlock();
      
     return ^{
-        result = result - c; // Ok, change global var though it's NOT a __block var
+        result = result - c; // Ok, change global var even though it's not a __block var
     };
 };
  
@@ -301,11 +302,9 @@ Block语法还可以定义Block属性，用法和一般属性一样使用点操�
 
 在Block属性的定义中，引用了self，一般是想调用其他实例方法，这样很容易造成强引用循环，self指向的对象不能释放。简单分析下，block属性也是一个block实例变量，定义它的块时，如果引用了self，相当于self对象自引用（形象比喻是一个环）。如果self想释放对象时，但是self.blockProperty还有这个对象的引用（block变量需要存储self指针以及其他使用到的变量），因此不能释放，反过来也是一样。 
 
+
+
 下面这个例子中，调用assignProperty方法产生了强引用循环，weakRef指向的对象不能释放。 
-
-
-
-
 
 ```objective-c
 #import <Foundation/Foundation.h>
@@ -436,7 +435,7 @@ int main(int argc, const char * argv[])
 }
 ```
 
-示例代码见**WeakStrongDanceViewController**
+> 示例代码，见**WeakStrongDanceViewController**
 
 
 

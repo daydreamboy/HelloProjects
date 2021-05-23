@@ -10,7 +10,7 @@
 		4F1A28BB201CB6F7009EEF1B /* GetBlockSignatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A28BA201CB6F7009EEF1B /* GetBlockSignatureViewController.m */; };
 		4F1A28BE201CB912009EEF1B /* BlockTypesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A28BD201CB912009EEF1B /* BlockTypesViewController.m */; };
 		4F1A28C1201CC11C009EEF1B /* StackBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A28C0201CC11C009EEF1B /* StackBlocks.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		4F1A28C7201CC159009EEF1B /* GlobalAndMallocBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A28C6201CC159009EEF1B /* GlobalAndMallocBlocks.m */; };
+		4F1A28C7201CC159009EEF1B /* MallocBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F1A28C6201CC159009EEF1B /* MallocBlocks.m */; };
 		4F37826D1FC44F12002BA02D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F37826C1FC44F12002BA02D /* AppDelegate.m */; };
 		4F3782751FC44F12002BA02D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F3782741FC44F12002BA02D /* Assets.xcassets */; };
 		4F3782781FC44F12002BA02D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F3782761FC44F12002BA02D /* LaunchScreen.storyboard */; };
@@ -24,6 +24,8 @@
 		4F887DBB201EC1FE00A844BD /* Block1.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F887DBA201EC1FE00A844BD /* Block1.m */; };
 		4F8C95A3221EF1CF00869CE7 /* WCBlockTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F37828A1FC458F6002BA02D /* WCBlockTool.m */; };
 		4F986B0422165F7D0096026E /* Tests_Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F986B0322165F7D0096026E /* Tests_Block.m */; };
+		4FC59F57265A18A1002E9D34 /* Tests_BlockInside.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC59F56265A18A1002E9D34 /* Tests_BlockInside.m */; };
+		4FC59F5B265A19B9002E9D34 /* GlobalBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC59F5A265A19B9002E9D34 /* GlobalBlocks.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,8 +45,8 @@
 		4F1A28BD201CB912009EEF1B /* BlockTypesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockTypesViewController.m; sourceTree = "<group>"; };
 		4F1A28BF201CC11C009EEF1B /* StackBlocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StackBlocks.h; sourceTree = "<group>"; };
 		4F1A28C0201CC11C009EEF1B /* StackBlocks.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StackBlocks.m; sourceTree = "<group>"; };
-		4F1A28C5201CC159009EEF1B /* GlobalAndMallocBlocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalAndMallocBlocks.h; sourceTree = "<group>"; };
-		4F1A28C6201CC159009EEF1B /* GlobalAndMallocBlocks.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalAndMallocBlocks.m; sourceTree = "<group>"; };
+		4F1A28C5201CC159009EEF1B /* MallocBlocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MallocBlocks.h; sourceTree = "<group>"; };
+		4F1A28C6201CC159009EEF1B /* MallocBlocks.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MallocBlocks.m; sourceTree = "<group>"; };
 		4F3782681FC44F12002BA02D /* HelloBlocks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloBlocks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F37826B1FC44F12002BA02D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F37826C1FC44F12002BA02D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -66,6 +68,9 @@
 		4F74C2BD21FAE83800A87393 /* Tests_BlockIssue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_BlockIssue.m; sourceTree = "<group>"; };
 		4F887DBA201EC1FE00A844BD /* Block1.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Block1.m; sourceTree = "<group>"; };
 		4F986B0322165F7D0096026E /* Tests_Block.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_Block.m; sourceTree = "<group>"; };
+		4FC59F56265A18A1002E9D34 /* Tests_BlockInside.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_BlockInside.m; sourceTree = "<group>"; };
+		4FC59F59265A19B9002E9D34 /* GlobalBlocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalBlocks.h; sourceTree = "<group>"; };
+		4FC59F5A265A19B9002E9D34 /* GlobalBlocks.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalBlocks.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +129,7 @@
 		4F3782821FC45314002BA02D /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4FC59F58265A1928002E9D34 /* BlockTypes */,
 				4F1A28BC201CB911009EEF1B /* BlockTypesViewController.h */,
 				4F1A28BD201CB912009EEF1B /* BlockTypesViewController.m */,
 				4F3782841FC45314002BA02D /* CheckBlockObjectViewController.h */,
@@ -132,10 +138,6 @@
 				4F1A28BA201CB6F7009EEF1B /* GetBlockSignatureViewController.m */,
 				4F74C2B321FAAAC500A87393 /* WeakStrongDanceViewController.h */,
 				4F74C2B421FAAAC500A87393 /* WeakStrongDanceViewController.m */,
-				4F1A28BF201CC11C009EEF1B /* StackBlocks.h */,
-				4F1A28C0201CC11C009EEF1B /* StackBlocks.m */,
-				4F1A28C5201CC159009EEF1B /* GlobalAndMallocBlocks.h */,
-				4F1A28C6201CC159009EEF1B /* GlobalAndMallocBlocks.m */,
 				4F887DBA201EC1FE00A844BD /* Block1.m */,
 			);
 			path = AppTestDemos;
@@ -157,8 +159,22 @@
 				4F986B0322165F7D0096026E /* Tests_Block.m */,
 				4F74C2BD21FAE83800A87393 /* Tests_BlockIssue.m */,
 				4F6F013721FA14F8008D669E /* Info.plist */,
+				4FC59F56265A18A1002E9D34 /* Tests_BlockInside.m */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		4FC59F58265A1928002E9D34 /* BlockTypes */ = {
+			isa = PBXGroup;
+			children = (
+				4FC59F59265A19B9002E9D34 /* GlobalBlocks.h */,
+				4FC59F5A265A19B9002E9D34 /* GlobalBlocks.m */,
+				4F1A28BF201CC11C009EEF1B /* StackBlocks.h */,
+				4F1A28C0201CC11C009EEF1B /* StackBlocks.m */,
+				4F1A28C5201CC159009EEF1B /* MallocBlocks.h */,
+				4F1A28C6201CC159009EEF1B /* MallocBlocks.m */,
+			);
+			path = BlockTypes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,10 +282,11 @@
 				4F37828B1FC458F6002BA02D /* WCBlockTool.m in Sources */,
 				4F3782861FC45314002BA02D /* CheckBlockObjectViewController.m in Sources */,
 				4F37827B1FC44F12002BA02D /* main.m in Sources */,
-				4F1A28C7201CC159009EEF1B /* GlobalAndMallocBlocks.m in Sources */,
+				4F1A28C7201CC159009EEF1B /* MallocBlocks.m in Sources */,
 				4F887DBB201EC1FE00A844BD /* Block1.m in Sources */,
 				4F1A28C1201CC11C009EEF1B /* StackBlocks.m in Sources */,
 				4F37826D1FC44F12002BA02D /* AppDelegate.m in Sources */,
+				4FC59F5B265A19B9002E9D34 /* GlobalBlocks.m in Sources */,
 				4F1A28BE201CB912009EEF1B /* BlockTypesViewController.m in Sources */,
 				4F74C2B521FAAAC500A87393 /* WeakStrongDanceViewController.m in Sources */,
 				4F3782871FC45314002BA02D /* RootViewController.m in Sources */,
@@ -282,6 +299,7 @@
 			files = (
 				4F8C95A3221EF1CF00869CE7 /* WCBlockTool.m in Sources */,
 				4F6F013621FA14F8008D669E /* Tests.m in Sources */,
+				4FC59F57265A18A1002E9D34 /* Tests_BlockInside.m in Sources */,
 				4F74C2BE21FAE83800A87393 /* Tests_BlockIssue.m in Sources */,
 				4F986B0422165F7D0096026E /* Tests_Block.m in Sources */,
 			);

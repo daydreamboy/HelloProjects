@@ -8,7 +8,8 @@
 
 #import "CheckBlockObjectViewController.h"
 #import "WCBlockTool.h"
-#import "GlobalAndMallocBlocks.h"
+#import "MallocBlocks.h"
+#import "GlobalBlocks.h"
 #import "StackBlocks.h"
 
 #define STR_OF_BOOL(yesOrNo)     ((yesOrNo) ? @"YES" : @"NO")

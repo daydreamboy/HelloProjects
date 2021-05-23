@@ -7,7 +7,8 @@
 //
 
 #import "BlockTypesViewController.h"
-#import "GlobalAndMallocBlocks.h"
+#import "MallocBlocks.h"
+#import "GlobalBlocks.h"
 #import "StackBlocks.h"
 
 @interface BlockTypesViewController ()
