@@ -493,7 +493,192 @@ oneFrom = ^float(float aFloat) {
 
 
 
-## 5、使用Block常见问题
+## 5、Block的二进制布局
+
+以下面的代码为例，用于示例如何查看Block在二进制中具体的结构[^3]。
+
+```objective-c
+#import <dispatch/dispatch.h>
+
+typedef void(^BlockA)(void);
+
+__attribute__((noinline))
+void runBlockA(BlockA block) {
+    block();
+}
+
+void doBlockA() {
+    BlockA block = ^{
+        // Empty block
+    };
+    runBlockA(block);
+}
+```
+
+> 示例文件，见BlockInside_Layout.m
+
+说明
+
+> 上面的示例代码中，将block定义和block调用分为2个函数，目的在于避免编译器做一些优化，这样能比较清楚看到block定义和block调用分别对应汇编代码。同时加上`__attribute__((noinline))`这个编译指令，也是这个目的。
+
+当BlockInside_Layout.m处于编辑状态，选择Xcode（Xcode 12.5） > Product > Perform Action > Assemble "BlockInside_Layout.m"，将BlockInside_Layout.m转换成汇编文件。
+
+找到如下两段汇编代码，如下
+
+```assembly
+"___block_descriptor_32_e5_v8?0l":
+	.quad	0                               ## 0x0
+	.quad	32                              ## 0x20
+	.quad	L_.str
+	.quad	0
+
+	.p2align	3                               ## @__block_literal_global
+___block_literal_global:
+	.quad	__NSConcreteGlobalBlock
+	.long	1342177280                      ## 0x50000000
+	.long	0                               ## 0x0
+	.quad	___doBlockA_block_invoke
+	.quad	"___block_descriptor_32_e5_v8?0l"
+```
+
+根据这篇文章的分析，上面汇编代码对应就是BlockA类型的block定义，而且block实际是一个struct结构体。
+
+对汇编不熟悉的话，可以直接参考llvm提供的block的ABI结构[^4]，如下
+
+```c
+struct Block_literal_1 {
+    void *isa; // initialized to &_NSConcreteStackBlock or &_NSConcreteGlobalBlock
+    int flags;
+    int reserved;
+    R (*invoke)(struct Block_literal_1 *, P...);
+    struct Block_descriptor_1 {
+    		unsigned long int reserved;      // NULL
+        unsigned long int size;         // sizeof(struct Block_literal_1)
+        // optional helper functions
+        void (*copy_helper)(void *dst, void *src);     // IFF (1<<25)
+        void (*dispose_helper)(void *src);             // IFF (1<<25)
+        // required ABI.2010.3.16
+        const char *signature;                         // IFF (1<<30)
+    } *descriptor;
+    // imported variables
+};
+```
+
+上面实际上把2个结构体，嵌套在一起。为了方便，下面重新分开为2个struct结构的定义，如下
+
+```c
+struct Block_literal_s {
+    void *isa;
+    int flags;
+    int reserved;
+    void (*invoke)(void *, ...);
+    struct Block_descriptor_s *descriptor;
+};
+
+struct Block_descriptor_s {
+    unsigned long int reserved;
+    unsigned long int size;
+    // Note: the rest parts depends on `flags`
+    void *rest[1];
+};
+```
+
+
+
+Block_literal_s是block定义的外层结构，对应汇编代码的`___block_literal_global`标号(label)，一共有5个字段
+
+* isa，初始化为`_NSConcreteStackBlock` 或`_NSConcreteGlobalBlock`
+
+* flags，一些标记
+
+* reserved
+
+* invoke，指向block体的实现函数
+
+  > 上面BlockInside_Layout.m转换成汇编的代码中，block体的实现函数，如下
+  >
+  > ```assembly
+  > ___doBlockA_block_invoke:               ## @__doBlockA_block_invoke
+  > Lfunc_begin2:
+  > 	.loc	2 21 0                          ## HelloBlocks/DummyClass/BlockInside_Layout.m:21:0
+  > 	.cfi_startproc
+  > ## %bb.0:
+  > 	pushq	%rbp
+  > 	.cfi_def_cfa_offset 16
+  > 	.cfi_offset %rbp, -16
+  > 	movq	%rsp, %rbp
+  > 	.cfi_def_cfa_register %rbp
+  > 	movq	%rdi, -8(%rbp)
+  > 	movq	%rdi, -16(%rbp)
+  > Ltmp4:
+  > 	.loc	2 23 5 prologue_end             ## HelloBlocks/DummyClass/BlockInside_Layout.m:23:5
+  > 	popq	%rbp
+  > 	retq
+  > Ltmp5:
+  > Lfunc_end2:
+  > 	.cfi_endproc
+  > ```
+
+* descriptor，对应的是Block_descriptor_s结构体
+
+
+
+Block_descriptor_s是block定义中内嵌的struct结构，有2个必选字段，其他的都是可选字段
+
+* reserved
+* size
+
+说明
+
+> 剩余可选字段，是根据Block_literal_s中flags字段来决定的。剩余可选字段，可能有`copy_helper`和`dispose_helper`。
+
+
+
+根据上面的block的struct定义，可以把之前的Objective-C代码，把block改成struct方式，如下
+
+```objective-c
+#import <dispatch/dispatch.h>
+
+__attribute__((noinline))
+void runBlockA(struct Block_literal_s *block) {
+    block->invoke();
+}
+
+void block_invoke(struct Block_literal_s *block) {
+    // Empty block function
+}
+
+void doBlockA() {
+    struct Block_descriptor_s descriptor;
+    descriptor->reserved = 0;
+    descriptor->size = 20;
+    descriptor->copy = NULL;
+    descriptor->dispose = NULL;
+
+    struct Block_literal_s block;
+    block->isa = _NSConcreteGlobalBlock;
+    block->flags = 1342177280;
+    block->reserved = 0;
+    block->invoke = block_invoke;
+    block->descriptor = descriptor;
+
+    runBlockA(&block);
+}
+```
+
+从上面用struct表意后的代码，可以得到下面几个简单的结论
+
+* block的定义，实际是用Block_literal_s结构体定义的结构体变量，而且会附带多定义一个Block_descriptor_s结构体变量。
+* 传递block参数，实际是传递Block_literal_s结构体的地址
+* block体的实现，实际是一个全局的c函数，
+
+
+
+
+
+
+
+## 6、使用Block常见问题
 
 ### （1）block为nil时调用会crash
 
@@ -519,6 +704,9 @@ weak_object.block(); // Crash
 
 [^1]: ProgrammingWithObjectiveC.pdf, Work with Blocks (P104)
 [^2]: https://www.cocoawithlove.com/2009/10/how-blocks-are-implemented-and.html
+
+[^3]:https://www.galloway.me.uk/2012/10/a-look-inside-blocks-episode-1/
+[^4]:https://clang.llvm.org/docs/Block-ABI-Apple.html
 
 
 

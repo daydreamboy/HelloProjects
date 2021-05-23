@@ -26,6 +26,7 @@
 		4F986B0422165F7D0096026E /* Tests_Block.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F986B0322165F7D0096026E /* Tests_Block.m */; };
 		4FC59F57265A18A1002E9D34 /* Tests_BlockInside.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC59F56265A18A1002E9D34 /* Tests_BlockInside.m */; };
 		4FC59F5B265A19B9002E9D34 /* GlobalBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC59F5A265A19B9002E9D34 /* GlobalBlocks.m */; };
+		4FC59F6A265A1DF2002E9D34 /* BlockInside_Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC59F69265A1DF2002E9D34 /* BlockInside_Layout.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,8 @@
 		4FC59F56265A18A1002E9D34 /* Tests_BlockInside.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_BlockInside.m; sourceTree = "<group>"; };
 		4FC59F59265A19B9002E9D34 /* GlobalBlocks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GlobalBlocks.h; sourceTree = "<group>"; };
 		4FC59F5A265A19B9002E9D34 /* GlobalBlocks.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GlobalBlocks.m; sourceTree = "<group>"; };
+		4FC59F68265A1DF2002E9D34 /* BlockInside_Layout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockInside_Layout.h; sourceTree = "<group>"; };
+		4FC59F69265A1DF2002E9D34 /* BlockInside_Layout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockInside_Layout.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +115,7 @@
 		4F37826A1FC44F12002BA02D /* HelloBlocks */ = {
 			isa = PBXGroup;
 			children = (
+				4FC59F67265A1DD4002E9D34 /* DummyClass */,
 				4F3782881FC458E4002BA02D /* WCBlockTool */,
 				4F3782821FC45314002BA02D /* AppTestDemos */,
 				4F3782811FC45314002BA02D /* RootViewController.h */,
@@ -158,8 +162,8 @@
 				4F6F013521FA14F8008D669E /* Tests.m */,
 				4F986B0322165F7D0096026E /* Tests_Block.m */,
 				4F74C2BD21FAE83800A87393 /* Tests_BlockIssue.m */,
-				4F6F013721FA14F8008D669E /* Info.plist */,
 				4FC59F56265A18A1002E9D34 /* Tests_BlockInside.m */,
+				4F6F013721FA14F8008D669E /* Info.plist */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -175,6 +179,15 @@
 				4F1A28C6201CC159009EEF1B /* MallocBlocks.m */,
 			);
 			path = BlockTypes;
+			sourceTree = "<group>";
+		};
+		4FC59F67265A1DD4002E9D34 /* DummyClass */ = {
+			isa = PBXGroup;
+			children = (
+				4FC59F68265A1DF2002E9D34 /* BlockInside_Layout.h */,
+				4FC59F69265A1DF2002E9D34 /* BlockInside_Layout.m */,
+			);
+			path = DummyClass;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,6 +298,7 @@
 				4F1A28C7201CC159009EEF1B /* MallocBlocks.m in Sources */,
 				4F887DBB201EC1FE00A844BD /* Block1.m in Sources */,
 				4F1A28C1201CC11C009EEF1B /* StackBlocks.m in Sources */,
+				4FC59F6A265A1DF2002E9D34 /* BlockInside_Layout.m in Sources */,
 				4F37826D1FC44F12002BA02D /* AppDelegate.m in Sources */,
 				4FC59F5B265A19B9002E9D34 /* GlobalBlocks.m in Sources */,
 				4F1A28BE201CB912009EEF1B /* BlockTypesViewController.m in Sources */,
