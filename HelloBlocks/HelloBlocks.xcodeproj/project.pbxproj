@@ -27,6 +27,7 @@
 		4FC59F5B265A19B9002E9D34 /* GlobalBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC59F5A265A19B9002E9D34 /* GlobalBlocks.m */; };
 		4FC59F6A265A1DF2002E9D34 /* BlockInside_BlockVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC59F69265A1DF2002E9D34 /* BlockInside_BlockVariable.m */; };
 		4FC59F6D265A2E61002E9D34 /* BlockInside_MultipeBlockVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC59F6C265A2E61002E9D34 /* BlockInside_MultipeBlockVariable.m */; };
+		4FC59F70265A4E63002E9D34 /* BlockInside_helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FC59F6F265A4E63002E9D34 /* BlockInside_helper.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,8 @@
 		4FC59F69265A1DF2002E9D34 /* BlockInside_BlockVariable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockInside_BlockVariable.m; sourceTree = "<group>"; };
 		4FC59F6B265A2E61002E9D34 /* BlockInside_MultipeBlockVariable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockInside_MultipeBlockVariable.h; sourceTree = "<group>"; };
 		4FC59F6C265A2E61002E9D34 /* BlockInside_MultipeBlockVariable.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockInside_MultipeBlockVariable.m; sourceTree = "<group>"; };
+		4FC59F6E265A4E63002E9D34 /* BlockInside_helper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BlockInside_helper.h; sourceTree = "<group>"; };
+		4FC59F6F265A4E63002E9D34 /* BlockInside_helper.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlockInside_helper.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +191,8 @@
 				4FC59F69265A1DF2002E9D34 /* BlockInside_BlockVariable.m */,
 				4FC59F6B265A2E61002E9D34 /* BlockInside_MultipeBlockVariable.h */,
 				4FC59F6C265A2E61002E9D34 /* BlockInside_MultipeBlockVariable.m */,
+				4FC59F6E265A4E63002E9D34 /* BlockInside_helper.h */,
+				4FC59F6F265A4E63002E9D34 /* BlockInside_helper.m */,
 			);
 			path = DummyClass;
 			sourceTree = "<group>";
@@ -300,6 +305,7 @@
 				4F1A28C7201CC159009EEF1B /* MallocBlocks.m in Sources */,
 				4F887DBB201EC1FE00A844BD /* Block1.m in Sources */,
 				4F1A28C1201CC11C009EEF1B /* StackBlocks.m in Sources */,
+				4FC59F70265A4E63002E9D34 /* BlockInside_helper.m in Sources */,
 				4FC59F6A265A1DF2002E9D34 /* BlockInside_BlockVariable.m in Sources */,
 				4FC59F6D265A2E61002E9D34 /* BlockInside_MultipeBlockVariable.m in Sources */,
 				4F37826D1FC44F12002BA02D /* AppDelegate.m in Sources */,
