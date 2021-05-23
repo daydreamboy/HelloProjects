@@ -16,7 +16,18 @@
 		4F27EBF3241399FF0022349C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F27EBF2241399FF0022349C /* main.m */; };
 		4F27EC0124139A720022349C /* MyUniversalStaticLibrary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F27EC0024139A720022349C /* MyUniversalStaticLibrary.m */; };
 		4F27EC0224139A720022349C /* MyUniversalStaticLibrary.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 4F27EBFF24139A720022349C /* MyUniversalStaticLibrary.h */; };
+		4F813B4A265A7C0700684D5E /* libMyUniversalStaticLibrary.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F27EBFD24139A720022349C /* libMyUniversalStaticLibrary.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4F813B47265A7C0400684D5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F27EBD5241399FE0022349C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F27EBFC24139A720022349C;
+			remoteInfo = MyUniversalStaticLibrary;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		4F27EBFB24139A720022349C /* CopyFiles */ = {
@@ -54,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F813B4A265A7C0700684D5E /* libMyUniversalStaticLibrary.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +85,7 @@
 				4F27EBDF241399FE0022349C /* HelloUniversalStaticLibrary */,
 				4F27EBFE24139A720022349C /* MyUniversalStaticLibrary */,
 				4F27EBDE241399FE0022349C /* Products */,
+				4F813B49265A7C0700684D5E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,6 +125,13 @@
 			path = MyUniversalStaticLibrary;
 			sourceTree = "<group>";
 		};
+		4F813B49265A7C0700684D5E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,6 +146,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4F813B48265A7C0400684D5E /* PBXTargetDependency */,
 			);
 			name = HelloUniversalStaticLibrary;
 			productName = HelloUniversalStaticLibrary;
@@ -241,6 +262,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4F813B48265A7C0400684D5E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F27EBFC24139A720022349C /* MyUniversalStaticLibrary */;
+			targetProxy = 4F813B47265A7C0400684D5E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		4F27EBE9241399FE0022349C /* Main.storyboard */ = {
