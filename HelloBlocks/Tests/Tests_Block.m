@@ -70,6 +70,12 @@
     [self completion:^BOOL(id JSONObject, NSError *error) {
         return YES;
     }];
+    
+    [self completion:^BOOL(id JSONObject, NSError *error) {
+        NSLog(@"%s", __FUNCTION__);
+        NSLog(@"%s", __PRETTY_FUNCTION__);
+        return YES;
+    }];
 }
 
 - (void)completion:(BOOL (^)(id JSONObject, NSError *error))completion {

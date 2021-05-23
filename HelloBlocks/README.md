@@ -495,7 +495,9 @@ oneFrom = ^float(float aFloat) {
 
 ## 5、Block的二进制布局
 
-以下面的代码为例，用于示例如何查看Block在二进制中具体的结构[^3]。
+### （1）Block变量
+
+以下面的代码为例，用于示例如何查看Block变量在二进制中具体的结构[^3]。
 
 ```objective-c
 #import <dispatch/dispatch.h>
@@ -515,13 +517,25 @@ void doBlockA() {
 }
 ```
 
-> 示例文件，见BlockInside_Layout.m
+> 示例文件，见BlockInside_BlockVariable.m
+
+
 
 说明
 
 > 上面的示例代码中，将block定义和block调用分为2个函数，目的在于避免编译器做一些优化，这样能比较清楚看到block定义和block调用分别对应汇编代码。同时加上`__attribute__((noinline))`这个编译指令，也是这个目的。
 
-当BlockInside_Layout.m处于编辑状态，选择Xcode（Xcode 12.5） > Product > Perform Action > Assemble "BlockInside_Layout.m"，将BlockInside_Layout.m转换成汇编文件。
+
+
+当XXX.m文件处于编辑状态，选择Xcode（Xcode 12.5） > Product > Perform Action > Assemble "XXX.m"，将XXX.m转换成汇编文件。
+
+说明
+
+> Xcode生成的汇编文件，可以在构成产物的App.build目录中找到，例如
+>
+> ~/Library/Developer/Xcode/DerivedData/HelloBlocks-ewpryfgipztqmdfexkmobptzauiw/Build/Intermediates.noindex/HelloBlocks.build/Debug-iphonesimulator/HelloBlocks.build/Objects-normal/x86_64/BlockInside_BlockVariable.s
+
+
 
 找到如下两段汇编代码，如下
 
@@ -668,11 +682,123 @@ void doBlockA() {
 
 从上面用struct表意后的代码，可以得到下面几个简单的结论
 
-* block的定义，实际是用Block_literal_s结构体定义的结构体变量，而且会附带多定义一个Block_descriptor_s结构体变量。
+* block变量，实际是用Block_literal_s结构体定义的结构体变量，而且会附带多定义一个Block_descriptor_s结构体变量。
 * 传递block参数，实际是传递Block_literal_s结构体的地址
 * block体的实现，实际是一个全局的c函数，
 
+说明
 
+> block体，对
+
+
+
+### （2）多个block变量
+
+如果有多个block变量，根据上面的结论，实际上编译后对应有多个Block_literal_s结构体变量。而且对应block实现函数也是有多个的。为了避免命名冲突，编译器会自动给Block_literal_s结构体变量和block实现函数增加序号。
+
+例如下面的代码
+
+```objective-c
+#import <dispatch/dispatch.h>
+
+typedef void(^BlockB)(void);
+
+__attribute__((noinline))
+void runBlockB(BlockB block) {
+    block();
+}
+
+void doBlockB() {
+    BlockB block1 = ^{
+        // Empty block
+    };
+    
+    BlockB block2 = ^{
+        // Empty block
+    };
+    
+    runBlockB(block1);
+    runBlockB(block2);
+}
+```
+
+对应的汇编代码，两个结构体的代码，如下
+
+```assembly
+___block_literal_global:
+	.quad	__NSConcreteGlobalBlock
+	.long	1342177280                      ## 0x50000000
+	.long	0                               ## 0x0
+	.quad	___doBlockB_block_invoke
+	.quad	"___block_descriptor_32_e5_v8?0l"
+
+	.p2align	3                               ## @__block_literal_global.1
+___block_literal_global.1:
+	.quad	__NSConcreteGlobalBlock
+	.long	1342177280                      ## 0x50000000
+	.long	0                               ## 0x0
+	.quad	___doBlockB_block_invoke_2
+	.quad	"___block_descriptor_32_e5_v8?0l"
+```
+
+
+
+### （3）block设置符号断点
+
+​       如果需要在block被调用时设置符号断点，查看block传入的变量。根据上面的结论，可以知道找到block的实现函数，即Block_literal_s结构体中invoke字段，就可以设置block被调用函数的断点。
+
+但是block的实现函数，这个函数是编译器生成的，并不在代码中体现。
+
+根据经验，这个函数命名满足下面的规则
+
+* block定义在C函数中，则命名为`__<c function>_block_invoke`。如果该C函数中有多个block定义，则从第二block开始，命名为`__<c function>_block_invoke_2`，依次类推。
+
+* block定义在OC方法中，则命名为`__xx<OC Method>_block_invoke`，如果该OC方法中有多个block定义，则从第二block开始，命名为`__xx<OC Method>_block_invoke_2`，依次类推。
+
+  举个例子，`__38-[Tests_Block test_block_as_parameter]_block_invoke_2`是第二个block。
+
+说明
+
+> 在调用栈中，如果出现`xxx_block_invoke`（满足上面的规则），则说明该帧(frame)是一个block被调用，进入了该block的实现函数里面。
+
+
+
+以下面的代码为例，设置block的符号断点
+
+```objective-c
+- (void)test_block_as_parameter {
+    [self completion:^BOOL(id JSONObject, NSError *error) {
+        return YES;
+    }];
+    
+    [self completion:^BOOL(id JSONObject, NSError *error) {
+        return YES;
+    }];
+}
+
+- (void)completion:(BOOL (^)(id JSONObject, NSError *error))completion {
+    if (completion) {
+        completion(@{}, nil);
+    }
+}
+```
+
+
+
+* 第一个block的符号断点，是`__38-[Tests_Block test_block_as_parameter]_block_invoke`
+* 第二个block的符号断点，是`__38-[Tests_Block test_block_as_parameter]_block_invoke_2`
+
+
+
+注意
+
+> 上面代码，根据不同编译环境（x86/arm64、Xcode版本等），38这个序号不是固定的，需要查看对应的汇编代码才能确定。
+
+
+
+说明
+
+> 如果在block中使用`__FUNCTION__`或者`__PRETTY_FUNCTION__`，只能打印C函数或者OC函数，加上`_block_invoke`后缀的字符串，例如`-[Tests_Block test_block_as_parameter]_block_invoke_2`，并不能打印block的实现函数的函数名
 
 
 
