@@ -836,3 +836,9 @@ weak_object.block(); // Crash
 
 
 
+## TODO
+
+https://www.galloway.me.uk/2013/05/a-look-inside-blocks-episode-3-block-copy/
+
+
+

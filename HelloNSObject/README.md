@@ -456,6 +456,12 @@ int square(int n) __attribute__((const));
 
 
 
+##### 5. `deprecated`
+
+TODO
+
+
+
 ##### 6. `constructor`和`destructor`
 
 构造器`constructor`和析构器`destructor`，使用这两个属性修饰的函数会在分别在可执行文件（包括动态库）load和 unload时被调用，可以理解为在 `main()` 函数调用前和 return 后执行[^21]。
