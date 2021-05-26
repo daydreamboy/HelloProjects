@@ -35,21 +35,29 @@ FOUNDATION_EXPORT NSFileAttributeKey const WCFileName;
 
  @param path    the absolute file path started by root path '/'
  @param content the text of the content
+ @param overwrite YES if need to overwrite. NO if consider the existing one and return NO (error = nil)
+ @param error the error if any error happened
+ 
  @return YES if created successfully, or NO if it failed
  
  @warning <br/>1. the path NOT support the '~' tilde symbol, use stringByExpandingTildeInPath method to expand it.
           <br/>2. the new file will overwrite the existing file.
  @note stringByExpandingTildeInPath expand  '~' decided by current environment, so '~' is NOT the same path always.
  */
-+ (BOOL)createNewFileAtPath:(NSString *)path content:(NSString *)content overwrite:(BOOL)overwrite;
++ (BOOL)createNewFileAtPath:(NSString *)path content:(NSString *)content overwrite:(BOOL)overwrite error:(NSError * _Nullable * _Nullable)error;
 
 /**
- Create an empty file. And if the parent folders is not existing, create them if needed.
+ Create an empty file
 
  @param path the path of a file
+ @param overwrite YES if need to overwrite. NO if consider the existing one and return NO (error = nil)
+ @param error the error if any error happened
+ 
  @return YES if created successfully, or NO if it failed
+ 
+ @discussion If the parent folders is not existing, create them if needed.
  */
-+ (BOOL)createNewFileAtPath:(NSString *)path overwrite:(BOOL)overwrite;
++ (BOOL)createNewFileAtPath:(NSString *)path overwrite:(BOOL)overwrite error:(NSError * _Nullable * _Nullable)error;
 
 + (BOOL)copyFileAtPath:(NSString *)filePath toDirectoryPath:(NSString *)directoryPath overwrite:(BOOL)overwrite;
 

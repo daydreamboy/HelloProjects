@@ -38,12 +38,12 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
 
 #pragma mark > File Creation
 
-+ (BOOL)createNewFileAtPath:(NSString *)path content:(NSString *)content overwrite:(BOOL)overwrite {
++ (BOOL)createNewFileAtPath:(NSString *)path content:(NSString *)content overwrite:(BOOL)overwrite error:(NSError * _Nullable * _Nullable)error {
     if (![path isKindOfClass:[NSString class]] || ![content isKindOfClass:[NSString class]]) {
         return NO;
     }
     
-    NSError *error;
+    NSError *errorL = nil;
     BOOL success = NO;
     
     path = [path stringByExpandingTildeInPath];
@@ -55,8 +55,8 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
     
     do {
         if (![[NSFileManager defaultManager] fileExistsAtPath:directoryPath isDirectory:NULL]) {
-            success = [[NSFileManager defaultManager] createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:&error];
-            CheckErrorAndBreak(error);
+            success = [[NSFileManager defaultManager] createDirectoryAtPath:directoryPath withIntermediateDirectories:YES attributes:nil error:&errorL];
+            CheckErrorAndBreak(errorL);
         }
         
         if ([[NSFileManager defaultManager] fileExistsAtPath:filePath]) {
@@ -65,6 +65,9 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
                 if (!success) {
                     // @sa http://stackoverflow.com/questions/1860070/more-detailed-error-from-createfileatpath
                     WCLog(@"Error code: %d - message: %s", errno, strerror(errno));
+                    NSMutableDictionary *userInfoM = [NSMutableDictionary dictionary];
+                    userInfoM[NSLocalizedFailureReasonErrorKey] = [NSString stringWithFormat:@"%s", strerror(errno)];
+                    errorL = [NSError errorWithDomain:NSStringFromClass([self class]) code:errno userInfo:userInfoM];
                 }
             }
         }
@@ -73,15 +76,22 @@ NSFileAttributeKey const WCFileName = @"WCFileName";
             if (!success) {
                 // @sa http://stackoverflow.com/questions/1860070/more-detailed-error-from-createfileatpath
                 WCLog(@"Error code: %d - message: %s", errno, strerror(errno));
+                NSMutableDictionary *userInfoM = [NSMutableDictionary dictionary];
+                userInfoM[NSLocalizedFailureReasonErrorKey] = [NSString stringWithFormat:@"%s", strerror(errno)];
+                errorL = [NSError errorWithDomain:NSStringFromClass([self class]) code:errno userInfo:userInfoM];
             }
         }
     } while (NO);
     
+    if (error) {
+        *error = errorL;
+    }
+    
     return success;
 }
 
-+ (BOOL)createNewFileAtPath:(NSString *)path overwrite:(BOOL)overwrite {
-    return [self createNewFileAtPath:path content:@"" overwrite:overwrite];
++ (BOOL)createNewFileAtPath:(NSString *)path overwrite:(BOOL)overwrite error:(NSError * _Nullable * _Nullable)error {
+    return [self createNewFileAtPath:path content:@"" overwrite:overwrite error:error];
 }
 
 + (BOOL)copyFileAtPath:(NSString *)filePath toDirectoryPath:(NSString *)directoryPath overwrite:(BOOL)overwrite {
