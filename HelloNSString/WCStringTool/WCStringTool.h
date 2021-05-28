@@ -130,7 +130,7 @@ typedef NS_ENUM(NSUInteger, WCStringSplitIntoComponentsMode) {
  @param length the length of substring. And the length > string.length - location, will return the substring from location to the end
  @param byVisualization YES if treat a glyph, e.g. 😁 as 1 length not 2 length. NO if treat treat a glyph, e.g. 😁 as actual length
  
- @return the substring. Return nil if the locatio or length is invalid, e.g. location out of the string index [0..string.length].
+ @return the substring. Return nil if the location or length is invalid, e.g. location out of the string index [0..string.length].
  @discussion The location is equal to the length of the string, returns an empty string. This is keep same as -[NSString substringFromIndex:].
  @note when byVisualization is YES, the location and length are also treated by visualization
  */
@@ -164,6 +164,17 @@ typedef NS_ENUM(NSUInteger, WCStringSplitIntoComponentsMode) {
  @endcode
  */
 + (nullable NSString *)firstSubstringWithString:(NSString *)string substringInCharacterSet:(NSCharacterSet *)characterSet;
+
+/**
+ Get visual substring of the string, which filter out the white space (e.g. " ", "\n", "\t")
+ 
+ @param string the whole string
+ @param location the start location which expected in the [0, string.length]. If location is equal to the length of the string, returns an empty string.
+ @param length the length of substring. And the length > string.length - location, will return the substring from location to the end
+ 
+ @return the substring which not contains white space. Return nil if the location or length is invalid, e.g. location out of the string index [0..string.length].
+ */
++ (nullable NSString *)visualSubstringWithString:(NSString *)string atLocation:(NSUInteger)location length:(NSUInteger)length;
 
 #pragma mark > Split String
 

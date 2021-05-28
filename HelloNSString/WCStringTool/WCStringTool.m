@@ -255,6 +255,43 @@
     }
 }
 
++ (nullable NSString *)visualSubstringWithString:(NSString *)string atLocation:(NSUInteger)location length:(NSUInteger)length {
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    if (location == NSNotFound) {
+        return nil;
+    }
+    
+    NSMutableString *substringM = [NSMutableString string];
+    __block NSUInteger substringLength = 0;
+    __block NSUInteger visualizedLocation = 0;
+    
+    [string enumerateSubstringsInRange:NSMakeRange(0, string.length) options:NSStringEnumerationByComposedCharacterSequences usingBlock:^(NSString * _Nullable substring, NSRange substringRange, NSRange enclosingRange, BOOL * _Nonnull stop) {
+        
+        if (visualizedLocation >= location) {
+            // Note: trimmedString is not empty or not contains only white spaces
+            // @see https://stackoverflow.com/a/19577077
+            NSString *trimmedString = [substring stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            if (![trimmedString isEqualToString:@""]) {
+                // Note: 1 length for visualized length
+                substringLength += 1;
+                if (substringLength <= length) {
+                    [substringM appendString:substring];
+                }
+                else {
+                    *stop = YES;
+                }
+            }
+        }
+        
+        ++visualizedLocation;
+    }];
+    
+    return substringM;
+}
+
 + (nullable NSString *)substringWithString:(NSString *)string range:(NSRange)range byVisualization:(BOOL)byVisualization {
     return [self substringWithString:string atLocation:range.location length:range.length byVisualization:byVisualization];
 }

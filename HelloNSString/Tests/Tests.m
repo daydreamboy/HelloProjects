@@ -809,6 +809,21 @@
     XCTAssertNil(substring);
 }
 
+- (void)test_visualSubstringWithString_atLocation_length {
+    NSString *originalString;
+    NSString *substring;
+    
+    // case 1
+    originalString = @"幸运号😁This's my string\n \t .0123456789";
+    substring = [WCStringTool visualSubstringWithString:originalString atLocation:0 length:15];
+    XCTAssertEqualObjects(substring, @"幸运号😁This'smystr");
+    
+    // case 2
+    originalString = @"幸运号😁This's my string\n \t .0123456789";
+    substring = [WCStringTool visualSubstringWithString:originalString  atLocation:0 length:5];
+    XCTAssertEqualObjects(substring, @"幸运号😁T");
+}
+
 #pragma mark > String Validation
 
 - (void)test_checkStringAsEmailWithString {
