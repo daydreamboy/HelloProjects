@@ -618,6 +618,14 @@ $ grep --after-context=1000 "Binary Images:" <Path to Crash Report> | grep Touch
 $ mdfind "com_apple_xcode_dsym_uuids == DD698BD4-71CE-3439-8BDF-BA96C0320562"
 ```
 
+或者
+
+```shell
+$ mdfind "com_apple_xcode_dsym_uuids == *"
+```
+
+
+
 注意
 
 > 需要将全部小写uuid换成全部大写，而且满足8-4-4-4-12 (`XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX`)格式。这个有点不方便，需要写脚本来代替手工了。
