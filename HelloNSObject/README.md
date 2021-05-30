@@ -293,6 +293,8 @@ extern void die(const char *format, ...)
 说明
 
 > LLVM支持的attribute可以参考这篇文档[^31]
+>
+> GCC支持的attribute可以参考这篇文档[^33]
 
 
 
@@ -308,6 +310,9 @@ extern void die(const char *format, ...)
 | `constructor`和`destructor`   | 在main之前，调用用`constructor`修饰的函数<br/>在main之后，调用用`destructor`修饰的函数 |
 | `deprecated`                  |                                                              |
 | `enable_if`                   | 用于静态检查函数的参数，是否满足特定判断if条件               |
+| `format`                      | 用于编译器检查格式化字符串，效果和printf函数是一样的         |
+| `nonnull`                     | 用于标记函数参数，哪些不能传nil/NULL                         |
+| `noreturn`                    | 用于标记方法没有返回值                                       |
 | `objc_boxable`                | 用于标记struct或union，可以使用@()语法糖封箱成NSValue对象。系统别名CG_BOXABLE |
 | `objc_requires_super`         | 该方法里面需要调用super方法                                  |
 | `objc_runtime_name`           | 用于重命名OC类或OC协议                                       |
@@ -315,12 +320,6 @@ extern void die(const char *format, ...)
 | `overloadable`                | 用于重载C函数，编译器根据参数类型匹配对应的函数调用          |
 | `used`和`unused`              | 用于标记函数符号在二进制中有使用或者没有使用                 |
 | `weak`                        | 修饰函数符号为weak                                           |
-
-
-
-// TODO
-
-https://prafullkumar77.medium.com/clang-attributes-4f20cdd1e04
 
 
 
@@ -688,18 +687,6 @@ __attribute__((objc_runtime_name("544cd1f719a0cb56dce50fd51b39852d")))
 
 
 
-// TODO: 代码注解示例
-
-
-
-\_\_attribute\_\_ ((\_\_cleanup\_\_(\<callback\>)))的用法
-
-
-
-示例代码，见**GCCAttributeCleanupViewController**
-
-
-
 ##### 10. `used`和`unused`
 
 `__attribute__((used))`和`__attribute__((unused))`用于标记函数符号在二进制中有使用或者没有使用。
@@ -830,6 +817,109 @@ x86_64 $ nm --defined-only -m Tests_weak_class2.o
 ```
 
 > 示例代码，见Tests_weak.m
+
+
+
+##### 12. `noreturn`
+
+​       在一些标准库的函数，例如abort和exit，是不会返回的。编译器GCC可以自动判断出来，但是某些函数满足这种情况，因此需要使用`noreturn`，标记该函数是不会返回的。
+
+例如AFNetworking的代码[^32]使用到`noreturn`，如下
+
+```objective-c
++ (void) __attribute__((noreturn)) networkRequestThreadEntryPoint:(id)__unused object {
+    do {
+        @autoreleasepool {
+            [[NSRunLoop currentRunLoop] run];
+        }
+    } while (YES);
+}
+
++ (NSThread *)networkRequestThread {
+    static NSThread *_networkRequestThread = nil;
+    static dispatch_once_t oncePredicate;
+    
+    dispatch_once(&oncePredicate, ^{
+        _networkRequestThread = [[NSThread alloc] initWithTarget:self selector:@selector(networkRequestThreadEntryPoint:) object:nil];
+        [_networkRequestThread start];
+    });
+    
+    return _networkRequestThread;
+}
+```
+
+
+
+##### 13. `format`
+
+​       使用`format`修饰函数，用于告诉编译器，哪个参数是format参数，哪个参数是`...`。这样，编译器可以做一些类型检查和个数匹配的事情。
+
+例如NSLog的声明，如下
+
+```objective-c
+FOUNDATION_EXPORT void NSLog(NSString *format, ...) NS_FORMAT_FUNCTION(1,2) NS_NO_TAIL_CALL;
+FOUNDATION_EXPORT void NSLogv(NSString *format, va_list args) NS_FORMAT_FUNCTION(1,0) NS_NO_TAIL_CALL;
+```
+
+NS_FORMAT_FUNCTION宏的实现，还是`format`，如下
+
+```c
+#if !defined(NS_FORMAT_FUNCTION)
+    #if (__GNUC__*10+__GNUC_MINOR__ >= 42)
+	#define NS_FORMAT_FUNCTION(F,A) __attribute__((format(__NSString__, F, A)))
+    #else
+	#define NS_FORMAT_FUNCTION(F,A)
+    #endif
+#endif
+```
+
+`format`一共有3个参数[^34]，如下
+
+```c
+format (archetype, string-index, first-to-check)
+```
+
+* archetype，用于指定哪种规则来检查fortmat string。GCC支持的有`printf`, `scanf`, `strftime`, `gnu_printf`, `gnu_scanf`, `gnu_strftime` or `strfmon`。当然可以写成`__printf__`, `__scanf__`, `__strftime__` or `__strfmon__`。在Objective-C代码，可以使用`NSString`或者 `__NSString__`。
+* string-index，用于指定format string在函数签名中的参数索引。函数第一个参数的下标是1，后面以此类推
+* first-to-check，用于指定`...`参数的索引。如果没有，则写0。参考上面的`NSLogv`函数
+
+
+
+##### 14. `nonnull`
+
+GCC提供`nonnull`，用于标记函数的参数，哪些不能传NULL。如果传入空指针，则编译器会提示警告。
+
+`nonnull`带一个或多个参数，如下
+
+```c
+nonnull (arg-index, …)
+```
+
+* arg-index，是参数的索引。第一个参数的索引是1
+
+举个例子，如下
+
+```c
+extern void *
+my_memcpy (void *dest, const void *src, size_t len)
+        __attribute__((nonnull (1, 2)));
+```
+
+上面指定dest和src是不能传入空指针。
+
+
+
+如果所有参数，都不能传入空指针，则无需指定所有参数的索引，不写索引即可。
+
+举个例子，如下
+
+```c
+extern void *
+my_memcpy (void *dest, const void *src, size_t len)
+        __attribute__((nonnull));
+```
+
+
 
 
 
@@ -2490,4 +2580,7 @@ clang文档描述[^10]，如下
 [^29]:http://blog.sunnyxx.com/2014/09/15/objc-attribute-cleanup/
 [^30]:https://github.com/ReactiveCocoa/ReactiveObjC/blob/master/ReactiveObjC/extobjc/EXTScope.h#L31
 [^31]:https://clang.llvm.org/docs/AttributeReference.html
+[^32]:https://github.com/AFNetworking/AFNetworking/blob/1.1.0/AFNetworking/AFURLConnectionOperation.m#L157
+[^33]:https://gcc.gnu.org/onlinedocs/gcc/Function-Attributes.html
+[^34]:https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#Common-Function-Attributes
 
