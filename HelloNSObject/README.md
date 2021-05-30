@@ -290,6 +290,10 @@ extern void die(const char *format, ...)
 
 从GCC开始就支持`__attribute__`，而LLVM继续支持`__attribute__`，并且增加很多属性名。
 
+说明
+
+> LLVM支持的attribute可以参考这篇文档[^31]
+
 
 
 #### b. 常用属性的使用
@@ -299,7 +303,7 @@ extern void die(const char *format, ...)
 | 属性                          | 作用                                                         |
 | ----------------------------- | ------------------------------------------------------------ |
 | `annotate("xxx")`             | https://blog.quarkslab.com/implementing-a-custom-directive-handler-in-clang.html |
-| `cleanup`                     |                                                              |
+| `cleanup`                     | 当变量超过作用域，调用指定的回调函数                         |
 | `const`                       | 标记某个函数的返回值，仅依赖于函数的参数，因此运行时采用缓存直接返回之前计算过的值 |
 | `constructor`和`destructor`   | 在main之前，调用用`constructor`修饰的函数<br/>在main之后，调用用`destructor`修饰的函数 |
 | `deprecated`                  |                                                              |
@@ -321,6 +325,105 @@ https://prafullkumar77.medium.com/clang-attributes-4f20cdd1e04
 
 
 ##### 1. `cleanup`
+
+`cleanup`，顾名思义，用于修饰一个变量，在它作用作用域结束时可以自动执行一个指定的C回调函数[^29]，这个函数可以做一些清理工作。
+
+这个C回调函数的签名，大概如下
+
+```c
+// 变量是基本类型
+static void <callbackForCleanup>(type* parameter) {
+    NSLog(@"%@", *parameter);
+}
+
+// 变量是对象类型
+void objectCleanup(id *object) {
+    NSLog(@"objectCleanUp: %@", *object);
+}
+```
+
+有几点需要说明
+
+* `cleanup`，可以修饰任意变量，基本类型、对象类型（包括block），甚至Class类型
+* `cleanup`修饰对象实例时，C回调函数，优先该对象的dealloc方法调用
+* 当同一作用域下，如果有多个`cleanup`修饰的变量，则按照栈的顺序（先进后出），对callback函数进行调用，即最后用`cleanup`修饰定义的变量，先调用callback函数
+
+
+
+举几个例子，如下
+
+```objective-c
+- (void)test_cleanup {
+    {
+        __unused NSString *string __attribute__((cleanup(stringCleanUp))) = @"local variable";
+    } // Note: the string variable will be destroyed and will trigger cleanup callback
+}
+
+- (void)test_cleanup_object {
+    {
+        __unused Tests_cleanup_Object *object __attribute__((cleanup(objectCleanup))) = [Tests_cleanup_Object new];
+        NSLog(@"%@", object);
+    } // Note: the cleanup callback called prior to the dealloc method
+}
+
+- (void)test_cleanup_multiple {
+    {
+        __unused Tests_cleanup_Object *object1 __attribute__((cleanup(objectCleanup))) = [Tests_cleanup_Object new];
+        NSLog(@"object1: %@", object1);
+        
+        __unused Tests_cleanup_Object *object2 __attribute__((cleanup(objectCleanup))) = [Tests_cleanup_Object new];
+        NSLog(@"object2: %@", object2);
+        
+        __unused Tests_cleanup_Object *object3 __attribute__((cleanup(objectCleanup))) = [Tests_cleanup_Object new];
+        NSLog(@"object3: %@", object3);
+    } // Note: the cleanup callback function calling order is object3 - object2 - object1
+}
+```
+
+
+
+关于`cleanup`比较常见的用法，是用于锁的加锁和解锁配对
+
+RAC的onExit宏[^30]就用到`cleanup`，onExit定义如下
+
+```c
+#define onExit \
+    rac_keywordify \
+    __strong rac_cleanupBlock_t metamacro_concat(rac_exitBlock_, __LINE__) __attribute__((cleanup(rac_executeCleanupBlock), unused)) = ^
+
+```
+
+`rac_keywordify`用于@和onExit宏拼接，看`rac_keywordify`的定义，就比较清楚了，如下
+
+```objective-c
+#if DEBUG
+#define rac_keywordify autoreleasepool {}
+#else
+#define rac_keywordify try {} @catch (...) {}
+#endif
+```
+
+onExit宏的使用比较简单，如下
+
+```objective-c
+NSRecursiveLock *aLock = [[NSRecursiveLock alloc] init];
+[aLock lock];
+// 这里的代码比较多，导致unlock和lock配对阅读性差
+[aLock unlock];
+
+// 换成onExit宏
+NSRecursiveLock *aLock = [[NSRecursiveLock alloc] init];
+[aLock lock];
+onExit {
+    [aLock unlock];
+};
+```
+
+说明
+
+> 如果有大片代码，不如抽成一个方法，这样lock和unlock也是比较清晰，可阅读的
+
+
 
 
 
@@ -2383,4 +2486,8 @@ clang文档描述[^10]，如下
 [^27]: https://stackoverflow.com/a/24107536
 
 [^28]:https://stackoverflow.com/questions/51656838/attribute-weak-and-static-libraries
+
+[^29]:http://blog.sunnyxx.com/2014/09/15/objc-attribute-cleanup/
+[^30]:https://github.com/ReactiveCocoa/ReactiveObjC/blob/master/ReactiveObjC/extobjc/EXTScope.h#L31
+[^31]:https://clang.llvm.org/docs/AttributeReference.html
 

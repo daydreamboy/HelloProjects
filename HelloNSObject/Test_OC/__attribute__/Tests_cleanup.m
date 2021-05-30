@@ -9,28 +9,53 @@
 #import <XCTest/XCTest.h>
 
 static void stringCleanUp(__strong NSString **string) {
-    NSLog(@"%@", *string);
+    NSLog(@"stringCleanUp: %@", *string);
 }
 
-@interface Tests_cleanup : XCTestCase
+void objectCleanup(id *object) {
+    NSLog(@"objectCleanUp: %@", *object);
+}
 
+@interface Tests_cleanup_Object : NSObject
+@end
+
+@implementation Tests_cleanup_Object
+- (void)dealloc {
+    NSLog(@"%@: %@", NSStringFromSelector(_cmd), self);
+}
+@end
+
+#pragma mark -
+
+@interface Tests_cleanup : XCTestCase
 @end
 
 @implementation Tests_cleanup
 
-- (void)setUp {
-    NSLog(@"\n");
-}
-
-- (void)tearDown {
-    NSLog(@"\n");
-}
-
 - (void)test_cleanup {
-    // 在某个方法中：
     {
-        __strong NSString *string __attribute__((cleanup(stringCleanUp))) = @"sunnyxx";
-    } // 当运行到这个作用域结束时，自动调用stringCleanUp
+        __unused NSString *string __attribute__((cleanup(stringCleanUp))) = @"local variable";
+    } // Note: the string variable will be destroyed and will trigger cleanup callback
+}
+
+- (void)test_cleanup_object {
+    {
+        __unused Tests_cleanup_Object *object __attribute__((cleanup(objectCleanup))) = [Tests_cleanup_Object new];
+        NSLog(@"%@", object);
+    } // Note: the cleanup callback called prior to the dealloc method
+}
+
+- (void)test_cleanup_multiple {
+    {
+        __unused Tests_cleanup_Object *object1 __attribute__((cleanup(objectCleanup))) = [Tests_cleanup_Object new];
+        NSLog(@"object1: %@", object1);
+        
+        __unused Tests_cleanup_Object *object2 __attribute__((cleanup(objectCleanup))) = [Tests_cleanup_Object new];
+        NSLog(@"object2: %@", object2);
+        
+        __unused Tests_cleanup_Object *object3 __attribute__((cleanup(objectCleanup))) = [Tests_cleanup_Object new];
+        NSLog(@"object3: %@", object3);
+    } // Note: the cleanup callback function calling order is object3 - object2 - object1
 }
 
 @end
