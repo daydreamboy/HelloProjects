@@ -35,6 +35,7 @@
 		4F75A03821313127000DDE60 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A03421313126000DDE60 /* Demo1ViewController.m */; };
 		4F75A03921313127000DDE60 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A03621313126000DDE60 /* RootViewController.m */; };
 		4F75A04B213144E8000DDE60 /* WCDataTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A04A213144E8000DDE60 /* WCDataTool.m */; };
+		4F7C976D2663E02600F45493 /* WCFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C976C2663E02600F45493 /* WCFileTool.m */; };
 		4F8BB3E6215201D600F0AD99 /* Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F8BB3E5215201D600F0AD99 /* Tests.mm */; };
 		4FE7419E2398B4FA009E5909 /* NSData+SEGGZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7419D2398B4FA009E5909 /* NSData+SEGGZIP.m */; };
 		4FE84F6C26145D99005817DE /* jpg.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4FE84F6826145D99005817DE /* jpg.jpeg */; };
@@ -109,6 +110,8 @@
 		4F75A03721313127000DDE60 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F75A049213144E8000DDE60 /* WCDataTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCDataTool.h; sourceTree = "<group>"; };
 		4F75A04A213144E8000DDE60 /* WCDataTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCDataTool.m; sourceTree = "<group>"; };
+		4F7C976B2663E02600F45493 /* WCFileTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCFileTool.h; sourceTree = "<group>"; };
+		4F7C976C2663E02600F45493 /* WCFileTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCFileTool.m; sourceTree = "<group>"; };
 		4F8BB3E3215201D600F0AD99 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F8BB3E5215201D600F0AD99 /* Tests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Tests.mm; sourceTree = "<group>"; };
 		4F8BB3E7215201D600F0AD99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -218,12 +221,22 @@
 		4F75A048213144D8000DDE60 /* WCDataTool */ = {
 			isa = PBXGroup;
 			children = (
+				4F7C976A2663E01200F45493 /* Tools */,
 				4F75A049213144E8000DDE60 /* WCDataTool.h */,
 				4F75A04A213144E8000DDE60 /* WCDataTool.m */,
 				4F3AFA912488EEAD00806BD2 /* WCReferringRange.h */,
 				4F3AFA922488EEAD00806BD2 /* WCReferringRange.m */,
 			);
 			path = WCDataTool;
+			sourceTree = "<group>";
+		};
+		4F7C976A2663E01200F45493 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F7C976B2663E02600F45493 /* WCFileTool.h */,
+				4F7C976C2663E02600F45493 /* WCFileTool.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		4F8BB3E4215201D600F0AD99 /* Tests */ = {
@@ -396,6 +409,7 @@
 				4F3AFA932488EEAD00806BD2 /* WCReferringRange.m in Sources */,
 				4F75A03921313127000DDE60 /* RootViewController.m in Sources */,
 				4F75A04B213144E8000DDE60 /* WCDataTool.m in Sources */,
+				4F7C976D2663E02600F45493 /* WCFileTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

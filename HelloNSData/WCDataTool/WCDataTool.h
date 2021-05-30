@@ -102,7 +102,7 @@ typedef NS_ENUM(NSUInteger, WCMIMEType) {
 
 @interface WCDataTool : NSObject
 
-#pragma mark - Data Validation
+#pragma mark - Data MIME Info
 
 /**
  Get MIME type from data
@@ -217,6 +217,11 @@ typedef NS_ENUM(NSUInteger, WCMIMEType) {
 + (int)intValueWithData:(NSData *)data useLittleEndian:(BOOL)useLittleEndian isValid:(out BOOL * _Nullable)isValid;
 + (long)longValueWithData:(NSData *)data useLittleEndian:(BOOL)useLittleEndian isValid:(out BOOL * _Nullable)isValid;
 + (long long)longLongValueWithData:(NSData *)data useLittleEndian:(BOOL)useLittleEndian isValid:(out BOOL * _Nullable)isValid;
+
+#pragma mark - Data mmap file
+
++ (nullable NSData *)dataWithMmapFilePath:(NSString *)filePath;
++ (BOOL)createMmapFileWithPath:(NSString *)path data:(NSData *)data overwrite:(BOOL)overwrite error:(NSError * _Nullable * _Nullable)error;
 
 #pragma mark - Data Assistant
 

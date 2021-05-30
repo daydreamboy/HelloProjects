@@ -7,8 +7,11 @@
 //
 
 #import "WCDataTool.h"
+#import "WCFileTool.h"
 #import <CommonCrypto/CommonCryptor.h>
 #import <zlib.h>
+#import <sys/stat.h>
+#import <sys/mman.h>
 
 //#define kMime           @"mime"
 //#define kExt            @"ext"
@@ -1552,6 +1555,114 @@ do { \
     long long value = useLittleEndian ? CFSwapInt64LittleToHost(*(long long*)([data bytes])) : CFSwapInt64BigToHost(*(long long*)([data bytes]));
     PTR_SAFE_SET(isValid, YES);
     return value;
+}
+
+#pragma mark - Data mmap file
+
++ (nullable NSData *)dataWithMmapFilePath:(NSString *)filePath {
+    const char *mmapFilePath = [filePath UTF8String];
+    
+    size_t dataLength = 0;
+    void *bufferPtr = NULL;
+    
+    BOOL success = NO;
+    int errorCode = 0;
+    int fileDescriptor;
+    struct stat fileStatInfo;
+ 
+    // open the file
+    fileDescriptor = open(mmapFilePath, O_RDONLY, 0);
+    if (fileDescriptor < 0) {
+        errorCode = errno;
+    }
+    else {
+        // We now know the file exists. Retrieve the file size.
+        if (fstat(fileDescriptor, &fileStatInfo) != 0) {
+            errorCode = errno;
+        }
+        else {
+            // Note: map the file into a read-only memory region.
+            bufferPtr = mmap(NULL, fileStatInfo.st_size, PROT_READ, 0, fileDescriptor, 0);
+            if (bufferPtr == MAP_FAILED) {
+                errorCode = errno;
+            }
+            else {
+                // On success, return the size of the mapped file.
+                dataLength = fileStatInfo.st_size;
+                success = YES;
+            }
+        }
+ 
+        // Now close the file. The kernel doesn’t use our file descriptor.
+        close(fileDescriptor);
+    }
+    
+    if (!success && bufferPtr != NULL) {
+        return nil;
+    }
+    
+    NSData *data = [NSData dataWithBytes:bufferPtr length:(NSUInteger)dataLength];
+    
+    munmap(bufferPtr, dataLength);
+    
+    return data;
+}
+
++ (BOOL)createMmapFileWithPath:(NSString *)path data:(NSData *)data overwrite:(BOOL)overwrite error:(NSError * _Nullable * _Nullable)error {
+    if (![path isKindOfClass:[NSString class]]) {
+        return NO;
+    }
+    
+    if (![data isKindOfClass:[NSData class]] || !data.length) {
+        return NO;
+    }
+    
+    BOOL success = [WCFileTool createNewFileAtPath:path overwrite:overwrite error:error];
+    if (!success) {
+        return NO;
+    }
+    
+    int fd = -1;
+    int errorCode = 0;
+    const char *filePath = [path UTF8String];
+    void *buffer = NULL;
+    
+    fd = open(filePath, O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR);
+    if (fd < 0) {
+        if (error) {
+            errorCode = errno;
+            
+            NSMutableDictionary *userInfoM = [NSMutableDictionary dictionary];
+            userInfoM[NSLocalizedFailureReasonErrorKey] = [NSString stringWithFormat:@"%s", strerror(errorCode)];
+            *error = [NSError errorWithDomain:NSStringFromClass([self class]) code:errorCode userInfo:userInfoM];
+        }
+        
+        return NO;
+    }
+    
+    int64_t dataSize = data.length;
+    
+    // @see http://blog.jcix.top/2018-10-26/mmap_tests/#28221mmap8221_SIGBUS
+    if (ftruncate(fd, dataSize) == 0) {
+        buffer = mmap(0, (size_t)dataSize, PROT_WRITE, MAP_SHARED, fd, 0);
+    }
+    
+    if (buffer == NULL) {
+        if (error) {
+            errorCode = errno;
+            
+            NSMutableDictionary *userInfoM = [NSMutableDictionary dictionary];
+            userInfoM[NSLocalizedFailureReasonErrorKey] = [NSString stringWithFormat:@"%s", strerror(errorCode)];
+            *error = [NSError errorWithDomain:NSStringFromClass([self class]) code:errorCode userInfo:userInfoM];
+        }
+        
+        return NO;
+    }
+    
+    // Write Data
+    memcpy(buffer, data.bytes, data.length);
+
+    return YES;
 }
 
 #pragma mark - Data Assistant
