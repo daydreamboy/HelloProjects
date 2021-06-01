@@ -489,6 +489,15 @@ typedef NS_ENUM(NSUInteger, WCStringSplitIntoComponentsMode) {
  */
 #define ESCAPE_UNICODE_CSTR(...) @#__VA_ARGS__
 
+/**
+ Get the unicode point of a string
+ 
+ @param string the string
+ 
+ @return the unicode point of a string
+ 
+ @discussion the unicode point of emoji can refer to https://unicode.org/emoji/charts/emoji-list.html
+ */
 + (nullable NSString *)unicodePointStringWithString:(NSString *)string;
 
 /**

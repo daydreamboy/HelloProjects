@@ -1819,6 +1819,33 @@
     output = [WCStringTool unicodePointStringWithString:string];
     XCTAssertEqualObjects(output, @"\\U00005378\\U00008F7D\\U00005E94\\U00007528");
     NSLog(@"\U00005378\U00008F7D\U00005E94\U00007528");
+    
+    // Case 7
+    string = @"👱🏿";
+    output = [WCStringTool unicodePointStringWithString:string];
+    XCTAssertEqualObjects(output, @"\\U0001F471\\U0001F3FF");
+    NSLog(@"\U0001F471\U0001F3FF");
+    
+    // Case 8
+    // \U0000200D, a.k.a U+200D ZERO WIDTH JOINER is a control character
+    // @see https://unicode.org/emoji/charts/emoji-list.html
+    string = @"👩‍🦰";
+    output = [WCStringTool unicodePointStringWithString:string];
+    XCTAssertEqualObjects(output, @"\\U0001F469\\U0000200D\\U0001F9B0");
+    NSLog(@"\U0001F469\U0000200D\U0001F9B0");
+    //NSLog(@"\U0000200D");
+    
+    // Case 9
+    string = @"🤦🏼‍♂️";
+    output = [WCStringTool unicodePointStringWithString:string];
+    XCTAssertEqualObjects(output, @"\\U0001F926\\U0001F3FC\\U0000200D\\U00002642\\U0000FE0F");
+    NSLog(@"\U0001F926\U0001F3FC\U0000200D\U00002642\U0000FE0F");
+    
+    // Case 9
+    string = @"🏴󠁧󠁢󠁥󠁮󠁧󠁿";
+    output = [WCStringTool unicodePointStringWithString:string];
+    XCTAssertEqualObjects(output, @"\\U0001F3F4\\U000E0067\\U000E0062\\U000E0065\\U000E006E\\U000E0067\\U000E007F");
+    NSLog(@"\U0001F3F4\U000E0067\U000E0062\U000E0065\U000E006E\U000E0067\U000E007F");
 }
 
 #pragma mark > String Measuration (e.g. length, number of substring, range, ...)

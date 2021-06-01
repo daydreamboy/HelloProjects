@@ -1208,12 +1208,21 @@
             
             [unicodePointString appendFormat:@"\\U%08X", buffer[0]];
         }
-        else if (lengthByUnichar == 2) {
-            unsigned int buffer[2] = {0};
+        else {
+            // Note: suppose the maximum length of emoji code point is 20
+            const int bufferSize = 21;
+            unsigned int buffer[bufferSize] = {0};
             
-            [substring getBytes:buffer maxLength:sizeof(unsigned int) usedLength:NULL encoding:NSUTF32StringEncoding options:0 range:NSMakeRange(0, substring.length) remainingRange:NULL];
+            [substring getBytes:buffer maxLength:sizeof(unsigned int) * (bufferSize - 1) usedLength:NULL encoding:NSUTF32StringEncoding options:0 range:NSMakeRange(0, substring.length) remainingRange:NULL];
             
-            [unicodePointString appendFormat:@"\\U%08X", buffer[0]];
+            for (int i = 0; i < bufferSize; ++i) {
+                unsigned int unicodePoint = buffer[i];
+                if (unicodePoint == 0) {
+                    break;
+                }
+                
+                [unicodePointString appendFormat:@"\\U%08X", unicodePoint];
+            }
         }
     }];
 
