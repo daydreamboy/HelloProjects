@@ -1848,6 +1848,19 @@
     NSLog(@"\U0001F3F4\U000E0067\U000E0062\U000E0065\U000E006E\U000E0067\U000E007F");
 }
 
+#pragma mark > String Escape
+
+- (void)test_escapedStringWithString {
+    NSString *string;
+    NSString *output;
+    
+    // Case 1
+    string = @"SOME STRING WITH \n NEWLINES, \t TABS, ETC...\n\t..\n.....\n\tTAB";
+    output = [WCStringTool escapedStringWithString:string];
+    XCTAssertEqualObjects(output, @"\"SOME STRING WITH \\n NEWLINES, \\t TABS, ETC...\\n\\t..\\n.....\\n\\tTAB\"");
+    NSLog(@"%@", output);
+}
+
 #pragma mark > String Measuration (e.g. length, number of substring, range, ...)
 
 - (void)test_rangesOfSubstringWithString_substring {

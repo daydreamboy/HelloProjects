@@ -534,6 +534,19 @@ typedef NS_ENUM(NSUInteger, WCStringSplitIntoComponentsMode) {
 + (nullable NSString *)binaryStringFromInt8:(int8_t)intValue;
 + (nullable NSString *)binaryStringFromIntX:(int64_t)intValue numberOfBits:(int64_t)numberOfBits;
 
+#pragma mark > String Escape
+
+/**
+ Escape the string
+ 
+ @param string the string
+ 
+ @return the escaped the string
+ 
+ @see http://blog.hozbox.com/2012/01/03/escaping-all-control-characters-in-a-nsstring/
+ */
++ (nullable NSString *)escapedStringWithString:(NSString *)string;
+
 #pragma mark > String Measuration (e.g. length, number of substring, range, ...)
 
 /**

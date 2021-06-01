@@ -1322,6 +1322,30 @@
     return [NSString stringWithUTF8String:digits];
 }
 
+#pragma mark > String Escape
+
++ (nullable NSString *)escapedStringWithString:(NSString *)string {
+    if (![string isKindOfClass:[NSString class]]) {
+        return nil;
+    }
+    
+    if (string.length == 0) {
+        return string;
+    }
+    
+    NSMutableString *stringM = [[NSMutableString alloc] initWithString:string];
+    NSArray *toReplace = @[ @"\0", @"\a", @"\b", @"\t", @"\n", @"\f", @"\r", @"\e" ];
+    NSArray *replaceWith = @[ @"\\0", @"\\a", @"\\b", @"\\t", @"\\n", @"\\f", @"\\r", @"\\e" ];
+    
+    for (int i = 0; i < [toReplace count]; ++i) {
+        NSRange range = NSMakeRange(0, stringM.length);
+        [stringM replaceOccurrencesOfString:toReplace[i] withString:replaceWith[i] options:kNilOptions range:range];
+    }
+    
+    NSString *escapedString = [NSString stringWithFormat:@"\"%@\"", stringM];
+    return escapedString;
+}
+
 #pragma mark > String Measuration (e.g. length, number of substring, range, ...)
 
 + (nullable NSArray<NSValue *> *)rangesOfSubstringWithString:(NSString *)string substring:(NSString *)substring {
