@@ -187,8 +187,10 @@
         return nil;
     }
     
-    // @see https://stackoverflow.com/a/11192483
-    NSCharacterSet *controlCharsterSet = [NSCharacterSet controlCharacterSet];
+    // FIX: fix control character in string, @see https://stackoverflow.com/a/11192483
+    // Note: don't use [NSCharacterSet controlCharacterSet] because it includes some control character, e.g. U+200D,
+    // which used in emoji unicode, e.g. U+1F469 U+200D U+1F9B0 (see https://unicode.org/emoji/charts/emoji-list.html)
+    NSCharacterSet *controlCharsterSet = [NSCharacterSet characterSetWithCharactersInString:@"\0\a\b\t\n\f\r\e"];
     NSRange range = [string rangeOfCharacterFromSet:controlCharsterSet];
     if (range.location != NSNotFound) {
         NSMutableString *stringM = [NSMutableString stringWithString:string];
@@ -357,13 +359,13 @@
     
     NSMutableString *stringM = [NSMutableString stringWithString:string];
     
-    [stringM replaceOccurrencesOfString:@"\"" withString:@"\\\"" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
-    [stringM replaceOccurrencesOfString:@"/" withString:@"\\/" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
-    [stringM replaceOccurrencesOfString:@"\n" withString:@"\\n" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
-    [stringM replaceOccurrencesOfString:@"\b" withString:@"\\b" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
-    [stringM replaceOccurrencesOfString:@"\f" withString:@"\\f" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
-    [stringM replaceOccurrencesOfString:@"\r" withString:@"\\r" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
-    [stringM replaceOccurrencesOfString:@"\t" withString:@"\\t" options:NSCaseInsensitiveSearch range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\"" withString:@"\\\"" options:kNilOptions range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"/" withString:@"\\/" options:kNilOptions range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\n" withString:@"\\n" options:kNilOptions range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\b" withString:@"\\b" options:kNilOptions range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\f" withString:@"\\f" options:kNilOptions range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\r" withString:@"\\r" options:kNilOptions range:NSMakeRange(0, [stringM length])];
+    [stringM replaceOccurrencesOfString:@"\t" withString:@"\\t" options:kNilOptions range:NSMakeRange(0, [stringM length])];
     
     return [NSString stringWithString:stringM];
 }

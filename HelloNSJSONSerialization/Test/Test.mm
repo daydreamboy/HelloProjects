@@ -9,6 +9,7 @@
 #import <XCTest/XCTest.h>
 #import "WCJSONTool.h"
 #import "WCJSONTool_Testing.h"
+#import "WCStringTool.h"
 #import "Human.h"
 #import "HumanModel.h"
 #import "WCXCTestCaseTool.h"
@@ -292,10 +293,19 @@
 }
 
 - (void)test_JSONDictWithString {
+    NSString *JSONString;
+    
+    // Case 1
     NSString *JSONEscapedString = @"{\"activityId\":\"205051655378\",\"cardHeight\":420,\"cardType\":\"chatstyle\",\"cover\":\"https://img.alicdn.com/imgextra/i2/1119561178/O1CN011KZZ0uodgn62Tut_!!1119561178.jpg\",\"endDate\":1534262400000,\"id\":205048298697,\"status\":0,\"targetType\":\"detail\",\"targetUrl\":\"https://market.m.taobao.com/apps/market/collectactivity/index.html?nodeId=205051655378&wx_navbar_transparent=true&wh_weex=true\",\"title\":\"你约会，森马买单\",\"type\":7,\"typeName\":\"征集\"}";
     id object = [WCJSONTool JSONObjectWithString:JSONEscapedString options:kNilOptions objectClass:nil];
-    NSString *JSONString = [WCJSONTool JSONStringWithObject:object printOptions:NSJSONWritingSortedKeys | NSJSONWritingPrettyPrinted];
+    JSONString = [WCJSONTool JSONStringWithObject:object printOptions:NSJSONWritingSortedKeys | NSJSONWritingPrettyPrinted];
     printf("%s\n", [JSONString UTF8String]);
+    
+    // Case 2
+    JSONString = @"{\"key\":\"👩‍🦰👱🏿\"}";
+    NSDictionary *dict = [WCJSONTool JSONDictWithString:JSONString allowMutable:NO];
+    NSLog(@"%@", dict[@"key"]);
+    XCTAssertEqualObjects(dict[@"key"], @"👩‍🦰👱🏿");
 }
 
 #pragma mark > to NSMutableDictionary/NSMutableArray
