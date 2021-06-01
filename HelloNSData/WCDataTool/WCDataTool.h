@@ -220,8 +220,8 @@ typedef NS_ENUM(NSUInteger, WCMIMEType) {
 
 #pragma mark - Data mmap file
 
-+ (nullable NSData *)dataWithMmapFilePath:(NSString *)filePath;
-+ (BOOL)createMmapFileWithPath:(NSString *)path data:(NSData *)data overwrite:(BOOL)overwrite error:(NSError * _Nullable * _Nullable)error;
++ (nullable NSData *)dataUsingMmapWithFilePath:(NSString *)filePath;
++ (BOOL)createFileUsingMmapWithPath:(NSString *)path data:(NSData *)data overwrite:(BOOL)overwrite error:(NSError * _Nullable * _Nullable)error;
 
 #pragma mark - Data Assistant
 

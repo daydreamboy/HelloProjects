@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "WCDataTool.h"
+#import "WCXCTestCaseTool.h"
 #import <CoreGraphics/CoreGraphics.h>
 
 #include <string>
@@ -382,10 +383,21 @@ using namespace std;
 #pragma mark - Data mmap file
 
 - (void)test_dataWithMmapFilePath {
+    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"big_json" ofType:@"json"];
+    NSLog(@"%@", filePath);
     
+    [WCXCTestCaseTool timingMesaureAverageWithCount:100 block:^{
+        @autoreleasepool {
+            __unused NSData *data = [NSData dataWithContentsOfFile:filePath];
+        }
+    }];
+    
+    [WCXCTestCaseTool timingMesaureAverageWithCount:100 block:^{
+        @autoreleasepool {
+            __unused NSData *data = [WCDataTool dataUsingMmapWithFilePath:filePath];
+        }
+    }];
 }
-
-
 
 - (void)test_createMmapFileWithPath_data_overwrite_error {
     NSLog(@"home: %@", NSHomeDirectory());
@@ -402,7 +414,7 @@ using namespace std;
     // Case 1:
     
     data = [resultStr dataUsingEncoding:NSUTF8StringEncoding];
-    success = [WCDataTool createMmapFileWithPath:filePath data:data overwrite:YES error:&error];
+    success = [WCDataTool createFileUsingMmapWithPath:filePath data:data overwrite:YES error:&error];
     XCTAssertTrue(success);
     
     start = CACurrentMediaTime();
@@ -411,7 +423,7 @@ using namespace std;
     NSLog(@"1: %f", end - start);
     
     start = CACurrentMediaTime();
-    data = [WCDataTool dataWithMmapFilePath:filePath];
+    data = [WCDataTool dataUsingMmapWithFilePath:filePath];
     end = CACurrentMediaTime();
     NSLog(@"2: %f", end - start);
 }

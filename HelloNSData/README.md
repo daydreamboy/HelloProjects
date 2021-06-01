@@ -16,7 +16,7 @@ https://developer.apple.com/library/archive/documentation/System/Conceptual/ManP
 
 https://stackoverflow.com/questions/13425558/why-does-mmap-fail-on-ios
 
-
+http://blog.jcix.top/2018-10-26/mmap_tests/#28221mmap8221_SIGBUS
 
 
 

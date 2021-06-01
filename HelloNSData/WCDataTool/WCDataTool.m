@@ -1559,7 +1559,7 @@ do { \
 
 #pragma mark - Data mmap file
 
-+ (nullable NSData *)dataWithMmapFilePath:(NSString *)filePath {
++ (nullable NSData *)dataUsingMmapWithFilePath:(NSString *)filePath {
     const char *mmapFilePath = [filePath UTF8String];
     
     size_t dataLength = 0;
@@ -1608,7 +1608,7 @@ do { \
     return data;
 }
 
-+ (BOOL)createMmapFileWithPath:(NSString *)path data:(NSData *)data overwrite:(BOOL)overwrite error:(NSError * _Nullable * _Nullable)error {
++ (BOOL)createFileUsingMmapWithPath:(NSString *)path data:(NSData *)data overwrite:(BOOL)overwrite error:(NSError * _Nullable * _Nullable)error {
     if (![path isKindOfClass:[NSString class]]) {
         return NO;
     }

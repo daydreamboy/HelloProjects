@@ -26,6 +26,7 @@
 		4F58CEF121763FCF00D0FD17 /* amr.amr in Resources */ = {isa = PBXBuildFile; fileRef = 4F58CEE921763FCF00D0FD17 /* amr.amr */; };
 		4F58CEF221763FCF00D0FD17 /* webm.webm in Resources */ = {isa = PBXBuildFile; fileRef = 4F58CEEA21763FCF00D0FD17 /* webm.webm */; };
 		4F5FBC34248CC9D500744D67 /* main2.dx in Resources */ = {isa = PBXBuildFile; fileRef = 4F5FBC33248CC9D500744D67 /* main2.dx */; };
+		4F6896452665CFF3002B5521 /* WCXCTestCaseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6896442665CFF3002B5521 /* WCXCTestCaseTool.m */; };
 		4F75A01F213130EE000DDE60 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A01E213130EE000DDE60 /* AppDelegate.m */; };
 		4F75A022213130EE000DDE60 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A021213130EE000DDE60 /* ViewController.m */; };
 		4F75A025213130EE000DDE60 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F75A023213130EE000DDE60 /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 		4F75A04B213144E8000DDE60 /* WCDataTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F75A04A213144E8000DDE60 /* WCDataTool.m */; };
 		4F7C976D2663E02600F45493 /* WCFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C976C2663E02600F45493 /* WCFileTool.m */; };
 		4F8BB3E6215201D600F0AD99 /* Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F8BB3E5215201D600F0AD99 /* Tests.mm */; };
+		4F94D6BA26648373002925F1 /* big_json.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F94D6B926648373002925F1 /* big_json.json */; };
 		4FE7419E2398B4FA009E5909 /* NSData+SEGGZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7419D2398B4FA009E5909 /* NSData+SEGGZIP.m */; };
 		4FE84F6C26145D99005817DE /* jpg.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4FE84F6826145D99005817DE /* jpg.jpeg */; };
 		4FE84F6D26145D99005817DE /* gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4FE84F6926145D99005817DE /* gif.gif */; };
@@ -94,6 +96,8 @@
 		4F58CEE921763FCF00D0FD17 /* amr.amr */ = {isa = PBXFileReference; lastKnownFileType = file; path = amr.amr; sourceTree = "<group>"; };
 		4F58CEEA21763FCF00D0FD17 /* webm.webm */ = {isa = PBXFileReference; lastKnownFileType = file; path = webm.webm; sourceTree = "<group>"; };
 		4F5FBC33248CC9D500744D67 /* main2.dx */ = {isa = PBXFileReference; lastKnownFileType = file; path = main2.dx; sourceTree = "<group>"; };
+		4F6896432665CFF3002B5521 /* WCXCTestCaseTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCXCTestCaseTool.h; sourceTree = "<group>"; };
+		4F6896442665CFF3002B5521 /* WCXCTestCaseTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCXCTestCaseTool.m; sourceTree = "<group>"; };
 		4F75A01A213130EE000DDE60 /* HelloNSData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSData.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F75A01D213130EE000DDE60 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F75A01E213130EE000DDE60 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -115,6 +119,7 @@
 		4F8BB3E3215201D600F0AD99 /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F8BB3E5215201D600F0AD99 /* Tests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Tests.mm; sourceTree = "<group>"; };
 		4F8BB3E7215201D600F0AD99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F94D6B926648373002925F1 /* big_json.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = big_json.json; sourceTree = "<group>"; };
 		4FE7419C2398B4FA009E5909 /* NSData+SEGGZIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SEGGZIP.h"; sourceTree = "<group>"; };
 		4FE7419D2398B4FA009E5909 /* NSData+SEGGZIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SEGGZIP.m"; sourceTree = "<group>"; };
 		4FE84F6826145D99005817DE /* jpg.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jpg.jpeg; sourceTree = "<group>"; };
@@ -168,6 +173,15 @@
 				4F4AFFDD213E80EB0031856A /* piano2.wav */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		4F6896422665CFD1002B5521 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F6896432665CFF3002B5521 /* WCXCTestCaseTool.h */,
+				4F6896442665CFF3002B5521 /* WCXCTestCaseTool.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		4F75A011213130EE000DDE60 = {
@@ -242,8 +256,10 @@
 		4F8BB3E4215201D600F0AD99 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				4F6896422665CFD1002B5521 /* Tools */,
+				4F8BB3ED2152022E00F0AD99 /* Samples of image */,
+				4F94D6B826648357002925F1 /* Samples of JSON */,
 				4F2376F2241F857500389A64 /* itf2 */,
-				4F8BB3ED2152022E00F0AD99 /* Samples */,
 				4F8BB3E5215201D600F0AD99 /* Tests.mm */,
 				4F3AFA8F2488DBBC00806BD2 /* Tests_NSData.m */,
 				4F1F31912395313600ABD170 /* Tests_gzip.m */,
@@ -254,7 +270,7 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		4F8BB3ED2152022E00F0AD99 /* Samples */ = {
+		4F8BB3ED2152022E00F0AD99 /* Samples of image */ = {
 			isa = PBXGroup;
 			children = (
 				4FE84F6B26145D99005817DE /* bmp.bmp */,
@@ -270,7 +286,15 @@
 				4F58CEEA21763FCF00D0FD17 /* webm.webm */,
 				4F58CEE421763FCE00D0FD17 /* xpi.xpi */,
 			);
-			path = Samples;
+			path = "Samples of image";
+			sourceTree = "<group>";
+		};
+		4F94D6B826648357002925F1 /* Samples of JSON */ = {
+			isa = PBXGroup;
+			children = (
+				4F94D6B926648373002925F1 /* big_json.json */,
+			);
+			path = "Samples of JSON";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -389,6 +413,7 @@
 				4F2376FF241F857600389A64 /* cow_container in Resources */,
 				4FE84F6C26145D99005817DE /* jpg.jpeg in Resources */,
 				4F58CEF021763FCF00D0FD17 /* wav.wav in Resources */,
+				4F94D6BA26648373002925F1 /* big_json.json in Resources */,
 				4F58CEF221763FCF00D0FD17 /* webm.webm in Resources */,
 				4F58CEEB21763FCF00D0FD17 /* opus.opus in Resources */,
 				4F58CEEC21763FCF00D0FD17 /* xpi.xpi in Resources */,
@@ -421,6 +446,7 @@
 				4F237701241F857600389A64 /* sc_head.cpp in Sources */,
 				4FE7419E2398B4FA009E5909 /* NSData+SEGGZIP.m in Sources */,
 				4F2376FE241F857600389A64 /* casc_pack.cpp in Sources */,
+				4F6896452665CFF3002B5521 /* WCXCTestCaseTool.m in Sources */,
 				4F1F31922395313600ABD170 /* Tests_gzip.m in Sources */,
 				4F237700241F857600389A64 /* imsc_pack.cpp in Sources */,
 				4F3AFA902488DBBC00806BD2 /* Tests_NSData.m in Sources */,
@@ -606,6 +632,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QVRKK2EEDF;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -624,6 +651,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QVRKK2EEDF;
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
