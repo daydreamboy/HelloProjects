@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4F59157C221E9A0F00DE9453 /* WCCharacterSetTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8FE9210DA5C200145B00 /* WCCharacterSetTool.m */; };
+		4F6896502666682F002B5521 /* WCStringTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F68964F2666682F002B5521 /* WCStringTool.m */; };
 		4F7D8FC9210D9B0F00145B00 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8FC8210D9B0F00145B00 /* AppDelegate.m */; };
 		4F7D8FD1210D9B1100145B00 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D8FD0210D9B1100145B00 /* Assets.xcassets */; };
 		4F7D8FD4210D9B1100145B00 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F7D8FD2210D9B1100145B00 /* LaunchScreen.storyboard */; };
@@ -29,6 +30,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4F68964E2666682F002B5521 /* WCStringTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCStringTool.h; sourceTree = "<group>"; };
+		4F68964F2666682F002B5521 /* WCStringTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCStringTool.m; sourceTree = "<group>"; };
 		4F7D8FC4210D9B0F00145B00 /* HelloNSCharacterSet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSCharacterSet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F7D8FC7210D9B0F00145B00 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F7D8FC8210D9B0F00145B00 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -65,6 +68,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F68964D26666812002B5521 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F68964E2666682F002B5521 /* WCStringTool.h */,
+				4F68964F2666682F002B5521 /* WCStringTool.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		4F7D8FBB210D9B0F00145B00 = {
 			isa = PBXGroup;
 			children = (
@@ -121,6 +133,7 @@
 		4F7D8FF0210DAB3D00145B00 /* Test */ = {
 			isa = PBXGroup;
 			children = (
+				4F68964D26666812002B5521 /* Tools */,
 				4F7D8FF1210DAB3D00145B00 /* Test.m */,
 				4F7D8FF3210DAB3D00145B00 /* Info.plist */,
 			);
@@ -239,6 +252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F59157C221E9A0F00DE9453 /* WCCharacterSetTool.m in Sources */,
+				4F6896502666682F002B5521 /* WCStringTool.m in Sources */,
 				4F7D8FF2210DAB3D00145B00 /* Test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

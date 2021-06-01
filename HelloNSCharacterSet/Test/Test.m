@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "WCCharacterSetTool.h"
+#import "WCStringTool.h"
 
 @interface Test : XCTestCase
 
@@ -27,7 +28,7 @@
 
 // @see https://gist.github.com/daydreamboy/207fc752ee62dc329ec7a5577f5f4122
 - (void)test_charactersInCharacterSet {
-    NSArray *array;
+    NSArray<NSString *> *array;
     NSString *string;
     
     // Case 1
@@ -59,6 +60,16 @@
     array = [WCCharacterSetTool charactersInCharacterSet:[NSCharacterSet URLPasswordAllowedCharacterSet]];
     string = [array componentsJoinedByString:@""];
     NSLog(@"%@", string);
+    
+    // Case 7
+    array = [WCCharacterSetTool charactersInCharacterSet:[NSCharacterSet controlCharacterSet]];
+    string = [array componentsJoinedByString:@""];
+    NSLog(@"%@", string);
+    
+    [array enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        NSString *unicodePoint = [WCStringTool unicodePointStringWithString:obj];
+        NSLog(@"%@ = `%@`", unicodePoint, [WCStringTool escapedStringWithString:obj]);
+    }];
 }
 
 - (void)test_URLAllowedCharacterSet {
