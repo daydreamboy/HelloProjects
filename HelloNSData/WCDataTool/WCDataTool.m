@@ -1661,6 +1661,8 @@ do { \
     
     // Write Data
     memcpy(buffer, data.bytes, data.length);
+    
+    munmap(buffer, data.length);
 
     return YES;
 }

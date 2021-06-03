@@ -407,7 +407,7 @@ using namespace std;
     
     NSData *data = [NSData dataWithContentsOfFile:filePath];
     
-    [WCXCTestCaseTool timingMesaureAverageWithCount:1 block:^{
+    [WCXCTestCaseTool timingMesaureAverageWithCount:100 block:^{
         @autoreleasepool {
             NSError *error = nil;
             [data writeToFile:outputPath1 options:kNilOptions error:&error];
@@ -415,7 +415,7 @@ using namespace std;
         }
     }];
     
-    [WCXCTestCaseTool timingMesaureAverageWithCount:1 block:^{
+    [WCXCTestCaseTool timingMesaureAverageWithCount:100 block:^{
         @autoreleasepool {
             NSError *error = nil;
             [WCDataTool createFileUsingMmapWithPath:outputPath2 data:data overwrite:YES error:&error];

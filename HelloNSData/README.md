@@ -20,3 +20,7 @@ http://blog.jcix.top/2018-10-26/mmap_tests/#28221mmap8221_SIGBUS
 
 
 
+https://www.cnblogs.com/huxiao-tee/p/4660352.html?spm=ata.21736010.0.0.6db05999wxDpiz
+
+
+
