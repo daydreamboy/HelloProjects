@@ -209,7 +209,7 @@
     // @see https://stackoverflow.com/questions/13527692/cgbitmapcontextcreate-unsupported-parameter-combination
     // set CGBITMAP_CONTEXT_LOG_ERRORS to environment variables, to see valid parameters.
     if (contextRef == NULL) {
-        contextRef = CGBitmapContextCreate(nil, canvasSize.width, canvasSize.height, bitsPerComponent, 0, CGColorSpaceCreateDeviceRGB(), kCGImageAlphaNoneSkipLast);
+        contextRef = CGBitmapContextCreate(nil, canvasSize.width, canvasSize.height, 8, 0, CGColorSpaceCreateDeviceRGB(), kCGImageAlphaNoneSkipLast);
     }
     
     if (contextRef == NULL) {
