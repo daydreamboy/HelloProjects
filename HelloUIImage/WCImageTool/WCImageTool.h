@@ -78,7 +78,8 @@ NS_ASSUME_NONNULL_BEGIN
  Crop an image with the specific frame
 
  @param image the image to crop
- @param frame the frame of cropping
+ @param frame the frame of cropping which in image frame
+ 
  @return the cropped image
  */
 + (nullable UIImage *)imageWithImage:(UIImage *)image croppedToFrame:(CGRect)frame;
@@ -87,13 +88,29 @@ NS_ASSUME_NONNULL_BEGIN
  Crop an image with the specific frame, then scale the cropped image to the specific size
 
  @param image the image to crop
- @param frame the frame of cropping
- @param size the scaled size
+ @param frame the frame of cropping which in image frame
+ @param size the scaled size which is returned image.size
+ 
  @return the cropped and scaled image
+ 
+ @discussion See +[WCImageTool imageWithImage:croppedToFrame:scaledToSize:imageScale:] for more details.
+ */
++ (nullable UIImage *)imageWithImage:(UIImage *)image croppedToFrame:(CGRect)frame scaledToSize:(CGSize)size;
+
+/**
+ Crop an image with the specific frame, then scale the cropped image to the specific size
+ 
+ @param image image the image to crop
+ @param frame the frame of cropping which in image frame
+ @param size the scaled size which is returned image.size
+ @param imageScale the image scale
+ 
+ @return the cropped and scaled image
+ 
  @see https://nshipster.com/image-resizing/
  @discussion The returned image considers screen scale
  */
-+ (nullable UIImage *)imageWithImage:(UIImage *)image croppedToFrame:(CGRect)frame scaledToSize:(CGSize)size;
++ (nullable UIImage *)imageWithImage:(UIImage *)image croppedToFrame:(CGRect)frame scaledToSize:(CGSize)size imageScale:(CGFloat)imageScale;
 
 #pragma mark > From Video
 

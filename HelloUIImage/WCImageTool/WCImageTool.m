@@ -175,6 +175,10 @@
 }
 
 + (nullable UIImage *)imageWithImage:(UIImage *)image croppedToFrame:(CGRect)frame scaledToSize:(CGSize)size {
+    return [self imageWithImage:image croppedToFrame:frame scaledToSize:size imageScale:0];
+}
+
++ (nullable UIImage *)imageWithImage:(UIImage *)image croppedToFrame:(CGRect)frame scaledToSize:(CGSize)size imageScale:(CGFloat)imageScale {
     if (!image) {
         return nil;
     }
@@ -193,7 +197,7 @@
     size_t bitsPerComponent = CGImageGetBitsPerComponent(imageRef);
     CGColorSpaceRef colorSpace = CGImageGetColorSpace(imageRef);
     CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
-    CGFloat scale = [UIScreen mainScreen].scale;
+    CGFloat scale = imageScale <= 0 ? [UIScreen mainScreen].scale : imageScale;
     
     CGSize canvasSize = CGSizeMake(size.width * scale, size.height * scale);
     
