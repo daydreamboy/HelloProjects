@@ -108,9 +108,19 @@ NS_ASSUME_NONNULL_BEGIN
  @return the cropped and scaled image
  
  @see https://nshipster.com/image-resizing/
- @discussion The returned image considers screen scale
  */
 + (nullable UIImage *)imageWithImage:(UIImage *)image croppedToFrame:(CGRect)frame scaledToSize:(CGSize)size imageScale:(CGFloat)imageScale;
+
+/**
+ Crop an image with the center square rect, then scale the cropped image to the specific size
+ 
+ @param image image the image to crop
+ @param size the scaled size which is returned image.size
+ @param imageScale the image scale
+ 
+ @return the cropped and scaled image
+ */
++ (nullable UIImage *)cropImageByCenterSquareRectWithImage:(UIImage *)image scaledToSize:(CGSize)size imageScale:(CGFloat)imageScale;
 
 #pragma mark > From Video
 

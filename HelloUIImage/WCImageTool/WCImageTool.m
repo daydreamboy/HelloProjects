@@ -196,12 +196,22 @@
     
     size_t bitsPerComponent = CGImageGetBitsPerComponent(imageRef);
     CGColorSpaceRef colorSpace = CGImageGetColorSpace(imageRef);
-    CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);
+    CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);    
     CGFloat scale = imageScale <= 0 ? [UIScreen mainScreen].scale : imageScale;
     
     CGSize canvasSize = CGSizeMake(size.width * scale, size.height * scale);
     
     CGContextRef contextRef = CGBitmapContextCreate(nil, canvasSize.width, canvasSize.height, bitsPerComponent, 0, colorSpace, bitmapInfo);
+    
+    // Note: when create bitmap context failed by colorSpace and bitmapInfo from UIImage,
+    // so just create use CGColorSpaceCreateDeviceRGB() and kCGImageAlphaNoneSkipLast
+    // @see https://www.jianshu.com/p/511b559fd697
+    // @see https://stackoverflow.com/questions/13527692/cgbitmapcontextcreate-unsupported-parameter-combination
+    // set CGBITMAP_CONTEXT_LOG_ERRORS to environment variables, to see valid parameters.
+    if (contextRef == NULL) {
+        contextRef = CGBitmapContextCreate(nil, canvasSize.width, canvasSize.height, bitsPerComponent, 0, CGColorSpaceCreateDeviceRGB(), kCGImageAlphaNoneSkipLast);
+    }
+    
     if (contextRef == NULL) {
         return nil;
     }
@@ -217,6 +227,20 @@
     CGImageRelease(newImageRef);
     
     return newImage;
+}
+
++ (nullable UIImage *)cropImageByCenterSquareRectWithImage:(UIImage *)image scaledToSize:(CGSize)size imageScale:(CGFloat)imageScale {
+    if (!image) {
+        return nil;
+    }
+    
+    CGFloat minimumSide = MIN(image.size.width, image.size.height);
+    if (minimumSide <= 0) {
+        return nil;
+    }
+    
+    CGRect cropFrame = CGRectMake((image.size.width - minimumSide) / 2.0, (image.size.height - minimumSide) / 2.0, minimumSide, minimumSide);
+    return [self imageWithImage:image croppedToFrame:cropFrame scaledToSize:size imageScale:imageScale];
 }
 
 #pragma mark - Image Modify
