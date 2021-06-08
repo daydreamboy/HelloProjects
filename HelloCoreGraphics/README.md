@@ -309,6 +309,84 @@ https://www.ramshandilya.com/blog/draw-smooth-curves/
 
 
 
+## 3、常见问题
+
+### (1) CGBitmapContextCreate返回NULL
+
+实际中会遇到CGBitmapContextCreate存在返回NULL的情况，但是文档没有明确说明。
+
+CGBitmapContextCreate函数的签名，如下
+
+```c
+CGContextRef CGBitmapContextCreate(void *data, size_t width, size_t height, size_t bitsPerComponent, size_t bytesPerRow, CGColorSpaceRef space, uint32_t bitmapInfo);
+```
+
+
+
+创建一个bitmap画布，网上给出的代码，一般是下面这样，如下
+
+```c
+CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, clippedRect);
+    
+size_t bitsPerComponent = CGImageGetBitsPerComponent(imageRef);
+CGColorSpaceRef colorSpace = CGImageGetColorSpace(imageRef);
+CGBitmapInfo bitmapInfo = CGImageGetBitmapInfo(imageRef);    
+CGFloat scale = [UIScreen mainScreen].scale;
+
+CGSize canvasSize = CGSizeMake(size.width * scale, size.height * scale);
+
+CGContextRef contextRef = CGBitmapContextCreate(nil, canvasSize.width, canvasSize.height, bitsPerComponent, 0, colorSpace, bitmapInfo);
+```
+
+
+
+如果参数bitsPerComponent、space和bitmapInfo不是CoreGraphics支持的组合，则会导致该函数返回NULL[^6]。
+
+CoreGraphics的函数，支持如下
+
+```shell
+CGBitmapContextCreate: unsupported parameter combination:
+ 	8 bits/component; integer;
+ 	32 bits/pixel;
+	RGB color space model; kCGImageAlphaLast;
+	default byte order;
+	384 bytes/row.
+Valid parameters for RGB color space model are:
+	16  bits per pixel,		 5  bits per component,		 kCGImageAlphaNoneSkipFirst
+	32  bits per pixel,		 8  bits per component,		 kCGImageAlphaNoneSkipFirst
+	32  bits per pixel,		 8  bits per component,		 kCGImageAlphaNoneSkipLast
+	32  bits per pixel,		 8  bits per component,		 kCGImageAlphaPremultipliedFirst
+	32  bits per pixel,		 8  bits per component,		 kCGImageAlphaPremultipliedLast
+	32  bits per pixel,		 10 bits per component,		 kCGImageAlphaNone|kCGImagePixelFormatRGBCIF10
+	64  bits per pixel,		 16 bits per component,		 kCGImageAlphaPremultipliedLast
+	64  bits per pixel,		 16 bits per component,		 kCGImageAlphaNoneSkipLast
+	64  bits per pixel,		 16 bits per component,		 kCGImageAlphaPremultipliedLast|kCGBitmapFloatComponents|kCGImageByteOrder16Little
+	64  bits per pixel,		 16 bits per component,		 kCGImageAlphaNoneSkipLast|kCGBitmapFloatComponents|kCGImageByteOrder16Little
+	128 bits per pixel,		 32 bits per component,		 kCGImageAlphaPremultipliedLast|kCGBitmapFloatComponents
+	128 bits per pixel,		 32 bits per component,		 kCGImageAlphaNoneSkipLast|kCGBitmapFloatComponents
+ See Quartz 2D Programming Guide (available online) for more information.
+```
+
+说明
+
+> 设置Xcode的环境变量CGBITMAP_CONTEXT_LOG_ERRORS，如果CGBitmapContextCreate返回NULL，则在console会打印上面的提示信息。
+
+
+
+解决方法：
+
+尝试用图片，即CGImageRef对象提供的色彩空间和alpha信息来创建bitmap，如果创建失败，则采用下面方式创建32bit的bitmap，保证contextRef不是NULL。
+
+```c
+contextRef = CGBitmapContextCreate(nil, canvasSize.width, canvasSize.height, 8, 0, CGColorSpaceCreateDeviceRGB(), kCGImageAlphaNoneSkipLast);
+```
+
+
+
+
+
+
+
 ## References
 
 [^1]: <https://nshipster.com/cggeometry/>
@@ -317,4 +395,7 @@ https://www.ramshandilya.com/blog/draw-smooth-curves/
 [^4]:https://stackoverflow.com/questions/6327817/why-is-uibezierpath-faster-than-core-graphics-path
 
 [^5]:https://www.calayer.com/core-animation/2016/05/22/cashapelayer-in-depth.html
+
+[^6]:https://www.jianshu.com/p/511b559fd697
+[^7]:https://stackoverflow.com/questions/13527692/cgbitmapcontextcreate-unsupported-parameter-combination
 
