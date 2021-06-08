@@ -60,6 +60,9 @@
 		4F64C3C920ED13A7008A2A1A /* LayerWithProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F64C3C820ED13A7008A2A1A /* LayerWithProgress.m */; };
 		4FA891AA24F2691F0091CE24 /* WCQuartzTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA891A924F2691F0091CE24 /* WCQuartzTool.m */; };
 		4FB4D205249F9C2900FB94B1 /* ShapeCurveBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB4D204249F9C2900FB94B1 /* ShapeCurveBezierPathViewController.m */; };
+		4FBBE6EF266F913100618C25 /* Tests_Issues.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBBE6EE266F913100618C25 /* Tests_Issues.m */; };
+		4FBBE6F4266F967C00618C25 /* 2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4FBBE6F2266F967C00618C25 /* 2.gif */; };
+		4FBBE6F5266F967C00618C25 /* 1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4FBBE6F3266F967C00618C25 /* 1.gif */; };
 		4FF3EAE8247D180F00227B3C /* DrawArcBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF3EAE7247D180F00227B3C /* DrawArcBezierPathViewController.m */; };
 		4FF3EAEB247D184E00227B3C /* DrawCurveBezierPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FF3EAEA247D184E00227B3C /* DrawCurveBezierPathViewController.m */; };
 /* End PBXBuildFile section */
@@ -179,6 +182,9 @@
 		4FA891A924F2691F0091CE24 /* WCQuartzTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCQuartzTool.m; sourceTree = "<group>"; };
 		4FB4D203249F9C2900FB94B1 /* ShapeCurveBezierPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShapeCurveBezierPathViewController.h; sourceTree = "<group>"; };
 		4FB4D204249F9C2900FB94B1 /* ShapeCurveBezierPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShapeCurveBezierPathViewController.m; sourceTree = "<group>"; };
+		4FBBE6EE266F913100618C25 /* Tests_Issues.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_Issues.m; sourceTree = "<group>"; };
+		4FBBE6F2266F967C00618C25 /* 2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 2.gif; sourceTree = "<group>"; };
+		4FBBE6F3266F967C00618C25 /* 1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 1.gif; sourceTree = "<group>"; };
 		4FF3EAE6247D180F00227B3C /* DrawArcBezierPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawArcBezierPathViewController.h; sourceTree = "<group>"; };
 		4FF3EAE7247D180F00227B3C /* DrawArcBezierPathViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawArcBezierPathViewController.m; sourceTree = "<group>"; };
 		4FF3EAE9247D184E00227B3C /* DrawCurveBezierPathViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawCurveBezierPathViewController.h; sourceTree = "<group>"; };
@@ -311,6 +317,8 @@
 		4F0F1DCF2496186F0034AAE9 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4FBBE6F3266F967C00618C25 /* 1.gif */,
+				4FBBE6F2266F967C00618C25 /* 2.gif */,
 				4F0F1DD02496187B0034AAE9 /* pattern images */,
 			);
 			path = Resources;
@@ -434,6 +442,7 @@
 			isa = PBXGroup;
 			children = (
 				4F577726226F36A400AA0896 /* Tests.m */,
+				4FBBE6EE266F913100618C25 /* Tests_Issues.m */,
 				4F57772E226F37BB00AA0896 /* Tests_CGGeometry.m */,
 				4F577728226F36A400AA0896 /* Info.plist */,
 			);
@@ -551,7 +560,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FBBE6F5266F967C00618C25 /* 1.gif in Resources */,
 				2B0FD5FD1FC99DFC0022E59D /* LaunchScreen.storyboard in Resources */,
+				4FBBE6F4266F967C00618C25 /* 2.gif in Resources */,
 				4F0F1DD7249619EB0034AAE9 /* pattern2.png in Resources */,
 				4F0F1DD8249619EB0034AAE9 /* pattern1.png in Resources */,
 				2B0FD5FA1FC99DFC0022E59D /* Assets.xcassets in Resources */,
@@ -630,6 +641,7 @@
 			files = (
 				4F577727226F36A400AA0896 /* Tests.m in Sources */,
 				4F57772F226F37BB00AA0896 /* Tests_CGGeometry.m in Sources */,
+				4FBBE6EF266F913100618C25 /* Tests_Issues.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -799,6 +811,7 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QVRKK2EEDF;
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -819,6 +832,7 @@
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = QVRKK2EEDF;
 				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
