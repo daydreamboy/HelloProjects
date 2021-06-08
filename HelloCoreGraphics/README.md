@@ -381,7 +381,7 @@ Valid parameters for RGB color space model are:
 contextRef = CGBitmapContextCreate(nil, canvasSize.width, canvasSize.height, 8, 0, CGColorSpaceCreateDeviceRGB(), kCGImageAlphaNoneSkipLast);
 ```
 
-
+> 示例代码，见+[WCImageTool imageWithImage:croppedToFrame:scaledToSize:imageScale:]
 
 
 
