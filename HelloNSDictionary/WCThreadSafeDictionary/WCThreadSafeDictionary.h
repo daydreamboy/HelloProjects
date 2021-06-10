@@ -22,10 +22,11 @@
 NS_ASSUME_NONNULL_BEGIN
 
 /**
- The thread safe dictionary
+ The thread safe mutable dictionary
  
- @discussion For simplicity, WCThreadSafeDictionary not support fast enumeration (for-in)
  @warning The initialize methods is not thread safe
+ 
+ @see https://www.guiguan.net/ggmutabledictionary-thread-safe-nsmutabledictionary/
  */
 WC_RESTRICT_SUBCLASSING
 @interface WCThreadSafeDictionary<__covariant KeyType, __covariant ObjectType> : NSObject
@@ -50,6 +51,9 @@ WC_RESTRICT_SUBCLASSING
 - (nullable ObjectType)objectForKeyedSubscript:(KeyType)key;
 - (void)setObject:(nullable ObjectType)object forKeyedSubscript:(KeyType)key;
 
+#pragma mark - Fast enumeration (NSFastEnumeration)
+
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(ObjectType _Nullable __unsafe_unretained [_Nonnull])buffer count:(NSUInteger)len;
 @end
 
 NS_ASSUME_NONNULL_END

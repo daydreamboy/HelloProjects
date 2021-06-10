@@ -9,7 +9,6 @@
 #import "WCThreadSafeDictionary.h"
 #import <CoreFoundation/CoreFoundation.h>
 
-// @see https://www.guiguan.net/ggmutabledictionary-thread-safe-nsmutabledictionary/
 @implementation WCThreadSafeDictionary {
     dispatch_queue_t _internal_queue;
     CFMutableDictionaryRef _storage;
@@ -98,13 +97,15 @@
     [self setObject:object forKey:key];
 }
 
-/*
 #pragma mark - Fast enumeration (NSFastEnumeration)
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id  _Nullable __unsafe_unretained [])buffer count:(NSUInteger)len {
     __block NSUInteger count = 0;
     
     dispatch_sync(_internal_queue, ^{
+        NSDictionary *dict = (__bridge NSDictionary *)(_storage);
+        count = [dict countByEnumeratingWithState:state objects:buffer count:len];
+        /*
         unsigned long countOfItemsAlreadyEnumerated = state->state;
         
         if (countOfItemsAlreadyEnumerated == 0) {
@@ -133,10 +134,10 @@
         // Update state->state with the new value of countOfItemsAlreadyEnumerated so that it is
         // preserved for the next invocation.
         state->state = countOfItemsAlreadyEnumerated;
+         */
     });
 
     return count;
 }
- */
 
 @end

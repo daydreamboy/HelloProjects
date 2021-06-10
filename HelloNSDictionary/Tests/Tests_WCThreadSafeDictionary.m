@@ -64,6 +64,56 @@
     }
 }
 
+- (void)benchmarkForFastEnumerationWithCache:(WCThreadSafeDictionary<NSString *, NSString *> *)cache {
+    NSMutableArray *keys = [NSMutableArray array];
+    NSMutableArray *values = [NSMutableArray array];
+    
+    for (int i = 0; i < ITERATIONS; i++) {
+        [keys addObject:[NSString stringWithFormat:@"key%d", i]];
+        [values addObject:[NSString stringWithFormat:@"value%d", i]];
+    }
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    CFTimeInterval startTime = CACurrentMediaTime();
+    for (int i = 0; i < ITERATIONS; i++) {
+        dispatch_group_async(group, dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), ^{
+            cache[keys[i]] = values[i];
+        });
+    }
+    
+    for (int i = 0; i < ITERATIONS; i++) {
+        __block id object;
+        dispatch_group_async(group, dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), ^{
+            object = cache[keys[i]];
+        });
+    }
+    
+    for (int i = 0; i < 10; i++) {
+        dispatch_group_async(group, dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), ^{
+            for (NSString *key in cache) {
+                NSLog(@"%@ = %@", key, cache[key]);
+                NSString *index1 = [key stringByReplacingOccurrencesOfString:@"key" withString:@""];
+                NSString *index2 = [cache[key] stringByReplacingOccurrencesOfString:@"value" withString:@""];
+                XCTAssertEqualObjects(index1, index2);
+            }
+        });
+    }
+    
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+    CFTimeInterval endTime = CACurrentMediaTime();
+    
+    NSLog(@"Total time for %@ iterations: %g ns", @(ITERATIONS), ((endTime - startTime) * 1000000));
+    
+    // Make sure the values were added correctly
+    for (NSString *key in keys) {
+        NSInteger index = [keys indexOfObject:key];
+        
+        NSString *string = cache[key];
+        XCTAssert([values[index] isEqualToString:string]);
+    }
+}
+
 #pragma mark - Test Methods
 
 - (void)test_thread_safe {
@@ -71,9 +121,12 @@
     [self benchmarkWithCache:cache];
 }
 
+- (void)test_thread_safe_fast_enumeration {
+    WCThreadSafeDictionary<NSString *, NSString *> *cache = [WCThreadSafeDictionary dictionary];
+    [self benchmarkForFastEnumerationWithCache:cache];
+}
+
 - (void)test_fast_enumeration {
-    // Note: WCThreadSafeDictionary not support fast enumeration
-    /*
     WCThreadSafeDictionary<NSString *, NSString *> *dict = [WCThreadSafeDictionary dictionary];
     dict[@"1"] = @"A";
     dict[@"2"] = @"B";
@@ -82,7 +135,6 @@
         NSString *value = dict[key];
         NSLog(@"%@", value);
     }
-     */
 }
 
 @end
