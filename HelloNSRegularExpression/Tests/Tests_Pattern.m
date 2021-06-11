@@ -25,15 +25,32 @@
 - (void)test_strip_HTML_tag {
     // @see https://stackoverflow.com/questions/9661690/use-regular-expression-to-find-replace-substring-in-nsstring
     NSString *string;
-    NSString *pattern = @"</?.*?>";
+    NSString *pattern;
+    NSRegularExpression *regex;
+    NSError *error = nil;
     
+    pattern = @"</?.*?>";
+    
+    // Case 1
     // <red>至</red>尊宝 => 至尊宝
     string = @"<red>至</red>尊宝";
-    NSError *error = nil;
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
+    regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
     string = [regex stringByReplacingMatchesInString:string options:0 range:NSMakeRange(0, [string length]) withTemplate:@""];
-    
     XCTAssertEqualObjects(string, @"至尊宝");
+    
+    // Case 2
+    string = @"<red>>至</red>尊宝";
+    regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
+    string = [regex stringByReplacingMatchesInString:string options:0 range:NSMakeRange(0, [string length]) withTemplate:@""];
+    XCTAssertEqualObjects(string, @">至尊宝");
+    
+    pattern = @"</?.*>";
+    
+    // Case 1
+    string = @"<red>>至</red>尊宝";
+    regex = [NSRegularExpression regularExpressionWithPattern:pattern options:NSRegularExpressionCaseInsensitive error:&error];
+    string = [regex stringByReplacingMatchesInString:string options:0 range:NSMakeRange(0, [string length]) withTemplate:@""];
+    XCTAssertEqualObjects(string, @"尊宝");
 }
 
 @end
