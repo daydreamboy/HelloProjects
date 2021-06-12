@@ -8,6 +8,9 @@
 
 #import <XCTest/XCTest.h>
 #import "WCThreadSafeDictionary.h"
+#import "MyKey.h"
+#import "MyValue.h"
+#import "WCXCTestCaseTool.h"
 
 #define ITERATIONS 10000
 
@@ -53,7 +56,7 @@
     dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
     CFTimeInterval endTime = CACurrentMediaTime();
     
-    NSLog(@"Total time for %@ iterations: %g ns", @(ITERATIONS), ((endTime - startTime) * 1000000));
+    NSLog(@"Total time for %@ iterations: %g ms", @(ITERATIONS), ((endTime - startTime) * 1000));
     
     // Make sure the values were added correctly
     for (NSString *key in keys) {
@@ -103,7 +106,7 @@
     dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
     CFTimeInterval endTime = CACurrentMediaTime();
     
-    NSLog(@"Total time for %@ iterations: %g ns", @(ITERATIONS), ((endTime - startTime) * 1000000));
+    NSLog(@"Total time for %@ iterations: %g ms", @(ITERATIONS), ((endTime - startTime) * 1000));
     
     // Make sure the values were added correctly
     for (NSString *key in keys) {
@@ -136,5 +139,68 @@
         NSLog(@"%@", value);
     }
 }
+
+- (void)test_allKeys {
+    WCThreadSafeDictionary<NSString *, NSString *> *cache = [WCThreadSafeDictionary dictionary];
+    
+    NSMutableArray *keys = [NSMutableArray array];
+    NSMutableArray *values = [NSMutableArray array];
+    
+    for (int i = 0; i < ITERATIONS; i++) {
+        [keys addObject:[NSString stringWithFormat:@"key%d", i]];
+        [values addObject:[NSString stringWithFormat:@"value%d", i]];
+    }
+    
+    dispatch_group_t group = dispatch_group_create();
+    
+    CFTimeInterval startTime = CACurrentMediaTime();
+    for (int i = 0; i < ITERATIONS; i++) {
+        dispatch_group_async(group, dispatch_get_global_queue(QOS_CLASS_USER_INTERACTIVE, 0), ^{
+            cache[keys[i]] = values[i];
+        });
+    }
+    
+    for (NSString *key in [cache allKeys]) {
+        NSLog(@"%@", key);
+    }
+    
+    dispatch_group_wait(group, DISPATCH_TIME_FOREVER);
+    CFTimeInterval endTime = CACurrentMediaTime();
+    
+    NSLog(@"Total time for %@ iterations: %g ms", @(ITERATIONS), ((endTime - startTime) * 1000));
+}
+
+- (void)test_allKeys_memory {
+    WCThreadSafeDictionary<NSString *, NSString *> *cache = [WCThreadSafeDictionary dictionary];
+    
+    __block __weak id weakKey = nil;
+    __block __weak id weakValue = nil;
+    {
+        NSString *key = [[NSString alloc] initWithFormat:@"%@", @"this string must be very long long long"];
+        NSString *value = [[NSString alloc] initWithFormat:@"%@", @"this string must be very long long long"];
+        XCTAssertEqualObjects(NSStringFromClass([key class]), @"__NSCFString");
+        XCTAssertEqualObjects(NSStringFromClass([value class]), @"__NSCFString");
+        
+        weakKey = key;
+        weakValue = value;
+        
+        cache[key] = value;
+        
+        NSString *firstKey = [[cache allKeys] firstObject];
+        [cache removeObjectForKey:firstKey];
+    }
+    
+    XCTestExpectation_BEGIN
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        XCTAssertNotNil(weakKey);
+        XCTAssertNil(weakValue);
+        
+        XCTestExpectation_FULFILL
+    });
+    
+    XCTestExpectation_END(10)
+}
+
 
 @end

@@ -42,6 +42,43 @@
     return [[WCThreadSafeDictionary alloc] initWithCapacity:capacity];
 }
 
+#pragma mark - Property
+
+- (NSArray *)allKeys {
+    NSMutableArray *keysM = [NSMutableArray array];
+    dispatch_sync(_internal_queue, ^{
+        // @see https://stackoverflow.com/a/2283573
+        CFIndex size = CFDictionaryGetCount(self->_storage);
+        CFTypeRef *keysTypeRef = (CFTypeRef *)malloc(size * sizeof(CFTypeRef));
+        CFDictionaryGetKeysAndValues(self->_storage, (const void **)keysTypeRef, NULL);
+        const void **keys = (const void **)keysTypeRef;
+        
+        for (NSInteger i = 0; i < size; ++i) {
+            [keysM addObject:(__bridge id)keys[i]];
+        }
+        free(keysTypeRef);
+    });
+    
+    return [keysM copy];
+}
+
+- (NSArray *)allValues {
+    NSMutableArray *valuesM = [NSMutableArray array];
+    dispatch_sync(_internal_queue, ^{
+        CFIndex size = CFDictionaryGetCount(self->_storage);
+        CFTypeRef *valuesTypeRef = (CFTypeRef *)malloc(size * sizeof(CFTypeRef));
+        CFDictionaryGetKeysAndValues(self->_storage, NULL, (const void **)valuesTypeRef);
+        const void **values = (const void **)valuesTypeRef;
+        
+        for (NSInteger i = 0; i < size; ++i) {
+            [valuesM addObject:(__bridge id)values[i]];
+        }
+        free(valuesTypeRef);
+    });
+    
+    return [valuesM copy];
+}
+
 #pragma mark - Access
 
 - (nullable id)objectForKey:(id)key {

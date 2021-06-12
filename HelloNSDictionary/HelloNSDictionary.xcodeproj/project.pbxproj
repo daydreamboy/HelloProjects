@@ -16,10 +16,15 @@
 		4F6FA4C625924D3E0087B40A /* WCPropertyDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6FA4C425924D3E0087B40A /* WCPropertyDictionary.m */; };
 		4F6FA4CC25924DB60087B40A /* Tests_WCPropertyDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6FA4CB25924DB60087B40A /* Tests_WCPropertyDictionary.m */; };
 		4F6FA4D5259259590087B40A /* ModelWithProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6FA4D3259259590087B40A /* ModelWithProperties.m */; };
-		4F7D8E552107583E00145B00 /* Demo1ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8E512107583D00145B00 /* Demo1ViewController.m */; };
+		4F7D8E552107583E00145B00 /* CheckMemoryForWCThreadSafeDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8E512107583D00145B00 /* CheckMemoryForWCThreadSafeDictionary.m */; };
 		4F7D8E562107583E00145B00 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8E542107583E00145B00 /* RootViewController.m */; };
 		4F7D8E5A21075AE000145B00 /* WCThreadSafeDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8E5921075AE000145B00 /* WCThreadSafeDictionary.m */; };
 		4F82AB7B22AEBDF000298EEF /* Tests_WCThreadSafeDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F82AB7A22AEBDF000298EEF /* Tests_WCThreadSafeDictionary.m */; };
+		4F912031267508220024DAA1 /* MyKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F912030267508220024DAA1 /* MyKey.m */; };
+		4F9120342675082F0024DAA1 /* MyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9120332675082F0024DAA1 /* MyValue.m */; };
+		4F912035267508350024DAA1 /* MyKey.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F912030267508220024DAA1 /* MyKey.m */; };
+		4F912036267508350024DAA1 /* MyValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F9120332675082F0024DAA1 /* MyValue.m */; };
+		4F91203A26750A450024DAA1 /* WCXCTestCaseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F91203826750A450024DAA1 /* WCXCTestCaseTool.m */; };
 		4F92607A20C531E200F37DF5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F92607920C531E200F37DF5 /* AppDelegate.m */; };
 		4F92608220C531E400F37DF5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F92608120C531E400F37DF5 /* Assets.xcassets */; };
 		4F92608520C531E400F37DF5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F92608320C531E400F37DF5 /* LaunchScreen.storyboard */; };
@@ -51,13 +56,19 @@
 		4F6FA4CB25924DB60087B40A /* Tests_WCPropertyDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_WCPropertyDictionary.m; sourceTree = "<group>"; };
 		4F6FA4D2259259590087B40A /* ModelWithProperties.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelWithProperties.h; sourceTree = "<group>"; };
 		4F6FA4D3259259590087B40A /* ModelWithProperties.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelWithProperties.m; sourceTree = "<group>"; };
-		4F7D8E512107583D00145B00 /* Demo1ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Demo1ViewController.m; sourceTree = "<group>"; };
-		4F7D8E522107583D00145B00 /* Demo1ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Demo1ViewController.h; sourceTree = "<group>"; };
+		4F7D8E512107583D00145B00 /* CheckMemoryForWCThreadSafeDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckMemoryForWCThreadSafeDictionary.m; sourceTree = "<group>"; };
+		4F7D8E522107583D00145B00 /* CheckMemoryForWCThreadSafeDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckMemoryForWCThreadSafeDictionary.h; sourceTree = "<group>"; };
 		4F7D8E532107583D00145B00 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F7D8E542107583E00145B00 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F7D8E5821075AE000145B00 /* WCThreadSafeDictionary.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCThreadSafeDictionary.h; sourceTree = "<group>"; };
 		4F7D8E5921075AE000145B00 /* WCThreadSafeDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCThreadSafeDictionary.m; sourceTree = "<group>"; };
 		4F82AB7A22AEBDF000298EEF /* Tests_WCThreadSafeDictionary.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_WCThreadSafeDictionary.m; sourceTree = "<group>"; };
+		4F91202F267508220024DAA1 /* MyKey.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyKey.h; sourceTree = "<group>"; };
+		4F912030267508220024DAA1 /* MyKey.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyKey.m; sourceTree = "<group>"; };
+		4F9120322675082F0024DAA1 /* MyValue.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyValue.h; sourceTree = "<group>"; };
+		4F9120332675082F0024DAA1 /* MyValue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyValue.m; sourceTree = "<group>"; };
+		4F91203826750A450024DAA1 /* WCXCTestCaseTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCXCTestCaseTool.m; sourceTree = "<group>"; };
+		4F91203926750A450024DAA1 /* WCXCTestCaseTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCXCTestCaseTool.h; sourceTree = "<group>"; };
 		4F92607520C531E200F37DF5 /* HelloNSDictionary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloNSDictionary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F92607820C531E200F37DF5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4F92607920C531E200F37DF5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -122,6 +133,10 @@
 			children = (
 				4F6FA4D2259259590087B40A /* ModelWithProperties.h */,
 				4F6FA4D3259259590087B40A /* ModelWithProperties.m */,
+				4F91202F267508220024DAA1 /* MyKey.h */,
+				4F912030267508220024DAA1 /* MyKey.m */,
+				4F9120322675082F0024DAA1 /* MyValue.h */,
+				4F9120332675082F0024DAA1 /* MyValue.m */,
 			);
 			path = DummyClass;
 			sourceTree = "<group>";
@@ -129,8 +144,8 @@
 		4F7D8E502107583D00145B00 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
-				4F7D8E522107583D00145B00 /* Demo1ViewController.h */,
-				4F7D8E512107583D00145B00 /* Demo1ViewController.m */,
+				4F7D8E522107583D00145B00 /* CheckMemoryForWCThreadSafeDictionary.h */,
+				4F7D8E512107583D00145B00 /* CheckMemoryForWCThreadSafeDictionary.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -142,6 +157,15 @@
 				4F7D8E5921075AE000145B00 /* WCThreadSafeDictionary.m */,
 			);
 			path = WCThreadSafeDictionary;
+			sourceTree = "<group>";
+		};
+		4F91203726750A290024DAA1 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4F91203926750A450024DAA1 /* WCXCTestCaseTool.h */,
+				4F91203826750A450024DAA1 /* WCXCTestCaseTool.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		4F92606C20C531E200F37DF5 = {
@@ -195,6 +219,7 @@
 		4F95A3D021395033003B0E69 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				4F91203726750A290024DAA1 /* Tools */,
 				4F6FA4D1259259440087B40A /* DummyClass */,
 				4F95A3D121395033003B0E69 /* Tests.m */,
 				4F4F863E22AAA1CC005F70DF /* Tests_CFDictionary.m */,
@@ -307,12 +332,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F7D8E5A21075AE000145B00 /* WCThreadSafeDictionary.m in Sources */,
+				4F912036267508350024DAA1 /* MyValue.m in Sources */,
 				4F92608820C531E400F37DF5 /* main.m in Sources */,
 				4F7D8E562107583E00145B00 /* RootViewController.m in Sources */,
-				4F7D8E552107583E00145B00 /* Demo1ViewController.m in Sources */,
+				4F7D8E552107583E00145B00 /* CheckMemoryForWCThreadSafeDictionary.m in Sources */,
 				4F6ABDEF230AE32E00A6023E /* WCOrderedDictionary.m in Sources */,
 				4F50591F230E7EAC004489C3 /* WCWeakReferenceDictionary.m in Sources */,
 				4F92607A20C531E200F37DF5 /* AppDelegate.m in Sources */,
+				4F912035267508350024DAA1 /* MyKey.m in Sources */,
 				4F6FA4C525924D3E0087B40A /* WCPropertyDictionary.m in Sources */,
 				4F92609120C5322A00F37DF5 /* WCDictionaryTool.m in Sources */,
 			);
@@ -322,10 +349,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F912031267508220024DAA1 /* MyKey.m in Sources */,
 				4F4F863F22AAA1CC005F70DF /* Tests_CFDictionary.m in Sources */,
 				4F5F312723178555008ECB09 /* Tests_WCOrderedDictionary.m in Sources */,
 				4F6FA4D5259259590087B40A /* ModelWithProperties.m in Sources */,
 				4F6FA4CC25924DB60087B40A /* Tests_WCPropertyDictionary.m in Sources */,
+				4F91203A26750A450024DAA1 /* WCXCTestCaseTool.m in Sources */,
+				4F9120342675082F0024DAA1 /* MyValue.m in Sources */,
 				4F82AB7B22AEBDF000298EEF /* Tests_WCThreadSafeDictionary.m in Sources */,
 				4F172406231BA5BD00483D53 /* Tests_WCWeakReferenceDictionary.m in Sources */,
 				4F6FA4C625924D3E0087B40A /* WCPropertyDictionary.m in Sources */,

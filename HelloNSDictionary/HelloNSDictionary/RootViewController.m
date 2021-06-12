@@ -8,7 +8,7 @@
 
 #import "RootViewController.h"
 
-#import "Demo1ViewController.h"
+#import "CheckMemoryForWCThreadSafeDictionary.h"
 
 @interface RootViewController ()
 @property (nonatomic, strong) NSArray *titles;
@@ -31,11 +31,11 @@
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"Demo1ViewController's title",
+        @"Check memory for WCThreadSafeDictionary",
         @"call a test method",
     ];
     _classes = @[
-        [Demo1ViewController class],
+        [CheckMemoryForWCThreadSafeDictionary class],
         @"testMethod",
     ];
 }
