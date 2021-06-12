@@ -1680,6 +1680,127 @@ object_getIvar(id _Nullable obj, Ivar _Nonnull ivar)
 
 
 
+### （17）`__bridge_xxx`
+
+在Objective-C的ARC环境下，CoreFoundation对象和NS对象，进行类型转换时，需要考虑内存管理，即内存对象由哪方来持有和释放。
+
+这篇文章比较清楚给出`__bridge_xxx`的使用场景[^35]，如下
+
+* `__bridge`，用于Objective-C ← → CF，双向转换
+* `__bridge_transfer`，用于CF → Objective-C，将CoreFoundation类型转成Objective-C类型
+* `__bridge_retained`，用于Objective-C → CF，将Objective-C类型转成CoreFoundation类型
+
+
+
+#### a. `__bridge`
+
+`__bridge`，用于Objective-C和CF之间双向转换，并不改变对象的引用计数。
+
+举个例子，如下
+
+```objective-c
+- (void)test___bridge {
+    __weak id weakText = nil;
+    {
+        CFStringRef stringRef = CFStringCreateWithCString(NULL, "Hello World via bridge", kCFStringEncodingUTF8);
+        NSString *text = (__bridge id)stringRef;
+        NSLog(@"%@", text);
+        
+        weakText = text;
+        CFRelease(stringRef);
+    }
+    XCTAssertNil(weakText);
+    
+    {
+        CFStringRef stringRef = CFStringCreateWithCString(NULL, "Hello World via bridge", kCFStringEncodingUTF8);
+        NSString *text = (__bridge id)stringRef;
+        NSLog(@"%@", text);
+        
+        weakText = text;
+        
+        // Warning: stringRef is leaked without calling CFRelease
+        //CFRelease(stringRef);
+    }
+    XCTAssertNotNil(weakText);
+}
+```
+
+上面将stringRef转成NSString类型，使用`__bridge`，没有把引用计数加1，所以ARC没有插入release代码，该text对象是否也需要CoreFoundation侧来处理，使用CFRelease来释放。
+
+说明
+
+> 如果CoreFoundation侧不使用CFRelease来释放，ARC也没有插入release代码，因此该text对象存在内存泄漏
+
+
+
+#### b. `__bridge_transfer`
+
+`__bridge_transfer`，用于CF → Objective-C，将CoreFoundation类型转成Objective-C类型，同时将释放工作，交给ARC来处理，因此CoreFoundation侧不用调用CFRelease来释放
+
+举个例子，如下
+
+```objective-c
+- (void)test___bridge_transfer {
+    __weak id weakText = nil;
+    {
+        CFStringRef stringRef = CFStringCreateWithCString(NULL, "Hello World via bridge transfer", kCFStringEncodingUTF8);
+        NSString *text = (__bridge_transfer id)stringRef;
+        NSLog(@"%@", text);
+        
+        weakText = text;
+    }
+    
+    XCTAssertNil(weakText);
+}
+```
+
+
+
+#### c. `__bridge_retained`
+
+`__bridge_retained`，用于Objective-C → CF，将Objective-C类型转成CoreFoundation类型，同时将释放工作，交给CoreFoundation来处理，CoreFoundation侧需要调用CFRelease来释放CF对象。
+
+举个例子，如下
+
+```objective-c
+- (void)test___bridge_retained {
+    __weak id weakText = nil;
+    {
+        NSString *text = [[NSString alloc] initWithFormat:@"%@", @"Hello World via bridge retained"];
+        
+        weakText = text;
+    }
+    XCTAssertNil(weakText);
+    
+    {
+        NSString *text = [[NSString alloc] initWithFormat:@"%@", @"Hello World via bridge retained"];
+        CFStringRef stringRef = (__bridge_retained CFStringRef)text;
+        
+        weakText = text;
+        
+        CFRelease(stringRef);
+    }
+    XCTAssertNil(weakText);
+    
+    {
+        NSString *text = [[NSString alloc] initWithFormat:@"%@", @"Hello World via bridge retained"];
+        CFStringRef stringRef = (__bridge_retained CFStringRef)text;
+        
+        weakText = text;
+        
+        // Warning: stringRef is leaked without calling CFRelease
+        //CFRelease(stringRef);
+    }
+    XCTAssertNotNil(weakText);
+}
+```
+
+上面如果不调用CFRelease，则会使stringRef不会被释放，造成内存泄漏。
+
+
+
+
+
 ## 2、ObjC Runtime
 
 TODO
@@ -1942,6 +2063,152 @@ Test`-[Test_bridge test]:
 ![](images/toll-free bridge.png)
 
 可以看出NSString*变量和CFStringRef变量的值是一样的，都指向同一个对象。
+
+
+
+### （7）分析NSString的内存管理
+
+NSString是比较特殊的类，而且它的内管管理，比较特殊。由于NSString存在字面常量literal string，而且literal string是存放在Mach-O文件中。因此NSString对象是否释放，需要额外考虑literal string。
+
+经过测试，简单归纳下面几点
+
+* literal NSString对象，是不释放的，内存总是存在
+* NSString的某些API，编译器可能会转换代码，变成直接使用literal NSString
+* 对于NSString的某些工厂API，需要使用`@autoreleasepool`才能及时释放对象
+* 如果要使用局部NSString对象，可以使用`alloc/initWithFormat`方式，能保证NSString对象在超过作用域后可以释放
+
+
+
+#### a. literal NSString对象
+
+```objective-c
+- (void)test_NSString_memory {
+    __weak id weakText = nil;
+    
+    // Case 1: literal NSString is always not released
+    {
+        NSString *text = @"Hello World via bridge retained";
+        
+        weakText = text;
+    }
+    XCTAssertNotNil(weakText);
+    
+    {
+        @autoreleasepool {
+            NSString *text = @"Hello World via bridge retained";
+            
+            weakText = text;
+        }
+    }
+    XCTAssertNotNil(weakText);
+}
+```
+
+推测literal NSString对象，内存分配不在堆上，因此它的生命周期可以超过方法的作用域
+
+
+
+#### b. NSString的某些API变成直接使用literal NSString
+
+```objective-c
+- (void)test_NSString_memory {
+    __weak id weakText = nil;
+  
+	  // Case 2: NSString's some api translated as literal NSString
+    {
+        NSString *text = [NSString stringWithString:@"Hello World via bridge retained"];
+        
+        weakText = text;
+    }
+    XCTAssertNotNil(weakText);
+    
+    {
+        NSString *text = [[NSString alloc] initWithString:@"Hello World via bridge retained"];
+        
+        weakText = text;
+    }
+    XCTAssertNotNil(weakText);
+}
+```
+
+编译器给出警告：Using 'stringWithString:' with a literal is redundant。可以推测编译器可能会优化，将方法调用直接换成literal NSString。测试效果和上面的literal NSString是一样的。
+
+
+
+#### c. NSString的工厂API，需要使用`@autoreleasepool`
+
+```objective-c
+- (void)test_NSString_memory {
+    __weak id weakText = nil;
+    // Case 3: use @autoreleasepool and factory method, e.g. stringWithFormat, to make NSString can be released
+    {
+        NSString *text = [NSString stringWithFormat:@"%@", @"Hello World via bridge retained"];
+        
+        weakText = text;
+    }
+    XCTAssertNotNil(weakText);
+    
+    {
+        @autoreleasepool {
+            NSString *text = [NSString stringWithFormat:@"%@", @"Hello World via bridge retained"];
+            
+            weakText = text;
+        }
+    }
+    XCTAssertNil(weakText);
+}
+```
+
+使用stringWithFormat方法，即使生成的字符串，和入参字符串是一样的，但它们是不同的对象。同时需要使用`@autoreleasepool`才能清理stringWithFormat方法生成的NSString对象。
+
+
+
+#### d. 使用局部NSString对象
+
+```objective-c
+- (void)test_NSString_memory {
+    __weak id weakText = nil;
+  
+    // Case 4: use alloc/initWithFormat to make NSString can be released
+    {
+        NSString *text = [[NSString alloc] initWithFormat:@"%@", @"Hello World via bridge retained"];
+        
+        weakText = text;
+    }
+    XCTAssertNil(weakText);
+}
+```
+
+除了使用stringWithFormat方法，还可以使用`alloc/initWithFormat`方式来生成NSString对象，这个NSString对象的作用域在方法内，因此不需要使用`@autoreleasepool`。
+
+说明
+
+> 如果要生成大量的NSString对象，而且在方法内需要销毁，那么使用下面两种方式，可以优化内存的使用量
+>
+> * stringWithFormat方法 + `@autoreleasepool`
+>
+> * `alloc/initWithFormat`方式
+
+
+
+注意
+
+> 如果initWithFormat的入参字符串，比较短，则initWithFormat方法返回的NSString对象，是**NSTaggedPointerString**类型，而不是**`__NSCFString`**类型。该**NSTaggedPointerString**类型的对象，总是不会被释放的。
+>
+> ```objective-c
+>     // Case 5: use alloc/initWithFormat to make NSString can be released, not always works
+>     {
+>         NSString *text = [[NSString alloc] initWithFormat:@"%@", @"Hello"];
+>         NSLog(@"%@", [text class]);
+>         
+>         weakText = text;
+>     }
+>     XCTAssertNotNil(weakText);
+> ```
+>
+> 
+
+
 
 
 
@@ -2583,4 +2850,6 @@ clang文档描述[^10]，如下
 [^32]:https://github.com/AFNetworking/AFNetworking/blob/1.1.0/AFNetworking/AFURLConnectionOperation.m#L157
 [^33]:https://gcc.gnu.org/onlinedocs/gcc/Function-Attributes.html
 [^34]:https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#Common-Function-Attributes
+
+[^35]:https://medium.com/@notestomyself/bridge-vs-bridge-transfer-vs-bridge-retained-f84e6b6406d1
 
