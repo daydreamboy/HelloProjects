@@ -16,6 +16,8 @@
 		4F2C27082529C4CE00CF4BE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F2C27062529C4CE00CF4BE0 /* LaunchScreen.storyboard */; };
 		4F2C270B2529C4CE00CF4BE0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C270A2529C4CE00CF4BE0 /* main.m */; };
 		4F2C28632529CBA000CF4BE0 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F2C285E2529CBA000CF4BE0 /* RootViewController.m */; };
+		4FBC82DF267217B3008F8F20 /* WCThrottleTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FBC82DE267217B3008F8F20 /* WCThrottleTool.m */; };
+		4FEE02FC267247B800993A3C /* WCThreadSafeDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FEE02FB267247B800993A3C /* WCThreadSafeDictionary.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,10 @@
 		4F2C270A2529C4CE00CF4BE0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		4F2C285E2529CBA000CF4BE0 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		4F2C28622529CBA000CF4BE0 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		4FBC82DD267217B3008F8F20 /* WCThrottleTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCThrottleTool.h; sourceTree = "<group>"; };
+		4FBC82DE267217B3008F8F20 /* WCThrottleTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCThrottleTool.m; sourceTree = "<group>"; };
+		4FEE02FA267247B800993A3C /* WCThreadSafeDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WCThreadSafeDictionary.h; sourceTree = "<group>"; };
+		4FEE02FB267247B800993A3C /* WCThreadSafeDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WCThreadSafeDictionary.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +85,7 @@
 		4F2C26EC2529C4CB00CF4BE0 = {
 			isa = PBXGroup;
 			children = (
+				4FBC82DC26721798008F8F20 /* WCThrottleTool */,
 				4F2C28682529F99200CF4BE0 /* WCDebouncer */,
 				4F2C28662529CBB700CF4BE0 /* WCThrottler */,
 				4F2C26F72529C4CB00CF4BE0 /* HelloFRP */,
@@ -137,6 +144,25 @@
 				4F1E90A0252C4F9A00CEAB6E /* WCDebouncer.m */,
 			);
 			path = WCDebouncer;
+			sourceTree = "<group>";
+		};
+		4FBC82DC26721798008F8F20 /* WCThrottleTool */ = {
+			isa = PBXGroup;
+			children = (
+				4FEE02F92672468100993A3C /* Tools */,
+				4FBC82DD267217B3008F8F20 /* WCThrottleTool.h */,
+				4FBC82DE267217B3008F8F20 /* WCThrottleTool.m */,
+			);
+			path = WCThrottleTool;
+			sourceTree = "<group>";
+		};
+		4FEE02F92672468100993A3C /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4FEE02FA267247B800993A3C /* WCThreadSafeDictionary.h */,
+				4FEE02FB267247B800993A3C /* WCThreadSafeDictionary.m */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -247,8 +273,10 @@
 			files = (
 				4F2C26FA2529C4CB00CF4BE0 /* AppDelegate.m in Sources */,
 				4F1E90A1252C4F9A00CEAB6E /* WCDebouncer.m in Sources */,
+				4FEE02FC267247B800993A3C /* WCThreadSafeDictionary.m in Sources */,
 				4F2C270B2529C4CE00CF4BE0 /* main.m in Sources */,
 				4F27DA1D252F02F4007ACBD0 /* UseWCDebouncerViewController.m in Sources */,
+				4FBC82DF267217B3008F8F20 /* WCThrottleTool.m in Sources */,
 				4F2C28632529CBA000CF4BE0 /* RootViewController.m in Sources */,
 				4F1E8CC3252C113F00CEAB6E /* WCThrottler.m in Sources */,
 			);
