@@ -31,7 +31,17 @@ NS_ASSUME_NONNULL_BEGIN
 WC_RESTRICT_SUBCLASSING
 @interface WCThreadSafeDictionary<__covariant KeyType, __covariant ObjectType> : NSObject
 
+/**
+ Get all keys
+ 
+ @discussion the keys not copied
+ */
 @property (nonatomic, copy, readonly) NSArray<KeyType> *allKeys;
+/**
+ Get all values
+ 
+ @discussion the values not copied
+ */
 @property (nonatomic, copy, readonly) NSArray<KeyType> *allValues;
 
 #pragma mark - Initialize
