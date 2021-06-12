@@ -57,6 +57,7 @@ WC_RESTRICT_SUBCLASSING
 - (void)setObject:(nullable ObjectType)object forKey:(KeyType)key;
 - (void)removeAllObjects;
 - (void)removeObjectForKey:(KeyType)key;
+- (void)removeObjectsForKeys:(NSArray<KeyType> *)keys;
 - (NSUInteger)count;
 
 #pragma mark - Subscript

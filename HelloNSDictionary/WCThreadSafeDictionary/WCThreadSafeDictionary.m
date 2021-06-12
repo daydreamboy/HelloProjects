@@ -116,6 +116,22 @@
     }
 }
 
+- (void)removeObjectsForKeys:(NSArray *)keys {
+    if (![keys isKindOfClass:[NSArray class]]) {
+        return;
+    }
+    
+    if (keys.count == 0) {
+        return;
+    }
+    
+    dispatch_barrier_async(_internal_queue, ^{
+        [keys enumerateObjectsUsingBlock:^(id  _Nonnull key, NSUInteger idx, BOOL * _Nonnull stop) {
+            CFDictionaryRemoveValue(self->_storage, (__bridge const void *)(key));
+        }];
+    });
+}
+
 - (NSUInteger)count {
     __block NSUInteger count;
     dispatch_sync(_internal_queue, ^{
