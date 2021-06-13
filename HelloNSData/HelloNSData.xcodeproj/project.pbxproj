@@ -39,6 +39,9 @@
 		4F7C976D2663E02600F45493 /* WCFileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C976C2663E02600F45493 /* WCFileTool.m */; };
 		4F8BB3E6215201D600F0AD99 /* Tests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F8BB3E5215201D600F0AD99 /* Tests.mm */; };
 		4F94D6BA26648373002925F1 /* big_json.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F94D6B926648373002925F1 /* big_json.json */; };
+		4FA6A82326763DB800D64454 /* Tests_mmap.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA6A82226763DB800D64454 /* Tests_mmap.m */; };
+		4FA6A825267648D000D64454 /* mmap1.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4FA6A824267648D000D64454 /* mmap1.txt */; };
+		4FA6A8272676570100D64454 /* mmap2.txt in Resources */ = {isa = PBXBuildFile; fileRef = 4FA6A8262676570100D64454 /* mmap2.txt */; };
 		4FE7419E2398B4FA009E5909 /* NSData+SEGGZIP.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE7419D2398B4FA009E5909 /* NSData+SEGGZIP.m */; };
 		4FE84F6C26145D99005817DE /* jpg.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 4FE84F6826145D99005817DE /* jpg.jpeg */; };
 		4FE84F6D26145D99005817DE /* gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 4FE84F6926145D99005817DE /* gif.gif */; };
@@ -120,6 +123,9 @@
 		4F8BB3E5215201D600F0AD99 /* Tests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = Tests.mm; sourceTree = "<group>"; };
 		4F8BB3E7215201D600F0AD99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4F94D6B926648373002925F1 /* big_json.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = big_json.json; sourceTree = "<group>"; };
+		4FA6A82226763DB800D64454 /* Tests_mmap.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_mmap.m; sourceTree = "<group>"; };
+		4FA6A824267648D000D64454 /* mmap1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mmap1.txt; sourceTree = "<group>"; };
+		4FA6A8262676570100D64454 /* mmap2.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mmap2.txt; sourceTree = "<group>"; };
 		4FE7419C2398B4FA009E5909 /* NSData+SEGGZIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+SEGGZIP.h"; sourceTree = "<group>"; };
 		4FE7419D2398B4FA009E5909 /* NSData+SEGGZIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SEGGZIP.m"; sourceTree = "<group>"; };
 		4FE84F6826145D99005817DE /* jpg.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = jpg.jpeg; sourceTree = "<group>"; };
@@ -167,6 +173,8 @@
 		4F4AFFD9213E6DA30031856A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				4FA6A824267648D000D64454 /* mmap1.txt */,
+				4FA6A8262676570100D64454 /* mmap2.txt */,
 				4F5FBC33248CC9D500744D67 /* main2.dx */,
 				4F3AFA8C2488A5FF00806BD2 /* main.dx */,
 				4F4AFFDC213E80EB0031856A /* 1.amr */,
@@ -263,6 +271,7 @@
 				4F8BB3E5215201D600F0AD99 /* Tests.mm */,
 				4F3AFA8F2488DBBC00806BD2 /* Tests_NSData.m */,
 				4F1F31912395313600ABD170 /* Tests_gzip.m */,
+				4FA6A82226763DB800D64454 /* Tests_mmap.m */,
 				4FE7419C2398B4FA009E5909 /* NSData+SEGGZIP.h */,
 				4FE7419D2398B4FA009E5909 /* NSData+SEGGZIP.m */,
 				4F8BB3E7215201D600F0AD99 /* Info.plist */,
@@ -379,11 +388,13 @@
 			files = (
 				4F3AFA8D2488A5FF00806BD2 /* main.dx in Resources */,
 				4FE84F7E26145F31005817DE /* mkv.mkv in Resources */,
+				4FA6A8272676570100D64454 /* mmap2.txt in Resources */,
 				4FE84F7A26145F31005817DE /* opus.opus in Resources */,
 				4FE84F7426145F28005817DE /* gif.gif in Resources */,
 				4FE84F7B26145F31005817DE /* amr.amr in Resources */,
 				4F5FBC34248CC9D500744D67 /* main2.dx in Resources */,
 				4FE84F7C26145F31005817DE /* heic.heic in Resources */,
+				4FA6A825267648D000D64454 /* mmap1.txt in Resources */,
 				4F4AFFDE213E80EB0031856A /* 1.amr in Resources */,
 				4F75A02A213130EF000DDE60 /* LaunchScreen.storyboard in Resources */,
 				4FE84F8226145F35005817DE /* xpi.xpi in Resources */,
@@ -447,6 +458,7 @@
 				4FE7419E2398B4FA009E5909 /* NSData+SEGGZIP.m in Sources */,
 				4F2376FE241F857600389A64 /* casc_pack.cpp in Sources */,
 				4F6896452665CFF3002B5521 /* WCXCTestCaseTool.m in Sources */,
+				4FA6A82326763DB800D64454 /* Tests_mmap.m in Sources */,
 				4F1F31922395313600ABD170 /* Tests_gzip.m in Sources */,
 				4F237700241F857600389A64 /* imsc_pack.cpp in Sources */,
 				4F3AFA902488DBBC00806BD2 /* Tests_NSData.m in Sources */,
