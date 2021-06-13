@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
  
  @return YES if the current timestamp - marked timestamp > timeGap, or return NO if not
  
- @note If timeGap is CGFLOAT_MAX, the return value is always YES
+ @note If timeGap is zero or negative, the return value is always YES
  */
 + (BOOL)checkTimestampOutdateWithUniqueKey:(NSString *)uniqueKey forBizKey:(NSString *)bizKey timeGap:(NSTimeInterval)timeGap;
 

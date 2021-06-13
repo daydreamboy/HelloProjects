@@ -40,8 +40,8 @@
     // Note: check valid parameter
     // 1. lastTimestamp must greater than 0
     // 2. now must greater than lastTimestamp
-    // 3. lastTimestamp is outdated when now - lastTimestamp < timeGap
-    if (lastTimestamp > 0 && now - lastTimestamp > 0 && now - lastTimestamp < timeGap) {
+    // 3. lastTimestamp is outdated when now - lastTimestamp > timeGap
+    if (lastTimestamp > 0 && now - lastTimestamp > 0 && now - lastTimestamp > timeGap) {
         return YES;
     }
     else {
