@@ -61,7 +61,7 @@ static const char * const SemaphoreObjectTagKey = "SemaphoreObjectTagKey";
         block();
     }
     endTime = CACurrentMediaTime();
-    NSLog(@"average: %f, count: %ld", (endTime - startTime) / count, (long)count);
+    NSLog(@"average: %f s, count: %ld", (endTime - startTime) / count, (long)count);
     
     return YES;
 }
