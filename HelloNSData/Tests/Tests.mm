@@ -382,46 +382,19 @@ using namespace std;
 
 #pragma mark - Data mmap file
 
-- (void)test_dataUsingMmapWithFilePath {
-    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"big_json" ofType:@"json"];
-    NSLog(@"%@", filePath);
+- (void)test_createFileUsingMmapWithPath_data_overwrite_error {
+    NSString *text = @"hello, world!";
+    NSString *outputPath = [[[NSBundle bundleForClass:[self class]] bundlePath] stringByAppendingPathComponent:[NSUUID UUID].UUIDString];
+    NSLog(@"%@", outputPath);
     
-    [WCXCTestCaseTool timingMesaureAverageWithCount:100 block:^{
-        @autoreleasepool {
-            __unused NSData *data = [NSData dataWithContentsOfFile:filePath];
-        }
-    }];
+    NSData *data = [text dataUsingEncoding:NSUTF8StringEncoding];
+    NSError *error = nil;
+    [WCDataTool createFileUsingMmapWithPath:outputPath data:data overwrite:YES error:&error];
+    XCTAssertNil(error);
     
-    [WCXCTestCaseTool timingMesaureAverageWithCount:100 block:^{
-        @autoreleasepool {
-            __unused NSData *data = [WCDataTool dataUsingMmapWithFilePath:filePath];
-        }
-    }];
-}
-
-- (void)test_createFileUsingMmapWithPath_data_overwrite_error_1 {
-    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"big_json" ofType:@"json"];
-    NSLog(@"%@", filePath);
-    NSString *outputPath1 = [[[NSBundle bundleForClass:[self class]] bundlePath] stringByAppendingPathComponent:[NSUUID UUID].UUIDString];
-    NSString *outputPath2 = [[[NSBundle bundleForClass:[self class]] bundlePath] stringByAppendingPathComponent:[NSUUID UUID].UUIDString];
-    
-    NSData *data = [NSData dataWithContentsOfFile:filePath];
-    
-    [WCXCTestCaseTool timingMesaureAverageWithCount:100 block:^{
-        @autoreleasepool {
-            NSError *error = nil;
-            [data writeToFile:outputPath1 options:kNilOptions error:&error];
-            XCTAssertNil(error);
-        }
-    }];
-    
-    [WCXCTestCaseTool timingMesaureAverageWithCount:100 block:^{
-        @autoreleasepool {
-            NSError *error = nil;
-            [WCDataTool createFileUsingMmapWithPath:outputPath2 data:data overwrite:YES error:&error];
-            XCTAssertNil(error);
-        }
-    }];
+    NSString *content = [NSString stringWithContentsOfFile:outputPath encoding:NSUTF8StringEncoding error:&error];
+    XCTAssertNil(error);
+    XCTAssertEqualObjects(content, text);
 }
 
 - (void)test_createFileUsingMmapWithPath_data_overwrite_error_2 {
@@ -448,9 +421,58 @@ using namespace std;
     NSLog(@"1: %f", end - start);
     
     start = CACurrentMediaTime();
-    data = [WCDataTool dataUsingMmapWithFilePath:filePath];
+    data = [WCDataTool dataUsingMmapWithFilePath:filePath error:nil];
     end = CACurrentMediaTime();
     NSLog(@"2: %f", end - start);
+}
+
+#pragma mark > Measure
+
+- (void)test_measure_dataUsingMmapWithFilePath_error {
+    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"big_json" ofType:@"json"];
+    NSLog(@"%@", filePath);
+    
+    [WCXCTestCaseTool timingMesaureAverageWithCount:100 block:^{
+        @autoreleasepool {
+            __unused NSData *data = [NSData dataWithContentsOfFile:filePath];
+        }
+    }];
+    
+    [WCXCTestCaseTool timingMesaureAverageWithCount:100 block:^{
+        @autoreleasepool {
+            __unused NSData *data = [WCDataTool dataUsingMmapWithFilePath:filePath error:nil];
+        }
+    }];
+}
+
+- (void)test_measure_createFileUsingMmapWithPath_data_overwrite_error {
+    NSString *filePath = [[NSBundle bundleForClass:[self class]] pathForResource:@"big_json" ofType:@"json"];
+    NSLog(@"%@", filePath);
+    NSString *documents = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    
+    NSString *outputPath1 = [documents stringByAppendingPathComponent:[NSUUID UUID].UUIDString];
+    NSString *outputPath2 = [documents stringByAppendingPathComponent:[NSUUID UUID].UUIDString];
+    NSLog(@"home: %@", NSHomeDirectory());
+    
+    NSData *data = [NSData dataWithContentsOfFile:filePath];
+    
+    [WCXCTestCaseTool timingMesaureAverageWithCount:100 block:^{
+        @autoreleasepool {
+            NSError *error = nil;
+            BOOL success = [data writeToFile:outputPath1 options:kNilOptions error:&error];
+            XCTAssertNil(error);
+            XCTAssertTrue(success);
+        }
+    }];
+    
+    [WCXCTestCaseTool timingMesaureAverageWithCount:100 block:^{
+        @autoreleasepool {
+            NSError *error = nil;
+            BOOL success = [WCDataTool createFileUsingMmapWithPath:outputPath2 data:data overwrite:YES error:&error];
+            XCTAssertNil(error);
+            XCTAssertTrue(success);
+        }
+    }];
 }
 
 #pragma mark -

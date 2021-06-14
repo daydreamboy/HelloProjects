@@ -221,14 +221,30 @@ typedef NS_ENUM(NSUInteger, WCMIMEType) {
 #pragma mark - Data mmap file
 
 /**
+ Read data using mmap
+ 
+ @param filePath the file path
+ @param error the error. Pass nil if not consider the error
+ 
+ @return the NSData of the file
  
  @header #import <sys/mman.h>
  */
-+ (nullable NSData *)dataUsingMmapWithFilePath:(NSString *)filePath;
++ (nullable NSData *)dataUsingMmapWithFilePath:(NSString *)filePath error:(NSError * _Nullable * _Nullable)error;
 
 /**
+ Write data using mmap
+ 
+ @param path the file path
+ @param data the NSData will be copied
+ @param overwrite the flag if overwrite the existing file
+ @param error the error
+ 
+ @return YES if operate successfully, NO if not
  
  @header #import <sys/mman.h>
+ 
+ @discussion 1) This method write data asynchronously. 2) This method maybe not effective than -[NSData writeToFile:atomically:]
  */
 + (BOOL)createFileUsingMmapWithPath:(NSString *)path data:(NSData *)data overwrite:(BOOL)overwrite error:(NSError * _Nullable * _Nullable)error;
 

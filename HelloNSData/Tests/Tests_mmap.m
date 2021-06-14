@@ -47,10 +47,11 @@
                 munmap(addr, fileStatInfo.st_size);
             }
         }
+        close(fd);
     }
 }
 
-- (void)test_mmap_use_offset {
+- (void)test_mmap_read_file_use_offset {
     NSString *fileName = @"mmap2.txt";
     NSString *filePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:fileName];
     int fd = open(filePath.UTF8String, O_RDONLY, 0755);
@@ -68,6 +69,35 @@
                 NSLog(@"%@", content);
             }
         }
+        close(fd);
+    }
+}
+
+- (void)test_mmap_write_file {
+    NSString *fileName = @"mmap3.txt";
+    NSString *filePath = [NSHomeDirectory() stringByAppendingPathComponent:fileName];
+    
+    NSLog(@"filePath: %@", filePath);
+    
+    int fd = open(filePath.UTF8String, O_CREAT | O_RDWR | O_TRUNC, 0755);
+    if (fd > 0) {
+        NSString *text = @"hello, world!";
+        NSData *data = [text dataUsingEncoding:NSUTF8StringEncoding];
+        
+        void *buffer = NULL;
+        int64_t dataSize = data.length;
+        if (ftruncate(fd, dataSize) == 0) {
+            buffer = mmap(0, (size_t)dataSize, PROT_WRITE, MAP_SHARED, fd, 0);
+            if (buffer != MAP_FAILED) {
+                memcpy(buffer, data.bytes, data.length);
+                
+                // Note: use msync is optional, because munmap also can synchronize to disk
+                msync(buffer, data.length, MS_SYNC);
+                munmap(buffer, data.length);
+            }
+        }
+        
+        close(fd);
     }
 }
 
@@ -98,6 +128,7 @@
                 }
             }
         }
+        close(fd);
     }
 }
 
@@ -119,6 +150,24 @@
         printf("The first read succeed!\n");
         *(addr + ACCESS_ADDR) = 'j';
         printf("The first write succeed!\n");
+    }
+}
+
+- (void)test_mmap_issue_len_is_zero {
+    NSString *fileName = @"mmap1.txt";
+    NSString *filePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:fileName];
+    int fd = open(filePath.UTF8String, O_RDONLY, 0755);
+    if (fd > 0) {
+        struct stat fileStatInfo;
+        if (fstat(fd, &fileStatInfo) == 0) {
+            // Warning: len parameter should not be zero
+            char *addr = mmap(NULL, 0, PROT_READ, MAP_SHARED, fd, 0);
+            if (addr != MAP_FAILED) {
+                NSString *content = [NSString stringWithCString:addr encoding:NSUTF8StringEncoding];
+                NSLog(@"%@", content);
+            }
+        }
+        close(fd);
     }
 }
 

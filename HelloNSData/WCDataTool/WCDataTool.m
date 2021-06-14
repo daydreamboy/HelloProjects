@@ -1559,51 +1559,68 @@ do { \
 
 #pragma mark - Data mmap file
 
-+ (nullable NSData *)dataUsingMmapWithFilePath:(NSString *)filePath {
-    const char *mmapFilePath = [filePath UTF8String];
++ (nullable NSData *)dataUsingMmapWithFilePath:(NSString *)filePath error:(NSError * _Nullable * _Nullable)error {
+    const char *filePathCString = [filePath UTF8String];
     
-    size_t dataLength = 0;
-    void *bufferPtr = NULL;
-    
-    BOOL success = NO;
     int errorCode = 0;
-    int fileDescriptor;
+    int fd;
     struct stat fileStatInfo;
  
     // open the file
-    fileDescriptor = open(mmapFilePath, O_RDONLY, 0);
-    if (fileDescriptor < 0) {
-        errorCode = errno;
-    }
-    else {
-        // We now know the file exists. Retrieve the file size.
-        if (fstat(fileDescriptor, &fileStatInfo) != 0) {
+    fd = open(filePathCString, O_RDONLY, 0);
+    if (fd < 0) {
+        if (error) {
             errorCode = errno;
+            
+            NSMutableDictionary *userInfoM = [NSMutableDictionary dictionary];
+            userInfoM[NSLocalizedFailureReasonErrorKey] = [NSString stringWithFormat:@"%s", strerror(errorCode)];
+            *error = [NSError errorWithDomain:NSStringFromClass([self class]) code:errorCode userInfo:userInfoM];
         }
-        else {
-            // Note: map the file into a read-only memory region.
-            bufferPtr = mmap(NULL, fileStatInfo.st_size, PROT_READ, 0, fileDescriptor, 0);
-            if (bufferPtr == MAP_FAILED) {
-                errorCode = errno;
-            }
-            else {
-                // On success, return the size of the mapped file.
-                dataLength = fileStatInfo.st_size;
-                success = YES;
-            }
-        }
- 
-        // Now close the file. The kernel doesn’t use our file descriptor.
-        close(fileDescriptor);
-    }
-    
-    if (!success && bufferPtr != NULL) {
+        
         return nil;
     }
+    
+    // Note: get the file size
+    if (fstat(fd, &fileStatInfo) != 0) {
+        if (error) {
+            errorCode = errno;
+            
+            NSMutableDictionary *userInfoM = [NSMutableDictionary dictionary];
+            userInfoM[NSLocalizedFailureReasonErrorKey] = [NSString stringWithFormat:@"%s", strerror(errorCode)];
+            *error = [NSError errorWithDomain:NSStringFromClass([self class]) code:errorCode userInfo:userInfoM];
+        }
+        
+        close(fd);
+        
+        return nil;
+    }
+
+    void *bufferPtr = NULL;
+    // Note: map the file into a read-only memory region.
+    bufferPtr = mmap(NULL, fileStatInfo.st_size, PROT_READ, 0, fd, 0);
+    if (bufferPtr == MAP_FAILED) {
+        if (error) {
+            errorCode = errno;
+            
+            NSMutableDictionary *userInfoM = [NSMutableDictionary dictionary];
+            userInfoM[NSLocalizedFailureReasonErrorKey] = [NSString stringWithFormat:@"%s", strerror(errorCode)];
+            *error = [NSError errorWithDomain:NSStringFromClass([self class]) code:errorCode userInfo:userInfoM];
+        }
+        
+        close(fd);
+        
+        return nil;
+    }
+    
+    // On success, return the size of the mapped file.
+    size_t dataLength = fileStatInfo.st_size;
     
     NSData *data = [NSData dataWithBytes:bufferPtr length:(NSUInteger)dataLength];
     
     munmap(bufferPtr, dataLength);
+    
+    // Note: close the file
+    close(fd);
     
     return data;
 }
@@ -1643,9 +1660,21 @@ do { \
     int64_t dataSize = data.length;
     
     // @see http://blog.jcix.top/2018-10-26/mmap_tests/#28221mmap8221_SIGBUS
-    if (ftruncate(fd, dataSize) == 0) {
-        buffer = mmap(0, (size_t)dataSize, PROT_WRITE, MAP_SHARED, fd, 0);
+    if (ftruncate(fd, dataSize) != 0) {
+        if (error) {
+            errorCode = errno;
+            
+            NSMutableDictionary *userInfoM = [NSMutableDictionary dictionary];
+            userInfoM[NSLocalizedFailureReasonErrorKey] = [NSString stringWithFormat:@"%s", strerror(errorCode)];
+            *error = [NSError errorWithDomain:NSStringFromClass([self class]) code:errorCode userInfo:userInfoM];
+        }
+        
+        close(fd);
+        
+        return NO;
     }
+    
+    buffer = mmap(0, (size_t)dataSize, PROT_WRITE, MAP_SHARED, fd, 0);
     
     if (buffer == NULL) {
         if (error) {
@@ -1656,13 +1685,19 @@ do { \
             *error = [NSError errorWithDomain:NSStringFromClass([self class]) code:errorCode userInfo:userInfoM];
         }
         
+        close(fd);
+        
         return NO;
     }
     
-    // Write Data
+    // Note: copy the data to buffer
     memcpy(buffer, data.bytes, data.length);
     
+    // Note: use msync and MS_SYNC synchronize immediately, but more slow
+    //msync(buffer, data.length, MS_SYNC);
     munmap(buffer, data.length);
+    
+    close(fd);
 
     return YES;
 }
