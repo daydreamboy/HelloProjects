@@ -240,6 +240,10 @@ mmap读的性能比较好，完全可以取代NSData提供的方法。
 
 > 示例代码，见test_measure_dataUsingMmapWithFilePath方法
 
+说明
+
+> mmap的读性能比较好，非常适合读取缓存文件，以及小图片等。[FastImageCache](https://github.com/path/FastImageCache)的实现就用到mmap函数。
+
 
 
 mmap写的性能不好，比NSData的writeToFile:options:error:方法要差。
