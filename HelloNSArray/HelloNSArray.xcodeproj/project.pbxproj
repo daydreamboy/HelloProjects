@@ -20,6 +20,7 @@
 		4F6F907621B6BF6300A949EC /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6F907521B6BF6300A949EC /* Tests.m */; };
 		4F86BDE0231A5D310011F173 /* Tests_CFArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F86BDDF231A5D310011F173 /* Tests_CFArray.m */; };
 		4F8BEC8621DF4772000EA7B7 /* Tests_NSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8BEC8521DF4772000EA7B7 /* Tests_NSArray.m */; };
+		4FA01AE02679AA50003CBB22 /* Tests_NSMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA01ADF2679AA50003CBB22 /* Tests_NSMutableArray.m */; };
 		4FABAF88231821BB00064B57 /* WCThreadSafeArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FABAF87231821BB00064B57 /* WCThreadSafeArray.m */; };
 /* End PBXBuildFile section */
 
@@ -55,6 +56,7 @@
 		4F6F907F21B6BF8900A949EC /* WCArrayTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCArrayTool.m; sourceTree = "<group>"; };
 		4F86BDDF231A5D310011F173 /* Tests_CFArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_CFArray.m; sourceTree = "<group>"; };
 		4F8BEC8521DF4772000EA7B7 /* Tests_NSArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSArray.m; sourceTree = "<group>"; };
+		4FA01ADF2679AA50003CBB22 /* Tests_NSMutableArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_NSMutableArray.m; sourceTree = "<group>"; };
 		4FABAF86231821BB00064B57 /* WCThreadSafeArray.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCThreadSafeArray.h; sourceTree = "<group>"; };
 		4FABAF87231821BB00064B57 /* WCThreadSafeArray.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCThreadSafeArray.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -128,6 +130,7 @@
 				4F513ED322DECA5E003698DA /* DummyClass */,
 				4F6F907521B6BF6300A949EC /* Tests.m */,
 				4F8BEC8521DF4772000EA7B7 /* Tests_NSArray.m */,
+				4FA01ADF2679AA50003CBB22 /* Tests_NSMutableArray.m */,
 				4F17F73E2318365300004A26 /* Tests_WCThreadSafeArray.m */,
 				4F86BDDF231A5D310011F173 /* Tests_CFArray.m */,
 				4F23A76B24EA2BEB0042EE07 /* Tests_NSSortDescriptor.m */,
@@ -270,6 +273,7 @@
 				4F23A76C24EA2BEB0042EE07 /* Tests_NSSortDescriptor.m in Sources */,
 				4F86BDE0231A5D310011F173 /* Tests_CFArray.m in Sources */,
 				4F8BEC8621DF4772000EA7B7 /* Tests_NSArray.m in Sources */,
+				4FA01AE02679AA50003CBB22 /* Tests_NSMutableArray.m in Sources */,
 				4F513ED622DECA93003698DA /* Person.m in Sources */,
 				4F6F907621B6BF6300A949EC /* Tests.m in Sources */,
 			);
