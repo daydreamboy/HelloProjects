@@ -305,6 +305,7 @@ extern void die(const char *format, ...)
 | 属性                          | 作用                                                         |
 | ----------------------------- | ------------------------------------------------------------ |
 | `annotate("xxx")`             | https://blog.quarkslab.com/implementing-a-custom-directive-handler-in-clang.html |
+| `section`                     | TODO:https://www.keil.com/support/man/docs/armcc/armcc_chr1359124982450.htm, https://stackoverflow.com/questions/18347122/attribute-sectionname-usage |
 | `cleanup`                     | 当变量超过作用域，调用指定的回调函数                         |
 | `const`                       | 标记某个函数的返回值，仅依赖于函数的参数，因此运行时采用缓存直接返回之前计算过的值 |
 | `constructor`和`destructor`   | 在main之前，调用用`constructor`修饰的函数<br/>在main之后，调用用`destructor`修饰的函数 |

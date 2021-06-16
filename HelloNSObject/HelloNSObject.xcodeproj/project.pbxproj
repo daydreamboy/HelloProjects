@@ -134,6 +134,8 @@
 		4F813B57265A881400684D5E /* Tests_unused.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F813B56265A881400684D5E /* Tests_unused.m */; };
 		4F8910F426050BEB00FBEE19 /* WCXCTestCaseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8910F326050BEB00FBEE19 /* WCXCTestCaseTool.m */; };
 		4F91202E2674F32B0024DAA1 /* Tests__bridge_xxx.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F91202D2674F32B0024DAA1 /* Tests__bridge_xxx.m */; };
+		4F967056267A579B00CD9BAD /* Tests_tagged_pointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F967055267A579B00CD9BAD /* Tests_tagged_pointer.m */; };
+		4FA01ADE2679A56C003CBB22 /* Tests_memory_issue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA01ADD2679A56C003CBB22 /* Tests_memory_issue.m */; };
 		4FD758C12324F10C00BC1C2F /* SwizzleMethodByCategoryMethodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7E7F84231ECE9700E91F0E /* SwizzleMethodByCategoryMethodViewController.m */; };
 		4FD758C42324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD758C32324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.m */; };
 		4FE4376824F67D9D00AEFB27 /* Test_ivar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4376724F67D9D00AEFB27 /* Test_ivar.m */; };
@@ -416,6 +418,8 @@
 		4F8910F226050BEB00FBEE19 /* WCXCTestCaseTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCXCTestCaseTool.h; sourceTree = "<group>"; };
 		4F8910F326050BEB00FBEE19 /* WCXCTestCaseTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCXCTestCaseTool.m; sourceTree = "<group>"; };
 		4F91202D2674F32B0024DAA1 /* Tests__bridge_xxx.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests__bridge_xxx.m; sourceTree = "<group>"; };
+		4F967055267A579B00CD9BAD /* Tests_tagged_pointer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_tagged_pointer.m; sourceTree = "<group>"; };
+		4FA01ADD2679A56C003CBB22 /* Tests_memory_issue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_memory_issue.m; sourceTree = "<group>"; };
 		4FD758C22324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwizzleMethodByCFunctionViewController.h; sourceTree = "<group>"; };
 		4FD758C32324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwizzleMethodByCFunctionViewController.m; sourceTree = "<group>"; };
 		4FE4376724F67D9D00AEFB27 /* Test_ivar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_ivar.m; sourceTree = "<group>"; };
@@ -659,6 +663,7 @@
 		4F6034C12650FA750044B4E7 /* Test_OC */ = {
 			isa = PBXGroup;
 			children = (
+				4FA01ADC2679A538003CBB22 /* MemoryManagement */,
 				4F91202C2674F2BE0024DAA1 /* __bridge_xxx */,
 				4F6035112650FB4C0044B4E7 /* __attribute__ */,
 				4F60350F2650FB4C0044B4E7 /* __builtin_xxx */,
@@ -982,6 +987,15 @@
 				4F91202D2674F32B0024DAA1 /* Tests__bridge_xxx.m */,
 			);
 			path = __bridge_xxx;
+			sourceTree = "<group>";
+		};
+		4FA01ADC2679A538003CBB22 /* MemoryManagement */ = {
+			isa = PBXGroup;
+			children = (
+				4FA01ADD2679A56C003CBB22 /* Tests_memory_issue.m */,
+				4F967055267A579B00CD9BAD /* Tests_tagged_pointer.m */,
+			);
+			path = MemoryManagement;
 			sourceTree = "<group>";
 		};
 		4FFE71972236AC550020516E = {
@@ -1432,9 +1446,11 @@
 				4F6035462650FB4D0044B4E7 /* const_dummy.m in Sources */,
 				4F6035482650FB4D0044B4E7 /* Tests_HookPrivateIvar.m in Sources */,
 				4F60352C2650FB4D0044B4E7 /* Tests_StateExpression_return.m in Sources */,
+				4F967056267A579B00CD9BAD /* Tests_tagged_pointer.m in Sources */,
 				4F60353F2650FB4D0044B4E7 /* Tests_const.m in Sources */,
 				4F6035402650FB4D0044B4E7 /* Tests_enable_if.m in Sources */,
 				4F60352D2650FB4D0044B4E7 /* Tests_Block.m in Sources */,
+				4FA01ADE2679A56C003CBB22 /* Tests_memory_issue.m in Sources */,
 				4F6035452650FB4D0044B4E7 /* Tests_cleanup.m in Sources */,
 				4F6035432650FB4D0044B4E7 /* Tests_objc_runtime_name.m in Sources */,
 				4F6035372650FB4D0044B4E7 /* Tests_CategoryConflict.m in Sources */,
