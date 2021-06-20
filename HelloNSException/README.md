@@ -1226,9 +1226,157 @@ Apple解释说iOS设备的Crash Report中不会有有Application Specific Inform
 
 
 
-// TODO
+##### Watchdog Exception[^16]
 
-Crash Report格式：https://developer.apple.com/documentation/xcode/diagnosing_issues_using_crash_reports_and_device_logs/examining_the_fields_in_a_crash_report
+操作系统采用watchdog来监视app的响应度。如果app不可响应，则watchdog会杀掉该app。在对应的Crash Report中，Termination Reason中会包含0x8badf00d[^12]，如下
+
+```properties
+Exception Type:  EXC_CRASH (SIGKILL)
+Exception Codes: 0x0000000000000000, 0x0000000000000000
+Exception Note:  EXC_CORPSE_NOTIFY
+Termination Reason: Namespace SPRINGBOARD, Code 0x8badf00d
+```
+
+watchdog杀掉app，是因为主线程被阻塞超过一段明显的时间。有许多阻塞主线程的情况发生，如下
+
+* 网络请求同步执行
+* 处理大数据，例如大JSON文件、3D模型等
+* 触发CoreData的大存储轻量迁移同步执行
+* 调用[Vision](https://developer.apple.com/documentation/vision)请求来分析
+
+首先需要理解为什么阻塞主线程会是一个问题。举个例子来说明下，调用同步网络请求来刷新UI。
+
+如果主线程一直忙于请求网络，系统不能处理UI事件，例如滑动，一直等到网络请求结束。如果网络请求耗费很长的时间，用户滚动列表到app响应滚动列表会有一个明显的时延，这会造成app好像是不可响应。
+
+用下图来示意主线程执行一连串的操作，如下
+
+<img src="images/watchdog_block_main_thread.png" style="zoom:50%;" />
+
+###### 分析Watchdog的app不响应信息
+
+当app很慢启动或者很慢响应事件，Crash Report的Termination Description包含了app耗费了多长时间。举个例子，app在启动后没有很快渲染UI，会有下面的Crash Report
+
+```properties
+Termination Description: SPRINGBOARD, 
+    scene-create watchdog transgression: application<com.example.MyCoolApp>:667
+    exhausted real (wall clock) time allowance of 19.97 seconds 
+    | ProcessVisibility: Foreground 
+    | ProcessState: Running 
+    | WatchdogEvent: scene-create 
+    | WatchdogVisibility: Foreground 
+    | WatchdogCPUStatistics: ( 
+    |  "Elapsed total CPU time (seconds): 15.290 (user 15.290, system 0.000), 28% CPU", 
+    |  "Elapsed application CPU time (seconds): 0.367, 1% CPU" 
+    | )
+```
+
+说明
+
+> 上面为了方便阅读，将|进行了换行，实际Crash Report中是一行显示
+
+* 如果出现scene-create，则说明app启动没有在允许的时间内渲染出UI的第一帧。
+* 如果出现scene-update，则主线程比较繁忙，app没有足够快的刷新UI
+
+> scene-create和scene-update，都指的设备屏幕绘制，而不是UIScene
+
+* Elapsed total CPU time，显示CPU所有核的运行时间。CPU时间使用率有可能超过100%，例如一个CPU核使用率是100%，而另一个CPU核是20%，则总共的CPU使用率是120%
+
+* Elapsed application CPU time，显示app耗费CPU的时间。如果这个数字是比较极端，则可能存在问题。如果这个数字，比较大，则说明app的所有线程执行耗时的操作，并不一定只是主线程。如果这个数字比较小，则说明app在等待系统资源，例如网络连接
+
+
+
+###### 分析Watchdog的后台任务信息（watchOS）
+
+​       除了app responsiveness，在watchOS上使用watchdog来监视后台任务。例如app没有在允许的时间内完成[Watch Connectivity](https://developer.apple.com/documentation/watchconnectivity)后台任务。
+
+```properties
+Termination Reason: CAROUSEL, WatchConnectivity watchdog transgression. 
+    Exhausted wall time allowance of 15.00 seconds.
+Termination Description: SPRINGBOARD,
+    CSLHandleBackgroundWCSessionAction watchdog transgression: xpcservice<com.example.MyCoolApp.watchkitapp.watchextension>:220:220 
+    exhausted real (wall clock) time allowance of 15.00 seconds 
+    | <FBExtensionProcess: 0x16df02a0; xpcservice<com.example.MyCoolApp.watchkitapp.watchextension>:220:220; typeID: com.apple.watchkit> 
+      Elapsed total CPU time (seconds): 24.040 (user 24.040, system 0.000), 81% CPU 
+    | Elapsed application CPU time (seconds): 1.223, 6% CPU, lastUpdate 2020-01-20 11:56:01 +0000
+```
+
+
+
+###### 识别Watchdog触发的原因
+
+backtrace有时候识别什么这么耗时在主线程十分有用。例如
+
+```properties
+Thread 0 name:  Dispatch queue: com.apple.main-thread
+Thread 0 Crashed:
+0   libsystem_kernel.dylib            0x00000001c22f8670 semaphore_wait_trap + 8
+1   libdispatch.dylib                 0x00000001c2195890 _dispatch_sema4_wait$VARIANT$mp + 24
+2   libdispatch.dylib                 0x00000001c2195ed4 _dispatch_semaphore_wait_slow + 140
+3   CFNetwork                         0x00000001c57d9d34 CFURLConnectionSendSynchronousRequest + 388
+4   CFNetwork                         0x00000001c5753988 +[NSURLConnection sendSynchronousRequest:returningResponse:error:] + 116  + 14728
+5   Foundation                        0x00000001c287821c -[NSString initWithContentsOfURL:usedEncoding:error:] + 256
+6   libswiftFoundation.dylib          0x00000001f7127284 NSString.__allocating_init+ 680580 (contentsOf:usedEncoding:) + 104
+7   libswiftFoundation.dylib          0x00000001f712738c String.init+ 680844 (contentsOf:) + 96
+8   MyCoolApp                         0x00000001009d31e0 ViewController.loadData() (in MyCoolApp) (ViewController.swift:21)
+```
+
+然后主线程的backtrace不总是包含对应的源代码。例如app需要4s完成某个任务，而watchdog在5s后杀掉app，app花费4s的代码，不会出现在backtrace中。Crash Report记录的backtrace在watchdog终止app时，可能这时backtrace不是问题的来源。
+
+另外，可以参考[Reducing Your App’s Launch Time](https://developer.apple.com/documentation/xcode/reducing-your-app-s-launch-time)和[Improving App Responsiveness](https://developer.apple.com/documentation/xcode/improving-app-responsiveness) 
+
+
+
+###### 识别隐藏的同步网络请求代码
+
+在主线程执行同步网络代码，有时候隐藏在抽象层中。例如上面的backtrace的第7个frame中，[`init(contentsOf:)`](https://developer.apple.com/documentation/swift/string/3126735-init) 方法隐式会调用网络请求，类似还有XMLParser和NSData。
+
+其他例子，还有SCNetworkReachability的API [`SCNetworkReachabilityGetFlags(_:_:)`](https://developer.apple.com/documentation/systemconfiguration/1514924-scnetworkreachabilitygetflags)、DNS函数（`gethostbyname(_:)`、`gethostbyaddr(_:_:_:)`、`getnameinfo(_:_:_:_:_:_:_:)`、`getaddrinfo(_:_:_:_:)`）。
+
+同步网络问题，决定于网络环境。在网络好的情况下，可能不会暴露问题。Xcode 13+提供Device Condition功能，它包含network condition可以设置不同的环境[^17]
+
+说明
+
+> 1. network condition和iOS设置里面的Developer不一样的是，它仅对当前调试的app有效，不会影响iOS上面的所有app。
+> 2. 如果Xcode的Devices and Simulators中，DEVICE CONDITIONS显示“No Device Conditions Available”，则需要从[Downloads for Apple Developers](https://developer.apple.com/download/more/?q=Additional Tools)下载Additional Tools for Xcode <版本号>[^18]，然后把Network Link Conditioner.prefPane复制到/Library/PreferencePanes[^19]，重新打开Xcode
+
+
+
+###### 把耗时代码移出主线程
+
+把耗时的代码移到background队列，主线程可以更快启动和处理事件，如下图
+
+<img src="images/watchdog_move_off_from_main_thread.png" style="zoom:50%;" />
+
+完成这个操作，可以使用系统提供的异步API
+
+* [RealityKit](https://developer.apple.com/documentation/realitykit)使用[`loadAsync(contentsOf:withName:)`](https://developer.apple.com/documentation/realitykit/entity/3244088-loadasync) 而不是 [`load(contentsOf:withName:)`](https://developer.apple.com/documentation/realitykit/entity/3244082-load)，使用[Vision](https://developer.apple.com/documentation/vision)的 [`preferBackgroundProcessing`](https://developer.apple.com/documentation/vision/vnrequest/2875404-preferbackgroundprocessing)
+
+* 使用[`URLSession`](https://developer.apple.com/documentation/foundation/urlsession)
+* 不使用[SCNetworkReachability](https://developer.apple.com/documentation/systemconfiguration/scnetworkreachability-g7d), 而是使用 [`NWPathMonitor`](https://developer.apple.com/documentation/network/nwpathmonitor)
+* 使用`CFHost` 或者 `<dns_sd.h>`中API，不是手动处理DNS解析
+* 在次线程操作网络请求（Perform synchronous networking on a secondary thread.）
+
+
+
+##### Zombie objects
+
+
+
+
+
+##### Memory Access Issue
+
+
+
+
+
+##### Framework Missing
+
+
+
+
+
+// TODO
 
 
 
@@ -1291,5 +1439,8 @@ Crash Report格式：https://developer.apple.com/documentation/xcode/diagnosing_
 
 [^15]:https://developer.apple.com/documentation/xcode/diagnosing_issues_using_crash_reports_and_device_logs/identifying_the_cause_of_common_crashes/addressing_language_exception_crashes
 
-
+[^16]:https://developer.apple.com/documentation/xcode/addressing-watchdog-terminations
+[^17]:https://jeroenscode.com/debugging-with-network-conditions-using-xcode/
+[^18]:https://stackoverflow.com/questions/58758261/xcode-11-no-device-conditions-available
+[^19]:https://stackoverflow.com/questions/52414375/cannot-install-xcode-10-network-link-conditioner-in-macos-mojave/52414376#52414376
 
