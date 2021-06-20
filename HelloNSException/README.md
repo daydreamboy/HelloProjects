@@ -585,7 +585,7 @@ Crash日志符号化，有几种方式
 
 > 1. 如果app的调用帧没有符号化成功，需要检查app的dSYM文件是否在MacOS系统上，一般将app的dSYM文件和.crash文件放在同级目录下面。
 >
-> 2. 如果app是AppStore或TestFlight上的，需要下载dSYM文件。通过Archive Organizer，选择对应app archive文件，然后在右侧点击“Download Debug Symbols”来dSYM文件[^11]。
+> 2. 如果app是AppStore或TestFlight上的，需要下载dSYM文件。通过Archive Organizer，选择对应app archive文件，然后在右侧点击“Download Debug Symbols”来获取dSYM文件[^11]。
 >
 >    <img src="images/download_dsym_file.png" style="zoom:50%;" />
 >
@@ -775,6 +775,266 @@ $ /Applications/Xcode.app/Contents/SharedFrameworks/DVTFoundation.framework/Reso
 
 
 #### c. 介绍Crash Report格式[^13]
+
+Crash Report格式，可以看下面的示意图
+
+<img src="images/fields_of_crash_report.png" style="zoom:50%;" />
+
+##### Header
+
+Header部分描述Crash发生的环境。例如
+
+```properties
+Incident Identifier: 6156848E-344E-4D9E-84E0-87AFD0D0AE7B
+CrashReporter Key:   76f2fb60060d6a7f814973377cbdc866fffd521f
+Hardware Model:      iPhone8,1
+Process:             TouchCanvas [1052]
+Path:                /private/var/containers/Bundle/Application/51346174-37EF-4F60-B72D-8DE5F01035F5/TouchCanvas.app/TouchCanvas
+Identifier:          com.example.apple-samplecode.TouchCanvas
+Version:             1 (3.0)
+Code Type:           ARM-64 (Native)
+Role:                Foreground
+Parent Process:      launchd [1]
+Coalition:           com.example.apple-samplecode.TouchCanvas [1806]
+
+Date/Time:           2020-03-27 18:06:51.4969 -0700
+Launch Time:         2020-03-27 18:06:31.7593 -0700
+OS Version:          iPhone OS 13.3.1 (17D50)
+```
+
+header部分，有下面的字段
+
+* `Incident Identifier`: 唯一标识Crash Report。没有两个Crash Report，该字段是一样的
+
+* `CrashReporter Key`: 用于标识设备，如果两个Crash Report来自同一个设备，那么该字段的值是一样的。但是如果设备被重置后，该值会重新生成
+
+* `Beta Identifier`: 作用和`CrashReporter Key`是一样的，只出现在TestFlight app上，并且替换`CrashReporter Key`
+
+* `Hardware Model`: 显示特定机型
+
+* `Process`: 可执行文件的名字，这个值和Info.plist中CFBundleExecutable是保持一致的。中括号的值是该进程的ID
+
+* `Path`: 可执行文件在磁盘上的文件路径。macOS上使用占位符，用于保护隐私
+
+* `Identifier`: 出现Crash的进程对应的CFBundleIdentifier。如果没有CFBundleIdentifier，则显示进程名字或者占位符
+
+* `Version`: 显示进程的版本号。这个值是CFBundleVersion和CFBundleShortVersionString组成的字符串，即CFBundleVersion (CFBundleShortVersionString)
+
+* `AppStoreTools`: 用于编译bitcode和裁剪特定设备的变体app的Xcode版本。如果app开启bitcode，对应的Crash Report Header中应该有该字段
+
+  > The version of Xcode used to compile your app’s bitcode and to thin your app to device specific variants.
+
+* `AppVariant`: 显示对应特定设备裁剪后的变体app。这个字段的值包含多个值，用冒号分隔，例如，1:iPhone10,6:12.2
+
+  * 1：内部系统的值，分析Crash，该值没有用处
+  * iPhone10,6：裁剪后app变体名字，代表一些设备的变体，并不只代表iPhone10,6，可能和Hardware Model的值是不一样的
+  * 12.2：操作系统的版本号，代表可以运行在iOS 12.2以及更高版本上
+
+* `Code Type`: 显示CPU的架构。值有ARM-64、ARM、X86-64或者X86
+
+* `Role`: 发生Crash时，进程被分配的[task_role](https://opensource.apple.com/source/xnu/xnu-3248.60.10/osfmk/mach/task_policy.h)。一般情况下，该字段没有用途
+
+* `Parent Process`: 发生Crash进程的父进程，以及父进程ID
+
+* `Coalition`: 官方文档描述，如下
+
+  > The name of the process coalition containing the app. Process coalitions track resource usage among groups of related processes, such as an operating system process supporting a specific API’s functionality in an app. Most processes, including app extensions, form their own coalition.
+
+* `Date/Time`: Crash发生的时间
+* `Launch Time`: App的启动时间
+* `OS Version`: 操作系统的版本号
+
+
+
+##### Exception Information
+
+每个Crash Report都包含Exception Information，这部分信息用于解释进程如何被终止，但是不一定解释清楚app如何被终止。
+
+下面的字段，需要特别关注
+
+```properties
+Exception Type:  EXC_BREAKPOINT (SIGTRAP)
+Exception Codes: 0x0000000000000001, 0x0000000102afb3d0
+```
+
+> Exception Information不描述特定语言下API或语言特性抛出的异常
+
+* `Exception Type`: Mach异常的名字，以及对应的BSD终止信号的名字。可以参考“分析常见Crash类型”这一节。
+* `Exception Codes`: 进程的有关异常信息，被编码到一个或多个64位十六进制的数字中。一般情况，该字段不会出现，因为操作系统以可读形式，显示在其他字段（`Exception Subtype`、`Exception Message`）上
+* `Exception Subtype`: 对`Exception Codes`可读的描述
+* `Exception Message`: 从`Exception Codes`获取的额外描述
+* `Exception Note`: 不描述特定的异常类型。
+  * 如果该字段包含EXC_CORPSE_NOTIFY，则Crash不会产生自hardware trap，可能进程被系统终止掉，或者进程调用abort函数
+  * 如果该字段包含SIMULATED（这不是Crash），进程没有出现Crash，但是系统可能请求终止该进程
+  * 如果该字段包含NON-FATAL CONDITION（这不是Crash），进程没有出现Crash，该Crash Report不是fatal
+
+* `Termination Reason`:当操作系统终止进程时的退出描述信息。关键操作系统组件、关键错误等。例如invalid code signature, a missing dependent library, or accessing privacy sensitive information without a purpose string等
+* `Triggered by Thread` 或者 `Crashed Thread`: 显示那个线程触发了Crash
+
+
+
+##### Diagnostic Messages
+
+Diagnostic Messages这部分信息，根据不同的crash原因，使用不同的格式，而且不会在每个Crash Report中都有。
+
+* Application Specific Information字段
+
+Framework错误信息会出现在Application Specific Information字段中，例如
+
+```properties
+Application Specific Information:
+BUG IN CLIENT OF LIBDISPATCH: dispatch_sync called on queue already owned by current thread
+```
+
+上面说明Dispatch Framework中记录了一个不正确使用dispatch queue的日志
+
+说明
+
+> Application Specific Information不能记录隐私相关信息
+>
+> `Application Specific Information` is sometimes elided from a crash report to avoid logging privacy-sensitive information in the message.
+
+* Termination Description字段
+
+因为违反watchdog导致终止，会包含Termination Description字段，以及下面信息
+
+```properties
+Termination Description: SPRINGBOARD, 
+    scene-create watchdog transgression: application<com.example.MyCoolApp>:667
+    exhausted real (wall clock) time allowance of 19.97 seconds 
+```
+
+可以查看[Addressing Watchdog Terminations](https://developer.apple.com/documentation/xcode/addressing-watchdog-terminations)了解更多细节
+
+* VM Region Info字段
+
+因为内存访问导致的，会包含VM Region Info字段，举个例子，如下
+
+```properties
+VM Region Info: 0 is not in any region.  Bytes before following region: 4307009536
+      REGION TYPE                      START - END             [ VSIZE] PRT/MAX SHRMOD  REGION DETAIL
+      UNUSED SPACE AT START
+--->  
+      __TEXT                 0000000100b7c000-0000000100b84000 [   32K] r-x/r-x SM=COW  ...pp/MyGreatApp
+```
+
+可以查看[Investigating Memory Access Crashes](https://developer.apple.com/documentation/xcode/investigating-memory-access-crashes)了解更多细节
+
+
+
+##### Backtraces
+
+​        出现crash的进程，捕获每个线程正在运行的代码，并记录下，成为Backtrace。Backtrace类似在调试器使用暂停时，看到的那样。如果是因为语言异常导致的Crash，会出现Last Exception Backtrace，它位于第一个线程前面。如果Crash Report出现Last Exception Backtrace，则可以参考[Addressing Language Exception Crashes](https://developer.apple.com/documentation/xcode/addressing-language-exception-crashes)。
+
+​        每个backtrace的第一行，列出线程号和线程名字。由于隐私问题，Crash Origanizer收集到的Crash Report中没有线程名字。下面这个例子，显示Thread 0出现crash，它是app的主线程
+
+```properties
+Thread 0 name:  Dispatch queue: com.apple.main-thread
+Thread 0 Crashed:
+0   TouchCanvas                       0x0000000102afb3d0 CanvasView.updateEstimatedPropertiesForTouches(_:) + 62416 (CanvasView.swift:231)
+1   TouchCanvas                       0x0000000102afb3d0 CanvasView.updateEstimatedPropertiesForTouches(_:) + 62416 (CanvasView.swift:231)
+2   TouchCanvas                       0x0000000102af7d10 ViewController.touchesMoved(_:with:) + 48400 (<compiler-generated>:0)
+3   TouchCanvas                       0x0000000102af80b8 @objc ViewController.touchesMoved(_:with:) + 49336 (<compiler-generated>:0)
+4   UIKitCore                         0x00000001ba9d8da4 forwardTouchMethod + 328
+5   UIKitCore                         0x00000001ba9d8e40 -[UIResponder touchesMoved:withEvent:] + 60
+6   UIKitCore                         0x00000001ba9d8da4 forwardTouchMethod + 328
+7   UIKitCore                         0x00000001ba9d8e40 -[UIResponder touchesMoved:withEvent:] + 60
+8   UIKitCore                         0x00000001ba9e6ea4 -[UIWindow _sendTouchesForEvent:] + 1896
+9   UIKitCore                         0x00000001ba9e8390 -[UIWindow sendEvent:] + 3352
+10  UIKitCore                         0x00000001ba9c4a9c -[UIApplication sendEvent:] + 344
+11  UIKitCore                         0x00000001baa3cc20 __dispatchPreprocessedEventFromEventQueue + 5880
+12  UIKitCore                         0x00000001baa3f17c __handleEventQueueInternal + 4924
+13  UIKitCore                         0x00000001baa37ff0 __handleHIDEventFetcherDrain + 108
+14  CoreFoundation                    0x00000001b68a4a00 __CFRUNLOOP_IS_CALLING_OUT_TO_A_SOURCE0_PERFORM_FUNCTION__ + 24
+15  CoreFoundation                    0x00000001b68a4958 __CFRunLoopDoSource0 + 80
+16  CoreFoundation                    0x00000001b68a40f0 __CFRunLoopDoSources0 + 180
+17  CoreFoundation                    0x00000001b689f23c __CFRunLoopRun + 1080
+18  CoreFoundation                    0x00000001b689eadc CFRunLoopRunSpecific + 464
+19  GraphicsServices                  0x00000001c083f328 GSEventRunModal + 104
+20  UIKitCore                         0x00000001ba9ac63c UIApplicationMain + 1936
+21  TouchCanvas                       0x0000000102af16dc main + 22236 (AppDelegate.swift:12)
+22  libdyld.dylib                     0x00000001b6728360 start + 4
+
+Thread 1:
+0   libsystem_pthread.dylib           0x00000001b6645758 start_wqthread + 0
+
+Thread 2:
+0   libsystem_pthread.dylib           0x00000001b6645758 start_wqthread + 0
+...
+```
+
+在线程号后，backtrace的每一行代表一个stack frame，如下
+
+```properties
+0   TouchCanvas                       0x0000000102afb3d0 CanvasView.updateEstimatedPropertiesForTouches(_:) + 62416 (CanvasView.swift:231)
+```
+
+stack frame的每一列包含的信息，如下
+
+* 0：stack frame的序号。frame 0是正在执行的函数，而frame 1是调用frame 0中的函数，以此类推
+* TouchCanvas：包含正在执行函数的二进制文件
+* 0x0000000102afb3d0：正在执行的机器指令地址。对于frame 0，该地址是线程正在执行的机器指令地址，对于其他frame，该地址是返回到该frame后执行的第一条机器指令的地址
+* CanvasView.updateEstimatedPropertiesForTouches(_:)：在完全符号化的Crash Report中，显示正在执行的函数名。由于隐私的问题，函数名的显示有可能限制在前100个字符。
+* 62416：在+之后的数字代表从函数入口到当前指令的字节偏移量
+* CanvasView.swift:231：包含该代码的文件名和行号，这个需要dSYM文件来符号化
+  * 某些情况下，文件名和行号不会关联对应的源代码。
+    * 如果文件名是`<compiler-generated>`，则那个frame对应的代码是由编译器生成的，并不是用户的代码生成的。如果这种情况出现在top frame，在前面几个frame寻找线索
+    * 如果行号是0，则说明backtrace没有映射到特定的源代码。可能的原因是，编译器优化了代码，例如内联函数。
+
+
+
+##### Thread State
+
+Thread State这一部分信息列出CPU寄存器以及在发生crash的线程对应的值。理解Thread State是一个高级的话题，需要理解操作系统的ABI（application binary interface）。可以参考[OS X ABI Function Call Guide](https://developer.apple.com/library/archive/documentation/DeveloperTools/Conceptual/LowLevelABI/000-Introduction/introduction.html#//apple_ref/doc/uid/TP40002437-SW1)和[iOS ABI Function Call Guide](https://developer.apple.com/library/archive/documentation/Xcode/Conceptual/iPhoneOSABIReference/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009023).
+
+```properties
+Thread 0 crashed with ARM Thread State (64-bit):
+    x0: 0x0000000000000001   x1: 0x0000000000000000   x2: 0x0000000000000000   x3: 0x000000000000000f
+    x4: 0x00000000000001c2   x5: 0x000000010327f6c0   x6: 0x000000010327f724   x7: 0x0000000000000120
+    x8: 0x0000000000000001   x9: 0x0000000000000001  x10: 0x0000000000000001  x11: 0x0000000000000000
+   x12: 0x00000001038612b0  x13: 0x000005a102b075a7  x14: 0x0000000000000100  x15: 0x0000010000000000
+   x16: 0x00000001c3e6c630  x17: 0x00000001bae4bbf8  x18: 0x0000000000000000  x19: 0x0000000282c14280
+   x20: 0x00000001fe64a3e0  x21: 0x4000000281f1df10  x22: 0x0000000000000001  x23: 0x0000000000000000
+   x24: 0x0000000000000000  x25: 0x0000000282c14280  x26: 0x0000000103203140  x27: 0x00000001bacf4b7c
+   x28: 0x00000001fe5ded08   fp: 0x000000016d311310   lr: 0x0000000102afb3d0
+    sp: 0x000000016d311200   pc: 0x0000000102afb3d0 cpsr: 0x60000000
+   esr: 0xf2000001  Address size fault
+```
+
+寄存器为内存访问的问题，提供额外信息。可以参考[Understand the Crashed Thread’s Registers](https://developer.apple.com/documentation/xcode/analyzing-a-crash-report#Understand-the-Crashed-Threads-Registers)
+
+
+
+##### Binary Images
+
+Binary Images这一部分，列出在crash时装载的所有代码镜像，例如app可执行文件、系统framework等。Binary Images的每一行，代表一个二进制镜像，如下
+
+```properties
+Binary Images:
+0x102aec000 - 0x102b03fff TouchCanvas arm64  <fe7745ae12db30fa886c8baa1980437a> /var/containers/Bundle/Application/51346174-37EF-4F60-B72D-8DE5F01035F5/TouchCanvas.app/TouchCanvas
+...
+```
+
+* 0x102aec000 - 0x102b03fff：代表二进制镜像的地址范围，第一个地址是镜像的加载地址，可以参考 [Symbolicate the Crash Report with the Command Line](https://developer.apple.com/documentation/xcode/adding-identifiable-symbol-names-to-a-crash-report#Symbolicate-the-Crash-Report-with-the-Command-Line)来如何使用这个值
+
+* TouchCanvas：二进制镜像的名字
+
+* arm64：二进制镜像装载到哪个CPU架构上
+
+* fe7745ae12db30fa886c8baa1980437a：一个编译产生的UUID，用于唯一标识二进制镜像。当符号化Crash Report时，使用这个值，可以找到对应的dSYM文件。
+
+* /var/containers/.../TouchCanvas.app/TouchCanvas：二进制文件在磁盘上的路径。macOS使用占位符来保护隐私。如下
+
+  ```properties
+  Binary Images:
+         0x1025e5000 -        0x1025e6ffb +com.example.apple-samplecode.TouchCanvas (1.0 - 1) <5ED9BD63-2A55-3DDD-B3FF-EFCF61382F6F> /Users/USER/*/TouchCanvas.app/Contents/MacOS/TouchCanvas
+  ```
+
+  * 0x105f97000 - 0x105f98ffb：二进制镜像的地址范围
+  * +com.example.apple-samplecode.TouchCanvas：二进制的CFBundleIdentifier值，+表示二进制不属于macOS一部分
+  * 1.0 - 1：代表二进制的CFBundleShortVersionString和CFBundleVersion
+  * 5ED9BD63-2A55-3DDD-B3FF-EFCF61382F6F：二进制镜像的UUID
+  * /Users/USER/*/TouchCanvas.app/Contents/MacOS/TouchCanvas：二进制文件在磁盘上的路径
 
 
 
