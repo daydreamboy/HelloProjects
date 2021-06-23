@@ -45,6 +45,7 @@
             @{ kTitle: [WCDeviceTool devicePlatformType], kSubtitle: @"device platform" },
         ],
         @[
+            @{ kTitle: [WCDeviceTool deviceProcessorArchType], kSubtitle: @"processor arch" },
             @{ kTitle: [@([WCDeviceTool deviceProcessorNumber]) stringValue], kSubtitle: @"number of processor" },
             @{ kTitle: [@([WCDeviceTool deviceProcessorActiveNumber]) stringValue], kSubtitle: @"number of active processor" },
             @{ kTitle: [@([WCDeviceTool deviceProcessorFrequency]) stringValue], kSubtitle: @"processor frequency" },

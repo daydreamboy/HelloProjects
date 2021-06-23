@@ -184,6 +184,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (NSUInteger)deviceProcessorFrequency;
 
+/**
+ Get CPU arch type description, e.g. ARM64E, arm64 v8, Intel x86-64h Haswell
+ 
+ @see https://stackoverflow.com/a/46804229
+ 
+ @header #import <mach-o/arch.h>
+ 
+ @discussion The arch list see https://qiita.com/takkyun/items/814aa45beee422a5f0c6
+ */
++ (NSString *)deviceProcessorArchType;
+
 #pragma mark > Memory
 
 + (NSUInteger)deviceRAMSize;
@@ -288,6 +299,10 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)deviceDebuggerAttached;
 
 + (BOOL)devicePluggedIn;
+
+#pragma mark - Device Monitor
+
+//+ (BOOL)startMemory;
 
 @end
 

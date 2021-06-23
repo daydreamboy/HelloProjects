@@ -21,6 +21,8 @@
 #import <arpa/inet.h>
 #include <net/if_dl.h>
 
+#import <mach-o/arch.h>
+
 // >= `13.0`
 #ifndef IOS13_OR_LATER
 #define IOS13_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"13.0" options:NSNumericSearch] != NSOrderedAscending)
@@ -615,6 +617,12 @@
         // Unable to get the speed (return -1)
         return -1;
     }
+}
+
++ (NSString *)deviceProcessorArchType {
+    const NXArchInfo *info = NXGetLocalArchInfo();
+    NSString *typeOfCPU = [NSString stringWithUTF8String:info->description];
+    return typeOfCPU;
 }
 
 #pragma mark > Memory
