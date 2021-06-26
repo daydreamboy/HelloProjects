@@ -1038,7 +1038,29 @@ Binary Images:
 
 
 
-#### d. 分析常见Crash类型
+#### d. 分析Crash Report[^23]
+
+Crash Report是app发生crash时记录app状态的详细日志，是解决crash很关键的资源。
+
+在分析Crash Report之前，应该将大量的Crash Report进行聚合
+
+* 如果很多Crash Report的信息是一样的，那么Crash很可能是能复现的
+* 如果Crash Report信息不同，但是怀疑是同一个原因，那么需要详细分析Crash Report
+
+
+
+一般分析Crash Report的步骤，如下
+
+* Check the Header to Identify the Crash Environment
+* Identify the Exception Information
+* Look for Diagnostic Messages
+* Read the Backtraces
+* Understand the Crashed Thread’s Registers
+* Verify Your Frameworks Are Present in the Binary Images
+
+
+
+#### e. 分析常见Crash类型
 
 官方这篇文章[^12]提供常见的几种Crash类型
 
@@ -1358,33 +1380,272 @@ Thread 0 Crashed:
 
 
 
-##### Zombie objects
+##### Zombie objects[^20]
+
+​       Zombie object是指在OC对象释放后，Objective-C runtime对这些对象发送消息。对已释放的对象发送消息，可以导致在objc_msgSend, objc_retain, 或者objc_release函数出现crash。
+
+例如Crash出现在objc_msgSend，如下
+
+```properties
+Thread 0 Crashed:
+0   libobjc.A.dylib                   0x00000001a186d190 objc_msgSend + 16
+1   Foundation                        0x00000001a1f31238 __NSThreadPerformPerform + 232
+2   CoreFoundation                    0x00000001a1ac67e0 __CFRUNLOOP_IS_CALLING_OUT_TO_A_SOURCE0_PERFORM_FUNCTION__ + 24
+```
+
+或者在调用objc_release，如下
+
+```properties
+Thread 2 Crashed:
+0   libobjc.A.dylib                 0x00007fff7478bd5c objc_release + 28
+1   libobjc.A.dylib                 0x00007fff7478cc8c (anonymous namespace)::AutoreleasePoolPage::pop(void*) + 726
+2   com.apple.CoreFoundation        0x00007fff485feee6 _CFAutoreleasePoolPop + 22
+```
+
+还有一种情况，可能也是Zombie object导致的，Crash Report中有Last Exception Backtrace，并且stack frame包含 doesNotRecognizeSelector(_:) 方法，如下
+
+```properties
+Last Exception Backtrace:
+0   CoreFoundation                    0x1bf596a48 __exceptionPreprocess + 220
+1   libobjc.A.dylib                   0x1bf2bdfa4 objc_exception_throw + 55
+2   CoreFoundation                    0x1bf49a5a8 -[NSObject+ 193960 (NSObject) doesNotRecognizeSelector:] + 139
+```
+
+原因是该地址对象已经释放，但是系统重用该对象的地址，换成另一个对象，因此代码走到调用之前对象的方法时，就会出现找不到方法。
+
+官方描述[^20]，如下
+
+> This is because the operating system reused memory that once held the deallocated object, and that memory now contains a different kind of object. A zombie identified by an unrecognized selector has a call stack with the [`doesNotRecognizeSelector(_:)`](https://developer.apple.com/documentation/objectivec/nsobject/1418637-doesnotrecognizeselector) method:
 
 
 
+如何找到Zombie object对象的来源，可以通过stack frame来找到原因。但是这种方式不能解决全部关于Zombie object的问题，可以参考[Finding zombies](https://help.apple.com/instruments/mac/current/#/dev612e6956)使用Instruments来排查。
 
+对于Zombie object问题，可以思考下面几个问题
 
-##### Memory Access Issue
+* 释放的对象的类型是什么，给它发送了什么消息，即调用了什么方法
+* 什么时候该对象被释放了
+* 在该对象释放后，该对象如何又被使用
 
-
-
-
-
-##### Framework Missing
-
-
-
-
-
-// TODO
+关于对象释放，Objective-C可以参考[ARC Overview](https://developer.apple.com/library/archive/releasenotes/ObjectiveC/RN-TransitioningToARC/Introduction/Introduction.html#//apple_ref/doc/uid/TP40011226-CH1-SW13)，而Swift可以参考[Swift documentation](https://docs.swift.org/swift-book/LanguageGuide/AutomaticReferenceCounting.html)
 
 
 
-分析Crash Report：https://developer.apple.com/documentation/xcode/diagnosing_issues_using_crash_reports_and_device_logs/analyzing_a_crash_report
+##### Memory Access Issue[^21]
+
+Memory Access Issue是指app以非正常方式来访问内存导致出现crash。内存访问错误有很多的原因，例如解引用无效的指针，写入到只读内存，或者跳转到无效的地址。这些错误通常在Crash Report被识别为EXC_BAD_ACCESS (SIGSEGV)或EXC_BAD_ACCESS (SIGBUS)。
+
+```properties
+Exception Type:  EXC_BAD_ACCESS (SIGSEGV)
+Exception Subtype: KERN_INVALID_ADDRESS at 0x0000000000000000
+```
+
+在macOS上，内存访问错误可能只标识一个信号，例如SIGSEGV、SEGV_MAPERR或SEGV_NOOP。
+
+```properties
+Exception Type: SIGSEGV
+Exception Codes: SEGV_MAPERR at 0x41e0af0c5ab8
+```
 
 
 
+Xcode提供一些工具用于排查内存访问错误
 
+* Address Sanitizer
+* Undefined Behavior Sanitizer
+* Thread Sanitizer
+
+可以参考[Run your app with sanitizers, API checks, and memory management diagnostics](https://help.apple.com/xcode/mac/current/#/devcef23c572)来学习如何使用。
+
+
+
+Crash Report的Exception Subtype字段，提供描述错误信息和访问地址，例如
+
+```properties
+Exception Type:  EXC_BAD_ACCESS (SIGSEGV)
+Exception Subtype: KERN_INVALID_ADDRESS at 0x0000000000000000
+```
+
+在macOS上，如下
+
+```properties
+Exception Type:        EXC_BAD_ACCESS (SIGBUS)
+Exception Codes:       KERN_MEMORY_ERROR at 0x00000001098c1000
+```
+
+有下面的几种Exception Subtype字段的值
+
+* KERN_INVALID_ADDRESS。发生Crash的线程访问到未映射的内存（unmapped memory），可能是访问数据或者获取指令。
+* KERN_PROTECTION_FAILURE。发生Crash的线程访问到受保护的内存。受保护的内存包括只读的内存区域、或者不可执行的内存区域
+* KERN_MEMORY_ERROR。发生Crash的线程访问到的内存，在某时刻不能返回数据。例如内存映射的文件（memory-mapped file）变成不可用。
+* EXC_ARM_DA_ALIGN。发生Crash的线程访问的内存没有地址对齐。这种错误码非常少见，因为64位ARM CPU是允许非对齐的数据。然而如果内存地址没有对齐，并指向到未映射的内存区域，可能发生这种错误。如果其他Crash Report显示其他Exception Subtype，也可能是这个相同的错误。
+
+
+
+arm64e CPU使用pointer authentication codes和cryptographic signatures来检测和保护指针在内存上的更改。如果由pointer authentication failure导致的crash，会使用KERN_INVALID_ADDRESS来表示，如下
+
+```properties
+Exception Type:  EXC_BAD_ACCESS (SIGBUS)
+Exception Subtype: KERN_INVALID_ADDRESS at 0x00006f126c1a9aa0 -> 0x000000126c1a9aa0 (possible pointer authentication failure)
+```
+
+可以参考[Preparing Your App to Work with Pointer Authentication](https://developer.apple.com/documentation/security/preparing_your_app_to_work_with_pointer_authentication)更多的了解pointer authentication
+
+
+
+VM Region Info字段，可以描述app不正确访问到app地址空间之外的其他区域。例如下面这个例子
+
+```properties
+Exception Type:  EXC_BAD_ACCESS (SIGSEGV)
+Exception Subtype: KERN_INVALID_ADDRESS at 0x0000000000000000
+VM Region Info: 0 is not in any region.  Bytes before following region: 4307009536
+      REGION TYPE                      START - END             [ VSIZE] PRT/MAX SHRMOD  REGION DETAIL
+      UNUSED SPACE AT START
+--->  
+      __TEXT                 0000000100b7c000-0000000100b84000 [   32K] r-x/r-x SM=COW  ...pp/MyGreatApp
+```
+
+这里exception subtype的值KERN_INVALID_ADDRESS表示，对未映射的内存进行解引用，导致crash，实际上0x0000000000000000指的是NULL指针。同时VM Region Info显示在app地址空间的前4,307,009,536字节是无效的地址空间。
+
+
+
+接着看下KERN_PROTECTION_FAILURE的例子
+
+```properties
+Exception Type:  EXC_BAD_ACCESS (SIGBUS)
+Exception Subtype: KERN_PROTECTION_FAILURE at 0x000000016c070a30
+VM Region Info: 0x16c070a30 is in 0x16c070000-0x16c074000;  bytes after start: 2608  bytes before end: 13775
+      REGION TYPE                      START - END             [ VSIZE] PRT/MAX SHRMOD  REGION DETAIL
+      Stack                  000000016bfe8000-000000016c070000 [  544K] rw-/rwx SM=COW  thread 12
+--->  STACK GUARD            000000016c070000-000000016c074000 [   16K] ---/rwx SM=NUL  ...for thread 11
+      Stack                  000000016c074000-000000016c0fc000 [  544K] rw-/rwx SM=COW  thread 11
+```
+
+在这个例子中解引用的地址是0x000000016c070a30，也是箭头指向的地址范围。这个地址范围区域叫做stack guard，它是从一个线程到线程的栈buffer。PRT列显示当前memory区域的访问权限，r是可读，w是可写，x是可执行。因为stack guard没有任何权限，访问这个地址范围都是无效的。
+
+可以参考[Interpreting vmmap’s Output](https://developer.apple.com/library/archive/documentation/Performance/Conceptual/ManagingMemory/Articles/VMPages.html#//apple_ref/doc/uid/20001985-97652)可以进一步了解`VM Region Info`格式的含义。
+
+
+
+识别内存访问类型，目前有2种类型：
+
+* invalid memory fetch，指的是代码上解引用一个无效的指针
+* invalid instruction fetch，指的是通过一个bad函数指针跳到另一个函数，或者通过函数调用到一个无效的对象
+
+识别是哪种类型，需要关注program counter寄存器，在ARM CPU上对应是pc寄存器，而在x86_64 CPU上对应是rip寄存器。
+
+
+
+如果program counter寄存器的值不是异常的地址，则这个crash属于invalid memory fetch。
+
+举个例子，macOS上（x86_64 CPU）的Crash Report
+
+```properties
+Exception Type:  SIGSEGV
+Exception Codes: SEGV_MAPERR at 0x21474feae2c8
+...
+Thread 12 crashed with X86-64 Thread State:
+   rip: 0x00007fff61f5739d    rbp: 0x00007000026c72c0    rsp: 0x00007000026c7248    rax: 0xe85e2965c85400b4 
+   rbx: 0x00006000023ee2b0    rcx: 0x00007f9273022990    rdx: 0x00007000026c6d88    rdi: 0x00006000023ee2b0 
+   rsi: 0x00007fff358aae0f     r8: 0x00000000000003ff     r9: 0x00006000023edbc0    r10: 0x000021474feae2b0 
+   r11: 0x00007fff358aae0f    r12: 0x000060000237af10    r13: 0x00007fff61f57380    r14: 0x00006000023ee2b0 
+   r15: 0x0000000000000006 rflags: 0x0000000000010202     cs: 0x000000000000002b     fs: 0x0000000000000000 
+    gs: 0x0000000000000000 
+```
+
+program counter寄存器（rip）的值是0x00007fff61f5739d，和exception的地址0x21474feae2c8是不一样的，说明这个crash是因为invalid memory fetch。
+
+
+
+如果program counter寄存器的值和异常的地址是相同的，则这个crash属于invalid instruction fetch
+
+举个例子，iOS上（arm64 CPU）的Crash Report
+
+```properties
+Exception Type:  EXC_BAD_ACCESS (SIGSEGV)
+Exception Subtype: KERN_INVALID_ADDRESS at 0x0000000000000040
+...
+Thread 0 name:  Dispatch queue: com.apple.main-thread
+Thread 0 Crashed:
+0   ???                               0x0000000000000040 0 + 64
+...
+Thread 0 crashed with ARM Thread State (64-bit):
+    x0: 0x0000000000000002   x1: 0x0000000000000040   x2: 0x0000000000000001   x3: 0x000000016dcfe080
+    x4: 0x0000000000000010   x5: 0x000000016dcfdc8f   x6: 0x000000016dcfdd80   x7: 0x0000000000000000
+    x8: 0x000000010210d3c8   x9: 0x0000000000000000  x10: 0x0000000000000014  x11: 0x0000000102835948
+   x12: 0x0000000000000014  x13: 0x0000000000000000  x14: 0x0000000000000001  x15: 0x0000000000000000
+   x16: 0x000000010210c0b8  x17: 0x00000001021063b0  x18: 0x0000000000000000  x19: 0x0000000102402b80
+   x20: 0x0000000102402b80  x21: 0x0000000204f6b000  x22: 0x00000001f6e6f984  x23: 0x0000000000000001
+   x24: 0x0000000000000001  x25: 0x00000001fc47b690  x26: 0x0000000102304040  x27: 0x0000000204eea000
+   x28: 0x00000001f6e78fae   fp: 0x000000016dcfdec0   lr: 0x00000001021063c4
+    sp: 0x000000016dcfdec0   pc: 0x0000000000000040 cpsr: 0x40000000
+   esr: 0x82000006 (Instruction Abort) Translation fault
+
+Binary Images:
+0x102100000 - 0x102107fff MyCoolApp arm64  <87760ecf8573392ca5795f0db63a44e2> /var/containers/Bundle/Application/686CA3F1-6CC5-4F84-8126-EE22D03BC161/MyCoolApp.app/MyCoolApp
+```
+
+program counter寄存器（pc）的值是0x0000000000000040，和Exception Subtype中的地址0x0000000000000040是一样的，说明这个crash是因为bad instruction fetch。
+
+因为bad instruction fetch，backtrace中frame 0没有显示正在运行的函数名，而是显示???，也仅显示内存地址，不显示二进制镜像的名字。
+
+说明
+
+> 1. lr (link register)寄存器，包含在调用函数后返回的地址。这个lr寄存器，可帮助排查在哪个函数中通过bad函数指针跳转导致crash。
+> 2. x86_64 CPU将返回的地址存在stack上，不是在lr寄存器中，所以不能排查出bad function pointer在哪个函数中跳转的
+
+对于上面这个例子，lr寄存器的值是0x00000001021063c4，它属于MyCoolApp镜像的地址范围中，即位于0x102100000-0x102107fff中。有了这个信息，可以使用atos命令和dSYM文件，来识别0x00000001021063c4对应的源代码位置，如下
+
+```shell
+$ atos -arch arm64 -o MyCoolApp.app.dSYM/Contents/Resources/DWARF/MyCoolApp -l 0x102100000 0x00000001021063c4
+-[ViewController loadData] (in MyCoolApp) (ViewController.m:38)
+```
+
+说明
+
+> 关于atos命令的使用，可以参考[Symbolicate the Crash Report with the Command Line](https://developer.apple.com/documentation/xcode/adding-identifiable-symbol-names-to-a-crash-report#Symbolicate-the-Crash-Report-with-the-Command-Line)
+
+
+
+##### Framework Missing[^22]
+
+如果把app的功能模块化处理成framework，app必现在编译期间链接这个framework，同时内置一份framework在app bundle中。如果framework没有内置在app中，在app启动去链接这个framework，但是dynamic liner不能找到这个缺失framework，就会导致crash。
+
+如果dyld (dynamic linker)找不到framework，则在Crash Report中的Termination Description字段给出描述信息，如下
+
+```properties
+Exception Type: EXC_CRASH (SIGABRT)
+Exception Codes: 0x0000000000000000, 0x0000000000000000
+Exception Note: EXC_CORPSE_NOTIFY
+Termination Description: DYLD, 
+    dependent dylib '@rpath/MyFramework.framework/MyFramework' not found for '<path>/MyCoolApp.app/MyCoolApp',
+    tried but didn't find: 
+    '/usr/lib/swift/MyFramework.framework/MyFramework' 
+    '<path>/MyCoolApp.app/Frameworks/MyFramework.framework/MyFramework' 
+    '@rpath/MyFramework.framework/MyFramework' 
+    '/System/Library/Frameworks/MyFramework.framework/MyFramework'
+```
+
+不同的系统，可能给出信息格式不一样，有例如
+
+```properties
+Exception Type: EXC_CRASH (SIGABRT)
+Exception Codes: 0x0000000000000000, 0x0000000000000000
+Exception Note: EXC_CORPSE_NOTIFY
+Termination Description: DYLD, Library not loaded: @rpath/MyFramework.framework/MyFramework 
+    | Referenced from: <path>/MyCoolApp.app/MyCoolApp 
+    | Reason: image not found
+```
+
+确保正确将framework内置在app bundle中，可以参考[Embedding Frameworks In An App](https://developer.apple.com/library/archive/technotes/tn2435/_index.html#//apple_ref/doc/uid/DTS40017543)
+
+如果不能复现crash，可以测试不同app变体，检查是否在app thinning之后，导致framework缺失。
+
+如果能复现crash，检查下面几个步骤
+
+* 检查framework的build setting中Architectures (ARCHS)是默认值
+* 检查framework的build setting中Valid Architectures (VALID_ARCHS)是默认值
+* 检查framework的Info.plist中[`UIRequiredDeviceCapabilities`](https://developer.apple.com/documentation/bundleresources/information_property_list/uirequireddevicecapabilities) 是否正确描述CPU架构
 
 
 
@@ -1443,4 +1704,9 @@ Thread 0 Crashed:
 [^17]:https://jeroenscode.com/debugging-with-network-conditions-using-xcode/
 [^18]:https://stackoverflow.com/questions/58758261/xcode-11-no-device-conditions-available
 [^19]:https://stackoverflow.com/questions/52414375/cannot-install-xcode-10-network-link-conditioner-in-macos-mojave/52414376#52414376
+[^20]:https://developer.apple.com/documentation/xcode/investigating-crashes-for-zombie-objects
+[^21]:https://developer.apple.com/documentation/xcode/investigating-memory-access-crashes
+[^22]:https://developer.apple.com/documentation/xcode/addressing-missing-framework-crashes
+
+[^23]:https://developer.apple.com/documentation/xcode/diagnosing_issues_using_crash_reports_and_device_logs/analyzing_a_crash_report
 
