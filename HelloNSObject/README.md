@@ -2796,6 +2796,81 @@ clang文档描述[^10]，如下
 
 
 
+## 7、常用C函数
+
+### （1）malloc_get_all_zones
+
+malloc_get_all_zones函数，用于获取heap上所有zone区块。
+
+malloc_get_all_zones函数，定义在malloc/malloc.h中
+
+```c
+extern kern_return_t malloc_get_all_zones(task_t task, memory_reader_t reader, vm_address_t **addresses, unsigned *count);
+    /* Fills addresses and count with the addresses of the zones in task;
+    Note that the validity of the addresses returned correspond to the validity of the memory returned by reader */
+```
+
+* task，一般传mach_task_self()这个宏，定义在mach/mach_init.h
+* reader，一般传NULL
+* addresses，传vm_address_t *指针的地址，用于获取返回zone数组
+* count，传unsigned的地址，用于获取返回zone数组的大小
+
+举个例子[^36]，如下
+
+```objective-c
+- (void)test_malloc_get_all_zones {
+    vm_address_t *zone_addresses;
+    unsigned count = 0;
+    
+    malloc_get_all_zones(mach_task_self(), NULL, &zone_addresses, &count);
+
+    for (unsigned i = 0; i < count; i++) {
+        malloc_zone_t *malloc_zone = (malloc_zone_t *)zone_addresses[i];
+        printf("zone %p \"%s\"\n", malloc_zone, malloc_get_zone_name(malloc_zone));
+    }
+
+    printf("\\zones\n");
+}
+```
+
+除了malloc_get_all_zones函数，malloc/malloc.h还声明了一系列配套的malloc_xxx函数。
+
+
+
+* 修改zone的名称
+
+```c
+extern void malloc_set_zone_name(malloc_zone_t *zone, const char *name);
+    /* Sets the name of a zone */
+
+extern const char *malloc_get_zone_name(malloc_zone_t *zone);
+    /* Returns the name of a zone */
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+https://cpp.hotexamples.com/examples/-/-/malloc_get_all_zones/cpp-malloc_get_all_zones-function-examples.html
+
+https://gist.github.com/samdmarshall/17f4e66b5e2e579fd396
+
+https://www.todayios.com/find-ios-heap-object/
+
+
+
+
+
 
 
 ## References
@@ -2853,4 +2928,6 @@ clang文档描述[^10]，如下
 [^34]:https://gcc.gnu.org/onlinedocs/gcc/Common-Function-Attributes.html#Common-Function-Attributes
 
 [^35]:https://medium.com/@notestomyself/bridge-vs-bridge-transfer-vs-bridge-retained-f84e6b6406d1
+
+[^36]:https://cpp.hotexamples.com/examples/-/-/malloc_get_all_zones/cpp-malloc_get_all_zones-function-examples.html
 

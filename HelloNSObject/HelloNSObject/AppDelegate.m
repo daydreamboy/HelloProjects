@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "RootViewController.h"
+#import "WCHeapTool.h"
 
 @interface AppDelegate ()
 @property (nonatomic, strong) RootViewController *rootViewController;
@@ -24,6 +25,10 @@
     self.window.rootViewController = self.navController;
     
     [self.window makeKeyAndVisible];
+    
+//    [WCHeapTool enumerateLiveObjectsUsingBlock:^(__unsafe_unretained id  _Nonnull object, __unsafe_unretained Class  _Nonnull actualClass) {
+//        NSLog(@"%p: %@", object, NSStringFromClass(actualClass));
+//    }];
     
     return YES;
 }

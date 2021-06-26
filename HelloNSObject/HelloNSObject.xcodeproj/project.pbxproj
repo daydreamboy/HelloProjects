@@ -127,12 +127,24 @@
 		4F70D8A325EA29940088F1CA /* WCSwizzleTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70D8A225EA29940088F1CA /* WCSwizzleTool.m */; };
 		4F70D8A425EA29940088F1CA /* WCSwizzleTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70D8A225EA29940088F1CA /* WCSwizzleTool.m */; };
 		4F70D8B025EA29B30088F1CA /* Test_WCSwizzleTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F70D8AF25EA29B30088F1CA /* Test_WCSwizzleTool.m */; };
+		4F7A022226817E4E008F00DF /* FLEXHeapEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7A022126817E4E008F00DF /* FLEXHeapEnumerator.m */; };
+		4F7A022326817E4E008F00DF /* FLEXHeapEnumerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7A022126817E4E008F00DF /* FLEXHeapEnumerator.m */; };
+		4F7A022626817E82008F00DF /* FLEXObjcInternal.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F7A022426817E82008F00DF /* FLEXObjcInternal.mm */; };
+		4F7A022726817E82008F00DF /* FLEXObjcInternal.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F7A022426817E82008F00DF /* FLEXObjcInternal.mm */; };
+		4F7C0CA0268430EF0010BAF4 /* Test_malloc.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7C0C9F268430EF0010BAF4 /* Test_malloc.m */; };
 		4F813B4C265A7EE000684D5E /* Tests_weak.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F813B4B265A7EE000684D5E /* Tests_weak.m */; };
 		4F813B50265A7F5900684D5E /* Tests_weak_class1.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F813B4F265A7F5900684D5E /* Tests_weak_class1.m */; };
 		4F813B53265A7F6600684D5E /* Tests_weak_class2.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F813B52265A7F6600684D5E /* Tests_weak_class2.m */; };
 		4F813B55265A87F900684D5E /* Tests_used.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F813B54265A87F900684D5E /* Tests_used.m */; };
 		4F813B57265A881400684D5E /* Tests_unused.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F813B56265A881400684D5E /* Tests_unused.m */; };
 		4F8910F426050BEB00FBEE19 /* WCXCTestCaseTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8910F326050BEB00FBEE19 /* WCXCTestCaseTool.m */; };
+		4F8E3C082680347300DB0EF0 /* Tests_isa.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8E3C072680347300DB0EF0 /* Tests_isa.m */; };
+		4F8E3C092680362C00DB0EF0 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F573290224B134500EFB1CF /* Person.m */; };
+		4F8E3C0D2680491F00DB0EF0 /* WCHeapTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8E3C0C2680491F00DB0EF0 /* WCHeapTool.m */; };
+		4F8E3C0F2680954500DB0EF0 /* Test_WCHeapTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8E3C0E2680954500DB0EF0 /* Test_WCHeapTool.m */; };
+		4F8E3C1026809C0700DB0EF0 /* WCHeapTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F8E3C0C2680491F00DB0EF0 /* WCHeapTool.m */; };
+		4F8E3C172680BB0100DB0EF0 /* WCPointerTool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F8E3C162680BB0100DB0EF0 /* WCPointerTool.mm */; };
+		4F8E3C182680BB0100DB0EF0 /* WCPointerTool.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4F8E3C162680BB0100DB0EF0 /* WCPointerTool.mm */; };
 		4F91202E2674F32B0024DAA1 /* Tests__bridge_xxx.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F91202D2674F32B0024DAA1 /* Tests__bridge_xxx.m */; };
 		4F967056267A579B00CD9BAD /* Tests_tagged_pointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F967055267A579B00CD9BAD /* Tests_tagged_pointer.m */; };
 		4FA01ADE2679A56C003CBB22 /* Tests_memory_issue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA01ADD2679A56C003CBB22 /* Tests_memory_issue.m */; };
@@ -406,6 +418,11 @@
 		4F70D8A125EA29940088F1CA /* WCSwizzleTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCSwizzleTool.h; sourceTree = "<group>"; };
 		4F70D8A225EA29940088F1CA /* WCSwizzleTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCSwizzleTool.m; sourceTree = "<group>"; };
 		4F70D8AF25EA29B30088F1CA /* Test_WCSwizzleTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_WCSwizzleTool.m; sourceTree = "<group>"; };
+		4F7A022026817E4E008F00DF /* FLEXHeapEnumerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXHeapEnumerator.h; sourceTree = "<group>"; };
+		4F7A022126817E4E008F00DF /* FLEXHeapEnumerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLEXHeapEnumerator.m; sourceTree = "<group>"; };
+		4F7A022426817E82008F00DF /* FLEXObjcInternal.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = FLEXObjcInternal.mm; sourceTree = "<group>"; };
+		4F7A022526817E82008F00DF /* FLEXObjcInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLEXObjcInternal.h; sourceTree = "<group>"; };
+		4F7C0C9F268430EF0010BAF4 /* Test_malloc.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_malloc.m; sourceTree = "<group>"; };
 		4F7E7F84231ECE9700E91F0E /* SwizzleMethodByCategoryMethodViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwizzleMethodByCategoryMethodViewController.m; sourceTree = "<group>"; };
 		4F7E7F85231ECE9700E91F0E /* SwizzleMethodByCategoryMethodViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwizzleMethodByCategoryMethodViewController.h; sourceTree = "<group>"; };
 		4F813B4B265A7EE000684D5E /* Tests_weak.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_weak.m; sourceTree = "<group>"; };
@@ -417,6 +434,12 @@
 		4F813B56265A881400684D5E /* Tests_unused.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_unused.m; sourceTree = "<group>"; };
 		4F8910F226050BEB00FBEE19 /* WCXCTestCaseTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCXCTestCaseTool.h; sourceTree = "<group>"; };
 		4F8910F326050BEB00FBEE19 /* WCXCTestCaseTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCXCTestCaseTool.m; sourceTree = "<group>"; };
+		4F8E3C072680347300DB0EF0 /* Tests_isa.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_isa.m; sourceTree = "<group>"; };
+		4F8E3C0B2680491F00DB0EF0 /* WCHeapTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCHeapTool.h; sourceTree = "<group>"; };
+		4F8E3C0C2680491F00DB0EF0 /* WCHeapTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCHeapTool.m; sourceTree = "<group>"; };
+		4F8E3C0E2680954500DB0EF0 /* Test_WCHeapTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_WCHeapTool.m; sourceTree = "<group>"; };
+		4F8E3C152680BB0100DB0EF0 /* WCPointerTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCPointerTool.h; sourceTree = "<group>"; };
+		4F8E3C162680BB0100DB0EF0 /* WCPointerTool.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = WCPointerTool.mm; sourceTree = "<group>"; };
 		4F91202D2674F32B0024DAA1 /* Tests__bridge_xxx.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests__bridge_xxx.m; sourceTree = "<group>"; };
 		4F967055267A579B00CD9BAD /* Tests_tagged_pointer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_tagged_pointer.m; sourceTree = "<group>"; };
 		4FA01ADD2679A56C003CBB22 /* Tests_memory_issue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_memory_issue.m; sourceTree = "<group>"; };
@@ -643,6 +666,7 @@
 				4F2237D5245963EA000CC3C9 /* Test_NSObject_WCDebug.m */,
 				4F23255D24F6087E0073BDC6 /* Test_WCMulticastDelegate.m */,
 				4F70D8AF25EA29B30088F1CA /* Test_WCSwizzleTool.m */,
+				4F8E3C0E2680954500DB0EF0 /* Test_WCHeapTool.m */,
 				4F5B65322249DD4600D40218 /* Info.plist */,
 			);
 			path = Test;
@@ -652,6 +676,7 @@
 			isa = PBXGroup;
 			children = (
 				4F6034B42650FA6A0044B4E7 /* Test_C.m */,
+				4F7C0C9F268430EF0010BAF4 /* Test_malloc.m */,
 				4F6035562650FBF30044B4E7 /* WCTuple.h */,
 				4F6035542650FBF30044B4E7 /* WCTupleClass.h */,
 				4F6035572650FBF40044B4E7 /* WCTupleClass.m */,
@@ -663,6 +688,7 @@
 		4F6034C12650FA750044B4E7 /* Test_OC */ = {
 			isa = PBXGroup;
 			children = (
+				4F8E3C022680343000DB0EF0 /* isa */,
 				4FA01ADC2679A538003CBB22 /* MemoryManagement */,
 				4F91202C2674F2BE0024DAA1 /* __bridge_xxx */,
 				4F6035112650FB4C0044B4E7 /* __attribute__ */,
@@ -961,6 +987,17 @@
 			path = WCSwizzleTool;
 			sourceTree = "<group>";
 		};
+		4F7A022826817F2A008F00DF /* FLEXHeapEnumerator */ = {
+			isa = PBXGroup;
+			children = (
+				4F7A022526817E82008F00DF /* FLEXObjcInternal.h */,
+				4F7A022426817E82008F00DF /* FLEXObjcInternal.mm */,
+				4F7A022026817E4E008F00DF /* FLEXHeapEnumerator.h */,
+				4F7A022126817E4E008F00DF /* FLEXHeapEnumerator.m */,
+			);
+			path = FLEXHeapEnumerator;
+			sourceTree = "<group>";
+		};
 		4F813B4D265A7F2B00684D5E /* Tests_weak */ = {
 			isa = PBXGroup;
 			children = (
@@ -979,6 +1016,26 @@
 				4F8910F326050BEB00FBEE19 /* WCXCTestCaseTool.m */,
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		4F8E3C022680343000DB0EF0 /* isa */ = {
+			isa = PBXGroup;
+			children = (
+				4F8E3C072680347300DB0EF0 /* Tests_isa.m */,
+			);
+			path = isa;
+			sourceTree = "<group>";
+		};
+		4F8E3C0A2680467F00DB0EF0 /* WCHeapTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F7A022826817F2A008F00DF /* FLEXHeapEnumerator */,
+				4F8E3C0B2680491F00DB0EF0 /* WCHeapTool.h */,
+				4F8E3C0C2680491F00DB0EF0 /* WCHeapTool.m */,
+				4F8E3C152680BB0100DB0EF0 /* WCPointerTool.h */,
+				4F8E3C162680BB0100DB0EF0 /* WCPointerTool.mm */,
+			);
+			path = WCHeapTool;
 			sourceTree = "<group>";
 		};
 		4F91202C2674F2BE0024DAA1 /* __bridge_xxx */ = {
@@ -1001,6 +1058,7 @@
 		4FFE71972236AC550020516E = {
 			isa = PBXGroup;
 			children = (
+				4F8E3C0A2680467F00DB0EF0 /* WCHeapTool */,
 				4F42956924F5305200B1640B /* WCMulticastDelegate */,
 				4F35BA0A2324FDA1001637AB /* WCObjCRuntime */,
 				4F54E6552238A08A001A9BE2 /* WCObjectTool */,
@@ -1394,7 +1452,9 @@
 				4F110EF2231F5EDD006C9AFD /* MyObject.m in Sources */,
 				4FE4376824F67D9D00AEFB27 /* Test_ivar.m in Sources */,
 				4F60358326510E1C0044B4E7 /* HiddenPrivateIvarClass.m in Sources */,
+				4F7A022326817E4E008F00DF /* FLEXHeapEnumerator.m in Sources */,
 				4F5B710D229D64710061A9D0 /* KeyedSubscriptingObject.m in Sources */,
+				4F8E3C182680BB0100DB0EF0 /* WCPointerTool.mm in Sources */,
 				4F57328E224B133400EFB1CF /* Thing.m in Sources */,
 				4F110EEB231F5E92006C9AFD /* Test_weak.m in Sources */,
 				4F2237D6245963EA000CC3C9 /* Test_NSObject_WCDebug.m in Sources */,
@@ -1402,6 +1462,7 @@
 				4F5B65382249DDAE00D40218 /* WCObjectTool.m in Sources */,
 				4F5B7110229D64840061A9D0 /* IndexedSubscriptingObject.m in Sources */,
 				4F8910F426050BEB00FBEE19 /* WCXCTestCaseTool.m in Sources */,
+				4F7A022726817E82008F00DF /* FLEXObjcInternal.mm in Sources */,
 				4F5B7115229D686C0061A9D0 /* Test_NSObject.m in Sources */,
 				4F35BA2D23250101001637AB /* Test_property.m in Sources */,
 				4F573291224B134500EFB1CF /* Person.m in Sources */,
@@ -1409,6 +1470,7 @@
 				4F5B65312249DD4600D40218 /* Test.mm in Sources */,
 				4F110EEF231F5E92006C9AFD /* Test_retainCount.m in Sources */,
 				4F23255E24F6087E0073BDC6 /* Test_WCMulticastDelegate.m in Sources */,
+				4F8E3C0F2680954500DB0EF0 /* Test_WCHeapTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1417,6 +1479,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F6034B52650FA6A0044B4E7 /* Test_C.m in Sources */,
+				4F7C0CA0268430EF0010BAF4 /* Test_malloc.m in Sources */,
 				4F6035592650FBF40044B4E7 /* WCTupleClass.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1443,6 +1506,7 @@
 				4F6035352650FB4D0044B4E7 /* RootHandler.m in Sources */,
 				4F6035472650FB4D0044B4E7 /* Tests_objc_requires_super.m in Sources */,
 				4F6035422650FB4D0044B4E7 /* objc_runtime_name_dummy.m in Sources */,
+				4F8E3C092680362C00DB0EF0 /* Person.m in Sources */,
 				4F6035462650FB4D0044B4E7 /* const_dummy.m in Sources */,
 				4F6035482650FB4D0044B4E7 /* Tests_HookPrivateIvar.m in Sources */,
 				4F60352C2650FB4D0044B4E7 /* Tests_StateExpression_return.m in Sources */,
@@ -1458,6 +1522,7 @@
 				4F60352F2650FB4D0044B4E7 /* BaseClassA1.m in Sources */,
 				4F6035312650FB4D0044B4E7 /* DerivedClassB1.m in Sources */,
 				4F60353A2650FB4D0044B4E7 /* NSObject+EventChaining.m in Sources */,
+				4F8E3C082680347300DB0EF0 /* Tests_isa.m in Sources */,
 				4F6035322650FB4D0044B4E7 /* Tests_Category_hook_setter.m in Sources */,
 				4F60352E2650FB4D0044B4E7 /* BaseClassC.m in Sources */,
 				4F813B53265A7F6600684D5E /* Tests_weak_class2.m in Sources */,
@@ -1468,6 +1533,7 @@
 				4F60354E2650FB4D0044B4E7 /* Tests_AccessPublicIvar.m in Sources */,
 				4F60354C2650FB4D0044B4E7 /* Tests_AccessPrivateIvar.m in Sources */,
 				4F6035342650FB4D0044B4E7 /* Tests_Random.m in Sources */,
+				4F8E3C1026809C0700DB0EF0 /* WCHeapTool.m in Sources */,
 				4F6035302650FB4D0044B4E7 /* BaseClassA1+Category.m in Sources */,
 				4F91202E2674F32B0024DAA1 /* Tests__bridge_xxx.m in Sources */,
 			);
@@ -1503,6 +1569,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F7A022226817E4E008F00DF /* FLEXHeapEnumerator.m in Sources */,
 				4F6035772650FDDE0044B4E7 /* NaNViewController.m in Sources */,
 				4FF2560B24FFC374008B5F9A /* UseWCMulticastDelegateViewController.m in Sources */,
 				4F60357D2650FDDE0044B4E7 /* Cpp11FeatureRawStringViewController.mm in Sources */,
@@ -1511,9 +1578,11 @@
 				4F35BA002324FC32001637AB /* IsaSwizzlingIssueViewController.m in Sources */,
 				4F35BA182324FDA1001637AB /* NSObject+WCObjCRuntime.m in Sources */,
 				4F35BA022324FC32001637AB /* CreateClassAtRuntimeViewController.m in Sources */,
+				4F7A022626817E82008F00DF /* FLEXObjcInternal.mm in Sources */,
 				4FD758C12324F10C00BC1C2F /* SwizzleMethodByCategoryMethodViewController.m in Sources */,
 				4F60357E2650FDDE0044B4E7 /* GenericSelectionExpressionViewController.m in Sources */,
 				4F6035822650FDDE0044B4E7 /* NamespacedGlobalVarsAndFuncsViewController.m in Sources */,
+				4F8E3C172680BB0100DB0EF0 /* WCPointerTool.mm in Sources */,
 				4F35BA1A2324FDA1001637AB /* WCRTUnregisteredClass.m in Sources */,
 				4F6035762650FDDE0044B4E7 /* SynthesizePropertyDerivedFromBaseClassViewController.m in Sources */,
 				4F35BA062324FC32001637AB /* PublicModelsForSomeSDK.m in Sources */,
@@ -1541,6 +1610,7 @@
 				4F35BA052324FC32001637AB /* SomeSDK.m in Sources */,
 				4F35BA192324FDA1001637AB /* WCRTIvar.m in Sources */,
 				4F6035812650FDDE0044B4E7 /* DelayReleaseObjectViewController.m in Sources */,
+				4F8E3C0D2680491F00DB0EF0 /* WCHeapTool.m in Sources */,
 				4FFE71B32236AC560020516E /* main.mm in Sources */,
 				4FFE71A52236AC550020516E /* AppDelegate.m in Sources */,
 				4F70D86725EA203E0088F1CA /* GetPropertiesOfClassViewController.m in Sources */,
@@ -1727,8 +1797,8 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = Test_C/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1749,8 +1819,8 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = Test_C/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1770,8 +1840,8 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = Test_OC/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1792,8 +1862,8 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
 				INFOPLIST_FILE = Test_OC/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
