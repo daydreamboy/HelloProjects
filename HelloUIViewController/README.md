@@ -143,6 +143,18 @@ Presentation是在当前View Controller上覆盖另一个View Controller。下�
 
 
 
+## 4、UIViewController旋转
+
+UIViewController支持旋转的API，有下面4个
+
+```objective-c
+// 
+@property(nonatomic, readonly) BOOL shouldAutorotate;
+
+```
+
+
+
 
 
 

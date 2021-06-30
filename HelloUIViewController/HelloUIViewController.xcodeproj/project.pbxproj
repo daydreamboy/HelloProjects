@@ -19,9 +19,18 @@
 		4F6EBA15258B56DD0047CED7 /* ParentGetNavigationItemFromChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6EBA14258B56DD0047CED7 /* ParentGetNavigationItemFromChildViewController.m */; };
 		4F6EBA19258B56EA0047CED7 /* ChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6EBA18258B56EA0047CED7 /* ChildViewController.m */; };
 		4F7D8EDA2109777300145B00 /* UseViewControllerAsSubviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7D8ED92109777300145B00 /* UseViewControllerAsSubviewViewController.m */; };
+		4F92C353268AC02F00357E55 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F92C352268AC02F00357E55 /* AppDelegate.m */; };
+		4F92C359268AC02F00357E55 /* PortraitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F92C358268AC02F00357E55 /* PortraitViewController.m */; };
+		4F92C35E268AC03100357E55 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4F92C35D268AC03100357E55 /* Assets.xcassets */; };
+		4F92C361268AC03100357E55 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4F92C35F268AC03100357E55 /* LaunchScreen.storyboard */; };
+		4F92C364268AC03100357E55 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F92C363268AC03100357E55 /* main.m */; };
+		4F92C38B268ACFA200357E55 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F92C389268ACFA200357E55 /* RootViewController.m */; };
+		4F92C39B268B07B500357E55 /* WCInterfaceOrientationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F92C39A268B07B400357E55 /* WCInterfaceOrientationTool.m */; };
+		4FA5D633268C062D0005182C /* DetectDeviceOrientationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA5D632268C062D0005182C /* DetectDeviceOrientationViewController.m */; };
 		4FB0291B2188558D000E6516 /* WCViewControllerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0291A2188558D000E6516 /* WCViewControllerTool.m */; };
 		4FB0291E21888B4A000E6516 /* CheckAppearingAndDisappearingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0291D21888B4A000E6516 /* CheckAppearingAndDisappearingViewController.m */; };
 		4FB7A95325AD3A6E007701FD /* UseUIImagePickerControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB7A95225AD3A6E007701FD /* UseUIImagePickerControllerViewController.m */; };
+		4FC765C3268B7AB000D53E56 /* WCViewControllerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0291A2188558D000E6516 /* WCViewControllerTool.m */; };
 		4FEDD41A2189A979008CB64F /* CustomPresentationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FEDD4192189A979008CB64F /* CustomPresentationViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +58,22 @@
 		4F6EBA18258B56EA0047CED7 /* ChildViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ChildViewController.m; sourceTree = "<group>"; };
 		4F7D8ED82109777300145B00 /* UseViewControllerAsSubviewViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UseViewControllerAsSubviewViewController.h; sourceTree = "<group>"; };
 		4F7D8ED92109777300145B00 /* UseViewControllerAsSubviewViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UseViewControllerAsSubviewViewController.m; sourceTree = "<group>"; };
+		4F92C34F268AC02F00357E55 /* HelloUIInterfaceOrientation.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloUIInterfaceOrientation.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F92C351268AC02F00357E55 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		4F92C352268AC02F00357E55 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		4F92C357268AC02F00357E55 /* PortraitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PortraitViewController.h; sourceTree = "<group>"; };
+		4F92C358268AC02F00357E55 /* PortraitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PortraitViewController.m; sourceTree = "<group>"; };
+		4F92C35D268AC03100357E55 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4F92C360268AC03100357E55 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4F92C362268AC03100357E55 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F92C363268AC03100357E55 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		4F92C388268ACFA200357E55 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		4F92C389268ACFA200357E55 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		4F92C399268B07B400357E55 /* WCInterfaceOrientationTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCInterfaceOrientationTool.h; sourceTree = "<group>"; };
+		4F92C39A268B07B400357E55 /* WCInterfaceOrientationTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCInterfaceOrientationTool.m; sourceTree = "<group>"; };
+		4FA5D631268C062D0005182C /* DetectDeviceOrientationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectDeviceOrientationViewController.h; sourceTree = "<group>"; };
+		4FA5D632268C062D0005182C /* DetectDeviceOrientationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetectDeviceOrientationViewController.m; sourceTree = "<group>"; };
+		4FA5D635268C18040005182C /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
 		4FB029192188558D000E6516 /* WCViewControllerTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCViewControllerTool.h; sourceTree = "<group>"; };
 		4FB0291A2188558D000E6516 /* WCViewControllerTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewControllerTool.m; sourceTree = "<group>"; };
 		4FB0291C21888B4A000E6516 /* CheckAppearingAndDisappearingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckAppearingAndDisappearingViewController.h; sourceTree = "<group>"; };
@@ -61,6 +86,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		4F4E148C2103573700D12D11 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F92C34C268AC02F00357E55 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -115,8 +147,10 @@
 		4F4E14862103573700D12D11 = {
 			isa = PBXGroup;
 			children = (
+				4F92C398268B077800357E55 /* WCInterfaceOrientationTool */,
 				4FB029182188557A000E6516 /* WCViewControllerTool */,
 				4F4E14912103573700D12D11 /* HelloUIViewController */,
+				4F92C350268AC02F00357E55 /* HelloUIInterfaceOrientation */,
 				4F4E14902103573700D12D11 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -125,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				4F4E148F2103573700D12D11 /* HelloUIViewController.app */,
+				4F92C34F268AC02F00357E55 /* HelloUIInterfaceOrientation.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,6 +191,51 @@
 				4FB0291F2188A926000E6516 /* DummyViewControllers */,
 			);
 			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F92C350268AC02F00357E55 /* HelloUIInterfaceOrientation */ = {
+			isa = PBXGroup;
+			children = (
+				4F92C385268ACFA200357E55 /* AppTestDemos */,
+				4F92C351268AC02F00357E55 /* AppDelegate.h */,
+				4F92C352268AC02F00357E55 /* AppDelegate.m */,
+				4F92C388268ACFA200357E55 /* RootViewController.h */,
+				4F92C389268ACFA200357E55 /* RootViewController.m */,
+				4F92C35D268AC03100357E55 /* Assets.xcassets */,
+				4F92C35F268AC03100357E55 /* LaunchScreen.storyboard */,
+				4F92C362268AC03100357E55 /* Info.plist */,
+				4F92C363268AC03100357E55 /* main.m */,
+			);
+			path = HelloUIInterfaceOrientation;
+			sourceTree = "<group>";
+		};
+		4F92C385268ACFA200357E55 /* AppTestDemos */ = {
+			isa = PBXGroup;
+			children = (
+				4FA5D634268C17F00005182C /* Tools */,
+				4F92C357268AC02F00357E55 /* PortraitViewController.h */,
+				4F92C358268AC02F00357E55 /* PortraitViewController.m */,
+				4FA5D631268C062D0005182C /* DetectDeviceOrientationViewController.h */,
+				4FA5D632268C062D0005182C /* DetectDeviceOrientationViewController.m */,
+			);
+			path = AppTestDemos;
+			sourceTree = "<group>";
+		};
+		4F92C398268B077800357E55 /* WCInterfaceOrientationTool */ = {
+			isa = PBXGroup;
+			children = (
+				4F92C399268B07B400357E55 /* WCInterfaceOrientationTool.h */,
+				4F92C39A268B07B400357E55 /* WCInterfaceOrientationTool.m */,
+			);
+			path = WCInterfaceOrientationTool;
+			sourceTree = "<group>";
+		};
+		4FA5D634268C17F00005182C /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				4FA5D635268C18040005182C /* WCMacroTool.h */,
+			);
+			path = Tools;
 			sourceTree = "<group>";
 		};
 		4FB029182188557A000E6516 /* WCViewControllerTool */ = {
@@ -207,6 +287,23 @@
 			productReference = 4F4E148F2103573700D12D11 /* HelloUIViewController.app */;
 			productType = "com.apple.product-type.application";
 		};
+		4F92C34E268AC02F00357E55 /* HelloUIInterfaceOrientation */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F92C367268AC03100357E55 /* Build configuration list for PBXNativeTarget "HelloUIInterfaceOrientation" */;
+			buildPhases = (
+				4F92C34B268AC02F00357E55 /* Sources */,
+				4F92C34C268AC02F00357E55 /* Frameworks */,
+				4F92C34D268AC02F00357E55 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HelloUIInterfaceOrientation;
+			productName = HelloUIInterfaceOrientation;
+			productReference = 4F92C34F268AC02F00357E55 /* HelloUIInterfaceOrientation.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -218,6 +315,9 @@
 				TargetAttributes = {
 					4F4E148E2103573700D12D11 = {
 						CreatedOnToolsVersion = 9.4;
+					};
+					4F92C34E268AC02F00357E55 = {
+						CreatedOnToolsVersion = 12.5;
 					};
 				};
 			};
@@ -235,6 +335,7 @@
 			projectRoot = "";
 			targets = (
 				4F4E148E2103573700D12D11 /* HelloUIViewController */,
+				4F92C34E268AC02F00357E55 /* HelloUIInterfaceOrientation */,
 			);
 		};
 /* End PBXProject section */
@@ -246,6 +347,15 @@
 			files = (
 				4F4E149F2103573900D12D11 /* LaunchScreen.storyboard in Resources */,
 				4F4E149C2103573900D12D11 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F92C34D268AC02F00357E55 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F92C361268AC03100357E55 /* LaunchScreen.storyboard in Resources */,
+				4F92C35E268AC03100357E55 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,6 +383,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4F92C34B268AC02F00357E55 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F92C359268AC02F00357E55 /* PortraitViewController.m in Sources */,
+				4FA5D633268C062D0005182C /* DetectDeviceOrientationViewController.m in Sources */,
+				4F92C353268AC02F00357E55 /* AppDelegate.m in Sources */,
+				4F92C364268AC03100357E55 /* main.m in Sources */,
+				4F92C39B268B07B500357E55 /* WCInterfaceOrientationTool.m in Sources */,
+				4F92C38B268ACFA200357E55 /* RootViewController.m in Sources */,
+				4FC765C3268B7AB000D53E56 /* WCViewControllerTool.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
@@ -280,6 +404,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				4F4E149E2103573900D12D11 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		4F92C35F268AC03100357E55 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4F92C360268AC03100357E55 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -429,6 +561,47 @@
 			};
 			name = Release;
 		};
+		4F92C365268AC03100357E55 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
+				INFOPLIST_FILE = HelloUIInterfaceOrientation/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloUIInterfaceOrientation;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4F92C366268AC03100357E55 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = U7337LU6F2;
+				INFOPLIST_FILE = HelloUIInterfaceOrientation/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.wc.HelloUIInterfaceOrientation;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -446,6 +619,15 @@
 			buildConfigurations = (
 				4F4E14A62103573900D12D11 /* Debug */,
 				4F4E14A72103573900D12D11 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F92C367268AC03100357E55 /* Build configuration list for PBXNativeTarget "HelloUIInterfaceOrientation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F92C365268AC03100357E55 /* Debug */,
+				4F92C366268AC03100357E55 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
