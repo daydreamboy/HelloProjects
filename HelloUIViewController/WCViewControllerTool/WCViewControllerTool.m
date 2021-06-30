@@ -147,18 +147,19 @@
 #pragma mark ::
 
 + (UIViewController *)topViewControllerWithRootViewController:(UIViewController *)rootViewController {
-    if ([rootViewController isKindOfClass:[UITabBarController class]]) {
-        UITabBarController *tabBarController = (UITabBarController *)rootViewController;
-        return [self topViewControllerWithRootViewController:tabBarController.selectedViewController];
+    // Note: first check presentedViewController
+    if (rootViewController.presentedViewController) {
+        UIViewController *presentedViewController = rootViewController.presentedViewController;
+        return [self topViewControllerWithRootViewController:presentedViewController];
     }
     else if ([rootViewController isKindOfClass:[UINavigationController class]]) {
         UINavigationController *navigationController = (UINavigationController *)rootViewController;
         // Note: visibleViewController is the view controller at the top of the navigation stack or a view controller that was presented modally on top of the navigation controller itself.
         return [self topViewControllerWithRootViewController:navigationController.visibleViewController];
     }
-    else if (rootViewController.presentedViewController) {
-        UIViewController *presentedViewController = rootViewController.presentedViewController;
-        return [self topViewControllerWithRootViewController:presentedViewController];
+    else if ([rootViewController isKindOfClass:[UITabBarController class]]) {
+        UITabBarController *tabBarController = (UITabBarController *)rootViewController;
+        return [self topViewControllerWithRootViewController:tabBarController.selectedViewController];
     }
     else {
         return rootViewController;

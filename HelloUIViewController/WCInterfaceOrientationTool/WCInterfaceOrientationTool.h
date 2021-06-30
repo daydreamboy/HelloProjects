@@ -37,6 +37,8 @@ typedef void(^DeviceOrientationDidChangeBlockType)(NSString *bizKey, UIDeviceOri
  @param eventBlock the callback when device orientation did change
  
  @return YES if registered successfully, NO if not
+ 
+ @see https://stackoverflow.com/questions/38894031/swift-how-to-detect-orientation-changes
  */
 + (BOOL)registerDeviceOrientationDidChangeEventWithBizKey:(NSString *)bizKey eventBlock:(DeviceOrientationDidChangeBlockType)eventBlock;
 

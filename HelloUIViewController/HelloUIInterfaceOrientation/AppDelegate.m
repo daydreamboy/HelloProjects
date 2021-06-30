@@ -36,7 +36,7 @@
 - (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
     UIInterfaceOrientationMask mask = [WCInterfaceOrientationTool application:application supportedInterfaceOrientationsForWindow:window];
 
-    NSLog(@"orientation: %@", WCNSStringFromUIInterfaceOrientationMask(mask));
+    NSLog(@"app delegate orientation: %@", WCNSStringFromUIInterfaceOrientationMask(mask));
 
     return mask;
 }

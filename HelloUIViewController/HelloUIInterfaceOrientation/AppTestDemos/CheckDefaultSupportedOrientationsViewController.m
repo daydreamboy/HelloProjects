@@ -1,24 +1,22 @@
 //
-//  RootViewController.m
-//  AppTest
+//  CheckDefaultSupportedOrientationsViewController.m
+//  HelloUIInterfaceOrientation
 //
-//  Created by wesley chen on 15/6/26.
-//
+//  Created by wesley_chen on 2021/6/30.
+//  Copyright © 2021 wesley_chen. All rights reserved.
 //
 
-#import "RootViewController.h"
-
-#import "DetectDeviceOrientationViewController.h"
-#import "DetectInterfaceOrientationViewController.h"
 #import "CheckDefaultSupportedOrientationsViewController.h"
-#import "PortraitViewController.h"
+#import "DummySingleViewController.h"
+#import "DummyNavController.h"
+#import "DummyNavRootViewController.h"
 
-@interface RootViewController ()
+@interface CheckDefaultSupportedOrientationsViewController ()
 @property (nonatomic, strong) NSArray *titles;
 @property (nonatomic, strong) NSArray *classes;
 @end
 
-@implementation RootViewController
+@implementation CheckDefaultSupportedOrientationsViewController
 
 - (instancetype)init {
     self = [super initWithStyle:UITableViewStylePlain];
@@ -30,22 +28,16 @@
 }
 
 - (void)prepareForInit {
-    self.title = @"AppTest";
+    self.title = @"Check Default SupportedOrientations";
 
     // MARK: Configure titles and classes for table view
     _titles = @[
-        @"Detect device orientation",
-        @"Detect interface orientation",
-        @"Check default orientation mask",
-        @"Only Portrait ViewController",
-        @"call a test method",
+        @"check single UIViewController",
+        @"check UINavigationController",
     ];
     _classes = @[
-        [DetectDeviceOrientationViewController class],
-        [DetectInterfaceOrientationViewController class],
-        [CheckDefaultSupportedOrientationsViewController class],
-        [PortraitViewController class],
-        @"testMethod",
+        @"check_UIViewController",
+        @"check_UINavigationController",
     ];
 }
 
@@ -98,20 +90,19 @@
     }
 }
 
-#pragma mark - Orientation
-
-//- (BOOL)shouldAutorotate {
-//    return YES;
-//}
-//
-//- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-//    return UIInterfaceOrientationMaskAll;
-//}
-
 #pragma mark - Test Methods
 
-- (void)testMethod {
-    NSLog(@"test something");
+- (void)check_UIViewController {
+    DummySingleViewController *viewController = [[DummySingleViewController alloc] init];
+    
+    [self.navigationController presentViewController:viewController animated:YES completion:nil];
+}
+
+- (void)check_UINavigationController {
+    DummyNavRootViewController *rootViewController = [DummyNavRootViewController new];
+    DummyNavController *navController = [[DummyNavController alloc] initWithRootViewController:rootViewController];
+    
+    [self.navigationController presentViewController:navController animated:YES completion:nil];
 }
 
 @end

@@ -22,12 +22,12 @@
     
     [self.view addSubview:self.labelOrientation];
     
-    self.previousOrientation = [WCInterfaceOrientationTool appCurrentOrientation];
-    [WCInterfaceOrientationTool forceLockOrientation:UIInterfaceOrientationLandscapeLeft];
+//    self.previousOrientation = [WCInterfaceOrientationTool appCurrentOrientation];
+//    [WCInterfaceOrientationTool forceLockOrientation:UIInterfaceOrientationLandscapeLeft];
 }
 
 - (void)dealloc {
-    [WCInterfaceOrientationTool forceLockOrientation:self.previousOrientation];
+//    [WCInterfaceOrientationTool forceLockOrientation:self.previousOrientation];
 }
 
 - (void)viewDidLayoutSubviews {

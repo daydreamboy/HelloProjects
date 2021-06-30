@@ -14,6 +14,10 @@
 		4F4E14A22103573900D12D11 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E14A12103573900D12D11 /* main.m */; };
 		4F4E14AD2103576600D12D11 /* UseToolbarItemsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E14A92103576600D12D11 /* UseToolbarItemsViewController.m */; };
 		4F4E14AE2103576600D12D11 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F4E14AC2103576600D12D11 /* RootViewController.m */; };
+		4F5B7FD3268C994100D630EF /* CheckDefaultSupportedOrientationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B7FD2268C994100D630EF /* CheckDefaultSupportedOrientationsViewController.m */; };
+		4F5B7FD9268C9B9A00D630EF /* DummyNavRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B7FD8268C9B9A00D630EF /* DummyNavRootViewController.m */; };
+		4F5B7FDC268C9C2300D630EF /* DummyNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B7FDB268C9C2300D630EF /* DummyNavController.m */; };
+		4F5B7FE0268C9D6D00D630EF /* DummySingleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F5B7FDF268C9D6D00D630EF /* DummySingleViewController.m */; };
 		4F68564A218954740080CF0B /* DummyStackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F685649218954740080CF0B /* DummyStackViewController.m */; };
 		4F68564D218954840080CF0B /* DummyModalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F68564C218954840080CF0B /* DummyModalViewController.m */; };
 		4F6EBA15258B56DD0047CED7 /* ParentGetNavigationItemFromChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F6EBA14258B56DD0047CED7 /* ParentGetNavigationItemFromChildViewController.m */; };
@@ -27,6 +31,7 @@
 		4F92C38B268ACFA200357E55 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F92C389268ACFA200357E55 /* RootViewController.m */; };
 		4F92C39B268B07B500357E55 /* WCInterfaceOrientationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F92C39A268B07B400357E55 /* WCInterfaceOrientationTool.m */; };
 		4FA5D633268C062D0005182C /* DetectDeviceOrientationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA5D632268C062D0005182C /* DetectDeviceOrientationViewController.m */; };
+		4FA5D641268C25C40005182C /* DetectInterfaceOrientationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA5D640268C25C40005182C /* DetectInterfaceOrientationViewController.m */; };
 		4FB0291B2188558D000E6516 /* WCViewControllerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0291A2188558D000E6516 /* WCViewControllerTool.m */; };
 		4FB0291E21888B4A000E6516 /* CheckAppearingAndDisappearingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB0291D21888B4A000E6516 /* CheckAppearingAndDisappearingViewController.m */; };
 		4FB7A95325AD3A6E007701FD /* UseUIImagePickerControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FB7A95225AD3A6E007701FD /* UseUIImagePickerControllerViewController.m */; };
@@ -48,6 +53,14 @@
 		4F4E14AA2103576600D12D11 /* UseToolbarItemsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UseToolbarItemsViewController.h; sourceTree = "<group>"; };
 		4F4E14AB2103576600D12D11 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
 		4F4E14AC2103576600D12D11 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
+		4F5B7FD1268C994100D630EF /* CheckDefaultSupportedOrientationsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckDefaultSupportedOrientationsViewController.h; sourceTree = "<group>"; };
+		4F5B7FD2268C994100D630EF /* CheckDefaultSupportedOrientationsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CheckDefaultSupportedOrientationsViewController.m; sourceTree = "<group>"; };
+		4F5B7FD7268C9B9A00D630EF /* DummyNavRootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DummyNavRootViewController.h; sourceTree = "<group>"; };
+		4F5B7FD8268C9B9A00D630EF /* DummyNavRootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DummyNavRootViewController.m; sourceTree = "<group>"; };
+		4F5B7FDA268C9C2300D630EF /* DummyNavController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DummyNavController.h; sourceTree = "<group>"; };
+		4F5B7FDB268C9C2300D630EF /* DummyNavController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DummyNavController.m; sourceTree = "<group>"; };
+		4F5B7FDE268C9D6D00D630EF /* DummySingleViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DummySingleViewController.h; sourceTree = "<group>"; };
+		4F5B7FDF268C9D6D00D630EF /* DummySingleViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DummySingleViewController.m; sourceTree = "<group>"; };
 		4F685648218954740080CF0B /* DummyStackViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DummyStackViewController.h; sourceTree = "<group>"; };
 		4F685649218954740080CF0B /* DummyStackViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DummyStackViewController.m; sourceTree = "<group>"; };
 		4F68564B218954840080CF0B /* DummyModalViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DummyModalViewController.h; sourceTree = "<group>"; };
@@ -74,6 +87,8 @@
 		4FA5D631268C062D0005182C /* DetectDeviceOrientationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectDeviceOrientationViewController.h; sourceTree = "<group>"; };
 		4FA5D632268C062D0005182C /* DetectDeviceOrientationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetectDeviceOrientationViewController.m; sourceTree = "<group>"; };
 		4FA5D635268C18040005182C /* WCMacroTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCMacroTool.h; sourceTree = "<group>"; };
+		4FA5D63F268C25C40005182C /* DetectInterfaceOrientationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetectInterfaceOrientationViewController.h; sourceTree = "<group>"; };
+		4FA5D640268C25C40005182C /* DetectInterfaceOrientationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetectInterfaceOrientationViewController.m; sourceTree = "<group>"; };
 		4FB029192188558D000E6516 /* WCViewControllerTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WCViewControllerTool.h; sourceTree = "<group>"; };
 		4FB0291A2188558D000E6516 /* WCViewControllerTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WCViewControllerTool.m; sourceTree = "<group>"; };
 		4FB0291C21888B4A000E6516 /* CheckAppearingAndDisappearingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CheckAppearingAndDisappearingViewController.h; sourceTree = "<group>"; };
@@ -193,6 +208,43 @@
 			path = AppTestDemos;
 			sourceTree = "<group>";
 		};
+		4F5B7FD4268C998900D630EF /* DummyViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				4F5B7FDD268C9D0000D630EF /* General */,
+				4F5B7FD6268C9B6F00D630EF /* TabBar */,
+				4F5B7FD5268C9B6600D630EF /* Nav */,
+			);
+			path = DummyViewControllers;
+			sourceTree = "<group>";
+		};
+		4F5B7FD5268C9B6600D630EF /* Nav */ = {
+			isa = PBXGroup;
+			children = (
+				4F5B7FD7268C9B9A00D630EF /* DummyNavRootViewController.h */,
+				4F5B7FD8268C9B9A00D630EF /* DummyNavRootViewController.m */,
+				4F5B7FDA268C9C2300D630EF /* DummyNavController.h */,
+				4F5B7FDB268C9C2300D630EF /* DummyNavController.m */,
+			);
+			path = Nav;
+			sourceTree = "<group>";
+		};
+		4F5B7FD6268C9B6F00D630EF /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		4F5B7FDD268C9D0000D630EF /* General */ = {
+			isa = PBXGroup;
+			children = (
+				4F5B7FDE268C9D6D00D630EF /* DummySingleViewController.h */,
+				4F5B7FDF268C9D6D00D630EF /* DummySingleViewController.m */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
 		4F92C350268AC02F00357E55 /* HelloUIInterfaceOrientation */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,11 +264,16 @@
 		4F92C385268ACFA200357E55 /* AppTestDemos */ = {
 			isa = PBXGroup;
 			children = (
+				4F5B7FD4268C998900D630EF /* DummyViewControllers */,
 				4FA5D634268C17F00005182C /* Tools */,
 				4F92C357268AC02F00357E55 /* PortraitViewController.h */,
 				4F92C358268AC02F00357E55 /* PortraitViewController.m */,
 				4FA5D631268C062D0005182C /* DetectDeviceOrientationViewController.h */,
 				4FA5D632268C062D0005182C /* DetectDeviceOrientationViewController.m */,
+				4FA5D63F268C25C40005182C /* DetectInterfaceOrientationViewController.h */,
+				4FA5D640268C25C40005182C /* DetectInterfaceOrientationViewController.m */,
+				4F5B7FD1268C994100D630EF /* CheckDefaultSupportedOrientationsViewController.h */,
+				4F5B7FD2268C994100D630EF /* CheckDefaultSupportedOrientationsViewController.m */,
 			);
 			path = AppTestDemos;
 			sourceTree = "<group>";
@@ -388,12 +445,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				4F92C359268AC02F00357E55 /* PortraitViewController.m in Sources */,
+				4F5B7FDC268C9C2300D630EF /* DummyNavController.m in Sources */,
 				4FA5D633268C062D0005182C /* DetectDeviceOrientationViewController.m in Sources */,
+				4FA5D641268C25C40005182C /* DetectInterfaceOrientationViewController.m in Sources */,
+				4F5B7FD9268C9B9A00D630EF /* DummyNavRootViewController.m in Sources */,
 				4F92C353268AC02F00357E55 /* AppDelegate.m in Sources */,
 				4F92C364268AC03100357E55 /* main.m in Sources */,
+				4F5B7FE0268C9D6D00D630EF /* DummySingleViewController.m in Sources */,
 				4F92C39B268B07B500357E55 /* WCInterfaceOrientationTool.m in Sources */,
 				4F92C38B268ACFA200357E55 /* RootViewController.m in Sources */,
 				4FC765C3268B7AB000D53E56 /* WCViewControllerTool.m in Sources */,
+				4F5B7FD3268C994100D630EF /* CheckDefaultSupportedOrientationsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

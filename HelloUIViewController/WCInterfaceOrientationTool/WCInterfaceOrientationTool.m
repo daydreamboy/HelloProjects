@@ -9,6 +9,12 @@
 #import "WCInterfaceOrientationTool.h"
 #import "WCViewControllerTool.h"
 
+// >= `13.0`
+#ifndef IOS13_OR_LATER
+#define IOS13_OR_LATER          ([[[UIDevice currentDevice] systemVersion] compare:@"13.0" options:NSNumericSearch] != NSOrderedAscending)
+#endif
+
+
 @interface WCInterfaceOrientationTool ()
 @property (nonatomic, strong, class, readonly) NSMutableDictionary<NSString *, DeviceOrientationDidChangeBlockType> *observers;
 @property (nonatomic, assign, class) BOOL isUIDeviceOrientationDidChangeNotificationRegistered;
@@ -65,27 +71,17 @@ static BOOL sIsUIDeviceOrientationDidChangeNotificationRegistered;
 }
 
 + (UIInterfaceOrientation)appCurrentOrientation {
-    UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-
-    //Default orientation
-    if (orientation == 0) {
-        //UI is in Default (Portrait) -- this is really a just a failsafe.
-        return UIInterfaceOrientationUnknown;
-    }
-    //Do something if the orientation is in Portrait
-    else if (orientation == UIInterfaceOrientationPortrait) {
-        return UIInterfaceOrientationPortrait;
-    }
-    // Do something if Left
-    else if(orientation == UIInterfaceOrientationLandscapeLeft) {
-        return UIInterfaceOrientationLandscapeLeft;
-    }
-    // Do something if right
-    else if(orientation == UIInterfaceOrientationLandscapeRight) {
-        return UIInterfaceOrientationLandscapeRight;
+    if (IOS13_OR_LATER) {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wunguarded-availability"
+        UIInterfaceOrientation orientation = [UIApplication sharedApplication].windows.firstObject.windowScene.interfaceOrientation;
+#pragma GCC diagnostic pop
+        
+        return orientation;
     }
     else {
-        return UIInterfaceOrientationUnknown;
+        UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
+        return orientation;
     }
 }
 
