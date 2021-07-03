@@ -456,9 +456,25 @@ error: 'openURL:options:completionHandler:' is unavailable: not available on iOS
 
 
 
+### （2）app安装问题
+
+#### a. 无法安装此app，因为无法验证其完整性
+
+下载app成功，但是打开提示“无法安装此app，因为无法验证其完整性”[^18]
+
+原因：app包含的framework可能没有签名，在Console中报错信息，如下
+
+```shell
+-[IXSErrorPresenter presentErrorForBundleIDs:code:underlyingError:errorSource:]: Asked to present alert for error 14 source MobileInstallation underlying error Error Domain=MIInstallerErrorDomain Code=13 "Failed to verify code signature of /var/installd/Library/Caches/com.apple.mobile.installd.staging/temp.YrFwz9/extracted/Payload/DingGovMini.app/Frameworks/AFNetworking.framework : 0xe800801c (No code signature found.)" UserInfo={NSLocalizedDescription=Failed to verify code signature of /var/installd/Library/Caches/com.apple.mobile.installd.staging/temp.YrFwz9/extracted/Payload/DingGovMini.app/Frameworks/AFNetworking.framework : 0xe800801c (No code signature found.), LegacyErrorString=ApplicationVerificationFailed, FunctionName=+[MICodeSigningVerifier _validateSignatureAndCopyInfoForURL:withOptions:error:], SourceFileLine=77, LibMISErrorNumber=-402620388} for bundle IDs (
+    "com.alibaba.taurus.ep"
+)
+```
+
+解决方法：重新打包签名
 
 
-### （2）app启动问题
+
+### （3）app启动问题
 
 #### a. Expected in: /Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 11.1.simruntime/Contents/Resources/RuntimeRoot/usr/lib/libobjc.A.dylib[^5]
 
@@ -472,7 +488,7 @@ error: 'openURL:options:completionHandler:' is unavailable: not available on iOS
 
 
 
-### （3）运行时问题
+### （4）运行时问题
 
 
 
@@ -757,6 +773,8 @@ do { \
 
 [^16]:http://stackoverflow.com/questions/7542480/what-are-the-common-use-cases-for-iphone-os-version-max-allowed
 [^17]:http://stackoverflow.com/questions/26554894/how-to-present-uialertcontroller-when-not-in-a-view-controller
+
+[^18]:https://discussionschinese.apple.com/thread/252227270
 
 
 
