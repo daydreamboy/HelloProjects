@@ -1,9 +1,9 @@
 //
-//  WCAsyncTaskExecutor.h
+//  WCConcurrentTaskExecutor.h
 //  HelloNSThread
 //
-//  Created by wesley_chen on 2020/6/24.
-//  Copyright © 2020 wesley_chen. All rights reserved.
+//  Created by wesley_chen on 2021/6/28.
+//  Copyright © 2021 wesley_chen. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -36,30 +36,19 @@ typedef NS_ENUM(NSUInteger, WCAsyncTaskExecuteMode) {
     WCAsyncTaskExecuteModeConcurrent,
 };
 
-@class WCAsyncTaskExecutor;
-
-/**
- A task executor to execute async task one by one
- */
-@interface WCAsyncTaskExecutor : NSObject
+@interface WCConcurrentTaskExecutor : NSObject
 
 @property (nonatomic, assign, readonly) WCAsyncTaskExecuteMode executeMode;
 /**
  The completion when all tasks finished
  
- @discussion This block maybe called multiple times 
+ @discussion This block maybe called multiple times
  */
-@property (nonatomic, copy) void (^allTaskFinishedCompletion)(WCAsyncTaskExecutor *executor);
+@property (nonatomic, copy) void (^allTaskFinishedCompletion)(WCConcurrentTaskExecutor *executor);
 
-/**
- Create an autorelease WCAsyncTaskExecutor
- 
- @return the WCAsyncTaskExecutor instance
- 
- @discussion After allTaskFinishedCompletion has been called, the WCAsyncTaskExecutor object will be released.
- You don't need to hold the returned WCAsyncTaskExecutor instance
- */
-+ (WCAsyncTaskExecutor *)autoreleaseTaskExecutor;
+- (instancetype)initWithMaxConcurrency:(NSUInteger)maxConcurrency;
+- (instancetype)init NS_UNAVAILABLE;
++ (instancetype)new NS_UNAVAILABLE;
 
 /**
  Add a block as Task to run or wait to run
@@ -77,7 +66,6 @@ typedef NS_ENUM(NSUInteger, WCAsyncTaskExecuteMode) {
  @param block the task
         - completion, if task is finished, call the completion
  @param data the input data for the task
- @param key the unique key to identify the task
  @param timeout the timeout for the task. If timeout, timeoutBlock will be called
  @param timeoutBlock the callback when the task is timeout
  
@@ -86,7 +74,7 @@ typedef NS_ENUM(NSUInteger, WCAsyncTaskExecuteMode) {
  @discussion If the key is same with the previous task has been added (running or wait to run), the current task is ignored.
  If the previous task has been added and run finished, the task with same key is OK to added.
  */
-- (BOOL)addAsyncTask:(WCAsyncTaskBlock)block data:(nullable id)data forKey:(nullable NSString *)key timeout:(NSTimeInterval)timeout timeoutBlock:(nullable WCAsyncTaskTimeoutBlock)timeoutBlock;
+- (BOOL)addAsyncTask:(WCAsyncTaskBlock)block data:(nullable id)data timeout:(dispatch_time_t)timeout timeoutBlock:(nullable WCAsyncTaskTimeoutBlock)timeoutBlock;
 
 @end
 

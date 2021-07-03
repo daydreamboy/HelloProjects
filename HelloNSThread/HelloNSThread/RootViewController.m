@@ -31,6 +31,7 @@
 
 // test
 #import "TestWCAsyncTaskExecutorViewController.h"
+#import "TestWCConcurrentTaskExecutorViewController.h"
 
 #define kTitle @"Title"
 #define kClass @"Class"
@@ -82,6 +83,7 @@
     
     NSArray<NSDictionary *> *section4 = @[
           @{ kTitle: @"Test WCAsyncTaskExecutor", kClass: [TestWCAsyncTaskExecutorViewController class] },
+          @{ kTitle: @"Test WCConcurrentTaskExecutor", kClass: [TestWCConcurrentTaskExecutorViewController class] },
     ];
     
     _sectionTitles = @[

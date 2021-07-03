@@ -38,12 +38,12 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UIBarButtonItem *addTaskItem = [[UIBarButtonItem alloc] initWithTitle:@"AddTask" style:UIBarButtonItemStylePlain target:self action:@selector(addTaskItemClicked:)];
+    UIBarButtonItem *addTaskItem = [[UIBarButtonItem alloc] initWithTitle:@"AddTasks" style:UIBarButtonItemStylePlain target:self action:@selector(addTaskItemClicked:)];
     
-    UIBarButtonItem *addBatchTaskItem = [[UIBarButtonItem alloc] initWithTitle:@"AddBatchTask" style:UIBarButtonItemStylePlain target:self action:@selector(addBatchTaskItemClicked:)];
-    self.itemAddBatchTask = addBatchTaskItem;
+    UIBarButtonItem *addTasksViaAutoreleaseExecutorItem = [[UIBarButtonItem alloc] initWithTitle:@"AddTasks (AutoRelease)" style:UIBarButtonItemStylePlain target:self action:@selector(addTasksViaAutoreleaseExecutorItemClicked:)];
+    self.itemAddBatchTask = addTasksViaAutoreleaseExecutorItem;
     
-    self.navigationItem.rightBarButtonItems = @[addBatchTaskItem, addTaskItem];
+    self.navigationItem.rightBarButtonItems = @[addTasksViaAutoreleaseExecutorItem, addTaskItem];
 }
 
 #pragma mark - Action
@@ -73,7 +73,7 @@
     }
 }
 
-- (void)addBatchTaskItemClicked:(id)sender {
+- (void)addTasksViaAutoreleaseExecutorItemClicked:(id)sender {
     self.itemAddBatchTask.enabled = NO;
     
     WCAsyncTaskExecutor *asyncTaskExecutor = [WCAsyncTaskExecutor autoreleaseTaskExecutor];
