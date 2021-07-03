@@ -148,6 +148,7 @@
 		4F91202E2674F32B0024DAA1 /* Tests__bridge_xxx.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F91202D2674F32B0024DAA1 /* Tests__bridge_xxx.m */; };
 		4F967056267A579B00CD9BAD /* Tests_tagged_pointer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F967055267A579B00CD9BAD /* Tests_tagged_pointer.m */; };
 		4FA01ADE2679A56C003CBB22 /* Tests_memory_issue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FA01ADD2679A56C003CBB22 /* Tests_memory_issue.m */; };
+		4FD29C2826909B430046A284 /* Tests_data_types.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD29C2726909B430046A284 /* Tests_data_types.m */; };
 		4FD758C12324F10C00BC1C2F /* SwizzleMethodByCategoryMethodViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4F7E7F84231ECE9700E91F0E /* SwizzleMethodByCategoryMethodViewController.m */; };
 		4FD758C42324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FD758C32324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.m */; };
 		4FE4376824F67D9D00AEFB27 /* Test_ivar.m in Sources */ = {isa = PBXBuildFile; fileRef = 4FE4376724F67D9D00AEFB27 /* Test_ivar.m */; };
@@ -443,6 +444,7 @@
 		4F91202D2674F32B0024DAA1 /* Tests__bridge_xxx.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests__bridge_xxx.m; sourceTree = "<group>"; };
 		4F967055267A579B00CD9BAD /* Tests_tagged_pointer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_tagged_pointer.m; sourceTree = "<group>"; };
 		4FA01ADD2679A56C003CBB22 /* Tests_memory_issue.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_memory_issue.m; sourceTree = "<group>"; };
+		4FD29C2726909B430046A284 /* Tests_data_types.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests_data_types.m; sourceTree = "<group>"; };
 		4FD758C22324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwizzleMethodByCFunctionViewController.h; sourceTree = "<group>"; };
 		4FD758C32324F22900BC1C2F /* SwizzleMethodByCFunctionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwizzleMethodByCFunctionViewController.m; sourceTree = "<group>"; };
 		4FE4376724F67D9D00AEFB27 /* Test_ivar.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test_ivar.m; sourceTree = "<group>"; };
@@ -688,6 +690,7 @@
 		4F6034C12650FA750044B4E7 /* Test_OC */ = {
 			isa = PBXGroup;
 			children = (
+				4FD29C2626909B070046A284 /* issues */,
 				4F8E3C022680343000DB0EF0 /* isa */,
 				4FA01ADC2679A538003CBB22 /* MemoryManagement */,
 				4F91202C2674F2BE0024DAA1 /* __bridge_xxx */,
@@ -1053,6 +1056,14 @@
 				4F967055267A579B00CD9BAD /* Tests_tagged_pointer.m */,
 			);
 			path = MemoryManagement;
+			sourceTree = "<group>";
+		};
+		4FD29C2626909B070046A284 /* issues */ = {
+			isa = PBXGroup;
+			children = (
+				4FD29C2726909B430046A284 /* Tests_data_types.m */,
+			);
+			path = issues;
 			sourceTree = "<group>";
 		};
 		4FFE71972236AC550020516E = {
@@ -1504,6 +1515,7 @@
 				4F813B4C265A7EE000684D5E /* Tests_weak.m in Sources */,
 				4F60353C2650FB4D0044B4E7 /* Test__builtin_return_address.m in Sources */,
 				4F6035352650FB4D0044B4E7 /* RootHandler.m in Sources */,
+				4FD29C2826909B430046A284 /* Tests_data_types.m in Sources */,
 				4F6035472650FB4D0044B4E7 /* Tests_objc_requires_super.m in Sources */,
 				4F6035422650FB4D0044B4E7 /* objc_runtime_name_dummy.m in Sources */,
 				4F8E3C092680362C00DB0EF0 /* Person.m in Sources */,
